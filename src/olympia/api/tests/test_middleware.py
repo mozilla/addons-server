@@ -5,8 +5,7 @@ from django.conf import settings
 
 import mock
 
-from olympia.amo.tests import TestCase, addon_factory
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.tests import TestCase, addon_factory, reverse_ns
 from olympia.api.middleware import GZipMiddlewareForAPIOnly
 
 
@@ -45,7 +44,7 @@ class TestGzipMiddleware(TestCase):
     def test_api_endpoint_gzipped(self):
         """Test a simple API endpoint to make sure gzip is active there."""
         addon = addon_factory()
-        url = reverse('v3:addon-detail', kwargs={'pk': addon.pk})
+        url = reverse_ns('addon-detail', kwargs={'pk': addon.pk})
         response = self.client.get(url)
         assert response.status_code == 200
         assert response.content

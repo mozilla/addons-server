@@ -17,7 +17,8 @@ from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.tests import (
-    APITestClient, TestCase, addon_factory, collection_factory, user_factory)
+    APITestClient, TestCase, addon_factory, collection_factory, reverse_ns,
+    user_factory)
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.amo.utils import urlparams
@@ -981,8 +982,8 @@ class TestCollectionViewSetList(TestCase):
 
     def setUp(self):
         self.user = user_factory()
-        self.url = reverse(
-            'v3:collection-list', kwargs={'user_pk': self.user.pk})
+        self.url = reverse_ns(
+            'collection-list', kwargs={'user_pk': self.user.pk})
         super(TestCollectionViewSetList, self).setUp()
 
     def test_basic(self):
@@ -1004,8 +1005,8 @@ class TestCollectionViewSetList(TestCase):
 
     def test_different_user(self):
         random_user = user_factory()
-        other_url = reverse('v3:collection-list',
-                            kwargs={'user_pk': random_user.pk})
+        other_url = reverse_ns('collection-list',
+                               kwargs={'user_pk': random_user.pk})
         collection_factory(author=random_user)
 
         self.client.login_api(self.user)
@@ -1014,8 +1015,8 @@ class TestCollectionViewSetList(TestCase):
 
     def test_admin(self):
         random_user = user_factory()
-        other_url = reverse('v3:collection-list',
-                            kwargs={'user_pk': random_user.pk})
+        other_url = reverse_ns('collection-list',
+                               kwargs={'user_pk': random_user.pk})
         collection_factory(author=random_user)
 
         self.grant_permission(self.user, 'Collections:Edit')
@@ -1026,8 +1027,8 @@ class TestCollectionViewSetList(TestCase):
 
     def test_404(self):
         # Invalid user.
-        url = reverse(
-            'v3:collection-list', kwargs={'user_pk': self.user.pk + 66})
+        url = reverse_ns(
+            'collection-list', kwargs={'user_pk': self.user.pk + 66})
 
         # Not logged in.
         response = self.client.get(url)
@@ -1072,8 +1073,8 @@ class TestCollectionViewSetDetail(TestCase):
         super(TestCollectionViewSetDetail, self).setUp()
 
     def _get_url(self, user, collection):
-        return reverse(
-            'v3:collection-detail', kwargs={
+        return reverse_ns(
+            'collection-detail', kwargs={
                 'user_pk': user.pk, 'slug': collection.slug})
 
     def test_basic(self):
@@ -1083,13 +1084,13 @@ class TestCollectionViewSetDetail(TestCase):
 
     def test_no_id_lookup(self):
         collection = collection_factory(author=self.user, slug='999')
-        id_url = reverse(
-            'v3:collection-detail', kwargs={
+        id_url = reverse_ns(
+            'collection-detail', kwargs={
                 'user_pk': self.user.pk, 'slug': collection.id})
         response = self.client.get(id_url)
         assert response.status_code == 404
-        slug_url = reverse(
-            'v3:collection-detail', kwargs={
+        slug_url = reverse_ns(
+            'collection-detail', kwargs={
                 'user_pk': self.user.pk, 'slug': collection.slug})
         response = self.client.get(slug_url)
         assert response.status_code == 200
@@ -1128,13 +1129,13 @@ class TestCollectionViewSetDetail(TestCase):
 
     def test_404(self):
         # Invalid user.
-        response = self.client.get(reverse(
-            'v3:collection-detail', kwargs={
+        response = self.client.get(reverse_ns(
+            'collection-detail', kwargs={
                 'user_pk': self.user.pk + 66, 'slug': self.collection.slug}))
         assert response.status_code == 404
         # Invalid collection.
-        response = self.client.get(reverse(
-            'v3:collection-detail', kwargs={
+        response = self.client.get(reverse_ns(
+            'collection-detail', kwargs={
                 'user_pk': self.user.pk, 'slug': 'hello'}))
         assert response.status_code == 404
 
@@ -1283,7 +1284,7 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
         return self.client.post(url or self.url, data or self.data)
 
     def get_url(self, user):
-        return reverse('v3:collection-list', kwargs={'user_pk': user.pk})
+        return reverse_ns('collection-list', kwargs={'user_pk': user.pk})
 
     def test_basic_create(self):
         self.client.login_api(self.user)
@@ -1358,8 +1359,8 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         return self.client.patch(url or self.url, data or self.data)
 
     def get_url(self, user):
-        return reverse(
-            'v3:collection-detail', kwargs={
+        return reverse_ns(
+            'collection-detail', kwargs={
                 'user_pk': user.pk, 'slug': self.collection.slug})
 
     def test_basic_patch(self):
@@ -1407,8 +1408,8 @@ class TestCollectionViewSetDelete(TestCase):
         super(TestCollectionViewSetDelete, self).setUp()
 
     def get_url(self, user):
-        return reverse(
-            'v3:collection-detail', kwargs={
+        return reverse_ns(
+            'collection-detail', kwargs={
                 'user_pk': user.pk, 'slug': self.collection.slug})
 
     def test_delete(self):
@@ -1512,8 +1513,8 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         self.addon_pending.current_version.all_files[0].update(
             status=amo.STATUS_AWAITING_REVIEW)
 
-        self.url = reverse(
-            'v3:collection-addon-list', kwargs={
+        self.url = reverse_ns(
+            'collection-addon-list', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug})
         super(TestCollectionAddonViewSetList, self).setUp()
@@ -1524,14 +1525,14 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
 
     def test_404(self):
         # Invalid user.
-        response = self.client.get(reverse(
-            'v3:collection-addon-list', kwargs={
+        response = self.client.get(reverse_ns(
+            'collection-addon-list', kwargs={
                 'user_pk': self.user.pk + 66,
                 'collection_slug': self.collection.slug}))
         assert response.status_code == 404
         # Invalid collection.
-        response = self.client.get(reverse(
-            'v3:collection-addon-list', kwargs={
+        response = self.client.get(reverse_ns(
+            'collection-addon-list', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': 'hello'}))
         assert response.status_code == 404
@@ -1645,8 +1646,8 @@ class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
         self.collection = collection_factory(author=self.user)
         self.addon = addon_factory()
         self.collection.add_addon(self.addon)
-        self.url = reverse(
-            'v3:collection-addon-detail', kwargs={
+        self.url = reverse_ns(
+            'collection-addon-detail', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
                 'addon': self.addon.id})
@@ -1657,8 +1658,8 @@ class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
         assert response.data['addon']['id'] == self.addon.id
 
     def test_with_slug(self):
-        self.url = reverse(
-            'v3:collection-addon-detail', kwargs={
+        self.url = reverse_ns(
+            'collection-addon-detail', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
                 'addon': self.addon.slug})
@@ -1675,8 +1676,8 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
     def setUp(self):
         self.user = user_factory()
         self.collection = collection_factory(author=self.user)
-        self.url = reverse(
-            'v3:collection-addon-list', kwargs={
+        self.url = reverse_ns(
+            'collection-addon-list', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug})
         self.addon = addon_factory()
@@ -1759,8 +1760,8 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
         self.collection = collection_factory(author=self.user)
         self.addon = addon_factory()
         self.collection.add_addon(self.addon)
-        self.url = reverse(
-            'v3:collection-addon-detail', kwargs={
+        self.url = reverse_ns(
+            'collection-addon-detail', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
                 'addon': self.addon.id})
@@ -1804,8 +1805,8 @@ class TestCollectionAddonViewSetDelete(CollectionAddonViewSetMixin, TestCase):
         self.collection = collection_factory(author=self.user)
         self.addon = addon_factory()
         self.collection.add_addon(self.addon)
-        self.url = reverse(
-            'v3:collection-addon-detail', kwargs={
+        self.url = reverse_ns(
+            'collection-addon-detail', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
                 'addon': self.addon.id})

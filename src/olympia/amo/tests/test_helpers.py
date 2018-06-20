@@ -7,7 +7,7 @@ from urlparse import urljoin
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.core.urlresolvers import NoReverseMatch, reverse
+from django.core.urlresolvers import NoReverseMatch
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.utils import translation
@@ -23,7 +23,7 @@ import olympia
 from olympia import amo
 from olympia.amo import urlresolvers, utils
 from olympia.amo.templatetags import jinja_helpers
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, reverse_ns
 from olympia.amo.utils import ImageCheck
 from olympia.versions.models import License
 
@@ -170,7 +170,7 @@ def test_drf_url():
     rendered = render(fragment, context={'request': request})
     # As no /vX/ in the request, RESTFRAMEWORK['DEFAULT_VERSION'] is used.
     assert rendered == jinja_helpers.absolutify(
-        reverse('v4:addon-detail', args=['a3615'], add_prefix=False))
+        reverse_ns('addon-detail', args=['a3615']))
 
     with pytest.raises(NoReverseMatch):
         # Without a request it can't resolve the name correctly.
