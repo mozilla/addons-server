@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2017-08-15 09:12+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -708,18 +708,6 @@ msgstr "Eliminar este complemento de la colección"
 
 msgid "Remove"
 msgstr "Eliminar"
-
-msgid "Remove this user as a contributor"
-msgstr "Eliminar a este usuario como colaborador"
-
-msgid "An email address is required."
-msgstr "Es obligatoria una dirección de correo electrónico."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "No puedes agregarte como colaborador."
-
-msgid "You have already added that user."
-msgstr "Ya has agregado a ese usuario."
 
 msgid "Add to favorites"
 msgstr "Agregar a favoritos"

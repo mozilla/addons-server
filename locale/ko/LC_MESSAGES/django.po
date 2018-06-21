@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2017-12-10 08:43+0000\n"
 "Last-Translator: minwook-shin <minwook0106@gmail.com>\n"
 "Language-Team: none\n"
@@ -823,9 +823,6 @@ msgstr "테마"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "더 많이 바꾸고 싶으세요? <b>완전 테마</b>를 사용해 보세요."
 
-msgid "Most Followers"
-msgstr "최대 팔로워 수"
-
 msgid "Collections"
 msgstr "모음집"
 
@@ -942,22 +939,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr "지원되는 애플리케이션이 매니페스트 파일을 요구하지 않으면, <a href=\"%(url)s\">이곳</a>에 명시된 요구 항목을 반드시 포함하고 있어야 합니다."
 
-#, fuzzy
-msgid "Contributors"
-msgstr "기여자"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "모음집 :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "모음집은 서로 관련이 있는 부가 기능을 한데 엮어놓은 것으로 누구나 제작과 공유가 가능합니다."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: 모음집 :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "자기 자신만 이 모음집을 볼 수 있습니다."
 
@@ -1014,20 +995,14 @@ msgstr "이 사용자 이름은 사용할 수 없습니다."
 msgid "This add-on already belongs to the collection"
 msgstr "이 url은 이미 다른 모음집에서 사용중입니다"
 
-msgid "Name"
-msgstr "이름"
-
-msgid "Recently Updated"
-msgstr "최근 업데이트"
-
-msgid "Recently Popular"
-msgstr "최근 인기"
-
 msgid "Added"
 msgstr "신규"
 
 msgid "Popularity"
 msgstr "인기도"
+
+msgid "Name"
+msgstr "이름"
 
 msgid "Collection created!"
 msgstr "모음집이 제작되었습니다!"
@@ -1133,17 +1108,14 @@ msgstr "실행"
 msgid "What are Collections?"
 msgstr "모음집이란?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "모음집은 서로 관련이 있는 부가 기능을 한데 엮어놓은 것으로 누구나 제작과 공유가 가능합니다."
+
 msgid "Explore Collections"
 msgstr "모음집 살펴보기"
 
 msgid "Common Tags"
 msgstr "공통 태그"
-
-msgid "More by this User"
-msgstr "이 사용자의 추가 정보"
-
-msgid "See all collections by this user"
-msgstr "이 사용자가 제작한 모든 모음집 보기"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1230,66 +1202,8 @@ msgstr "{0} 편집"
 msgid "Description"
 msgstr "설명"
 
-msgid "Contributors & More"
-msgstr "기여자 및 그 외"
-
 msgid "Save Changes"
 msgstr "변경사항 저장"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "소유자"
-
-msgid "Make Owner"
-msgstr "소유자 생성"
-
-msgid "Remove this user as a contributor"
-msgstr "이 사용자를 기여자 명단에서 삭제하기"
-
-msgid "Remove"
-msgstr "삭제"
-
-msgid "Collection Contributors"
-msgstr "모음집 기여자"
-
-#, fuzzy
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"모음집엔 여러 기여자를 추가할 수 있습니다. 기여자는 부가 기능의 추가 삭제가 가능하지만, 모음집의 이름이나 설명을 바꿀 수는 없습니다. 기여자를 추가하려면 아래 상자에 추가하려는 기여자의 이메일 주소"
-"를 입력해 주세요. 기여자는 Mozilla 부가 기능 계정을 가지고 있어야만 합니다."
-
-msgid "User"
-msgstr "사용자"
-
-msgid "Email"
-msgstr "이메일"
-
-# Column name in a table.
-msgid "Role"
-msgstr "역할"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "추가할 기여자의 이메일 주소를 입력하세요"
-
-msgid "Add Contributor"
-msgstr "기여자 추가"
-
-msgid "Contributor"
-msgstr "기여자"
-
-msgid "Admin Settings"
-msgstr "관리자 설정"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>경고:</b> 이 모음집의 소유자를 변경하고 나면 더이상 편집을 하실 수 없습니다. 이후부터는 이 모음집의 부가 기능의 추가 및 삭제만 가능하게 될 것입니다."
-
-msgid "Continue"
-msgstr "계속"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "또는 <a id=\"change-owner-cancel\" href=\"#\">취소</a>"
 
 msgid "Remove from favorites"
 msgstr "선호 목록에서 삭제하기"
@@ -1304,28 +1218,10 @@ msgstr "{0}님이 제작한 모음집"
 msgid "No collections found."
 msgstr "모음집이 없습니다."
 
-msgid "Most-Followed Collections"
-msgstr "가장 많이 팔로우된 모음집"
-
-msgid "Newest Collections"
-msgstr "신규 모음집"
-
-msgid "Collections by Name"
-msgstr "이름순으로 정렬된 모음집"
-
-msgid "Recently Updated Collections"
-msgstr "최근 업데이트된 모음집"
-
-msgid "Recently Popular Collections"
-msgstr "최근 인기 모음집"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
 "모음집은 서로 관련이 있는 부가 기능을 한데 엮어놓은 것으로 누구나 제작과 공유가 가능합니다. 다른 사용자가 제작한 모음집을 살펴보거나 <a href=\"%(url)s\">나만의 모음집을 제작</a>할 수도 있습니다."
-
-msgid "Subscribe"
-msgstr "구독하기"
 
 #, fuzzy, python-format
 msgid "by %(author_link)s"
@@ -1365,6 +1261,9 @@ msgstr "부가 기능"
 
 msgid "Comment"
 msgstr "코멘트"
+
+msgid "Remove"
+msgstr "삭제"
 
 msgid "Enter the name of the add-on to include"
 msgstr "추가하고자 하는 부가 기능의 이름을 입력하세요"
@@ -1432,6 +1331,9 @@ msgstr "최고 사용자 수"
 msgid "Weekly Downloads"
 msgstr "주간 다운로드"
 
+msgid "Recently Updated"
+msgstr "최근 업데이트"
+
 msgid "Up & Coming"
 msgstr "인기 급상승"
 
@@ -1451,6 +1353,9 @@ msgstr "{0}: 추천 부가 기능"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "{0}에 추천 부가 기능이 없습니다."
+
+msgid "Subscribe"
+msgstr "구독하기"
 
 msgid "Featured Add-ons"
 msgstr "추천 부가 기능"
@@ -2083,6 +1988,10 @@ msgstr "향후 심사 대상으로 표시됨"
 msgid "Unlisted"
 msgstr "목록에서 제거됨"
 
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "소유자"
+
 msgid "Developer"
 msgstr "개발자"
 
@@ -2698,6 +2607,9 @@ msgstr ""
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr ""
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "우리는 업그레이드를 허용하고 장려하지만, 이 절차를 거꾸로 할 수는 없습니다. 당신의 사용자들이 WebExtension을 설치하였다면, 그들은 레거시 부가 기능을 설치할 수 없을 것입니다."
 
@@ -3157,6 +3069,9 @@ msgstr "기술 지원 정보"
 msgid "Support Information for {0}"
 msgstr "{0}의 기술 지원 정보"
 
+msgid "Email"
+msgstr "이메일"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3304,6 +3219,14 @@ msgstr "스크린샷에 설명을 입력해 주세요:"
 
 msgid "Add a Screenshot..."
 msgstr "스크린샷 추가...."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "계속"
 
 # 88%
 #, fuzzy
@@ -6308,32 +6231,14 @@ msgstr "업데이트"
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr "이번 주 최고 인기순"
-
-msgid "Most popular this month"
-msgstr "이번 달 최고 인기순"
-
-msgid "Most popular all time"
-msgstr "전체 기간 최고 인기순"
-
-msgid "Highest Rated"
-msgstr "상위 평가도"
-
 msgid "search for add-ons"
 msgstr "부가 기능 검색하기"
-
-msgid "search for collections"
-msgstr "모음집 검색하기"
 
 msgid "search for themes"
 msgstr "테마 검색하기"
 
 msgid "search for apps"
 msgstr "앱 검색하기"
-
-msgid "Sort By"
-msgstr "정렬 방식"
 
 msgid "Relevance"
 msgstr "연관성"

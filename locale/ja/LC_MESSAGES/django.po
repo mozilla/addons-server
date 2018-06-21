@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-06-15 02:24+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -810,9 +810,6 @@ msgstr "テーマ"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "もっとカスタマイズしたいですか？ <b>完全テーマ</b> を試してください"
 
-msgid "Most Followers"
-msgstr "フォロー数上位"
-
 msgid "Collections"
 msgstr "コレクション"
 
@@ -933,21 +930,6 @@ msgstr ""
 "対応アプリケーションが マニフェストファイルを必要としない場合でも、ファイルを同梱する必要があります。必要なプロパティは %(amo_manifests_mdn_link_open)sこちら%(amo_manifests_mdn_link_close)s で指定さ"
 "れています。"
 
-msgid "Contributors"
-msgstr "貢献者"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "コレクション :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "コレクションとは、誰でも作成、共有できる、関連するアドオンのグループです。"
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: コレクション :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "このコレクションは私だけが見ることができます。"
 
@@ -999,20 +981,14 @@ msgstr "このカスタム URL は使用できません。"
 msgid "This add-on already belongs to the collection"
 msgstr "このアドオンは既にコレクションに含まれています"
 
-msgid "Name"
-msgstr "タイトル"
-
-msgid "Recently Updated"
-msgstr "最近更新"
-
-msgid "Recently Popular"
-msgstr "最近人気"
-
 msgid "Added"
 msgstr "追加日"
 
 msgid "Popularity"
 msgstr "人気度"
+
+msgid "Name"
+msgstr "タイトル"
 
 msgid "Collection created!"
 msgstr "コレクションが作成されました！"
@@ -1118,17 +1094,14 @@ msgstr "移動"
 msgid "What are Collections?"
 msgstr "コレクションとは？"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "コレクションとは、誰でも作成、共有できる、関連するアドオンのグループです。"
+
 msgid "Explore Collections"
 msgstr "コレクションを探す"
 
 msgid "Common Tags"
 msgstr "よく使われているタグ"
-
-msgid "More by this User"
-msgstr "このユーザーのコレクションを見る"
-
-msgid "See all collections by this user"
-msgstr "このユーザーのコレクションをすべて見る"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1214,65 +1187,8 @@ msgstr "{0} を編集"
 msgid "Description"
 msgstr "説明"
 
-msgid "Contributors & More"
-msgstr "協力者など"
-
 msgid "Save Changes"
 msgstr "変更を保存"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "オーナー"
-
-msgid "Make Owner"
-msgstr "オーナーに設定"
-
-msgid "Remove this user as a contributor"
-msgstr "このユーザーを協力者から削除"
-
-msgid "Remove"
-msgstr "削除"
-
-msgid "Collection Contributors"
-msgstr "コレクションの協力者"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"複数の協力者をこのコレクションに追加できます。協力者は、このコレクションにアドオンを追加したり削除したりできますが、その名前や説明を変更することはできません。協力者を追加するには、その人のメールアド"
-"レスを下のボックスに入力してください。協力者は Mozilla アドオンサイトのアカウントが必要です。"
-
-msgid "User"
-msgstr "ユーザー"
-
-msgid "Email"
-msgstr "メールアドレス"
-
-# Column name in a table.
-msgid "Role"
-msgstr "役割"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "追加する協力者のメールアドレスを入力してください"
-
-msgid "Add Contributor"
-msgstr "協力者を追加"
-
-msgid "Contributor"
-msgstr "協力者"
-
-msgid "Admin Settings"
-msgstr "管理者設定"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>警告:</b> このコレクションのオーナーを変更すると、今後あなたはコレクションを編集できなくなり、コレクションへのアドオンの追加と削除のみが可能となります。"
-
-msgid "Continue"
-msgstr "続ける"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "または <a id=\"change-owner-cancel\" href=\"#\">キャンセル</a>"
 
 msgid "Remove from favorites"
 msgstr "お気に入りから削除"
@@ -1287,28 +1203,10 @@ msgstr "{0} の作成したコレクション"
 msgid "No collections found."
 msgstr "コレクションが見つかりませんでした。"
 
-msgid "Most-Followed Collections"
-msgstr "フォロー数の多いコレクション"
-
-msgid "Newest Collections"
-msgstr "最新のコレクション"
-
-msgid "Collections by Name"
-msgstr "名前順のコレクション"
-
-msgid "Recently Updated Collections"
-msgstr "最近更新されたコレクション"
-
-msgid "Recently Popular Collections"
-msgstr "最近人気のコレクション"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
 "コレクションとは、誰もが作成し共有することができる、関連するアドオンのグループのことです。他のユーザーが作成したコレクションを探すか、<a href=\"%(url)s\">自分のコレクションを作成</a> してください。"
-
-msgid "Subscribe"
-msgstr "購読"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1346,6 +1244,9 @@ msgstr "アドオン"
 
 msgid "Comment"
 msgstr "コメント"
+
+msgid "Remove"
+msgstr "削除"
 
 msgid "Enter the name of the add-on to include"
 msgstr "追加するアドオンの名前を入力してください"
@@ -1413,6 +1314,9 @@ msgstr "人気"
 msgid "Weekly Downloads"
 msgstr "週間ダウンロード数"
 
+msgid "Recently Updated"
+msgstr "最近更新"
+
 msgid "Up & Coming"
 msgstr "注目"
 
@@ -1432,6 +1336,9 @@ msgstr "{0}: おすすめのアドオン"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "{0} カテゴリーにおすすめのアドオンはありません。"
+
+msgid "Subscribe"
+msgstr "購読"
 
 msgid "Featured Add-ons"
 msgstr "おすすめのアドオン"
@@ -2034,6 +1941,10 @@ msgstr "詳細審査待ち"
 msgid "Unlisted"
 msgstr "リスト掲載中止"
 
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "オーナー"
+
 msgid "Developer"
 msgstr "開発者"
 
@@ -2626,6 +2537,9 @@ msgstr "Firefox 53 以降、当サイトに登録可能な新規拡張機能は 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "旧式拡張機能は Firefox 57 以降と互換性がありません。maxVersion には 56.* あるいはそれ以下を設定してください。"
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "私たちはアップグレードを許容し推奨していますが、この手続きは取り消せません。一度ユーザーが WebExtension をインストールしたら、旧式のアドオンはインストールできなくなります。"
 
@@ -3079,6 +2993,9 @@ msgstr "サポート情報"
 msgid "Support Information for {0}"
 msgstr "{0} のサポート情報"
 
+msgid "Email"
+msgstr "メールアドレス"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3236,6 +3153,14 @@ msgstr "このスクリーンショットの説明を入力してください:"
 
 msgid "Add a Screenshot..."
 msgstr "スクリーンショットを追加..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "続ける"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "このアドオンを、あなたのクレジットを表示する限り、他の人が共有できるようにしますか？"
@@ -6045,32 +5970,14 @@ msgstr "更新"
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr "今週最も人気"
-
-msgid "Most popular this month"
-msgstr "今月最も人気"
-
-msgid "Most popular all time"
-msgstr "これまでで最も人気"
-
-msgid "Highest Rated"
-msgstr "高評価"
-
 msgid "search for add-ons"
 msgstr "アドオンを検索"
-
-msgid "search for collections"
-msgstr "コレクションを検索"
 
 msgid "search for themes"
 msgstr "テーマを検索"
 
 msgid "search for apps"
 msgstr "アプリを検索"
-
-msgid "Sort By"
-msgstr "並べ替え"
 
 msgid "Relevance"
 msgstr "関連度"

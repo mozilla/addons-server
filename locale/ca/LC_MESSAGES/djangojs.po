@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-06-20 16:59+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -709,18 +709,6 @@ msgstr "Suprimeix aquest complement de la col·lecció"
 
 msgid "Remove"
 msgstr "Suprimeix"
-
-msgid "Remove this user as a contributor"
-msgstr "Suprimeix aquest usuari dels col·laboradors"
-
-msgid "An email address is required."
-msgstr "Cal una adreça electrònica."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "No es pot afegir un mateix com a col·laborador."
-
-msgid "You have already added that user."
-msgstr "Ja heu afegit aquest usuari."
 
 msgid "Add to favorites"
 msgstr "Afegeix als preferits"

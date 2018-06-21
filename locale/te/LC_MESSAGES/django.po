@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-20 10:52+0000\n"
-"Last-Translator: వీవెన్ <veeven@gmail.com>\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-21 07:36+0000\n"
+"Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -799,9 +799,6 @@ msgstr "అలంకారాలు"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
 
-msgid "Most Followers"
-msgstr "అనుచరులు ఎక్కువమంది"
-
 msgid "Collections"
 msgstr "సేకరణలు"
 
@@ -918,21 +915,6 @@ msgid ""
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "Contributors"
-msgstr "సహాయకులు"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "సేకరణలు :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr ""
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} ::సేకరణలు :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "ఈ సేకరణను నేను మాత్రమే చూడగలను."
 
@@ -985,20 +967,14 @@ msgstr "ఈ అభిమత URLను ఉపయోగించలేము."
 msgid "This add-on already belongs to the collection"
 msgstr "ఈ పొడగింత ఇప్పటికీ ఆ సేకరణలో ఉంది"
 
-msgid "Name"
-msgstr "పేరు"
-
-msgid "Recently Updated"
-msgstr "ఇటీవలి నవీకరణలు"
-
-msgid "Recently Popular"
-msgstr "ఇటీవల ప్రాచుర్యం పొందింది"
-
 msgid "Added"
 msgstr "జతచేయబడింది"
 
 msgid "Popularity"
 msgstr "జనాదరణ"
+
+msgid "Name"
+msgstr "పేరు"
 
 msgid "Collection created!"
 msgstr "సేకరణ సృష్టించబడింది!"
@@ -1107,17 +1083,14 @@ msgstr "వెళ్ళు"
 msgid "What are Collections?"
 msgstr "సేకరణలు ఏమిటి?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr ""
+
 msgid "Explore Collections"
 msgstr ""
 
 msgid "Common Tags"
 msgstr "సాధారణ ట్యాగులు"
-
-msgid "More by this User"
-msgstr "ఈ వాడుకరివి మరిన్ని"
-
-msgid "See all collections by this user"
-msgstr "ఈ వాడుకరి సేకరణల్నింటినీ చూడండి"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1204,61 +1177,8 @@ msgstr "{0}ను సవరించండి"
 msgid "Description"
 msgstr "వివరణ"
 
-msgid "Contributors & More"
-msgstr ""
-
 msgid "Save Changes"
 msgstr "మార్పులను భద్రపరచు"
-
-msgid "Owner"
-msgstr "యజమాని"
-
-msgid "Make Owner"
-msgstr "యజమానిని చేయండి"
-
-msgid "Remove this user as a contributor"
-msgstr "ఈ వినియోగదారుని సహయకుడిగా తీసివేయండి"
-
-msgid "Remove"
-msgstr "తీసివేయి"
-
-msgid "Collection Contributors"
-msgstr "సేకరణ సహాయకులు"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-
-msgid "User"
-msgstr "వాడుకరి"
-
-msgid "Email"
-msgstr "ఇమెయిల్"
-
-msgid "Role"
-msgstr "పాత్ర"
-
-msgid "Enter the email address of the contributor to add"
-msgstr ""
-
-msgid "Add Contributor"
-msgstr "సహాయకులని జోడించండి"
-
-msgid "Contributor"
-msgstr "సహాయకుడు"
-
-msgid "Admin Settings"
-msgstr "నిర్వహణ అమరికలు"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ""
-
-msgid "Continue"
-msgstr "కొనసాగించు"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
 
 msgid "Remove from favorites"
 msgstr "ఇష్టాంశాల నుంచి తీసివేయి"
@@ -1273,27 +1193,9 @@ msgstr "{0} ద్వారా సేకరణలు"
 msgid "No collections found."
 msgstr "ఎటువంటి సేకరణలు లభించలేదు."
 
-msgid "Most-Followed Collections"
-msgstr "ఎక్కువగా అనుసరించబడిన సేకరణలు"
-
-msgid "Newest Collections"
-msgstr "సరికొత్త సేకరణలు"
-
-msgid "Collections by Name"
-msgstr "పేరు ద్వారా సేకరణలు"
-
-msgid "Recently Updated Collections"
-msgstr "ఇటీవల నవీకరించబడిన సేకరణలు"
-
-msgid "Recently Popular Collections"
-msgstr "ఇటీవల జనాదరణ పొందిన సేకరణలు"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
-
-msgid "Subscribe"
-msgstr "సభ్యత్వం పొందండి"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1331,6 +1233,9 @@ msgstr "పొడగింతలు"
 
 msgid "Comment"
 msgstr "వ్యాఖ్య"
+
+msgid "Remove"
+msgstr "తీసివేయి"
 
 msgid "Enter the name of the add-on to include"
 msgstr "చేర్చడానికి పొడిగింత యొక్క పేరును నమోదు చేయండి"
@@ -1398,6 +1303,9 @@ msgstr "ఎక్కువ వాడుకరులు"
 msgid "Weekly Downloads"
 msgstr "వారపు దింపుకోళ్ళు"
 
+msgid "Recently Updated"
+msgstr "ఇటీవలి నవీకరణలు"
+
 msgid "Up & Coming"
 msgstr ""
 
@@ -1417,6 +1325,9 @@ msgstr "{0}: విశేష పొడిగింతలు"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr ""
+
+msgid "Subscribe"
+msgstr "సభ్యత్వం పొందండి"
 
 msgid "Featured Add-ons"
 msgstr "విశేష పొడిగింత"
@@ -1646,7 +1557,7 @@ msgid "Report Type"
 msgstr "నివేదిక రకం"
 
 msgid "Version"
-msgstr "వర్షన్"
+msgstr "వెర్షను"
 
 msgid "Application Version"
 msgstr "అనువర్తన వెర్షన్"
@@ -2034,6 +1945,9 @@ msgstr ""
 
 msgid "Unlisted"
 msgstr "జాబితాచేయని"
+
+msgid "Owner"
+msgstr "యజమాని"
 
 msgid "Developer"
 msgstr "డెవలపర్"
@@ -2623,6 +2537,9 @@ msgstr ""
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr ""
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
@@ -3069,6 +2986,9 @@ msgstr "మద్దతు సమాచారం"
 msgid "Support Information for {0}"
 msgstr "{0} కోసం మద్దతు సమాచారం"
 
+msgid "Email"
+msgstr "ఇమెయిల్"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
@@ -3216,6 +3136,14 @@ msgstr ""
 
 msgid "Add a Screenshot..."
 msgstr ""
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "కొనసాగించు"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
@@ -6032,31 +5960,13 @@ msgstr "తాజాకరణలు"
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr "ఈ వారం అత్యంత ప్రాచుర్యం"
-
-msgid "Most popular this month"
-msgstr "ఈ నెల అత్యంత ప్రాచుర్యం"
-
-msgid "Most popular all time"
-msgstr "అన్ని సమయాలలో అత్యంత ప్రాచుర్యం"
-
-msgid "Highest Rated"
-msgstr ""
-
 msgid "search for add-ons"
 msgstr "పొడిగింతలు కోసం శోధించండి"
-
-msgid "search for collections"
-msgstr ""
 
 msgid "search for themes"
 msgstr "అలంకారాల కోసం శోధించండి"
 
 msgid "search for apps"
-msgstr ""
-
-msgid "Sort By"
 msgstr ""
 
 msgid "Relevance"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-06-02 15:10+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -845,9 +845,6 @@ msgstr "Темы"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Хотите больше настроек? Попробуйте <b>готовые темы</b>"
 
-msgid "Most Followers"
-msgstr "Чаще всего отслеживаемые"
-
 msgid "Collections"
 msgstr "Подборки"
 
@@ -968,21 +965,6 @@ msgstr ""
 "Даже если поддерживаемое вами приложение не требует файл манифеста, вы всё же должны включить его с указанными %(amo_manifests_mdn_link_open)sздесь%(amo_manifests_mdn_link_close)s требуемыми "
 "свойствами."
 
-msgid "Contributors"
-msgstr "Помощники"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Подборки :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Подборки представляют собой группы связанных дополнений. Любой может создавать и делиться подборками."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Подборки :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Только я могу просматривать эту подборку."
 
@@ -1034,20 +1016,14 @@ msgstr "Этот пользовательский URL не может быть �
 msgid "This add-on already belongs to the collection"
 msgstr "Это дополнение уже используется другой подборкой"
 
-msgid "Name"
-msgstr "Имя"
-
-msgid "Recently Updated"
-msgstr "Недавно обновлённые"
-
-msgid "Recently Popular"
-msgstr "Недавно популярные"
-
 msgid "Added"
 msgstr "Добавлено"
 
 msgid "Popularity"
 msgstr "Популярность"
+
+msgid "Name"
+msgstr "Имя"
 
 msgid "Collection created!"
 msgstr "Подборка создана!"
@@ -1159,17 +1135,14 @@ msgstr "Перейти"
 msgid "What are Collections?"
 msgstr "Что такое подборки?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Подборки представляют собой группы связанных дополнений. Любой может создавать и делиться подборками."
+
 msgid "Explore Collections"
 msgstr "Просмотреть подборки"
 
 msgid "Common Tags"
 msgstr "Типичные метки"
-
-msgid "More by this User"
-msgstr "Ещё от этого пользователя"
-
-msgid "See all collections by this user"
-msgstr "Посмотрите все подборки от этого пользователя"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1265,65 +1238,8 @@ msgstr "Редактировать {0}"
 msgid "Description"
 msgstr "Описание"
 
-msgid "Contributors & More"
-msgstr "Помощники и другое"
-
 msgid "Save Changes"
 msgstr "Сохранить изменения"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "Владелец"
-
-msgid "Make Owner"
-msgstr "Сделать владельцем"
-
-msgid "Remove this user as a contributor"
-msgstr "Удалить этого пользователя как помощника"
-
-msgid "Remove"
-msgstr "Удалить"
-
-msgid "Collection Contributors"
-msgstr "Помощники в создании подборки"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"Вы можете добавить несколько участников в эту подборку. Участник может добавлять и удалять дополнения из подборки, но не может изменять её имя и описание. Чтобы добавить участника, введите его "
-"адрес электронной почты в поле ниже. У участников должен быть учётная запись на сайте дополнений Mozilla."
-
-msgid "User"
-msgstr "Пользователь"
-
-msgid "Email"
-msgstr "Адрес эл. почты"
-
-# Column name in a table.
-msgid "Role"
-msgstr "Роль"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Введите адрес электронной почты добавляемого помощника"
-
-msgid "Add Contributor"
-msgstr "Добавить помощника"
-
-msgid "Contributor"
-msgstr "Помощник"
-
-msgid "Admin Settings"
-msgstr "Настройки администратора"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Внимание:</b> При изменении владельца этой подборки, вы больше не сможете её редактировать. Вы сможете только добавлять и удалять из неё дополнения."
-
-msgid "Continue"
-msgstr "Продолжить"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "или <a id=\"change-owner-cancel\" href=\"#\">Отменить</a>"
 
 msgid "Remove from favorites"
 msgstr "Удалить из избранного"
@@ -1338,29 +1254,11 @@ msgstr "Подборки от {0}"
 msgid "No collections found."
 msgstr "Подборок не найдено."
 
-msgid "Most-Followed Collections"
-msgstr "Самые отслеживаемые подборки"
-
-msgid "Newest Collections"
-msgstr "Новейшие подборки"
-
-msgid "Collections by Name"
-msgstr "Подборки по имени"
-
-msgid "Recently Updated Collections"
-msgstr "Недавно обновлённые подборки"
-
-msgid "Recently Popular Collections"
-msgstr "Недавно популярные подборки"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
 "Подборки это группы связанных дополнений, которые каждый может создавать и делить с другими. Откройте для себя подборки, созданные другими пользователями, или <a href=\"%(url)s\">создайте "
 "собственную</a>."
-
-msgid "Subscribe"
-msgstr "Подписаться"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1398,6 +1296,9 @@ msgstr "Дополнение"
 
 msgid "Comment"
 msgstr "Комментарий"
+
+msgid "Remove"
+msgstr "Удалить"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Введите имя включаемого дополнения"
@@ -1465,6 +1366,9 @@ msgstr "Число пользователей"
 msgid "Weekly Downloads"
 msgstr "Еженедельные загрузки"
 
+msgid "Recently Updated"
+msgstr "Недавно обновлённые"
+
 msgid "Up & Coming"
 msgstr "Набирающие популярность"
 
@@ -1484,6 +1388,9 @@ msgstr "{0}: Избранные дополнения"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "В {0} нет избранных дополнений."
+
+msgid "Subscribe"
+msgstr "Подписаться"
 
 msgid "Featured Add-ons"
 msgstr "Избранные Дополнения"
@@ -2093,6 +2000,10 @@ msgstr "Отмечено для дополнительной проверки"
 msgid "Unlisted"
 msgstr "Скрытое"
 
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "Владелец"
+
 msgid "Developer"
 msgstr "Разработчик"
 
@@ -2686,6 +2597,9 @@ msgstr "Начиная с Firefox 53, новыми дополнениями на
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Устаревшие дополнения не совместимы с Firefox 57 или выше. Используйте maxVersion 56.* или ниже."
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "Мы позволяем и поощряем обновления, но вы не сможете обратить этот процесс вспять. После того, как ваши пользователи установят WebExtension, они больше не смогут установить устаревшее дополнение."
@@ -3158,6 +3072,9 @@ msgstr "Информация о поддержке"
 msgid "Support Information for {0}"
 msgstr "Информация о поддержке для {0}"
 
+msgid "Email"
+msgstr "Адрес эл. почты"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3324,6 +3241,14 @@ msgstr "Пожалуйста, добавьте заголовок для это�
 
 msgid "Add a Screenshot..."
 msgstr "Добавить скриншот..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Продолжить"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Могут ли другие делиться вашим дополнением, если вас указывают в качестве автора?"
@@ -6213,32 +6138,14 @@ msgstr "Обновления"
 msgid "Maximum query length exceeded."
 msgstr "Превышена максимальная длина запроса."
 
-msgid "Most popular this week"
-msgstr "Самые популярные за эту неделю"
-
-msgid "Most popular this month"
-msgstr "Самые популярные за этот месяц"
-
-msgid "Most popular all time"
-msgstr "Самые популярные за всё время"
-
-msgid "Highest Rated"
-msgstr "Лидеры рейтинга"
-
 msgid "search for add-ons"
 msgstr "поиск дополнений"
-
-msgid "search for collections"
-msgstr "поиск подборок"
 
 msgid "search for themes"
 msgstr "поиск тем"
 
 msgid "search for apps"
 msgstr "поиск приложений"
-
-msgid "Sort By"
-msgstr "Сортировать по"
 
 msgid "Relevance"
 msgstr "Релевантность"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-05-12 09:36+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -826,9 +826,6 @@ msgstr "Tema"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Doni më tepër përshtatje? Provoni <b>Tema të Plota</b>"
 
-msgid "Most Followers"
-msgstr "Shumica e Pasuesve"
-
 msgid "Collections"
 msgstr "Koleksione"
 
@@ -949,21 +946,6 @@ msgstr ""
 "Po qe se aplikacioni juaj nuk kërkon domosdo një kartelë manifest, prapë duhet ta përfshini një të tillë me vetitë e domosdoshme, siç tregohet %(amo_manifests_mdn_link_open)skëtu"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "Contributors"
-msgstr "Kontribues"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Koleksione :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Koleksionet janë grupe shtesash të ngjashme, të cilët mund t’i krijojë dhe shkëmbejë cilido."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Koleksione :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Vetëm unë mund të shoh këtë koleksion."
 
@@ -1015,20 +997,14 @@ msgstr "Kjo URL vetjake s’përdoret dot."
 msgid "This add-on already belongs to the collection"
 msgstr "Kjo shtesë bën pjesë tashmë te koleksioni"
 
-msgid "Name"
-msgstr "Emër"
-
-msgid "Recently Updated"
-msgstr "Përditësuar Së Fundi"
-
-msgid "Recently Popular"
-msgstr "Popullore Së Fundi"
-
 msgid "Added"
 msgstr "U shtua"
 
 msgid "Popularity"
 msgstr "Popullaritet"
+
+msgid "Name"
+msgstr "Emër"
 
 msgid "Collection created!"
 msgstr "Koleksioni u krijua!"
@@ -1137,17 +1113,14 @@ msgstr "Shko"
 msgid "What are Collections?"
 msgstr "Ç’janë Koleksionet?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Koleksionet janë grupe shtesash të ngjashme, të cilët mund t’i krijojë dhe shkëmbejë cilido."
+
 msgid "Explore Collections"
 msgstr "Eksploroni Koleksione"
 
 msgid "Common Tags"
 msgstr "Etiketa të Zakonshme"
-
-msgid "More by this User"
-msgstr "Më tepër nga ky Përdorues"
-
-msgid "See all collections by this user"
-msgstr "Shihni krejt koleksionet nga ky përdorues"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1238,65 +1211,8 @@ msgstr "Përpunoni {0}"
 msgid "Description"
 msgstr "Përshkrim"
 
-msgid "Contributors & More"
-msgstr "Pjesëmarrës & Më tepër"
-
 msgid "Save Changes"
 msgstr "Ruaji Ndryshimet"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "Pronar"
-
-msgid "Make Owner"
-msgstr "Bëjeni Pronar"
-
-msgid "Remove this user as a contributor"
-msgstr "Hiqe këtë përdorues si pjesëmarrës"
-
-msgid "Remove"
-msgstr "Hiqe"
-
-msgid "Collection Contributors"
-msgstr "Pjesëmarrës në Koleksion"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"Te ky koleksion mund të shtoni pjesëmarrës të shumtë. Një pjesëmarrës mund të shtojë dhe të heqë shtesa prej këtij koleksioni, por nuk mund të ndryshojë emrin e tij apo përshkrimin për të. Që të "
-"shtoni një pjesëmarrës, jepni email-in e tij te kutia më poshtë. Pjesëmarrësi duhet të ketë një llogari te Shtesat e Mozilla-s."
-
-msgid "User"
-msgstr "Përdorues"
-
-msgid "Email"
-msgstr "Email"
-
-# Column name in a table.
-msgid "Role"
-msgstr "Rol"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Jepni adresën email të pjesëmarrësit që duhet shtuar"
-
-msgid "Add Contributor"
-msgstr "Shtoni Pjesëmarrës"
-
-msgid "Contributor"
-msgstr "Pjesëmarrës"
-
-msgid "Admin Settings"
-msgstr "Rregullime Përgjegjësi"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Kujdes:</b> Duke ndryshuar të zotin e këtij koleksioni, s’do të jeni më në gjendje ta përpunoni. Do të jeni në gjendje vetëm të shtoni ose të hiqni prej tij shtesa."
-
-msgid "Continue"
-msgstr "Vazhdo"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "ose <a id=\"change-owner-cancel\" href=\"#\">Anulojeni</a>"
 
 msgid "Remove from favorites"
 msgstr "Hiqe prej të parapëlqyerave"
@@ -1311,29 +1227,11 @@ msgstr "Koleksione nga {0}"
 msgid "No collections found."
 msgstr "S’u gjetën koleksione."
 
-msgid "Most-Followed Collections"
-msgstr "Koleksionet Më të Ndjekura"
-
-msgid "Newest Collections"
-msgstr "Koleksionet Më të Reja"
-
-msgid "Collections by Name"
-msgstr "Koleksione sipas Emrash"
-
-msgid "Recently Updated Collections"
-msgstr "Koleksione të Përditësuar Së Fundi"
-
-msgid "Recently Popular Collections"
-msgstr "Koleksione Popullore Së Fundi"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
 "Koleksionet janë grupe shtesash të ngjashme, të cilët mund t’i krijojë dhe shkëmbejë cilido. Eksploroni koleksione të krijuar nga përdorues të tjerë ose <a href=\"%(url)s\">krijoni një të tuajin</"
 "a>."
-
-msgid "Subscribe"
-msgstr "Regjistrohuni"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1371,6 +1269,9 @@ msgstr "Shtesë"
 
 msgid "Comment"
 msgstr "Koment"
+
+msgid "Remove"
+msgstr "Hiqe"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Jepni emrin e shtesës që duhet përfshirë"
@@ -1439,6 +1340,9 @@ msgstr "Shumica e Përdoruesve"
 msgid "Weekly Downloads"
 msgstr "Shkarkime Javore"
 
+msgid "Recently Updated"
+msgstr "Përditësuar Së Fundi"
+
 msgid "Up & Coming"
 msgstr "Premtuese"
 
@@ -1458,6 +1362,9 @@ msgstr "{0}: Shtesa të Zgjedhura"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Pa shtesa të përzgjedhura në {0}."
+
+msgid "Subscribe"
+msgstr "Regjistrohuni"
 
 msgid "Featured Add-ons"
 msgstr "Shtesa të Zgjedhura"
@@ -2067,6 +1974,10 @@ msgstr "Iu vu shenjë për shqyrtim të mëtejshëm"
 msgid "Unlisted"
 msgstr "E palistuar"
 
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "Pronar"
+
 msgid "Developer"
 msgstr "Zhvillues"
 
@@ -2660,6 +2571,9 @@ msgstr "Duke filluar me Firefox 53-shin, zgjerimet e reja në këtë sajt mund t
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Shtesat e dikurshme s’janë të përputhshme me Firefox 57 apo më të madh. Përdorni një maxVersion 56.* ose më të ulët."
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "E lejojmë dhe e nxisim një përmirësim, por këtë proces nuk mund ta zhbëni. Pasi përdoruesit tuaj të kenë instaluar WebExtension, nuk do të jenë në gjendje të instalojnë shtesa nga të dikurshmet."
@@ -3126,6 +3040,9 @@ msgstr "Të dhëna Asistence"
 msgid "Support Information for {0}"
 msgstr "Të dhëna Asistence për {0}"
 
+msgid "Email"
+msgstr "Email"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3283,6 +3200,14 @@ msgstr "Ju lutemi, jepni një titull për këtë foto ekrani:"
 
 msgid "Add a Screenshot..."
 msgstr "Shtoni një Foto Ekrani…"
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Vazhdo"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "A mundet të tjerët të ndajnë me dikë Temën tuaj, për sa kohë që ju përmendin si autor?"
@@ -6148,32 +6073,14 @@ msgstr "Përditësime"
 msgid "Maximum query length exceeded."
 msgstr "U tejkalua gjatësia maksimum e kërkesave."
 
-msgid "Most popular this week"
-msgstr "Më populloret e kësaj jave"
-
-msgid "Most popular this month"
-msgstr "Më populloret e këtij muaji"
-
-msgid "Most popular all time"
-msgstr "Më populloret e tërë kohërave"
-
-msgid "Highest Rated"
-msgstr "Më të Vlerësuarat"
-
 msgid "search for add-ons"
 msgstr "kërkoni për shtesa"
-
-msgid "search for collections"
-msgstr "kërko për koleksione"
 
 msgid "search for themes"
 msgstr "kërkoni për tema"
 
 msgid "search for apps"
 msgstr "kërkoni për aplikacione"
-
-msgid "Sort By"
-msgstr "Renditur Sipas"
 
 msgid "Relevance"
 msgstr "Rëndësi"

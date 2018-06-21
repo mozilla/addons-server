@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-05-09 18:18+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -710,18 +710,6 @@ msgstr "ამ დამატების კრებულიდან ამ
 
 msgid "Remove"
 msgstr "ამოშლა"
-
-msgid "Remove this user as a contributor"
-msgstr "ამ მომხმარებლის მოხალისეებიდან ამოშლა"
-
-msgid "An email address is required."
-msgstr "ელფოსტის მისამართი საჭიროა."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "საკუთარი თავის მოხალისედ დამატება არ შეგიძლიათ."
-
-msgid "You have already added that user."
-msgstr "ეს მომხმარებელი უკვე დაამატეთ."
 
 msgid "Add to favorites"
 msgstr "რჩეულებში დამატება"

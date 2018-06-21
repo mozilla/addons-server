@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -706,18 +706,6 @@ msgstr "Řḗḿǿṽḗ ŧħīş ȧḓḓ-ǿƞ ƒřǿḿ ŧħḗ ƈǿŀŀḗƈ�
 
 msgid "Remove"
 msgstr "Řḗḿǿṽḗ"
-
-msgid "Remove this user as a contributor"
-msgstr "Řḗḿǿṽḗ ŧħīş ŭşḗř ȧş ȧ ƈǿƞŧřīƀŭŧǿř"
-
-msgid "An email address is required."
-msgstr "Aƞ ḗḿȧīŀ ȧḓḓřḗşş īş řḗɋŭīřḗḓ."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Ẏǿŭ ƈȧƞƞǿŧ ȧḓḓ ẏǿŭřşḗŀƒ ȧş ȧ ƈǿƞŧřīƀŭŧǿř."
-
-msgid "You have already added that user."
-msgstr "Ẏǿŭ ħȧṽḗ ȧŀřḗȧḓẏ ȧḓḓḗḓ ŧħȧŧ ŭşḗř."
 
 msgid "Add to favorites"
 msgstr "Aḓḓ ŧǿ ƒȧṽǿřīŧḗş"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: src/olympia/accounts/serializers.py:90 src/olympia/bandwagon/forms.py:179
+#: src/olympia/accounts/serializers.py:90 src/olympia/bandwagon/forms.py:124
 #: src/olympia/bandwagon/serializers.py:60 src/olympia/users/forms.py:232
 msgid "No links are allowed."
 msgstr ""
@@ -48,7 +48,7 @@ msgstr ""
 msgid "Images cannot be animated."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:138 src/olympia/bandwagon/forms.py:211
+#: src/olympia/accounts/serializers.py:138 src/olympia/bandwagon/forms.py:156
 #: src/olympia/devhub/views.py:1013 src/olympia/users/forms.py:221
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -122,7 +122,6 @@ msgstr ""
 #: src/olympia/amo/templates/amo/side_nav.html:10
 #: src/olympia/amo/templates/amo/site_nav.html:2
 #: src/olympia/amo/templates/amo/site_nav.html:53
-#: src/olympia/bandwagon/views.py:107
 #: src/olympia/browse/templates/browse/impala/category_landing.html:21
 #: src/olympia/browse/views.py:55 src/olympia/browse/views.py:69
 #: src/olympia/browse/views.py:194
@@ -241,7 +240,7 @@ msgstr ""
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
-#: src/olympia/addons/views.py:389
+#: src/olympia/addons/views.py:391
 msgid "Abuse reported."
 msgstr ""
 
@@ -354,13 +353,12 @@ msgid "Featured Themes"
 msgstr ""
 
 #: src/olympia/addons/templates/addons/home.html:77
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:5
 msgid "Featured Collections"
 msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/listing/sorter.html:2
 #: src/olympia/addons/templates/addons/listing_header.html:3
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:107
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:102
 msgid "Sort by:"
 msgstr ""
 
@@ -369,7 +367,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/listing/macros.html:42
 #: src/olympia/addons/templates/addons/macros.html:7
 #: src/olympia/addons/templates/addons/macros.html:84
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:44
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:39
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html:40
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html:40
 msgid "Updated {0}"
@@ -621,7 +619,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:89
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:67
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:167
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:149
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:158
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:45
 #: src/olympia/devhub/templates/devhub/versions/edit.html:144
 #: src/olympia/devhub/templates/devhub/versions/list.html:299
@@ -640,7 +638,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:92
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:70
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:170
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:152
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:161
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:45
 #: src/olympia/devhub/templates/devhub/personas/edit.html:225
 #: src/olympia/devhub/templates/devhub/versions/edit.html:145
@@ -743,7 +741,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html:34
 #: src/olympia/addons/templates/addons/impala/featured_grid.html:26
 #: src/olympia/addons/templates/addons/impala/theme_grid.html:22
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:25
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:20
 #: src/olympia/users/templates/users/helpers/addon_users_list.html:7
 #, python-format
 msgid "by %(users)s"
@@ -1121,7 +1119,7 @@ msgid "Submit a New Theme"
 msgstr ""
 
 #: src/olympia/amo/context_processors.py:79
-#: src/olympia/amo/templates/amo/site_nav.html:85
+#: src/olympia/amo/templates/amo/site_nav.html:83
 #: src/olympia/devhub/templatetags/jinja_helpers.py:41
 #: src/olympia/templates/footer.html:6
 msgid "Developer Hub"
@@ -1323,16 +1321,13 @@ msgstr ""
 #: src/olympia/amo/templates/amo/site_nav.html:4
 #: src/olympia/amo/templates/amo/site_nav.html:26 src/olympia/browse/views.py:57
 #: src/olympia/browse/views.py:67 src/olympia/browse/views.py:196
-#: src/olympia/browse/views.py:241 src/olympia/search/forms.py:86
+#: src/olympia/browse/views.py:241 src/olympia/search/forms.py:37
 msgid "Top Rated"
 msgstr ""
 
 #: src/olympia/amo/templates/amo/side_nav.html:5
-#: src/olympia/amo/templates/amo/site_nav.html:27
-#: src/olympia/amo/templates/amo/site_nav.html:55
-#: src/olympia/bandwagon/views.py:109 src/olympia/browse/views.py:58
-#: src/olympia/browse/views.py:68 src/olympia/search/forms.py:15
-#: src/olympia/search/forms.py:87
+#: src/olympia/amo/templates/amo/site_nav.html:27 src/olympia/browse/views.py:58
+#: src/olympia/browse/views.py:68 src/olympia/search/forms.py:38
 msgid "Newest"
 msgstr ""
 
@@ -1367,55 +1362,50 @@ msgstr ""
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
 
-#: src/olympia/amo/templates/amo/site_nav.html:54
-#: src/olympia/bandwagon/views.py:108
-msgid "Most Followers"
-msgstr ""
-
-#: src/olympia/amo/templates/amo/site_nav.html:59
+#: src/olympia/amo/templates/amo/site_nav.html:57
 #: src/olympia/amo/templatetags/jinja_helpers.py:143
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:12
+#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:4
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:3
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:2
 #: src/olympia/users/admin.py:88
 msgid "Collections"
 msgstr ""
 
-#: src/olympia/amo/templates/amo/site_nav.html:66
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16
-#: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:18
+#: src/olympia/amo/templates/amo/site_nav.html:64
+#: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:11
+#: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:10
 msgid "Collections I've Made"
 msgstr ""
 
-#: src/olympia/amo/templates/amo/site_nav.html:68
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:13
-#: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:15
+#: src/olympia/amo/templates/amo/site_nav.html:66
+#: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:8
+#: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:7
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html:4
 msgid "Collections I'm Following"
 msgstr ""
 
-#: src/olympia/amo/templates/amo/site_nav.html:71
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
-#: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
+#: src/olympia/amo/templates/amo/site_nav.html:69
+#: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:13
+#: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:12
 #: src/olympia/users/models.py:491
 msgid "My Favorite Add-ons"
 msgstr ""
 
-#: src/olympia/amo/templates/amo/site_nav.html:76
+#: src/olympia/amo/templates/amo/site_nav.html:74
 msgid "More&hellip;"
 msgstr ""
 
-#: src/olympia/amo/templates/amo/site_nav.html:80
+#: src/olympia/amo/templates/amo/site_nav.html:78
 msgid "Add-ons for Mobile"
 msgstr ""
 
-#: src/olympia/amo/templates/amo/site_nav.html:83
+#: src/olympia/amo/templates/amo/site_nav.html:81
 #: src/olympia/amo/templatetags/jinja_helpers.py:153
 #: src/olympia/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
 msgstr ""
 
-#: src/olympia/amo/templates/amo/site_nav.html:84 src/olympia/browse/feeds.py:207
+#: src/olympia/amo/templates/amo/site_nav.html:82 src/olympia/browse/feeds.py:207
 #: src/olympia/browse/templates/browse/search_tools.html:3
 #: src/olympia/constants/base.py:142 src/olympia/constants/categories.py:73
 #: src/olympia/constants/categories.py:225
@@ -1564,26 +1554,6 @@ msgid ""
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-#: src/olympia/bandwagon/admin.py:11
-msgid "Contributors"
-msgstr ""
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#: src/olympia/bandwagon/feeds.py:44
-#, python-format
-msgid "Collections :: %s"
-msgstr ""
-
-#: src/olympia/bandwagon/feeds.py:50
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:125
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr ""
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-#: src/olympia/bandwagon/feeds.py:71
-msgid "{0} :: Collections :: {1}"
-msgstr ""
-
 #: src/olympia/bandwagon/forms.py:25
 msgid "Only I can view this collection."
 msgstr ""
@@ -1592,43 +1562,43 @@ msgstr ""
 msgid "Anybody can view this collection."
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:127
+#: src/olympia/bandwagon/forms.py:72
 msgid "Give your collection a name."
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:129
+#: src/olympia/bandwagon/forms.py:74
 msgid "URL:"
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:131
+#: src/olympia/bandwagon/forms.py:76
 msgid "Describe your collection (no links allowed)."
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:136
+#: src/olympia/bandwagon/forms.py:81
 msgid "Privacy:"
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:141
+#: src/olympia/bandwagon/forms.py:86
 msgid "Icon"
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:147
+#: src/olympia/bandwagon/forms.py:92
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:171 src/olympia/bandwagon/serializers.py:53
+#: src/olympia/bandwagon/forms.py:116 src/olympia/bandwagon/serializers.py:53
 msgid "This name cannot be used."
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:191
+#: src/olympia/bandwagon/forms.py:136
 msgid "This url is already in use by another collection"
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:203 src/olympia/devhub/views.py:994
+#: src/olympia/bandwagon/forms.py:148 src/olympia/devhub/views.py:994
 msgid "Icons must be either PNG or JPG."
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:206 src/olympia/devhub/views.py:1000
+#: src/olympia/bandwagon/forms.py:151 src/olympia/devhub/views.py:1000
 msgid "Icons cannot be animated."
 msgstr ""
 
@@ -1652,64 +1622,52 @@ msgstr ""
 msgid "This add-on already belongs to the collection"
 msgstr ""
 
-#: src/olympia/bandwagon/views.py:110 src/olympia/bandwagon/views.py:205
-#: src/olympia/browse/views.py:59 src/olympia/browse/views.py:70
-#: src/olympia/browse/views.py:414
+#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:16
+#: src/olympia/bandwagon/views.py:166
+msgid "Added"
+msgstr ""
+
+#: src/olympia/bandwagon/views.py:167
+msgid "Popularity"
+msgstr ""
+
+#: src/olympia/bandwagon/views.py:168 src/olympia/browse/views.py:59
+#: src/olympia/browse/views.py:70 src/olympia/browse/views.py:414
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:20
 #: src/olympia/devhub/views.py:82 src/olympia/devhub/views.py:90
 #: src/olympia/reviewers/templates/reviewers/leaderboard.html:20
 #: src/olympia/reviewers/templates/reviewers/themes/queue_list.html:48
-#: src/olympia/search/forms.py:17 src/olympia/search/forms.py:89
-#: src/olympia/users/templates/users/vcard.html:5
+#: src/olympia/search/forms.py:40 src/olympia/users/templates/users/vcard.html:5
 msgid "Name"
 msgstr ""
 
-#: src/olympia/bandwagon/views.py:111 src/olympia/browse/views.py:61
-#: src/olympia/browse/views.py:72 src/olympia/search/forms.py:16
-#: src/olympia/search/forms.py:91
-msgid "Recently Updated"
-msgstr ""
-
-#: src/olympia/bandwagon/views.py:112
-msgid "Recently Popular"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:16
-#: src/olympia/bandwagon/views.py:203
-msgid "Added"
-msgstr ""
-
-#: src/olympia/bandwagon/views.py:204
-msgid "Popularity"
-msgstr ""
-
-#: src/olympia/bandwagon/views.py:328
+#: src/olympia/bandwagon/views.py:281
 msgid "Collection created!"
 msgstr ""
 
-#: src/olympia/bandwagon/views.py:329
+#: src/olympia/bandwagon/views.py:282
 #, python-format
 msgid ""
 "Your new collection is shown below. You can <a href=\"%(url)s\">edit "
 "additional settings</a> if you'd like."
 msgstr ""
 
-#: src/olympia/bandwagon/views.py:335
+#: src/olympia/bandwagon/views.py:288
 msgid "Collection updated!"
 msgstr ""
 
-#: src/olympia/bandwagon/views.py:336
+#: src/olympia/bandwagon/views.py:289
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr ""
 
-#: src/olympia/bandwagon/views.py:603
+#: src/olympia/bandwagon/views.py:519
 msgid "Icon Deleted"
 msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html:3
 #: src/olympia/bandwagon/templates/bandwagon/add.html:9
-#: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:26
+#: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:18
 msgid "Create a New Collection"
 msgstr ""
 
@@ -1775,61 +1733,61 @@ msgstr ""
 msgid "{0} :: Collections"
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:20
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:15
 msgid "private"
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:39
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:34
 #, python-format
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:48
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:43
 msgid "About this Collection"
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:54
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:49
 msgid "Add-ons synced to my Mobile Firefox"
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:63
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:58
 msgid "Make this Collection Private"
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:65
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:60
 msgid "Make this Collection Public"
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:75
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:70
 msgid "More Options:"
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:76
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:71
 msgid "Edit Collection"
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:78
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:73
 #: src/olympia/bandwagon/templates/bandwagon/includes/delete.html:3
 msgid "Delete Collection"
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:89
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:84
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:100
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:95
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:114
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:109
 #: src/olympia/compat/templates/compat/reporter_detail.html:27
 #: src/olympia/files/templates/files/viewer.html:40
 #: src/olympia/templates/footer.html:36
@@ -1837,27 +1795,23 @@ msgstr[1] ""
 msgid "Go"
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:124
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:119
 msgid "What are Collections?"
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:129
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:120
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr ""
+
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:124
 msgid "Explore Collections"
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:134
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:129
 msgid "Common Tags"
 msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:148
-msgid "More by this User"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:156
-msgid "See all collections by this user"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:167
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature "
 "appear below. This collection is currently <b>public</b>, which means "
@@ -1865,7 +1819,7 @@ msgid ""
 " button below to make it private."
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:174
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:155
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature "
 "appear below. This collection is currently <b>private</b>, which means only "
@@ -1873,7 +1827,7 @@ msgid ""
 "click the button below to make it public."
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:184
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:165
 msgid "My favorite add-ons"
 msgstr ""
 
@@ -1989,114 +1943,21 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/edit.html:33
-msgid "Contributors & More"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/edit.html:48
-#: src/olympia/bandwagon/templates/bandwagon/edit.html:61
-#: src/olympia/bandwagon/templates/bandwagon/edit.html:76
+#: src/olympia/bandwagon/templates/bandwagon/edit.html:42
+#: src/olympia/bandwagon/templates/bandwagon/edit.html:55
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:35
 #: src/olympia/devhub/templates/devhub/addons/edit/admin.html:92
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:211
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:89
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:67
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:167
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:149
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:158
 #: src/olympia/devhub/templates/devhub/addons/owner.html:58
 #: src/olympia/devhub/templates/devhub/personas/edit.html:34
 #: src/olympia/devhub/templates/devhub/personas/edit.html:294
 #: src/olympia/devhub/templates/devhub/versions/edit.html:144
 #: src/olympia/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:9
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:12
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:17
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:58
-#: src/olympia/constants/base.py:102
-msgid "Owner"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:14
-msgid "Make Owner"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:18
-msgid "Remove this user as a contributor"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:18
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:43
-#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:18
-#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:46
-#: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:19
-msgid "Remove"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:24
-msgid "Collection Contributors"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:26
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add "
-"and remove add-ons from this collection, but cannot change its name or "
-"description. To add a contributor, enter their email in the box below. "
-"Contributors must have a Mozilla Add-ons account."
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:40
-msgid "User"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:41
-#: src/olympia/devhub/templates/devhub/addons/edit/support.html:20
-#: src/olympia/users/templates/users/delete.html:49
-msgid "Email"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:42
-msgid "Role"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:51
-msgid "Enter the email address of the contributor to add"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:53
-msgid "Add Contributor"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:60
-msgid "Contributor"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:68
-msgid "Admin Settings"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:76
-msgid ""
-"<b>Warning:</b> By changing the owner of this collection, you will no longer "
-"be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:83
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:157
-#: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:19
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:104
-#: src/olympia/reviewers/templates/reviewers/themes/themes.html:111
-#: src/olympia/reviewers/templates/reviewers/themes/themes.html:128
-#: src/olympia/reviewers/templates/reviewers/themes/themes.html:134
-#: src/olympia/reviewers/templates/reviewers/themes/themes.html:141
-#: src/olympia/users/templates/users/fxa_login_prompt_content.html:10
-msgid "Continue"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:84
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
 msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/favorites_widget.html:2
@@ -2118,38 +1979,12 @@ msgstr ""
 msgid "No collections found."
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:6
-msgid "Most-Followed Collections"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:7
-msgid "Newest Collections"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:8
-msgid "Collections by Name"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:9
-msgid "Recently Updated Collections"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:10
-msgid "Recently Popular Collections"
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:25
+#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:13
 #, python-format
 msgid ""
 "Collections are groups of related add-ons that anyone can create and share. "
 "Explore collections created by other users or <a href=\"%(url)s\">create your"
 " own</a>."
-msgstr ""
-
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:34
-#: src/olympia/browse/templates/browse/extensions.html:8
-#: src/olympia/browse/templates/browse/themes.html:8
-msgid "Subscribe"
 msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html:9
@@ -2161,14 +1996,14 @@ msgstr ""
 msgid "Following"
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:22
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:28
-#: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:32
+#: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:17
+#: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:23
+#: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:24
 msgid "Create a Collection"
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:23
-#: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:27
+#: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
+#: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:19
 msgid ""
 "Collections make it easy to keep track of favorite add-ons and share your "
 "perfectly customized browser with others."
@@ -2213,6 +2048,12 @@ msgstr ""
 #: src/olympia/reviewers/templates/reviewers/themes/history_table.html:11
 #: src/olympia/reviewers/utils.py:457
 msgid "Comment"
+msgstr ""
+
+#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:18
+#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:46
+#: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:19
+msgid "Remove"
 msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:24
@@ -2295,19 +2136,24 @@ msgid "Search tools"
 msgstr ""
 
 #: src/olympia/browse/views.py:56 src/olympia/browse/views.py:66
-#: src/olympia/search/forms.py:85
+#: src/olympia/search/forms.py:36
 msgid "Most Users"
 msgstr ""
 
 #: src/olympia/browse/views.py:60 src/olympia/browse/views.py:71
-#: src/olympia/search/forms.py:90
+#: src/olympia/search/forms.py:41
 msgid "Weekly Downloads"
+msgstr ""
+
+#: src/olympia/browse/views.py:61 src/olympia/browse/views.py:72
+#: src/olympia/search/forms.py:42
+msgid "Recently Updated"
 msgstr ""
 
 #: src/olympia/browse/views.py:62 src/olympia/browse/views.py:73
 #: src/olympia/browse/views.py:238
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:67
-#: src/olympia/search/forms.py:92
+#: src/olympia/search/forms.py:43
 msgid "Up & Coming"
 msgstr ""
 
@@ -2341,9 +2187,14 @@ msgstr ""
 msgid "No featured add-ons in {0}."
 msgstr ""
 
+#: src/olympia/browse/templates/browse/extensions.html:8
+#: src/olympia/browse/templates/browse/themes.html:8
+msgid "Subscribe"
+msgstr ""
+
 #: src/olympia/browse/templates/browse/featured.html:4
 #: src/olympia/browse/templates/browse/featured.html:12
-#: src/olympia/legacy_discovery/modules.py:262
+#: src/olympia/legacy_discovery/modules.py:265
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:52
 msgid "Featured Add-ons"
 msgstr ""
@@ -3168,6 +3019,10 @@ msgstr ""
 msgid "Unlisted"
 msgstr ""
 
+#: src/olympia/constants/base.py:102
+msgid "Owner"
+msgstr ""
+
 #: src/olympia/constants/base.py:103 src/olympia/users/notifications.py:107
 msgid "Developer"
 msgstr ""
@@ -3976,65 +3831,71 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:354
+#: src/olympia/devhub/tasks.py:356
 msgid ""
 "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on "
 "addons.thunderbird.net. You can use the same account to update your add-ons "
 "on the new site."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:371
+#: src/olympia/devhub/tasks.py:373
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:386
+#: src/olympia/devhub/tasks.py:388
 msgid ""
 "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion"
 " of 56.* or lower."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:423
+#: src/olympia/devhub/tasks.py:421
+msgid ""
+"Legacy language packs for Firefox are no longer supported. A WebExtensions "
+"install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
+#: src/olympia/devhub/tasks.py:460
 msgid ""
 "We allow and encourage an upgrade but you cannot reverse this process. Once "
 "your users have the WebExtension installed, they will not be able to install "
 "a legacy add-on."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:438
+#: src/olympia/devhub/tasks.py:475
 msgid ""
 "You cannot update a WebExtensions add-on with a legacy add-on. Your users "
 "would not be able to use your new version because Firefox does not support "
 "this type of update."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:486
+#: src/olympia/devhub/tasks.py:523
 msgid ""
 "Your developer API key was found in the submitted file. To protect your "
 "account, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:491
+#: src/olympia/devhub/tasks.py:528
 msgid ""
 "The developer API key of a coauthor was found in the submitted file. To "
 "protect your add-on, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:861
+#: src/olympia/devhub/tasks.py:935
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:865
+#: src/olympia/devhub/tasks.py:939
 #, python-format
 msgid "Connection to \"%s\" timed out."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:867
+#: src/olympia/devhub/tasks.py:941
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:909
+#: src/olympia/devhub/tasks.py:983
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
@@ -4217,7 +4078,7 @@ msgstr ""
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21
-#: src/olympia/search/views.py:272 src/olympia/templates/base.html:17
+#: src/olympia/search/views.py:222 src/olympia/templates/base.html:17
 #: src/olympia/templates/impala/base.html:17
 msgid "{0} Add-ons"
 msgstr ""
@@ -4699,6 +4560,11 @@ msgstr ""
 msgid "Support Information for {0}"
 msgstr ""
 
+#: src/olympia/devhub/templates/devhub/addons/edit/support.html:20
+#: src/olympia/users/templates/users/delete.html:49
+msgid "Email"
+msgstr ""
+
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:22
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it "
@@ -4914,6 +4780,25 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:130
 msgid "Add a Screenshot..."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:137
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is "
+"1280x800 pixels. 640x400 pixels is a good alternative if you only have "
+"smaller images. Having screenshots in your listing page greatly increases its"
+" chances of being installed and being featured in the homepage."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:166
+#: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:19
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:104
+#: src/olympia/reviewers/templates/reviewers/themes/themes.html:111
+#: src/olympia/reviewers/templates/reviewers/themes/themes.html:128
+#: src/olympia/reviewers/templates/reviewers/themes/themes.html:134
+#: src/olympia/reviewers/templates/reviewers/themes/themes.html:141
+#: src/olympia/users/templates/users/fxa_login_prompt_content.html:10
+msgid "Continue"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:2
@@ -6966,121 +6851,121 @@ msgstr ""
 msgid "Not implemented yet."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:148
+#: src/olympia/legacy_discovery/modules.py:151
 msgid "Shopping Made Easy"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:149
+#: src/olympia/legacy_discovery/modules.py:152
 msgid "Save on your favorite items from the comfort of your browser."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:157
+#: src/olympia/legacy_discovery/modules.py:160
 msgid "Build the perfect website"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:174
+#: src/olympia/legacy_discovery/modules.py:177
 msgid "First time with Add-ons?"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:175
+#: src/olympia/legacy_discovery/modules.py:178
 msgid "Not to worry, here are three to get started."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:179
+#: src/olympia/legacy_discovery/modules.py:182
 msgid "Translate content on the web from and into over 40 languages."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:181
+#: src/olympia/legacy_discovery/modules.py:184
 msgid ""
 "Easily connect to your social networks, and share or comment on the page "
 "you're visiting."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:183
+#: src/olympia/legacy_discovery/modules.py:186
 msgid "A quick view to compare prices when you shop online or search for flights."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:193
+#: src/olympia/legacy_discovery/modules.py:196
 msgid "St. Patrick&rsquo;s Day Themes"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:194
+#: src/olympia/legacy_discovery/modules.py:197
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:203
+#: src/olympia/legacy_discovery/modules.py:206
 msgid "A+ add-ons for School"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:204
+#: src/olympia/legacy_discovery/modules.py:207
 msgid "Add-ons for teachers, parents, and students heading back to school."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:209
+#: src/olympia/legacy_discovery/modules.py:212
 msgid "Would you like to know which websites you can trust?"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:210
+#: src/olympia/legacy_discovery/modules.py:213
 msgid "Xmarks is the #1 bookmarking add-on."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:211
+#: src/olympia/legacy_discovery/modules.py:214
 msgid "Web page and text translator, dictionary, and more!"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:228
+#: src/olympia/legacy_discovery/modules.py:231
 msgid "Love is in the Air"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:229
+#: src/olympia/legacy_discovery/modules.py:232
 msgid "Add some romance to your Firefox."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:236
+#: src/olympia/legacy_discovery/modules.py:239
 msgid "Get up and move!"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:237
+#: src/olympia/legacy_discovery/modules.py:240
 msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:245
+#: src/olympia/legacy_discovery/modules.py:248
 msgid "New &amp; Now"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:246
+#: src/olympia/legacy_discovery/modules.py:249
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:253
+#: src/olympia/legacy_discovery/modules.py:256
 msgid "Worry-free browsing"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:254
+#: src/olympia/legacy_discovery/modules.py:257
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:263
+#: src/olympia/legacy_discovery/modules.py:266
 msgid ""
 "Great add-ons for work, fun, privacy, productivity&hellip; just about "
 "anything!"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:271
+#: src/olympia/legacy_discovery/modules.py:274
 msgid "Games!"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:272
+#: src/olympia/legacy_discovery/modules.py:275
 msgid ""
 "Add more fun to your Firefox. Play dozens of games right from your "
 "browser—puzzles, classic arcade, action games, and more!"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:282
+#: src/olympia/legacy_discovery/modules.py:285
 msgid "Must-Have Media"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:283
+#: src/olympia/legacy_discovery/modules.py:286
 msgid ""
 "Take better screenshots, improve your online video experience, finally learn "
 "how to make a GIF, and other great media tools."
@@ -9050,60 +8935,36 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-#: src/olympia/search/forms.py:11
-msgid "Most popular this week"
-msgstr ""
-
-#: src/olympia/search/forms.py:12
-msgid "Most popular this month"
-msgstr ""
-
 #: src/olympia/search/forms.py:13
-msgid "Most popular all time"
-msgstr ""
-
-#: src/olympia/search/forms.py:14
-msgid "Highest Rated"
-msgstr ""
-
-#: src/olympia/search/forms.py:23
 msgid "search for add-ons"
 msgstr ""
 
-#: src/olympia/search/forms.py:24
-msgid "search for collections"
-msgstr ""
-
-#: src/olympia/search/forms.py:25
+#: src/olympia/search/forms.py:14
 msgid "search for themes"
 msgstr ""
 
-#: src/olympia/search/forms.py:26
+#: src/olympia/search/forms.py:15
 msgid "search for apps"
 msgstr ""
 
-#: src/olympia/search/forms.py:49
-msgid "Sort By"
-msgstr ""
-
-#: src/olympia/search/forms.py:84
+#: src/olympia/search/forms.py:35
 msgid "Relevance"
 msgstr ""
 
-#: src/olympia/search/views.py:489 src/olympia/zadmin/forms.py:146
+#: src/olympia/search/views.py:437 src/olympia/zadmin/forms.py:146
 msgid "All Add-ons"
 msgstr ""
 
-#: src/olympia/search/views.py:520
+#: src/olympia/search/views.py:468
 msgid "Any {0}"
 msgstr ""
 
 #. L10n: "All Systems" means show everything regardless of platform.
-#: src/olympia/search/views.py:555
+#: src/olympia/search/views.py:503
 msgid "All Systems"
 msgstr ""
 
-#: src/olympia/search/views.py:566
+#: src/olympia/search/views.py:514
 msgid "All Tags"
 msgstr ""
 
