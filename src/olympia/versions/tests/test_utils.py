@@ -89,8 +89,8 @@ def test_additional_background(encode_header_image, alignment, tiling,
     assert background.pattern_width == pattern_width
     assert background.pattern_height == pattern_height
     background.calculate_pattern_offsets(
-        amo.THEME_PREVIEW_SIZES['full'].width,
-        amo.THEME_PREVIEW_SIZES['full'].height)
+        amo.THEME_PREVIEW_SIZES['header']['full'].width,
+        amo.THEME_PREVIEW_SIZES['header']['full'].height)
     assert background.pattern_x == pattern_x
     assert background.pattern_y == pattern_y
 

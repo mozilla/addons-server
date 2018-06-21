@@ -59,7 +59,7 @@
             </span>
           </label>
           <input class="color-picker" id="{{ property }}" name="{{ property }}"
-                 type="text"{{ ('value=' + val_default + '') if val_default else '' }}>
+                 type="text"{{ ( 'value=' + val_default + '') if val_default else '' }}>
         </li>
         {% endfor %}
       </ul>
@@ -67,7 +67,7 @@
     <div>
         <h3>{{ _('Browser preview') }}</h3>
         <div id="browser-preview" dir="ltr">
-            {% set svg_render_size = amo.THEME_PREVIEW_SIZES['full'] %}
+            {% set svg_render_size = amo.THEME_PREVIEW_SIZES['header']['full'] %}
             {% include 'devhub/addons/includes/static_theme_preview_svg.xml' %}
         </div>
     </div>

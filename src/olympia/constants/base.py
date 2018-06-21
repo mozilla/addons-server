@@ -239,8 +239,14 @@ ADDON_PREVIEW_SIZES = {
 
 # Static theme preview sizes
 THEME_PREVIEW_SIZES = {
-    'thumb': _size_tuple(670, 64),
-    'full': _size_tuple(680, 92)
+    'header': {
+        'thumbnail': _size_tuple(473, 64),
+        'full': _size_tuple(680, 92),
+        'position': 0},
+    'list': {
+        'thumbnail': _size_tuple(529, 64),
+        'full': _size_tuple(760, 92),
+        'position': 1},
 }
 THEME_ACCENTCOLOR_DEFAULT = 'rgba(229,230,232,1)'
 THEME_PREVIEW_HEIGHT = 92  # The template supports different widths only.

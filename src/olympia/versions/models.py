@@ -225,9 +225,8 @@ class Version(OnChangeMixin, ModelBase):
 
             utils.extract_header_img(
                 version.all_files[0].file_path, theme_data, version_root)
-            preview = VersionPreview.objects.create(version=version)
             generate_static_theme_preview(
-                theme_data, version_root, preview.pk)
+                theme_data, version_root, version.pk)
 
         # Track the time it took from first upload through validation
         # (and whatever else) until a version was created.
@@ -670,29 +669,24 @@ class Version(OnChangeMixin, ModelBase):
         return out
 
 
-def generate_static_theme_preview(theme_data, version_root, preview_pk):
+def generate_static_theme_preview(theme_data, version_root, version_pk):
     """This redirection is so we can mock generate_static_theme_preview, where
     needed, in tests."""
     # To avoid a circular import
     from . import tasks
     tasks.generate_static_theme_preview.delay(
-        theme_data, version_root, preview_pk)
+        theme_data, version_root, version_pk)
 
 
 class VersionPreview(BasePreview, ModelBase):
     version = models.ForeignKey(Version, related_name='previews')
+    position = models.IntegerField(default=0)
     sizes = JSONField(default={})
     media_folder = 'version-previews'
 
     class Meta:
         db_table = 'version_previews'
-
-    @cached_property
-    def position(self):
-        """We only don't support defining a position for previews because
-        they're auto-generated.  This is for compatibility with Addon Preview
-        objects. (it's a cached_property so it can be set transparently)"""
-        return 0
+        ordering = ('position', 'created')
 
     @cached_property
     def caption(self):
