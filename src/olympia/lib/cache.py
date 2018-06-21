@@ -5,9 +5,8 @@ import re
 import uuid
 from contextlib import contextmanager
 
-from django.core.cache import cache, _create_cache
 from django.core.cache.backends.base import DEFAULT_TIMEOUT, BaseCache
-from django.core import cache as django_cache
+from django.core.cache import cache, caches, _create_cache
 from django.utils import encoding, translation
 from django.conf import settings
 
@@ -68,20 +67,6 @@ def memoize_key(prefix, *args, **kwargs):
                                  prefix, key.hexdigest())
 
 
-def memoize_get(prefix, *args, **kwargs):
-    """
-    Returns the content of the cache.
-
-    :param prefix: a prefix for the key in memcache
-    :type prefix: string
-    :param args: arguments to be str()'d to form the key
-    :type args: list
-    :param kwargs: arguments to be str()'d to form the key
-    :type kwargs: list
-    """
-    return cache.get(memoize_key(prefix, *args, **kwargs))
-
-
 def memoize(prefix, timeout=60):
     """
     A simple decorator that caches into memcache, using a simple
@@ -90,19 +75,16 @@ def memoize(prefix, timeout=60):
     using str(..) otherwise the cache key will be inconsistent.
     :param prefix: a prefix for the key in memcache
     :type prefix: string
-    :param time: number of seconds to cache the key for, default 60 seconds
-    :type time: integer
+    :param timeout: number of seconds to cache the key for, default 60 seconds
+    :type timeout: integer
     """
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
+            def wrapped_func():
+                return func(*args, **kwargs)
             key = memoize_key(prefix, *args, **kwargs)
-            data = cache.get(key)
-            if data is not None:
-                return data
-            data = func(*args, **kwargs)
-            cache.set(key, data, timeout)
-            return data
+            return cache_get_or_set(key, wrapped_func, timeout=timeout)
         return wrapper
     return decorator
 
@@ -220,8 +202,8 @@ class CacheStatTracker(BaseCache):
 
 
 @contextmanager
-def assert_cache_requests(num):
-    cache_using = django_cache.caches['default']
+def assert_cache_requests(num, alias='default'):
+    cache_using = caches[alias]
     cache_using.clear_log()
 
     yield

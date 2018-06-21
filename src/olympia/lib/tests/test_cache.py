@@ -5,7 +5,7 @@ from django.core.cache import cache
 
 from unittest import TestCase
 from olympia.lib.cache import (
-    Message, Token, memoize, memoize_get, memoize_key, cache_get_or_set,
+    Message, Token, memoize, memoize_key, cache_get_or_set,
     make_key)
 
 
@@ -61,7 +61,8 @@ def test_memoize():
     def add(*args):
         return sum(args)
 
-    assert add(1, 2) == memoize_get('f', 1, 2)
+    cache_key = memoize_key('f', 1, 2)
+    assert add(1, 2) == cache.get(cache_key)
 
 
 class TestToken(TestCase):
