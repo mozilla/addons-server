@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-02-02 13:41+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -708,18 +708,6 @@ msgstr "Премахване на добавката от списъка"
 
 msgid "Remove"
 msgstr "Премахване"
-
-msgid "Remove this user as a contributor"
-msgstr "Премахни този потребител като допринесъл"
-
-msgid "An email address is required."
-msgstr "Нужен е имейл адрес."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Не може да добавяте себе си като сътрудник."
-
-msgid "You have already added that user."
-msgstr "Вече сте добавили този потребител."
 
 msgid "Add to favorites"
 msgstr "Добавяне към любими"

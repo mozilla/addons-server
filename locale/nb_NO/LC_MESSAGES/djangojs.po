@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-06-04 08:23+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -709,18 +709,6 @@ msgstr "Fjern denne utvidelsen fra samlingen"
 
 msgid "Remove"
 msgstr "Fjern"
-
-msgid "Remove this user as a contributor"
-msgstr "Fjern denne brukeren som bidragsyter"
-
-msgid "An email address is required."
-msgstr "En e-postadresse er påkrevd."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Du kan ikke legge til deg selv som bidragsyter."
-
-msgid "You have already added that user."
-msgstr "Du har allerede lagt til denne brukeren."
 
 msgid "Add to favorites"
 msgstr "Legg til i favoritter"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-01-29 15:18+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -889,9 +889,6 @@ msgstr ""
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
 
-msgid "Most Followers"
-msgstr ""
-
 msgid "Collections"
 msgstr "Collections"
 
@@ -1008,22 +1005,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-#, fuzzy
-msgid "Contributors"
-msgstr "Contributions"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr ""
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr ""
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr ""
-
 msgid "Only I can view this collection."
 msgstr ""
 
@@ -1075,19 +1056,13 @@ msgstr ""
 msgid "This add-on already belongs to the collection"
 msgstr ""
 
-msgid "Name"
-msgstr ""
-
-msgid "Recently Updated"
-msgstr ""
-
-msgid "Recently Popular"
-msgstr ""
-
 msgid "Added"
 msgstr ""
 
 msgid "Popularity"
+msgstr ""
+
+msgid "Name"
 msgstr ""
 
 msgid "Collection created!"
@@ -1209,16 +1184,13 @@ msgstr ""
 msgid "What are Collections?"
 msgstr "What are Collections?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr ""
+
 msgid "Explore Collections"
 msgstr ""
 
 msgid "Common Tags"
-msgstr ""
-
-msgid "More by this User"
-msgstr ""
-
-msgid "See all collections by this user"
 msgstr ""
 
 msgid ""
@@ -1326,62 +1298,7 @@ msgstr ""
 msgid "Description"
 msgstr "Disgrifiad"
 
-msgid "Contributors & More"
-msgstr ""
-
 msgid "Save Changes"
-msgstr ""
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "Owner"
-
-msgid "Make Owner"
-msgstr ""
-
-msgid "Remove this user as a contributor"
-msgstr ""
-
-msgid "Remove"
-msgstr ""
-
-msgid "Collection Contributors"
-msgstr ""
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-
-msgid "User"
-msgstr ""
-
-msgid "Email"
-msgstr ""
-
-# Column name in a table.
-msgid "Role"
-msgstr "Role"
-
-msgid "Enter the email address of the contributor to add"
-msgstr ""
-
-msgid "Add Contributor"
-msgstr ""
-
-msgid "Contributor"
-msgstr ""
-
-msgid "Admin Settings"
-msgstr "Admin Settings"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ""
-
-msgid "Continue"
-msgstr "Contribute"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
 msgstr ""
 
 msgid "Remove from favorites"
@@ -1397,26 +1314,8 @@ msgstr ""
 msgid "No collections found."
 msgstr "No files found."
 
-msgid "Most-Followed Collections"
-msgstr ""
-
-msgid "Newest Collections"
-msgstr ""
-
-msgid "Collections by Name"
-msgstr ""
-
-msgid "Recently Updated Collections"
-msgstr ""
-
-msgid "Recently Popular Collections"
-msgstr ""
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr ""
-
-msgid "Subscribe"
 msgstr ""
 
 #, python-format
@@ -1454,6 +1353,9 @@ msgid "Add-on"
 msgstr ""
 
 msgid "Comment"
+msgstr ""
+
+msgid "Remove"
 msgstr ""
 
 msgid "Enter the name of the add-on to include"
@@ -1522,6 +1424,9 @@ msgstr ""
 msgid "Weekly Downloads"
 msgstr ""
 
+msgid "Recently Updated"
+msgstr ""
+
 msgid "Up & Coming"
 msgstr ""
 
@@ -1540,6 +1445,9 @@ msgstr ""
 
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
+msgstr ""
+
+msgid "Subscribe"
 msgstr ""
 
 msgid "Featured Add-ons"
@@ -2169,6 +2077,10 @@ msgstr ""
 msgid "Unlisted"
 msgstr ""
 
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "Owner"
+
 msgid "Developer"
 msgstr "Developer"
 
@@ -2775,6 +2687,9 @@ msgstr ""
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr ""
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
@@ -3240,6 +3155,9 @@ msgstr ""
 msgid "Support Information for {0}"
 msgstr ""
 
+msgid "Email"
+msgstr ""
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3387,6 +3305,14 @@ msgstr ""
 
 msgid "Add a Screenshot..."
 msgstr ""
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Contribute"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
@@ -6336,32 +6262,14 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr "Most popular this week"
-
-msgid "Most popular this month"
-msgstr "Most popular this month"
-
-msgid "Most popular all time"
-msgstr "Most popular all time"
-
-msgid "Highest Rated"
-msgstr ""
-
 msgid "search for add-ons"
 msgstr "chwilio am ychwanegion"
-
-msgid "search for collections"
-msgstr "search for collections"
 
 msgid "search for themes"
 msgstr ""
 
 msgid "search for apps"
 msgstr ""
-
-msgid "Sort By"
-msgstr "Sort By"
 
 msgid "Relevance"
 msgstr ""
