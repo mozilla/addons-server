@@ -2,10 +2,12 @@
 import json
 import random
 import re
+import os
 
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
+from django.test.utils import override_settings
 from django.test.client import Client
 from django.utils.http import urlunquote
 
@@ -23,7 +25,8 @@ from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
     Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Category,
-    CompatOverride, CompatOverrideRange, Persona, ReplacementAddon)
+    CompatOverride, CompatOverrideRange, Persona, ReplacementAddon,
+    AddonCategory)
 from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import (
     DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
@@ -1038,6 +1041,17 @@ class TestPersonas(object):
         return AddonUser.objects.create(addon=addon, user_id=999)
 
 
+# Overwrite the caches setting to a MemcachedCache backend to test a
+# regression that caused cache-keys to be longer than 250 characters
+# https://github.com/mozilla/addons-server/issues/8598
+cache_settings = settings.CACHES.copy()
+cache_settings['default'] = {
+    'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+    'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),
+}
+
+
+@override_settings(CACHES=cache_settings)
 class TestPersonaDetailPage(TestPersonas, TestCase):
 
     def setUp(self):
@@ -1089,10 +1103,6 @@ class TestPersonaDetailPage(TestPersonas, TestCase):
         assert other.status == amo.STATUS_PUBLIC
         assert not other.disabled_by_user
 
-        # TODO(cvan): Uncomment this once Personas detail page is impalacized.
-        # doc = self.get_more_pq()('#author-addons')
-        # _test_hovercards(self, doc, [other], src='dp-dl-othersby')
-
         r = self.client.get(self.url)
         assert list(r.context['author_personas']) == [other]
         a = pq(r.content)('#more-artist .persona.hovercard > a')
@@ -1106,6 +1116,18 @@ class TestPersonaDetailPage(TestPersonas, TestCase):
 
     def test_by(self):
         self._test_by()
+
+    def test_personas_categories(self):
+        static_category = (
+            CATEGORIES[amo.FIREFOX.id][amo.ADDON_PERSONA]['film-and-tv'])
+        category = Category.from_static_category(static_category, True)
+
+        AddonCategory.objects.create(addon=self.addon, category=category)
+
+        r = self.client.get(self.url)
+        assert (
+            pq(r.content)('#more-category>h3').text() ==
+            'More Film and TV Themes')
 
 
 class TestStatus(TestCase):

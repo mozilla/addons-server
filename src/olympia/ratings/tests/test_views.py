@@ -2061,6 +2061,7 @@ class TestRatingViewSetPost(TestCase):
 
             # Throttle is 1 minute so check we can go again
             frozen_time.tick(delta=timedelta(seconds=60))
+
             # And we're good.
             response = self.client.post(self.url, {
                 'addon': self.addon.pk, 'body': u'My réview',
