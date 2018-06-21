@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-21 12:12+0000\n"
+"PO-Revision-Date: 2018-06-21 12:13+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3580,9 +3580,8 @@ msgstr "Το θέμα διαγράφηκε."
 msgid "Theme generator"
 msgstr "Άδεια θέματος"
 
-#, fuzzy
 msgid "Theme name"
-msgstr "όνομα θέματος"
+msgstr "Όνομα θέματος"
 
 #, fuzzy
 msgid "Select a header image for your theme"
@@ -3641,9 +3640,8 @@ msgstr ""
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
-#, fuzzy
 msgid "optional"
-msgstr "(προαιρετικό)"
+msgstr "προαιρετικό"
 
 #, fuzzy
 msgid "Browser preview"
@@ -5297,7 +5295,7 @@ msgid "theme, reviewer, or comment"
 msgstr "θέμα, κριτής ή σχόλιο"
 
 msgid "Private Whiteboard"
-msgstr "Λευκός πίνακας"
+msgstr "Ιδιωτικός λευκός πίνακας"
 
 msgid "Keep review; remove flags"
 msgstr "Διατήρηση αξιολόγησης· απομάκρυνση σήμανσης"
