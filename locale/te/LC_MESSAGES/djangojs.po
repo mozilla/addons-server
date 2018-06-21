@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-18 16:07+0000\n"
-"Last-Translator: వీవెన్ <veeven@gmail.com>\n"
+"PO-Revision-Date: 2018-06-21 11:51+0000\n"
+"Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -503,7 +503,7 @@ msgstr "గత {0} రోజుల దింపుకోళ్ళ మూలా�
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr "{0} నుంచి {1} వరకు దింపుకోళ్ళ మూలాలు"
+msgstr "{0} నుంచి {1} వరకు వనరులను దింపుకోండి"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -519,7 +519,7 @@ msgstr "సైటు కొలమానాలు, చివరి {0} రో�
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} నుండి సైట్ ప్రమాణాలు"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
@@ -535,7 +535,7 @@ msgstr "గత {0} రోజుల, పొడిగింతల దింపు�
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు దింపబడిన పొడిగింతలు"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
@@ -567,7 +567,7 @@ msgstr "వాడుకరి నమోదులు, చివరి {0} రో�
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} నుండి వాడుకరి నమోదులు"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
@@ -662,7 +662,7 @@ msgstr "మీ వేదికకు అందుబాటులో లేదు
 
 #. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
-msgstr ""
+msgstr "ఈ పొడిగింత {0} యొక్క మీ వెర్షన్కు అనుకూలంగా లేదు."
 
 msgid "View other versions"
 msgstr "ఇతర వెర్షన్లను వీక్షించండి"
