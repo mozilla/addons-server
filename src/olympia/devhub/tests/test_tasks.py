@@ -126,7 +126,6 @@ def test_recreate_previews(pngcrush_image_mock):
         shutil.copyfileobj(open(get_image_path('preview_landscape.jpg')), dest)
     with storage.open(preview_no_original.thumbnail_path, 'w') as dest:
         shutil.copyfileobj(open(get_image_path('mozilla.png')), dest)
-    preview_no_original.update(sizes={'image': [533, 400]})
     # And again but this time with an "original" image.
     preview_has_original = Preview.objects.create(addon=addon)
     with storage.open(preview_has_original.image_path, 'w') as dest:
@@ -135,7 +134,6 @@ def test_recreate_previews(pngcrush_image_mock):
         shutil.copyfileobj(open(get_image_path('mozilla.png')), dest)
     with storage.open(preview_has_original.original_path, 'w') as dest:
         shutil.copyfileobj(open(get_image_path('teamaddons.jpg')), dest)
-    preview_has_original.update(sizes={'original': [1500, 1000]})
 
     tasks.recreate_previews([addon.id])
 
