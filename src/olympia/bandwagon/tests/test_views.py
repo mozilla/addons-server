@@ -251,13 +251,16 @@ class TestPrivacy(TestCase):
             'Only add-on authors can view stats')
 
     def test_contributer(self):
+        self.c.listed = False
+        self.c.save()
+        self.assertLoginRedirects(self.client.get(self.url), self.url)
+        user = UserProfile.objects.get(email='fligtar@gmail.com')
+        self.grant_permission(user, 'Collections:Contribute')
+        self.client.login(email='fligtar@gmail.com')
+        # should fail as self.c collection isn't special
+        assert self.client.get(self.url).status_code == 403
+        # But now with special collection will work
         with override_settings(COLLECTION_FEATURED_THEMES_ID=self.c.id):
-            self.c.listed = False
-            self.c.save()
-            self.assertLoginRedirects(self.client.get(self.url), self.url)
-            user = UserProfile.objects.get(email='fligtar@gmail.com')
-            self.grant_permission(user, 'Collections:Contribute')
-            self.client.login(email='fligtar@gmail.com')
             response = self.client.get(self.url)
             assert response.status_code == 200
 
