@@ -8,9 +8,6 @@ from olympia import activity, amo
 from olympia.amo.models import ModelBase
 
 
-log = olympia.core.logger.getLogger('z.users')
-
-
 class Group(ModelBase):
 
     name = models.CharField(max_length=255, default='')

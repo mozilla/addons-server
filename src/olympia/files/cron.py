@@ -10,9 +10,6 @@ import olympia.core.logger
 from olympia.files.models import FileValidation
 
 
-log = olympia.core.logger.getLogger('z.cron')
-
-
 def cleanup_extracted_file():
     log.info('Removing extracted files for file viewer.')
     root = os.path.join(settings.TMP_PATH, 'file_viewer')

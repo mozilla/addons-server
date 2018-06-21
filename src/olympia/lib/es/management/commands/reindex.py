@@ -19,8 +19,6 @@ from olympia.search import indexers as search_indexers
 from olympia.stats import search as stats_search
 
 
-logger = olympia.core.logger.getLogger('z.elasticsearch')
-
 time_limits = settings.CELERY_TIME_LIMITS[
     'olympia.lib.es.management.commands.reindex']
 

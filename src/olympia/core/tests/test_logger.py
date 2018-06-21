@@ -13,7 +13,6 @@ class LoggerTests(TestCase):
     @mock.patch('olympia.core.get_remote_addr', lambda: '127.0.0.1')
     @mock.patch('olympia.core.get_user', lambda: UserProfile(username=u'fôo'))
     def test_get_logger_adapter(self):
-        log = olympia.core.logger.getLogger('test')
         expected_kwargs = {
             'extra': {
                 'REMOTE_ADDR': '127.0.0.1',
@@ -25,7 +24,6 @@ class LoggerTests(TestCase):
     @mock.patch('olympia.core.get_remote_addr', lambda: '127.0.0.1')
     @mock.patch('olympia.core.get_user', lambda: None)
     def test_logger_adapter_user_is_none(self):
-        log = olympia.core.logger.getLogger('test')
         expected_kwargs = {
             'extra': {
                 'REMOTE_ADDR': '127.0.0.1',
@@ -37,7 +35,6 @@ class LoggerTests(TestCase):
     @mock.patch('olympia.core.get_remote_addr', lambda: None)
     @mock.patch('olympia.core.get_user', lambda: UserProfile(username='bar'))
     def test_logger_adapter_addr_is_none(self):
-        log = olympia.core.logger.getLogger('test')
         expected_kwargs = {
             'extra': {
                 'REMOTE_ADDR': '',

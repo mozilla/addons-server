@@ -31,7 +31,6 @@ from olympia.files.utils import (
 denied_magic_numbers = [b for b in list(blacklisted_magic_numbers)
                         if b != (0x23, 0x21)]
 denied_extensions = [b for b in list(blacklisted_extensions) if b != 'sh']
-task_log = olympia.core.logger.getLogger('z.task')
 
 LOCKED_LIFETIME = 60 * 5
 

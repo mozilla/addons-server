@@ -8,9 +8,6 @@ from .models import SearchMixin
 from .utils import to_language
 
 
-log = olympia.core.logger.getLogger('z.es')
-
-
 class BaseSearchIndexer(object):
     """
     Base Indexer class for all search-related things (as opposed to

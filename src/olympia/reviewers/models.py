@@ -28,11 +28,6 @@ from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.models import Version, version_uploaded
 
 
-user_log = olympia.core.logger.getLogger('z.users')
-
-log = olympia.core.logger.getLogger('z.reviewers')
-
-
 VIEW_QUEUE_FLAGS = (
     ('needs_admin_code_review', 'needs-admin-code-review',
         _('Needs Admin Code Review')),

@@ -19,9 +19,6 @@ from olympia.api.models import APIKey
 from olympia.users.models import UserProfile
 
 
-log = olympia.core.logger.getLogger('z.api.authentication')
-
-
 class WebTokenAuthentication(BaseAuthentication):
     """
     DRF authentication class for our internal auth API tokens (i.e. not

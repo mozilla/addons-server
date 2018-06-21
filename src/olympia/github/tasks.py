@@ -10,9 +10,6 @@ from olympia.files.models import FileUpload
 from olympia.github.utils import GithubCallback, rezip_file
 
 
-log = olympia.core.logger.getLogger('z.github')
-
-
 @task
 def process_webhook(upload_pk, callbacks):
     log.info('Processing webhook for: {}'.format(upload_pk))

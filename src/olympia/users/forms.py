@@ -28,7 +28,6 @@ from .widgets import (
     RequiredTextarea)
 
 
-log = olympia.core.logger.getLogger('z.users')
 admin_re = re.compile('(?=.*\d)(?=.*[a-zA-Z])')
 
 

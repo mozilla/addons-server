@@ -11,9 +11,6 @@ from olympia import amo
 from olympia.applications.models import AppVersion
 
 
-log = olympia.core.logger.getLogger('z.cron')
-
-
 # The validator uses the file created here to keep up to date with the
 # apps and versions on AMO.
 class Command(BaseCommand):

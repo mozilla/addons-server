@@ -19,9 +19,6 @@ from olympia.translations.fields import LocaleList, LocaleValidationError
 from olympia.lib.cache import memoize, memoize_key
 
 
-log = olympia.core.logger.getLogger('z.redis')
-
-
 def generate_addon_guid():
     return '{%s}' % str(uuid.uuid4())
 

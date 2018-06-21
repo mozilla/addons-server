@@ -51,9 +51,6 @@ MAX_LIMIT, BUFFER = 30, 10
 # "New" is arbitrarily defined as 10 days old.
 NEW_DAYS = 10
 
-log = olympia.core.logger.getLogger('z.api')
-
-
 def partition(seq, key):
     """Group a sequence based into buckets by key(x)."""
     groups = itertools.groupby(sorted(seq, key=key), key=key)

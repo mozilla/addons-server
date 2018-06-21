@@ -11,9 +11,6 @@ from olympia.amo.models import ModelBase
 from olympia.users.models import UserProfile
 
 
-log = olympia.core.logger.getLogger('devhub')
-
-
 class RssKey(models.Model):
     # TODO: Convert to `models.UUIDField` but apparently we have a max_length
     # of 36 defined in the database and maybe store things with a hyphen

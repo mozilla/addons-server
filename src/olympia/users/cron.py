@@ -12,9 +12,6 @@ from olympia.amo.utils import chunked
 from .tasks import update_user_ratings_task
 
 
-task_log = olympia.core.logger.getLogger('z.task')
-
-
 def update_user_ratings():
     """Update add-on author's ratings."""
 

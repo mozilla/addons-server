@@ -5,9 +5,6 @@ import olympia.core.logger
 from olympia.activity.models import ActivityLogToken
 
 
-log = olympia.core.logger.getLogger('z.amo.activity')
-
-
 class Command(BaseCommand):
     help = u'Force expire a list of Activity Email tokens.'
 

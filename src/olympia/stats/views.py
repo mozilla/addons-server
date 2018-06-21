@@ -39,9 +39,6 @@ from olympia.zadmin.models import SiteEvent
 from .models import CollectionCount, DownloadCount, ThemeUserCount, UpdateCount
 
 
-logger = olympia.core.logger.getLogger('z.apps.stats.views')
-
-
 SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
 SERIES_FORMATS = ('json', 'csv')

@@ -29,9 +29,6 @@ from olympia.reviewers.tasks import (
 from olympia.versions.models import Version
 
 
-log = olympia.core.logger.getLogger('z.reviewers.forms')
-
-
 ACTION_FILTERS = (('', ''), ('approved', _(u'Approved reviews')),
                   ('deleted', _(u'Deleted reviews')))
 

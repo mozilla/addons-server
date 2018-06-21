@@ -8,9 +8,6 @@ from olympia.amo.utils import attach_trans_dict
 from olympia.versions.compare import version_int
 
 
-log = olympia.core.logger.getLogger('z.es')
-
-
 # When the 'boost-webextensions-in-search' waffle switch is enabled, queries
 # against the addon index should be scored to assign this weight to
 # webextensions.

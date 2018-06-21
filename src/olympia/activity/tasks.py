@@ -6,9 +6,6 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import write
 
 
-log = olympia.core.logger.getLogger('z.amo.activity')
-
-
 @task
 @write
 def process_email(message, **kwargs):

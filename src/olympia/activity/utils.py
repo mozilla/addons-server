@@ -26,8 +26,6 @@ from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 
 
-log = olympia.core.logger.getLogger('z.amo.activity')
-
 # Prefix of the reply to address in devcomm emails.
 REPLY_TO_PREFIX = 'reviewreply+'
 # Group for users that want a copy of all Activity Emails.

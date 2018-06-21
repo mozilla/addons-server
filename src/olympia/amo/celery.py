@@ -21,9 +21,6 @@ import olympia.core.logger
 from olympia.amo.utils import chunked, utc_millesecs_from_epoch
 
 
-log = olympia.core.logger.getLogger('z.task')
-
-
 class AMOTask(PostRequestTask):
     """A custom celery Task base class that inherits from `PostRequestTask`
     to delay tasks and adds a special hack to still perform a serialization

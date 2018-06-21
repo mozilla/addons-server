@@ -7,9 +7,6 @@ from olympia.amo.decorators import write
 from olympia.users.models import UserProfile
 
 
-log = olympia.core.logger.getLogger('z.accounts')
-
-
 @task
 @write
 def primary_email_change_event(email, uid, timestamp):

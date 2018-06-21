@@ -28,8 +28,6 @@ from .modules import PromoVideoCollection, registry as module_registry
 
 addon_view = addon_view_factory(Addon.objects.valid)
 
-log = olympia.core.logger.getLogger('z.disco')
-
 
 def get_compat_mode(version):
     # Returns appropriate compat mode based on app version.

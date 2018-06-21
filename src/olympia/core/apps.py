@@ -11,9 +11,6 @@ from django.utils.translation import ugettext_lazy as _
 import session_csrf
 
 
-log = logging.getLogger('z.startup')
-
-
 class CoreConfig(AppConfig):
     name = 'olympia.core'
     verbose_name = _('Core')

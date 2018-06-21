@@ -8,9 +8,6 @@ from olympia.compat.indexers import AppCompatIndexer
 from olympia.lib.es.utils import create_index
 
 
-log = olympia.core.logger.getLogger('z.es')
-
-
 # Search-related indexers.
 indexers = (AddonIndexer, AppCompatIndexer,)
 

@@ -50,9 +50,6 @@ from olympia.versions.compare import version_int
 from olympia.versions.models import Version
 
 
-log = olympia.core.logger.getLogger('z.devhub.task')
-
-
 def validate(file_, listed=None, subtask=None, synchronous=False):
     """Run the validator on the given File or FileUpload object. If a task has
     already begun for this file, instead return an AsyncResult object for that

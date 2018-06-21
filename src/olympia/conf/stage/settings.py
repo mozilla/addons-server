@@ -96,8 +96,6 @@ CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 
 LOGGING['loggers'].update({
-    'z.task': {'level': logging.DEBUG},
-    'z.redis': {'level': logging.DEBUG},
     'z.pool': {'level': logging.ERROR},
 })
 

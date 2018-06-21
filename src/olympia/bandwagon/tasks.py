@@ -16,9 +16,6 @@ from .models import (
     Collection, CollectionAddon, CollectionVote, CollectionWatcher)
 
 
-log = olympia.core.logger.getLogger('z.task')
-
-
 @task
 @write
 def collection_votes(*ids, **kw):

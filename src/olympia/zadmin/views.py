@@ -44,9 +44,6 @@ from .forms import (
 from .models import EmailPreviewTopic
 
 
-log = olympia.core.logger.getLogger('z.zadmin')
-
-
 @admin_required
 def show_settings(request):
     settings_dict = debug.get_safe_settings()

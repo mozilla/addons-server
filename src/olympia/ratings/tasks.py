@@ -10,9 +10,6 @@ from olympia.lib.cache import cache_get_or_set, make_key
 from .models import GroupedRating, Rating
 
 
-log = olympia.core.logger.getLogger('z.task')
-
-
 @task(rate_limit='50/m')
 @write
 def update_denorm(*pairs, **kw):

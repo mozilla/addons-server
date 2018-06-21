@@ -40,9 +40,6 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import License, Version
 
 
-log = olympia.core.logger.getLogger('z.task')
-
-
 @task
 @write
 def version_changed(addon_id, **kw):

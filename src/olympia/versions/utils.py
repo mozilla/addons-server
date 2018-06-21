@@ -12,9 +12,6 @@ from PIL import Image
 import olympia.core.logger
 
 
-log = olympia.core.logger.getLogger('z.versions.utils')
-
-
 def write_svg_to_png(svg_content, out):
     tmp_args = {'dir': settings.TMP_PATH, 'mode': 'wb', 'suffix': '.svg'}
     with tempfile.NamedTemporaryFile(**tmp_args) as temporary_svg:

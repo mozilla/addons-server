@@ -9,9 +9,6 @@ from olympia.amo.utils import chunked
 from olympia.reviewers.utils import ReviewHelper
 
 
-log = olympia.core.logger.getLogger('z.addons')
-
-
 class Command(BaseCommand):
     help = u'Approve a list of add-ons, given their GUIDs.'
 

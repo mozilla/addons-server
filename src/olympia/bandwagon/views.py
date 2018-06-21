@@ -49,9 +49,6 @@ from .serializers import (
     CollectionWithAddonsSerializer)
 
 
-log = olympia.core.logger.getLogger('z.collections')
-
-
 @non_atomic_requests
 def get_collection(request, username, slug):
     if (slug in SPECIAL_SLUGS.values() and request.user.is_authenticated() and

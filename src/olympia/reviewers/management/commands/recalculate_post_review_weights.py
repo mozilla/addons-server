@@ -7,9 +7,6 @@ from olympia import amo
 from olympia.reviewers.models import AutoApprovalSummary
 
 
-log = olympia.core.logger.getLogger('z.reviewers.recalculate_weights')
-
-
 class Command(BaseCommand):
     help = 'Recalculate post-review weights for unconfirmed auto-approvals.'
 

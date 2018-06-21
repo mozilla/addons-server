@@ -72,9 +72,6 @@ class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-log = olympia.core.logger.getLogger('z.amo.activity')
-
-
 class EmailCreationPermission(object):
     """Permit if client's IP address is allowed."""
 

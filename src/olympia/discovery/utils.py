@@ -15,9 +15,6 @@ from olympia import amo
 from . import data
 
 
-log = olympia.core.logger.getLogger('z.amo')
-
-
 def call_recommendation_server(id_or_guid, params, server):
     params = OrderedDict(sorted(params.items(), key=lambda t: t[0]))
     endpoint = urlparse.urljoin(

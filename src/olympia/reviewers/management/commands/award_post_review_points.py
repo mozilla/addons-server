@@ -8,9 +8,6 @@ from olympia.activity.models import ActivityLog
 from olympia.reviewers.models import ReviewerScore
 
 
-log = olympia.core.logger.getLogger('z.reviewers.award_post_review_points')
-
-
 # The note we're going to add to the ReviewerScore this command creates to be
 # able to find them later.
 MANUAL_NOTE = 'Retroactively awarded for past post/content review approval.'

@@ -12,9 +12,6 @@ from olympia.addons.models import Addon
 from olympia.users.notifications import reviewer_reviewed
 
 
-log = olympia.core.logger.getLogger('z.reviewers.send_info_request')
-
-
 class Command(BaseCommand):
     help = 'Notify developers with pending info requests about to expire'
 

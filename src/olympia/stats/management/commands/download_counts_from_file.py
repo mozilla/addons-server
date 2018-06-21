@@ -15,9 +15,6 @@ from olympia.stats.models import DownloadCount, update_inc
 from . import get_date, get_stats_data
 
 
-log = olympia.core.logger.getLogger('adi.downloadcounts')
-
-
 def is_valid_source(src, fulls, prefixes):
     """Return True if the source is valid.
 

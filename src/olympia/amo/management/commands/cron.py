@@ -8,9 +8,6 @@ from django.core.management.base import BaseCommand, CommandError
 from olympia.core import logger
 
 
-log = logger.getLogger('z.cron')
-
-
 class Command(BaseCommand):
     help = 'Run one of the predefined cron jobs'
 

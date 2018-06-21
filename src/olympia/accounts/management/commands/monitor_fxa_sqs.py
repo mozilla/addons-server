@@ -25,6 +25,4 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         queue_url = options['queue_url']
         # Quieten boto - we don't need that much chatter in our logs
-        logger.logging.getLogger('boto3').setLevel(logger.logging.WARNING)
-        logger.logging.getLogger('botocore').setLevel(logger.logging.WARNING)
         process_sqs_queue(queue_url)

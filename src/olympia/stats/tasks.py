@@ -24,9 +24,6 @@ from .models import (
     ThemeUserCount, UpdateCount)
 
 
-log = olympia.core.logger.getLogger('z.task')
-
-
 @task
 def update_addons_collections_downloads(data, **kw):
     log.info("[%s] Updating addons+collections download totals." %

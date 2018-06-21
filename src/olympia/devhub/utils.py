@@ -18,9 +18,6 @@ from olympia.versions.compare import version_int
 from . import tasks
 
 
-log = olympia.core.logger.getLogger('z.devhub')
-
-
 def process_validation(validation, is_compatibility=False, file_hash=None):
     """Process validation results into the format expected by the web
     frontend, including transforming certain fields into HTML,  mangling

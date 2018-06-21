@@ -18,8 +18,6 @@ from olympia.reviewers.utils import ReviewHelper
 from olympia.versions.models import Version
 
 
-log = olympia.core.logger.getLogger('z.reviewers.auto_approve')
-
 LOCK_NAME = 'auto-approve'  # Name of the atomic_lock() used.
 
 

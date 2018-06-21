@@ -12,9 +12,6 @@ from olympia.amo.utils import get_email_backend
 from olympia.bandwagon.models import Collection
 
 
-log = olympia.core.logger.getLogger('z.task')
-
-
 @task
 def send_email(recipient, subject, message, from_email=None,
                html_message=None, attachments=None, real_email=False,

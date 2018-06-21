@@ -37,8 +37,6 @@ from .signals import logged_out
 from .utils import UnsubscribeCode
 
 
-log = olympia.core.logger.getLogger('z.users')
-
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 
 THEMES_LIMIT = 20

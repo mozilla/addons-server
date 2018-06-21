@@ -12,9 +12,6 @@ from olympia.amo.models import ManagerBase, ModelBase
 from . import utils
 
 
-log = olympia.core.logger.getLogger('z.translations')
-
-
 class TranslationManager(ManagerBase):
 
     def remove_for(self, obj, locale):

@@ -31,9 +31,6 @@ collection_types = (
     if k not in (amo.COLLECTION_ANONYMOUS, amo.COLLECTION_RECOMMENDED))
 
 
-log = olympia.core.logger.getLogger('z.collections')
-
-
 class AddonsForm(happyforms.Form):
     """This form is related to adding addons to a collection."""
 

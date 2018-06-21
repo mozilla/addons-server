@@ -51,8 +51,6 @@ from .serializers import (
 from .utils import fxa_login_url, generate_fxa_state
 
 
-log = olympia.core.logger.getLogger('accounts')
-
 ERROR_AUTHENTICATED = 'authenticated'
 ERROR_NO_CODE = 'no-code'
 ERROR_NO_PROFILE = 'no-profile'

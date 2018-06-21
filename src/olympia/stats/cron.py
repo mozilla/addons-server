@@ -16,10 +16,6 @@ from . import tasks
 from .models import AddonCollectionCount, CollectionCount, UpdateCount
 
 
-task_log = olympia.core.logger.getLogger('z.task')
-cron_log = olympia.core.logger.getLogger('z.cron')
-
-
 def update_addons_collections_downloads():
     """Update addons+collections download totals."""
     raise_if_reindex_in_progress('amo')

@@ -19,9 +19,6 @@ from olympia.versions.compare import version_int as vint
 from .models import AppCompat, CompatReport, CompatTotals
 
 
-log = olympia.core.logger.getLogger('z.compat')
-
-
 def compatibility_report(index=None):
     docs = defaultdict(dict)
     indices = get_indices(index)

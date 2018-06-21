@@ -18,9 +18,6 @@ from olympia.translations.models import Translation
 from olympia.users.models import UserProfile
 
 
-log = olympia.core.logger.getLogger('z.files.task')
-
-
 @task
 @write
 def extract_webext_permissions(ids, **kw):

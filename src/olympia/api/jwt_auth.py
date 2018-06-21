@@ -28,9 +28,6 @@ import olympia.core.logger
 from olympia.api.models import APIKey
 
 
-log = olympia.core.logger.getLogger('z.jwt')
-
-
 def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
     """Decodes a JWT token."""
     # If you raise AuthenticationFailed from this method, its value will

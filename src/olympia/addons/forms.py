@@ -36,9 +36,6 @@ from olympia.users.models import UserEmailField
 from olympia.versions.models import Version
 
 
-log = olympia.core.logger.getLogger('z.addons')
-
-
 def clean_addon_slug(slug, instance):
     slug_validator(slug, lower=False)
 

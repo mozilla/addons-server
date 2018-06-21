@@ -13,9 +13,6 @@ from olympia.github.tasks import process_webhook
 from olympia.github.utils import GithubCallback, GithubRequest
 
 
-log = olympia.core.logger.getLogger('z.github')
-
-
 class GithubView(APIView):
 
     def post(self, request):

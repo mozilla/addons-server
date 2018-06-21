@@ -9,8 +9,6 @@ import redis as redislib
 import olympia.core.logger
 
 
-log = olympia.core.logger.getLogger('z.redis')
-
 # We process the keys in chunks of size CHUNK.
 CHUNK = 3000
 # Remove any sets with less than MIN or more than MAX elements.
