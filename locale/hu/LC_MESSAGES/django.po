@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2015-10-27 10:12+0000\n"
+"PO-Revision-Date: 2018-06-21 14:51+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -102,7 +102,7 @@ msgid "Experimental"
 msgstr "Kísérleti"
 
 msgid "Add to {0}"
-msgstr ""
+msgstr "Hozzáadás: {0}"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Ezt a SEO URL-t már használja valaki. Válasszon másikat."
@@ -142,7 +142,7 @@ msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "Az URL domain a következők egyike kell legyen: [%s], vagy egy aldomain."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr ""
+msgstr "A kategóriákat nem lehet megváltoztatni, amíg ez a kiegészítő az alkalmazás esetén ki van emelve."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -155,10 +155,10 @@ msgstr "Az egyéb kategória nem vonható össze más kategóriákkal."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr ""
+msgstr "Az alapértelmezett nyelv módosítása előtt meg kell adnia a nevét, összefoglalóját és a leírását is az adott nyelven. A következőt hagyta ki: %s."
 
 msgid "A license must be selected."
-msgstr ""
+msgstr "Ki kell választani egy licencet."
 
 msgid "Give Your Theme a Name."
 msgstr "Adjon egy nevet a témának."
@@ -180,7 +180,7 @@ msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "A kiegészítőnevek nem tartalmazhatják a Mozilla vagy a Firefox védjegyeket."
 
 msgid "Abuse reported."
-msgstr ""
+msgstr "Visszaélést jelentettek."
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "A kiegészítő nem illik egyik kategóriába sem"
@@ -226,10 +226,10 @@ msgid "Add-ons for {0}"
 msgstr "{0}-kiegészítők"
 
 msgid "Featured Extensions"
-msgstr ""
+msgstr "Kiemelt kiterjesztések"
 
 msgid "Popular Extensions"
-msgstr ""
+msgstr "Népszerű kiterjesztések"
 
 msgid "Most Popular"
 msgstr "Legnépszerűbb"
@@ -1424,7 +1424,7 @@ msgstr[0] "<b>{0}</b> kiegészítő"
 msgstr[1] "<b>{0}</b> kiegészítő"
 
 msgid "Search Extensions"
-msgstr ""
+msgstr "Keresési kiterjesztések"
 
 msgid "Add search-related functionality to Firefox"
 msgstr "Kereséssel kapcsolatos funkció hozzáadása a Firefox böngészőhöz."
@@ -6849,7 +6849,7 @@ msgid "Themes I've created"
 msgstr "Létrehozott témák"
 
 msgid "Followed by Me"
-msgstr ""
+msgstr "Általam követettek"
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"
