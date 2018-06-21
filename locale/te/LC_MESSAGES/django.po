@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-21 07:36+0000\n"
+"PO-Revision-Date: 2018-06-21 09:21+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -297,7 +297,7 @@ msgid "More by this Artist"
 msgstr "ఈ కళాకారుడిచే మరింత"
 
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "ఈ కళాకారుడి యొక్క అన్ని అలంకారాలను చూడండి"
 
 msgid "Categories"
 msgstr "వర్గాలు"
@@ -781,7 +781,7 @@ msgid ""
 msgstr ""
 
 msgid "Top Rated"
-msgstr ""
+msgstr "ఉత్తమ రేటింగు"
 
 msgid "Newest"
 msgstr "సరికొత్తవి"
@@ -2164,7 +2164,7 @@ msgid "Security & Privacy"
 msgstr "భద్రత మరియు గోప్యత"
 
 msgid "Social Networking"
-msgstr ""
+msgstr "సామాజిక నెట్‌వర్కింగ్"
 
 msgid "Sports & Games"
 msgstr "క్రీడలు మరియు ఆటలు"
@@ -2446,7 +2446,7 @@ msgid "What is your license's name?"
 msgstr "మీ లైసెన్స్ పేరు ఏమిటి?"
 
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "మీ లైసెన్స్ యొక్క టెక్స్ట్ ను అందించండి."
 
 msgid "License text is required when choosing Other."
 msgstr ""
@@ -2772,7 +2772,7 @@ msgid "Validated at:"
 msgstr "ధృవీకరించబడింది:"
 
 msgid "Tested for compatibility against:"
-msgstr ""
+msgstr "దీనికి వ్యతిరేకంగా అనుకూలత కోసం పరీక్షించబడింది:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr ""
@@ -2836,7 +2836,7 @@ msgid "%(ago)s by %(user)s"
 msgstr "%(ago)s ద్వారా %(user)s"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "నా పొడిగింతల కోసం పాత కార్యాచరణ"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
@@ -3182,7 +3182,7 @@ msgid "Security Tests"
 msgstr "భద్రతా పరీక్షలు"
 
 msgid "Extension Tests"
-msgstr ""
+msgstr "పొడిగింత పరీక్షలు"
 
 msgid "Localization Tests"
 msgstr "స్థానికీకరణ పరీక్షలు"
@@ -3338,7 +3338,7 @@ msgid "Support email:"
 msgstr "మద్దతు ఇమెయిల్:"
 
 msgid "Support website:"
-msgstr ""
+msgstr "మదతు సైటు:"
 
 msgid "License:"
 msgstr "లైసెన్స్:"
@@ -4091,7 +4091,7 @@ msgid ""
 msgstr ""
 
 msgid "Approval Status"
-msgstr ""
+msgstr "ఆమోద స్థితి"
 
 msgid "Notes for Reviewers"
 msgstr "సమీక్షకుల కోసం గమనికలు"
@@ -5233,7 +5233,7 @@ msgid "Waiting Time"
 msgstr ""
 
 msgid "Flags"
-msgstr ""
+msgstr "ఫ్లాగ్‌లు"
 
 msgid "moments ago"
 msgstr "క్షణాలు క్రితం"
@@ -5404,7 +5404,7 @@ msgid "Announcement"
 msgstr "ప్రకటన"
 
 msgid "Update message of the day"
-msgstr ""
+msgstr "రోజు యొక్క సందేశాన్ని నవీకరించండి"
 
 #, fuzzy
 msgid "Expired Information Requests ({0})"
@@ -5497,7 +5497,7 @@ msgid "No review points awarded yet."
 msgstr ""
 
 msgid "Rank"
-msgstr ""
+msgstr "ర్యాంక్"
 
 msgid "Score"
 msgstr "స్కోరు"
@@ -5849,7 +5849,7 @@ msgid "Enable keyboard shortcuts"
 msgstr ""
 
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "కీబోర్డు లఘువులు"
 
 msgid "Next Theme"
 msgstr "తదుపరి అలంకారం"
@@ -6398,16 +6398,16 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr "తిరిగి {0} పొడగింతల ముంగిలి పేజీకి వెళ్ళండి"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> పొడిగింతలు"
 
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> పొడిగింతలు"
 
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> పొడిగింతలు"
 
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"\" src=\"{0}\"> పొడిగింతలు"
 
 msgid "My Account"
 msgstr "నా ఖాతా"
@@ -6696,7 +6696,7 @@ msgid "Log in with Firefox Accounts"
 msgstr ""
 
 msgid "Password Reset"
-msgstr ""
+msgstr "సంకేతపదం రీసెట్"
 
 msgid "User Info for {0}"
 msgstr "{0} కోసం వాడుకరి సమాచారం"
