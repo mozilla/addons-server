@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-21 09:21+0000\n"
-"Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
+"PO-Revision-Date: 2017-08-11 05:52+0000\n"
+"Last-Translator: హరి ప్రియ <haripriyagundala@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -670,13 +670,13 @@ msgid "Submit a New Theme"
 msgstr "కొత్త అలంకారం సమర్పించండి"
 
 msgid "Developer Hub"
-msgstr ""
+msgstr "డెవలపర్ కేంద్రం"
 
 msgid "Manage API Keys"
-msgstr ""
+msgstr "API కీలను నిర్వహించండి"
 
 msgid "Reviewer Tools"
-msgstr "సమీక్షకుని ఉపకరణాలు"
+msgstr "సమీక్షకుని పనిముట్లు"
 
 msgid "Admin Tools"
 msgstr "అడ్మిన్ ఉపకరణాలు"
@@ -685,16 +685,16 @@ msgid "Incorrect, please try again."
 msgstr "సరికాదు, దయచేసి మళ్లీ ప్రయత్నించండి."
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "ఇన్పుట్ను ధృవీకరించడంలో లోపం, దయచేసి మళ్లీ ప్రయత్నించండి."
 
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "ఇది తప్పనిసరిగా చెల్లుబాటు అయ్యే హెక్స్ రంగు కోడ్ అయి ఉండాలి, ఎటువంటిది అంటే #000000."
 
 msgid "Not allowed"
 msgstr "అనుమతి లేదు"
 
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr ""
+msgstr "<h1>అయ్యో! ప్రవేశము లేదు.</h1> <p>మీరు అనుమతి లేనిది ఏదో ప్రయత్నించారు.</p>"
 
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
 msgstr ""
