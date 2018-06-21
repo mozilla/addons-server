@@ -15,13 +15,6 @@ from .models import RatingFlag
 class RatingReplyForm(forms.Form):
     form_id = 'review-reply-edit'
 
-    title = forms.CharField(
-        required=False,
-        label=_(u'Title'),
-        widget=forms.TextInput(
-            attrs={'id': 'id_review_reply_title', },
-        ),
-    )
     body = forms.CharField(
         widget=forms.Textarea(
             attrs={'rows': 3, 'id': 'id_review_reply_body', },
@@ -40,13 +33,6 @@ class RatingReplyForm(forms.Form):
 class RatingForm(RatingReplyForm):
     form_id = 'review-edit'
 
-    title = forms.CharField(
-        required=False,
-        label=_(u'Title'),
-        widget=forms.TextInput(
-            attrs={'id': 'id_review_title', },
-        ),
-    )
     body = forms.CharField(
         widget=forms.Textarea(
             attrs={'rows': 3, 'id': 'id_review_body', },

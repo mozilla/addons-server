@@ -43,7 +43,7 @@ This endpoint allows you to search through public add-ons.
     :query string q: The search query. The maximum length allowed is 100 characters.
     :query string app: Filter by :ref:`add-on application <addon-detail-application>` availability.
     :query string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present.
-    :query string author: Filter by exact author username. Multiple author names can be specified, separated by comma(s), in which case add-ons with at least one matching author are returned.
+    :query string author: Filter by exact (listed) author username. Multiple author names can be specified, separated by comma(s), in which case add-ons with at least one matching author are returned.
     :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
     :query string exclude_addons: Exclude add-ons by ``slug`` or ``id``. Multiple add-ons can be specified, separated by comma(s).
     :query boolean featured: Filter to only featured add-ons.  Only ``featured=true`` is supported.
@@ -109,7 +109,7 @@ for autocomplete though, there are a couple key differences:
     :query string q: The search query.
     :query string app: Filter by :ref:`add-on application <addon-detail-application>` availability.
     :query string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present.
-    :query string author: Filter by exact author username.
+    :query string author: Filter by exact (listed) author username. Multiple author names can be specified, separated by comma(s), in which case add-ons with at least one matching author are returned.
     :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
@@ -464,6 +464,7 @@ on AMO.
 
     :query string app: Mandatory. Filter by :ref:`add-on application <addon-detail-application>` availability.
     :query string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when both the ``app`` and ``type`` parameters are also present, and only makes sense for Language Packs, since Dictionaries are always compatible with every application version.
+    :query string author: Filter by exact (listed) author username. Multiple author names can be specified, separated by comma(s), in which case add-ons with at least one matching author are returned.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query string type: Mandatory when ``appversion`` is present. Filter by :ref:`add-on type <addon-detail-type>`. The default is to return both Language Packs or Dictionaries.
     :>json array results: An array of language tools.

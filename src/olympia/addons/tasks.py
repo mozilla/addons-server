@@ -33,6 +33,7 @@ from olympia.files.models import FileUpload
 from olympia.files.utils import RDFExtractor, get_file, parse_addon, SafeZip
 from olympia.lib.crypto.packaged import sign_file
 from olympia.lib.es.utils import index_objects
+from olympia.ratings.models import Rating
 from olympia.reviewers.models import RereviewQueueTheme
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
@@ -519,6 +520,7 @@ def _get_lwt_default_author():
 
 @transaction.atomic
 def add_static_theme_from_lwt(lwt):
+    from olympia.activity.models import AddonLog
     # Try to handle LWT with no authors
     author = (lwt.listed_authors or [_get_lwt_default_author()])[0]
     # Wrap zip in FileUpload for Addon/Version from_upload to consume.
@@ -533,6 +535,7 @@ def add_static_theme_from_lwt(lwt):
     parsed_data = parse_addon(upload, user=author)
     addon = Addon.initialize_addon_from_upload(
         parsed_data, upload, amo.RELEASE_CHANNEL_LISTED, author)
+    addon_updates = {}
     # Version.from_upload sorts out platforms for us.
     version = Version.from_upload(
         upload, addon, platforms=None, channel=amo.RELEASE_CHANNEL_LISTED,
@@ -559,6 +562,20 @@ def add_static_theme_from_lwt(lwt):
     for addon_tag in AddonTag.objects.filter(addon=lwt):
         AddonTag.objects.create(addon=addon, tag=addon_tag.tag)
 
+    # Steal the ratings (even with soft delete they'll be deleted anyway)
+    addon_updates.update(
+        average_rating=lwt.average_rating,
+        bayesian_rating=lwt.bayesian_rating,
+        total_ratings=lwt.total_ratings,
+        text_ratings_count=lwt.text_ratings_count)
+    Rating.unfiltered.filter(addon=lwt).update(addon=addon, version=version)
+    # Modify the activity log entry too.
+    rating_activity_log_ids = [
+        l.id for l in amo.LOG if getattr(l, 'action_class', '') == 'review']
+    addonlog_qs = AddonLog.objects.filter(
+        addon=lwt, activity_log__action__in=rating_activity_log_ids)
+    [alog.transfer(addon) for alog in addonlog_qs.iterator()]
+
     # Logging
     activity.log_create(
         amo.LOG.CREATE_STATICTHEME_FROM_PERSONA, addon, user=author)
@@ -571,8 +588,13 @@ def add_static_theme_from_lwt(lwt):
             datestatuschanged=datetime.now(),
             reviewed=datetime.now(),
             status=amo.STATUS_PUBLIC)
-    addon.update(status=amo.STATUS_PUBLIC)
+    addon_updates['status'] = amo.STATUS_PUBLIC
 
+    # set the modified and creation dates to match the original.
+    addon_updates['created'] = lwt.created
+    addon_updates['modified'] = lwt.modified
+
+    addon.update(**addon_updates)
     return addon
 
 

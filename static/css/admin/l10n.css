@@ -1,0 +1,14 @@
+/**
+ * Companion to js/admin/l10n.js
+ */
+
+.trans label {
+    display: inline;
+    float: none;
+    padding: 0 1px 0 0;
+    width: auto;
+}
+
+.trans input, .trans textarea {
+    margin-right: 1em;
+}

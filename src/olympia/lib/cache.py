@@ -1,26 +1,26 @@
+import hashlib
 import functools
 import itertools
-import hashlib
 import re
 import uuid
 from contextlib import contextmanager
 
-from django.core.cache import cache, caches
-from django.core.cache.backends.base import DEFAULT_TIMEOUT
+from django.core.cache import cache, _create_cache
+from django.core.cache.backends.base import DEFAULT_TIMEOUT, BaseCache
+from django.core import cache as django_cache
 from django.utils import encoding, translation
 from django.conf import settings
-from django.core.cache import _create_cache
-from django.core.cache.backends.base import BaseCache
 
 
-def make_key(key=None, with_locale=True):
+def make_key(key, with_locale=True, normalize=False):
     """Generate the full key for ``k``, with a prefix."""
-    key = u'{prefix}:{key}'.format(prefix=settings.KEY_PREFIX, key=key)
-
     if with_locale:
-        key += translation.get_language()
-    # memcached keys must be < 250 bytes and w/o whitespace.
-    return hashlib.md5(encoding.smart_bytes(key)).hexdigest()
+        key = u'{key}:{lang}'.format(
+            key=key, lang=translation.get_language())
+
+    if normalize:
+        return hashlib.md5(encoding.smart_bytes(key)).hexdigest()
+    return encoding.smart_bytes(key)
 
 
 def cache_get_or_set(key, default, timeout=DEFAULT_TIMEOUT, version=None):
@@ -49,7 +49,7 @@ def cache_get_or_set(key, default, timeout=DEFAULT_TIMEOUT, version=None):
     return val
 
 
-def get_memoize_cache_key(prefix, *args, **kwargs):
+def memoize_key(prefix, *args, **kwargs):
     """
     For a prefix and arguments returns a key suitable for use in memcache.
     Used by memoize.
@@ -79,34 +79,35 @@ def memoize_get(prefix, *args, **kwargs):
     :param kwargs: arguments to be str()'d to form the key
     :type kwargs: list
     """
-    return cache.get(get_memoize_cache_key(prefix, *args, **kwargs))
+    return cache.get(memoize_key(prefix, *args, **kwargs))
 
 
 def memoize(prefix, timeout=60):
     """
     A simple decorator that caches into memcache, using a simple
     key based on stringing args and kwargs.
-
     Arguments to the method must be easily and consistently serializable
     using str(..) otherwise the cache key will be inconsistent.
-
     :param prefix: a prefix for the key in memcache
     :type prefix: string
-    :param timeout: number of seconds to cache the key for, default 60 seconds
-    :type timeout: integer
+    :param time: number of seconds to cache the key for, default 60 seconds
+    :type time: integer
     """
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
-            def wrapped_func():
-                return func(*args, **kwargs)
-            key = get_memoize_cache_key(prefix, *args, **kwargs)
-            return cache_get_or_set(key, wrapped_func, timeout=timeout)
+            key = memoize_key(prefix, *args, **kwargs)
+            data = cache.get(key)
+            if data is not None:
+                return data
+            data = func(*args, **kwargs)
+            cache.set(key, data, timeout)
+            return data
         return wrapper
     return decorator
 
 
-class Message:
+class Message(object):
     """
     A simple class to store an item in memcache, given a key.
     """
@@ -126,7 +127,7 @@ class Message:
         return res
 
 
-class Token:
+class Token(object):
     """
     A simple token stored in the cache.
     """
@@ -182,9 +183,7 @@ class CacheStatTracker(BaseCache):
         # settings object.
         options = params['OPTIONS'].copy()
         actual_backend = options.pop('ACTUAL_BACKEND')
-        params['OPTIONS'] = options
-
-        self._real_cache = _create_cache(actual_backend, **params)
+        self._real_cache = _create_cache(actual_backend, **options)
 
         self.requests_log = []
         self._setup_proxies()
@@ -221,8 +220,8 @@ class CacheStatTracker(BaseCache):
 
 
 @contextmanager
-def assert_cache_requests(num, alias='default'):
-    cache_using = caches[alias]
+def assert_cache_requests(num):
+    cache_using = django_cache.caches['default']
     cache_using.clear_log()
 
     yield
@@ -230,5 +229,4 @@ def assert_cache_requests(num, alias='default'):
     executed = len(cache_using.requests_log)
 
     assert executed == num, "%d requests executed, %d expected" % (
-        executed, num,
-    )
+        executed, num)

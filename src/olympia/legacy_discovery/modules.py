@@ -9,7 +9,7 @@ from olympia.bandwagon.models import (
     Collection, MonthlyPick as MonthlyPickModel)
 from olympia.legacy_api.views import addon_filter
 from olympia.versions.compare import version_int
-from olympia.lib.cache import cache_get_or_set
+from olympia.lib.cache import cache_get_or_set, make_key
 
 
 # The global registry for promo modules.  Managed through PromoModuleMeta.
@@ -122,9 +122,12 @@ class CollectionPromo(PromoModule):
         def fetch_and_filter_addons():
             return addon_filter(addons, **kw)
 
-        return cache_get_or_set(
+        # The cache-key can be very long, let's normalize it to make sure
+        # we never hit the 250-char limit of memcached.
+        cache_key = make_key(
             'collections-promo-get-addons:{}'.format(repr(kw)),
-            fetch_and_filter_addons)
+            normalize=True)
+        return cache_get_or_set(cache_key, fetch_and_filter_addons)
 
     def render(self, module_context='discovery'):
         if module_context == 'home':

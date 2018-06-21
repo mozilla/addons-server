@@ -434,7 +434,10 @@ class BasePreview(object):
     def delete_preview_files(cls, sender, instance, **kw):
         """On delete of the Preview object from the database, unlink the image
         and thumb on the file system """
-        for filename in [instance.image_path, instance.thumbnail_path]:
+        image_paths = [
+            instance.image_path, instance.thumbnail_path,
+            instance.original_path]
+        for filename in image_paths:
             try:
                 log.info('Removing filename: %s for preview: %s'
                          % (filename, instance.pk))

@@ -105,8 +105,16 @@ class TestCompatForm(TestCase):
         version = Addon.objects.get(id=3615).current_version
         formset = forms.CompatFormSet(None, queryset=version.apps.all(),
                                       form_kwargs={'version': version})
-        apps = [f.app for f in formset.forms]
-        assert set(apps) == set(amo.APPS.values())
+        apps = [form.app for form in formset.forms]
+        assert set(apps) == set(amo.APP_USAGE)
+
+    def test_forms_disallow_thunderbird_and_seamonkey(self):
+        self.create_switch('disallow-thunderbird-and-seamonkey')
+        version = Addon.objects.get(id=3615).current_version
+        formset = forms.CompatFormSet(None, queryset=version.apps.all(),
+                                      form_kwargs={'version': version})
+        apps = [form.app for form in formset.forms]
+        assert set(apps) == set(amo.APP_USAGE_FIREFOXES_ONLY)
 
     def test_form_initial(self):
         version = Addon.objects.get(id=3615).current_version
@@ -249,7 +257,7 @@ class TestPreviewForm(TestCase):
         form.save(addon)
         preview = addon.previews.all()[0]
         assert preview.sizes == (
-            {u'image': [250, 297], u'thumbnail': [126, 150],
+            {u'image': [250, 297], u'thumbnail': [168, 200],
              u'original': [250, 297]})
         assert os.path.exists(preview.image_path)
         assert os.path.exists(preview.thumbnail_path)

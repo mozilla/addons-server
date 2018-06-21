@@ -57,9 +57,9 @@
       <div class="personas-featured">
         <h3>{{ _('Featured Themes') }}</h3>
         <ul class="persona-list-3col">
-            {% for addon in addons %}
-              <li>{{ persona_preview(addon.persona, size='small') }}</li>
-            {% endfor %}
+          {% for addon in addons %}
+            <li>{{ persona_preview(addon.persona, size='small') }}</li>
+          {% endfor %}
         </ul>
       </div>
     {% endif %}
@@ -71,9 +71,9 @@
           <a href="{{ sort_link(special) }}">{{ _('Up & Coming Themes') }}</a>
         </h3>
         <ul class="persona-list-3col">
-            {% for addon in addons %}
-              <li>{{ persona_preview(addon.persona, size='small') }}</li>
-            {% endfor %}
+          {% for addon in addons %}
+            <li>{{ persona_preview(addon.persona, size='small') }}</li>
+          {% endfor %}
         </ul>
         <p class="view-all">
           <a href="{{ sort_link(special) }}">

@@ -1,4 +1,9 @@
+from django.conf import settings
+
 from rest_framework.permissions import BasePermission
+
+from olympia import amo
+from olympia.access import acl
 
 
 class AllowCollectionAuthor(BasePermission):
@@ -11,12 +16,17 @@ class AllowCollectionAuthor(BasePermission):
 
 
 class AllowCollectionContributor(BasePermission):
-    """Allow a contributor of a collection to do stuff.  Be careful where this
-    used as it can allow creating / listing objects if used alone in a ViewSet
-    that has those actions."""
+    """Allow people with the collections contribute permission to modify the
+    featured themes collection.  Be careful where this used as it can allow
+    creating / listing objects if used alone in a ViewSet that has those
+    actions."""
 
     def has_permission(self, request, view):
         return request.user.is_authenticated()
 
     def has_object_permission(self, request, view, obj):
-        return obj in request.user.collections_publishable.all()
+        return (
+            obj and
+            obj.pk == settings.COLLECTION_FEATURED_THEMES_ID and
+            acl.action_allowed(request, amo.permissions.COLLECTIONS_CONTRIBUTE)
+        )

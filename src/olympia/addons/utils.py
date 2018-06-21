@@ -12,11 +12,11 @@ from django.utils.translation import ugettext
 import olympia.core.logger
 
 from olympia import amo
-from olympia.lib.cache import memoize, get_memoize_cache_key
 from olympia.amo.utils import normalize_string
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.discovery.utils import call_recommendation_server
 from olympia.translations.fields import LocaleList, LocaleValidationError
+from olympia.lib.cache import memoize, memoize_key
 
 
 log = olympia.core.logger.getLogger('z.redis')
@@ -27,7 +27,7 @@ def generate_addon_guid():
 
 
 def clear_get_featured_ids_cache(*args, **kwargs):
-    cache_key = get_memoize_cache_key('addons:featured', *args, **kwargs)
+    cache_key = memoize_key('addons:featured', *args, **kwargs)
     cache.delete(cache_key)
 
 

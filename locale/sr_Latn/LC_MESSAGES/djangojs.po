@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -709,18 +709,6 @@ msgstr "Izbriši ovaj dodatak iz kolekcije"
 
 msgid "Remove"
 msgstr "Izbriši"
-
-msgid "Remove this user as a contributor"
-msgstr "Ukloni korisnika kao saradnika"
-
-msgid "An email address is required."
-msgstr "Adresa e-pošte je obavezna."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Ne možete sebe dodati kao saradnika."
-
-msgid "You have already added that user."
-msgstr "Već ste dodali tog korisnika."
 
 msgid "Add to favorites"
 msgstr "Dodaj u omiljene"

@@ -12,15 +12,12 @@ from olympia.addons.models import Addon, Category
 from olympia.amo.decorators import json_view
 from olympia.amo.templatetags.jinja_helpers import locale_url, urlparams
 from olympia.amo.utils import render, sorted_groupby
-from olympia.bandwagon.models import Collection
-from olympia.bandwagon.views import get_filter as get_filter_view
 from olympia.browse.views import personas_listing as personas_listing_view
 from olympia.versions.compare import dict_from_int, version_dict, version_int
 
-from .forms import ESSearchForm, SecondarySearchForm
+from .forms import ESSearchForm
 
 
-DEFAULT_NUM_COLLECTIONS = 20
 DEFAULT_NUM_PERSONAS = 21  # Results appear in a grid of 3 personas x 7 rows.
 
 log = olympia.core.logger.getLogger('z.search')
@@ -70,53 +67,6 @@ def _personas(request):
         'filter': filter,
         'search_placeholder': 'themes'}
     return render(request, 'search/personas.html', context)
-
-
-def _collections(request):
-    """Handle the request for collections."""
-
-    # Sorting by relevance isn't an option. Instead the default is `weekly`.
-    initial = {'sort': 'weekly'}
-    # Update with GET variables.
-    initial.update(request.GET.items())
-    # Ignore appver/platform and set default number of collections per page.
-    initial.update(appver=None, platform=None, pp=DEFAULT_NUM_COLLECTIONS)
-
-    form = SecondarySearchForm(initial)
-    form.is_valid()
-
-    qs = Collection.search().filter(listed=True, app=request.APP.id)
-    filters = ['sort']
-    mapping = {
-        'weekly': '-weekly_subscribers',
-        'monthly': '-monthly_subscribers',
-        'all': '-subscribers',
-        'rating': '-rating',
-        'created': '-created',
-        'name': 'name_sort',
-        'updated': '-modified'}
-    results = _filter_search(request, qs, form.cleaned_data, filters,
-                             sorting=mapping,
-                             sorting_default='-weekly_subscribers',
-                             types=amo.COLLECTION_SEARCH_CHOICES)
-
-    form_data = form.cleaned_data.get('q', '')
-
-    search_opts = {}
-    search_opts['limit'] = form.cleaned_data.get('pp', DEFAULT_NUM_COLLECTIONS)
-    page = form.cleaned_data.get('page') or 1
-    search_opts['offset'] = (page - 1) * search_opts['limit']
-    search_opts['sort'] = form.cleaned_data.get('sort')
-
-    pager = amo.utils.paginate(request, results, per_page=search_opts['limit'])
-    context = {
-        'pager': pager,
-        'form': form,
-        'query': form_data,
-        'opts': search_opts,
-        'filter': get_filter_view(request),
-        'search_placeholder': 'collections'}
-    return render(request, 'search/collections.html', context)
 
 
 class BaseAjaxSearch(object):
@@ -388,9 +338,7 @@ def search(request, tag_name=None):
     if tag_name:
         form_data['tag'] = tag_name
 
-    if category == 'collections':
-        return _collections(request)
-    elif category == 'themes' or form_data.get('atype') == amo.ADDON_PERSONA:
+    if category == 'themes' or form_data.get('atype') == amo.ADDON_PERSONA:
         return _personas(request)
 
     sort, extra_sort = split_choices(form.sort_choices, 'created')

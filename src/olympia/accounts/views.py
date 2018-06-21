@@ -23,6 +23,7 @@ from rest_framework.mixins import (
 from rest_framework.permissions import (
     AllowAny, BasePermission, IsAuthenticated)
 from rest_framework.response import Response
+from rest_framework.status import HTTP_204_NO_CONTENT
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 from waffle.decorators import waffle_switch
@@ -37,8 +38,8 @@ from olympia.amo.decorators import write
 from olympia.amo.utils import fetch_subscribed_newsletters
 from olympia.api.authentication import (
     JWTKeyAuthentication, WebTokenAuthentication)
-from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
 from olympia.users import tasks
+from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
 from olympia.users.models import UserNotification, UserProfile
 from olympia.users.notifications import (
     NOTIFICATIONS_COMBINED, REMOTE_NOTIFICATIONS_BY_BASKET_ID)
@@ -138,13 +139,15 @@ def login_user(request, user, identity):
     login(request, user)
 
 
-def fxa_error_message(message):
-    login_help_url = (
-        'https://support.mozilla.org/kb/access-your-add-ons-firefox-accounts')
+def fxa_error_message(message, login_help_url):
     return format_html(
         u'{error} <a href="{url}">{help_text}</a>',
         url=login_help_url, help_text=_(u'Need help?'),
         error=message)
+
+
+LOGIN_HELP_URL = (
+    'https://support.mozilla.org/kb/access-your-add-ons-firefox-accounts')
 
 
 def render_error(request, error, next_path=None, format=None):
@@ -155,7 +158,8 @@ def render_error(request, error, next_path=None, format=None):
         if not is_safe_url(next_path):
             next_path = None
         messages.error(
-            request, fxa_error_message(LOGIN_ERROR_MESSAGES[error]),
+            request,
+            fxa_error_message(LOGIN_ERROR_MESSAGES[error], LOGIN_HELP_URL),
             extra_tags='fxa')
         if next_path is None:
             response = HttpResponseRedirect(reverse('users.login'))
@@ -424,6 +428,14 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
                 u'this account, or transfer them to other users.'))
         return super(AccountViewSet, self).perform_destroy(instance)
 
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        response = Response(status=HTTP_204_NO_CONTENT)
+        if instance == request.user:
+            logout_user(request, response)
+        return response
+
     @detail_route(
         methods=['delete'], permission_classes=[
             AnyOf(AllowSelf, GroupPermission(amo.permissions.USERS_EDIT))])
@@ -547,20 +559,27 @@ class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
         set_notifications = {
             user_nfn.notification.short: user_nfn for user_nfn in queryset}
         out = []
-        for notification in NOTIFICATIONS_COMBINED:
-            out.append(set_notifications.get(
-                notification.short,  # It's been set by the user.
-                self._get_default_object(notification)))  # Otherwise, default.
 
         if waffle.switch_is_active('activate-basket-sync'):
-            newsletters = fetch_subscribed_newsletters(user)
-
+            newsletters = None  # Lazy - fetch the first time needed.
             by_basket_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID
             for basket_id, notification in by_basket_id.items():
-                notification = self._get_default_object(notification)
-                notification.enabled = basket_id in newsletters
-                out.append(notification)
+                if notification.group == 'dev' and not user.is_developer:
+                    # We only return dev notifications for developers.
+                    continue
+                if newsletters is None:
+                    newsletters = fetch_subscribed_newsletters(user)
+                user_notification = self._get_default_object(notification)
+                user_notification.enabled = basket_id in newsletters
+                set_notifications[notification.short] = user_notification
 
+        for notification in NOTIFICATIONS_COMBINED:
+            if notification.group == 'dev' and not user.is_developer:
+                # We only return dev notifications for developers.
+                continue
+            out.append(set_notifications.get(
+                notification.short,  # It's been set by the user.
+                self._get_default_object(notification)))  # Or, default.
         return out
 
     def create(self, request, *args, **kwargs):

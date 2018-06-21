@@ -19,6 +19,7 @@
   display: flex;
   flex-direction: column;
   align-items: right;
+  min-width: 210px;
 
   span {
     margin: 0 2px;
@@ -34,6 +35,8 @@
   margin-left: 25px;
   display: flex;
   flex-flow: column;
+  overflow-wrap: break-word;
+  min-width: 0px;
 
   a {
     .link(@color-button-default);
@@ -93,8 +96,10 @@
 }
 
 .DevHub-MyAddons-item-icon {
-  width: 48px;
-  height: 48px;
+  max-width: 128px;
+  height: 64px;
+  object-fit: cover;
+  object-position: left;
 
   html[dir=rtl] & {
     margin-left: 15px;

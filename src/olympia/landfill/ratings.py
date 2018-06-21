@@ -15,4 +15,4 @@ def generate_ratings(addon, num):
             username=email, email=email, defaults={'display_name': email})
         Rating.objects.create(
             addon=addon, user=user, rating=random.randrange(0, 6),
-            title='Test Review {n}'.format(n=n), body='review text')
+            body='Test Review {n}'.format(n=n))

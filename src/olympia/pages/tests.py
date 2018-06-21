@@ -11,9 +11,8 @@ class TestPages(TestCase):
         assert resp.status_code == status
 
     def test_status(self):
-        pages = ['pages.about', 'pages.credits', 'pages.faq',
-                 'pages.acr_firstrun', 'pages.dev_faq', 'pages.review_guide',
-                 'pages.sunbird', 'pages.shield_study_2',
+        pages = ['pages.about', 'pages.review_guide',
+                 'pages.shield_study_2',
                  'pages.shield_study_3', 'pages.shield_study_4',
                  'pages.shield_study_5', 'pages.shield_study_6',
                  'pages.shield_study_7', 'pages.shield_study_8',
@@ -43,14 +42,11 @@ class TestRedirects(TestCase):
 
     def test_app_pages(self):
         self._check({
-            '/en-US/firefox/pages/compatibility_firstrun':
-                reverse('pages.acr_firstrun'),
             '/en-US/firefox/pages/validation': settings.VALIDATION_FAQ_URL,
         })
 
     def test_nonapp_pages(self):
         self._check({
-            '/en-US/pages/developer_faq': reverse('pages.dev_faq'),
             '/en-US/pages/review_guide': reverse('pages.review_guide'),
         })
         r = self.client.get('/en-US/firefox/pages/developer_agreement',

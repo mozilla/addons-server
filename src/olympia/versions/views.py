@@ -51,19 +51,18 @@ def version_list(request, addon):
 @addon_view
 @non_atomic_requests
 def version_detail(request, addon, version_num):
-    qs = _version_list_qs(addon)
+    # TODO: Does setting this in memcachd even make sense?
+    # This is specific to an add-ons version so the chance of this hitting
+    # the cache and not missing seems quite bad to me (cgrebs)
+    def _fetch():
+        qs = _version_list_qs(addon)
+        return list(qs.values_list('version', flat=True))
 
-    def f():
-        return _find_version_page(qs, addon, version_num)
-
-    return cache_get_or_set(
+    ids = cache_get_or_set(
         u'version-detail:{}:{}'.format(addon.id, version_num),
-        f)
+        _fetch)
 
-
-def _find_version_page(qs, addon, version_num):
     url = reverse('addons.versions', args=[addon.slug])
-    ids = list(qs.values_list('version', flat=True))
     if version_num in ids:
         page = 1 + ids.index(version_num) / PER_PAGE
         to = urlparams(url, 'version-%s' % version_num, page=page)

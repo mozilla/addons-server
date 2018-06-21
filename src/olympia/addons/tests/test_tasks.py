@@ -2,6 +2,7 @@ import mock
 import os
 import pytest
 import tempfile
+from datetime import datetime
 
 from django.conf import settings
 from django.test.utils import override_settings
@@ -9,6 +10,7 @@ from django.test.utils import override_settings
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonCategory, MigratedLWT
 from olympia.addons.tasks import (
     add_static_theme_from_lwt, create_persona_preview_images,
@@ -20,6 +22,7 @@ from olympia.amo.utils import image_size
 from olympia.applications.models import AppVersion
 from olympia.constants import licenses
 from olympia.constants.categories import CATEGORIES
+from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import License
@@ -117,6 +120,8 @@ def test_migrate_lwts_to_static_themes(add_static_theme_from_lwt_mock):
 @override_switch('allow-static-theme-uploads', active=True)
 @override_settings(ENABLE_ADDON_SIGNING=True)
 class TestAddStaticThemeFromLwt(TestCase):
+    create_date = datetime(2000, 1, 1, 1, 1, 1)
+    modify_date = datetime(2009, 9, 9, 9, 9, 9)
 
     def setUp(self):
         super(TestAddStaticThemeFromLwt, self).setUp()
@@ -138,49 +143,78 @@ class TestAddStaticThemeFromLwt(TestCase):
         assert not os.path.isdir(upload_path)
         return mock.DEFAULT
 
-    def test_add_static_theme_from_lwt(self):
-        author = user_factory()
-        persona = addon_factory(type=amo.ADDON_PERSONA, users=[author])
-        persona.persona.license = licenses.LICENSE_CC_BY_ND.id
-        Tag.objects.create(tag_text='themey').save_tag(persona)
-        License.objects.create(builtin=licenses.LICENSE_CC_BY_ND.builtin)
-
-        static_theme = add_static_theme_from_lwt(persona)
-
-        assert list(static_theme.authors.all()) == [author]
+    def _check_result(self, static_theme, authors, tags, categories, license_,
+                      ratings):
+        assert list(static_theme.authors.all()) == authors
+        assert list(static_theme.tags.all()) == tags
         assert [cat.name for cat in static_theme.all_categories] == [
-            cat.name for cat in persona.all_categories]
-        assert list(static_theme.tags.all()) == list(persona.tags.all())
-        assert static_theme.current_version.license.builtin == (
-            licenses.LICENSE_CC_BY_ND.builtin)
+            cat.name for cat in categories]
+        assert static_theme.current_version.license.builtin == license_
         assert static_theme.status == amo.STATUS_PUBLIC
         current_file = static_theme.current_version.files.get()
         assert current_file.status == amo.STATUS_PUBLIC
+        assert list(Rating.unfiltered.filter(addon=static_theme)) == ratings
+        log_entries = ActivityLog.objects.filter(
+            action=amo.LOG.ADD_RATING.id, addonlog__addon=static_theme)
+        assert log_entries.count() == len(ratings)
+        for rating, log_entry in zip(ratings, log_entries):
+            arguments = log_entry.arguments
+            assert rating in arguments
+            assert static_theme in arguments
         self.call_signing_mock.assert_called_with(current_file)
         assert current_file.cert_serial_num == 'abcdefg1234'
+        assert static_theme.created == self.create_date
+        assert static_theme.modified == self.modify_date
+
+    def test_add_static_theme_from_lwt(self):
+        author = user_factory()
+        persona = addon_factory(type=amo.ADDON_PERSONA, users=[author])
+        persona.update(created=self.create_date, modified=self.modify_date)
+        persona.persona.license = licenses.LICENSE_CC_BY_ND.id
+        Tag.objects.create(tag_text='themey').save_tag(persona)
+        License.objects.create(builtin=licenses.LICENSE_CC_BY_ND.builtin)
+        rating_user = user_factory()
+        rating = Rating.objects.create(
+            addon=persona, version=persona.current_version, user=rating_user,
+            rating=2, body=u'fooooo', user_responsible=rating_user)
+
+        static_theme = add_static_theme_from_lwt(persona)
+
+        self._check_result(
+            static_theme, [author], list(persona.tags.all()),
+            persona.all_categories, licenses.LICENSE_CC_BY_ND.builtin,
+            [rating])
 
     def test_add_static_theme_broken_lwt(self):
         """What if no author or license or category?"""
         persona = addon_factory(type=amo.ADDON_PERSONA)
+        persona.update(created=self.create_date, modified=self.modify_date)
 
         assert list(persona.authors.all()) == []  # no author
         persona.persona.license = None  # no license
         AddonCategory.objects.filter(addon=persona).delete()
         assert persona.all_categories == []  # no category
         License.objects.create(builtin=licenses.LICENSE_COPYRIGHT_AR.builtin)
-
+        rating_user = user_factory()
+        rating = Rating.objects.create(
+            addon=persona, version=persona.current_version, user=rating_user,
+            rating=2, body=u'fooooo', user_responsible=rating_user)
+        rating.delete()  # delete the rating - should still be migrated.
+        # Add 2 more Ratings for different addons that shouldn't be copied.
+        Rating.objects.create(
+            addon=addon_factory(), user=rating_user,
+            rating=3, body=u'tgd', user_responsible=rating_user)
+        Rating.objects.create(
+            addon=addon_factory(), user=rating_user,
+            rating=4, body=u'tgffd', user_responsible=rating_user)
         static_theme = add_static_theme_from_lwt(persona)
 
         default_author = UserProfile.objects.get(
             email=settings.MIGRATED_LWT_DEFAULT_OWNER_EMAIL)
-        assert list(static_theme.authors.all()) == [default_author]
-        assert static_theme.all_categories == [
-            CATEGORIES[amo.FIREFOX.id][amo.ADDON_STATICTHEME]['other']]
-        assert list(static_theme.tags.all()) == []
-        assert static_theme.current_version.license.builtin == (
-            licenses.LICENSE_COPYRIGHT_AR.builtin)
-        assert static_theme.status == amo.STATUS_PUBLIC
-        current_file = static_theme.current_version.files.get()
-        assert current_file.status == amo.STATUS_PUBLIC
-        self.call_signing_mock.assert_called_with(current_file)
-        assert current_file.cert_serial_num == 'abcdefg1234'
+        default_category = (
+            CATEGORIES[amo.FIREFOX.id][amo.ADDON_STATICTHEME]['other'])
+        self._check_result(
+            static_theme, [default_author], [], [default_category],
+            licenses.LICENSE_COPYRIGHT_AR.builtin, [rating])
+        # Double check its the exact category we want.
+        assert static_theme.all_categories == [default_category]

@@ -77,9 +77,8 @@ def update_addon_download_totals():
 
     qs = (
         Addon.objects
-             .annotate(average_download_count=Avg('downloadcount__count'),
-                       sum_download_count=Sum('downloadcount__count'))
-             .values_list('id', 'average_download_count', 'sum_download_count')
+             .annotate(sum_download_count=Sum('downloadcount__count'))
+             .values_list('id', 'sum_download_count')
              .order_by('id')
     )
     ts = [_update_addon_download_totals.subtask(args=[chunk])
@@ -95,23 +94,19 @@ def _update_addon_download_totals(data, **kw):
     if not waffle.switch_is_active('local-statistics-processing'):
         return False
 
-    for pk, average_download_counts, sum_download_counts in data:
+    for pk, sum_download_counts in data:
         try:
             addon = Addon.objects.get(pk=pk)
             # Don't trigger a save unless we have to (the counts may not have
             # changed)
-            if (sum_download_counts and average_download_counts and
-                (addon.average_daily_downloads != average_download_counts or
-                 addon.total_downloads != sum_download_counts)):
-                addon.update(
-                    average_daily_downloads=average_download_counts,
-                    total_downloads=sum_download_counts)
+            if (sum_download_counts and
+                    addon.total_downloads != sum_download_counts):
+                addon.update(total_downloads=sum_download_counts)
         except Addon.DoesNotExist:
             # We exclude deleted add-ons in the cron, but an add-on could have
             # been deleted by the time the task is processed.
             m = ("Got new download totals (total=%s,avg=%s) but the add-on"
-                 "doesn't exist (%s)" % (
-                     sum_download_counts, average_download_counts, pk))
+                 "doesn't exist (%s)" % (sum_download_counts, pk))
             task_log.debug(m)
 
 

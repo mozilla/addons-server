@@ -59,6 +59,11 @@ class UserDeleteForm(forms.Form):
             raise forms.ValidationError("")
 
 
+LOGIN_HELP_URL = (
+    'https://support.mozilla.org/kb/'
+    'change-primary-email-address-firefox-accounts')
+
+
 class UserEditForm(happyforms.ModelForm):
     username = forms.CharField(max_length=50, required=False)
     display_name = forms.CharField(label=_(u'Display Name'), max_length=50,
@@ -71,8 +76,8 @@ class UserEditForm(happyforms.ModelForm):
     email = forms.EmailField(
         required=False,
         help_text=fxa_error_message(
-            _(u'Firefox Accounts users cannot currently change their '
-              u'email address.')),
+            _(u'You can change your email address on Firefox Accounts.'),
+            LOGIN_HELP_URL),
         widget=forms.EmailInput(attrs={'readonly': 'readonly'}))
     photo = forms.FileField(label=_(u'Profile Photo'), required=False)
     biography = forms.CharField(widget=forms.Textarea, required=False)
@@ -123,9 +128,15 @@ class UserEditForm(happyforms.ModelForm):
                     default[notification.id] = basket_id in newsletters
 
             # Add choices to Notification.
-            choices = notifications.NOTIFICATIONS_CHOICES
-            if not self.instance.is_developer:
-                choices = notifications.NOTIFICATIONS_CHOICES_NOT_DEV
+            if self.instance.is_developer:
+                choices = [
+                    (l.id, l.label)
+                    for l in notifications.NOTIFICATIONS_COMBINED]
+            else:
+                choices = [
+                    (l.id, l.label)
+                    for l in notifications.NOTIFICATIONS_COMBINED
+                    if l.group != 'dev']
 
             # Append a "NEW" message to new notification options.
             saved = self.instance.notifications.values_list('notification_id',

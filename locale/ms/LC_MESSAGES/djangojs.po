@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2017-09-09 02:57+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -703,18 +703,6 @@ msgstr "Buang add-on ini daripada koleksi"
 
 msgid "Remove"
 msgstr "Buang"
-
-msgid "Remove this user as a contributor"
-msgstr "Singkir pengguna ini daripada penyumbang"
-
-msgid "An email address is required."
-msgstr "Alamat e-mel diperlukan."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Anda tidak boleh masukkan diri sendiri sebagai penyumbang."
-
-msgid "You have already added that user."
-msgstr "Anda sudah masukkan pengguna tersebut."
 
 msgid "Add to favorites"
 msgstr "Tambah ke kegemaran"

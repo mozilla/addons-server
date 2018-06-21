@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Django settings for addons-server project.
 
+import environ
 import logging
 import os
 import socket
@@ -8,9 +9,9 @@ import socket
 from django.core.urlresolvers import reverse_lazy
 from django.utils.functional import lazy
 
-import environ
-
 from kombu import Queue
+
+import olympia.core.logger
 
 
 env = environ.Env()
@@ -314,11 +315,11 @@ SUPPORTED_NONAPPS_NONLOCALES_REGEX = DRF_API_REGEX
 # validClientAppUrlExceptions
 # https://github.com/mozilla/addons-frontend/blob/master/config/default-amo.js
 SUPPORTED_NONAPPS = (
-    'about', 'admin', 'apps', 'contribute.json', 'credits',
-    'developer_agreement', 'developer_faq', 'developers', 'editors', 'faq',
+    'about', 'admin', 'apps', 'contribute.json',
+    'developer_agreement', 'developers', 'editors',
     'jsi18n', 'review_guide', 'google1f3e37b7351799a5.html',
     'google231a41e803e464e9.html', 'reviewers', 'robots.txt', 'statistics',
-    'services', 'sunbird', 'static', 'user-media', '__version__',
+    'services', 'static', 'user-media', '__version__',
 )
 DEFAULT_APP = 'firefox'
 
@@ -1123,8 +1124,6 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.unindex_addons': {'queue': 'priority'},
     'olympia.addons.tasks.save_theme': {'queue': 'priority'},
     'olympia.addons.tasks.save_theme_reupload': {'queue': 'priority'},
-    'olympia.bandwagon.tasks.index_collections': {'queue': 'priority'},
-    'olympia.bandwagon.tasks.unindex_collections': {'queue': 'priority'},
     'olympia.versions.tasks.generate_static_theme_preview': {
         'queue': 'priority'},
 
@@ -1284,25 +1283,123 @@ CELERY_TASK_EAGER_PROPAGATES = True
 # a separate, shorter timeout for validation tasks.
 CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 
-# Logging
-LOG_LEVEL = logging.DEBUG
-USE_MOZLOG = True
-MOZLOG_NAME = "http_app_addons"
-# See PEP 391 and log_settings_base.py for formatting help.  Each section of
-# LOGGING will get merged into the corresponding section of
-# log_settings_base.py. Handlers and log levels are set up automatically based
-# on LOG_LEVEL and DEBUG unless you set them here.  Messages will not
-# propagate through a logger unless propagate: True is set.
-LOGGING_CONFIG = None
+# See PEP 391 for formatting help.
 LOGGING = {
+    'version': 1,
+    'filters': {},
+    'formatters': {
+        'json': {
+            '()': olympia.core.logger.JsonFormatter,
+            'logger_name': 'http_app_addons'
+        },
+    },
+    'handlers': {
+        'mozlog': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'json'
+        },
+        'null': {
+            'class': 'logging.NullHandler',
+        },
+        'statsd': {
+            'level': 'ERROR',
+            'class': 'django_statsd.loggers.errors.StatsdHandler',
+        },
+    },
+    'root': {'handlers': ['mozlog'], 'level': logging.DEBUG},
     'loggers': {
-        'amo.validator': {'level': logging.WARNING},
-        'amqplib': {'handlers': ['null']},
-        'elasticsearch': {'handlers': ['null']},
-        'rdflib': {'handlers': ['null']},
-        'z.task': {'level': logging.INFO},
-        'z.es': {'level': logging.INFO},
-        's.client': {'level': logging.INFO},
+        'amo': {
+            'handlers': ['mozlog'],
+            'level': logging.DEBUG,
+            'propagate': False
+        },
+        'amo.validator': {
+            'handlers': ['mozlog'],
+            'level': logging.WARNING,
+            'propagate': False,
+        },
+        'amqplib': {
+            'handlers': ['null'],
+            'level': logging.DEBUG,
+            'propagate': False
+        },
+        'caching': {
+            'handlers': ['mozlog'],
+            'level': logging.ERROR,
+            'propagate': False
+        },
+        'caching.invalidation': {
+            'handlers': ['null'],
+            'level': logging.DEBUG,
+            'propagate': False
+        },
+        'django.request': {
+            'handlers': ['statsd'],
+            'level': logging.ERROR,
+            'propagate': True,
+        },
+        'elasticsearch': {
+            'handlers': ['null'],
+            'level': logging.DEBUG,
+            'propagate': False,
+        },
+        'newrelic': {
+            'handlers': ['mozlog'],
+            'level': logging.WARNING,
+            'propagate': False,
+        },
+        'post_request_task': {
+            'handlers': ['mozlog'],
+            # Ignore INFO or DEBUG from post-request-task, it logs too much.
+            'level': logging.WARNING,
+            'propagate': False,
+        },
+        'rdflib': {
+            'handlers': ['null'],
+            'level': logging.DEBUG,
+            'propagate': False,
+        },
+        'request.summary': {
+            'handlers': ['mozlog'],
+            'level': logging.DEBUG,
+            'propagate': False
+        },
+        's.client': {
+            'handlers': ['mozlog'],
+            'level': logging.INFO,
+            'propagate': False
+        },
+        'z': {
+            'handlers': ['mozlog'],
+            'level': logging.DEBUG,
+            'propagate': False
+        },
+        'z.celery': {
+            'handlers': ['statsd'],
+            'level': logging.ERROR,
+            'propagate': True,
+        },
+        'z.es': {
+            'handlers': ['mozlog'],
+            'level': logging.INFO,
+            'propagate': False
+        },
+        'z.pool': {
+            'handlers': ['mozlog'],
+            'level': logging.ERROR,
+            'propagate': False
+        },
+        'z.redis': {
+            'handlers': ['mozlog'],
+            'level': logging.DEBUG,
+            'propagate': False
+        },
+        'z.task': {
+            'handlers': ['mozlog'],
+            'level': logging.DEBUG,
+            'propagate': False
+        }
     },
 }
 
@@ -1516,6 +1613,9 @@ ES_MAX_RESULT_WINDOW = 25000
 # Default AMO user id to use for tasks.
 TASK_USER_ID = 4757633
 
+# Special collection that some contributors can modify.
+COLLECTION_FEATURED_THEMES_ID = 2143965
+
 # If this is False, tasks and other jobs that send non-critical emails should
 # use a fake email backend.
 SEND_REAL_EMAIL = False
@@ -1656,6 +1756,7 @@ JWT_AUTH = {
 DRF_API_GATES = {
     'v3': (
         'ratings-rating-shim',
+        'ratings-title-shim',
     ),
     'v4': (
     )

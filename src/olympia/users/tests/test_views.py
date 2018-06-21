@@ -171,7 +171,8 @@ class TestEdit(UserViewBase):
             user=self.user,
             addon=Addon.objects.create(type=amo.ADDON_EXTENSION))
 
-        choices = email.NOTIFICATIONS_CHOICES
+        choices = [
+            (l.id, l.label) for l in email.NOTIFICATIONS_COMBINED]
         self.check_default_choices(choices)
 
         self.data['notifications'] = [4, 6]
@@ -191,10 +192,11 @@ class TestEdit(UserViewBase):
         assert doc('.more-all').length == len(email.NOTIFICATION_GROUPS)
 
     def test_edit_notifications_non_dev(self):
-        choices = email.NOTIFICATIONS_CHOICES_NOT_DEV
         notifications_not_dev = [
-            n for n in email.NOTIFICATIONS_COMBINED if n.group != 'dev']
-        self.check_default_choices(choices)
+            l for l in email.NOTIFICATIONS_COMBINED if l.group != 'dev']
+        choices_not_dev = [
+            (l.id, l.label) for l in notifications_not_dev]
+        self.check_default_choices(choices_not_dev)
 
         self.data['notifications'] = []
         r = self.client.post(self.url, self.data)
@@ -203,7 +205,7 @@ class TestEdit(UserViewBase):
         assert UserNotification.objects.count() == len(notifications_not_dev)
         assert UserNotification.objects.filter(enabled=True).count() == (
             len(filter(lambda x: x.mandatory, notifications_not_dev)))
-        self.check_default_choices(choices, checked=False)
+        self.check_default_choices(choices_not_dev, checked=False)
 
     def test_edit_notifications_non_dev_error(self):
         self.data['notifications'] = [2, 4, 6]

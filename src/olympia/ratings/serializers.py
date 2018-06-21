@@ -16,21 +16,20 @@ from olympia.versions.models import Version
 
 
 class BaseRatingSerializer(serializers.ModelSerializer):
-    # title and body are TranslatedFields, but there is never more than one
-    # translation for each review - it's essentially useless. Because of that
-    # we use a simple CharField in the API, hiding the fact that it's a
-    # TranslatedField underneath.
     addon = serializers.SerializerMethodField()
     body = serializers.CharField(allow_null=True, required=False)
     is_latest = serializers.BooleanField(read_only=True)
     previous_count = serializers.IntegerField(read_only=True)
-    title = serializers.CharField(allow_null=True, required=False)
     user = BaseUserSerializer(read_only=True)
 
     class Meta:
         model = Rating
         fields = ('id', 'addon', 'body', 'created', 'is_latest',
-                  'previous_count', 'title', 'user')
+                  'previous_count', 'user')
+
+    def __init__(self, *args, **kwargs):
+        super(BaseRatingSerializer, self).__init__(*args, **kwargs)
+        self.request = kwargs.get('context', {}).get('request')
 
     def get_addon(self, obj):
         # We only return the addon id and slug for convenience, so just return
@@ -87,6 +86,12 @@ class BaseRatingSerializer(serializers.ModelSerializer):
                 data['editorreview'] = True
 
         return data
+
+    def to_representation(self, instance):
+        out = super(BaseRatingSerializer, self).to_representation(instance)
+        if self.request and is_gate_active(self.request, 'ratings-title-shim'):
+            out['title'] = None
+        return out
 
 
 class RatingSerializerReply(BaseRatingSerializer):
@@ -146,8 +151,10 @@ class RatingSerializer(BaseRatingSerializer):
 
     def __init__(self, *args, **kwargs):
         super(RatingSerializer, self).__init__(*args, **kwargs)
-        request = kwargs.get('context', {}).get('request')
-        if request and is_gate_active(request, 'ratings-rating-shim'):
+        score_to_rating = (
+            self.request and
+            is_gate_active(self.request, 'ratings-rating-shim'))
+        if score_to_rating:
             score_field = self.fields.pop('score')
             score_field.source = None  # drf complains if we specifiy source.
             self.fields['rating'] = score_field
