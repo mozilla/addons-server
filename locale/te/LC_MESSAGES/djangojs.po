@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-06-18 16:07+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -705,18 +705,6 @@ msgstr "సేకరణ నుండి ఈ పొడిగింతను త�
 
 msgid "Remove"
 msgstr "తొలగించు"
-
-msgid "Remove this user as a contributor"
-msgstr "సహాయకుల నుండి వాడుకరిని తీసివేయి"
-
-msgid "An email address is required."
-msgstr "ఒక ఇమెయిల్ చిరునామా అవసరం."
-
-msgid "You cannot add yourself as a contributor."
-msgstr ""
-
-msgid "You have already added that user."
-msgstr "మీరు ఇప్పటికే ఆ వాడుకరిని జోడించారు."
 
 msgid "Add to favorites"
 msgstr "ఇష్టాంశాలకు జోడించు"

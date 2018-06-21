@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-01-20 15:23+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -698,18 +698,6 @@ msgstr "从收藏集中移除此附加组件"
 
 msgid "Remove"
 msgstr "移除"
-
-msgid "Remove this user as a contributor"
-msgstr "从贡献者中移除此用户"
-
-msgid "An email address is required."
-msgstr "必须输入电子邮件地址。"
-
-msgid "You cannot add yourself as a contributor."
-msgstr "您不能添加自己为贡献者。"
-
-msgid "You have already added that user."
-msgstr "您已经添加了该用户。"
 
 msgid "Add to favorites"
 msgstr "添加到我最喜爱"

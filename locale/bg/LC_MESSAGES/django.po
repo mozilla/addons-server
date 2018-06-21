@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-03-28 12:47+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -816,9 +816,6 @@ msgstr "Теми"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Искате повече персонализиране? Опитайте с <b>цялостните теми</b>"
 
-msgid "Most Followers"
-msgstr "Най-следвани"
-
 msgid "Collections"
 msgstr "Списъци"
 
@@ -935,21 +932,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr "Ако поддържаното приложение не изисква файл-манифест, все пак трябва да включите такъв с нужните свойства, както е %(amo_manifests_mdn_link_open)sописано тук%(amo_manifests_mdn_link_close)s."
 
-msgid "Contributors"
-msgstr "Сътрудници"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Списъци :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Списъкът е набор от сродни добавки, който всеки може да създава и споделя."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Списъци :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Само аз мога да виждам този списък."
 
@@ -1005,20 +987,14 @@ msgstr "Това потребителско име не може да бъде �
 msgid "This add-on already belongs to the collection"
 msgstr "Добавката вече се принадлежи към този списък"
 
-msgid "Name"
-msgstr "Име"
-
-msgid "Recently Updated"
-msgstr "Последно обновени"
-
-msgid "Recently Popular"
-msgstr "Наскоро популярни"
-
 msgid "Added"
 msgstr "Добавено"
 
 msgid "Popularity"
 msgstr "Популярност"
+
+msgid "Name"
+msgstr "Име"
 
 msgid "Collection created!"
 msgstr "Списъкът е създаден!"
@@ -1127,17 +1103,14 @@ msgstr "Давай"
 msgid "What are Collections?"
 msgstr "Какво е списъкът?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Списъкът е набор от сродни добавки, който всеки може да създава и споделя."
+
 msgid "Explore Collections"
 msgstr "Разглеждане на списъци"
 
 msgid "Common Tags"
 msgstr "Чести етикети"
-
-msgid "More by this User"
-msgstr "Още от този потребител"
-
-msgid "See all collections by this user"
-msgstr "Всички списъци на потребителя"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1224,63 +1197,8 @@ msgstr "Промяна на {0}"
 msgid "Description"
 msgstr "Описание"
 
-msgid "Contributors & More"
-msgstr "Сътрудници и още"
-
 msgid "Save Changes"
 msgstr "Запазване"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "Собственик"
-
-msgid "Make Owner"
-msgstr "Направи собственик"
-
-msgid "Remove this user as a contributor"
-msgstr "Премахни този потребител като допринесъл"
-
-msgid "Remove"
-msgstr "Премахни"
-
-msgid "Collection Contributors"
-msgstr "Допринесли за списъка"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-
-msgid "User"
-msgstr "Потребител"
-
-msgid "Email"
-msgstr "Имейл"
-
-# Column name in a table.
-msgid "Role"
-msgstr "Роля"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Въведете адрес на ел. поща на сътрудника"
-
-msgid "Add Contributor"
-msgstr "Добавяне"
-
-msgid "Contributor"
-msgstr "Сътрудник"
-
-msgid "Admin Settings"
-msgstr "Администраторски настройки"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Внимание:</b> Като промените собственика на този списък, няма да можете да го променяте. Ще можете само да добавяте и премахвате добавки от него."
-
-msgid "Continue"
-msgstr "Продължаване"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "или <a id=\"change-owner-cancel\" href=\"#\">Отказване</a>"
 
 msgid "Remove from favorites"
 msgstr "Премахване от любими"
@@ -1295,27 +1213,9 @@ msgstr "Списъци на {0}"
 msgid "No collections found."
 msgstr "Няма намерени списъци."
 
-msgid "Most-Followed Collections"
-msgstr "Най-следвани списъци"
-
-msgid "Newest Collections"
-msgstr "Най-нови списъци"
-
-msgid "Collections by Name"
-msgstr "Списъци по име"
-
-msgid "Recently Updated Collections"
-msgstr "Последно обновени списъци"
-
-msgid "Recently Popular Collections"
-msgstr "Наскоро популярни списъци"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Списъкът е набор от сродни добавки, който всеки може да създава и споделя. Разгледайте списъци, създадени от други потребители или <a href=\"%(url)s\">създайте ваш собствен</a>."
-
-msgid "Subscribe"
-msgstr "Абониране"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1353,6 +1253,9 @@ msgstr "Добавка"
 
 msgid "Comment"
 msgstr "Коментар"
+
+msgid "Remove"
+msgstr "Премахни"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Въведете името на добавката, която да включите"
@@ -1420,6 +1323,9 @@ msgstr "Най-много потребители"
 msgid "Weekly Downloads"
 msgstr "Изтегляния седмично"
 
+msgid "Recently Updated"
+msgstr "Последно обновени"
+
 msgid "Up & Coming"
 msgstr "Обещаващи"
 
@@ -1439,6 +1345,9 @@ msgstr "{0}: Препоръчани добавки"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Няма препоръчани добавки в {0}."
+
+msgid "Subscribe"
+msgstr "Абониране"
 
 msgid "Featured Add-ons"
 msgstr "Препоръчани добавки"
@@ -2067,6 +1976,10 @@ msgstr "Сигнализирана за допълнителна рецензи�
 msgid "Unlisted"
 msgstr "Махната от списъка"
 
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "Собственик"
+
 msgid "Developer"
 msgstr "Разработчик"
 
@@ -2668,6 +2581,9 @@ msgstr "Започвайки с Firefox 53 новите добавки на ст
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Остарелите добавки са несъвместими с Firefox 57 и по-нов. Използвайте maxVersion 56.* или по-малка."
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
@@ -3130,6 +3046,9 @@ msgstr "Информация за поддръжка"
 msgid "Support Information for {0}"
 msgstr "Информация за поддръжка за {0}"
 
+msgid "Email"
+msgstr "Имейл"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3279,6 +3198,14 @@ msgstr "Моля, предоставете заглавие на тази сни
 
 msgid "Add a Screenshot..."
 msgstr "Добавяне на снимка…"
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Продължаване"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
@@ -6166,32 +6093,14 @@ msgstr "Обновявания"
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr "Най-популярни тази седмица"
-
-msgid "Most popular this month"
-msgstr "Най-популярни този месец"
-
-msgid "Most popular all time"
-msgstr "Най-популярни изобщо"
-
-msgid "Highest Rated"
-msgstr "Най-високо оценени"
-
 msgid "search for add-ons"
 msgstr "търсене на добавки"
-
-msgid "search for collections"
-msgstr "търсене на списъци"
 
 msgid "search for themes"
 msgstr "търсене на теми"
 
 msgid "search for apps"
 msgstr "търсене на приложения"
-
-msgid "Sort By"
-msgstr "Подреждане по"
 
 msgid "Relevance"
 msgstr "Уместност"

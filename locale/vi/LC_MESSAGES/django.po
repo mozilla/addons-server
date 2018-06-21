@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-06-14 02:17+0000\n"
 "Last-Translator: Cát Thành <catthanh192@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -805,9 +805,6 @@ msgstr "Giao diện"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
 
-msgid "Most Followers"
-msgstr ""
-
 msgid "Collections"
 msgstr "Bộ sưu tập"
 
@@ -924,21 +921,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "Contributors"
-msgstr "Những người đóng góp"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr ""
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Bộ sưu tập là nhóm các tiện ích liên quan mà bất kì ai cũng có thể tạo và chia sẻ."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Bộ sưu tập :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Chỉ mình tôi có thể xem bộ sưu tập này."
 
@@ -994,20 +976,14 @@ msgstr "\"{0}\"\\ là nhãn dự phòng và không thể dùng."
 msgid "This add-on already belongs to the collection"
 msgstr "Url này đã được dùng bởi bộ sưu tập khác"
 
-msgid "Name"
-msgstr "Tên"
-
-msgid "Recently Updated"
-msgstr "Được cập nhật Gần đây"
-
-msgid "Recently Popular"
-msgstr "Thông dụng Gần đây"
-
 msgid "Added"
 msgstr "Được thêm"
 
 msgid "Popularity"
 msgstr "Mức thông dụng"
+
+msgid "Name"
+msgstr "Tên"
 
 msgid "Collection created!"
 msgstr "Bộ sưu tập đã được tạo!"
@@ -1113,17 +1089,14 @@ msgstr "Đi"
 msgid "What are Collections?"
 msgstr "Bộ sưu tập là gì?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Bộ sưu tập là nhóm các tiện ích liên quan mà bất kì ai cũng có thể tạo và chia sẻ."
+
 msgid "Explore Collections"
 msgstr "Khám phá Bộ sưu tập"
 
 msgid "Common Tags"
 msgstr "Nhãn Thông Dụng"
-
-msgid "More by this User"
-msgstr "Cái khác của Người dùng này"
-
-msgid "See all collections by this user"
-msgstr "Xem tất cả bộ sưu tập của người dùng này"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1210,63 +1183,8 @@ msgstr "Chỉnh sửa {0}"
 msgid "Description"
 msgstr "Mô tả"
 
-msgid "Contributors & More"
-msgstr "Người đóng góp & Thêm"
-
 msgid "Save Changes"
 msgstr "Lưu thay đổi"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "Người sở hữu"
-
-msgid "Make Owner"
-msgstr ""
-
-msgid "Remove this user as a contributor"
-msgstr "Xóa người dùng này khỏi tư cách người đóng góp"
-
-msgid "Remove"
-msgstr "Xóa"
-
-msgid "Collection Contributors"
-msgstr "Người đóng góp cho Bộ sưu tập"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-
-msgid "User"
-msgstr "Người dùng"
-
-msgid "Email"
-msgstr "Email"
-
-# Column name in a table.
-msgid "Role"
-msgstr "Vai trò"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Nhập địa chỉ email của người đóng góp cần thêm"
-
-msgid "Add Contributor"
-msgstr "Thêm người đóng góp"
-
-msgid "Contributor"
-msgstr "Người đóng góp"
-
-msgid "Admin Settings"
-msgstr "Quản trị Thiết lập"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Cảnh báo:</b> Bằng việc thay đổi chủ sở hữu của bộ sưu tập này, bạn sẽ không còn có thể chỉnh sửa nó nữa. Bạn sẽ chỉ có thể thêm hoặc bỏ tiện ích khỏi nó."
-
-msgid "Continue"
-msgstr "Tiếp tục"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "hoặc <a id=\"change-owner-cancel\" href=\"#\">Hủy bỏ</a>"
 
 msgid "Remove from favorites"
 msgstr "Xóa khỏi ưa thích"
@@ -1281,27 +1199,9 @@ msgstr "Bộ sưu tập bởi {0}"
 msgid "No collections found."
 msgstr "Không tìm thấy bộ sưu tập."
 
-msgid "Most-Followed Collections"
-msgstr ""
-
-msgid "Newest Collections"
-msgstr ""
-
-msgid "Collections by Name"
-msgstr ""
-
-msgid "Recently Updated Collections"
-msgstr ""
-
-msgid "Recently Popular Collections"
-msgstr "Bộ sưu tập Thông dụng Gần đây"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Bộ sưu tập là nhóm các tiện ích liên quan mà bất kì cũng có thể tạo ra và chia sẻ. Khám phá các bộ sưu tập được tạo ra bởi người dùng khác hoặc <a href=\"%(url)s\">tạo cái của riêng bạn</a>."
-
-msgid "Subscribe"
-msgstr "Đăng kí theo dõi"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1339,6 +1239,9 @@ msgstr "Tiện ích"
 
 msgid "Comment"
 msgstr "Bình luận"
+
+msgid "Remove"
+msgstr "Xóa"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Nhập tên của tiện ích muốn bao gồm"
@@ -1406,6 +1309,9 @@ msgstr "Người dùng Nhiều nhất"
 msgid "Weekly Downloads"
 msgstr "Lượt tải Hàng tuần"
 
+msgid "Recently Updated"
+msgstr "Được cập nhật Gần đây"
+
 msgid "Up & Coming"
 msgstr "Mới nhất"
 
@@ -1425,6 +1331,9 @@ msgstr "{0}: Tiện ích Đáng dùng"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Không có tiện ích khuyên dùng trong {0}."
+
+msgid "Subscribe"
+msgstr "Đăng kí theo dõi"
 
 msgid "Featured Add-ons"
 msgstr "Tiện ích Nên dùng"
@@ -2059,6 +1968,10 @@ msgstr ""
 msgid "Unlisted"
 msgstr ""
 
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "Người sở hữu"
+
 msgid "Developer"
 msgstr "Nhà phát triển"
 
@@ -2667,6 +2580,9 @@ msgstr ""
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr ""
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
@@ -3125,6 +3041,9 @@ msgstr "Thông tin Trợ giúp"
 msgid "Support Information for {0}"
 msgstr "Thông tin Trợ giúp cho {0}"
 
+msgid "Email"
+msgstr "Email"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3272,6 +3191,14 @@ msgstr "Vui lòng cung cấp một chú thích cho ảnh chụp màn hình này:
 
 msgid "Add a Screenshot..."
 msgstr "Thêm một Ảnh chụp màn hình..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Tiếp tục"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
@@ -6203,32 +6130,14 @@ msgstr "Cập nhật"
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr "Thông dụng nhất tuần này"
-
-msgid "Most popular this month"
-msgstr "Thông dụng nhất tháng này"
-
-msgid "Most popular all time"
-msgstr "Thông dụng nhất từ trước đến nay"
-
-msgid "Highest Rated"
-msgstr "Xếp hạng Cao nhất"
-
 msgid "search for add-ons"
 msgstr "tìm kiếm tiện ích"
-
-msgid "search for collections"
-msgstr "tìm kiếm bộ sưu tập"
 
 msgid "search for themes"
 msgstr "tìm kiếm giao diện"
 
 msgid "search for apps"
 msgstr "tìm kiếm ứng dụng"
-
-msgid "Sort By"
-msgstr "Sắp xếp theo"
 
 msgid "Relevance"
 msgstr "Trùng khớp"

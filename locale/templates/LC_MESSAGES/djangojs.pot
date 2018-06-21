@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -192,7 +192,7 @@ msgstr ""
 msgid "Videos must be in WebM."
 msgstr ""
 
-#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:602
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:527
 msgid "Follow this Collection"
 msgstr ""
 
@@ -925,35 +925,19 @@ msgstr ""
 msgid "Remove this add-on from the collection"
 msgstr ""
 
-#: static/js/zamboni/collections.js:305 static/js/zamboni/collections.js:334
+#: static/js/zamboni/collections.js:305
 msgid "Remove"
 msgstr ""
 
-#: static/js/zamboni/collections.js:334
-msgid "Remove this user as a contributor"
-msgstr ""
-
-#: static/js/zamboni/collections.js:346
-msgid "An email address is required."
-msgstr ""
-
-#: static/js/zamboni/collections.js:364
-msgid "You cannot add yourself as a contributor."
-msgstr ""
-
-#: static/js/zamboni/collections.js:366
-msgid "You have already added that user."
-msgstr ""
-
-#: static/js/zamboni/collections.js:580
+#: static/js/zamboni/collections.js:505
 msgid "Add to favorites"
 msgstr ""
 
-#: static/js/zamboni/collections.js:584
+#: static/js/zamboni/collections.js:509
 msgid "Remove from favorites"
 msgstr ""
 
-#: static/js/zamboni/collections.js:611
+#: static/js/zamboni/collections.js:536
 msgid "Stop following"
 msgstr ""
 

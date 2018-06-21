@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-06-13 11:06+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -811,9 +811,6 @@ msgstr "Tema"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Vil du ha meir tilpassing? Prøv <b>udvida tema</b>"
 
-msgid "Most Followers"
-msgstr "Flest følgjarar"
-
 msgid "Collections"
 msgstr "Samlingar"
 
@@ -931,21 +928,6 @@ msgid ""
 msgstr ""
 "Om det støtta programmet ditt ikkje krev ei manifest-fil, må du likevel inkludere ein av følgjande eigenskapar som spesifisert %(amo_manifests_mdn_link_open)sher%(amo_manifests_mdn_link_close)s."
 
-msgid "Contributors"
-msgstr "Bidragsytarar"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Samlingar :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Samlingar er grupper av relaterte utvidingar som kven som helst kan lage og dele."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Samlingar :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Berre eg kan sjå denne samlinga."
 
@@ -1001,20 +983,14 @@ msgstr "Dette brukarnamnet kan ikkje brukast."
 msgid "This add-on already belongs to the collection"
 msgstr "Denne utvidinga høyrer allereie til samlinga"
 
-msgid "Name"
-msgstr "Namn"
-
-msgid "Recently Updated"
-msgstr "Nyleg oppdatert"
-
-msgid "Recently Popular"
-msgstr "Populære i det siste"
-
 msgid "Added"
 msgstr "Lagt til"
 
 msgid "Popularity"
 msgstr "Popularitet"
+
+msgid "Name"
+msgstr "Namn"
 
 msgid "Collection created!"
 msgstr "Samling oppretta!"
@@ -1123,17 +1099,14 @@ msgstr "Gå"
 msgid "What are Collections?"
 msgstr "Kva er samlingar?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Samlingar er grupper av relaterte utvidingar som kven som helst kan lage og dele."
+
 msgid "Explore Collections"
 msgstr "Utforsk samlingar"
 
 msgid "Common Tags"
 msgstr "Vanlege taggar"
-
-msgid "More by this User"
-msgstr "Meir av denne brukaren"
-
-msgid "See all collections by this user"
-msgstr "Sjå alle samlingane av denne brukaren"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1220,61 +1193,8 @@ msgstr "Rediger {0}"
 msgid "Description"
 msgstr "Skildring"
 
-msgid "Contributors & More"
-msgstr "Bidragsytarar og meir"
-
 msgid "Save Changes"
 msgstr "Lagra endringane"
-
-msgid "Owner"
-msgstr "Eigar"
-
-msgid "Make Owner"
-msgstr "Gjer til eigar"
-
-msgid "Remove this user as a contributor"
-msgstr "Fjern denne brukaren som bidragsytar"
-
-msgid "Remove"
-msgstr "Fjern"
-
-msgid "Collection Contributors"
-msgstr "Bidragsytarar til samlinga"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-
-msgid "User"
-msgstr "Brukar"
-
-msgid "Email"
-msgstr "E-post"
-
-msgid "Role"
-msgstr "Rolle"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Skriv inn e-postadressa til bidragsytaren som skal leggast til"
-
-msgid "Add Contributor"
-msgstr "Legg til bidragsytar"
-
-msgid "Contributor"
-msgstr "Bidragsytar"
-
-msgid "Admin Settings"
-msgstr "Admin-innstillingar"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Åtvaring:</b> Om du byter eigar på denne samlinga vil du ikkje lenger kunne redigere henne. Du vil berre kunne leggje til og fjerne utvidingar."
-
-msgid "Continue"
-msgstr "Fortset"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "eller <a id=\"change-owner-cancel\" href=\"#\">Avbryt</a>"
 
 msgid "Remove from favorites"
 msgstr "Fjern frå favorittar"
@@ -1289,27 +1209,9 @@ msgstr "Samlingar av {0}"
 msgid "No collections found."
 msgstr "Fann ingen samlingar."
 
-msgid "Most-Followed Collections"
-msgstr "Mest følgde samlingar"
-
-msgid "Newest Collections"
-msgstr "Nyaste samlingar"
-
-msgid "Collections by Name"
-msgstr "Samlingar etter namn"
-
-msgid "Recently Updated Collections"
-msgstr "Nyleg oppdaterte samlingar"
-
-msgid "Recently Popular Collections"
-msgstr "Nyleg populære samlingar"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Samlingar er grupper av tillegg som kven som helst kan lage og dele. Utforsk samlingar oppretta av andre brukarar eller <a href=\"%(url)s\">lag di eiga</a>."
-
-msgid "Subscribe"
-msgstr "Abonner"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1347,6 +1249,9 @@ msgstr "Utviding"
 
 msgid "Comment"
 msgstr "Kommentar"
+
+msgid "Remove"
+msgstr "Fjern"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Skriv inn namnet på utvidinga du vil ta med"
@@ -1414,6 +1319,9 @@ msgstr "Flest brukarar"
 msgid "Weekly Downloads"
 msgstr "Nedlastingar pr. veke"
 
+msgid "Recently Updated"
+msgstr "Nyleg oppdatert"
+
 msgid "Up & Coming"
 msgstr "Framgangsrike"
 
@@ -1433,6 +1341,9 @@ msgstr "{0}: Framheva utvidingar"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Ingen framheva utvidingar i {0}."
+
+msgid "Subscribe"
+msgstr "Abonner"
 
 msgid "Featured Add-ons"
 msgstr "Framheva utvidingar"
@@ -2048,6 +1959,9 @@ msgstr "Flagga for vidare vurdering"
 msgid "Unlisted"
 msgstr "Ikkje oppført"
 
+msgid "Owner"
+msgstr "Eigar"
+
 msgid "Developer"
 msgstr "Utviklar"
 
@@ -2637,6 +2551,9 @@ msgstr "Frå og med Firefox 53, kan nya utvidingar på denne nettsida berre vere
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Eldre utvidingar er ikkje kompatible med Firefox 57 eller nyare. Bruk ein maxVersion på 56.* eller lågare."
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
@@ -3088,6 +3005,9 @@ msgstr "Brukarstøtteinformasjon"
 msgid "Support Information for {0}"
 msgstr "Brukarstøtteinformasjon for {0}"
 
+msgid "Email"
+msgstr "E-post"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3237,6 +3157,14 @@ msgstr "Spesifiser ein bildetekst for dette skjermbildet:"
 
 msgid "Add a Screenshot..."
 msgstr "Legg til eit skjermbilde…"
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Fortset"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Kan andre dele utvidinga di, så lenge du vert kreditert?"
@@ -6066,32 +5994,14 @@ msgstr "Oppdateringar"
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr "Mest populære denne veka"
-
-msgid "Most popular this month"
-msgstr "Mest populære denne månaden"
-
-msgid "Most popular all time"
-msgstr "Mest populære totalt"
-
-msgid "Highest Rated"
-msgstr "Høgast vurdert"
-
 msgid "search for add-ons"
 msgstr "søk etter tillegg"
-
-msgid "search for collections"
-msgstr "søk etter samlingar"
 
 msgid "search for themes"
 msgstr "søk etter tema"
 
 msgid "search for apps"
 msgstr "søk etter appar"
-
-msgid "Sort By"
-msgstr "Sorter etter"
 
 msgid "Relevance"
 msgstr "Relevans"

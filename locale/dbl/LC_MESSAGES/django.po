@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -811,9 +811,6 @@ msgstr "Ŧħḗḿḗş"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Ẇȧƞŧ ḿǿřḗ ƈŭşŧǿḿīẑȧŧīǿƞ? Ŧřẏ <b>Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗş</b>"
 
-msgid "Most Followers"
-msgstr "Ḿǿşŧ Ƒǿŀŀǿẇḗřş"
-
 msgid "Collections"
 msgstr "Ƈǿŀŀḗƈŧīǿƞş"
 
@@ -932,21 +929,6 @@ msgstr ""
 "Īƒ ẏǿŭř şŭƥƥǿřŧḗḓ ȧƥƥŀīƈȧŧīǿƞ ḓǿḗş ƞǿŧ řḗɋŭīřḗ ȧ ḿȧƞīƒḗşŧ ƒīŀḗ, ẏǿŭ şŧīŀŀ ḿŭşŧ īƞƈŀŭḓḗ ǿƞḗ ẇīŧħ ŧħḗ řḗɋŭīřḗḓ ƥřǿƥḗřŧīḗş ȧş şƥḗƈīƒīḗḓ %(amo_manifests_mdn_link_open)sħḗřḗ"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "Contributors"
-msgstr "Ƈǿƞŧřīƀŭŧǿřş"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Ƈǿŀŀḗƈŧīǿƞş :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Ƈǿŀŀḗƈŧīǿƞş ȧřḗ ɠřǿŭƥş ǿƒ řḗŀȧŧḗḓ ȧḓḓ-ǿƞş ŧħȧŧ ȧƞẏǿƞḗ ƈȧƞ ƈřḗȧŧḗ ȧƞḓ şħȧřḗ."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Ƈǿŀŀḗƈŧīǿƞş :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Ǿƞŀẏ Ī ƈȧƞ ṽīḗẇ ŧħīş ƈǿŀŀḗƈŧīǿƞ."
 
@@ -998,20 +980,14 @@ msgstr "Ŧħīş ƈŭşŧǿḿ ŬŘĿ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
 msgid "This add-on already belongs to the collection"
 msgstr "Ŧħīş ȧḓḓ-ǿƞ ȧŀřḗȧḓẏ ƀḗŀǿƞɠş ŧǿ ŧħḗ ƈǿŀŀḗƈŧīǿƞ"
 
-msgid "Name"
-msgstr "Ƞȧḿḗ"
-
-msgid "Recently Updated"
-msgstr "Řḗƈḗƞŧŀẏ Ŭƥḓȧŧḗḓ"
-
-msgid "Recently Popular"
-msgstr "Řḗƈḗƞŧŀẏ Ƥǿƥŭŀȧř"
-
 msgid "Added"
 msgstr "Aḓḓḗḓ"
 
 msgid "Popularity"
 msgstr "Ƥǿƥŭŀȧřīŧẏ"
+
+msgid "Name"
+msgstr "Ƞȧḿḗ"
 
 msgid "Collection created!"
 msgstr "Ƈǿŀŀḗƈŧīǿƞ ƈřḗȧŧḗḓ!"
@@ -1120,17 +1096,14 @@ msgstr "Ɠǿ"
 msgid "What are Collections?"
 msgstr "Ẇħȧŧ ȧřḗ Ƈǿŀŀḗƈŧīǿƞş?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Ƈǿŀŀḗƈŧīǿƞş ȧřḗ ɠřǿŭƥş ǿƒ řḗŀȧŧḗḓ ȧḓḓ-ǿƞş ŧħȧŧ ȧƞẏǿƞḗ ƈȧƞ ƈřḗȧŧḗ ȧƞḓ şħȧřḗ."
+
 msgid "Explore Collections"
 msgstr "Ḗẋƥŀǿřḗ Ƈǿŀŀḗƈŧīǿƞş"
 
 msgid "Common Tags"
 msgstr "Ƈǿḿḿǿƞ Ŧȧɠş"
-
-msgid "More by this User"
-msgstr "Ḿǿřḗ ƀẏ ŧħīş Ŭşḗř"
-
-msgid "See all collections by this user"
-msgstr "Şḗḗ ȧŀŀ ƈǿŀŀḗƈŧīǿƞş ƀẏ ŧħīş ŭşḗř"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1221,63 +1194,8 @@ msgstr "Ḗḓīŧ {0}"
 msgid "Description"
 msgstr "Ḓḗşƈřīƥŧīǿƞ"
 
-msgid "Contributors & More"
-msgstr "Ƈǿƞŧřīƀŭŧǿřş & Ḿǿřḗ"
-
 msgid "Save Changes"
 msgstr "Şȧṽḗ Ƈħȧƞɠḗş"
-
-msgid "Owner"
-msgstr "Ǿẇƞḗř"
-
-msgid "Make Owner"
-msgstr "Ḿȧķḗ Ǿẇƞḗř"
-
-msgid "Remove this user as a contributor"
-msgstr "Řḗḿǿṽḗ ŧħīş ŭşḗř ȧş ȧ ƈǿƞŧřīƀŭŧǿř"
-
-msgid "Remove"
-msgstr "Řḗḿǿṽḗ"
-
-msgid "Collection Contributors"
-msgstr "Ƈǿŀŀḗƈŧīǿƞ Ƈǿƞŧřīƀŭŧǿřş"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"Ẏǿŭ ƈȧƞ ȧḓḓ ḿŭŀŧīƥŀḗ ƈǿƞŧřīƀŭŧǿřş ŧǿ ŧħīş ƈǿŀŀḗƈŧīǿƞ. A ƈǿƞŧřīƀŭŧǿř ƈȧƞ ȧḓḓ ȧƞḓ řḗḿǿṽḗ ȧḓḓ-ǿƞş ƒřǿḿ ŧħīş ƈǿŀŀḗƈŧīǿƞ, ƀŭŧ ƈȧƞƞǿŧ ƈħȧƞɠḗ īŧş ƞȧḿḗ ǿř ḓḗşƈřīƥŧīǿƞ. Ŧǿ ȧḓḓ ȧ ƈǿƞŧřīƀŭŧǿř, ḗƞŧḗř ŧħḗīř "
-"ḗḿȧīŀ īƞ ŧħḗ ƀǿẋ ƀḗŀǿẇ. Ƈǿƞŧřīƀŭŧǿřş ḿŭşŧ ħȧṽḗ ȧ Ḿǿẑīŀŀȧ Aḓḓ-ǿƞş ȧƈƈǿŭƞŧ."
-
-msgid "User"
-msgstr "Ŭşḗř"
-
-msgid "Email"
-msgstr "Ḗḿȧīŀ"
-
-msgid "Role"
-msgstr "Řǿŀḗ"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Ḗƞŧḗř ŧħḗ ḗḿȧīŀ ȧḓḓřḗşş ǿƒ ŧħḗ ƈǿƞŧřīƀŭŧǿř ŧǿ ȧḓḓ"
-
-msgid "Add Contributor"
-msgstr "Aḓḓ Ƈǿƞŧřīƀŭŧǿř"
-
-msgid "Contributor"
-msgstr "Ƈǿƞŧřīƀŭŧǿř"
-
-msgid "Admin Settings"
-msgstr "Aḓḿīƞ Şḗŧŧīƞɠş"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Ẇȧřƞīƞɠ:</b> Ɓẏ ƈħȧƞɠīƞɠ ŧħḗ ǿẇƞḗř ǿƒ ŧħīş ƈǿŀŀḗƈŧīǿƞ, ẏǿŭ ẇīŀŀ ƞǿ ŀǿƞɠḗř ƀḗ ȧƀŀḗ ŧǿ ḗḓīŧ īŧ. Ẏǿŭ ẇīŀŀ ǿƞŀẏ ƀḗ ȧƀŀḗ ŧǿ ȧḓḓ ȧƞḓ řḗḿǿṽḗ ȧḓḓ-ǿƞş ƒřǿḿ īŧ."
-
-msgid "Continue"
-msgstr "Ƈǿƞŧīƞŭḗ"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "ǿř <a id=\"change-owner-cancel\" href=\"#\">Ƈȧƞƈḗŀ</a>"
 
 msgid "Remove from favorites"
 msgstr "Řḗḿǿṽḗ ƒřǿḿ ƒȧṽǿřīŧḗş"
@@ -1292,27 +1210,9 @@ msgstr "Ƈǿŀŀḗƈŧīǿƞş ƀẏ {0}"
 msgid "No collections found."
 msgstr "Ƞǿ ƈǿŀŀḗƈŧīǿƞş ƒǿŭƞḓ."
 
-msgid "Most-Followed Collections"
-msgstr "Ḿǿşŧ-Ƒǿŀŀǿẇḗḓ Ƈǿŀŀḗƈŧīǿƞş"
-
-msgid "Newest Collections"
-msgstr "Ƞḗẇḗşŧ Ƈǿŀŀḗƈŧīǿƞş"
-
-msgid "Collections by Name"
-msgstr "Ƈǿŀŀḗƈŧīǿƞş ƀẏ Ƞȧḿḗ"
-
-msgid "Recently Updated Collections"
-msgstr "Řḗƈḗƞŧŀẏ Ŭƥḓȧŧḗḓ Ƈǿŀŀḗƈŧīǿƞş"
-
-msgid "Recently Popular Collections"
-msgstr "Řḗƈḗƞŧŀẏ Ƥǿƥŭŀȧř Ƈǿŀŀḗƈŧīǿƞş"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Ƈǿŀŀḗƈŧīǿƞş ȧřḗ ɠřǿŭƥş ǿƒ řḗŀȧŧḗḓ ȧḓḓ-ǿƞş ŧħȧŧ ȧƞẏǿƞḗ ƈȧƞ ƈřḗȧŧḗ ȧƞḓ şħȧřḗ. Ḗẋƥŀǿřḗ ƈǿŀŀḗƈŧīǿƞş ƈřḗȧŧḗḓ ƀẏ ǿŧħḗř ŭşḗřş ǿř <a href=\"%(url)s\">ƈřḗȧŧḗ ẏǿŭř ǿẇƞ</a>."
-
-msgid "Subscribe"
-msgstr "Şŭƀşƈřīƀḗ"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1350,6 +1250,9 @@ msgstr "Aḓḓ-ǿƞ"
 
 msgid "Comment"
 msgstr "Ƈǿḿḿḗƞŧ"
+
+msgid "Remove"
+msgstr "Řḗḿǿṽḗ"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Ḗƞŧḗř ŧħḗ ƞȧḿḗ ǿƒ ŧħḗ ȧḓḓ-ǿƞ ŧǿ īƞƈŀŭḓḗ"
@@ -1417,6 +1320,9 @@ msgstr "Ḿǿşŧ Ŭşḗřş"
 msgid "Weekly Downloads"
 msgstr "Ẇḗḗķŀẏ Ḓǿẇƞŀǿȧḓş"
 
+msgid "Recently Updated"
+msgstr "Řḗƈḗƞŧŀẏ Ŭƥḓȧŧḗḓ"
+
 msgid "Up & Coming"
 msgstr "Ŭƥ & Ƈǿḿīƞɠ"
 
@@ -1436,6 +1342,9 @@ msgstr "{0}: Ƒḗȧŧŭřḗḓ Aḓḓ-ǿƞş"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Ƞǿ ƒḗȧŧŭřḗḓ ȧḓḓ-ǿƞş īƞ {0}."
+
+msgid "Subscribe"
+msgstr "Şŭƀşƈřīƀḗ"
 
 msgid "Featured Add-ons"
 msgstr "Ƒḗȧŧŭřḗḓ Aḓḓ-ǿƞş"
@@ -2040,6 +1949,9 @@ msgstr "Ƒŀȧɠɠḗḓ ƒǿř ƒŭřŧħḗř řḗṽīḗẇ"
 msgid "Unlisted"
 msgstr "Ŭƞŀīşŧḗḓ"
 
+msgid "Owner"
+msgstr "Ǿẇƞḗř"
+
 msgid "Developer"
 msgstr "Ḓḗṽḗŀǿƥḗř"
 
@@ -2630,6 +2542,9 @@ msgstr "Şŧȧřŧīƞɠ ẇīŧħ Ƒīřḗƒǿẋ 53, ƞḗẇ ȧḓḓ-ǿƞş
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Ŀḗɠȧƈẏ ȧḓḓ-ǿƞş ȧřḗ ƞǿŧ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ Ƒīřḗƒǿẋ 57 ǿř ħīɠħḗř. Ŭşḗ ȧ ḿȧẋṼḗřşīǿƞ ǿƒ 56.* ǿř ŀǿẇḗř."
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr "Ŀḗɠȧƈẏ ŀȧƞɠŭȧɠḗ ƥȧƈķş ƒǿř Ƒīřḗƒǿẋ ȧřḗ ƞǿ ŀǿƞɠḗř şŭƥƥǿřŧḗḓ. A ẆḗƀḖẋŧḗƞşīǿƞş īƞşŧȧŀŀ ḿȧƞīƒḗşŧ īş řḗɋŭīřḗḓ. Şḗḗ {mdn_link} ƒǿř ḿǿřḗ ḓḗŧȧīŀş."
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Ẇḗ ȧŀŀǿẇ ȧƞḓ ḗƞƈǿŭřȧɠḗ ȧƞ ŭƥɠřȧḓḗ ƀŭŧ ẏǿŭ ƈȧƞƞǿŧ řḗṽḗřşḗ ŧħīş ƥřǿƈḗşş. Ǿƞƈḗ ẏǿŭř ŭşḗřş ħȧṽḗ ŧħḗ ẆḗƀḖẋŧḗƞşīǿƞ īƞşŧȧŀŀḗḓ, ŧħḗẏ ẇīŀŀ ƞǿŧ ƀḗ ȧƀŀḗ ŧǿ īƞşŧȧŀŀ ȧ ŀḗɠȧƈẏ ȧḓḓ-ǿƞ."
 
@@ -3089,6 +3004,9 @@ msgstr "Şŭƥƥǿřŧ Īƞƒǿřḿȧŧīǿƞ"
 msgid "Support Information for {0}"
 msgstr "Şŭƥƥǿřŧ Īƞƒǿřḿȧŧīǿƞ ƒǿř {0}"
 
+msgid "Email"
+msgstr "Ḗḿȧīŀ"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3246,6 +3164,16 @@ msgstr "Ƥŀḗȧşḗ ƥřǿṽīḓḗ ȧ ƈȧƥŧīǿƞ ƒǿř ŧħīş şƈ�
 
 msgid "Add a Screenshot..."
 msgstr "Aḓḓ ȧ Şƈřḗḗƞşħǿŧ..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+"ƤȠƓ ȧƞḓ ĴƤƓ şŭƥƥǿřŧḗḓ. Ŧħḗ ḿȧẋīḿŭḿ ȧƞḓ řḗƈǿḿḿḗƞḓḗḓ şīẑḗ ƒǿř şƈřḗḗƞşħǿŧş īş 1280ẋ800 ƥīẋḗŀş. 640ẋ400 ƥīẋḗŀş īş ȧ ɠǿǿḓ ȧŀŧḗřƞȧŧīṽḗ īƒ ẏǿŭ ǿƞŀẏ ħȧṽḗ şḿȧŀŀḗř īḿȧɠḗş. Ħȧṽīƞɠ şƈřḗḗƞşħǿŧş īƞ ẏǿŭř ŀīşŧīƞɠ "
+"ƥȧɠḗ ɠřḗȧŧŀẏ īƞƈřḗȧşḗş īŧş ƈħȧƞƈḗş ǿƒ ƀḗīƞɠ īƞşŧȧŀŀḗḓ ȧƞḓ ƀḗīƞɠ ƒḗȧŧŭřḗḓ īƞ ŧħḗ ħǿḿḗƥȧɠḗ."
+
+msgid "Continue"
+msgstr "Ƈǿƞŧīƞŭḗ"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Ƈȧƞ ǿŧħḗřş şħȧřḗ ẏǿŭř Aḓḓ-ǿƞ, ȧş ŀǿƞɠ ȧş ẏǿŭ'řḗ ɠīṽḗƞ ƈřḗḓīŧ?"
@@ -6071,32 +5999,14 @@ msgstr "Ŭƥḓȧŧḗş"
 msgid "Maximum query length exceeded."
 msgstr "Ḿȧẋīḿŭḿ ɋŭḗřẏ ŀḗƞɠŧħ ḗẋƈḗḗḓḗḓ."
 
-msgid "Most popular this week"
-msgstr "Ḿǿşŧ ƥǿƥŭŀȧř ŧħīş ẇḗḗķ"
-
-msgid "Most popular this month"
-msgstr "Ḿǿşŧ ƥǿƥŭŀȧř ŧħīş ḿǿƞŧħ"
-
-msgid "Most popular all time"
-msgstr "Ḿǿşŧ ƥǿƥŭŀȧř ȧŀŀ ŧīḿḗ"
-
-msgid "Highest Rated"
-msgstr "Ħīɠħḗşŧ Řȧŧḗḓ"
-
 msgid "search for add-ons"
 msgstr "şḗȧřƈħ ƒǿř ȧḓḓ-ǿƞş"
-
-msgid "search for collections"
-msgstr "şḗȧřƈħ ƒǿř ƈǿŀŀḗƈŧīǿƞş"
 
 msgid "search for themes"
 msgstr "şḗȧřƈħ ƒǿř ŧħḗḿḗş"
 
 msgid "search for apps"
 msgstr "şḗȧřƈħ ƒǿř ȧƥƥş"
-
-msgid "Sort By"
-msgstr "Şǿřŧ Ɓẏ"
 
 msgid "Relevance"
 msgstr "Řḗŀḗṽȧƞƈḗ"

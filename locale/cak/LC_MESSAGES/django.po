@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-05-11 00:43+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -816,9 +816,6 @@ msgstr "Taq wachinel"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "¿La nawajo' nawichinaj ch'aqa' chik? Ke'atojtob'ej <b>Chijun taq Wachinel</b>"
 
-msgid "Most Followers"
-msgstr "K'ïy Kojqanela'"
-
 msgid "Collections"
 msgstr "Taq mol"
 
@@ -937,21 +934,6 @@ msgstr ""
 "Estape' ri chokoy k'ulun ruma ri atz'aqat man nuk'utuj ta jun tzijoxïk yakb'äl, k'o chi natz'aqatisaj jun rik'in ri taq richinil najowäx, achi'el nichol %(amo_manifests_mdn_link_open)swawe"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "Contributors"
-msgstr "To'onela'"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Taq mol :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Ri taq mol e rumolaj taq tz'aqat kiximon ki', ri xab'achike nitikïr yerutz'ük chuqa' yerukomonij."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Taq mol :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Xa xe yitikïr nintz'ët re mol re'."
 
@@ -1003,20 +985,14 @@ msgstr "Man tikirel ta nokisäx re ichinan URL re'."
 msgid "This add-on already belongs to the collection"
 msgstr "Re tz'aqat re' k'o chi pa ri mol"
 
-msgid "Name"
-msgstr "B'i'aj"
-
-msgid "Recently Updated"
-msgstr "Nimakol k'exon"
-
-msgid "Recently Popular"
-msgstr "K'ak'a' K'ïy Kiwinaq"
-
 msgid "Added"
 msgstr "Tz'aqatisan"
 
 msgid "Popularity"
 msgstr "K'ïy winaqilal"
+
+msgid "Name"
+msgstr "B'i'aj"
 
 msgid "Collection created!"
 msgstr "¡Xtz'uk ri mol!"
@@ -1125,17 +1101,14 @@ msgstr "Jo'"
 msgid "What are Collections?"
 msgstr "¿E achike ri taq Mol?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Ri taq mol e rumolaj taq tz'aqat kiximon ki', ri xab'achike nitikïr yerutz'ük chuqa' yerukomonij."
+
 msgid "Explore Collections"
 msgstr "Kekanöx taq Mol"
 
 msgid "Common Tags"
 msgstr "Relik taq Etal"
-
-msgid "More by this User"
-msgstr "Ch'aqa' chik richin re Okisanel re'"
-
-msgid "See all collections by this user"
-msgstr "Ketz'et ronojel taq rumol re okisanel re'"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1226,63 +1199,8 @@ msgstr "Tinuk' {0}"
 msgid "Description"
 msgstr "Tzijoxkil"
 
-msgid "Contributors & More"
-msgstr "To'onela' & Ch'aqa' chik"
-
 msgid "Save Changes"
 msgstr "Keyak Jaloj"
-
-msgid "Owner"
-msgstr "Rajaw"
-
-msgid "Make Owner"
-msgstr "Tirajawäx"
-
-msgid "Remove this user as a contributor"
-msgstr "Tisilöx re okisanel re' achi'el jun to'onel"
-
-msgid "Remove"
-msgstr "Tiyuj"
-
-msgid "Collection Contributors"
-msgstr "Ruto'onela' Mol"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"Yatikïr ye'atz'aqatisaj jalajöj to'onela' pa re mol re'. Jun to'onel nitikïr yerutz'aqatisaj o yeruyüj taq cha'oj, po man nitikïr ta nujäl rub'i' o rutzijoxikil. Richin natz'aqatisaj jun to'onel, "
-"tatz'ib'aj rutaqoya'l pa ri k'ojlib'äl ikim. Ri to'onela' k'o chi k'o jun rub'i' kitaqoya'l richin Mozilla Tz'aqat."
-
-msgid "User"
-msgstr "Okisanel"
-
-msgid "Email"
-msgstr "Taqoya'l"
-
-msgid "Role"
-msgstr "Rusamaj"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Titz'ib'äl rochochib'al rutaqoya'l to'onel richin nitz'aqatisäx"
-
-msgid "Add Contributor"
-msgstr "Titz'aqatisäx To'onel"
-
-msgid "Contributor"
-msgstr "To'onel"
-
-msgid "Admin Settings"
-msgstr "Kinuk'ulem Nuk'samajel"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Rutzijol K'ayewal:</b> Man xkatikïr ta chik xtanük' toq xtijal rajaw re mol re'. Xa xe xkatikïr xke'atz'aqatisaj chuqa' xke'ayüj taq rutz'aqat."
-
-msgid "Continue"
-msgstr "Titikïr chik el"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "o <a id=\"change-owner-cancel\" href=\"#\">Tiq'at</a>"
 
 msgid "Remove from favorites"
 msgstr "Tisilöx el pa taq ajowab'äl"
@@ -1297,28 +1215,10 @@ msgstr "Taq rumol {0}"
 msgid "No collections found."
 msgstr "Majun mol xe'ilitäj."
 
-msgid "Most-Followed Collections"
-msgstr "Yalan-E'ojqan taq Mol"
-
-msgid "Newest Collections"
-msgstr "K'ak'a' taq Mol"
-
-msgid "Collections by Name"
-msgstr "Taq Mol chi B'i'aj"
-
-msgid "Recently Updated Collections"
-msgstr "Taq Mol K'ak'a' Ek'exon"
-
-msgid "Recently Popular Collections"
-msgstr "Taq Mol K'ak'a' K'ïy Kiwinaq"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
 "Ri taq mol e jun molaj tz'aqat kiximon ki', ri xab'achike nitikïr yerutz'ük o yerukomonij. Ke'akanoj ri emolon enuk'un kuma ch'aqa' chik okisanela' o <a href=\"%(url)s\">tatz'uku' ri awichin</a>."
-
-msgid "Subscribe"
-msgstr "Titz'ib'äx b'i'aj"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1356,6 +1256,9 @@ msgstr "Tz'aqat"
 
 msgid "Comment"
 msgstr "Tzijoxïk"
+
+msgid "Remove"
+msgstr "Tiyuj"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Titz'ib'äx rub'i' tz'aqat xtitz'aqatisäx"
@@ -1423,6 +1326,9 @@ msgstr "Ch'aqa' Okisanela'"
 msgid "Weekly Downloads"
 msgstr "Wuqq'ijul taq Qasanïk"
 
+msgid "Recently Updated"
+msgstr "Nimakol k'exon"
+
 msgid "Up & Coming"
 msgstr "Yewachin yan"
 
@@ -1442,6 +1348,9 @@ msgstr "{0}: Etalun Tz'aqat"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Man etalun ta taq tz'aqat pa {0}."
+
+msgid "Subscribe"
+msgstr "Titz'ib'äx b'i'aj"
 
 msgid "Featured Add-ons"
 msgstr "Etalun Tz'aqat"
@@ -2057,6 +1966,9 @@ msgstr "Ya'on retal richin ninik'öx na"
 msgid "Unlisted"
 msgstr "Man cholajin ta"
 
+msgid "Owner"
+msgstr "Rajaw"
+
 msgid "Developer"
 msgstr "B'anonel"
 
@@ -2646,6 +2558,9 @@ msgstr "Nitikirisäx rik'in ri Firefox 53, ri k'ak'a' taq rutz'aqat ruxaq, e üt
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Ri taq tz'aqat e'ichinan kan man e k'amonel ta rik'in ri Firefox 57 o jotöl. Tokisäx jun maxVersion richin 56.* o qajinäq."
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Niqaya' q'ij chuqa' niqaya' kitzijol ri taq k'exoj, xa xe man tikirel ta nik'ex. Toq ri okisaxela' kiyakon chik ri WebExtension, man xketikïr ta xtikiyäk jun rutz'aqat choltz'ib'anem."
 
@@ -3103,6 +3018,9 @@ msgstr ""
 msgid "Support Information for {0}"
 msgstr ""
 
+msgid "Email"
+msgstr "Taqoya'l"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3250,6 +3168,14 @@ msgstr "Taya' rub'i' re chapoj ruwa' re':"
 
 msgid "Add a Screenshot..."
 msgstr "Titz'aqatisäx jun Chapoj Ruwäch..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Titikïr chik el"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "¿La yetikïr nikikomonij ri atz'aqat ri winaqi', toq ketaman chi ja rat xab'anon richin?"
@@ -6035,31 +5961,13 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr ""
-
-msgid "Most popular this month"
-msgstr ""
-
-msgid "Most popular all time"
-msgstr ""
-
-msgid "Highest Rated"
-msgstr ""
-
 msgid "search for add-ons"
-msgstr ""
-
-msgid "search for collections"
 msgstr ""
 
 msgid "search for themes"
 msgstr ""
 
 msgid "search for apps"
-msgstr ""
-
-msgid "Sort By"
 msgstr ""
 
 msgid "Relevance"

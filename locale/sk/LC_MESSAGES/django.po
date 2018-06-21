@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-05-01 12:28+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -843,9 +843,6 @@ msgstr "Témy"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Chcete viac prispôsobenia? Skúste <b>plné témy vzhľadu</b>"
 
-msgid "Most Followers"
-msgstr "Najviac odberateľov"
-
 msgid "Collections"
 msgstr "Kolekcie"
 
@@ -964,21 +961,6 @@ msgstr ""
 "Ak vaša podporovaná aplikácia nevyžaduje súbor manifest, aj tak musíte zahrnúť tento súbor a uviesť požadované informácie tak ako je popísané %(amo_manifests_mdn_link_open)stu"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "Contributors"
-msgstr "Prispievatelia"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Kolekcie :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Kolekcie sú skupiny podobných doplnkov vytvárané a zdieľané používateľmi."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Kolekcie :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Túto kolekciu môžem vidieť len ja"
 
@@ -1034,20 +1016,14 @@ msgstr "Toto používateľské meno nemôže byť použité."
 msgid "This add-on already belongs to the collection"
 msgstr "Tento doplnok už v kolekcii je"
 
-msgid "Name"
-msgstr "Názov"
-
-msgid "Recently Updated"
-msgstr "Naposledy aktualizované"
-
-msgid "Recently Popular"
-msgstr "Aktuálne populárne"
-
 msgid "Added"
 msgstr "Pridané"
 
 msgid "Popularity"
 msgstr "Popularita"
+
+msgid "Name"
+msgstr "Názov"
 
 msgid "Collection created!"
 msgstr "Kolekcia bola vytvorená!"
@@ -1159,17 +1135,14 @@ msgstr "Prejsť"
 msgid "What are Collections?"
 msgstr "Čo sú kolekcie?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Kolekcie sú skupiny podobných doplnkov vytvárané a zdieľané používateľmi."
+
 msgid "Explore Collections"
 msgstr "Preskúmať kolekcie"
 
 msgid "Common Tags"
 msgstr "Bežné značky"
-
-msgid "More by this User"
-msgstr "Ďalšie od tohto používateľa"
-
-msgid "See all collections by this user"
-msgstr "Zobraziť všetky kolekcie tohto používateľa"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1265,65 +1238,8 @@ msgstr "Upraviť {0}"
 msgid "Description"
 msgstr "Popis"
 
-msgid "Contributors & More"
-msgstr "Prispievatelia a iné"
-
 msgid "Save Changes"
 msgstr "Uložiť zmeny"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "Vlastník"
-
-msgid "Make Owner"
-msgstr "Nastaviť ako vlastníka"
-
-msgid "Remove this user as a contributor"
-msgstr "Odstrániť tohto používateľa ako prispievateľa"
-
-msgid "Remove"
-msgstr "Odstrániť"
-
-msgid "Collection Contributors"
-msgstr "Prispievatelia kolekcie"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"K tejto kolekcii môžete pridať viacerých prispievateľov. Prispievateľ môže do tejto kolekcie pridávať alebo z nej odstraňovať doplnky, nemôže však meniť jej názov alebo popis. Ak chcete pridať "
-"prispievateľa, zadajte jeho e-mailovú adresu do poľa nižšie. Prispievatelia musia mať účet na stránke Doplnky Mozilly."
-
-msgid "User"
-msgstr "Používateľ"
-
-msgid "Email"
-msgstr "E-mailová adresa"
-
-# Column name in a table.
-msgid "Role"
-msgstr "Funkcia"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Zadajte e-mailovú adresu pridávaného prispievateľa"
-
-msgid "Add Contributor"
-msgstr "Pridať prispievateľa"
-
-msgid "Contributor"
-msgstr "Prispievateľ"
-
-msgid "Admin Settings"
-msgstr "Nastavenia administrátora"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Upozornenie:</b> po zmene vlastníka tejto kolekcie ju už nebudete môcť upravovať. Budete môcť len pridávať alebo odstraňovať jej doplnky."
-
-msgid "Continue"
-msgstr "Pokračovať"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "alebo <a id=\"change-owner-cancel\" href=\"#\">Zrušiť</a>"
 
 msgid "Remove from favorites"
 msgstr "Odstrániť z obľúbených"
@@ -1338,27 +1254,9 @@ msgstr "Kolekcie od {0}"
 msgid "No collections found."
 msgstr "Neboli nájdené žiadne kolekcie."
 
-msgid "Most-Followed Collections"
-msgstr "Najviac odoberané kolekcie"
-
-msgid "Newest Collections"
-msgstr "Najnovšie kolekcie"
-
-msgid "Collections by Name"
-msgstr "Kolekcie podľa názvu"
-
-msgid "Recently Updated Collections"
-msgstr "Nedávno aktualizované kolekcie"
-
-msgid "Recently Popular Collections"
-msgstr "Aktuálne populárne kolekcie"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Kolekcie sú skupiny podobných doplnkov, ktoré môže vytvárať a zdieľať ktokoľvek. Pozrite si kolekcie od iných používateľov, alebo si <a href=\"%(url)s\">vytvorte vlastnú</a>."
-
-msgid "Subscribe"
-msgstr "Odoberať"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1396,6 +1294,9 @@ msgstr "Doplnok"
 
 msgid "Comment"
 msgstr "Komentár"
+
+msgid "Remove"
+msgstr "Odstrániť"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Zadajte názov doplnku, ktorý chcete pridať"
@@ -1463,6 +1364,9 @@ msgstr "Najviac používateľov"
 msgid "Weekly Downloads"
 msgstr "Prevzatí za týždeň"
 
+msgid "Recently Updated"
+msgstr "Naposledy aktualizované"
+
 msgid "Up & Coming"
 msgstr "Zaujímavé"
 
@@ -1482,6 +1386,9 @@ msgstr "{0}: odporúčané doplnky"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Žiadne odporúčané doplnky v {0}."
+
+msgid "Subscribe"
+msgstr "Odoberať"
 
 msgid "Featured Add-ons"
 msgstr "Odporúčané doplnky"
@@ -2120,6 +2027,10 @@ msgstr "Označené na ďalšiu kontrolu"
 msgid "Unlisted"
 msgstr "Mimo zoznamu"
 
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "Vlastník"
+
 msgid "Developer"
 msgstr "Vývojár"
 
@@ -2715,6 +2626,9 @@ msgstr "Od Firefoxu 53 môžu byť nové doplnky na tejto stránke len typu WebE
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Zastarané doplnky nie sú kompatibilné s Firefoxom 57 a novším. Nastavte atribút maxVersion na 56.* alebo nižší."
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
@@ -3183,6 +3097,9 @@ msgstr "Informácie o podpore"
 msgid "Support Information for {0}"
 msgstr "Informácie o podpore pre doplnok {0}"
 
+msgid "Email"
+msgstr "E-mailová adresa"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3335,6 +3252,14 @@ msgstr "Zadajte názov pre túto ukážku:"
 
 msgid "Add a Screenshot..."
 msgstr "Pridať ukážku..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Pokračovať"
 
 # 88%
 #, fuzzy
@@ -6317,32 +6242,14 @@ msgstr "Aktualizácie"
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr "Najpopulárnejšie za tento týždeň"
-
-msgid "Most popular this month"
-msgstr "Najpopulárnejšie tento mesiac"
-
-msgid "Most popular all time"
-msgstr "Najpopulárnejšie za celý čas"
-
-msgid "Highest Rated"
-msgstr "Najlepšie hodnotené"
-
 msgid "search for add-ons"
 msgstr "hľadať v doplnkoch"
-
-msgid "search for collections"
-msgstr "hľadať v kolekciách"
 
 msgid "search for themes"
 msgstr "hľadať v témach"
 
 msgid "search for apps"
 msgstr "hľadať v aplikáciách"
-
-msgid "Sort By"
-msgstr "Usporiadať podľa"
 
 msgid "Relevance"
 msgstr "Relevantnosť"
