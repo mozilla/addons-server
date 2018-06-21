@@ -28,6 +28,8 @@ from django.utils.importlib import import_module
 import mock
 import pytest
 from dateutil.parser import parse as dateutil_parser
+from rest_framework.reverse import reverse as drf_reverse
+from rest_framework.settings import api_settings
 from rest_framework.views import APIView
 from rest_framework.test import APIClient
 from waffle.models import Flag, Sample, Switch
@@ -1039,3 +1041,25 @@ def prefix_indexes(config):
 
     settings.CACHE_PREFIX = 'amo:{0}:'.format(prefix)
     settings.KEY_PREFIX = settings.CACHE_PREFIX
+
+
+def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):
+    """An API namespace aware reverse to be used in DRF API based tests.
+
+    It works by creating a fake request from the API version you need, and
+    then setting the version so the un-namespaced viewname from DRF is resolved
+    into the namespaced viewname used interally by django.
+
+    Unless overriden with the api_version parameter, the API version used is
+    the DEFAULT_VERSION in settings.
+
+    e.g. reverse_ns('addon-detail') is resolved to reverse('v4:addon-detail')
+    if the api version is 'v4'.
+    """
+    api_version = api_version or api_settings.DEFAULT_VERSION
+    request = req_factory_factory('/api/%s/' % api_version)
+    request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
+    request.version = api_version
+    return drf_reverse(
+        viewname, args=args or [], kwargs=kwargs or {}, request=request,
+        **extra)

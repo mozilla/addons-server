@@ -1,15 +1,14 @@
 
 from django.db import models
+from django_extensions.db.fields.json import JSONField
 
 import caching.base
 
 from olympia.amo.models import SearchMixin
 
-from .db import LargeStatsDictField, StatsDictField
-
 
 def update_inc(initial, key, count):
-    """Update or create a dict of `int` counters, for StatsDictFields."""
+    """Update or create a dict of `int` counters, for JSONField."""
     initial = initial or {}
     initial[key] = count + initial.get(key, 0)
     return initial
@@ -61,7 +60,7 @@ class DownloadCount(StatsSearchMixin, models.Model):
     # has an index named `count` in dev, stage and prod
     count = models.PositiveIntegerField(db_index=True)
     date = models.DateField()
-    sources = StatsDictField(db_column='src', null=True)
+    sources = JSONField(db_column='src', null=True)
 
     class Meta:
         db_table = 'download_counts'
@@ -82,11 +81,11 @@ class UpdateCount(StatsSearchMixin, models.Model):
     count = models.PositiveIntegerField(db_index=True)
     # Has an index named `date` in our dev, stage and prod database
     date = models.DateField(db_index=True)
-    versions = StatsDictField(db_column='version', null=True)
-    statuses = StatsDictField(db_column='status', null=True)
-    applications = LargeStatsDictField(db_column='application', null=True)
-    oses = StatsDictField(db_column='os', null=True)
-    locales = StatsDictField(db_column='locale', null=True)
+    versions = JSONField(db_column='version', null=True)
+    statuses = JSONField(db_column='status', null=True)
+    applications = JSONField(db_column='application', null=True)
+    oses = JSONField(db_column='os', null=True)
+    locales = JSONField(db_column='locale', null=True)
 
     class Meta:
         db_table = 'update_counts'

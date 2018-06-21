@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-05-26 06:45+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
@@ -800,9 +800,6 @@ msgstr "ชุดตกแต่ง"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
 
-msgid "Most Followers"
-msgstr "ติดตามมากที่สุด"
-
 msgid "Collections"
 msgstr "ชุดสะสม"
 
@@ -919,22 +916,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-#, fuzzy
-msgid "Contributors"
-msgstr "ผู้มีส่วนร่วม"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "ชุดสะสม :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "ชุดสะสมเป็นกลุ่มของส่วนเสริมที่เกี่ยวข้องกันซึ่งทุกคนสามารถสร้างและแบ่งปัน"
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: ชุดสะสม :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "เฉพาะฉันที่สามารถดูชุดสะสมนี้ได้"
 
@@ -989,20 +970,14 @@ msgstr "\"{0}\" เป็นป้ายกำกับที่สงวนไ�
 msgid "This add-on already belongs to the collection"
 msgstr "url นี้ถูกใช้งานกับชุดสะสมอื่นอยู่แล้ว"
 
-msgid "Name"
-msgstr "ชื่อ"
-
-msgid "Recently Updated"
-msgstr "อัปเดตล่าสุด"
-
-msgid "Recently Popular"
-msgstr "ยอดนิยมล่าสุด"
-
 msgid "Added"
 msgstr "เพิ่มแล้ว"
 
 msgid "Popularity"
 msgstr "ความนิยม"
+
+msgid "Name"
+msgstr "ชื่อ"
 
 msgid "Collection created!"
 msgstr "สร้างชุดสะสมแล้ว!"
@@ -1108,17 +1083,14 @@ msgstr "ไป"
 msgid "What are Collections?"
 msgstr "ชุดสะสมคืออะไร?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "ชุดสะสมเป็นกลุ่มของส่วนเสริมที่เกี่ยวข้องกันซึ่งทุกคนสามารถสร้างและแบ่งปัน"
+
 msgid "Explore Collections"
 msgstr "สำรวจชุดสะสม"
 
 msgid "Common Tags"
 msgstr "ป้ายกำกับทั่วไป"
-
-msgid "More by this User"
-msgstr "เพิ่มเติมโดยผู้ใช้นี้"
-
-msgid "See all collections by this user"
-msgstr "ดูชุดสะสมทั้งหมดโดยผู้ใช้นี้"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1205,61 +1177,8 @@ msgstr "แก้ไข {0}"
 msgid "Description"
 msgstr "คำอธิบาย"
 
-msgid "Contributors & More"
-msgstr "ผู้สนับสนุนและอื่น ๆ"
-
 msgid "Save Changes"
 msgstr "บันทึกการเปลี่ยนแปลง"
-
-msgid "Owner"
-msgstr "เจ้าของ"
-
-msgid "Make Owner"
-msgstr "ทำให้เป็นเจ้าของ"
-
-msgid "Remove this user as a contributor"
-msgstr "เอาผู้ใช้นี้ออกจากการเป็นผู้มีส่วนร่วม"
-
-msgid "Remove"
-msgstr "เอาออก"
-
-msgid "Collection Contributors"
-msgstr "ผู้มีส่วนร่วมชุดสะสม"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-
-msgid "User"
-msgstr "ผู้ใช้งาน"
-
-msgid "Email"
-msgstr "อีเมล"
-
-msgid "Role"
-msgstr "หน้าที่"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "ใส่ที่อยู่อีเมลของผู้มีส่วนร่วมที่จะเพิ่ม"
-
-msgid "Add Contributor"
-msgstr "เพิ่มผู้มีส่วนร่วม"
-
-msgid "Contributor"
-msgstr "ผู้มีส่วนร่วม"
-
-msgid "Admin Settings"
-msgstr "การตั้งค่าผู้ดูแล"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>คำเตือน:</b> การเปลี่ยนเจ้าของของชุดสะสมนี้ คุณจะไม่สามารถแก้ไขมันได้อีก คุณจะสามารถทำได้เพียงเพิ่มหรือลบส่วนเสริมที่อยู่ในนั้นออกเท่านั้น"
-
-msgid "Continue"
-msgstr "ทำต่อ"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "หรือ <a id=\"change-owner-cancel\" href=\"#\">ยกเลิก</a>"
 
 msgid "Remove from favorites"
 msgstr "เอาออกจากรายการโปรด"
@@ -1274,27 +1193,9 @@ msgstr "ชุดสะสมโดย {0}"
 msgid "No collections found."
 msgstr "ไม่พบชุดสะสม"
 
-msgid "Most-Followed Collections"
-msgstr "ชุดสะสมที่ถูกติดตามมากที่สุด"
-
-msgid "Newest Collections"
-msgstr "ชุดสะสมใหม่ล่าสุด"
-
-msgid "Collections by Name"
-msgstr "ชุดสะสมเรียงตามชื่อ"
-
-msgid "Recently Updated Collections"
-msgstr "ชุดสะสมที่อัปเดตล่าสุด"
-
-msgid "Recently Popular Collections"
-msgstr "ชุดตกแต่งที่ได้รับความนิยมเมื่อเร็ว ๆ นี้"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
-
-msgid "Subscribe"
-msgstr "บอกรับ"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1332,6 +1233,9 @@ msgstr "ส่วนเสริม"
 
 msgid "Comment"
 msgstr "ความคิดเห็น"
+
+msgid "Remove"
+msgstr "เอาออก"
 
 msgid "Enter the name of the add-on to include"
 msgstr "ใส่ชื่อของส่วนเสริมที่จะเพิ่ม"
@@ -1399,6 +1303,9 @@ msgstr "ผู้ใช้มากที่สุด"
 msgid "Weekly Downloads"
 msgstr "การดาวน์โหลดต่อสัปดาห์"
 
+msgid "Recently Updated"
+msgstr "อัปเดตล่าสุด"
+
 msgid "Up & Coming"
 msgstr "กำลังจะมา"
 
@@ -1420,6 +1327,9 @@ msgstr "{0}: ส่วนเสริมที่แนะนำ"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "ไม่มีส่วนเสริมที่แนะนำใน {0}"
+
+msgid "Subscribe"
+msgstr "บอกรับ"
 
 msgid "Featured Add-ons"
 msgstr "ส่วนเสริมที่แนะนำ"
@@ -2049,6 +1959,9 @@ msgstr ""
 msgid "Unlisted"
 msgstr "ไม่แสดงรายการ"
 
+msgid "Owner"
+msgstr "เจ้าของ"
+
 msgid "Developer"
 msgstr "นักพัฒนา"
 
@@ -2644,6 +2557,9 @@ msgstr ""
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr ""
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
@@ -3097,6 +3013,9 @@ msgstr "ข้อมูลการสนับสนุน"
 msgid "Support Information for {0}"
 msgstr "ข้อมูลการสนับสนุนสำหรับ {0}"
 
+msgid "Email"
+msgstr "อีเมล"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3244,6 +3163,14 @@ msgstr ""
 
 msgid "Add a Screenshot..."
 msgstr "เพิ่มภาพหน้าจอ..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "ทำต่อ"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
@@ -6103,32 +6030,14 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr ""
-
-msgid "Most popular this month"
-msgstr ""
-
-msgid "Most popular all time"
-msgstr ""
-
-msgid "Highest Rated"
-msgstr "การจัดอันดับสูงสุด"
-
 msgid "search for add-ons"
 msgstr "ค้นหาส่วนเสริม"
-
-msgid "search for collections"
-msgstr ""
 
 msgid "search for themes"
 msgstr ""
 
 msgid "search for apps"
 msgstr ""
-
-msgid "Sort By"
-msgstr "เรียงตาม"
 
 msgid "Relevance"
 msgstr ""

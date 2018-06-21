@@ -5,7 +5,7 @@ import olympia.core.logger
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
-from olympia.lib.cache import cached
+from olympia.lib.cache import cache_get_or_set, make_key
 
 from .models import GroupedRating, Rating
 
@@ -84,7 +84,8 @@ def addon_bayesian_rating(*addons, **kw):
     log.info('[%s@%s] Updating bayesian ratings.' %
              (len(addons), addon_bayesian_rating.rate_limit))
 
-    avg = cached(addon_aggregates, 'task.bayes.avg', 60 * 60 * 60)
+    avg = cache_get_or_set(
+        make_key('task.bayes.avg'), addon_aggregates, 60 * 60 * 60)
     # Rating can be NULL in the DB, so don't update it if it's not there.
     if avg['rating'] is None:
         return

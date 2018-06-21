@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-02-22 00:15+0000\n"
 "Last-Translator: D.U.Thibault <D.U.Thibault@Sympatico.ca>\n"
 "Language-Team: français <>\n"
@@ -715,18 +715,6 @@ msgstr "Retirer ce module de la collection"
 
 msgid "Remove"
 msgstr "Retirer"
-
-msgid "Remove this user as a contributor"
-msgstr "Retirer cet utilisateur en tant que contributeur"
-
-msgid "An email address is required."
-msgstr "Une adresse de courriel est nécessaire."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Vous ne pouvez pas vous ajouter comme contributeur."
-
-msgid "You have already added that user."
-msgstr "Vous avez déjà ajouté cet utilisateur."
 
 msgid "Add to favorites"
 msgstr "Ajouter aux favoris"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2017-08-11 15:37+0000\n"
 "Last-Translator: jakobkpetersen <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
@@ -705,18 +705,6 @@ msgstr "Fjern denne tilføjelse fra samlingen"
 
 msgid "Remove"
 msgstr "Fjern"
-
-msgid "Remove this user as a contributor"
-msgstr "Fjern denne bruger som bidragyder"
-
-msgid "An email address is required."
-msgstr "En mailadresse er påkrævet."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Du kan ikke tilføje dig selv som bidragsyder."
-
-msgid "You have already added that user."
-msgstr "Du har allerede tilføjet den bruger."
 
 msgid "Add to favorites"
 msgstr "Føj til favoritter"

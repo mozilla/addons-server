@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-01 12:36+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-19 18:57+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -842,9 +842,6 @@ msgstr "Temalar"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Daha çok özelleştirme mi istiyorsunuz? <b>Tam temaları</b> deneyin"
 
-msgid "Most Followers"
-msgstr "En çok takip edilenler"
-
 msgid "Collections"
 msgstr "Koleksiyonlar"
 
@@ -961,24 +958,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-# 81%
-# 100%
-#, fuzzy
-msgid "Contributors"
-msgstr "Katkıda Bulunan"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Koleksiyonlar :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Koleksiyonlar, herkesin oluşturup paylaşabileceği, birbiriyle ilgili eklenti gruplarıdır."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Koleksiyonlar :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Bu koleksiyonu yalnızca ben görebilirim."
 
@@ -1019,9 +998,8 @@ msgstr "Simgeler hareketli olamaz."
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Bu kısa ad başka bir koleksiyonunuz tarafından kullanılıyor."
 
-#, fuzzy
 msgid "Name cannot be empty."
-msgstr "Bu isim kullanılamaz."
+msgstr "İsim boş bırakılamaz."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -1035,23 +1013,15 @@ msgstr "Bu kullanıcı adı kullanılamaz."
 msgid "This add-on already belongs to the collection"
 msgstr "Bu adres başka bir koleksiyon tarafından kullanılıyor"
 
-msgid "Name"
-msgstr "İsim"
-
-# 75%
-# 100%
-msgid "Recently Updated"
-msgstr "Son Güncellenenler"
-
-msgid "Recently Popular"
-msgstr "Yeni Popüler Olan"
-
 msgid "Added"
 msgstr "Eklendi"
 
 # 100%
 msgid "Popularity"
 msgstr "Popülerlik"
+
+msgid "Name"
+msgstr "İsim"
 
 msgid "Collection created!"
 msgstr "Koleksiyon oluşturuldu!"
@@ -1176,17 +1146,14 @@ msgstr "Git"
 msgid "What are Collections?"
 msgstr "Koleksiyon nedir?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Koleksiyonlar, herkesin oluşturup paylaşabileceği, birbiriyle ilgili eklenti gruplarıdır."
+
 msgid "Explore Collections"
 msgstr "Koleksiyonlara göz at"
 
 msgid "Common Tags"
 msgstr "Sık kullanılan etiketler"
-
-msgid "More by this User"
-msgstr ""
-
-msgid "See all collections by this user"
-msgstr "Bu kullanıcının tüm koleksiyonlarına bak"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1205,13 +1172,13 @@ msgstr "En beğendiğim eklentiler"
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> eklenti"
-msgstr[1] ""
+msgstr[1] "<span>%(addons)s</span> eklenti"
 
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
 msgstr[0] "<span>%(followers)s</span> takipçi"
-msgstr[1] ""
+msgstr[1] "<span>%(followers)s</span> takipçi"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -1275,65 +1242,8 @@ msgstr "{0} koleksiyonunu düzenle"
 msgid "Description"
 msgstr "Açıklama"
 
-msgid "Contributors & More"
-msgstr "Katkıda Bulunanlar"
-
 msgid "Save Changes"
 msgstr "Değişiklikleri Kaydet"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "Sahibi"
-
-msgid "Make Owner"
-msgstr "Sahip Yap"
-
-msgid "Remove this user as a contributor"
-msgstr "Bu kullanıcıyı katkıda bulunanlardan çıkar"
-
-msgid "Remove"
-msgstr "Çıkar"
-
-msgid "Collection Contributors"
-msgstr "Koleksiyona Katkıda Bulunanlar"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-
-msgid "User"
-msgstr "Kullanıcı"
-
-msgid "Email"
-msgstr "E-posta"
-
-# Column name in a table.
-msgid "Role"
-msgstr "Rol"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Eklemek istediğiniz katkıcının e-posta adresini girin"
-
-msgid "Add Contributor"
-msgstr "Katkıda Bulunan Ekle"
-
-# 81%
-# 100%
-msgid "Contributor"
-msgstr "Katkıda Bulunan"
-
-msgid "Admin Settings"
-msgstr "Yönetici Ayarları"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ""
-
-msgid "Continue"
-msgstr "Devam Et"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "veya <a id=\"change-owner-cancel\" href=\"#\">Vazgeç</a>"
 
 # 95%
 # 100%
@@ -1352,28 +1262,9 @@ msgstr "{0} Koleksiyonları"
 msgid "No collections found."
 msgstr "Hiç koleksiyon bulunamadı."
 
-msgid "Most-Followed Collections"
-msgstr "En Çok İzlenen Koleksiyonlar"
-
-msgid "Newest Collections"
-msgstr "En Yeni Koleksiyonlar"
-
-msgid "Collections by Name"
-msgstr "Ada göre koleksiyonlar"
-
-msgid "Recently Updated Collections"
-msgstr "Son Güncellenen Koleksiyonlar"
-
-msgid "Recently Popular Collections"
-msgstr "Son Popüler Koleksiyonlar"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
-
-# 100%
-msgid "Subscribe"
-msgstr "Abone ol"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1415,6 +1306,9 @@ msgstr "Eklenti"
 # 100%
 msgid "Comment"
 msgstr "Yorum"
+
+msgid "Remove"
+msgstr "Çıkar"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Eklenecek eklentinin adını girin"
@@ -1482,6 +1376,11 @@ msgstr "Çoğu Kullanıcı"
 msgid "Weekly Downloads"
 msgstr "Haftalık İndirme"
 
+# 75%
+# 100%
+msgid "Recently Updated"
+msgstr "Son Güncellenenler"
+
 msgid "Up & Coming"
 msgstr "Yükselişte"
 
@@ -1502,6 +1401,10 @@ msgstr "{0}: Öne Çıkan Eklentiler"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "{0} kategorisinde öne çıkan eklenti yok."
+
+# 100%
+msgid "Subscribe"
+msgstr "Abone ol"
 
 msgid "Featured Add-ons"
 msgstr "Öne Çıkan Eklentiler"
@@ -1995,7 +1898,7 @@ msgid "{addon} migrated from preliminary."
 msgstr ""
 
 msgid "Reply by developer on {addon} {version}."
-msgstr ""
+msgstr "{addon} {version} için geliştirici yanıtı."
 
 msgid "Developer Reply"
 msgstr "Geliştiricinin yanıtı"
@@ -2125,6 +2028,10 @@ msgstr "İleri inceleme için işaretlenmiş"
 
 msgid "Unlisted"
 msgstr "Listelenmemiş"
+
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "Sahibi"
 
 msgid "Developer"
 msgstr "Geliştirici"
@@ -2451,9 +2358,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Temayı gönder"
+msgstr "Sabit Tema"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2728,6 +2634,9 @@ msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensi
 msgstr ""
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -3200,6 +3109,9 @@ msgstr "Destek Bilgisi"
 msgid "Support Information for {0}"
 msgstr "{0} Destek Bilgileri"
 
+msgid "Email"
+msgstr "E-posta"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3354,6 +3266,14 @@ msgstr "Lütfen bu ekran görüntüsüne bir başlık verin:"
 msgid "Add a Screenshot..."
 msgstr "Ekran görüntüsü ekle..."
 
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Devam Et"
+
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Kaynak gösterildiği sürece başkaları eklentinizi paylaşabilir mi?"
 
@@ -3375,9 +3295,8 @@ msgstr "Eklentiniz şu lisansla yayımlanacaktır:"
 msgid "Select a different license."
 msgstr "Farklı bir lisans seçin."
 
-#, fuzzy
 msgid "More information on Creative Commons licenses"
-msgstr "Daha fazla bilgi istendi"
+msgstr "Creative Commons lisansları hakkında daha fazla bilgi"
 
 msgid "Tests"
 msgstr "Testler"
@@ -3726,9 +3645,8 @@ msgstr "Sağ üste hizalı"
 msgid "Select a different header image"
 msgstr "Farklı bir üst kısım resmi seçin"
 
-#, fuzzy
 msgid "Select colors for your theme"
-msgstr "Temanızın renklerini seçin."
+msgstr "Temanızın renklerini seçin"
 
 msgid "Header area background"
 msgstr ""
@@ -3770,7 +3688,6 @@ msgstr ""
 msgid "optional"
 msgstr "tercihe bağlı"
 
-#, fuzzy
 msgid "Browser preview"
 msgstr "Tarayıcı ön izlemesi"
 
@@ -4071,11 +3988,10 @@ msgid ""
 msgstr ""
 
 msgid "Take Survey"
-msgstr ""
+msgstr "Ankete katıl"
 
-#, fuzzy
 msgid "Welcome Back"
-msgstr "Hoş geldin {0}"
+msgstr "Yeniden hoş geldiniz"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
@@ -4149,7 +4065,7 @@ msgid "Web-Ext"
 msgstr ""
 
 msgid "A command line tool to build, run, and test extensions."
-msgstr ""
+msgstr "Eklenti oluşturmak, çalıştırmak ve test etmek için bir komut satırı aracı."
 
 msgid "Automated code tests for your add-on."
 msgstr "Eklentileriniz için otomatik kod testleri."
@@ -4158,7 +4074,7 @@ msgid "Compatibility Test"
 msgstr "Uyumluluk testi"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "Eklentinizin Firefox ile uyumlu olup olmadığını kontrol edin."
 
 msgid "Transfer ownership"
 msgstr "Sahipliği aktar"
@@ -4520,13 +4436,13 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Works seamlessly with most popular video sites."
-msgstr ""
+msgstr "En popüler video siteleri ile sorunsuz bir şekilde çalışır."
 
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Set the page you see every time you open a new tab."
-msgstr ""
+msgstr "Yeni bir sekme açtığınızda gördüğünüz sayfayı ayarlayın."
 
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
@@ -5014,7 +4930,7 @@ msgid "Did the add-on work as you expected it to?"
 msgstr "Eklenti beklediğiniz gibi çalıştı mı?"
 
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "Sevdiğiniz veya sevmediğiniz özellikler nelerdir?"
 
 msgid "Was it useful?"
 msgstr "Kullanışlı mıydı?"
@@ -5343,7 +5259,7 @@ msgid "Write a New Review"
 msgstr "Yeni bir inceleme yazın"
 
 msgid "Be the first to write a review."
-msgstr ""
+msgstr "İlk yorum yazan siz olun."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5430,9 +5346,8 @@ msgstr "Uygulamalar:"
 msgid "Require developer to respond in less than…"
 msgstr ""
 
-#, fuzzy
 msgid "days"
-msgstr "7 gün"
+msgstr "gün"
 
 msgid "Choose a canned response..."
 msgstr ""
@@ -5502,7 +5417,7 @@ msgid "Thanks for submitting your Theme"
 msgstr "Temanızı gönderdiğiniz için teşekkürler"
 
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "Tema göndermenizle ilgili bir sorun"
 
 msgid "Theme submission flagged for review"
 msgstr ""
@@ -5615,11 +5530,9 @@ msgstr "Öne Çıkan Temalar"
 msgid "Legacy Add-ons"
 msgstr "Eklentilerim"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "Yeni Temalar ({0})"
+msgstr "Yeni ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
 msgstr "Güncellemeler ({0})"
 
@@ -5769,9 +5682,8 @@ msgstr "Suistimal raporları ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Kullanıcı incelemeleri"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "tema adı"
+msgstr "Tema Resimleri"
 
 #, fuzzy
 msgid "Rendered Preview"
@@ -6260,8 +6172,8 @@ msgstr "[durum:%s]"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "Güncellemeler ({0})"
-msgstr[1] ""
+msgstr[0] "Güncelleme ({0})"
+msgstr[1] "Güncellemeler ({0})"
 
 #, fuzzy
 msgid "Rating Review ({0})"
@@ -6290,33 +6202,14 @@ msgstr "Güncellemeler"
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr "Bu hafta en popüler"
-
-msgid "Most popular this month"
-msgstr "Bu ay en popüler"
-
-#, fuzzy
-msgid "Most popular all time"
-msgstr "En Popüler"
-
-msgid "Highest Rated"
-msgstr "En Yüksek Puanlı"
-
 msgid "search for add-ons"
 msgstr "eklenti ara"
-
-msgid "search for collections"
-msgstr "koleksiyon ara"
 
 msgid "search for themes"
 msgstr "tema ara"
 
 msgid "search for apps"
 msgstr "uygulama ara"
-
-msgid "Sort By"
-msgstr "Sıralama"
 
 msgid "Relevance"
 msgstr "İlgi"
@@ -6375,7 +6268,7 @@ msgstr "{0} :: Etiket"
 
 #. {0} is a tag, such as jetpack.
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "\"{0}\" etiketi arama sonuçları"
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
@@ -7134,7 +7027,7 @@ msgid "Themes I've created"
 msgstr "Oluşturduğum temalar"
 
 msgid "Followed by Me"
-msgstr ""
+msgstr "Takip ettiklerim"
 
 #, fuzzy
 msgid "Created by Me"

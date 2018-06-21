@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2017-12-13 07:04+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -700,18 +700,6 @@ msgstr "모음집에서 이 부가 기능 삭제"
 
 msgid "Remove"
 msgstr "삭제"
-
-msgid "Remove this user as a contributor"
-msgstr "기여자에서 이 사용자 삭제"
-
-msgid "An email address is required."
-msgstr "이메일 주소를 입력해야 합니다."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "자신의 계정은 기여자로 추가할 수 없습니다."
-
-msgid "You have already added that user."
-msgstr "이미 추가된 사용자입니다."
 
 msgid "Add to favorites"
 msgstr "선호 목록에 추가"

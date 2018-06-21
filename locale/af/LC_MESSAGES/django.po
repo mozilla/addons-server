@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -847,9 +847,6 @@ msgstr "Temas"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
 
-msgid "Most Followers"
-msgstr "Meeste volgelinge"
-
 msgid "Collections"
 msgstr "Versamelings"
 
@@ -966,24 +963,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-# 81%
-# 100%
-#, fuzzy
-msgid "Contributors"
-msgstr "Bydraer"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Versamelings :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Versamelings is groepe van verwante byvoegings wat enigiemand kan bou en deel."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Versamelings :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Slegs ek kan hierdie versameling sien."
 
@@ -1038,23 +1017,15 @@ msgstr "\"{0}\" is 'n gereserveerde etiket en kan nie gebruik word nie."
 msgid "This add-on already belongs to the collection"
 msgstr "Dié URL is reeds in gebruik deur 'n ander versameling"
 
-msgid "Name"
-msgstr "Naam"
-
-# 75%
-# 100%
-msgid "Recently Updated"
-msgstr "Onlangs bygewerk"
-
-msgid "Recently Popular"
-msgstr "Onlangs populêr"
-
 msgid "Added"
 msgstr "Bygevoeg"
 
 # 100%
 msgid "Popularity"
 msgstr "Gewildheid"
+
+msgid "Name"
+msgstr "Naam"
 
 msgid "Collection created!"
 msgstr "Versameling gebou!"
@@ -1184,17 +1155,14 @@ msgstr "Gaan"
 msgid "What are Collections?"
 msgstr "Wat is versamelings?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Versamelings is groepe van verwante byvoegings wat enigiemand kan bou en deel."
+
 msgid "Explore Collections"
 msgstr "Ontdek versamelings"
 
 msgid "Common Tags"
 msgstr "Algemene etikette"
-
-msgid "More by this User"
-msgstr "Meer deur hierdie gebruiker"
-
-msgid "See all collections by this user"
-msgstr ""
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1283,65 +1251,8 @@ msgstr "Redigeer {0}"
 msgid "Description"
 msgstr "Beskrywing"
 
-msgid "Contributors & More"
-msgstr ""
-
 msgid "Save Changes"
 msgstr "Stoor wysigings"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "Eienaar"
-
-msgid "Make Owner"
-msgstr ""
-
-msgid "Remove this user as a contributor"
-msgstr ""
-
-msgid "Remove"
-msgstr ""
-
-msgid "Collection Contributors"
-msgstr ""
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-
-msgid "User"
-msgstr "Gebruiker"
-
-msgid "Email"
-msgstr "E-pos"
-
-# Column name in a table.
-msgid "Role"
-msgstr "Rol"
-
-msgid "Enter the email address of the contributor to add"
-msgstr ""
-
-msgid "Add Contributor"
-msgstr ""
-
-# 81%
-# 100%
-msgid "Contributor"
-msgstr "Bydraer"
-
-msgid "Admin Settings"
-msgstr ""
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ""
-
-msgid "Continue"
-msgstr "Gaan voort"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
 
 # 95%
 # 100%
@@ -1360,28 +1271,9 @@ msgstr ""
 msgid "No collections found."
 msgstr "Geen versamelings gevind nie."
 
-msgid "Most-Followed Collections"
-msgstr ""
-
-msgid "Newest Collections"
-msgstr ""
-
-msgid "Collections by Name"
-msgstr ""
-
-msgid "Recently Updated Collections"
-msgstr ""
-
-msgid "Recently Popular Collections"
-msgstr ""
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Versamelings is groepe van verwante byvoegings wat enigeen kan bou en deel. Ontdek versamelings wat ander gebou het of <a href=\"%(url)s\">bou u eie</a>."
-
-# 100%
-msgid "Subscribe"
-msgstr "Teken in"
 
 #, fuzzy, python-format
 msgid "by %(author_link)s"
@@ -1420,6 +1312,9 @@ msgid "Add-on"
 msgstr ""
 
 msgid "Comment"
+msgstr ""
+
+msgid "Remove"
 msgstr ""
 
 msgid "Enter the name of the add-on to include"
@@ -1488,6 +1383,11 @@ msgstr "Meeste gebruikers"
 msgid "Weekly Downloads"
 msgstr "Weekliks afgelaai"
 
+# 75%
+# 100%
+msgid "Recently Updated"
+msgstr "Onlangs bygewerk"
+
 msgid "Up & Coming"
 msgstr "Opkomend"
 
@@ -1508,6 +1408,10 @@ msgstr "{0}: Uitgesoekte byvoegings"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Geen uitgesoekte byvoegings in {0} nie."
+
+# 100%
+msgid "Subscribe"
+msgstr "Teken in"
 
 msgid "Featured Add-ons"
 msgstr "Uitgesoekte byvoegings"
@@ -2137,6 +2041,10 @@ msgstr ""
 msgid "Unlisted"
 msgstr ""
 
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "Eienaar"
+
 msgid "Developer"
 msgstr "Ontwikkelaar"
 
@@ -2740,6 +2648,9 @@ msgstr ""
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr ""
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
@@ -3198,6 +3109,9 @@ msgstr ""
 msgid "Support Information for {0}"
 msgstr ""
 
+msgid "Email"
+msgstr "E-pos"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3348,6 +3262,14 @@ msgstr ""
 
 msgid "Add a Screenshot..."
 msgstr ""
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Gaan voort"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
@@ -6302,32 +6224,14 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr "Populêrste dié week"
-
-msgid "Most popular this month"
-msgstr "Populêrste dié maand"
-
-msgid "Most popular all time"
-msgstr "Populêrste ooit"
-
-msgid "Highest Rated"
-msgstr "Hoogste gradering"
-
 msgid "search for add-ons"
 msgstr "soek vir byvoegings"
-
-msgid "search for collections"
-msgstr "soek vir versamelings"
 
 msgid "search for themes"
 msgstr ""
 
 msgid "search for apps"
 msgstr ""
-
-msgid "Sort By"
-msgstr "Sorteer volgens"
 
 msgid "Relevance"
 msgstr "Relevansie"

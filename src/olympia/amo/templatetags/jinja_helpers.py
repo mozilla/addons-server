@@ -31,7 +31,7 @@ from olympia.constants.licenses import PERSONA_LICENSES_IDS
 from olympia.lib.jingo_minify_helpers import (
     _build_html, _get_compiled_css_url, get_css_urls, get_js_urls, get_path,
     is_external)
-from olympia.lib.cache import cached
+from olympia.lib.cache import cache_get_or_set, make_key
 
 
 # Registering some utils as filters:
@@ -371,9 +371,13 @@ def attrs(ctx, *args, **kw):
 def side_nav(context, addon_type, category=None):
     app = context['request'].APP.id
     cat = str(category.id) if category else 'all'
-    return cached(
-        lambda: _side_nav(context, addon_type, category),
-        'side-nav-%s-%s-%s' % (app, addon_type, cat))
+    cache_key = make_key(
+        'side-nav-%s-%s-%s' % (app, addon_type, cat),
+        # We have potentially very long names in the cache-key,
+        # normalize to not hit any memcached key-limits
+        normalize=True)
+    return cache_get_or_set(
+        cache_key, lambda: _side_nav(context, addon_type, category))
 
 
 def _side_nav(context, addon_type, cat):
@@ -399,7 +403,8 @@ def _side_nav(context, addon_type, cat):
 @jinja2.contextfunction
 def site_nav(context):
     app = context['request'].APP.id
-    return cached(lambda: _site_nav(context), 'site-nav-%s' % app)
+    cache_key = make_key('site-nav-%s' % app, normalize=True)
+    return cache_get_or_set(cache_key, lambda: _site_nav(context))
 
 
 def _site_nav(context):

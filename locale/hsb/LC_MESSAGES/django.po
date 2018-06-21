@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-12 18:08+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-19 21:46+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -200,9 +200,8 @@ msgstr "Prawidła priwatnosće pokazać"
 msgid "View End-User License Agreement"
 msgstr "Licencne dojednanje za kóncnych wužiwarjow (EULA) pokazać"
 
-#, fuzzy
 msgid "This add-on has not been reviewed by Mozilla."
-msgstr "Tutón přidatk njeje so hišće pohódnoćił."
+msgstr "Tutón přidatk njeje so hišće wot Mozilla přepruwował."
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Tutón přidatk je so wot swojich wuwiwarjow jako eksperimentelny markěrował."
@@ -849,9 +848,6 @@ msgstr "Drasty"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Chceće wjace přiměrić? Spytajće <b>dospołne drasty</b>"
 
-msgid "Most Followers"
-msgstr "Najwjace wobkedźbowarjow"
-
 msgid "Collections"
 msgstr "Zběrki"
 
@@ -969,21 +965,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr "Jeli waše podpěrane nałoženje manifestowu dataju njetrjeba, dyrbiće hišće jednu z trěbnymi kajkosćemi přidać, kaž su %(amo_manifests_mdn_link_open)stu%(amo_manifests_mdn_link_close)s podate."
 
-msgid "Contributors"
-msgstr "Sobuskutkowarjo"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Zběrki :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Zběrki su skupiny přiwuznych přidatkow, kotrež móže kóždy wutworić a dale dać."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Zběrki :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Jenož ja móžu sej tutu zběrku wobhladać."
 
@@ -1035,20 +1016,14 @@ msgstr "Tutón swójski URL njeda so wužiwać."
 msgid "This add-on already belongs to the collection"
 msgstr "Tutón přidatk hižo k zběrce słuša"
 
-msgid "Name"
-msgstr "Mjeno"
-
-msgid "Recently Updated"
-msgstr "Njedawno zaktualizowane"
-
-msgid "Recently Popular"
-msgstr "Najnowše woblubowane"
-
 msgid "Added"
 msgstr "Přidate"
 
 msgid "Popularity"
 msgstr "Woblubowanosć"
+
+msgid "Name"
+msgstr "Mjeno"
 
 msgid "Collection created!"
 msgstr "Zběrka wutworjena!"
@@ -1163,17 +1138,14 @@ msgstr "Start"
 msgid "What are Collections?"
 msgstr "Što su zběrki?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Zběrki su skupiny přiwuznych přidatkow, kotrež móže kóždy wutworić a dale dać."
+
 msgid "Explore Collections"
 msgstr "Zběrki wuslědźić"
 
 msgid "Common Tags"
 msgstr "Zwučene znački"
-
-msgid "More by this User"
-msgstr "Wjace wot tutoho wužiwarja"
-
-msgid "See all collections by this user"
-msgstr "Wšě zběrki wot tutoho wužiwarja pokazać"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1274,63 +1246,8 @@ msgstr "{0} wobdźěłać"
 msgid "Description"
 msgstr "Wopisanje"
 
-msgid "Contributors & More"
-msgstr "Sobuskutkowarjo a wjace"
-
 msgid "Save Changes"
 msgstr "Změny składować"
-
-msgid "Owner"
-msgstr "Swójstwownik"
-
-msgid "Make Owner"
-msgstr "K swójstwownikej činić"
-
-msgid "Remove this user as a contributor"
-msgstr "Tutoho wužiwarja jako sobuskutkowarja wotstronić"
-
-msgid "Remove"
-msgstr "Wotstronić"
-
-msgid "Collection Contributors"
-msgstr "Sobuskutkowarjo zběrki"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"Móžeće tutej zběrce wjacorych sobuskutkowarjow přidać. Sobuskutkowar móže tutej zběrce přidatki přidać a z tuteje zběrki wotstronić, ale njemóže jeje mjeno abo wopisanje změnić. Zo byšće "
-"sobuskutkowarja přidał, zapodajće jeho e-mejlowu adresu w polu deleka. Sobuskutkowarjo dyrbja konto na Mozilla Add-ons měć."
-
-msgid "User"
-msgstr "Wužiwar"
-
-msgid "Email"
-msgstr "E-mejlowa adresa"
-
-msgid "Role"
-msgstr "Róla"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Zapodajće e-mejlowu adresu sobuskutkowarja, kotryž ma so přidać"
-
-msgid "Add Contributor"
-msgstr "Sobuskutkowarja přidać"
-
-msgid "Contributor"
-msgstr "Sobuskutkowar"
-
-msgid "Admin Settings"
-msgstr "Administratorowe nastajenja"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Warnowanje:</b> Jeli swójstwownika tuteje zběrki změniće, njemóžeće ju hižo wobdźěłać. Móžeće jej jenož přidatki přidać abo z njeje wotstronić."
-
-msgid "Continue"
-msgstr "Dale"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "abo <a id=\"change-owner-cancel\" href=\"#\">Přetorhnyć</a>"
 
 msgid "Remove from favorites"
 msgstr "Z faworitow wotstronić"
@@ -1345,27 +1262,9 @@ msgstr "Zběrki wot {0}"
 msgid "No collections found."
 msgstr "Žane zběrki namakane."
 
-msgid "Most-Followed Collections"
-msgstr "Najbóle wobkedźbowane zběrki"
-
-msgid "Newest Collections"
-msgstr "Najnowše zběrki"
-
-msgid "Collections by Name"
-msgstr "Zběrki po mjenje"
-
-msgid "Recently Updated Collections"
-msgstr "Njedawno zaktualizowane zběrki"
-
-msgid "Recently Popular Collections"
-msgstr "Najnowše woblubowane zběrki"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Zběrki su skupiny přiwuznych přidatkow, kotrež kóždy móže wutworić a dale dać. Wuslědźće zběrki wutworjene wot druhich wužiwarjow abo <a href=\"%(url)s\">wutworće swójsku</a>."
-
-msgid "Subscribe"
-msgstr "Abonować"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1403,6 +1302,9 @@ msgstr "Přidatk"
 
 msgid "Comment"
 msgstr "Komentar"
+
+msgid "Remove"
+msgstr "Wotstronić"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Zapodajće mjeno přidatka, kotryž ma so přidać"
@@ -1470,6 +1372,9 @@ msgstr "Najwjace wužiwarjow"
 msgid "Weekly Downloads"
 msgstr "Tydźenske sćehnjenja"
 
+msgid "Recently Updated"
+msgstr "Njedawno zaktualizowane"
+
 msgid "Up & Coming"
 msgstr "Nastawace"
 
@@ -1489,6 +1394,9 @@ msgstr "{0}: Předstajene přidatki"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Žane předstajene přidatki w kategoriji {0}."
+
+msgid "Subscribe"
+msgstr "Abonować"
 
 msgid "Featured Add-ons"
 msgstr "Předstajene přidatki"
@@ -2105,6 +2013,9 @@ msgstr "Za dalše přepruwowanje woznamjenjene"
 msgid "Unlisted"
 msgstr "W lisćinje njepodate"
 
+msgid "Owner"
+msgstr "Swójstwownik"
+
 msgid "Developer"
 msgstr "Wuwiwar"
 
@@ -2694,6 +2605,9 @@ msgstr "Wot Firefox 53 móža nowe rozšěrjenja na tutym websydle jenož WebExt
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Zestarjene rozšěrjenja z Firefox 57 abo nowšimi kompatibelne njejsu. Wužiwajće maxVersion 56.* abo niše."
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Dowolujemy a poručamy aktualizaciju, ale njemóžeće tutón proces přewobroćić. Hdyž waši wužiwarjo su WebExtension instalowali, njemóža hižo přidatk stareho typa instalować."
 
@@ -3162,6 +3076,9 @@ msgstr "Imformacije pomocy"
 msgid "Support Information for {0}"
 msgstr "Informacije pomocy za {0}"
 
+msgid "Email"
+msgstr "E-mejlowa adresa"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3319,6 +3236,14 @@ msgstr "Prošu podajće pomjenjowanje za tute foto wobrazowki:"
 
 msgid "Add a Screenshot..."
 msgstr "Foto wobrazowki přidać..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Dale"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Smědźa druzy waš přidatk dźělić, jeli was jako awtora naspominaja?"
@@ -6203,32 +6128,14 @@ msgstr "Aktualizacije"
 msgid "Maximum query length exceeded."
 msgstr "Maksimalna dołhosć naprašowanjow je překročena."
 
-msgid "Most popular this week"
-msgstr "Najbóle woblubowane tutoho tydźenja"
-
-msgid "Most popular this month"
-msgstr "Najbóle woblubowane tutoho měsaca"
-
-msgid "Most popular all time"
-msgstr "Najbóle woblubowane za cyły čas"
-
-msgid "Highest Rated"
-msgstr "Najwyše pohódnoćene"
-
 msgid "search for add-ons"
 msgstr "přidatki pytać"
-
-msgid "search for collections"
-msgstr "zběrki pytać"
 
 msgid "search for themes"
 msgstr "drasty pytać"
 
 msgid "search for apps"
 msgstr "nałoženja pytać"
-
-msgid "Sort By"
-msgstr "Sortěrować po"
 
 msgid "Relevance"
 msgstr "Relewanca"

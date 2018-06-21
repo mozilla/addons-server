@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-15 20:52+0000\n"
-"Last-Translator: Fauzan Alfi <fauzanalfi@mozilla.web.id>\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-21 08:44+0000\n"
+"Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -812,9 +812,6 @@ msgstr "Tema"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Ingin lebih banyak penyesuaian? ? Cobalah <b>Tema Komplet</b>"
 
-msgid "Most Followers"
-msgstr "Pengikut Terbanyak"
-
 msgid "Collections"
 msgstr "Koleksi"
 
@@ -935,21 +932,6 @@ msgstr ""
 "Jika aplikasi Anda yang didukung tidak memerlukan berkas maklumat, Anda masih harus memasukkan satu dengan properti yang dibutuhkan sebagaimana dijelaskan %(amo_manifests_mdn_link_open)sdi "
 "sini%(amo_manifests_mdn_link_close)s."
 
-msgid "Contributors"
-msgstr "Kontributor"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Koleksi :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Koleksi adalah kelompok pengaya terkait yang dapat dibuat dan dibagi oleh semua orang."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Koleksi :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Hanya saya yang bisa melihat koleksi ini."
 
@@ -1001,20 +983,14 @@ msgstr "URL ubahsuai ini tidak dapat digunakan."
 msgid "This add-on already belongs to the collection"
 msgstr "Pengaya ini sudah termasuk dalam koleksi ini"
 
-msgid "Name"
-msgstr "Nama"
-
-msgid "Recently Updated"
-msgstr "Baru Diperbarui"
-
-msgid "Recently Popular"
-msgstr "Baru-baru ini Populer"
-
 msgid "Added"
 msgstr "Ditambahkan"
 
 msgid "Popularity"
 msgstr "Kepopuleran"
+
+msgid "Name"
+msgstr "Nama"
 
 msgid "Collection created!"
 msgstr "Koleksi dibuat!"
@@ -1120,17 +1096,14 @@ msgstr "Buka"
 msgid "What are Collections?"
 msgstr "Apa Koleksi Itu?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Koleksi adalah kelompok pengaya terkait yang dapat dibuat dan dibagi oleh semua orang."
+
 msgid "Explore Collections"
 msgstr "Jelajahi Koleksi"
 
 msgid "Common Tags"
 msgstr "Tag yang Umum"
-
-msgid "More by this User"
-msgstr "Yang Lain dari Pengguna Ini"
-
-msgid "See all collections by this user"
-msgstr "Lihat semua koleksi dari pengguna ini"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1216,65 +1189,8 @@ msgstr "Edit {0}"
 msgid "Description"
 msgstr "Deskripsi"
 
-msgid "Contributors & More"
-msgstr "Kontributor & Lainnya"
-
 msgid "Save Changes"
 msgstr "Simpan Perubahan"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "Pemilik"
-
-msgid "Make Owner"
-msgstr "Dijadikan Pemilik"
-
-msgid "Remove this user as a contributor"
-msgstr "Menghapus pengguna ini sebagai kontributor"
-
-msgid "Remove"
-msgstr "Hapus"
-
-msgid "Collection Contributors"
-msgstr "Koleksi Kontributor"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"Anda bisa menambahkan banyak kontributor di koleksi ini. Seorang kontributor bisa menambah dan menghapus pengaya dari koleksi ini, namun tidak dapat mengubah nama atau deskripsinya. Untuk menambah "
-"kontributor, masukkan alamat surel mereka ke dalam kotak di bawah ini. Kontributor harus memiliki akun Pengaya Mozilla."
-
-msgid "User"
-msgstr "Pengguna"
-
-msgid "Email"
-msgstr "Surel"
-
-# Column name in a table.
-msgid "Role"
-msgstr "Peran"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Masukkan alamat surel kontributor untuk ditambahkan"
-
-msgid "Add Contributor"
-msgstr "Tambahkan Kontributor"
-
-msgid "Contributor"
-msgstr "Kontributor"
-
-msgid "Admin Settings"
-msgstr "Pengaturan Admin"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Awas:</b> dengan mengubah pemilik koleksi ini, anda tidak akan bisa lagi menyuntingnya. Anda hanya akan bisa menambahkan atau menghapuskan pengaya dari situ."
-
-msgid "Continue"
-msgstr "Lanjut"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "atau <a id=\"change-owner-cancel\" href=\"#\">Batalkan</a>"
 
 msgid "Remove from favorites"
 msgstr "Hapus dari favorit"
@@ -1289,27 +1205,9 @@ msgstr "Koleksi oleh {0}"
 msgid "No collections found."
 msgstr "Tidak ada koleksi ditemukan."
 
-msgid "Most-Followed Collections"
-msgstr "Koleksi yang Paling Banyak Diikuti"
-
-msgid "Newest Collections"
-msgstr "Koleksi Terbaru"
-
-msgid "Collections by Name"
-msgstr "Koleksi Berdasarkan Nama"
-
-msgid "Recently Updated Collections"
-msgstr "Koleksi yang Baru Saja Diperbarui"
-
-msgid "Recently Popular Collections"
-msgstr "Koleksi Populer Baru-baru Ini"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Koleksi adalah sekelompok pengaya terkait yang dapat dibuat dan dibagi oleh setiap orang. Jelajahi koleksi yang dibuat pengguna lain atau <a href=\"%(url)s\">buat sendiri</a>."
-
-msgid "Subscribe"
-msgstr "Berlangganan"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1347,6 +1245,9 @@ msgstr "Pengaya"
 
 msgid "Comment"
 msgstr "Komentar"
+
+msgid "Remove"
+msgstr "Hapus"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Masukkan nama pengaya untuk disertakan"
@@ -1414,6 +1315,9 @@ msgstr "Sebagian Besar Pengguna"
 msgid "Weekly Downloads"
 msgstr "Unduhan Mingguan"
 
+msgid "Recently Updated"
+msgstr "Baru Diperbarui"
+
 msgid "Up & Coming"
 msgstr "Yang akan Datang"
 
@@ -1433,6 +1337,9 @@ msgstr "{0}: Pengaya Unggulan"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Tidak ada pengaya unggulan pada {0}."
+
+msgid "Subscribe"
+msgstr "Berlangganan"
 
 msgid "Featured Add-ons"
 msgstr "Pengaya Unggulan"
@@ -2035,6 +1942,10 @@ msgstr "Ditandai untuk ulasan lebih lanjut"
 msgid "Unlisted"
 msgstr "Tidak terdaftar"
 
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "Pemilik"
+
 msgid "Developer"
 msgstr "Pengembang"
 
@@ -2627,6 +2538,9 @@ msgstr "Sejak Firefox 53, pengaya baru pada situs ini hanya dapat berupa WebExte
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Pengaya peninggalan tidak selaras dengan Firefox 57 atau versi lebih tinggi. gunakan maxVersion 56.* atau lebih rendah."
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr "Paket bahasa peninggalan untuk Firefox tidak lagi didukung. Sebuah manifes pemasangan WebExtensions install manifest diperlukan. Lihat {mdn_link} untuk rincian lebih lanjut."
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "Kami memperbolehkan dan mendorong peningkatan tetapi Anda tidak dapat membalik proses ini. Setelah pengguna memiliki WebExtension yang terpasang, mereka tidak akan dapat memasang pengaya "
@@ -3093,6 +3007,9 @@ msgstr "Informasi Pendukung"
 msgid "Support Information for {0}"
 msgstr "Informasi Pendukung untuk {0}"
 
+msgid "Email"
+msgstr "Surel"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
@@ -3272,6 +3189,16 @@ msgstr "Harap menyediakan keterangan untuk tangkapan layar ini:"
 
 msgid "Add a Screenshot..."
 msgstr "Tambahkan Tangkapan layar..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+"PNG dan JPG didukung. Ukuran maksimum dan direkomendasikan untuk tangkapan layar adalah 1280x800 pixels. 640x400 pixels adalah alternatif yang baik jika Anda hanya memiliki gambar yang lebih kecil. "
+"Memiliki tangkapan layar dalam laman daftar Anda akan sangat meningkatkan peluangnya untuk dipasang dan diunggulkan di beranda."
+
+msgid "Continue"
+msgstr "Lanjut"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Dapatkah orang lain membagikan Pengaya Anda, asalkan Anda diberi akreditasi?"
@@ -6120,32 +6047,14 @@ msgstr "Pembaruan"
 msgid "Maximum query length exceeded."
 msgstr "Melebihi batas panjang maksimum kueri."
 
-msgid "Most popular this week"
-msgstr "Paling populer minggu ini"
-
-msgid "Most popular this month"
-msgstr "Paling populer bulan ini"
-
-msgid "Most popular all time"
-msgstr "Paling populer sepanjang masa"
-
-msgid "Highest Rated"
-msgstr "Peringkat Tertinggi"
-
 msgid "search for add-ons"
 msgstr "cari pengaya"
-
-msgid "search for collections"
-msgstr "cari koleksi"
 
 msgid "search for themes"
 msgstr "mencari tema"
 
 msgid "search for apps"
 msgstr "mencari aplikasi"
-
-msgid "Sort By"
-msgstr "Urut Berdasarkan"
 
 msgid "Relevance"
 msgstr "Relevansi"

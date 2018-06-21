@@ -9,6 +9,7 @@ from decimal import Decimal
 
 from django.conf import settings
 from django.core import mail
+from django.core.files.storage import default_storage as storage
 
 import mock
 import pytest
@@ -16,7 +17,7 @@ import pytest
 from PIL import Image
 
 from olympia import amo
-from olympia.addons.models import Addon, AddonUser
+from olympia.addons.models import Addon, AddonUser, Preview
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
@@ -113,6 +114,47 @@ def _uploader(resize_size, final_size):
     shutil.rmtree(uploadto)
 
     assert not os.path.exists(src.name)
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.amo.utils.pngcrush_image')
+def test_recreate_previews(pngcrush_image_mock):
+    addon = addon_factory()
+    # Set up the preview so it has files in the right places.
+    preview_no_original = Preview.objects.create(addon=addon)
+    with storage.open(preview_no_original.image_path, 'w') as dest:
+        shutil.copyfileobj(open(get_image_path('preview_landscape.jpg')), dest)
+    with storage.open(preview_no_original.thumbnail_path, 'w') as dest:
+        shutil.copyfileobj(open(get_image_path('mozilla.png')), dest)
+    # And again but this time with an "original" image.
+    preview_has_original = Preview.objects.create(addon=addon)
+    with storage.open(preview_has_original.image_path, 'w') as dest:
+        shutil.copyfileobj(open(get_image_path('preview_landscape.jpg')), dest)
+    with storage.open(preview_has_original.thumbnail_path, 'w') as dest:
+        shutil.copyfileobj(open(get_image_path('mozilla.png')), dest)
+    with storage.open(preview_has_original.original_path, 'w') as dest:
+        shutil.copyfileobj(open(get_image_path('teamaddons.jpg')), dest)
+
+    tasks.recreate_previews([addon.id])
+
+    assert preview_no_original.reload().sizes == {
+        'image': [533, 400], 'thumbnail': [267, 200]}
+    # Check no resize for full size, but resize happened for thumbnail
+    assert (storage.size(preview_no_original.image_path) ==
+            storage.size(get_image_path('preview_landscape.jpg')))
+    assert (storage.size(preview_no_original.thumbnail_path) !=
+            storage.size(get_image_path('mozilla.png')))
+
+    assert preview_has_original.reload().sizes == {
+        'image': [1200, 800], 'thumbnail': [300, 200],
+        'original': [1500, 1000]}
+    # Check both full and thumbnail changed, but original didn't.
+    assert (storage.size(preview_has_original.image_path) !=
+            storage.size(get_image_path('preview_landscape.jpg')))
+    assert (storage.size(preview_has_original.thumbnail_path) !=
+            storage.size(get_image_path('mozilla.png')))
+    assert (storage.size(preview_has_original.original_path) ==
+            storage.size(get_image_path('teamaddons.jpg')))
 
 
 class ValidatorTestCase(TestCase):

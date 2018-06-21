@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-03-04 16:16+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -805,9 +805,6 @@ msgstr "থিম"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
 
-msgid "Most Followers"
-msgstr "সর্বাধিক অনুসরণকারী"
-
 msgid "Collections"
 msgstr "সংগ্রহ"
 
@@ -924,21 +921,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "Contributors"
-msgstr "অবদানকারীরা"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "সংগ্রহ :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr ""
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: সংগ্রহ :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "শুধু আমি এই সংগ্রহটি দেখতে পারব।"
 
@@ -993,20 +975,14 @@ msgstr "এই নামটি ব্যবহার করা যাবে ন�
 msgid "This add-on already belongs to the collection"
 msgstr "অ্যাড-অনটি ইতোমধ্যেই সংগ্রহে আছে"
 
-msgid "Name"
-msgstr "নাম"
-
-msgid "Recently Updated"
-msgstr "সম্প্রতি হাল নাগাদ করা হয়েছে"
-
-msgid "Recently Popular"
-msgstr "সাম্প্রতিক জনপ্রিয়"
-
 msgid "Added"
 msgstr "যুক্ত করা হয়েছে"
 
 msgid "Popularity"
 msgstr "জনপ্রিয়তা"
+
+msgid "Name"
+msgstr "নাম"
 
 msgid "Collection created!"
 msgstr "সংগ্রহ তৈরি করা হয়েছে!"
@@ -1115,17 +1091,14 @@ msgstr "চলুন"
 msgid "What are Collections?"
 msgstr "সংগ্রহ কী?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr ""
+
 msgid "Explore Collections"
 msgstr "সংগ্রহ ঘুরে দেখুন"
 
 msgid "Common Tags"
 msgstr "সাধারণ ট্যাগসূমহ"
-
-msgid "More by this User"
-msgstr "এই ব্যবহারকারী দ্বারা আরো"
-
-msgid "See all collections by this user"
-msgstr "এই ব্যবহারকারীর সব সংগ্রহ দেখুন"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1212,61 +1185,8 @@ msgstr "{0} সম্পাদনা করুন"
 msgid "Description"
 msgstr "বর্ণনা"
 
-msgid "Contributors & More"
-msgstr "অবদানকারী এবং আরো"
-
 msgid "Save Changes"
 msgstr "পরিবর্তন সংরক্ষণ"
-
-msgid "Owner"
-msgstr "মালিক"
-
-msgid "Make Owner"
-msgstr "স্বত্বাধিকারী হোন"
-
-msgid "Remove this user as a contributor"
-msgstr "একজন অবদানকারী হিসেবে এই ব্যবহারকারীকে অপসারণ করুন"
-
-msgid "Remove"
-msgstr "অপসারণ করুন"
-
-msgid "Collection Contributors"
-msgstr "সংগ্রহ অনুদানকারী"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-
-msgid "User"
-msgstr "ব্যবহারকারী"
-
-msgid "Email"
-msgstr "ইমেইল"
-
-msgid "Role"
-msgstr "ভূমিকা"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "অনদানকারী যোগ করতে ইমেইল ঠিকানাটি প্রবেশ করান"
-
-msgid "Add Contributor"
-msgstr "অনদানকারী যোগ করুন"
-
-msgid "Contributor"
-msgstr "অবদানকারী"
-
-msgid "Admin Settings"
-msgstr "অ্যাডমিন সেটিংস"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ""
-
-msgid "Continue"
-msgstr "চালিয়ে যান"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "অথবা <a id=\"change-owner-cancel\" href=\"#\">বাতিল করুন</a>"
 
 msgid "Remove from favorites"
 msgstr "পছন্দের তালিকা হতে অপসারণ করুন"
@@ -1281,27 +1201,9 @@ msgstr "{0} দ্বারা সংগ্রহসূমহ"
 msgid "No collections found."
 msgstr "কোন সংগ্রহ পাওয়া যায়নি"
 
-msgid "Most-Followed Collections"
-msgstr "সর্বাধিক অনুসরণকৃত সংগ্রহসূমহ"
-
-msgid "Newest Collections"
-msgstr "নতুন সংগ্রহ"
-
-msgid "Collections by Name"
-msgstr "নাম দিয়ে সংগ্রহ"
-
-msgid "Recently Updated Collections"
-msgstr "সম্প্রতি সংগ্রহসূমহ হালনাগাদ করা হয়েছে"
-
-msgid "Recently Popular Collections"
-msgstr "সম্প্রতি জনপ্রিয় সংগ্রহসূমহ"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
-
-msgid "Subscribe"
-msgstr "সাবস্ক্রাইব"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1339,6 +1241,9 @@ msgstr "অ্যাড-অন"
 
 msgid "Comment"
 msgstr "মন্তব্য করুন"
+
+msgid "Remove"
+msgstr "অপসারণ করুন"
 
 msgid "Enter the name of the add-on to include"
 msgstr "অন্তর্ভুক্ত করার জন্য অ্যাড-অনের নামটি প্রবেশ করান"
@@ -1406,6 +1311,9 @@ msgstr "অধিকাংশ ব্যবহারকারী"
 msgid "Weekly Downloads"
 msgstr "সাপ্তাহিক ডাউনলোড"
 
+msgid "Recently Updated"
+msgstr "সম্প্রতি হাল নাগাদ করা হয়েছে"
+
 msgid "Up & Coming"
 msgstr "শিঘ্রই আসছে"
 
@@ -1425,6 +1333,9 @@ msgstr "{0}: নির্বাচিত অ্যাড-অন"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "{0} এ কোন নির্বাচিত অ্যাড-অন নেই।"
+
+msgid "Subscribe"
+msgstr "সাবস্ক্রাইব"
 
 msgid "Featured Add-ons"
 msgstr "নির্বাচিত অ্যাড-অন"
@@ -2058,6 +1969,9 @@ msgstr "পরবর্তী রিভিউ এর জন্য ফ্লা�
 msgid "Unlisted"
 msgstr "তালিকাবহির্ভূত"
 
+msgid "Owner"
+msgstr "মালিক"
+
 msgid "Developer"
 msgstr "ডেভেলপার"
 
@@ -2655,6 +2569,9 @@ msgstr ""
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr ""
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
@@ -3104,6 +3021,9 @@ msgstr "সহায়তা তথ্য"
 msgid "Support Information for {0}"
 msgstr ""
 
+msgid "Email"
+msgstr "ইমেইল"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3251,6 +3171,14 @@ msgstr ""
 
 msgid "Add a Screenshot..."
 msgstr ""
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "চালিয়ে যান"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
@@ -6142,32 +6070,14 @@ msgstr "হালনাগাদগুলো"
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr ""
-
-msgid "Most popular this month"
-msgstr ""
-
-msgid "Most popular all time"
-msgstr ""
-
-msgid "Highest Rated"
-msgstr "সর্বচ্চো রেটেড"
-
 msgid "search for add-ons"
 msgstr "এড-অনস অনুসন্ধান করুন"
-
-msgid "search for collections"
-msgstr "সংগ্রহশালায় অনুসন্ধান করুন"
 
 msgid "search for themes"
 msgstr ""
 
 msgid "search for apps"
 msgstr "অ্যাপ অনুসন্ধান করুন"
-
-msgid "Sort By"
-msgstr "ক্রম অনুসারে বাছাই করা"
 
 msgid "Relevance"
 msgstr ""
