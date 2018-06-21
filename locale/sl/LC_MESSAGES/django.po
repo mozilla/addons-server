@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-21 08:23+0000\n"
+"PO-Revision-Date: 2018-06-21 12:04+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -5630,7 +5630,7 @@ msgstr "Poročila o zlorabi za {addon} in njegove razvijalce ({num})"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
-msgstr "Deluje z"
+msgstr "Deluje s"
 
 msgid "Visibility"
 msgstr "Vidnost"
@@ -7063,7 +7063,7 @@ msgid "Version History with Changelogs"
 msgstr "Zgodovina različic z dnevniki sprememb"
 
 msgid "{app} {min} and later"
-msgstr "{app} {min} in kasneje"
+msgstr "{app} {min} in novejšimi"
 
 msgid "Permanent link to this version"
 msgstr "Trajna povezava na to različico"
