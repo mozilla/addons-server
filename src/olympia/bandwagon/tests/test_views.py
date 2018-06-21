@@ -3,9 +3,10 @@ import json
 
 import django.test
 
-from django.forms import ValidationError
-from django.utils.datastructures import MultiValueDict
 from django.conf import settings
+from django.forms import ValidationError
+from django.test.utils import override_settings
+from django.utils.datastructures import MultiValueDict
 
 import pytest
 
@@ -248,6 +249,17 @@ class TestPrivacy(TestCase):
         assert r.status_code == 200
         assert pq(r.content)('.meta .view-stats').length == 0, (
             'Only add-on authors can view stats')
+
+    def test_contributer(self):
+        with override_settings(COLLECTION_FEATURED_THEMES_ID=self.c.id):
+            self.c.listed = False
+            self.c.save()
+            self.assertLoginRedirects(self.client.get(self.url), self.url)
+            user = UserProfile.objects.get(email='fligtar@gmail.com')
+            self.grant_permission(user, 'Collections:Contribute')
+            self.client.login(email='fligtar@gmail.com')
+            response = self.client.get(self.url)
+            assert response.status_code == 200
 
 
 class TestVotes(TestCase):
@@ -514,6 +526,40 @@ class TestCRUD(TestCase):
         r = self.client.post(url)
         assert r.status_code == 403
 
+    def test_acl_contributor(self):
+        collection = self.create_collection().context['collection']
+        with override_settings(COLLECTION_FEATURED_THEMES_ID=collection.id):
+            regular_user = UserProfile.objects.get(email='regular@mozilla.com')
+            self.grant_permission(regular_user, 'Collections:Contribute')
+            self.login_regular()
+            url_args = ['admin', self.slug]
+
+            url = reverse('collections.edit', args=url_args)
+            r = self.client.get(url)
+            assert r.status_code == 200
+            assert r.context['form'] is None
+            r = self.client.post(url)
+            assert r.status_code == 403
+
+            url = reverse('collections.edit_addons', args=url_args)
+            r = self.client.get(url)
+            # Passed acl check, but this view needs a POST.
+            assert r.status_code == 405
+            r = self.client.post(url, {'addon': 3615}, follow=True)
+            assert r.status_code == 200
+
+            url = reverse('collections.edit_privacy', args=url_args)
+            r = self.client.get(url)
+            assert r.status_code == 403
+            r = self.client.post(url)
+            assert r.status_code == 403
+
+            url = reverse('collections.delete', args=url_args)
+            r = self.client.get(url)
+            assert r.status_code == 403
+            r = self.client.post(url)
+            assert r.status_code == 403
+
     def test_acl_collections_edit(self):
         # Test users in group with 'Collections:Edit' are allowed.
         user = UserProfile.objects.get(email='regular@mozilla.com')
@@ -664,6 +710,14 @@ class TestChangeAddon(TestCase):
     def test_ownership(self):
         r = self.client.post(self.flig_add)
         assert r.status_code == 403
+
+    def test_contributer(self):
+        with override_settings(COLLECTION_FEATURED_THEMES_ID=self.flig.id):
+            user = UserProfile.objects.get(id=4043307)
+            self.grant_permission(user, 'Collections:Contribute')
+            response = self.client.post_ajax(
+                self.flig_add, {'addon_id': self.addon.id})
+            self.check_redirect(response)
 
     def test_no_addon(self):
         r = self.client.post(self.add)
@@ -1127,6 +1181,27 @@ class TestCollectionViewSetDetail(TestCase):
         assert response.status_code == 200
         assert response.data['id'] == collection.id
 
+    def test_not_listed_contributor(self):
+        self.collection.update(listed=False)
+
+        random_user = user_factory()
+        setting_key = 'COLLECTION_FEATURED_THEMES_ID'
+        with override_settings(**{setting_key: self.collection.id}):
+            self.client.login_api(random_user)
+            # Not their collection so not allowed.
+            response = self.client.get(self.url)
+            assert response.status_code == 403
+
+            self.grant_permission(random_user, 'Collections:Contribute')
+            # Now they can access it.
+            response = self.client.get(self.url)
+            assert response.status_code == 200
+            assert response.data['id'] == self.collection.id
+
+        # double check only the COLLECTION_FEATURED_THEMES_ID is allowed
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
     def test_404(self):
         # Invalid user.
         response = self.client.get(reverse_ns(
@@ -1397,6 +1472,21 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         # Just double-check we didn't steal their collection
         assert self.collection.author.id == random_user.id
 
+    def test_contributor_patch_fails(self):
+        self.client.login_api(self.user)
+        random_user = user_factory()
+        self.collection.update(author=random_user)
+        self.grant_permission(random_user, 'Collections:Contribute')
+        url = self.get_url(random_user)
+        setting_key = 'COLLECTION_FEATURED_THEMES_ID'
+        with override_settings(**{setting_key: self.collection.id}):
+            # Check setup is good and we can access the collection okay.
+            get_response = self.client.get(url)
+            assert get_response.status_code == 200
+            # But can't patch it.
+            response = self.send(url=url)
+            assert response.status_code == 403
+
 
 class TestCollectionViewSetDelete(TestCase):
     client_class = APITestClient
@@ -1440,6 +1530,21 @@ class TestCollectionViewSetDelete(TestCase):
         assert response.status_code == 204
         assert not Collection.objects.filter(id=self.collection.id).exists()
 
+    def test_contributor_fails(self):
+        self.client.login_api(self.user)
+        different_user = user_factory()
+        self.collection.update(author=different_user)
+        self.grant_permission(different_user, 'Collections:Contribute')
+        url = self.get_url(different_user)
+        setting_key = 'COLLECTION_FEATURED_THEMES_ID'
+        with override_settings(**{setting_key: self.collection.id}):
+            # Check setup is good and we can access the collection okay.
+            get_response = self.client.get(url)
+            assert get_response.status_code == 200
+            # But can't delete it.
+            response = self.client.delete(url)
+            assert response.status_code == 403
+
 
 class CollectionAddonViewSetMixin(object):
     def check_response(self, response):
@@ -1470,10 +1575,24 @@ class CollectionAddonViewSetMixin(object):
         self.check_response(self.send(self.url))
 
     def test_not_listed_admin(self):
+        self.collection.update(listed=False)
         admin_user = user_factory()
         self.grant_permission(admin_user, 'Collections:Edit')
         self.client.login_api(admin_user)
         self.check_response(self.send(self.url))
+
+    def test_contributor(self):
+        self.collection.update(listed=False)
+        random_user = user_factory()
+        self.grant_permission(random_user, 'Collections:Contribute')
+        self.client.login_api(random_user)
+        # should fail as self.collection isn't special
+        response = self.send(self.url)
+        assert response.status_code == 403
+        # But now with special collection will work
+        setting_key = 'COLLECTION_FEATURED_THEMES_ID'
+        with override_settings(**{setting_key: self.collection.id}):
+            self.check_response(self.send(self.url))
 
 
 class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):

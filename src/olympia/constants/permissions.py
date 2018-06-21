@@ -48,6 +48,8 @@ STATIC_THEMES_REVIEW = AclPermission('Addons', 'ThemeReview')
 
 # Can edit all collections.
 COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')
+# Can contribute to community managed collection: COLLECTION_FEATURED_THEMES_ID
+COLLECTIONS_CONTRIBUTE = AclPermission('Collections', 'Contribute')
 
 # Can view statistics for all addons, regardless of privacy settings.
 STATS_VIEW = AclPermission('Stats', 'View')
