@@ -21,6 +21,13 @@ POST_REVIEW_WEIGHT_HIGHEST_RISK = 150
 POST_REVIEW_WEIGHT_HIGH_RISK = 100
 POST_REVIEW_WEIGHT_MEDIUM_RISK = 20
 
+REPUTATION_CHOICES = {
+    0: _('No Reputation'),
+    1: _('Good (1)'),
+    2: _('Very Good (2)'),
+    3: _('Excellent (3)'),
+}
+
 # Reviewer Incentive Scores.
 # Note: Don't change these since they're used as keys in the database.
 REVIEWED_MANUAL = 0
