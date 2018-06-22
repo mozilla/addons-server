@@ -1384,24 +1384,9 @@ LOGGING = {
             'level': logging.ERROR,
             'propagate': True,
         },
-        'z.es': {
-            'handlers': ['mozlog'],
-            'level': logging.INFO,
-            'propagate': False
-        },
         'z.pool': {
             'handlers': ['mozlog'],
             'level': logging.ERROR,
-            'propagate': False
-        },
-        'z.redis': {
-            'handlers': ['mozlog'],
-            'level': logging.DEBUG,
-            'propagate': False
-        },
-        'z.task': {
-            'handlers': ['mozlog'],
-            'level': logging.DEBUG,
             'propagate': False
         }
     },

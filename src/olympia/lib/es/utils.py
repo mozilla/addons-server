@@ -15,8 +15,6 @@ from olympia.amo import search as amo_search
 from .models import Reindexing
 
 
-log = olympia.core.logger.getLogger('z.es')
-
 # shortcut functions
 is_reindexing_amo = Reindexing.objects.is_reindexing_amo
 flag_reindexing_amo = Reindexing.objects.flag_reindexing_amo

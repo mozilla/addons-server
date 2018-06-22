@@ -10,9 +10,6 @@ from olympia.amo.utils import send_mail
 from olympia.zadmin.models import EmailPreviewTopic
 
 
-log = olympia.core.logger.getLogger('z.task')
-
-
 @task(rate_limit='3/s')
 def admin_email(all_recipients, subject, body, preview_only=False,
                 from_email=settings.DEFAULT_FROM_EMAIL,

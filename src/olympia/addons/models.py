@@ -56,9 +56,6 @@ from olympia.versions.models import inherit_nomination, Version, VersionPreview
 from . import signals
 
 
-log = olympia.core.logger.getLogger('z.addons')
-
-
 MAX_SLUG_INCREMENT = 999
 SLUG_INCREMENT_SUFFIXES = set(range(1, MAX_SLUG_INCREMENT + 1))
 

@@ -9,9 +9,6 @@ from elasticsearch_dsl import Q, Search
 import olympia.core.logger
 
 
-log = olympia.core.logger.getLogger('z.es')
-
-
 DEFAULT_HOSTS = ['localhost:9200']
 DEFAULT_TIMEOUT = 5
 

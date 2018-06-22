@@ -9,9 +9,6 @@ from olympia.stats.models import (
     ThemeUpdateCount, ThemeUpdateCountBulk, ThemeUserCount)
 
 
-log = olympia.core.logger.getLogger('adi.themepopularitymovers')
-
-
 class Command(BaseCommand):
     """Compute the popularity and movers of themes from ADI data.
 

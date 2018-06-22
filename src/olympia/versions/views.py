@@ -23,8 +23,6 @@ from olympia.lib.cache import cache_get_or_set
 PER_PAGE = 30
 addon_view = addon_view_factory(Addon.objects.valid)
 
-log = olympia.core.logger.getLogger('z.versions')
-
 
 def _version_list_qs(addon):
     # We only show versions that have files with the right status.

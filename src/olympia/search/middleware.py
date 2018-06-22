@@ -5,9 +5,6 @@ import olympia.core.logger
 from olympia.amo.utils import render
 
 
-log = olympia.core.logger.getLogger('z.es')
-
-
 class ElasticsearchExceptionMiddleware(object):
 
     def process_exception(self, request, exception):

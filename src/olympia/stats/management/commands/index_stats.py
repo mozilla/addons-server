@@ -16,8 +16,6 @@ from olympia.stats.tasks import (
     index_update_counts)
 
 
-log = olympia.core.logger.getLogger('z.stats')
-
 # Number of days of stats to process in one chunk if we're indexing everything.
 STEP = 5
 

@@ -28,8 +28,6 @@ from olympia.users.templatetags.jinja_helpers import user_link
 from olympia.versions.models import Version
 
 
-log = olympia.core.logger.getLogger('z.amo.activity')
-
 # Number of times a token can be used.
 MAX_TOKEN_USE_COUNT = 100
 

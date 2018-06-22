@@ -14,9 +14,6 @@ from olympia.amo.utils import send_mail_jinja
 from olympia.translations.templatetags.jinja_helpers import truncate
 
 
-log = olympia.core.logger.getLogger('z.ratings')
-
-
 class RatingManager(ManagerBase):
 
     def __init__(self, include_deleted=False):

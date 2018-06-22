@@ -14,9 +14,6 @@ from olympia.bandwagon.models import (
     Collection, CollectionVote, CollectionWatcher)
 
 
-task_log = olympia.core.logger.getLogger('z.task')
-
-
 def update_collections_subscribers():
     """Update collections subscribers totals."""
 

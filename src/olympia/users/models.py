@@ -29,9 +29,6 @@ from olympia.users.notifications import NOTIFICATIONS_BY_ID
 from olympia.lib.cache import cache_get_or_set
 
 
-log = olympia.core.logger.getLogger('z.users')
-
-
 def generate_auth_id():
     """Generate a random integer to be used when generating API auth tokens."""
     # We use MySQL's maximum value for an unsigned int:

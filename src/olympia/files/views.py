@@ -19,9 +19,6 @@ from olympia.lib.cache import Message, Token
 from . import forms
 
 
-log = olympia.core.logger.getLogger('z.addons')
-
-
 def setup_viewer(request, file_obj):
     addon = file_obj.version.addon
     data = {

@@ -4,9 +4,6 @@ from olympia.amo.celery import task
 from olympia.tags.models import Tag
 
 
-task_log = olympia.core.logger.getLogger('z.task')
-
-
 @task(rate_limit='10/m')
 def update_all_tag_stats(pks, **kw):
     task_log.info("[%s@%s] Calculating stats for tags starting with %s" %

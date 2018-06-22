@@ -20,8 +20,6 @@ from .forms import ESSearchForm
 
 DEFAULT_NUM_PERSONAS = 21  # Results appear in a grid of 3 personas x 7 rows.
 
-log = olympia.core.logger.getLogger('z.search')
-
 
 def _personas(request):
     """Handle the request for persona searches."""

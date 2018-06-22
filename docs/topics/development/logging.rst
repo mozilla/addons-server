@@ -40,10 +40,7 @@ of addons-server. It sets up sensible defaults, but you can tweak them to your l
         LOGGING['loggers'].update({
             'z.paypal': {
                 'level': logging.DEBUG,
-            },
-            'z.es': {
-                'handlers': ['null'],
-            },
+            }
         })
 
 

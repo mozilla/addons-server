@@ -7,9 +7,6 @@ import olympia.core.logger
 from olympia.amo.models import FakeEmail
 
 
-log = olympia.core.logger.getLogger('z.amo.mail')
-
-
 class DevEmailBackend(BaseEmailBackend):
     """Log emails in the database, send allowed addresses for real though.
 

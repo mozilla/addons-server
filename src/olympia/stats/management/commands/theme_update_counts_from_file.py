@@ -13,9 +13,6 @@ from olympia.stats.models import ThemeUpdateCount
 from . import get_date, get_stats_data
 
 
-log = olympia.core.logger.getLogger('adi.themeupdatecount')
-
-
 class Command(BaseCommand):
     """Process hive results stored in different files and store them in the db.
 

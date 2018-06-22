@@ -10,9 +10,6 @@ from olympia import core
 from olympia.access import acl
 
 
-log = olympia.core.logger.getLogger('z.access')
-
-
 class UserAndAddrMiddleware(object):
 
     def process_request(self, request):

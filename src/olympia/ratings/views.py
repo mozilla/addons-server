@@ -35,7 +35,6 @@ from .serializers import RatingSerializer, RatingSerializerReply
 from .templatetags.jinja_helpers import user_can_delete_review
 
 
-log = olympia.core.logger.getLogger('z.ratings')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 
 

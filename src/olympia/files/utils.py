@@ -46,9 +46,6 @@ from olympia.users.utils import (
 from olympia.versions.compare import version_int as vint
 
 
-log = olympia.core.logger.getLogger('z.files.utils')
-
-
 class ParseError(forms.ValidationError):
     pass
 

@@ -10,7 +10,6 @@ from olympia.applications.models import AppVersion
 class Command(BaseCommand):
     help = ('Add a new version of an application. Syntax: \n'
             '    ./manage.py addnewversion <application_name> <version>')
-    log = olympia.core.logger.getLogger('z.appversions')
 
     def add_arguments(self, parser):
         parser.add_argument('application_name')

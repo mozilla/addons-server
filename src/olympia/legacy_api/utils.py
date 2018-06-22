@@ -12,9 +12,6 @@ from olympia.versions.compare import version_int
 from olympia.versions.models import Version
 
 
-log = olympia.core.logger.getLogger('z.api')
-
-
 def addon_to_dict(addon, disco=False, src='api'):
     """
     Renders an addon into a dict for the legacy API.

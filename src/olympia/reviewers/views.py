@@ -1127,7 +1127,6 @@ def unlisted_list(request):
 
 
 class AddonReviewerViewSet(GenericViewSet):
-    log = olympia.core.logger.getLogger('z.reviewers')
 
     @detail_route(
         methods=['post'], permission_classes=[AllowAnyKindOfReviewer])

@@ -12,8 +12,6 @@ import django.utils
 from django.core.wsgi import get_wsgi_application
 
 
-log = logging.getLogger('z.startup')
-
 # Remember when mod_wsgi loaded this file so we can track it in nagios.
 wsgi_loaded = datetime.now()
 

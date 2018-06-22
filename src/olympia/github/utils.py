@@ -16,9 +16,6 @@ from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.files.utils import SafeZip
 
 
-log = olympia.core.logger.getLogger('z.github')
-
-
 class GithubCallback(object):
 
     def __init__(self, data):

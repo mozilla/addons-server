@@ -29,8 +29,6 @@ from . import search
 _locals = threading.local()
 _locals.skip_cache = not settings.CACHE_MACHINE_ENABLED
 
-log = olympia.core.logger.getLogger('z.addons')
-
 
 @contextlib.contextmanager
 def use_master():

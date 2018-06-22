@@ -21,9 +21,6 @@ import olympia.core.logger
 from olympia import amo
 
 
-log = olympia.core.logger.getLogger('z.crypto')
-
-
 SIGN_FOR_APPS = (amo.FIREFOX.id, amo.ANDROID.id)
 
 

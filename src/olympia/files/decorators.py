@@ -18,9 +18,6 @@ from olympia.files.models import File
 from olympia.files.file_viewer import DiffHelper, FileViewer
 
 
-log = olympia.core.logger.getLogger('z.addons')
-
-
 def allowed(request, file):
     try:
         version = file.version

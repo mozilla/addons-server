@@ -23,9 +23,6 @@ from olympia.lib.es.utils import raise_if_reindex_in_progress
 from . import tasks
 
 
-log = olympia.core.logger.getLogger('z.cron')
-
-
 def gc(test_result=True):
     """Site-wide garbage collections."""
     def days_ago(days):

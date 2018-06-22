@@ -5,7 +5,6 @@ from django_statsd.clients import statsd
 import olympia.core.logger
 
 
-log = olympia.core.logger.getLogger('accounts.verify')
 IdentificationError = LookupError
 
 

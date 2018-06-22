@@ -84,13 +84,9 @@ CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 CELERY_BROKER_CONNECTION_TIMEOUT = 0.5
 
 LOGGING['loggers'].update({
-    'adi.updatecounts': {'level': logging.INFO},
     'amqp': {'level': logging.WARNING},
     'raven': {'level': logging.WARNING},
     'requests': {'level': logging.WARNING},
-    'z.addons': {'level': logging.INFO},
-    'z.task': {'level': logging.DEBUG},
-    'z.redis': {'level': logging.DEBUG},
     'z.pool': {'level': logging.ERROR},
 })
 

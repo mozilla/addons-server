@@ -15,9 +15,6 @@ from olympia import amo
 from olympia.users.models import DeniedName, UserProfile
 
 
-log = olympia.core.logger.getLogger('z.users')
-
-
 class UnsubscribeCode(object):
 
     @classmethod

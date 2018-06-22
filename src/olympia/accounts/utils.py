@@ -83,7 +83,6 @@ def camel_case(snake):
 def process_fxa_event(raw_body, **kwargs):
     """Parse and process a single firefox account event."""
     # Try very hard not to error out if there's junk in the queue.
-    log = getLogger('accounts.sqs')
     event_type = None
     try:
         body = json.loads(raw_body)
@@ -109,7 +108,6 @@ def process_fxa_event(raw_body, **kwargs):
 
 
 def process_sqs_queue(queue_url):
-    log = getLogger('accounts.sqs')
     log.info('Processing account events from %s', queue_url)
     try:
         region = queue_url.split('.')[1]

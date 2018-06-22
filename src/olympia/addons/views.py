@@ -63,7 +63,6 @@ from .utils import (
     get_creatured_ids, get_featured_ids, is_outcome_recommended)
 
 
-log = olympia.core.logger.getLogger('z.addons')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 addon_valid_disabled_pending_view = addon_view_factory(
     qs=Addon.objects.valid_and_disabled_and_pending)

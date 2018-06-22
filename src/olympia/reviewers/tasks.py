@@ -16,9 +16,6 @@ from olympia.reviewers.models import AutoApprovalSummary
 from olympia.versions.models import Version
 
 
-log = olympia.core.logger.getLogger('z.task')
-
-
 @task
 def add_commentlog(items, **kw):
     log.info('[%s@%s] Adding CommentLog starting with ActivityLog: %s' %

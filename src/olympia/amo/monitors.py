@@ -19,9 +19,6 @@ from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.applications.management.commands import dump_apps
 
 
-monitor_log = olympia.core.logger.getLogger('z.monitor')
-
-
 def memcache():
     memcache = getattr(settings, 'CACHES', {}).get('default')
     memcache_results = []

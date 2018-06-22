@@ -19,10 +19,6 @@ from olympia.lib import happyforms
 from olympia.zadmin.models import SiteEvent
 
 
-LOGGER_NAME = 'z.zadmin'
-log = olympia.core.logger.getLogger(LOGGER_NAME)
-
-
 class DevMailerForm(happyforms.Form):
     _choices = [('eula',
                  'Developers who have set up EULAs for active add-ons'),

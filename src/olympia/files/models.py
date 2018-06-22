@@ -38,8 +38,6 @@ from olympia.files.utils import SafeZip, write_crx_as_xpi
 from olympia.translations.fields import TranslatedField
 
 
-log = olympia.core.logger.getLogger('z.files')
-
 # Acceptable extensions.
 EXTENSIONS = ('.crx', '.xpi', '.jar', '.xml', '.json', '.zip')
 

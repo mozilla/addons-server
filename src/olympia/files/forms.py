@@ -15,9 +15,6 @@ from olympia.lib import happyforms
 from olympia.versions.models import Version
 
 
-log = olympia.core.logger.getLogger('z.files')
-
-
 class FileSelectWidget(widgets.Select):
     def render_options(self, choices, selected_choices):
         def option(files, label=None, deleted=False, channel=None):

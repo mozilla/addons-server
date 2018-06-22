@@ -61,9 +61,6 @@ from olympia.zadmin.models import ValidationResult, get_config
 from . import feeds, forms, signals, tasks
 
 
-log = olympia.core.logger.getLogger('z.devhub')
-
-
 # We use a session cookie to make sure people see the dev agreement.
 
 MDN_BASE = 'https://developer.mozilla.org/en-US/Add-ons'

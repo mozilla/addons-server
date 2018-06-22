@@ -12,9 +12,6 @@ import olympia.core.logger
 from . import models as context
 
 
-task_log = olympia.core.logger.getLogger('z.task')
-
-
 def login_required(f=None, redirect=True):
     """
     Like Django's login_required, but with to= instead of next=.

@@ -24,9 +24,6 @@ from olympia.versions import views as version_views
 from olympia.versions.models import Version
 
 
-log = olympia.core.logger.getLogger('signing')
-
-
 def handle_read_only_mode(fn):
     @functools.wraps(fn)
     def inner(*args, **kwargs):

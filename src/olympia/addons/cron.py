@@ -25,10 +25,6 @@ from olympia.lib.es.utils import raise_if_reindex_in_progress
 from olympia.stats.models import UpdateCount
 
 
-log = olympia.core.logger.getLogger('z.cron')
-task_log = olympia.core.logger.getLogger('z.task')
-
-
 def update_addon_average_daily_users():
     """Update add-ons ADU totals."""
     if not waffle.switch_is_active('local-statistics-processing'):
@@ -201,7 +197,6 @@ def hide_disabled_files():
 def unhide_disabled_files():
     # Files are getting stuck in /guarded-addons for some reason. This job
     # makes sure guarded add-ons are supposed to be disabled.
-    log = olympia.core.logger.getLogger('z.files.disabled')
     q = (Q(version__addon__status=amo.STATUS_DISABLED) |
          Q(version__addon__disabled_by_user=True))
     files = set(File.objects.filter(q | Q(status=amo.STATUS_DISABLED))

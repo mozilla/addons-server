@@ -37,8 +37,6 @@ from olympia.translations.fields import (
 from .compare import version_dict, version_int
 
 
-log = olympia.core.logger.getLogger('z.versions')
-
 VALID_SOURCE_EXTENSIONS = (
     '.zip', '.tar', '.7z', '.tar.gz', '.tgz', '.tbz', '.txz', '.tar.bz2',
     '.tar.xz'

@@ -13,9 +13,6 @@ from olympia.versions.compare import version_int
 from olympia.versions.models import Version
 
 
-log = olympia.core.logger.getLogger('z.task')
-
-
 MAIL_SUBJECT = u'Mozilla Add-ons: {addon} has been automatically signed on AMO'
 MAIL_MESSAGE = u"""
 Your add-on, {addon}, has been automatically signed for distribution in

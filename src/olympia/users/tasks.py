@@ -10,9 +10,6 @@ from olympia.amo.utils import resize_image
 from .models import UserProfile
 
 
-task_log = olympia.core.logger.getLogger('z.task')
-
-
 @task
 def delete_photo(dst, **kw):
     task_log.debug('[1@None] Deleting photo: %s.' % dst)

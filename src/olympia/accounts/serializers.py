@@ -19,8 +19,6 @@ from olympia.users.models import DeniedName, UserProfile
 from olympia.users.tasks import resize_photo
 from olympia.users import notifications
 
-log = olympia.core.logger.getLogger('accounts')
-
 
 class BaseUserSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
