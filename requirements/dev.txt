@@ -99,9 +99,9 @@ ipython_genutils==0.2.0 \
 decorator==4.2.1 \
     --hash=sha256:94d1d8905f5010d74bbbd86c30471255661a14187c45f8d7f3e5aa8540fdb2e5 \
     --hash=sha256:7d46dd9f3ea1cf5f06ee0e4e1277ae618cf48dfb10ada7c8427cd46c42702a0e
-ptyprocess==0.5.2 \
-    --hash=sha256:e8c43b5eee76b2083a9badde89fd1bbce6c8942d1045146e100b7b5e014f4f1a \
-    --hash=sha256:e64193f0047ad603b71f202332ab5527c5e52aa7c8b609704fc28c0dc20c4365
+ptyprocess==0.6.0 \
+    --hash=sha256:d7cc528d76e76342423ca640335bd3633420dc1366f258cb31d05e865ef5ca1f \
+    --hash=sha256:923f299cc5ad920c68f2bc0bc98b75b9f838b93b599941a6b63ddbc2476394c0
 pickleshare==0.7.4 \
     --hash=sha256:c9a2541f25aeabc070f12f452e1f2a8eae2abd51e1cd19e8430402bdf4c1d8b5 \
     --hash=sha256:84a9257227dfdd6fe1b4be1319096c20eb85ff1e82c7932f36efccfe1b09737b
