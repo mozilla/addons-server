@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-22 18:01+0000\n"
+"PO-Revision-Date: 2018-06-22 20:47+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3235,6 +3235,8 @@ msgid ""
 "PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
 "page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
+"PNG a JPG so njepodpěrujetej. Maksimalna a doporučena wulkosć za fota wobrazowki je 1280x800 pikselow. 640x400 pikselow je dobra alternatiwa, jeli maće jenož mjeńše wobrazy. Fota wobrazowki na wašej"
+" lisćinowej stronje jasnje šansy powyšeja, zo so waš přidatk instaluje a na startowej stronje předstaja."
 
 msgid "Continue"
 msgstr "Dale"
@@ -4366,34 +4368,29 @@ msgstr[1] "{0} warnowani"
 msgstr[2] "{0} warnowanja"
 msgstr[3] "{0} warnowanjow"
 
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zastajće slědowanje Facebooka {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Zastajće skryte přesćěhowaki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid " Block invisible trackers and spying ads that follow you around the web."
 msgstr " Blokujće njewidźomne přesćěhowaki a spionowace wabjenje, kotrež wam we webje slěduja."
 
-#, fuzzy
 msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "Přemsylće rajtarki nowo {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Přiměrće strony noweho rajtarka {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr "Wužiwajće rjanu nowu stronu z přiměrujomnymi pozadkami, informacijemi wo lokalnym wjedrje a wjace."
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Přemsylće rajtarki nowo {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Přełožujće lochko {start_sub_heading}z {addon_name} {end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Wuzběhńće tekst, klikńće z prawej tastu a přełožće hnydom."
 
-#, fuzzy
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pytajće wobrazy {start_sub_heading}z {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Perform reverse image searches from an array of engines."
-msgstr "Wuwjedźće wróćopytanja wobrazow z rjadom pytawow."
+msgstr "Přewjedźće wróćopytanja wobrazow z rjadom pytawow."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sćehńće wideja {start_sub_heading}z {addon_name}{end_sub_heading}"
@@ -4847,11 +4844,9 @@ msgstr "Pohódnoćće přidatki na sydle. Awtorojo přidatkow najskerje swoje p�
 msgid "I have a question"
 msgstr "Mam prašenje"
 
-#, fuzzy, python-format
+#, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr ""
-"Dobre městno, hdźež móžeće započeć, su naše <a href=\"%(faq_url)s\"><abbr title=\"Huste prašenja\">HUP</abbr></a>. Jeli tam žanu wotmołwu namakaće, móžeće so <a href=\"%(forum_url)s\">w našich "
-"forumach prašeć</a>."
+msgstr "Dobre městno, hdźež móžeće započeć, je naša <a href=\"%(sumo_url)s\">Pomoc</a> Mozilla. Jeli tam žanu wotmołwu namakaće, móžeće so <a href=\"%(forum_url)s\">w našich forumach prašeć</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -4860,11 +4855,8 @@ msgstr "Jeli dyrbiće so woprawdźe z někim z teama Mozilla do zwiska stajić, 
 msgid "Who works on this website?"
 msgstr "Štó na tutym websydle dźěła?"
 
-#, fuzzy
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
-msgstr ""
-"Za lěta je wjele ludźi k tutomu websydłu přinošowało, dobrowólnicy ze zhromadźenstwa kaž tež AMO-team. Lisćinu wuznamnych sobuskutkowarjow namakaće na našej stronje <a href=\"%(url)s\"> "
-"dźakprajenjow</a>."
+msgstr "Za lěta je wjele ludźi k tutomu websydłu přinošowało, dobrowólnicy ze zhromadźenstwa kaž tež AMO-team."
 
 msgid "Sections"
 msgstr "Wotrězki"
