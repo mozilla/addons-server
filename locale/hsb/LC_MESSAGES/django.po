@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-22 17:25+0000\n"
+"PO-Revision-Date: 2018-06-22 18:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2594,7 +2594,7 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategorije njedadźa so změnić, mjeztym so waš přidatk předstaja."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr ""
+msgstr "Přidatki za Thunderbird a SeaMonkey so nětko na addons.thunderbird.net nalistuja a wothladuja. Móžeće samsne konto wužiwać, zo byšće swoje přidatki na nowym sydle aktualizował."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Wot Firefox 53 móža nowe rozšěrjenja na tutym websydle jenož WebExtensions być."
@@ -2603,7 +2603,7 @@ msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVer
 msgstr "Zestarjene rozšěrjenja z Firefox 57 abo nowšimi kompatibelne njejsu. Wužiwajće maxVersion 56.* abo niše."
 
 msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr ""
+msgstr "Rěčne pakćiki stareho typa so hižo njepodpěruja. Instalowanski manifest WebExtensions je trěbny. Hlejće {mdn_link} za dalše podrobnosće."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Dowolujemy a poručamy aktualizaciju, ale njemóžeće tutón proces přewobroćić. Hdyž waši wužiwarjo su WebExtension instalowali, njemóža hižo přidatk stareho typa instalować."
@@ -4378,7 +4378,7 @@ msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_hea
 msgstr "Přemsylće rajtarki nowo {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Wužiwajće rjanu nowu stronu z přiměrujomnymi pozadkami, informacijemi wo lokalnym wjedrje a wjace."
 
 #, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6674,7 +6674,7 @@ msgid "Occupation"
 msgstr "Powołanje"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "Móžeće swoju e-mejlowu adresu na Firefox Accounts změnić."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Tutón URL ma njepłaćiwy format. Płaćiwe URL tak wupadaja: http://example.com/moja_strona."
