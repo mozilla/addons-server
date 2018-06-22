@@ -401,7 +401,6 @@ class BaseCompatFormSet(BaseModelFormSet):
         super(BaseCompatFormSet, self).__init__(*args, **kwargs)
         # We always want a form for each app, so force extras for apps
         # the add-on does not already have.
-        qs = kwargs['queryset'].values_list('application', flat=True)
         version = self.form_kwargs.get('version')
         static_theme = version and version.addon.type == amo.ADDON_STATICTHEME
         if static_theme:
@@ -411,10 +410,19 @@ class BaseCompatFormSet(BaseModelFormSet):
         else:
             available_apps = amo.APP_USAGE
         self.can_delete = not static_theme  # No tinkering with apps please.
-        apps = [a for a in available_apps if a.id not in qs]
-        self.initial = ([{} for _ in qs] +
-                        [{'application': a.id} for a in apps])
-        self.extra = len(available_apps) - len(self.forms)
+
+        # Only display the apps we care about, if somehow obsolete apps were
+        # recorded before.
+        self.queryset = self.queryset.filter(
+            application__in=[a.id for a in available_apps])
+        initial_apps = self.queryset.values_list('application', flat=True)
+
+        self.initial = ([{'application': appver.application,
+                          'min': appver.min.pk,
+                          'max': appver.max.pk} for appver in self.queryset] +
+                        [{'application': app.id} for app in available_apps
+                         if app.id not in initial_apps])
+        self.extra = max(len(available_apps) - len(self.forms), 0)
 
         # After these changes, the forms need to be rebuilt. `forms`
         # is a cached property, so we delete the existing cache and

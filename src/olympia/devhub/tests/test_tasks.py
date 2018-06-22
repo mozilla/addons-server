@@ -1052,6 +1052,23 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         assert results['messages'][0]['id'] == [
             'validation', 'messages', 'thunderbird_and_seamonkey_migration']
 
+    def test_dont_disallow_webextensions_with_thunderbird_waffle(self):
+        # Webextensions should not be disallowed when the
+        # disallow-thunderbird-and-seamonkey waffle is enabled.
+        data = {
+            'messages': [],
+            'errors': 0,
+            'detected_type': 'extension',
+            'metadata': {
+                'is_webextension': True,
+                'is_extension': True,
+            }
+        }
+        self.create_switch('disallow-thunderbird-and-seamonkey')
+        results = tasks.annotate_legacy_addon_restrictions(
+            data.copy(), is_new_upload=True)
+        assert results['errors'] == 0
+
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
 def test_send_welcome_email(send_html_mail_jinja_mock):
@@ -1362,8 +1379,8 @@ class TestAPIKeyInSubmission(TestCase):
         upload.refresh_from_db()
 
         # https://github.com/mozilla/addons-server/issues/8208
-        # causes this to be 2 (and invalid) instead of 0 (and valid).
+        # causes this to be 1 (and invalid) instead of 0 (and valid).
         # The invalid filename error is caught and raised outside of this
         # validation task.
-        assert upload.processed_validation['errors'] == 2
+        assert upload.processed_validation['errors'] == 1
         assert not upload.valid
