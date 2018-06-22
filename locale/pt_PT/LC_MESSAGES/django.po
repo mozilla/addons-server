@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-15 23:18+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-21 18:22+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -820,9 +820,6 @@ msgstr "Temas"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Quer mais personalização? Experimente <b>Temas completos</b>"
 
-msgid "Most Followers"
-msgstr "Maior número de seguidores"
-
 msgid "Collections"
 msgstr "Coleções"
 
@@ -943,21 +940,6 @@ msgstr ""
 "Se a sua aplicação suportada não requer um ficheiro manifest, você ainda tem de incluir um com as propriedades requeridas como especificado "
 "%(amo_manifests_mdn_link_open)saqui%(amo_manifests_mdn_link_close)s."
 
-msgid "Contributors"
-msgstr "Contribuidores"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Coleções :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Coleções são grupos de extras relacionados que qualquer um pode criar e partilhar."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Coleções :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Apenas eu posso ver esta coleção."
 
@@ -1009,20 +991,14 @@ msgstr "Este URL personalizado não pode ser utilizado."
 msgid "This add-on already belongs to the collection"
 msgstr "Este extra já pertence à coleção"
 
-msgid "Name"
-msgstr "Nome"
-
-msgid "Recently Updated"
-msgstr "Recentemente atualizado"
-
-msgid "Recently Popular"
-msgstr "Recentemente popular"
-
 msgid "Added"
 msgstr "Adicionado"
 
 msgid "Popularity"
 msgstr "Popularidade"
+
+msgid "Name"
+msgstr "Nome"
 
 msgid "Collection created!"
 msgstr "Coleção criada!"
@@ -1131,17 +1107,14 @@ msgstr "Ir"
 msgid "What are Collections?"
 msgstr "O que são coleções?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Coleções são grupos de extras relacionados que qualquer um pode criar e partilhar."
+
 msgid "Explore Collections"
 msgstr "Explorar coleções"
 
 msgid "Common Tags"
 msgstr "Etiquetas comuns"
-
-msgid "More by this User"
-msgstr "Mais deste utilizador"
-
-msgid "See all collections by this user"
-msgstr "Ver todas as coleções deste utilizador"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1232,65 +1205,8 @@ msgstr "Editar {0}"
 msgid "Description"
 msgstr "Descrição"
 
-msgid "Contributors & More"
-msgstr "Contribuidores e Mais"
-
 msgid "Save Changes"
 msgstr "Guardar alterações"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "Proprietário"
-
-msgid "Make Owner"
-msgstr "Tornar proprietário"
-
-msgid "Remove this user as a contributor"
-msgstr "Remover este utilizador como um contribuidor"
-
-msgid "Remove"
-msgstr "Remover"
-
-msgid "Collection Contributors"
-msgstr "Contribuidores da coleção"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"Pode adicionar múltiplos contribuidores a esta coleção. Um contribuidor pode adicionar e remover extras desta coleção, mas não pode alterar o nome ou descrição da mesma. Para adicionar um "
-"contribuidor, introduza o respetivo endereço email na caixa abaixo. Os contribuidores deverão ter uma conta do Extras da Mozilla."
-
-msgid "User"
-msgstr "Utilizador"
-
-msgid "Email"
-msgstr "Email"
-
-# Column name in a table.
-msgid "Role"
-msgstr "Papel"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Escreva o endereço de email do contribuinte a adicionar"
-
-msgid "Add Contributor"
-msgstr "Adicionar contribuinte"
-
-msgid "Contributor"
-msgstr "Contribuinte"
-
-msgid "Admin Settings"
-msgstr "Definições de administrador"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Aviso:</b> Ao alterar o proprietário desta coleção, já não a poderá editar. Apenas poderá adicionar ou remover extras."
-
-msgid "Continue"
-msgstr "Continuar"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "ou <a id=\"change-owner-cancel\" href=\"#\">Cancelar</a>"
 
 msgid "Remove from favorites"
 msgstr "Remover dos favoritos"
@@ -1305,27 +1221,9 @@ msgstr "Coleções de {0}"
 msgid "No collections found."
 msgstr "Nenhuma coleção encontrada."
 
-msgid "Most-Followed Collections"
-msgstr "Coleções com maior número de seguidores"
-
-msgid "Newest Collections"
-msgstr "Coleções mais recentes"
-
-msgid "Collections by Name"
-msgstr "Coleções por nome"
-
-msgid "Recently Updated Collections"
-msgstr "Coleções atualizadas recentemente"
-
-msgid "Recently Popular Collections"
-msgstr "Coleções recentemente populares"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "As coleções são grupos de extras relacionados que qualquer um pode criar e partilhar. Explore as coleções criadas por outros utilizadores ou <a href=\"%(url)s\">crie a sua</a>."
-
-msgid "Subscribe"
-msgstr "Subscrever"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1363,6 +1261,9 @@ msgstr "Extra"
 
 msgid "Comment"
 msgstr "Comentário"
+
+msgid "Remove"
+msgstr "Remover"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Insira o nome do extra a incluir"
@@ -1430,6 +1331,9 @@ msgstr "Maior número de utilizadores"
 msgid "Weekly Downloads"
 msgstr "Transferências semanais"
 
+msgid "Recently Updated"
+msgstr "Recentemente atualizado"
+
 msgid "Up & Coming"
 msgstr "Futuramente"
 
@@ -1449,6 +1353,9 @@ msgstr "{0}: Extras em destaque"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Sem extras em destaque em {0}."
+
+msgid "Subscribe"
+msgstr "Subscrever"
 
 msgid "Featured Add-ons"
 msgstr "Extras em destaque"
@@ -2059,6 +1966,10 @@ msgstr "Marcado para uma análise mais aprofundada"
 msgid "Unlisted"
 msgstr "Não listada"
 
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "Proprietário"
+
 msgid "Developer"
 msgstr "Programador"
 
@@ -2651,6 +2562,9 @@ msgstr "A partir do Firefox 53, os novos extras neste site só podem ser WebExte
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Os extras de legado não são compatíveis com o Firefox 57 ou superior. Utilize um maxVersion de 56.* ou inferior."
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr "Os pacotes de idiomas de legado para o Firefox já não são suportados. Um manifesto de instalação de WebExtensions é necessário. Veja {mdn_link} para mais detalhes."
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Permitimos e encorajamos uma atualização, mas não poderá reverter este processo. Assim que os seus utilizadores tenham a WebExtension instalada, não poderão instalar um extra de legado."
 
@@ -3110,6 +3024,9 @@ msgstr "Informação de suporte"
 msgid "Support Information for {0}"
 msgstr "Informação de suporte para {0}"
 
+msgid "Email"
+msgstr "Email"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
@@ -3269,6 +3186,16 @@ msgstr "Favor fornecer uma legenda para esta imagem:"
 
 msgid "Add a Screenshot..."
 msgstr "Adicionar um Screenshot ..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+"PNG e JPG são suportados. O tamanho máximo e recomendado para capturas de ecrã é de 1280x800 pixeis. 640x400 pixeis é uma boa alternativa se apenas tem imagens mais pequenas. Ter capturas de ecrã na"
+" sua página de listagem aumenta grandemente as chances de ser instalada e destacada na página inicial."
+
+msgid "Continue"
+msgstr "Continuar"
 
 # 88%
 msgid "Can others share your Add-on, as long as you're given credit?"
@@ -6135,32 +6062,14 @@ msgstr "Atualizações"
 msgid "Maximum query length exceeded."
 msgstr "Comprimento máximo de consulta excedido."
 
-msgid "Most popular this week"
-msgstr "Mais populares esta semana"
-
-msgid "Most popular this month"
-msgstr "Mais populares este mês"
-
-msgid "Most popular all time"
-msgstr "Mais populares de sempre"
-
-msgid "Highest Rated"
-msgstr "Avaliação mais alta"
-
 msgid "search for add-ons"
 msgstr "pesquisar extras"
-
-msgid "search for collections"
-msgstr "pesquisar coleções"
 
 msgid "search for themes"
 msgstr "procurar por temas"
 
 msgid "search for apps"
 msgstr "pesquisar apps"
-
-msgid "Sort By"
-msgstr "Ordenar por"
 
 msgid "Relevance"
 msgstr "Relevância"

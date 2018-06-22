@@ -403,7 +403,8 @@ def _side_nav(context, addon_type, cat):
 @jinja2.contextfunction
 def site_nav(context):
     app = context['request'].APP.id
-    return cache_get_or_set('site-nav-%s' % app, lambda: _site_nav(context))
+    cache_key = make_key('site-nav-%s' % app, normalize=True)
+    return cache_get_or_set(cache_key, lambda: _site_nav(context))
 
 
 def _site_nav(context):

@@ -5,8 +5,7 @@ from django.utils.http import urlencode
 import mock
 import requests
 
-from olympia.amo.tests import AMOPaths, TestCase
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.tests import AMOPaths, TestCase, reverse_ns
 from olympia.files.models import FileUpload
 from olympia.github.tests.test_github import (
     GithubBaseTestCase, example_pull_request)
@@ -16,7 +15,7 @@ class TestGithubView(AMOPaths, GithubBaseTestCase, TestCase):
 
     def setUp(self):
         super(TestGithubView, self).setUp()
-        self.url = reverse('v3:github.validate')
+        self.url = reverse_ns('github.validate')
 
     def post(self, data, header=None, data_type=None):
         data_type = data_type or 'application/json'

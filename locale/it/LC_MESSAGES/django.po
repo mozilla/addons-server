@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-17 20:38+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2015-10-20 13:29+0000\n"
+"Last-Translator: Francesco Lodolo <francesco.lodolo@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -834,9 +834,6 @@ msgstr "Temi"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Vuoi ancora più personalizzazione? Prova i <b>temi completi</b>."
 
-msgid "Most Followers"
-msgstr "Più seguiti"
-
 msgid "Collections"
 msgstr "Raccolte"
 
@@ -957,21 +954,6 @@ msgstr ""
 "Anche se l’applicazione per cui è stato sviluppato il componente aggiuntivo non richiede un file manifesto, esso deve essere incluso ugualmente seguendo le istruzioni riportate in "
 "%(amo_manifests_mdn_link_open)squesta pagina%(amo_manifests_mdn_link_close)s."
 
-msgid "Contributors"
-msgstr "Collaboratori"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Raccolte :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Le raccolte sono gruppi di componenti aggiuntivi che ogni utente può creare e condividere."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Raccolte :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Solo io posso visualizzare questa raccolta."
 
@@ -1023,20 +1005,14 @@ msgstr "Questo indirizzo personalizzato non può essere utilizzato."
 msgid "This add-on already belongs to the collection"
 msgstr "Questo componente aggiuntivo appartiene già alla raccolta"
 
-msgid "Name"
-msgstr "Nome"
-
-msgid "Recently Updated"
-msgstr "Aggiornati di recente"
-
-msgid "Recently Popular"
-msgstr "Popolari (recenti)"
-
 msgid "Added"
 msgstr "Aggiunto"
 
 msgid "Popularity"
 msgstr "Popolarità"
+
+msgid "Name"
+msgstr "Nome"
 
 msgid "Collection created!"
 msgstr "Raccolta creata!"
@@ -1145,17 +1121,14 @@ msgstr "Vai"
 msgid "What are Collections?"
 msgstr "Che cosa sono le raccolte?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Le raccolte sono gruppi di componenti aggiuntivi che ogni utente può creare e condividere."
+
 msgid "Explore Collections"
 msgstr "Esplora le raccolte"
 
 msgid "Common Tags"
 msgstr "Etichette più comuni"
-
-msgid "More by this User"
-msgstr "Altro da questo utente"
-
-msgid "See all collections by this user"
-msgstr "Visualizza tutte le raccolte di questo utente"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1246,66 +1219,8 @@ msgstr "Modifica {0}"
 msgid "Description"
 msgstr "Descrizione"
 
-msgid "Contributors & More"
-msgstr "Collaboratori e altro"
-
 msgid "Save Changes"
 msgstr "Salva modifiche"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "Proprietario"
-
-msgid "Make Owner"
-msgstr "Rendi proprietario"
-
-msgid "Remove this user as a contributor"
-msgstr "Rimuovi questo utente dal ruolo di collaboratore"
-
-msgid "Remove"
-msgstr "Elimina"
-
-msgid "Collection Contributors"
-msgstr "Collaboratori alla raccolta"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"Puoi aggiungere più collaboratori alla raccolta. Un collaboratore possiede i permessi necessari per aggiungere o rimuovere i componenti aggiuntivi dalla raccolta, ma non quelli per modificare il "
-"nome e la descrizione della raccolta stessa. Per aggiungere un collaboratore inserisci la sua email nel campo sottostante. Per poter diventare un collaboratore, è necessario che l’indirizzo email "
-"sia associato a un account registrato su Mozilla Add-ons."
-
-msgid "User"
-msgstr "Utente"
-
-msgid "Email"
-msgstr "Email"
-
-# Column name in a table.
-msgid "Role"
-msgstr "Ruolo"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Inserire l’indirizzo email del collaboratore da aggiungere"
-
-msgid "Add Contributor"
-msgstr "Aggiungi collaboratore"
-
-msgid "Contributor"
-msgstr "Collaboratore"
-
-msgid "Admin Settings"
-msgstr "Impostazioni amministratore"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Attenzione:</b> modificando il proprietario di questa raccolta, non sarai più in grado di modificarla. Avrai solo la possibilità di aggiungere o rimuovere componenti aggiuntivi."
-
-msgid "Continue"
-msgstr "Continua"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "oppure <a id=\"change-owner-cancel\" href=\"#\">Annulla</a>"
 
 msgid "Remove from favorites"
 msgstr "Rimuovi dai preferiti"
@@ -1320,27 +1235,9 @@ msgstr "Raccolte di {0}"
 msgid "No collections found."
 msgstr "Nessuna raccolta trovata."
 
-msgid "Most-Followed Collections"
-msgstr "Raccolte più seguite"
-
-msgid "Newest Collections"
-msgstr "Raccolte più recenti"
-
-msgid "Collections by Name"
-msgstr "Raccolte per nome"
-
-msgid "Recently Updated Collections"
-msgstr "Raccolte aggiornate di recente"
-
-msgid "Recently Popular Collections"
-msgstr "Raccolte popolari (recenti)"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Le raccolte sono gruppi di componenti aggiuntivi che ogni utente può creare e condividere. Esplora le raccolte create da altri utenti o <a href=\"%(url)s\">crea la tua</a>."
-
-msgid "Subscribe"
-msgstr "Sottoscrivi"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1378,6 +1275,9 @@ msgstr "Componente aggiuntivo"
 
 msgid "Comment"
 msgstr "Commento"
+
+msgid "Remove"
+msgstr "Elimina"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Inserisci il nome del componente aggiuntivo da includere"
@@ -1445,6 +1345,9 @@ msgstr "Maggior numero di utenti"
 msgid "Weekly Downloads"
 msgstr "Download per settimana"
 
+msgid "Recently Updated"
+msgstr "Aggiornati di recente"
+
 msgid "Up & Coming"
 msgstr "Emergenti"
 
@@ -1464,6 +1367,9 @@ msgstr "{0}: componenti aggiuntivi consigliati"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Nessun componente aggiuntivo consigliato in {0}."
+
+msgid "Subscribe"
+msgstr "Sottoscrivi"
 
 msgid "Featured Add-ons"
 msgstr "Componenti aggiuntivi consigliati"
@@ -2074,6 +1980,10 @@ msgstr "Contrassegnato per un’ulteriore revisione"
 msgid "Unlisted"
 msgstr "Esterno"
 
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "Proprietario"
+
 msgid "Developer"
 msgstr "Sviluppatore"
 
@@ -2616,7 +2526,7 @@ msgid "Version doesn't match"
 msgstr "La versione non corrisponde"
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr "Una versione {version} è stata già caricata e poi eliminata."
+msgstr "La versione {version} è stata già caricata e poi eliminata."
 
 msgid "Version {version} already exists."
 msgstr "La versione {version} esiste già."
@@ -2668,6 +2578,9 @@ msgstr "A partire dalla versione 53 di Firefox, su questo sito verranno accettat
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "I componenti aggiuntivi che utilizzano tecnologie obsolete non sono compatibili con Firefox 57 o superiore. Si raccomanda di impostare il campo maxVersion con un valore non superiore a 56."
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -3149,6 +3062,9 @@ msgstr "Informazioni per il supporto"
 msgid "Support Information for {0}"
 msgstr "Informazioni per il supporto per {0}"
 
+msgid "Email"
+msgstr "Email"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
@@ -3309,6 +3225,14 @@ msgstr "Inserisci una didascalia per questa anteprima:"
 
 msgid "Add a Screenshot..."
 msgstr "Aggiungi un’anteprima…"
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Continua"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Autorizzi altri a condividere il tuo componente aggiuntivo, a condizione di venire riconosciuto come autore?"
@@ -4966,7 +4890,7 @@ msgstr ""
 "recensioni che non rispettano le linee guida."
 
 msgid "Do:"
-msgstr "Si:"
+msgstr "Sì:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr "Scrivi della tua esperienza con il componente aggiuntivo come se la stessi raccontando a un amico."
@@ -4975,7 +4899,7 @@ msgid "Keep reviews concise and easy to understand."
 msgstr "Scrivi le tue recensioni in modo sintetico e chiaro."
 
 msgid "Give specific and helpful details. For example:"
-msgstr "Condividi dettagli specifici e utili. Per esempio:"
+msgstr "Fornisci informazioni specifiche e utili, per esempio:"
 
 msgid "Did the add-on work as you expected it to?"
 msgstr "Il componente aggiuntivo funziona come ti aspettavi?"
@@ -4996,7 +4920,7 @@ msgid "Take a moment to read your review before submitting it to minimize typos.
 msgstr "Prima di pubblicare la recensione, rileggila con calma per correggere eventuali errori di battitura."
 
 msgid "Don’t:"
-msgstr "Non devi:"
+msgstr "Non:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr "Inserire recensioni di una parola del tipo “Bello!”, “Fantastico”, “terribile”."
@@ -5009,22 +4933,22 @@ msgstr ""
 "sviluppatore del singolo componente, che si trovano nella colonna laterale accanto alla sezione “Informazioni su questo componente aggiuntivo”."
 
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr "scrivere recensioni di componenti aggiuntivi che non hai provato personalmente;"
+msgstr "Scrivere recensioni di componenti aggiuntivi che non hai provato personalmente."
 
 msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "usare un linguaggio volgare, osceno o che possa essere considerato fastidioso;"
+msgstr "Usare un linguaggio volgare, osceno o che possa essere considerato fastidioso."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
 msgstr "Includere codice HTML, link, codice sorgente o frammenti di codice: le recensioni devono contenere unicamente testo."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "fare affermazioni false, screditare o insultare gli autori dei componenti aggiuntivi;"
+msgstr "Fare affermazioni false, screditare o insultare gli autori dei componenti aggiuntivi."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
 msgstr "Includere indirizzi email, numeri di telefono o altre informazioni personali proprie o altrui."
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "inserire recensioni su componenti aggiuntivi sviluppati o rappresentati da te o dall’organizzazione a cui appartieni."
+msgstr "Inserire recensioni su componenti aggiuntivi sviluppati o rappresentati da te o dall’organizzazione a cui appartieni."
 
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
@@ -5943,7 +5867,7 @@ msgid "Force-enable add-on"
 msgstr "Forza l'attivazione del componente aggiuntivo"
 
 msgid "Disable Auto-Approval"
-msgstr "Disabilita l'approvazione automatica"
+msgstr "Disattiva l’approvazione automatica"
 
 msgid "Enable Auto-Approval"
 msgstr "Attiva l’approvazione automatica"
@@ -6190,32 +6114,14 @@ msgstr "Aggiornamenti"
 msgid "Maximum query length exceeded."
 msgstr "Superata lunghezza massima consentita della query."
 
-msgid "Most popular this week"
-msgstr "Più popolari di questa settimana"
-
-msgid "Most popular this month"
-msgstr "Più popolari di questo mese"
-
-msgid "Most popular all time"
-msgstr "Più popolari di sempre"
-
-msgid "Highest Rated"
-msgstr "Più votati"
-
 msgid "search for add-ons"
 msgstr "cerca tra i comp. aggiuntivi"
-
-msgid "search for collections"
-msgstr "cerca una raccolta"
 
 msgid "search for themes"
 msgstr "cerca per tema"
 
 msgid "search for apps"
 msgstr "cerca tra le app"
-
-msgid "Sort By"
-msgstr "Ordina per"
 
 msgid "Relevance"
 msgstr "Pertinenza"

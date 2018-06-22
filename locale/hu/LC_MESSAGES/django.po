@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-17 16:35+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-21 14:51+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -142,7 +142,7 @@ msgid "URL domain must be one of [%s], or a subdomain."
 msgstr "Az URL domain a következők egyike kell legyen: [%s], vagy egy aldomain."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "Láthatóság"
+msgstr "A kategóriákat nem lehet megváltoztatni, amíg ez a kiegészítő az alkalmazás esetén ki van emelve."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -155,10 +155,10 @@ msgstr "Az egyéb kategória nem vonható össze más kategóriákkal."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Az alapértelmezett nyelv módosítása előtt meg kell adnia a bevét, összefoglalóját és a leírást az adott nyelven. A következőt hagyta ki: %s."
+msgstr "Az alapértelmezett nyelv módosítása előtt meg kell adnia a nevét, összefoglalóját és a leírását is az adott nyelven. A következőt hagyta ki: %s."
 
 msgid "A license must be selected."
-msgstr "Ki kell választani a licencet."
+msgstr "Ki kell választani egy licencet."
 
 msgid "Give Your Theme a Name."
 msgstr "Adjon egy nevet a témának."
@@ -828,9 +828,6 @@ msgstr "Témák"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Még több testreszabhatóságot szeretne? Próbálja ki a <b>Teljes témákat</b>"
 
-msgid "Most Followers"
-msgstr "Legtöbb követő"
-
 msgid "Collections"
 msgstr "Gyűjtemények"
 
@@ -949,21 +946,6 @@ msgid ""
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr "Ha a támogatott alkalmazás nem igényli a jegyzékfájlt, akkor is mellékelni kell egyet az %(amo_manifests_mdn_link_open)sitt%(amo_manifests_mdn_link_close)s meghatározott tartalommal."
 
-msgid "Contributors"
-msgstr "Közreműködők"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Gyűjtemények :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "A gyűjtemények bárki által létrehozott és megosztott kiegészítők egy csoportja."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Gyűjtemények :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Csak én láthatom ezt a gyűjteményt."
 
@@ -1015,20 +997,14 @@ msgstr "Ez az egyéni URL nem használható."
 msgid "This add-on already belongs to the collection"
 msgstr "Ez a kiegészítő már egy másik gyűjtemény része"
 
-msgid "Name"
-msgstr "Név"
-
-msgid "Recently Updated"
-msgstr "Legutóbb frissítve"
-
-msgid "Recently Popular"
-msgstr "Jelenleg népszerű"
-
 msgid "Added"
 msgstr "Hozzáadva"
 
 msgid "Popularity"
 msgstr "Népszerűség"
+
+msgid "Name"
+msgstr "Név"
 
 msgid "Collection created!"
 msgstr "A gyűjtemény elkészült!"
@@ -1137,17 +1113,14 @@ msgstr "Ugrás"
 msgid "What are Collections?"
 msgstr "Mik azok a gyűjtemények?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "A gyűjtemények bárki által létrehozott és megosztott kiegészítők egy csoportja."
+
 msgid "Explore Collections"
 msgstr "Gyűjtemények felfedezése"
 
 msgid "Common Tags"
 msgstr "Általános címkék"
-
-msgid "More by this User"
-msgstr "További gyűjtemények ettől az alkotótól"
-
-msgid "See all collections by this user"
-msgstr "Összes gyűjtemény ettől a felhasználótól"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1238,65 +1211,8 @@ msgstr "{0} szerkesztése"
 msgid "Description"
 msgstr "Leírás"
 
-msgid "Contributors & More"
-msgstr "Közreműködök és egyebek"
-
 msgid "Save Changes"
 msgstr "Változások mentése"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "Tulajdonos"
-
-msgid "Make Owner"
-msgstr "Tulajdonos"
-
-msgid "Remove this user as a contributor"
-msgstr "Felhasználó eltávolítása a közreműködők közül"
-
-msgid "Remove"
-msgstr "Eltávolítás"
-
-msgid "Collection Contributors"
-msgstr "Gyűjtemény közreműködői"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"Lehetőség van egy gyűjteményhez több közreműködőt is hozzáadni. A közreműködő kiegészítőket adhat hozzá, és távolíthat el a gyűjteményből, de nem változtathatja meg a nevét vagy leírását. A "
-"közreműködő hozzáadásához adja meg az e-mail címét. A közreműködőnek rendelkeznie kell Mozilla kiegészítők felhasználói fiókkal."
-
-msgid "User"
-msgstr "Felhasználó"
-
-msgid "Email"
-msgstr "E-mail"
-
-# Column name in a table.
-msgid "Role"
-msgstr "Szerep"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Adja meg a hozzáadni kívánt közreműködő e-mail címét"
-
-msgid "Add Contributor"
-msgstr "Közreműködő hozzáadása"
-
-msgid "Contributor"
-msgstr "Közreműködő"
-
-msgid "Admin Settings"
-msgstr "Admin beállítások"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Figyelem!</b> A gyűjtemény tulajdonosának megváltoztatásakor, többet nem jogosult a gyűjtemény szerkesztéséhez. Ettől kezdve csak kiegészítőket tud majd eltávolítani és hozzáadni."
-
-msgid "Continue"
-msgstr "Folytatás"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "vagy <a id=\"change-owner-cancel\" href=\"#\">Mégsem</a>"
 
 msgid "Remove from favorites"
 msgstr "Eltávolítás a kedvencek közül"
@@ -1311,29 +1227,11 @@ msgstr "{0} gyűjteményei"
 msgid "No collections found."
 msgstr "Nincsenek gyűjtemények."
 
-msgid "Most-Followed Collections"
-msgstr "Legtöbbek által követett gyűjtemények"
-
-msgid "Newest Collections"
-msgstr "Legújabb gyűjtemények"
-
-msgid "Collections by Name"
-msgstr "Gyűjtemények név szerint"
-
-msgid "Recently Updated Collections"
-msgstr "Nemrég frissített gyűjtemények"
-
-msgid "Recently Popular Collections"
-msgstr "Jelenleg népszerű gyűjtemények"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
 "A gyűjtemények valaki által összeállított és megosztott, valamilyen módon kapcsolatban lévő kiegészítők csoportja. Fedezze fel a mások által készített gyűjteményeket vagy <a "
 "href=\"%(url)s\">készítse el sajátját</a>."
-
-msgid "Subscribe"
-msgstr "Feliratkozás"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1371,6 +1269,9 @@ msgstr "Kiegészítő"
 
 msgid "Comment"
 msgstr "Megjegyzés"
+
+msgid "Remove"
+msgstr "Eltávolítás"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Adja meg a hozzáadni kívánt kiegészítő nevét"
@@ -1438,6 +1339,9 @@ msgstr "Legtöbb felhasználó"
 msgid "Weekly Downloads"
 msgstr "Heti letöltések"
 
+msgid "Recently Updated"
+msgstr "Legutóbb frissítve"
+
 msgid "Up & Coming"
 msgstr "Ígéretes"
 
@@ -1457,6 +1361,9 @@ msgstr "{0}: Kiemelt kiegészítők"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Nincs kiemelt kiegészítő a(z) {0} kategóriában."
+
+msgid "Subscribe"
+msgstr "Feliratkozás"
 
 msgid "Featured Add-ons"
 msgstr "Kiemelt kiegészítők"
@@ -1517,7 +1424,7 @@ msgstr[0] "<b>{0}</b> kiegészítő"
 msgstr[1] "<b>{0}</b> kiegészítő"
 
 msgid "Search Extensions"
-msgstr "Keresőszolgáltatások"
+msgstr "Keresési kiterjesztések"
 
 msgid "Add search-related functionality to Firefox"
 msgstr "Kereséssel kapcsolatos funkció hozzáadása a Firefox böngészőhöz."
@@ -2062,6 +1969,10 @@ msgstr "Megjelölve további értékelésre"
 
 msgid "Unlisted"
 msgstr "Titkos"
+
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "Tulajdonos"
 
 msgid "Developer"
 msgstr "Fejlesztő"
@@ -2657,6 +2568,9 @@ msgstr "A Firefox 53-tól kezdve, az oldalon lévő új kiegészítők csak WebE
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Az örökölt kiegészítők nem kompatibilisek a Firefox 57-tel, vagy későbbi verziókkal. Használjon 56.* vagy alacsonyabb maxVersion értéket."
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Engedélyezzük és támogatjuk a frissítést, de a folyamat nem visszafordítható. Ha a felhasználók telepítik a WebExtensiont, akkor nem lesznek képesek telepíteni az örökölt kiegészítőt."
 
@@ -3118,6 +3032,9 @@ msgstr "Támogatás információi"
 msgid "Support Information for {0}"
 msgstr "{0} kiegészítő támogatási információi"
 
+msgid "Email"
+msgstr "E-mail"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
@@ -3275,6 +3192,14 @@ msgstr "Adjon meg képaláírást ehhez a képernyőképhez."
 
 msgid "Add a Screenshot..."
 msgstr "Képernyőkép hozzáadása…"
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Folytatás"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Megoszthatják mások a kiegészítőjét, ha megjelölik Önt forrásként?"
@@ -6128,32 +6053,14 @@ msgstr "Frissítések"
 msgid "Maximum query length exceeded."
 msgstr "Túllépte a maximális lekérdezés hosszt."
 
-msgid "Most popular this week"
-msgstr "A hét legnépszerűbbje"
-
-msgid "Most popular this month"
-msgstr "A hónap legnépszerűbbje"
-
-msgid "Most popular all time"
-msgstr "Minden idők legnépszerűbbje"
-
-msgid "Highest Rated"
-msgstr "Legjobb értékelés"
-
 msgid "search for add-ons"
 msgstr "kiegészítők keresése"
-
-msgid "search for collections"
-msgstr "gyűjtemények keresése"
 
 msgid "search for themes"
 msgstr "témák keresése"
 
 msgid "search for apps"
 msgstr "alkalmazások keresése"
-
-msgid "Sort By"
-msgstr "Rendezés"
 
 msgid "Relevance"
 msgstr "Relevancia"
@@ -6942,7 +6849,7 @@ msgid "Themes I've created"
 msgstr "Létrehozott témák"
 
 msgid "Followed by Me"
-msgstr "Engem követnek"
+msgstr "Általam követettek"
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"

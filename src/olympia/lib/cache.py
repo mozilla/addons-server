@@ -185,9 +185,7 @@ class CacheStatTracker(BaseCache):
         # settings object.
         options = params['OPTIONS'].copy()
         actual_backend = options.pop('ACTUAL_BACKEND')
-        params['OPTIONS'] = options
-
-        self._real_cache = _create_cache(actual_backend, **params)
+        self._real_cache = _create_cache(actual_backend, **options)
 
         self.requests_log = []
         self._setup_proxies()

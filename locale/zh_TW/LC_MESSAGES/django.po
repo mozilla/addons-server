@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-15 18:50+0000\n"
-"PO-Revision-Date: 2018-06-16 03:23+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-21 13:00+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -793,9 +793,6 @@ msgstr "佈景主題"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "想要有更多客制化程度？試試<b>完整佈景主題</b>"
 
-msgid "Most Followers"
-msgstr "最多訂閱者"
-
 msgid "Collections"
 msgstr "收藏集"
 
@@ -912,21 +909,6 @@ msgid ""
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr "就算您支援的應用程式不需要安裝資訊檔，您還是要依照%(amo_manifests_mdn_link_open)s此處%(amo_manifests_mdn_link_close)s描述的內容，加入包含所有必要屬性的安裝資訊檔。"
 
-msgid "Contributors"
-msgstr "貢獻者"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "收藏集 :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "收藏集是將相關的附加元件集結起來，任何人都可以建立與分享。"
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: 收藏集 :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "只有我可以瀏覽此收藏集。"
 
@@ -978,20 +960,14 @@ msgstr "無法使用此自訂網址。"
 msgid "This add-on already belongs to the collection"
 msgstr "此附加元件屬於收藏集"
 
-msgid "Name"
-msgstr "名稱"
-
-msgid "Recently Updated"
-msgstr "最近更新"
-
-msgid "Recently Popular"
-msgstr "最近熱門的"
-
 msgid "Added"
 msgstr "新增於"
 
 msgid "Popularity"
 msgstr "熱門度"
+
+msgid "Name"
+msgstr "名稱"
 
 msgid "Collection created!"
 msgstr "已建立收藏集！"
@@ -1097,18 +1073,15 @@ msgstr "衝"
 msgid "What are Collections?"
 msgstr "收藏集是什麼？"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "收藏集是將相關的附加元件集結起來，任何人都可以建立與分享。"
+
 msgid "Explore Collections"
 msgstr "探索收藏集"
 
 # 常用還是共通? 請小心翻譯
 msgid "Common Tags"
 msgstr "熱門標籤"
-
-msgid "More by this User"
-msgstr "更多"
-
-msgid "See all collections by this user"
-msgstr "瀏覽這個使用者的所有收藏集"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1190,63 +1163,8 @@ msgstr "編輯 {0}"
 msgid "Description"
 msgstr "敘述"
 
-msgid "Contributors & More"
-msgstr "貢獻者 & 更多"
-
 msgid "Save Changes"
 msgstr "儲存變更"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "擁有者"
-
-msgid "Make Owner"
-msgstr "成為擁有者"
-
-msgid "Remove this user as a contributor"
-msgstr "將這個使用者從貢獻者清單中移除"
-
-msgid "Remove"
-msgstr "移除"
-
-msgid "Collection Contributors"
-msgstr "收藏集貢獻者"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr "您可以加入多位貢獻者至此收藏集。貢獻者可新增或刪除收藏集中的附加元件，但無法修改名稱與描述。若要新增貢獻者，請在下方的欄位輸入他們的電子郵件地址。貢獻者必須已使用該地址註冊 Mozilla 附加元件站的帳號。"
-
-msgid "User"
-msgstr "使用者"
-
-msgid "Email"
-msgstr "電子郵件"
-
-# Column name in a table.
-msgid "Role"
-msgstr "角色"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "輸入電子郵件信箱加入貢獻者名單"
-
-msgid "Add Contributor"
-msgstr "新增貢獻者"
-
-msgid "Contributor"
-msgstr "貢獻者"
-
-msgid "Admin Settings"
-msgstr "管理員設定"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>警告：</b>改變此收藏集的擁有者，您將無法再編輯此收藏集的內容，且只能新增與移除附加元件。"
-
-msgid "Continue"
-msgstr "繼續"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "或<a id=\"change-owner-cancel\" href=\"#\">取消</a>"
 
 msgid "Remove from favorites"
 msgstr "從最愛中移除"
@@ -1261,29 +1179,9 @@ msgstr "{0} 的收藏集"
 msgid "No collections found."
 msgstr "找不到收藏集。"
 
-# 如果你更改 "follow" 一詞的中文翻譯，務必要更改全部都有提到 follow 一詞的字串。
-msgid "Most-Followed Collections"
-msgstr "最多人訂閱的收藏集"
-
-msgid "Newest Collections"
-msgstr "最新的收藏集"
-
-msgid "Collections by Name"
-msgstr "以名稱排列收藏集"
-
-msgid "Recently Updated Collections"
-msgstr "最近更新的收藏集"
-
-msgid "Recently Popular Collections"
-msgstr "最近熱門的收藏集"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "收藏集是一張任何人都能製作並分享的清單，清單上記載了使用者收集的附加元件。您可以探索其他使用者製作的附加元件收藏集，或是 <a href=\"%(url)s\">製作自己的清單</a>。"
-
-# 100%
-msgid "Subscribe"
-msgstr "訂閱"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1321,6 +1219,9 @@ msgstr "附加元件"
 
 msgid "Comment"
 msgstr "意見"
+
+msgid "Remove"
+msgstr "移除"
 
 msgid "Enter the name of the add-on to include"
 msgstr "輸入您要加入的附加元件名稱"
@@ -1388,6 +1289,9 @@ msgstr "最多使用者"
 msgid "Weekly Downloads"
 msgstr "每週下載次數"
 
+msgid "Recently Updated"
+msgstr "最近更新"
+
 msgid "Up & Coming"
 msgstr "嶄露頭角"
 
@@ -1407,6 +1311,10 @@ msgstr "{0}: 精選附加元件"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "{0} 中沒有精選附加元件。"
+
+# 100%
+msgid "Subscribe"
+msgstr "訂閱"
 
 msgid "Featured Add-ons"
 msgstr "精選附加元件"
@@ -2011,6 +1919,10 @@ msgstr "已標記，等待進一步審核"
 msgid "Unlisted"
 msgstr "未上架"
 
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "擁有者"
+
 msgid "Developer"
 msgstr "開發者"
 
@@ -2605,6 +2517,9 @@ msgstr "自 Firefox 53 起，新上架至此網站的附加元件僅能為 WebEx
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "傳統附加元件與 Firefox 57 或更新版不相容。maxVersion 請使用 56.* 或更低的數值。"
 
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr "不再支援傳統的 Firefox 語言套件，需要提供 WebExtensions 安裝資訊檔。請參考 {mdn_link} 當中的更多資訊。"
+
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "我們允許，也鼓勵您升級，但升級後就不能回頭了。當您的使用者安裝 WebExtension 後，就無法再安裝傳統的附加元件。"
 
@@ -3047,6 +2962,9 @@ msgstr "支援資訊"
 msgid "Support Information for {0}"
 msgstr "{0} 的支援資訊"
 
+msgid "Email"
+msgstr "電子郵件"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
@@ -3196,6 +3114,14 @@ msgstr "請提供一段有關此擷圖的說明:"
 
 msgid "Add a Screenshot..."
 msgstr "新增螢幕擷圖…"
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr "僅支援 PNG 與 JPG 格式。最大，也是推薦的畫面擷圖大小為 1280x800 畫素。若您只有較小的圖片，也可以擷取為 640x400 畫素。在上架資訊中提供畫面擷圖，可大幅增加使用者安裝，以及被列為首頁精選的機會。"
+
+msgid "Continue"
+msgstr "繼續"
 
 # 88%
 msgid "Can others share your Add-on, as long as you're given credit?"
@@ -5989,32 +5915,14 @@ msgstr "更新"
 msgid "Maximum query length exceeded."
 msgstr "超過最大查詢長度。"
 
-msgid "Most popular this week"
-msgstr "本週最熱門"
-
-msgid "Most popular this month"
-msgstr "本月最熱門"
-
-msgid "Most popular all time"
-msgstr "所有時間最熱門"
-
-msgid "Highest Rated"
-msgstr "評分最高"
-
 msgid "search for add-ons"
 msgstr "搜尋附加元件"
-
-msgid "search for collections"
-msgstr "搜尋收藏集"
 
 msgid "search for themes"
 msgstr "搜尋主題"
 
 msgid "search for apps"
 msgstr "搜尋應用程式"
-
-msgid "Sort By"
-msgstr "排序方式"
 
 msgid "Relevance"
 msgstr "相關性"
