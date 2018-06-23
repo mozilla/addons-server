@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-23 11:12+0000\n"
+"PO-Revision-Date: 2018-06-23 11:15+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4386,13 +4386,11 @@ msgstr "Pśełožujśo lažko {start_sub_heading}z {addon_name}{end_sub_heading}
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Wuzwigniśo tekst, klikniśo z pšaweju tastu a pśełožćo ned."
 
-#, fuzzy
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pytajśo wobraze {start_sub_heading}z {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Perform reverse image searches from an array of engines."
-msgstr "Wuwjeźćo slědkpytanja wobrazow z rědom pytnicow."
+msgstr "Pśewjeźćo slědkpytanja wobrazow z rědom pytnicow."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ześěgniśo wideo {start_sub_heading}z {addon_name}{end_sub_heading}"
@@ -4846,11 +4844,9 @@ msgstr "Pógódnośćo dodanki na sedle. Awtory dodankow pólěpšuju nejskerjej
 msgid "I have a question"
 msgstr "Mam pšašanje"
 
-#, fuzzy, python-format
+#, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr ""
-"Dobre městno, źož móžośo zachopiś, su naše <a href=\"%(faq_url)s\"><abbr title=\"Ceste pšašanja\">CEP</abbr></a>. Jolic namakajośo tam žedno wótegrono, móžośo se <a href=\"%(forum_url)s\">w našych "
-"forumach pšašaś</a>."
+msgstr "Dobre městno, źož móžośo zachopiś, su naše <a href=\"%(sumo_url)s\">Pomoc</a> Mozilla. Jolic namakajośo tam žedno wótegrono, móžośo se <a href=\"%(forum_url)s\">w našych forumach pšašaś</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -4859,11 +4855,8 @@ msgstr "Jolic musyśo se napšawdu z někim z teama Mozilla do zwiska stajiś, w
 msgid "Who works on this website?"
 msgstr "Chto źěła na toś tom websedle?"
 
-#, fuzzy
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
-msgstr ""
-"Za lěta jo wjele luźi k toś tomu websedłoju pśinosowało, dobrowólniki ze zgromaźeństwa ako teke AMO-team. Lisćinu wuznamnych sobustatkujucych namakajośo na našom boku <a href=\"%(url)s\"> "
-"źěkowanjow</a>."
+msgstr "Za lěta jo wjele luźi k toś tomu websedłoju pśinosowało, dobrowólniki ze zgromaźeństwa ako teke AMO-team."
 
 msgid "Sections"
 msgstr "Wótrězki"
