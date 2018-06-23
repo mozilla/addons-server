@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-23 18:55+0000\n"
+"PO-Revision-Date: 2018-06-23 19:51+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -2586,7 +2586,7 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Категории не могут быть изменены, пока ваше дополнение избрано."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr ""
+msgstr "Дополнения для Thunderbird и SeaMonkey теперь размещены на сайте addons.thunderbird.net. Для обновления своих дополнений на новом сайте вы можете использовать эту же учетную запись."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Начиная с Firefox 53, новыми дополнениями на этом сайте могут быть только WebExtensions."
@@ -2595,7 +2595,7 @@ msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVer
 msgstr "Устаревшие дополнения не совместимы с Firefox 57 или выше. Используйте maxVersion 56.* или ниже."
 
 msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr ""
+msgstr "Устаревшие языковые пакеты для Firefox более не поддерживаются. Требуется манифест установки WebExtensions. Для получения более подробной информации посетите {mdn_link}."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -6681,7 +6681,7 @@ msgid "Occupation"
 msgstr "Род деятельности"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "Вы можете изменить свой адрес электронной почты в Аккаунтах Firefox."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Этот URL имеет неверный формат. Правильные URL имеют вид http://example.com/my_page."
