@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-24 11:48+0000\n"
+"PO-Revision-Date: 2018-06-24 12:10+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2932,18 +2932,19 @@ msgid "This add-on doesn't require any additional payments, paid services or sof
 msgstr "Azegrir-agi ur yesri ara lexlaṣ, imeẓla neɣ iseɣzanen s lexlaṣ neɣ arrum-nniḍen."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
+msgstr "Taggayin d tarrayt tagejdant i yiseqdacen akken ad nadin izegrar. Fren tid yemmenṭaḍen akked timahilin n usnas-ik akken ad d-iban s waṭa."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
+"Taggayin ur zmirent ara ad beddlent ticki azegrir-ik d itri deg usnas-agi. Ma ulac aɣilif, azen-d imayl ar <a href=\"mailto:%(email)s\">%(email)s</a> ma yella kra ɣef wacu tebɣi ad tbeddleḍ taggayt."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr ""
+msgstr "Taggayin ur zmirent ara ad beddlent ticki azegrir-ik yers-d ar zdat. Ma ulac aɣilif, azen-d imayl ar <a href=\"mailto:%(email)s\">%(email)s</a> ma yella kra ɣef wacu tebɣi ad tbeddleḍ taggayt."
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
+msgstr "Ticraḍ ttmuddunt-d afus i yiseqdacen akken ad d-afen azegrir-ik. D aglam wezzilen am twitter, iccaren, afeggag n yifecka. Tzemreḍ ad tesqedceḍ {0} n tibzimin ma aṭas."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
@@ -2962,7 +2963,7 @@ msgid "Contributions URL"
 msgstr "Ittekkiyen URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "Ma tebɣiḍ ad tsutreḍ attekki s tedrimt i yiseqdacen, swel ayagi deg isebter anida zemren ad d-mudden."
 
 msgid "Add-on Details"
 msgstr "Talqayt γef uzegrir"
@@ -3857,7 +3858,7 @@ msgid "Welcome Back"
 msgstr "Anṣuf ar tuɣalin"
 
 msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
+msgstr "Mudd afus i yiseqdacen ad  walin asiɣzef s tira n uglam ijebbden."
 
 msgid "Learn How"
 msgstr "Issin amek"
@@ -4177,7 +4178,7 @@ msgid "Listing visibility"
 msgstr "Tuman n uzegrir"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr ""
+msgstr "{label_open}Visible:{label_close} Ad d-iban i yal yiwen di {site_url} daɣen ad d-yeddu deg igmaḍ n unadi s telqayt."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -4399,7 +4400,7 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr ""
 
 msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
+msgstr "Tuzna n isental s talɣa n WebExtension ur yettusefrak ara akka tura."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Ur tezmireḍ ara ad tazneḍ anaw-agi n uzegrir"
@@ -4448,7 +4449,7 @@ msgid "Add-on file being processed, please wait."
 msgstr "Asesfer n ufaylu n uzegrir iteddu, ma ulac aɣilif, ṛǧu."
 
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Awway n igmaḍ n usentem..."
 
 msgid "Files:"
 msgstr "Ifuyla:"
@@ -4808,22 +4809,22 @@ msgid ""
 msgstr ""
 
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr ""
+msgstr "Aru asenqed ɣef izegrar i  tesqedceḍ yakan."
 
 msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr ""
+msgstr "Iseqdac rregmat, awalen n tuzzuft neɣ awalen n karuh."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
 msgstr "Tzemred ad tessedduḍ HTML, iseɣwan, tangalt aɣbalu neq kran n yeḥricen n tengalt. Iwenniten ttwasnen d akken d aḍris kan."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr ""
+msgstr "Ittawi-d talɣut n tkerkas, isefcal tazmert n ineflayen neɣ ireggem-iten."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
 msgstr "Mmel-d tansa yin-k imayl neɣ tin n win nniḍen, uṭṭun n tiliɣri neq talɣut nniḍen tudmawant."
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr ""
+msgstr "Azen aceggir ɣef uzegrir i terirniḍ neɣ win terna tkebbaniy-ik."
 
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
@@ -4946,7 +4947,7 @@ msgid "Reviews for %s"
 msgstr "Iceggiren i %s"
 
 msgid "Review History for this Addon"
-msgstr ""
+msgstr "Amezruy n ucegger i uzegrir-a"
 
 #. L10n: This describes the number of stars given out of 5
 #, python-format
@@ -5317,7 +5318,7 @@ msgid "This will send a message to the developer. You will be notified when they
 msgstr ""
 
 msgid "Request super-review"
-msgstr ""
+msgstr "Suter acegger meqqren"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr ""
@@ -5438,7 +5439,7 @@ msgid "Your theme locks have successfully been released. Other reviewers may now
 msgstr ""
 
 msgid "{addon} :: Abuse Reports"
-msgstr ""
+msgstr "{addon} :: Aneqqis n yir aseqdec"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
