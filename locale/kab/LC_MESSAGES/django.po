@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-23 12:35+0000\n"
-"Last-Translator: Slimane AMIRI <slimane.amiri@gmail.com>\n"
+"PO-Revision-Date: 2018-06-24 11:48+0000\n"
+"Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -2545,7 +2545,7 @@ msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVer
 msgstr "Izegrar yettwasersen faten ur mṣadan ara d Firefox 57 neɣ ugar, Seqdec maxVersion n 56.* neɣ ddaw."
 
 msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr ""
+msgstr "Ikemmusen n tutlaty iqbuṛen n Firefox ur ttwasefraken tura. Ameskan n usebded n WebExtensions ilaq. Wali {mdn_link} ɣef ayen-nniḍen."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Nessirig udiɣ nettmuddu tabɣest n uleqqem-agi, acukan ulac tuɣalin ar deffir. Ticki iseqdacen sbedden WebExtension, ur ttizmiren ara ad sbedden ileman iqburen."
@@ -2905,12 +2905,13 @@ msgstr "Agzul"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
+"Agzul-agi yessefk ad d-imudd talqayt n timahilin n uzegrir. Ad d-iban deg unadi i d-iteddun akked di tebdarin n yizegrar. Ad yettwaseqdec daɣen  sɣur iseqdacen akken ad yettwasentem uzegrir-ik."
 
 msgid "Experimental?"
 msgstr "Armitan?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "Ma yella azegrir-ik d armitan neɣ ur iheggi ara i useqdec amatu. Azegrir ad yers akken yella, acu kan ur d-yettban ara s waṭas."
 
 msgid "This add-on is experimental."
 msgstr "Azegrir-agi d armitan."
@@ -2922,13 +2923,13 @@ msgid "Requires Payment?"
 msgstr "Yesra asellek?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Ṛṛcem taxxamtagi ma yella timahilin tufrinin n uzegrir-agi srant lexlaṣ d umatu neɣ ticki tfuk twala n usekyed akken ad yeddu. "
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Azegrir-agi yesra lexlaṣ, imeẓla neɣ iseɣzanen s lexlaṣ neɣ arrum-nniḍen."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "Azegrir-agi ur yesri ara lexlaṣ, imeẓla neɣ iseɣzanen s lexlaṣ neɣ arrum-nniḍen."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr ""
