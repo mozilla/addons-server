@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-22 20:05+0000\n"
+"PO-Revision-Date: 2018-06-24 16:36+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -2580,7 +2580,7 @@ msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVer
 msgstr "I componenti aggiuntivi che utilizzano tecnologie obsolete non sono compatibili con Firefox 57 o superiore. Si raccomanda di impostare il campo maxVersion con un valore non superiore a 56."
 
 msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr ""
+msgstr "I precedenti language pack per Firefox non sono più supportati. Per l'installazione tramite WebExtensions è richiesto un file manifest. Per ulteriori informazioni leggere {mdn_link}."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
