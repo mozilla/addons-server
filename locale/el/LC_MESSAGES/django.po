@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-23 13:34+0000\n"
+"PO-Revision-Date: 2018-06-24 15:05+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -192,9 +192,8 @@ msgstr "Προβολή πολιτικής απορρήτου"
 msgid "View End-User License Agreement"
 msgstr "Προβολή Συμφωνίας Άδειας Τελικού Χρήστη"
 
-#, fuzzy
 msgid "This add-on has not been reviewed by Mozilla."
-msgstr "Αυτό το πρόσθετο δεν έχει αξιολογηθεί ακόμη."
+msgstr "Αυτό το πρόσθετο δεν έχει αξιολογηθεί από τη Mozilla."
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Αυτό το πρόσθετο έχει επισημανθεί ως πειραματικό από τους δημιουργούς του."
@@ -1002,13 +1001,11 @@ msgstr "Το όνομα δεν μπορεί να είναι κενό."
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Εισάγετε ένα έγκυρο slug, αποτελούμενο από γράμματα, αριθμούς, κάτω παύλες ή παύλες."
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "Αυτό το όνομα χρήστη δεν μπορεί να χρησιμοποιηθεί."
+msgstr "Αυτό το προσαρμοσμένο URL δεν μπορεί να χρησιμοποιηθεί."
 
-#, fuzzy
 msgid "This add-on already belongs to the collection"
-msgstr "Αυτό το url χρησιμοποιείται ήδη από άλλη συλλογή"
+msgstr "Αυτό το πρόσθετο ανήκει ήδη σε άλλη συλλογή"
 
 msgid "Added"
 msgstr "Προστέθηκε"
@@ -1668,9 +1665,8 @@ msgid "{addon} enabled."
 msgstr "Το {addon} είναι απενεργοποιημένο."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "Η κατάσταση του {addon} άλλαξε σε {0}."
+msgstr "Η κατάσταση του {addon} άλλαξε σε {status}."
 
 msgid "{version} added to {addon}."
 msgstr "Η έκδοση {version} προστέθηκε στο πρόσθετο {addon}."
@@ -2398,9 +2394,8 @@ msgstr "Συντονισμένος έλεγχος προσθέτου"
 msgid "Add-on Review Moderation Reverted"
 msgstr "Διαδικασία αξιολόγησης προσθέτου"
 
-#, fuzzy
 msgid "Add-on Content Review"
-msgstr "Υποβολή Επιθεώρησης"
+msgstr "Αξιολόγηση περιεχομένου προσθέτου"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
 msgstr ""
@@ -3415,9 +3410,8 @@ msgstr "Αυτό το πρόσθετο είναι πειραματικό"
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 
-#, fuzzy
 msgid "Select a category for this add-on:"
-msgstr "Επιλέξτε <b>μέχρι {0}</b> {1} κατηγορία για το πρόσθετο:"
+msgstr "Επιλέξτε κατηγορία για αυτό το πρόσθετο:"
 
 msgid "Support email:"
 msgstr "Email υποστήριξης:"
@@ -3558,9 +3552,8 @@ msgstr "Με ποιες πλατφόρμες είναι συμβατό αυτό 
 msgid "Administrative overrides"
 msgstr "Διαχειριστική υπερίσχυση"
 
-#, fuzzy
 msgid "Create a Theme Version"
-msgstr "Δημιουργία νέου θέματος"
+msgstr "Δημιουργία έκδοσης θέματος"
 
 msgid "Create a Theme"
 msgstr "Δημιουργία θέματος"
@@ -3649,13 +3642,11 @@ msgstr "Περάστε από πάνω για προεπισκόπηση"
 msgid "Back"
 msgstr "Πίσω"
 
-#, fuzzy
 msgid "Uploading Theme"
-msgstr "Επερχόμενα θέματα"
+msgstr "Μεταφόρτωση θέματος"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "%s Θέματα"
+msgstr "Ολοκλήρωση θέματος"
 
 msgid "API Credentials"
 msgstr "Διαπιστευτήρια API"
@@ -3938,9 +3929,8 @@ msgstr ""
 msgid "Take Survey"
 msgstr ""
 
-#, fuzzy
 msgid "Welcome Back"
-msgstr "Καλώς ορίσατε, {0}"
+msgstr "Καλώς ορίσατε ξανά"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
@@ -4020,9 +4010,8 @@ msgstr ""
 msgid "Automated code tests for your add-on."
 msgstr "Αυτοματοποιημένες δοκιμές κώδικα για το πρόσθετό σας."
 
-#, fuzzy
 msgid "Compatibility Test"
-msgstr "Έλεγχοι συμβατότητας"
+msgstr "Δοκιμή συμβατότητας"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr ""
@@ -5433,9 +5422,8 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
-#, fuzzy
 msgid "Approve Content"
-msgstr "Αποδοχή / Απόρριψη"
+msgstr "Έγκριση περιεχομένου"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
@@ -5447,9 +5435,8 @@ msgstr "Τα πρόσθετά μου"
 msgid "Static Themes"
 msgstr "Στατικά θέματα"
 
-#, fuzzy
 msgid "Legacy Add-ons"
-msgstr "Τα πρόσθετά μου"
+msgstr "Πρόσθετα παλαιού τύπου"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -5489,15 +5476,13 @@ msgstr "Αρχείο καταγραφής αξιολογήσεων προσθέ�
 msgid "Review Guide"
 msgstr "Οδηγός αξιολόγησης"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "Υποβολή Επιθεώρησης"
+msgstr "Αξιολόγηση περιεχομένου"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "Ελεγμένη αξιολόγηση ({0})"
-msgstr[1] "Ελεγμένες αξιολογήσεις ({0})"
+msgstr[0] "Αξιολόγηση περιεχομένου ({0})"
+msgstr[1] "Αξιολόγηση περιεχομένου ({0})"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -5505,9 +5490,8 @@ msgstr[1] "Ελεγμένες αξιολογήσεις ({0})"
 msgid "New Themes ({0})"
 msgstr "Νέα θέματα ({0})"
 
-#, fuzzy
 msgid "Themes Updates ({0})"
-msgstr "Ενημέρωση ({0})"
+msgstr "Ενημερώσεις θεμάτων ({0})"
 
 #, fuzzy
 msgid "Flagged Themes ({0})"
@@ -5530,9 +5514,8 @@ msgstr ""
 msgid "Moderated Review Log"
 msgstr ""
 
-#, fuzzy
 msgid "Moderation Guide"
-msgstr "Διαχειριστικές ενέργειες:"
+msgstr "Οδηγός συντονισμού"
 
 #, fuzzy
 msgid "Unlisted Add-ons"
@@ -5609,9 +5592,8 @@ msgstr "Αναφορές κατάχρησης ({num})"
 msgid "Bad User Ratings ({num})"
 msgstr "Κακές κριτικές χρηστών ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "όνομα θέματος"
+msgstr "Εικόνες θέματος"
 
 #, fuzzy
 msgid "Rendered Preview"
@@ -5762,9 +5744,8 @@ msgstr "Χρήσιμοι δεσμοί:"
 msgid "Add-on Policy"
 msgstr "Πολιτική πρόσθετου"
 
-#, fuzzy
 msgid "Reviewer's Guide"
-msgstr "Οδηγός του κριτή"
+msgstr "Οδηγός αξιολογητή"
 
 #. "Content Review [add-on name]"
 #, fuzzy
@@ -5846,16 +5827,14 @@ msgstr ""
 msgid "Force-disable add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Εκ νέου ενεργοποίηση έκδοσης"
+msgstr "Εξαναγκαστική ενεργοποίηση προσθέτου"
 
 msgid "Disable Auto-Approval"
 msgstr ""
 
-#, fuzzy
 msgid "Enable Auto-Approval"
-msgstr "Η αυτόματη έγκριση επιβεβαιώθηκε"
+msgstr "Ενεργοποίηση αυτόματης έγκρισης"
 
 #, fuzzy
 msgid "Clear information request"
@@ -6515,9 +6494,8 @@ msgstr "Επιλογή κατηγορίας"
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
-#, fuzzy
 msgid "View the new site"
-msgstr "Προβολή ιστοσελίδας για κινητά"
+msgstr "Προβολή νέας ιστοσελίδας"
 
 msgid "Report a bug"
 msgstr "Αναφορά σφάλματος"
@@ -6645,9 +6623,8 @@ msgstr "Φωτογραφία προφίλ"
 msgid "Addons"
 msgstr ""
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "Δραστηριότητα"
+msgstr "Αρχεία δραστηριότητας"
 
 msgid "Email must be {email}."
 msgstr "Το email πρέπει να είναι {email}."
