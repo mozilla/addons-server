@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-24 12:10+0000\n"
+"PO-Revision-Date: 2018-06-24 13:05+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4888,7 +4888,7 @@ msgid "Type about:addons into the location bar, and press enter."
 msgstr ""
 
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "Nadi Plugin Safety di tebdart n yizegrar."
 
 msgid "Click the remove button."
 msgstr "Sit ɣef tqeffalt Kkes."
@@ -5503,7 +5503,7 @@ msgid "No review points awarded yet."
 msgstr ""
 
 msgid "Rank"
-msgstr ""
+msgstr "Aswir"
 
 msgid "Score"
 msgstr "Agmuḍ"
@@ -5541,7 +5541,7 @@ msgid "Review Text"
 msgstr "Aḍris n ucegger"
 
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "Aceggir yettwacreḍ send tukksa-is."
 
 msgid "Undelete"
 msgstr "Sefsex tukksa"
@@ -5580,7 +5580,7 @@ msgid "Monthly Performance"
 msgstr "Timellit n waggur"
 
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "Fru gar tneqqiḍin s wanaw ɣef tenzagt meṛṛa"
 
 msgid "Total"
 msgstr "Asemday"
@@ -5618,7 +5618,7 @@ msgid "All reviews have been moderated. Good work!"
 msgstr "Akk iceggiren ttwagen. Igzrrez uxeddim!"
 
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "Ulac akka tura azegrir n wanaw-a ara ttwaceggren."
 
 msgid "Helpful Links:"
 msgstr "Iseɣwan iwulmen:"
@@ -5638,7 +5638,7 @@ msgid "Review {0}"
 msgstr "Acegger {0}"
 
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Amezruy n ibeddilen n useqdac n uzegrir"
 
 msgid "Add-on History"
 msgstr "Amazray n uzegrir"
@@ -5648,7 +5648,7 @@ msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgstr "Lqem %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "(Confirmed)"
-msgstr ""
+msgstr "(Yentem)"
 
 msgid "Compatibility:"
 msgstr "Amṣada:"
@@ -5675,7 +5675,7 @@ msgid "This version has not been reviewed."
 msgstr "Lqem-agi ur yettwacegger ara yakan."
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "Ma ulac aɣilif, fren yiwen neɣ ugar n yileqman deg  tabdart ddaw-a."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr ""
@@ -5794,10 +5794,10 @@ msgid "No points awarded yet."
 msgstr "Ulac yakan tineqqidin."
 
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Imsekyaden ifazen (7 n wussan ineggura)"
 
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Ulac yakan amaẓrag ufrin."
 
 msgid "All Time"
 msgstr "Yal tikelt"
@@ -5835,7 +5835,7 @@ msgid "Flagged Themes"
 msgstr "Isental yettwacegren"
 
 msgid "Theme Review Queue"
-msgstr ""
+msgstr "Adras n yiceggiren n usentel"
 
 msgid "Queues"
 msgstr "Yettwarna ar udras"
