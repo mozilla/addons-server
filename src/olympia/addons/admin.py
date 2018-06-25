@@ -47,7 +47,7 @@ class AddonAdmin(admin.ModelAdmin):
         ('Flags', {
             'fields': ('disabled_by_user', 'view_source', 'requires_payment',
                        'public_stats', 'is_experimental',
-                       'external_software', 'dev_agreement', 'reputation'),
+                       'external_software', 'reputation'),
         }),
         ('Dictionaries', {
             'fields': ('target_locale', 'locale_disambiguation'),

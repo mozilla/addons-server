@@ -54,7 +54,6 @@
         "model": "addons.addon",
         "fields": {
             "slug": "a1865",
-            "dev_agreement": true,
             "eula": null,
             "_current_version": 90149,
             "last_updated": "2009-08-27 14:29:14",
