@@ -101,7 +101,6 @@ install_python_common_dependencies:
 	# Can't use --progress-bar=off for system packages as long as our docker image
 	# doesn't have pip 10 by default.
 	pip install --no-deps --exists-action=w -r requirements/system.txt
-	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_without_hash.txt
 
 install_python_test_dependencies: install_python_common_dependencies
 	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/tests.txt
