@@ -859,11 +859,12 @@ class TestAutoApprovalSummary(TestCase):
 
         # Extra old abuse report, does not count either.
         old_report = AbuseReport.objects.create(addon=self.addon)
-        old_report.update(created=self.days_ago(370))
+        old_report.update(created=self.days_ago(43))
 
         # Recent abuse reports.
         AbuseReport.objects.create(addon=self.addon)
-        AbuseReport.objects.create(addon=self.addon)
+        recent_report = AbuseReport.objects.create(addon=self.addon)
+        recent_report.update(created=self.days_ago(41))
 
         # Recent abuse report for one of the developers of the add-on.
         author = user_factory()
@@ -872,29 +873,30 @@ class TestAutoApprovalSummary(TestCase):
 
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == 30
-        assert weight_info['abuse_reports'] == 30
+        assert summary.weight == 45
+        assert weight_info['abuse_reports'] == 45
 
-        # Should be capped at 100.
-        for i in range(0, 10):
+        # Should be capped at 100. We're already at 45, adding 4 more should
+        # result in a weight of 100 instead of 105.
+        for i in range(0, 4):
             AbuseReport.objects.create(addon=self.addon)
         weight_info = summary.calculate_weight()
         assert summary.weight == 100
         assert weight_info['abuse_reports'] == 100
 
     def test_calculate_weight_abuse_reports_use_created_from_instance(self):
-        # Create an abuse report 400 days in the past. It should be ignored it
+        # Create an abuse report 60 days in the past. It should be ignored it
         # we were calculating from today, but use an AutoApprovalSummary
-        # instance that is 40 days old, making the abuse report count.
+        # instance that is 20 days old, making the abuse report count.
         report = AbuseReport.objects.create(addon=self.addon)
-        report.update(created=self.days_ago(400))
+        report.update(created=self.days_ago(60))
 
         summary = AutoApprovalSummary.objects.create(version=self.version)
-        summary.update(created=self.days_ago(40))
+        summary.update(created=self.days_ago(20))
 
         weight_info = summary.calculate_weight()
-        assert summary.weight == 10
-        assert weight_info['abuse_reports'] == 10
+        assert summary.weight == 15
+        assert weight_info['abuse_reports'] == 15
 
     def test_calculate_weight_negative_ratings(self):
         # Positive rating, does not count.
@@ -1049,8 +1051,8 @@ class TestAutoApprovalSummary(TestCase):
         self.file_validation.update(validation=json.dumps(validation_data))
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == 20
-        assert weight_info['uses_eval_or_document_write'] == 20
+        assert summary.weight == 50
+        assert weight_info['uses_eval_or_document_write'] == 50
 
         validation_data = {
             'messages': [{
@@ -1060,8 +1062,8 @@ class TestAutoApprovalSummary(TestCase):
         self.file_validation.update(validation=json.dumps(validation_data))
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == 20
-        assert weight_info['uses_eval_or_document_write'] == 20
+        assert summary.weight == 50
+        assert weight_info['uses_eval_or_document_write'] == 50
 
         # Still only 20 if both appear.
         validation_data = {
@@ -1074,8 +1076,8 @@ class TestAutoApprovalSummary(TestCase):
         self.file_validation.update(validation=json.dumps(validation_data))
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == 20
-        assert weight_info['uses_eval_or_document_write'] == 20
+        assert summary.weight == 50
+        assert weight_info['uses_eval_or_document_write'] == 50
 
     def test_calculate_weight_uses_implied_eval(self):
         validation_data = {
@@ -1098,8 +1100,27 @@ class TestAutoApprovalSummary(TestCase):
         self.file_validation.update(validation=json.dumps(validation_data))
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == 20
-        assert weight_info['uses_innerhtml'] == 20
+        assert summary.weight == 50
+        assert weight_info['uses_innerhtml'] == 50
+
+    def test_calculate_weight_uses_innerhtml_multiple_times(self):
+        validation_data = {
+            'messages': [{
+                'id': ['UNSAFE_VAR_ASSIGNMENT'],
+            }, {
+                'id': ['IGNORE_ME'],
+            }, {
+                'id': ['UNSAFE_VAR_ASSIGNMENT'],
+            }, {
+                'id': ['UNSAFE_VAR_ASSIGNMENT'],
+            }]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        # 50 base, + 10 per additional instance.
+        assert summary.weight == 70
+        assert weight_info['uses_innerhtml'] == 70
 
     def test_calculate_weight_uses_custom_csp(self):
         validation_data = {
@@ -1110,8 +1131,8 @@ class TestAutoApprovalSummary(TestCase):
         self.file_validation.update(validation=json.dumps(validation_data))
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == 30
-        assert weight_info['uses_custom_csp'] == 30
+        assert summary.weight == 90
+        assert weight_info['uses_custom_csp'] == 90
 
     def test_calculate_weight_uses_native_messaging(self):
         WebextPermission.objects.create(
@@ -1119,8 +1140,8 @@ class TestAutoApprovalSummary(TestCase):
 
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == 20
-        assert weight_info['uses_native_messaging'] == 20
+        assert summary.weight == 100
+        assert weight_info['uses_native_messaging'] == 100
 
     def test_calculate_weight_uses_remote_scripts(self):
         validation_data = {
@@ -1131,8 +1152,8 @@ class TestAutoApprovalSummary(TestCase):
         self.file_validation.update(validation=json.dumps(validation_data))
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == 40
-        assert weight_info['uses_remote_scripts'] == 40
+        assert summary.weight == 100
+        assert weight_info['uses_remote_scripts'] == 100
 
     def test_calculate_weight_violates_mozilla_conditions_of_use(self):
         validation_data = {
@@ -1187,8 +1208,21 @@ class TestAutoApprovalSummary(TestCase):
         self.file_validation.update(validation=json.dumps(validation_data))
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == 10
-        assert weight_info['uses_unknown_minified_code'] == 10
+        assert summary.weight == 100
+        assert weight_info['uses_unknown_minified_code'] == 100
+
+    def test_calculate_weight_uses_unknown_minified_code_multiple_times(self):
+        validation_data = {
+            'metadata': {
+                'unknownMinifiedFiles': ['something', 'foobar', 'another']
+            }
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        # 100 base, + 20 per additional instance.
+        assert summary.weight == 120
+        assert weight_info['uses_unknown_minified_code'] == 120
 
     def test_calculate_size_of_code_changes_no_current_validation(self):
         # Delete the validation for the previously confirmed version and reload
@@ -1198,8 +1232,8 @@ class TestAutoApprovalSummary(TestCase):
         self.version = Version.objects.get(pk=self.version.pk)
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == 200
-        assert weight_info['no_validation_result'] == 200
+        assert summary.weight == 500
+        assert weight_info['no_validation_result'] == 500
 
     def test_calculate_size_of_code_changes_no_new_validation(self):
         # Delete the validation for the new version and reload that version.
@@ -1209,8 +1243,8 @@ class TestAutoApprovalSummary(TestCase):
         self.version = Version.objects.get(pk=self.version.pk)
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == 200
-        assert weight_info['no_validation_result'] == 200
+        assert summary.weight == 500
+        assert weight_info['no_validation_result'] == 500
 
     def test_calculate_size_of_code_changes_no_reported_size(self):
         summary = AutoApprovalSummary(version=self.version)
@@ -1344,12 +1378,14 @@ class TestAutoApprovalSummary(TestCase):
                 {'id': ['UNSAFE_VAR_ASSIGNMENT']},
                 {'id': ['NO_IMPLIED_EVAL']},
                 {'id': ['DANGEROUS_EVAL']},
+                {'id': ['UNSAFE_VAR_ASSIGNMENT']},  # Another one.
+                {'id': ['NOTHING_TO_SEE_HERE_MOVE_ON']},
             ]
         }
         self.file_validation.update(validation=json.dumps(validation_data))
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == 75
+        assert summary.weight == 205
         expected_result = {
             'abuse_reports': 0,
             'admin_code_review': 0,
@@ -1357,10 +1393,10 @@ class TestAutoApprovalSummary(TestCase):
             'negative_ratings': 0,
             'reputation': 0,
             'past_rejection_history': 0,
-            'uses_custom_csp': 30,
-            'uses_eval_or_document_write': 20,
+            'uses_custom_csp': 90,
+            'uses_eval_or_document_write': 50,
             'uses_implied_eval': 5,
-            'uses_innerhtml': 20,
+            'uses_innerhtml': 60,  # There is one extra.
             'uses_native_messaging': 0,
             'size_of_code_changes': 0,
             'uses_remote_scripts': 0,
@@ -1369,8 +1405,8 @@ class TestAutoApprovalSummary(TestCase):
         }
         assert weight_info == expected_result
 
-    def test_check_uses_custom_csp(self):
-        assert AutoApprovalSummary.check_uses_custom_csp(self.version) is False
+    def test_count_uses_custom_csp(self):
+        assert AutoApprovalSummary.count_uses_custom_csp(self.version) == 0
 
         validation_data = {
             'messages': [{
@@ -1378,13 +1414,13 @@ class TestAutoApprovalSummary(TestCase):
             }]
         }
         self.file_validation.update(validation=json.dumps(validation_data))
-        assert AutoApprovalSummary.check_uses_custom_csp(self.version) is True
+        assert AutoApprovalSummary.count_uses_custom_csp(self.version) == 1
 
-    def test_check_uses_custom_csp_file_validation_missing(self):
+    def test_count_uses_custom_csp_file_validation_missing(self):
         self.file_validation.delete()
         del self.version.all_files
         with self.assertRaises(AutoApprovalNoValidationResultError):
-            AutoApprovalSummary.check_uses_custom_csp(self.version)
+            AutoApprovalSummary.count_uses_custom_csp(self.version)
 
         # Also happens if only one file is missing validation info.
         self.file_validation = FileValidation.objects.create(
@@ -1392,33 +1428,30 @@ class TestAutoApprovalSummary(TestCase):
         del self.version.all_files
         file_factory(version=self.version, status=amo.STATUS_AWAITING_REVIEW)
         with self.assertRaises(AutoApprovalNoValidationResultError):
-            AutoApprovalSummary.check_uses_custom_csp(self.version)
+            AutoApprovalSummary.count_uses_custom_csp(self.version)
 
     def test_check_uses_native_messaging(self):
         assert (
-            AutoApprovalSummary.check_uses_native_messaging(self.version)
-            is False)
+            AutoApprovalSummary.check_uses_native_messaging(self.version) == 0)
 
         webext_permissions = WebextPermission.objects.create(
             file=self.file, permissions=['foobar'])
         del self.file.webext_permissions_list
         assert (
-            AutoApprovalSummary.check_uses_native_messaging(self.version)
-            is False)
+            AutoApprovalSummary.check_uses_native_messaging(self.version) == 0)
 
         webext_permissions.update(permissions=['nativeMessaging', 'foobar'])
         del self.file.webext_permissions_list
         assert (
-            AutoApprovalSummary.check_uses_native_messaging(self.version)
-            is True)
+            AutoApprovalSummary.check_uses_native_messaging(self.version) == 1)
 
     def test_check_has_auto_approval_disabled(self):
         assert AutoApprovalSummary.check_has_auto_approval_disabled(
-            self.version) is False
+            self.version) == 0
 
         flags = AddonReviewerFlags.objects.create(addon=self.addon)
         assert AutoApprovalSummary.check_has_auto_approval_disabled(
-            self.version) is False
+            self.version) == 0
 
         flags.update(auto_approval_disabled=True)
         assert AutoApprovalSummary.check_has_auto_approval_disabled(

@@ -1600,60 +1600,6 @@ class TestEditTechnicalStaticThemeUnlisted(StaticMixin,
     pass
 
 
-class TestAdmin(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
-
-    def login_admin(self):
-        assert self.client.login(email='admin@mozilla.com')
-
-    def login_user(self):
-        assert self.client.login(email='del@icio.us')
-
-    def test_show_admin_settings_admin(self):
-        self.login_admin()
-        url = reverse('devhub.addons.edit', args=['a3615'])
-        response = self.client.get(url)
-        assert response.status_code == 200
-        self.assertContains(response, 'Admin Settings')
-        assert 'admin_form' in response.context
-
-    def test_show_admin_settings_nonadmin(self):
-        self.login_user()
-        url = reverse('devhub.addons.edit', args=['a3615'])
-        response = self.client.get(url)
-        assert response.status_code == 200
-        self.assertNotContains(response, 'Admin Settings')
-        assert 'admin_form' not in response.context, (
-            'AdminForm not expected in context.')
-
-    def test_post_as_admin(self):
-        self.login_admin()
-        url = reverse('devhub.addons.admin', args=['a3615'])
-        response = self.client.post(url)
-        assert response.status_code == 200
-
-    def test_post_as_nonadmin(self):
-        self.login_user()
-        url = reverse('devhub.addons.admin', args=['a3615'])
-        response = self.client.post(url)
-        assert response.status_code == 403
-
-    def test_change_reputation_and_type(self):
-        addon = Addon.objects.get(pk=3615)
-        self.login_admin()
-        url = reverse('devhub.addons.admin', args=['a3615'])
-        data = {
-            'reputation': 3,
-            'type': amo.ADDON_THEME,
-        }
-        response = self.client.post(url, data)
-        assert response.status_code == 200
-        assert response.context['admin_form'].is_valid()
-        addon.reload()
-        assert addon.reputation == 3
-        assert addon.type == amo.ADDON_THEME
-
-
 class TestThemeEdit(TestCase):
     fixtures = ['base/user_999']
 

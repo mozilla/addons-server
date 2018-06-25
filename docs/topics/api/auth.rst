@@ -85,7 +85,9 @@ The final JWT will be a blob of base64 encoded text, something like::
     eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5b3VyLWFwaS1rZXkiLCJqdGkiOiIwLjQ3MzYyOTQ0NjIzNDU1NDA1IiwiaWF0IjoxNDQ3MjczMDk2LCJleHAiOjE0NDcyNzMxNTZ9.fQGPSV85QPhbNmuu86CIgZiluKBvZKd-NmzM6vo11D
 
 .. note::
-    See `jwt.io debugger <https://jwt.io/?value=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5b3VyLWFwaS1rZXkiLCJqdGkiOiIwLjQ3MzYyOTQ0NjIzNDU1NDA1IiwiaWF0IjoxNDQ3MjczMDk2LCJleHAiOjE0NDcyNzMxNTZ9.fQGPSV85QPhbNmuu86CIgZiluKBvZKd-NmzM6vo11DM#debugger>`_ for more information about the token.
+    See `jwt.io debugger <https://jwt.io/#debugger-io?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5b3VyLWFwaS1rZXkiLCJpYXQiOjE0NDcyNzMwOTYsImp0aSI6IjAuNDczNjI5NDQ2MjM0NTU0MDUiLCJleHAiOjE0NDcyNzMxNTZ9.TQ4B8GEm7UWZPcHuNGgjzD8EU9oUBVbL70Le1IeuYx0>`_ for more information about the token.
+
+    Enter `secret` in the "VERIFY SIGNATURE" section to correctly verify the signature.
 
 Here is an example of creating a JWT in `NodeJS <https://nodejs.org/en/>`_
 using the `node-jsonwebtoken <https://github.com/auth0/node-jsonwebtoken>`_

@@ -37,7 +37,7 @@ from olympia.ratings.models import Rating
 from olympia.reviewers.models import RereviewQueueTheme
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
-from olympia.versions.models import License, Version
+from olympia.versions.models import ApplicationsVersions, License, Version
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -625,3 +625,30 @@ def migrate_lwts_to_static_themes(ids, **kw):
         slug = lwt.slug
         lwt.delete()
         static.update(slug=slug)
+
+
+@task
+@write
+def delete_addon_not_compatible_with_firefoxes(ids, **kw):
+    """
+    Delete the specified add-ons.
+    Used by process_addons --task=delete_addons_not_compatible_with_firefoxes
+    """
+    log.info(
+        'Deleting addons not compatible with firefoxes %d-%d [%d].',
+        ids[0], ids[-1], len(ids))
+    qs = Addon.objects.filter(id__in=ids)
+    for addon in qs:
+        addon.appsupport_set.filter(
+            app__in=(amo.THUNDERBIRD.id, amo.SEAMONKEY.id)).delete()
+        addon.delete()
+
+
+@task
+@write
+def delete_obsolete_applicationsversions(**kw):
+    """Delete ApplicationsVersions objects not relevant for Firefoxes."""
+    qs = ApplicationsVersions.objects.exclude(
+        application__in=(amo.FIREFOX.id, amo.ANDROID.id))
+    for av in qs.iterator():
+        av.delete()

@@ -786,15 +786,17 @@ class AutoApprovalSummary(ModelBase):
         # post-review.
         addon = self.version.addon
         one_year_ago = (self.created or datetime.now()) - timedelta(days=365)
+        six_weeks_ago = (self.created or datetime.now()) - timedelta(days=42)
         factors = {
             # Add-ons under admin code review: 100 added to weight.
             'admin_code_review': 100 if addon.needs_admin_code_review else 0,
-            # Each "recent" abuse reports for the add-on or one of the listed
-            # developers adds 10 to the weight, up to a maximum of 100.
+            # Each abuse reports for the add-on or one of the listed developers
+            # in the last 6 weeks adds 15 to the weight, up to a maximum of
+            # 100.
             'abuse_reports': min(
                 AbuseReport.objects
                 .filter(Q(addon=addon) | Q(user__in=addon.listed_authors))
-                .filter(created__gte=one_year_ago).count() * 10, 100),
+                .filter(created__gte=six_weeks_ago).count() * 15, 100),
             # 1% of the total of "recent" ratings with a score of 3 or less
             # adds 2 to the weight, up to a maximum of 100.
             'negative_ratings': min(int(
@@ -830,45 +832,52 @@ class AutoApprovalSummary(ModelBase):
 
         Used by calculate_weight()."""
         try:
+            innerhtml_count = self.count_uses_innerhtml(self.version)
+            unknown_minified_code_count = (
+                self.count_uses_unknown_minified_code(self.version))
+
             factors = {
                 # Static analysis flags from linter:
-                # eval() or document.write(): 20.
+                # eval() or document.write(): 50.
                 'uses_eval_or_document_write': (
-                    20 if self.check_uses_eval_or_document_write(self.version)
+                    50 if self.count_uses_eval_or_document_write(self.version)
                     else 0),
                 # Implied eval in setTimeout/setInterval/ on* attributes: 5.
                 'uses_implied_eval': (
-                    5 if self.check_uses_implied_eval(self.version) else 0),
-                # innerHTML / unsafe DOM: 20.
+                    5 if self.count_uses_implied_eval(self.version)
+                    else 0),
+                # innerHTML / unsafe DOM: 50+10 per instance.
                 'uses_innerhtml': (
-                    20 if self.check_uses_innerhtml(self.version) else 0),
-                # custom CSP: 30.
+                    50 + 10 * (innerhtml_count - 1) if innerhtml_count else 0),
+                # custom CSP: 90.
                 'uses_custom_csp': (
-                    30 if self.check_uses_custom_csp(self.version) else 0),
-                # nativeMessaging permission: 20.
+                    90 if self.count_uses_custom_csp(self.version)
+                    else 0),
+                # nativeMessaging permission: 100.
                 'uses_native_messaging': (
-                    20 if self.check_uses_native_messaging(self.version) else
-                    0),
-                # remote scripts: 40.
+                    100 if self.check_uses_native_messaging(self.version)
+                    else 0),
+                # remote scripts: 100.
                 'uses_remote_scripts': (
-                    40 if self.check_uses_remote_scripts(self.version) else 0),
+                    100 if self.count_uses_remote_scripts(self.version)
+                    else 0),
                 # violates mozilla conditions of use: 20.
                 'violates_mozilla_conditions': (
-                    20 if self.check_violates_mozilla_conditions(self.version)
+                    20 if self.count_violates_mozilla_conditions(self.version)
                     else 0),
-                # libraries of unreadable code: 10.
+                # libraries of unreadable code: 100+10 per instance.
                 'uses_unknown_minified_code': (
-                    10 if self.check_uses_unknown_minified_code(self.version)
-                    else 0),
+                    100 + 10 * (unknown_minified_code_count - 1)
+                    if unknown_minified_code_count else 0),
                 # Size of code changes: 5kB is one point, up to a max of 100.
                 'size_of_code_changes': min(
                     self.calculate_size_of_code_changes() / 5000, 100)
             }
         except AutoApprovalNoValidationResultError:
             # We should have a FileValidationResult... since we don't and
-            # something is wrong, increase the weight by 200.
+            # something is wrong, increase the weight by 500.
             factors = {
-                'no_validation_result': 200,
+                'no_validation_result': 500,
             }
         return factors
 
@@ -952,60 +961,60 @@ class AutoApprovalSummary(ModelBase):
                 if value)
 
     @classmethod
-    def check_for_linter_flag(cls, version, flag):
-        def _check_for_linter_flag_in_file(file_):
+    def _count_linter_flag(cls, version, flag):
+        def _count_linter_flag_in_file(file_):
             try:
                 validation = file_.validation
             except FileValidation.DoesNotExist:
                 raise AutoApprovalNoValidationResultError()
             validation_data = json.loads(validation.validation)
-            return any(flag in message['id']
+            return sum(flag in message['id']
                        for message in validation_data.get('messages', []))
-        return any(_check_for_linter_flag_in_file(file_)
+        return max(_count_linter_flag_in_file(file_)
                    for file_ in version.all_files)
 
     @classmethod
-    def check_for_metadata_property(cls, version, prop):
-        def _check_for_property_in_linter_metadata_in_file(file_):
+    def _count_metadata_property(cls, version, prop):
+        def _count_property_in_linter_metadata_in_file(file_):
             try:
                 validation = file_.validation
             except FileValidation.DoesNotExist:
                 raise AutoApprovalNoValidationResultError()
             validation_data = json.loads(validation.validation)
-            return validation_data.get(
-                'metadata', {}).get(prop)
-        return any(_check_for_property_in_linter_metadata_in_file(file_)
+            return len(validation_data.get(
+                'metadata', {}).get(prop, []))
+        return max(_count_property_in_linter_metadata_in_file(file_)
                    for file_ in version.all_files)
 
     @classmethod
-    def check_uses_unknown_minified_code(cls, version):
-        return cls.check_for_metadata_property(version, 'unknownMinifiedFiles')
+    def count_uses_unknown_minified_code(cls, version):
+        return cls._count_metadata_property(version, 'unknownMinifiedFiles')
 
     @classmethod
-    def check_violates_mozilla_conditions(cls, version):
-        return cls.check_for_linter_flag(version, 'MOZILLA_COND_OF_USE')
+    def count_violates_mozilla_conditions(cls, version):
+        return cls._count_linter_flag(version, 'MOZILLA_COND_OF_USE')
 
     @classmethod
-    def check_uses_remote_scripts(cls, version):
-        return cls.check_for_linter_flag(version, 'REMOTE_SCRIPT')
+    def count_uses_remote_scripts(cls, version):
+        return cls._count_linter_flag(version, 'REMOTE_SCRIPT')
 
     @classmethod
-    def check_uses_eval_or_document_write(cls, version):
+    def count_uses_eval_or_document_write(cls, version):
         return (
-            cls.check_for_linter_flag(version, 'NO_DOCUMENT_WRITE') or
-            cls.check_for_linter_flag(version, 'DANGEROUS_EVAL'))
+            cls._count_linter_flag(version, 'NO_DOCUMENT_WRITE') or
+            cls._count_linter_flag(version, 'DANGEROUS_EVAL'))
 
     @classmethod
-    def check_uses_implied_eval(cls, version):
-        return cls.check_for_linter_flag(version, 'NO_IMPLIED_EVAL')
+    def count_uses_implied_eval(cls, version):
+        return cls._count_linter_flag(version, 'NO_IMPLIED_EVAL')
 
     @classmethod
-    def check_uses_innerhtml(cls, version):
-        return cls.check_for_linter_flag(version, 'UNSAFE_VAR_ASSIGNMENT')
+    def count_uses_innerhtml(cls, version):
+        return cls._count_linter_flag(version, 'UNSAFE_VAR_ASSIGNMENT')
 
     @classmethod
-    def check_uses_custom_csp(cls, version):
-        return cls.check_for_linter_flag(version, 'MANIFEST_CSP')
+    def count_uses_custom_csp(cls, version):
+        return cls._count_linter_flag(version, 'MANIFEST_CSP')
 
     @classmethod
     def check_uses_native_messaging(cls, version):

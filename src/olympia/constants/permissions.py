@@ -21,8 +21,6 @@ ADMIN_TOOLS = AclPermission('Admin', 'Tools')
 ADMIN_CURATION = AclPermission('Admin', 'Curation')
 # Can edit the properties of any add-on (pseduo-admin).
 ADDONS_EDIT = AclPermission('Addons', 'Edit')
-# Can configure some settings of an add-on.
-ADDONS_CONFIGURE = AclPermission('Addons', 'Configure')
 # Can view deleted add-ons in the API.
 ADDONS_VIEW_DELETED = AclPermission('Addons', 'ViewDeleted')
 # Can view only the reviewer tools.
@@ -48,6 +46,8 @@ STATIC_THEMES_REVIEW = AclPermission('Addons', 'ThemeReview')
 
 # Can edit all collections.
 COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')
+# Can contribute to community managed collection: COLLECTION_FEATURED_THEMES_ID
+COLLECTIONS_CONTRIBUTE = AclPermission('Collections', 'Contribute')
 
 # Can view statistics for all addons, regardless of privacy settings.
 STATS_VIEW = AclPermission('Stats', 'View')
