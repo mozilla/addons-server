@@ -697,27 +697,6 @@ PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
                                       extra=1)
 
 
-class AdminForm(happyforms.ModelForm):
-    reputation = forms.ChoiceField(
-        label=_(u'Reputation'),
-        choices=(
-            (None, ''),  # To handle null values - equivalent to 0.
-            (0, 'No Reputation'),
-            (1, 'Good (1)'),
-            (2, 'Very Good (2)'),
-            (3, 'Excellent (3)')))
-
-    # Request is needed in other ajax forms so we're stuck here.
-    def __init__(self, request=None, *args, **kw):
-        super(AdminForm, self).__init__(*args, **kw)
-
-    class Meta:
-        model = Addon
-        fields = (
-            'type', 'reputation', 'target_locale', 'locale_disambiguation'
-        )
-
-
 class CheckCompatibilityForm(happyforms.Form):
     application = forms.ChoiceField(
         label=_(u'Application'),

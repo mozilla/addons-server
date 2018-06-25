@@ -43,6 +43,7 @@ from olympia.amo.utils import (
     AMOJSONEncoder, attach_trans_dict, cache_ns_key, chunked, find_language,
     send_mail, slugify, sorted_groupby, timer, to_language)
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
+from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
 from olympia.files.utils import extract_translations, resolve_i18n_message
 from olympia.ratings.models import Rating
@@ -331,10 +332,15 @@ class Addon(OnChangeMixin, ModelBase):
 
     target_locale = models.CharField(
         max_length=255, db_index=True, blank=True, null=True,
-        help_text="For dictionaries and language packs")
+        help_text='For dictionaries and language packs. Identifies the '
+                  'language and, optionally, region that this add-on is '
+                  'written for. Examples: en-US, fr, and de-AT')
     locale_disambiguation = models.CharField(
         max_length=255, blank=True, null=True,
-        help_text="For dictionaries and language packs")
+        help_text='For dictionaries and language packs. A short identifier to '
+                  'differentiate this add-on from other similar add-ons (for '
+                  'example, different dialects). This field is not required. '
+                  'Please limit the length of the field to a few short words.')
 
     contributions = models.URLField(max_length=255, blank=True)
 
@@ -351,7 +357,11 @@ class Addon(OnChangeMixin, ModelBase):
 
     is_experimental = models.BooleanField(default=False,
                                           db_column='experimental')
-    reputation = models.SmallIntegerField(default=0, null=True)
+    reputation = models.SmallIntegerField(
+        default=0, null=True, choices=REPUTATION_CHOICES.items(),
+        help_text='The higher the reputation value, the further down the '
+                  'add-on will be in the auto-approved review queue. '
+                  'A value of 0 has no impact')
     requires_payment = models.BooleanField(default=False)
 
     # The order of those managers is very important:
