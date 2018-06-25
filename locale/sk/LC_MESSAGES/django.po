@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-05-01 12:28+0000\n"
+"PO-Revision-Date: 2018-06-25 16:18+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -197,9 +197,8 @@ msgstr "Zobraziť zásady ochrany súkromia"
 msgid "View End-User License Agreement"
 msgstr "Zobraziť licenčnú zmluvu koncového používateľa"
 
-#, fuzzy
 msgid "This add-on has not been reviewed by Mozilla."
-msgstr "Tento doplnok ešte nebol ohodnotený."
+msgstr "Tento doplnok nebol skontrolovaný Mozillou."
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Tento doplnok bol jeho vývojármi označený ako experimentálny."
@@ -996,21 +995,17 @@ msgstr "Ikony musia byť vo formáte .png alebo .jpg."
 msgid "Icons cannot be animated."
 msgstr "Ikony nesmú byť animované."
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "Táto adresa URL je už používaná inou kolekciou."
+msgstr "Táto adresa URL je už používaná inou vašou kolekciou."
 
-#, fuzzy
 msgid "Name cannot be empty."
-msgstr "Tento názov nemôže byť použitý."
+msgstr "Názov nemôže byť prázdny."
 
-#, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "Zadajte platnú URL, ktorá obsahuje znaky abecedy, čísla, podčiarky alebo pomlčky."
+msgstr "URL musí obsahovať písmená, čísla, podčiarky alebo pomlčky."
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "Toto používateľské meno nemôže byť použité."
+msgstr "Túto vlastnú URL adresu nie je možné použiť."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Tento doplnok už v kolekcii je"
@@ -1681,9 +1676,8 @@ msgid "{addon} enabled."
 msgstr "Doplnok {addon} bol povolený."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "Stav doplnku {addon} zmenený na {0}."
+msgstr "Stav doplnku {addon} bol zmenený na {status}."
 
 msgid "{version} added to {addon}."
 msgstr "Pre doplnok {addon} pridaná verzia {version}."
@@ -1927,18 +1921,16 @@ msgstr "Pre doplnok {addon} {version} eskalovaná recenzia."
 msgid "{addon} {version} content approved."
 msgstr "Doplnok {addon} {version} schválený."
 
-#, fuzzy
 msgid "Content approved"
-msgstr "schválené"
+msgstr "Obsah bol schválený"
 
 #, fuzzy
 msgid "{addon} {version} content rejected."
 msgstr "Doplnok {addon} {version} zamietnutý."
 
 # 87%
-#, fuzzy
 msgid "Content rejected"
-msgstr "zamietnuté"
+msgstr "Obsah bol zamietnutý"
 
 #, fuzzy
 msgid "{addon} information request altered or removed by admin."
@@ -2348,9 +2340,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Pridať tému"
+msgstr "Statická téma vzhľadu"
 
 msgid "Persona"
 msgstr "Téma Persona"
@@ -3498,7 +3489,7 @@ msgid "These notes will appear on the detail page."
 msgstr "Tieto poznámky sa zobrazia na stránke s podrobnosťami."
 
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Ako môžem distribuovať túto verziu"
 
 msgid "More information on Add-on Distribution and Signing"
 msgstr "Ďalšie informácie o distribúcii a podpisovaní doplnkov"
@@ -3553,9 +3544,8 @@ msgstr "Poznámky k verzii"
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
 
-#, fuzzy
 msgid "Version Signed"
-msgstr "Poznámky k verzii"
+msgstr "Verzia bola podpísaná"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
@@ -3863,9 +3853,9 @@ msgstr "Odstrániť túto aplikáciu"
 #. the application name.
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Vyberte <b>{0}</b> kategóriu pre aplikáciu {1}, v ktorej bude doplnok dostupný:"
+msgstr[1] "Vyberte <b>maximálne {0}</b> kategórie pre aplikáciu {1}, v ktorej bude doplnok dostupný:"
+msgstr[2] "Zvoľte <b>maximálne {0}</b> kategórií aplikácie {1} pre tento doplnok:"
 
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
@@ -5222,9 +5212,9 @@ msgstr "Táto recenzia je pre predchádzajúcu verziu doplnku ({0})."
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Tento používateľ má <a href=\"%(user_review_url)s\">predchádzajúcu recenziu</a> tohto doplnku."
+msgstr[1] "Tento používateľ má <a href=\"%(user_review_url)s\">%(cnt)s predchádzajúce recenzie</a> tohto doplnku."
+msgstr[2] "Tento používateľ má <a href=\"%(user_review_url)s\">%(cnt)s predchádzajúcich recenzií</a> tohto doplnku."
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
