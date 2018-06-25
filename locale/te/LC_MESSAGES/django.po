@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-25 11:52+0000\n"
+"PO-Revision-Date: 2018-06-25 12:43+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -333,7 +333,7 @@ msgstr[0] "<strong>{0}</strong> వాడుకరి"
 msgstr[1] "<strong>{0}</strong> వాడుకరులు"
 
 msgid "Hover to Preview"
-msgstr ""
+msgstr "మునుజూడడానికి హోవర్ చేయండి"
 
 msgid "Add"
 msgstr "జోడించు"
@@ -527,7 +527,7 @@ msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "<a href=\"%(url)s\">%(name)s</a>కింద విడుదల"
 
 msgid "Custom License"
-msgstr ""
+msgstr "అభిమత లైసెన్సు"
 
 msgid "About this Add-on"
 msgstr "ఈ పొడగింత గురించి"
@@ -631,13 +631,13 @@ msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "ఈ అలంకారం వేచివుంది. ఇది మీకు తప్ప ఇంకెవరికీ కనబడదు."
 
 msgid "Collector's Note"
-msgstr ""
+msgstr "సేకర్త గమనిక"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> వారపు దింపుకోలు"
+msgstr[1] "<strong>{0}</strong> వారపు దింపుకోళ్ళు"
 
 msgid "Not Reviewed"
 msgstr "సమీక్షించబడలేదు"
@@ -718,7 +718,7 @@ msgid "Browse all themes"
 msgstr "అలంకారాలన్నీ చూడండి"
 
 msgid "Add-ons Home Page"
-msgstr ""
+msgstr "పొడగింతల ముంగిలి పేజీ"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
