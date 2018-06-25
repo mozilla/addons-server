@@ -27,7 +27,6 @@
         "model": "addons.addon",
         "fields": {
             "slug": "better-gcal-5299",
-            "dev_agreement": true,
             "last_updated": "2008-07-07 12:08:01",
             "_current_version": 49515,
             "view_source": false,
