@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-25 16:23+0000\n"
+"PO-Revision-Date: 2018-06-25 20:52+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4071,7 +4071,7 @@ msgstr "Imecwaṛen d-iteddun:"
 
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr ""
+msgstr "Mudd-d ugar n telqayt ɣef usentel s <a href=\"%(edit_url)s\"> teẓrigt n tebdart-is</a>."
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
@@ -6604,7 +6604,7 @@ msgid "Logging in with this email address into %(site)s again will create a new 
 msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
+msgstr "Iceggiren-ik akked tizmilin-ik ur ttwakkasen ara acu kan ur tezzin ara ad ttwacudden ɣur-k."
 
 msgid "Confirm account deletion"
 msgstr "Sentem tukksa n umiḍan"
@@ -6625,7 +6625,7 @@ msgid "Please set your display name"
 msgstr "Ma ulac aɣilif fren isem ara d-sekneḍ"
 
 msgid "Please set your display name or username to complete the registration process."
-msgstr ""
+msgstr "Ma ulac aɣilif, mudd-d isem-ik neɣ isem n useqdac akken ad tfakeḍ akala n ujerred."
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Sefrek talɣut tatzadurt n umiḍan, am yisem inek n useqdac akked iɣewwaṛen n imiḍanen Firefox."
@@ -6755,7 +6755,7 @@ msgid "Report User"
 msgstr "Sefrek aseqdac"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr ""
+msgstr "Ma ulac aɣilif, aru-d acuɣer i d-mmliḍ aseqdac-agi, amedya ma yella d aspam neɣ d yir tawlaft."
 
 msgid "Report user {0}"
 msgstr "Sefrek aseqdac {0}"
@@ -6842,7 +6842,7 @@ msgstr "Yeffeɣ-d {0}"
 
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Tangalt taɣbalut teffeɣ-d ddaw n <a href=\"%(url)s\">%(name)s</a>"
 
 #. {0} is an add-on name.
 msgid "{0} Version History"
@@ -6859,7 +6859,7 @@ msgstr "Ɣur-k seg ileqman iqbuṛen!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr ""
+msgstr "Ileqman-agi ad ttwaseknen i telqut daɣen i usekyed. Yessefk yal tikelt ad tesqedceḍ <a href=\"%(url)s\">lqem aneggaru</a> n uzegrir."
 
 msgid "Deleted versions can`t be changed."
 msgstr "Ileqman yettwakksen ur zmiren ara ad beddlen."
@@ -6868,4 +6868,4 @@ msgid "Binary"
 msgstr "Imisin"
 
 msgid "Non-binary"
-msgstr ""
+msgstr "Mačči d imsin"
