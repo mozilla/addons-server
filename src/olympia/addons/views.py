@@ -144,7 +144,7 @@ def extension_detail(request, addon):
 def _category_personas(qs, limit):
     def fetch_personas():
         return randslice(qs, limit=limit)
-    key = make_key('cat-personas:' + str(qs), normalize=True)
+    key = make_key('cat-personas:' + str(qs.query), normalize=True)
     return cache_get_or_set(key, fetch_personas)
 
 
