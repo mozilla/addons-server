@@ -34,7 +34,7 @@ from olympia.addons.utils import (
 from olympia.amo.decorators import use_master, write
 from olympia.amo.models import (
     BasePreview, ManagerBase, manual_order, ModelBase, OnChangeMixin,
-    SaveUpdateMixin, SlugField, TransformQuerySet)
+    SaveUpdateMixin, SlugField, BaseQuerySet)
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
@@ -147,7 +147,7 @@ def clean_slug(instance, slug_field='slug'):
     return instance
 
 
-class AddonQuerySet(TransformQuerySet):
+class AddonQuerySet(BaseQuerySet):
     def id_or_slug(self, val):
         """Get add-ons by id or slug."""
         if isinstance(val, basestring) and not val.isdigit():

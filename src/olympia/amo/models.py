@@ -32,7 +32,7 @@ def use_master():
         multidb.pinning._locals.pinned = old
 
 
-class TransformQuerySet(queryset_transform.TransformQuerySet):
+class BaseQuerySet(queryset_transform.TransformQuerySet):
 
     def pop_transforms(self):
         qs = self._clone()
@@ -74,7 +74,7 @@ class ManagerBase(models.Manager):
     use_for_related_fields = True
 
     def get_queryset(self):
-        qs = self._with_translations(TransformQuerySet(self.model))
+        qs = self._with_translations(BaseQuerySet(self.model))
         return qs
 
     def _with_translations(self, qs):
