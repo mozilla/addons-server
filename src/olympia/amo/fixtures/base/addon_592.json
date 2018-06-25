@@ -26,7 +26,6 @@
         "model": "addons.addon",
         "fields": {
             "slug": "a592",
-            "dev_agreement": true,
             "_current_version": 104749,
             "last_updated": "2010-04-24 11:33:30",
             "view_source": false,
