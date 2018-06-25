@@ -401,7 +401,7 @@ class TestRecalculatePostReviewWeightsCommand(TestCase):
         summary.update(modified=old_modified_date)
         call_command('recalculate_post_review_weights')
         summary.reload()
-        assert summary.weight == 200  # Because of no validation results found.
+        assert summary.weight == 500  # Because of no validation results found.
         assert summary.modified == old_modified_date
 
     def test_save_new_weight(self):
@@ -413,7 +413,7 @@ class TestRecalculatePostReviewWeightsCommand(TestCase):
         summary.update(modified=old_modified_date)
         call_command('recalculate_post_review_weights')
         summary.reload()
-        assert summary.weight == 200  # Because of no validation results found.
+        assert summary.weight == 500  # Because of no validation results found.
         assert summary.modified != old_modified_date
 
 
