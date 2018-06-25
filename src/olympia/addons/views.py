@@ -47,6 +47,7 @@ from olympia.search.filters import (
     SortingFilter)
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
+from olympia.lib.cache import make_key, cache_get_or_set
 
 from .decorators import addon_view_factory
 from .indexers import AddonIndexer
@@ -140,6 +141,13 @@ def extension_detail(request, addon):
         return render(request, 'addons/impala/details.html', ctx)
 
 
+def _category_personas(qs, limit):
+    def fetch_personas():
+        return randslice(qs, limit=limit)
+    key = make_key('cat-personas:' + str(qs), normalize=True)
+    return cache_get_or_set(key, fetch_personas)
+
+
 @non_atomic_requests
 def persona_detail(request, addon):
     """Details page for Personas."""
@@ -153,7 +161,7 @@ def persona_detail(request, addon):
     category_personas = None
     if categories.exists():
         qs = Addon.objects.public().filter(categories=categories[0])
-        category_personas = randslice(qs, limit=6)
+        category_personas = _category_personas(qs, limit=6)
 
     data = {
         'addon': addon,
