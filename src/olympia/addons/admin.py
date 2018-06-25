@@ -44,7 +44,7 @@ class AddonAdmin(admin.ModelAdmin):
                        'weekly_downloads', 'total_downloads',
                        'average_daily_users'),
         }),
-        ('Truthiness', {
+        ('Flags', {
             'fields': ('disabled_by_user', 'view_source', 'requires_payment',
                        'public_stats', 'is_experimental',
                        'external_software', 'dev_agreement', 'reputation'),
