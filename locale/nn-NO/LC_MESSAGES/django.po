@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-25 10:11+0000\n"
+"PO-Revision-Date: 2018-06-25 11:18+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -908,7 +908,7 @@ msgid "Valid Application Versions"
 msgstr "Gyldige applikasjonsversjonar"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "Utvidingar sendt inn til Mozilla Add-ons må ha ein manifest-fil med støtte for minst eitt av programma nedanfor. Berre versjonane lista opp nedanfor er tillatne for desse programma."
+msgstr "Tillegg sende inn til Mozilla Add-ons må ha ei manifest-fil med støtte for minst eitt av programma nedanfor. Berre versjonane lista opp nedanfor er tillatne for desse programma."
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
@@ -1037,7 +1037,7 @@ msgid "To rate collections, you must have an add-ons account."
 msgstr "For å vurdera samlingar må du først ha ein utvidingskonto."
 
 msgid "Create an Add-ons Account"
-msgstr "Opprett ein utvidingskonto"
+msgstr "Opprett ein konto for tillegg"
 
 #, python-format
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
@@ -1059,7 +1059,7 @@ msgid "About this Collection"
 msgstr "Om denne samlinga"
 
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr "Utvidingar synkroniserte til min mobile Firefox"
+msgstr "Tillegg synkroniserte til min mobile Firefox"
 
 msgid "Make this Collection Private"
 msgstr "Gjer denne samlinga privat"
@@ -1085,8 +1085,8 @@ msgstr[1] "%(num)s tema i denne samlinga"
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "%(num)s utviding i denne samlinga"
-msgstr[1] "%(num)s utvidingar i denne samlinga"
+msgstr[0] "%(num)s tillegg i denne samlinga"
+msgstr[1] "%(num)s tillegg i denne samlinga"
 
 msgid "Go"
 msgstr "Gå"
