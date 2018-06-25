@@ -3,7 +3,6 @@
     "pk": 1865,
     "model": "addons.addon",
     "fields": {
-      "dev_agreement": true,
       "eula": null,
       "last_updated": "2010-08-17 13:31:08",
       "view_source": true,
