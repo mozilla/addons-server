@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2017-07-11 12:31+0000\n"
+"PO-Revision-Date: 2018-06-25 09:27+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -190,9 +190,8 @@ msgstr "Vis personvernpraksis"
 msgid "View End-User License Agreement"
 msgstr "Vis lisensavtalen for sluttbrukarar"
 
-#, fuzzy
 msgid "This add-on has not been reviewed by Mozilla."
-msgstr "Denne utvidinga er enno ikkje vurdert."
+msgstr "Denne utvidinga er enno ikkje vurdert av Mozilla."
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Denne utvidinga er merkt som eksperimentell av utviklarane."
@@ -964,21 +963,17 @@ msgstr "Ikon må anten vera PNG eller JPG."
 msgid "Icons cannot be animated."
 msgstr "Ikon kan ikkje vere animerte."
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "Denne sluggen vert allereie brukt av ei av samlingane dine."
+msgstr "Denne tilpassa adressa vert allereie brukt av ei av samlingane dine."
 
-#, fuzzy
 msgid "Name cannot be empty."
-msgstr "Dette namnet kan ikkje brukast."
+msgstr "Namn kan ikkje vere tomt."
 
-#, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "Spesifiser ein gyldig slugg som har bokstavar, tal, understrek eller bindestrek."
+msgstr "Den tilpassa URL-en må ha bokstavar, tal, understrek eller bindestrek."
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "Dette brukarnamnet kan ikkje brukast."
+msgstr "Denne tilpassa URL-en kan ikkje brukast."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Denne utvidinga høyrer allereie til samlinga"
@@ -2278,9 +2273,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Send inn temaet"
+msgstr "Statisk tema"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2318,9 +2312,8 @@ msgstr "Oppdatert gjennomgang av språkpakke"
 msgid "Theme Review"
 msgstr "Temavurdering"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Tema (Statisk)"
+msgstr "Tema (statisk) vurdering"
 
 msgid "New Search Provider Review"
 msgstr "Ny vurdering av søkjetilbydar"
@@ -2868,9 +2861,8 @@ msgstr "Ingen"
 msgid "Preview"
 msgstr "Førehandsvising"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Oppførte versjonar"
+msgstr "Førehandsvising av oppførte versjonar"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
@@ -3183,9 +3175,8 @@ msgstr "Utvidinga di vert sleppt under følgjande lisens:"
 msgid "Select a different license."
 msgstr "Vel ein annan lisens."
 
-#, fuzzy
 msgid "More information on Creative Commons licenses"
-msgstr "Det er bedt om meir informasjon"
+msgstr "Meir informasjon om Creative Commons-lisensar"
 
 msgid "Tests"
 msgstr "Testar"
@@ -3522,9 +3513,8 @@ msgstr "Justert ;vst til h;gre"
 msgid "Select a different header image"
 msgstr "Vel eit anna bilde for sidehovud"
 
-#, fuzzy
 msgid "Select colors for your theme"
-msgstr "Vel fargar for temaet ditt."
+msgstr "Vel fargar for temaet ditt"
 
 #, fuzzy
 msgid "Header area background"
@@ -3865,9 +3855,8 @@ msgstr ""
 msgid "Take Survey"
 msgstr ""
 
-#, fuzzy
 msgid "Welcome Back"
-msgstr "Velkomen, {0}"
+msgstr "Velkomen tilbake"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
@@ -5188,9 +5177,8 @@ msgstr "Appar:"
 msgid "Require developer to respond in less than…"
 msgstr ""
 
-#, fuzzy
 msgid "days"
-msgstr "7 dagane"
+msgstr "dagar"
 
 msgid "Choose a canned response..."
 msgstr "Vel eit standardsvar…"
@@ -5354,9 +5342,8 @@ msgstr ""
 msgid "Static Themes and Legacy Add-ons"
 msgstr "Forelda utvidingar"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "Framheva tema"
+msgstr "Statiske tema"
 
 msgid "Legacy Add-ons"
 msgstr "Forelda utvidingar"
@@ -5367,17 +5354,14 @@ msgstr "Nye ({0})"
 msgid "Updates ({0})"
 msgstr "Oppdateringar ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Vurderingsmerknad"
+msgstr "Vurderingslogg"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Vurdering av utviding"
+msgstr "Vurderingsretningslinjer for tillegg"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Vurderingskø for tema"
+msgstr "Vurderingsretningslinjer for tema"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Auto-godkjende utvidingar"
@@ -5408,9 +5392,8 @@ msgstr "Temaoppdateringar ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Flagga tema ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Lette tema"
+msgstr "Lette tema, vurderingslogg"
 
 msgid "Deleted Themes Log"
 msgstr "Sletta temaloggar"
@@ -5968,11 +5951,10 @@ msgid_plural "Rating Reviews ({0})"
 msgstr[0] "Innhaldsvurdering({0})"
 msgstr[1] "Innhaldsvurderingar ({0})"
 
-#, fuzzy
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
-msgstr[0] "Automatisk godkjend tillegg ({0})"
-msgstr[1] "Automatisk godkjende tillegg ({0})"
+msgstr[0] "Automatisk godkjent ({0})"
+msgstr[1] "Automatisk godkjende ({0})"
 
 #, fuzzy
 msgid "Expired Info Request ({0})"
