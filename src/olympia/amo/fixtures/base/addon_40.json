@@ -16,7 +16,6 @@
         "model": "addons.addon",
         "fields": {
             "slug": "40",
-            "dev_agreement": false,
             "eula": null,
             "_current_version": 42,
             "last_updated": "2007-03-05 13:11:03",
