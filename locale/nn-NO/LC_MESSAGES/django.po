@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-25 09:49+0000\n"
+"PO-Revision-Date: 2018-06-25 10:11+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -212,7 +212,7 @@ msgid "Back to {0}…"
 msgstr "Tilbake til {0}…"
 
 msgid "Add-ons for {0}"
-msgstr "Utvidingar for {0}"
+msgstr "Tillegg for {0}"
 
 msgid "Featured Extensions"
 msgstr "Framheva utvidingar"
@@ -411,7 +411,7 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
-"Sjå <a href=\"%(support)s\">hjelpeseksjonen</a> til denne utvidinga for å finne ut om hjelp er tilgjengeleg. Du kan også prøve å spørje <a href=\"https://discourse.mozilla-community.org/c/add-ons"
+"Sjå <a href=\"%(support)s\">hjelpeseksjonen</a> til dette tillegget for å finne ut om hjelp er tilgjengeleg. Du kan også prøve å spørje <a href=\"https://discourse.mozilla-community.org/c/add-ons"
 "/add-on-support\">felleskapet for utvidinga</a> om hjelp."
 
 msgid "Review Guidelines"
@@ -456,7 +456,7 @@ msgid "This add-on has been marked as experimental by its developers"
 msgstr "Denne utvidinga er merka eksperimentell av utviklaren"
 
 msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Denne utvidinga krev følgjande utviding for å fungera på rett måte:"
+msgstr "Denne utvidinga krev følgjande tillegg for å fungere på rett måte:"
 
 msgid "Average"
 msgstr "Gjennomsnitt"
@@ -473,8 +473,8 @@ msgstr "Del av desse samlingane"
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] "Andre utvidingar av %(author)s"
-msgstr[1] "Andre utvidingar av desse utviklarane"
+msgstr[0] "Andre tillegg av %(author)s"
+msgstr[1] "Andre tillegg av desse utviklarane"
 
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
@@ -550,7 +550,7 @@ msgid "close"
 msgstr "lat att"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr "Visse utvidingar kan be om løyve til å utføre visse funksjonar (Døme: Ei utviding som handsamar faner, kan be om å få tilgang til fanesystemet i nettlesaren din)."
+msgstr "Visse tillegg kan be om løyve til å utføre visse funksjonar (Døme: Eit tillegg som handsamar faner, kan be om å få tilgang til fanesystemet i nettlesaren din)."
 
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
@@ -564,7 +564,7 @@ msgid "This add-on can:"
 msgstr "Denne utvidinga kan:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Visse utvidingar kan be om løyve til å utføre visse funksjonar. Sidan du har kontrollen over Firefox, vil vala om å godta, eller avvise, desse førespurnadane vere dine."
+msgstr "Visse tillegg kan be om løyve til å utføre visse funksjonar. Sidan du har kontrollen over Firefox, vil vala om å godta, eller avvise, desse førespurnadane vere dine."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Legg merke til at denne utvidinga brukar forelda teknologi, noko som gjev henne tilgang til alle nettlesarfunksjonar og data, utan å be deg om løyve."
@@ -613,7 +613,7 @@ msgid "Add to collection"
 msgstr "Legg til i samling"
 
 msgid "My Add-ons"
-msgstr "Mine utvidingar"
+msgstr "Mine tillegg"
 
 msgid "My Themes"
 msgstr "Mine tema"
@@ -710,7 +710,7 @@ msgid "Page Not Found"
 msgstr "Fann ikkje sida"
 
 msgid "Firefox Add-ons"
-msgstr "Firefox-utvidingar"
+msgstr "Firefox-tillegg"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
 msgstr "Beklagar, men vi kan ikkje finne noko på adressa du tasta inn. Viss du følgde ei lenke til ei utviding, er det muleg at utvidinga er fjerna av utviklaren."
@@ -725,7 +725,7 @@ msgid "Browse all themes"
 msgstr "Bla i alle tema"
 
 msgid "Add-ons Home Page"
-msgstr "Heimeside for utvidingar"
+msgstr "Heimeside for tillegg"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
@@ -820,13 +820,13 @@ msgid "Collections I'm Following"
 msgstr "Samlingar eg følgjer"
 
 msgid "My Favorite Add-ons"
-msgstr "Mine favorittutvidingar"
+msgstr "Mine favoritt-tillegg"
 
 msgid "More&hellip;"
 msgstr "Meir&hellip;"
 
 msgid "Add-ons for Mobile"
-msgstr "Utvidingar for mobil"
+msgstr "Tillegg for mobil"
 
 msgid "Dictionaries & Language Packs"
 msgstr "Ordbøker og språkpakkar"
@@ -855,7 +855,7 @@ msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Viser <b>%(begin)s</b>&ndash;<b>%(end)s</b> av <b>%(count)s</b>"
 
 msgid "Add-ons"
-msgstr "Utvidingar"
+msgstr "Tillegg"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
@@ -2737,10 +2737,10 @@ msgid "Community & Support"
 msgstr "Felleskap og brukarstøtte"
 
 msgid "Add-ons Blog"
-msgstr "Blogg om utvidingar"
+msgstr "Blogg om tillegg"
 
 msgid "Add-ons Forum"
-msgstr "Forum for utvidingar"
+msgstr "Forum for tillegg"
 
 msgid "More Resources"
 msgstr "Fleire resursar"
@@ -3851,6 +3851,8 @@ msgid ""
 "We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
 "development work."
 msgstr ""
+"Vi er interessert i di tilbakemelding om utviklaropplevinga av utvidingar! Ver med på den korte undersøkinga vår for å fortelje oss kva for typar av dokumentasjon, API og verktøy som er mest nyttige"
+" for utviklingsarbeidet ditt."
 
 msgid "Take Survey"
 msgstr "Ver med på undersøkinga"
@@ -4878,7 +4880,7 @@ msgid "After a few weeks, the study will end on its own. Your Firefox will go ba
 msgstr ""
 
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "Vi vil be deg om å vere med på ei kort undersøking som skal informere oss om opplevinga di. Undersøkinga vil ta mindre enn 5 minutt å fullføre."
 
 msgid "Leaving the study"
 msgstr "Forlèt studiet"
@@ -6804,7 +6806,7 @@ msgid "Number of add-ons developed"
 msgstr "Tal på utvikla utvidingar"
 
 msgid "{0} add-ons"
-msgstr "{0} utvidingar"
+msgstr "{0} tillegg"
 
 #, python-format
 msgid "%(num)s theme"
@@ -6815,8 +6817,8 @@ msgstr[1] "%(num)s tema"
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] "%(num)s utviding"
-msgstr[1] "%(num)s utvidingar"
+msgstr[0] "%(num)s tillegg"
+msgstr[1] "%(num)s tillegg"
 
 msgid "Average rating of developer's add-ons"
 msgstr "Gjennomsnittleg vurdering for utviklaren si utviding"
