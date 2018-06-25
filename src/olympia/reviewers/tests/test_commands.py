@@ -396,7 +396,7 @@ class TestRecalculatePostReviewWeightsCommand(TestCase):
         addon = addon_factory()
         summary = AutoApprovalSummary.objects.create(
             version=addon.current_version,
-            verdict=amo.AUTO_APPROVED, confirmed=False, weight=200)
+            verdict=amo.AUTO_APPROVED, confirmed=False, weight=500)
         old_modified_date = self.days_ago(42)
         summary.update(modified=old_modified_date)
         call_command('recalculate_post_review_weights')

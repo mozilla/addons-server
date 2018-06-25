@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-25 11:35+0000\n"
-"Last-Translator: Slimane AMIRI <slimane.amiri@gmail.com>\n"
+"PO-Revision-Date: 2018-06-25 16:23+0000\n"
+"Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -3034,6 +3034,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
+"Aseqdac aneggaru n telɣut-agi yessefk ad yizmir ad yissin d akken ur ttwasnasent ara ɣef ugzul neq aglam n uzegrir. Nettmuddu-d yakan talɣut n tebdart n yibugen yettwassnen, talɣut ɣef tarrayt n "
+"tuzna n wuguren, akked uɣawas n usuffeɣ i yileqman i d-iteddun. Ayagi ur yettwasnas ara ɣef izgrar yettwabedren."
 
 msgid "Required Add-ons"
 msgstr "Izegrar ilaqen"
@@ -3054,7 +3056,7 @@ msgid "View Source?"
 msgstr "Sken aɣbalu?"
 
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Ma yella tangalt n uɣbalu n uzegrir-ik yezmer ad d-yettwasken di tmeskant srid. Ayagi d usdid kan n yizegrar yettwabeedren."
 
 msgid "This add-on's source code is publicly viewable."
 msgstr "Tangalt aɣbalu n uzegrir-agi tettwaskan s wudem azayez."
@@ -3078,7 +3080,7 @@ msgid "Upgrade SDK?"
 msgstr "Sali aswir n SDK?"
 
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Ma yettwafren, ad neɛreḍ ad nleqqem s wudem awurman azegrir ticki lqem amaynut n SDK yella, ad yettwsnes kan ɣef izegrar yettwabedren."
 
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
 msgstr "Azegrir-agi ad yettwalqem s wudem awurman s ileqman imaynuten n SDK n uzegrir."
@@ -3102,6 +3104,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Tafelwit d amḍiq ara yeǧǧen ad d-nmudd talɣut icudden ar uzegrir-ik, akken yebɣu yella lqem, i yimceggiren. Aseqdec-is ad d-imudd tarrayin n usekyed n uzegrir, akked yal talɣut-nniḍen izemren ad "
+"tmudd afus. Tafelwit-a ad izmiren ad ttbeddlen imceggiren."
 
 msgid "Remove this dependent add-on"
 msgstr "Kkes azegrir-agi ugil"
@@ -5887,7 +5891,7 @@ msgid "Interactive Theme Queue"
 msgstr ""
 
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Amnir n yimcegger"
 
 msgid "Theme Review for {0}"
 msgstr "Acegger n usentel i {0}"
@@ -5896,7 +5900,7 @@ msgid "(Probable Duplicate Submission)"
 msgstr ""
 
 msgid "Past Review Notes"
-msgstr ""
+msgstr "Tizmilin n ucegger yezrin"
 
 #. {previous review action taken on theme}: {comment about review action}
 msgid "More Info Requested: {0}"
@@ -5960,7 +5964,7 @@ msgid "Updates"
 msgstr "Ileqman"
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Teɣzi tafellayt n usuter iɛeddan."
 
 msgid "search for add-ons"
 msgstr "nadi izegrar"
@@ -6050,26 +6054,26 @@ msgid "Some features are temporarily disabled while we perform website maintenan
 msgstr ""
 
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "UR izmir ara ad d-yaf azegrir s usulay id \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Azegrir-agi mačči yinek."
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Tasarut \"upload\" ulac-itt deg ufaylu n yisefka multipart ."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
 msgstr "Ur temirzḍ ar ad ternuḍ ileqman i uzegrir yelllan deg addad: %s."
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Lqem ur imenṭaḍ ara akked ufaylu n umeskan."
 
 msgid "Version already exists."
 msgstr "Lqem yella yakan."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Ala WebExtensions i yettwasirgen ad yezgel GUID"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
 msgstr ""
@@ -6170,7 +6174,7 @@ msgid "Statistics Dashboard"
 msgstr "Wali tafelwit n usenqed n tidaddanin"
 
 msgid "Controls:"
-msgstr ""
+msgstr "Isenqaden:"
 
 msgid "reset zoom"
 msgstr "wennez aswir n usemɣer/asemẓi"
@@ -6289,7 +6293,7 @@ msgid "Ratings by Date"
 msgstr "Tizmilin s wazemz"
 
 msgid "Reviews Created by Date"
-msgstr ""
+msgstr "Iceggiren yettwarnan s wazemz"
 
 msgid "Download sources by Date"
 msgstr "Iɣbula n usider s wazemz"
