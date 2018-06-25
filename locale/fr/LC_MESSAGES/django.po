@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-25 10:35+0000\n"
+"PO-Revision-Date: 2018-06-25 12:18+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4363,7 +4363,7 @@ msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_hea
 msgstr "Personnalisez les pages Nouvel onglet {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Profitez d’une toute nouvelle page avec des arrière-plans personnalisables, des informations sur la météo locale et bien plus."
 
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Traduisez facilement {start_sub_heading}avec {addon_name}{end_sub_heading}"
