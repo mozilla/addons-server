@@ -1,1 +1,2 @@
-DROP TABLE `dev_agreement`;
+ALTER TABLE `addon`
+ DROP COLUMN `dev_agreement`
