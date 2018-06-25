@@ -272,7 +272,7 @@ class PreventActionPermission(BasePermission):
     Allow access except for a given action(s).
     """
     def __init__(self, actions):
-        if not isinstance(actions, list):
+        if not isinstance(actions, (list, tuple)):
             actions = [actions]
         self.actions = actions
 

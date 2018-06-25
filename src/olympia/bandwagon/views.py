@@ -32,8 +32,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, render, urlparams
 from olympia.api.filters import OrderingAliasFilter
 from olympia.api.permissions import (
-    AllOf, AllowReadOnlyIfPublic, AnyOf, GroupPermission,
-    PreventActionPermission)
+    AllOf, AllowReadOnlyIfPublic, AnyOf, PreventActionPermission)
 from olympia.legacy_api.utils import addon_to_dict
 from olympia.tags.models import Tag
 from olympia.translations.query import order_by_translation
@@ -43,7 +42,8 @@ from . import forms, tasks
 from .models import (
     SPECIAL_SLUGS, Collection, CollectionAddon, CollectionVote,
     CollectionWatcher)
-from .permissions import AllowCollectionAuthor, AllowCollectionContributor
+from .permissions import (
+    AllowCollectionAuthor, AllowCollectionContributor, AllowContentCurators)
 from .serializers import (
     CollectionAddonSerializer, CollectionSerializer,
     CollectionWithAddonsSerializer)
@@ -403,7 +403,7 @@ def ajax_collection_alter(request, action):
 # permission check below to prevent them from doing any modifications.
 @owner_required(require_owner=False)
 def edit(request, collection, username, slug):
-    is_admin = acl.action_allowed(request, amo.permissions.COLLECTIONS_EDIT)
+    is_admin = acl.action_allowed(request, amo.permissions.ADMIN_CURATION)
 
     if not acl.check_collection_ownership(
             request, collection, require_owner=True):
@@ -576,11 +576,12 @@ class CollectionViewSet(ModelViewSet):
             # (it's community-managed) and change it's addons, but can't delete
             # or edit it's details.
             AllOf(AllowCollectionContributor,
-                  PreventActionPermission(['create', 'list', 'update',
-                                           'destroy', 'partial_update'])),
-            # Admins can do everything except create.
-            AllOf(GroupPermission(amo.permissions.COLLECTIONS_EDIT),
-                  PreventActionPermission('create')),
+                  PreventActionPermission(('create', 'list', 'update',
+                                           'destroy', 'partial_update'))),
+            # Content curators can modify existing mozilla collections as they
+            # see fit.
+            AllOf(AllowContentCurators,
+                  PreventActionPermission(('create', 'list'))),
             # Everyone else can do read-only stuff, except list.
             AllOf(AllowReadOnlyIfPublic,
                   PreventActionPermission('list'))),

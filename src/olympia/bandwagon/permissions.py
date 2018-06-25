@@ -30,3 +30,20 @@ class AllowCollectionContributor(BasePermission):
             obj.pk == settings.COLLECTION_FEATURED_THEMES_ID and
             acl.action_allowed(request, amo.permissions.COLLECTIONS_CONTRIBUTE)
         )
+
+
+class AllowContentCurators(BasePermission):
+    """Allow people with Admin:Curation permission to modify mozilla
+    collections.  Be careful where this used as it can allow
+    creating / listing objects if used alone in a ViewSet that has those
+    actions."""
+
+    def has_permission(self, request, view):
+        return request.user.is_authenticated()
+
+    def has_object_permission(self, request, view, obj):
+        return (
+            obj and
+            obj.author.username == 'mozilla' and
+            acl.action_allowed(request, amo.permissions.ADMIN_CURATION)
+        )
