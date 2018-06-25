@@ -11,7 +11,7 @@ from olympia import amo
 from olympia.activity.models import AddonLog
 from olympia.addons.management.commands import (
     approve_addons, process_addons as pa)
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AppSupport
 from olympia.addons.tasks import update_appsupport
 from olympia.amo.tests import (
     AMOPaths, TestCase, addon_factory, version_factory)
@@ -517,6 +517,9 @@ class TestDeleteAddonsNotCompatibleWithFirefoxes(TestCase):
             application=amo.SEAMONKEY.id,
             version=addon_with_firefox_and_seamonkey.current_version,
             min=av_seamonkey_min, max=av_seamonkey_max)
+        addon_factory(
+            status=amo.STATUS_NULL,  # Non-public, will cause it to be ignored.
+            version_kw={'application': amo.THUNDERBIRD.id})
 
         # Those add-ons should be deleted as they are only compatible with
         # Thunderbird or Seamonkey, or both.
@@ -531,13 +534,13 @@ class TestDeleteAddonsNotCompatibleWithFirefoxes(TestCase):
             min=av_seamonkey_min, max=av_seamonkey_max)
 
         # We've manually changed the ApplicationVersions, so let's run
-        # update_appsupport(). In the real world tthat is done automatically
-        # when uploading a new version, either through the version_changed
-        # signal or via a cron that catches any versions that somehow fell
-        # through the cracks once a day.
-        update_appsupport(Addon.objects.values_list('pk', flat=True))
+        # update_appsupport() on all public add-ons. In the real world that is
+        # done automatically when uploading a new version, either through the
+        # version_changed signal or via a cron that catches any versions that
+        # somehow fell through the cracks once a day.
+        update_appsupport(Addon.objects.public().values_list('pk', flat=True))
 
-        assert Addon.objects.count() == 8
+        assert Addon.objects.count() == 9
 
         with count_subtask_calls(
                 pa.delete_addon_not_compatible_with_firefoxes) as calls:
@@ -549,7 +552,7 @@ class TestDeleteAddonsNotCompatibleWithFirefoxes(TestCase):
         assert not Addon.objects.filter(pk=addon2.pk).exists()
         assert not Addon.objects.filter(pk=addon3.pk).exists()
 
-        assert Addon.objects.count() == 5
+        assert Addon.objects.count() == 6
 
         # Make sure ApplicationsVersions targeting Thunderbird or Seamonkey are
         # gone.
@@ -557,3 +560,10 @@ class TestDeleteAddonsNotCompatibleWithFirefoxes(TestCase):
             application=amo.SEAMONKEY.id).exists()
         assert not ApplicationsVersions.objects.filter(
             application=amo.THUNDERBIRD.id).exists()
+
+        # Make sure AppSupport targeting Thunderbird or Seamonkey are gone for
+        # add-ons we touched.
+        assert not AppSupport.objects.filter(
+            addon__in=(addon, addon2, addon3), app=amo.SEAMONKEY.id).exists()
+        assert not AppSupport.objects.filter(
+            addon__in=(addon, addon2, addon3), app=amo.THUNDERBIRD.id).exists()
