@@ -1596,10 +1596,11 @@ class TestCollectionViewSetDelete(TestCase):
         assert response.status_code == 403
         assert Collection.objects.filter(id=self.collection.id).exists()
 
+        # Curators can't delete collections even owned by mozilla.
         random_user.update(username='mozilla')
         response = self.client.delete(url)
-        assert response.status_code == 204
-        assert not Collection.objects.filter(id=self.collection.id).exists()
+        assert response.status_code == 403
+        assert Collection.objects.filter(id=self.collection.id).exists()
 
     def test_contributor_fails(self):
         self.client.login_api(self.user)

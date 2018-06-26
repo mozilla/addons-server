@@ -579,9 +579,9 @@ class CollectionViewSet(ModelViewSet):
                   PreventActionPermission(('create', 'list', 'update',
                                            'destroy', 'partial_update'))),
             # Content curators can modify existing mozilla collections as they
-            # see fit.
+            # see fit, but can't list or delete them.
             AllOf(AllowContentCurators,
-                  PreventActionPermission(('create', 'list'))),
+                  PreventActionPermission(('create', 'destroy', 'list'))),
             # Everyone else can do read-only stuff, except list.
             AllOf(AllowReadOnlyIfPublic,
                   PreventActionPermission('list'))),

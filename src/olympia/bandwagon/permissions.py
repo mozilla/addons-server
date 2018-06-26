@@ -22,14 +22,13 @@ class AllowCollectionContributor(BasePermission):
     actions."""
 
     def has_permission(self, request, view):
-        return request.user.is_authenticated()
-
-    def has_object_permission(self, request, view, obj):
         return (
-            obj and
-            obj.pk == settings.COLLECTION_FEATURED_THEMES_ID and
+            request.user.is_authenticated() and
             acl.action_allowed(request, amo.permissions.COLLECTIONS_CONTRIBUTE)
         )
+
+    def has_object_permission(self, request, view, obj):
+        return obj and obj.pk == settings.COLLECTION_FEATURED_THEMES_ID
 
 
 class AllowContentCurators(BasePermission):
@@ -39,11 +38,10 @@ class AllowContentCurators(BasePermission):
     actions."""
 
     def has_permission(self, request, view):
-        return request.user.is_authenticated()
-
-    def has_object_permission(self, request, view, obj):
         return (
-            obj and
-            obj.author.username == 'mozilla' and
+            request.user.is_authenticated() and
             acl.action_allowed(request, amo.permissions.ADMIN_CURATION)
         )
+
+    def has_object_permission(self, request, view, obj):
+        return obj and obj.author.username == 'mozilla'
