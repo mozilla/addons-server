@@ -9,7 +9,7 @@ class CollectionAdmin(admin.ModelAdmin):
     fields = ('name', 'slug', 'uuid', 'listed', 'type', 'application',
               'default_locale', 'author')
     raw_id_fields = ('author',)
-    readonly_fields = ('name', 'uuid')
+    readonly_fields = ('uuid',)
 
 
 admin.site.register(Collection, CollectionAdmin)
