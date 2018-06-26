@@ -21,8 +21,6 @@ ADMIN_TOOLS = AclPermission('Admin', 'Tools')
 ADMIN_CURATION = AclPermission('Admin', 'Curation')
 # Can edit the properties of any add-on (pseduo-admin).
 ADDONS_EDIT = AclPermission('Addons', 'Edit')
-# Can configure some settings of an add-on.
-ADDONS_CONFIGURE = AclPermission('Addons', 'Configure')
 # Can view deleted add-ons in the API.
 ADDONS_VIEW_DELETED = AclPermission('Addons', 'ViewDeleted')
 # Can view only the reviewer tools.

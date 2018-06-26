@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-21 13:00+0000\n"
+"PO-Revision-Date: 2017-10-30 19:14+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -2311,25 +2311,25 @@ msgid "Preliminary Add-on Review"
 msgstr "Voorlopige add-on-beoordeling"
 
 msgid "Updated Add-on Review"
-msgstr "Bijgewerkte add-on-beoordeling"
+msgstr "Beoordeling van bijgewerkte add-on"
 
 msgid "New Dictionary Review"
-msgstr "Nieuwe woordenboek-beoordeling"
+msgstr "Beoordeling van nieuw woordenboek"
 
 msgid "Preliminary Dictionary Review"
 msgstr "Voorlopige woordenboek-beoordeling"
 
 msgid "Updated Dictionary Review"
-msgstr "Bijgewerkte woordenboek-beoordeling"
+msgstr "Beoordeling van bijgewerkt woordenboek"
 
 msgid "New Language Pack Review"
-msgstr "Nieuwe taalpakket-beoordeling"
+msgstr "Beoordeling van nieuw taalpakket"
 
 msgid "Preliminary Language Pack Review"
 msgstr "Voorlopige taalpakket-beoordeling"
 
 msgid "Updated Language Pack Review"
-msgstr "Bijgewerkte taalpakket-beoordeling"
+msgstr "Beoordeling van bijgewerkt taalpakket"
 
 msgid "Theme Review"
 msgstr "Themabeoordeling"
@@ -2338,27 +2338,27 @@ msgid "Theme (Static) Review"
 msgstr "Beoordeling van thema (statisch)"
 
 msgid "New Search Provider Review"
-msgstr "Nieuwe zoekprovider-beoordeling"
+msgstr "Beoordeling van nieuwe zoekprovider"
 
 msgid "Preliminary Search Provider Review"
 msgstr "Voorlopige zoekprovider-beoordeling"
 
 msgid "Updated Search Provider Review"
-msgstr "Bijgewerkte zoekprovider-beoordeling"
+msgstr "Beoordeling van bijgewerkte zoekprovider"
 
 # Het gaat om de beoordeling van een compleet thema, dus niet om een complete
 # beoordeling
 msgid "New Complete Theme Review"
-msgstr "Nieuwe volledig-themabeoordeling"
+msgstr "Beoordeling van nieuw volledig thema"
 
 msgid "Preliminary Complete Theme Review"
 msgstr "Voorlopige volledig-themabeoordeling"
 
 msgid "Updated Complete Theme Review"
-msgstr "Bijgewerkte volledig-themabeoordeling"
+msgstr "Beoordeling van bijgewerkt volledig thema"
 
 msgid "Moderated Add-on Review"
-msgstr "Gemodereerde add-on-beoordeling"
+msgstr "Beoordeling van gemodereerde add-on"
 
 msgid "Add-on Review Moderation Reverted"
 msgstr "Evaluatie van add-on-beoordeling ongedaan gemaakt"
@@ -4284,8 +4284,8 @@ msgstr "Versie {version} verwijderen"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
-"U staat op het punt om de huidige versie van uw add-on te verwijderen. Hierdoor kan de status van uw add-on wijzigen of, als dit de enige publieke versie van uw add-on is, de zichtbaarheid voor het "
-"publiek kan verdwijnen."
+"U staat op het punt om de huidige versie van uw add-on te verwijderen. Hierdoor kan de status van uw add-on veranderen of, als dit de enige openbare versie van uw add-on is, kan de zichtbaarheid "
+"voor het publiek verdwijnen."
 
 msgid "Deleting this version will permanently delete:"
 msgstr "Door verwijdering van deze versie wordt verwijderd:"
@@ -5403,7 +5403,7 @@ msgid "Reject Multiple Versions"
 msgstr "Meerdere versies afwijzen"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Hierdoor worden de geselecteerde publieke versies afgewezen. De opmerkingen worden naar de ontwikkelaar gestuurd."
+msgstr "Hierdoor worden de geselecteerde openbare versies afgewezen. De opmerkingen worden naar de ontwikkelaar gestuurd."
 
 msgid "Reviewer reply"
 msgstr "Antwoord van beoordelaar"

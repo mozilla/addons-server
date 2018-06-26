@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2017-08-11 05:52+0000\n"
-"Last-Translator: హరి ప్రియ <haripriyagundala@gmail.com>\n"
+"PO-Revision-Date: 2018-06-25 12:43+0000\n"
+"Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -333,7 +333,7 @@ msgstr[0] "<strong>{0}</strong> వాడుకరి"
 msgstr[1] "<strong>{0}</strong> వాడుకరులు"
 
 msgid "Hover to Preview"
-msgstr ""
+msgstr "మునుజూడడానికి హోవర్ చేయండి"
 
 msgid "Add"
 msgstr "జోడించు"
@@ -527,16 +527,16 @@ msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "<a href=\"%(url)s\">%(name)s</a>కింద విడుదల"
 
 msgid "Custom License"
-msgstr ""
+msgstr "అభిమత లైసెన్సు"
 
 msgid "About this Add-on"
-msgstr "పొడిగింత గురించి"
+msgstr "ఈ పొడగింత గురించి"
 
 msgid "Developer’s Comments"
 msgstr "డెవలపర్ యొక్క వ్యాఖ్యలు"
 
 msgid "Version Information"
-msgstr "వెర్షన్ యొక్క సమాచారం"
+msgstr "వెర్షన్ సమాచారం"
 
 msgid "See complete version history"
 msgstr "సంపూర్ణ వెర్షన్ చరిత్రను చూడండి"
@@ -554,7 +554,7 @@ msgstr ""
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
-msgstr "ఈ పొడిగింతలు చేయగలిగినవి:"
+msgstr "ఈ పొడగింత వీటిని చేయగలదు:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
 msgstr ""
@@ -631,13 +631,13 @@ msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "ఈ అలంకారం వేచివుంది. ఇది మీకు తప్ప ఇంకెవరికీ కనబడదు."
 
 msgid "Collector's Note"
-msgstr ""
+msgstr "సేకర్త గమనిక"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> వారపు దింపుకోలు"
+msgstr[1] "<strong>{0}</strong> వారపు దింపుకోళ్ళు"
 
 msgid "Not Reviewed"
 msgstr "సమీక్షించబడలేదు"
@@ -718,7 +718,7 @@ msgid "Browse all themes"
 msgstr "అలంకారాలన్నీ చూడండి"
 
 msgid "Add-ons Home Page"
-msgstr ""
+msgstr "పొడగింతల ముంగిలి పేజీ"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
@@ -744,7 +744,7 @@ msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p
 msgstr ""
 
 msgid "Some rights reserved"
-msgstr ""
+msgstr "కొన్ని హక్కులు రిజర్వు చేయబడ్డాయి"
 
 msgid "No results found"
 msgstr "ఫలితాలు కనుగొనబడలేదు"
@@ -940,7 +940,7 @@ msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
 
 msgid "This name cannot be used."
-msgstr "ఈ పేరు ఉపయోగించలేము."
+msgstr "ఈ పేరును ఉపయోగించలేరు."
 
 msgid "This url is already in use by another collection"
 msgstr "ఈ url మరొక సేకరణతో ఇప్పటికే ఉపయోగంలో ఉంది"
@@ -1081,7 +1081,7 @@ msgid "Go"
 msgstr "వెళ్ళు"
 
 msgid "What are Collections?"
-msgstr "సేకరణలు ఏమిటి?"
+msgstr "సేకరణలు అంటే ఏమిటి?"
 
 msgid "Collections are groups of related add-ons that anyone can create and share."
 msgstr ""
@@ -1229,7 +1229,7 @@ msgid "To include an add-on in this collection, enter its name in the box below 
 msgstr "ఈ సేకరణలో ఒక పొడిగింతను చేర్చడానికి, దిగువ పెట్టెలో దాని పేరును నమోదు చేసి తరువాత ఎంటర్ నొక్కండి."
 
 msgid "Add-on"
-msgstr "పొడగింతలు"
+msgstr "పొడగింత"
 
 msgid "Comment"
 msgstr "వ్యాఖ్య"
@@ -1986,7 +1986,7 @@ msgid "Language Packs (Application)"
 msgstr "భాషా ప్యాక్‌లు (అనువర్తనాలు)"
 
 msgid "Language Packs (Add-on)"
-msgstr "భాషా ప్యాక్లు (పొడిగింత)"
+msgstr "భాషా ప్యాకులు (పొడిగింత)"
 
 msgid "Plugins"
 msgstr "ప్లగిన్లు"
@@ -2257,7 +2257,7 @@ msgid "BSD"
 msgstr "BSD"
 
 msgid "Windows"
-msgstr "Windows"
+msgstr "విండోస్"
 
 msgid "Solaris"
 msgstr "Solaris"
@@ -6010,7 +6010,7 @@ msgstr ""
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
-msgstr ""
+msgstr "{0} :: వెతుకులాట"
 
 #. {0} is a search term, such as Firebug.
 msgid "Search Results for \"{0}\""
@@ -6030,13 +6030,13 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Filter Results"
-msgstr ""
+msgstr "ఫలితాల వడపోత"
 
 msgid "Category"
 msgstr "వర్గం"
 
 msgid "Tag"
-msgstr ""
+msgstr "ట్యాగు"
 
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 msgstr ""
@@ -6148,7 +6148,7 @@ msgid "Update"
 msgstr ""
 
 msgid "Export"
-msgstr ""
+msgstr "ఎగుమతించు"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
@@ -6708,7 +6708,7 @@ msgid "Manage user"
 msgstr "వాడుకరుని నిర్వహించండి"
 
 msgid "Report user"
-msgstr ""
+msgstr "వాడుకరిని నివేదించు"
 
 msgid "Add-ons Developer"
 msgstr ""
@@ -6750,13 +6750,13 @@ msgid "Please describe why you are reporting this user, such as for spam or an i
 msgstr ""
 
 msgid "Report user {0}"
-msgstr ""
+msgstr "వాడుకరి {0}ని నివేదించు"
 
 msgid "Unsubscribe"
-msgstr ""
+msgstr "చందావిరమించు"
 
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "మీరు విజయవంతంగా చందావిరమించారు!"
 
 #, python-format
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
@@ -6779,13 +6779,13 @@ msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked i
 msgstr ""
 
 msgid "Developer Information"
-msgstr ""
+msgstr "డెవలపర్ సమాచారం"
 
 msgid "User since"
-msgstr ""
+msgstr "వాడుకరిగా"
 
 msgid "Time of last login"
-msgstr ""
+msgstr "చివరి వ్రవేశ సమయం"
 
 msgid "IP address of last login"
 msgstr "చివరి లాగిన్ యొక్క IP చిరునామా"
@@ -6843,11 +6843,11 @@ msgstr "{0} వెర్షన్ చరిత్ర"
 #. {0} is a number.
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> వెర్షను"
+msgstr[1] "<b>{0}</b> వెర్షనులు"
 
 msgid "Be careful with old versions!"
-msgstr ""
+msgstr "పాత వెర్షనులతో జాగ్రత్తగా ఉండండి!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."

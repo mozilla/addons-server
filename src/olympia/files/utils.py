@@ -14,6 +14,7 @@ import scandir
 
 from cStringIO import StringIO as cStringIO
 from datetime import datetime, timedelta
+from waffle import switch_is_active
 from xml.dom import minidom
 from zipfile import ZipFile
 
@@ -309,6 +310,11 @@ class RDFExtractor(object):
             if not app:
                 continue
             if app.guid not in amo.APP_GUIDS or app.id in seen_apps:
+                continue
+            if (app not in amo.APP_USAGE_FIREFOXES_ONLY and
+                    switch_is_active('disallow-thunderbird-and-seamonkey')):
+                # Ignore non-firefoxes compatibility (APP_GUIDS still contain
+                # thunderbird and seamonkey at the moment).
                 continue
             seen_apps.add(app.id)
 

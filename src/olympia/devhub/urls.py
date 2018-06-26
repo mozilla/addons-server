@@ -33,7 +33,6 @@ detail_patterns = [
     url('^enable$', views.enable, name='devhub.addons.enable'),
     url('^cancel$', views.cancel, name='devhub.addons.cancel'),
     url('^ownership$', views.ownership, name='devhub.addons.owner'),
-    url('^admin$', views.admin, name='devhub.addons.admin'),
     url('^edit_(?P<section>[^/]+)(?:/(?P<editable>[^/]+))?$',
         views.addons_section, name='devhub.addons.section'),
 

@@ -86,15 +86,15 @@ billiard==3.5.0.3 \
 bleach==1.5.0 \
     --hash=sha256:e67f46adcec78dbc3c04462f3aba3213a673d5652eba2609ed1ef15492a44b8d \
     --hash=sha256:978e758599b54cd3caa2e160d74102879b230ea8dc93871d0783721eef58bc65 # pyup: ==1.5.0
-boto3==1.7.44 \
-    --hash=sha256:5bd25459c8f506858753cb5e699c4c43af8c9b27e4aae32d9772f677068231b5 \
-    --hash=sha256:f4411a75892d3184324dabeeca23d40e5d0986e0a8c8659ba283ff04d2047068
+boto3==1.7.45 \
+    --hash=sha256:7ba18f6edb603db7ef77733427f6f76a300aab217a9259649ddc91d4521b226f \
+    --hash=sha256:5fcbfea71d7bf818ffc51a380b53899502b7046ca6ba52cca9c44bbfe20bb275
 celery==4.1.1 \
     --hash=sha256:6fc4678d1692af97e137b2a9f1c04efd8e7e2fb7134c5c5ad60738cdd927762f \
     --hash=sha256:d1f2a3359bdbdfb344edce98b8e891f5fe64f8a11c5a45538ec20ac237c971f5
-botocore==1.10.44 \
-    --hash=sha256:f59795d7817273ca021b0e2544e78e2b8665a9ab724381afee273e66f86cb7de \
-    --hash=sha256:2202634c6e0dcf4f7886fa87878af8cdba42a340bc6e56ff84515db8ba65cc5b
+botocore==1.10.45 \
+    --hash=sha256:62519fe407354052befda5f928b988c9059a56292e75dba9d0fac31d9344e279 \
+    --hash=sha256:e62645374cbb01f65324fe479c2a389b414344db96db2f62b0f8a55701fe3416
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -177,9 +177,9 @@ drf-nested-routers==0.90.2 \
 easy-thumbnails==2.5 \
     --hash=sha256:e244d1f26027fc32c6ca60ffb0169a39099446f614b0433e907a2588ae7d9b95
 # elasticsearch is required by elasticsearch-dsl
-elasticsearch==5.5.2 \
-    --hash=sha256:2e6dcdf9cb62377e0d6b82d2931ebc67b5a549081bbb531aa3be60ece33257b2 \
-    --hash=sha256:8539e30c33fa0ad09617893a458056a35a654c92226390c30a07a3776bb8a94f # pyup: <6
+elasticsearch==5.5.3 \
+    --hash=sha256:658380fd60bdaf746fef12958f0abc49063218ce93ee1ae4ca1fe6291c896433 \
+    --hash=sha256:ae91b089f2f2b5b3daa04297949e5f805ab12d187218cb587273f472656fd250 # pyup: <6
 elasticsearch-dsl==5.4.0 \
     --hash=sha256:197246ddd556b4b7d2738dfa9e4831068c9b5cb21706f6aca035136d42849109 \
     --hash=sha256:cbef6467085d7debc870bc450d996c7ba5b8822eb86a6033bba09134ffb01ba8 # pyup: <6

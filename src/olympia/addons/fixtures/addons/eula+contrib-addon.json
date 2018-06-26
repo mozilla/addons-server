@@ -36,7 +36,6 @@
         "model": "addons.addon",
         "fields": {
             "slug": "a11730",
-            "dev_agreement": 1,
             "eula": 372438,
             "last_updated": "2009-08-27 14:29:14",
             "view_source": 0,
