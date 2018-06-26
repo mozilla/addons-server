@@ -966,6 +966,10 @@ class TestLanguageToolsSerializerOutput(TestCase):
         assert 'current_compatible_version' not in result
 
     def test_current_compatible_version(self):
+        # Set a filename to make sure the file actually exists.
+        # file_factory (used via addon_factory) copies files that exists
+        # as fixtures in src/olympia/files/fixtures/files to their rightful
+        # place. We need that to test the localepicker properly.
         file_kw = {'filename': 'langpack-localepicker.xpi'}
         self.addon = addon_factory(type=amo.ADDON_LPAPP, file_kw=file_kw)
 
