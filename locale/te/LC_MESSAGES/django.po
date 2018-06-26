@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-25 12:43+0000\n"
+"PO-Revision-Date: 2018-06-26 16:14+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1377,7 +1377,7 @@ msgstr ""
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
-msgstr ""
+msgstr "{0} :: వెతుకుడు పనిముట్లు"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
@@ -4762,7 +4762,7 @@ msgid "What features did you like or dislike?"
 msgstr "మీకు నచ్చిన లేదా నచ్చని సౌలభ్యాలు ఏమిటి?"
 
 msgid "Was it useful?"
-msgstr ""
+msgstr "ఇది ఉపయోగపడిందా?"
 
 msgid "Was it easy to use?"
 msgstr ""
@@ -5024,7 +5024,7 @@ msgid "Flagged for review"
 msgstr ""
 
 msgid "Report this review"
-msgstr ""
+msgstr "ఈ సమీక్షను నివేదించండి"
 
 msgid "Reply to review"
 msgstr ""
@@ -5132,7 +5132,7 @@ msgid "no"
 msgstr "కాదు"
 
 msgid "Add-on Types"
-msgstr ""
+msgstr "పొడగింతల రకాలు"
 
 msgid "Search by add-on name / author email / guid"
 msgstr ""
@@ -6744,7 +6744,7 @@ msgid "No add-on reviews yet."
 msgstr ""
 
 msgid "Report User"
-msgstr ""
+msgstr "వాడుకరిని నివేదించు"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr ""
