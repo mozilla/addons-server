@@ -804,6 +804,8 @@ def extract_xpi(xpi, path, expand=False, verify=True):
                             try:
                                 dest = extract_zip(src, remove=True)
                             except zipfile.BadZipfile:
+                                # We can safely catch this here, this is
+                                # only for recursive .zip/.jar extractions
                                 continue
                             else:
                                 all_files.extend(get_all_files(
