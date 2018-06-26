@@ -31,7 +31,6 @@ from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
 from olympia.addons import forms as addon_forms
-from olympia.addons.decorators import addon_view
 from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages, utils as amo_utils
@@ -326,9 +325,6 @@ def edit(request, addon_id, addon):
         'previews': addon.previews.all(),
         'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
     }
-
-    if acl.action_allowed(request, amo.permissions.ADDONS_CONFIGURE):
-        data['admin_form'] = forms.AdminForm(instance=addon)
 
     return render(request, 'devhub/addons/edit.html', data)
 
@@ -834,7 +830,7 @@ def ajax_dependencies(request, addon_id, addon):
 def addons_section(request, addon_id, addon, section, editable=False):
     show_listed = addon.has_listed_versions()
     static_theme = addon.type == amo.ADDON_STATICTHEME
-    models = {'admin': forms.AdminForm}
+    models = {}
     if show_listed:
         models.update({
             'basic': addon_forms.AddonFormBasic,
@@ -1682,18 +1678,6 @@ def request_review(request, addon_id, addon):
             'You must provide further details to proceed.'))
     ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, addon.status)
     return redirect(addon.get_dev_url('versions'))
-
-
-@post_required
-@addon_view
-def admin(request, addon):
-    if not acl.action_allowed(request, amo.permissions.ADDONS_CONFIGURE):
-        raise PermissionDenied
-    form = forms.AdminForm(request, request.POST or None, instance=addon)
-    if form.is_valid():
-        form.save()
-    return render(request, 'devhub/addons/edit/admin.html',
-                  {'addon': addon, 'admin_form': form})
 
 
 def docs(request, doc_name=None):

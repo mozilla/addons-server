@@ -53,7 +53,6 @@
         "pk": 222197,
         "model": "addons.addon",
         "fields": {
-            "dev_agreement": true,
             "last_updated": "2010-08-27 21:15:32",
             "view_source": false,
             "total_downloads": 9,

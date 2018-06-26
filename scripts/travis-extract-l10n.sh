@@ -33,7 +33,7 @@ function init_environment {
     git checkout master
     git checkout -b "$BRANCH_NAME"
 
-    make -f Makefile-docker install_python_dependencies
+    make -f Makefile-docker install_python_test_dependencies
     make -f Makefile-docker install_node_js
 }
 
