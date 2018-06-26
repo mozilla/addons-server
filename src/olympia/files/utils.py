@@ -801,12 +801,16 @@ def extract_xpi(xpi, path, expand=False, verify=True):
                     if os.path.splitext(name)[1] in expand_allow_list:
                         src = os.path.join(root, name)
                         if not os.path.isdir(src):
-                            dest = extract_zip(src, remove=True)
-                            all_files.extend(get_all_files(
-                                dest, strip_prefix=tempdir, prefix=src))
-                            if dest:
-                                copy_over(dest, src)
-                                flag = True
+                            try:
+                                dest = extract_zip(src, remove=True)
+                            except zipfile.BadZipfile:
+                                continue
+                            else:
+                                all_files.extend(get_all_files(
+                                    dest, strip_prefix=tempdir, prefix=src))
+                                if dest:
+                                    copy_over(dest, src)
+                                    flag = True
             if not flag:
                 break
 
