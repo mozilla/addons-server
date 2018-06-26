@@ -1993,6 +1993,14 @@ class TestExpiredInfoRequestsQueue(QueueTest):
             addon=addon5,
             pending_info_request=self.days_ago(42))
 
+        # Invisible (user-disabled) addon with expired info request.
+        addon6 = addon_factory(name=u'Incomplete Addön 5',
+                               status=amo.STATUS_PUBLIC,
+                               disabled_by_user=True)
+        AddonReviewerFlags.objects.create(
+            addon=addon6,
+            pending_info_request=self.days_ago(42))
+
         self.expected_addons = [addon2, addon1]
 
     def test_results_no_permission(self):

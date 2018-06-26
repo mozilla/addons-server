@@ -546,8 +546,10 @@ def queue_counts(admin_reviewer, limited_reviewer, extension_reviews,
 
     expired = (
         Addon.objects.filter(
-            addonreviewerflags__pending_info_request__lt=datetime.now()
-        ).order_by('addonreviewerflags__pending_info_request'))
+            addonreviewerflags__pending_info_request__lt=datetime.now(),
+            status__in=(amo.STATUS_NOMINATED, amo.STATUS_PUBLIC),
+            disabled_by_user=False)
+        .order_by('addonreviewerflags__pending_info_request'))
 
     counts = {
         'pending': construct_query_from_sql_model(ViewPendingQueue),
@@ -656,7 +658,8 @@ def queue_expired_info_requests(request):
     qs = (
         Addon.objects.filter(
             addonreviewerflags__pending_info_request__lt=datetime.now(),
-            status__in=(amo.STATUS_NOMINATED, amo.STATUS_PUBLIC))
+            status__in=(amo.STATUS_NOMINATED, amo.STATUS_PUBLIC),
+            disabled_by_user=False)
         .order_by('addonreviewerflags__pending_info_request'))
     return _queue(request, ExpiredInfoRequestsTable, 'expired_info_requests',
                   qs=qs, SearchForm=None)
