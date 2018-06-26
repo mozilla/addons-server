@@ -803,7 +803,7 @@ def extract_xpi(xpi, path, expand=False, verify=True):
                         if not os.path.isdir(src):
                             try:
                                 dest = extract_zip(src, remove=True)
-                            except zipfile.BadZipfile as exc:
+                            except zipfile.BadZipfile:
                                 # We can safely ignore this here, this is
                                 # only for recursive .zip/.jar extractions
                                 log.exception(
