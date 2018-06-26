@@ -354,9 +354,12 @@ class Collection(UncachedModelBase):
 
     @staticmethod
     def update_featured_status(sender, instance, **kwargs):
-        addons = [addon.id for addon in instance.addons.all()]
+        from olympia.addons.tasks import index_addons
+        addons = kwargs.get(
+            'addons', [addon.id for addon in instance.addons.all()])
         if addons:
             clear_get_featured_ids_cache(None, None)
+            index_addons.delay(addons)
 
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):
@@ -394,21 +397,35 @@ class CollectionAddon(UncachedModelBase):
         unique_together = (('addon', 'collection'),)
 
     @staticmethod
-    def post_save_or_delete(sender, instance, **kwargs):
-        """Update Collection.addon_count."""
+    def post_save(sender, instance, **kwargs):
+        """Update Collection.addon_count and reindex add-on if the collection
+        is featured."""
         from . import tasks
         tasks.collection_meta.delay(instance.collection_id)
+
+    @staticmethod
+    def post_delete(sender, instance, **kwargs):
+        CollectionAddon.post_save(sender, instance, **kwargs)
+        if instance.collection.is_featured():
+            # The helpers .add_addon() and .remove_addon() already call .save()
+            # on the collection, triggering update_featured_status() among
+            # other things. However, this only takes care of the add-ons
+            # present in the collection at the time, we also need to make sure
+            # to invalidate add-ons that have been removed.
+            Collection.update_featured_status(
+                sender, instance.collection, addons=[instance.addon], **kwargs)
 
 
 models.signals.pre_save.connect(save_signal, sender=CollectionAddon,
                                 dispatch_uid='coll_addon_translations')
-# Update Collection.addon_count.
-models.signals.post_save.connect(CollectionAddon.post_save_or_delete,
+# Update Collection.addon_count and potentially featured state when a
+# collectionaddon changes.
+models.signals.post_save.connect(CollectionAddon.post_save,
                                  sender=CollectionAddon,
                                  dispatch_uid='coll.post_save')
-models.signals.post_delete.connect(CollectionAddon.post_save_or_delete,
+models.signals.post_delete.connect(CollectionAddon.post_delete,
                                    sender=CollectionAddon,
-                                   dispatch_uid='coll.post_save')
+                                   dispatch_uid='coll.post_delete')
 
 
 class CollectionWatcher(UncachedModelBase):
