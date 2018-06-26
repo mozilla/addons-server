@@ -189,7 +189,7 @@
           {% with filename=background.rsplit('/', 1)[1] %}
           <div class="background zoombox">
               <img src="{{ background }}" alt="" width="1000" height="200">
-              {{ _('Background file {0} of {1} - {2}')|format_html(loop.index, loop.length, filename) }}
+              <span>{{ _('Background file {0} of {1} - {2}')|format_html(loop.index, loop.length, filename) }}</span>
           </div>
           {% endwith %}
         {% endfor %}

@@ -803,16 +803,19 @@ def extract_xpi(xpi, path, expand=False, verify=True):
                         if not os.path.isdir(src):
                             try:
                                 dest = extract_zip(src, remove=True)
-                            except zipfile.BadZipfile:
-                                # We can safely catch this here, this is
+                            except zipfile.BadZipfile as exc:
+                                # We can safely ignore this here, this is
                                 # only for recursive .zip/.jar extractions
+                                log.exception(
+                                    'Exception during recursive XPI expansion.'
+                                )
                                 continue
-                            else:
-                                all_files.extend(get_all_files(
-                                    dest, strip_prefix=tempdir, prefix=src))
-                                if dest:
-                                    copy_over(dest, src)
-                                    flag = True
+
+                            all_files.extend(get_all_files(
+                                dest, strip_prefix=tempdir, prefix=src))
+                            if dest:
+                                copy_over(dest, src)
+                                flag = True
             if not flag:
                 break
 
