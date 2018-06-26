@@ -31,6 +31,7 @@ from olympia.constants.licenses import (
     LICENSE_COPYRIGHT_AR, PERSONA_LICENSES_IDS)
 from olympia.files.models import FileUpload
 from olympia.files.utils import RDFExtractor, get_file, parse_addon, SafeZip
+from olympia.amo.celery import pause_all_tasks, resume_all_tasks
 from olympia.lib.crypto.packaged import sign_file
 from olympia.lib.es.utils import index_objects
 from olympia.ratings.models import Rating
@@ -611,6 +612,7 @@ def migrate_lwts_to_static_themes(ids, **kw):
 
     # Incoming ids should already by type=persona only
     lwts = Addon.objects.filter(id__in=ids)
+    pause_all_tasks()
     for lwt in lwts:
         static = None
         try:
@@ -628,6 +630,7 @@ def migrate_lwts_to_static_themes(ids, **kw):
         slug = lwt.slug
         lwt.delete()
         static.update(slug=slug)
+    resume_all_tasks()
 
 
 @task
