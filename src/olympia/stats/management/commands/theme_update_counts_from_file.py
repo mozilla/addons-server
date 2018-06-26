@@ -7,8 +7,8 @@ from django.core.management.base import BaseCommand, CommandError
 import olympia.core.logger
 
 from olympia import amo
-from olympia.addons.models import Addon, Persona
-from olympia.stats.models import ThemeUpdateCount
+from olympia.addons.models import Addon, MigratedLWT, Persona
+from olympia.stats.models import ThemeUpdateCount, UpdateCount
 
 from . import get_date, get_stats_data
 
@@ -91,6 +91,7 @@ class Command(BaseCommand):
         ThemeUpdateCount.objects.filter(date=day).delete()
 
         theme_update_counts = {}
+        new_st_update_counts = {}
 
         # Preload a set containing the ids of all the persona Add-on objects
         # that we care about. When looping, if we find an id that is not in
@@ -99,6 +100,14 @@ class Command(BaseCommand):
                                           status=amo.STATUS_PUBLIC,
                                           persona__isnull=False)
                                   .values_list('id', flat=True))
+        # Preload a dict of persona to static theme ids that are migrated.
+        migrated_personas = dict(
+            MigratedLWT.objects.values_list(
+                'lightweight_theme_id', 'static_theme_id')
+        )
+        existing_st_update_counts = {
+            uc.addon_id: uc for uc in UpdateCount.objects.filter(
+                addon_id__in=migrated_personas.values())}
         # Preload all the Personas once and for all. This builds a dict where
         # each key (the persona_id we get from the hive query) has the addon_id
         # as value.
@@ -130,6 +139,18 @@ class Command(BaseCommand):
                 continue  # No such persona.
             addon_id = persona_to_addon[id_] if src == 'gp' else id_
 
+            # Is the persona already migrated to static theme?
+            if addon_id in migrated_personas:
+                mig_addon_id = migrated_personas[addon_id]
+                if mig_addon_id in existing_st_update_counts:
+                    existing_st_update_counts[mig_addon_id].count += count
+                    existing_st_update_counts[mig_addon_id].save()
+                elif mig_addon_id in new_st_update_counts:
+                    new_st_update_counts[mig_addon_id].count += count
+                else:
+                    new_st_update_counts[mig_addon_id] = UpdateCount(
+                        addon_id=mig_addon_id, date=day, count=count)
+
             # Does this addon exist?
             if addon_id not in addons:
                 continue
@@ -147,6 +168,7 @@ class Command(BaseCommand):
 
         # Create in bulk: this is much faster.
         ThemeUpdateCount.objects.bulk_create(theme_update_counts.values(), 100)
+        UpdateCount.objects.bulk_create(new_st_update_counts.values(), 100)
 
         log.info('Processed a total of %s lines' % (index + 1))
         log.debug('Total processing time: %s' % (datetime.now() - start))
