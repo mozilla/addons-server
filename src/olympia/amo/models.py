@@ -71,6 +71,9 @@ class ManagerBase(models.Manager):
     # This needs to be set so that this manager class is being used
     # for related objects too. This helps resolving translation fields
     # on related fields.
+    # This also ensures we don't ignore soft-deleted items when traversing
+    # relations, if they are hidden by the objects manager, like we
+    # do with `addons.models:Addon`.
     use_for_related_fields = True
 
     def get_queryset(self):
