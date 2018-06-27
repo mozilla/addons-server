@@ -28,7 +28,6 @@
         "model": "addons.addon",
         "fields": {
             "slug": "yoono-1833",
-            "dev_agreement": true,
             "eula": null,
             "_current_version": 101235,
             "last_updated": "2010-03-26 08:22:39",

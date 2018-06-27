@@ -145,7 +145,6 @@
         "fields": {
             "slug": "a3615",
             "_current_version": 81551,
-            "dev_agreement": true,
             "eula": 42021,
             "last_updated": "2009-10-21 09:58:40",
             "view_source": false,

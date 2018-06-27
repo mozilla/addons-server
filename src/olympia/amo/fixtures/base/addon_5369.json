@@ -15,7 +15,6 @@
         "pk": 5369,
         "model": "addons.addon",
         "fields": {
-            "dev_agreement": true,
             "eula": null,
             "_current_version": 98198,
             "last_updated": "2010-03-03 16:15:03",
