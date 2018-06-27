@@ -43,8 +43,25 @@ def check_render(svg_content, header_url, header_height, preserve_aspect_ratio,
         assert color in svg_content
 
 
+def check_preview(preview_instance, theme_size_constant, write_svg_mock_args,
+                  resize_image_mock_args, png_crush_mock_args):
+    _, png_path = write_svg_mock_args
+
+    assert png_path == preview_instance.image_path
+    assert preview_instance.sizes == {
+        'image': list(theme_size_constant['full']),
+        'thumbnail': list(theme_size_constant['thumbnail'])
+    }
+    resize_path, thumb_path, thumb_size = resize_image_mock_args
+    assert resize_path == png_path
+    assert thumb_path == preview_instance.thumbnail_path
+    assert thumb_size == theme_size_constant['thumbnail']
+    assert png_crush_mock_args[0] == preview_instance.image_path
+
+
 @pytest.mark.django_db
 @mock.patch('olympia.versions.tasks.pngcrush_image')
+@mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
 @pytest.mark.parametrize(
     'header_url, header_height, preserve_aspect_ratio, mimetype, valid_img', (
@@ -57,7 +74,7 @@ def check_render(svg_content, header_url, header_height, preserve_aspect_ratio,
     )
 )
 def test_generate_static_theme_preview(
-        write_svg_to_png_mock, pngcrush_image_mock,
+        write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock,
         header_url, header_height, preserve_aspect_ratio, mimetype, valid_img):
     write_svg_to_png_mock.return_value = True
     theme_manifest = {
@@ -74,41 +91,52 @@ def test_generate_static_theme_preview(
     if header_url is not None:
         theme_manifest['images']['headerURL'] = header_url
     addon = addon_factory()
-    preview = VersionPreview.objects.create(version=addon.current_version)
-    generate_static_theme_preview(theme_manifest, HEADER_ROOT, preview.pk)
+    generate_static_theme_preview(
+        theme_manifest, HEADER_ROOT, addon.current_version.pk)
 
-    write_svg_to_png_mock.call_count == 2
-    (image_svg_content, png_path) = write_svg_to_png_mock.call_args_list[0][0]
-    assert png_path == preview.image_path
-    (thumb_svg_content, png_path) = write_svg_to_png_mock.call_args_list[1][0]
-    assert png_path == preview.thumbnail_path
-
+    assert resize_image_mock.call_count == 2
+    assert write_svg_to_png_mock.call_count == 2
     assert pngcrush_image_mock.call_count == 2
-    assert pngcrush_image_mock.call_args_list[0][0][0] == preview.image_path
-    assert pngcrush_image_mock.call_args_list[1][0][0] == (
-        preview.thumbnail_path)
 
-    preview.reload()
-    assert preview.sizes == {
-        'image': list(amo.THEME_PREVIEW_SIZES['full']),
-        'thumbnail': list(amo.THEME_PREVIEW_SIZES['thumb'])}
+    # First check the header Preview is good
+    header_preview = VersionPreview.objects.get(
+        version=addon.current_version,
+        position=amo.THEME_PREVIEW_SIZES['header']['position'])
+    check_preview(
+        header_preview, amo.THEME_PREVIEW_SIZES['header'],
+        write_svg_to_png_mock.call_args_list[0][0],
+        resize_image_mock.call_args_list[0][0],
+        pngcrush_image_mock.call_args_list[0][0])
 
+    # Then the list Preview
+    list_preview = VersionPreview.objects.get(
+        version=addon.current_version,
+        position=amo.THEME_PREVIEW_SIZES['list']['position'])
+    check_preview(
+        list_preview, amo.THEME_PREVIEW_SIZES['list'],
+        write_svg_to_png_mock.call_args_list[1][0],
+        resize_image_mock.call_args_list[1][0],
+        pngcrush_image_mock.call_args_list[1][0])
+
+    # Now check the svg renders
+    header_svg = write_svg_to_png_mock.call_args_list[0][0][0]
+    list_svg = write_svg_to_png_mock.call_args_list[1][0][0]
     colors = ['class="%s" fill="%s"' % (key, color)
               for (key, color) in theme_manifest['colors'].items()]
-
-    check_render(image_svg_content, header_url, header_height,
+    check_render(header_svg, header_url, header_height,
                  preserve_aspect_ratio, mimetype, valid_img, colors,
                  680, 92, 680)
-    check_render(thumb_svg_content, header_url, header_height,
+    check_render(list_svg, header_url, header_height,
                  preserve_aspect_ratio, mimetype, valid_img, colors,
-                 670, 64, 963)
+                 760, 92, 760)
 
 
 @pytest.mark.django_db
 @mock.patch('olympia.versions.tasks.pngcrush_image')
+@mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
 def test_generate_static_theme_preview_with_chrome_properties(
-        write_svg_to_png_mock, pngcrush_image_mock):
+        write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock):
     write_svg_to_png_mock.return_value = True
     theme_manifest = {
         "images": {
@@ -121,24 +149,32 @@ def test_generate_static_theme_preview_with_chrome_properties(
         }
     }
     addon = addon_factory()
-    preview = VersionPreview.objects.create(version=addon.current_version)
-    generate_static_theme_preview(theme_manifest, HEADER_ROOT, preview.pk)
+    generate_static_theme_preview(
+        theme_manifest, HEADER_ROOT, addon.current_version.pk)
 
-    write_svg_to_png_mock.call_count == 2
-    (image_svg_content, png_path) = write_svg_to_png_mock.call_args_list[0][0]
-    assert png_path == preview.image_path
-    (thumb_svg_content, png_path) = write_svg_to_png_mock.call_args_list[1][0]
-    assert png_path == preview.thumbnail_path
-
+    assert resize_image_mock.call_count == 2
+    assert write_svg_to_png_mock.call_count == 2
     assert pngcrush_image_mock.call_count == 2
-    assert pngcrush_image_mock.call_args_list[0][0][0] == preview.image_path
-    assert pngcrush_image_mock.call_args_list[1][0][0] == (
-        preview.thumbnail_path)
 
-    preview.reload()
-    assert preview.sizes == {
-        'image': list(amo.THEME_PREVIEW_SIZES['full']),
-        'thumbnail': list(amo.THEME_PREVIEW_SIZES['thumb'])}
+    # First check the header Preview is good
+    header_preview = VersionPreview.objects.get(
+        version=addon.current_version,
+        position=amo.THEME_PREVIEW_SIZES['header']['position'])
+    check_preview(
+        header_preview, amo.THEME_PREVIEW_SIZES['header'],
+        write_svg_to_png_mock.call_args_list[0][0],
+        resize_image_mock.call_args_list[0][0],
+        pngcrush_image_mock.call_args_list[0][0])
+
+    # Then the list Preview
+    list_preview = VersionPreview.objects.get(
+        version=addon.current_version,
+        position=amo.THEME_PREVIEW_SIZES['list']['position'])
+    check_preview(
+        list_preview, amo.THEME_PREVIEW_SIZES['list'],
+        write_svg_to_png_mock.call_args_list[1][0],
+        resize_image_mock.call_args_list[1][0],
+        pngcrush_image_mock.call_args_list[1][0])
 
     colors = []
     # check each of our colors above was converted to css codes
@@ -152,10 +188,12 @@ def test_generate_static_theme_preview_with_chrome_properties(
         color = 'rgb(%s, %s, %s)' % tuple(color_list)
         colors.append('class="%s" fill="%s"' % (firefox_prop, color))
 
-    check_render(image_svg_content, 'transparent.gif', 1,
+    header_svg = write_svg_to_png_mock.call_args_list[0][0][0]
+    list_svg = write_svg_to_png_mock.call_args_list[1][0][0]
+    check_render(header_svg, 'transparent.gif', 1,
                  'xMaxYMin meet', 'image/gif', True, colors, 680, 92, 680)
-    check_render(thumb_svg_content, 'transparent.gif', 1,
-                 'xMaxYMin meet', 'image/gif', True, colors, 670, 64, 963)
+    check_render(list_svg, 'transparent.gif', 1,
+                 'xMaxYMin meet', 'image/gif', True, colors, 760, 92, 760)
 
 
 def check_render_additional(svg_content, inner_svg_width):
@@ -185,9 +223,10 @@ def check_render_additional(svg_content, inner_svg_width):
 
 @pytest.mark.django_db
 @mock.patch('olympia.versions.tasks.pngcrush_image')
+@mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
 def test_generate_preview_with_additional_backgrounds(
-        write_svg_to_png_mock, pngcrush_image_mock):
+        write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock):
     write_svg_to_png_mock.return_value = True
 
     theme_manifest = {
@@ -205,24 +244,34 @@ def test_generate_preview_with_additional_backgrounds(
         },
     }
     addon = addon_factory()
-    preview = VersionPreview.objects.create(version=addon.current_version)
-    generate_static_theme_preview(theme_manifest, HEADER_ROOT, preview.pk)
+    generate_static_theme_preview(
+        theme_manifest, HEADER_ROOT, addon.current_version.pk)
 
-    write_svg_to_png_mock.call_count == 2
-    (image_svg_content, png_path) = write_svg_to_png_mock.call_args_list[0][0]
-    assert png_path == preview.image_path
-    (thumb_svg_content, png_path) = write_svg_to_png_mock.call_args_list[1][0]
-    assert png_path == preview.thumbnail_path
-
+    assert resize_image_mock.call_count == 2
+    assert write_svg_to_png_mock.call_count == 2
     assert pngcrush_image_mock.call_count == 2
-    assert pngcrush_image_mock.call_args_list[0][0][0] == preview.image_path
-    assert pngcrush_image_mock.call_args_list[1][0][0] == (
-        preview.thumbnail_path)
 
-    preview.reload()
-    assert preview.sizes == {
-        'image': list(amo.THEME_PREVIEW_SIZES['full']),
-        'thumbnail': list(amo.THEME_PREVIEW_SIZES['thumb'])}
+    # First check the header Preview is good
+    header_preview = VersionPreview.objects.get(
+        version=addon.current_version,
+        position=amo.THEME_PREVIEW_SIZES['header']['position'])
+    check_preview(
+        header_preview, amo.THEME_PREVIEW_SIZES['header'],
+        write_svg_to_png_mock.call_args_list[0][0],
+        resize_image_mock.call_args_list[0][0],
+        pngcrush_image_mock.call_args_list[0][0])
 
-    check_render_additional(image_svg_content, 680)
-    check_render_additional(thumb_svg_content, 963)
+    # Then the list Preview
+    list_preview = VersionPreview.objects.get(
+        version=addon.current_version,
+        position=amo.THEME_PREVIEW_SIZES['list']['position'])
+    check_preview(
+        list_preview, amo.THEME_PREVIEW_SIZES['list'],
+        write_svg_to_png_mock.call_args_list[1][0],
+        resize_image_mock.call_args_list[1][0],
+        pngcrush_image_mock.call_args_list[1][0])
+
+    header_svg = write_svg_to_png_mock.call_args_list[0][0][0]
+    list_svg = write_svg_to_png_mock.call_args_list[1][0][0]
+    check_render_additional(header_svg, 680)
+    check_render_additional(list_svg, 760)
