@@ -1116,6 +1116,11 @@ class TestCollectionViewSetList(TestCase):
         response = self.client.get(other_url)
         assert response.status_code == 403
 
+        self.grant_permission(self.user, 'Collections:Contribute')
+        self.client.login_api(self.user)
+        response = self.client.get(other_url)
+        assert response.status_code == 403
+
         self.grant_permission(self.user, 'Admin:Curation')
         response = self.client.get(other_url)
         assert response.status_code == 403
@@ -1221,6 +1226,11 @@ class TestCollectionViewSetDetail(TestCase):
         response = self.client.get(self._get_url(random_user, collection))
         assert response.status_code == 403
 
+        self.grant_permission(self.user, 'Collections:Contribute')
+        self.client.login_api(self.user)
+        response = self.client.get(self._get_url(random_user, collection))
+        assert response.status_code == 403
+
         self.grant_permission(self.user, 'Admin:Curation')
         response = self.client.get(self._get_url(random_user, collection))
         assert response.status_code == 403
@@ -1247,7 +1257,12 @@ class TestCollectionViewSetDetail(TestCase):
             assert response.status_code == 200
             assert response.data['id'] == self.collection.id
 
-        # double check only the COLLECTION_FEATURED_THEMES_ID is allowed
+        # Double check only the COLLECTION_FEATURED_THEMES_ID is allowed.
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+        # Even on a mozilla-owned collection.
+        self.collection.author.update(username='mozilla')
         response = self.client.get(self.url)
         assert response.status_code == 403
 
@@ -1460,6 +1475,10 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
         response = self.send(url=url)
         assert response.status_code == 403
 
+        self.grant_permission(self.user, 'Collections:Contribute')
+        response = self.send(url=url)
+        assert response.status_code == 403
+
         self.grant_permission(self.user, 'Admin:Curation')
         response = self.send(url=url)
         assert response.status_code == 403
@@ -1516,6 +1535,10 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         self.collection.update(author=random_user)
         url = self.get_url(random_user)
         original = self.client.get(url).content
+        response = self.send(url=url)
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Collections:Contribute')
         response = self.send(url=url)
         assert response.status_code == 403
 
@@ -1591,6 +1614,10 @@ class TestCollectionViewSetDelete(TestCase):
         response = self.client.delete(url)
         assert response.status_code == 403
 
+        self.grant_permission(self.user, 'Collections:Contribute')
+        response = self.client.delete(url)
+        assert response.status_code == 403
+
         self.grant_permission(self.user, 'Admin:Curation')
         response = self.client.delete(url)
         assert response.status_code == 403
@@ -1653,6 +1680,11 @@ class CollectionAddonViewSetMixin(object):
         self.client.login_api(admin_user)
         response = self.send(self.url)
         assert response.status_code == 403
+
+        self.grant_permission(admin_user, 'Collections:Contribute')
+        response = self.send(self.url)
+        assert response.status_code == 403
+
         self.grant_permission(admin_user, 'Admin:Curation')
         response = self.send(self.url)
         assert response.status_code == 403
