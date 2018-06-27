@@ -140,9 +140,7 @@ Delete
 .. _`collection-delete`:
 
 .. note::
-    This API requires :doc:`authentication <auth>`. If you have
-    ``Admin:Curation`` permission you can delete any collection belonging to the
-    ``mozilla`` user.
+    This API requires :doc:`authentication <auth>`.
 
 This endpoint allows the collection to be deleted.
 
