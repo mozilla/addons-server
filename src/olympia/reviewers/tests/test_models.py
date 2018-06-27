@@ -509,17 +509,17 @@ class TestReviewerScore(TestCase):
             *base_args, version=self.addon.current_version,
             post_review=True) is amo.REVIEWED_EXTENSION_LOW_RISK
         # Medium risk.
-        summary.update(weight=21)
+        summary.update(weight=91)
         assert ReviewerScore.get_event(
             *base_args, version=self.addon.current_version,
             post_review=True) is amo.REVIEWED_EXTENSION_MEDIUM_RISK
         # High risk.
-        summary.update(weight=101)
+        summary.update(weight=176)
         assert ReviewerScore.get_event(
             *base_args, version=self.addon.current_version,
             post_review=True) is amo.REVIEWED_EXTENSION_HIGH_RISK
         # Highest risk.
-        summary.update(weight=151)
+        summary.update(weight=276)
         assert ReviewerScore.get_event(
             *base_args, version=self.addon.current_version,
             post_review=True) is amo.REVIEWED_EXTENSION_HIGHEST_RISK
@@ -590,7 +590,7 @@ class TestReviewerScore(TestCase):
             post_review=True, content_review=False)
         score = ReviewerScore.objects.get(user=self.user)
         assert score.score == amo.REVIEWED_SCORES[
-            amo.REVIEWED_EXTENSION_HIGH_RISK]
+            amo.REVIEWED_EXTENSION_MEDIUM_RISK]
         assert score.version == self.addon.current_version
 
     def test_award_moderation_points(self):
@@ -711,7 +711,7 @@ class TestReviewerScore(TestCase):
             post_review=True, content_review=False)
         assert ReviewerScore._leaderboard_list() == [(
             self.user.id, self.user.name, amo.REVIEWED_SCORES[
-                amo.REVIEWED_EXTENSION_HIGH_RISK])]
+                amo.REVIEWED_EXTENSION_MEDIUM_RISK])]
 
     def test_all_users_by_score(self):
         user2 = UserProfile.objects.create(

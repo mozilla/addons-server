@@ -355,7 +355,7 @@ class TestAwardPostReviewPoints(TestCase):
         assert second_score.addon == self.addon2
         assert second_score.note == (
             'Retroactively awarded for past post/content review approval.')
-        assert second_score.note_key == amo.REVIEWED_EXTENSION_HIGHEST_RISK
+        assert second_score.note_key == amo.REVIEWED_EXTENSION_MEDIUM_RISK
 
         third_score = ReviewerScore.objects.filter(user=self.user3).get()
         assert third_score.addon == self.addon2
