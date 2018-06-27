@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-27 09:10+0000\n"
+"PO-Revision-Date: 2018-06-27 16:12+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3165,6 +3165,8 @@ msgid ""
 "PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
 "page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
+"PNG d JPG Ttwasefraken. Taɣzi taddayt yelhan i tuṭṭfuwin n ugdil d1280x800 n yipiksilen. 640x400 n yipiksilen d abrid-nniden yelhan ma ɣur-k tugniwin meẓẓiyen. Ma ɣur-k tuṭṭfiwin n ugdil ɣef "
+"usebter-ik, ad ysnerni s waṭas tignatin akken ad d-banent deg usebter agejdan."
 
 msgid "Continue"
 msgstr "Kemmel"
@@ -3182,7 +3184,7 @@ msgid "Yes, as long as they share alike"
 msgstr "Ih, ma yella bḍant am akken tebḍiɣ"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
+msgstr "Win yesɛan izerfan ad imudd izerfan i wiyaḍ akken ad zzuzren axeddim i d-yekkan kan seg turagt-nni iman-is, yemṣadan akked uxeddim n umeskar amerwaru."
 
 msgid "Your Add-on will be released under the following license:"
 msgstr "Azegrir-ik ad d-yeffeɣ ddaw n turagt-agi:"
@@ -3454,7 +3456,7 @@ msgid "Version Signed"
 msgstr "Lqem yettwazmel"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
+msgstr "D ayen! Lqem-agi yettwasezmel daɣen yezmer tura ad yettwasuzer s wudem udmawan. Ad tizmireḍ ad tissidreḍ s usiti ɣef tqeffalt ddaw-a."
 
 msgid "Download {0}"
 msgstr "Sider {0}"
@@ -3541,7 +3543,7 @@ msgid "Header area text and icons"
 msgstr "Aḍris akked tignitin n uqerru"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
+msgstr "Ini n uḍris akked tignitin deg tjumma n uqerru, anagar iccer urmid. Urti n umeskan:  textcolor."
 
 msgid "Toolbar area background"
 msgstr "Agilal n ufeggag n yifecka"
@@ -3661,7 +3663,7 @@ msgid "This is the newest uploaded version, however it isn’t live on the site 
 msgstr "Wagi d lqem amaynut i yettwaznen, dacu mazal ur yelli ara deg usmel."
 
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Idrasen ur ttwaceggren ara seg umezwaru ar uneggaru"
 
 msgid "Queue Position:"
 msgstr "Adig n wedras:"
@@ -3671,7 +3673,7 @@ msgid "%(position)s of %(total)s"
 msgstr "%(position)s si %(total)s"
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Yettwasezmel i uzuzer udmawan. Ad tesferkeḍ ileqman."
 
 msgid "Latest Version:"
 msgstr "Lqem aneggaru:"
