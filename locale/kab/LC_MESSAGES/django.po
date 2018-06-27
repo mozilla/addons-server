@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-27 16:12+0000\n"
+"PO-Revision-Date: 2018-06-27 16:14+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4385,7 +4385,7 @@ msgid "Invalid file name in archive: {0}"
 msgstr "Isem n ufaylu mačči d ameɣtu deg uḥraz: {0}"
 
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Afaylu yezger talast n teɣzi deg uɣbaṛ: {0}"
 
 msgid "Invalid archive."
 msgstr "Yir aɣbaṛ"
@@ -4570,13 +4570,13 @@ msgid "Get up and move!"
 msgstr "Kker, sellek iman-ik!"
 
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "Sbedd izegrar-agi n ucebbeḥ akken ad teqqimeḍ d urmid deg tezmert yelhan."
 
 msgid "New &amp; Now"
 msgstr "Amaynut &amp; Tura"
 
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "Awi izegrar ineggura ilaqen akka tura."
 
 msgid "Worry-free browsing"
 msgstr "Tunigin s war tugdi"
