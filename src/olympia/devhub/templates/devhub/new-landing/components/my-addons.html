@@ -35,9 +35,9 @@
       </div>
       <div>
         <p>
-          {% trans %}
-          Want your extension to be featured on addons.mozilla.org?
-          Our featured extensions policies will tell you what you need to know.
+          {% trans amo_link_open='<a href="https://addons.mozilla.org/">'|safe amo_link_close='</a>' %}
+          Want your extension to be featured on {{ amo_link_open }}addons.mozilla.org{{ amo_link_close }}
+          ? Our featured extensions policies will tell you what you need to know.
           {% endtrans %}
         </p>
         <a href="https://developer.mozilla.org/Add-ons/AMO/Policy/Featured" class="Button">
