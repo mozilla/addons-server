@@ -14,7 +14,6 @@ from mock import Mock, patch
 from pyquery import PyQuery as pq
 
 from olympia import amo, core
-from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.tests import (
@@ -344,6 +343,9 @@ class TestCRUD(TestCase):
             'description': '',
             'listed': 'True'
         }
+        self.grant_permission(
+            UserProfile.objects.get(email='admin@mozilla.com'),
+            'Admin:Curation')
 
     def login_admin(self):
         assert self.client.login(email='admin@mozilla.com')
@@ -353,9 +355,9 @@ class TestCRUD(TestCase):
 
     def create_collection(self, **kw):
         self.data.update(kw)
-        r = self.client.post(self.add_url, self.data, follow=True)
-        assert r.status_code == 200
-        return r
+        response = self.client.post(self.add_url, self.data, follow=True)
+        assert response.status_code == 200
+        return response
 
     @patch('olympia.bandwagon.views.statsd.incr')
     def test_create_collection_statsd(self, mock_incr):
@@ -563,32 +565,61 @@ class TestCRUD(TestCase):
             r = self.client.post(url)
             assert r.status_code == 403
 
-    def test_acl_collections_edit(self):
-        # Test users in group with 'Collections:Edit' are allowed.
+    def test_acl_admin_curation(self):
+        # Test that even with 'Admin:Curation' you can't edit anyone's
+        # collection through the legacy frontend.
+        self.create_collection()
+
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        group = Group.objects.create(name='Staff', rules='Collections:Edit')
-        GroupUser.objects.create(user=user, group=group)
-        r = self.client.post(self.add_url, self.data, follow=True)
+        self.grant_permission(user, 'Admin:Curation')
         self.login_regular()
         url_args = ['admin', self.slug]
 
         url = reverse('collections.edit', args=url_args)
-        r = self.client.get(url)
-        assert r.status_code == 200
+        response = self.client.get(url)
+        assert response.status_code == 403
 
         url = reverse('collections.edit_addons', args=url_args)
-        r = self.client.get(url)
-        assert r.status_code == 405
-        # Passed acl check, but this view needs a POST.
+        response = self.client.get(url)
+        assert response.status_code == 403
 
         url = reverse('collections.edit_privacy', args=url_args)
-        r = self.client.get(url)
-        assert r.status_code == 405
-        # Passed acl check, but this view needs a POST.
+        response = self.client.get(url)
+        assert response.status_code == 403
 
         url = reverse('collections.delete', args=url_args)
-        r = self.client.get(url)
-        assert r.status_code == 200
+        response = self.client.get(url)
+        assert response.status_code == 403
+
+    def test_acl_admin_curation_mozilla(self):
+        # Test that with 'Admin:Curation' you can edit collections by the
+        # user named "mozilla".
+        self.create_collection()
+        mozilla = UserProfile.objects.get(username='mozilla')
+        Collection.objects.get(slug=self.slug).update(author=mozilla)
+
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.grant_permission(user, 'Admin:Curation')
+        self.login_regular()
+        url_args = ['mozilla', self.slug]
+
+        url = reverse('collections.edit', args=url_args)
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+        url = reverse('collections.edit_addons', args=url_args)
+        response = self.client.get(url)
+        # Passed acl check, but this view needs a POST.
+        assert response.status_code == 405
+
+        url = reverse('collections.edit_privacy', args=url_args)
+        response = self.client.get(url)
+        # Passed acl check, but this view needs a POST.
+        assert response.status_code == 405
+
+        url = reverse('collections.delete', args=url_args)
+        response = self.client.get(url)
+        assert response.status_code == 200
 
     def test_edit_favorites(self):
         r = self.client.get(reverse('collections.list'))
@@ -666,20 +697,24 @@ class TestCRUD(TestCase):
         assert Collection.objects.filter(slug='mobile', author=u)
 
     def test_no_changing_owners(self):
-        self.login_regular()
-        self.create_collection()
-        c = Collection.objects.get(slug=self.slug)
-
         self.login_admin()
-        r = self.client.post(c.edit_url(),
-                             dict(name='new name', slug=self.slug,
-                                  listed=True),
-                             follow=True)
-        assert r.status_code == 200
+        self.create_collection()
+        mozilla = UserProfile.objects.get(username='mozilla')
+        collection = Collection.objects.get(slug=self.slug)
+        collection.update(author=mozilla)
 
-        newc = Collection.objects.get(slug=self.slug,
-                                      author__username=c.author_username)
-        assert unicode(newc.name) == 'new name'
+        self.login_regular()
+        self.grant_permission(
+            UserProfile.objects.get(email='regular@mozilla.com'),
+            'Admin:Curation')
+        response = self.client.post(
+            collection.edit_url(),
+            {'name': 'new name', 'slug': self.slug, 'listed': True},
+            follow=True)
+        assert response.status_code == 200
+
+        collection.reload()
+        assert unicode(collection.name) == 'new name'
 
 
 class TestChangeAddon(TestCase):
@@ -1079,8 +1114,16 @@ class TestCollectionViewSetList(TestCase):
         self.grant_permission(self.user, 'Collections:Edit')
         self.client.login_api(self.user)
         response = self.client.get(other_url)
-        assert response.status_code == 200
-        assert len(response.data['results']) == 1
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Collections:Contribute')
+        self.client.login_api(self.user)
+        response = self.client.get(other_url)
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Admin:Curation')
+        response = self.client.get(other_url)
+        assert response.status_code == 403
 
     def test_404(self):
         # Invalid user.
@@ -1181,8 +1224,21 @@ class TestCollectionViewSetDetail(TestCase):
         self.grant_permission(self.user, 'Collections:Edit')
         self.client.login_api(self.user)
         response = self.client.get(self._get_url(random_user, collection))
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Collections:Contribute')
+        self.client.login_api(self.user)
+        response = self.client.get(self._get_url(random_user, collection))
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Admin:Curation')
+        response = self.client.get(self._get_url(random_user, collection))
+        assert response.status_code == 403
+
+        random_user.update(username='mozilla')
+        response = self.client.get(self._get_url(random_user, collection))
         assert response.status_code == 200
-        assert response.data['id'] == collection.id
+        assert response.data['id'] == collection.pk
 
     def test_not_listed_contributor(self):
         self.collection.update(listed=False)
@@ -1201,7 +1257,12 @@ class TestCollectionViewSetDetail(TestCase):
             assert response.status_code == 200
             assert response.data['id'] == self.collection.id
 
-        # double check only the COLLECTION_FEATURED_THEMES_ID is allowed
+        # Double check only the COLLECTION_FEATURED_THEMES_ID is allowed.
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+        # Even on a mozilla-owned collection.
+        self.collection.author.update(username='mozilla')
         response = self.client.get(self.url)
         assert response.status_code == 403
 
@@ -1414,6 +1475,14 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
         response = self.send(url=url)
         assert response.status_code == 403
 
+        self.grant_permission(self.user, 'Collections:Contribute')
+        response = self.send(url=url)
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Admin:Curation')
+        response = self.send(url=url)
+        assert response.status_code == 403
+
     def test_create_numeric_slug(self):
         self.client.login_api(self.user)
         data = {
@@ -1467,7 +1536,20 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         url = self.get_url(random_user)
         original = self.client.get(url).content
         response = self.send(url=url)
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Collections:Contribute')
+        response = self.send(url=url)
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Admin:Curation')
+        response = self.send(url=url)
+        assert response.status_code == 403
+
+        random_user.update(username='mozilla')
+        response = self.send(url=url)
         assert response.status_code == 200
+
         assert response.content != original
         self.collection = self.collection.reload()
         self.check_data(self.collection, self.data,
@@ -1530,8 +1612,22 @@ class TestCollectionViewSetDelete(TestCase):
         self.collection.update(author=random_user)
         url = self.get_url(random_user)
         response = self.client.delete(url)
-        assert response.status_code == 204
-        assert not Collection.objects.filter(id=self.collection.id).exists()
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Collections:Contribute')
+        response = self.client.delete(url)
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Admin:Curation')
+        response = self.client.delete(url)
+        assert response.status_code == 403
+        assert Collection.objects.filter(id=self.collection.id).exists()
+
+        # Curators can't delete collections even owned by mozilla.
+        random_user.update(username='mozilla')
+        response = self.client.delete(url)
+        assert response.status_code == 403
+        assert Collection.objects.filter(id=self.collection.id).exists()
 
     def test_contributor_fails(self):
         self.client.login_api(self.user)
@@ -1582,6 +1678,18 @@ class CollectionAddonViewSetMixin(object):
         admin_user = user_factory()
         self.grant_permission(admin_user, 'Collections:Edit')
         self.client.login_api(admin_user)
+        response = self.send(self.url)
+        assert response.status_code == 403
+
+        self.grant_permission(admin_user, 'Collections:Contribute')
+        response = self.send(self.url)
+        assert response.status_code == 403
+
+        self.grant_permission(admin_user, 'Admin:Curation')
+        response = self.send(self.url)
+        assert response.status_code == 403
+
+        self.collection.author.update(username='mozilla')
         self.check_response(self.send(self.url))
 
     def test_contributor(self):

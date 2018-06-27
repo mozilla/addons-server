@@ -73,9 +73,10 @@ def check_collection_ownership(request, collection, require_owner=False):
     if not request.user.is_authenticated():
         return False
 
-    if action_allowed(request, amo.permissions.COLLECTIONS_EDIT):
+    if request.user.id == collection.author_id:
         return True
-    elif request.user.id == collection.author_id:
+    elif collection.author.username == 'mozilla' and action_allowed_user(
+            request.user, amo.permissions.ADMIN_CURATION):
         return True
     elif not require_owner:
         return (
