@@ -8,10 +8,11 @@
       <div class="DevHub-callout-box DevHub-ext-ladder-icon">
         <h3 class="DevHub-callout-header">{{ _('Resources for a successful launch') }}</h3>
         <p class="DevHub-callout-copy">
-          {% trans %}
+          {% trans amo_link_open='<a href="https://addons.mozilla.org/">'|safe amo_link_close='</a>' %}
           You’ve built your extension and are ready to publish it. 
           What comes next? Check out our tips for creating an appealing
-          listing page, getting your extension featured on addons.mozilla.org,
+          listing page, getting your extension featured on 
+          {{ amo_link_open }}addons.mozilla.org{{ amo_link_close }},
           finding answers to development questions, and staying up-to-date with 
           news and events relevant to extension developers.
           {% endtrans %}
