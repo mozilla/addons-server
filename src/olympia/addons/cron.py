@@ -130,8 +130,7 @@ def _change_last_updated(next):
     # Update + invalidate.
     qs = Addon.objects.no_cache().filter(id__in=changes).no_transforms()
     for addon in qs:
-        addon.last_updated = changes[addon.id]
-        addon.save()
+        addon.update(last_updated=changes[addon.id])
 
 
 @write
