@@ -213,9 +213,6 @@ isodate==0.6.0 \
 # jmespath is required by boto3
 jmespath==0.9.3 \
     --hash=sha256:f11b4461f425740a1d908e9a3f7365c3d2e569f6ca68a2ff8bc5bcd9676edd63
-jingo_minify==0.7.0 \
-    --hash=sha256:1427946e8d4082c909a98dbacfe1cd908cbdc83572003e1a0236da02b350e31f \
-    --hash=sha256:f47ec7868467a1b270e115c301a4270137836ddb7b5f57552e65dff5c86aee05
 # kombu is required by celery
 kombu==4.2.1 \
     --hash=sha256:b274db3a4eacc4789aeb24e1de3e460586db7c4fc8610f7adcc7a3a1709a60af \
