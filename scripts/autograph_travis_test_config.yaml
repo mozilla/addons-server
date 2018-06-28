@@ -13,7 +13,6 @@ signers:
       # 'add-on' are signed with the OU 'Production' and the provided ID
       # 'extension' are signed with the OU 'Mozilla Extensions' and the provided ID
       # 'system add-on' are signed with the OU 'Mozilla Components' and the provided ID
-      # 'hotfix' are signed with the OU 'Production' and the ID 'firefox-hotfix@mozilla.org'
       mode: add-on
       certificate: |
           -----BEGIN CERTIFICATE-----
