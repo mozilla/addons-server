@@ -26,7 +26,7 @@
       <div>
         <p>
           {% trans %}
-          Help users discover your extension by creating an appealing listing. 
+          Help users discover your extension by creating an appealing listing.
           {% endtrans %}
         </p>
         <a href="https://developer.mozilla.org/Add-ons/Listing" class="Button">
@@ -35,9 +35,9 @@
       </div>
       <div>
         <p>
-          {% trans amo_link_open='<a href="https://addons.mozilla.org/">'|safe amo_link_close='</a>' %}
-          Want your extension to be featured on {{ amo_link_open }}addons.mozilla.org{{ amo_link_close }}
-          ? Our featured extensions policies will tell you what you need to know.
+          {% trans amo_link_open='<a href="https://addons.mozilla.org/">'|safe, amo_link_close='</a>'|safe %}
+          Want your extension to be featured on {{ amo_link_open }}addons.mozilla.org{{ amo_link_close }}?
+          Our featured extensions policies will tell you what you need to know.
           {% endtrans %}
         </p>
         <a href="https://developer.mozilla.org/Add-ons/AMO/Policy/Featured" class="Button">
