@@ -14,7 +14,6 @@
       <table>
         <caption>{{ _('Add-on Details for {0}')|format_html(addon.name) }}</caption>
         <tbody>
-          {% if addon.type != amo.ADDON_STATICTHEME %}
           <tr>
             <th>
               <label data-for="description">
@@ -40,7 +39,6 @@
               {% endif %}
             </td>
           </tr>
-          {% endif %}
           {% if show_listed_fields %}
           <tr>
             <th>
@@ -94,4 +92,3 @@
     {% endif %}
   </div>
 </form>
-
