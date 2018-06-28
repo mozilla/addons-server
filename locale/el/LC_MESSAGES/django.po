@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-25 00:05+0000\n"
+"PO-Revision-Date: 2018-06-28 13:41+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1864,7 +1864,7 @@ msgstr "Το {file} έχει υπογραφεί."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Το ID προσθέτου id {0} με GUID {1} έχει διαγραφεί"
 
 msgid "{addon} migrated from preliminary."
 msgstr ""
@@ -5909,10 +5909,10 @@ msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Από %(user)s στις %(date)s</div>"
 
 msgid "Older"
-msgstr ""
+msgstr "Παλαιότερο"
 
 msgid "Newer"
-msgstr ""
+msgstr "Νεότερο"
 
 msgid "Recent Points"
 msgstr "Πρόσφατοι πόντοι"
@@ -5921,10 +5921,10 @@ msgid "No points awarded yet."
 msgstr ""
 
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Κορυφαίοι αξιολογητές (τελευταίες 7 ημέρες)"
 
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Κανένας κορυφαίος αξιολογητής ακόμα."
 
 msgid "All Time"
 msgstr ""
@@ -6692,7 +6692,7 @@ msgid "my add-on is reviewed by a reviewer"
 msgstr ""
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Η Mozilla πρέπει να επικοινωνήσει μαζί μου σχετικά με το μεμονωμένο μου πρόσθετο"
 
 msgid "User Notifications"
 msgstr "Ειδοποιήσεις χρήστη"
@@ -6701,7 +6701,7 @@ msgid "An email address is required."
 msgstr "Απαιτείται μια διεύθυνση email."
 
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Δεν υπάρχει χρήστης με αυτή τη διεύθυνση email."
 
 msgid "Profile Deleted"
 msgstr "Διαγράφηκε το προφίλ"
