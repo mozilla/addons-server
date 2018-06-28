@@ -61,7 +61,7 @@ class BaseTestEdit(TestCase):
         self.url = self.addon.get_dev_url()
 
     def get_addon(self):
-        return Addon.objects.no_cache().get(id=3615)
+        return Addon.objects.get(id=3615)
 
     def get_url(self, section, edit=False):
         args = [self.addon.slug, section]

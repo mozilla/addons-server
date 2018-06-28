@@ -83,7 +83,7 @@ class TestSubmitBase(TestCase):
         self.addon = self.get_addon()
 
     def get_addon(self):
-        return Addon.objects.no_cache().get(pk=3615)
+        return Addon.objects.get(pk=3615)
 
     def get_version(self):
         return self.get_addon().versions.latest()

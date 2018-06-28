@@ -19,8 +19,6 @@ from django.utils.translation import get_language, ugettext, ugettext_lazy as _
 
 import waffle
 
-from caching.base import cached_with
-
 import olympia.core.logger
 
 from olympia import amo, legacy_api
@@ -301,7 +299,6 @@ def guid_search(request, api_version, guids):
             try:
                 # Only search through public (and not disabled) add-ons.
                 addon = Addon.objects.public().get(guid=guid)
-
             except Addon.DoesNotExist:
                 addons_xml[key] = ''
 
@@ -388,16 +385,17 @@ class SearchView(APIView):
             .filter_query_string(query)
             [:limit])
 
+        results = []
+
         total = qs.count()
 
-        results = []
         for addon in qs:
             compat_version = find_compatible_version(
                 addon, app_id, params['version'], params['platform'],
                 compat_mode)
-            # Specific case for Personas (bug 990768): if we search providing
-            # the Persona addon type (9), then don't look for a compatible
-            # version.
+            # Specific case for Personas (bug 990768): if we search
+            # providing the Persona addon type (9), then don't look for a
+            # compatible version.
             if compat_version or addon_type == '9':
                 addon.compat_version = compat_version
                 results.append(addon)
@@ -439,8 +437,8 @@ class ListView(APIView):
                         limit=10, platform='ALL', version=None,
                         compat_mode='strict'):
         """
-        Find a list of new or featured add-ons.  Filtering is done in Python
-        for cache-friendliness and to avoid heavy queries.
+        Find a list of new or featured add-ons. Filtering is done in Python
+        to avoid heavy queries.
         """
         limit = min(MAX_LIMIT, int(limit))
         APP, platform = self.request.APP, platform.lower()
@@ -471,14 +469,8 @@ class ListView(APIView):
         args = (addon_type, limit, APP, platform, version, compat_mode,
                 shuffle)
 
-        def f():
-            return self._process(addons, *args)
-
-        return cached_with(addons, f, map(force_bytes, args))
-
-    def _process(self, addons, *args):
         return self.render('legacy_api/list.xml',
-                           {'addons': addon_filter(addons, *args)})
+                           {'addons': addon_filter(addons.all(), *args)})
 
     def render_json(self, context):
         return json.dumps([addon_to_dict(a) for a in context['addons']],

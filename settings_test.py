@@ -26,10 +26,6 @@ PAYPAL_PERMISSIONS_URL = ''
 
 SITE_URL = 'http://testserver'
 
-# COUNT() caching can't be invalidated, it just expires after x seconds. This
-# is just too annoying for tests, so disable it.
-CACHE_COUNT_TIMEOUT = -1
-
 # We don't want to share cache state between processes. Always use the local
 # memcache backend for tests.
 #

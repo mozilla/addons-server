@@ -21,8 +21,6 @@ from django.utils.functional import cached_property
 from django.utils import translation
 from django.utils.translation import trans_real, ugettext_lazy as _
 
-import caching.base as caching
-
 from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
@@ -36,7 +34,7 @@ from olympia.addons.utils import (
 from olympia.amo.decorators import use_master, write
 from olympia.amo.models import (
     BasePreview, ManagerBase, manual_order, ModelBase, OnChangeMixin,
-    SaveUpdateMixin, SlugField)
+    SaveUpdateMixin, SlugField, BaseQuerySet)
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
@@ -150,7 +148,7 @@ def clean_slug(instance, slug_field='slug'):
     return instance
 
 
-class AddonQuerySet(caching.CachingQuerySet):
+class AddonQuerySet(BaseQuerySet):
     def id_or_slug(self, val):
         """Get add-ons by id or slug."""
         if isinstance(val, basestring) and not val.isdigit():
@@ -364,7 +362,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     # The order of those managers is very important:
     # The first one discovered, if it has "use_for_related_fields = True"
-    # (which it has if it's inheriting from caching.base.CachingManager), will
+    # (which it has if it's inheriting `ManagerBase`), will
     # be used for relations like `version.addon`. We thus want one that is NOT
     # filtered in any case, we don't want a 500 if the addon is not found
     # (because it has the status amo.STATUS_DELETED for example).
@@ -723,7 +721,7 @@ class Addon(OnChangeMixin, ModelBase):
                 'channel': amo.RELEASE_CHANNEL_LISTED,
                 'files__status__in': statuses
             }
-            return self.versions.no_cache().filter(**fltr).extra(
+            return self.versions.filter(**fltr).extra(
                 where=["""
                     NOT EXISTS (
                         SELECT 1 FROM files AS f2
@@ -1012,7 +1010,7 @@ class Addon(OnChangeMixin, ModelBase):
         if addon_dict is None:
             addon_dict = dict((a.id, a) for a in addons)
 
-        qs = (UserProfile.objects.no_cache()
+        qs = (UserProfile.objects
               .filter(addons__in=addons, addonuser__listed=True)
               .extra(select={'addon_id': 'addons_users.addon_id',
                              'position': 'addons_users.position'}))
@@ -1080,7 +1078,7 @@ class Addon(OnChangeMixin, ModelBase):
         addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
 
         # Persona-specific stuff
-        for persona in Persona.objects.no_cache().filter(addon__in=personas):
+        for persona in Persona.objects.filter(addon__in=personas):
             addon = addon_dict[persona.addon_id]
             addon.persona = persona
 
@@ -1290,19 +1288,19 @@ class Addon(OnChangeMixin, ModelBase):
         """
         status_change = Max('versions__files__datestatuschanged')
         public = (
-            Addon.objects.no_cache().filter(
+            Addon.objects.filter(
                 status=amo.STATUS_PUBLIC,
                 versions__files__status=amo.STATUS_PUBLIC)
             .exclude(type=amo.ADDON_PERSONA)
             .values('id').annotate(last_updated=status_change))
 
         stati = amo.VALID_ADDON_STATUSES
-        exp = (Addon.objects.no_cache().exclude(status__in=stati)
+        exp = (Addon.objects.exclude(status__in=stati)
                .filter(versions__files__status__in=amo.VALID_FILE_STATUSES)
                .values('id')
                .annotate(last_updated=Max('versions__files__created')))
 
-        personas = (Addon.objects.no_cache().filter(type=amo.ADDON_PERSONA)
+        personas = (Addon.objects.filter(type=amo.ADDON_PERSONA)
                     .extra(select={'last_updated': 'created'}))
         return dict(public=public, exp=exp, personas=personas)
 
@@ -1540,7 +1538,7 @@ class AddonReviewerFlags(ModelBase):
     notified_about_expiring_info_request = models.BooleanField(default=False)
 
 
-class Persona(caching.CachingMixin, models.Model):
+class Persona(models.Model):
     """Personas-specific additions to the add-on model."""
     STATUS_CHOICES = amo.STATUS_CHOICES_PERSONA
 
@@ -1564,8 +1562,6 @@ class Persona(caching.CachingMixin, models.Model):
     # To spot duplicate submissions.
     checksum = models.CharField(max_length=64, blank=True, default='')
     dupe_persona = models.ForeignKey('self', null=True)
-
-    objects = caching.CachingManager()
 
     class Meta:
         db_table = 'personas'
@@ -1739,13 +1735,11 @@ class MigratedLWT(OnChangeMixin, ModelBase):
         self.getpersonas_id = self.lightweight_theme.persona.persona_id
 
 
-class AddonCategory(caching.CachingMixin, models.Model):
+class AddonCategory(models.Model):
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     category = models.ForeignKey('Category')
     feature = models.BooleanField(default=False)
     feature_locales = models.CharField(max_length=255, default='', null=True)
-
-    objects = caching.CachingManager()
 
     class Meta:
         db_table = 'addons_categories'
@@ -1756,16 +1750,13 @@ class AddonCategory(caching.CachingMixin, models.Model):
         return get_creatured_ids(category, lang)
 
 
-class AddonUser(caching.CachingMixin, OnChangeMixin, SaveUpdateMixin,
-                models.Model):
+class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     user = UserForeignKey()
     role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
                                     choices=amo.AUTHOR_CHOICES)
     listed = models.BooleanField(_(u'Listed'), default=True)
     position = models.IntegerField(default=0)
-
-    objects = caching.CachingManager()
 
     def __init__(self, *args, **kwargs):
         super(AddonUser, self).__init__(*args, **kwargs)

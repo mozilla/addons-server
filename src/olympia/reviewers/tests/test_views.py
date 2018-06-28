@@ -2112,8 +2112,7 @@ class TestContentReviewQueue(QueueTest):
         AutoApprovalSummary.objects.create(
             version=addon4.current_version,
             verdict=amo.AUTO_APPROVED, confirmed=True)
-        assert not AddonApprovalsCounter.objects.no_cache().filter(
-            addon=addon4).exists()
+        assert not AddonApprovalsCounter.objects.filter(addon=addon4).exists()
 
         # Addons with no last_content_review date should be first, ordered by
         # their creation date, older first.

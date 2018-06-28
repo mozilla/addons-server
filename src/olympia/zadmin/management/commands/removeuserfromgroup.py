@@ -37,10 +37,6 @@ def do_removeuser(user, group):
 
         # Doesn't actually check if the user was in the group or not.
         GroupUser.objects.filter(user=user, group=group).delete()
-        # Help django-cache-machine invalidate its cache (it has issues with
-        # M2Ms).
-        Group.objects.invalidate(*user.groups.all())
-
     except UserProfile.DoesNotExist:
         raise CommandError('User ({user}) does not exist.'.format(user=user))
     except Group.DoesNotExist:
