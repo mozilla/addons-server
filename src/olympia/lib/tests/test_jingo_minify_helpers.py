@@ -230,7 +230,7 @@ def test_compiled_css(open_mock, subprocess_mock, getmtime_mock, time_mock):
 
     assert subprocess_mock.Popen.mock_calls == [
         mock.call(
-            [settings.LESS_BIN, settings.JINGO_MINIFY_ROOT + '/css/less.less'],
+            [settings.LESS_BIN, settings.STATIC_ROOT + '/css/less.less'],
             stdout=mock.ANY),
     ]
 
