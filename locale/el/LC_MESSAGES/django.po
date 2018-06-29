@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-25 00:05+0000\n"
+"PO-Revision-Date: 2018-06-28 16:14+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -991,16 +991,14 @@ msgstr "Τα εικονίδια θα πρέπει να είναι σε μορφ�
 msgid "Icons cannot be animated."
 msgstr "Δεν επιτρέπονται κινούμενες εικόνες."
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "Αυτό το slug χρησιμοποιείται ήδη από κάποια άλλη συλλογή σας."
+msgstr "Αυτό το προσαρμοσμένο URL χρησιμοποιείται ήδη από κάποιο άλλο στις συλλογές σας."
 
 msgid "Name cannot be empty."
 msgstr "Το όνομα δεν μπορεί να είναι κενό."
 
-#, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "Εισάγετε ένα έγκυρο slug, αποτελούμενο από γράμματα, αριθμούς, κάτω παύλες ή παύλες."
+msgstr "Το προσαρμοσμένο URL πρέπει να περιέχει γράμματα, αριθμούς, ή (κάτω) παύλες."
 
 msgid "This custom URL cannot be used."
 msgstr "Αυτό το προσαρμοσμένο URL δεν μπορεί να χρησιμοποιηθεί."
@@ -1864,7 +1862,7 @@ msgstr "Το {file} έχει υπογραφεί."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Το ID προσθέτου id {0} με GUID {1} έχει διαγραφεί"
 
 msgid "{addon} migrated from preliminary."
 msgstr ""
@@ -5230,9 +5228,8 @@ msgid "end"
 msgstr "εως"
 
 #. L10n: Description of what can be searched for
-#, fuzzy
 msgid "add-on, reviewer or comment"
-msgstr "θέμα, κριτής ή σχόλιο"
+msgstr "πρόσθετο, αξιολογητής ή σχόλιο"
 
 msgid "Search by add-on name / author email"
 msgstr "Αναζήτηση με βάση το όνομα του πρόσθετου/ email δημιουργού"
@@ -5504,9 +5501,8 @@ msgstr "Θέματα με επισήμανση"
 msgid "Lightweight Themes Review Log"
 msgstr "\"Ελαφριά\" θέματα"
 
-#, fuzzy
 msgid "Deleted Themes Log"
-msgstr "Διαγραφή θέματος"
+msgstr "Αρχείο διαγραμμένων θεμάτων"
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -5751,9 +5747,8 @@ msgid "Reviewer's Guide"
 msgstr "Οδηγός αξιολογητή"
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "Αξιολόγηση {0}"
+msgstr "Αξιολόγηση περιεχομένου {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5817,9 +5812,8 @@ msgstr ""
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr ""
 
-#, fuzzy
 msgid "Update whiteboards"
-msgstr "Λευκός πίνακας"
+msgstr "Ενημέρωση πινάκων"
 
 msgid "More Actions"
 msgstr "Περισσότερες ενέργειες"
@@ -5909,10 +5903,10 @@ msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Από %(user)s στις %(date)s</div>"
 
 msgid "Older"
-msgstr ""
+msgstr "Παλαιότερο"
 
 msgid "Newer"
-msgstr ""
+msgstr "Νεότερο"
 
 msgid "Recent Points"
 msgstr "Πρόσφατοι πόντοι"
@@ -5921,10 +5915,10 @@ msgid "No points awarded yet."
 msgstr ""
 
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Κορυφαίοι αξιολογητές (τελευταίες 7 ημέρες)"
 
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Κανένας κορυφαίος αξιολογητής ακόμα."
 
 msgid "All Time"
 msgstr ""
@@ -6692,7 +6686,7 @@ msgid "my add-on is reviewed by a reviewer"
 msgstr ""
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Η Mozilla πρέπει να επικοινωνήσει μαζί μου σχετικά με το μεμονωμένο μου πρόσθετο"
 
 msgid "User Notifications"
 msgstr "Ειδοποιήσεις χρήστη"
@@ -6701,7 +6695,7 @@ msgid "An email address is required."
 msgstr "Απαιτείται μια διεύθυνση email."
 
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Δεν υπάρχει χρήστης με αυτή τη διεύθυνση email."
 
 msgid "Profile Deleted"
 msgstr "Διαγράφηκε το προφίλ"

@@ -15,6 +15,7 @@ from django.test.utils import override_settings
 
 import mock
 
+from rest_framework.exceptions import PermissionDenied
 from rest_framework.settings import api_settings
 from rest_framework.test import APIRequestFactory, APITestCase
 from waffle.models import Switch
@@ -235,6 +236,12 @@ class TestFindUser(TestCase):
             fxa_id='8888', email='you@amo.ca', username='you')
         with self.assertRaises(UserProfile.MultipleObjectsReturned):
             views.find_user({'uid': '9999', 'email': 'you@amo.ca'})
+
+    def test_find_user_deleted(self):
+        UserProfile.objects.create(
+            fxa_id='abc', email='me@amo.ca', deleted=True)
+        with self.assertRaises(PermissionDenied):
+            views.find_user({'uid': 'abc', 'email': 'you@amo.ca'})
 
 
 class TestRenderErrorHTML(TestCase):
@@ -704,6 +711,16 @@ class TestAuthenticateView(BaseAuthenticationView):
         self.login_user.assert_called_with(mock.ANY, user, identity)
         assert not self.register_user.called
 
+    def test_banned_user_cant_log_in(self):
+        UserProfile.objects.create(
+            username='foobar', email='real@yeahoo.com', fxa_id='10',
+            deleted=True)
+        identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
+        self.fxa_identify.return_value = identity
+        response = self.client.get(
+            self.url, {'code': 'code', 'state': self.fxa_state})
+        assert response.status_code == 403
+
     def test_log_in_redirects_to_next_path(self):
         user = UserProfile.objects.create(email='real@yeahoo.com', fxa_id='10')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
@@ -773,6 +790,18 @@ class TestAccountViewSet(TestCase):
         assert response.data['name'] == self.user.name
         assert response.data['email'] == self.user.email
         assert response.data['url'] == absolutify(self.user.get_url_path())
+
+    def test_view_deleted(self):
+        self.user.update(deleted=True, is_public=True)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+        # Even as admin deleted users are not visible through the API.
+        user = user_factory()
+        self.grant_permission(user, 'Users:Edit')
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
 
     def test_is_not_public_because_not_developer(self):
         assert not self.user.is_public

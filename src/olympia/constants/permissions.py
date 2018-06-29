@@ -73,6 +73,9 @@ RATINGS_MODERATE = AclPermission('Ratings', 'Moderate')
 # add-on or clearing needs admin review flags.
 REVIEWS_ADMIN = AclPermission('Reviews', 'Admin')
 
+# Can access advanced admin features, like deletion.
+ADMIN_ADVANCED = AclPermission('Admin', 'Advanced')
+
 # All permissions, for easy introspection
 PERMISSIONS_LIST = [
     x for x in vars().values() if isinstance(x, AclPermission)]
@@ -85,6 +88,7 @@ DJANGO_PERMISSIONS_MAPPING = defaultdict(lambda: SUPERPOWERS)
 # will also check for addons:edit and give them read-only access to the
 # changelist (obj=None passed to the has_change_permission() method)
 DJANGO_PERMISSIONS_MAPPING.update({
+    'addons.change_addon': ADDONS_EDIT,
     'addons.change_replacementaddon': ADMIN_CURATION,
     'addons.add_replacementaddon': ADMIN_CURATION,
     'addons.delete_replacementaddon': ADMIN_CURATION,
@@ -93,6 +97,7 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'bandwagon.delete_collection': COLLECTIONS_EDIT,
 
     'users.change_userprofile': USERS_EDIT,
+    'users.delete_userprofile': ADMIN_ADVANCED,
 
     'ratings.change_rating': RATINGS_MODERATE,
 })

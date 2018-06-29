@@ -1,0 +1,21 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_static admin_list admin_urls %}
+
+{% block submit_buttons_bottom %}
+    {{ block.super }}
+    <div class="submit-row">
+        <div class="align-left">
+            {% comment %}
+              Add custom <button>s for the actions we want on the change form.
+              They have to be *after* the other submit buttons, otherwise they
+              could become the default submit button of the page
+             {% endcomment %}
+             {% if can_ban %}
+                 <button formaction="{% url 'admin:users_userprofile_ban' original.pk|admin_urlquote %}"
+                         type="submit">{% trans "Ban" %}</button>
+             {% endif %}
+             <button formaction="{% url 'admin:users_userprofile_delete_picture' original.pk|admin_urlquote %}"
+                     type="submit">{% trans "Delete picture" %}</button>
+        </div>
+    </div>
+{% endblock %}

@@ -6,8 +6,11 @@ import django  # noqa
 from django import forms
 from django.db import migrations, models
 from django.db.migrations.writer import MigrationWriter
+from django.contrib.auth import get_user
 from django.core.files.storage import default_storage as storage
+from django.test.client import RequestFactory
 
+import mock
 import pytest
 
 import olympia  # noqa
@@ -19,7 +22,7 @@ from olympia.amo.tests import TestCase, addon_factory, safe_exec, user_factory
 from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.ratings.models import Rating
 from olympia.users.models import (
-    DeniedName, UserEmailField, UserForeignKey, UserProfile)
+    DeniedName, generate_auth_id, UserEmailField, UserForeignKey, UserProfile)
 from olympia.users.utils import find_users
 from olympia.zadmin.models import set_config
 
@@ -97,6 +100,139 @@ class TestUserProfile(TestCase):
         assert user.last_login_attempt_ip == ''
         assert user.last_login_ip == ''
         assert user.has_anonymous_username
+        assert not storage.exists(user.picture_path)
+        assert not storage.exists(user.picture_path_original)
+
+    @mock.patch.object(UserProfile, 'delete_or_disable_related_content')
+    def test_ban_and_disable_related_content(
+            self, delete_or_disable_related_content_mock):
+        user = UserProfile.objects.get(pk=4043307)
+        user.ban_and_disable_related_content()
+        user.reload()
+        assert user.deleted
+        assert user.email == 'jbalogh@mozilla.com'
+        assert user.auth_id
+        assert user.fxa_id == '0824087ad88043e2a52bd41f51bbbe79'
+
+        assert delete_or_disable_related_content_mock.call_count == 1
+        assert (
+            delete_or_disable_related_content_mock.call_args[1] ==
+            {'delete': False})
+
+    def test_delete_or_disable_related_content(self):
+        addon = Addon.objects.latest('pk')
+        user = UserProfile.objects.get(pk=55021)
+        user.update(picture_type='image/png')
+
+        # Create a photo so that we can test deletion.
+        with storage.open(user.picture_path, 'wb') as fobj:
+            fobj.write('test data\n')
+
+        with storage.open(user.picture_path_original, 'wb') as fobj:
+            fobj.write('original test data\n')
+
+        assert user.addons.count() == 1
+        rating = Rating.objects.create(
+            user=user, addon=addon, version=addon.current_version)
+        Rating.objects.create(
+            user=user, addon=addon, version=addon.current_version,
+            reply_to=rating)
+        Collection.objects.create(author=user)
+
+        # Now that everything is set up, disable/delete related content.
+        user.delete_or_disable_related_content()
+
+        assert user.addons.exists()
+        addon.reload()
+        assert addon.status == amo.STATUS_DISABLED
+
+        assert not user._ratings_all.exists()  # Even replies.
+        assert not user.collections.exists()
+
+        assert not storage.exists(user.picture_path)
+        assert not storage.exists(user.picture_path_original)
+
+    def delete_or_disable_related_content_exclude_addons_with_other_devs(self):
+        addon = Addon.objects.latest('pk')
+        user = UserProfile.objects.get(pk=55021)
+        user.update(picture_type='image/png')
+        AddonUser.objects.create(addon=addon, user=user_factory())
+
+        # Create a photo so that we can test deletion.
+        with storage.open(user.picture_path, 'wb') as fobj:
+            fobj.write('test data\n')
+
+        with storage.open(user.picture_path_original, 'wb') as fobj:
+            fobj.write('original test data\n')
+
+        assert user.addons.count() == 1
+        rating = Rating.objects.create(
+            user=user, addon=addon, version=addon.current_version)
+        Rating.objects.create(
+            user=user, addon=addon, version=addon.current_version,
+            reply_to=rating)
+        Collection.objects.create(author=user)
+
+        # Now that everything is set up, disable/delete related content.
+        user.delete_or_disable_related_content()
+
+        # The add-on should not have been touched, it has another dev.
+        assert user.addons.exists()
+        addon.reload()
+        assert addon.status == amo.STATUS_PUBLIC
+
+        assert not user._ratings_all.exists()  # Even replies.
+        assert not user.collections.exists()
+
+        assert not storage.exists(user.picture_path)
+        assert not storage.exists(user.picture_path_original)
+
+    def delete_or_disable_related_content_actually_delete(self):
+        addon = Addon.objects.latest('pk')
+        user = UserProfile.objects.get(pk=55021)
+        user.update(picture_type='image/png')
+
+        # Create a photo so that we can test deletion.
+        with storage.open(user.picture_path, 'wb') as fobj:
+            fobj.write('test data\n')
+
+        with storage.open(user.picture_path_original, 'wb') as fobj:
+            fobj.write('original test data\n')
+
+        assert user.addons.count() == 1
+        rating = Rating.objects.create(
+            user=user, addon=addon, version=addon.current_version)
+        Rating.objects.create(
+            user=user, addon=addon, version=addon.current_version,
+            reply_to=rating)
+        Collection.objects.create(author=user)
+
+        # Now that everything is set up, delete related content.
+        user.delete_or_disable_related_content(delete=True)
+
+        assert not user.addons.exists()
+
+        assert not user._ratings_all.exists()  # Even replies.
+        assert not user.collections.exists()
+
+        assert not storage.exists(user.picture_path)
+        assert not storage.exists(user.picture_path_original)
+
+    def test_delete_picture(self):
+        user = UserProfile.objects.get(pk=55021)
+        user.update(picture_type='image/png')
+
+        # Create a photo so that we can test deletion.
+        with storage.open(user.picture_path, 'wb') as fobj:
+            fobj.write('test data\n')
+
+        with storage.open(user.picture_path_original, 'wb') as fobj:
+            fobj.write('original test data\n')
+
+        user.delete_picture()
+
+        user.reload()
+        assert user.picture_type is None
         assert not storage.exists(user.picture_path)
         assert not storage.exists(user.picture_path_original)
 
@@ -217,25 +353,25 @@ class TestUserProfile(TestCase):
     def test_review_replies(self):
         """
         Make sure that developer replies are not returned as if they were
-        original reviews.
+        original ratings.
         """
         addon = Addon.objects.get(id=3615)
-        u = UserProfile.objects.get(pk=2519)
+        user = UserProfile.objects.get(pk=2519)
         version = addon.find_latest_public_listed_version()
-        new_rating = Rating(version=version, user=u, rating=2, body='hello',
+        new_rating = Rating(version=version, user=user, rating=2, body='hello',
                             addon=addon)
         new_rating.save()
-        new_reply = Rating(version=version, user=u, reply_to=new_rating,
+        new_reply = Rating(version=version, user=user, reply_to=new_rating,
                            addon=addon, body='my reply')
         new_reply.save()
 
-        review_list = [r.pk for r in u.reviews]
+        review_list = [rating.pk for rating in user.ratings]
 
         assert len(review_list) == 1
         assert new_rating.pk in review_list, (
-            'Original review must show up in review list.')
+            'Original review must show up in ratings list.')
         assert new_reply.pk not in review_list, (
-            'Developer reply must not show up in review list.')
+            'Developer reply must not show up in ratings list.')
 
     def test_num_addons_listed(self):
         """Test that num_addons_listed is only considering add-ons for which
@@ -558,3 +694,19 @@ def test_user_foreign_key_field_deconstruct():
     new_field_instance = UserForeignKey()
 
     assert kwargs['to'] == new_field_instance.to
+
+
+@pytest.mark.django_db
+def test_get_session_auth_hash_is_used_for_session_auth():
+    user = user_factory()
+    client = amo.tests.TestClient()
+    assert not client.session.items()
+    assert client.login(email=user.email)
+    assert client.session.items()
+
+    request = RequestFactory().get('/')
+    request.session = client.session
+    assert get_user(request) == user
+
+    user.update(auth_id=generate_auth_id())
+    assert get_user(request) != user

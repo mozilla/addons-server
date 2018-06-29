@@ -636,37 +636,37 @@ class TestProfileSections(TestCase):
         assert pq(self.client.get(self.url).content)(
             '.num-addons a').length == 0
 
-        a = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
+        addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
 
-        AddonUser.objects.create(user=self.user, addon=a)
+        AddonUser.objects.create(user=self.user, addon=addon)
 
-        r = self.client.get(self.url)
+        response = self.client.get(self.url)
 
-        doc = pq(r.content)
+        doc = pq(response.content)
         items = doc('#my-themes .persona')
         assert items.length == 1
-        assert items('a[href="%s"]' % a.get_url_path()).length == 1
+        assert items('a[href="%s"]' % addon.get_url_path()).length == 1
 
     def test_my_reviews(self):
-        r = Rating.objects.filter(reply_to=None)[0]
-        r.update(user=self.user)
+        rating = Rating.objects.filter(reply_to=None)[0]
+        rating.update(user=self.user)
         cache.clear()
-        self.assertSetEqual(set(self.user.reviews), {r})
+        self.assertSetEqual(set(self.user.ratings), {rating})
 
-        r = self.client.get(self.url)
-        doc = pq(r.content)('#reviews')
+        response = self.client.get(self.url)
+        doc = pq(response.content)('#reviews')
         assert not doc.hasClass('full'), (
             'reviews should not have "full" class when there are collections')
         assert doc('.item').length == 1
         assert doc('#review-218207').length == 1
 
         # Edit Review form should be present.
-        self.assertTemplateUsed(r, 'ratings/edit_review.html')
+        self.assertTemplateUsed(response, 'ratings/edit_review.html')
 
     def _get_reviews(self, username):
         self.client.login(email=username)
-        r = self.client.get(reverse('users.profile', args=[999]))
-        doc = pq(r.content)('#reviews')
+        response = self.client.get(reverse('users.profile', args=[999]))
+        doc = pq(response.content)('#reviews')
         return doc('#review-218207 .item-actions a.delete-review')
 
     def test_my_reviews_delete_link(self):

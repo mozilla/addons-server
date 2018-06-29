@@ -107,9 +107,8 @@ def call_signing(file_obj):
 def sign_file(file_obj):
     """Sign a File.
 
-    If there's no endpoint (signing is not enabled), or the file is a hotfix,
-    or isn't reviewed yet, or there was an error while signing, log and return
-    nothing.
+    If there's no endpoint (signing is not enabled) or isn't reviewed yet,
+    or there was an error while signing, log and return nothing.
 
     Otherwise return the signed file.
     """
@@ -121,12 +120,6 @@ def sign_file(file_obj):
     # No file? No signature.
     if not os.path.exists(file_obj.file_path):
         log.info(u'File {0} doesn\'t exist on disk'.format(file_obj.file_path))
-        return
-
-    # Don't sign hotfixes.
-    if file_obj.version.addon.guid in settings.HOTFIX_ADDON_GUIDS:
-        log.info(u'Not signing file {0}: addon is a hotfix'.format(
-            file_obj.pk))
         return
 
     # Don't sign Mozilla signed extensions (they're already signed).

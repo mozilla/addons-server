@@ -1153,11 +1153,7 @@ class AddonReviewerViewSet(GenericViewSet):
         permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
     def disable(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
-        ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, amo.STATUS_DISABLED)
-        self.log.info('Addon "%s" status changed to: %s',
-                      addon.slug, amo.STATUS_DISABLED)
-        addon.update(status=amo.STATUS_DISABLED)
-        addon.update_version()
+        addon.force_disable()
         return Response(status=status.HTTP_202_ACCEPTED)
 
     @detail_route(
@@ -1165,13 +1161,7 @@ class AddonReviewerViewSet(GenericViewSet):
         permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
     def enable(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
-        ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, amo.STATUS_PUBLIC)
-        self.log.info('Addon "%s" status changed to: %s',
-                      addon.slug, amo.STATUS_PUBLIC)
-        addon.update(status=amo.STATUS_PUBLIC)
-        # Call update_status() to fix the status if the add-on is not actually
-        # in a state that allows it to be public.
-        addon.update_status()
+        addon.force_enable()
         return Response(status=status.HTTP_202_ACCEPTED)
 
     @detail_route(
