@@ -91,7 +91,7 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'addons.delete_replacementaddon': ADMIN_CURATION,
 
     'bandwagon.change_collection': COLLECTIONS_EDIT,
-    'bandwagon.delete_collection': COLLECTIONS_EDIT,
+    'bandwagon.delete_collection': ADMIN_ADVANCED,
 
     'users.change_userprofile': USERS_EDIT,
     'users.delete_userprofile': ADMIN_ADVANCED,
