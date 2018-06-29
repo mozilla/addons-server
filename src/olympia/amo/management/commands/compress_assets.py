@@ -25,8 +25,7 @@ def run_command(command):
             break
         if output:
             print(output.strip())
-    rc = process.poll()
-    return rc
+    return process.poll()
 
 
 def ensure_path_exists(path):
@@ -65,8 +64,6 @@ class Command(BaseCommand):
             f.write('BUNDLE_HASHES = %s\n' % self.bundle_hashes)
 
     def handle(self, **options):
-        self.build_id = self.generate_build_id()
-
         self.verbose = '-v' if options.get('verbosity', False) == '2' else ''
 
         # This will loop through every bundle, and do the following:
