@@ -24,7 +24,7 @@ def run_command(command):
         if output == '' and process.poll() is not None:
             break
         if output:
-            print output.strip()
+            print(output.strip())
     rc = process.poll()
     return rc
 
@@ -113,8 +113,9 @@ class Command(BaseCommand):
                 if is_changed or not os.path.isfile(compressed_file):
                     self._minify(ftype, concatted_file, compressed_file)
                 elif self.verbose:
-                    print 'File unchanged, skipping minification of %s' % (
-                        concatted_file)
+                    print(
+                        'File unchanged, skipping minification of %s' % (
+                            concatted_file))
                 else:
                     self.minify_skipped += 1
 
@@ -122,8 +123,9 @@ class Command(BaseCommand):
         self.update_hashes()
 
         if not self.verbose and self.minify_skipped:
-            print 'Unchanged files skipped for minification: %s' % (
-                self.minify_skipped)
+            print(
+                'Unchanged files skipped for minification: %s' % (
+                    self.minify_skipped))
 
     def _preprocess_file(self, filename):
         """Preprocess files and return new filenames."""
@@ -159,7 +161,7 @@ class Command(BaseCommand):
 
     def _cachebust(self, css_file, bundle_name):
         """Cache bust images.  Return a new bundle hash."""
-        print "Cache busting images in %s" % re.sub('.tmp$', '', css_file)
+        print('Cache busting images in %s' % re.sub('.tmp$', '', css_file))
 
         if not os.path.exists(css_file):
             return
@@ -181,8 +183,8 @@ class Command(BaseCommand):
         self.checked_hash[css_file] = file_hash
 
         if not self.verbose and self.missing_files:
-            print ' - Error finding %s images (-v2 for info)' % (
-                self.missing_files,)
+            print(' - Error finding %s images (-v2 for info)' % (
+                self.missing_files,))
             self.missing_files = 0
 
         return file_hash
@@ -203,7 +205,7 @@ class Command(BaseCommand):
                 target=file_out,
                 source=file_in))
 
-        print 'Minifying %s (using %s)' % (file_in, opts['method'])
+        print('Minifying %s (using %s)' % (file_in, opts['method']))
 
     def _file_hash(self, url):
         """Open the file and get a hash of it."""
@@ -217,7 +219,7 @@ class Command(BaseCommand):
         except IOError:
             self.missing_files += 1
             if self.verbose:
-                print ' - Could not find file %s' % url
+                print(' - Could not find file %s' % url)
 
         self.checked_hash[url] = file_hash
         return file_hash
