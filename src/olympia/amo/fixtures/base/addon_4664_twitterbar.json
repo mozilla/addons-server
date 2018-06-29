@@ -164,7 +164,6 @@
             "display_collections_fav": false,
             "display_collections": false,
             "averagerating": 4.09,
-            "notifycompat": true,
             "picture_type": "image/png",
             "occupation": "Software Developer",
             "homepage": "http://www.chrisfinke.com/",
@@ -177,7 +176,6 @@
             "notes": null,
             "modified": "2010-05-07 15:22:13",
             "created": "2007-03-05 13:09:34",
-            "notifyevents": true,
             "last_login": "2010-05-07 15:22:13"
         }
     },

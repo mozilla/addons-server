@@ -14,120 +14,6 @@ from .widgets import TransInput, TransTextarea
 LocaleErrorMessage = namedtuple('LocaleErrorMessage', 'message locale')
 
 
-class TranslatedField(models.ForeignKey):
-    """
-    A foreign key to the translations table.
-
-    If require_locale=False, the fallback join will not use a locale.  Instead,
-    we will look for 1) a translation in the current locale and 2) fallback
-    with any translation matching the foreign key.
-    """
-    to = 'translations.Translation'
-    requires_unique_target = False
-
-    def __init__(self, **kwargs):
-        # to_field: The field on the related object that the relation is to.
-        # Django wants to default to translations.autoid, but we need id.
-        kwargs.update({
-            'null': True,
-            'to_field': 'id',
-            'unique': True,
-            'blank': True,
-            'on_delete': models.SET_NULL
-        })
-
-        self.short = kwargs.pop('short', True)
-        self.require_locale = kwargs.pop('require_locale', True)
-
-        # "to" is passed here from the migration framework; we ignore it
-        # since it's the same for every instance.
-        kwargs.pop('to', None)
-        super(TranslatedField, self).__init__(self.to, **kwargs)
-
-    def deconstruct(self):
-        name, path, args, kwargs = super(TranslatedField, self).deconstruct()
-        kwargs['to'] = self.to
-        kwargs['short'] = self.short
-        kwargs['require_locale'] = self.require_locale
-        return (name, path, args, kwargs)
-
-    @property
-    def db_column(self):
-        # Django wants to call the db_column ('%s_id' % self.name), but our
-        # translations foreign keys aren't set up that way.
-        return self._db_column if hasattr(self, '_db_column') else self.name
-
-    @db_column.setter
-    def db_column(self, value):
-        # Django sets db_column=None to initialize it.  I don't think anyone
-        # would set the db_column otherwise.
-        if value is not None:
-            self._db_column = value
-
-    def contribute_to_class(self, cls, name):
-        """Add this Translation to ``cls._meta.translated_fields``."""
-        super(TranslatedField, self).contribute_to_class(cls, name)
-
-        # Add self to the list of translated fields.
-        if hasattr(cls._meta, 'translated_fields'):
-            cls._meta.translated_fields.append(self)
-        else:
-            cls._meta.translated_fields = [self]
-
-        # Set up a unique related name.  The + means it's hidden.
-        self.rel.related_name = '%s_%s_set+' % (cls.__name__, name)
-
-        # Replace the normal descriptor with our custom descriptor.
-        setattr(cls, self.name, TranslationDescriptor(self))
-
-    def formfield(self, **kw):
-        widget = TransInput if self.short else TransTextarea
-        defaults = {'form_class': TransField, 'widget': widget}
-        defaults.update(kw)
-        return super(TranslatedField, self).formfield(**defaults)
-
-    def validate(self, value, model_instance):
-        # Skip ForeignKey.validate since that expects only one Translation when
-        # doing .get(id=id)
-        return models.Field.validate(self, value, model_instance)
-
-
-class PurifiedField(TranslatedField):
-    to = 'translations.PurifiedTranslation'
-
-
-class LinkifiedField(TranslatedField):
-    to = 'translations.LinkifiedTranslation'
-
-
-class NoLinksField(TranslatedField):
-    to = 'translations.NoLinksTranslation'
-
-
-class NoLinksNoMarkupField(TranslatedField):
-    to = 'translations.NoLinksNoMarkupTranslation'
-
-
-def switch(obj, new_model):
-    """Switch between Translation and Purified/Linkified Translations."""
-    fields = [
-        (f.name, getattr(obj, f.name, None))
-        for f in new_model._meta.fields]
-    return new_model(**dict(fields))
-
-
-def save_on_signal(obj, trans):
-    """Connect signals so the translation gets saved during obj.save()."""
-    signal = models.signals.pre_save
-
-    def cb(sender, instance, **kw):
-        if instance is obj:
-            is_new = trans.autoid is None
-            trans.save(force_insert=is_new, force_update=not is_new)
-            signal.disconnect(cb)
-    signal.connect(cb, sender=obj.__class__, weak=False)
-
-
 class TranslationDescriptor(related.ForwardManyToOneDescriptor):
     """
     Descriptor that handles creating and updating Translations given strings.
@@ -147,14 +33,13 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
 
     def __set__(self, instance, value):
         lang = translation_utils.get_language()
-        #print('__set__', instance, instance.pk, value, lang)
         if isinstance(value, basestring):
             value = self.translation_from_string(instance, lang, value)
         elif hasattr(value, 'items'):
             value = self.translation_from_dict(instance, lang, value)
 
         # Don't let this be set to None, because Django will then blank out the
-        # foreign key for this object.  That's incorrect for translations.
+        # foreign key for this object. That's incorrect for translations.
         if value is not None:
             # We always get these back from the database as Translations, but
             # we may want them to be a more specific Purified/Linkified child
@@ -164,12 +49,6 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
             super(TranslationDescriptor, self).__set__(instance, value)
         elif getattr(instance, self.field.column, None) is None:
             super(TranslationDescriptor, self).__set__(instance, None)
-
-        # print(
-        #     'after __set__',
-        #     getattr(instance, self.cache_name), instance, instance.pk, value,
-        #     lang)
-        # print()
 
     def translation_from_string(self, instance, lang, string):
         """Create, save, and return a Translation from a string."""
@@ -219,7 +98,6 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
 
             # Set the Translation on the object because translation_from_string
             # doesn't expect Translations to be created but not attached.
-            print('set trans on instance', instance, trans)
             self.__set__(instance, trans)
 
             # If we're setting the current locale, set it to the object so
@@ -227,22 +105,136 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
             if to_language(locale) == lang:
                 rv = trans
 
-        self.__set__(instance, rv)
         return rv
+
+
+class TranslatedField(models.ForeignKey):
+    """
+    A foreign key to the translations table.
+
+    If require_locale=False, the fallback join will not use a locale.  Instead,
+    we will look for 1) a translation in the current locale and 2) fallback
+    with any translation matching the foreign key.
+    """
+    to = 'translations.Translation'
+    requires_unique_target = False
+    forward_related_accessor_class = TranslationDescriptor
+
+    def __init__(self, **kwargs):
+        # to_field: The field on the related object that the relation is to.
+        # Django wants to default to translations.autoid, but we need id.
+        kwargs.update({
+            'null': True,
+            'to_field': 'id',
+            'unique': True,
+            'blank': True,
+            'on_delete': models.SET_NULL
+        })
+
+        self.short = kwargs.pop('short', True)
+        self.require_locale = kwargs.pop('require_locale', True)
+
+        # "to" is passed here from the migration framework; we ignore it
+        # since it's the same for every instance.
+        kwargs.pop('to', None)
+        super(TranslatedField, self).__init__(self.to, **kwargs)
+
+    def deconstruct(self):
+        name, path, args, kwargs = super(TranslatedField, self).deconstruct()
+        kwargs['to'] = self.to
+        kwargs['short'] = self.short
+        kwargs['require_locale'] = self.require_locale
+        return (name, path, args, kwargs)
+
+    @property
+    def db_column(self):
+        # Django wants to call the db_column ('%s_id' % self.name), but our
+        # translations foreign keys aren't set up that way.
+        return self._db_column if hasattr(self, '_db_column') else self.name
+
+    @db_column.setter
+    def db_column(self, value):
+        # Django sets db_column=None to initialize it.  I don't think anyone
+        # would set the db_column otherwise.
+        if value is not None:
+            self._db_column = value
+
+    def contribute_to_class(self, cls, name, private_only=False, **kwargs):
+        """Add this Translation to ``cls._meta.translated_fields``."""
+        super(TranslatedField, self).contribute_to_class(cls, name)
+
+        # Add self to the list of translated fields.
+        if hasattr(cls._meta, 'translated_fields'):
+            cls._meta.translated_fields.append(self)
+        else:
+            cls._meta.translated_fields = [self]
+
+        # Set up a unique related name.  The + means it's hidden.
+        self.remote_field.related_name = '%s_%s_set+' % (cls.__name__, name)
+
+    def formfield(self, **kw):
+        widget = TransInput if self.short else TransTextarea
+        defaults = {'form_class': TransField, 'widget': widget}
+        defaults.update(kw)
+        return super(TranslatedField, self).formfield(**defaults)
+
+    def validate(self, value, model_instance):
+        # Skip ForeignKey.validate since that expects only one Translation when
+        # doing .get(id=id)
+        return models.Field.validate(self, value, model_instance)
+
+
+class PurifiedField(TranslatedField):
+    to = 'translations.PurifiedTranslation'
+
+
+class LinkifiedField(TranslatedField):
+    to = 'translations.LinkifiedTranslation'
+
+
+class NoLinksField(TranslatedField):
+    to = 'translations.NoLinksTranslation'
+
+
+class NoLinksNoMarkupField(TranslatedField):
+    to = 'translations.NoLinksNoMarkupTranslation'
+
+
+def switch(obj, new_model):
+    """Switch between Translation and Purified/Linkified Translations."""
+    fields = [
+        (f.name, getattr(obj, f.name, None))
+        for f in new_model._meta.fields]
+    return new_model(**dict(fields))
+
+
+def save_on_signal(obj, trans):
+    """Connect signals so the translation gets saved during obj.save()."""
+    signal = models.signals.pre_save
+
+    def cb(sender, instance, **kw):
+        if instance is obj:
+            is_new = trans.autoid is None
+            trans.save(force_insert=is_new, force_update=not is_new)
+            signal.disconnect(cb)
+    signal.connect(cb, sender=obj.__class__, weak=False)
 
 
 class _TransField(object):
 
     def __init__(self, *args, **kwargs):
         self.default_locale = settings.LANGUAGE_CODE
+        self.widget = kwargs.pop('widget', TransInput)
+
+        # Our translation fields behave mostly like a `CharField` but
+        # do inherit `ForeignKey`. Django does forward `queryset`,
+        # `to_field_name` and `limit_choices_to` to the form field
+        # for `ForeignKey`. So let's drop them before forwarding
+        # since `CharField` doesn't accept them.
         for k in ('queryset', 'to_field_name', 'limit_choices_to'):
             if k in kwargs:
                 del kwargs[k]
-        self.widget = kwargs.pop('widget', TransInput)
 
-        # XXX: Figure out why this is being forwarded here (cgrebs)
-        # It's empty and not supported by CharField (-> TransField)
-        kwargs.pop('limit_choices_to', None)
         super(_TransField, self).__init__(*args, **kwargs)
 
     def set_default_values(self, field_name, parent_form, default_locale):

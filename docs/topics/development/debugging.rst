@@ -33,7 +33,7 @@ All being well it should look like this::
     11:02:08 py.warnings:WARNING /opt/rh/python27/root/usr/lib/python2.7/site-packages/jwt/api_jws.py:118: DeprecationWarning: The verify parameter is deprecated. Please use options instead.
     'Please use options instead.', DeprecationWarning)
     :/opt/rh/python27/root/usr/lib/python2.7/site-packages/jwt/api_jws.py:118
-    [21/Oct/2015 11:02:08] "PUT /en-US/firefox/api/v3/addons/%40unlisted/versions/0.0.5/ HTTP/1.1" 400 36
+    [21/Oct/2015 11:02:08] "PUT /en-US/firefox/api/v4/addons/%40unlisted/versions/0.0.5/ HTTP/1.1" 400 36
     Validating models...
 
     0 errors found

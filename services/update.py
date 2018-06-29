@@ -1,3 +1,4 @@
+import json
 import sys
 
 from django.utils.encoding import force_bytes
@@ -18,8 +19,7 @@ except ImportError:
 from olympia.constants import applications, base
 import olympia.core.logger
 
-from utils import (
-    APP_GUIDS, get_cdn_url, log_configure, PLATFORMS)
+from .utils import get_cdn_url, log_configure, PLATFORM_NAMES_TO_CONSTANTS
 
 
 # Go configure the log.
@@ -81,6 +81,15 @@ class Update(object):
         self.data['row'] = {}
         self.version_int = 0
         self.compat_mode = compat_mode
+        self.use_json = self.should_use_json()
+
+    def should_use_json(self):
+        # We serve JSON manifests to Firefox and Firefox for Android only,
+        # because we've seen issues with Seamonkey and Thunderbird.
+        # https://github.com/mozilla/addons-server/issues/7223
+        app = applications.APP_GUIDS.get(self.data.get('appID'))
+        return app and app.id in (applications.FIREFOX.id,
+                                  applications.ANDROID.id)
 
     def is_valid(self):
         # If you accessing this from unit tests, then before calling
@@ -96,9 +105,11 @@ class Update(object):
             if field not in data:
                 return False
 
-        data['app_id'] = APP_GUIDS.get(data['appID'])
-        if not data['app_id']:
+        app = applications.APP_GUIDS.get(data['appID'])
+        if not app:
             return False
+
+        data['app_id'] = app.id
 
         sql = """SELECT id, status, addontype_id, guid FROM addons
                  WHERE guid = %(guid)s AND
@@ -118,7 +129,7 @@ class Update(object):
         data['version_int'] = version_int(data['appVersion'])
 
         if 'appOS' in data:
-            for k, v in PLATFORMS.items():
+            for k, v in PLATFORM_NAMES_TO_CONSTANTS.items():
                 if k in data['appOS']:
                     data['appOS'] = v
                     break
@@ -243,27 +254,68 @@ class Update(object):
 
         return False
 
-    def get_bad_rdf(self):
-        return bad_rdf
-
-    def get_rdf(self):
+    def get_output(self):
         if self.is_valid():
             if self.get_update():
-                rdf = self.get_good_rdf()
+                contents = self.get_success_output()
             else:
-                rdf = self.get_no_updates_rdf()
+                contents = self.get_no_updates_output()
         else:
-            rdf = self.get_bad_rdf()
+            contents = self.get_error_output()
         self.cursor.close()
         if self.conn:
             self.conn.close()
-        return rdf
+        return json.dumps(contents) if self.use_json else contents
 
-    def get_no_updates_rdf(self):
-        name = base.ADDON_SLUGS_UPDATE[self.data['type']]
-        return no_updates_rdf % ({'guid': self.data['guid'], 'type': name})
+    def get_error_output(self):
+        return {} if self.use_json else bad_rdf
 
-    def get_good_rdf(self):
+    def get_no_updates_output(self):
+        if self.use_json:
+            return {
+                'addons': {
+                    self.data['guid']: {
+                        'updates': []
+                    }
+                }
+            }
+        else:
+            name = base.ADDON_SLUGS_UPDATE[self.data['type']]
+            return no_updates_rdf % ({'guid': self.data['guid'], 'type': name})
+
+    def get_success_output(self):
+        if self.use_json:
+            return self.get_success_output_json()
+        else:
+            return self.get_success_output_rdf()
+
+    def get_success_output_json(self):
+        data = self.data['row']
+        update = {
+            'version': data['version'],
+            'update_link': data['url'],
+            'applications': {
+                'gecko': {
+                    'strict_min_version': data['min']
+                }
+            }
+        }
+        if data['strict_compat']:
+            update['applications']['gecko']['strict_max_version'] = data['max']
+        if data['hash']:
+            update['update_hash'] = data['hash']
+        if data['releasenotes']:
+            update['update_info_url'] = '%s%s%s/%%APP_LOCALE%%/' % (
+                settings.SITE_URL, '/versions/updateInfo/', data['version_id'])
+        return {
+            'addons': {
+                self.data['guid']: {
+                    'updates': [update]
+                }
+            }
+        }
+
+    def get_success_output_rdf(self):
         data = self.data['row']
         data['if_hash'] = ''
         if data['hash']:
@@ -283,7 +335,8 @@ class Update(object):
         return '%s GMT' % formatdate(time() + secs)[:25]
 
     def get_headers(self, length):
-        return [('Content-Type', 'text/xml'),
+        content_type = 'application/json' if self.use_json else 'text/xml'
+        return [('Content-Type', content_type),
                 ('Cache-Control', 'public, max-age=3600'),
                 ('Last-Modified', self.format_date(0)),
                 ('Expires', self.format_date(3600)),
@@ -302,7 +355,7 @@ def application(environ, start_response):
         compat_mode = data.pop('compatMode', 'strict')
         try:
             update = Update(data, compat_mode)
-            output = force_bytes(update.get_rdf())
+            output = force_bytes(update.get_output())
             start_response(status, update.get_headers(len(output)))
         except Exception:
             log_exception(data)

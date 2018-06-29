@@ -4,6 +4,7 @@ import json
 import os
 import tempfile
 import zipfile
+import shutil
 
 from datetime import datetime
 
@@ -25,7 +26,6 @@ from olympia.applications.models import AppVersion
 from olympia.files.models import (
     EXTENSIONS, File, FileUpload, FileValidation, Permission, WebextPermission,
     WebextPermissionDescription, nfd_str, track_file_status_change)
-from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.files.utils import (
     Extractor, check_xpi_info, parse_addon, parse_xpi)
 from olympia.versions.models import Version
@@ -78,13 +78,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
                     '/type:attachment/delicious_bookmarks-2.1.072-fx.xpi'
                     '?src=src')
         assert file_.get_url_path('src', attachment=True) == expected
-
-    def test_get_signed_url(self):
-        file_ = File.objects.get(id=67442)
-        url = file_.get_signed_url('src')
-        expected = ('/api/v3/file/67442/'
-                    'delicious_bookmarks-2.1.072-fx.xpi?src=src')
-        assert url.endswith(expected), url
 
     def check_delete(self, file_, filename):
         """Test that when the File object is deleted, it is removed from the
@@ -1081,7 +1074,7 @@ class TestFileFromUpload(UploadTest):
         fname = nfd_str(self.xpi_path(name))
         if not storage.exists(fname):
             with storage.open(fname, 'w') as fs:
-                copyfileobj(open(fname), fs)
+                shutil.copyfileobj(open(fname), fs)
         data = {
             'path': fname,
             'name': name,

@@ -64,20 +64,21 @@ class MiddlewareTest(BaseTestCase):
         response = self.process('/services')
         assert response is None
 
-        # Things in settings.SUPPORTED_NONAPPS_NONLOCALES_PREFIX don't get
+        # Things matching settings.SUPPORTED_NONAPPS_NONLOCALES_REGEX don't get
         # a redirect either, even if they have a lang GET parameter.
-        with self.settings(SUPPORTED_NONAPPS_NONLOCALES_PREFIX=('lol',)):
+        with self.settings(SUPPORTED_NONAPPS_NONLOCALES_REGEX=r'^lol'):
             response = self.process('/lol?lang=fr')
             assert self.request.LANG == 'fr'
             assert response is None
 
-        with self.settings(SUPPORTED_NONAPPS_NONLOCALES_PREFIX=('lol',)):
             response = self.process('/lol')
             assert self.request.LANG == 'en-US'
             assert response is None
 
     def test_api_no_redirect(self):
         response = self.process('/api/v3/some/endpoint/')
+        assert response is None
+        response = self.process('/api/v4/some/endpoint/')
         assert response is None
 
     def test_vary(self):

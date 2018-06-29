@@ -2,6 +2,12 @@
 Abuse Reports
 =============
 
+.. note::
+
+    These APIs are experimental and are currently being worked on. Endpoints
+    may change without warning. Consider the :ref:`v3 API<api-stable-v3>`
+    if you need stability.
+
 The following API endpoint covers abuse reporting
 
 ---------------------------------
@@ -15,7 +21,7 @@ either listed on https://addons.mozilla.org or not.
 Authentication is not required, but is recommended so reports can be responded
 to if nessecary.
 
-.. http:post:: /api/v3/abuse/report/addon/
+.. http:post:: /api/v4/abuse/report/addon/
 
     .. _addonabusereport-create-request:
 
@@ -43,7 +49,7 @@ The following API endpoint allows an abuse report to be submitted for a user acc
 on https://addons.mozilla.org.  Authentication is not required, but is recommended
 so reports can be responded to if nessecary.
 
-.. http:post:: /api/v3/abuse/report/user/
+.. http:post:: /api/v4/abuse/report/user/
 
     .. _userabusereport-create-request:
 

@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 10:32+0000\n"
-"Last-Translator: వీవెన్ <veeven@gmail.com>\n"
+"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"PO-Revision-Date: 2018-06-01 13:02+0000\n"
+"Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgid "See full validation report"
 msgstr "పూర్తి ధ్రువీకరణ నివేదికను చూడండి"
 
 msgid "Validating {0}"
-msgstr "{0} ద్రువీకరిస్తోంది"
+msgstr "{0} ధృవీకరిస్తోంది"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "మీ పొడిగింత {0} గరిష్ఠ పరిమాణాన్ని మించిపోయింది."
@@ -73,10 +73,10 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "సర్వర్ నుండి ఖాళీ స్పందన అందుకుంది; స్థితి: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "ధృవీకరిస్తున్నప్పుడు ఊహించని సర్వర్ లోపం ఏర్పడింది."
 
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "నిర్ధారించడం పూర్తి చేయబడింది {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "మీ పొడిగింత ధ్రువీకరణ సమయం ముగిసింది, ఇది మానవీయంగా సమీక్షించబడుతుంది."
@@ -88,35 +88,35 @@ msgstr[1] "లోపాలు మరియు {0} హెచ్చరికలు
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "లోపాలు లేకుండా మరియు {0} హెచ్చరికలతో మీ పొడిగింత ధృవీకరించబడింది."
 msgstr[1] "మీ పొడిగింత లోపాలు మరియు {0} సందేశాలతో ధృవీకరించబడలేదు."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "లోపాలు లేదా హెచ్చరికలతో మీ పొడిగింత ధృవీకరించబడింది."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "మీ సమర్పణ స్వయంచాలకంగా సంతకం చేయబడుతుంది."
 
 msgid "WebExtension upgrade"
 msgstr "WebExtension నవీకరణ"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "మేము నవీకరణను అనుమతించి, ప్రోత్సహిస్తున్నాము కాని ఈ ప్రక్రియను మీరు వెనుకభాగము చేయలేరు. మీ వాడుకరి ఒకసారి WebExtension వ్యవస్థాపించిన, వారు ఒక లెగసీ పొడిగింతను స్థాపించలేరు."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "ఒక లెగసీ Firefox పొడిగింతను MDNకు పోర్ట్ చేస్తున్నాము"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "వివరణాత్మక వెర్షన్ గమనికలను చేర్చండి (ఇది తరువాతి దశలో చేయవచ్చు)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "పొడిగింతల సమర్పణ పరిశీలిత పట్టిక"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "దయచేసి మీ సమర్పణను ఖరారు చేయడానికి ముందు ఈ క్రింది అంశాలను ధృవీకరించండి. ఇది సమీక్ష ప్రక్రియ సమయంలో ఆలస్యాన్ని లేదా అపార్థాలను తగ్గిస్తుంది:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -127,13 +127,13 @@ msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "క్షమించండి, మద్దతు గల వేదిక కనుగొనబడలేదు."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr ""
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "మీ ఫైలు {0} గరిష్ఠ పరిమాణాన్ని మించిపోయింది."
 
 msgid "You cancelled the upload."
 msgstr "మీరు ఎగుమతిని రద్దు చేసారు."
@@ -197,7 +197,7 @@ msgid "Category"
 msgstr "వర్గం"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "అలంకారాల కోసం శోధించండి <b>{0}</b>"
 
 msgid "Search apps for <b>{0}</b>"
 msgstr "అనువర్తనల కోసం శోధించండి <b>{0}</b>"

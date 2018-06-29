@@ -9,7 +9,6 @@
             "averagerating": null,
             "homepage": "",
             "email": "regular@mozilla.com",
-            "notifycompat": 1,
             "biography": null,
             "deleted": 0,
             "username": "regularuser",
@@ -17,7 +16,6 @@
             "created": "2009-02-02 11:50:31",
             "notes": "",
             "modified": "2010-01-12 17:01:41",
-            "notifyevents": 1,
             "read_dev_agreement": "2017-09-23 00:00:00",
             "last_login": "2012-05-22 14:59:28"
         },
@@ -31,7 +29,6 @@
             "display_collections_fav": 1,
             "display_collections": 1,
             "averagerating": 3.39,
-            "notifycompat": 1,
             "picture_type": "image/jpeg",
             "occupation": "Internets",
             "homepage": "http://micropipes.com/blog/",
@@ -44,7 +41,6 @@
             "created": "2007-03-05 13:09:38",
             "notes": "",
             "modified": "2010-03-19 13:50:38",
-            "notifyevents": 1,
             "read_dev_agreement": "2017-09-23 00:00:00",
             "last_login": "2012-05-22 14:59:28"
         }
@@ -59,7 +55,6 @@
             "averagerating": null,
             "homepage": "http://jeffbalogh.org",
             "email": "admin@mozilla.com",
-            "notifycompat": 1,
             "biography": null,
             "deleted": 0,
             "username": "admin",
@@ -67,7 +62,6 @@
             "created": "2009-02-02 11:50:31",
             "notes": "",
             "modified": "2010-01-12 17:01:41",
-            "notifyevents": 1,
             "read_dev_agreement": "2017-09-23 00:00:00",
             "last_login": "2012-05-22 14:59:28"
         },
@@ -84,7 +78,6 @@
             "averagerating": null,
             "homepage": "http://mozilla.org",
             "email": "taskuser@mozilla.com",
-            "notifycompat": 1,
             "biography": null,
             "deleted": 0,
             "username": "mozilla",
@@ -92,7 +85,6 @@
             "created": "2009-02-02 11:50:31",
             "notes": "",
             "modified": "2010-01-12 17:01:41",
-            "notifyevents": 1,
             "read_dev_agreement": "2017-09-23 00:00:00",
             "last_login": "2012-05-22 14:59:28"
         },
@@ -105,7 +97,6 @@
             "display_collections_fav": false,
             "display_collections": false,
             "email": "reviewer@mozilla.com",
-            "notifycompat": false,
             "username": "reviewer",
             "failed_login_attempts": 0,
             "deleted": false,
@@ -114,7 +105,6 @@
             "created": "2010-10-19 13:02:25",
             "modified": "2010-11-16 10:51:34",
             "last_login_ip": "127.0.0.1",
-            "notifyevents": false,
             "read_dev_agreement": "2017-09-23 00:00:00",
             "last_login": "2012-05-22 14:59:28"
         }
@@ -126,7 +116,6 @@
             "display_collections_fav": false,
             "display_collections": false,
             "email": "persona_reviewer@mozilla.com",
-            "notifycompat": false,
             "username": "Persona Reviewer",
             "failed_login_attempts": 0,
             "deleted": false,
@@ -135,7 +124,6 @@
             "created": "2010-10-19 13:02:25",
             "modified": "2010-11-16 10:51:34",
             "last_login_ip": "127.0.0.1",
-            "notifyevents": false,
             "read_dev_agreement": "2017-09-23 00:00:00",
             "last_login": "2012-05-22 14:59:28"
         }
@@ -153,7 +141,6 @@
             "averagerating": null,
             "homepage": "",
             "email": "partner@mozilla.com",
-            "notifycompat": true,
             "username": "partner",
             "biography": null,
             "failed_login_attempts": 0,
@@ -164,7 +151,6 @@
             "notes": null,
             "modified": "2011-12-01 16:20:56",
             "last_login_ip": "",
-            "notifyevents": true,
             "read_dev_agreement": "2017-09-23 00:00:00",
             "last_login": "2012-05-22 14:59:28"
         }

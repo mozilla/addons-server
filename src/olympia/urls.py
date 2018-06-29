@@ -82,7 +82,7 @@ urlpatterns = [
     # SAMO (Legacy API)
     url('^api/', include('olympia.legacy_api.urls')),
 
-    # API v3.
+    # API v3+.
     url('^api/', include('olympia.api.urls')),
 
     url('^compatibility/', include('olympia.compat.urls')),

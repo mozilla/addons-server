@@ -183,6 +183,15 @@ class TestOldContributionRedirects(TestCase):
         response = self.client.get(url, follow=True)
         self.assert3xx(response, self.detail_url, 301)
 
+    def test_contribute_status(self):
+        url = reverse('addons.contribute_status', args=['a592', 'complete'])
+        response = self.client.get(url, follow=True)
+        self.assert3xx(response, self.detail_url, 301)
+
+        url = reverse('addons.contribute_status', args=['a592', 'cancel'])
+        response = self.client.get(url, follow=True)
+        self.assert3xx(response, self.detail_url, 301)
+
     def test_meet(self):
         url = reverse('addons.meet', args=['a592'])
         response = self.client.get(url, follow=True)
@@ -940,6 +949,7 @@ class TestDetailPage(TestCase):
         license.builtin = 1
         license.name = 'License to Kill'
         license.url = g
+
         license.save()
         assert license.builtin == 1
         assert license.url == g
@@ -1680,11 +1690,11 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         return result
 
     def _set_tested_url(self, param):
-        self.url = reverse('addon-detail', kwargs={'pk': param})
+        self.url = reverse('v3:addon-detail', kwargs={'pk': param})
 
     def test_detail_url_with_reviewers_in_the_url(self):
         self.addon.update(slug='something-reviewers')
-        self.url = reverse('addon-detail', kwargs={'pk': self.addon.slug})
+        self.url = reverse('v3:addon-detail', kwargs={'pk': self.addon.slug})
         self._test_url()
 
     def test_hide_latest_unlisted_version_anonymous(self):
@@ -1775,11 +1785,11 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result['version'] == self.version.version
 
     def _set_tested_url(self, param):
-        self.url = reverse('addon-version-detail', kwargs={
+        self.url = reverse('v3:addon-version-detail', kwargs={
             'addon_pk': param, 'pk': self.version.pk})
 
     def test_version_get_not_found(self):
-        self.url = reverse('addon-version-detail', kwargs={
+        self.url = reverse('v3:addon-version-detail', kwargs={
             'addon_pk': self.addon.pk, 'pk': self.version.pk + 42})
         response = self.client.get(self.url)
         assert response.status_code == 404
@@ -1958,7 +1968,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result_version['version'] == self.old_version.version
 
     def _set_tested_url(self, param):
-        self.url = reverse('addon-version-list', kwargs={'addon_pk': param})
+        self.url = reverse('v3:addon-version-list', kwargs={'addon_pk': param})
 
     def test_bad_filter(self):
         response = self.client.get(self.url, data={'filter': 'ahahaha'})
@@ -2121,10 +2131,11 @@ class TestAddonViewSetFeatureCompatibility(TestCase):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self.url = reverse(
-            'addon-feature-compatibility', kwargs={'pk': self.addon.pk})
+            'v3:addon-feature-compatibility', kwargs={'pk': self.addon.pk})
 
     def test_url(self):
-        self.detail_url = reverse('addon-detail', kwargs={'pk': self.addon.pk})
+        self.detail_url = reverse(
+            'v3:addon-detail', kwargs={'pk': self.addon.pk})
         assert self.url == '%s%s' % (self.detail_url, 'feature_compatibility/')
 
     def test_disabled_anonymous(self):
@@ -2155,10 +2166,11 @@ class TestAddonViewSetEulaPolicy(TestCase):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self.url = reverse(
-            'addon-eula-policy', kwargs={'pk': self.addon.pk})
+            'v3:addon-eula-policy', kwargs={'pk': self.addon.pk})
 
     def test_url(self):
-        self.detail_url = reverse('addon-detail', kwargs={'pk': self.addon.pk})
+        self.detail_url = reverse(
+            'v3:addon-detail', kwargs={'pk': self.addon.pk})
         assert self.url == '%s%s' % (self.detail_url, 'eula_policy/')
 
     def test_disabled_anonymous(self):
@@ -2191,7 +2203,7 @@ class TestAddonSearchView(ESTestCase):
 
     def setUp(self):
         super(TestAddonSearchView, self).setUp()
-        self.url = reverse('addon-search')
+        self.url = reverse('v3:addon-search')
 
     def tearDown(self):
         super(TestAddonSearchView, self).tearDown()
@@ -2859,7 +2871,7 @@ class TestAddonSearchView(ESTestCase):
 
         for locale in ('en-US', 'en-GB', 'es'):
             with self.activate(locale):
-                url = reverse('addon-search')
+                url = reverse('v3:addon-search')
 
                 data = self.perform_search(url, {'lang': locale})
 
@@ -2952,7 +2964,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
     def setUp(self):
         super(TestAddonAutoCompleteSearchView, self).setUp()
-        self.url = reverse('addon-autocomplete')
+        self.url = reverse('v3:addon-autocomplete')
 
     def tearDown(self):
         super(TestAddonAutoCompleteSearchView, self).tearDown()
@@ -3077,7 +3089,7 @@ class TestAddonFeaturedView(TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        self.url = reverse('addon-featured')
+        self.url = reverse('v3:addon-featured')
 
     def test_no_parameters(self):
         response = self.client.get(self.url)
@@ -3262,7 +3274,7 @@ class TestStaticCategoryView(TestCase):
 
     def setUp(self):
         super(TestStaticCategoryView, self).setUp()
-        self.url = reverse('category-list')
+        self.url = reverse('v3:category-list')
 
     def test_basic(self):
         with self.assertNumQueries(0):
@@ -3332,7 +3344,7 @@ class TestLanguageToolsView(TestCase):
 
     def setUp(self):
         super(TestLanguageToolsView, self).setUp()
-        self.url = reverse('addon-language-tools')
+        self.url = reverse('v3:addon-language-tools')
 
     def test_wrong_app_or_no_app(self):
         response = self.client.get(self.url)
@@ -3437,6 +3449,17 @@ class TestLanguageToolsView(TestCase):
             file_kw={'strict_compatibility': True,
                      'status': amo.STATUS_DISABLED},
             min_app_version='58.0', max_app_version='58.*')
+        # And for the first pack, add a couple of versions that are also
+        # compatible. We should not use them though, because we only need to
+        # return the latest public version that is compatible.
+        extra_compatible_version_1 = version_factory(
+            addon=compatible_pack1, file_kw={'strict_compatibility': True},
+            min_app_version='58.0', max_app_version='58.*')
+        extra_compatible_version_1.update(created=self.days_ago(3))
+        extra_compatible_version_2 = version_factory(
+            addon=compatible_pack1, file_kw={'strict_compatibility': True},
+            min_app_version='58.0', max_app_version='58.*')
+        extra_compatible_version_2.update(created=self.days_ago(4))
 
         # Add a few of incompatible add-ons.
         incompatible_pack1 = addon_factory(
@@ -3575,7 +3598,7 @@ class TestReplacementAddonView(TestCase):
             guid='notgonnawork@moz',
             path='/addon/áddonmissing/')
 
-        response = self.client.get(reverse('addon-replacement-addon'))
+        response = self.client.get(reverse('v3:addon-replacement-addon'))
         assert response.status_code == 200
         data = json.loads(response.content)
         results = data['results']
@@ -3604,7 +3627,8 @@ class TestCompatOverrideView(TestCase):
 
     def test_single_guid(self):
         response = self.client.get(
-            reverse('addon-compat-override'), data={'guid': u'extrabad@thing'})
+            reverse('v3:addon-compat-override'),
+            data={'guid': u'extrabad@thing'})
         assert response.status_code == 200
         data = json.loads(response.content)
         assert len(data['results']) == 1
@@ -3615,7 +3639,7 @@ class TestCompatOverrideView(TestCase):
 
     def test_multiple_guid(self):
         response = self.client.get(
-            reverse('addon-compat-override'),
+            reverse('v3:addon-compat-override'),
             data={'guid': u'extrabad@thing,bad@thing'})
         assert response.status_code == 200
         data = json.loads(response.content)
@@ -3631,7 +3655,7 @@ class TestCompatOverrideView(TestCase):
 
         # Throw in some random invalid guids too that will be ignored.
         response = self.client.get(
-            reverse('addon-compat-override'),
+            reverse('v3:addon-compat-override'),
             data={'guid': (
                 u'extrabad@thing,invalid@guid,notevenaguid$,bad@thing')})
         assert response.status_code == 200
@@ -3643,19 +3667,20 @@ class TestCompatOverrideView(TestCase):
 
     def test_no_guid_param(self):
         response = self.client.get(
-            reverse('addon-compat-override'), data={'guid': u'invalid@thing'})
+            reverse('v3:addon-compat-override'),
+            data={'guid': u'invalid@thing'})
         # Searching for non-matching guids, it should be an empty 200 response.
         assert response.status_code == 200
         assert len(json.loads(response.content)['results']) == 0
 
         response = self.client.get(
-            reverse('addon-compat-override'), data={'guid': ''})
+            reverse('v3:addon-compat-override'), data={'guid': ''})
         # Empty query is a 400 because a guid is required for overrides.
         assert response.status_code == 400
         assert 'Empty, or no, guid parameter provided.' in response.content
 
         response = self.client.get(
-            reverse('addon-compat-override'))
+            reverse('v3:addon-compat-override'))
         # And no guid param should be a 400 too
         assert response.status_code == 400
         assert 'Empty, or no, guid parameter provided.' in response.content
@@ -3668,7 +3693,7 @@ class TestAddonRecommendationView(ESTestCase):
 
     def setUp(self):
         super(TestAddonRecommendationView, self).setUp()
-        self.url = reverse('addon-recommendations')
+        self.url = reverse('v3:addon-recommendations')
         patcher = mock.patch(
             'olympia.addons.views.get_addon_recommendations')
         self.get_recommendations_mock = patcher.start()
@@ -3693,13 +3718,13 @@ class TestAddonRecommendationView(ESTestCase):
         addon4 = addon_factory(id=104, guid='104@mozilla')
         self.get_recommendations_mock.return_value = (
             ['101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'],
-            'success', 'no_reason')
+            'recommended', 'no_reason')
         self.refresh()
 
         data = self.perform_search(
             self.url, {'guid': 'foo@baa', 'recommended': 'False'})
         self.get_recommendations_mock.assert_called_with('foo@baa', False)
-        assert data['outcome'] == 'success'
+        assert data['outcome'] == 'recommended'
         assert data['fallback_reason'] == 'no_reason'
         assert data['count'] == 4
         assert len(data['results']) == 4
@@ -3717,29 +3742,102 @@ class TestAddonRecommendationView(ESTestCase):
         assert result['id'] == addon4.pk
         assert result['guid'] == '104@mozilla'
 
+    @mock.patch('olympia.addons.views.get_addon_recommendations_invalid')
+    def test_less_than_four_results(self, get_addon_recommendations_invalid):
+        addon1 = addon_factory(id=101, guid='101@mozilla')
+        addon2 = addon_factory(id=102, guid='102@mozilla')
+        addon3 = addon_factory(id=103, guid='103@mozilla')
+        addon4 = addon_factory(id=104, guid='104@mozilla')
+        addon5 = addon_factory(id=105, guid='105@mozilla')
+        addon6 = addon_factory(id=106, guid='106@mozilla')
+        addon7 = addon_factory(id=107, guid='107@mozilla')
+        addon8 = addon_factory(id=108, guid='108@mozilla')
+        self.get_recommendations_mock.return_value = (
+            ['101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'],
+            'recommended', None)
+        get_addon_recommendations_invalid.return_value = (
+            ['105@mozilla', '106@mozilla', '107@mozilla', '108@mozilla'],
+            'failed', 'invalid')
+        self.refresh()
+
+        data = self.perform_search(
+            self.url, {'guid': 'foo@baa', 'recommended': 'True'})
+        self.get_recommendations_mock.assert_called_with('foo@baa', True)
+        assert data['outcome'] == 'recommended'
+        assert data['fallback_reason'] is None
+        assert data['count'] == 4
+        assert len(data['results']) == 4
+
+        result = data['results'][0]
+        assert result['id'] == addon1.pk
+        assert result['guid'] == '101@mozilla'
+        result = data['results'][1]
+        assert result['id'] == addon2.pk
+        assert result['guid'] == '102@mozilla'
+        result = data['results'][2]
+        assert result['id'] == addon3.pk
+        assert result['guid'] == '103@mozilla'
+        result = data['results'][3]
+        assert result['id'] == addon4.pk
+        assert result['guid'] == '104@mozilla'
+
+        # Delete one of the add-ons returned, making us use curated fallbacks
+        addon1.delete()
+        self.refresh()
+        data = self.perform_search(
+            self.url, {'guid': 'foo@baa', 'recommended': 'True'})
+        self.get_recommendations_mock.assert_called_with('foo@baa', True)
+        assert data['outcome'] == 'failed'
+        assert data['fallback_reason'] == 'invalid'
+        assert data['count'] == 4
+        assert len(data['results']) == 4
+
+        result = data['results'][0]
+        assert result['id'] == addon5.pk
+        assert result['guid'] == '105@mozilla'
+        result = data['results'][1]
+        assert result['id'] == addon6.pk
+        assert result['guid'] == '106@mozilla'
+        result = data['results'][2]
+        assert result['id'] == addon7.pk
+        assert result['guid'] == '107@mozilla'
+        result = data['results'][3]
+        assert result['id'] == addon8.pk
+        assert result['guid'] == '108@mozilla'
+
     def test_es_queries_made_no_results(self):
         self.get_recommendations_mock.return_value = (
             ['@a', '@b'], 'foo', 'baa')
         with patch.object(
                 Elasticsearch, 'search',
                 wraps=amo.search.get_es().search) as search_mock:
-            data = self.perform_search(self.url, data={'q': 'foo'})
-            assert data['count'] == 0
-            assert len(data['results']) == 0
-            assert search_mock.call_count == 1
+            with patch.object(
+                    Elasticsearch, 'count',
+                    wraps=amo.search.get_es().count) as count_mock:
+                data = self.perform_search(self.url, data={'guid': '@foo'})
+                assert data['count'] == 0
+                assert len(data['results']) == 0
+                assert search_mock.call_count == 1
+                assert count_mock.call_count == 0
 
-    def test_es_queries_made_some_result(self):
+    def test_es_queries_made_results(self):
         addon_factory(slug='foormidable', name=u'foo', guid='@a')
         addon_factory(slug='foobar', name=u'foo', guid='@b')
+        addon_factory(slug='fbar', name=u'foo', guid='@c')
+        addon_factory(slug='fb', name=u'foo', guid='@d')
         self.refresh()
 
         self.get_recommendations_mock.return_value = (
-            ['@a', '@b'], 'foo', 'baa')
+            ['@a', '@b', '@c', '@d'], 'recommended', None)
         with patch.object(
                 Elasticsearch, 'search',
                 wraps=amo.search.get_es().search) as search_mock:
-            data = self.perform_search(
-                self.url, data={'q': 'foo'})
-            assert data['count'] == 2
-            assert len(data['results']) == 2
-            assert search_mock.call_count == 1
+            with patch.object(
+                    Elasticsearch, 'count',
+                    wraps=amo.search.get_es().count) as count_mock:
+                data = self.perform_search(
+                    self.url, data={'guid': '@foo', 'recommended': 'true'})
+                assert data['count'] == 4
+                assert len(data['results']) == 4
+                assert search_mock.call_count == 1
+                assert count_mock.call_count == 0

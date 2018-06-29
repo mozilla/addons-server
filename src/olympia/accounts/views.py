@@ -13,6 +13,8 @@ from django.utils.html import format_html
 from django.utils.http import is_safe_url
 from django.utils.translation import ugettext, ugettext_lazy as _
 
+import waffle
+
 from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import detail_route
@@ -21,6 +23,7 @@ from rest_framework.mixins import (
 from rest_framework.permissions import (
     AllowAny, BasePermission, IsAuthenticated)
 from rest_framework.response import Response
+from rest_framework.status import HTTP_204_NO_CONTENT
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 from waffle.decorators import waffle_switch
@@ -32,12 +35,14 @@ from olympia.access import acl
 from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.decorators import write
+from olympia.amo.utils import fetch_subscribed_newsletters
 from olympia.api.authentication import (
     JWTKeyAuthentication, WebTokenAuthentication)
-from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
 from olympia.users import tasks
+from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
 from olympia.users.models import UserNotification, UserProfile
-from olympia.users.notifications import NOTIFICATIONS
+from olympia.users.notifications import (
+    NOTIFICATIONS_COMBINED, REMOTE_NOTIFICATIONS_BY_BASKET_ID)
 
 from . import verify
 from .serializers import (
@@ -169,7 +174,7 @@ def parse_next_path(state_parts):
         try:
             next_path = base64.urlsafe_b64decode(
                 force_bytes(encoded_path)).decode('utf-8')
-        except TypeError:
+        except (TypeError, ValueError):
             log.info('Error decoding next_path {}'.format(
                 encoded_path))
             pass
@@ -420,6 +425,14 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
                 u'this account, or transfer them to other users.'))
         return super(AccountViewSet, self).perform_destroy(instance)
 
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        response = Response(status=HTTP_204_NO_CONTENT)
+        if instance == request.user:
+            logout_user(request, response)
+        return response
+
     @detail_route(
         methods=['delete'], permission_classes=[
             AnyOf(AllowSelf, GroupPermission(amo.permissions.USERS_EDIT))])
@@ -530,16 +543,43 @@ class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
             enabled=notification.default_checked)
 
     def get_queryset(self):
-        queryset = UserNotification.objects.filter(
-            user=self.get_account_viewset().get_object())
+        user = self.get_account_viewset().get_object()
+        queryset = UserNotification.objects.filter(user=user)
+
+        # Fetch all `UserNotification` instances and then, if the
+        # waffle-switch is active overwrite their value with the
+        # data from basket. Once we switched the integration "on" on prod
+        # all `UserNotification` instances that are now handled by basket
+        # can be deleted.
+
         # Put it into a dict so we can easily check for existence.
         set_notifications = {
             user_nfn.notification.short: user_nfn for user_nfn in queryset}
         out = []
-        for notification in NOTIFICATIONS:
+
+        if waffle.switch_is_active('activate-basket-sync'):
+            newsletters = None  # Lazy - fetch the first time needed.
+            by_basket_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID
+            for basket_id, notification in by_basket_id.items():
+                # If we have this notification in the db queryset, drop it.
+                set_notifications.pop(notification.short, None)
+
+                if notification.group == 'dev' and not user.is_developer:
+                    # We only return dev notifications for developers.
+                    continue
+                if newsletters is None:
+                    newsletters = fetch_subscribed_newsletters(user)
+                notification = self._get_default_object(notification)
+                notification.enabled = basket_id in newsletters
+                out.append(notification)
+
+        for notification in NOTIFICATIONS_COMBINED:
+            if notification.group == 'dev' and not user.is_developer:
+                # We only return dev notifications for developers.
+                continue
             out.append(set_notifications.get(
                 notification.short,  # It's been set by the user.
-                self._get_default_object(notification)))  # Otherwise, default.
+                self._get_default_object(notification)))  # Or, default.
         return out
 
     def create(self, request, *args, **kwargs):

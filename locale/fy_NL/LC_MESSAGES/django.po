@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-23 07:30+0000\n"
+"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"PO-Revision-Date: 2018-05-31 09:57+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -558,22 +558,6 @@ msgstr "Ferzje-ynformaasje"
 
 msgid "See complete version history"
 msgstr "Folsleine ferzjeskiednis besjen"
-
-msgid "Development Channel"
-msgstr "Untwikkelingskanaal"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Fia it Untwikkelingskanaal kinne jo in eksperimintele nije ferzje fan dizze add-on teste eardat dizze frijjûn wurdt foar algemien gebrûk. Nei ynstallaasje fan de ûntwikkelferzje krije jo fan no ôf "
-"fernijingen fia dit kanaal. Ynstallearje de standertferzje fia boppesteande keppeling om gjin ûntwikkelfernijingen mear te ûntfangen."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Warskôging:</strong> ûntwikkelferzjes fan dizze add-on binne net beoardiele troch Mozilla."
-
-msgid "See complete development channel history"
-msgstr "Folsleine skiednis fan ûntwikkelingskanaal besjen"
 
 msgid "close"
 msgstr "slute"
@@ -2023,6 +2007,27 @@ msgstr "Fersyk om ynformaasje foar {addon} {version} wiske troch ûntwikkeler."
 msgid "Information request removed"
 msgstr "Fersyk om ynformaasje fuortsmiten"
 
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "Add-on-beoardieling troch admin foar {addon} {version} oanfrege."
+
+msgid "Admin add-on-review requested"
+msgstr "Add-on-beoardieling troch admin oanfrege"
+
+msgid "{addon} {version} admin content-review requested."
+msgstr "Ynhâldsbeoardieling troch admin foar {addon} {version} oanfrege."
+
+msgid "Admin content-review requested"
+msgstr "Ynhâldsbeoardieling troch admin oanfrege"
+
+msgid "{addon} {version} admin theme-review requested."
+msgstr "Temabeoardieling troch admin foar {addon} {version} oanfrege."
+
+msgid "Admin theme-review requested"
+msgstr "Temabeoardieling troch admin oanfrege"
+
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} is migrearre fan in ljochtgewicht tema ôf."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2061,9 +2066,6 @@ msgstr "Wacht op goedkarring"
 
 msgid "Flagged for further review"
 msgstr "Markearre foar fierdere beoardieling"
-
-msgid "Beta"
-msgstr "Bèta"
 
 msgid "Unlisted"
 msgstr "Net fermeld"
@@ -2605,9 +2607,6 @@ msgstr "Mislearre falidaasje negearje"
 msgid "Submit my add-on for manual review."
 msgstr "Myn add-on foar beoardieling yntsjinje."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "In bestân mei in ferzje dy't einiget op a|alpha|b|beta|pre|rc en in opsjoneel sifer wurdt as bêta detektearre."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Jo kinne gjin bestannen mear oplade foar dizze ferzje."
 
@@ -2671,6 +2670,12 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Jo kinne gjin WebExtensions-add-on bywurkje mei in ferâldere add-on. Jo brûkers soenen jo nije ferzje dan net brûke kinne, omdat Firefox dit type fernijing net stipet."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr "Yn it yntsjinne bestân is jo ûntwikkelers-API-kaai oantroffen. Om jo account te beskermjen, sil de kaai ynlutsen wurde."
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr "Yn it yntsjinne bestân is de ûntwikkelers-API-kaai fan in ko-auteur oantroffen. Om jo add-on te beskermjen, sil de kaai ynlutsen wurde."
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s hat antwurde mei %s (%s)."
@@ -2682,6 +2687,9 @@ msgstr "Wachttiid foar ferbining mei ‘%s’ foarby."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Kin gjin ferbining meitsje mei de host op ‘%s’."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr "Mozilla-befeiligingsmelding: jo API-referinsjes foar AMO binne ynlutsen"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2740,16 +2748,6 @@ msgstr "Add-on falidearje"
 
 msgid "Check Add-on Compatibility"
 msgstr "Add-on-kompatibiliteit kontrolearje"
-
-msgid "You cannot submit this type of add-on"
-msgstr "Jo kinne dit type add-on net yntsjinje"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "Jo kinne gjin add-on yntsjinje mei in GUID dy't op %s einiget"
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "Jo kinne gjin troch Mozilla ûndertekene útwreidingen yntsjinje"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3423,9 +3421,6 @@ msgstr "Dizze add-on mist wat fereaske ynformaasje eardat dizze foar publikaasje
 msgid "This add-on doesn't have any versions."
 msgstr "Dizze add-on hat gjin ferzjes."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr "Dizze add-on hat gjin goedkarre ferzjes, dus de iepenbiere siden derfan (ynklusyf bètaferzjes) binne ferburgen."
-
 msgid "Status:"
 msgstr "Steat:"
 
@@ -3605,9 +3600,6 @@ msgstr "Brûk ûndersteande fjilden om jo add-onpakket op te laden. Nei de oplaa
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Mei hokker platfoarms is dit bestân kompatibel?"
-
-msgid "Only publish this version to my beta channel."
-msgstr "Allinnich dizze ferzje op myn bètakanaal publisearje."
 
 msgid "Administrative overrides"
 msgstr "Negearhannelingen fan behear"
@@ -3982,26 +3974,27 @@ msgstr "Jo add-on beheare"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Meld jo oan om jo add-on te bewurkjen en by te wurkjen"
 
-msgid "Update Your Legacy Extension"
-msgstr "Wurkje jo ferâldere útwreiding by"
+msgid "Help us improve the developer experience"
+msgstr "Help ús de ûntwikkelersûnderfining te ferbetterjen"
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
-msgstr "Der is in nije, browser-ûnôfhinklike standert foar it ûntwikkeljen fan útwreidingen yn Firefox. Jo moatte jo ferâldere útwreidingen bywurkje om kompatibel te bliuwen."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+"Wy binne ynteressearre yn jo kommentaar oer de ûnderfining fan útwreidingsûntwikkeling! Folje ús koarte enkête yn om witte te litten hokker soarten dokumintaasje, API’s en helpmiddelen it meast "
+"nuttich foar jo ûntwikkelwurk wêze soenen."
 
-msgid "Learn How"
-msgstr "Mear ynfo"
+msgid "Take Survey"
+msgstr "Enkête starte"
 
-msgid "Get Started"
-msgstr "Fan start"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr "Klear om in útwreiding yn te tsjinjen? Lês ús stap-foar-stap hantlieding oer it yntsjinningsproses."
-
-msgid "See Tutorial"
-msgstr "Hantlieding besjen"
+msgid "Welcome Back"
+msgstr "Wolkom werom"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr "Help brûkers jo útwreiding te ûntdekken troch in útnûgjende tekst te meitsjen."
+
+msgid "Learn How"
+msgstr "Mear ynfo"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4419,18 +4412,6 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} warskôging"
 msgstr[1] "{0} warskôgingen"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stop folgjen troch Facebook {start_sub_heading}mei {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Isolearje jo Facebook-identiteit yn in aparte ‘kontener’ dy't it foar Facebook swierder makket om jo webbesites te folgjen."
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ferienfâldigje sykjen {start_sub_heading}mei {addon_name}{end_sub_heading}"
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr "Aksintuearje ienfâdichwei tekst op in webside om mei in oantal sykkmasinen nei de sin te sykjen."
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Advertinsjes blokkearje en privacybeskerming {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
@@ -4442,6 +4423,18 @@ msgstr "Ljepblêden opnij útfûn {start_sub_heading}mei {addon_name}{end_sub_he
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Hawwe jo in enoarm oantal iepensteande ljepblêden? Organisearje se yn in lytse sidebalke."
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Stop folgjen troch Facebook {start_sub_heading}mei {addon_name}{end_sub_heading}"
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr "Isolearje jo Facebook-identiteit yn in aparte ‘kontener’ dy't it foar Facebook swierder makket om jo webbesites te folgjen."
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sykje ôfbyldingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
+
+msgid " Perform reverse image searches from an array of engines."
+msgstr " Omkeard ôfbyldingen sykje mei in oantal sykmasinen."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Download fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
@@ -4466,6 +4459,30 @@ msgstr "Meitsje skermôfbyldingen {start_sub_heading}mei {addon_name}{end_sub_he
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr "Mear as mar ien basisark foar skermôfbyldingen: mei Awesome Screenshot Plus kinne jo ôfbyldingen fan oanpaste tekst en grafiken foarsjen, en jo fisuele eleminten bewarje en diele."
+
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr "Bestânswerjefe is beskoattele, ekstraksje foar %s is mooglik yn behanneling. Probearje it oer 5 minuten nochris."
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "Der is in flater bard by it iepenjen fan it bestân %s."
+
+msgid "That file no longer exists."
+msgstr "Dat bestân bestiet net mear."
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr "Bestânsgrutte is boppe de limyt fan {0}."
+
+msgid "Problems decoding {0}."
+msgstr "Problemen by dekodearjen fan {0}."
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr "Dit bestân kin net online besjoen wurde. Download it bestân om de ynhâld te besjen."
+
+msgid "This file is a directory."
+msgstr "Dit bestân is in map."
 
 msgid "Cannot diff a version against itself"
 msgstr "Kin gjin diff fan in ferzje tsjin himsels meitsje"
@@ -4530,6 +4547,19 @@ msgstr "Ferzjenûmers meie allinnich letters, sifers en dizze ynterpunksjetekens
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Oplaads fan WebExtension-tema’s wurde op dit stuit net stipe."
+
+msgid "You cannot submit this type of add-on"
+msgstr "Jo kinne dit type add-on net yntsjinje"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr "Jo kinne gjin add-on yntsjinje mei in GUID dy't op %s einiget"
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "Jo kinne gjin troch Mozilla ûndertekene útwreidingen yntsjinje"
+
+msgid "Unexpected error."
+msgstr "Unferwachte flater."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -4614,30 +4644,6 @@ msgstr "Gjin bestannen yn oplaad bestân."
 
 msgid "Fetching file."
 msgstr "Bestân ophelje."
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr "Bestânswerjefe is beskoattele, ekstraksje foar %s is mooglik yn behanneling. Probearje it oer 5 minuten nochris."
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Der is in flater bard by it iepenjen fan it bestân %s."
-
-msgid "That file no longer exists."
-msgstr "Dat bestân bestiet net mear."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "Bestânsgrutte is boppe de limyt fan {0}."
-
-msgid "Problems decoding {0}."
-msgstr "Problemen by dekodearjen fan {0}."
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Dit bestân kin net online besjoen wurde. Download it bestân om de ynhâld te besjen."
-
-msgid "This file is a directory."
-msgstr "Dit bestân is in map."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr "De API-ferzje, {0:.1f}, dy't jo brûke is net jildich. Wurkje by nei de aktuele ferzje fan de API, {1:.1f}."
@@ -4796,6 +4802,9 @@ msgstr "Wurd in testpiloat"
 
 msgid "Unlock early access to experimental browser features."
 msgstr "Krij betiid tagong ta eksperimintele browserfunksjes."
+
+msgid "Get Started"
+msgstr "Fan start"
 
 msgid "About Mozilla Add-ons"
 msgstr "Oer Mozilla Add-ons"
@@ -5551,23 +5560,6 @@ msgid ""
 msgstr ""
 "Guon add-onskriuwers freegje tefreden brûkers fan in add-on om in jildlike bydrage oan de ûntwikkeling. Dizze bydragen gean streekrjocht nei de ûntwikkeler, útsein in tredde partij oanjûn wurdt, "
 "lykas de non-profit Mozilla Foundation."
-
-msgid "What are beta add-ons?"
-msgstr "Wat binne bèta-add-ons?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
-msgstr ""
-"Bèta-add-ons binne net beoardiele ferzjes dy't it lêste wurk fan in add-on-skriuwver werjout. Hoewol ferskate skriuwers ferskate noarms hantearje foar de kwaliteit fan bètakoade, moatte jo oan nimme"
-" dat dizze add-ons minder stabyl binne as normale útjûne ferzjes."
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"Betink dat as jo in add-on út de seksje ‘bètaferzje’ fan in add-onside ynstallearje, jo fernijingen foar dy add-on ûntfange bliuwe sille sa gau as se beskikber komme. Krekt as de oarspronklik "
-"ynstallearre ferzje binne alle bètaferzjes net troch Mozilla beoardiele en kinne dizze skea oan jo kompjûter tabringe."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Hoe rapportearje ik in net paste brûkersbeoardieling of in beoardieling mei spam?"
@@ -7442,6 +7434,15 @@ msgstr "Binne jo wis dat jo alle <b>{0}</b> oersettingen fuortsmite wolle? Dit k
 msgid "Delete Locale"
 msgstr "Taal fuortsmite"
 
+msgid "Profile Photo"
+msgstr "Profylfoto"
+
+msgid "Addons"
+msgstr "Add-ons"
+
+msgid "Activity Logs"
+msgstr "Aktiviteitenlochboek"
+
 msgid "Email must be {email}."
 msgstr "E-mailadres moat {email} wêze."
 
@@ -7456,9 +7457,6 @@ msgstr "Berop"
 
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr "Brûkers fan Firefox Accounts kinne op dit stuit harren e-mailadres net wizigje."
-
-msgid "Profile Photo"
-msgstr "Profylfoto"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Dizze URL hat in ûnjildige opmaak. Jildige URL’s lykje op http://example.com/myn_side."

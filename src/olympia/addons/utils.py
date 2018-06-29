@@ -1,5 +1,7 @@
+import json
 import random
 import uuid
+import zipfile
 
 from django import forms
 from django.conf import settings
@@ -151,6 +153,7 @@ TAAR_LITE_OUTCOME_REAL_FAIL = 'recommended_fallback'
 TAAR_LITE_OUTCOME_CURATED = 'curated'
 TAAR_LITE_FALLBACK_REASON_TIMEOUT = 'timeout'
 TAAR_LITE_FALLBACK_REASON_EMPTY = 'no_results'
+TAAR_LITE_FALLBACK_REASON_INVALID = 'invalid_results'
 
 
 def get_addon_recommendations(guid_param, taar_enable):
@@ -170,3 +173,41 @@ def get_addon_recommendations(guid_param, taar_enable):
     if not guids:
         guids = TAAR_LITE_FALLBACKS
     return guids, outcome, fail_reason
+
+
+def is_outcome_recommended(outcome):
+    return outcome == TAAR_LITE_OUTCOME_REAL_SUCCESS
+
+
+def get_addon_recommendations_invalid():
+    return (
+        TAAR_LITE_FALLBACKS, TAAR_LITE_OUTCOME_REAL_FAIL,
+        TAAR_LITE_FALLBACK_REASON_INVALID)
+
+
+def build_static_theme_xpi_from_lwt(lwt, upload_zip):
+    # create manifest
+    accentcolor = (('#%s' % lwt.persona.accentcolor) if lwt.persona.accentcolor
+                   else amo.THEME_ACCENTCOLOR_DEFAULT)
+    textcolor = '#%s' % (lwt.persona.textcolor or '000')
+    manifest = {
+        "manifest_version": 2,
+        "name": unicode(lwt.name or lwt.slug),
+        "version": '1.0',
+        "theme": {
+            "images": {
+                "headerURL": lwt.persona.header
+            },
+            "colors": {
+                "accentcolor": accentcolor,
+                "textcolor": textcolor
+            }
+        }
+    }
+    if lwt.description:
+        manifest['description'] = unicode(lwt.description)
+
+    # build zip with manifest and background file
+    with zipfile.ZipFile(upload_zip, 'w', zipfile.ZIP_DEFLATED) as dest:
+        dest.writestr('manifest.json', json.dumps(manifest))
+        dest.write(lwt.persona.header_path, arcname=lwt.persona.header)

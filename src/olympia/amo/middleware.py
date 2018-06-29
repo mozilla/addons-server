@@ -29,7 +29,7 @@ from . import urlresolvers
 from .templatetags.jinja_helpers import urlparams
 
 
-auth_path = re.compile(r'^/api/v3/accounts/authenticate/?$')
+auth_path = re.compile('%saccounts/authenticate/?$' % settings.DRF_API_REGEX)
 
 
 class LocaleAndAppURLMiddleware(object):
@@ -54,8 +54,9 @@ class LocaleAndAppURLMiddleware(object):
                 request.path.rstrip('/').endswith('/' + amo.MOBILE.short)):
             return redirect_type(request.path.replace('/mobile', '/android'))
 
-        if ('lang' in request.GET and not prefixer.shortened_path.startswith(
-                settings.SUPPORTED_NONAPPS_NONLOCALES_PREFIX)):
+        if ('lang' in request.GET and not re.match(
+                settings.SUPPORTED_NONAPPS_NONLOCALES_REGEX,
+                prefixer.shortened_path)):
             # Blank out the locale so that we can set a new one.  Remove lang
             # from query params so we don't have an infinite loop.
             prefixer.locale = ''
@@ -117,7 +118,7 @@ class NoVarySessionMiddleware(SessionMiddleware):
     We always touch request.user to see if the user is authenticated, so every
     request would be sending vary, so we'd get no caching.
 
-    We skip the cache in Zeus if someone has an AMOv3 cookie, so varying on
+    We skip the cache in Zeus if someone has an AMOv3+ cookie, so varying on
     Cookie at this level only hurts us.
     """
     def process_response(self, request, response):

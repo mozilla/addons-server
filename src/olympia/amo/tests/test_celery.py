@@ -8,10 +8,9 @@ from django.test.testcases import TransactionTestCase
 import mock
 
 from post_request_task.task import _discard_tasks, _stop_queuing_tasks
-from waffle.models import Switch
 
 from olympia.amo.celery import task
-from olympia.amo.tests import TestCase, create_switch
+from olympia.amo.tests import TestCase
 from olympia.amo.utils import utc_millesecs_from_epoch
 
 
@@ -71,7 +70,6 @@ class TestTaskQueued(TransactionTestCase):
 
     def setUp(self):
         super(TestTaskQueued, self).setUp()
-        create_switch('activate-django-post-request')
         fake_task_func.reset_mock()
         _discard_tasks()
 
@@ -103,10 +101,3 @@ class TestTaskQueued(TransactionTestCase):
         assert fake_task_func.call_count == 0
         request_finished.send_robust(sender=self)
         assert fake_task_func.call_count == 1
-
-    def test_can_be_switched_off(self):
-        Switch.objects.filter(name='activate-django-post-request').delete()
-        request_started.send(sender=self)
-        fake_task.delay()
-        fake_task.delay()
-        assert fake_task_func.call_count == 2

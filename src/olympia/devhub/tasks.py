@@ -7,16 +7,21 @@ import socket
 import subprocess
 import tempfile
 import urllib2
+import shutil
 
 from copy import deepcopy
 from decimal import Decimal
 from functools import wraps
 from tempfile import NamedTemporaryFile
+from zipfile import BadZipfile
 
 from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
+from django.core.validators import ValidationError
+from django.db import transaction
+from django.template import loader
 from django.utils.translation import ugettext
 
 import validator
@@ -31,14 +36,15 @@ from olympia import amo
 from olympia.addons.models import Addon, Persona, Preview
 from olympia.amo.celery import task
 from olympia.amo.decorators import atomic, set_modified_on, write
+from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
-    image_size, pngcrush_image, resize_image, send_html_mail_jinja,
+    image_size, pngcrush_image, resize_image, send_html_mail_jinja, send_mail,
     utc_millesecs_from_epoch)
+from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.management.commands import dump_apps
 from olympia.applications.models import AppVersion
 from olympia.files.models import File, FileUpload, FileValidation
-from olympia.files.templatetags.jinja_helpers import copyfileobj
-from olympia.files.utils import parse_addon
+from olympia.files.utils import parse_addon, SafeZip
 from olympia.versions.compare import version_int
 from olympia.versions.models import Version
 
@@ -146,7 +152,7 @@ def validation_task(fn):
             data = fn(id_, hash_, *args, **kw)
             result = json.loads(data)
             return result
-        except Exception, e:
+        except Exception as e:
             log.exception('Unhandled error during validation: %r' % e)
 
             is_webextension = kw.get('is_webextension', False)
@@ -209,6 +215,13 @@ def handle_upload_validation_result(
     if not is_mozilla_signed:
         results = annotate_legacy_addon_restrictions(
             results=results, is_new_upload=is_new_upload)
+
+    # Check for API keys in submissions.
+    # Make sure it is extension-like, e.g. no LWT or search plugin
+    try:
+        results = check_for_api_keys_in_file(results=results, upload=upload)
+    except (ValidationError, BadZipfile, IOError):
+        pass
 
     # Annotate results with potential webext warnings on new versions.
     if upload.addon_id and upload.version:
@@ -428,6 +441,81 @@ def annotate_webext_incompatibilities(results, file_, addon, version_string,
     return results
 
 
+def check_for_api_keys_in_file(results, upload):
+    if upload.addon:
+        users = upload.addon.authors.all()
+    else:
+        users = [upload.user] if upload.user else []
+
+    keys = []
+    for user in users:
+        try:
+            key = APIKey.get_jwt_key(user_id=user.id)
+            keys.append(key)
+        except APIKey.DoesNotExist:
+            pass
+
+    if len(keys) > 0:
+        zipfile = SafeZip(source=upload.path)
+        zipfile.is_valid()
+        for zipinfo in zipfile.info_list:
+            if zipinfo.file_size >= 64:
+                file_ = zipfile.read(zipinfo)
+                for key in keys:
+                    if key.secret in file_.decode(encoding='unicode-escape',
+                                                  errors="ignore"):
+                        log.info('Developer API key for user %s found in '
+                                 'submission.' % key.user)
+                        if key.user == upload.user:
+                            msg = ugettext('Your developer API key was found '
+                                           'in the submitted file. To protect '
+                                           'your account, the key will be '
+                                           'revoked.')
+                        else:
+                            msg = ugettext('The developer API key of a '
+                                           'coauthor was found in the '
+                                           'submitted file. To protect your '
+                                           'add-on, the key will be revoked.')
+                        insert_validation_message(
+                            results, type_='error',
+                            message=msg, msg_id='api_key_detected',
+                            compatibility_type=None)
+
+                        # Revoke after 2 minutes to allow the developer to
+                        # fetch the validation results
+                        revoke_api_key.apply_async(
+                            kwargs={'key_id': key.id}, countdown=120)
+        zipfile.close()
+
+    return results
+
+
+@task
+@write
+def revoke_api_key(key_id):
+    try:
+        # Fetch the original key, do not use `get_jwt_key`
+        # so we get access to a user object for logging later.
+        original_key = APIKey.objects.get(
+            type=SYMMETRIC_JWT_TYPE, id=key_id)
+        # Fetch the current key to compare to the original,
+        # throws if the key has been revoked, which also means
+        # `original_key` is not active.
+        current_key = APIKey.get_jwt_key(user_id=original_key.user.id)
+        if current_key.key != original_key.key:
+            log.info('User %s has already regenerated the key, nothing to be '
+                     'done.' % original_key.user)
+        else:
+            with transaction.atomic():
+                log.info('Revoking key for user %s.' % current_key.user)
+                current_key.update(is_active=None)
+                send_api_key_revocation_email(emails=[current_key.user.email])
+    except APIKey.DoesNotExist:
+        log.info('User %s has already revoked the key, nothing to be done.'
+                 % original_key.user)
+        pass
+
+
 @task(soft_time_limit=settings.VALIDATOR_TIMEOUT)
 @write
 def compatibility_check(upload_pk, app_guid, appversion_str, **kw):
@@ -505,7 +593,7 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
         if path and not os.path.exists(path) and storage.exists(path):
             # This file doesn't exist locally. Write it to our
             # currently-open temp file and switch to that path.
-            copyfileobj(storage.open(path), temp.file)
+            shutil.copyfileobj(storage.open(path), temp.file)
             path = temp.name
 
         with statsd.timer('devhub.validator'):
@@ -689,30 +777,31 @@ def resize_icon(source, dest_folder, target_sizes, **kw):
         return {
             'icon_hash': icon_hash
         }
-    except Exception, e:
+    except Exception as e:
         log.error("Error saving addon icon (%s): %s" % (dest_file, e))
 
 
 @task
 @set_modified_on
-def resize_preview(src, instance, **kw):
+def resize_preview(src, preview_pk, **kw):
     """Resizes preview images and stores the sizes on the preview."""
+    preview = Preview.objects.get(pk=preview_pk)
     thumb_dst, full_dst, orig_dst = (
-        instance.thumbnail_path, instance.image_path, instance.original_path)
+        preview.thumbnail_path, preview.image_path, preview.original_path)
     sizes = {}
     log.info('[1@None] Resizing preview and storing size: %s' % thumb_dst)
     try:
         (sizes['thumbnail'], sizes['original']) = resize_image(
-            src, thumb_dst, amo.ADDON_PREVIEW_SIZES[0])
+            src, thumb_dst, amo.ADDON_PREVIEW_SIZES['thumb'])
         (sizes['image'], _) = resize_image(
-            src, full_dst, amo.ADDON_PREVIEW_SIZES[1])
+            src, full_dst, amo.ADDON_PREVIEW_SIZES['full'])
         if not os.path.exists(os.path.dirname(orig_dst)):
             os.makedirs(os.path.dirname(orig_dst))
         os.rename(src, orig_dst)
-        instance.sizes = sizes
-        instance.save()
+        preview.sizes = sizes
+        preview.save()
         return True
-    except Exception, e:
+    except Exception as e:
         log.error("Error saving preview: %s" % e)
 
 
@@ -734,7 +823,7 @@ def get_preview_sizes(ids, **kw):
                     'image': image_size(preview.image_path),
                 }
                 preview.update(sizes=sizes)
-            except Exception, err:
+            except Exception as err:
                 log.error('Failed to find size of preview: %s, error: %s'
                           % (addon.pk, err))
 
@@ -751,10 +840,10 @@ def failed_validation(*messages):
 def _fetch_content(url):
     try:
         return urllib2.urlopen(url, timeout=15)
-    except urllib2.HTTPError, e:
+    except urllib2.HTTPError as e:
         raise Exception(
             ugettext('%s responded with %s (%s).') % (url, e.code, e.msg))
-    except urllib2.URLError, e:
+    except urllib2.URLError as e:
         # Unpack the URLError to try and find a useful message.
         if isinstance(e.reason, socket.timeout):
             raise Exception(ugettext('Connection to "%s" timed out.') % url)
@@ -794,6 +883,22 @@ def send_welcome_email(addon_pk, emails, context, **kw):
     text_template = 'devhub/email/submission.txt'
     return send_html_mail_jinja(subject, html_template, text_template,
                                 context, recipient_list=emails,
-                                from_email=settings.NOBODY_EMAIL,
+                                from_email=settings.ADDONS_EMAIL,
                                 use_deny_list=False,
                                 perm_setting='individual_contact')
+
+
+def send_api_key_revocation_email(emails):
+    log.info(u'[1@None] Sending API key revocation email to %s.' % emails)
+    subject = ugettext(
+        u'Mozilla Security Notice: Your AMO API credentials have been revoked')
+    template = loader.get_template(
+        'devhub/email/submission_api_key_revocation.txt')
+    context = {
+        'api_keys_url': reverse('devhub.api_key')
+    }
+    send_mail(subject, template.render(context),
+              from_email=settings.ADDONS_EMAIL,
+              recipient_list=emails,
+              use_deny_list=False,
+              perm_setting='individual_contact')

@@ -14,7 +14,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, render, urlparams
 from olympia.files.decorators import (
     compare_file_view, etag, file_view, file_view_token, last_modified)
-from olympia.files.templatetags.jinja_helpers import extract_file
+from olympia.files.file_viewer import extract_file
 
 from . import forms
 

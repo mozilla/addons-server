@@ -22,7 +22,7 @@ from olympia import amo
 from olympia.amo.tests import TestCase, create_switch
 from olympia.applications.models import AppVersion
 from olympia.files import utils
-from olympia.files.tests.test_helpers import get_file
+from olympia.files.tests.test_file_viewer import get_file
 
 
 pytestmark = pytest.mark.django_db
@@ -236,9 +236,32 @@ class TestManifestJSONExtractor(TestCase):
         assert data['e10s_compatibility'] == amo.E10S_COMPATIBLE_WEBEXTENSION
 
     def test_langpack(self):
-        data = self.parse({'langpack_id': 'foo'})
-        assert data['type'] == amo.ADDON_LPAPP
-        assert data['strict_compatibility'] is True
+        self.create_webext_default_versions()
+        self.create_appversion('firefox', '60.0')
+        self.create_appversion('firefox', '60.*')
+        self.create_appversion('android', '60.0')
+        self.create_appversion('android', '60.*')
+
+        data = {
+            'applications': {
+                'gecko': {
+                    'strict_min_version': '>=60.0',
+                    'strict_max_version': '=60.*',
+                    'id': '@langp'
+                }
+            },
+            'langpack_id': 'foo'
+        }
+
+        parsed_data = self.parse(data)
+        assert parsed_data['type'] == amo.ADDON_LPAPP
+        assert parsed_data['strict_compatibility'] is True
+
+        apps = parsed_data['apps']
+        assert len(apps) == 1  # Langpacks are not compatible with android.
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].min.version == '60.0'
+        assert apps[0].max.version == '60.*'
 
     def test_extensions_dont_have_strict_compatibility(self):
         assert self.parse({})['strict_compatibility'] is False
@@ -325,6 +348,7 @@ class TestManifestJSONExtractor(TestCase):
         self.create_appversion('android', amo.DEFAULT_WEBEXT_MAX_VERSION)
 
         apps = self.parse(data)['apps']
+        assert len(apps) == 2
 
         assert apps[0].appdata == amo.FIREFOX
         assert apps[1].appdata == amo.ANDROID
@@ -490,6 +514,9 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         # Check theme data is extracted from the manifest and returned.
         data = {'theme': {'colors': {'textcolor': "#3deb60"}}}
         assert self.parse(data)['theme'] == data['theme']
+
+    def test_langpack(self):
+        pass  # Irrelevant for static themes.
 
 
 def test_zip_folder_content():

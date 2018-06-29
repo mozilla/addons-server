@@ -13,9 +13,10 @@ from olympia.landfill.serializers import GenerateAddonsSerializer
 featured_collections = [
     u'good-time-tabs',
     u'wikipedia-boosters',
-    u'trending-add-ons',
     u'social-media-customization',
-    u'privacy-matters',
+    u'change-up-your-tabs',
+    u'essential-extensions',
+    u'translation-tools',
 ]
 
 #  Featured collections on the homepage.
@@ -35,20 +36,20 @@ hero_addons = [
     u'ghostery',
     u'multi-account-containers',
     u'facebook-video-downloader-hd',
-    u'autoformer',
     u'myki-password-manager',
-    u'notebook_web_clipper',
-    u'flagfox',
-    u'ali-tools',
-    u'leechblock-ng',
+    u'worldwide-radio',
     u'black-menu-google',
-    u'honey',
-    u'shine-reddit',
     u'container',
-    u'tab_search',
+    u'envify',
     u'the-laser-cat',
     u's3download-statusbar',
     u'foxy-gestures',
+    u'swift-selection-search',
+    u'web-security',
+    u'vertical-tabs-reloaded',
+    u'page-translate',
+    u'image-search-options',
+    u'forget_me_not',
 ]
 
 

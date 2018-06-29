@@ -15,7 +15,7 @@ def reindex_reviews(addon_id, **kw):
         Addon.objects.get(id=addon_id).reviews[0].save()
     except IndexError:
         # It's possible that `total_ratings` was wrong.
-        print 'No reviews found for %s' % addon_id
+        print('No reviews found for %s' % addon_id)
 
 
 def run():

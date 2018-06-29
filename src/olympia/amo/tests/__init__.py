@@ -92,7 +92,7 @@ def get_es_index_name(key):
 def setup_es_test_data(es):
     try:
         es.cluster.health()
-    except Exception, e:
+    except Exception as e:
         e.args = tuple(
             [u"%s (it looks like ES is not running, try starting it or "
              u"don't run ES tests: make test_no_es)" % e.args[0]] +
@@ -514,7 +514,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, BaseTestCase):
         if isinstance(dt, basestring):
             try:
                 dt = dateutil_parser(dt)
-            except ValueError, e:
+            except ValueError as e:
                 raise AssertionError(
                     'Expected valid date; got %s\n%s' % (dt, e))
 

@@ -31,3 +31,15 @@ class FancyModel(UncachedModelBase):
 
 models.signals.pre_save.connect(save_signal, sender=FancyModel,
                                 dispatch_uid='testapp_fancymodel')
+
+
+class TranslatedModelWithDefaultNull(UncachedModelBase):
+    name = TranslatedField(default=None)
+
+    objects = UncachedManagerBase()
+
+
+models.signals.pre_save.connect(
+    save_signal,
+    sender=TranslatedModelWithDefaultNull,
+    dispatch_uid='testapp_translatedmodelwithdefaultnull')

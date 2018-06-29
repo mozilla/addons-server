@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 import os
+import shutil
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -21,7 +22,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.devhub import forms
 from olympia.files.models import FileUpload
-from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.reviewers.models import RereviewQueueTheme
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
@@ -232,7 +232,7 @@ class TestPreviewForm(TestCase):
         form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
                                   'position': 1})
         with storage.open(os.path.join(self.dest, name), 'w') as f:
-            copyfileobj(open(get_image_path(name)), f)
+            shutil.copyfileobj(open(get_image_path(name)), f)
         assert form.is_valid()
         form.save(addon)
         assert update_mock.called
@@ -244,7 +244,7 @@ class TestPreviewForm(TestCase):
         form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
                                   'position': 1})
         with storage.open(os.path.join(self.dest, name), 'w') as f:
-            copyfileobj(open(get_image_path(name)), f)
+            shutil.copyfileobj(open(get_image_path(name)), f)
         assert form.is_valid()
         form.save(addon)
         preview = addon.previews.all()[0]
@@ -452,7 +452,7 @@ class TestThemeForm(TestCase):
             src=header_src,
             full_dst=[os.path.join(dst, 'preview.png'),
                       os.path.join(dst, 'icon.png')],
-            set_modified_on=[addon])
+            set_modified_on=addon.serializable_reference())
 
     @mock.patch('olympia.addons.tasks.create_persona_preview_images')
     @mock.patch('olympia.addons.tasks.save_persona_image')

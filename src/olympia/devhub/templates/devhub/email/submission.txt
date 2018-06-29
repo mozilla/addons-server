@@ -5,6 +5,15 @@ Please keep in mind that while your add-on has been screened and approved for li
 For more information about the review process and policies, please visit https://developer.mozilla.org/Add-ons/AMO/Policy/Reviews
 
 ********
+Help Us Improve the Extension Developer Experience
+********
+We're interested in learning more about your experience developing browser extensions.
+
+Let us know how we can make it easier for you to create and maintain extensions by taking our extension developer survey: https://bit.ly/2Jh7jlt
+
+Your responses will help us better meet the needs of the extension developer community. Thanks in advance for your responses!
+
+********
 Attract Users, Stay Updated, & Get in Touch
 ********
 

@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2017-12-14 05:06+0000\n"
-"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
+"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"PO-Revision-Date: 2017-12-10 08:43+0000\n"
+"Last-Translator: minwook-shin <minwook0106@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -551,22 +551,6 @@ msgstr "버전 정보"
 
 msgid "See complete version history"
 msgstr "전체 버전 기록 보기"
-
-msgid "Development Channel"
-msgstr "개발 채널"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"개발 채널에선 부가 기능의 최신 시험용 버전을 일반에 공개되기 전에 먼저 테스트해 볼 수 있습니다. 개발 버전을 설치하고 나면 이 채널을 통해 업데이트를 지속적으로 받아보실 수 있습니다. 개발 버전의 업데"
-"이트를 그만 받으시려면 위의 링크를 통해 기본 버전을 재설치 하시면 됩니다."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>주의:</strong> 이 부가 기능의 개발 버전들은 Mozilla에 의해 검토되지 않았습니다."
-
-msgid "See complete development channel history"
-msgstr "전체 개발 채널 기록 보기"
 
 msgid "close"
 msgstr "닫기"
@@ -2035,6 +2019,34 @@ msgstr "{addon} {version}에 개발자의 코멘트가 달렸습니다."
 msgid "Information request removed"
 msgstr "추가 정보 필요"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} {version}의 심사가 요청되었습니다."
+
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "상급 심사 요청됨"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} {version}의 심사가 요청되었습니다."
+
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "상급 심사 요청됨"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} {version}의 심사가 요청되었습니다."
+
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "심사 요청됨"
+
+#, fuzzy
+msgid "{addon} was migrated from a lightweight theme."
+msgstr "{addon} 이 예비 심사 등급으로부터 마이그레이션 되었습니다."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2073,9 +2085,6 @@ msgstr "승인 대기열"
 
 msgid "Flagged for further review"
 msgstr "향후 심사 대상으로 표시됨"
-
-msgid "Beta"
-msgstr "베타"
 
 msgid "Unlisted"
 msgstr "목록에서 제거됨"
@@ -2635,9 +2644,6 @@ msgstr "Override failed validation"
 msgid "Submit my add-on for manual review."
 msgstr "수동 심사를 위해 부가 기능을 제출합니다."
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr "|alpha|b|beta|pre|rc 와 함께 추가적인 숫자로 끝나는 버전의 파일은 베타로 감지합니다."
-
 msgid "You cannot upload any more files for this version."
 msgstr "이 버전엔 이이상 많은 파일을 업로드 할 수 없습니다."
 
@@ -2701,6 +2707,12 @@ msgstr "우리는 업그레이드를 허용하고 장려하지만, 이 절차를
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "레거시 부가 기능과 함께 WebExtensions를 업데이트할 수는 없습니다. 파이어폭스가 이런 종류의 업데이트를 지원하지 않기 때문에 사용자들은 당신의 새로운 버전을 사용할 수 없습니다."
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s이(가) %s (%s)에 응답했습니다."
@@ -2712,6 +2724,9 @@ msgstr "\"%s\"에 대한 연결 시간이 초과됐습니다."
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "\"%s\"에 호스트 접속을 할 수 없습니다."
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
+msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2770,16 +2785,6 @@ msgstr "부가 기능 검사"
 
 msgid "Check Add-on Compatibility"
 msgstr "부가 기능 호환성 검사"
-
-msgid "You cannot submit this type of add-on"
-msgstr "이런 종류의 부가 기능은 제출할 수 없음"
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
-
-msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -3456,9 +3461,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "이 부가 기능은 현재 사용중인 %(app)s 버전과 호환되지 않습니다."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr "상태:"
 
@@ -3669,9 +3671,6 @@ msgstr "부가 기능 패키지를 업로드 하시려면 아래 항목을 이�
 
 msgid "Which platforms is this file compatible with?"
 msgstr "이 파일과 호환되는 플랫폼은 무엇인가요?"
-
-msgid "Only publish this version to my beta channel."
-msgstr "이 버전을 나의 베타 채널에만 게시합니다."
 
 msgid "Administrative overrides"
 msgstr "관리자 우선 작업내역"
@@ -4081,30 +4080,27 @@ msgstr "부가 기능 관리하기"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-#, fuzzy
-msgid "Update Your Legacy Extension"
-msgstr "추천 확장 기능"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+
+msgid "Take Survey"
+msgstr ""
+
+#, fuzzy
+msgid "Welcome Back"
+msgstr "{0}님, 어서오세요"
+
+msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
 #, fuzzy
 msgid "Learn How"
 msgstr "더 알아보기"
-
-#, fuzzy
-msgid "Get Started"
-msgstr "시작하기"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr ""
-
-#, fuzzy
-msgid "See Tutorial"
-msgstr "전부 보기"
-
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4542,18 +4538,6 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "경고 {0}개"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
@@ -4564,6 +4548,18 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr ""
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr ""
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid " Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4589,6 +4585,30 @@ msgstr ""
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
+
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "%s 파일을 접근하는 과정에서 오류가 발생했습니다."
+
+msgid "That file no longer exists."
+msgstr "그 파일은 더이상 존재하지 않습니다."
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr "파일이 제한 크기인 {0}보다 큽니다."
+
+msgid "Problems decoding {0}."
+msgstr "{0} 디코딩 문제입니다."
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr "이 파일은 온라인상에서 조회가 불가능합니다. 내용을 보시려면 해당 파일을 다운로드 해주세요."
+
+msgid "This file is a directory."
+msgstr "이 파일은 디렉토리입니다."
 
 msgid "Cannot diff a version against itself"
 msgstr "같은 파일끼리 버전 비교는 할 수 없습니다."
@@ -4653,6 +4673,19 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "버전 번호엔 문자, 숫자, 다음의 특수 기호만 들어있어야 합니다: +*.-_"
 
 msgid "WebExtension theme uploads are currently not supported."
+msgstr ""
+
+msgid "You cannot submit this type of add-on"
+msgstr "이런 종류의 부가 기능은 제출할 수 없음"
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
 msgstr ""
 
 #, python-format
@@ -4745,30 +4778,6 @@ msgstr "업로드한 파일 내역에 파일이 없습니다."
 
 msgid "Fetching file."
 msgstr "파일을 가져오고 있습니다."
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "%s 파일을 접근하는 과정에서 오류가 발생했습니다."
-
-msgid "That file no longer exists."
-msgstr "그 파일은 더이상 존재하지 않습니다."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "파일이 제한 크기인 {0}보다 큽니다."
-
-msgid "Problems decoding {0}."
-msgstr "{0} 디코딩 문제입니다."
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "이 파일은 온라인상에서 조회가 불가능합니다. 내용을 보시려면 해당 파일을 다운로드 해주세요."
-
-msgid "This file is a directory."
-msgstr "이 파일은 디렉토리입니다."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr ""
@@ -4927,6 +4936,10 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
+
+#, fuzzy
+msgid "Get Started"
+msgstr "시작하기"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla 부가 기능 소개"
@@ -5654,24 +5667,6 @@ msgstr ""
 "부가 기능 제작자들 중 일부는 금전 기부를 통해 개발 지원을 돕는 사용자를 필요로 하고 있습니다. 기부를 원하는 사람은 Mozilla 재단과 같이 비영리 서드파티를 표방하는 개발자가 아닌 이상 어떤 개발자든 즉"
 "시 기부금을 보탤 수 있습니다."
 
-msgid "What are beta add-ons?"
-msgstr "베타 부가 기능이 뭔가요?"
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-"베타 버전 부가 기능은 부가 기능 제작자의 최신 작업 버전으로 심사되지 않은 버전을 말합니다. 제작자마다 베타 상태의 코드 품질이 다르므로, 이들 부가 기능은 정식 배포판 부가 기능보다 안정성이 떨어진다"
-"는 점을 양지해 주시기 바랍니다."
-
-#, fuzzy
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
-msgstr ""
-"부가 기능 일람 페이지의 \"베타 버전\" 항목에서 부가 기능을 설치하시면 지속적으로 해당 부가 기능의 업데이트를 제공받게 된다는 사실도 기억하시기 바랍니다. 처음 설치했던 버전과 마찬가지로 모든 베타 버"
-"전은 Mozilla의 심사를 받지 않았기 때문에 컴퓨터에 해가 될 수도 있습니다."
-
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "부적절한 평가나 스팸을 신고하려면 어떻게 해야 하나요?"
 
@@ -5857,7 +5852,7 @@ msgid "Mozilla wants to figure out the best way to keep our users safe if they c
 msgstr ""
 
 msgid "What will happen next"
-msgstr ""
+msgstr "다음에 무슨 일이 일어날까요"
 
 #, fuzzy
 msgid "<strong>If you agree</strong> to participate:"
@@ -5876,7 +5871,7 @@ msgid "We will ask you to fill out a quick optional survey to tell us about your
 msgstr ""
 
 msgid "Leaving the study"
-msgstr ""
+msgstr "이 스터디를 떠나기"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
 msgstr ""
@@ -6609,7 +6604,7 @@ msgid "Review was flagged prior to deletion."
 msgstr ""
 
 msgid "Undelete"
-msgstr ""
+msgstr "삭제 취소"
 
 msgid "Save"
 msgstr "저장"
@@ -6709,7 +6704,7 @@ msgid "Review {0}"
 msgstr "심사 {0}"
 
 msgid "Add-on user change history"
-msgstr ""
+msgstr "부가 기능 사용자 변경 내역"
 
 msgid "Add-on History"
 msgstr "부가 기능 변경 내역"
@@ -7607,6 +7602,16 @@ msgstr "정말 <b>{0}</b>개의 전체 번역판을 삭제하시겠습니까? �
 msgid "Delete Locale"
 msgstr "번역 삭제"
 
+msgid "Profile Photo"
+msgstr "프로필 사진"
+
+msgid "Addons"
+msgstr ""
+
+#, fuzzy
+msgid "Activity Logs"
+msgstr "활동 내역"
+
 msgid "Email must be {email}."
 msgstr "이메일은 반드시 {email}이여야 합니다."
 
@@ -7621,9 +7626,6 @@ msgstr "직업"
 
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr "Firefox 계정 사용자는 현재 이메일 주소를 변경할 수 없습니다."
-
-msgid "Profile Photo"
-msgstr "프로필 사진"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "잘못된 형식의 URL입니다. http://example.com/my_page 와 같은 것이 올바른 URL입니다."

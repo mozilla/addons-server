@@ -34,10 +34,6 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
                            default='addons.mozilla.org')
 
-SYSLOG_TAG = "http_app_addons"
-SYSLOG_TAG2 = "http_app_addons_timer"
-SYSLOG_CSP = "http_app_addons_csp"
-
 NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
 NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
 GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + '/guarded-addons'
@@ -157,11 +153,6 @@ FXA_CONFIG = {
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default', 'amo']
 
-CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
-    public=['amo.addons.mozilla.org'],
-    internal=['addons-admin.prod.mozaws.net'],
-)
-
 VALIDATOR_TIMEOUT = 360
 
 ES_DEFAULT_NUM_SHARDS = 10
@@ -174,6 +165,11 @@ RAVEN_ALLOW_LIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']
 RECOMMENDATION_ENGINE_URL = env(
     'RECOMMENDATION_ENGINE_URL',
     default='https://taar.prod.mozaws.net/api/recommendations/')
+
+TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
+    'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
+    default=('https://taarlite.prod.mozaws.net/taarlite/api/v1/'
+             'addon_recommendations/'))
 
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-west-2.amazonaws.com/361527076523/'

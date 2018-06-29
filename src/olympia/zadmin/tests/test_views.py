@@ -76,7 +76,7 @@ class TestHomeAndIndex(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         modules = [x.text for x in doc('a.section')]
-        assert len(modules) == 15  # Increment as we add new admin modules.
+        assert len(modules) == 16  # Increment as we add new admin modules.
 
         # Redirected because no permissions if not logged in.
         self.client.logout()
@@ -170,10 +170,9 @@ class TestEmailPreview(TestCase):
                             args=[self.topic.topic]))
         assert r.status_code == 200
         rdr = csv.reader(StringIO(r.content))
-        assert rdr.next() == ['from_email', 'recipient_list', 'subject',
-                              'body']
-        assert rdr.next() == ['admin@mozilla.org', 'funnyguy@mozilla.org',
-                              'the subject', 'Hello Ivan Krsti\xc4\x87']
+        assert next(rdr) == ['from_email', 'recipient_list', 'subject', 'body']
+        assert next(rdr) == ['admin@mozilla.org', 'funnyguy@mozilla.org',
+                             'the subject', 'Hello Ivan Krsti\xc4\x87']
 
 
 class TestMonthlyPick(TestCase):
@@ -875,7 +874,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.env', 200)
         self.assert_status('zadmin.settings', 200)
-        self.assert_status('zadmin.langpacks', 200)
         self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
         self.assert_status('zadmin.monthly_pick', 200)
@@ -891,7 +889,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.env', 200)
         self.assert_status('zadmin.settings', 200)
-        self.assert_status('zadmin.langpacks', 200)
         self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
         self.assert_status('zadmin.monthly_pick', 200)
@@ -904,7 +901,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.index', 403)
         self.assert_status('zadmin.env', 403)
         self.assert_status('zadmin.settings', 403)
-        self.assert_status('zadmin.langpacks', 403)
         self.assert_status('zadmin.download_file', 403, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 403)
         self.assert_status('zadmin.monthly_pick', 403)
@@ -914,21 +910,3 @@ class TestPerms(TestCase):
         self.client.logout()
         self.assertLoginRedirects(
             self.client.get(reverse('zadmin.index')), to='/en-US/admin/')
-
-
-class TestUserProfileAdmin(TestCase):
-
-    def setUp(self):
-        super(TestUserProfileAdmin, self).setUp()
-        self.user = user_factory(email='admin@mozilla.com')
-        self.grant_permission(self.user, '*:*')
-        self.login(self.user)
-
-    def test_delete_does_hard_delete(self):
-        user_to_delete = user_factory()
-        user_to_delete_pk = user_to_delete.pk
-        url = reverse('admin:users_userprofile_delete',
-                      args=[user_to_delete.pk])
-        response = self.client.post(url, data={'post': 'yes'}, follow=True)
-        assert response.status_code == 200
-        assert not UserProfile.objects.filter(id=user_to_delete_pk).exists()

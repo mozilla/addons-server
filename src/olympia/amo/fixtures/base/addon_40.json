@@ -83,7 +83,6 @@
             "display_collections_fav": false,
             "display_collections": false,
             "averagerating": 4.00,
-            "notifycompat": true,
             "picture_type": "",
             "occupation": "",
             "homepage": "",
@@ -95,8 +94,7 @@
             "display_name": "41 \u0627\u0644\u062a\u0637\u0628",
             "created": "2007-03-05 13:09:33",
             "notes": null,
-            "modified": "2007-03-05 13:09:33",
-            "notifyevents": true
+            "modified": "2007-03-05 13:09:33"
         }
     },
     {

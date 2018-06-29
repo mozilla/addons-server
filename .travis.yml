@@ -72,7 +72,11 @@ script:
     fi
   - |
     if [[ $TRAVIS_EVENT_TYPE == "cron" ]]; then
-      bash scripts/travis-extract-l10n.sh
+      # Only run the extraction on "main" environment to avoid creating
+      # 8 pull requests for each tox environment.
+      if [[ $TOXENV == "main" ]]; then
+          bash scripts/travis-extract-l10n.sh
+      fi
     fi
 
 notifications:

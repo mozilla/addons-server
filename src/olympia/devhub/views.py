@@ -719,7 +719,7 @@ def json_upload_detail(request, upload, addon_slug=None):
     if result['validation']:
         try:
             pkg = parse_addon(upload, addon=addon, user=request.user)
-        except django_forms.ValidationError, exc:
+        except django_forms.ValidationError as exc:
             errors_before = result['validation'].get('errors', 0)
             # This doesn't guard against client-side tinkering, and is purely
             # to display those non-linter errors nicely in the frontend. What
@@ -1765,7 +1765,7 @@ def api_key(request):
     if request.method == 'POST' and request.POST.get('action') == 'generate':
         if credentials:
             log.info('JWT key was made inactive: {}'.format(credentials))
-            credentials.update(is_active=False)
+            credentials.update(is_active=None)
             msg = _(
                 'Your old credentials were revoked and are no longer valid. '
                 'Be sure to update all API clients with the new credentials.')
@@ -1779,7 +1779,7 @@ def api_key(request):
         return redirect(reverse('devhub.api_key'))
 
     if request.method == 'POST' and request.POST.get('action') == 'revoke':
-        credentials.update(is_active=False)
+        credentials.update(is_active=None)
         log.info('revoking JWT key for user: {}, {}'
                  .format(request.user.id, credentials))
         send_key_revoked_email(request.user.email, credentials.key)

@@ -8,20 +8,18 @@ from django.conf import settings
 
 def make_key(key=None, with_locale=True):
     """Generate the full key for ``k``, with a prefix."""
-    key = encoding.smart_bytes('{prefix}:{key}'.format(
-        prefix=settings.KEY_PREFIX,
-        key=key))
+    key = u'{prefix}:{key}'.format(prefix=settings.KEY_PREFIX, key=key)
 
     if with_locale:
-        key += encoding.smart_bytes(translation.get_language())
-    # memcached keys must be < 250 bytes and w/o whitespace, but it's nice
-    # to see the keys when using locmem.
-    return hashlib.md5(key).hexdigest()
+        key += translation.get_language()
+    # memcached keys must be < 250 bytes and w/o whitespace.
+    return hashlib.md5(encoding.smart_bytes(key)).hexdigest()
 
 
 def cached(function, key, duration=DEFAULT_TIMEOUT):
     """Check if `key` is in the cache, otherwise call `function` and cache
-    the result.
+    the result. Only works with functions returning something other than
+    None.
     """
     cache_key = make_key(key)
 

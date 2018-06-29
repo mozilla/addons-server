@@ -144,4 +144,4 @@ def run():
                                              price=Decimal(v),
                                              currency=currency)
             except Price.DoesNotExist:
-                print 'Skipping creating: %s, %s for %s' % (k, v, currency)
+                print('Skipping creating: %s, %s for %s' % (k, v, currency))

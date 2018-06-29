@@ -45,10 +45,7 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
                            default='addons-dev.allizom.org')
 
-SYSLOG_TAG = "http_app_addons_dev"
-MOZLOG_NAME = SYSLOG_TAG
-SYSLOG_TAG2 = "http_app_addons_dev_timer"
-SYSLOG_CSP = "http_app_addons_dev_csp"
+MOZLOG_NAME = "http_app_addons_dev"
 
 NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
 NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
@@ -174,7 +171,6 @@ FXA_CONFIG = {
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
         'redirect_url': 'https://amo.addons-dev.allizom.org/fxa-authenticate',
         'scope': 'profile',
-        'skip_register_redirect': True,
     },
     'local': {
         'client_id': env('DEVELOPMENT_FXA_CLIENT_ID'),
@@ -190,14 +186,7 @@ DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
 CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
-    public=[
-        'amo.addons-dev.allizom.org',
-        'localhost:3000',
-    ],
-    internal=[
-        'addons-admin.dev.mozaws.net',
-        'localhost:3000',
-    ],
+    ['amo.addons-dev.allizom.org', 'localhost:3000']
 )
 
 RAVEN_DSN = (

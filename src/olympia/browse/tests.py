@@ -460,7 +460,7 @@ class TestFeaturedLocale(TestCase):
         for a in ass:
             mtch = rx.match(a.attrib['href'])
             if mtch:
-                print mtch.group(2)
+                print(mtch.group(2))
 
     def test_creatured_locale_en_US(self):
         res = self.client.get(self.url, follow=True)

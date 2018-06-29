@@ -118,7 +118,7 @@ def approve_rereview(theme):
             full_dst=[
                 reupload.theme.thumb_path,
                 reupload.theme.icon_path],
-            set_modified_on=[reupload.theme.addon])
+            set_modified_on=reupload.theme.addon.serializable_reference())
 
         if not reupload.theme.is_new():
             # Legacy themes also need a preview_large.jpg.

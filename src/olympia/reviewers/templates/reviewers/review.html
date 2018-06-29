@@ -301,8 +301,8 @@
     <ul>
       <li>
         <input type="checkbox" id="notify_new_listed_versions"
-               data-api-url-subscribe="{{ url('reviewers-addon-subscribe', addon.pk) }}"
-               data-api-url-unsubscribe="{{ url('reviewers-addon-unsubscribe', addon.pk) }}"
+               data-api-url-subscribe="{{ drf_url('reviewers-addon-subscribe', addon.pk) }}"
+               data-api-url-unsubscribe="{{ drf_url('reviewers-addon-unsubscribe', addon.pk) }}"
                {% if subscribed %}checked="checked"{% endif %} autocomplete="off" />
           <label for="notify_new_listed_versions">{{ _('Notify me about new listed versions') }}</label>
       </li>
@@ -310,25 +310,25 @@
     {% if is_admin %}
     <ul class="admin_only">
         <li {% if addon.status == amo.STATUS_DISABLED %}class="hidden"{% endif %}>
-          <button data-api-url="{{ url('reviewers-addon-disable', addon.pk) }}"
+          <button data-api-url="{{ drf_url('reviewers-addon-disable', addon.pk) }}"
                   data-toggle-button-selector="#force_enable_addon"
                   id="force_disable_addon" type="button">{{ _('Force-disable add-on') }}</button>
         </li>
         <li {% if addon.status != amo.STATUS_DISABLED %}class="hidden"{% endif %}>
-          <button data-api-url="{{ url('reviewers-addon-enable', addon.pk) }}"
+          <button data-api-url="{{ drf_url('reviewers-addon-enable', addon.pk) }}"
                   data-toggle-button-selector="#force_disable_addon"
                   id="force_enable_addon" type="button">{{ _('Force-enable add-on') }}</button>
         </li>
         {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP) %}
           <li {% if addon.auto_approval_disabled %}class="hidden"{% endif %}>
-            <button data-api-url="{{ url('reviewers-addon-flags', addon.pk) }}"
+            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
                     data-api-data="{&quot;auto_approval_disabled&quot;: true}"
                     data-toggle-button-selector="#enable_auto_approval"
                     id="disable_auto_approval" type="button">{{ _('Disable Auto-Approval') }}</button>
           </li>
           <li {% if not addon.auto_approval_disabled %}class="hidden"{% endif %}>
-            <button data-api-url="{{ url('reviewers-addon-flags', addon.pk) }}"
+            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
                     data-api-data="{&quot;auto_approval_disabled&quot;: false}"
                     data-toggle-button-selector="#disable_auto_approval"
@@ -337,7 +337,7 @@
         {% endif %}
         {% if addon.pending_info_request %}
           <li>
-              <button data-api-url="{{ url('reviewers-addon-flags', addon.pk) }}"
+              <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                       data-api-method="patch"
                       data-api-data="{&quot;pending_info_request&quot;: null}"
                       id="clear_pending_info_request" type="button">{{ _('Clear information request') }}</button>
@@ -345,7 +345,7 @@
         {% endif %}
         {% if addon.needs_admin_code_review %}
           <li>
-            <button data-api-url="{{ url('reviewers-addon-flags', addon.pk) }}"
+            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
                     data-api-data="{&quot;needs_admin_code_review&quot;: false}"
                     id="clear_admin_code_review"  type="button">{{ _('Clear Admin Code Review Flag') }}</button>
@@ -353,7 +353,7 @@
         {% endif %}
         {% if addon.needs_admin_content_review %}
           <li>
-            <button data-api-url="{{ url('reviewers-addon-flags', addon.pk) }}"
+            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
                     data-api-data="{&quot;needs_admin_content_review&quot;: false}"
                     id="clear_admin_content_review" type="button">{{ _('Clear Admin Content Review Flag') }}</button>
@@ -361,7 +361,7 @@
         {% endif %}
         {% if addon.needs_admin_theme_review %}
           <li>
-            <button data-api-url="{{ url('reviewers-addon-flags', addon.pk) }}"
+            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
                     data-api-data="{&quot;needs_admin_theme_review&quot;: false}"
                     id="clear_admin_theme_review" type="button">{{ _('Clear Admin Static Theme Review Flag') }}</button>

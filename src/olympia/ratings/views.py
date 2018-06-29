@@ -10,7 +10,6 @@ from rest_framework import serializers
 from rest_framework.decorators import detail_route
 from rest_framework.exceptions import ParseError
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.throttling import UserRateThrottle
 from rest_framework.viewsets import ModelViewSet
 
 import olympia.core.logger
@@ -27,6 +26,7 @@ from olympia.api.pagination import OneOrZeroPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowIfPublic, AllowOwner, AllowRelatedObjectPermissions,
     AnyOf, ByHttpMethod, GroupPermission)
+from olympia.api.throttling import GranularUserRateThrottle
 
 from . import forms
 from .models import GroupedRating, Rating, RatingFlag
@@ -225,7 +225,7 @@ def edit(request, addon, review_id):
         return json_view.error(form.errors)
 
 
-class RatingThrottle(UserRateThrottle):
+class RatingThrottle(GranularUserRateThrottle):
     rate = '1/minute'
     scope = 'user_rating'
 
@@ -234,6 +234,10 @@ class RatingThrottle(UserRateThrottle):
             return super(RatingThrottle, self).allow_request(request, view)
         else:
             return True
+
+
+class RatingReplyThrottle(RatingThrottle):
+    rate = '1/5second'
 
 
 class RatingViewSet(AddonChildMixin, ModelViewSet):
@@ -431,7 +435,8 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
 
     @detail_route(
         methods=['post'], permission_classes=reply_permission_classes,
-        serializer_class=reply_serializer_class)
+        serializer_class=reply_serializer_class,
+        throttle_classes=[RatingReplyThrottle])
     def reply(self, *args, **kwargs):
         # A reply is just like a regular post, except that we set the reply
         # FK to the current rating object and only allow add-on authors/admins.

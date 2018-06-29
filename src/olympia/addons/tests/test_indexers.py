@@ -269,7 +269,7 @@ class TestAddonIndexer(TestCase):
         # the index is an arbitrary super high version.
         assert extracted['current_version']['compatible_apps'] == {
             FIREFOX.id: {
-                'min': 2000000200100L,
+                'min': 2000000200100,
                 'max': 9999000000200100,
                 'max_human': '4.0',
                 'min_human': '2.0',
@@ -303,7 +303,7 @@ class TestAddonIndexer(TestCase):
         # the index is an arbitrary super high version.
         assert extracted['latest_unlisted_version']['compatible_apps'] == {
             FIREFOX.id: {
-                'min': 4009900200100L,
+                'min': 4009900200100,
                 'max': 9999000000200100,
                 'max_human': '5.0.99',
                 'min_human': '4.0.99',
@@ -338,8 +338,8 @@ class TestAddonIndexer(TestCase):
 
         assert extracted['current_version']['compatible_apps'] == {
             FIREFOX.id: {
-                'min': 2000000200100L,
-                'max': 4000000200100L,
+                'min': 2000000200100,
+                'max': 4000000200100,
                 'max_human': '4.0',
                 'min_human': '2.0',
             }

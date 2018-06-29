@@ -614,10 +614,11 @@ class PreviewForm(forms.ModelForm):
             super(PreviewForm, self).save(commit=commit)
             if self.cleaned_data['upload_hash']:
                 upload_hash = self.cleaned_data['upload_hash']
-                upload_path = os.path.join(settings.TMP_PATH, 'preview',
-                                           upload_hash)
-                tasks.resize_preview.delay(upload_path, self.instance,
-                                           set_modified_on=[self.instance])
+                upload_path = os.path.join(
+                    settings.TMP_PATH, 'preview', upload_hash)
+                tasks.resize_preview.delay(
+                    upload_path, self.instance.pk,
+                    set_modified_on=self.instance.serializable_reference())
 
     class Meta:
         model = Preview
@@ -765,7 +766,7 @@ class SingleCategoryForm(forms.Form):
         # support Firefox.  Hoping to unify per-app categories in the meantime.
         app = amo.FIREFOX
         sorted_cats = sorted(CATEGORIES[app.id][self.addon.type].items(),
-                             key=lambda (slug, cat): slug)
+                             key=lambda slug_cat: slug_cat[0])
         self.fields['category'].choices = [
             (c.id, c.name) for _, c in sorted_cats]
 

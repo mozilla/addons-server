@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-23 05:22+0000\n"
-"PO-Revision-Date: 2018-04-02 20:07+0000\n"
+"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"PO-Revision-Date: 2018-05-02 15:47+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -72,9 +72,8 @@ msgid "Version {0}"
 msgstr "Versio {0}"
 
 # 85%
-#, fuzzy
 msgid "Review note"
-msgstr "Arvostelu:"
+msgstr "Tarkastajan huomautukset"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
@@ -465,9 +464,8 @@ msgstr "Lataa silti"
 msgid "[Warning]"
 msgstr ""
 
-#, fuzzy
 msgid "Permissions"
-msgstr "Versiot"
+msgstr "Oikeudet"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr ""
@@ -564,22 +562,6 @@ msgstr "Versiotiedot"
 msgid "See complete version history"
 msgstr "Näytä täysi versiohistoria"
 
-msgid "Development Channel"
-msgstr "Kehityskanava"
-
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"Kehityskanavan avulla voit testata lisäosan tekeillä olevia uusia versioita ennen kuin ne julkaistaan suurelle yleisölle. Kun olet asentanut kehitysversion, saat jatkossakin päivitykset tältä "
-"kanavalta. Voit lopettaa kehitysversioiden vastaanottamisen asentamalla lisäosan oletusversion uudelleen yllä olevasta linkistä."
-
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
-
-msgid "See complete development channel history"
-msgstr ""
-
 msgid "close"
 msgstr "sulje"
 
@@ -614,13 +596,11 @@ msgstr "Lisäosan {addon} lähdekoodin lisenssi"
 msgid "Source Code License"
 msgstr "Lähdekoodin lisenssi"
 
-#, fuzzy
 msgid "support section"
-msgstr "Tukisivusto"
+msgstr "tukiosio"
 
-#, fuzzy
 msgid "support email"
-msgstr "Sähköpostituki"
+msgstr "tuen sähköpostiosoite"
 
 msgid "permalink"
 msgstr "ikilinkki"
@@ -744,9 +724,8 @@ msgstr ""
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
 msgstr ""
 
-#, fuzzy
 msgid "Page Not Found"
-msgstr "Ei löytynyt"
+msgstr "Sivua ei löydy"
 
 # 78%
 # 100%
@@ -763,9 +742,8 @@ msgstr ""
 msgid "Browse all extensions"
 msgstr "Selaa kaikkia lisäosia"
 
-#, fuzzy
 msgid "Browse all themes"
-msgstr "Selaa kaikkia lisäosia"
+msgstr "Selaa kaikkia teemoja"
 
 #, fuzzy
 msgid "Add-ons Home Page"
@@ -975,9 +953,8 @@ msgstr ""
 
 # 81%
 # 100%
-#, fuzzy
 msgid "Contributors"
-msgstr "Avustaja"
+msgstr "Avustajat"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
@@ -2095,6 +2072,36 @@ msgstr ""
 msgid "Information request removed"
 msgstr "Arvostelu:"
 
+#, fuzzy
+msgid "{addon} {version} admin add-on-review requested."
+msgstr "{addon} luotiin."
+
+# 85%
+#, fuzzy
+msgid "Admin add-on-review requested"
+msgstr "Arvostelu:"
+
+#, fuzzy
+msgid "{addon} {version} admin content-review requested."
+msgstr "{addon} luotiin."
+
+# 85%
+#, fuzzy
+msgid "Admin content-review requested"
+msgstr "Arvostelu:"
+
+#, fuzzy
+msgid "{addon} {version} admin theme-review requested."
+msgstr "{addon} luotiin."
+
+# 85%
+#, fuzzy
+msgid "Admin theme-review requested"
+msgstr "Arvostelu:"
+
+msgid "{addon} was migrated from a lightweight theme."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -2134,9 +2141,6 @@ msgstr ""
 
 msgid "Flagged for further review"
 msgstr ""
-
-msgid "Beta"
-msgstr "Beeta"
 
 msgid "Unlisted"
 msgstr "Ei listattu"
@@ -2372,9 +2376,8 @@ msgstr ""
 msgid "Sports & Games"
 msgstr "Kuvat"
 
-#, fuzzy
 msgid "User Interface"
-msgstr "Käyttäjä alkaen"
+msgstr "Käyttöliittymä"
 
 #, fuzzy
 msgid "Appearance and Customization"
@@ -2472,9 +2475,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Muokkaa teemaa"
+msgstr "Staattinen teema"
 
 # 87%
 # 100%
@@ -2702,9 +2704,6 @@ msgstr ""
 msgid "Submit my add-on for manual review."
 msgstr ""
 
-msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
-
 msgid "You cannot upload any more files for this version."
 msgstr ""
 
@@ -2764,6 +2763,12 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
+msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
+msgstr ""
+
+msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
+msgstr ""
+
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr ""
@@ -2774,6 +2779,9 @@ msgstr ""
 
 #, python-format
 msgid "Could not contact host at \"%s\"."
+msgstr ""
+
+msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
 #, python-format
@@ -2836,16 +2844,6 @@ msgid "Validate Add-on"
 msgstr "Lisäosan kelpuutus"
 
 msgid "Check Add-on Compatibility"
-msgstr ""
-
-msgid "You cannot submit this type of add-on"
-msgstr ""
-
-#, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
-
-msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 #, python-format
@@ -3523,9 +3521,6 @@ msgstr ""
 msgid "This add-on doesn't have any versions."
 msgstr "Tällä lisäosalla ei ole vielä yhtään käyttäjäarviota."
 
-msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
-
 msgid "Status:"
 msgstr ""
 
@@ -3586,9 +3581,8 @@ msgstr "Sähköpostituki"
 msgid "Support website:"
 msgstr "Tukisivusto"
 
-#, fuzzy
 msgid "License:"
-msgstr "Lisenssi"
+msgstr "Lisenssi:"
 
 msgid "Please choose a license appropriate for the rights you grant."
 msgstr ""
@@ -3728,9 +3722,6 @@ msgid "Use the fields below to upload your add-on package. After upload, a serie
 msgstr "Siirtämisen jälkeen tiedostollesi tehdään automaattisesti joukko kelvollisuustestejä."
 
 msgid "Which platforms is this file compatible with?"
-msgstr ""
-
-msgid "Only publish this version to my beta channel."
 msgstr ""
 
 msgid "Administrative overrides"
@@ -4133,30 +4124,27 @@ msgstr "Lisää lisäosia"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-#, fuzzy
-msgid "Update Your Legacy Extension"
-msgstr "Suositellut laajennukset"
+msgid "Help us improve the developer experience"
+msgstr ""
 
-msgid "There is a new, cross-browser standard for developing extensions in Firefox. You'll need to update your legacy extensions to stay compatible."
+msgid ""
+"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
+"development work."
+msgstr ""
+
+msgid "Take Survey"
+msgstr ""
+
+#, fuzzy
+msgid "Welcome Back"
+msgstr "Tervetuloa, {0}"
+
+msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
 #, fuzzy
 msgid "Learn How"
 msgstr "Lue lisää"
-
-#, fuzzy
-msgid "Get Started"
-msgstr "Aloittaminen"
-
-msgid "Ready to submit an extension? Read our step-by-step tutorial on the submission process."
-msgstr ""
-
-#, fuzzy
-msgid "See Tutorial"
-msgstr "Näytä kaikki"
-
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
@@ -4586,18 +4574,6 @@ msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
-
-msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
-
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
@@ -4608,6 +4584,18 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr ""
+
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgstr ""
+
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid " Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4632,6 +4620,30 @@ msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
+msgstr ""
+
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr ""
+
+msgid "That file no longer exists."
+msgstr ""
+
+#. L10n: {0} is the file size limit of the file viewer.
+msgid "File size is over the limit of {0}."
+msgstr ""
+
+msgid "Problems decoding {0}."
+msgstr ""
+
+msgid "This file is not viewable online. Please download the file to view the contents."
+msgstr ""
+
+msgid "This file is a directory."
 msgstr ""
 
 msgid "Cannot diff a version against itself"
@@ -4696,6 +4708,19 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr ""
 
 msgid "WebExtension theme uploads are currently not supported."
+msgstr ""
+
+msgid "You cannot submit this type of add-on"
+msgstr ""
+
+#, python-format
+msgid "You cannot submit an add-on with a guid ending %s"
+msgstr ""
+
+msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Unexpected error."
 msgstr ""
 
 #, python-format
@@ -4783,30 +4808,6 @@ msgid "No files in the uploaded file."
 msgstr ""
 
 msgid "Fetching file."
-msgstr ""
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr ""
-
-msgid "That file no longer exists."
-msgstr ""
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr ""
-
-msgid "Problems decoding {0}."
-msgstr ""
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
-
-msgid "This file is a directory."
 msgstr ""
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
@@ -4966,6 +4967,10 @@ msgstr ""
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
+
+#, fuzzy
+msgid "Get Started"
+msgstr "Aloittaminen"
 
 msgid "About Mozilla Add-ons"
 msgstr ""
@@ -5642,19 +5647,6 @@ msgstr ""
 msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
-msgstr ""
-
-msgid "What are beta add-ons?"
-msgstr ""
-
-msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
-msgstr ""
-
-msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 msgstr ""
 
 msgid "How do I report an inappropriate or spam user review?"
@@ -6346,9 +6338,8 @@ msgstr "Perinteiset lisäosat"
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "New ({0})"
-msgstr "{0}in lisäosat"
+msgstr "Uusi ({0})"
 
 #, fuzzy
 msgid "Updates ({0})"
@@ -7593,6 +7584,17 @@ msgstr ""
 msgid "Delete Locale"
 msgstr ""
 
+msgid "Profile Photo"
+msgstr ""
+
+msgid "Addons"
+msgstr ""
+
+# 75%
+#, fuzzy
+msgid "Activity Logs"
+msgstr "Toiminnot"
+
 msgid "Email must be {email}."
 msgstr ""
 
@@ -7606,9 +7608,6 @@ msgid "Occupation"
 msgstr "Ammatti"
 
 msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ""
-
-msgid "Profile Photo"
 msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."

@@ -348,7 +348,7 @@ class ReviewerSubscription(ModelBase):
         template = loader.get_template('reviewers/emails/notify_update.ltxt')
         send_mail(subject, template.render(context),
                   recipient_list=[self.user.email],
-                  from_email=settings.NOBODY_EMAIL,
+                  from_email=settings.ADDONS_EMAIL,
                   use_deny_list=False)
 
 
@@ -376,6 +376,8 @@ version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')
 class ReviewerScore(ModelBase):
     user = models.ForeignKey(UserProfile, related_name='_reviewer_scores')
     addon = models.ForeignKey(Addon, blank=True, null=True, related_name='+')
+    version = models.ForeignKey(Version, blank=True, null=True,
+                                related_name='+')
     score = models.IntegerField()
     # For automated point rewards.
     note_key = models.SmallIntegerField(choices=amo.REVIEWED_CHOICES.items(),
@@ -499,7 +501,8 @@ class ReviewerScore(ModelBase):
 
         if score:
             cls.objects.create(user=user, addon=addon, score=score,
-                               note_key=event, note=extra_note)
+                               note_key=event, note=extra_note,
+                               version=version)
             cls.get_key(invalidate=True)
             user_log.info(
                 (u'Awarding %s points to user %s for "%s" for addon %s' % (
