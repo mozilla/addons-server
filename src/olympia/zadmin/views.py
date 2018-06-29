@@ -453,23 +453,3 @@ def delete_site_event(request, event_id):
     event = get_object_or_404(SiteEvent, pk=event_id)
     event.delete()
     return redirect('zadmin.site_events')
-
-
-@permission_required(amo.permissions.MAILING_LISTS_VIEW)
-def export_email_addresses(request):
-    return render(request, 'zadmin/export_button.html', {})
-
-
-@permission_required(amo.permissions.MAILING_LISTS_VIEW)
-def email_addresses_file(request):
-    resp = http.HttpResponse()
-    resp['Content-Type'] = 'text/plain; charset=utf-8'
-    resp['Content-Disposition'] = ('attachment; '
-                                   'filename=amo_optin_emails.txt')
-    emails = (UserProfile.objects.filter(notifications__notification_id=13,
-                                         notifications__enabled=1)
-              .values_list('email', flat=True))
-    for e in emails:
-        if e is not None:
-            resp.write(e + '\n')
-    return resp

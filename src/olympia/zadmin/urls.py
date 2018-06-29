@@ -59,11 +59,6 @@ urlpatterns = [
     url('^email-devs$', views.email_devs, name='zadmin.email_devs'),
     url('^addon-search$', views.addon_search, name='zadmin.addon-search'),
 
-    url('^export_email_addresses$', views.export_email_addresses,
-        name='zadmin.export_email_addresses'),
-    url('^email_addresses_file$', views.email_addresses_file,
-        name='zadmin.email_addresses_file'),
-
     # Site Event admin.
     url('^events/(?P<event_id>\d+)?$', views.site_events,
         name='zadmin.site_events'),
