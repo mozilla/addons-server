@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-01-29 15:23+0000\n"
+"PO-Revision-Date: 2018-06-29 16:27+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cy\n"
@@ -70,9 +70,8 @@ msgstr "Review"
 msgid "Version {0}"
 msgstr ""
 
-#, fuzzy
 msgid "Review note"
-msgstr "Review"
+msgstr "Nodyn adolygu"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
@@ -89,10 +88,9 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#, fuzzy
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr "Review"
+msgstr "Heb eu Hadolygu"
 
 msgctxt "install_button"
 msgid "Experimental"
