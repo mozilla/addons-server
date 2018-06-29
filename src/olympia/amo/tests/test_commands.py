@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 from importlib import import_module
 
 from django.conf import settings
@@ -43,3 +44,24 @@ def test_cron_jobs_setting():
     for name, path in settings.CRON_JOBS.iteritems():
         module = import_module(path)
         getattr(module, name)
+
+
+@override_settings(
+    MINIFY_BUNDLES={'css': {'common_multi': [
+        'css/zamboni/admin-django.css',
+        'css/zamboni/admin-mozilla.css']}})
+@mock.patch('olympia.lib.jingo_minify_helpers.subprocess')
+def test_compress_assets_command_without_git(subprocess_mock):
+    build_id_file = os.path.realpath(os.path.join(settings.ROOT, 'build.py'))
+    assert os.path.exists(build_id_file)
+
+    with open(build_id_file) as f:
+        contents_before = f.read()
+
+    # Call command a second time. We should get a different build id, since it
+    # depends on a uuid.
+    call_command('compress_assets', use_uuid=True)
+    with open(build_id_file) as f:
+        contents_after = f.read()
+
+    assert contents_before != contents_after
