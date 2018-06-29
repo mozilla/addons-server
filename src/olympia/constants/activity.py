@@ -428,6 +428,18 @@ class THEME_REVIEW(_LOG):
     format = _(u'{addon} reviewed.')
 
 
+class ADMIN_USER_BANNED(_LOG):
+    id = 109
+    format = _(u'User {user} banned.')
+    admin_event = True
+
+
+class ADMIN_USER_PICTURE_DELETED(_LOG):
+    id = 110
+    format = _(u'User {user} picture deleted.')
+    admin_event = True
+
+
 class GROUP_USER_ADDED(_LOG):
     id = 120
     action_class = 'access'

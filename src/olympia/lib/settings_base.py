@@ -455,6 +455,10 @@ MIDDLEWARE_CLASSES = (
     'csp.middleware.CSPMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 
+    # This middleware does nothing, it's there for backwards-compatibility.
+    # Django < 1.10 checks for its presence to make session key rotation work.
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+
     'olympia.amo.middleware.CommonMiddleware',
     'olympia.amo.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
