@@ -3,7 +3,6 @@ from django.test.utils import override_settings
 
 import mock
 
-from olympia.lib.jingo_minify_helpers import get_media_root, get_media_url
 from olympia.amo.utils import from_string
 
 try:
@@ -199,14 +198,6 @@ def test_css_helper(getmtime, time):
         '<link rel="stylesheet" media="all" '
         'href="%scss/common_bundle-min.css?build=%s" />' %
         (settings.STATIC_URL, BUILD_ID_CSS))
-
-
-@override_settings(STATIC_URL='http://example.com/static/',
-                   MEDIA_URL='http://example.com/media/')
-def test_media_root_and_url():
-    """No override uses STATIC versions."""
-    assert get_media_root() == settings.JINGO_MINIFY_ROOT
-    assert get_media_url() == 'http://example.com/static/'
 
 
 @override_settings(STATIC_URL='http://example.com/static/',

@@ -52,6 +52,8 @@ def test_cron_jobs_setting():
         'css/zamboni/admin-mozilla.css']}})
 @mock.patch('olympia.lib.jingo_minify_helpers.subprocess')
 def test_compress_assets_command_without_git(subprocess_mock):
+    call_command('compress_assets', use_uuid=True)
+
     build_id_file = os.path.realpath(os.path.join(settings.ROOT, 'build.py'))
     assert os.path.exists(build_id_file)
 
