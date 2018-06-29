@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.core.exceptions import ValidationError
+from django.test.utils import override_settings
 
 from mock import Mock
 from rest_framework import serializers
@@ -75,16 +76,20 @@ class TestTranslationSerializerField(TestCase):
         }
         assert result == expected
 
-    def _test_expected_single_string(self, field, serializer=None):
+    def _test_expected_single_locale(self, field, serializer=None):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
-        expected = unicode(self.addon.name)
+        expected = {
+            'en-US': unicode(self.addon.name),
+        }
         assert result == expected
 
         field.source = None
         field.bind('description', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
-        expected = unicode(self.addon.description)
+        expected = {
+            'en-US': unicode(self.addon.description),
+        }
         assert result == expected
 
     def test_to_representation(self):
@@ -101,6 +106,26 @@ class TestTranslationSerializerField(TestCase):
         field = self.field_class()
         result = field.to_representation(data)
         assert result == data
+
+    def test_to_internal_value(self):
+        data = {
+            'fr': u'Non mais Allô quoi !',
+            'en-US': u'No But Hello what!'
+        }
+        field = self.field_class()
+        # Multiple translations
+        result = field.to_internal_value(data)
+        assert result == data
+        # Single translation
+        data.pop('en-US')
+        assert len(data) == 1
+        result = field.to_internal_value(data)
+        assert result == data
+        # A flat string value is forbidden now
+        with self.assertRaises(ValidationError) as exc:
+            field.to_internal_value(data['fr'])
+        assert exc.exception.message == (
+            u'You must provide a dictionary of {lang-code:value}.')
 
     def test_to_internal_value_strip(self):
         data = {
@@ -179,7 +204,7 @@ class TestTranslationSerializerField(TestCase):
         assert request.GET['lang'] == 'lol'
         mock_serializer = serializers.Serializer(context={'request': request})
         field = self.field_class()
-        self._test_expected_single_string(field, mock_serializer)
+        self._test_expected_single_locale(field, mock_serializer)
 
     def test_field_null(self):
         field = self.field_class()
@@ -208,6 +233,35 @@ class TestTranslationSerializerField(TestCase):
         field.bind('description', mock_serializer)
         result = field.to_representation(field.get_attribute(self.addon))
         assert result is None
+
+
+@override_settings(DRF_API_GATES={None: ('l10n_flat_input_output',)})
+class TestTranslationSerializerFieldFlat(TestTranslationSerializerField):
+
+    def _test_expected_single_locale(self, field, serializer=None):
+        field.bind('name', serializer)
+        result = field.to_representation(field.get_attribute(self.addon))
+        expected = unicode(self.addon.name)
+        assert result == expected
+
+        field.source = None
+        field.bind('description', serializer)
+        result = field.to_representation(field.get_attribute(self.addon))
+        expected = unicode(self.addon.description)
+        assert result == expected
+
+    def test_to_internal_value(self):
+        data = {
+            'fr': u'Non mais Allô quoi !',
+            'en-US': u'No But Hello what!'
+        }
+        field = self.field_class()
+        # Multiple translations
+        result = field.to_internal_value(data)
+        assert result == data
+        # Single translation
+        result = field.to_internal_value(data['fr'])
+        assert result == data['fr']
 
 
 class TestESTranslationSerializerField(TestTranslationSerializerField):
@@ -280,16 +334,20 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         expected = self.addon.description_translations
         assert result == expected
 
-    def _test_expected_single_string(self, field, serializer=None):
+    def _test_expected_single_locale(self, field, serializer=None):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
-        expected = unicode(self.addon.name_translations['en-US'])
+        expected = {
+            'en-US': unicode(self.addon.name_translations['en-US'])
+        }
         assert result == expected
 
         field.source = None
         field.bind('description', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
-        expected = unicode(self.addon.description_translations['en-US'])
+        expected = {
+            'en-US': unicode(self.addon.description_translations['en-US'])
+        }
         assert result == expected
 
     def test_get_attribute_source(self):
@@ -323,6 +381,23 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         field.bind('description', mock_serializer)
         result = field.to_representation(field.get_attribute(self.addon))
         assert result is None
+
+
+@override_settings(DRF_API_GATES={None: ('l10n_flat_input_output',)})
+class TestESTranslationSerializerFieldFlat(TestTranslationSerializerFieldFlat,
+                                           TestESTranslationSerializerField):
+
+    def _test_expected_single_locale(self, field, serializer=None):
+        field.bind('name', serializer)
+        result = field.to_representation(field.get_attribute(self.addon))
+        expected = unicode(self.addon.name_translations['en-US'])
+        assert result == expected
+
+        field.source = None
+        field.bind('description', serializer)
+        result = field.to_representation(field.get_attribute(self.addon))
+        expected = unicode(self.addon.description_translations['en-US'])
+        assert result == expected
 
 
 class TestSlugOrPrimaryKeyRelatedField(TestCase):

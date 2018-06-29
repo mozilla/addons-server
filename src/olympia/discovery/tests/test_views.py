@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from collections import OrderedDict
 
-import mock
+from django.test.utils import override_settings
 
+import mock
 from rest_framework.settings import api_settings
 from waffle.testutils import override_switch
 
@@ -40,10 +41,13 @@ def get_dummy_addons():
 
 
 class DiscoveryTestMixin(object):
-    def _check_disco_addon(self, result, item):
+    def _check_disco_addon(self, result, item, flat_name=False):
         addon = self.addons[item.addon_id]
         assert result['addon']['id'] == item.addon_id == addon.pk
-        assert result['addon']['name'] == unicode(addon.name)
+        if flat_name:
+            assert result['addon']['name'] == unicode(addon.name)
+        else:
+            assert result['addon']['name'] == {'en-US': unicode(addon.name)}
         assert result['addon']['slug'] == addon.slug
         assert result['addon']['icon_url'] == absolutify(
             addon.get_icon_url(64))
@@ -67,10 +71,13 @@ class DiscoveryTestMixin(object):
             ) == result['heading']
         assert result['description']
 
-    def _check_disco_theme(self, result, item):
+    def _check_disco_theme(self, result, item, flat_name=False):
         addon = self.addons[item.addon_id]
         assert result['addon']['id'] == item.addon_id == addon.pk
-        assert result['addon']['name'] == unicode(addon.name)
+        if flat_name:
+            assert result['addon']['name'] == unicode(addon.name)
+        else:
+            assert result['addon']['name'] == {'en-US': unicode(addon.name)}
         assert result['addon']['slug'] == addon.slug
 
         assert u'{1} <span>by <a href="{0}">{2}</a></span>'.format(
@@ -112,6 +119,27 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
                 self._check_disco_theme(result, discopane_items[i])
             else:
                 self._check_disco_addon(result, discopane_items[i])
+
+    @override_settings(DRF_API_GATES={
+        api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)})
+    def test_list_flat_output(self):
+        response = self.client.get(self.url, {'lang': 'en-US'})
+        assert response.data
+
+        discopane_items = disco_data['default']
+        assert response.data['count'] == len(discopane_items)
+        assert response.data['next'] is None
+        assert response.data['previous'] is None
+        assert response.data['results']
+
+        for i, result in enumerate(response.data['results']):
+            assert result['is_recommendation'] is False
+            if 'theme_data' in result['addon']:
+                self._check_disco_theme(
+                    result, discopane_items[i], flat_name=True)
+            else:
+                self._check_disco_addon(
+                    result, discopane_items[i], flat_name=True)
 
     def test_list_unicode_locale(self):
         """Test that disco pane API still works in a locale with non-ascii
