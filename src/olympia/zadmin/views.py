@@ -30,7 +30,6 @@ from olympia.compat.models import AppCompat, CompatTotals
 from olympia.files.models import File, FileUpload
 from olympia.search.indexers import get_mappings as get_addons_mappings
 from olympia.stats.search import get_mappings as get_stats_mappings
-from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int as vint
 from olympia.versions.models import Version
 from olympia.zadmin.forms import SiteEventForm
