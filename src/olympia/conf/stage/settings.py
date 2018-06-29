@@ -79,7 +79,7 @@ SLAVE_DATABASES = ['slave']
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 
 # Disable cache-machine on dev to prepare for its removal.
-CACHE_MACHINE_ENABLED = False
+CACHE_MACHINE_ENABLED = True
 
 CACHES = {
     'filesystem': {
