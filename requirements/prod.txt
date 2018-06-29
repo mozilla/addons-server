@@ -288,9 +288,9 @@ python-gflags==2.0 \
 python-memcached==1.53 \
     --hash=sha256:bcf71371d997bb46a3168a7b63aae66b56cccacc025af9310db4315681ef8868 # pyup: ==1.5.3
 # pytz is required by Babel, celery
-pytz==2018.4 \
-    --hash=sha256:65ae0c8101309c45772196b21b74c46b2e5d11b6275c45d251b150d5da334555 \
-    --hash=sha256:c06425302f2cf668f1bba7a0a03f3c1d34d4ebeef2c72003da308b3947c7f749
+pytz==2018.5 \
+    --hash=sha256:a061aa0a9e06881eb8b3b2b43f05b9439d6583c206d0a6c340ff72a7b6669053 \
+    --hash=sha256:ffb9ef1de172603304d9d2819af6f5ece76f2e85ec10692a524dd876e72bf277
 raven==6.9.0 \
     --hash=sha256:95f44f3ea2c1b176d5450df4becdb96c15bf2632888f9ab193e9dd22300ce46a \
     --hash=sha256:3fd787d19ebb49919268f06f19310e8112d619ef364f7989246fc8753d469888
