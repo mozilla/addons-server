@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-30 09:50+0000\n"
+"PO-Revision-Date: 2018-06-30 10:33+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1920,17 +1920,15 @@ msgstr "Το περιεχόμενο απορρίφθηκε"
 msgid "{addon} information request altered or removed by admin."
 msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
+msgstr "Το αίτημα πληροφοριών άλλαξε"
 
 #, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Απάντηση προγραμματιστή στο {addon} {version}."
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
+msgstr "Το αίτημα πληροφοριών αφαιρέθηκε"
 
 #, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
@@ -2736,9 +2734,8 @@ msgstr ""
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Συμφωνία διανομής προσθέτων Firefox"
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "Πολιτική αξιολόγησης"
+msgstr "Πολιτικές και κανόνες αξιολόγησης"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
@@ -3467,9 +3464,8 @@ msgstr "Τελειώσατε!"
 msgid "Version Submitted for Review"
 msgstr ""
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Η έκδοση υπεβλήθη"
+msgstr "Υπεβλήθη προεπισκόπηση της έκδοσης"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
@@ -3537,11 +3533,8 @@ msgstr "Τοποθεσία φιλοξενίας έκδοσης"
 msgid "Upload Version"
 msgstr "Μεταφόρτωση έκδοσης"
 
-#, fuzzy
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
-"Χρησιμοποιήστε τα παρακάτω πεδία για να αποστείλετε το πακέτο του πρόσθετου σας και να επιλέξετε τυχόν περιορισμούς λειτουργικού συστήματος. Μετά την αποστολή, θα διεξαχθεί στο αρχείο σας μια σειρά "
-"αυτοματοποιημένων δοκιμών και ελέγχων."
+msgstr "Χρησιμοποιήστε τα παρακάτω πεδία για να μεταφορτώσετε το πακέτου του πρόσθετου σας. Μετά τη μεταφόρτωση, θα διεξαχθεί στο αρχείο σας μια σειρά αυτοματοποιημένων δοκιμών και ελέγχων."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Με ποιες πλατφόρμες είναι συμβατό αυτό το αρχείο;"
@@ -3766,9 +3759,8 @@ msgstr "Ειδήσεις προγραμματιστών"
 msgid "View the blog &#9658;"
 msgstr "Προβολή ιστολογίου &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
+msgstr "Εκκρεμές αίτημα πληροφοριών:"
 
 msgid "This request for information has been resolved"
 msgstr "Αυτό το αίτημα για πληροφορίες έχει επιλυθεί"
@@ -4352,44 +4344,38 @@ msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr ""
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Μεταφράστε εύκολα {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-#, fuzzy
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Αναζητήστε εικόνες {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "Perform reverse image searches from an array of engines."
 msgstr ""
 
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Κάντε λήψη βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Λειτουργεί απρόσκοπτα με τις πιο δημοφιλείς ιστοσελίδες βίντεο."
 
-#, fuzzy
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Εξατομίκευση καρτελών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
 msgstr ""
 
-#, fuzzy
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Εξελίξτε το παιχνίδι των emojis {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr ""
 
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Κάντε λήψη στιγμιότυπων {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
@@ -5803,13 +5789,13 @@ msgid "Notify me about new listed versions"
 msgstr ""
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Εξαναγκασμός απενεργοποίησης προσθέτου"
 
 msgid "Force-enable add-on"
 msgstr "Εξαναγκαστική ενεργοποίηση προσθέτου"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "Απενεργοποίηση αυτόματης έγκρισης"
 
 msgid "Enable Auto-Approval"
 msgstr "Ενεργοποίηση αυτόματης έγκρισης"
