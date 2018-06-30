@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-28 16:14+0000\n"
+"PO-Revision-Date: 2018-06-30 09:32+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1901,13 +1901,11 @@ msgstr "Η αυτόματη έγκριση επιβεβαιώθηκε"
 msgid "{addon} {version} re-enabled."
 msgstr "Το {addon} {version} απορίφθηκε."
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "Η έκδοση {version} του {addon} κλιμακώθηκε."
+msgstr "Η έκδοση {version} του {addon} απενεργοποιήθηκε."
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "Εγκρίθηκε το {addon} {version}."
+msgstr "Εγκρίθηκε το περιεχόμενου της έκδοσης {version} του {addon}."
 
 #, fuzzy
 msgid "Content approved"
