@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-01 11:11+0000\n"
+"PO-Revision-Date: 2018-07-01 15:11+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -657,10 +657,10 @@ msgstr "{0}-ში ჩადგმა"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr "{0}-ის დაყენება მიუხედავად ყველაფრისა"
+msgstr "მაინც დაყენდეს {0}-ისთვის"
 
 msgid "Download for {0} anyway"
-msgstr "{0}-ის ჩამოტვირთვა მიუხედავად ყველაფრისა"
+msgstr "მაინც ჩამოიტვირთოს {0}-ისთვის"
 
 msgid "Not available for your platform"
 msgstr "თქვენს პლატოფმრაზე ხელმისაწვდომი არაა"
