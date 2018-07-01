@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2017-08-19 21:09+0000\n"
+"PO-Revision-Date: 2018-07-01 11:12+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6080,7 +6080,7 @@ msgstr "{0} :: ჭდე"
 
 #. {0} is a tag, such as jetpack.
 msgid "Search Results for tag \"{0}\""
-msgstr "ძიების შედეგები \"{0}\" ნაჭდევისთვის"
+msgstr "ძიების შედეგები \"{0}\" ჭდისთვის"
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
