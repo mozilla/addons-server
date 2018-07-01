@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-05-09 18:18+0000\n"
+"PO-Revision-Date: 2018-07-01 11:11+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -721,7 +721,7 @@ msgid "Stop following"
 msgstr "გამოწერის გაუქმება"
 
 msgid "Your browser does not support the video tag"
-msgstr "თქვენს ბრაუზერს არ აქვს ვიდეო ჭდეების მხარდაჭერა"
+msgstr "თქვენს ბრაუზერს არ აქვს ვიდეოს ჭდეების მხარდაჭერა"
 
 msgid "Changes Saved"
 msgstr "ცვლილებები შენახულია"
