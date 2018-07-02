@@ -131,7 +131,8 @@ class ManagerBase(models.Manager):
         gets fixed. It's probably fine, but this makes me happy for the moment
         and solved a get_or_create we've had in the past.
 
-        TODO: https://github.com/mozilla/addons-server/issues/7158
+        This should be replaced by "read committed" state:
+        https://github.com/mozilla/addons-server/issues/7158
         """
         with transaction.atomic():
             try:
@@ -372,19 +373,15 @@ class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
     class Meta:
         abstract = True
         get_latest_by = 'created'
-        # This needs to be set so that our custom `ManagerBase`
-        # is properly discovered. This is related too.
-        # This helps resolving translation fields on related fields.
-        # This also ensures we don't ignore soft-deleted items when traversing
-        # relations, if they are hidden by the objects manager, like we
-        # do with `addons.models:Addon`
-        base_manager_name = 'objects'
 
         # This is important: Setting this to `objects` makes sure
         # that Django is using the manager set as `objects` on this
         # instance reather than the `_default_manager` or even
         # `_base_manager`. That's the only way currently to reliably
-        # tell Django to resolve translation objects / call transformers
+        # tell Django to resolve translation objects / call transformers.
+        # This also ensures we don't ignore soft-deleted items when traversing
+        # relations, if they are hidden by the objects manager, like we
+        # do with `addons.models:Addon`
         base_manager_name = 'objects'
 
     def get_absolute_url(self, *args, **kwargs):
