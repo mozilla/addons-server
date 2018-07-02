@@ -27,12 +27,6 @@
           <a href="#addons-edit">
             {{ _('Add-ons') }}</a>
         </li>
-        {% if owner and collection.type not in amo.COLLECTIONS_NO_CONTRIB %}
-        <li>
-          <a href="#users-edit">
-            {{ _('Contributors & More') }}</a>
-        </li>
-        {% endif %}
       </ul>
 
     {% if owner and form %}
@@ -67,18 +61,6 @@
         </form>
       </div>
 
-    {% if owner and collection.type not in amo.COLLECTIONS_NO_CONTRIB %}
-      <div class="tab_panel tab-panel tab-selected" id="users-edit">
-        <form method="post"
-            action="{{ url('collections.edit_contributors', username, slug) }}">
-          {% include 'bandwagon/edit_contributors.html' %}
-          <div class="listing-footer">
-            <input type="submit" value="{{ _('Save Changes') }}">
-            {% include 'bandwagon/includes/delete.html' %}
-          </div>
-        </form>
-      </div>
-    {% endif %}
     </div>
   </div> {# primary #}
 {% endblock %}

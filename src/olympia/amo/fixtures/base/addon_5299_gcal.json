@@ -27,13 +27,11 @@
         "model": "addons.addon",
         "fields": {
             "slug": "better-gcal-5299",
-            "dev_agreement": true,
             "last_updated": "2008-07-07 12:08:01",
             "_current_version": 49515,
             "view_source": false,
             "total_downloads": 206990,
             "disabled_by_user": false,
-            "average_daily_downloads": 207,
             "guid": "bettergcal@ginatrapani.org",
             "description": 58812,
             "weekly_downloads": 580,

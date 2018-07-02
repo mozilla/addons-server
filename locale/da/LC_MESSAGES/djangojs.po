@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2017-08-11 15:37+0000\n"
-"Last-Translator: jakobkpetersen <jakobkpetersen@gmail.com>\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-10 04:40+0000\n"
+"Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -258,19 +258,19 @@ msgid "Collections Created"
 msgstr "Samling oprettet"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Tilføjelser i brug"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Tilføjelser lavet"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Tilføjelser hentet"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Tilføjelser opdateret"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "Anmeldelser skrevet"
 
 msgid "User Signups"
 msgstr ""
@@ -706,18 +706,6 @@ msgstr "Fjern denne tilføjelse fra samlingen"
 msgid "Remove"
 msgstr "Fjern"
 
-msgid "Remove this user as a contributor"
-msgstr "Fjern denne bruger som bidragyder"
-
-msgid "An email address is required."
-msgstr "En mailadresse er påkrævet."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Du kan ikke tilføje dig selv som bidragsyder."
-
-msgid "You have already added that user."
-msgstr "Du har allerede tilføjet den bruger."
-
 msgid "Add to favorites"
 msgstr "Føj til favoritter"
 
@@ -816,13 +804,13 @@ msgid "Duplicate"
 msgstr ""
 
 msgid "Rejected"
-msgstr ""
+msgstr "Afvist"
 
 msgid "Approved"
-msgstr ""
+msgstr "Godkendt"
 
 msgid "No results found"
-msgstr ""
+msgstr "Ingen resultater fundet"
 
 msgid "Theme"
 msgstr "Tema"

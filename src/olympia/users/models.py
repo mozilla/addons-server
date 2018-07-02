@@ -26,7 +26,7 @@ from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
-from olympia.lib.cache import cached
+from olympia.lib.cache import cache_get_or_set
 
 
 log = olympia.core.logger.getLogger('z.users')
@@ -327,20 +327,31 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             return user_media_url('userpics') + path
 
     @cached_property
+    def cached_developer_status(self):
+        qset = list(
+            self.addonuser_set
+            .exclude(addon__status=amo.STATUS_DELETED)
+            .values_list('addon__type', flat=True))
+
+        return {
+            'is_developer': bool(qset),
+            'is_addon_developer': bool(
+                [t for t in qset if t != amo.ADDON_PERSONA]),
+            'is_artist': bool([t for t in qset if t == amo.ADDON_PERSONA])
+        }
+
+    @property
     def is_developer(self):
-        return self.addonuser_set.exclude(
-            addon__status=amo.STATUS_DELETED).exists()
+        return self.cached_developer_status['is_developer']
 
-    @cached_property
+    @property
     def is_addon_developer(self):
-        return self.addonuser_set.exclude(
-            addon__type=amo.ADDON_PERSONA).exists()
+        return self.cached_developer_status['is_addon_developer']
 
-    @cached_property
+    @property
     def is_artist(self):
         """Is this user a Personas Artist?"""
-        return self.addonuser_set.filter(
-            addon__type=amo.ADDON_PERSONA).exists()
+        return self.cached_developer_status['is_artist']
 
     @write
     def update_is_public(self):
@@ -349,7 +360,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.addonuser_set.filter(
                 role__in=[amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV],
                 listed=True,
-                addon__status=amo.STATUS_PUBLIC).no_cache().exists())
+                addon__status=amo.STATUS_PUBLIC).exists())
         if is_public != pre:
             log.info('Updating %s.is_public from %s to %s' % (
                 self.pk, pre, is_public))
@@ -399,17 +410,55 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return not self.display_name and self.has_anonymous_username
 
     @cached_property
-    def reviews(self):
-        """All reviews that are not dev replies."""
-        qs = self._ratings_all.filter(reply_to=None)
-        # Force the query to occur immediately. Several
-        # reviews-related tests hang if this isn't done.
-        return qs
+    def ratings(self):
+        """All ratings that are not dev replies."""
+        return self._ratings_all.filter(reply_to=None)
 
-    def delete(self, hard=False):
+    def delete_or_disable_related_content(self, delete=False):
+        """Delete or disable content produced by this user if they are the only
+        author."""
+        self.collections.all().delete()
+        for addon in self.addons.all().iterator():
+            if not addon.authors.exclude(pk=self.pk).exists():
+                if delete:
+                    addon.delete()
+                else:
+                    addon.force_disable()
+        user_responsible = core.get_user()
+        self._ratings_all.all().delete(user_responsible=user_responsible)
+        self.delete_picture()
+
+    def delete_picture(self, picture_path=None, original_picture_path=None):
+        """Delete picture of this user."""
         # Recursive import
         from olympia.users.tasks import delete_photo
 
+        if picture_path is None:
+            picture_path = self.picture_path
+        if original_picture_path is None:
+            original_picture_path = self.picture_path_original
+
+        if storage.exists(picture_path):
+            delete_photo.delay(picture_path)
+
+        if storage.exists(original_picture_path):
+            delete_photo.delay(original_picture_path)
+
+        if self.picture_type:
+            self.update(picture_type=None)
+
+    def ban_and_disable_related_content(self):
+        """Admin method to ban the user and disable the content they produced.
+
+        Similar to deletion, except that the content produced by the user is
+        forcibly disabled instead of being deleted where possible, and the user
+        is not fully anonymized: we keep their fxa_id and email so that they
+        are never able to log back in.
+        """
+        self.delete_or_disable_related_content(delete=False)
+        return self.delete(keep_fxa_id_and_email=True)
+
+    def delete(self, hard=False, keep_fxa_id_and_email=False):
         # Cache the values in case we do a hard delete and loose
         # reference to the user-id.
         picture_path = self.picture_path
@@ -418,10 +467,15 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         if hard:
             super(UserProfile, self).delete()
         else:
-            log.info(
-                u'User (%s: <%s>) is being anonymized.' % (self, self.email))
-            self.email = None
-            self.fxa_id = None
+            if keep_fxa_id_and_email:
+                log.info(u'User (%s: <%s>) is being partially anonymized.' % (
+                    self, self.email))
+            else:
+                log.info(u'User (%s: <%s>) is being anonymized.' % (
+                    self, self.email))
+                self.email = None
+                self.fxa_id = None
+            self.biography = ''
             self.display_name = None
             self.homepage = ''
             self.location = ''
@@ -434,11 +488,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.anonymize_username()
             self.save()
 
-        if storage.exists(picture_path):
-            delete_photo.delay(picture_path)
-
-        if storage.exists(original_picture_path):
-            delete_photo.delay(original_picture_path)
+        self.delete_picture(picture_path=picture_path,
+                            original_picture_path=original_picture_path)
 
     def set_unusable_password(self):
         raise NotImplementedError('cannot set unusable password')
@@ -552,7 +603,7 @@ class DeniedName(ModelBase):
         def fetch_names():
             return [n.lower() for n in qs.values_list('name', flat=True)]
 
-        blocked_list = cached(fetch_names, 'denied-name:blocked')
+        blocked_list = cache_get_or_set('denied-name:blocked', fetch_names)
         return any(n in name for n in blocked_list)
 
 

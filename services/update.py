@@ -6,7 +6,8 @@ from email.Utils import formatdate
 from time import time
 from urlparse import parse_qsl
 
-from services.utils import mypool, settings
+from services.utils import (
+    get_cdn_url, log_configure, mypool, settings, PLATFORM_NAMES_TO_CONSTANTS)
 
 # This has to be imported after the settings so statsd knows where to log to.
 from django_statsd.clients import statsd
@@ -18,8 +19,6 @@ except ImportError:
 
 from olympia.constants import applications, base
 import olympia.core.logger
-
-from .utils import get_cdn_url, log_configure, PLATFORM_NAMES_TO_CONSTANTS
 
 
 # Go configure the log.
@@ -220,19 +219,6 @@ class Update(object):
 
         else:  # Not defined or 'strict'.
             sql.append('AND appmax.version_int >= %(version_int)s ')
-
-        # Special case for bug 1031516.
-        if data['guid'] == 'firefox-hotfix@mozilla.org':
-            app_version = data['version_int']
-            hotfix_version = data['version']
-            if version_int('10') <= app_version <= version_int('16.0.1'):
-                if hotfix_version < '20121019.01':
-                    sql.append("AND versions.version = '20121019.01' ")
-                elif hotfix_version < '20130826.01':
-                    sql.append("AND versions.version = '20130826.01' ")
-            elif version_int('16.0.2') <= app_version <= version_int('24.*'):
-                if hotfix_version < '20130826.01':
-                    sql.append("AND versions.version = '20130826.01' ")
 
         sql.append('ORDER BY versions.id DESC LIMIT 1;')
 

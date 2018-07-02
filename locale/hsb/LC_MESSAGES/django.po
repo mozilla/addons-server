@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-05-29 06:54+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-22 20:47+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -200,9 +200,8 @@ msgstr "Prawidła priwatnosće pokazać"
 msgid "View End-User License Agreement"
 msgstr "Licencne dojednanje za kóncnych wužiwarjow (EULA) pokazać"
 
-#, python-format
-msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "Tutón přidatk njeje so wot Mozilla přepruwował. <a href=\"%(url)s\">Dalše informacije</a>"
+msgid "This add-on has not been reviewed by Mozilla."
+msgstr "Tutón přidatk njeje so hišće wot Mozilla přepruwował."
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Tutón přidatk je so wot swojich wuwiwarjow jako eksperimentelny markěrował."
@@ -417,9 +416,6 @@ msgstr "Što mysliće?"
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "Prošu <a href=\"%(login)s\">přizjewće so</a>, zo byšće pohódnoćenje zapodał"
 
-msgid "Title:"
-msgstr "Titul:"
-
 msgid "Review:"
 msgstr "Pohódnoćenje:"
 
@@ -585,8 +581,8 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Někotre přidatki proša wo prawo, zo bychu wěste funkcije wuwjedli (na přikład: přidatk za rjadowanje rajtarkow prosy wo přistup na rajtarkowy system wašeho wobhladowaka)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
-"some rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
+" rare cases risk may be involved."
 msgstr ""
 "Dokelž maće kontrolu nad swojim Firefox, móžeće wy tutym próstwam wotpowědować dać abo próstwa wotpokazać. Hdyž prawa daće, so zasadnje wukon abo wěstota wašeho wobhladowaka njepohubjeńša, ale w "
 "rědkich padach je wěste riziko."
@@ -775,17 +771,17 @@ msgstr "Njenamakany"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
-"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
+"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Bohužel njemóžemy namakać, štož pytaće.</h1> <p> Strona abo dataja, wo kotruž sće prosył, njeje so na našim sydle namakała. Je móžno, zo sće na zestarjeny wotkaz kliknył abo adresu wopak "
-"zapisał. </p> <ul> <li>Jeli sće adresu zapisał, klikńće dwójce, zo byšće prawopis kontrolował.</li> <li> Jeli sće wotkazej wot něhdźe slědował, <a href=\"https://github.com/mozilla/addons-server/"
-"issues/new/\">pisajće prošu zmylkowu rozprawu</a>. Zdźělće nam, zwotkelž sće přišoł a za čimž sće pytał, a my budźemy naše najlěpše činić, zo bychmy problem rozrisali. </li> </ul> <p>Abo móžeće "
-"prosće k někotrym z woblubowanych stronow na našim websydle skočić.</p> <ul> <li>Zajimujeće so za <a href=\"%(rec)s\">lisćinu předstajenych přidatkow</a>?</li> <li> Chceće <a href=\"%(search)s"
-"\">přidatki pytać</a>? Móžeće k <a href=\"%(search)s\">pytanskej stronje</a> přeńć abo prosće pytanske polo horjeka wužiwać. </li> <li> Jeli chceće radšo znowa započeć, dźiće prosće k <a href="
-"\"%(home)s\">startowej stronje přidatkow</a>. </li> </ul>"
+"zapisał. </p> <ul> <li>Jeli sće adresu zapisał, klikńće dwójce, zo byšće prawopis kontrolował.</li> <li> Jeli sće wotkazej wot něhdźe slědował, <a href=\"https://github.com/mozilla/addons-"
+"server/issues/new/\">pisajće prošu zmylkowu rozprawu</a>. Zdźělće nam, zwotkelž sće přišoł a za čimž sće pytał, a my budźemy naše najlěpše činić, zo bychmy problem rozrisali. </li> </ul> <p>Abo "
+"móžeće prosće k někotrym z woblubowanych stronow na našim websydle skočić.</p> <ul> <li>Zajimujeće so za <a href=\"%(rec)s\">lisćinu předstajenych přidatkow</a>?</li> <li> Chceće <a "
+"href=\"%(search)s\">přidatki pytać</a>? Móžeće k <a href=\"%(search)s\">pytanskej stronje</a> přeńć abo prosće pytanske polo horjeka wužiwać. </li> <li> Jeli chceće radšo znowa započeć, dźiće prosće"
+" k <a href=\"%(home)s\">startowej stronje přidatkow</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Hopla"
@@ -830,8 +826,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p>Prošu zapodajće <strong>wšě slědowace słowa</strong>, <strong>dźělene přez mjezota, jeli trěbne</strong>.</p> <p> Jeli to je lědma čitajomne, móžeće <a href=\"#\" id=\"recaptcha_different"
-"\">druhe słowa wupruwować</a> abo <a href=\"#\" id=\"recaptcha_audio\">druhi typ nadawka</a> město toho spytać.</p>"
+"<p>Prošu zapodajće <strong>wšě slědowace słowa</strong>, <strong>dźělene přez mjezota, jeli trěbne</strong>.</p> <p> Jeli to je lědma čitajomne, móžeće <a href=\"#\" id=\"recaptcha_different\">druhe"
+" słowa wupruwować</a> abo <a href=\"#\" id=\"recaptcha_audio\">druhi typ nadawka</a> město toho spytać.</p>"
 
 msgid "Top Rated"
 msgstr "Najlěpje pohódnoćene"
@@ -851,9 +847,6 @@ msgstr "Drasty"
 
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Chceće wjace přiměrić? Spytajće <b>dospołne drasty</b>"
-
-msgid "Most Followers"
-msgstr "Najwjace wobkedźbowarjow"
 
 msgid "Collections"
 msgstr "Zběrki"
@@ -968,24 +961,9 @@ msgstr "Wersije"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr "Jeli waše podpěrane nałoženje manifestowu dataju njetrjeba, dyrbiće hišće jednu z trěbnymi kajkosćemi přidać, kaž su %(amo_manifests_mdn_link_open)stu%(amo_manifests_mdn_link_close)s podate."
-
-msgid "Contributors"
-msgstr "Sobuskutkowarjo"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Zběrki :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Zběrki su skupiny přiwuznych přidatkow, kotrež móže kóždy wutworić a dale dać."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Zběrki :: {1}"
 
 msgid "Only I can view this collection."
 msgstr "Jenož ja móžu sej tutu zběrku wobhladać."
@@ -1038,20 +1016,14 @@ msgstr "Tutón swójski URL njeda so wužiwać."
 msgid "This add-on already belongs to the collection"
 msgstr "Tutón přidatk hižo k zběrce słuša"
 
-msgid "Name"
-msgstr "Mjeno"
-
-msgid "Recently Updated"
-msgstr "Njedawno zaktualizowane"
-
-msgid "Recently Popular"
-msgstr "Najnowše woblubowane"
-
 msgid "Added"
 msgstr "Přidate"
 
 msgid "Popularity"
 msgstr "Woblubowanosć"
+
+msgid "Name"
+msgstr "Mjeno"
 
 msgid "Collection created!"
 msgstr "Zběrka wutworjena!"
@@ -1135,9 +1107,6 @@ msgstr "Tutu zběrku priwatnu činić"
 msgid "Make this Collection Public"
 msgstr "Tutu zběrku zjawnu činić"
 
-msgid "Learn about collections"
-msgstr "Wjace wo zběrkach"
-
 msgid "More Options:"
 msgstr "Dalše nastajenja:"
 
@@ -1169,17 +1138,14 @@ msgstr "Start"
 msgid "What are Collections?"
 msgstr "Što su zběrki?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Zběrki su skupiny přiwuznych přidatkow, kotrež móže kóždy wutworić a dale dać."
+
 msgid "Explore Collections"
 msgstr "Zběrki wuslědźić"
 
 msgid "Common Tags"
 msgstr "Zwučene znački"
-
-msgid "More by this User"
-msgstr "Wjace wot tutoho wužiwarja"
-
-msgid "See all collections by this user"
-msgstr "Wšě zběrki wot tutoho wužiwarja pokazać"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1189,8 +1155,8 @@ msgstr ""
 "zjawna njeje, klikńće na tłóčatko deleka, zo byšće ju priwatnu činił."
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
+" be able to see your favorites, click the button below to make it public."
 msgstr ""
 "Přidatki, kotrež z pomocu funkcije <b>Faworitam přidać</b> jako fawority markěrujeće, so deleka jewja. Tuta zběrka je tuchwilu <b>priwatna</b>, to rěka, jenož wy móžeće ju widźeć. Jeli chceće, zo "
 "kóždy móže waše fawority widźeć, klikńće na tłóčatko deleka, zo byšće ju zjawnu činił."
@@ -1280,63 +1246,8 @@ msgstr "{0} wobdźěłać"
 msgid "Description"
 msgstr "Wopisanje"
 
-msgid "Contributors & More"
-msgstr "Sobuskutkowarjo a wjace"
-
 msgid "Save Changes"
 msgstr "Změny składować"
-
-msgid "Owner"
-msgstr "Swójstwownik"
-
-msgid "Make Owner"
-msgstr "K swójstwownikej činić"
-
-msgid "Remove this user as a contributor"
-msgstr "Tutoho wužiwarja jako sobuskutkowarja wotstronić"
-
-msgid "Remove"
-msgstr "Wotstronić"
-
-msgid "Collection Contributors"
-msgstr "Sobuskutkowarjo zběrki"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"Móžeće tutej zběrce wjacorych sobuskutkowarjow přidać. Sobuskutkowar móže tutej zběrce přidatki přidać a z tuteje zběrki wotstronić, ale njemóže jeje mjeno abo wopisanje změnić. Zo byšće "
-"sobuskutkowarja přidał, zapodajće jeho e-mejlowu adresu w polu deleka. Sobuskutkowarjo dyrbja konto na Mozilla Add-ons měć."
-
-msgid "User"
-msgstr "Wužiwar"
-
-msgid "Email"
-msgstr "E-mejlowa adresa"
-
-msgid "Role"
-msgstr "Róla"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Zapodajće e-mejlowu adresu sobuskutkowarja, kotryž ma so přidać"
-
-msgid "Add Contributor"
-msgstr "Sobuskutkowarja přidać"
-
-msgid "Contributor"
-msgstr "Sobuskutkowar"
-
-msgid "Admin Settings"
-msgstr "Administratorowe nastajenja"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Warnowanje:</b> Jeli swójstwownika tuteje zběrki změniće, njemóžeće ju hižo wobdźěłać. Móžeće jej jenož přidatki přidać abo z njeje wotstronić."
-
-msgid "Continue"
-msgstr "Dale"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "abo <a id=\"change-owner-cancel\" href=\"#\">Přetorhnyć</a>"
 
 msgid "Remove from favorites"
 msgstr "Z faworitow wotstronić"
@@ -1351,27 +1262,9 @@ msgstr "Zběrki wot {0}"
 msgid "No collections found."
 msgstr "Žane zběrki namakane."
 
-msgid "Most-Followed Collections"
-msgstr "Najbóle wobkedźbowane zběrki"
-
-msgid "Newest Collections"
-msgstr "Najnowše zběrki"
-
-msgid "Collections by Name"
-msgstr "Zběrki po mjenje"
-
-msgid "Recently Updated Collections"
-msgstr "Njedawno zaktualizowane zběrki"
-
-msgid "Recently Popular Collections"
-msgstr "Najnowše woblubowane zběrki"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Zběrki su skupiny přiwuznych přidatkow, kotrež kóždy móže wutworić a dale dać. Wuslědźće zběrki wutworjene wot druhich wužiwarjow abo <a href=\"%(url)s\">wutworće swójsku</a>."
-
-msgid "Subscribe"
-msgstr "Abonować"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1409,6 +1302,9 @@ msgstr "Přidatk"
 
 msgid "Comment"
 msgstr "Komentar"
+
+msgid "Remove"
+msgstr "Wotstronić"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Zapodajće mjeno přidatka, kotryž ma so přidać"
@@ -1476,6 +1372,9 @@ msgstr "Najwjace wužiwarjow"
 msgid "Weekly Downloads"
 msgstr "Tydźenske sćehnjenja"
 
+msgid "Recently Updated"
+msgstr "Njedawno zaktualizowane"
+
 msgid "Up & Coming"
 msgstr "Nastawace"
 
@@ -1495,6 +1394,9 @@ msgstr "{0}: Předstajene přidatki"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Žane předstajene přidatki w kategoriji {0}."
+
+msgid "Subscribe"
+msgstr "Abonować"
 
 msgid "Featured Add-ons"
 msgstr "Předstajene přidatki"
@@ -1517,8 +1419,8 @@ msgstr "Rěčny pakćik sćahnyć"
 
 #, python-format
 msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
-"of the entire application."
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
+" the entire application."
 msgstr ""
 "Instalowanje słownikoweho přidatka prawopisnej kontroli %(app_name)s nowe rěčne nastajenje přidawa, kotrež waš prawopis kontroluje, hdyž formulary wupjelnjeće. Rěčne pakćiki rěč cyłeho nałoženja "
 "změnja."
@@ -1667,8 +1569,7 @@ msgstr "Wšě najwyše pohódnoćene pokazać"
 
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
-"Wjace hač 300,000 designow, zo byšće swój wobhladowak personalizował! Pohibujće swoju myšku nad pozadkowu drastu, zo by ju wupruwował. <a href=\"%(url)s\" class=\"more-info\">Rozhladajće so</a>"
+msgstr "Wjace hač 300,000 designow, zo byšće swój wobhladowak personalizował! Pohibujće swoju myšku nad pozadkowu drastu, zo by ju wupruwował. <a href=\"%(url)s\" class=\"more-info\">Rozhladajće so</a>"
 
 msgid "Want more personalization?"
 msgstr "Chceće wjace personalizacije?"
@@ -1677,8 +1578,7 @@ msgstr "Chceće wjace personalizacije?"
 #. theme.
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
-"Dospołne drasty měnjeja wonkowny napohlad wašeho wobhladowaka přez stile za woknowy wobłuk, adresowu lajstu, tłóčatka, rajtarki a menije. <a href=\"%(url)s\" class=\"more-info\">Rozhladujće so</a>"
+msgstr "Dospołne drasty měnjeja wonkowny napohlad wašeho wobhladowaka přez stile za woknowy wobłuk, adresowu lajstu, tłóčatka, rajtarki a menije. <a href=\"%(url)s\" class=\"more-info\">Rozhladujće so</a>"
 
 msgid "Up & Coming Themes"
 msgstr "Nastawace drasty"
@@ -1697,8 +1597,8 @@ msgstr "Rozprawy wo přidatkowej kompatibelnosći"
 
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
+" supporting an upcoming Firefox version. </p>"
 msgstr ""
 "<p> Rozprawy, kotrež su so nam přez <a href=\"%(url_)s\">rozprawjak přidatkoweje kompatibelnosće</a> připokazali, so tu zběraja, zo móhli wuwiwarjo je čitać. Tute rozprawy nam pomhaja postajić, "
 "kotre přidatki pomoc trjebaja, zo bychu přichodnu wersiju Firefox podpěrowali.</p>"
@@ -2110,6 +2010,9 @@ msgstr "Za dalše přepruwowanje woznamjenjene"
 
 msgid "Unlisted"
 msgstr "W lisćinje njepodate"
+
+msgid "Owner"
+msgstr "Swójstwownik"
 
 msgid "Developer"
 msgstr "Wuwiwar"
@@ -2684,18 +2587,23 @@ msgstr ""
 "Na tutym sydle. <span class=\"helptext\">Waše zapodaće so na tutym sydle nalistuje a w zrjadowaku přidatkow Firefox za miliony wužiwarjow, po tym zo je přepruwowanje žórłoweho koda wobstał. "
 "Awtomatiske aktualizacije so přez tute sydło rjaduja. Tutón přidatk da so tež za wabjenje a wubědźowanja Mozilla wužiwać. Samorozdźělenje přepruwowanych datajow je tež móžne.</span>"
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "Samostatny. <span class=\"helptext\">Waše zapodaće budźe so hnydom za samorozdźělenje signować. Aktualizacije měli so přez updateURL abo eksterne nałoženske aktualizacije rjadować.</span>"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategorije njedadźa so změnić, mjeztym so waš přidatk předstaja."
+
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Přidatki za Thunderbird a SeaMonkey so nětko na addons.thunderbird.net nalistuja a wothladuja. Móžeće samsne konto wužiwać, zo byšće swoje přidatki na nowym sydle aktualizował."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Wot Firefox 53 móža nowe rozšěrjenja na tutym websydle jenož WebExtensions być."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Zestarjene rozšěrjenja z Firefox 57 abo nowšimi kompatibelne njejsu. Wužiwajće maxVersion 56.* abo niše."
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr "Rěčne pakćiki stareho typa so hižo njepodpěruja. Instalowanski manifest WebExtensions je trěbny. Hlejće {mdn_link} za dalše podrobnosće."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Dowolujemy a poručamy aktualizaciju, ale njemóžeće tutón proces přewobroćić. Hdyž waši wužiwarjo su WebExtension instalowali, njemóža hižo přidatk stareho typa instalować."
@@ -2827,8 +2735,8 @@ msgid "API key revoked"
 msgstr "API-kluč wotwołany"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 "Prjedy hač započnjeće, čitajće a akceptujće prošu naše dojednanje wo rozdźělowanju a naše přepruwowanske zasady a prawidła. Dojednanje wo rozdźělowanju Firefox tež na naš pokazku priwatnosće "
 "wotkazuje, kotryž wujasnja, kak z wašimi informacijemi wobchadźamy."
@@ -2965,9 +2873,7 @@ msgstr ""
 "nowšeje wersije tutoho přidatka."
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibelnosć aktualizować</a> <a href=\"%(version_url)s\" class=\"button\">Nowu wersiju nahrać</a> abo <a href=\"#\" "
 "class=\"close\">Ignorować</a>"
@@ -3094,8 +3000,7 @@ msgstr ""
 "docpěł."
 
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Kategorije njedadźa so změnić, dołhož so waš přidatk za tute nałoženje předstaja. Prošu pósćelće e-mejlku na <a href=\"mailto:%(email)s\">%(email)s</a>, jeli je přičina, zo byšće swoje kategorije "
 "změnił."
@@ -3165,12 +3070,15 @@ msgstr "Imformacije pomocy"
 msgid "Support Information for {0}"
 msgstr "Informacije pomocy za {0}"
 
+msgid "Email"
+msgstr "E-mejlowa adresa"
+
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
-"Jeli chceće e-mejlowu adresu za naprašowanja pomocy pokazać, zapodajće ju tu. Jeli maće rozdźělne adresy za kóždy rěč, móžeće wjacore přełožki tutoho pola přidać. To je jenož za nalistowane "
-"přidatki relewantne."
+"Jeli chceće e-mejlowu adresu za naprašowanja pomocy pokazać, zapodajće ju tu. Jeli maće rozdźělne adresy za kóždy rěč, móžeće wjacore přełožki tutoho pola přidać. To je jenož za nalistowane přidatki"
+" relewantne."
 
 msgid "Website"
 msgstr "Websydło"
@@ -3322,6 +3230,16 @@ msgstr "Prošu podajće pomjenjowanje za tute foto wobrazowki:"
 
 msgid "Add a Screenshot..."
 msgstr "Foto wobrazowki přidać..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+"PNG a JPG so njepodpěrujetej. Maksimalna a doporučena wulkosć za fota wobrazowki je 1280x800 pikselow. 640x400 pikselow je dobra alternatiwa, jeli maće jenož mjeńše wobrazy. Fota wobrazowki na wašej"
+" lisćinowej stronje jasnje šansy powyšeja, zo so waš přidatk instaluje a na startowej stronje předstaja."
+
+msgid "Continue"
+msgstr "Dale"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Smědźa druzy waš přidatk dźělić, jeli was jako awtora naspominaja?"
@@ -3675,7 +3593,7 @@ msgid "Select a header image for your theme"
 msgstr "Wubjerće hłowowy wobraz za swoju drastu"
 
 msgid "Image height should be 200 pixels"
-msgstr "Wpbrazowa wysokosć měła 200 pikselow być"
+msgstr "Wobrazowa wysokosć měła 200 pikselow być"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG abo GIF (njeaniměrowany)"
@@ -3758,8 +3676,8 @@ msgstr "JWT-kluč"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 "Zo byšće API-naprašowanja stajił, pósćelće <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> jako awtorizowansku hłowu. Dyrbiće JWT za kóžde naprašowanje tworić, kaž so to w<a href=\"%(docs_url)s"
 "\">API-dokumentaciji</a> wujasnja."
@@ -3950,9 +3868,6 @@ msgstr "Pomoc"
 msgid "Policies"
 msgstr "Zasady"
 
-msgid "FAQ"
-msgstr "Huste prašenja"
-
 msgid "Report Bug"
 msgstr "Programowy zmylk zdźělić"
 
@@ -4075,8 +3990,8 @@ msgstr "Firefox přiměrić"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
+"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "Přidatki zmóžnjeja milionam wužiwarjow Firefox jich přehladowanske dožiwjenje polěpšić. Jeli so w %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s a "
 "%(css_link_open)sCSS%(link_close)s wuznawaće, maće hižo trěbne znajomosće, zo byšće wulkotny přidatk wutworił."
@@ -4220,11 +4135,11 @@ msgstr "Pomjenujće swoju drastu."
 
 #, python-format
 msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
-"Communications and Cookies Privacy Notice%(link_close)s."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
+" and Cookies Privacy Notice%(link_close)s."
 msgstr ""
-"Sym z %(agreement_link_open)sdojednanjom za rozdźělowanje přidatkow Firefox%(link_close)s přezjedny, a z tym, zo so z mojimi datami tak wobchadźeja, kaž to je w "
-"%(privacy_notice_link_open)szdźělence priwatnosće za websydła, komunikacije a placki%(link_close)s wopisane."
+"Sym z %(agreement_link_open)sdojednanjom za rozdźělowanje přidatkow Firefox%(link_close)s přezjedny, a z tym, zo so z mojimi datami tak wobchadźeja, kaž to je w %(privacy_notice_link_open)szdźělence"
+" priwatnosće za websydła, komunikacije a placki%(link_close)s wopisane."
 
 msgid "Submit Theme"
 msgstr "Drastu zapodać"
@@ -4453,29 +4368,29 @@ msgstr[1] "{0} warnowani"
 msgstr[2] "{0} warnowanja"
 msgstr[3] "{0} warnowanjow"
 
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokowanje wabjenja a škit priwatnosće {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Zastajće skryte přesćěhowaki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Z jednorym nastajenjom kontrolujeće wabjenje, kotrež widźiće a wašnje, kak wam w interneće slěduja."
+msgid " Block invisible trackers and spying ads that follow you around the web."
+msgstr " Blokujće njewidźomne přesćěhowaki a spionowace wabjenje, kotrež wam we webje slěduja."
 
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Přemsylće rajtarki nowo {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgstr "Přiměrće strony noweho rajtarka {start_sub_heading}z {addon_name}{end_sub_heading}"
 
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr "Maće jara wjele wočinjenych rajtarkow? Organizujće je w praktiskej bóčnicy."
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgstr "Wužiwajće rjanu nowu stronu z přiměrujomnymi pozadkami, informacijemi wo lokalnym wjedrje a wjace."
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zastajće slědowanje Facebooka {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Přełožujće lochko {start_sub_heading}z {addon_name} {end_sub_heading}"
 
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Izolujće swoju Facebookowu identitu do wotdźěleneho „kontejnera“, kotryž Facebookej poćežuje, wašim pohibam we webje slědować."
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr "Wuzběhńće tekst, klikńće z prawej tastu a přełožće hnydom."
 
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pytajće wobrazy {start_sub_heading}z {addon_name}{end_sub_heading}"
 
-msgid " Perform reverse image searches from an array of engines."
-msgstr "Wuwjedźće wróćopytanja wobrazow z rjadom pytawow."
+msgid "Perform reverse image searches from an array of engines."
+msgstr "Přewjedźće wróćopytanja wobrazow z rjadom pytawow."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sćehńće wideja {start_sub_heading}z {addon_name}{end_sub_heading}"
@@ -4908,8 +4823,7 @@ msgstr ""
 "kwalitu a stabilnosću přepruwuja."
 
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Pomhajće tute websydło polěpšeć. Je wotewrjene žórło a móžeće rozprawy wo programowych zmylkach pisać a porjedźenki zapodać. <a href=\"%(url)s\">GitHub</a> wobsahuje wšě aktualne rozprawy wo "
 "programowych zmylkach, zestarjene móžeće hišće w Bugzilla namakać."
@@ -4931,12 +4845,8 @@ msgid "I have a question"
 msgstr "Mam prašenje"
 
 #, python-format
-msgid ""
-"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
-"forums</a>."
-msgstr ""
-"Dobre městno, hdźež móžeće započeć, su naše <a href=\"%(faq_url)s\"><abbr title=\"Huste prašenja\">HUP</abbr></a>. Jeli tam žanu wotmołwu namakaće, móžeće so <a href=\"%(forum_url)s\">w našich "
-"forumach prašeć</a>."
+msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
+msgstr "Dobre městno, hdźež móžeće započeć, je naša <a href=\"%(sumo_url)s\">Pomoc</a> Mozilla. Jeli tam žanu wotmołwu namakaće, móžeće so <a href=\"%(forum_url)s\">w našich forumach prašeć</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -4945,754 +4855,11 @@ msgstr "Jeli dyrbiće so woprawdźe z někim z teama Mozilla do zwiska stajić, 
 msgid "Who works on this website?"
 msgstr "Štó na tutym websydle dźěła?"
 
-#, python-format
-msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
-"\"%(url)s\"> Site Credits</a> page."
-msgstr ""
-"Za lěta je wjele ludźi k tutomu websydłu přinošowało, dobrowólnicy ze zhromadźenstwa kaž tež AMO-team. Lisćinu wuznamnych sobuskutkowarjow namakaće na našej stronje <a href=\"%(url)s\"> "
-"dźakprajenjow</a>."
-
-msgid "Add-on Compatibility Reporter"
-msgstr "Rozprawjak přidatkoweje kompatibelnosće"
-
-msgid "Add-on Compatibility Reporter has been installed"
-msgstr "Rozprawjak přidatkoweje kompatibelnosće je so instalował"
-
-msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
-msgstr "Je lochko, nam pomhać, zawěsćić, zo so přidatki sčasom za wozjewjenje přidatneje wersije Firefox aktualizuja."
-
-msgid "Here’s how to get started reporting add-on compatibility:"
-msgstr "Tu su prěnje kroki za zdźělenje kompatibelnosće přidatka:"
-
-msgid ""
-"As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
-"or something more serious, like the add-on not working at all or showing errors."
-msgstr ""
-"Hdyž přehladować a swoje přidatki wužiwać započinaće, dźiwajće na wšitko, štož zda so hinak być, wot toho časa, zo sće rozšěrjenje posledni raz wužił. To móhło zwobraznjowanski zmylk być, kaž na "
-"přikład falowacy menijowy zapisk abo něšto chutniše, na přikład, hdyž přidatk njefunguje abo zmylki pokazuje."
-
-msgid ""
-"Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
-"Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
-msgstr ""
-"Hdyž wěsće, hač wěsty přidatk porjadnje funguje abo ma problemy, wočińće zrjadowak přidatkow a klikńće na „Kompatibelnosć“ pódla přidatka, zo byšće Mozilla zdźělił, štož sće při swojim testowanju "
-"namakał. Waša rozprawa budźe nam pomhać, wuwiwarja přidatka informować, hač jeho přidatk w tutej wersiji porjadnje funguje abo hač porjedźenki trjeba."
-
-#, python-format
-msgid ""
-"If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
-"href=\"%(url)s\">our forums</a>."
-msgstr ""
-"Jeli na nowu wersiju Firefox abo swoje přidatki aktualizujeće, so rozprawy za starše wersije schowaja, zo by so wam zmóžniło, nowu wersiju testować. Jeli maće prašenja, prašejće so w <a href="
-"\"%(url)s\">našich forumach</a>."
-
-msgid ""
-"Thousands of add-ons are made by our community every year, and your assistance with compatibility testing helps us make sure these add-ons stay useful as we strive to provide a great user "
-"experience."
-msgstr ""
-"Tysacy přidatkow so kóžde lěto wot našeho zhromadźenstwa wutworjeja a waša pomoc při testowanju kompatibelnosće nam pomha, zo by so zawěsćiło, zo tute přidatki wužitne wostawaja, dokelž so "
-"prócujemy, wužiwarjam wulkotne dožiwjenje skićić."
-
-msgid "Thank you!"
-msgstr "Wulki dźak!"
-
-msgid "Site Credits"
-msgstr "Dźakprajenja za sydło"
-
-msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
-msgstr "Mozilla by so rady slědowacym ludźom za jich přinoški k projektej addons.mozilla.org přez lěta dźakował:"
-
-msgid "Developers &amp; Administrators"
-msgstr "Wuwiwarjo a administratorojo"
-
-msgid "Localizers"
-msgstr "Přełožowarjo"
-
-msgid "Reviewers"
-msgstr "Přepruwowarjo"
-
-#. {0} is a number (e.g. 1000).
-msgid "More than {0} add-on reviews"
-msgstr "Wjace hač {0} přidatkowych pohódnoćenjow"
-
-msgid "Other Contributors"
-msgstr "Druzy sobuskutkowarjo"
-
-msgid "Past Developers &amp; Administrators"
-msgstr "Něhdyši wuwiwarjo a administratorojo"
-
-msgid "Software and Images"
-msgstr "Softwara a wobrazy"
-
-msgid ""
-"Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
-"Commons Attribution 2.5 License</a>."
-msgstr ""
-"Někotre wužite symbole su ze <a href=\"http://www.famfamfam.com/lab/icons/silk/\">symboloweje sadźby famfamfam Silk</a>, kotrež su pod licencu <a href=\"http://creativecommons.org/licenses/by/2.5/"
-"\">Creative Commons Attribution 2.5</a> licencowane."
-
-msgid ""
-"Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
-"Commons Attribution 3.0 License</a>."
-msgstr ""
-"Někotre wužite symbole su z <a href=\"http://www.fatcow.com/free-icons/\">websymboloweje sadźby FatCow Farm-Fresh</a>, kotrež su pod licencu <a href=\"http://creativecommons.org/licenses/by/3.0/us/"
-"\">Creative Commons Attribution 3.0</a> licencowane."
-
-msgid ""
-"Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
-"Commons Attribution-NonCommercial 3.0 License</a>."
-msgstr ""
-"Někotre strony wužiwaja elementy wot <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (njekomercielne), kotrež su pod licencu <a href=\"http://creativecommons.org/licenses/by-"
-"nc/3.0/\">Creative Commons Attribution-NonCommerical 3.0</a> licencowane."
-
-#, python-format
-msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
-msgstr "Za informacije wo darjenju, čitajće našu <a href=\"%(url)s\">wikistronu</a>."
-
-msgid "Developer FAQ"
-msgstr "Huste prašenja wuwiwarjow"
+msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
+msgstr "Za lěta je wjele ludźi k tutomu websydłu přinošowało, dobrowólnicy ze zhromadźenstwa kaž tež AMO-team."
 
 msgid "Sections"
 msgstr "Wotrězki"
-
-msgid "Developing an Add-on"
-msgstr "Přidatk wuwiwać"
-
-#. Heading for a list of resources for developers
-msgid "Support Resources"
-msgstr "Resursy pomocy"
-
-msgid "Contributing your Add-on"
-msgstr "Waš přidatk přinošować"
-
-msgid "Add-on Review Process"
-msgstr "Přepruwowanski proces za přidatki"
-
-msgid "Managing Your Add-on"
-msgstr "Waš přidatk rjadować"
-
-msgid "References for Open Source Licenses"
-msgstr "Referency za licency wotewrjeneho žórła"
-
-msgid "Add-on Developer FAQ"
-msgstr "Huste prašenja za wuwiwarjow přidatkow"
-
-#, python-format
-msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
-msgstr "<h3>Kak móžu přidatk wutworić</h3> <p>Mozilla staja dokumentaciju k dispoziciji, kak da so přidatk přez %(addons_link_open)ssyć wuwiwarjow Mozilla (MDN)%(link_close)s wuwiwać. </p>"
-
-msgid "What is a \".xpi\" file?"
-msgstr "Što je „.xpi“-dataja?"
-
-msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
-msgstr "Rozšěrjenja so w ZIP-datajach abo pakćikach zapakuja a rozdźěleja, kotrež maja datajowu kóncowku XPI (wurjekowanu kaž „zipi“)."
-
-msgid "What is XUL?"
-msgstr "Što je XUL?"
-
-msgid ""
-"XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
-"trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
-msgstr ""
-"XUL (XML User Interface Language, rěč wužiwarskeho powjercha XML) je rěč na zakładźe XML, kotraž wam zmóžnja, nałoženja rozdźělnych platformow z wjele funkcijemi wuwiwać. Skići elementy "
-"wužiwarskeho powjercha, kaž na přikład tłóčatka, menije, symbolowe lajsty, štomy atd., kotrež dadźa so wužiwać, zo bychu so přidatki přez to polěpšili, zo so dźěle wužiwarskeho powjercha "
-"wobhladowaka měnjeja."
-
-#, python-format
-msgid ""
-"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use %(webext_link_open)sWebExtensions"
-"%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit "
-"%(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
-msgstr ""
-"<strong>Kedźbu:</strong> XUL ma so za zestarjenu technologiju w Firefox. a přidatki, kotrež XUL wužiwaja, so wot Firefox 57 hižo njepodpěruja. Prošu wužiwajće API %(webext_link_open)sWebExtensions"
-"%(link_close)s, zo byšće nowe přidatki wuwiwał. Jeli zestarjeny přidatk maće, móžeće jón do WebExtensions přetworić. Za dalše informacije wo přetworjenju zestarjeneho přidatka, wopytajće prošu "
-"%(portlegacy_link_open)sZestarjeny přidatk Firefox přetworić%(link_close)s."
-
-msgid "How do I test for compatibility with the latest version of Mozilla software?"
-msgstr "Kak móžu z najnowšej wersiju softwary Mozilla za kompatibelnosću testować?"
-
-msgid ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
-"these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
-"are not negatively impacted upon final release of Mozilla software."
-msgstr ""
-"Zo by so kompatibelnosć z najnowšej softwaru Mozilla zawěsćiła, je wažnje, aktualizacije sćahnyć, tak ruče kaž su k dispoziciji a waš přidatk testować, zo by so zawěsćuje, zo hišće kaž wočakowany "
-"funguje. Dokelž tute wersije druhdy změny architektury zawjeduja, kotrež móža funkcionalnosć wašeho přidatka wobwliwować, je wažnje, zo so aktiwnje na betaprocesu wobdźělujeće, zo byšće zawěsćił, "
-"zo wužiwarjo wašeho přidatka při kónčnej wersiji softwary Mozilla negatiwnje překwapjeni njejsu."
-
-msgid "I need some advice building my add-on. Where can I find help?"
-msgstr "Trjebam radu za wuwiwanje swojeho přidatka. Hdźe móžu pomoc dóstać?"
-
-#. #extdev is the name of the IRC channel.  do not change.
-msgid "#extdev (for add-on development discussions)"
-msgstr "#extdev (za diskusije wo wuwiwanju přidatkow)"
-
-#. #amo is the name of the IRC channel.  do not change.
-msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr "#amo (za pomoc nastupajo hospodowanje wašeho přidatka na AMO)"
-
-#. #webextensions is the name of the IRC channel.  do not change.
-msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr "#webextensions (za diskusiju wo wuwiwanju a konwertowanju do WebExtensions)"
-
-msgid "Add-ons forum"
-msgstr "Přidatkowy forum"
-
-msgid "Does Mozilla offer development services?"
-msgstr "Poskića Mozilla wuwiwarske słužby?"
-
-msgid "No."
-msgstr "Ně."
-
-msgid "Are there 3rd party developers that I can hire to build my add-on?"
-msgstr "Su třeći wuwiwarjo, kotrychž móžu za wuwiwanje swojeho přidatka najeć?"
-
-#, python-format
-msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
-"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
-msgstr ""
-"Haj. Móžeće wuwiwarjow třećich poskićowarjow z pomocu <a href=\"%(forum_url)s\">foruma přidatkow</a>, <a href=\"%(list_url)s\">lisćiny mozilla.jobs</a>, <a href=\"%(mz_url)s\">forumow mozillaZine</"
-"a> abo <a href=\"%(wiki_url)s\">wikija Mozilla</a> namakać. Prošu dźiwajće na to, zo Mozilla žane doporučenja wo wuwiwarjach njedawa."
-
-msgid "Can I host my own add-on?"
-msgstr "Móžu swójski přidatk hospodować dać?"
-
-#, python-format
-msgid ""
-"Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
-"to the large volume of visitors to the site."
-msgstr ""
-"Haj. Wjele wuwiwarjow swoje přidatki same hospoduje. Jeli wšak waš přidatk na <a href=\"%(amo_url)s\">sydle přidatkow Mozilla</a> hospodujeće, změjeće wjetši zjawny dosah za swój přidatk přez "
-"wjetšu ličbu wopytowarjow na tutym websydle."
-
-msgid "Can Mozilla host my add-on?"
-msgstr "Móže Mozilla mój přidatk hospodować?"
-
-#, python-format
-msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr "Haj. Móžeće swój přidatk na <a href=\"%(url)s\">přidatkowym websydle Mozilla</a> hospodować."
-
-msgid "What is AMO?"
-msgstr "Što je AMO?"
-
-msgid ""
-"Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
-"Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
-msgstr ""
-"AMO Mozilla (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) je inkubator, kotryž wuwiwarjam pomha, fantastiske přetrjebowarske produkty wuwiwać, rozšěrjeć a podpěrować, "
-"kotrež so wot Mozilla spěchuja. Staja wam nastroje a infrastrukturu k dispoziciji, kotrež su trěbne za rjadowanje a hospodowanje wašeho přidatka a zo bychu jón wulkej bazy wužiwarjow Mozilla "
-"spřistupnili."
-
-msgid "Does Mozilla keep my account information private?"
-msgstr "Dźerži Mozilla moje kontowe informacije priwatne?"
-
-#, python-format
-msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr "Haj. Naše <a href=\"%(url)s\">prawidła priwatnosće</a> wopisuja, kak Mozilla z wašimi informacijemi wobchadźa."
-
-msgid "What are the \"developer tools\" listed on AMO?"
-msgstr "Što su „wuwiwarske nastroje“, kotrež so na AMO nalistuja?"
-
-msgid ""
-"The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
-"information, and review statistics."
-msgstr ""
-"Kontrolna deska „Wuwiwarske nastroje“ je wobłuk, kotryž wam nastroje skići, zo byšće swoje přidatki rjadował. Skići funkcionalnosć, kotruž trjebaće, zo byšće swoje přidatki pola AMO zapodawał, "
-"přidatkowe informacije rjadował a sej statistiku wobhladał."
-
-msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
-msgstr "Ma Mozilla prawidła wo tym, štož je akceptabelne zapodaće?"
-
-#, python-format
-msgid ""
-"Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
-"Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
-msgstr ""
-"Haj. %(policy_link_open)sPrawidła přidatkow%(link_close)s Mozilla wopisuja, štož je akceptabelne zapodaće. Tute prawidła móža so bjez zdźělenja změnić. Nimo toho wužiwa team přepruwowarjow "
-"přidatkow %(guide_link_open)spřewodnik za přepruwowanje přidatkow%(link_close)s, zo by zawěsćił, zo waš přidatk wěstym směrnicam za funkcionalnosć a wěstotu wotpowěduje."
-
-msgid "How do I submit my add-on?"
-msgstr "Kak móžu swój přidatk zapodać?"
-
-#, python-format
-msgid ""
-"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you "
-"have read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
-msgstr ""
-"Přehlad wuwiwarskich nastrojow wam zmóžnja, přidatki na AMO nahrać a tam zapodać. Dyrbiće zregistrowany AMO-wužiwar być, prjedy hač móžeće přidatk zapodać. Čitajće prošu "
-"%(review_policy_link_open)sprawodła za přepruwowanje přidatkow%(link_close)s, prjedy hač swój přidatk zapodaće, zo byšće zawěsćił, zo waš přidatk našim směrnicam wotpowěduje."
-
-msgid "What operating system do I choose for my add-on?"
-msgstr "Kotry dźěłowy system měł ja za swój přidatk wužiwać?"
-
-msgid "You must choose the operating systems on which your add-on will successfully function."
-msgstr "Dyrbiće dźěłowe systemy wubrać, z kotrymiž waš přidatk wuspěšnje funguje."
-
-msgid "What category do I choose for my add-on?"
-msgstr "Kotru kategoriju měł ja za swój přidatk wubrać?"
-
-msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
-"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
-msgstr ""
-"Wólba kategorije wotwisuje wot toho, na kotru družinu ciloweje skupiny so měriće a wot funkcionalnosće přidatka. Jeli wěsty njejsće, ke kotrej kategoriji waš přidatk słuša, wubjerće „Druhe“. Team "
-"AMO móže waš přidatk do noweje kategorije zarjadować, jeli so wukopa, zo so lěpje do druheje kategorije hodźi."
-
-msgid "Can I specify a license agreement for using my add-on?"
-msgstr "Móžu licencne dojednanje za wužiwanje swojeho přidatka podać?"
-
-msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
-msgstr ""
-"Haj. Móžeće licencne dojednanje podać, hdyž swój přidatk zapodawaće. Móžeće tež licencne dojednanje přez kontrolnu desku „Wuwiwarske nastroje“ přidać abo aktualizować, po tym zo waš přidatk je so "
-"zapodał."
-
-msgid "Can I include a privacy policy for my add-on?"
-msgstr "Móžu prawidła priwatnosće do swojeho přidatka zapřijeć?"
-
-msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
-msgstr ""
-"Haj. Móžeće prawidła priwatnosće podać, hdyž swój přidatk zapodawaće. Móžeće prawidła priwatnosće tež přez kontrolnu desku „Wuwiwarske nastroje“ přidać abo aktualizować, po tym zo přidatk je so "
-"zapodał."
-
-msgid "Must my add-on be reviewed?"
-msgstr "Dyrbi so mój přidatk přepruwować?"
-
-#, python-format
-msgid ""
-"New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
-"to review add-on submissions."
-msgstr ""
-"Nowe a zaktualizowane přidatki hodźa so přepruwować, zo by so zawěsćiło, zo wužiwarjo Mozilla maja stabilne a wěste dožiwjenje. Wšě zapodate přidatki so po směrnicach <a href=\"%(url)s\">přewodnika "
-"za přepruwowanje přidatkow</a> přepruwuja."
-
-msgid "Who reviews my add-on?"
-msgstr "Štó přepruwuje mój přidatk?"
-
-#, python-format
-msgid ""
-"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla "
-"users. When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in "
-"the <a href=\"%(url)s\">Add-on Review Guide</a>."
-msgstr ""
-"Přidatki so wot AMO-přepruwowarjow přepruwuja, skupiny talentowanych wuwiwarjow, kotřiž dobrowólnje projektej Mozilla z přepruwowanjom přidatkow pomhaja, zo bychu stabilne a wěste dožiwjenje za "
-"wužiwarjow Mozilla zawěsćili. Budźće zdwórliwy, sćerpliwy a respektny, hdyž z přepruwowarjemi komunikujeće, dźěłaja ćežko, zo bychu zawěsćili, zo waš přidatk so korektnje zarjaduje a směrnicam <a "
-"href=\"%(url)s\">přewodnika za přepruwowanje přidatkow</a> wotpowěduje."
-
-msgid "What are the guidelines used to review my add-on?"
-msgstr "Kotre směrnicy so za přepruwowanje mojeho přidatka wužiwaja?"
-
-#, python-format
-msgid ""
-"The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
-"are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
-msgstr ""
-"Team přepruwowarjow Mozilla slěduje <a href=\"%(url)s\">přewodnikej za přepruwowanje přidatkow</a>, hdyž přidatk testuje. Je wažnje, zo wuwiwarjo přidatkow tutón přewodnik přehladuja, zo bychu "
-"zawěsćili, zo huste problemowe pola so před zapodawanjom jich přidatkow wobjednawaja. To jara pomha, přepruwowanske problemy wobchadźeć."
-
-msgid "How long will it take for my add-on to be reviewed?"
-msgstr "Kak dołho budźe přepruwowanje mojeho přidatka trać?"
-
-msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
-msgstr "Njemóžemy trochować, kak dołho traje, doniž so přidatk njepřepruwuje. Wjele faktorow wobwliwuje čas, mjez nimi slědowace:"
-
-#. part of a list (<li>)
-msgid "number of add-on submissions"
-msgstr "ličba přidatkowych zapodaćow"
-
-#. part of a list (<li>)
-msgid "complexity of an add-on’s code"
-msgstr "kompleksnosć přidatkoweho koda"
-
-#. part of a list (<li>)
-msgid "number of problem areas discovered"
-msgstr "ličba namakanych problemowych polow"
-
-#, python-format
-msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr "Tohodla je jara wažnje, <a href=\"%(g_url)s\">přewodnik za přepruwowanje přidatkow</a> čitać, zo byšće zawěsćił, zo waš přidatk je zarjadowany kaž wočakowany."
-
-msgid "How can I see how many times my add-on has been downloaded?"
-msgstr "Kak móžu widźeć, kak wjele razow je so mój přidatk sćahnył?"
-
-msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
-msgstr "Statistiski přehlad na kontrolnej desce „Wuwiwarske nastroje“ skići informacije, kotrež móža wam pomhać, ličbu sćehnjenjow wašeho přidatka zwěsćić, wot toho zo sće jón do AMO zapodał."
-
-msgid "How can I see how many active users are using my add-on?"
-msgstr "Kak móžu widźeć, kelko aktiwnych wužiwarjow mój přidatk wužiwa?"
-
-msgid ""
-"The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
-msgstr ""
-"Statistiski přehlad na kontrolnej desce „Wuwiwarske nastroje“ skići informacije, kotrež móža wam pomhać, ličbu wužiwarjow zwěsćić, kotřiž waš přidatk aktiwnje wužiwaja, wot toho zo sće jón do AMO "
-"zapodał."
-
-msgid "How do I submit an update for my add-on?"
-msgstr "Kak móžu aktualizaciju za swój přidatk zapodać?"
-
-msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr "Móžeće přez kontrolnu desku wuwiwarskich nastrojow aktualizaciju zapodać: Wubjerće nastajenje „Nowu wersiju nahrać“ a nahrajće nowu .xpi-dataju za swój přidatk."
-
-msgid "Does my update need to be reviewed by reviewers?"
-msgstr "Dyrbi so moja aktualizacija wot přepruwowarjow přepruwować?"
-
-msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr "Aktualizacije pridatkow runje tak kaž nowe zapodaća přepruwowanju podleža."
-
-msgid "How do I reply to a user who has posted a negative review of my add-on?"
-msgstr "Kak móžu wužiwarjej wotmołwu słać, kiž je negatiwne pohódnoćenje mojeho přidatka napisał?"
-
-msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr "Wuwiwar móže na pohódnoćenje wotmołwić, kotrež je so za jeho přidatk zapodało, dołhož je pola AMO přizjewjeny. Nimo toho móže kóždy wužiwar pohódnoćenje markěrować jako:"
-
-#. part of a list (<li>)
-msgid "Spam or otherwise non-review content"
-msgstr "Spam abo druhi wobsah, kotryž pohódnoćenje njeje"
-
-#. part of a list (<li>)
-msgid "Inappropriate language/dialog"
-msgstr "Njepřihódne słowa"
-
-#. part of a list (<li>)
-msgid "Misplaced bug report or support request"
-msgstr "Deplacěrowana zmylkowa rozprawa abo próstwa wo pomoc"
-
-#. part of a list (<li>)
-msgid "Other (provides a pop-up prompt for information)"
-msgstr "Druhe (pokazuje wuskakowace naprašowanje za dalše informacije)"
-
-msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
-msgstr "Tuchwilu AMO mechanizm za direktnu komunikaciju z awtorom wužiwarskeho pohódnoćenja njeskići."
-
-msgid "Can I request that a review be removed if the review is negative?"
-msgstr "Móžu požadać, zo so pohódnoćenje wotstroni, jeli pohódnoćenje je negatiwne?"
-
-msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr "Ně. Njewotstronjamy negatiwne pohódnoćenja přidatkow, chibazo wupokazuje so, zo pohódnoćenje je wopak."
-
-msgid "Can I request that a review be removed if the review is inaccurate?"
-msgstr "Móžu sej žadać, zo so pohódnoćenje wotstronja, jeli pohódnoćenje je njedokładne?"
-
-msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
-msgstr "Jeli awtor so z nami do zwiska staja a prosy, pohódnoćenje wotstronić, kotrež wopačne abo njedokładne daty wobsahuje, budźemy tón přinošk přepruwować a rozwažeć, jón wotstronić."
-
-msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
-"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
-"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
-"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
-msgstr ""
-"Trjebaće dalše informacije wo wšelakich licencach wotewrjeneho žórła? Njewěsće, kotru licencu dyrbiće wubrać? Kotre prawa wěsta licenca přizwoluje? Hačrunjež ničo čitanje dospołnych wuměnjenjow "
-"licency njenarunuje, su někotre sydła, kotrež informacije wo najwažnišich licencach wotewrjeneho žórła wobsahuja, kotrež móža wam pomhać, rozdźěle mjez nimi spóznać. Tute sydła so jeničce "
-"jednorosće dla a jako referenca za waše wosobinske wužiwanje k dispoziciji stajeja. Tute resursy prawnisku radu njejsu ani njeměli so město tajkeje rady wužiwać. Mozilla za wobsah tutych sydłow ani "
-"garantuje ani za njón zamołwity njeje abo za to, zo so na tajki wobsah spušćeće."
-
-msgid ""
-"In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
-"you want to use or distribute code licensed under it."
-msgstr ""
-"Nimo dospołneho teksta zjawneje licency Mozilla („Mozilla Public License, MPL“) to tež skomentowanu wersiju MPL a <abbr title=\"Huste prašenja\">HUP</abbr> skići, zo by so wam pomhało, jeli chceće "
-"kod wužiwać abo rozdźělować, kotrež je pod njej licencowany."
-
-msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
-msgstr "Tabela, kotraž zjima a přirunuje, kak někotre z najwažnišich licencow wotewrjeneho žórła z daledaćom, zwjazowanjom z proprietarnej softwaru a daledaćom změnjeneho žórłoweho koda wobchadźeja."
-
-msgid ""
-"Free Software Foundation provides short summaries of the key open source licenses, including whether the license qualifies as a free software license or a copyleft license. Also includes a "
-"discussion of what constitutes a free software license or a copyleft license (e.g., a Copyleft license is a general method for making a program or other work free, and requiring all modified and "
-"extended versions of the program to be free as well.)"
-msgstr ""
-"Załožba Free Software Foundation staja krótke zjeća najwažnišich licencow wotewrjeneho žórła k dispoziciji, mjez nimi, hač licenca jako licenca za swobodnu softwaru abo licenca „copyleft“ płaći. "
-"Wobsahuje tež diskusiju wo tym, štož je licenca za swobodnu softwaru abo licenca copyleft (na př. Licenca copyleft rěka, zo je program abo druhe dźěło swobodny, a tež wšě změnjene a rozšěrjene "
-"wersije programa dyrbja swobodne być)."
-
-msgid "Open Source Initiative provides the terms of some of the key open source licenses."
-msgstr "Open Source Initiative (iniciatiwa wotewrjeneho žórła) skići wuměnjenja někotrych z najwažnišich licencow wotewrjeneho žórła."
-
-msgid "A comparison of known open source licenses on Wikipedia."
-msgstr "Přirunanje znatych wotewrjenych licencow na Wikipediji."
-
-msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
-msgstr "Sydło jako njehódnoćacy přewodnik za wolenje licency za projekt wotewrjeneho žórła."
-
-msgid "Frequently Asked Questions"
-msgstr "Huste prašenja"
-
-msgid "Using Add-ons"
-msgstr "Přidatki wužiwać"
-
-msgid "What is an add-on?"
-msgstr "Što je přidatk?"
-
-#, python-format
-msgid ""
-"Add-ons are small pieces of software that add new features or functionality to your installation of %(app_name)s. Add-ons can augment %(app_name)s with new features, foreign language dictionaries, "
-"or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
-msgstr ""
-"Přidatki su małe programy, kotrež wašej instalaciji %(app_name)s nowe funkcije abo nowu funkcionalnosć přidawaja. Přidatki móža %(app_name)s wo nowe funkcije abo słowniki za cuze rěče rozšěrić abo "
-"jeho zwonkowny napohlad změnić. Z pomocu přidatkow móžeće %(app_name)s přiměrić, zo by wašim potrěbnosćam a wašemu słódej wotpowědował. <a href=\"%(learnmore_url)s\">Dalše informacije wo "
-"přiměrjenju</a>"
-
-msgid "Will add-ons work with my web browser or application?"
-msgstr "Budu přidatki z mojim webwobhladowakom abo nałoženjom fungować?"
-
-#, python-format
-msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a href="
-"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
-"Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
-msgstr ""
-"W tutej galeriji nalistowane přidatki jenož z nałoženjemi Mozilla funguja, na přikład <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href="
-"\"%(getseamonkey_url)s\">SeaMonkey</a> a <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Ale, nic wšě přidatki funguja z kóždym z tutych nałoženjow abo z kóždej wersiju tutych nałoženjow. Kóždy "
-"přidatk podawa, z kotrymiž nałoženjemi a wersijemi funguje, na přikład 50.0 - 52.*. Za přidatki Firefox instalowanske tłóčatka na to pokazuja, hač přidatk je kompatibelny abo nic."
-
-msgid "What are the different types of add-ons?"
-msgstr "Kotre rozdźělne typy přidatkow su?"
-
-#, python-format
-msgid "There are several kinds of add-ons that customize %(app_name)s in different ways:"
-msgstr "Su wjacore typy přidatkow, kotrež %(app_name)s na rozdźělne wašnja přiměrjeja:"
-
-#, python-format
-msgid ""
-"<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
-"videos from websites, integrate more closely with social websites, and add features you see in other applications."
-msgstr ""
-"<strong><a href=\"%(browse_url)s\">Rozšěrjenja</a></strong> nałoženju %(app_name)s nowe funkcije přidawaja abo eksistowacu funkcionalnosć změnja. Su rozšěrjenja, kotrež wabjenje blokuja, wideja z "
-"websydłow sćahuja, so wušo ze socialnymi websydłami zwjazuja a funkcije přidawaja, kotrež w druhich nałoženjach widźiće."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr "<strong><a href=\"%(browse_url)s\">Dospołne drasty</a></strong> změnja zwonkowny wobraz nałoženja %(app_name)s, zwjetša symbole, barby, dialogi a druhe wizuelne stile."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr "<strong><a href=\"%(browse_url)s\">Drasty</a></strong> su lochke drasty, kotrež pozadkowe wobrazy wužiwaja, zo bychu symbolowe lajsty wašeho nałoženja %(app_name)s přiměrili."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
-msgstr ""
-"<strong><a href=\"%(browse_url)s\">Pytanscy poskićowarjo</a></strong> wuběranskej lisćinje pytanskeho pola přidatne móžnosće přidawaja. Tući poskićowarjo wam zmóžnjeja, kóžde websydło spěšnje "
-"přepytować."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
-msgstr "<strong><a href=\"%(browse_url)s\">Słowniki a rěčne pakćiki</a></strong> nałoženju %(app_name)s podpěru za přidatne rěče přidawaja."
-
-msgid "How do I install, manage, or remove an add-on?"
-msgstr "Kak móžu přidatk instalować, rjadować abo wotstronić?"
-
-#, python-format
-msgid ""
-"In most cases, add-ons can be installed by simply clicking the install button provided. Add-ons can be managed, disabled, or uninstalled from the Add-ons Manager in %(app_name)s. For more detailed "
-"instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
-"see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
-msgstr ""
-"Přidatki dadža so w najwjace padach přez jednore kliknjenje na instalowanske tłóčatko instalować. Přidatki dadźa so w zrjadowaku přidatkow w %(app_name)s rjadować, znjemóžnić abo wotinstalować. Za "
-"dalše podrobne informacije, čitajće <a href=\"%(extension_url)s\">tutón nastawk wo rozšěrjenjach</a> abo <a href=\"%(theme_url)s\">tutón wo drastach a dospołnych drastach</a>. Jeli maće ćeže při "
-"instalowanju přidatkow, hlejće <a href=\"%(troubleshooting_url)s\">Problemy z rozšěrjenjemi a drastami rozrisać</a>."
-
-msgid "How do I keep add-ons up-to-date?"
-msgstr "Kak móžu přidatki aktualne dźeržeć?"
-
-msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr "Přidatki so jedyn raz wob dźeń za aktualizacijemi přepruwuja. W Firefox so aktualizacije po standardźe awtomatisce instaluja."
-
-msgid "Are add-ons safe to install?"
-msgstr "Je wěste, přidatki instalować?"
-
-#, python-format
-msgid ""
-"Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
-"feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
-msgstr ""
-"Bjerće so na kedźbu z instalowanjom přidatkow, dokelž móža waš ličak wobškodźić abo so přećiwo wašej priwatnosći přeńć. Přidatki, kotrež su wot tutoho sydła k dispoziciji, přepruwuwanju wot teama "
-"přepruwowarjow Mozilla podleža, a měnjenje wužiwarjow so dodrobna wobkedźbuje, tohodla měła instalacija zwjetša wěsta być. %(learnmore_link_open)sDalše informacije wo našim přepruwowanskim procesu"
-"%(link_close)s"
-
-#, python-format
-msgid "Can add-ons make %(app_name)s slower?"
-msgstr "Móža přidatki %(app_name)s spomalić?"
-
-#, python-format
-msgid ""
-"Most add-ons do not cause a perceivable performance decrease in %(app_name)s, though installing an excessive number may have adverse effects. If you suspect an add-on is causing %(app_name)s to be "
-"slow, try disabling it."
-msgstr ""
-"Najwjace přidatkow spóznajomne wukonowe zhubjenje w nałoženju %(app_name)s njezawinuje, ale instalowanje jara wjele přidatkow móhło nawopačne efekty měć. Jeli sej mysliće, zo přidatk %(app_name)s "
-"spomałšuje, znjemóžńće přidatk, zo byšće to přepruwował."
-
-#, python-format
-msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
-msgstr "%(app_name)s je mi zdźělił, zo přidatk kompatibelny njeje. Eksistuje móžnosć, zo móžu jón najebać toho wužiwać?"
-
-#, python-format
-msgid ""
-"If an add-on isn't compatible with your version of %(app_name)s, it is usually either because your version of %(app_name)s is outdated or the add-on author has not yet updated the add-on to be "
-"compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For "
-"users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
-msgstr ""
-"Jeli přidatk kompatibelny z wašej wersiju %(app_name)s njeje, je to zwjetša pak dokelž waša wersija %(app_name)s je zestarjena pak awtor přidatka hišće njeje přidatk zaktualizował, zo by z nowšej "
-"wersiju, kotruž wužiwaće, kompatibelny był. Mozilla njeporuča, tute přepruwowanja kompatibelnosće wobeńć, dokelž to móže k instabilnosću wobhladowaka abo w někotrych padach k straće datow wjesć. Za "
-"wužiwarjow, kotřiž alfa- abo betawersije Firefox testuja, poskićamy přidatk <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> , zo by wuwiwarjam přidatkow pomhał, jich kompatibelnosć "
-"aktualizować."
-
-msgid "What if I have problems with an add-on?"
-msgstr "Što je, jeli mam problemy z přidatkom?"
-
-#, python-format
-msgid ""
-"Add-ons are usually created by third-party developers from around the world, so the best way to get help with an add-on is to look for support links on the add-on's homepage or contact the "
-"developer. If you are having issues with %(app_name)s that you suspect are related to add-ons you have installed, <a href=\"%(troubleshooting_url)s\">visit this support article</a> for "
-"troubleshooting tips."
-msgstr ""
-"Přidatki so zwjetša wo wuwiwarjow třećich poskićowarjow z cyłeho swěta wuwiwaja, pytajće najlěpje za wotkazami pomocy na startowej stronje přidatka abo stajće so z wuwiwarjom do zwiska, zo byšće "
-"pomoc dóstał. Jeli maće problemy z %(app_name)s a měniće, zo so přez waše instalowane přidatki zawinuja, <a href=\"%(troubleshooting_url)s\">čitajće tutón nastawk pomocy</a>, zo byšće pokiwy wo "
-"rozrisowanju problemow dóstał."
-
-msgid "Add-on Gallery"
-msgstr "Galerija přidatkow"
-
-msgid "How do I choose between add-ons that seem to do the same thing?"
-msgstr "Kak móžu mjez přidatkami wubrać, kotrež po wšěm zdaću samsne činja?"
-
-msgid ""
-"There are often several add-ons that have similar features. To figure out which is right for you, read the entire description of the add-on and view its screenshots. If there are still several in "
-"the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
-msgstr ""
-"Su husto wjacore přidatki, kotrež maja podobne funkcije. Zo byšće wuslědźił, kotry je prawy za was, čitajće cyłe wopisanje přidatka a wobhladajće sej jeho fota wobrazowki. Jeli su hišće wjacore we "
-"wubědźowanju, čitajće pohódnoćenja přidatka, wužiwarske měnjenja a statistiku, zo byšće zhonił, kotry je najbóle woblubowany druhich wužiwarjow. Móžeće tež prosće přidatki wupruwować, zo byšće "
-"widźał, kotry z nich so wam lěpje spodoba."
-
-msgid "What if I can't find an add-on I'm looking for?"
-msgstr "Što móžu činić, jeli přidatk njenamakam, za kotrymž pytam?"
-
-#, python-format
-msgid ""
-"With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
-"our <a href=\"%(forum_url)s\">Add-ons forum</a>."
-msgstr ""
-"Su tysacy přidatkow k dispoziciji, je něšto za kóždeho pódla. Ale jeli za wosebitym přidatkom pytaće a njemóžeće jón namakać, pytajće na druhich sydłach abo pisajće přinošk wo tym w našim <a href="
-"\"%(forum_url)s\">přidatkowym forumje</a>."
-
-msgid "What does it mean if an add-on is \"experimental\"?"
-msgstr "Što woznamjenja, jeli přidatk je „eksperimentelny“?"
-
-#, python-format
-msgid ""
-"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
-"uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
-msgstr ""
-"Eksperimentelne přidatki su so wot swojich wuwiwarjow jako njepřihódne za šěroki publikum markěrowali. Móža hišće zmylki měć abo njefunguja porjadnje. Bjerće so na kedźbu, hdyž eksperimentelne "
-"přidatki instalujeće a wotinstalujće přidatk hnydom, jeli problemy pytnjeće. %(learnmore_link_open)sDalše informacije wo našim přepruwowanskim procesu%(link_close)s"
-
-msgid "What does it mean if an add-on is \"not reviewed\"?"
-msgstr "Što woznamjenja, jeli přidatk „přepruwowany njeje“?"
-
-#, python-format
-msgid ""
-"If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
-"your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
-msgstr ""
-"Jeli direktny wotkaz na přidatk dóstanjeće, kotryž praji, zo hišće přepruwowany njeje, to rěka, zo hišće na přepruwowanje přez Mozilla čaka. Bjerće so na kedźbu z instalowanjom tutych přidatkow, "
-"dokelž móhli waš ličak wobškodźić abo so přećiwo wašej priwatnosći přeńć. %(learnmore_link_open)sDalše informacije wo našim přepruwowanskim procesu%(link_close)s</dd>"
-
-msgid "How much do add-ons cost to purchase?"
-msgstr "Kelko přidatki płaća?"
-
-msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
-msgstr "Přidatki, kotrež so w našej galeriji hospoduja, su darmotne, chibazo su hinak woznamjenjene."
-
-msgid "What does it mean when an add-on asks for contributions?"
-msgstr "Što woznamjenja, hdyž přidatk wo dary prosy?"
-
-msgid ""
-"Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
-"indicated, such as the non-profit Mozilla Foundation."
-msgstr ""
-"Někotři awtorojo přidatkow proša wužiwarjow, kotrymž so přidatk spodoba, jeho wuwiwanje přez pjenježny dar podpěrać. Tute dary du direktnje k wuwiwarjej, chibazo třeći poskićowar je podaty, kaž na "
-"přikład powšitkownosći wužitna załožba Mozilla Foundation."
-
-msgid "How do I report an inappropriate or spam user review?"
-msgstr "Kak móžu njepřihódne abo spamowe wužiwarske pohódnoćenje zdźělić?"
-
-msgid ""
-"To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
-"reviewers team will investigate the review and take appropriate action."
-msgstr ""
-"Zo byšće wužiwarske pohódnoćenje přidatka zdźělił, přizjewće so pola swojeho konta a wopytajće stronu pohódnoćenjow přidatka. Pytajće pohódnoćenje, kotrež chceće zdźělić, klikńće na „Tute "
-"pohódnoćenje zdźělić“ a wubjerće přičinu. Naš team přepruwowarjow budźe pohódnoćenje přepytować a wotpowědnje jednać."
-
-msgid "How do I report a bug or contact the Mozilla Add-ons team?"
-msgstr "Kak móžu programowy zmylk zdźělić abo so z teamom přidatkow Mozilla do zwiska stajić?"
-
-#, python-format
-msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
-msgstr "Prošu wopytajće našu <a href=\"%(contact_url)s\">kontaktowu stronu</a>."
-
-msgid "What is a Source Code License?"
-msgstr "Što je licenca žórłoweho koda?"
-
-#, python-format
-msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
-"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
-"the GPL or BSD licenses instead of making up their own."
-msgstr ""
-"Žórłowy kod, kotryž so wužiwa, zo by přidatk wuwiwał, eksluziwnemu awtorskemu prawu podleži, chibazo je so hinak w licency žórłoweho koda deklarowało. Wjele přidatkow na sydle ma <a href=\"%(url)s"
-"\" lang=\"en\">licency wotewrjeneho žórła</a>, kotrež žórłowy kod pod wuměnjenjemi awtora za kopěrowanje a zasowužiwanje k dispoziciji stajeja. Najwjace awtorow daloko znate licency wotewrjeneho "
-"žórła kaž GPL abo BSD wuběra, město toho, zo by swójsku činiło."
-
-#, python-format
-msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
-msgstr "Firefox a druhe programy Mozilla su <a href=\"%(url)s\">wotewrjene žórło</a>."
-
-msgid "Collections and Favorites"
-msgstr "Zběrki a fawority"
-
-msgid "What is a collection?"
-msgstr "Što je zběrka?"
-
-msgid "Collections are groups of related add-ons created by users to share."
-msgstr "Zběrki su skupiny přiwuznych přidatkow, kotrež wužiwarjo su wutworili, zo bychu je druhim dale dali."
-
-msgid "What is the My Favorites collection?"
-msgstr "Što je zběrka „Moje fawority“?"
-
-msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
-msgstr ""
-"Najlubše přidatki su přidatki, kotrež sće jako zapołožki składowali, zo byšće pozdźišo na nje přistup měł. Klikńće na „Faworitam přidać“ na stronje podrobnosćow, zo byšće zběrce najlubšich "
-"přidatkow přidatk přidał."
-
-msgid "Mobile Add-ons"
-msgstr "Přidatki za mobilny Firefox"
-
-msgid "What are mobile add-ons?"
-msgstr "Što su mobilne přidatki?"
-
-#, python-format
-msgid ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
-"<a href=\"%(gallery_url)s\">gallery</a>."
-msgstr ""
-"Mobilne přidatki funguja z <a href=\"%(mobile_url)s\">Firefox za Android</a> a přidawaja abo měnjeja funkcionalnosć, runje tak kaž desktopowe přidatki. Móžeće přidatki, kotrež z Firefox za Android "
-"funguja, w našej <a href=\"%(gallery_url)s\">galeriji</a> namakać."
-
-msgid "Developer Topics"
-msgstr "Wuwiwarske temy"
-
-#, python-format
-msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr "Prošu čitajće naše <a href=\"%(faq_url)s\">huste wuwiwarske prašenja</a> a <a href=\"%(hub_url)s\">wuwiwarski róžk</a> za wotmołwy na prašenja, kotrež so na přidatkowych wuwiwarjow poćahuja."
-
-msgid "Still have questions?"
-msgstr "Maće hišće prašenja?"
-
-#, python-format
-msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
-msgstr ""
-"Za powšitkownu pomoc Firefox, wopytajće naše <a href=\"%(sumo_url)s\">websydło pomocy</a>. Za powšitkowne prašenja wo přidatkach a websydłach, wopytajće naš <a href=\"%(forum_url)s\">forum</a>."
 
 msgid "Some tips for writing a great review"
 msgstr "Někotre pokiwy za pisanje dobreho pohódnoćenja"
@@ -5701,8 +4868,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Huste prašenja wo pohódnoćenjach"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 "Pohódnoćenja wo přidatkach su móžnosć za was, waše měnjenja wo přidatkach zdźělić, kotrež sće instalował a wužiwał. Naš moderaciski team za pohódnoćenja sej prawa wuměnja, pohódnoćenja wotpokazać "
 "abo wotstronić, kotrež tutym směrnicam njewotpowěduja."
@@ -5896,23 +5063,6 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "Prezentowany wot:"
 
-msgid "Sunbird has retired"
-msgstr "Sunbird so hižo dale njewuwiwa"
-
-msgid ""
-"Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
-"disabled our support for the add-ons."
-msgstr ""
-"Wuwiwanje projekta Sunbird je zastajeny a jeho poslednje wozjewjenje je 30. měrca 2010 było. Wjeseli so nas, zo móžemy přidatki Sunbird na tutym sydle hospodować, ale dokelž projekt so hižo "
-"njewothladuje, smy swoju podpěru za přidatki znjemóžnili."
-
-#, python-format
-msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a href=\"%(lightning_url)s\">Lightning</a>."
-msgstr "Poručamy, zo <a href=\"%(tb_url)s\">Thunderbird</a> a <a href=\"%(lightning_url)s\">Lightning</a> aktualizujeće."
-
-msgid "Read more about Sunbird"
-msgstr "Čitajće wjace wo Sunbrid"
-
 #, python-format
 msgid "Reviews for %s"
 msgstr "Pohódnoćenja za %s"
@@ -5927,6 +5077,15 @@ msgstr "Z %d z 5 hwěžkow pohódnoćeny"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr "Dyrbi so krótke wujasnjenje podać, hdyž so „Druhe“ jako přičina zdźělenki wuběra."
+
+msgid "Spam or otherwise non-review content"
+msgstr "Spam abo druhi wobsah, kotryž pohódnoćenje njeje"
+
+msgid "Inappropriate language/dialog"
+msgstr "Njepřihódne słowa"
+
+msgid "Misplaced bug report or support request"
+msgstr "Deplacěrowana zmylkowa rozprawa abo próstwa wo pomoc"
 
 msgid "Other (please specify)"
 msgstr "Druhe (prošu podać)"
@@ -5965,16 +5124,16 @@ msgstr "Pohódnoćenje za {0} přidać"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
+"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
+"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
+"Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Spomjatkujće sej tute pokiwy:</h2> <ul> <li> Pisajće tak, kaž byšće přećelej swoje nazhonjenja z přidatkom powědał. Podajće specifiske a wužitne podrobnosće, kaž na přikład kotre funkcije so "
-"wam spodobaja a/abo njespodobaja, kak lochko da so wužiwać a kotre njelěpšiny ma. Njewužiwajće powšitkownu rěč, kaž na přikład „Wulkotne“ abo „Špatne“, chibazo móžeće přičiny podać, čehoždla tomu "
-"tak je. </li> <li> Prošu njesćelće tu rozprawy wo programowych zmylkach. Njestajamy wuwiwarjam přidatkow wašu e-mejlowu adresu k dispoziciji, tohodla njemóža so z wami do zwiska stajić, zo bychu "
-"waš problem rozrisali. Hlejće <a href=\"%(support)s\">wotrězk pomocy</a>, zo byšće hladał, hač podpěra je k dispoziciji. Móžeće tež <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-"
-"on-support\">přidatkowe zhromadźenstwo</a> wo pomoc prosyć. </li> <li>Prošu dźeržće pohódnoćenja čiste, njewužiwajće njepřihódnu rěč a njesćelće wosobinske daty. </li> </ul> <p> Prošu čitajće <a "
+"<h2>Spomjatkujće sej tute pokiwy:</h2> <ul> <li> Pisajće tak, kaž byšće přećelej swoje nazhonjenja z přidatkom powědał. Podajće specifiske a wužitne podrobnosće, kaž na přikład kotre funkcije so wam"
+" spodobaja a/abo njespodobaja, kak lochko da so wužiwać a kotre njelěpšiny ma. Njewužiwajće powšitkownu rěč, kaž na přikład „Wulkotne“ abo „Špatne“, chibazo móžeće přičiny podać, čehoždla tomu tak "
+"je. </li> <li> Prošu njesćelće tu rozprawy wo programowych zmylkach. Njestajamy wuwiwarjam přidatkow wašu e-mejlowu adresu k dispoziciji, tohodla njemóža so z wami do zwiska stajić, zo bychu waš "
+"problem rozrisali. Hlejće <a href=\"%(support)s\">wotrězk pomocy</a>, zo byšće hladał, hač podpěra je k dispoziciji. Móžeće tež <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
+"support\">přidatkowe zhromadźenstwo</a> wo pomoc prosyć. </li> <li>Prošu dźeržće pohódnoćenja čiste, njewužiwajće njepřihódnu rěč a njesćelće wosobinske daty. </li> </ul> <p> Prošu čitajće <a "
 "href=\"%(guide)s\">Pohódnoćenske směrnicy</a> za dalše podrobnosće wo wužiwarskich pohódnoćenjach přidatkow.</p>"
 
 msgid "Reply to review by {0}"
@@ -6524,9 +5683,6 @@ msgstr "<dd>%(review_author)s</dd>"
 msgid "Add-on Title"
 msgstr "Titul přidatka"
 
-msgid "Review Title"
-msgstr "Titul pohódnoćenja"
-
 msgid "Review Text"
 msgstr "Tekst pohódnoćenja"
 
@@ -6957,32 +6113,14 @@ msgstr "Aktualizacije"
 msgid "Maximum query length exceeded."
 msgstr "Maksimalna dołhosć naprašowanjow je překročena."
 
-msgid "Most popular this week"
-msgstr "Najbóle woblubowane tutoho tydźenja"
-
-msgid "Most popular this month"
-msgstr "Najbóle woblubowane tutoho měsaca"
-
-msgid "Most popular all time"
-msgstr "Najbóle woblubowane za cyły čas"
-
-msgid "Highest Rated"
-msgstr "Najwyše pohódnoćene"
-
 msgid "search for add-ons"
 msgstr "přidatki pytać"
-
-msgid "search for collections"
-msgstr "zběrki pytać"
 
 msgid "search for themes"
 msgstr "drasty pytać"
 
 msgid "search for apps"
 msgstr "nałoženja pytać"
-
-msgid "Sort By"
-msgstr "Sortěrować po"
 
 msgid "Relevance"
 msgstr "Relewanca"
@@ -7316,17 +6454,18 @@ msgstr "Wo slědowanju eksternych žórłow..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>Slědowanje eksternych žórłow</h2> <p> Jeli k stronje podrobnosćow swojeho přidatka wotkazujeće abo direktnje k jeho dataji na eksternym sydle, kaž na přikład k wašemu blogej abo websydłu, "
-"móžeće parameter připowěsnyć, zo by so to jako přidatne sćehnjenske žórło na tutej stronje slědowało. Slědowace wotkazy na přikład bychu w žórłowym kodźe wašeho bloga jewili: <dl> <dt>Strona "
-"podrobnosćow přidatka</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direktny datajowy wotkaz</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-"
-"%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Jenož parametry „src“, kotrež so z „external-“ započinaja, so slěduja, hač k 61 dalšim znamješkam. Tekst za „external-“ da so wužiwać, zo by "
-"žórło wopisował, na přikład „external-blog“, „external-sidebar“, „external-campaign 225“ atd. Slědowace znamješka su znamješka wěste za URL su dowolene: <code>a-z A-Z -._~ %%+</code>"
+"<h2>Slědowanje eksternych žórłow</h2> <p> Jeli k stronje podrobnosćow swojeho přidatka wotkazujeće abo direktnje k jeho dataji na eksternym sydle, kaž na přikład k wašemu blogej abo websydłu, móžeće"
+" parameter připowěsnyć, zo by so to jako přidatne sćehnjenske žórło na tutej stronje slědowało. Slědowace wotkazy na přikład bychu w žórłowym kodźe wašeho bloga jewili: <dl> <dt>Strona podrobnosćow "
+"přidatka</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direktny datajowy wotkaz</dt> "
+"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Jenož parametry „src“, kotrež so z „external-“ započinaja, so slěduja, hač k 61 "
+"dalšim znamješkam. Tekst za „external-“ da so wužiwać, zo by žórło wopisował, na přikład „external-blog“, „external-sidebar“, „external-campaign 225“ atd. Slědowace znamješka su znamješka wěste za "
+"URL su dowolene: <code>a-z A-Z -._~ %%+</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Přidatkowy status po datumje"
@@ -7509,11 +6648,10 @@ msgid "Profile Photo"
 msgstr "Profilowe foto"
 
 msgid "Addons"
-msgstr ""
+msgstr "Přidatki"
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "Aktiwita"
+msgstr "Protokole aktiwnosće"
 
 msgid "Email must be {email}."
 msgstr "E-mejlowa adresa dyrbi {email} być."
@@ -7527,8 +6665,8 @@ msgstr "Městno"
 msgid "Occupation"
 msgstr "Powołanje"
 
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr "Wužiwarjo Firefox Accounts njemóža tuchwilu swoju e-mejlowu adresu změnić."
+msgid "You can change your email address on Firefox Accounts."
+msgstr "Móžeće swoju e-mejlowu adresu na Firefox Accounts změnić."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Tutón URL ma njepłaćiwy format. Płaćiwe URL tak wupadaja: http://example.com/moja_strona."

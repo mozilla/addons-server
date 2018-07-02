@@ -1,11 +1,6 @@
 {% set base_url = url('collections.list') %}
 <nav id="side-nav" class="c">
   <h2><a href="{{ base_url }}">{{ _('Collections') }}</a></h2>
-  <ul>
-    {% for sort, title in filter.opts %}
-      <li class="s-{{ sort }}"><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></li>
-    {% endfor %}
-  </ul>
   {% if request.user.is_authenticated() %}
     <ul>
       <li id="p-following">

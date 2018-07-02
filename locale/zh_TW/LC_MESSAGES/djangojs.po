@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-02-24 06:30+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -698,18 +698,6 @@ msgstr "從收藏集中移除此附加元件"
 
 msgid "Remove"
 msgstr "移除"
-
-msgid "Remove this user as a contributor"
-msgstr "剝奪這位使用者的貢獻者資格"
-
-msgid "An email address is required."
-msgstr "必須輸入電子郵件地址。"
-
-msgid "You cannot add yourself as a contributor."
-msgstr "您不能新增自己為貢獻者。"
-
-msgid "You have already added that user."
-msgstr "您已經新增該使用者。"
 
 msgid "Add to favorites"
 msgstr "加入至我的最愛"

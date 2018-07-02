@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2016-11-23 15:22+0000\n"
 "Last-Translator: malditoastur <malditoastur@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -708,18 +708,6 @@ msgstr "Desaniciar esti add-on de la coleición"
 
 msgid "Remove"
 msgstr "Desanciar"
-
-msgid "Remove this user as a contributor"
-msgstr "Desaniciar esti usuariu como contribuyente"
-
-msgid "An email address is required."
-msgstr "Ríquese una direición de corréu."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Nun pues amestate como un contribuyente."
-
-msgid "You have already added that user."
-msgstr "Yá amestesti a esi usuariu."
 
 msgid "Add to favorites"
 msgstr "Amestar a favoritos"

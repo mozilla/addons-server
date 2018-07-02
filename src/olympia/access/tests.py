@@ -30,7 +30,7 @@ def test_match_rules():
         'Admin:EditAnyCollection',
         'Tests:*,Admin:serverstatus,Admin:users',
         'Admin:EditAnyAddon,Admin:EditAnyLocale,Editors:*,'
-        'Admin:lists,Admin:applications,Admin:addons,Localizers:*',
+        'Admin:lists,Admin:applications,Admin:addons',
         'Admin:EditAnyAddon',
         'Admin:ViewAnyStats,Admin:ViewAnyCollectionStats',
         'Admin:ViewAnyStats',
@@ -52,8 +52,6 @@ def test_match_rules():
         'CollectionStats:View',
         'Addons:Review',
         'Personas:Review',
-        'Locales:Edit',
-        'Locale.de:Edit',
         'Users:Edit',
         'None:None',
     )

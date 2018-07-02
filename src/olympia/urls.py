@@ -113,12 +113,6 @@ urlpatterns = [
     url('^pages/about$',
         lambda r: redirect('pages.about', permanent=True)),
 
-    url('^pages/credits$',
-        lambda r: redirect('pages.credits', permanent=True)),
-
-    url('^pages/faq$',
-        lambda r: redirect('pages.faq', permanent=True)),
-
     # Redirect persona/xxx
     url('^getpersonas$',
         lambda r: redirect('http://www.getpersonas.com/gallery/All/Popular',

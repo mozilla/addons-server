@@ -77,9 +77,8 @@ def update_addon_download_totals():
 
     qs = (
         Addon.objects
-             .annotate(average_download_count=Avg('downloadcount__count'),
-                       sum_download_count=Sum('downloadcount__count'))
-             .values_list('id', 'average_download_count', 'sum_download_count')
+             .annotate(sum_download_count=Sum('downloadcount__count'))
+             .values_list('id', 'sum_download_count')
              .order_by('id')
     )
     ts = [_update_addon_download_totals.subtask(args=[chunk])
@@ -95,23 +94,19 @@ def _update_addon_download_totals(data, **kw):
     if not waffle.switch_is_active('local-statistics-processing'):
         return False
 
-    for pk, average_download_counts, sum_download_counts in data:
+    for pk, sum_download_counts in data:
         try:
             addon = Addon.objects.get(pk=pk)
             # Don't trigger a save unless we have to (the counts may not have
             # changed)
-            if (sum_download_counts and average_download_counts and
-                (addon.average_daily_downloads != average_download_counts or
-                 addon.total_downloads != sum_download_counts)):
-                addon.update(
-                    average_daily_downloads=average_download_counts,
-                    total_downloads=sum_download_counts)
+            if (sum_download_counts and
+                    addon.total_downloads != sum_download_counts):
+                addon.update(total_downloads=sum_download_counts)
         except Addon.DoesNotExist:
             # We exclude deleted add-ons in the cron, but an add-on could have
             # been deleted by the time the task is processed.
             m = ("Got new download totals (total=%s,avg=%s) but the add-on"
-                 "doesn't exist (%s)" % (
-                     sum_download_counts, average_download_counts, pk))
+                 "doesn't exist (%s)" % (sum_download_counts, pk))
             task_log.debug(m)
 
 
@@ -133,10 +128,9 @@ def _change_last_updated(next):
 
     log.debug('Updating %s add-ons' % len(changes))
     # Update + invalidate.
-    qs = Addon.objects.no_cache().filter(id__in=changes).no_transforms()
+    qs = Addon.objects.filter(id__in=changes).no_transforms()
     for addon in qs:
-        addon.last_updated = changes[addon.id]
-        addon.save()
+        addon.update(last_updated=changes[addon.id])
 
 
 @write
@@ -149,7 +143,7 @@ def addon_last_updated():
     _change_last_updated(next)
 
     # Get anything that didn't match above.
-    other = (Addon.objects.no_cache().filter(last_updated__isnull=True)
+    other = (Addon.objects.filter(last_updated__isnull=True)
              .values_list('id', 'created'))
     _change_last_updated(dict(other))
 
@@ -197,7 +191,7 @@ def hide_disabled_files():
     ids = (File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
            .values_list('id', flat=True))
     for chunk in chunked(ids, 300):
-        qs = File.objects.no_cache().filter(id__in=chunk)
+        qs = File.objects.filter(id__in=chunk)
         qs = qs.select_related('version')
         for f in qs:
             f.hide_disabled_file()
@@ -243,7 +237,7 @@ def deliver_hotness():
     one_week = now - timedelta(days=7)
     four_weeks = now - timedelta(days=28)
     for ids in chunked(all_ids, 300):
-        addons = Addon.objects.no_cache().filter(id__in=ids).no_transforms()
+        addons = Addon.objects.filter(id__in=ids).no_transforms()
         ids = [a.id for a in addons if a.id not in frozen]
         qs = (UpdateCount.objects.filter(addon__in=ids)
               .values_list('addon').annotate(Avg('count')))

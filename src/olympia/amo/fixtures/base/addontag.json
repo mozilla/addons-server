@@ -58,7 +58,6 @@
         "model": "addons.addon",
         "fields": {
             "slug": "8680",
-            "dev_agreement": 1,
             "eula": null,
             "_current_version": 86740,
             "last_updated": "2010-01-14 14:15:28",
@@ -66,7 +65,6 @@
             "total_downloads": 86000,
             "developer_comments": 558043,
             "disabled_by_user": 0,
-            "average_daily_downloads": 158,
             "guid": "toolbar@sape.ru",
             "locale_disambiguation": null,
             "weekly_downloads": 1252,

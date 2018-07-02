@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2017-10-11 10:10+0000\n"
-"Last-Translator: Creators 1301 <best.cloney.1301@gmail.com>\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2017-11-18 23:35+0000\n"
+"Last-Translator: yoonggunx <yoonggunx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr ""
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Xảy ra lỗi khi xác nhận từ máy chủ."
 
 msgid "Finished validating {0}"
 msgstr ""
@@ -180,7 +180,7 @@ msgid "Flagged for review"
 msgstr ""
 
 msgid "Your input is required"
-msgstr ""
+msgstr "Vui lòng điền thông tin"
 
 msgid "Marked for deletion"
 msgstr ""
@@ -340,7 +340,7 @@ msgid "Meet the Developer"
 msgstr "Gặp lập trình viên"
 
 msgid "User Profile"
-msgstr ""
+msgstr "Thông tin người dùng"
 
 msgid "Version History"
 msgstr "Lịch sử phiên bản"
@@ -698,18 +698,6 @@ msgstr ""
 
 msgid "Remove"
 msgstr "Gỡ bỏ"
-
-msgid "Remove this user as a contributor"
-msgstr ""
-
-msgid "An email address is required."
-msgstr "Yêu cầu địa chỉ thư điện tử."
-
-msgid "You cannot add yourself as a contributor."
-msgstr ""
-
-msgid "You have already added that user."
-msgstr "Bạn đã thêm người dùng đó rồi."
 
 msgid "Add to favorites"
 msgstr "Thêm vào ưa thích"

@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-06-01 13:02+0000\n"
-"Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-25 12:39+0000\n"
+"Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -182,7 +182,7 @@ msgid "Your Theme's Name"
 msgstr "మీ అంలంకారం పేరు"
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "సమీక్ష కోసం గుర్తించబడింది"
 
 msgid "Your input is required"
 msgstr "మీ ఇన్‌పుట్ అవసరం"
@@ -503,7 +503,7 @@ msgstr "గత {0} రోజుల దింపుకోళ్ళ మూలా�
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr "{0} నుంచి {1} వరకు దింపుకోళ్ళ మూలాలు"
+msgstr "{0} నుంచి {1} వరకు వనరులను దింపుకోండి"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -515,11 +515,11 @@ msgstr "{0} నుండి {1} వరకు సహాయములు"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "సైటు కొలమానాలు, చివరి {0} రోజులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} నుండి సైట్ ప్రమాణాలు"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
@@ -535,7 +535,7 @@ msgstr "గత {0} రోజుల, పొడిగింతల దింపు�
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} వరకు దింపబడిన పొడిగింతలు"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
@@ -563,11 +563,11 @@ msgstr "{0} నుండి {1} వరకు రాయబడిన సమీక�
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "వాడుకరి నమోదులు, చివరి {0} రోజులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "{0} నుండి {1} నుండి వాడుకరి నమోదులు"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
@@ -662,7 +662,7 @@ msgstr "మీ వేదికకు అందుబాటులో లేదు
 
 #. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
-msgstr ""
+msgstr "ఈ పొడిగింత {0} యొక్క మీ వెర్షన్కు అనుకూలంగా లేదు."
 
 msgid "View other versions"
 msgstr "ఇతర వెర్షన్లను వీక్షించండి"
@@ -683,7 +683,7 @@ msgid "Adding to Favorites&hellip;"
 msgstr "ఇష్టాంశాలకు జొదించి &hellip;"
 
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "ఇష్టాంశాన్ని తొలగిస్తున్నాం& hellip;"
 
 msgid "Add to Favorites"
 msgstr "ఇష్టాంశాలకు జోడించు"
@@ -706,18 +706,6 @@ msgstr "సేకరణ నుండి ఈ పొడిగింతను త�
 msgid "Remove"
 msgstr "తొలగించు"
 
-msgid "Remove this user as a contributor"
-msgstr "సహాయకుల నుండి వాడుకరిని తీసివేయి"
-
-msgid "An email address is required."
-msgstr "ఒక ఇమెయిల్ చిరునామా అవసరం."
-
-msgid "You cannot add yourself as a contributor."
-msgstr ""
-
-msgid "You have already added that user."
-msgstr "మీరు ఇప్పటికే ఆ వాడుకరిని జోడించారు."
-
 msgid "Add to favorites"
 msgstr "ఇష్టాంశాలకు జోడించు"
 
@@ -737,7 +725,7 @@ msgid "Enter a new author's email address"
 msgstr "కొత్త రచయిత యొక్క ఇమెయిల్ చిరునామాను నమోదు చేయండి"
 
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "మీ ఫైలు ఎక్కించంలో పొరపాటు జరిగింది."
 
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -768,19 +756,19 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr ""
 
 msgid "Remove this localization"
-msgstr ""
+msgstr "ఈ స్థానికీకరణను తీసివేయి"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} మొదట ఈ పేజీని చూస్తున్నారు."
 
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "అనువర్తనం ద్వారా రసీదు తనిఖీ చేయబడింది."
 
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "అనువర్తనం ద్వారా రసీదు తనిఖీ చేయబడలేదు."
 
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} మొదట ఈ పొడగింపును స్తున్నారు."
 
 msgid "Loading&hellip;"
 msgstr "వస్తోంది&hellip;"
@@ -798,7 +786,7 @@ msgid "Review Text"
 msgstr "సమీక్షా పాఠ్యం"
 
 msgid "Review notes found"
-msgstr ""
+msgstr "సమీక్ష గమనికలు కనబడ్డాయి"
 
 msgid "Average Reviews"
 msgstr "సగటు సమీక్షలు"

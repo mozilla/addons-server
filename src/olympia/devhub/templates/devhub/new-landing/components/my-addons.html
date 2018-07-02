@@ -26,23 +26,22 @@
       <div>
         <p>
           {% trans %}
-          We’re interested in your feedback about the extension development experience!
-          Take our short survey to let us know what kinds of documentation,
-          APIs, and tools would be most useful to your development work.
-          {% endtrans %}
-        </p>
-        <a href="https://qsurvey.mozilla.com/s3/Extension-Developer-survey/" class="Button">
-          {{ _('Take Survey') }}
-        </a>
-      </div>
-      <div>
-        <p>
-          {% trans %}
-            Help users discover your extension by creating an appealing listing.
+          Help users discover your extension by creating an appealing listing.
           {% endtrans %}
         </p>
         <a href="https://developer.mozilla.org/Add-ons/Listing" class="Button">
           {{ _('Learn How') }}
+        </a>
+      </div>
+      <div>
+        <p>
+          {% trans amo_link_open='<a href="https://addons.mozilla.org/">'|safe, amo_link_close='</a>'|safe %}
+          Want your extension to be featured on {{ amo_link_open }}addons.mozilla.org{{ amo_link_close }}?
+          Our featured extensions policies will tell you what you need to know.
+          {% endtrans %}
+        </p>
+        <a href="https://developer.mozilla.org/Add-ons/AMO/Policy/Featured" class="Button">
+          {{ _('Learn More') }}
         </a>
       </div>
     </div>
@@ -55,7 +54,12 @@
           {% set addon = item.addon %}
 
           <div class="DevHub-MyAddons-item">
-            <img class="DevHub-MyAddons-item-icon" src="{{ addon.get_icon_url(64) }}" alt="">
+            {% if addon.type == amo.ADDON_STATICTHEME and addon.current_previews %}
+              {% set icon_url = addon.current_previews[0].thumbnail_url %}
+            {% else %}
+              {% set icon_url = addon.get_icon_url(64) %}
+            {% endif %}
+            <img class="DevHub-MyAddons-item-icon" src="{{ icon_url }}" alt="">
             <div class="DevHub-MyAddons-item-details">
               <span class="DevHub-MyAddons-item-name">
                 {{ addon.name }}

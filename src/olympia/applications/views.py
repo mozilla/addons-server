@@ -1,33 +1,38 @@
 from django.db.transaction import non_atomic_requests
 from django.utils.translation import ugettext
 
+import waffle
+
 from olympia import amo
 from olympia.amo.feeds import NonAtomicFeed
 from olympia.amo.templatetags.jinja_helpers import absolutify, url
 from olympia.amo.utils import render
-from olympia.lib.cache import cached
+from olympia.lib.cache import cache_get_or_set
 
 from .models import AppVersion
 
 
 def get_versions(order=('application', 'version_int')):
     def fetch_versions():
-        apps = amo.APP_USAGE
-        versions = dict((app.id, []) for app in apps)
+        if waffle.switch_is_active('disallow-thunderbird-and-seamonkey'):
+            apps = amo.APP_USAGE_FIREFOXES_ONLY
+        else:
+            apps = amo.APP_USAGE
+        versions = {app.id: [] for app in apps}
         qs = list(AppVersion.objects.order_by(*order)
                   .filter(application__in=versions)
                   .values_list('application', 'version'))
         for app, version in qs:
             versions[app].append(version)
         return apps, versions
-    return cached(fetch_versions, 'getv' + ''.join(order))
+    return cache_get_or_set('getv' + ':'.join(order), fetch_versions)
 
 
 @non_atomic_requests
 def appversions(request):
     apps, versions = get_versions()
     return render(request, 'applications/appversions.html',
-                  dict(apps=apps, versions=versions))
+                  {'apps': apps, 'versions': versions})
 
 
 class AppversionsFeed(NonAtomicFeed):

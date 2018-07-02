@@ -30,7 +30,7 @@
         {{ _('Select a different header image') }}</a>
     </div>
     <div class="colors">
-      <h3>{{ _('Select colors for your theme') }}</h4>
+      <h3>{{ _('Select colors for your theme') }}</h3>
       {% set colors = [
         ('accentcolor', _('Header area background'), _('The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor.'), 'rgba(229,230,232,1)'),
         ('textcolor', _('Header area text and icons'), _('The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor.'), 'rgba(0,0,0,1'),
@@ -40,8 +40,13 @@
         ('toolbar_field_text', _('Toolbar field area text'), _('The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text.'), false)] %}
 
       <ul class="colors">
+        {% set property_list = ['textcolor','toolbar_text', 'toolbar_field_text'] %}
         {% for (property, label, tip, val_default) in colors %}
-        <li class="row">
+          {% if property in property_list  %}
+            <li class="row left">
+          {% else %}
+            <li class="row">
+          {% endif %}
           <label class="row" for="{{ property }}">
             {{ label }}
             <span>
@@ -62,7 +67,7 @@
     <div>
         <h3>{{ _('Browser preview') }}</h3>
         <div id="browser-preview" dir="ltr">
-            {% set svg_render_size = amo.THEME_PREVIEW_SIZES['full'] %}
+            {% set svg_render_size = amo.THEME_PREVIEW_SIZES['header']['full'] %}
             {% include 'devhub/addons/includes/static_theme_preview_svg.xml' %}
         </div>
     </div>

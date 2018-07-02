@@ -15,7 +15,6 @@
         "pk": 6113,
         "model": "addons.addon",
         "fields": {
-            "dev_agreement": true,
             "eula": null,
             "_current_version": 94363,
             "last_updated": "2010-02-03 18:42:00",
@@ -23,7 +22,6 @@
             "total_downloads": 386882,
             "developer_comments": null,
             "disabled_by_user": false,
-            "average_daily_downloads": 786,
             "guid": "{22870005-adef-4c9d-ae36-d0e1f2f27e5a}",
             "locale_disambiguation": null,
             "weekly_downloads": 5726,

@@ -28,7 +28,6 @@
         "model": "addons.addon",
         "fields": {
             "slug": "a4594",
-            "dev_agreement": false,
             "eula": null,
             "_current_version": 42352,
             "last_updated": "2008-03-26 21:52:58",
@@ -36,7 +35,6 @@
             "total_downloads": 442463,
             "developer_comments": null,
             "disabled_by_user": false,
-            "average_daily_downloads": 462,
             "guid": null,
             "locale_disambiguation": null,
             "weekly_downloads": 412,

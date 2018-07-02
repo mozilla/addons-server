@@ -21,8 +21,6 @@ ADMIN_TOOLS = AclPermission('Admin', 'Tools')
 ADMIN_CURATION = AclPermission('Admin', 'Curation')
 # Can edit the properties of any add-on (pseduo-admin).
 ADDONS_EDIT = AclPermission('Addons', 'Edit')
-# Can configure some settings of an add-on.
-ADDONS_CONFIGURE = AclPermission('Addons', 'Configure')
 # Can view deleted add-ons in the API.
 ADDONS_VIEW_DELETED = AclPermission('Addons', 'ViewDeleted')
 # Can view only the reviewer tools.
@@ -48,6 +46,8 @@ STATIC_THEMES_REVIEW = AclPermission('Addons', 'ThemeReview')
 
 # Can edit all collections.
 COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')
+# Can contribute to community managed collection: COLLECTION_FEATURED_THEMES_ID
+COLLECTIONS_CONTRIBUTE = AclPermission('Collections', 'Contribute')
 
 # Can view statistics for all addons, regardless of privacy settings.
 STATS_VIEW = AclPermission('Stats', 'View')
@@ -73,6 +73,9 @@ RATINGS_MODERATE = AclPermission('Ratings', 'Moderate')
 # add-on or clearing needs admin review flags.
 REVIEWS_ADMIN = AclPermission('Reviews', 'Admin')
 
+# Can access advanced admin features, like deletion.
+ADMIN_ADVANCED = AclPermission('Admin', 'Advanced')
+
 # All permissions, for easy introspection
 PERMISSIONS_LIST = [
     x for x in vars().values() if isinstance(x, AclPermission)]
@@ -85,11 +88,16 @@ DJANGO_PERMISSIONS_MAPPING = defaultdict(lambda: SUPERPOWERS)
 # will also check for addons:edit and give them read-only access to the
 # changelist (obj=None passed to the has_change_permission() method)
 DJANGO_PERMISSIONS_MAPPING.update({
+    'addons.change_addon': ADDONS_EDIT,
     'addons.change_replacementaddon': ADMIN_CURATION,
     'addons.add_replacementaddon': ADMIN_CURATION,
     'addons.delete_replacementaddon': ADMIN_CURATION,
 
+    'bandwagon.change_collection': COLLECTIONS_EDIT,
+    'bandwagon.delete_collection': COLLECTIONS_EDIT,
+
     'users.change_userprofile': USERS_EDIT,
+    'users.delete_userprofile': ADMIN_ADVANCED,
 
     'ratings.change_rating': RATINGS_MODERATE,
 })

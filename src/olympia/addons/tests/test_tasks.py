@@ -2,6 +2,7 @@ import mock
 import os
 import pytest
 import tempfile
+from datetime import datetime
 
 from django.conf import settings
 from django.test.utils import override_settings
@@ -119,6 +120,8 @@ def test_migrate_lwts_to_static_themes(add_static_theme_from_lwt_mock):
 @override_switch('allow-static-theme-uploads', active=True)
 @override_settings(ENABLE_ADDON_SIGNING=True)
 class TestAddStaticThemeFromLwt(TestCase):
+    create_date = datetime(2000, 1, 1, 1, 1, 1)
+    modify_date = datetime(2009, 9, 9, 9, 9, 9)
 
     def setUp(self):
         super(TestAddStaticThemeFromLwt, self).setUp()
@@ -160,10 +163,13 @@ class TestAddStaticThemeFromLwt(TestCase):
             assert static_theme in arguments
         self.call_signing_mock.assert_called_with(current_file)
         assert current_file.cert_serial_num == 'abcdefg1234'
+        assert static_theme.created == self.create_date
+        assert static_theme.modified == self.modify_date
 
     def test_add_static_theme_from_lwt(self):
         author = user_factory()
         persona = addon_factory(type=amo.ADDON_PERSONA, users=[author])
+        persona.update(created=self.create_date, modified=self.modify_date)
         persona.persona.license = licenses.LICENSE_CC_BY_ND.id
         Tag.objects.create(tag_text='themey').save_tag(persona)
         License.objects.create(builtin=licenses.LICENSE_CC_BY_ND.builtin)
@@ -182,6 +188,7 @@ class TestAddStaticThemeFromLwt(TestCase):
     def test_add_static_theme_broken_lwt(self):
         """What if no author or license or category?"""
         persona = addon_factory(type=amo.ADDON_PERSONA)
+        persona.update(created=self.create_date, modified=self.modify_date)
 
         assert list(persona.authors.all()) == []  # no author
         persona.persona.license = None  # no license

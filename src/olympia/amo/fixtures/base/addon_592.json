@@ -26,13 +26,11 @@
         "model": "addons.addon",
         "fields": {
             "slug": "a592",
-            "dev_agreement": true,
             "_current_version": 104749,
             "last_updated": "2010-04-24 11:33:30",
             "view_source": false,
             "total_downloads": 169327,
             "disabled_by_user": false,
-            "average_daily_downloads": 160,
             "guid": "{4c197c8f-a50f-4b49-a2d2-ed922c95612f}",
             "locale_disambiguation": null,
             "weekly_downloads": 657,

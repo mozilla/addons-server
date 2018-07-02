@@ -12,7 +12,7 @@ from django.utils.translation import ugettext
 import olympia.core.logger
 
 from olympia import amo
-from olympia.amo.cache_nuggets import memoize, memoize_key
+from olympia.lib.cache import memoize, memoize_key
 from olympia.amo.utils import normalize_string
 from olympia.translations.fields import LocaleErrorMessage
 from olympia.discovery.utils import call_recommendation_server
@@ -31,7 +31,7 @@ def clear_get_featured_ids_cache(*args, **kwargs):
     cache.delete(cache_key)
 
 
-@memoize('addons:featured', time=60 * 10)
+@memoize('addons:featured', timeout=60 * 10)
 def get_featured_ids(app=None, lang=None, type=None, types=None):
     from olympia.addons.models import Addon
     ids = []
@@ -65,7 +65,7 @@ def get_featured_ids(app=None, lang=None, type=None, types=None):
     return map(int, ids)
 
 
-@memoize('addons:creatured', time=60 * 10)
+@memoize('addons:creatured', timeout=60 * 10)
 def get_creatured_ids(category, lang=None):
     from olympia.addons.models import Addon
     from olympia.bandwagon.models import FeaturedCollection

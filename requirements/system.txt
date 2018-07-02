@@ -67,9 +67,9 @@ enum34==1.1.6 \
     --hash=sha256:8ad8c4783bf61ded74527bffb48ed9b54166685e4230386a9ed9b1279e2df5b1 \
     --hash=sha256:2d81cbbe0e73112bdfe6ef8576f2238f2ba27dd0d55752a776c41d38b7da2850
 # idna is required by cryptography
-idna==2.6 \
-    --hash=sha256:8c7309c718f94b3a625cb648ace320157ad16ff131ae0af362c9f21b80ef6ec4 \
-    --hash=sha256:2c6a5de3089009e3da7c5dde64a141dbc8551d5b7f6cf4ed7c2568d0cc520a8f
+idna==2.7 \
+    --hash=sha256:156a6814fb5ac1fc6850fb002e0852d56c0c8d2531923a51032d1b70760e186e \
+    --hash=sha256:684a38a6f903c1d71d6d5fac066b58d7768af4de2b832e426ec79c30daa94a16
 # ipaddress is required by cryptography, docker-py
 ipaddress==1.0.21 \
     --hash=sha256:c65c59041d771a8f8996e3579015b14bf015bcfdcb7949c315e6e25b89a6e2a2 \

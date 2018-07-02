@@ -252,7 +252,7 @@ def profile(request, user):
             '-weekly_downloads')
         addons = amo.utils.paginate(request, addons, 5)
 
-    reviews = amo.utils.paginate(request, user.reviews.all())
+    reviews = amo.utils.paginate(request, user.ratings.all())
 
     data = {'profile': user, 'own_coll': own_coll, 'reviews': reviews,
             'fav_coll': fav_coll, 'edit_any_user': edit_any_user,

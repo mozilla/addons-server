@@ -13,7 +13,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.decorators import owner_or_unlisted_reviewer
-from olympia.amo.cache_nuggets import Token
+from olympia.lib.cache import Token
 from olympia.files.models import File
 from olympia.files.file_viewer import DiffHelper, FileViewer
 

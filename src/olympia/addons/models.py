@@ -21,8 +21,6 @@ from django.utils.functional import cached_property
 from django.utils import translation
 from django.utils.translation import trans_real, ugettext_lazy as _
 
-import caching.base as caching
-
 from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
@@ -43,6 +41,7 @@ from olympia.amo.utils import (
     AMOJSONEncoder, attach_trans_dict, cache_ns_key, chunked, find_language,
     send_mail, slugify, sorted_groupby, timer, to_language)
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
+from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
 from olympia.files.utils import extract_translations, resolve_i18n_message
 from olympia.ratings.models import Rating
@@ -312,7 +311,6 @@ class Addon(OnChangeMixin, ModelBase):
         default=0, db_column='totaldownloads')
     hotness = models.FloatField(default=0, db_index=True)
 
-    average_daily_downloads = models.PositiveIntegerField(default=0)
     average_daily_users = models.PositiveIntegerField(default=0)
 
     last_updated = models.DateTimeField(
@@ -325,18 +323,21 @@ class Addon(OnChangeMixin, ModelBase):
     public_stats = models.BooleanField(default=False, db_column='publicstats')
     external_software = models.BooleanField(default=False,
                                             db_column='externalsoftware')
-    dev_agreement = models.BooleanField(
-        default=False, help_text="Has the dev agreement been signed?")
     auto_repackage = models.BooleanField(
         default=True, help_text='Automatically upgrade jetpack add-on to a '
                                 'new sdk version?')
 
     target_locale = models.CharField(
         max_length=255, db_index=True, blank=True, null=True,
-        help_text="For dictionaries and language packs")
+        help_text='For dictionaries and language packs. Identifies the '
+                  'language and, optionally, region that this add-on is '
+                  'written for. Examples: en-US, fr, and de-AT')
     locale_disambiguation = models.CharField(
         max_length=255, blank=True, null=True,
-        help_text="For dictionaries and language packs")
+        help_text='For dictionaries and language packs. A short identifier to '
+                  'differentiate this add-on from other similar add-ons (for '
+                  'example, different dialects). This field is not required. '
+                  'Please limit the length of the field to a few short words.')
 
     contributions = models.URLField(max_length=255, blank=True)
 
@@ -353,7 +354,11 @@ class Addon(OnChangeMixin, ModelBase):
 
     is_experimental = models.BooleanField(default=False,
                                           db_column='experimental')
-    reputation = models.SmallIntegerField(default=0, null=True)
+    reputation = models.SmallIntegerField(
+        default=0, null=True, choices=REPUTATION_CHOICES.items(),
+        help_text='The higher the reputation value, the further down the '
+                  'add-on will be in the auto-approved review queue. '
+                  'A value of 0 has no impact')
     requires_payment = models.BooleanField(default=False)
 
     unfiltered = AddonManager(include_deleted=True)
@@ -421,6 +426,22 @@ class Addon(OnChangeMixin, ModelBase):
             return
 
         clean_slug(self, slug_field)
+
+    def force_disable(self):
+        activity.log_create(amo.LOG.CHANGE_STATUS, self, amo.STATUS_DISABLED)
+        log.info('Addon "%s" status changed to: %s',
+                 self.slug, amo.STATUS_DISABLED)
+        self.update(status=amo.STATUS_DISABLED)
+        self.update_version()
+
+    def force_enable(self):
+        activity.log_create(amo.LOG.CHANGE_STATUS, self, amo.STATUS_PUBLIC)
+        log.info('Addon "%s" status changed to: %s',
+                 self.slug, amo.STATUS_PUBLIC)
+        self.update(status=amo.STATUS_PUBLIC)
+        # Call update_status() to fix the status if the add-on is not actually
+        # in a state that allows it to be public.
+        self.update_status()
 
     def is_soft_deleteable(self):
         return self.status or Version.unfiltered.filter(addon=self).exists()
@@ -719,7 +740,7 @@ class Addon(OnChangeMixin, ModelBase):
                 'channel': amo.RELEASE_CHANNEL_LISTED,
                 'files__status__in': statuses
             }
-            return self.versions.no_cache().filter(**fltr).extra(
+            return self.versions.filter(**fltr).extra(
                 where=["""
                     NOT EXISTS (
                         SELECT 1 FROM files AS f2
@@ -1008,7 +1029,7 @@ class Addon(OnChangeMixin, ModelBase):
         if addon_dict is None:
             addon_dict = dict((a.id, a) for a in addons)
 
-        qs = (UserProfile.objects.no_cache()
+        qs = (UserProfile.objects
               .filter(addons__in=addons, addonuser__listed=True)
               .extra(select={'addon_id': 'addons_users.addon_id',
                              'position': 'addons_users.position'}))
@@ -1016,7 +1037,7 @@ class Addon(OnChangeMixin, ModelBase):
         for addon_id, users in itertools.groupby(qs, key=lambda u: u.addon_id):
             addon_dict[addon_id].listed_authors = list(users)
         # FIXME: set listed_authors to empty list on addons without listed
-        # authors.
+        # authors
 
     @staticmethod
     def attach_previews(addons, addon_dict=None, no_transforms=False):
@@ -1037,13 +1058,16 @@ class Addon(OnChangeMixin, ModelBase):
         if addon_dict is None:
             addon_dict = dict((a.id, a) for a in addons)
 
-        qs = AddonCategory.objects.values_list(
-            'addon', 'category').filter(addon__in=addon_dict)
-        qs = sorted(qs, key=lambda x: (x[0], x[1]))
+        qs = (
+            AddonCategory.objects
+            .filter(addon__in=addon_dict.values())
+            .values_list('addon_id', 'category_id'))
+
         for addon_id, cats_iter in itertools.groupby(qs, key=lambda x: x[0]):
             # The second value of each tuple in cats_iter are the category ids
             # we want.
-            addon_dict[addon_id].category_ids = [c[1] for c in cats_iter]
+            addon_dict[addon_id].category_ids = sorted(
+                [c[1] for c in cats_iter])
             addon_dict[addon_id].all_categories = [
                 CATEGORIES_BY_ID[cat_id] for cat_id
                 in addon_dict[addon_id].category_ids
@@ -1063,17 +1087,17 @@ class Addon(OnChangeMixin, ModelBase):
         # displayed in detail page / API.
         Addon.attach_static_categories(addons, addon_dict=addon_dict)
 
+        # Set _current_version and attach listed authors.
+        # Do this before splitting off personas and addons because
+        # it needs to be attached to both.
+        Addon.attach_related_versions(addons, addon_dict=addon_dict)
+        Addon.attach_listed_authors(addons, addon_dict=addon_dict)
+
         personas = [a for a in addons if a.type == amo.ADDON_PERSONA]
         addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
 
-        # Set _current_version.
-        Addon.attach_related_versions(addons, addon_dict=addon_dict)
-
-        # Attach listed authors.
-        Addon.attach_listed_authors(addons, addon_dict=addon_dict)
-
         # Persona-specific stuff
-        for persona in Persona.objects.no_cache().filter(addon__in=personas):
+        for persona in Persona.objects.filter(addon__in=personas):
             addon = addon_dict[persona.addon_id]
             addon.persona = persona
 
@@ -1283,19 +1307,19 @@ class Addon(OnChangeMixin, ModelBase):
         """
         status_change = Max('versions__files__datestatuschanged')
         public = (
-            Addon.objects.no_cache().filter(
+            Addon.objects.filter(
                 status=amo.STATUS_PUBLIC,
                 versions__files__status=amo.STATUS_PUBLIC)
             .exclude(type=amo.ADDON_PERSONA)
             .values('id').annotate(last_updated=status_change))
 
         stati = amo.VALID_ADDON_STATUSES
-        exp = (Addon.objects.no_cache().exclude(status__in=stati)
+        exp = (Addon.objects.exclude(status__in=stati)
                .filter(versions__files__status__in=amo.VALID_FILE_STATUSES)
                .values('id')
                .annotate(last_updated=Max('versions__files__created')))
 
-        personas = (Addon.objects.no_cache().filter(type=amo.ADDON_PERSONA)
+        personas = (Addon.objects.filter(type=amo.ADDON_PERSONA)
                     .extra(select={'last_updated': 'created'}))
         return dict(public=public, exp=exp, personas=personas)
 
@@ -1533,7 +1557,7 @@ class AddonReviewerFlags(ModelBase):
     notified_about_expiring_info_request = models.BooleanField(default=False)
 
 
-class Persona(caching.CachingMixin, models.Model):
+class Persona(models.Model):
     """Personas-specific additions to the add-on model."""
     STATUS_CHOICES = amo.STATUS_CHOICES_PERSONA
 
@@ -1557,8 +1581,6 @@ class Persona(caching.CachingMixin, models.Model):
     # To spot duplicate submissions.
     checksum = models.CharField(max_length=64, blank=True, default='')
     dupe_persona = models.ForeignKey('self', null=True)
-
-    objects = caching.CachingManager()
 
     class Meta:
         db_table = 'personas'
@@ -1732,13 +1754,11 @@ class MigratedLWT(OnChangeMixin, ModelBase):
         self.getpersonas_id = self.lightweight_theme.persona.persona_id
 
 
-class AddonCategory(caching.CachingMixin, models.Model):
+class AddonCategory(models.Model):
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     category = models.ForeignKey('Category')
     feature = models.BooleanField(default=False)
     feature_locales = models.CharField(max_length=255, default='', null=True)
-
-    objects = caching.CachingManager()
 
     class Meta:
         db_table = 'addons_categories'
@@ -1749,16 +1769,13 @@ class AddonCategory(caching.CachingMixin, models.Model):
         return get_creatured_ids(category, lang)
 
 
-class AddonUser(caching.CachingMixin, OnChangeMixin, SaveUpdateMixin,
-                models.Model):
+class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     user = UserForeignKey()
     role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
                                     choices=amo.AUTHOR_CHOICES)
     listed = models.BooleanField(_(u'Listed'), default=True)
     position = models.IntegerField(default=0)
-
-    objects = caching.CachingManager()
 
     def __init__(self, *args, **kwargs):
         super(AddonUser, self).__init__(*args, **kwargs)

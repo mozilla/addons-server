@@ -244,7 +244,7 @@ class TestUserEditForm(UserFormBase):
         addon_factory(users=[self.user])
 
         # Clear cache
-        del self.user.is_developer
+        del self.user.cached_developer_status
 
         form = UserEditForm({}, instance=self.user)
         assert len(form.fields['notifications'].choices) == 10

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2017-11-20 13:55+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -700,18 +700,6 @@ msgstr "このアドオンをコレクションから削除"
 
 msgid "Remove"
 msgstr "削除"
-
-msgid "Remove this user as a contributor"
-msgstr "このユーザーを貢献者から削除"
-
-msgid "An email address is required."
-msgstr "メールアドレスを入力してください。"
-
-msgid "You cannot add yourself as a contributor."
-msgstr "自分を貢献者として追加することはできません。"
-
-msgid "You have already added that user."
-msgstr "このユーザーは既に追加されています。"
 
 msgid "Add to favorites"
 msgstr "お気に入りへ追加"

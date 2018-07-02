@@ -6,7 +6,7 @@ from django.contrib import admin
 from django.core import validators
 from django.urls import resolve
 from django.utils.html import format_html
-from django.utils.translation import ugettext
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 from olympia import amo
 from olympia.access import acl
@@ -16,13 +16,23 @@ from . import models
 
 
 class AddonAdmin(admin.ModelAdmin):
+    class Media:
+        css = {
+            'all': ('css/admin/l10n.css',)
+        }
+        js = ('js/admin/l10n.js',)
+
     exclude = ('authors',)
-    list_display = ('__unicode__', 'type', 'status', 'average_rating')
+    list_display = ('__unicode__', 'type', 'guid',
+                    'status_with_admin_manage_link', 'average_rating')
     list_filter = ('type', 'status')
+
+    readonly_fields = ('status_with_admin_manage_link',)
 
     fieldsets = (
         (None, {
-            'fields': ('name', 'guid', 'default_locale', 'type', 'status'),
+            'fields': ('name', 'slug', 'guid', 'default_locale', 'type',
+                       'status_with_admin_manage_link'),
         }),
         ('Details', {
             'fields': ('summary', 'description', 'homepage', 'eula',
@@ -36,12 +46,12 @@ class AddonAdmin(admin.ModelAdmin):
             'fields': ('average_rating', 'bayesian_rating', 'total_ratings',
                        'text_ratings_count',
                        'weekly_downloads', 'total_downloads',
-                       'average_daily_downloads', 'average_daily_users'),
+                       'average_daily_users'),
         }),
-        ('Truthiness', {
+        ('Flags', {
             'fields': ('disabled_by_user', 'view_source', 'requires_payment',
                        'public_stats', 'is_experimental',
-                       'external_software', 'dev_agreement'),
+                       'external_software', 'reputation'),
         }),
         ('Dictionaries', {
             'fields': ('target_locale', 'locale_disambiguation'),
@@ -49,6 +59,17 @@ class AddonAdmin(admin.ModelAdmin):
 
     def queryset(self, request):
         return models.Addon.unfiltered
+
+    def status_with_admin_manage_link(self, obj):
+        # We don't want admins to be able to change the status without logging
+        # that it happened. So, for now, instead of letting them change the
+        # status in the django admin, display it as readonly and link to the
+        # zadmin manage page, which does implement the logging part (and more).
+        # https://github.com/mozilla/addons-server/issues/7268
+        link = reverse('zadmin.addon_manage', args=(obj.slug,))
+        return format_html(u'<a href="{}">{}</a>',
+                           link, obj.get_status_display())
+    status_with_admin_manage_link.short_description = _(u'Status')
 
 
 class FeatureAdmin(admin.ModelAdmin):

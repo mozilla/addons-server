@@ -15,6 +15,8 @@ from django.urls import reverse
 
 import mock
 
+from rest_framework.exceptions import PermissionDenied
+from rest_framework.settings import api_settings
 from rest_framework.test import APIRequestFactory, APITestCase
 from waffle.models import Switch
 
@@ -26,7 +28,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.tests import (
     APITestClient, InitializeSessionMixin, PatchMixin, TestCase,
     WithDynamicEndpoints, addon_factory, assert_url_equal, create_switch,
-    user_factory)
+    reverse_ns, user_factory)
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.api.tests.utils import APIKeyAuthTestCase
@@ -58,7 +60,7 @@ class BaseAuthenticationView(APITestCase, PatchMixin,
                              InitializeSessionMixin):
 
     def setUp(self):
-        self.url = reverse(self.view_name)
+        self.url = reverse_ns(self.view_name)
         self.fxa_identify = self.patch(
             'olympia.accounts.views.verify.fxa_identify')
 
@@ -235,11 +237,17 @@ class TestFindUser(TestCase):
         with self.assertRaises(UserProfile.MultipleObjectsReturned):
             views.find_user({'uid': '9999', 'email': 'you@amo.ca'})
 
+    def test_find_user_deleted(self):
+        UserProfile.objects.create(
+            fxa_id='abc', email='me@amo.ca', deleted=True)
+        with self.assertRaises(PermissionDenied):
+            views.find_user({'uid': 'abc', 'email': 'you@amo.ca'})
+
 
 class TestRenderErrorHTML(TestCase):
 
     def make_request(self):
-        request = APIRequestFactory().get(reverse('v3:accounts.authenticate'))
+        request = APIRequestFactory().get(reverse_ns('accounts.authenticate'))
         request.user = AnonymousUser()
         return self.enable_messages(request)
 
@@ -300,7 +308,7 @@ class TestRenderErrorJSON(TestCase):
         self.addCleanup(patcher.stop)
 
     def make_request(self):
-        return APIRequestFactory().post(reverse('v3:accounts.authenticate'))
+        return APIRequestFactory().post(reverse_ns('accounts.authenticate'))
 
     def render_error(self, error):
         views.render_error(self.make_request(), error, format='json')
@@ -584,7 +592,7 @@ class TestFxAConfigMixin(TestCase):
 
 
 class TestAuthenticateView(BaseAuthenticationView):
-    view_name = 'v3:accounts.authenticate'
+    view_name = 'accounts.authenticate'
 
     def setUp(self):
         super(TestAuthenticateView, self).setUp()
@@ -703,6 +711,16 @@ class TestAuthenticateView(BaseAuthenticationView):
         self.login_user.assert_called_with(mock.ANY, user, identity)
         assert not self.register_user.called
 
+    def test_banned_user_cant_log_in(self):
+        UserProfile.objects.create(
+            username='foobar', email='real@yeahoo.com', fxa_id='10',
+            deleted=True)
+        identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
+        self.fxa_identify.return_value = identity
+        response = self.client.get(
+            self.url, {'code': 'code', 'state': self.fxa_state})
+        assert response.status_code == 403
+
     def test_log_in_redirects_to_next_path(self):
         user = UserProfile.objects.create(email='real@yeahoo.com', fxa_id='10')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
@@ -739,27 +757,26 @@ class TestAccountViewSet(TestCase):
 
     def setUp(self):
         self.user = user_factory()
-        self.url = reverse('v3:account-detail',
-                           kwargs={'pk': self.user.pk})
+        self.url = reverse_ns('account-detail', kwargs={'pk': self.user.pk})
         super(TestAccountViewSet, self).setUp()
 
     def test_profile_url(self):
         self.client.login_api(self.user)
-        response = self.client.get(reverse('v3:account-profile'))
+        response = self.client.get(reverse_ns('account-profile'))
         assert response.status_code == 200
         assert response.data['name'] == self.user.name
         assert response.data['email'] == self.user.email
         assert response.data['url'] == absolutify(self.user.get_url_path())
 
     def test_profile_url_404(self):
-        response = self.client.get(reverse('v3:account-profile'))  # No auth.
+        response = self.client.get(reverse_ns('account-profile'))  # No auth.
         assert response.status_code == 401
 
     def test_disallowed_verbs(self):
         self.client.login_api(self.user)
         # We have no list URL to post to, try posting to accounts-profile
         # instead...
-        response = self.client.post(reverse('v3:account-profile'))
+        response = self.client.post(reverse_ns('account-profile'))
         assert response.status_code == 405
         # We can try put on the detail URL though.
         response = self.client.put(self.url)
@@ -773,6 +790,18 @@ class TestAccountViewSet(TestCase):
         assert response.data['name'] == self.user.name
         assert response.data['email'] == self.user.email
         assert response.data['url'] == absolutify(self.user.get_url_path())
+
+    def test_view_deleted(self):
+        self.user.update(deleted=True, is_public=True)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+        # Even as admin deleted users are not visible through the API.
+        user = user_factory()
+        self.grant_permission(user, 'Users:Edit')
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
 
     def test_is_not_public_because_not_developer(self):
         assert not self.user.is_public
@@ -797,8 +826,8 @@ class TestAccountViewSet(TestCase):
         self.grant_permission(self.user, 'Users:Edit')
         self.client.login_api(self.user)
         self.random_user = user_factory()
-        random_user_profile_url = reverse(
-            'v3:account-detail', kwargs={'pk': self.random_user.pk})
+        random_user_profile_url = reverse_ns(
+            'account-detail', kwargs={'pk': self.random_user.pk})
         response = self.client.get(random_user_profile_url)
         assert response.status_code == 200
         assert response.data['name'] == self.random_user.name
@@ -808,14 +837,14 @@ class TestAccountViewSet(TestCase):
 
     def test_self_view_slug(self):
         # Check it works the same with an account slug rather than pk.
-        self.url = reverse('v3:account-detail',
-                           kwargs={'pk': self.user.username})
+        self.url = reverse_ns('account-detail',
+                              kwargs={'pk': self.user.username})
         self.test_self_view()
 
     def test_is_public_because_developer_slug(self):
         # Check it works the same with an account slug rather than pk.
-        self.url = reverse('v3:account-detail',
-                           kwargs={'pk': self.user.username})
+        self.url = reverse_ns('account-detail',
+                              kwargs={'pk': self.user.username})
         self.test_is_public_because_developer()
 
     def test_admin_view_slug(self):
@@ -823,8 +852,8 @@ class TestAccountViewSet(TestCase):
         self.grant_permission(self.user, 'Users:Edit')
         self.client.login_api(self.user)
         self.random_user = user_factory()
-        random_user_profile_url = reverse(
-            'v3:account-detail', kwargs={'pk': self.random_user.username})
+        random_user_profile_url = reverse_ns(
+            'account-detail', kwargs={'pk': self.random_user.username})
         response = self.client.get(random_user_profile_url)
         assert response.status_code == 200
         assert response.data['name'] == self.random_user.name
@@ -841,7 +870,7 @@ class TestProfileViewWithJWT(APIKeyAuthTestCase):
 
     def test_profile_url(self):
         self.create_api_user()
-        response = self.get(reverse('v3:account-profile'))
+        response = self.get(reverse_ns('account-profile'))
         assert response.status_code == 200
         assert response.data['name'] == self.user.name
         assert response.data['email'] == self.user.email
@@ -860,8 +889,7 @@ class TestAccountViewSetUpdate(TestCase):
 
     def setUp(self):
         self.user = user_factory()
-        self.url = reverse('v3:account-detail',
-                           kwargs={'pk': self.user.pk})
+        self.url = reverse_ns('account-detail', kwargs={'pk': self.user.pk})
         super(TestAccountViewSetUpdate, self).setUp()
 
     def patch(self, url=None, data=None):
@@ -885,7 +913,7 @@ class TestAccountViewSetUpdate(TestCase):
 
     def test_different_account(self):
         self.client.login_api(self.user)
-        url = reverse('v3:account-detail', kwargs={'pk': user_factory().pk})
+        url = reverse_ns('account-detail', kwargs={'pk': user_factory().pk})
         response = self.patch(url=url)
         assert response.status_code == 403
 
@@ -893,7 +921,7 @@ class TestAccountViewSetUpdate(TestCase):
         self.grant_permission(self.user, 'Users:Edit')
         self.client.login_api(self.user)
         random_user = user_factory()
-        url = reverse('v3:account-detail', kwargs={'pk': random_user.pk})
+        url = reverse_ns('account-detail', kwargs={'pk': random_user.pk})
         original = self.client.get(url).content
         response = self.patch(url=url)
         assert response.status_code == 200
@@ -962,8 +990,8 @@ class TestAccountViewSetUpdate(TestCase):
         self.test_picture_upload()
         assert path.exists(self.user.picture_path)
         # call the endpoint to delete
-        picture_url = reverse(
-            'v3:account-picture', kwargs={'pk': self.user.pk})
+        picture_url = reverse_ns(
+            'account-picture', kwargs={'pk': self.user.pk})
         response = self.client.delete(picture_url)
         assert response.status_code == 200
         # Should delete the photo
@@ -972,8 +1000,8 @@ class TestAccountViewSetUpdate(TestCase):
         assert json_content['picture_url'] is None
 
     def test_account_picture_disallowed_verbs(self):
-        picture_url = reverse(
-            'v3:account-picture', kwargs={'pk': self.user.pk})
+        picture_url = reverse_ns(
+            'account-picture', kwargs={'pk': self.user.pk})
         self.client.login_api(self.user)
         response = self.client.get(picture_url)
         assert response.status_code == 405
@@ -1024,8 +1052,7 @@ class TestAccountViewSetDelete(TestCase):
 
     def setUp(self):
         self.user = user_factory()
-        self.url = reverse('v3:account-detail',
-                           kwargs={'pk': self.user.pk})
+        self.url = reverse_ns('account-detail', kwargs={'pk': self.user.pk})
         super(TestAccountViewSetDelete, self).setUp()
 
     def test_delete(self):
@@ -1052,7 +1079,7 @@ class TestAccountViewSetDelete(TestCase):
 
     def test_different_account(self):
         self.client.login_api(self.user)
-        url = reverse('v3:account-detail', kwargs={'pk': user_factory().pk})
+        url = reverse_ns('account-detail', kwargs={'pk': user_factory().pk})
         response = self.client.delete(url)
         assert response.status_code == 403
 
@@ -1063,7 +1090,7 @@ class TestAccountViewSetDelete(TestCase):
         # when the admin deletes someone else's account.
         self.client.cookies[views.API_TOKEN_COOKIE] = 'something'
         random_user = user_factory()
-        url = reverse('v3:account-detail', kwargs={'pk': random_user.pk})
+        url = reverse_ns('account-detail', kwargs={'pk': random_user.pk})
         response = self.client.delete(url)
         assert response.status_code == 204
         assert random_user.reload().deleted
@@ -1116,7 +1143,7 @@ class TestAccountSuperCreate(APIKeyAuthTestCase):
         super(TestAccountSuperCreate, self).setUp()
         create_switch('super-create-accounts', active=True)
         self.create_api_user()
-        self.url = reverse('v3:accounts.super-create')
+        self.url = reverse_ns('accounts.super-create')
         group = Group.objects.create(
             name='Account Super Creators',
             rules='Accounts:SuperCreate')
@@ -1271,7 +1298,7 @@ class TestSessionView(TestCase):
                 lambda code, config: identity):
             response = self.client.get(
                 '{url}?code={code}&state={state}'.format(
-                    url=reverse('v3:accounts.authenticate'),
+                    url=reverse_ns('accounts.authenticate'),
                     state='myfxastate',
                     code='thecode'))
             token = response.cookies[views.API_TOKEN_COOKIE].value
@@ -1286,12 +1313,12 @@ class TestSessionView(TestCase):
         token = self.login_user(user)
         authorization = 'Bearer {token}'.format(token=token)
         response = self.client.delete(
-            reverse('v3:accounts.session'), HTTP_AUTHORIZATION=authorization)
+            reverse_ns('accounts.session'), HTTP_AUTHORIZATION=authorization)
         assert not response.cookies[views.API_TOKEN_COOKIE].value
         assert not self.client.session.get('_auth_user_id')
 
     def test_delete_when_unauthenticated(self):
-        response = self.client.delete(reverse('v3:accounts.session'))
+        response = self.client.delete(reverse_ns('accounts.session'))
         assert response.status_code == 401
 
 
@@ -1301,8 +1328,8 @@ class TestAccountNotificationViewSetList(TestCase):
     def setUp(self):
         self.user = user_factory()
         addon_factory(users=[self.user])  # Developers get all notifications.
-        self.url = reverse('v3:notification-list',
-                           kwargs={'user_pk': self.user.pk})
+        self.url = reverse_ns('notification-list',
+                              kwargs={'user_pk': self.user.pk})
         super(TestAccountNotificationViewSetList, self).setUp()
 
     def test_defaults_only(self):
@@ -1413,10 +1440,10 @@ class TestAccountNotificationViewSetList(TestCase):
         assert (
             {'name': u'announcements', 'enabled': False, 'mandatory': False}
             in response.data)
-        # Check we didn't just include both in the response.
-        assert (
-            {'name': u'announcements', 'enabled': True, 'mandatory': False}
-            not in response.data)
+        # Check our response only contains one announcements notification.
+        assert len(
+            [nfn for nfn in response.data
+             if nfn['name'] == u'announcements']) == 1
 
     def test_no_auth_fails(self):
         response = self.client.get(self.url)
@@ -1452,10 +1479,10 @@ class TestAccountNotificationViewSetUpdate(TestCase):
     def setUp(self):
         self.user = user_factory()
         addon_factory(users=[self.user])  # Developers get all notifications.
-        self.url = reverse('v3:notification-list',
-                           kwargs={'user_pk': self.user.pk})
-        self.list_url = reverse('v3:notification-list',
-                                kwargs={'user_pk': self.user.pk})
+        self.url = reverse_ns('notification-list',
+                              kwargs={'user_pk': self.user.pk})
+        self.list_url = reverse_ns('notification-list',
+                                   kwargs={'user_pk': self.user.pk})
         super(TestAccountNotificationViewSetUpdate, self).setUp()
 
     def test_new_notification(self):
@@ -1571,8 +1598,10 @@ class TestAccountNotificationViewSetUpdate(TestCase):
             data={
                 'newsletters': 'about-addons', 'sync': 'Y', 'optin': 'Y',
                 'source_url': (
-                    'http://testserver/api/v3/accounts/account/'
-                    '{id}/notifications/').format(id=self.user.id),
+                    'http://testserver/api/{api_version}/accounts/account/'
+                    '{id}/notifications/').format(
+                    id=self.user.id,
+                    api_version=api_settings.DEFAULT_VERSION),
                 'email': self.user.email},
             headers={'x-api-key': 'testkey'})
 

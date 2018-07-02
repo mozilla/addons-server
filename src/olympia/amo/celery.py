@@ -12,7 +12,8 @@ from celery import Celery, group
 from celery.signals import task_failure, task_postrun, task_prerun
 from django_statsd.clients import statsd
 from kombu import serialization
-from post_request_task.task import PostRequestTask
+from post_request_task.task import (
+    PostRequestTask, _start_queuing_tasks, _send_tasks_and_stop_queuing)
 from raven import Client
 from raven.contrib.celery import register_logger_signal, register_signal
 
@@ -174,3 +175,11 @@ def create_subtasks(task, qs, chunk_size, countdown=None, task_args=None):
         job.apply_async(countdown=countdown)
     else:
         job.apply_async()
+
+
+def pause_all_tasks():
+    _start_queuing_tasks()
+
+
+def resume_all_tasks():
+    _send_tasks_and_stop_queuing()

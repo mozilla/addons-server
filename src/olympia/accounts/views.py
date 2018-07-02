@@ -18,6 +18,7 @@ import waffle
 from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import detail_route
+from rest_framework.exceptions import PermissionDenied
 from rest_framework.mixins import (
     DestroyModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin)
 from rest_framework.permissions import (
@@ -38,7 +39,6 @@ from olympia.amo.decorators import write
 from olympia.amo.utils import fetch_subscribed_newsletters
 from olympia.api.authentication import (
     JWTKeyAuthentication, WebTokenAuthentication)
-from olympia.users import tasks
 from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
 from olympia.users.models import UserNotification, UserProfile
 from olympia.users.notifications import (
@@ -91,13 +91,24 @@ def safe_redirect(url, action):
 def find_user(identity):
     """Try to find a user for a Firefox Accounts profile. If the account
     hasn't been migrated we'll need to do the lookup by email but we should
-    use the ID after that so check both. If we get multiple users we're in
-    some weird state where the accounts need to be merged but that behaviour
-    hasn't been defined so let it raise.
+    use the ID after that so check both.
+
+    If we get multiple users we're in some weird state where the accounts need
+    to be merged but that behaviour hasn't been defined so let it raise.
+
+    If the user is deleted but we were still able to find them using their
+    email or fxa_id, throw an error - they are banned, they shouldn't be able
+    to log in anymore.
     """
     try:
-        return UserProfile.objects.get(
+        user = UserProfile.objects.get(
             Q(fxa_id=identity['uid']) | Q(email=identity['email']))
+        if user.deleted:
+            # If the user was found through its email/fxa_id but is deleted, it
+            # means we wanted to ban them. Raise a 403, it's not the prettiest
+            # but should be enough.
+            raise PermissionDenied()
+        return user
     except UserProfile.DoesNotExist:
         return None
     except UserProfile.MultipleObjectsReturned:
@@ -139,13 +150,15 @@ def login_user(request, user, identity):
     login(request, user)
 
 
-def fxa_error_message(message):
-    login_help_url = (
-        'https://support.mozilla.org/kb/access-your-add-ons-firefox-accounts')
+def fxa_error_message(message, login_help_url):
     return format_html(
         u'{error} <a href="{url}">{help_text}</a>',
         url=login_help_url, help_text=_(u'Need help?'),
         error=message)
+
+
+LOGIN_HELP_URL = (
+    'https://support.mozilla.org/kb/access-your-add-ons-firefox-accounts')
 
 
 def render_error(request, error, next_path=None, format=None):
@@ -156,7 +169,8 @@ def render_error(request, error, next_path=None, format=None):
         if not is_safe_url(next_path):
             next_path = None
         messages.error(
-            request, fxa_error_message(LOGIN_ERROR_MESSAGES[error]),
+            request,
+            fxa_error_message(LOGIN_ERROR_MESSAGES[error], LOGIN_HELP_URL),
             extra_tags='fxa')
         if next_path is None:
             response = HttpResponseRedirect(reverse('users.login'))
@@ -372,7 +386,7 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
     ]
 
     def get_queryset(self):
-        return UserProfile.objects.all()
+        return UserProfile.objects.exclude(deleted=True).all()
 
     def get_object(self):
         if hasattr(self, 'instance'):
@@ -438,9 +452,8 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
             AnyOf(AllowSelf, GroupPermission(amo.permissions.USERS_EDIT))])
     def picture(self, request, pk=None):
         user = self.get_object()
-        user.update(picture_type=None)
+        user.delete_picture()
         log.debug(u'User (%s) deleted photo' % user)
-        tasks.delete_photo.delay(user.picture_path)
         return self.retrieve(request)
 
 
@@ -561,17 +574,14 @@ class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
             newsletters = None  # Lazy - fetch the first time needed.
             by_basket_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID
             for basket_id, notification in by_basket_id.items():
-                # If we have this notification in the db queryset, drop it.
-                set_notifications.pop(notification.short, None)
-
                 if notification.group == 'dev' and not user.is_developer:
                     # We only return dev notifications for developers.
                     continue
                 if newsletters is None:
                     newsletters = fetch_subscribed_newsletters(user)
-                notification = self._get_default_object(notification)
-                notification.enabled = basket_id in newsletters
-                out.append(notification)
+                user_notification = self._get_default_object(notification)
+                user_notification.enabled = basket_id in newsletters
+                set_notifications[notification.short] = user_notification
 
         for notification in NOTIFICATIONS_COMBINED:
             if notification.group == 'dev' and not user.is_developer:

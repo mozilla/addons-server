@@ -27,10 +27,10 @@ class TestOwnership(TestCase):
         return formset(*args, **defaults)
 
     def get_version(self):
-        return Version.objects.no_cache().get(id=self.version.id)
+        return Version.objects.get(id=self.version.id)
 
     def get_addon(self):
-        return Addon.objects.no_cache().get(id=self.addon.id)
+        return Addon.objects.get(id=self.addon.id)
 
 
 class TestEditPolicy(TestOwnership):
@@ -246,7 +246,7 @@ class TestEditAuthor(TestOwnership):
         assert ActivityLog.objects.all().count() == orig
 
     def test_success_add_user(self):
-        qs = (AddonUser.objects.no_cache().filter(addon=3615)
+        qs = (AddonUser.objects.filter(addon=3615)
               .values_list('user', flat=True))
         assert list(qs.all()) == [55021]
 
@@ -296,8 +296,7 @@ class TestEditAuthor(TestOwnership):
         data = self.formset(one.initial, two.initial, empty, initial_count=2)
         response = self.client.post(self.url, data)
         self.assert3xx(response, self.url, 302)
-        assert not AddonUser.objects.no_cache().get(
-            addon=3615, user=999).listed
+        assert not AddonUser.objects.get(addon=3615, user=999).listed
 
     def test_change_user_role(self):
         # Add an author b/c we can't edit anything about the current one.

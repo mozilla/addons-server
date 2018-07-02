@@ -25,7 +25,7 @@ from olympia.files.models import FileUpload
 from olympia.reviewers.models import RereviewQueueTheme
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
-from olympia.versions.models import License
+from olympia.versions.models import ApplicationsVersions, License
 
 
 class TestNewUploadForm(TestCase):
@@ -105,8 +105,50 @@ class TestCompatForm(TestCase):
         version = Addon.objects.get(id=3615).current_version
         formset = forms.CompatFormSet(None, queryset=version.apps.all(),
                                       form_kwargs={'version': version})
-        apps = [f.app for f in formset.forms]
-        assert set(apps) == set(amo.APPS.values())
+        apps = [form.app for form in formset.forms]
+        assert set(apps) == set(amo.APP_USAGE)
+
+    def test_forms_disallow_thunderbird_and_seamonkey(self):
+        self.create_switch('disallow-thunderbird-and-seamonkey')
+        version = Addon.objects.get(id=3615).current_version
+        version.files.all().update(is_webextension=False)
+        del version.all_files
+        formset = forms.CompatFormSet(None, queryset=version.apps.all(),
+                                      form_kwargs={'version': version})
+        apps = [form.app for form in formset.forms]
+        assert set(apps) == set(amo.APP_USAGE_FIREFOXES_ONLY)
+
+    def test_forms_disallow_thunderbird_and_seamonkey_even_if_present(self):
+        self.create_switch('disallow-thunderbird-and-seamonkey')
+        version = Addon.objects.get(id=3615).current_version
+        current_min = version.apps.filter(application=amo.FIREFOX.id).get().min
+        current_max = version.apps.filter(application=amo.FIREFOX.id).get().max
+        version.files.all().update(is_webextension=False)
+        ApplicationsVersions.objects.create(
+            version=version, application=amo.THUNDERBIRD.id,
+            min=AppVersion.objects.get(
+                application=amo.THUNDERBIRD.id, version='50.0'),
+            max=AppVersion.objects.get(
+                application=amo.THUNDERBIRD.id, version='58.0'))
+        del version.all_files
+        formset = forms.CompatFormSet(None, queryset=version.apps.all(),
+                                      form_kwargs={'version': version})
+        apps = [form.app for form in formset.forms]
+        assert set(apps) == set(amo.APP_USAGE_FIREFOXES_ONLY)
+
+        form = formset.forms[0]
+        assert form.app == amo.FIREFOX
+        assert form.initial['application'] == amo.FIREFOX.id
+        assert form.initial['min'] == current_min.pk
+        assert form.initial['max'] == current_max.pk
+
+        # Android compatibility was not set: it's present as an extra with no
+        # initial value set other than "application".
+        form = formset.forms[1]
+        assert form.app == amo.ANDROID
+        assert form.initial['application'] == amo.ANDROID.id
+        assert 'min' not in form.initial
+        assert 'max' not in form.initial
 
     def test_form_initial(self):
         version = Addon.objects.get(id=3615).current_version
@@ -249,7 +291,7 @@ class TestPreviewForm(TestCase):
         form.save(addon)
         preview = addon.previews.all()[0]
         assert preview.sizes == (
-            {u'image': [250, 297], u'thumbnail': [126, 150],
+            {u'image': [250, 297], u'thumbnail': [168, 200],
              u'original': [250, 297]})
         assert os.path.exists(preview.image_path)
         assert os.path.exists(preview.thumbnail_path)

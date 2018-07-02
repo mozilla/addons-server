@@ -1,6 +1,5 @@
 import contextlib
 import os
-import threading
 import time
 
 from django.conf import settings
@@ -8,13 +7,9 @@ from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.db.models.query import ModelIterable
 from django.utils import translation
-from django.utils.encoding import force_text
 
-import caching.base
 import elasticsearch
 import multidb.pinning
-
-from django_statsd.clients import statsd
 
 import olympia.core.logger
 
@@ -22,12 +17,6 @@ from olympia.translations.hold import save_translations
 
 from . import search
 
-
-# Store whether we should be skipping cache-machine for this thread or not.
-# Note that because the value is initialized at import time, we can't use
-# override_settings() on CACHE_MACHINE_ENABLED.
-_locals = threading.local()
-_locals.skip_cache = not settings.CACHE_MACHINE_ENABLED
 
 log = olympia.core.logger.getLogger('z.addons')
 
@@ -43,25 +32,15 @@ def use_master():
         multidb.pinning._locals.pinned = old
 
 
-@contextlib.contextmanager
-def skip_cache():
-    """Within this context, no queries come from cache."""
-    old = getattr(_locals, 'skip_cache', not settings.CACHE_MACHINE_ENABLED)
-    _locals.skip_cache = True
-    try:
-        yield
-    finally:
-        _locals.skip_cache = old
+class BaseQuerySet(models.QuerySet):
 
-
-class UncachedBaseQuerySet(models.QuerySet):
     def __init__(self, *args, **kwargs):
-        super(UncachedBaseQuerySet, self).__init__(*args, **kwargs)
+        super(BaseQuerySet, self).__init__(*args, **kwargs)
         self._transform_fns = []
 
     def _fetch_all(self):
         if self._result_cache is None:
-            super(UncachedBaseQuerySet, self)._fetch_all()
+            super(BaseQuerySet, self)._fetch_all()
             # At this point, _result_cache should have been filled up. If we
             # are dealing with a "regular" queryset (not values() etc) then we
             # call the transformers.
@@ -70,7 +49,7 @@ class UncachedBaseQuerySet(models.QuerySet):
                     func(self._result_cache)
 
     def _clone(self, **kwargs):
-        clone = super(UncachedBaseQuerySet, self)._clone(**kwargs)
+        clone = super(BaseQuerySet, self)._clone(**kwargs)
         clone._transform_fns = self._transform_fns[:]
         return clone
 
@@ -97,16 +76,6 @@ class UncachedBaseQuerySet(models.QuerySet):
                 .transform(transformer.get_trans))
 
 
-class BaseQuerySet(UncachedBaseQuerySet):
-    # FIXME: hack no_cache() and invalidate() to pretend cache-machine is still
-    # here.
-    def no_cache(self):
-        return self
-
-    def invalidate(self, *args):
-        pass
-
-
 class RawQuerySet(models.query.RawQuerySet):
     """A RawQuerySet with __len__."""
 
@@ -123,23 +92,20 @@ class RawQuerySet(models.query.RawQuerySet):
         return len(list(self.__iter__()))
 
 
-class CachingRawQuerySet(RawQuerySet, caching.base.CachingRawQuerySet):
-    """A RawQuerySet with __len__ and caching."""
+class ManagerBase(models.Manager):
+    """
+    Base for all managers in AMO.
 
+    Returns BaseQuerySets.
 
-class UncachedManagerBase(models.Manager):
-    _queryset_class = UncachedBaseQuerySet
+    If a model has translated fields, they'll be attached through a transform
+    function.
+    """
+    _queryset_class = BaseQuerySet
 
     def get_queryset(self):
-        qs = self._with_translations(
-            self._queryset_class(self.model, using=self._db))
-        return qs
-
-    def no_cache(self):
-        return self.get_queryset()
-
-    def invalidate(self, *args):
-        pass
+        qs = self._queryset_class(self.model, using=self._db)
+        return self._with_translations(qs)
 
     def _with_translations(self, qs):
         from olympia.translations import transformer
@@ -175,38 +141,6 @@ class UncachedManagerBase(models.Manager):
                 if defaults is not None:
                     kw.update(defaults)
                 return self.create(**kw), True
-
-
-class ManagerBase(UncachedManagerBase):
-    """
-    Base for all managers in AMO.
-
-    Returns BaseQuerySets.
-
-    If a model has translated fields, they'll be attached through a transform
-    function.
-    """
-    _queryset_class = BaseQuerySet
-
-    def get_queryset(self):
-        qs = self._queryset_class(self.model, using=self._db)
-        if getattr(_locals, 'skip_cache', False):
-            qs = qs.no_cache()
-        return self._with_translations(qs)
-
-    def raw(self, raw_query, params=None, *args, **kwargs):
-        return CachingRawQuerySet(raw_query, self.model, params=params,
-                                  using=self._db, *args, **kwargs)
-
-    def post_save(self, *args, **kwargs):
-        # Measure cache invalidation after saving an object.
-        with statsd.timer('cache_machine.manager.post_save'):
-            return super(ManagerBase, self).post_save(*args, **kwargs)
-
-    def post_delete(self, *args, **kwargs):
-        # Measure cache invalidation after deleting an object.
-        with statsd.timer('cache_machine.manager.post_delete'):
-            return super(ManagerBase, self).post_delete(*args, **kwargs)
 
 
 class _NoChangeInstance(object):
@@ -423,10 +357,9 @@ class SaveUpdateMixin(object):
         return super(SaveUpdateMixin, self).save(**kwargs)
 
 
-class UncachedModelBase(SearchMixin, SaveUpdateMixin, models.Model):
+class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
     """
-    Base class for AMO models to abstract some common features
-    (without cache-machine).
+    Base class for AMO models to abstract some common features.
 
     * Adds automatic created and modified fields to the model.
     * Fetches all translations in one subsequent query during initialization.
@@ -435,11 +368,18 @@ class UncachedModelBase(SearchMixin, SaveUpdateMixin, models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
-    objects = UncachedManagerBase()
+    objects = ManagerBase()
 
     class Meta:
         abstract = True
         get_latest_by = 'created'
+        # This needs to be set so that our custom `ManagerBase`
+        # is properly discovered. This is related too.
+        # This helps resolving translation fields on related fields.
+        # This also ensures we don't ignore soft-deleted items when traversing
+        # relations, if they are hidden by the objects manager, like we
+        # do with `addons.models:Addon`
+        base_manager_name = 'objects'
 
     def get_absolute_url(self, *args, **kwargs):
         return self.get_url_path(*args, **kwargs)
@@ -449,29 +389,6 @@ class UncachedModelBase(SearchMixin, SaveUpdateMixin, models.Model):
         need to pass a serializable reference to this instance without having
         to serialize the whole object."""
         return self._meta.app_label, self._meta.model_name, self.pk
-
-
-class ModelBase(caching.base.CachingMixin, UncachedModelBase, models.Model):
-    """
-    Base class for AMO models to abstract some common features.
-
-    * Adds automatic created and modified fields to the model.
-    * Fetches all translations in one subsequent query during initialization.
-    """
-    objects = ManagerBase()
-
-    class Meta(UncachedModelBase.Meta):
-        abstract = True
-
-    @classmethod
-    def _cache_key(cls, pk, db):
-        """
-        Custom django-cache-machine cache key implementation that avoids having
-        the real db in the key, since we are only using master-slaves we don't
-        need it and it avoids invalidation bugs with FETCH_BY_ID.
-        """
-        key_parts = ('o', cls._meta, pk, 'default')
-        return ':'.join(map(force_text, key_parts))
 
 
 def manual_order(qs, pks, pk_name='id'):
@@ -556,7 +473,10 @@ class BasePreview(object):
     def delete_preview_files(cls, sender, instance, **kw):
         """On delete of the Preview object from the database, unlink the image
         and thumb on the file system """
-        for filename in [instance.image_path, instance.thumbnail_path]:
+        image_paths = [
+            instance.image_path, instance.thumbnail_path,
+            instance.original_path]
+        for filename in image_paths:
             try:
                 log.info('Removing filename: %s for preview: %s'
                          % (filename, instance.pk))

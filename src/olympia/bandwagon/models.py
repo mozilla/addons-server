@@ -13,8 +13,7 @@ from olympia import activity, amo
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.addons.utils import clear_get_featured_ids_cache
-from olympia.amo.models import (
-    BaseQuerySet, UncachedManagerBase, UncachedModelBase)
+from olympia.amo.models import ManagerBase, ModelBase, BaseQuerySet
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
@@ -60,7 +59,7 @@ class CollectionQuerySet(BaseQuerySet):
             select_params=(addon_id,))
 
 
-class CollectionManager(UncachedManagerBase):
+class CollectionManager(ManagerBase):
     _queryset_class = CollectionQuerySet
 
     def get_queryset(self):
@@ -79,15 +78,12 @@ class CollectionManager(UncachedManagerBase):
         """Return public collections only."""
         return self.filter(listed=True)
 
-    def publishable_by(self, user):
-        """Collections that are publishable by a user."""
-        owned_by = models.Q(author=user.id)
-        publishable_by = models.Q(users=user.id)
-        collections = self.filter(owned_by | publishable_by)
-        return collections.distinct().order_by('name__localized_string')
+    def owned_by(self, user):
+        """Collections authored by a user."""
+        return self.filter(author=user.pk)
 
 
-class Collection(UncachedModelBase):
+class Collection(ModelBase):
     TYPE_CHOICES = amo.COLLECTION_CHOICES.items()
 
     # TODO: Use models.UUIDField but it uses max_length=32 hex (no hyphen)
@@ -130,14 +126,12 @@ class Collection(UncachedModelBase):
                                     related_name='collections')
     author = models.ForeignKey(UserProfile, null=True,
                                related_name='collections')
-    users = models.ManyToManyField(UserProfile, through='CollectionUser',
-                                   related_name='collections_publishable')
 
     objects = CollectionManager()
 
     top_tags = TopTags()
 
-    class Meta(UncachedModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'collections'
         unique_together = (('author', 'slug'),)
 
@@ -210,10 +204,6 @@ class Collection(UncachedModelBase):
 
     def share_url(self):
         return reverse('collections.share',
-                       args=[self.author_username, self.slug])
-
-    def feed_url(self):
-        return reverse('collections.detail.rss',
                        args=[self.author_username, self.slug])
 
     def stats_url(self):
@@ -320,17 +310,14 @@ class Collection(UncachedModelBase):
         self.save()  # To invalidate Collection.
 
     def owned_by(self, user):
-        return (user.id == self.author_id)
+        return user.id == self.author_id
 
     def can_view_stats(self, request):
         if request and request.user:
-            return (self.publishable_by(request.user) or
+            return (self.owned_by(request.user) or
                     acl.action_allowed(request,
                                        amo.permissions.COLLECTION_STATS_VIEW))
         return False
-
-    def publishable_by(self, user):
-        return bool(self.owned_by(user) or self.users.filter(pk=user.id))
 
     def is_public(self):
         return self.listed
@@ -354,23 +341,21 @@ class Collection(UncachedModelBase):
         if kwargs.get('raw'):
             return
         tasks.collection_meta.delay(instance.id)
-        tasks.index_collections.delay([instance.id])
         if instance.is_featured():
             Collection.update_featured_status(sender, instance, **kwargs)
 
     @staticmethod
     def post_delete(sender, instance, **kwargs):
-        from . import tasks
         if kwargs.get('raw'):
             return
-        tasks.unindex_collections.delay([instance.id])
         if instance.is_featured():
             Collection.update_featured_status(sender, instance, **kwargs)
 
     @staticmethod
     def update_featured_status(sender, instance, **kwargs):
         from olympia.addons.tasks import index_addons
-        addons = [addon.id for addon in instance.addons.all()]
+        addons = kwargs.get(
+            'addons', [addon.id for addon in instance.addons.all()])
         if addons:
             clear_get_featured_ids_cache(None, None)
             index_addons.delay(addons)
@@ -393,7 +378,7 @@ models.signals.post_delete.connect(Collection.post_delete, sender=Collection,
                                    dispatch_uid='coll.post_delete')
 
 
-class CollectionAddon(UncachedModelBase):
+class CollectionAddon(ModelBase):
     addon = models.ForeignKey(Addon)
     collection = models.ForeignKey(Collection)
     # category (deprecated: for "Fashion Your Firefox")
@@ -406,33 +391,47 @@ class CollectionAddon(UncachedModelBase):
         help_text='Add-ons are displayed in ascending order '
                   'based on this field.')
 
-    class Meta(UncachedModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'addons_collections'
         unique_together = (('addon', 'collection'),)
 
     @staticmethod
-    def post_save_or_delete(sender, instance, **kwargs):
-        """Update Collection.addon_count."""
+    def post_save(sender, instance, **kwargs):
+        """Update Collection.addon_count and reindex add-on if the collection
+        is featured."""
         from . import tasks
         tasks.collection_meta.delay(instance.collection_id)
+
+    @staticmethod
+    def post_delete(sender, instance, **kwargs):
+        CollectionAddon.post_save(sender, instance, **kwargs)
+        if instance.collection.is_featured():
+            # The helpers .add_addon() and .remove_addon() already call .save()
+            # on the collection, triggering update_featured_status() among
+            # other things. However, this only takes care of the add-ons
+            # present in the collection at the time, we also need to make sure
+            # to invalidate add-ons that have been removed.
+            Collection.update_featured_status(
+                sender, instance.collection, addons=[instance.addon], **kwargs)
 
 
 models.signals.pre_save.connect(save_signal, sender=CollectionAddon,
                                 dispatch_uid='coll_addon_translations')
-# Update Collection.addon_count.
-models.signals.post_save.connect(CollectionAddon.post_save_or_delete,
+# Update Collection.addon_count and potentially featured state when a
+# collectionaddon changes.
+models.signals.post_save.connect(CollectionAddon.post_save,
                                  sender=CollectionAddon,
                                  dispatch_uid='coll.post_save')
-models.signals.post_delete.connect(CollectionAddon.post_save_or_delete,
+models.signals.post_delete.connect(CollectionAddon.post_delete,
                                    sender=CollectionAddon,
-                                   dispatch_uid='coll.post_save')
+                                   dispatch_uid='coll.post_delete')
 
 
-class CollectionWatcher(UncachedModelBase):
+class CollectionWatcher(ModelBase):
     collection = models.ForeignKey(Collection, related_name='following')
     user = models.ForeignKey(UserProfile)
 
-    class Meta(UncachedModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'collection_subscriptions'
 
     @staticmethod
@@ -445,16 +444,6 @@ models.signals.post_save.connect(CollectionWatcher.post_save_or_delete,
                                  sender=CollectionWatcher)
 models.signals.post_delete.connect(CollectionWatcher.post_save_or_delete,
                                    sender=CollectionWatcher)
-
-
-class CollectionUser(models.Model):
-    collection = models.ForeignKey(Collection)
-    user = models.ForeignKey(UserProfile)
-    # role is unused & will be dropped in #6496 when collections are simplified
-    role = models.SmallIntegerField(default=1)
-
-    class Meta:
-        db_table = 'collections_users'
 
 
 class CollectionVote(models.Model):
@@ -482,7 +471,7 @@ models.signals.post_delete.connect(CollectionVote.post_save_or_delete,
                                    sender=CollectionVote)
 
 
-class FeaturedCollection(UncachedModelBase):
+class FeaturedCollection(ModelBase):
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                               db_column='application_id')
     collection = models.ForeignKey(Collection)
@@ -507,7 +496,7 @@ models.signals.post_delete.connect(FeaturedCollection.post_save_or_delete,
                                    sender=FeaturedCollection)
 
 
-class MonthlyPick(UncachedModelBase):
+class MonthlyPick(ModelBase):
     addon = models.ForeignKey(Addon)
     blurb = models.TextField()
     image = models.URLField()

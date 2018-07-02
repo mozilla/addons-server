@@ -1,51 +1,46 @@
 {% set reviews = reviews[:3] %}
-{% cache reviews %}
-  {% if reviews %}
-    {% set replies = get_replies(reviews) %}
-    {% for review in reviews %}
-      <div class="review">
-        <h3>
-          {% if review.title %}
-            <b>{{ review.title }}</b>
-          {% endif %}
-          {{ review.rating|stars }}
-        </h3>
-        <p class="byline">
-          {% trans user=review.user|user_link, date=review.created|date %}
-            by {{ user }} on {{ date }}
-          {% endtrans %}
-          &middot;
-          <a class="permalink"
-             href="{{ url('addons.ratings.detail', addon.slug, review.id) }}">{{ _('permalink') }}</a>
-        </p>
-        <p class="description">{{ review.body|nl2br }}</p>
-        {% if replies[review.id] %}
-          <a class="more-info" href="{{ replies[review.id].get_url_path() }}">
-            {{ _("Show the developer's reply to this review") }}</a>
-        {% endif %}
-      </div>
-    {% endfor %}
-    {% if addon %}
-      <p>
-        <a class="more-info" href="{{ addon.ratings_url }}">
-          {% trans num=addon.total_ratings, cnt=addon.total_ratings|numberfmt %}
-            See all user reviews
-          {% pluralize %}
-            See all {{ cnt }} user reviews
-          {% endtrans %}
-        </a>
-      </p>
-    {% endif %}
-  {% else %}
-    <div class="review no-reviews">
+{% if reviews %}
+  {% set replies = get_replies(reviews) %}
+  {% for review in reviews %}
+    <div class="review">
       <h3>
-        {{ _('This add-on has not yet been reviewed.') }}
-        {% if addon.can_review(user) %}
-          <a id="add-first-review" href="{{ url('addons.ratings.add', addon.slug) }}">
-            {{ _('Be the first!') }}
-          </a>
-        {% endif %}
+        {{ review.rating|stars }}
       </h3>
+      <p class="byline">
+        {% trans user=review.user|user_link, date=review.created|date %}
+          by {{ user }} on {{ date }}
+        {% endtrans %}
+        &middot;
+        <a class="permalink"
+           href="{{ url('addons.ratings.detail', addon.slug, review.id) }}">{{ _('permalink') }}</a>
+      </p>
+      <p class="description">{{ review.body|nl2br }}</p>
+      {% if replies[review.id] %}
+        <a class="more-info" href="{{ replies[review.id].get_url_path() }}">
+          {{ _("Show the developer's reply to this review") }}</a>
+      {% endif %}
     </div>
+  {% endfor %}
+  {% if addon %}
+    <p>
+      <a class="more-info" href="{{ addon.ratings_url }}">
+        {% trans num=addon.total_ratings, cnt=addon.total_ratings|numberfmt %}
+          See all user reviews
+        {% pluralize %}
+          See all {{ cnt }} user reviews
+        {% endtrans %}
+      </a>
+    </p>
   {% endif %}
-{% endcache %}
+{% else %}
+  <div class="review no-reviews">
+    <h3>
+      {{ _('This add-on has not yet been reviewed.') }}
+      {% if addon.can_review(user) %}
+        <a id="add-first-review" href="{{ url('addons.ratings.add', addon.slug) }}">
+          {{ _('Be the first!') }}
+        </a>
+      {% endif %}
+    </h3>
+  </div>
+{% endif %}

@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2018-05-26 21:00+0000\n"
-"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-10 04:58+0000\n"
+"Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -193,9 +193,9 @@ msgstr "Vis privatlivspolitik"
 msgid "View End-User License Agreement"
 msgstr "Se slutbrugerlicensaftale"
 
-#, python-format
-msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "Denne tilføjelse er ikke blevet godkendt af Mozilla. <a href=\"%(url)s\">Læs mere</a>"
+#, fuzzy
+msgid "This add-on has not been reviewed by Mozilla."
+msgstr "Denne tilføjelse er endnu ikke blevet anmeldt."
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Denne tilføjelse er blevet markeret som eksperimentel af dens udviklere."
@@ -403,9 +403,6 @@ msgstr "Hvad synes du?"
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "<a href=\"%(login)s\">Log ind</a> for at indsende en anmeldelse"
 
-msgid "Title:"
-msgstr "Titel:"
-
 msgid "Review:"
 msgstr "Anmeldelse:"
 
@@ -566,11 +563,11 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Nogle tilføjelser beder om tilladelse til at udføre visse funktioner (Fx: En tilføjelse, der håndterer faneblade, vil bede om lov til at tilgå din browsers fanebladssystem)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
-"some rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
+" rare cases risk may be involved."
 msgstr ""
-"Eftersom det er dig, der bestemmer over din Firefox, er det også dig, der bestemmer, om du vil give tilladelse eller ej. En tilladelse betyder ikke, at du sætter Firefox' sikkerhed eller ydelse "
-"over styr, men i sjældne tilfælde kan der være en risiko."
+"Eftersom det er dig, der bestemmer over din Firefox, er det også dig, der bestemmer, om du vil give tilladelse eller ej. En tilladelse betyder ikke, at du sætter Firefox' sikkerhed eller ydelse over"
+" styr, men i sjældne tilfælde kan der være en risiko."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
@@ -660,7 +657,7 @@ msgstr[0] "<strong>{0}</strong> ugentlig filhentning"
 msgstr[1] "<strong>{0}</strong> ugentlige filhentninger"
 
 msgid "Not Reviewed"
-msgstr ""
+msgstr "Ikke godkendt"
 
 msgid "Tools"
 msgstr "Værktøjer"
@@ -750,17 +747,17 @@ msgstr "Ikke fundet"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
-"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
+"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Vi beklager, men vi kan ikke finde det, du leder efter.</h1> <p> Siden eller filen, du har anmodet om blev ikke fundet på vores websted. Det er muligt, at du har klikket på et link, der er "
-"forældet, eller indtastet adressen forkert. </p> <ul> <li>Hvis du skrev i adresselinjen, skal du dobbelttjekke stavningen.</li> <li> Hvis du fulgte et link fra et sted, så <a href=\"https://github."
-"com/mozilla/addons-server/issues/new/\">indberet fejlen</a>. Fortæl os, hvor du kom fra, og hvad du ledte efter, så vil vi gøre vores bedste for at rette den. </li> </ul> <p>Eller du kan bare hoppe "
-"over til nogle af de populære sider på vores websted.</p> <ul> <li>Er du interesseret i en <a href=\"%(rec)s\">liste med udvalgte tilføjelser</a>?</li> <li> Vil du <a href=\"%(search)s\">søge efter "
-"tilføjelser</a>? Du kan gå til <a href=\"%(search)s\">søgesiden</a> eller bare bruge søgefeltet ovenfor. </li> <li> Hvis du hellere vil starte forfra, kan du bare gå til <a href=\"%(home)s"
-"\">forsiden med tilføjelser</a>. </li> </ul>"
+"forældet, eller indtastet adressen forkert. </p> <ul> <li>Hvis du skrev i adresselinjen, skal du dobbelttjekke stavningen.</li> <li> Hvis du fulgte et link fra et sted, så <a "
+"href=\"https://github.com/mozilla/addons-server/issues/new/\">indberet fejlen</a>. Fortæl os, hvor du kom fra, og hvad du ledte efter, så vil vi gøre vores bedste for at rette den. </li> </ul> "
+"<p>Eller du kan bare hoppe over til nogle af de populære sider på vores websted.</p> <ul> <li>Er du interesseret i en <a href=\"%(rec)s\">liste med udvalgte tilføjelser</a>?</li> <li> Vil du <a "
+"href=\"%(search)s\">søge efter tilføjelser</a>? Du kan gå til <a href=\"%(search)s\">søgesiden</a> eller bare bruge søgefeltet ovenfor. </li> <li> Hvis du hellere vil starte forfra, kan du bare gå "
+"til <a href=\"%(home)s\">forsiden med tilføjelser</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Hovsa"
@@ -805,8 +802,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Indtast <strong>alle ordene</strong> nedenunder, <strong>adskilt af et mellemrum, hvis det er nødvendigt</strong>. </p> <p> Hvis det er svært at læse, kan du <a href=\"#\" id="
-"\"recaptcha_different\">prøve andre ord</a> eller <a href=\"#\" id=\"recaptcha_audio\">prøve en anden metode</a> i stedet for. </p>"
+"<p> Indtast <strong>alle ordene</strong> nedenunder, <strong>adskilt af et mellemrum, hvis det er nødvendigt</strong>. </p> <p> Hvis det er svært at læse, kan du <a href=\"#\" "
+"id=\"recaptcha_different\">prøve andre ord</a> eller <a href=\"#\" id=\"recaptcha_audio\">prøve en anden metode</a> i stedet for. </p>"
 
 msgid "Top Rated"
 msgstr "Bedst bedømte"
@@ -827,9 +824,6 @@ msgstr "Temaer"
 
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Vil du have mere tilpasning? Prøv <b>udvidede temaer</b>"
-
-msgid "Most Followers"
-msgstr "Flest følgere"
 
 msgid "Collections"
 msgstr "Samlinger"
@@ -943,24 +937,9 @@ msgstr "Versioner"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
-
-msgid "Contributors"
-msgstr "Bidragsydere"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Samlinger :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Samlinger er grupper af relaterede tilføjelser, som enhver kan oprette og dele."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Samlinger :: {1}"
 
 msgid "Only I can view this collection."
 msgstr "Kun jeg kan se denne samling."
@@ -1018,20 +997,14 @@ msgstr "Dette brugernavn kan ikke anvendes."
 msgid "This add-on already belongs to the collection"
 msgstr "Denne url anvendes allerede af en anden samling"
 
-msgid "Name"
-msgstr "Navn"
-
-msgid "Recently Updated"
-msgstr "Opdateret for nylig"
-
-msgid "Recently Popular"
-msgstr "Seneste populære"
-
 msgid "Added"
 msgstr "Tilføjet"
 
 msgid "Popularity"
 msgstr "Popularitet"
+
+msgid "Name"
+msgstr "Navn"
 
 msgid "Collection created!"
 msgstr "Samling oprettet!"
@@ -1113,9 +1086,6 @@ msgstr "Gør denne samling privat"
 msgid "Make this Collection Public"
 msgstr "Gør denne samling offentlig"
 
-msgid "Learn about collections"
-msgstr "Læs mere om samlinger"
-
 msgid "More Options:"
 msgstr "Flere indstillinger:"
 
@@ -1143,17 +1113,14 @@ msgstr "Skift"
 msgid "What are Collections?"
 msgstr "Hvad er samlinger?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Samlinger er grupper af relaterede tilføjelser, som enhver kan oprette og dele."
+
 msgid "Explore Collections"
 msgstr "Udforsk samlinger"
 
 msgid "Common Tags"
 msgstr "Almindelige mærkater"
-
-msgid "More by this User"
-msgstr "Flere af denne bruger"
-
-msgid "See all collections by this user"
-msgstr "Se alle samlinger af denne bruger"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1163,11 +1130,11 @@ msgstr ""
 "Hvis du ønsker at skjule den for offentligheden, skal du klikke på knappen nedenfor for at gøre den privat."
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
+" be able to see your favorites, click the button below to make it public."
 msgstr ""
-"Tilføjelser, som du markerer som favoritter ved hjælp af funktionen <b>Føj til favoritter</b> vises nedenfor. Denne samling er i øjeblikket <b>privat</b>, hvilket betyder, at kun du kan se den. "
-"Hvis du ønsker at alle skal kunne se dine favoritter, så klik på knappen nedenunder for at gøre den offentlig."
+"Tilføjelser, som du markerer som favoritter ved hjælp af funktionen <b>Føj til favoritter</b> vises nedenfor. Denne samling er i øjeblikket <b>privat</b>, hvilket betyder, at kun du kan se den. Hvis"
+" du ønsker at alle skal kunne se dine favoritter, så klik på knappen nedenunder for at gøre den offentlig."
 
 msgid "My favorite add-ons"
 msgstr "Mine favorittilføjelser"
@@ -1244,65 +1211,8 @@ msgstr "Rediger {0}"
 msgid "Description"
 msgstr "Beskrivelse"
 
-msgid "Contributors & More"
-msgstr ""
-
 msgid "Save Changes"
 msgstr "Gem ændringer"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "Ejer"
-
-msgid "Make Owner"
-msgstr "Gør til ejer"
-
-msgid "Remove this user as a contributor"
-msgstr "Fjern denne bruger som en bidragsyder"
-
-msgid "Remove"
-msgstr "Fjern"
-
-msgid "Collection Contributors"
-msgstr "Samlings bidragsydere"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"Du kan tilføje flere bidragsydere til denne samling. En bidragsyder kan tilføje eller fjerne tilføjelser fra denne samling, man kan ikke ændre dens navn eller beskrivelse. Indtast en mailadresse i "
-"feltet nedenunder for at tilføje en bidragsyder. Bidragsydere skal have en konto til dette websted."
-
-msgid "User"
-msgstr "Bruger"
-
-msgid "Email"
-msgstr "Mail"
-
-# Column name in a table.
-msgid "Role"
-msgstr "Rolle"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Indtast mailadressen på bidragsyderen, der skal tilføjes"
-
-msgid "Add Contributor"
-msgstr "Tilføj bidragsyder"
-
-msgid "Contributor"
-msgstr "Bidragsyder"
-
-msgid "Admin Settings"
-msgstr "Admin-indstillinger"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Advarsel:</b> Når du skifter ejer på på denne samling, kan du ikke længere redigere den. Du vil kun være i stand til at tilføje og fjerne tilføjelser fra den."
-
-msgid "Continue"
-msgstr "Fortsæt"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "eller <a id=\"change-owner-cancel\" href=\"#\">Annuller</a>"
 
 msgid "Remove from favorites"
 msgstr "Fjern fra favoritter"
@@ -1317,27 +1227,9 @@ msgstr "Samlinger af {0}"
 msgid "No collections found."
 msgstr "Ingen samlinger fundet."
 
-msgid "Most-Followed Collections"
-msgstr "Mest fulgte samlinger"
-
-msgid "Newest Collections"
-msgstr "Nyeste samlinger"
-
-msgid "Collections by Name"
-msgstr "Samlinger efter navn"
-
-msgid "Recently Updated Collections"
-msgstr "Samlinger opdateret for nylig"
-
-msgid "Recently Popular Collections"
-msgstr "Seneste populære samlinger"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Samlinger er grupper af relaterede tilføjelser, som alle kan lave og dele. Udforsk samlinger lavet af andre eller <a href=\"%(url)s\">lav dine egne</a>."
-
-msgid "Subscribe"
-msgstr "Abonner"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1375,6 +1267,9 @@ msgstr "Tilføjelse"
 
 msgid "Comment"
 msgstr "Kommentar"
+
+msgid "Remove"
+msgstr "Fjern"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Indtast navnet på tilføjelsen du vil inkludere"
@@ -1442,6 +1337,9 @@ msgstr "Flest brugere"
 msgid "Weekly Downloads"
 msgstr "Ugentlige filhentninger"
 
+msgid "Recently Updated"
+msgstr "Opdateret for nylig"
+
 msgid "Up & Coming"
 msgstr "Up & Coming"
 
@@ -1461,6 +1359,9 @@ msgstr "{0}: Udvalgte tilføjelser"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Ingen udvalgte tilføjelser i {0}."
+
+msgid "Subscribe"
+msgstr "Abonner"
 
 msgid "Featured Add-ons"
 msgstr "Udvalgte tilføjelser"
@@ -1483,8 +1384,8 @@ msgstr "Hent sprogpakke"
 
 #, python-format
 msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
-"of the entire application."
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
+" the entire application."
 msgstr ""
 "Hvis du installerer en ordbog, tilføjes et nyt sprog til stavekontrollen i %(app_name)s, som kontrollerer din stavning, mens du udfylder webformularer. Sprogpakker ændrer sproget i hele programmet."
 
@@ -1656,8 +1557,8 @@ msgstr "Tilføjelse kompatibilitetsrapporter"
 
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
+" supporting an upcoming Firefox version. </p>"
 msgstr ""
 "<p> Rapporter sendt til os gennem <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> bliver samlet her, så udviklerne kan se dem. Disse rapporter hjælper os med, at afgøre hvilke tilføjelser, "
 "der behøver hjælp for at understøtte en kommende Firefox-version. </p>"
@@ -1733,20 +1634,20 @@ msgid "Categories edited for {addon}."
 msgstr ""
 
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) føjet til {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) fjernet fra {addon}."
 
 msgid "Contributions for {addon}."
 msgstr ""
 
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} deaktiveret."
 
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} aktiveret."
 
 #. L10n: {status} is the status
 #, fuzzy
@@ -1754,7 +1655,7 @@ msgid "{addon} status changed to {status}."
 msgstr "{addon} udvalgt i {0}."
 
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{version} føjet til {addon}."
 
 msgid "{version} edited for {addon}."
 msgstr ""
@@ -1898,13 +1799,13 @@ msgid "Account updated."
 msgstr "Konto opdateret."
 
 msgid "Created: {0}."
-msgstr ""
+msgstr "Oprettet: {0}."
 
 msgid "Edited field: {2} set to: {0}."
 msgstr ""
 
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Slettet: {1}."
 
 msgid "User {user} edited, reason: {1}"
 msgstr ""
@@ -2073,6 +1974,10 @@ msgstr ""
 
 msgid "Unlisted"
 msgstr ""
+
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "Ejer"
 
 msgid "Developer"
 msgstr "Udvikler"
@@ -2515,13 +2420,13 @@ msgid "Duplicate"
 msgstr ""
 
 msgid "Reject"
-msgstr ""
+msgstr "Afvis"
 
 msgid "Approve"
-msgstr ""
+msgstr "Godkend"
 
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Seksuelt eller pornografisk indhold"
 
 msgid "Inappropriate or offensive content"
 msgstr ""
@@ -2652,17 +2557,22 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
+msgstr ""
+
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -2727,7 +2637,7 @@ msgid "Theme deleted."
 msgstr ""
 
 msgid "Add-on deleted."
-msgstr ""
+msgstr "Tilføjelse slettet."
 
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr ""
@@ -2795,8 +2705,8 @@ msgid "API key revoked"
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 msgid "Firefox Add-on Distribution Agreement"
@@ -2929,9 +2839,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 
 msgid "View and update application compatibility ranges."
@@ -3052,8 +2960,7 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr ""
 
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
 #, python-format
@@ -3116,9 +3023,12 @@ msgstr ""
 msgid "Support Information for {0}"
 msgstr ""
 
+msgid "Email"
+msgstr "Mail"
+
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -3263,6 +3173,14 @@ msgstr ""
 
 msgid "Add a Screenshot..."
 msgstr "Tilføj et skærmbillede..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Fortsæt"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
@@ -3682,9 +3600,8 @@ msgstr "Hold markøren over for eksempel"
 msgid "Back"
 msgstr "Tilbage"
 
-#, fuzzy
 msgid "Uploading Theme"
-msgstr "Up & Coming temaer"
+msgstr "Uploader tema"
 
 #, fuzzy
 msgid "Finish Theme"
@@ -3708,8 +3625,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
 msgid "You don't have any API credentials."
@@ -3791,7 +3708,7 @@ msgid "Upload New Version"
 msgstr "Upload ny version"
 
 msgid "View All"
-msgstr ""
+msgstr "Vis alle"
 
 msgid "Listed Review Page"
 msgstr ""
@@ -3896,10 +3813,6 @@ msgstr "Support"
 msgid "Policies"
 msgstr "Politikker"
 
-# Link text to the Frequently Asked Questions page.
-msgid "FAQ"
-msgstr "Ofte stillede spørgsmål"
-
 msgid "Report Bug"
 msgstr "Rapportér fejl"
 
@@ -3974,9 +3887,8 @@ msgstr ""
 msgid "Take Survey"
 msgstr ""
 
-#, fuzzy
 msgid "Welcome Back"
-msgstr "Velkommen, {0}"
+msgstr "Velkommen tilbage"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
@@ -3989,9 +3901,7 @@ msgid "View All Submissions"
 msgstr ""
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
-"Her kan du se og håndtere dine tilføjelser og temaer. Vil du udgive din første tilføjelse eller dit første tema, skal du klikke \"Indsend din første tilføjelse\" eller på \"Indsend dit første tema"
-"\"."
+msgstr "Her kan du se og håndtere dine tilføjelser og temaer. Vil du udgive din første tilføjelse eller dit første tema, skal du klikke \"Indsend din første tilføjelse\" eller på \"Indsend dit første tema\"."
 
 msgid "Submit Your First Add-on"
 msgstr "Indsend din første tilføjelse"
@@ -4024,11 +3934,11 @@ msgstr "Tilpas Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
+"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Takket være tilføjelser kan millioner af Firefox-brugere forbedre deres oplevelse når de surfer på nettet. Hvis du er fortrolig med %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript"
-"%(link_close)s og %(css_link_open)sCSS%(link_close)s, har du forudsætningerne for at kunne lave en tilføjelse."
+"Takket være tilføjelser kan millioner af Firefox-brugere forbedre deres oplevelse når de surfer på nettet. Hvis du er fortrolig med %(html_link_open)sHTML%(link_close)s, "
+"%(js_link_open)sJavaScript%(link_close)s og %(css_link_open)sCSS%(link_close)s, har du forudsætningerne for at kunne lave en tilføjelse."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Læs hvordan man laver en tilføjelse"
@@ -4051,7 +3961,7 @@ msgid "Sign In"
 msgstr "Log ind"
 
 msgid "Web-Ext"
-msgstr ""
+msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
 msgstr ""
@@ -4168,8 +4078,8 @@ msgstr "Giv dit tema et navn."
 
 #, python-format
 msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
-"Communications and Cookies Privacy Notice%(link_close)s."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
+" and Cookies Privacy Notice%(link_close)s."
 msgstr ""
 
 msgid "Submit Theme"
@@ -4211,13 +4121,13 @@ msgstr "PNG eller JPG"
 msgid "Manage Version {0}"
 msgstr "Administrer version {0}"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
+# {0} is the name of the collection
 msgid "Manage {0}"
 msgstr "Administrer {0}"
 
 msgid "Files"
-msgstr ""
+msgstr "Filer"
 
 msgid "Upload Another File"
 msgstr ""
@@ -4379,46 +4289,46 @@ msgstr ""
 msgid "Add-on Documentation :: Developer Hub"
 msgstr ""
 
-# {0} is a number
 #. L10n: first parameter is the number of errors
+# {0} is a number
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} fejl"
 msgstr[1] "{0} fejl"
 
-# {0} is a number
 #. L10n: first parameter is the number of warnings
+# {0} is a number
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} advarsel"
 msgstr[1] "{0} advarsler"
 
 #, fuzzy
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokér reklamer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgid " Block invisible trackers and spying ads that follow you around the web."
 msgstr ""
 
 #, fuzzy
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr ""
 
 #, fuzzy
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokér reklamer {start_sub_heading}med {addon_name}{end_sub_heading}"
-
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ""
-
-#, fuzzy
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
-msgid " Perform reverse image searches from an array of engines."
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr ""
+
+#, fuzzy
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid "Perform reverse image searches from an array of engines."
 msgstr ""
 
 #, fuzzy
@@ -4806,8 +4716,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"addons.mozilla.org, almindeligvis kendt som \"AMO\", er Mozillas officielle websted for tilføjelser til Mozilla-programmer såsom Firefox, Thunderbird og SeaMonkey. Med tilføjelser kan du tilføje "
-"nye funktioner og ændre måden, hvorpå din browser fungerer. Se dig omkring og udforsk de tusindvis af måder, du kan tilpasse, hvordan du gør ting på nettet."
+"addons.mozilla.org, almindeligvis kendt som \"AMO\", er Mozillas officielle websted for tilføjelser til Mozilla-programmer såsom Firefox, Thunderbird og SeaMonkey. Med tilføjelser kan du tilføje nye"
+" funktioner og ændre måden, hvorpå din browser fungerer. Se dig omkring og udforsk de tusindvis af måder, du kan tilpasse, hvordan du gør ting på nettet."
 
 msgid "Who creates these add-ons?"
 msgstr "Hvem laver disse tilføjelser?"
@@ -4856,8 +4766,7 @@ msgstr ""
 "stabilitet."
 
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Hjælp med at forbedre dette websted. Det er open source, og du kan rapportere fejl og indsende fejlrettelser. <a href=\"%(url)s\"> GitHub</a> indeholder alle vores aktuelle fejlrapporter. Du kan "
 "stadig finde ældre fejlrapporter i Bugzilla."
@@ -4878,10 +4787,8 @@ msgstr "Anmeld tilføjelser på webstedet. Forfattere til tilføjelser er mere t
 msgid "I have a question"
 msgstr "Jeg har et spørgsmål"
 
-#, python-format
-msgid ""
-"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
-"forums</a>."
+#, fuzzy, python-format
+msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
 "Et godt sted at begynde er i vores <a href=\"%(faq_url)s\"><abbr title=\"Ofte stillede spørgsmål\">OSS</abbr></a>. Hvis du ikke kan finde et svar dér, kan du <a href=\"%(forum_url)s\"> spørge i "
 "vores forummer</a>."
@@ -4893,707 +4800,14 @@ msgstr "Hvis du virkelig har brug for at kontakte nogen fra Mozilla-holdet, så 
 msgid "Who works on this website?"
 msgstr "Hvem arbejder på dette websted?"
 
-#, python-format
-msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
-"\"%(url)s\"> Site Credits</a> page."
+#, fuzzy
+msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
 msgstr ""
-"Gennem årene har mange personer bidraget til dette websted, både frivillige fra fællesskabet og et dedikeret AMO-hold. Du kan se en liste med væsentlige bidragsydere på vores <a href=\"%(url)s"
-"\">websted over bidragsydere</a> ."
-
-msgid "Add-on Compatibility Reporter"
-msgstr "Add-on Compatibility Reporter"
-
-msgid "Add-on Compatibility Reporter has been installed"
-msgstr "Add-on Compatibility Reporter er blevet installeret"
-
-msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
-msgstr "Det er nemt at hjælpe os med, at sikre tilføjelser opdateres i tide for frigivelsen af den næste version af Firefox."
-
-msgid "Here’s how to get started reporting add-on compatibility:"
-msgstr "Sådan kommer du i gang med, at rapportere kompatibilitet af tilføjelser:"
-
-msgid ""
-"As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
-"or something more serious, like the add-on not working at all or showing errors."
-msgstr ""
-"Efterhånden som du begynder at browse og bruge dine tilføjelser, vær opmærksom på alt der virker anderledes fra sidst du brugte udvidelsen. Det kan være en visningsfejl, såsom et manglende "
-"menupunkt eller noget mere alvorligt, som at tilføjelsen overhovedet ikke virker eller viser fejl."
-
-msgid ""
-"Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
-"Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
-msgstr ""
-"Når du ved om en bestemt tilføjelse virker ordentligt eller har problemer, åbn fanebladet Tilføjelser og klik på Kompatibilitet, ved siden af tilføjelsen, for at fortælle Mozilla hvad du har fundet "
-"ud af under din test. Indsendelse af en rapport vil fortælle udvikleren af tilføjelsen, om deres tilføjelse fungerer ordentligt i denne version, eller om den behøver at blive rettet."
-
-#, python-format
-msgid ""
-"If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
-"href=\"%(url)s\">our forums</a>."
-msgstr ""
-"Hvis du opgraderer til en ny version af Firefox eller opdaterer dine tilføjelser, vil dine gamle rapporter blive skjult, så du kan teste den nye version. Hvis du har nogle spørgsmål, spørg i <a "
-"href=\"%(url)s\">vores forum</a>."
-
-msgid ""
-"Thousands of add-ons are made by our community every year, and your assistance with compatibility testing helps us make sure these add-ons stay useful as we strive to provide a great user "
-"experience."
-msgstr ""
-"Hvert år laves tusindvis af tilføjelser, og din hjælp med at teste kompabilitet, hjælper os med at sikre, at disse tilføjelser forbliver nyttige, da vi stræber efter at give en fantastisk "
-"brugeroplevelse."
-
-msgid "Thank you!"
-msgstr "Tak!"
-
-msgid "Site Credits"
-msgstr "Webstedet takker"
-
-msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
-msgstr "Mozilla vil gerne takke følgende personer for deres bidrag til projektet addons.mozilla.org gennem årene:"
-
-msgid "Developers &amp; Administrators"
-msgstr "Udviklere &amp; administratorer"
-
-msgid "Localizers"
-msgstr "Oversættere"
-
-msgid "Reviewers"
-msgstr "Godkendere"
-
-#. {0} is a number (e.g. 1000).
-msgid "More than {0} add-on reviews"
-msgstr "Godkendt flere end {0} tilføjelser"
-
-msgid "Other Contributors"
-msgstr "Andre bidragydere"
-
-msgid "Past Developers &amp; Administrators"
-msgstr "Tidligere udviklere &amp; administratorer"
-
-msgid "Software and Images"
-msgstr "Software og billeder"
-
-msgid ""
-"Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
-"Commons Attribution 2.5 License</a>."
-msgstr ""
-"Nogle anvendte ikoner er fra ikonsættet <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon</a>, licenseret under en <a href=\"http://creativecommons.org/licenses/by/2.5/"
-"\">Creative Commons Attribution 2.5 License</a>."
-
-msgid ""
-"Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
-"Commons Attribution 3.0 License</a>."
-msgstr ""
-"Nogle nvendte ikoner er fra ikonsættet <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons</a>, licenseret under en <a href=\"http://creativecommons.org/licenses/by/3.0/us/"
-"\">Creative Commons Attribution 3.0 License</a>."
-
-msgid ""
-"Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
-"Commons Attribution-NonCommercial 3.0 License</a>."
-msgstr ""
-"Nogle sider anvender elementer fra <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (ikke-kommerciel), licenseret under en <a href=\"http://creativecommons.org/licenses/by-nc/3.0/"
-"\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
-
-#, python-format
-msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
-msgstr "For information om at bidrage, se vores <a href=\"%(url)s\">wiki-side</a>."
-
-msgid "Developer FAQ"
-msgstr "Ofte stillede spørgsmål for udviklere"
+"Gennem årene har mange personer bidraget til dette websted, både frivillige fra fællesskabet og et dedikeret AMO-hold. Du kan se en liste med væsentlige bidragsydere på vores <a "
+"href=\"%(url)s\">websted over bidragsydere</a> ."
 
 msgid "Sections"
 msgstr "Afsnit"
-
-msgid "Developing an Add-on"
-msgstr ""
-
-#. Heading for a list of resources for developers
-msgid "Support Resources"
-msgstr ""
-
-msgid "Contributing your Add-on"
-msgstr ""
-
-msgid "Add-on Review Process"
-msgstr ""
-
-msgid "Managing Your Add-on"
-msgstr ""
-
-msgid "References for Open Source Licenses"
-msgstr ""
-
-msgid "Add-on Developer FAQ"
-msgstr "FAQ for udviklere af udvidelser"
-
-#, python-format
-msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the %(addons_link_open)sMozilla Developer Network%(link_close)s. </p>"
-msgstr ""
-
-msgid "What is a \".xpi\" file?"
-msgstr ""
-
-msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
-msgstr ""
-
-msgid "What is XUL?"
-msgstr ""
-
-msgid ""
-"XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
-"trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
-msgstr ""
-
-#, python-format
-msgid ""
-"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use %(webext_link_open)sWebExtensions"
-"%(link_close)s APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit "
-"%(portlegacy_link_open)sPorting a legacy Firefox add-on%(link_close)s."
-msgstr ""
-
-msgid "How do I test for compatibility with the latest version of Mozilla software?"
-msgstr ""
-
-msgid ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
-"these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
-"are not negatively impacted upon final release of Mozilla software."
-msgstr ""
-
-msgid "I need some advice building my add-on. Where can I find help?"
-msgstr ""
-
-#. #extdev is the name of the IRC channel.  do not change.
-msgid "#extdev (for add-on development discussions)"
-msgstr ""
-
-#. #amo is the name of the IRC channel.  do not change.
-msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr ""
-
-#. #webextensions is the name of the IRC channel.  do not change.
-msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr ""
-
-msgid "Add-ons forum"
-msgstr ""
-
-msgid "Does Mozilla offer development services?"
-msgstr ""
-
-msgid "No."
-msgstr ""
-
-msgid "Are there 3rd party developers that I can hire to build my add-on?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
-"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
-msgstr ""
-
-msgid "Can I host my own add-on?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
-"to the large volume of visitors to the site."
-msgstr ""
-
-msgid "Can Mozilla host my add-on?"
-msgstr ""
-
-#, python-format
-msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr ""
-
-msgid "What is AMO?"
-msgstr ""
-
-msgid ""
-"Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
-"Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
-msgstr ""
-
-msgid "Does Mozilla keep my account information private?"
-msgstr ""
-
-#, python-format
-msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr ""
-
-msgid "What are the \"developer tools\" listed on AMO?"
-msgstr ""
-
-msgid ""
-"The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
-"information, and review statistics."
-msgstr ""
-
-msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Yes. Mozilla's %(policy_link_open)sAdd-on Review Policies%(link_close)s describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer "
-"Team uses the %(guide_link_open)sAdd-on Review Guide%(link_close)s to ensure that your add-on meets specific guidelines for functionality and security."
-msgstr ""
-
-msgid "How do I submit my add-on?"
-msgstr ""
-
-#, python-format
-msgid ""
-"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you "
-"have read the %(review_policy_link_open)sAdd-on Review Policies%(link_close)s to ensure that your add-on has met our guidelines."
-msgstr ""
-
-msgid "What operating system do I choose for my add-on?"
-msgstr ""
-
-msgid "You must choose the operating systems on which your add-on will successfully function."
-msgstr ""
-
-msgid "What category do I choose for my add-on?"
-msgstr ""
-
-msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
-"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
-msgstr ""
-
-msgid "Can I specify a license agreement for using my add-on?"
-msgstr ""
-
-msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
-msgstr ""
-
-msgid "Can I include a privacy policy for my add-on?"
-msgstr ""
-
-msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
-msgstr ""
-
-#, fuzzy
-msgid "Must my add-on be reviewed?"
-msgstr "Godkendt flere end {0} tilføjelser"
-
-#, python-format
-msgid ""
-"New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
-"to review add-on submissions."
-msgstr ""
-
-msgid "Who reviews my add-on?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla "
-"users. When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in "
-"the <a href=\"%(url)s\">Add-on Review Guide</a>."
-msgstr ""
-
-msgid "What are the guidelines used to review my add-on?"
-msgstr ""
-
-#, python-format
-msgid ""
-"The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
-"are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
-msgstr ""
-
-msgid "How long will it take for my add-on to be reviewed?"
-msgstr ""
-
-msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
-msgstr ""
-
-#. part of a list (<li>)
-msgid "number of add-on submissions"
-msgstr ""
-
-#. part of a list (<li>)
-msgid "complexity of an add-on’s code"
-msgstr ""
-
-#. part of a list (<li>)
-msgid "number of problem areas discovered"
-msgstr ""
-
-#, python-format
-msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr ""
-
-msgid "How can I see how many times my add-on has been downloaded?"
-msgstr ""
-
-msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
-msgstr ""
-
-msgid "How can I see how many active users are using my add-on?"
-msgstr ""
-
-msgid ""
-"The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
-msgstr ""
-
-msgid "How do I submit an update for my add-on?"
-msgstr ""
-
-msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr ""
-
-msgid "Does my update need to be reviewed by reviewers?"
-msgstr ""
-
-msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr ""
-
-msgid "How do I reply to a user who has posted a negative review of my add-on?"
-msgstr ""
-
-msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr ""
-
-#. part of a list (<li>)
-msgid "Spam or otherwise non-review content"
-msgstr "Spam eller på anden måde ikke en anmeldelse"
-
-#. part of a list (<li>)
-msgid "Inappropriate language/dialog"
-msgstr "Upassende sprogbrug"
-
-#. part of a list (<li>)
-msgid "Misplaced bug report or support request"
-msgstr "Fejlplaceret fejlrapport eller support-spørgsmål"
-
-#. part of a list (<li>)
-msgid "Other (provides a pop-up prompt for information)"
-msgstr "Andet (giver en pop op-forespørgsel for mere information)"
-
-msgid "Currently, AMO does not provide a mechanism to directly communicate with the author of a user review."
-msgstr ""
-
-msgid "Can I request that a review be removed if the review is negative?"
-msgstr ""
-
-msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr ""
-
-msgid "Can I request that a review be removed if the review is inaccurate?"
-msgstr ""
-
-msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
-msgstr ""
-
-msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
-"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
-"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
-"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
-msgstr ""
-
-msgid ""
-"In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
-"you want to use or distribute code licensed under it."
-msgstr ""
-
-msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
-msgstr ""
-
-msgid ""
-"Free Software Foundation provides short summaries of the key open source licenses, including whether the license qualifies as a free software license or a copyleft license. Also includes a "
-"discussion of what constitutes a free software license or a copyleft license (e.g., a Copyleft license is a general method for making a program or other work free, and requiring all modified and "
-"extended versions of the program to be free as well.)"
-msgstr ""
-
-msgid "Open Source Initiative provides the terms of some of the key open source licenses."
-msgstr ""
-
-msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ""
-
-msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
-msgstr ""
-
-msgid "Frequently Asked Questions"
-msgstr "Ofte stillede spørgsmål"
-
-msgid "Using Add-ons"
-msgstr "Brug af tilføjelser"
-
-msgid "What is an add-on?"
-msgstr "Hvad er en tilføjelse?"
-
-#, python-format
-msgid ""
-"Add-ons are small pieces of software that add new features or functionality to your installation of %(app_name)s. Add-ons can augment %(app_name)s with new features, foreign language dictionaries, "
-"or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
-msgstr ""
-"Tilføjelser er små stykker software, som føjer nye funktioner eller funktionalitet til %(app_name)s. Tilføjelser kan kan forbedre %(app_name)s med nye funktioner, ordbøger til stavekontrol af andre "
-"sprog, eller ændre dens udseende. Med tilføjelser kan du tilpasse %(app_name)s så programmet opfylder dine behov og din smag. <a href=\"%(learnmore_url)s\">Læs mere om tilpasning</a>."
-
-msgid "Will add-ons work with my web browser or application?"
-msgstr "Virker tilføjelser med min browser eller med mine andre programmer?"
-
-#, python-format
-msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a href="
-"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
-"Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
-msgstr ""
-"Tilføjelser på dette websted virker kun med Mozilla-baserede programmer som <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox til Android</a>, <a href="
-"\"%(getseamonkey_url)s\">SeaMonkey</a> og <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Men ikke alle tilføjelser virker med alle programmerne eller alle versioner af programmerne. Hver "
-"tilføjelse angiver, hvilket program og version den virker med, som fx Firefox 50.0 - 52.*. For tilføjelser til Firefox vil knappen Føj til Firefox vise, om tilføjelsen er kompatibel eller ej."
-
-msgid "What are the different types of add-ons?"
-msgstr "Hvad er de forskellige typer af tilføjelser?"
-
-#, python-format
-msgid "There are several kinds of add-ons that customize %(app_name)s in different ways:"
-msgstr "Der findes flere forskellige tilføjelser, der tilpasser %(app_name)s på forskellige måder:"
-
-#, python-format
-msgid ""
-"<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
-"videos from websites, integrate more closely with social websites, and add features you see in other applications."
-msgstr ""
-"<strong><a href=\"%(browse_url)s\">Udvidelser</a></strong> føjer nye funktioner til %(app_name)s eller ændrer eksisterende funktionalitet. Der findes udvidelser, der lader dig blokere for reklamer, "
-"hente videoer fra websteder, integrere tættere med sociale websteder og tilføje funktioner, som du kender fra andre programmer."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr "<strong><a href=\"%(browse_url)s\">Udvidede temaer</a></strong> ændrer hele udseendet af %(app_name)s, som regel herunder ikoner, farver, vinduer og andre visuelle stilarter."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr "<strong><a href=\"%(browse_url)s\">Temaer</a></strong> er letvægtstemaer, som benytter et baggrundsbillede til at tilpasse din %(app_name)s værktøjslinjer."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
-msgstr "<strong><a href=\"%(browse_url)s\">Søgeudbydere</a> </strong> tilføjer yderligere valg til søgefeltets rullemenu. Disse udbydere giver dig mulighed for hurtigt at søge på ethvert websted."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
-msgstr "<strong><a href=\"%(browse_url)s\">Ordbøger & sprogpakker</a></strong> tilføjer understøttelse for flere sprog til %(app_name)s."
-
-msgid "How do I install, manage, or remove an add-on?"
-msgstr "Hvordan installerer, håndterer eller fjerner jeg en tilføjelse?"
-
-#, python-format
-msgid ""
-"In most cases, add-ons can be installed by simply clicking the install button provided. Add-ons can be managed, disabled, or uninstalled from the Add-ons Manager in %(app_name)s. For more detailed "
-"instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
-"see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
-msgstr ""
-"Tilføjelser kan i de fleste tilfælde installeres ved at klikke på knappen Installer. Tilføjelser kan håndteres, deaktiveres eller afinstalleres fra fanebladet Tilføjelser i %(app_name)s. For mere "
-"detaljerede anvisninger, læs <a href=\"%(extension_url)s\">denne artikel om udvidelser</a> eller <a href=\"%(theme_url)s\">denne om temaer og udvidede temaer</a>. Hvis du har problemer med at "
-"installere tilføjelser, se <a href=\"%(troubleshooting_url)s\">Problemer med udvidelser og temaer</a>."
-
-msgid "How do I keep add-ons up-to-date?"
-msgstr "Hvordan holder jeg en tilføjelse opdateret?"
-
-msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr "Tilføjelser kontrolleres automatisk for opdateringer én gang om dagen. I Firefox installeres opdateringer som standard automatisk."
-
-msgid "Are add-ons safe to install?"
-msgstr "Er det sikkert at installere tilføjelser?"
-
-#, python-format
-msgid ""
-"Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
-"feedback is closely monitored, so they should generally be safe to install. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
-msgstr ""
-"Vær forsigtig, når du installerer tilføjelser, da de kan skade din computer eller krænke dit privatliv. Tilføjelser på dette websted er generelt sikre at installere, da de overvåges af Mozillas "
-"hold af kontrollanter, der også nøje overvåger feedback fra brugerne. %(learnmore_link_open)sLæs mere om vores kontrol%(link_close)s"
-
-#, python-format
-msgid "Can add-ons make %(app_name)s slower?"
-msgstr "Kan tilføjelser gøre %(app_name)s langsommere?"
-
-#, python-format
-msgid ""
-"Most add-ons do not cause a perceivable performance decrease in %(app_name)s, though installing an excessive number may have adverse effects. If you suspect an add-on is causing %(app_name)s to be "
-"slow, try disabling it."
-msgstr ""
-"De fleste tilføjelser medfører intet mærkbart fald i ydelsen i %(app_name)s, men installerer du et stort antal, kan det have negative virkninger. Hvis du mistænker en tilføjelse for at få "
-"%(app_name)s til at blive langsom, så prøv at deaktivere den."
-
-#, python-format
-msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
-msgstr "%(app_name)s meddelte mig, at en tilføjelse er inkompatibel. Findes der en måde, så jeg stadig kan anvende den?"
-
-#, python-format
-msgid ""
-"If an add-on isn't compatible with your version of %(app_name)s, it is usually either because your version of %(app_name)s is outdated or the add-on author has not yet updated the add-on to be "
-"compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For "
-"users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
-msgstr ""
-"Hvis en udvidelse ikke er kompatibel med din version af %(app_name)s, skyldes det som regel, at den er forældet, eller at udvikleren endnu ikke har opdateret dens versionsnummer. Versionsnummeret "
-"tjekkes af %(app_name)s, og hvis det ikke svarer til din version af %(app_name)s, markeres tilføjelsen om værende ikke-kompatibel. Mozilla anbefaler, at du ikke selv prøver at omgå versionstjekket, "
-"da en omgåelse kan gøre din browser mere ustabil eller føre til datatab.<br><br>For at hjælpe brugere med alfa- eller betaversioner af Firefox tilbyder vi udvidelsen <a href=\"%(acr_url)s\">Add-on "
-"Compatibility Reporter</a>, der gør det muligt at omgå versionstjekket og fortælle udviklerne, om deres udvidelse virker i den pågældende version af Firefox."
-
-msgid "What if I have problems with an add-on?"
-msgstr "Hvad hvis jeg har problemer med en tilføjelse?"
-
-#, python-format
-msgid ""
-"Add-ons are usually created by third-party developers from around the world, so the best way to get help with an add-on is to look for support links on the add-on's homepage or contact the "
-"developer. If you are having issues with %(app_name)s that you suspect are related to add-ons you have installed, <a href=\"%(troubleshooting_url)s\">visit this support article</a> for "
-"troubleshooting tips."
-msgstr ""
-"Tilføjelser laves normalt af tredjepartsudviklere fra hele verden, så den bedste måde at få hjælp med en tilføjelse er at besøge tilføjelsens hjemmeside eller kontakte udvikleren. Hvis du har "
-"problemer med %(app_name)s, som du har mistænkt for at være relateret til tilføjelser, som du har installeret, så <a href=\"%(troubleshooting_url)s\">se denne support-artikel</a> med tips til "
-"fejlfinding."
-
-msgid "Add-on Gallery"
-msgstr "Mozillas tilføjelser"
-
-msgid "How do I choose between add-ons that seem to do the same thing?"
-msgstr "Hvordan vælger jeg mellem tilføjelser, der ser ud til at gøre det samme?"
-
-msgid ""
-"There are often several add-ons that have similar features. To figure out which is right for you, read the entire description of the add-on and view its screenshots. If there are still several in "
-"the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
-msgstr ""
-"Der er ofte flere tilføjelser, der har lignende funktioner. For at finde ud af, hvilken der er den rette for dig, kan du læse hele tilføjelsens beskrivelse  og se skærmbilleder af den. Hvis du "
-"stadig er i tvivl, kan du læse tilføjelsens bedømmelser, brugeranmeldelser og statistikker for at se, hvilke der er mest vellidt af andre brugere. Husk, at du også bare kan prøve flere for at se, "
-"hvilken du synes bedst om."
-
-msgid "What if I can't find an add-on I'm looking for?"
-msgstr "Hvad hvis jeg ikke kan finde den tilføjelse, jeg leder efter?"
-
-#, python-format
-msgid ""
-"With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
-"our <a href=\"%(forum_url)s\">Add-ons forum</a>."
-msgstr ""
-"Med tusindvis af tilgængelige tilføjelser, er der noget for enhver. Men hvis du leder efter en bestemt tilføjelse, og ikke kan finde den, kan du prøve at finde den på andre websteder eller skrive "
-"om den i vores <a href=\"%(forum_url)s\">forum</a>."
-
-msgid "What does it mean if an add-on is \"experimental\"?"
-msgstr "Hvad betyder det, når en tilføjelse er \"eksperimentel\"?"
-
-#, python-format
-msgid ""
-"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
-"uninstall the add-on immediately if you notice problems. %(learnmore_link_open)sLearn more about our review process%(link_close)s"
-msgstr ""
-"Eksperimentelle tilføjelser er blevet markeret af deres udviklere, som værende uegnede for et bredt publikum. De kan indeholde fejl og ikke virke ordentligt. Vær forsigtig, når du installerer "
-"eksperimentelle tilføjelser, og afinstaller tilføjelsen med det samme, hvis du oplever problemer. %(learnmore_link_open)sLæs mere om vores godkendelsesproces%(link_close)s"
-
-msgid "What does it mean if an add-on is \"not reviewed\"?"
-msgstr "Hvad betyder det, når en tilføjelse er \"ikke godkendt\"?"
-
-#, python-format
-msgid ""
-"If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
-"your computer or violate your privacy. %(learnmore_link_open)sLearn more about our review process%(link_close)s</dd>"
-msgstr ""
-"Hvis du modtager et direkte link til en tilføjelse, der endnu ikke er blevet godkendt, betyder det, at tilføjelsen afventer godkendelse af Mozilla. Vær forsigtig med at installere disse "
-"tilføjelser, da de kan skade din computer eller krænke dit privatliv. %(learnmore_link_open)sLæs mere om vores godkendelsesproces%(link_close)s</dd>"
-
-msgid "How much do add-ons cost to purchase?"
-msgstr "Hvad koster tilføjelser?"
-
-msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
-msgstr "Tilføjelser på vores websted er gratis, med mindre andet er tydeligt angivet."
-
-msgid "What does it mean when an add-on asks for contributions?"
-msgstr "Hvad betyder det, når en tilføjelse beder om bidrag?"
-
-msgid ""
-"Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
-"indicated, such as the non-profit Mozilla Foundation."
-msgstr ""
-"Nogle udviklere af tilføjelser anmoder brugere, der godt kan lide en tilføjelse, om at bidrage til dens udvikling ved at give et økonomisk bidrag. Disse bidrag går direkte til udvikleren, medmindre "
-"tredjepart er angivet, såsom den almennyttige Mozilla Foundation."
-
-msgid "How do I report an inappropriate or spam user review?"
-msgstr "Hvordan kan jeg rapportere en upassende brugeranmeldelse eller spam?"
-
-msgid ""
-"To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
-"reviewers team will investigate the review and take appropriate action."
-msgstr ""
-"For at rapportere en brugeranmeldelse af en tilføjelse, skal du logge ind med din Firefox-konto og gå til tilføjelsens side med anmeldelser. Find den anmeldelse, du vil rapportere, klik på "
-"\"Rapportér denne anmeldelse\", og vælg en årsag. Vores redaktion vil undersøge anmeldelsen og træffe passende foranstaltninger."
-
-msgid "How do I report a bug or contact the Mozilla Add-ons team?"
-msgstr "Hvordan rapporterer jeg en fejl eller kontakter holdet bag Mozilla-tilføjelser?"
-
-#, python-format
-msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
-msgstr "Besøg vores <a href=\"%(contact_url)s\">kontaktside</a>."
-
-msgid "What is a Source Code License?"
-msgstr "Hvad er en licens for kildekode?"
-
-#, python-format
-msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
-"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
-"the GPL or BSD licenses instead of making up their own."
-msgstr ""
-"Udvikleren af en tilføjelse har ophavsretten til tilføjelsens kildekode, medmindre andet fremgår af en medfølgende licens. Mange udviklere her på webstedet benytter <a href=\"%(url)s\" lang=\"en"
-"\">open source-licenser</a>, som tillader alle at kopiere og genbruge kildekoden under visse betingelser. De fleste udviklere vælger kendte licenser som GPL eller BSD i stedet for at lave deres "
-"egne licenser."
-
-#, python-format
-msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
-msgstr "Firefox og andre Mozilla-programmer er <a href=\"%(url)s\">open source</a>."
-
-msgid "Collections and Favorites"
-msgstr "Samlinger og favoritter"
-
-msgid "What is a collection?"
-msgstr "Hvad er en samling?"
-
-msgid "Collections are groups of related add-ons created by users to share."
-msgstr "Samlinger er pakker med relaterede tilføjelser, som andre brugere har oprettet for at gøre det nemmere for dig."
-
-msgid "What is the My Favorites collection?"
-msgstr "Hvad er Min favoritsamling?"
-
-msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
-msgstr ""
-"Favorittilføjelser er tilføjelser, som du har bogmærket, så du nemt kan vende tilbage til dem senere. Du kan føje en tilføjelse til din favoritsamling ved at klikke på \"Føj til favoritter\" på "
-"dens side med detaljer."
-
-msgid "Mobile Add-ons"
-msgstr "Tilføjelser til Mobilen"
-
-msgid "What are mobile add-ons?"
-msgstr "Hvad er tilføjelser til Mobilen?"
-
-#, python-format
-msgid ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
-"<a href=\"%(gallery_url)s\">gallery</a>."
-msgstr ""
-"Tilføjelser til Mobilen kan installeres i <a href=\"%(mobile_url)s\">Firefox til Android</a>. De kan tilføje eller ændre funktionalitet, ligesom tilføjelser til den almindelige Firefox. Du kan "
-"finde tilføjelser til Firefox til Android på <a href=\"%(gallery_url)s\">webstedet med Mozillas tilføjelser</a>."
-
-msgid "Developer Topics"
-msgstr "For udviklere"
-
-#, python-format
-msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr ""
-"Hvis du som udvikler har spørgsmål om fremstillingen af tilføjelser, så læs vores <a href=\"%(faq_url)s\">Ofte stillede spørgsmål for udviklere</a> og <a href=\"%(hub_url)s\">udviklercentral</a>."
-
-msgid "Still have questions?"
-msgstr "Har du stadig spørgsmål?"
-
-#, python-format
-msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
-msgstr ""
-"Har du brug for hjælp til din Firefox, kan du besøge vores <a href=\"http://mozilladanmark.dk/faahjaelp\">supportwebsted</a>. Hvis du ikke kan finde et svar der, kan du <a href=\"http://forum."
-"mozilladanmark.dk\">spørge i MozillaDanmarks forum</a>."
 
 msgid "Some tips for writing a great review"
 msgstr "Råd til hvordan du skriver en god anmeldelse"
@@ -5602,8 +4816,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Ofte stillede spørgsmål om anmeldelser"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 "Anmeldelser af tilføjelser er en måde, hvorpå du kan dele din mening om de tilføjelser, du har installeret og brugt. Vores moderatorer forbeholder sig retten til at afvise eller slette alle "
 "anmeldelser, der ikke er i overensstemmelse med disse retningslinjer."
@@ -5789,23 +5003,6 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr ""
 
-msgid "Sunbird has retired"
-msgstr "Sunbird er gået på pension"
-
-msgid ""
-"Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
-"disabled our support for the add-ons."
-msgstr ""
-"Udviklingen af Sunbird-projektet er stoppet og den sidste udgivelse var den 30. marts 2010. Vi har været stolte af, at have tilføjelser til Sunbird på vores websted, men da projektet ikke længere "
-"vedligeholdes, har vi valgt  at stoppe med at tilbyde tilføjelserne."
-
-#, python-format
-msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a href=\"%(lightning_url)s\">Lightning</a>."
-msgstr "Vi anbefaler at du opgraderer til <a href=\"%(tb_url)s\">Thunderbird</a> og <a href=\"%(lightning_url)s\">Lightning</a>."
-
-msgid "Read more about Sunbird"
-msgstr "Læs mere om Sunbird"
-
 #, python-format
 msgid "Reviews for %s"
 msgstr "Anmeldelser af %s"
@@ -5820,6 +5017,15 @@ msgstr "Bedømmelse: %d ud af 5 stjerner"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
+
+msgid "Spam or otherwise non-review content"
+msgstr "Spam eller på anden måde ikke en anmeldelse"
+
+msgid "Inappropriate language/dialog"
+msgstr "Upassende sprogbrug"
+
+msgid "Misplaced bug report or support request"
+msgstr "Fejlplaceret fejlrapport eller support-spørgsmål"
 
 msgid "Other (please specify)"
 msgstr "Andet (angiv hvad)"
@@ -5859,17 +5065,17 @@ msgstr "Tilføj en anmeldelse af {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
+"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
+"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
+"Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
 "<h2>Husk at:</h2> <ul> <li>Skrive som hvis du fortalte en ven om din oplevelse af tilføjelsen. Give specifikke og brugbare detaljer, eksempelvis hvilke funktioner kunne du lide og/eller ikke lide, "
 "hvor let er den at bruge, og hvilke ulemper har den. Undgå generelle vendinger som \"Fantastisk\" eller \"Dårlig\" med mindre du kan begrunde, hvorfor du mener det. </li> <li> Indsend ikke "
-"fejlrapporter her. Din mailadresse bliver ikke gjort tilgængelig for udviklere af udvidelser, og de kan have behov for at kontakte dig for at løse dit problem. Se <a href=\"%(support)s"
-"\">supportafsnittet</a> for at finde ud af, om du kan få hjælp. Du kan også prøve, at bede <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">the add-on community</a> om "
-"hjælp. </li> <li>Lav sobre anmeldelser, undgå brug af upassende sprog og opgiv ikke personlige oplysninger. </li> </ul> <p>Læs <a href=\"%(guide)s\">Retningslinjer for anmeldelser</a> for flere "
-"detaljer om brugeranmeldelser af tilføjelser.</p>"
+"fejlrapporter her. Din mailadresse bliver ikke gjort tilgængelig for udviklere af udvidelser, og de kan have behov for at kontakte dig for at løse dit problem. Se <a "
+"href=\"%(support)s\">supportafsnittet</a> for at finde ud af, om du kan få hjælp. Du kan også prøve, at bede <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">the add-on "
+"community</a> om hjælp. </li> <li>Lav sobre anmeldelser, undgå brug af upassende sprog og opgiv ikke personlige oplysninger. </li> </ul> <p>Læs <a href=\"%(guide)s\">Retningslinjer for "
+"anmeldelser</a> for flere detaljer om brugeranmeldelser af tilføjelser.</p>"
 
 msgid "Reply to review by {0}"
 msgstr "Svar på anmeldelse af {0}"
@@ -6037,9 +5243,8 @@ msgstr "Programmer:"
 msgid "Require developer to respond in less than…"
 msgstr ""
 
-#, fuzzy
 msgid "days"
-msgstr "7 dage"
+msgstr "dage"
 
 msgid "Choose a canned response..."
 msgstr ""
@@ -6433,9 +5638,6 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr ""
 
 msgid "Add-on Title"
-msgstr ""
-
-msgid "Review Title"
 msgstr ""
 
 msgid "Review Text"
@@ -6872,32 +6074,14 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr "Popularitet denne uge"
-
-msgid "Most popular this month"
-msgstr "Popularitet denne måned"
-
-msgid "Most popular all time"
-msgstr "Popularitet igennem tiden"
-
-msgid "Highest Rated"
-msgstr "Bedste bedømmelser"
-
 msgid "search for add-ons"
 msgstr "Søg efter tilføjelser"
-
-msgid "search for collections"
-msgstr "Søg efter samlinger"
 
 msgid "search for themes"
 msgstr "Søg efter temaer"
 
 msgid "search for apps"
 msgstr "Søg efter apps"
-
-msgid "Sort By"
-msgstr "Sortér efter"
 
 msgid "Relevance"
 msgstr "Relevans"
@@ -7097,8 +6281,8 @@ msgstr "{0} :: Statistikpanel"
 msgid "Statistics Dashboard :: Add-ons for {0}"
 msgstr "Statistikpanel :: Tilføjelser til {0}"
 
-# %1 is the name of a collection
 #. {0} is an add-on name
+# %1 is the name of a collection
 msgid "Statistics for {0}"
 msgstr "Statistik for {0}"
 
@@ -7235,11 +6419,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 msgid "Add-on Status by Date"
@@ -7438,8 +6622,8 @@ msgstr "Sted"
 msgid "Occupation"
 msgstr "Stilling"
 
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr "Brugere af Firefox-konti kan i øjeblikket ikke ændre deres mailadresse."
+msgid "You can change your email address on Firefox Accounts."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Denne URL har et ugyldigt format. Gyldige URLs ligner http://eksempel.com/min_side."
@@ -7781,8 +6965,8 @@ msgstr "Udgivet {0}"
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Kildekode udgivet under <a href=\"%(url)s\">%(name)s</a>"
 
-# {0} is the add-on name
 #. {0} is an add-on name.
+# {0} is the add-on name
 msgid "{0} Version History"
 msgstr "Versionshistorik for {0}"
 

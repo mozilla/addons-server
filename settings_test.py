@@ -26,10 +26,6 @@ PAYPAL_PERMISSIONS_URL = ''
 
 SITE_URL = 'http://testserver'
 
-# COUNT() caching can't be invalidated, it just expires after x seconds. This
-# is just too annoying for tests, so disable it.
-CACHE_COUNT_TIMEOUT = -1
-
 # We don't want to share cache state between processes. Always use the local
 # memcache backend for tests.
 #
@@ -41,7 +37,7 @@ CACHES = {
     'default': {
         # `CacheStatTracker` is required for `assert_cache_requests` to work
         # properly
-        'BACKEND': 'olympia.amo.cache_nuggets.CacheStatTracker',
+        'BACKEND': 'olympia.lib.cache.CacheStatTracker',
         'LOCATION': 'olympia',
         'OPTIONS': {
             'ACTUAL_BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
@@ -75,8 +71,19 @@ SIGNING_SERVER = ''
 ENABLE_ADDON_SIGNING = False
 
 # Limit logging in tests.
-LOGGING = {
-    'loggers': {}
+LOGGING['loggers'] = {
+    '': {
+        'handlers': ['null'],
+        'level': logging.DEBUG,
+        'propogate': False,
+    },
+    # Need to disable celery logging explicitly. Celery configures it's
+    # logging manually and we don't catch their logger in our default config.
+    'celery': {
+        'handlers': ['null'],
+        'level': logging.DEBUG,
+        'propagate': False
+    },
 }
 
 # To speed tests up, crushing uploaded images is disabled in tests except
@@ -93,8 +100,6 @@ BASKET_API_KEY = 'testkey'
 if os.environ.get('RUNNING_IN_CI'):
     import product_details
     from datetime import datetime
-
-    LOG_LEVEL = logging.ERROR
 
     class MockProductDetails:
         """Main information we need in tests.

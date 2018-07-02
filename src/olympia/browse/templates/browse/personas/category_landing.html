@@ -28,11 +28,9 @@
       <div class="featured-inner themes">
         {% set addons = addon_sets[special][:15] %}
         <ul class="personas-slider">
-          {% cache addons %}
           {% for addon in addons %}
             <li>{{ persona_preview(addon.persona, size='small') }}</li>
           {% endfor %}
-          {% endcache %}
         </ul>
         <h2>{{ _('Themes') }}</h2>
         <p class="intro">
@@ -59,11 +57,9 @@
       <div class="personas-featured">
         <h3>{{ _('Featured Themes') }}</h3>
         <ul class="persona-list-3col">
-          {% cache addons %}
-            {% for addon in addons %}
-              <li>{{ persona_preview(addon.persona, size='small') }}</li>
-            {% endfor %}
-          {% endcache %}
+          {% for addon in addons %}
+            <li>{{ persona_preview(addon.persona, size='small') }}</li>
+          {% endfor %}
         </ul>
       </div>
     {% endif %}
@@ -75,11 +71,9 @@
           <a href="{{ sort_link(special) }}">{{ _('Up & Coming Themes') }}</a>
         </h3>
         <ul class="persona-list-3col">
-          {% cache addons %}
-            {% for addon in addons %}
-              <li>{{ persona_preview(addon.persona, size='small') }}</li>
-            {% endfor %}
-          {% endcache %}
+          {% for addon in addons %}
+            <li>{{ persona_preview(addon.persona, size='small') }}</li>
+          {% endfor %}
         </ul>
         <p class="view-all">
           <a href="{{ sort_link(special) }}">
@@ -95,11 +89,9 @@
     <div id="personas-{{ key }}" class="addons-column {{ 'last' if loop.last }}">
       <h3><a href="{{ link }}">{{ filter.opts_dict[key] }}</a></h3>
       <ul class="personas">
-        {% cache addons %}
         {% for addon in addons %}
           <li>{{ persona_preview(addon.persona, size='small', extra=key) }}</li>
         {% endfor %}
-        {% endcache %}
       </ul>
       <p class="view-all"><a href="{{ link }}">{{ more_links[key] }}</a></p>
     </div>

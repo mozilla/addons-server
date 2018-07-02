@@ -31,13 +31,14 @@ from olympia.constants.licenses import (
     LICENSE_COPYRIGHT_AR, PERSONA_LICENSES_IDS)
 from olympia.files.models import FileUpload
 from olympia.files.utils import RDFExtractor, get_file, parse_addon, SafeZip
+from olympia.amo.celery import pause_all_tasks, resume_all_tasks
 from olympia.lib.crypto.packaged import sign_file
 from olympia.lib.es.utils import index_objects
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import RereviewQueueTheme
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
-from olympia.versions.models import License, Version
+from olympia.versions.models import ApplicationsVersions, License, Version
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -78,7 +79,7 @@ def update_last_updated(addon_id):
 def update_appsupport(ids):
     log.info("[%s@None] Updating appsupport for %s." % (len(ids), ids))
 
-    addons = Addon.objects.no_cache().filter(id__in=ids).no_transforms()
+    addons = Addon.objects.filter(id__in=ids).no_transforms()
     support = []
     for addon in addons:
         for app, appver in addon.compatible_apps.items():
@@ -97,9 +98,6 @@ def update_appsupport(ids):
     with transaction.atomic():
         AppSupport.objects.filter(addon__id__in=ids).delete()
         AppSupport.objects.bulk_create(support)
-
-    # All our updates were sql, so invalidate manually.
-    Addon.objects.invalidate(*addons)
 
 
 @task
@@ -593,6 +591,10 @@ def add_static_theme_from_lwt(lwt):
             status=amo.STATUS_PUBLIC)
     addon_updates['status'] = amo.STATUS_PUBLIC
 
+    # set the modified and creation dates to match the original.
+    addon_updates['created'] = lwt.created
+    addon_updates['modified'] = lwt.modified
+
     addon.update(**addon_updates)
     return addon
 
@@ -607,6 +609,7 @@ def migrate_lwts_to_static_themes(ids, **kw):
 
     # Incoming ids should already by type=persona only
     lwts = Addon.objects.filter(id__in=ids)
+    pause_all_tasks()
     for lwt in lwts:
         static = None
         try:
@@ -624,3 +627,31 @@ def migrate_lwts_to_static_themes(ids, **kw):
         slug = lwt.slug
         lwt.delete()
         static.update(slug=slug)
+    resume_all_tasks()
+
+
+@task
+@write
+def delete_addon_not_compatible_with_firefoxes(ids, **kw):
+    """
+    Delete the specified add-ons.
+    Used by process_addons --task=delete_addons_not_compatible_with_firefoxes
+    """
+    log.info(
+        'Deleting addons not compatible with firefoxes %d-%d [%d].',
+        ids[0], ids[-1], len(ids))
+    qs = Addon.objects.filter(id__in=ids)
+    for addon in qs:
+        addon.appsupport_set.filter(
+            app__in=(amo.THUNDERBIRD.id, amo.SEAMONKEY.id)).delete()
+        addon.delete()
+
+
+@task
+@write
+def delete_obsolete_applicationsversions(**kw):
+    """Delete ApplicationsVersions objects not relevant for Firefoxes."""
+    qs = ApplicationsVersions.objects.exclude(
+        application__in=(amo.FIREFOX.id, amo.ANDROID.id))
+    for av in qs.iterator():
+        av.delete()

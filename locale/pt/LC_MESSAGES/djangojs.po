@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2015-10-15 00:51+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -708,18 +708,6 @@ msgstr "Remover este extra desta coleção"
 
 msgid "Remove"
 msgstr "Remover"
-
-msgid "Remove this user as a contributor"
-msgstr "Remover este utilizador dos colaboradores"
-
-msgid "An email address is required."
-msgstr "É necessário um endereço de email."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Não pode adicionar-se a si próprio como colaborador."
-
-msgid "You have already added that user."
-msgstr "Já adicionou esse utilizador."
 
 msgid "Add to favorites"
 msgstr "Adicionar aos favoritos"

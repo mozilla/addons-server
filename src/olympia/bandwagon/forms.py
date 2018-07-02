@@ -14,10 +14,10 @@ from olympia.amo.utils import (
     clean_nl, has_links, ImageCheck, slug_validator, slugify)
 from olympia.translations.widgets import (
     TranslationTextarea, TranslationTextInput)
-from olympia.users.models import DeniedName, UserProfile
+from olympia.users.models import DeniedName
 
 from . import tasks
-from .models import Collection, CollectionUser
+from .models import Collection
 
 
 privacy_choices = (
@@ -31,18 +31,6 @@ collection_types = (
 
 
 log = olympia.core.logger.getLogger('z.collections')
-
-
-class AdminForm(forms.Form):
-    application = forms.TypedChoiceField(choices=apps, required=False,
-                                         empty_value=None, coerce=int)
-    type = forms.TypedChoiceField(choices=collection_types, required=False,
-                                  coerce=int)
-
-    def save(self, collection):
-        collection.type = self.cleaned_data['type']
-        collection.application = self.cleaned_data['application']
-        collection.save()
 
 
 class AddonsForm(forms.Form):
@@ -75,49 +63,6 @@ class AddonsForm(forms.Form):
     def save(self, collection):
         collection.set_addons(self.cleaned_data['addon'],
                               self.cleaned_data['addon_comment'])
-
-
-class ContributorsForm(forms.Form):
-    """This form is related to adding contributors to a collection."""
-
-    contributor = forms.CharField(widget=forms.MultipleHiddenInput,
-                                  required=False)
-
-    new_owner = forms.CharField(widget=forms.HiddenInput, required=False)
-
-    def clean_new_owner(self):
-        new_owner = self.cleaned_data['new_owner']
-        if new_owner:
-            return UserProfile.objects.get(email=new_owner)
-
-    def clean_contributor(self):
-        contributor_emails = self.data.getlist('contributor')
-        return UserProfile.objects.filter(email__in=contributor_emails)
-
-    def save(self, collection):
-        collection.collectionuser_set.all().delete()
-        for user in self.cleaned_data['contributor']:
-            CollectionUser(collection=collection, user=user).save()
-            log.info('%s was added to Collection %s' % (user.username,
-                                                        collection.id))
-
-        new_owner = self.cleaned_data['new_owner']
-
-        if new_owner:
-            old_owner = collection.author
-            collection.author = new_owner
-
-            cu, created = CollectionUser.objects.get_or_create(
-                collection=collection, user=old_owner)
-            if created:
-                cu.save()
-
-            collection.save()
-            # New owner is no longer a contributor.
-            collection.collectionuser_set.filter(user=new_owner).delete()
-
-            log.info('%s now owns Collection %s' % (new_owner.username,
-                                                    collection.id))
 
 
 class CollectionForm(forms.ModelForm):

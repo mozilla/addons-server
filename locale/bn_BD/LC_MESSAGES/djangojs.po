@@ -1,17 +1,17 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2017-06-13 01:18+0000\n"
-"Last-Translator: Noshin Tasneem <noshin.tasneem97@yahoo.com>\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-28 15:50+0000\n"
+"Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
@@ -88,8 +88,8 @@ msgstr[1] "ত্রুটিবিহীন ভাবে এবং {0} সত�
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "আপনার অ্যাডঅন কোন ভুল এবং {0} বার্তা ছাড়াই যাচাই হয়েছে।"
+msgstr[1] "আপনার অ্যাডঅন কোন ভুল এবং {0} টি বার্তা ছাড়াই যাচাই হয়েছে।"
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "আপনার অ্যাডঅন্সটি সমর্থিত হয়েছে কোনপ্রকার ভুল অথবা সাবধানবাণী ছাড়াই।"
@@ -706,18 +706,6 @@ msgstr ""
 
 msgid "Remove"
 msgstr "দূর করুন"
-
-msgid "Remove this user as a contributor"
-msgstr ""
-
-msgid "An email address is required."
-msgstr "ইমেইল ঠিকানা প্রয়োজন।"
-
-msgid "You cannot add yourself as a contributor."
-msgstr ""
-
-msgid "You have already added that user."
-msgstr ""
 
 msgid "Add to favorites"
 msgstr "পছন্দের তালিকায় যুক্ত করুন"

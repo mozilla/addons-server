@@ -2,7 +2,6 @@ import pytest
 
 from datetime import datetime
 
-from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 from mock import Mock
@@ -29,24 +28,6 @@ class ManualOrderTest(TestCase):
         addons = amo_models.manual_order(
             Addon.objects.all(), semi_arbitrary_order)
         assert semi_arbitrary_order == [addon.id for addon in addons]
-
-
-def test_skip_cache():
-    assert (
-        getattr(amo_models._locals, 'skip_cache') is
-        not settings.CACHE_MACHINE_ENABLED)
-
-    setattr(amo_models._locals, 'skip_cache', False)
-
-    with amo_models.skip_cache():
-        assert amo_models._locals.skip_cache
-        with amo_models.skip_cache():
-            assert amo_models._locals.skip_cache
-        assert amo_models._locals.skip_cache
-
-    assert not amo_models._locals.skip_cache
-
-    setattr(amo_models._locals, 'skip_cache', settings.CACHE_MACHINE_ENABLED)
 
 
 def test_use_master():
@@ -165,12 +146,6 @@ class TestModelBase(TestCase):
         UserProfile.get_unfiltered_manager() == UserProfile.objects
 
 
-def test_cache_key():
-    # Test that we are not taking the db into account when building our
-    # cache keys for django-cache-machine. See bug 928881.
-    assert Addon._cache_key(1, 'default') == Addon._cache_key(1, 'slave')
-
-
 class BasePreviewMixin(object):
 
     def get_object(self):
@@ -178,18 +153,19 @@ class BasePreviewMixin(object):
 
     def test_filename(self):
         preview = self.get_object()
-        assert 'png' in preview.thumbnail_path
-        assert 'png' in preview.image_path
+        assert preview.thumbnail_path.endswith('.png')
+        assert preview.image_path.endswith('.png')
+        assert preview.original_path.endswith('.png')
 
     def test_filename_in_url(self):
         preview = self.get_object()
-        assert 'png' in preview.thumbnail_url
-        assert 'png' in preview.image_url
+        assert '.png?modified=' in preview.thumbnail_url
+        assert '.png?modified=' in preview.image_url
 
     def check_delete(self, preview, filename):
         """
-        Test that when the Preview object is deleted, its image and thumb
-        are deleted from the filesystem.
+        Test that when the Preview object is deleted, its image, thumb, and
+        original are deleted from the filesystem.
         """
         try:
             with storage.open(filename, 'w') as f:
@@ -209,6 +185,10 @@ class BasePreviewMixin(object):
         preview = self.get_object()
         self.check_delete(preview, preview.thumbnail_path)
 
+    def test_delete_original(self):
+        preview = self.get_object()
+        self.check_delete(preview, preview.original_path)
+
 
 class BaseQuerysetTestCase(TestCase):
     def test_queryset_transform(self):
@@ -226,7 +206,7 @@ class BaseQuerysetTestCase(TestCase):
         seen_by_second_transform = []
         with self.assertNumQueries(0):
             # No database hit yet, everything is still lazy.
-            qs = amo_models.UncachedBaseQuerySet(SiteEvent)
+            qs = amo_models.BaseQuerySet(SiteEvent)
             qs = qs.exclude(description='').order_by('id')[1:3]
             qs = qs.transform(
                 lambda items: seen_by_first_transform.extend(list(items)))

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2017-10-19 19:03+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -705,18 +705,6 @@ msgstr ""
 
 msgid "Remove"
 msgstr "সরিয়ে ফেলুন"
-
-msgid "Remove this user as a contributor"
-msgstr ""
-
-msgid "An email address is required."
-msgstr "একটি ইমেইল ঠিকানা প্রয়োজন।"
-
-msgid "You cannot add yourself as a contributor."
-msgstr ""
-
-msgid "You have already added that user."
-msgstr ""
 
 msgid "Add to favorites"
 msgstr "পছন্দসইতে নিয়োজন"

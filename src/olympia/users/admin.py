@@ -1,10 +1,20 @@
+from functools import update_wrapper
+
+from django.conf.urls import url
 from django.contrib import admin, messages
+from django.contrib.admin.utils import unquote
 from django.core.urlresolvers import reverse
 from django.db.utils import IntegrityError
+from django.http import (
+    Http404, HttpResponseForbidden, HttpResponseNotAllowed,
+    HttpResponseRedirect)
+from django.utils.encoding import force_text
 from django.utils.html import format_html, format_html_join
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 
+from olympia import amo
 from olympia.abuse.models import AbuseReport
+from olympia.access import acl
 from olympia.access.admin import GroupUserInline
 from olympia.activity.models import ActivityLog, UserLog
 from olympia.addons.models import Addon
@@ -17,7 +27,7 @@ from .models import DeniedName, UserProfile
 
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('__unicode__', 'email')
+    list_display = ('__unicode__', 'email', 'is_public', 'deleted')
     search_fields = ('id', '^email', '^username')
     # A custom field used in search json in zadmin, not django.admin.
     search_fields_response = 'email'
@@ -31,7 +41,7 @@ class UserAdmin(admin.ModelAdmin):
                        'abuse_reports_for_this_user')
     fieldsets = (
         (None, {
-            'fields': ('id', 'email', 'username', 'display_name',
+            'fields': ('id', 'email', 'fxa_id', 'username', 'display_name',
                        'biography', 'homepage', 'location', 'occupation',
                        'picture_img'),
         }),
@@ -52,6 +62,100 @@ class UserAdmin(admin.ModelAdmin):
                        'last_login_ip', 'known_ip_adresses', 'notes', ),
         }),
     )
+
+    actions = ['ban_action']
+
+    def get_urls(self):
+        def wrap(view):
+            def wrapper(*args, **kwargs):
+                return self.admin_site.admin_view(view)(*args, **kwargs)
+            return update_wrapper(wrapper, view)
+
+        urlpatterns = super(UserAdmin, self).get_urls()
+        custom_urlpatterns = [
+            url(r'^(?P<object_id>.+)/ban/$', wrap(self.ban_view),
+                name='users_userprofile_ban'),
+            url(r'^(?P<object_id>.+)/delete_picture/$',
+                wrap(self.delete_picture_view),
+                name='users_userprofile_delete_picture')
+        ]
+        return custom_urlpatterns + urlpatterns
+
+    def get_actions(self, request):
+        actions = super(UserAdmin, self).get_actions(request)
+        if not acl.action_allowed(request, amo.permissions.USERS_EDIT):
+            # You need Users:Edit to be able to ban users.
+            actions.pop('user_ban', None)
+        return actions
+
+    def change_view(self, request, object_id, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['can_ban'] = acl.action_allowed(
+            request, amo.permissions.USERS_EDIT)
+        return super(UserAdmin, self).change_view(
+            request, object_id, form_url, extra_context=extra_context,
+        )
+
+    def delete_model(self, request, obj):
+        # Deleting a user through the admin also deletes related content
+        # produced by that user.
+        ActivityLog.create(amo.LOG.ADMIN_USER_ANONYMIZED, obj)
+        obj.delete_or_disable_related_content(delete=True)
+        obj.delete()
+
+    def save_model(self, request, obj, form, change):
+        changes = {k: (form.initial.get(k), form.cleaned_data.get(k))
+                   for k in form.changed_data}
+        ActivityLog.create(amo.LOG.ADMIN_USER_EDITED, obj, details=changes)
+        obj.save()
+
+    def ban_view(self, request, object_id, extra_context=None):
+        if request.method != 'POST':
+            return HttpResponseNotAllowed(['POST'])
+
+        obj = self.get_object(request, unquote(object_id))
+        if obj is None:
+            raise Http404()
+
+        if not acl.action_allowed(request, amo.permissions.USERS_EDIT):
+            return HttpResponseForbidden()
+
+        ActivityLog.create(amo.LOG.ADMIN_USER_BANNED, obj)
+        obj.ban_and_disable_related_content()
+        self.message_user(
+            request, ugettext('The user "%(user)s" has been banned.' %
+                              {'user': force_text(obj)}))
+        return HttpResponseRedirect('../')
+
+    def delete_picture_view(self, request, object_id, extra_context=None):
+        if request.method != 'POST':
+            return HttpResponseNotAllowed(['POST'])
+
+        obj = self.get_object(request, unquote(object_id))
+        if obj is None:
+            raise Http404()
+
+        if not acl.action_allowed(request, amo.permissions.USERS_EDIT):
+            return HttpResponseForbidden()
+
+        ActivityLog.create(amo.LOG.ADMIN_USER_PICTURE_DELETED, obj)
+        obj.delete_picture()
+        self.message_user(
+            request, ugettext(
+                'The picture belonging to user "%(user)s" has been deleted.' %
+                {'user': force_text(obj)}))
+        return HttpResponseRedirect('../')
+
+    def ban_action(self, request, qs):
+        users = []
+        for obj in qs:
+            ActivityLog.create(amo.LOG.ADMIN_USER_BANNED, obj)
+            obj.ban_and_disable_related_content()
+            users.append(force_text(obj))
+        self.message_user(
+            request, ugettext('The users "%(users)s" have been banned.' %
+                              {'users': u', '.join(users)}))
+    ban_action.short_description = _('Ban selected users')
 
     def picture_img(self, obj):
         return format_html(u'<img src="{}" />', obj.picture_url)

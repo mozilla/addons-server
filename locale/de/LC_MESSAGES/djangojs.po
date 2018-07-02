@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2015-10-19 21:12+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -711,18 +711,6 @@ msgstr "Dieses Add-on aus der Sammlung entfernen"
 
 msgid "Remove"
 msgstr "Entfernen"
-
-msgid "Remove this user as a contributor"
-msgstr "Diesen Benutzer als Mitwirkenden entfernen"
-
-msgid "An email address is required."
-msgstr "Eine E-Mail-Adresse ist erforderlich."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Sie können sich nicht selbst als Mitwirkenden hinzufügen."
-
-msgid "You have already added that user."
-msgstr "Sie haben diesen Benutzer bereits hinzugefügt."
 
 msgid "Add to favorites"
 msgstr "Zu Favoriten hinzufügen"

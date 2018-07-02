@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 from functools import partial
 from importlib import import_module
 from tempfile import NamedTemporaryFile
-from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
+from urlparse import parse_qs, urlparse
 
 from django import forms, test
 from django.conf import settings
@@ -29,6 +29,8 @@ from django.utils.encoding import force_str
 import mock
 import pytest
 from dateutil.parser import parse as dateutil_parser
+from rest_framework.reverse import reverse as drf_reverse
+from rest_framework.settings import api_settings
 from rest_framework.views import APIView
 from rest_framework.test import APIClient
 from waffle.models import Flag, Sample, Switch
@@ -46,6 +48,7 @@ from olympia.addons.models import (
     update_search_index as addon_update_search_index)
 from olympia.addons.tasks import version_changed
 from olympia.amo.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
+from olympia.amo.storage_utils import copy_stored_file
 from olympia.addons.tasks import unindex_addons
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
@@ -346,8 +349,6 @@ ES_patchers = [
     mock.patch('elasticsearch.Elasticsearch'),
     mock.patch('olympia.addons.models.update_search_index', spec=True),
     mock.patch('olympia.addons.tasks.index_addons', spec=True),
-    mock.patch('olympia.bandwagon.tasks.index_collections', spec=True),
-    mock.patch('olympia.bandwagon.tasks.unindex_collections', spec=True),
 ]
 
 
@@ -394,54 +395,6 @@ def fxa_login_link(response=None, to=None, request=None):
         state=state,
         next_path=to,
         action='signin')
-
-
-def assertLoginRedirects(response, to, status_code=302):
-    fxa_url = fxa_login_link(response, to)
-    assert3xx(response, fxa_url, status_code)
-
-
-def assert3xx(response, expected_url, status_code=302, target_status_code=200):
-    """Asserts redirect and final redirect matches expected URL.
-
-    Similar to Django's `assertRedirects` but skips the final GET
-    verification for speed.
-
-    """
-    if hasattr(response, 'redirect_chain'):
-        # The request was a followed redirect
-        assert \
-            len(response.redirect_chain) > 0, \
-            ("Response didn't redirect as expected: Response"
-                " code was %d (expected %d)" % (response.status_code,
-                                                status_code))
-
-        url, status_code = response.redirect_chain[-1]
-
-        assert response.status_code == target_status_code, \
-            ("Response didn't redirect as expected: Final"
-                " Response code was %d (expected %d)" % (response.status_code,
-                                                         target_status_code))
-
-    else:
-        # Not a followed redirect
-        assert response.status_code == status_code, \
-            ("Response didn't redirect as expected: Response"
-                " code was %d (expected %d)" % (response.status_code,
-                                                status_code))
-        url = response['Location']
-
-    scheme, netloc, path, query, fragment = urlsplit(url)
-    e_scheme, e_netloc, e_path, e_query, e_fragment = urlsplit(
-        expected_url)
-    if (scheme and not e_scheme) and (netloc and not e_netloc):
-        expected_url = urlunsplit(('http', 'testserver', e_path, e_query,
-                                   e_fragment))
-
-    msg = (
-        "Response redirected to '%s', expected '%s'" %
-        (url, expected_url))
-    assert url == expected_url, msg
 
 
 class TestCase(PatchMixin, InitializeSessionMixin, BaseTestCase):
@@ -499,11 +452,13 @@ class TestCase(PatchMixin, InitializeSessionMixin, BaseTestCase):
                     if hasattr(v, 'non_form_errors'):
                         assert v.non_form_errors() == []
 
-    def assertLoginRedirects(self, *args, **kwargs):
-        return assertLoginRedirects(*args, **kwargs)
+    def assertLoginRedirects(self, response, to, status_code=302):
+        fxa_url = fxa_login_link(response, to)
+        return self.assert3xx(response, fxa_url, status_code)
 
     def assert3xx(self, *args, **kwargs):
-        return assert3xx(*args, **kwargs)
+        kwargs.setdefault('fetch_redirect_response', False)
+        return self.assertRedirects(*args, **kwargs)
 
     def assertCloseToNow(self, dt, now=None):
         """
@@ -793,8 +748,19 @@ def file_factory(**kw):
     filename = kw.pop('filename', '%s-%s' % (version.addon_id, version.id))
     status = kw.pop('status', amo.STATUS_PUBLIC)
     platform = kw.pop('platform', amo.PLATFORM_ALL.id)
-    file_ = File.objects.create(filename=filename,
-                                platform=platform, status=status, **kw)
+
+    file_ = File.objects.create(
+        filename=filename, platform=platform, status=status, **kw)
+
+    fixture_path = os.path.join(
+        settings.ROOT, 'src/olympia/files/fixtures/files',
+        filename)
+
+    if os.path.exists(fixture_path):
+        copy_stored_file(
+            fixture_path,
+            os.path.join(version.path_prefix, file_.filename))
+
     return file_
 
 
@@ -1077,3 +1043,25 @@ def prefix_indexes(config):
 
     settings.CACHE_PREFIX = 'amo:{0}:'.format(prefix)
     settings.KEY_PREFIX = settings.CACHE_PREFIX
+
+
+def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):
+    """An API namespace aware reverse to be used in DRF API based tests.
+
+    It works by creating a fake request from the API version you need, and
+    then setting the version so the un-namespaced viewname from DRF is resolved
+    into the namespaced viewname used interally by django.
+
+    Unless overriden with the api_version parameter, the API version used is
+    the DEFAULT_VERSION in settings.
+
+    e.g. reverse_ns('addon-detail') is resolved to reverse('v4:addon-detail')
+    if the api version is 'v4'.
+    """
+    api_version = api_version or api_settings.DEFAULT_VERSION
+    request = req_factory_factory('/api/%s/' % api_version)
+    request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
+    request.version = api_version
+    return drf_reverse(
+        viewname, args=args or [], kwargs=kwargs or {}, request=request,
+        **extra)

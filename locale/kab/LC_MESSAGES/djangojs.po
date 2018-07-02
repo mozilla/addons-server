@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2017-09-10 10:52+0000\n"
-"Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2016-10-12 07:22+0000\n"
+"Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgid "Select a file..."
 msgstr "Fren afaylu..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Ur issefk ara izegrar inek ad bdun s .zip, .xpi, .crx, .jar neɣ .xml"
+msgstr "Ur issefk ara izegrar-ik ad bdun s .zip, .xpi, .crx, .jar neɣ .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -58,7 +58,7 @@ msgstr[1] "Asentem n uzegrir inek ur yeddi ara s tuccḍiwin {0}."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip; akked {0} ugar"
+msgstr[0] "&hellip; akked {0} nniḍen"
 msgstr[1] "&hellip; akked {0} nniḍen"
 
 msgid "See full validation report"
@@ -71,7 +71,7 @@ msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Azegrir-ik iɛedda tilas n tuγzi n {0}."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr "Irmes-d tiririt tilemnt seg uqeddac; addad: {0}"
+msgstr "Irmes-d tiririt tilment seg uqeddac; addad: {0}"
 
 msgid "Unexpected server error while validating."
 msgstr "Tuccḍa n uqeddac ur nettwaṛǧi ara deg usentem."
@@ -708,18 +708,6 @@ msgstr "Kkes azegrir agi si tagrumma"
 
 msgid "Remove"
 msgstr "Kkes"
-
-msgid "Remove this user as a contributor"
-msgstr "Kkes aseqdac agi seg imttekkiyen"
-
-msgid "An email address is required."
-msgstr "Tansa imayl tettwasra."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Ur tezmireḍ ara ad ternuḍ iman-ik d imttekki."
-
-msgid "You have already added that user."
-msgstr "Ternid yakan aseqdac agi."
 
 msgid "Add to favorites"
 msgstr "Rnu ɣer inurifen"

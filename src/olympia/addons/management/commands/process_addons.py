@@ -7,9 +7,11 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_firefox57_tag, bump_appver_for_legacy_addons,
+    delete_addon_not_compatible_with_firefoxes,
+    delete_obsolete_applicationsversions,
     find_inconsistencies_between_es_and_db, migrate_lwts_to_static_themes)
 from olympia.amo.utils import chunked
-from olympia.devhub.tasks import get_preview_sizes
+from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
 from olympia.reviewers.tasks import recalculate_post_review_weight
 from olympia.versions.compare import version_int
@@ -55,7 +57,21 @@ tasks = {
         'qs': [
             Q(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC)
         ]
-    }
+    },
+    'recreate_previews': {
+        'method': recreate_previews,
+        'qs': [
+            ~Q(type=amo.ADDON_PERSONA)
+        ]
+    },
+    # Run this once we've disallowed new submissions not targeting Firefox and
+    # addons.thunderbird.net is live.
+    'delete_addons_not_compatible_with_firefoxes': {
+        'method': delete_addon_not_compatible_with_firefoxes,
+        'qs': [Q(status=amo.STATUS_PUBLIC),
+               ~Q(appsupport__app__in=(amo.FIREFOX.id, amo.ANDROID.id))],
+        'post': delete_obsolete_applicationsversions,
+    },
 }
 
 

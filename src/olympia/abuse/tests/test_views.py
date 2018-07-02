@@ -1,19 +1,18 @@
 import json
 
 from django.core import mail
-from django.urls import reverse
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
-    APITestClient, TestCase, addon_factory, user_factory)
+    APITestClient, TestCase, addon_factory, reverse_ns, user_factory)
 
 
 class AddonAbuseViewSetTestBase(object):
     client_class = APITestClient
 
     def setUp(self):
-        self.url = reverse('v3:abusereportaddon-list')
+        self.url = reverse_ns('abusereportaddon-list')
 
     def check_reporter(self, report):
         raise NotImplementedError
@@ -157,7 +156,7 @@ class UserAbuseViewSetTestBase(object):
     client_class = APITestClient
 
     def setUp(self):
-        self.url = reverse('v3:abusereportuser-list')
+        self.url = reverse_ns('abusereportuser-list')
 
     def check_reporter(self, report):
         raise NotImplementedError

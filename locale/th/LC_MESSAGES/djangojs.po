@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-05-26 06:43+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -700,18 +700,6 @@ msgstr "เอาส่วนเสริมนี้ออกจากชุด
 
 msgid "Remove"
 msgstr "เอาออก"
-
-msgid "Remove this user as a contributor"
-msgstr ""
-
-msgid "An email address is required."
-msgstr "ต้องการที่อยู่อีเมล"
-
-msgid "You cannot add yourself as a contributor."
-msgstr ""
-
-msgid "You have already added that user."
-msgstr "คุณได้เพิ่มผู้ใช้คนนี้แล้ว"
 
 msgid "Add to favorites"
 msgstr "เพิ่มไปยังรายการโปรด"

@@ -19,8 +19,7 @@ List
 .. _collection-list:
 
 .. note::
-    This API requires :doc:`authentication <auth>` and `Collections:Edit`
-    permission to list collections other than your own.
+    This API requires :doc:`authentication <auth>`.
 
 This endpoint allows you to list all collections authored by the specified user.
 The results are sorted by the most recently updated collection first.
@@ -43,7 +42,8 @@ Detail
 This endpoint allows you to fetch a single collection by its ``slug``.
 It returns any ``public`` collection by the specified user. You can access
 a non-``public`` collection only if it was authored by you, the authenticated user.
-If your account has the `Collections:Edit` permission then you can access any collection.
+ If you have ``Admin:Curation`` permission you can see any collection belonging
+ to the ``mozilla`` user.
 
 
 .. http:get:: /api/v4/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/
@@ -114,8 +114,10 @@ Edit
 .. _`collection-edit`:
 
 .. note::
-    This API requires :doc:`authentication <auth>` and `Collections:Edit`
-    permission to edit collections other than your own.
+    This API requires :doc:`authentication <auth>`. If you have
+    ``Admin:Curation`` permission you can edit any collection belonging to the
+    ``mozilla`` user.
+
 
 This endpoint allows some of the details for a collection to be updated.  Any fields
 in the :ref:`collection <collection-detail-object>` but not listed below are not editable and will be ignored in the patch request.
@@ -138,8 +140,7 @@ Delete
 .. _`collection-delete`:
 
 .. note::
-    This API requires :doc:`authentication <auth>` and `Collections:Edit`
-    permission to delete collections other than your own.
+    This API requires :doc:`authentication <auth>`.
 
 This endpoint allows the collection to be deleted.
 
@@ -179,6 +180,7 @@ This endpoint lists the add-ons in a collection, together with collector's notes
 
 All sort parameters can be reversed, e.g. '-added' for descending dates.
 The default sorting is by popularity, descending ('-popularity').
+There can only be one sort parameter, multiple orderings are not supported.
 
 
 .. _collection-addon-filtering-param:
@@ -222,8 +224,7 @@ Collection Add-ons Create
 .. _collection-addon-create:
 
 .. note::
-    This API requires :doc:`authentication <auth>` and `Collections:Edit`
-    permission to edit collections other than your own.
+    This API requires :doc:`authentication <auth>`.
 
 This endpoint allows a single add-on to be added to a collection, optionally with collector's notes.
 
@@ -240,8 +241,11 @@ Collection Add-ons Edit
 .. _collection-addon-edit:
 
 .. note::
-    This API requires :doc:`authentication <auth>` and `Collections:Edit`
-    permission to edit collections other than your own.
+    This API requires :doc:`authentication <auth>`. If you have
+    ``Admin:Curation`` permission you can edit the add-ons of any collection
+    belonging to the ``mozilla`` user. If you have ``Collections:Contribute``
+    permission you can edit the add-ons of mozilla's ``Featured Themes``
+    collection.
 
 This endpoint allows the collector's notes for single add-on to be updated.
 
@@ -257,8 +261,11 @@ Collection Add-ons Delete
 .. _collection-addon-delete:
 
 .. note::
-    This API requires :doc:`authentication <auth>` and `Collections:Edit`
-    permission to edit collections other than your own.
+    This API requires :doc:`authentication <auth>`. If you have
+    ``Admin:Curation`` permission you can remove add-ons from any collection
+    belonging to the ``mozilla`` user. If you have ``Collections:Contribute``
+    permission you can remove add-ons from mozilla's ``Featured Themes``
+    collection.
 
 This endpoint allows a single add-on to be removed from a collection.
 

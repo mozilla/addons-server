@@ -87,7 +87,6 @@
         "model": "addons.addon",
         "fields": {
             "slug": "4664",
-            "dev_agreement": true,
             "eula": null,
             "_current_version": 104904,
             "last_updated": "2010-04-26 17:09:43",
@@ -95,7 +94,6 @@
             "total_downloads": 1352192,
             "developer_comments": 4664,
             "disabled_by_user": false,
-            "average_daily_downloads": 1278,
             "guid": "{1a0c9ebe-ddf9-4b76-b8a3-675c77874d37}",
             "description": 38750,
             "locale_disambiguation": null,

@@ -53,13 +53,11 @@
         "pk": 222197,
         "model": "addons.addon",
         "fields": {
-            "dev_agreement": true,
             "last_updated": "2010-08-27 21:15:32",
             "view_source": false,
             "total_downloads": 9,
             "developer_comments": 1277089,
             "_current_version": 116367,
-            "average_daily_downloads": 9,
             "guid": "qlt@vik.josh",
             "weekly_downloads": 0,
             "support_url": null,

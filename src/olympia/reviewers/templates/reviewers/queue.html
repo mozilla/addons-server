@@ -77,11 +77,10 @@
             <h3>
               <a href="{{ review.instance.addon.get_url_path() }}">
                 {{ review.instance.addon.name }}</a>
-              {%- if review.instance.title %}: <span>{{ review.instance.title }}</span>{% endif %}
             </h3>
             <p>
             {% trans user=review.instance.user|user_link, date=review.instance.created|date,
-                     stars=review.instance.rating|stars, locale=review.instance.title.locale %}
+                     stars=review.instance.rating|stars, locale=review.instance.body.locale %}
               by {{ user }} on {{ date }}
               {{ stars }} ({{ locale }})
             {% endtrans %}

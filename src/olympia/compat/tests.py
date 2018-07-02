@@ -100,6 +100,9 @@ class TestIncoming(TestCase):
         # to_python to .values and even raw queries more properly so we'll
         # have to live with it.
         vals = CompatReport.objects.filter(id=cr.id).values('other_addons')
+
+        # django-extensions wraps values in `JSONList` so we'll test this
+        # explicitly. We can't see the actually stored JSON blob easily
         assert isinstance(vals[0]['other_addons'], JSONList)
         assert vals[0]['other_addons'] == self.data['otherAddons']
 
@@ -466,4 +469,4 @@ class TestCompatibilityReportCron(
         self.run_compatibility_report()
 
         assert CompatTotals.objects.count() == 1
-        assert CompatTotals.objects.no_cache().get().total == 70
+        assert CompatTotals.objects.get().total == 70

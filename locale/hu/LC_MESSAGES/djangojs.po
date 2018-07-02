@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2017-09-10 11:46+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -710,18 +710,6 @@ msgstr "Kiegészítő eltávolítása a gyűjteményből"
 
 msgid "Remove"
 msgstr "Eltávolítás"
-
-msgid "Remove this user as a contributor"
-msgstr "Felhasználó eltávolítása a közreműködők közül"
-
-msgid "An email address is required."
-msgstr "Az e-mail cím megadása kötelező."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Önmagát nem adhatja hozzá közreműködőnek."
-
-msgid "You have already added that user."
-msgstr "Már hozzáadta ezt a felhasználót."
 
 msgid "Add to favorites"
 msgstr "Hozzáadás a kedvencekhez"

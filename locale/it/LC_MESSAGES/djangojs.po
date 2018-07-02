@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-05-31 06:00+0000\n"
-"PO-Revision-Date: 2017-09-09 12:20+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2017-02-28 17:40+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -127,8 +127,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"I sorgenti dei binari compilati, come quelli degli script compressi e offuscati (a eccezione delle librerie note) devono essere caricati separatamente per la revisione. Per evitare che il "
-"componente venga respinto assicurati di inserirle nel campo dedicato appositamente al codice sorgente."
+"I sorgenti dei binari compilati, come quelli degli script compressi e offuscati (a eccezione delle librerie note) devono essere caricati separatamente per la revisione. Per evitare che il componente"
+" venga respinto assicurati di inserirle nel campo dedicato appositamente al codice sorgente."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Durante il processo di validazione sono stati rilevati i seguenti problemi, che potrebbero portare al rifiuto del componente aggiuntivo:"
@@ -331,10 +331,10 @@ msgid "Homepage Most Popular"
 msgstr "Homepage più popolari"
 
 msgid "Detail Page"
-msgstr "Scheda completa"
+msgstr "Pagina del componente aggiuntivo"
 
 msgid "Detail Page (bottom)"
-msgstr "Scheda completa (fondo)"
+msgstr "Pagina del componente aggiuntivo (sfondo)"
 
 msgid "Detail Page (Development Channel)"
 msgstr "Scheda completo (canale sviluppo)"
@@ -373,7 +373,7 @@ msgid "Category Landing Featured Carousel"
 msgstr "Categoria da galleria consigliati"
 
 msgid "Category Landing Top Rated"
-msgstr "Categoria da più votati"
+msgstr "Categoria dei più apprezzati"
 
 msgid "Category Landing Most Popular"
 msgstr "Categoria da più popolari"
@@ -715,18 +715,6 @@ msgstr "Rimuovi questo componente aggiuntivo dalla raccolta"
 
 msgid "Remove"
 msgstr "Elimina"
-
-msgid "Remove this user as a contributor"
-msgstr "Elimina questo utente da collaboratore"
-
-msgid "An email address is required."
-msgstr "È necessario un indirizzo email."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Non puoi aggiungere te stesso come collaboratore."
-
-msgid "You have already added that user."
-msgstr "Questo utente è stato già aggiunto."
 
 msgid "Add to favorites"
 msgstr "Aggiungi ai preferiti"

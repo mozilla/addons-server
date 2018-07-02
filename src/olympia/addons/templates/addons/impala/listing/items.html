@@ -1,35 +1,33 @@
 {% from "addons/macros.html" import sort_vital, addon_flags %}
-{% cache addons %}
-  {% for addon in addons %}
-    <div class="item addon">
-      <div class="info">
-        <h3>
-          {% set dl_url = addon.get_url_path() %}
-          {% if dl_src %}
-            {% set dl_url = dl_url|urlparams(src=dl_src) %}
-          {% endif %}
-          <a href="{{ dl_url }}">
-            <img src="{{ addon.icon_url }}" alt="">{{ addon.name }}</a>
-          {{ addon_flags(addon, addon.current_version) }}
-          {% if addon.is_featured(request.APP, request.LANG) %}
-            <span class="featured">{{ _('Featured') }}</span>
-          {% endif %}
-        </h3>
-        {% if addon.is_persona() %}
-          {{ persona_preview(addon.persona, linked=False) }}
-        {% else %}
-          <p class="desc">{{ addon.summary|truncate(250)|nl2br }}</p>
+{% for addon in addons %}
+  <div class="item addon">
+    <div class="info">
+      <h3>
+        {% set dl_url = addon.get_url_path() %}
+        {% if dl_src %}
+          {% set dl_url = dl_url|urlparams(src=dl_src) %}
         {% endif %}
-        <div class="vitals c">
-          {{ impala_reviews_link(addon) }}
-          {{ sort_vital(addon, field) }}
-        </div>
-      </div>
-      <div class="action">
-        {{ install_button(addon, impala=True, collection=collection) }}
+        <a href="{{ dl_url }}">
+          <img src="{{ addon.icon_url }}" alt="">{{ addon.name }}</a>
+        {{ addon_flags(addon, addon.current_version) }}
+        {% if addon.is_featured(request.APP, request.LANG) %}
+          <span class="featured">{{ _('Featured') }}</span>
+        {% endif %}
+      </h3>
+      {% if addon.is_persona() %}
+        {{ persona_preview(addon.persona, linked=False) }}
+      {% else %}
+        <p class="desc">{{ addon.summary|truncate(250)|nl2br }}</p>
+      {% endif %}
+      <div class="vitals c">
+        {{ impala_reviews_link(addon) }}
+        {{ sort_vital(addon, field) }}
       </div>
     </div>
-  {% else %}
-    {% include 'search/no_results.html' %}
-  {% endfor %}
-{% endcache %}
+    <div class="action">
+      {{ install_button(addon, impala=True, collection=collection) }}
+    </div>
+  </div>
+{% else %}
+  {% include 'search/no_results.html' %}
+{% endfor %}

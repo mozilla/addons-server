@@ -11,8 +11,7 @@ import mock
 from services import theme_update
 
 from olympia.addons.models import Addon
-from olympia.amo.templatetags.jinja_helpers import (
-    user_media_path, user_media_url)
+from olympia.amo.templatetags.jinja_helpers import user_media_url
 from olympia.amo.tests import TestCase
 from olympia.versions.models import Version
 
@@ -79,7 +78,6 @@ class TestThemeUpdate(TestCase):
             'textcolor': '#ffffff',
             'id': '15663',
             'headerURL': '/15663/BCBG_Persona_header2.png?modified=fakehash',
-            'dataurl': '',
             'name': 'My Persona',
             'author': 'persona_author',
             'updateURL': (settings.VAMO_URL +
@@ -139,12 +137,6 @@ class TestThemeUpdate(TestCase):
         persona.save()
         data = json.loads(self.get_update('en-US', addon.pk).get_json())
         assert data['footerURL'] == ''
-
-    def test_image_path(self):
-        up = self.get_update('en-US', 15663)
-        up.get_update()
-        image_path = up.image_path('foo.png')
-        assert user_media_path('addons') in image_path
 
     def test_image_url(self):
         up = self.get_update('en-US', 15663)

@@ -26,23 +26,22 @@ cache:
     - node_modules
     - $HOME/.gimme
 
-services:
-  - mysql
-  - memcached
-  - elasticsearch
-  - redis
-
 addons:
   apt:
     sources:
       - elasticsearch-5.x
     packages:
       - swig
-      - oracle-java8-set-default
       - elasticsearch
       - gettext
       - librsvg2-bin
       - pngcrush
+
+services:
+  - mysql
+  - memcached
+  - elasticsearch
+  - redis
 
 before_install:
   - mysql -e 'create database olympia;'
@@ -68,7 +67,7 @@ script:
       if [[ $TOXENV == "amo-locales-and-signing" ]]; then
          ./scripts/start-autograph.sh
       fi
-      RUNNING_IN_CI=True tox -v
+      RUNNING_IN_CI=True tox
     fi
   - |
     if [[ $TRAVIS_EVENT_TYPE == "cron" ]]; then

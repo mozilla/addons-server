@@ -19,5 +19,5 @@ class RatingsTests(TestCase):
         assert UserProfile.objects.count() == 3
         for n, review in enumerate(Rating.objects.all().order_by('pk')):
             assert review.addon == self.addon
-            assert unicode(review.title) == u'Test Review %d' % (n + 1)
+            assert unicode(review.body) == u'Test Review %d' % (n + 1)
             assert review.user.email.endswith('@example.com')

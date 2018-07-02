@@ -58,6 +58,11 @@ class UserDeleteForm(forms.Form):
             raise forms.ValidationError("")
 
 
+LOGIN_HELP_URL = (
+    'https://support.mozilla.org/kb/'
+    'change-primary-email-address-firefox-accounts')
+
+
 class UserEditForm(forms.ModelForm):
     username = forms.CharField(max_length=50, required=False)
     display_name = forms.CharField(label=_(u'Display Name'), max_length=50,
@@ -70,8 +75,8 @@ class UserEditForm(forms.ModelForm):
     email = forms.EmailField(
         required=False,
         help_text=fxa_error_message(
-            _(u'Firefox Accounts users cannot currently change their '
-              u'email address.')),
+            _(u'You can change your email address on Firefox Accounts.'),
+            LOGIN_HELP_URL),
         widget=forms.EmailInput(attrs={'readonly': 'readonly'}))
     photo = forms.FileField(label=_(u'Profile Photo'), required=False)
     biography = forms.CharField(widget=forms.Textarea, required=False)

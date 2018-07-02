@@ -18,7 +18,6 @@ from mock import patch
 from pyquery import PyQuery as pq
 
 from olympia.amo.tests import BaseTestCase
-from olympia.translations import widgets
 from olympia.translations.models import (
     LinkifiedTranslation, NoLinksNoMarkupTranslation, NoLinksTranslation,
     PurifiedTranslation, Translation, TranslationSequence)
@@ -684,32 +683,11 @@ def test_translation_unicode():
     assert unicode(t(None)) == ''
 
 
-def test_widget_value_from_datadict():
-    data = {'f_en-US': 'woo', 'f_de': 'herr', 'f_fr_delete': ''}
-    actual = widgets.TransMulti().value_from_datadict(data, [], 'f')
-    expected = {'en-US': 'woo', 'de': 'herr', 'fr': None}
-    assert actual == expected
-
-
 def test_comparison_with_lazy():
     x = Translation(localized_string='xxx')
     lazy_u = lazy(lambda x: x, unicode)
     x == lazy_u('xxx')
     lazy_u('xxx') == x
-
-
-def test_cache_key():
-    # Test that we are not taking the db into account when building our
-    # cache keys for django-cache-machine. See bug 928881.
-    assert Translation._cache_key(1, 'default') == (
-        Translation._cache_key(1, 'slave'))
-
-    # Test that we are using the same cache no matter what Translation class
-    # we use.
-    assert PurifiedTranslation._cache_key(1, 'default') == (
-        Translation._cache_key(1, 'default'))
-    assert LinkifiedTranslation._cache_key(1, 'default') == (
-        Translation._cache_key(1, 'default'))
 
 
 def test_translated_field_default_null():

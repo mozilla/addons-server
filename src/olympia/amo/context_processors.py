@@ -8,7 +8,6 @@ import waffle
 from olympia import amo
 from olympia.access import acl
 from olympia.amo.urlresolvers import reverse
-from olympia.zadmin.models import get_config
 
 
 def app(request):
@@ -100,6 +99,5 @@ def global_settings(request):
                     'amo': amo,
                     'tools_links': tools_links,
                     'tools_title': tools_title,
-                    'ADMIN_MESSAGE': get_config('site_notice'),
                     'is_reviewer': is_reviewer})
     return context
