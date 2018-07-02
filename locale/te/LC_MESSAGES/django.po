@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-02 16:13+0000\n"
+"PO-Revision-Date: 2018-07-02 16:15+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -174,7 +174,7 @@ msgid "Abuse reported."
 msgstr "దుర్వినియోగం నివేదించబడింది."
 
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "నా పొడగింత ఏ వర్గానికి సరిపోదు"
 
 msgid "No compatible versions"
 msgstr "అనుగుణ్యమైన వెర్షనులు లేవు"
@@ -569,7 +569,7 @@ msgid "This add-on has been disabled by an administrator."
 msgstr ""
 
 msgid "Source Code License for {addon}"
-msgstr ""
+msgstr "{addon} కోసం సోర్సు కోడు లైసెన్సు"
 
 #. The License for this add-on.
 msgid "Source Code License"
@@ -949,7 +949,7 @@ msgid "Icons must be either PNG or JPG."
 msgstr "చిహ్నాలు తప్పనిసరిగా PNG లేదా JPG లో ఉండాలి."
 
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "ప్రతీకాలు యానిమేట్ చేయబడవు."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -1069,7 +1069,7 @@ msgstr "సేకరణను తొలగించండి"
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
 msgstr[0] "ఈ సేకరణలో %(num)s అలంకారం"
-msgstr[1] ""
+msgstr[1] "ఈ సేకరణలో %(num)s అలంకారాలు"
 
 #, python-format
 msgid "%(num)s Add-on in this Collection"
@@ -1087,7 +1087,7 @@ msgid "Collections are groups of related add-ons that anyone can create and shar
 msgstr ""
 
 msgid "Explore Collections"
-msgstr ""
+msgstr "సేకరణలను చూడండి"
 
 msgid "Common Tags"
 msgstr "సాధారణ ట్యాగులు"
@@ -1114,8 +1114,8 @@ msgstr[1] "<span>%(addons)s</span> పొడిగింతలు"
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(followers)s</span> అనుచరుడు"
+msgstr[1] "<span>%(followers)s</span> అనుచరులు"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
