@@ -548,7 +548,7 @@ PUENTE = {
             # Make sure we're parsing django-admin templates with the django
             # template extractor
             (
-                'src/olympia/zadmin/templates/admin/*.html',
+                '**/templates/admin/**.html',
                 'django_babel.extract.extract_django'
             ),
 
