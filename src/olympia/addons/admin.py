@@ -26,12 +26,13 @@ class AddonAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'type', 'guid',
                     'status_with_admin_manage_link', 'average_rating')
     list_filter = ('type', 'status')
+    search_fields = ('id', '^guid', '^slug')
 
-    readonly_fields = ('status_with_admin_manage_link',)
+    readonly_fields = ('id', 'status_with_admin_manage_link',)
 
     fieldsets = (
         (None, {
-            'fields': ('name', 'slug', 'guid', 'default_locale', 'type',
+            'fields': ('id', 'name', 'slug', 'guid', 'default_locale', 'type',
                        'status_with_admin_manage_link'),
         }),
         ('Details', {
