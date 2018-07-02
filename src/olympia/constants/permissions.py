@@ -63,9 +63,6 @@ LOCALIZER = AclPermission('Localizer', '%')
 # Can edit user accounts.
 USERS_EDIT = AclPermission('Users', 'Edit')
 
-# Can access mailing list.
-MAILING_LISTS_VIEW = AclPermission('MailingLists', 'View')
-
 # Can moderate add-on ratings submitted by users.
 RATINGS_MODERATE = AclPermission('Ratings', 'Moderate')
 
