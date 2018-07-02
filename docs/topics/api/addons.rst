@@ -264,8 +264,8 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
 
         For backwards-compatibility reasons, the value for type of Theme
         currently live on production addons.mozilla.org is ``persona``
-        (Lightweight Theme). ``theme`` refers to a deprecated XUL Complete Theme. 
-        New webextension packaged non-dynamic themes are ``statictheme`.
+        (Lightweight Theme). ``theme`` refers to a deprecated XUL Complete Theme.
+        New webextension packaged non-dynamic themes are ``statictheme``.
 
     ==============  ==========================================================
              Value  Description
