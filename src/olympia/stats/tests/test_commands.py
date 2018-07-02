@@ -14,7 +14,7 @@ from django.test.utils import override_settings
 import mock
 
 from olympia import amo
-from olympia.addons.models import Persona
+from olympia.addons.models import Addon, MigratedLWT, Persona
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.stats.management.commands import get_stats_data
 from olympia.stats.management.commands.download_counts_from_file import \
@@ -370,3 +370,41 @@ class TestADICommandS3(TransactionTestCase):
         # "gp") and the "new" request on the addon_id 15663.
         tuc2 = ThemeUpdateCount.objects.get(addon_id=15663)
         assert tuc2.count == 15
+
+    @override_settings(AWS_STATS_S3_BUCKET='test-bucket')
+    @mock.patch('olympia.stats.management.commands.boto3')
+    def test_lwt_stats_go_to_migrated_static_theme(self, mock_boto3):
+        lwt = Addon.objects.get(id=15663)
+        lwt.delete()
+        static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
+        MigratedLWT.objects.create(
+            lightweight_theme=lwt, static_theme=static_theme)
+        for x in range(2):
+            self.add_response('theme_update_counts')
+
+        mock_boto3.client.return_value = self.client
+        management.call_command('theme_update_counts_from_file',
+                                date=self.date, stats_source=self.stats_source)
+        assert ThemeUpdateCount.objects.all().count() == 0
+        assert UpdateCount.objects.all().count() == 1
+        assert UpdateCount.objects.get(addon_id=static_theme.id).count == 15
+
+    @override_settings(AWS_STATS_S3_BUCKET='test-bucket')
+    @mock.patch('olympia.stats.management.commands.boto3')
+    def test_lwt_stats_go_to_migrated_with_stats_already(self, mock_boto3):
+        lwt = Addon.objects.get(id=15663)
+        lwt.delete()
+        static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
+        MigratedLWT.objects.create(
+            lightweight_theme=lwt, static_theme=static_theme)
+        UpdateCount.objects.create(
+            addon=static_theme, count=123, date=date(2014, 7, 10))
+        for x in range(2):
+            self.add_response('theme_update_counts')
+
+        mock_boto3.client.return_value = self.client
+        management.call_command('theme_update_counts_from_file',
+                                date=self.date, stats_source=self.stats_source)
+        assert ThemeUpdateCount.objects.all().count() == 0
+        assert UpdateCount.objects.all().count() == 1
+        assert UpdateCount.objects.get(addon_id=static_theme.id).count == 138

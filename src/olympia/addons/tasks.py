@@ -36,6 +36,7 @@ from olympia.lib.crypto.packaged import sign_file
 from olympia.lib.es.utils import index_objects
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import RereviewQueueTheme
+from olympia.stats.utils import migrate_theme_update_count
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, License, Version
@@ -576,6 +577,13 @@ def add_static_theme_from_lwt(lwt):
     addonlog_qs = AddonLog.objects.filter(
         addon=lwt, activity_log__action__in=rating_activity_log_ids)
     [alog.transfer(addon) for alog in addonlog_qs.iterator()]
+
+    # Copy the ADU statistics - the raw(ish) daily UpdateCounts for stats
+    # dashboard and future update counts, and copy the summary numbers for now.
+    migrate_theme_update_count(lwt, addon)
+    addon_updates.update(
+        average_daily_users=lwt.persona.popularity or 0,
+        hotness=lwt.persona.movers or 0)
 
     # Logging
     activity.log_create(
