@@ -52,7 +52,8 @@ class Command(BaseCommand):
 
     def update_hashes(self):
         # Adds a time based hash on to the build id.
-        self.build_id = '%s-%s' % (self.build_id, hex(int(time.time()))[2:])
+        self.build_id = '%s-%s' % (
+            self.generate_build_id(), hex(int(time.time()))[2:])
 
         build_id_file = os.path.realpath(
             os.path.join(settings.ROOT, 'build.py'))
