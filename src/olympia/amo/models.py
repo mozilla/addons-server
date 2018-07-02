@@ -54,9 +54,8 @@ class BaseQuerySet(models.QuerySet):
         return clone
 
     def transform(self, fn):
-        from . import decorators
         clone = self._clone()
-        clone._transform_fns.append(decorators.skip_cache(fn))
+        clone._transform_fns.append(fn)
         return clone
 
     def pop_transforms(self):
