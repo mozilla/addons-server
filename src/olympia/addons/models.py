@@ -379,8 +379,6 @@ class Addon(OnChangeMixin, ModelBase):
         # We don't control the instantiation, but AddonManager sets
         # include_deleted to False by default, so filtering is enabled by
         # default. This is also why it's not repeated for 'objects' below.
-        # TODO: This changed during django 1.11 work, verify it's working.
-        # See https://github.com/django/django/commit/ed0ff913c648
         base_manager_name = 'unfiltered'
         index_together = [
             ['weekly_downloads', 'type'],
@@ -1945,6 +1943,8 @@ class Category(OnChangeMixin, ModelBase):
         Does not save it into the database by default. Useful in tests."""
         # we need to drop description as it's a StaticCategory only property.
         _dict = dict(static_category.__dict__)
+        # Convert `name` to `db_name`. `Category` uses `db_name` as it's field
+        # name but the database field is actually linked to `name`.
         _dict['db_name'] = _dict.pop('name', None)
         del _dict['description']
         if save:

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-28 16:14+0000\n"
+"PO-Revision-Date: 2018-07-01 08:37+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1901,21 +1901,17 @@ msgstr "Η αυτόματη έγκριση επιβεβαιώθηκε"
 msgid "{addon} {version} re-enabled."
 msgstr "Το {addon} {version} απορίφθηκε."
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "Η έκδοση {version} του {addon} κλιμακώθηκε."
+msgstr "Η έκδοση {version} του {addon} απενεργοποιήθηκε."
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "Εγκρίθηκε το {addon} {version}."
+msgstr "Εγκρίθηκε το περιεχόμενου της έκδοσης {version} του {addon}."
 
-#, fuzzy
 msgid "Content approved"
-msgstr "επιβεβαιώθηκε ως εγκεκριμένο"
+msgstr "Το περιεχόμενο εγκρίθηκε"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "Το {addon} {version} απορίφθηκε."
+msgstr "Απορρίφθηκε το περιεχόμενο της έκδοσης {version} του {addon}."
 
 msgid "Content rejected"
 msgstr "Το περιεχόμενο απορρίφθηκε"
@@ -1924,17 +1920,15 @@ msgstr "Το περιεχόμενο απορρίφθηκε"
 msgid "{addon} information request altered or removed by admin."
 msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
+msgstr "Το αίτημα πληροφοριών άλλαξε"
 
 #, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Απάντηση προγραμματιστή στο {addon} {version}."
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
+msgstr "Το αίτημα πληροφοριών αφαιρέθηκε"
 
 #, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
@@ -1956,9 +1950,8 @@ msgstr "Ζητήθηκε υπερ αξιολόγηση"
 msgid "{addon} {version} admin theme-review requested."
 msgstr "Έγινε αίτηση αξιολόγησης για το {addon} {version}."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "Ζητήθηκε αξιολόγηση"
+msgstr "Ζητήθηκε αξιολόγηση θέματος από διαχειριστή"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr ""
@@ -2740,9 +2733,8 @@ msgstr ""
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Συμφωνία διανομής προσθέτων Firefox"
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "Πολιτική αξιολόγησης"
+msgstr "Πολιτικές και κανόνες αξιολόγησης"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
@@ -3471,9 +3463,8 @@ msgstr "Τελειώσατε!"
 msgid "Version Submitted for Review"
 msgstr ""
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Η έκδοση υπεβλήθη"
+msgstr "Υπεβλήθη προεπισκόπηση της έκδοσης"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
@@ -3541,11 +3532,8 @@ msgstr "Τοποθεσία φιλοξενίας έκδοσης"
 msgid "Upload Version"
 msgstr "Μεταφόρτωση έκδοσης"
 
-#, fuzzy
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
-"Χρησιμοποιήστε τα παρακάτω πεδία για να αποστείλετε το πακέτο του πρόσθετου σας και να επιλέξετε τυχόν περιορισμούς λειτουργικού συστήματος. Μετά την αποστολή, θα διεξαχθεί στο αρχείο σας μια σειρά "
-"αυτοματοποιημένων δοκιμών και ελέγχων."
+msgstr "Χρησιμοποιήστε τα παρακάτω πεδία για να μεταφορτώσετε το πακέτου του πρόσθετου σας. Μετά τη μεταφόρτωση, θα διεξαχθεί στο αρχείο σας μια σειρά αυτοματοποιημένων δοκιμών και ελέγχων."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Με ποιες πλατφόρμες είναι συμβατό αυτό το αρχείο;"
@@ -3565,20 +3553,17 @@ msgstr "Υποβολή αρχείου"
 msgid "Sign Add-on"
 msgstr "Υπογραφή πρόσθετου"
 
-#, fuzzy
 msgid "Theme generate"
-msgstr "Το θέμα διαγράφηκε."
+msgstr "Δημιουργία θέματος"
 
-#, fuzzy
 msgid "Theme generator"
-msgstr "Άδεια θέματος"
+msgstr "Δημιουργία θέματος"
 
 msgid "Theme name"
 msgstr "Όνομα θέματος"
 
-#, fuzzy
 msgid "Select a header image for your theme"
-msgstr "Επιλέξτε μια εικόνα επικεφαλίδας για το θέμα σας."
+msgstr "Επιλέξτε μια εικόνα κεφαλίδας για το θέμα σας"
 
 msgid "Image height should be 200 pixels"
 msgstr "Το ύψος της εικόνας πρέπει να είναι 200 εικονοστοιχεία"
@@ -3592,9 +3577,8 @@ msgstr "Προσανατολισμένο πάνω δεξιά"
 msgid "Select a different header image"
 msgstr "Επιλογή διαφορετικής εικόνας κεφαλίδας"
 
-#, fuzzy
 msgid "Select colors for your theme"
-msgstr "Επιλέξτε χρώματα για το θέμα σας."
+msgstr "Επιλέξτε χρώματα για το θέμα σας"
 
 msgid "Header area background"
 msgstr ""
@@ -3617,9 +3601,8 @@ msgstr ""
 msgid "Toolbar area text and icons"
 msgstr ""
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "Αυτό είναι το χρώμα του κειμένου καρτέλας."
+msgstr "Το χρώμα του κειμένου και των εικονιδίων στη γραμμή εργαλείων και την ενεργή καρτέλα. Πεδίο αρχείου manifest:  toolbar_text."
 
 msgid "Toolbar field area background"
 msgstr ""
@@ -3636,9 +3619,8 @@ msgstr ""
 msgid "optional"
 msgstr "προαιρετικό"
 
-#, fuzzy
 msgid "Browser preview"
-msgstr "Περάστε από πάνω για προεπισκόπηση"
+msgstr "Προεπισκόπηση προγράμματος περιήγησης"
 
 msgid "Back"
 msgstr "Πίσω"
@@ -3776,13 +3758,11 @@ msgstr "Ειδήσεις προγραμματιστών"
 msgid "View the blog &#9658;"
 msgstr "Προβολή ιστολογίου &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
+msgstr "Εκκρεμές αίτημα πληροφοριών:"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "Αυτή η έκδοση δεν έχει αξιολογηθεί."
+msgstr "Αυτό το αίτημα για πληροφορίες έχει επιλυθεί"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
@@ -4363,44 +4343,38 @@ msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr ""
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Μεταφράστε εύκολα {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-#, fuzzy
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Αναζητήστε εικόνες {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "Perform reverse image searches from an array of engines."
 msgstr ""
 
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Κάντε λήψη βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Λειτουργεί απρόσκοπτα με τις πιο δημοφιλείς ιστοσελίδες βίντεο."
 
-#, fuzzy
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Εξατομίκευση καρτελών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
 msgstr ""
 
-#, fuzzy
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Εξελίξτε το παιχνίδι των emojis {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr ""
 
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτίωση των βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Κάντε λήψη στιγμιότυπων {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
@@ -4433,16 +4407,16 @@ msgid "Cannot diff a version against itself"
 msgstr ""
 
 msgid "Access your data for {name}"
-msgstr ""
+msgstr "Πρόσβαση στα δεδομένα σας για {name}"
 
 msgid "Access your data on the following websites:"
-msgstr ""
+msgstr "Πρόσβαση στα δεδομένα σας για τις εξής ιστοσελίδες:"
 
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Πρόσβαση στα δεδομένα σας για όλες τις ιστοσελίδες"
 
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "Το GUID απαιτείται για το Firefox 47 και παλαιότερα."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
@@ -5381,13 +5355,11 @@ msgstr "Καμία κριτική"
 msgid "Weight"
 msgstr "Βάρος"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Απαιτούνται περισσότερες πληροφορίες"
+msgstr "Προθεσμία αιτήματος πληροφοριών"
 
-#, fuzzy
 msgid "Last Content Review"
-msgstr "Τελευταία αξιολόγηση"
+msgstr "Τελευταία αξιολόγηση περιεχομένου"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -5428,9 +5400,8 @@ msgstr "Έγκριση περιεχομένου"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Τα πρόσθετά μου"
+msgstr "Στατικά θέματα και πρόσθετα παλαιού τύπου"
 
 msgid "Static Themes"
 msgstr "Στατικά θέματα"
@@ -5447,28 +5418,23 @@ msgstr "Νέα ({0})"
 msgid "Updates ({0})"
 msgstr "Ενημερώσεις ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Σημείωση αξιολόγησης"
+msgstr "Αρχείο καταγραφής αξιολόγησης"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Αξιολόγηση προσθέτου"
+msgstr "Οδηγός αξιολόγησης προσθέτων"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Ουρά επιθεωρήσεων θέματος"
+msgstr "Οδηγός αξιολόγησης θεμάτων"
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
 msgstr "Αυτόματα εγκεκριμένα πρόσθετα"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "Auto Approved Add-ons ({0})"
-msgstr "Αυτόματα εγκεκριμένο πρόσθετο ({0})"
+msgstr "Αυτόματα εγκεκριμένα πρόσθετα ({0})"
 
 msgid "Add-on Review Log"
 msgstr "Αρχείο καταγραφής αξιολογήσεων προσθέτου"
@@ -5822,20 +5788,19 @@ msgid "Notify me about new listed versions"
 msgstr ""
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Εξαναγκασμός απενεργοποίησης προσθέτου"
 
 msgid "Force-enable add-on"
 msgstr "Εξαναγκαστική ενεργοποίηση προσθέτου"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "Απενεργοποίηση αυτόματης έγκρισης"
 
 msgid "Enable Auto-Approval"
 msgstr "Ενεργοποίηση αυτόματης έγκρισης"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
+msgstr "Εκκαθάριση αιτήματος πληροφοριών"
 
 #, fuzzy
 msgid "Clear Admin Code Review Flag"
@@ -6070,11 +6035,10 @@ msgid_plural "Auto Approved ({0})"
 msgstr[0] "Αυτόματα εγκεκριμένο πρόσθετο ({0})"
 msgstr[1] "Αυτόματα εγκεκριμένα πρόσθετα ({0})"
 
-#, fuzzy
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Ζητήθηκαν περισσότερες πληροφορίες: {0}"
-msgstr[1] "Ζητήθηκαν περισσότερες πληροφορίες: {0}"
+msgstr[0] "Αίτημα πληροφοριών που έχει λήξει ({0})"
+msgstr[1] "Αιτήματα πληροφοριών που έχουν λήξει ({0})"
 
 msgid "Flagged"
 msgstr "Επισημάνθηκε"
@@ -6425,7 +6389,7 @@ msgid "Download sources by Date"
 msgstr "Λήψη πηγαίου κώδικα κατά ημερομηνία"
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Σχετικά με την καταγραφή εξωτερικών πηγών..."
 
 #, python-format
 msgid ""

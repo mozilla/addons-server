@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-27 16:14+0000\n"
+"PO-Revision-Date: 2018-07-01 05:27+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3355,6 +3355,8 @@ msgstr "Azegrir-agi d armitan"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+"Ṛṛcem uɣawwaṛ-a ma yella azefrir-ik d armitan neq ma yella ur iheggi ara akken ad yettwaseqdec s wudem amatu. Azegrir ad d-yettwabder, acu kan ur ttwalin ara s waṭas. Ad tizmireḍ ad tbeddleḍ "
+"aɣewwaṛ-a ar zdat."
 
 msgid "Select a category for this add-on:"
 msgstr "Fren taggayt i uzegrir-agi:"
@@ -3432,16 +3434,16 @@ msgid "You’re done! This version has been submitted for review. You will be no
 msgstr "Ifuk! Acegger yettusuter i lqem-agi. Ak-id-yaweḍ isalli ticki ifuk ucegger, neɣ ticki imsekyaden ɣur-sen isteqsiyen itezzin ɣef usumer inek."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr ""
+msgstr "Asebter n uzegrir ad yettwassen aṭas ùa terniḍ aglam leqqayen. Heggi asebter-ik i tuffɣa-is:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "Asebter n uzegrir ad yettwassen aṭas ùa terniḍ aglam leqqayen akken tuṭṭfiwin n ugdil. Heggi asebter-ik i tuffɣa-is:"
 
 msgid "Manage Listing"
 msgstr "Sefrek asebter n usnas"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
+msgstr "Ad tizmireḍ daɣen ad tbeddleḍ lqem i d-sumreḍ yakan s tmerna n tizmilin n lqem neɣ tangalt taɣbalut ma yella sumer yegber tangalt meẓẓiyen, yessden neɣ yefrurin."
 
 msgid "Edit version {0}"
 msgstr "Ẓreg lqem {0}"
@@ -3450,7 +3452,7 @@ msgid "File Signed"
 msgstr "Afaylu yettwazmel"
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
+msgstr "D ayen! Afaylu-agi yettwasezmel daɣen yezmer tura ad yettwazuzer s wudem udmawan. Ad tizmireḍ ad tessidreḍ s usiti ɣef tqeffalt ddaw-a."
 
 msgid "Version Signed"
 msgstr "Lqem yettwazmel"
