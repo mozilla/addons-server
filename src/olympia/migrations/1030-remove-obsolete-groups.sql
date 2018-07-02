@@ -1,4 +1,23 @@
-SET @GROUPS_TO_REMOVE = "Developers,Developers Credits,Engagement,Monolith API,OAuth Partner: Flightdeck,Other Contributors Credits,Past Developers Credits,Persona Reviewer MOTD,QA,Revenue Stats Viewers,System Administrators";
+DELETE FROM groups_users WHERE group_id IN (SELECT id FROM groups WHERE name = 'Developers');
+DELETE FROM groups_users WHERE group_id IN (SELECT id FROM groups WHERE name = 'Developers Credits');
+DELETE FROM groups_users WHERE group_id IN (SELECT id FROM groups WHERE name = 'Engagement');
+DELETE FROM groups_users WHERE group_id IN (SELECT id FROM groups WHERE name = 'Monolith API');
+DELETE FROM groups_users WHERE group_id IN (SELECT id FROM groups WHERE name = 'OAuth Partner: Flightdeck');
+DELETE FROM groups_users WHERE group_id IN (SELECT id FROM groups WHERE name = 'Other Contributors Credits');
+DELETE FROM groups_users WHERE group_id IN (SELECT id FROM groups WHERE name = 'Past Developers Credits');
+DELETE FROM groups_users WHERE group_id IN (SELECT id FROM groups WHERE name = 'Persona Reviewer MOTD');
+DELETE FROM groups_users WHERE group_id IN (SELECT id FROM groups WHERE name = 'QA');
+DELETE FROM groups_users WHERE group_id IN (SELECT id FROM groups WHERE name = 'Revenue Stats Viewers');
+DELETE FROM groups_users WHERE group_id IN (SELECT id FROM groups WHERE name = 'System Administrators');
 
-DELETE FROM groups_users WHERE group_id IN (SELECT id FROM groups WHERE FIND_IN_SET(name, @GROUPS_TO_REMOVE));
-DELETE FROM groups WHERE FIND_IN_SET(name, @GROUPS_TO_REMOVE);
+DELETE FROM groups WHERE name = 'Developers');
+DELETE FROM groups WHERE name = 'Developers Credits');
+DELETE FROM groups WHERE name = 'Engagement');
+DELETE FROM groups WHERE name = 'Monolith API');
+DELETE FROM groups WHERE name = 'OAuth Partner: Flightdeck');
+DELETE FROM groups WHERE name = 'Other Contributors Credits');
+DELETE FROM groups WHERE name = 'Past Developers Credits');
+DELETE FROM groups WHERE name = 'Persona Reviewer MOTD');
+DELETE FROM groups WHERE name = 'QA');
+DELETE FROM groups WHERE name = 'Revenue Stats Viewers');
+DELETE FROM groups WHERE name = 'System Administrators');
