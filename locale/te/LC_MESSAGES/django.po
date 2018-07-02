@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-26 16:14+0000\n"
+"PO-Revision-Date: 2018-07-02 16:13+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -19,10 +19,10 @@ msgid "No links are allowed."
 msgstr "లంకెలు అనుమతించబడవు."
 
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "ఈ పేరును వాడుకోలేరు."
 
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "వాడుకరి పేరులో కేవలం అంకెలు మాత్రమే ఉండకూడదు."
 
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -44,7 +44,7 @@ msgid "Please use images smaller than %dMB."
 msgstr "దయచేసి %d MB కంటే చిన్నదిగా ఉన్న చిత్రాలను ఉపయోగించండి."
 
 msgid "You are already logged in."
-msgstr "మీరు ఇప్పటికే లాగిన్ అయ్యారు."
+msgstr "మీరు ఇప్పటికే ప్రవేశించారు."
 
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
@@ -53,7 +53,7 @@ msgid "Your Firefox Account could not be found. Please try again."
 msgstr ""
 
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "మీరు ప్రవేశించలేకపోయారు. దయచేసి మళ్ళీ ప్రయత్నించండి."
 
 msgid "Need help?"
 msgstr "సహాయం కావాలా?"
@@ -159,7 +159,7 @@ msgid "Describe your Theme."
 msgstr "మీ అలంకారాన్ని వివరించండి."
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "కొత్త రచయిత ఈమెయిలు చిరునామాను ఇవ్వండి"
 
 msgid "Listed"
 msgstr "జాబితాచేయబడినవి"
@@ -3469,9 +3469,8 @@ msgstr ""
 msgid "Administrative overrides"
 msgstr ""
 
-#, fuzzy
 msgid "Create a Theme Version"
-msgstr "నేను సృష్టించినది"
+msgstr ""
 
 msgid "Create a Theme"
 msgstr "అలంకారం సృష్టించు"
