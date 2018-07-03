@@ -459,6 +459,9 @@ MIDDLEWARE_CLASSES = (
     # Django < 1.10 checks for its presence to make session key rotation work.
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
 
+    # Enable conditional processing, e.g ETags.
+    'django.middleware.http.ConditionalGetMiddleware',
+
     'olympia.amo.middleware.CommonMiddleware',
     'olympia.amo.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -1707,9 +1710,6 @@ HIVE_CONNECTION = {
     'password': '',
     'auth_mechanism': 'PLAIN',
 }
-
-# Enable ETags (based on response content) on every view in CommonMiddleware.
-USE_ETAGS = True
 
 # CDN Host is blank on local installs, overwritten in dev/stage/prod envs.
 # Useful to force some dynamic content to be served from the CDN.
