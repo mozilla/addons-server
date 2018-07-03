@@ -186,8 +186,8 @@ class TestUserAdmin(TestCase):
 
         response = self.client.post(ban_url, follow=True)
         assert response.status_code == 200
-        assert response.redirect_chain[0][0].endswith(self.detail_url)
-        assert response.redirect_chain[0][1] == 302
+        assert response.redirect_chain[-1][0].endswith(self.detail_url)
+        assert response.redirect_chain[-1][1] == 301
         self.user.reload()
         assert self.user.deleted
         assert self.user.email
