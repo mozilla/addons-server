@@ -13,7 +13,7 @@
 
     <form method="post" action="{{ url('addons.ratings.add', addon.slug) }}">
       {% set attrs = {} if user.is_authenticated() else {'disabled': 'disabled'} %}
-      {{ csrf_input }}
+      {% csrf_token %}
       {{ field(review_form.body, _('Review:'), **attrs) }}
       {{ field(review_form.rating, _('Rating:'), **attrs) }}
       <p><input type="submit" value="{{ _('Submit review') }}" {{ attrs|xmlattr }}></p>

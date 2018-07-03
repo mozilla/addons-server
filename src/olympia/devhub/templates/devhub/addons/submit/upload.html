@@ -8,7 +8,7 @@
 
 <form method="post" id="create-addon" class="item new-addon-file" enctype="multipart/form-data"
     data-addon-is-listed="{% if channel_param == 'listed' %}true{% else %}false{% endif %}">
-  {{ csrf_input }}
+  {% csrf_token %}
   {% if submit_page in ['version', 'file']%}
     {% if submit_page == 'file' %}
         <h3>{{ _('Where to Host File') }}</h3>

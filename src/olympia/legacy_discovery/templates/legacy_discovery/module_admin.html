@@ -12,7 +12,7 @@
 <h1>{{ self.title() }} for {{ APP.pretty }}</h1>
 <form method="post" id="discovery-modules">
   {{ formset.management_form }}
-  {{ csrf_input }}
+  {% csrf_token %}
   <table>
     <thead>
       <th>Ordering</th>

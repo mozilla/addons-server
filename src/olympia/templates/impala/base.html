@@ -27,7 +27,7 @@
     <noscript><link rel="stylesheet" href="{{ static('css/impala/nojs.css') }}"></noscript>
 
     {% if request.user.is_authenticated() %}
-      <meta name="csrf" content="{{ csrf_input }}">
+      <meta name="csrf" content="{% csrf_token %}">
     {% endif %}
 
     {{ js('preload') }}

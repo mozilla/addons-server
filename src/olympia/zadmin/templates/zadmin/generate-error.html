@@ -5,7 +5,7 @@
 {% block content %}
 <h2>Generate an Error</h2>
 <form method="post">
-  {{ csrf_input }}
+  {% csrf_token %}
   {{ form.as_p() }}
   <button type="submit">Explode!</button>
 </form>

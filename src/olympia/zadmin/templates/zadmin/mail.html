@@ -14,7 +14,7 @@
 <h2>Fake Email</h2>
 <p>This is a log of all the fake emails that have been sent.</p>
 <form method="post">
-  {{ csrf_input }}
+  {% csrf_token %}
   <button>Clear The Log</button>
 </form>
 

@@ -28,7 +28,7 @@
       </h3>
       <div class="owner-email hidden">
         <form action="{{ request.path }}#ownership" method="post">
-          {{ csrf_input }}
+          {% csrf_token %}
           {{ owner_form.owner.errors }}
           {{ owner_form.owner }}
           <button name="owner_submit" type="submit">{{ _('Save Changes') }}</button>
@@ -74,7 +74,7 @@
 
   <div class="island prettyform" id="submit-persona">
     <form method="post">
-      {{ csrf_input }}
+      {% csrf_token %}
       {{ form.unsaved_data }}
       <fieldset>
         <legend>{{ _('Theme Details') }}</legend>

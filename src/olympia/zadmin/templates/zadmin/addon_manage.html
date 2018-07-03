@@ -66,7 +66,7 @@
   {% endif %}
   <p><input type="submit" value="Update Statuses"></p>
   {{ formset.management_form }}
-  {{ csrf_input }}
+  {% csrf_token %}
   {% if pager.paginator.num_pages > 1 %}
     <div class="listing-footer">
       {{ pager|paginator }}

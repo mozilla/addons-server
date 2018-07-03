@@ -64,7 +64,7 @@
           <div class="review-saved">
             <button type="submit">{{ _('Process Reviews') }}</button>
           </div>
-          {{ csrf_input }}
+          {% csrf_token %}
           {{ reviews_formset.management_form }}
           {% for review in reviews_formset.forms %}
           <div class="review-flagged{%- if not check_review_delete(review.instance) %} disabled{% endif %}">

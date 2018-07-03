@@ -9,7 +9,7 @@
 </p>
 <form action="{{ url('devhub.ajax.compat.update', addon.slug, version.id) }}"
       class="compat-versions" data-addonid="{{ addon.id }}">
-  {{ csrf_input }}
+  {% csrf_token %}
   {{ compat_form.non_form_errors() }}
   {{ compat_form.management_form }}
   <table>

@@ -4,7 +4,7 @@
 <div id="reviewer-motd">
   {% if form %}
     <form action="{{ url('reviewers.save_motd') }}" method="post">
-      {{ csrf_input }}
+      {% csrf_token %}
       <h3>{{ _('Update message of the day') }}</h3>
       {{ form.errors.motd }}
       {{ form.motd }}

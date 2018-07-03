@@ -2,7 +2,7 @@
 <div class="hidden">
   <form method="post" id="{{ form.form_id }}-form" action="#"
         class="review article review-form prettyform">
-    {{ csrf_input }}
+    {% csrf_token %}
     <fieldset>
       <ul>
         {% for field in form %}

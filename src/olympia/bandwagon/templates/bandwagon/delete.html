@@ -12,7 +12,7 @@
   </header>
 
   <form method="post" action="{{ url('collections.delete', username, slug) }}">
-    {{ csrf_input }}
+    {% csrf_token %}
     <button name="sure" value="1">{{ _('Yes') }}</button>
     <button name="sure" value="0">{{ _('No') }}</button>
   </form>

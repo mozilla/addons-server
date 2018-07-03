@@ -1,6 +1,6 @@
 <form id="report-user-form" method="post"
       action="{{ url('users.abuse', profile.pk) }}">
-  {{ csrf_input }}
+  {% csrf_token %}
   <fieldset class="abuse">
     <ol>
       <li>

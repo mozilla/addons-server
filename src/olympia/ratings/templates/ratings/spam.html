@@ -23,7 +23,7 @@
       <h3>{{ title }}</h3>
       {% for review in buckets[key] %}
         <form method="post" style="margin-bottom: 2em">
-          {{ csrf_input }}
+          {% csrf_token %}
           {% with addon = review.addon %}
             {% include "ratings/review.html" %}
           {% endwith %}

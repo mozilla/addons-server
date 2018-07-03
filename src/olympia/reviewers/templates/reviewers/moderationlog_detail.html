@@ -23,7 +23,7 @@
 
       {% if can_undelete %}
         <form method="post">
-          {{ csrf_input }}
+          {% csrf_token %}
           <input type="hidden" name="action" value="undelete">
           <input type="submit" id="submit-undelete-review" value="{{ _('Undelete') }}">
         </form>

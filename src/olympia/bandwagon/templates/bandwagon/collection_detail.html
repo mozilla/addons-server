@@ -52,7 +52,7 @@
           <ul id="collection-favorites-opts">
             <li>
               <form method="post" action="{{ url('collections.edit_privacy', c.author_username, c.slug) }}">
-                {{ csrf_input }}
+                {% csrf_token %}
                 <button type="submit">
                   {% if c.listed %}
                     {{ _('Make this Collection Private') }}
