@@ -613,7 +613,7 @@ def migrate_lwts_to_static_themes(ids, **kw):
     lightweight themes (personas), and delete the lightweight themes after."""
     mlog = olympia.core.logger.getLogger('z.task.lwtmigrate')
     mlog.info(
-        '[Info] Migrating LWT to static theme %d-%d [%d].',  ids[0], ids[-1],
+        '[Info] Migrating LWT to static theme %d-%d [%d].', ids[0], ids[-1],
         len(ids))
 
     # Incoming ids should already by type=persona only
