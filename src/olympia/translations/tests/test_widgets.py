@@ -35,13 +35,21 @@ class TestWidget(TestCase):
 
         widget = widgets.TransInput()
         assert not widget.is_hidden
-        expected_output = (
-            '<div id="trans-foo" class="trans" data-name="foo"><input '
-            'type="text" name="foo_en-us" value="test value en" lang="en-us" '
-            '/><input type="text" name="foo_fr" value="test value fr" '
-            'lang="fr" /><input type="text" name="foo_init" value="" '
-            'lang="init" class="trans-init hidden" /></div>')
-        assert widget.render('foo', 666) == expected_output
+
+        doc = pq(widget.render('foo', 666))
+
+        assert doc.attr('id') == 'trans-foo'
+        assert doc.attr('class') == 'trans'
+        assert doc.attr('data-name') == 'foo'
+        assert len(doc('input')) == 3
+        assert doc('input')[0].get('lang') == 'en-us'
+        assert doc('input')[0].get('name') == 'foo_en-us'
+
+        assert doc('input')[1].get('lang') == 'fr'
+        assert doc('input')[1].get('name') == 'foo_fr'
+
+        assert doc('input')[2].get('lang') == 'init'
+        assert doc('input')[2].get('name') == 'foo_init'
 
     def test_transtextarea(self):
         models.Translation.objects.create(
@@ -53,15 +61,21 @@ class TestWidget(TestCase):
 
         widget = widgets.TransTextarea()
         assert not widget.is_hidden
-        expected_output = (
-            '<div id="trans-foo" class="trans" data-name="foo"><textarea '
-            'name="foo_en-us" lang="en-us" rows="10" cols="40">\ntest value en'
-            '</textarea><textarea name="foo_fr" lang="fr" rows="10" cols="40">'
-            '\ntest value fr</textarea><textarea name="foo_init" lang="init" '
-            'rows="10" cols="40" class="trans-init hidden">\n</textarea>'
-            '</div>')
 
-        assert widget.render('foo', 666) == expected_output
+        doc = pq(widget.render('foo', 666))
+
+        assert doc.attr('id') == 'trans-foo'
+        assert doc.attr('class') == 'trans'
+        assert doc.attr('data-name') == 'foo'
+        assert len(doc('textarea')) == 3
+        assert doc('textarea')[0].get('lang') == 'en-us'
+        assert doc('textarea')[0].get('name') == 'foo_en-us'
+
+        assert doc('textarea')[1].get('lang') == 'fr'
+        assert doc('textarea')[1].get('name') == 'foo_fr'
+
+        assert doc('textarea')[2].get('lang') == 'init'
+        assert doc('textarea')[2].get('name') == 'foo_init'
 
     def test_value_from_datadict(self):
         data = {'f_en-US': 'woo', 'f_de': 'herr', 'f_fr_delete': ''}
