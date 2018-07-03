@@ -147,7 +147,7 @@ def paginate(request, queryset, per_page=20, count=None):
         paginator = DjangoPaginator(queryset, per_page)
 
     if count is not None:
-        paginator._count = count
+        paginator.count = count
 
     # Get the page from the request, make sure it's an int.
     try:
