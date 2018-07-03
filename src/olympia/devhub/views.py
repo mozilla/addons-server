@@ -43,7 +43,7 @@ from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.forms import AgreementForm, CheckCompatibilityForm
 from olympia.devhub.models import BlogPost, RssKey
-from olympia.devhub.utils import process_validation
+from olympia.devhub.utils import add_dynamic_theme_tag, process_validation
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon
 from olympia.lib.crypto.packaged import sign_file
@@ -1371,6 +1371,7 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
             addon.update(status=amo.STATUS_NOMINATED)
         # auto-sign versions (the method checks eligibility)
         auto_sign_version(version)
+        add_dynamic_theme_tag(version)
         next_url = (next_details
                     if channel == amo.RELEASE_CHANNEL_LISTED
                     else next_finish)
