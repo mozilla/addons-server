@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-02 16:15+0000\n"
+"PO-Revision-Date: 2018-07-03 10:22+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1635,7 +1635,7 @@ msgid "File {0} deleted from {version} of {addon}."
 msgstr "{addon} యొక్క {version} నుండి {0} ఫైలు తొలగించబడింది."
 
 msgid "{addon} {version} approved."
-msgstr "{addon} {version} ఆమోదం."
+msgstr "{addon} {version} ఆమోదించబడింది."
 
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} ఇచ్చిన ప్రాథమిక సమీక్ష."
@@ -1728,7 +1728,7 @@ msgid "{addon} policy changed."
 msgstr "{addon} విధానం మార్చబడింది."
 
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "{addon} ప్రతీకం మార్చబడింది."
 
 #, fuzzy
 msgid "{rating} for {addon} approved."
@@ -2215,7 +2215,7 @@ msgid "RSS, News and Blogging"
 msgstr ""
 
 msgid "Site-specific"
-msgstr ""
+msgstr "సైటు-ప్రత్యేకం"
 
 msgid "Web and Developer Tools"
 msgstr ""
@@ -2728,7 +2728,7 @@ msgid "Development Add-ons"
 msgstr ""
 
 msgid "Community & Support"
-msgstr ""
+msgstr "సముదాయం & తోడ్పాటు"
 
 msgid "Add-ons Blog"
 msgstr "పొడగింతల బ్లాగు"
@@ -2779,7 +2779,7 @@ msgstr ""
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "{0} ఇటీవలి కార్యకలాపం"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -2820,10 +2820,10 @@ msgid "Adjusting application information here will allow users to install your a
 msgstr ""
 
 msgid "Supported Versions"
-msgstr ""
+msgstr "తోడ్పాటున్న వెర్షనులు"
 
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "మరొక అనువర్తనాన్ని చేర్చు&hellip;"
 
 msgid "Close"
 msgstr "మూసివేయి"
@@ -2836,7 +2836,7 @@ msgid "%(ago)s by %(user)s"
 msgstr "%(ago)s ద్వారా %(user)s"
 
 msgid "Older activity for My Add-ons"
-msgstr "నా పొడిగింతల కోసం పాత కార్యాచరణ"
+msgstr "నా పొడగింతల పాత కార్యకలాపం"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
@@ -2936,11 +2936,11 @@ msgstr ""
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "కామాతో వేరు చేయబడి, కనీసం {0} అక్షరం."
+msgstr[1] "కామాతో వేరు చేయబడి, కనీసం {0} అక్షరాలు."
 
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "ఉదాహరణ: చీకటి, సినిమా, నోయిర్. పరిమితి 20."
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
@@ -2963,7 +2963,7 @@ msgid "A longer explanation of features, functionality, and other relevant infor
 msgstr ""
 
 msgid "Default Locale"
-msgstr ""
+msgstr "అప్రమేయ భాష"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
@@ -5321,9 +5321,8 @@ msgstr "నా పొడిగింతలు"
 msgid "Static Themes"
 msgstr "నా అలంకారాలు"
 
-#, fuzzy
 msgid "Legacy Add-ons"
-msgstr "నా పొడిగింతలు"
+msgstr "పాత పొడగింతలు"
 
 msgid "New ({0})"
 msgstr "కొత్తవి ({0})"
