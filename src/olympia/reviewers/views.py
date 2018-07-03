@@ -49,7 +49,7 @@ from olympia.reviewers.serializers import AddonReviewerFlagsSerializer
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
     ReviewHelper, ViewFullReviewQueueTable, ViewPendingQueueTable,
-    ViewUnlistedAllListTable, is_limited_reviewer)
+    ViewUnlistedAllListTable)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
@@ -68,14 +68,12 @@ def base_context(**kw):
 
 def context(request, **kw):
     admin_reviewer = is_admin_reviewer(request)
-    limited_reviewer = is_limited_reviewer(request)
     extension_reviews = acl.action_allowed(
         request, amo.permissions.ADDONS_REVIEW)
     theme_reviews = acl.action_allowed(
         request, amo.permissions.STATIC_THEMES_REVIEW)
     ctx = {
         'queue_counts': queue_counts(admin_reviewer=admin_reviewer,
-                                     limited_reviewer=limited_reviewer,
                                      extension_reviews=extension_reviews,
                                      theme_reviews=theme_reviews),
     }
@@ -493,10 +491,6 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
         if not is_searching and not admin_reviewer:
             qs = filter_admin_review_for_legacy_queue(qs)
         if not unlisted:
-            if is_limited_reviewer(request):
-                qs = qs.having(
-                    'waiting_time_hours >=', amo.REVIEW_LIMITED_DELAY_HOURS)
-
             qs = filter_static_themes(
                 qs, acl.action_allowed(request, amo.permissions.ADDONS_REVIEW),
                 acl.action_allowed(
@@ -531,16 +525,12 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
                           unlisted=unlisted))
 
 
-def queue_counts(admin_reviewer, limited_reviewer, extension_reviews,
-                 theme_reviews):
+def queue_counts(admin_reviewer, extension_reviews, theme_reviews):
     def construct_query_from_sql_model(sqlmodel):
         qs = sqlmodel.objects
 
         if not admin_reviewer:
             qs = filter_admin_review_for_legacy_queue(qs)
-        if limited_reviewer:
-            qs = qs.having('waiting_time_hours >=',
-                           amo.REVIEW_LIMITED_DELAY_HOURS)
         qs = filter_static_themes(qs, extension_reviews, theme_reviews)
         return qs.count
 
