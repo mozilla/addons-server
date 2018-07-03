@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-03 10:22+0000\n"
+"PO-Revision-Date: 2018-07-03 16:46+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1730,17 +1730,15 @@ msgstr "{addon} విధానం మార్చబడింది."
 msgid "{addon} icon changed."
 msgstr "{addon} ప్రతీకం మార్చబడింది."
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
-msgstr "{review} కోసం {addon} ఆమోదించబడింది."
+msgstr "{addon} కోసం {rating} ఆమోదించబడింది."
 
 #, fuzzy
 msgid "{user} approved {rating} for {addon}."
 msgstr "{addon} కోసం {user} {review}ను ఆమోదించారు."
 
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
-msgstr "రాసిన {addon} కోసం {review}."
+msgstr ""
 
 #, fuzzy
 msgid "{user} deleted {rating} for {addon}."
@@ -1862,9 +1860,8 @@ msgstr "{addon} {version} విషయం తిరస్కరించబడ�
 msgid "Content rejected"
 msgstr "విషయం తిరస్కరించబడింది"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "మరింత సమాచారం అభ్యర్ధించబడింది"
+msgstr ""
 
 #, fuzzy
 msgid "Information request altered"
@@ -2265,9 +2262,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "అలంకరణను సవరించండి"
+msgstr ""
 
 msgid "Persona"
 msgstr "పెర్సోనా"
@@ -5191,9 +5187,8 @@ msgstr "Jetpack పొడిగింత"
 msgid "More Information Requested"
 msgstr "మరింత సమాచారం అభ్యర్థించబడింది"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "మరింత సమాచారం అభ్యర్థించబడింది"
+msgstr "కాలంచెల్లిన సమాచార అభ్యర్థన"
 
 msgid "Contains Reviewer Comment"
 msgstr "సమీక్షకుడి వ్యాఖ్యను కలిగి ఉంటుంది"
@@ -5267,9 +5262,8 @@ msgstr "సమీక్షలు లేవు"
 msgid "Weight"
 msgstr "బరువు"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "మరింత సమాచారం అభ్యర్థించబడింది"
+msgstr "సమాచార అభ్యర్ధన కాలపరిమితి"
 
 msgid "Last Content Review"
 msgstr "చివరి విషయం సమీక్ష"
@@ -5317,9 +5311,8 @@ msgstr ""
 msgid "Static Themes and Legacy Add-ons"
 msgstr "నా పొడిగింతలు"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "నా అలంకారాలు"
+msgstr ""
 
 msgid "Legacy Add-ons"
 msgstr "పాత పొడగింతలు"
@@ -5333,21 +5326,17 @@ msgstr "తాజాకరణలు ({0})"
 msgid "Review Log"
 msgstr "సమీక్షల చిట్టా"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "పొడిగింత యొక్క సమీక్ష"
+msgstr "యాడ్-ఆన్ సమీక్ష గైడు"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "అలంకారపు సమీక్ష"
+msgstr "అలంకారపు సమీక్ష గైడు"
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
-msgstr "అవసరమైన పొడిగింత"
+msgstr ""
 
-#, fuzzy
 msgid "Auto Approved Add-ons ({0})"
-msgstr "కొత్త పొడిగింత ({0})"
+msgstr ""
 
 msgid "Add-on Review Log"
 msgstr ""
@@ -5372,9 +5361,8 @@ msgstr "అలంకారాల తాజాకరణలు ({0})"
 msgid "Flagged Themes ({0})"
 msgstr ""
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "అలంకారాల సమీక్షల చిట్టా"
+msgstr "తేలికైన అలంకారాల సమీక్షల చిట్టా"
 
 msgid "Deleted Themes Log"
 msgstr "తొలగించిన అలంకారాల చిట్టా"
@@ -5388,9 +5376,8 @@ msgstr ""
 msgid "Moderated Review Log"
 msgstr ""
 
-#, fuzzy
 msgid "Moderation Guide"
-msgstr "మోడరేట్ చేసిన పొడిగింత సమీక్ష"
+msgstr "మోడరేషన్ గైడు"
 
 msgid "Unlisted Add-ons"
 msgstr "చూపించని పొడగింతలు"
@@ -5404,9 +5391,8 @@ msgstr "ప్రకటన"
 msgid "Update message of the day"
 msgstr "రోజు యొక్క సందేశాన్ని నవీకరించండి"
 
-#, fuzzy
 msgid "Expired Information Requests ({0})"
-msgstr "మరింత సమాచారం అభ్యర్థించబడింది"
+msgstr "కాలంచెల్లిన సమాచార అభ్యర్థనలు ({0})"
 
 msgid "An unknown error occurred"
 msgstr "ఒక తెలియని దోషం ఎదురైంది"
@@ -5710,9 +5696,8 @@ msgstr ""
 msgid "Enable Auto-Approval"
 msgstr ""
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "మరింత సమాచారం అభ్యర్ధించబడింది"
+msgstr "సమాచార అభ్యర్ధనను తుడిచివేయి"
 
 msgid "Clear Admin Code Review Flag"
 msgstr ""
