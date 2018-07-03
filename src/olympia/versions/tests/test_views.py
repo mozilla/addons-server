@@ -281,9 +281,9 @@ class TestDownloads(TestDownloadsBase):
         self.file.update(datestatuschanged=None)
         self.assert_served_locally(self.client.get(self.file_url))
 
+    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_unicode_url(self):
         self.file.update(filename=u'图像浏览器-0.5-fx.xpi')
-
         self.assert_served_by_cdn(self.client.get(self.file_url))
 
 
@@ -374,6 +374,7 @@ class TestDownloadsLatest(TestDownloadsBase):
         assert self.addon.current_version
         self.assert_served_by_cdn(self.client.get(self.latest_url))
 
+    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_platform(self):
         # We still match PLATFORM_ALL.
         url = reverse('downloads.latest',
