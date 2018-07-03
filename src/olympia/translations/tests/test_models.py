@@ -219,15 +219,12 @@ class TranslationTestCase(BaseTestCase):
         # There's existing en-US and de strings.
         strings = {'de': None, 'fr': 'oui'}
 
-        # Don't try checking that the model's name value is en-US.  It will be
-        # one of the other locales, but we don't know which one.  You just set
+        # Don't try checking that the model's name value is en-US. It will be
+        # one of the other locales, but we don't know which one. You just set
         # the name to a dict, deal with it.
         m = TranslatedModel.objects.create(name='some name')
         m.name = strings
         m.save()
-
-        assert m.name == 'some name'
-        assert m.name.localized_string == 'some name'
 
         # en-US was not touched.
         self.trans_eq(get_model().name, 'some name', 'en-US')
