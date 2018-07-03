@@ -148,10 +148,6 @@ REVIEWED_LEVELS = [
     {'name': _('Level 9'), 'points': 3000000},
 ]
 
-# Amount of hours to hide add-on reviews from users with permission
-# Addons:DelayedReviews
-REVIEW_LIMITED_DELAY_HOURS = 20
-
 # Review queue pagination
 REVIEWS_PER_PAGE = 200
 REVIEWS_PER_PAGE_MAX = 400

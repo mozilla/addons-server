@@ -16,7 +16,6 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
-from olympia.access.models import GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import log_and_notify, send_activity_mail
 from olympia.addons.models import (
@@ -50,15 +49,6 @@ class ItemStateTable(object):
 
 def safe_substitute(string, *args):
     return string % tuple(jinja2.escape(arg) for arg in args)
-
-
-def is_limited_reviewer(request):
-    if request:
-        return GroupUser.objects.filter(group__name='Limited Reviewers',
-                                        user=request.user).exists()
-    else:
-        # `request` could be None if coming from management command.
-        return False
 
 
 class ReviewerQueueTable(tables.Table, ItemStateTable):
@@ -344,12 +334,6 @@ class ReviewHelper(object):
                     regular_content_review_is_allowed
                 )
             ))
-        reviewable_because_submission_time = (
-            not is_limited_reviewer(request) or
-            (self.version and
-                self.version.nomination is not None and
-                (datetime.now() - self.version.nomination >=
-                    timedelta(hours=amo.REVIEW_LIMITED_DELAY_HOURS))))
         reviewable_because_pending = (
             self.version and
             len(self.version.is_unreviewed) > 0)
@@ -391,7 +375,6 @@ class ReviewHelper(object):
             'available': (
                 reviewable_because_complete and
                 reviewable_because_not_reserved_for_admins_or_user_is_admin and
-                reviewable_because_submission_time and
                 reviewable_because_pending and
                 not self.content_review_only)
         }

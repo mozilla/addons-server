@@ -15,7 +15,6 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
-from olympia.access.admin import GroupUserInline
 from olympia.activity.models import ActivityLog, UserLog
 from olympia.addons.models import Addon
 from olympia.amo.utils import render
@@ -23,7 +22,12 @@ from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 
 from . import forms
-from .models import DeniedName, UserProfile
+from .models import DeniedName, GroupUser, UserProfile
+
+
+class GroupUserInline(admin.TabularInline):
+    model = GroupUser
+    raw_id_fields = ('user',)
 
 
 class UserAdmin(admin.ModelAdmin):
