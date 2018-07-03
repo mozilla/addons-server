@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-03 09:56+0000\n"
+"PO-Revision-Date: 2018-07-03 10:22+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1635,7 +1635,7 @@ msgid "File {0} deleted from {version} of {addon}."
 msgstr "{addon} యొక్క {version} నుండి {0} ఫైలు తొలగించబడింది."
 
 msgid "{addon} {version} approved."
-msgstr "{addon} {version} ఆమోదం."
+msgstr "{addon} {version} ఆమోదించబడింది."
 
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} ఇచ్చిన ప్రాథమిక సమీక్ష."
@@ -1728,7 +1728,7 @@ msgid "{addon} policy changed."
 msgstr "{addon} విధానం మార్చబడింది."
 
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "{addon} ప్రతీకం మార్చబడింది."
 
 #, fuzzy
 msgid "{rating} for {addon} approved."
@@ -5321,9 +5321,8 @@ msgstr "నా పొడిగింతలు"
 msgid "Static Themes"
 msgstr "నా అలంకారాలు"
 
-#, fuzzy
 msgid "Legacy Add-ons"
-msgstr "నా పొడిగింతలు"
+msgstr "పాత పొడగింతలు"
 
 msgid "New ({0})"
 msgstr "కొత్తవి ({0})"
