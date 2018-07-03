@@ -200,9 +200,8 @@ msgstr "Zobrazit zásady ochrany osobních údajů"
 msgid "View End-User License Agreement"
 msgstr "Zobrazit Licenční smlouvu pro koncové uživatele"
 
-#, fuzzy
 msgid "This add-on has not been reviewed by Mozilla."
-msgstr "Doplněk dosud nebyl recenzován."
+msgstr ""
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Tento doplněk byl vývojářem označen jako experimentální."
@@ -4360,9 +4359,8 @@ msgstr "Vylepšete své panely {start_sub_heading}s doplňkem {addon_name}{end_s
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr ""
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vylepšete své panely {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
+msgstr ""
 
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
@@ -6621,9 +6619,8 @@ msgstr "Profilové foto"
 msgid "Addons"
 msgstr ""
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "Aktivita"
+msgstr ""
 
 msgid "Email must be {email}."
 msgstr "E-mail musí být {email}."

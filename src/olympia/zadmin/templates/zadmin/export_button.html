@@ -1,8 +1,0 @@
-{% extends "zadmin/base.html" %}
-
-{% block title %}{{ page_title('Add-on Search') }}{% endblock %}
-
-{% block content %}
-<h2>Email Address Export</h2>
-<form method="GET" action="{{ url('zadmin.email_addresses_file') }}" data-no-csrf><button>Download Addresses</button></form>
-{% endblock %}

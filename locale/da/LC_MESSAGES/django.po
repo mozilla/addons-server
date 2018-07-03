@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-30 14:28+0000\n"
-"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
+"PO-Revision-Date: 2018-06-30 19:16+0000\n"
+"Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -2673,15 +2673,15 @@ msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Version %s deaktiveret."
 
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "Version %s slettet."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "Version %s genaktiveret."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
