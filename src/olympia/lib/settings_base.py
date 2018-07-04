@@ -485,6 +485,19 @@ AUTH_USER_MODEL = 'users.UserProfile'
 ROOT_URLCONF = 'olympia.urls'
 
 INSTALLED_APPS = (
+    # The translations app *must* be the very first. This isn't necessarily
+    # relevant for daily business but very important for running initial
+    # migrations during our tests and local setup.
+    # Foreign keys to the `translations` table point to `id` which isn't
+    # unique on it's own but has a (id, locale) unique_together index.
+    # If `translations` would come after `olympia.addons` for example
+    # Django tries to first, create the table translations, then create the
+    # addons table, then adds the foreign key and only after that adds the
+    # unique_together index to `translations`. MySQL needs that index to be
+    # created first though, otherwise you'll run into
+    # `ERROR 1215 (HY000): Cannot add foreign key constraint` errors.
+    'olympia.translations',
+
     'olympia.core',
     'olympia.amo',  # amo comes first so it always takes precedence.
     'olympia.abuse',
@@ -510,7 +523,6 @@ INSTALLED_APPS = (
     'olympia.search',
     'olympia.stats',
     'olympia.tags',
-    'olympia.translations',
     'olympia.users',
     'olympia.versions',
     'olympia.zadmin',
