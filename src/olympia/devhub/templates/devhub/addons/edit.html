@@ -30,10 +30,8 @@
       {{ _('Preview') }}
     </h3>
     <div class="edit-addon-section">
-      {% for preview in addon.current_version.previews.all() %}
-        <img src="{{ preview.image_url }}" title="{{ _('Preview of listed version') }}"
+      <img src="{{ addon.current_version.previews.first().image_url }}" title="{{ _('Preview of listed version') }}"
             alt="[{{ _('Preview still being generated - come back later or refresh the page.') }}]">
-      {% endfor %}
     </div>
   {% endif %}
 

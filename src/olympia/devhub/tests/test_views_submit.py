@@ -1112,8 +1112,10 @@ class TestAddonSubmitFinish(TestSubmitBase):
         assert "This version will be available after it passes review." in (
             response.content)
         # Show the preview we started generating just after the upload step.
-        assert content('img')[0].attrib['src'] == (
+        imgs = content('section.addon-submission-process img')
+        assert imgs[0].attrib['src'] == (
             version.previews.first().image_url)
+        assert len(imgs) == 1  # Just the one preview though.
 
     def test_finish_submitting_unlisted_static_theme(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)
