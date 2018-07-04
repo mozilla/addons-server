@@ -371,14 +371,14 @@ class Addon(OnChangeMixin, ModelBase):
         # `version.addon`. We thus want one that is NOT filtered in any case,
         # we don't want a 500 if the addon is not found (because it has the
         # status amo.STATUS_DELETED for example).
-        # The CLASS of the first one discovered will also be used for "many to
+        # The CLASS of the one configured here will also be used for "many to
         # many relations" like `collection.addons`. In that case, we do want
         # the filtered version by default, to make sure we're not displaying
-        # stuff by mistake. You thus want the CLASS of the first one to be
-        # filtered by default.
+        # stuff by mistake. You thus want the filtered one configured
+        # as `base_manager_name`.
         # We don't control the instantiation, but AddonManager sets
         # include_deleted to False by default, so filtering is enabled by
-        # default. This is also why it's not repeated for 'objects' below.
+        # default.
         base_manager_name = 'unfiltered'
         index_together = [
             ['weekly_downloads', 'type'],

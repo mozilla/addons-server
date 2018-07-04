@@ -376,8 +376,9 @@ class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
         # This is important: Setting this to `objects` makes sure
         # that Django is using the manager set as `objects` on this
         # instance reather than the `_default_manager` or even
-        # `_base_manager`. That's the only way currently to reliably
-        # tell Django to resolve translation objects / call transformers.
+        # `_base_manager` that are by default configured by Django.
+        # That's the only way currently to reliably tell Django to resolve
+        # translation objects / call transformers.
         # This also ensures we don't ignore soft-deleted items when traversing
         # relations, if they are hidden by the objects manager, like we
         # do with `addons.models:Addon`
