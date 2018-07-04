@@ -314,6 +314,12 @@ def edit(request, addon_id, addon):
     except Whiteboard.DoesNotExist:
         whiteboard = Whiteboard(pk=addon.pk)
 
+    previews = (
+        addon.current_version.previews.all()
+        if addon.current_version and addon.has_per_version_previews
+        else addon.previews.all())
+    header_preview = (
+        previews.first() if addon.type == amo.ADDON_STATICTHEME else None)
     data = {
         'page': 'edit',
         'addon': addon,
@@ -322,7 +328,8 @@ def edit(request, addon_id, addon):
         'show_listed_fields': addon.has_listed_versions(),
         'valid_slug': addon.slug,
         'tags': addon.tags.not_denied().values_list('tag_text', flat=True),
-        'previews': addon.previews.all(),
+        'previews': previews,
+        'header_preview': header_preview,
         'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
     }
 
@@ -1575,7 +1582,8 @@ def _submit_finish(request, addon, version, is_file=False):
     return render(request, 'devhub/addons/submit/done.html',
                   {'addon': addon,
                    'uploaded_version': uploaded_version,
-                   'submit_page': submit_page})
+                   'submit_page': submit_page,
+                   'preview': uploaded_version.previews.first()})
 
 
 @dev_required(submitting=True)
