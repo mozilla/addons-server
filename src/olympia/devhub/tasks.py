@@ -112,6 +112,7 @@ def create_version_for_upload(addon, upload, channel):
                  ' cause duplicate version'.format(upload_uuid=upload.uuid))
     else:
         # Import loop.
+        from olympia.devhub.utils import add_dynamic_theme_tag
         from olympia.devhub.views import auto_sign_version
 
         log.info('Creating version for {upload_uuid} that passed '
@@ -130,6 +131,7 @@ def create_version_for_upload(addon, upload, channel):
                 channel == amo.RELEASE_CHANNEL_LISTED):
             addon.update(status=amo.STATUS_NOMINATED)
         auto_sign_version(version)
+        add_dynamic_theme_tag(version)
 
 
 # Override the validator's stock timeout exception so that it can
