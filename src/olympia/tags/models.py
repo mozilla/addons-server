@@ -1,4 +1,4 @@
-from django.core.urlresolvers import NoReverseMatch
+from django.urls import NoReverseMatch
 from django.db import models
 
 from olympia import activity, amo

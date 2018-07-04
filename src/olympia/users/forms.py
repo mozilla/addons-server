@@ -330,10 +330,8 @@ class DeniedNameAddForm(forms.Form):
         attrs={'cols': 40, 'rows': 16}))
 
     def clean_names(self):
-        names = self.cleaned_data['names'].strip()
-        if not names:
-            raise forms.ValidationError(
-                ugettext('Please enter at least one name to be denied.'))
-        names = os.linesep.join(
-            [s.strip() for s in names.splitlines() if s.strip()])
+        names = os.linesep.join([
+            s.strip() for s in self.cleaned_data['names'].splitlines()
+            if s.strip()
+        ])
         return names

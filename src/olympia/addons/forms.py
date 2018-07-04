@@ -17,7 +17,7 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
     Addon, AddonCategory, Category, DeniedSlug, Persona)
 from olympia.addons.tasks import save_theme, save_theme_reupload
-from olympia.addons.widgets import CategoriesSelectMultiple, IconWidgetRenderer
+from olympia.addons.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.fields import (
     ColorField, HttpHttpsOnlyURLField, ReCaptchaField)
@@ -121,7 +121,9 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
     def clean_name(self):
         user = getattr(self.request, 'user', None)
 
-        name = verify_mozilla_trademark(self.cleaned_data['name'], user)
+        name = verify_mozilla_trademark(
+            self.cleaned_data['name'], user,
+            form=self)
 
         return name
 
@@ -310,8 +312,8 @@ def icons():
 
 
 class AddonFormMedia(AddonFormBase):
-    icon_type = forms.CharField(widget=forms.RadioSelect(
-        renderer=IconWidgetRenderer, choices=[]), required=False)
+    icon_type = forms.CharField(widget=IconTypeSelect(
+        choices=[]), required=False)
     icon_upload_hash = forms.CharField(required=False)
 
     class Meta:

@@ -1,7 +1,7 @@
 import json
 import os
 
-from django.core.urlresolvers import reverse as dj_reverse
+from django.urls import reverse as dj_reverse
 
 from rest_framework import serializers
 from rest_framework.reverse import reverse as drf_reverse

@@ -338,6 +338,7 @@ function addonFormSubmit() {
         };
         $('.edit-media-button button').prop('disabled', false);
         $('form', parent_div).submit(function(e){
+            console.log('AAAAAAAAAAAAAAAA', e);
             e.preventDefault();
             var old_baseurl = baseurl();
             parent_div.find(".item").removeClass("loaded").addClass("loading");

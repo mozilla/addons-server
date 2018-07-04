@@ -6,7 +6,7 @@ import logging
 import os
 import socket
 
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.utils.functional import lazy
 
 from kombu import Queue
@@ -114,8 +114,10 @@ DATABASES = {
     'default': env.db(default='mysql://root:@localhost/olympia')
 }
 DATABASES['default']['OPTIONS'] = {'sql_mode': 'STRICT_ALL_TABLES'}
-DATABASES['default']['TEST_CHARSET'] = 'utf8'
-DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
+DATABASES['default']['TEST'] = {
+    'CHARSET': 'utf8',
+    'COLLATION': 'utf8_general_ci'
+}
 # Run all views in a transaction unless they are decorated not to.
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 # Pool our database connections up for 300 seconds
@@ -374,7 +376,6 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.media',
                 'django.template.context_processors.request',
-                'session_csrf.context_processor',
 
                 'django.contrib.messages.context_processors.messages',
 
@@ -413,7 +414,6 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.media',
                 'django.template.context_processors.request',
-                'session_csrf.context_processor',
 
                 'django.contrib.messages.context_processors.messages',
             ),
@@ -459,12 +459,15 @@ MIDDLEWARE_CLASSES = (
     # Django < 1.10 checks for its presence to make session key rotation work.
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
 
+    # Enable conditional processing, e.g ETags.
+    'django.middleware.http.ConditionalGetMiddleware',
+
     'olympia.amo.middleware.CommonMiddleware',
     'olympia.amo.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',
     'olympia.search.middleware.ElasticsearchExceptionMiddleware',
-    'session_csrf.CsrfMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
 
     # This should come after AuthenticationMiddlewareWithoutAPI (to get the
     # current user) and after SetRemoteAddrFromForwardedFor (to get the correct
@@ -1337,7 +1340,7 @@ LOGGING = {
             'level': logging.DEBUG,
             'propagate': False
         },
-        'django.request': {
+        'django': {
             'handlers': ['statsd'],
             'level': logging.ERROR,
             'propagate': True,
@@ -1494,7 +1497,7 @@ def read_only_mode(env):
 
     # Add in the read-only middleware before csrf middleware.
     extra = 'olympia.amo.middleware.ReadOnlyMiddleware'
-    before = 'session_csrf.CsrfMiddleware'
+    before = 'django.middleware.csrf.CsrfViewMiddleware'
     m = list(env['MIDDLEWARE_CLASSES'])
     m.insert(m.index(before), extra)
     env['MIDDLEWARE_CLASSES'] = tuple(m)
@@ -1645,6 +1648,7 @@ LOGIN_RATELIMIT_USER = 5
 LOGIN_RATELIMIT_ALL_USERS = '15/m'
 
 CSRF_FAILURE_VIEW = 'olympia.amo.views.csrf_failure'
+CSRF_USE_SESSIONS = True
 
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
@@ -1705,9 +1709,6 @@ HIVE_CONNECTION = {
     'password': '',
     'auth_mechanism': 'PLAIN',
 }
-
-# Enable ETags (based on response content) on every view in CommonMiddleware.
-USE_ETAGS = True
 
 # CDN Host is blank on local installs, overwritten in dev/stage/prod envs.
 # Useful to force some dynamic content to be served from the CDN.

@@ -5,7 +5,6 @@ from django import forms
 from django.conf import settings
 from django.db.models import Q
 from django.forms.models import BaseModelFormSet, modelformset_factory
-from django.utils.functional import cached_property
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -96,28 +95,26 @@ class DeleteForm(happyforms.Form):
             raise forms.ValidationError(ugettext('Slug incorrect.'))
 
 
-class LicenseRadioChoiceInput(forms.widgets.RadioChoiceInput):
+class LicenseRadioSelect(forms.RadioSelect):
 
-    def __init__(self, name, value, attrs, choice, index):
-        super(LicenseRadioChoiceInput, self).__init__(
-            name, value, attrs, choice, index)
-        license = choice[1]  # Choice is a tuple (object.id, object).
+    def create_option(self, name, value, label, selected, index,
+                      subindex=None, attrs=None):
+        context = super(LicenseRadioSelect, self).create_option(
+            name=name, value=value, label=label, selected=selected,
+            index=index, subindex=subindex, attrs=attrs)
+
         link = (u'<a class="xx extra" href="%s" target="_blank" '
                 u'rel="noopener noreferrer">%s</a>')
+        license = self.choices[index][1]
+
         if hasattr(license, 'url') and license.url:
             details = link % (license.url, ugettext('Details'))
-            self.choice_label = mark_safe(self.choice_label + ' ' + details)
+            context['label'] = mark_safe(
+                unicode(context['label']) + ' ' + details)
         if hasattr(license, 'icons'):
-            self.attrs['data-cc'] = license.icons
-        self.attrs['data-name'] = unicode(license)
-
-
-class LicenseRadioFieldRenderer(forms.widgets.RadioFieldRenderer):
-    choice_input_class = LicenseRadioChoiceInput
-
-
-class LicenseRadioSelect(forms.RadioSelect):
-    renderer = LicenseRadioFieldRenderer
+            context['attrs']['data-cc'] = license.icons
+        context['attrs']['data-name'] = unicode(license)
+        return context
 
 
 class LicenseForm(AMOModelForm):
@@ -395,9 +392,6 @@ class CompatForm(happyforms.ModelForm):
 class BaseCompatFormSet(BaseModelFormSet):
 
     def __init__(self, *args, **kwargs):
-        # form_kwargs is only present in Django 1.9 and newer, so we
-        # re-implement it.
-        self.form_kwargs = kwargs.pop('form_kwargs', {})
         super(BaseCompatFormSet, self).__init__(*args, **kwargs)
         # We always want a form for each app, so force extras for apps
         # the add-on does not already have.
@@ -440,27 +434,6 @@ class BaseCompatFormSet(BaseModelFormSet):
         if not apps:
             raise forms.ValidationError(
                 ugettext('Need at least one compatible application.'))
-
-    # The 2 methods below, forms() and get_form_kwargs(), are lifted from
-    # Django 1.9, because we need form_kwargs to work.
-    @cached_property
-    def forms(self):
-        """
-        Instantiate forms at first property access.
-        """
-        # DoS protection is included in total_form_count()
-        forms = [self._construct_form(i, **self.get_form_kwargs(i))
-                 for i in range(self.total_form_count())]
-        return forms
-
-    def get_form_kwargs(self, index):
-        """
-        Return additional keyword arguments for each individual formset form.
-
-        index will be None if the form being constructed is a new empty
-        form.
-        """
-        return self.form_kwargs.copy()
 
 
 CompatFormSet = modelformset_factory(

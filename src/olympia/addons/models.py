@@ -33,8 +33,8 @@ from olympia.addons.utils import (
     generate_addon_guid, get_creatured_ids, get_featured_ids)
 from olympia.amo.decorators import use_master, write
 from olympia.amo.models import (
-    BasePreview, ManagerBase, manual_order, ModelBase, OnChangeMixin,
-    SaveUpdateMixin, SlugField, BaseQuerySet)
+    BasePreview, BaseQuerySet, ManagerBase, ModelBase, OnChangeMixin,
+    SaveUpdateMixin, SlugField, manual_order)
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
@@ -47,7 +47,8 @@ from olympia.files.utils import extract_translations, resolve_i18n_message
 from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
-    LinkifiedField, PurifiedField, TranslatedField, Translation, save_signal)
+    LinkifiedField, PurifiedField, TranslatedField, save_signal)
+from olympia.translations.models import Translation
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import inherit_nomination, Version, VersionPreview
@@ -216,6 +217,7 @@ class AddonQuerySet(BaseQuerySet):
 
 
 class AddonManager(ManagerBase):
+    _queryset_class = AddonQuerySet
 
     def __init__(self, include_deleted=False):
         # DO NOT change the default value of include_deleted unless you've read
@@ -226,7 +228,6 @@ class AddonManager(ManagerBase):
 
     def get_queryset(self):
         qs = super(AddonManager, self).get_queryset()
-        qs = qs._clone(klass=AddonQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
         return qs.transform(Addon.transformer)
@@ -273,7 +274,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     guid = models.CharField(max_length=255, unique=True, null=True)
     slug = models.CharField(max_length=30, unique=True, null=True)
-    name = TranslatedField(default=None)
+    name = TranslatedField()
     default_locale = models.CharField(max_length=10,
                                       default=settings.LANGUAGE_CODE,
                                       db_column='defaultlocale')
@@ -360,25 +361,25 @@ class Addon(OnChangeMixin, ModelBase):
                   'A value of 0 has no impact')
     requires_payment = models.BooleanField(default=False)
 
-    # The order of those managers is very important:
-    # The first one discovered, if it has "use_for_related_fields = True"
-    # (which it has if it's inheriting `ManagerBase`), will
-    # be used for relations like `version.addon`. We thus want one that is NOT
-    # filtered in any case, we don't want a 500 if the addon is not found
-    # (because it has the status amo.STATUS_DELETED for example).
-    # The CLASS of the first one discovered will also be used for "many to many
-    # relations" like `collection.addons`. In that case, we do want the
-    # filtered version by default, to make sure we're not displaying stuff by
-    # mistake. You thus want the CLASS of the first one to be filtered by
-    # default.
-    # We don't control the instantiation, but AddonManager sets include_deleted
-    # to False by default, so filtering is enabled by default. This is also why
-    # it's not repeated for 'objects' below.
     unfiltered = AddonManager(include_deleted=True)
     objects = AddonManager()
 
     class Meta:
         db_table = 'addons'
+        # This is very important:
+        # The default base manager will be used for relations like
+        # `version.addon`. We thus want one that is NOT filtered in any case,
+        # we don't want a 500 if the addon is not found (because it has the
+        # status amo.STATUS_DELETED for example).
+        # The CLASS of the first one discovered will also be used for "many to
+        # many relations" like `collection.addons`. In that case, we do want
+        # the filtered version by default, to make sure we're not displaying
+        # stuff by mistake. You thus want the CLASS of the first one to be
+        # filtered by default.
+        # We don't control the instantiation, but AddonManager sets
+        # include_deleted to False by default, so filtering is enabled by
+        # default. This is also why it's not repeated for 'objects' below.
+        base_manager_name = 'unfiltered'
         index_together = [
             ['weekly_downloads', 'type'],
             ['created', 'type'],
@@ -1942,6 +1943,9 @@ class Category(OnChangeMixin, ModelBase):
         Does not save it into the database by default. Useful in tests."""
         # we need to drop description as it's a StaticCategory only property.
         _dict = dict(static_category.__dict__)
+        # Convert `name` to `db_name`. `Category` uses `db_name` as it's field
+        # name but the database field is actually linked to `name`.
+        _dict['db_name'] = _dict.pop('name', None)
         del _dict['description']
         if save:
             category, _ = Category.objects.get_or_create(

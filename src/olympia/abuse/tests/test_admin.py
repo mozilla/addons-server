@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from pyquery import PyQuery as pq
 
@@ -28,17 +28,17 @@ class TestAbuse(TestCase):
         url = reverse('admin:abuse_abusereport_changelist')
         self.grant_permission(user, '*:*')
         self.client.login(email=user.email)
-        response = self.client.get(url)
+        response = self.client.get(url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 4
 
-        response = self.client.get(url, {'type': 'addon'})
+        response = self.client.get(url, {'type': 'addon'}, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 3
 
-        response = self.client.get(url, {'type': 'user'})
+        response = self.client.get(url, {'type': 'user'}, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 1

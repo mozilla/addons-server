@@ -186,7 +186,7 @@ class TestViews(TestCase):
 
         res = self.client.post(collection.delete_icon_url())
         assert res.status_code == 302
-        assert res.url == 'http://testserver%s' % edit_url
+        assert res.url == edit_url
 
     def test_delete_icon_csrf_protected(self):
         """The delete icon view only accepts POSTs and is csrf protected."""

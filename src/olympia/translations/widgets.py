@@ -2,6 +2,7 @@ from django import forms
 from django.utils import translation
 from django.utils.encoding import force_text
 from django.utils.translation.trans_real import to_language
+from django.utils.safestring import mark_safe
 
 from .models import Translation
 
@@ -32,7 +33,7 @@ class TranslationTextarea(forms.widgets.Textarea):
             value = get_string(value)
         return super(TranslationTextarea, self).render(name, value, attrs)
 
-    def _has_changed(self, initial, data):
+    def has_changed(self, initial, data):
         return not ((initial is None and data is None) or
                     (force_text(initial) == force_text(data)))
 
@@ -65,7 +66,34 @@ class TransMulti(forms.widgets.MultiWidget):
             default_locale = getattr(self, 'default_locale',
                                      translation.get_language())
             value = [Translation(locale=default_locale)]
-        return super(TransMulti, self).render(name, value, attrs)
+
+        if self.is_localized:
+            for widget in self.widgets:
+                widget.is_localized = self.is_localized
+
+        # value is a list of values, each corresponding to a widget
+        # in self.widgets.
+        if not isinstance(value, list):
+            value = self.decompress(value)
+
+        output = []
+
+        if attrs is None:
+            attrs = {}
+
+        final_attrs = self.build_attrs(attrs)
+        id_ = final_attrs.get('id', None)
+        for i, widget in enumerate(self.widgets):
+            try:
+                widget_value = value[i]
+            except IndexError:
+                widget_value = None
+            if id_:
+                final_attrs = dict(final_attrs, id='%s_%s' % (id_, i))
+            output.append(widget.render(
+                name + '_%s' % i, widget_value, final_attrs
+            ))
+        return mark_safe(self.format_output(output))
 
     def decompress(self, value):
         if not value:
@@ -105,7 +133,7 @@ class TransMulti(forms.widgets.MultiWidget):
 
     def format_output(self, widgets):
         # Gather output for all widgets as normal...
-        rendered_widgets = super(TransMulti, self).format_output(widgets)
+        formatted = ''.join(widgets)
         # ...But also add a widget that'll be cloned for when we want to add
         # a new translation. Hide it by default, it's only used in devhub, not
         # the admin (which doesn't need to add new translations).
@@ -114,7 +142,7 @@ class TransMulti(forms.widgets.MultiWidget):
                                     {'class': 'trans-init hidden'})
         # Wrap it all inside a div that the javascript will look for.
         return '<div id="trans-%s" class="trans" data-name="%s">%s%s</div>' % (
-            self.name, self.name, rendered_widgets, init)
+            self.name, self.name, formatted, init)
 
 
 class _TransWidget(object):
@@ -125,6 +153,10 @@ class _TransWidget(object):
 
     def render(self, name, value, attrs=None):
         from .fields import switch
+
+        if attrs is None:
+            attrs = {}
+
         attrs = self.build_attrs(attrs)
         lang = to_language(value.locale)
         attrs.update(lang=lang)

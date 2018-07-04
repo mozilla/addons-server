@@ -15,33 +15,6 @@ from olympia.translations.templatetags.jinja_helpers import truncate
 log = olympia.core.logger.getLogger('z.ratings')
 
 
-class RatingManager(ManagerBase):
-
-    def __init__(self, include_deleted=False):
-        # DO NOT change the default value of include_deleted unless you've read
-        # through the comment just above the Addon managers
-        # declaration/instantiation and understand the consequences.
-        super(RatingManager, self).__init__()
-        self.include_deleted = include_deleted
-
-    def get_queryset(self):
-        qs = super(RatingManager, self).get_queryset()
-        qs = qs._clone(klass=RatingQuerySet)
-        if not self.include_deleted:
-            qs = qs.exclude(deleted=True).exclude(reply_to__deleted=True)
-        return qs
-
-
-class WithoutRepliesRatingManager(ManagerBase):
-    """Manager to fetch ratings that aren't replies (and aren't deleted)."""
-
-    def get_queryset(self):
-        qs = super(WithoutRepliesRatingManager, self).get_queryset()
-        qs = qs._clone(klass=RatingQuerySet)
-        qs = qs.exclude(deleted=True)
-        return qs.filter(reply_to__isnull=True)
-
-
 class RatingQuerySet(models.QuerySet):
     """
     A queryset modified for soft deletion.
@@ -65,6 +38,33 @@ class RatingQuerySet(models.QuerySet):
         else:
             for rating in self:
                 rating.delete(user_responsible=user_responsible)
+
+
+class RatingManager(ManagerBase):
+    _queryset_class = RatingQuerySet
+
+    def __init__(self, include_deleted=False):
+        # DO NOT change the default value of include_deleted unless you've read
+        # through the comment just above the Addon managers
+        # declaration/instantiation and understand the consequences.
+        super(RatingManager, self).__init__()
+        self.include_deleted = include_deleted
+
+    def get_queryset(self):
+        qs = super(RatingManager, self).get_queryset()
+        if not self.include_deleted:
+            qs = qs.exclude(deleted=True).exclude(reply_to__deleted=True)
+        return qs
+
+
+class WithoutRepliesRatingManager(ManagerBase):
+    """Manager to fetch ratings that aren't replies (and aren't deleted)."""
+    _queryset_class = RatingQuerySet
+
+    def get_queryset(self):
+        qs = super(WithoutRepliesRatingManager, self).get_queryset()
+        qs = qs.exclude(deleted=True)
+        return qs.filter(reply_to__isnull=True)
 
 
 class Rating(ModelBase):
@@ -93,14 +93,15 @@ class Rating(ModelBase):
         default=0, editable=False,
         help_text="How many previous ratings by the user for this add-on?")
 
-    # The order of those managers is very important: please read the lengthy
-    # comment above the Addon managers declaration/instantiation.
     unfiltered = RatingManager(include_deleted=True)
     objects = RatingManager()
     without_replies = WithoutRepliesRatingManager()
 
     class Meta:
         db_table = 'reviews'
+        # This is very important: please read the lengthy comment in Addon.Meta
+        # description
+        base_manager_name = 'unfiltered'
         ordering = ('-created',)
 
     def __unicode__(self):
@@ -111,6 +112,21 @@ class Rating(ModelBase):
         super(Rating, self).__init__(*args, **kwargs)
         if user_responsible is not None:
             self.user_responsible = user_responsible
+
+    @property
+    def user_responsible(self):
+        """Return user responsible for the current changes being made on this
+        model. Only set by the views when they are about to save a Review
+        instance, to track if the original author or an admin was responsible
+        for the change.
+
+        Having this as a @property with a setter makes update_or_create() work,
+        otherwise it rejects the property, causing an error."""
+        return self._user_responsible
+
+    @user_responsible.setter
+    def user_responsible(self, value):
+        self._user_responsible = value
 
     def get_url_path(self):
         return jinja_helpers.url(
@@ -218,7 +234,7 @@ class Rating(ModelBase):
         if kwargs.get('raw'):
             return
 
-        if hasattr(instance, 'user_responsible'):
+        if getattr(instance, 'user_responsible', None):
             # user_responsible is not a field on the model, so it's not
             # persistent: it's just something the views will set temporarily
             # when manipulating a Rating that indicates a real user made that

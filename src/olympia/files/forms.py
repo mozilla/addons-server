@@ -2,7 +2,10 @@ from collections import defaultdict
 
 from django import forms
 from django.forms import widgets
+from django.forms.utils import flatatt
 from django.utils.translation import ugettext
+from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 
 import jinja2
 
@@ -19,7 +22,20 @@ log = olympia.core.logger.getLogger('z.files')
 
 
 class FileSelectWidget(widgets.Select):
-    def render_options(self, choices, selected_choices):
+
+    def render(self, name, value, attrs=None, renderer=None):
+        context = self.get_context(name, value, attrs)
+
+        rendered_attrs = flatatt(attrs)
+
+        output = [format_html(
+            '<select name="{}"{}>', name, rendered_attrs if attrs else ''
+        )]
+        output.extend(self.render_options(context))
+        output.append(mark_safe('</select>'))
+        return mark_safe(u''.join(output))
+
+    def render_options(self, context):
         def option(files, label=None, deleted=False, channel=None):
             # Make sure that if there's a non-disabled version,
             # that's the one we use for the ID.
@@ -46,7 +62,14 @@ class FileSelectWidget(widgets.Select):
             output.extend((u'>', jinja2.escape(label), u'</option>\n'))
             return output
 
-        if selected_choices[0]:
+        selected_choices = []
+
+        for group in context['widget']['optgroups']:
+            select_option = group[1][0]
+            if select_option['selected']:
+                selected_choices.append(select_option['value'])
+
+        if selected_choices and selected_choices[0]:
             selected = File.objects.get(id=selected_choices[0])
         else:
             selected = None
@@ -76,7 +99,7 @@ class FileSelectWidget(widgets.Select):
                         option(f, deleted=ver.deleted, channel=channel))
                 output.append(u'</optgroup>')
 
-        return jinja2.Markup(u''.join(output))
+        return output
 
 
 class FileCompareForm(happyforms.Form):
