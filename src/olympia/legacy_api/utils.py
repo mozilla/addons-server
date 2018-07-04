@@ -200,7 +200,7 @@ def find_compatible_version(addon, app_id, app_version=None, platform=None,
 
     raw_sql.append('ORDER BY versions.id DESC LIMIT 1;')
 
-    version = Version.objects.raw(''.join(raw_sql) % data)
+    version = list(Version.objects.raw(''.join(raw_sql) % data))
     if version:
         version = version[0]
         version_id = version.id

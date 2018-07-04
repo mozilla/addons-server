@@ -1,5 +1,5 @@
-from django.core.urlresolvers import NoReverseMatch
 from django.db import models
+from django.urls import NoReverseMatch
 
 from olympia import activity, amo
 from olympia.amo.models import ManagerBase, ModelBase

@@ -1,7 +1,7 @@
 import json
 import os
 
-from django.core.urlresolvers import reverse as dj_reverse
+from django.urls import reverse
 
 from rest_framework import serializers
 from rest_framework.reverse import reverse as drf_reverse
@@ -55,7 +55,7 @@ class FileUploadSerializer(serializers.ModelSerializer):
 
     def get_validation_url(self, instance):
         return absolutify(
-            dj_reverse('devhub.upload_detail', args=[instance.uuid.hex]))
+            reverse('devhub.upload_detail', args=[instance.uuid.hex]))
 
     def _get_download_url(self, file_):
         url = drf_reverse(

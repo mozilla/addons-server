@@ -10,7 +10,6 @@ from django.utils.translation import ugettext
 from django.views.decorators.cache import cache_control, cache_page
 from django.views.decorators.vary import vary_on_headers
 
-import session_csrf
 import waffle
 
 from elasticsearch_dsl import Q, query, Search
@@ -380,7 +379,6 @@ def license_redirect(request, version):
     return redirect(version.license_url(), permanent=True)
 
 
-@session_csrf.anonymous_csrf_exempt
 @addon_view
 @non_atomic_requests
 def report_abuse(request, addon):

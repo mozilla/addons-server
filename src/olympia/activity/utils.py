@@ -5,6 +5,7 @@ from email.utils import formataddr
 from HTMLParser import HTMLParser
 
 from django.conf import settings
+from django.forms import ValidationError
 from django.contrib.humanize.templatetags.humanize import apnumber
 from django.template import loader
 from django.utils import translation
@@ -134,7 +135,7 @@ def add_email_to_activity_log(parser):
     uuid = parser.get_uuid()
     try:
         token = ActivityLogToken.objects.get(uuid=uuid)
-    except (ActivityLogToken.DoesNotExist, ValueError):
+    except (ActivityLogToken.DoesNotExist, ValidationError):
         log.error('An email was skipped with non-existing uuid %s.' % uuid)
         raise ActivityEmailUUIDError(
             'UUID found in email address TO: header but is not a valid token '

@@ -393,6 +393,7 @@ class SearchView(APIView):
             compat_version = find_compatible_version(
                 addon, app_id, params['version'], params['platform'],
                 compat_mode)
+
             # Specific case for Personas (bug 990768): if we search
             # providing the Persona addon type (9), then don't look for a
             # compatible version.

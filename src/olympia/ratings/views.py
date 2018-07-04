@@ -423,12 +423,12 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         if 'without_empty_body' in requested:
             queryset = queryset.filter(~Q(body=None) | user_filter)
 
-        # The serializer needs reply, version (only the "version" field) and
-        # user. We don't need much for version and user, so we can make joins
-        # with select_related(), but for replies additional queries will be
-        # made for translations anyway so we're better off using
-        # prefetch_related() to make a separate query to fetch them all.
-        queryset = queryset.select_related('version__version', 'user')
+        # The serializer needs reply, version and user. We don't need much
+        # for version and user, so we can make joins with select_related(),
+        # but for replies additional queries will be made for translations
+        # anyway so we're better off using prefetch_related() to make a
+        # separate query to fetch them all.
+        queryset = queryset.select_related('version', 'user')
         replies_qs = Rating.unfiltered.select_related('user')
         return queryset.prefetch_related(
             Prefetch('reply', queryset=replies_qs))

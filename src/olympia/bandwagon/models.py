@@ -13,11 +13,10 @@ from olympia import activity, amo
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.addons.utils import clear_get_featured_ids_cache
-from olympia.amo.models import ManagerBase, ModelBase
+from olympia.amo.models import ManagerBase, ModelBase, BaseQuerySet
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
-import olympia.lib.queryset_transform as queryset_transform
 from olympia.translations.fields import (
     LinkifiedField, NoLinksNoMarkupField, TranslatedField, save_signal)
 from olympia.users.models import UserProfile
@@ -42,7 +41,7 @@ class TopTags(object):
         cache.set(self.key(obj), value, two_days)
 
 
-class CollectionQuerySet(queryset_transform.TransformQuerySet):
+class CollectionQuerySet(BaseQuerySet):
 
     def with_has_addon(self, addon_id):
         """Add a `has_addon` property to each collection.
@@ -61,10 +60,10 @@ class CollectionQuerySet(queryset_transform.TransformQuerySet):
 
 
 class CollectionManager(ManagerBase):
+    _queryset_class = CollectionQuerySet
 
     def get_queryset(self):
         qs = super(CollectionManager, self).get_queryset()
-        qs = qs._clone(klass=CollectionQuerySet)
         return qs.transform(Collection.transformer)
 
     def manual(self):
@@ -501,8 +500,9 @@ class MonthlyPick(ModelBase):
     addon = models.ForeignKey(Addon)
     blurb = models.TextField()
     image = models.URLField()
-    locale = models.CharField(max_length=10, unique=True, null=True,
-                              blank=True)
+    locale = models.CharField(
+        max_length=10, unique=True, null=True, default=None,
+        blank=True)
 
     class Meta:
         db_table = 'monthly_pick'

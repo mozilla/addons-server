@@ -82,6 +82,7 @@ class TestViews(TestCase):
              url),
             ('/collections/view/wut/', 301, url),
             ('/collection/404', 404)]
+
         for test in tests:
             self.check_response(*test)
 
@@ -186,7 +187,7 @@ class TestViews(TestCase):
 
         res = self.client.post(collection.delete_icon_url())
         assert res.status_code == 302
-        assert res.url == 'http://testserver%s' % edit_url
+        assert res.url == edit_url
 
     def test_delete_icon_csrf_protected(self):
         """The delete icon view only accepts POSTs and is csrf protected."""

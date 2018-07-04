@@ -4,8 +4,8 @@ from datetime import datetime
 
 import mock
 
-from pyquery import PyQuery as pq
 from django_extensions.db.fields.json import JSONList
+from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon, AppSupport
@@ -95,6 +95,10 @@ class TestIncoming(TestCase):
             self.data['multiprocessCompatible'])
 
         # Check that the other_addons field is stored as json.
+        # This is a dummy check and relies on implementation details of
+        # django-extensions but more recent versions of django apply
+        # to_python to .values and even raw queries more properly so we'll
+        # have to live with it.
         vals = CompatReport.objects.filter(id=cr.id).values('other_addons')
 
         # django-extensions wraps values in `JSONList` so we'll test this

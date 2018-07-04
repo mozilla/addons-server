@@ -1,7 +1,7 @@
 from django import shortcuts
 from django.conf import settings
-from django.core.urlresolvers import set_script_prefix
 from django.test.client import Client, RequestFactory
+from django.urls import set_script_prefix
 
 import pytest
 
@@ -217,7 +217,7 @@ class TestPrefixer(BaseTestCase):
 
         # Now check reverse.
         urlresolvers.set_url_prefix(prefixer)
-        set_script_prefix('/oremj')
+
         assert urlresolvers.reverse('home') == '/oremj/en-US/firefox/'
 
 

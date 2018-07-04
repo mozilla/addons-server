@@ -46,6 +46,7 @@ class Command(BaseCommand):
 
     missing_files = 0
     minify_skipped = 0
+    cmd_errors = False
 
     def generate_build_id(self):
         return uuid.uuid4().hex[:8]
@@ -95,6 +96,7 @@ class Command(BaseCommand):
                         'MINIFY_BUNDLES["%s"]["%s"] in settings.py!' %
                         (ftype, name)
                     )
+
                 run_command('cat {files} > {tmp}'.format(
                     files=' '.join(files_all),
                     tmp=tmp_concatted
@@ -118,6 +120,7 @@ class Command(BaseCommand):
                     self.minify_skipped += 1
 
         # Write out the hashes
+
         self.update_hashes()
 
         if not self.verbose and self.minify_skipped:

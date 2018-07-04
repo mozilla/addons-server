@@ -103,8 +103,8 @@ def compare_file_view(func, **kwargs):
         response = func(request, obj, *args, **kw)
         if obj.left.selected:
             response['ETag'] = quote_etag(obj.left.selected.get('sha256'))
-            response['Last-Modified'] = http_date(obj.left.selected
-                                                          .get('modified'))
+            response['Last-Modified'] = http_date(
+                obj.left.selected.get('modified'))
         return response
     return wrapper
 

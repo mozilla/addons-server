@@ -3,7 +3,6 @@ from django.forms.utils import ErrorDict
 from django.utils.translation import ugettext_lazy as _
 
 from olympia import amo
-from olympia.lib import happyforms
 from olympia.search.utils import floor_version
 
 
@@ -44,7 +43,7 @@ SORT_CHOICES = (
 )
 
 
-class ESSearchForm(happyforms.Form):
+class ESSearchForm(forms.Form):
     q = forms.CharField(required=False)
     tag = forms.CharField(required=False)
     platform = forms.CharField(required=False)

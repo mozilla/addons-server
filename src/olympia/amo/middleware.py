@@ -13,9 +13,9 @@ from django.conf import settings
 from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
-from django.core.urlresolvers import is_valid_path
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.middleware import common
+from django.urls import is_valid_path
 from django.utils.cache import patch_cache_control, patch_vary_headers
 from django.utils.encoding import force_bytes, iri_to_uri
 from django.utils.translation import activate
@@ -124,13 +124,17 @@ class NoVarySessionMiddleware(SessionMiddleware):
     def process_response(self, request, response):
         if settings.READ_ONLY:
             return response
+
         # Let SessionMiddleware do its processing but prevent it from changing
         # the Vary header.
         vary = None
         if hasattr(response, 'get'):
             vary = response.get('Vary', None)
-        new_response = (super(NoVarySessionMiddleware, self)
-                        .process_response(request, response))
+
+        new_response = (
+            super(NoVarySessionMiddleware, self)
+            .process_response(request, response))
+
         if vary:
             new_response['Vary'] = vary
         else:
