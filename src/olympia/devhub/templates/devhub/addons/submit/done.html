@@ -15,8 +15,8 @@
     {% if addon.type == amo.ADDON_STATICTHEME %}
       <h3>{{ _("Version Submitted for Review") }}</h3>
       <p>
-        {% if uploaded_version.previews.exists() %}
-          <img src="{{ uploaded_version.previews.first().image_url }}" title="{{ _('Preview of the version submitted') }}"
+        {% if preview %}
+          <img src="{{ preview.image_url }}" title="{{ _('Preview of the version submitted') }}"
             alt="[{{ _('Preview still being generated - come back later or refresh the page.') }}]">
         {% endif %}
       </p>
