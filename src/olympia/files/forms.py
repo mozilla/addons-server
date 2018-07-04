@@ -14,7 +14,6 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.files.models import File
-from olympia.lib import happyforms
 from olympia.versions.models import Version
 
 
@@ -102,7 +101,7 @@ class FileSelectWidget(widgets.Select):
         return output
 
 
-class FileCompareForm(happyforms.Form):
+class FileCompareForm(forms.Form):
     left = forms.ModelChoiceField(queryset=File.objects.all(),
                                   widget=FileSelectWidget)
     right = forms.ModelChoiceField(queryset=File.objects.all(),

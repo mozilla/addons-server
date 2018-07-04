@@ -25,7 +25,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     remove_icons, slug_validator, slugify, sorted_groupby)
 from olympia.devhub import tasks as devhub_tasks
-from olympia.lib import happyforms
 from olympia.tags.models import Tag
 from olympia.translations import LOCALES
 from olympia.translations.fields import TransField, TransTextarea
@@ -105,7 +104,7 @@ def clean_tags(request, tags):
     return target
 
 
-class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
+class AddonFormBase(TranslationFormMixin, forms.ModelForm):
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -413,7 +412,7 @@ class AddonFormTechnicalUnlisted(AddonFormBase):
         fields = ()
 
 
-class AbuseForm(happyforms.Form):
+class AbuseForm(forms.Form):
     recaptcha = ReCaptchaField(label='')
     text = forms.CharField(required=True,
                            label='',
@@ -656,7 +655,7 @@ class EditThemeForm(AddonFormBase):
         return data
 
 
-class EditThemeOwnerForm(happyforms.Form):
+class EditThemeOwnerForm(forms.Form):
     owner = UserEmailField()
 
     def __init__(self, *args, **kw):

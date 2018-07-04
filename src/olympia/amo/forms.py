@@ -2,12 +2,11 @@ from django import forms
 from django.conf import settings
 
 from olympia.amo.fields import ReCaptchaField
-from olympia.lib import happyforms
 from olympia.translations.fields import TranslatedField
 from django.utils.functional import cached_property
 
 
-class AbuseForm(happyforms.Form):
+class AbuseForm(forms.Form):
     recaptcha = ReCaptchaField(label='')
     text = forms.CharField(required=True,
                            label='',
@@ -25,7 +24,7 @@ class AbuseForm(happyforms.Form):
             self.has_recaptcha = False
 
 
-class AMOModelForm(happyforms.ModelForm):
+class AMOModelForm(forms.ModelForm):
 
     @cached_property
     def changed_data(self):

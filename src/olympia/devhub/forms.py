@@ -27,7 +27,6 @@ from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
-from olympia.lib import happyforms
 from olympia.translations.fields import TransField, TransTextarea
 from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation, delete_translation
@@ -39,7 +38,7 @@ from olympia.versions.models import (
 from . import tasks
 
 
-class AuthorForm(happyforms.ModelForm):
+class AuthorForm(forms.ModelForm):
     class Meta:
         model = AddonUser
         exclude = ('addon',)
@@ -81,7 +80,7 @@ AuthorFormSet = modelformset_factory(AddonUser, formset=BaseAuthorFormSet,
                                      form=AuthorForm, can_delete=True, extra=0)
 
 
-class DeleteForm(happyforms.Form):
+class DeleteForm(forms.Form):
     slug = forms.CharField()
     reason = forms.CharField(required=False)
 
@@ -298,7 +297,7 @@ class SourceFileInput(forms.widgets.ClearableFileInput):
         return output
 
 
-class VersionForm(WithSourceMixin, happyforms.ModelForm):
+class VersionForm(WithSourceMixin, forms.ModelForm):
     releasenotes = TransField(
         widget=TransTextarea(), required=False)
     approvalnotes = forms.CharField(
@@ -345,7 +344,7 @@ class AppVersionChoiceField(forms.ModelChoiceField):
         return obj.version
 
 
-class CompatForm(happyforms.ModelForm):
+class CompatForm(forms.ModelForm):
     application = forms.TypedChoiceField(choices=amo.APPS_CHOICES,
                                          coerce=int,
                                          widget=forms.HiddenInput)
@@ -441,7 +440,7 @@ CompatFormSet = modelformset_factory(
     form=CompatForm, can_delete=True, extra=0)
 
 
-class AddonUploadForm(WithSourceMixin, happyforms.Form):
+class AddonUploadForm(WithSourceMixin, forms.Form):
     upload = forms.ModelChoiceField(
         widget=forms.HiddenInput,
         queryset=FileUpload.objects,
@@ -545,7 +544,7 @@ class NewUploadForm(AddonUploadForm):
         return self.cleaned_data
 
 
-class FileForm(happyforms.ModelForm):
+class FileForm(forms.ModelForm):
     platform = File._meta.get_field('platform').formfield()
 
     class Meta:
@@ -629,7 +628,7 @@ class DescribeForm(AddonFormBase):
         return obj
 
 
-class PreviewForm(happyforms.ModelForm):
+class PreviewForm(forms.ModelForm):
     caption = TransField(widget=TransTextarea, required=False)
     file_upload = forms.FileField(required=False)
     upload_hash = forms.CharField(required=False)
@@ -670,7 +669,7 @@ PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
                                       extra=1)
 
 
-class CheckCompatibilityForm(happyforms.Form):
+class CheckCompatibilityForm(forms.Form):
     application = forms.ChoiceField(
         label=_(u'Application'),
         choices=[(a.id, a.pretty) for a in amo.APP_USAGE])
@@ -709,7 +708,7 @@ def DependencyFormSet(*args, **kw):
     qs = (Addon.objects.public().exclude(id=addon_parent.id).
           exclude(type__in=[amo.ADDON_PERSONA]))
 
-    class _Form(happyforms.ModelForm):
+    class _Form(forms.ModelForm):
         addon = forms.CharField(required=False, widget=forms.HiddenInput)
         dependent_addon = forms.ModelChoiceField(qs, widget=forms.HiddenInput)
 
@@ -736,7 +735,7 @@ def DependencyFormSet(*args, **kw):
     return FormSet(*args, **kw)
 
 
-class DistributionChoiceForm(happyforms.Form):
+class DistributionChoiceForm(forms.Form):
     LISTED_LABEL = _(
         u'On this site. <span class="helptext">'
         u'Your submission will be listed on this site and the Firefox '
@@ -759,12 +758,12 @@ class DistributionChoiceForm(happyforms.Form):
         widget=forms.RadioSelect(attrs={'class': 'channel'}))
 
 
-class AgreementForm(happyforms.Form):
+class AgreementForm(forms.Form):
     distribution_agreement = forms.BooleanField()
     review_policy = forms.BooleanField()
 
 
-class SingleCategoryForm(happyforms.Form):
+class SingleCategoryForm(forms.Form):
     category = forms.ChoiceField(widget=forms.RadioSelect)
 
     def __init__(self, *args, **kw):

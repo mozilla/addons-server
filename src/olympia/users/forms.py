@@ -18,7 +18,6 @@ from olympia.amo.utils import (
     clean_nl, has_links, ImageCheck, slug_validator,
     fetch_subscribed_newsletters, subscribe_newsletter,
     unsubscribe_newsletter)
-from olympia.lib import happyforms
 from olympia.users import notifications
 
 from . import tasks
@@ -64,7 +63,7 @@ LOGIN_HELP_URL = (
     'change-primary-email-address-firefox-accounts')
 
 
-class UserEditForm(happyforms.ModelForm):
+class UserEditForm(forms.ModelForm):
     username = forms.CharField(max_length=50, required=False)
     display_name = forms.CharField(label=_(u'Display Name'), max_length=50,
                                    required=False)
