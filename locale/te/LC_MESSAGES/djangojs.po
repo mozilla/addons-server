@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-02 16:12+0000\n"
+"PO-Revision-Date: 2018-07-04 10:51+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -155,7 +155,7 @@ msgstr "అనుసరించండి"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "ఈ అలంకారం మీ {0} వెర్షనుతో అనుగుణ్యంగా లేదు"
 
 msgid "All Rights Reserved"
 msgstr "అన్ని హక్కులూ ప్రత్యేకించుకోవడమైనది"

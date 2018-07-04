@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-04 10:49+0000\n"
+"PO-Revision-Date: 2018-07-04 10:58+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -894,7 +894,7 @@ msgid "Acceptable versions for all applications on AMO."
 msgstr "AMO పై అన్ని అనువర్తనాల కోసం ఆమోదయోగ్యమైన వెర్షన్లు."
 
 msgid "Valid Application Versions"
-msgstr ""
+msgstr "చెల్లుబాటయ్యే అనువర్తన వెర్షనులు"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
@@ -1124,8 +1124,8 @@ msgstr[1] "<span>%(followers)s</span> అనుచరులు"
 #, python-format
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s వారపు అనుచరుడు"
+msgstr[1] "%(num)s వారపు అనుచరులు"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -1211,7 +1211,7 @@ msgid "Collections make it easy to keep track of favorite add-ons and share your
 msgstr ""
 
 msgid "Collection Icon"
-msgstr ""
+msgstr "సేకరణ ప్రతీకం"
 
 msgid "Reset"
 msgstr "పునరుద్ధరించు"
@@ -1355,7 +1355,7 @@ msgid ""
 msgstr ""
 
 msgid "Available in your locale"
-msgstr ""
+msgstr "మీ భాషలో అందుబాటులో ఉన్నవి"
 
 msgid "List of language packs and dictionaries available in your locale."
 msgstr ""
@@ -1775,7 +1775,7 @@ msgid "Deleted: {1}."
 msgstr "తొలగించినవి: {1}."
 
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "వాడుకరి {user}‌ని మార్చారు, కారణం: {1}"
 
 msgid "User {user} anonymized."
 msgstr ""
@@ -1797,7 +1797,7 @@ msgid "User {0.name} added to {group}."
 msgstr "వాడుకరి {0.name} {group}కు జోడించబడింది."
 
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "{group} నుండి వాడుకరి {0.name}‌ని తొలగించారు."
 
 msgid "{addon} unlisted."
 msgstr "{addon} జాబితా చేయబడలేదు."
@@ -2214,7 +2214,7 @@ msgid "Site-specific"
 msgstr "సైటు-ప్రత్యేకం"
 
 msgid "Web and Developer Tools"
-msgstr ""
+msgstr "జాల, డెవలపర్ పనిముట్లు"
 
 msgid "All Rights Reserved"
 msgstr ""
@@ -2388,10 +2388,10 @@ msgid "Sexual or pornographic content"
 msgstr "లైంగిక లేదా అశ్లీల కంటెంట్"
 
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "అనుచితమైన లేదా అభ్యంతరకరమైన విషయం"
 
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "హింస, యుద్ధం, లేదా ఆయుధాల చిత్రాలు"
 
 msgid "Nazi or other hate content"
 msgstr ""
@@ -2400,7 +2400,7 @@ msgid "Defamatory content"
 msgstr ""
 
 msgid "Online gambling"
-msgstr ""
+msgstr "ఆన్‌లైను జూదం"
 
 msgid "Spam content"
 msgstr ""
@@ -2669,7 +2669,7 @@ msgid ""
 msgstr ""
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Firefox పొడగింతల పంపిణీ ఒప్పందం"
 
 msgid "Review Policies and Rules"
 msgstr "సమీక్ష విధానాలు మరియు నియమాలు"
@@ -2701,10 +2701,10 @@ msgid "more add-ons..."
 msgstr "మరిన్ని పొడగింతలు..."
 
 msgid "Documentation"
-msgstr ""
+msgstr "పత్రావళి"
 
 msgid "Extension Development"
-msgstr ""
+msgstr "పొడగింతల డెవలప్‌మెంట్"
 
 msgid "Lightweight Themes"
 msgstr ""
@@ -2769,7 +2769,7 @@ msgid "Tested for compatibility against:"
 msgstr "దీనికి వ్యతిరేకంగా అనుకూలత కోసం పరీక్షించబడింది:"
 
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "నా యాడ్-ఆన్ల ఇటీవలి కార్యకలాపం"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
