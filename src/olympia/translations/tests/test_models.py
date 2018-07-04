@@ -126,6 +126,7 @@ class TranslationTestCase(BaseTestCase):
             translation.deactivate()
 
     def test_create_translation(self):
+        assert Translation.objects.count() == 9
         o = TranslatedModel.objects.create(name='english name')
 
         def get_model():
@@ -213,7 +214,7 @@ class TranslationTestCase(BaseTestCase):
 
     def test_update_with_dict(self):
         def get_model():
-            return TranslatedModel.objects.get(pk=1)
+            return TranslatedModel.objects.get(pk=m.pk)
 
         # There's existing en-US and de strings.
         strings = {'de': None, 'fr': 'oui'}
