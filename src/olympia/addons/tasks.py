@@ -422,6 +422,21 @@ def add_firefox57_tag(ids, **kw):
         Tag(tag_text='firefox57').save_tag(addon)
 
 
+@task
+@write
+def add_dynamic_theme_tag(ids, **kw):
+    """Add dynamic theme tag to addons with the specified ids."""
+    log.info(
+        'Adding  dynamic theme tag to addons %d-%d [%d].',
+        ids[0], ids[-1], len(ids))
+
+    addons = Addon.objects.filter(id__in=ids)
+    for addon in addons:
+        files = addon.current_version.all_files
+        if any('theme' in file_.webext_permissions_list for file_ in files):
+            Tag(tag_text='dynamic theme').save_tag(addon)
+
+
 def extract_strict_compatibility_value_for_addon(addon):
     strict_compatibility = None  # We don't know yet.
     try:
