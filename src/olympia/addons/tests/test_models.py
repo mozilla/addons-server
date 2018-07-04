@@ -655,6 +655,14 @@ class TestAddonModels(TestCase):
         self._delete(3615)
         assert DeniedGuid.objects.filter(guid=addon.guid).exists()
 
+    def test_delete_unknown_type(self):
+        """
+        Test making sure deleting add-ons with an unknown type, like old
+        webapps from Marketplace that are somehow still around, is possible."""
+        addon = Addon.objects.get(pk=3615)
+        addon.update(type=11)
+        self._delete(3615)
+
     def test_incompatible_latest_apps(self):
         a = Addon.objects.get(pk=3615)
         assert a.incompatible_latest_apps() == []

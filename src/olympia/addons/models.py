@@ -480,7 +480,7 @@ class Addon(OnChangeMixin, ModelBase):
             # Don't localize email to admins, use 'en-US' always.
             with translation.override(settings.LANGUAGE_CODE):
                 # The types are lazy translated in apps/constants/base.py.
-                atype = amo.ADDON_TYPE.get(self.type).upper()
+                atype = amo.ADDON_TYPE.get(self.type, 'unknown').upper()
             context = {
                 'atype': atype,
                 'authors': [u.email for u in self.authors.all()],
