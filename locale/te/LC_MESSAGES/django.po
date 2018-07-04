@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-03 16:46+0000\n"
+"PO-Revision-Date: 2018-07-04 10:49+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1863,9 +1863,8 @@ msgstr "విషయం తిరస్కరించబడింది"
 msgid "{addon} information request altered or removed by admin."
 msgstr ""
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "మరింత సమాచారం అభ్యర్ధించబడింది"
+msgstr "సమాచార అభ్యర్థన మార్చబడింది"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr ""
@@ -2301,9 +2300,8 @@ msgstr "నవీకరించబడింది భాష ప్యాక్�
 msgid "Theme Review"
 msgstr "అలంకారపు సమీక్ష"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "అలంకారం (అచలం)"
+msgstr ""
 
 msgid "New Search Provider Review"
 msgstr "క్రొత్త శోధన ప్రదాత సమీక్ష"
@@ -2849,9 +2847,8 @@ msgstr "ఏదీకాదు"
 msgid "Preview"
 msgstr "ముందస్తు వీక్షణం"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "జాబితా చేసిన వెర్షన్లు"
+msgstr ""
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
@@ -3164,9 +3161,8 @@ msgstr ""
 msgid "Select a different license."
 msgstr "వేరే లైసెన్స్ని ఎంచుకోండి."
 
-#, fuzzy
 msgid "More information on Creative Commons licenses"
-msgstr "మరింత సమాచారం అభ్యర్ధించబడింది"
+msgstr "క్రియేటివ్ కామన్స్ లైసెన్సుల గురించి మరింత సమాచారం"
 
 msgid "Tests"
 msgstr "పరీక్షలు"
@@ -3551,9 +3547,8 @@ msgstr "విహారిణి మునుజూపు"
 msgid "Back"
 msgstr "వెనుకకు"
 
-#, fuzzy
 msgid "Uploading Theme"
-msgstr "అలంకరణను సవరించండి"
+msgstr "అలంకారాన్ని ఎక్కిస్తున్నాం"
 
 msgid "Finish Theme"
 msgstr "అలంకారాన్ని ముగించు"
@@ -3685,9 +3680,8 @@ msgstr "డెవలపర్ వార్తలు"
 msgid "View the blog &#9658;"
 msgstr "బ్లాగుని చూడండి &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "మరింత సమాచారం అభ్యర్ధించబడింది"
+msgstr "వేచివున్న సమాచార అభ్యర్థన:"
 
 msgid "This request for information has been resolved"
 msgstr ""
@@ -5109,9 +5103,8 @@ msgid "end"
 msgstr "ముగింపు"
 
 #. L10n: Description of what can be searched for
-#, fuzzy
 msgid "add-on, reviewer or comment"
-msgstr "సమీక్షకుడి వ్యాఖ్యను కలిగి ఉంటుంది"
+msgstr "యాడ్-ఆన్, సమీక్షకులు లేదా వ్యాఖ్య"
 
 msgid "Search by add-on name / author email"
 msgstr ""
@@ -5928,11 +5921,10 @@ msgid_plural "Auto Approved ({0})"
 msgstr[0] "కొత్త పొడిగింత ({0})"
 msgstr[1] "కొత్త పొడిగింత ({0})"
 
-#, fuzzy
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "మరింత సమాచారం అడిగారు: {0}"
-msgstr[1] "మరింత సమాచారం అడిగారు: {0}"
+msgstr[0] "కాలంచెల్లిన సమాచార అభ్యర్థన ({0})"
+msgstr[1] "కాలంచెల్లిన సమాచార అభ్యర్థనలు ({0})"
 
 msgid "Flagged"
 msgstr ""
