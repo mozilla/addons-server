@@ -168,7 +168,7 @@ class Command(BaseCommand):
             css_content = css_in.read()
 
         def _parse(url):
-            self._cachebust_regex(url, css_file)
+            return self._cachebust_regex(url, css_file)
 
         css_parsed = re.sub('url\(([^)]*?)\)', _parse, css_content)
 
