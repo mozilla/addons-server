@@ -159,7 +159,8 @@ class TranslatedField(models.ForeignKey):
 
     def contribute_to_class(self, cls, name, private_only=False, **kwargs):
         """Add this Translation to ``cls._meta.translated_fields``."""
-        super(TranslatedField, self).contribute_to_class(cls, name)
+        super(TranslatedField, self).contribute_to_class(
+            cls, name, private_only=private_only, **kwargs)
 
         # Add self to the list of translated fields.
         if hasattr(cls._meta, 'translated_fields'):

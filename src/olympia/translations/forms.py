@@ -39,8 +39,7 @@ class TranslationFormMixin(object):
                 field.set_default_values(
                     field_name=field_name,
                     parent_form=self,
-                    default_locale=locale,
-                )
+                    default_locale=locale)
 
     def add_error(self, field, error):
         if isinstance(error, LocaleErrorMessage):
