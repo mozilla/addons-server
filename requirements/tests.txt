@@ -2,9 +2,9 @@
 -r prod.txt
 
 # apipkg is required by execnet
-apipkg==1.4 \
-    --hash=sha256:65d2aa68b28e7d31233bb2ba8eb31cda40e4671f8ac2d6b241e358c9652a74b9 \
-    --hash=sha256:2e38399dbe842891fe85392601aab8f40a8f4cc5a9053c326de35a1cc0297ac6
+apipkg==1.5 \
+    --hash=sha256:58587dd4dc3daefad0487f6d9ae32b4542b185e1c36db6993290e7c41ca2b47c \
+    --hash=sha256:37228cda29411948b422fae072f57e31d3396d2ee1c9783775980ee9c9990af6
 # execnet is required by pytest-cache, pytest-xdist
 execnet==1.5.0 \
     --hash=sha256:fc155a6b553c66c838d1a22dba1dc9f5f505c43285a878c6f74a79c024750b83 \
