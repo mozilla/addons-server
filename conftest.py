@@ -103,6 +103,7 @@ def test_pre_setup(request, tmpdir, settings):
 
     settings.MEDIA_ROOT = str(tmpdir.mkdir('media'))
     settings.TMP_PATH = str(tmpdir.mkdir('tmp'))
+    settings.STATIC_ROOT = str(tmpdir.mkdir('site-static'))
     settings.NETAPP_STORAGE = settings.TMP_PATH
 
     # Reset the prefixer and urlconf after updating media root

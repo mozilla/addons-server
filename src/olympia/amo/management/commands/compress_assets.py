@@ -8,6 +8,7 @@ import subprocess
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
+from django.core.management import call_command
 
 from olympia.lib.jingo_minify_helpers import get_path
 
@@ -65,7 +66,11 @@ class Command(BaseCommand):
             f.write('BUNDLE_HASHES = %s\n' % self.bundle_hashes)
 
     def handle(self, **options):
-        self.verbose = '-v' if options.get('verbosity', False) == '2' else ''
+        # HACK: Let's collect static files first so that we can
+        # actually use images in there and add relative links
+        # to the concatted files that will live in STATIC_ROOT
+        # too.
+        call_command('collectstatic', interactive=False)
 
         # This will loop through every bundle, and do the following:
         # - Concat all files into one
@@ -74,11 +79,13 @@ class Command(BaseCommand):
         for ftype, bundle in settings.MINIFY_BUNDLES.iteritems():
             for name, files in bundle.iteritems():
                 # Set the paths to the files.
-                concatted_file = path(ftype, '%s-all.%s' % (name, ftype,))
-                compressed_file = path(ftype, '%s-min.%s' % (name, ftype,))
+                concatted_file = get_path(os.path.join(
+                    ftype, '%s-all.%s' % (name, ftype,)))
+                compressed_file = get_path(os.path.join(
+                    ftype, '%s-min.%s' % (name, ftype,)))
 
-                ensure_path_exists(os.path.dirname(path(concatted_file)))
-                ensure_path_exists(os.path.dirname(path(compressed_file)))
+                ensure_path_exists(os.path.dirname(concatted_file))
+                ensure_path_exists(os.path.dirname(compressed_file))
 
                 files_all = []
                 for fn in files:
@@ -110,17 +117,16 @@ class Command(BaseCommand):
                 self._clean_tmp(concatted_file)
                 if is_changed or not os.path.isfile(compressed_file):
                     self._minify(ftype, concatted_file, compressed_file)
-                elif self.verbose:
+                else:
                     print(
                         'File unchanged, skipping minification of %s' % (
                             concatted_file))
-                else:
                     self.minify_skipped += 1
 
         # Write out the hashes
         self.update_hashes()
 
-        if not self.verbose and self.minify_skipped:
+        if self.minify_skipped:
             print(
                 'Unchanged files skipped for minification: %s' % (
                     self.minify_skipped))
@@ -169,7 +175,7 @@ class Command(BaseCommand):
             css_content = css_in.read()
 
         def _parse(url):
-            self._cachebust_regex(url, css_file)
+            return self._cachebust_regex(url, css_file)
 
         css_parsed = re.sub('url\(([^)]*?)\)', _parse, css_content)
 
@@ -180,9 +186,8 @@ class Command(BaseCommand):
         file_hash = hashlib.md5(css_parsed).hexdigest()[0:7]
         self.checked_hash[css_file] = file_hash
 
-        if not self.verbose and self.missing_files:
-            print(' - Error finding %s images (-v2 for info)' % (
-                self.missing_files,))
+        if self.missing_files:
+            print(' - Error finding %s images' % (self.missing_files,))
             self.missing_files = 0
 
         return file_hash
@@ -191,9 +196,8 @@ class Command(BaseCommand):
         """Run the proper minifier on the file."""
         if ftype == 'js' and hasattr(settings, 'UGLIFY_BIN'):
             opts = {'method': 'UglifyJS', 'bin': settings.UGLIFY_BIN}
-            run_command('{uglify} {verbose} -o {target} {source} -m'.format(
+            run_command('{uglify} -v -o {target} {source} -m'.format(
                 uglify=opts['bin'],
-                verbose=self.verbose,
                 target=file_out,
                 source=file_in))
         elif ftype == 'css' and hasattr(settings, 'CLEANCSS_BIN'):
@@ -216,8 +220,7 @@ class Command(BaseCommand):
                 file_hash = hashlib.md5(f.read()).hexdigest()[0:7]
         except IOError:
             self.missing_files += 1
-            if self.verbose:
-                print(' - Could not find file %s' % url)
+            print(' - Could not find file %s' % url)
 
         self.checked_hash[url] = file_hash
         return file_hash
