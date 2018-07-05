@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-04 10:58+0000\n"
+"PO-Revision-Date: 2018-07-05 09:07+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -869,7 +869,7 @@ msgid "Invalid Authorization header. Credentials string should not contain space
 msgstr ""
 
 msgid "Signature has expired."
-msgstr ""
+msgstr "సంతకం కాలంచెల్లింది."
 
 msgid "Error decoding signature."
 msgstr ""
@@ -919,7 +919,7 @@ msgid "Only I can view this collection."
 msgstr "ఈ సేకరణను నేను మాత్రమే చూడగలను."
 
 msgid "Anybody can view this collection."
-msgstr "ఎవరైనా ఈ సేకరణను వీక్షించగలరు."
+msgstr "ఈ సేకరణను ఎవరైనా చూడగలరు."
 
 msgid "Give your collection a name."
 msgstr "మీ సేకరణకు పేరు ఇవ్వండి."
@@ -951,9 +951,8 @@ msgstr "చిహ్నాలు తప్పనిసరిగా PNG లేద
 msgid "Icons cannot be animated."
 msgstr "ప్రతీకాలు యానిమేట్ చేయబడవు."
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "ఈ స్లగ్ ఇప్పటికే మీ సేకరణల్లో మరోదానిలో ఉపయోగంలో ఉంది."
+msgstr "ఈ అభిమత URL ఇప్పటికే మీ సేకరణల్లో మరొకదానిలో వాడుకలో ఉంది."
 
 msgid "Name cannot be empty."
 msgstr "పేరు ఖాళీగా ఉండకూడదు."
@@ -1004,7 +1003,7 @@ msgid "Create Collection"
 msgstr "సేకరణను సృష్టించండి"
 
 msgid "View this collection"
-msgstr "ఈ సేకరణను వీక్షించండి"
+msgstr "ఈ సేకరణను చూడండి"
 
 msgid "Start a new collection..."
 msgstr "క్రొత్త సేకరణను ప్రారంభించండి..."
@@ -1051,10 +1050,10 @@ msgid "Add-ons synced to my Mobile Firefox"
 msgstr "పొడిగింతలు నా మొబైల్ Firefoxకు సమకాలీకరించబడ్డాయి"
 
 msgid "Make this Collection Private"
-msgstr "ఈ సేకరణను వ్యక్తిగతంగా చేయండి"
+msgstr "ఈ సేకరణను అంతరంగికం చేయి"
 
 msgid "Make this Collection Public"
-msgstr "ఈ సేకరణను బహిరంగం చేయండి"
+msgstr "ఈ సేకరణను బహిరంగం చేయి"
 
 msgid "More Options:"
 msgstr "మరిన్ని ఎంపికలు:"
@@ -2007,7 +2006,7 @@ msgid "Compatible"
 msgstr "అనుకూలత"
 
 msgid "Incompatible"
-msgstr "అననుకూల"
+msgstr "అనుగుణ్యం కాదు"
 
 msgid "Alerts & Updates"
 msgstr "హెచ్చరికలు మరియు నవీకరణలు"
@@ -2034,7 +2033,7 @@ msgid "Photos, Music & Videos"
 msgstr "ఫోటోలు, సంగీతం & వీడియోలు"
 
 msgid "Privacy & Security"
-msgstr "గోప్యత మరియు భద్రతా"
+msgstr "అంతరంగికత & భద్రత"
 
 msgid "Shopping"
 msgstr "కొనుగోలు"
@@ -2097,7 +2096,7 @@ msgid "Music"
 msgstr "సంగీతము"
 
 msgid "Scenery"
-msgstr "దృశ్యం"
+msgstr "సీనరీ"
 
 msgid "Seasonal"
 msgstr "రుతువు"
@@ -2157,7 +2156,7 @@ msgid "Photos & Media"
 msgstr "ఫోటోలు మరియు మీడియా"
 
 msgid "Security & Privacy"
-msgstr "భద్రత మరియు గోప్యత"
+msgstr "భద్రత & అంతరంగికత"
 
 msgid "Social Networking"
 msgstr "సామాజిక నెట్‌వర్కింగ్"
@@ -2169,7 +2168,7 @@ msgid "User Interface"
 msgstr "వాడుకరి అంతరవర్తి"
 
 msgid "Appearance and Customization"
-msgstr ""
+msgstr "రూపురేఖలు, అభిమతీకరణ"
 
 msgid "Calendar and Date/Time"
 msgstr "క్యాలెండర్ మరియు తేదీ/Time"
@@ -2190,10 +2189,10 @@ msgid "Import/Export"
 msgstr "దిగుమతి/Export"
 
 msgid "Message and News Reading"
-msgstr ""
+msgstr "సందేశాలు, వార్తా వీక్షణం"
 
 msgid "Privacy and Security"
-msgstr "గోప్యత మరియు భద్రత"
+msgstr "అంతరంగికత, భద్రత"
 
 msgid "Downloading and File Management"
 msgstr "దింపుకోళ్ళు అవుతున్నది మరియు ఫైల్ నిర్వహణ"
@@ -2208,7 +2207,7 @@ msgid "Photos and Media"
 msgstr "ఫోటోలు మరియు మీడియా"
 
 msgid "RSS, News and Blogging"
-msgstr ""
+msgstr "RSS, వార్తలు, బ్లాగులు"
 
 msgid "Site-specific"
 msgstr "సైటు-ప్రత్యేకం"
@@ -2217,7 +2216,7 @@ msgid "Web and Developer Tools"
 msgstr "జాల, డెవలపర్ పనిముట్లు"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "అన్ని హక్కులు ప్రత్యేకించబడ్డాయి"
 
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons Attribution 3.0"
@@ -2962,7 +2961,7 @@ msgid "Information about your add-on is displayed in this locale unless you over
 msgstr ""
 
 msgid "Homepage"
-msgstr "నివాసపేజీ"
+msgstr "ముంగిలిపేజీ"
 
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
@@ -3141,13 +3140,11 @@ msgstr "కొనసాగించు"
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
 
-#, fuzzy
 msgid "Can others make commercial use of your Add-on?"
-msgstr "మీ పొడిగింతలో ఒక రచయిత పాత్ర మార్చబడింది"
+msgstr "ఇతరులు మీ యాడ్-ఆన్‌ను వాణిజ్యపరంగా వాడుకోవచ్చా?"
 
-#, fuzzy
 msgid "Can others create derivative works from your Add-on?"
-msgstr "మీ పొడిగింత నుండి ఒక రచయిత తొలగించబడ్డారు"
+msgstr "ఇతరులు మీ యాడ్-ఆన్ నుండి వ్యుత్పన్న కృతులను తయారుచేయవచ్చా?"
 
 msgid "Yes, as long as they share alike"
 msgstr "అవును, వారు ఇదే విధంగా పంచుకున్నంతవరకు"
@@ -4321,7 +4318,7 @@ msgid "Access your data on the following websites:"
 msgstr "కింది వెబ్సైట్లలో మీ డేటాను ప్రాప్యత చేయండి:"
 
 msgid "Access your data for all websites"
-msgstr "మీ డేటాను అన్ని వెబ్ సైట్లలో పొందండి"
+msgstr "అన్ని వెబ్ సైట్లలో మీ డేటాను చూడటం"
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
@@ -5666,9 +5663,8 @@ msgstr ""
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr ""
 
-#, fuzzy
 msgid "Update whiteboards"
-msgstr "వైట్‌బోర్డ్"
+msgstr "వైట్‌బోర్డులను తాజాకరించు"
 
 msgid "More Actions"
 msgstr "మరిన్ని చర్యలు"
@@ -6392,7 +6388,7 @@ msgstr "స్వాగతం, {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
+msgstr "<a href=\"%(reg)s\">నమోదవ్వండి</a> లేదా <a href=\"%(login)s\">ప్రవేశించండి</a>"
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
