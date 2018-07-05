@@ -8,6 +8,7 @@ import subprocess
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
+from django.core.management import call_command
 
 from olympia.lib.jingo_minify_helpers import get_path
 
@@ -65,6 +66,12 @@ class Command(BaseCommand):
             f.write('BUNDLE_HASHES = %s\n' % self.bundle_hashes)
 
     def handle(self, **options):
+        # HACK: Let's collect static files first so that we can
+        # actually use images in there and add relative links
+        # to the concatted files that will live in STATIC_ROOT
+        # too.
+        call_command('collectstatic', interactive=False)
+
         # This will loop through every bundle, and do the following:
         # - Concat all files into one
         # - Cache bust all images in CSS files
