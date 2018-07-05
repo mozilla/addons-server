@@ -97,7 +97,7 @@ def test_compress_assets_correctly_fetches_static_images(settings, tmpdir):
         assert expected in fobj.read()
 
     # Compressed doesn't have any whitespace between `background-image:` and
-    # the url
+    # the url and the path is slightly different
     with open(css_min, 'rb') as fobj:
         data = fobj.read()
         assert 'background-image:url(' in data
