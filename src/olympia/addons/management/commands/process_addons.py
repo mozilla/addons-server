@@ -69,7 +69,7 @@ tasks = {
     'delete_addons_not_compatible_with_firefoxes': {
         'method': delete_addon_not_compatible_with_firefoxes,
         'qs': [Q(status=amo.STATUS_PUBLIC),
-               ~Q(appsupport__app__in=(amo.FIREFOX.id, amo.ANDROID.id))],
+               ~Q(appsupport__app__in=(amo.THUNDERBIRD.id, amo.SEAMONKEY.id))],
         'post': delete_obsolete_applicationsversions,
     },
     'add_dynamic_theme_tag_for_theme_api': {

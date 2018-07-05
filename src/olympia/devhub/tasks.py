@@ -359,12 +359,12 @@ def annotate_legacy_addon_restrictions(results, is_new_upload):
         max_target_firefox_version < 99000000000000)
 
     # Thunderbird/Seamonkey only add-ons are moving to addons.thunderbird.net.
-    if (is_targeting_thunderbird_or_seamonkey_only and
+    if (is_targeting_firefoxes_only and
             waffle.switch_is_active('disallow-thunderbird-and-seamonkey')):
         msg = ugettext(
-            u'Add-ons for Thunderbird and SeaMonkey are now listed and '
-            u'maintained on addons.thunderbird.net. You can use the same '
-            u'account to update your add-ons on the new site.')
+            u'Add-ons for Firefox only are listed at '
+            u'addons.mozilla.org. You can use the same '
+            u'account to update your add-ons on the old site.')
 
         insert_validation_message(
             results, message=msg, msg_id='thunderbird_and_seamonkey_migration')
