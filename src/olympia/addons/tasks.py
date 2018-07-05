@@ -653,9 +653,10 @@ def delete_addon_not_compatible_with_firefoxes(ids, **kw):
         ids[0], ids[-1], len(ids))
     qs = Addon.objects.filter(id__in=ids)
     for addon in qs:
-        addon.appsupport_set.filter(
-            app__in=(amo.THUNDERBIRD.id, amo.SEAMONKEY.id)).delete()
-        addon.delete()
+        with transaction.atomic():
+            addon.appsupport_set.filter(
+                app__in=(amo.THUNDERBIRD.id, amo.SEAMONKEY.id)).delete()
+            addon.delete()
 
 
 @task
