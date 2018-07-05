@@ -679,9 +679,11 @@ class TestResponse(VersionCheckMixin, TestCase):
 
     def get_file_url(self):
         """Return the file url with the hash as parameter."""
-        return ('/user-media/addons/3615/delicious_bookmarks-2.1.072-fx.xpi?'
-                'filehash=sha256%3A3808b13ef8341378b9c8305ca648200954ee7dcd8dc'
-                'e09fef55f2673458bc31f')
+        return (
+            'http://testserver/user-media/addons/3615/'
+            'delicious_bookmarks-2.1.072-fx.xpi?'
+            'filehash=sha256%3A3808b13ef8341378b9c8305ca648200954ee7dcd8dc'
+            'e09fef55f2673458bc31f')
 
     def test_url(self):
         instance = self.get_update_instance(self.data)

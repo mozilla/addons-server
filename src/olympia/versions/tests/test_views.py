@@ -246,7 +246,6 @@ class TestDownloads(TestDownloadsBase):
         r = self.client.get(reverse('downloads.file', args=[234]))
         assert r.status_code == 404
 
-    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_public(self):
         assert self.addon.status == amo.STATUS_PUBLIC
         assert self.file.status == amo.STATUS_PUBLIC
@@ -262,7 +261,6 @@ class TestDownloads(TestDownloadsBase):
         self.addon.save()
         self.assert_served_locally(self.client.get(self.file_url))
 
-    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_type_attachment(self):
         self.assert_served_by_cdn(self.client.get(self.file_url))
         url = reverse('downloads.file', args=[self.file.id, 'attachment'])
@@ -272,7 +270,6 @@ class TestDownloads(TestDownloadsBase):
         url = self.file_url.replace('firefox', 'thunderbird')
         self.assert_served_locally(self.client.get(url), attachment=True)
 
-    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_trailing_filename(self):
         url = self.file_url + self.file.filename
         self.assert_served_by_cdn(self.client.get(url))
@@ -281,7 +278,6 @@ class TestDownloads(TestDownloadsBase):
         self.file.update(datestatuschanged=None)
         self.assert_served_locally(self.client.get(self.file_url))
 
-    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_unicode_url(self):
         self.file.update(filename=u'图像浏览器-0.5-fx.xpi')
         self.assert_served_by_cdn(self.client.get(self.file_url))
@@ -369,12 +365,10 @@ class TestDownloadsLatest(TestDownloadsBase):
                          urlencode({'filehash': self.file.hash}))
         assert r['Location'].endswith(url), r['Location']
 
-    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_success(self):
         assert self.addon.current_version
         self.assert_served_by_cdn(self.client.get(self.latest_url))
 
-    @override_settings(MEDIA_URL='http://testserver/media/')
     def test_platform(self):
         # We still match PLATFORM_ALL.
         url = reverse('downloads.latest',

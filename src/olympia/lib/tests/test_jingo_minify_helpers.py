@@ -110,7 +110,9 @@ def test_js_helper(getmtime, time):
            (settings.STATIC_URL, BUILD_ID_JS))
 
 
-@override_settings(MINIFY_BUNDLES=TEST_MINIFY_BUNDLES)
+@override_settings(MINIFY_BUNDLES=TEST_MINIFY_BUNDLES,
+                   MEDIA_URL='/user-media/',
+                   STATIC_URL='/site-static/')
 @mock.patch('olympia.lib.jingo_minify_helpers.time.time')
 @mock.patch('olympia.lib.jingo_minify_helpers.os.path.getmtime')
 def test_css_helper(getmtime, time):
@@ -185,7 +187,7 @@ def test_css_helper(getmtime, time):
 
     assert (
         rendered ==
-        '<link rel="stylesheet" media="all" href="/static/css/test.css?build=1" />\n'  # noqa
+        '<link rel="stylesheet" media="all" href="/site-static/css/test.css?build=1" />\n'  # noqa
         '<link rel="stylesheet" media="all" href="http://example.com/test.css?build=1" />\n'  # noqa
         '<link rel="stylesheet" media="all" href="//example.com/test.css?build=1" />\n'  # noqa
         '<link rel="stylesheet" media="all" href="https://example.com/test.css?build=1" />')  # noqa
@@ -200,9 +202,7 @@ def test_css_helper(getmtime, time):
         (settings.STATIC_URL, BUILD_ID_CSS))
 
 
-@override_settings(STATIC_URL='http://example.com/static/',
-                   MEDIA_URL='http://example.com/media/',
-                   MINIFY_BUNDLES=TEST_MINIFY_BUNDLES)
+@override_settings(MINIFY_BUNDLES=TEST_MINIFY_BUNDLES)
 @mock.patch('olympia.lib.jingo_minify_helpers.time.time')
 @mock.patch('olympia.lib.jingo_minify_helpers.os.path.getmtime')
 def test_css(getmtime, time):
@@ -235,8 +235,6 @@ def test_compiled_css(open_mock, subprocess_mock, getmtime_mock, time_mock):
     ]
 
 
-@override_settings(STATIC_URL='http://example.com/static/',
-                   MEDIA_URL='http://example.com/media/')
 @mock.patch('olympia.lib.jingo_minify_helpers.time.time')
 @mock.patch('olympia.lib.jingo_minify_helpers.os.path.getmtime')
 def test_js(getmtime, time):
