@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-05 09:07+0000\n"
+"PO-Revision-Date: 2018-07-05 16:46+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -872,7 +872,7 @@ msgid "Signature has expired."
 msgstr "సంతకం కాలంచెల్లింది."
 
 msgid "Error decoding signature."
-msgstr ""
+msgstr "సంతకం డీకోడు చేయడంలో పొరపాటు."
 
 msgid "Invalid JWT Token."
 msgstr "చెల్లని JWT టోకేను."
@@ -1323,7 +1323,7 @@ msgstr "{0}: విశేష పొడిగింతలు"
 
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
-msgstr ""
+msgstr "{0}లో విశేషమైన పొడగింతలేమీ లేవు."
 
 msgid "Subscribe"
 msgstr "సభ్యత్వం పొందండి"
@@ -1372,7 +1372,7 @@ msgid "All locales"
 msgstr "అన్ని స్థానికీకరణలు"
 
 msgid "List of language packs and dictionaries."
-msgstr ""
+msgstr "భాషా ప్యాకుల, నిఘంటువుల జాబితా."
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
@@ -1434,7 +1434,7 @@ msgstr "రాబోయే పొడగింతలు"
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "విశేష పూర్తి అలంకారాలు"
 
 msgid "Most Popular Complete Themes"
 msgstr "అత్యంత జనాదరణ పొందిన పూర్తి అలంకారాలు"
@@ -1875,25 +1875,22 @@ msgstr "సమాచార అభ్యర్థన తీసివేయబడ�
 msgid "{addon} {version} admin add-on-review requested."
 msgstr "{addon} {version} సమీక్ష అభ్యర్థించబడింది."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "{addon} {version} సమీక్ష అభ్యర్థించబడింది."
+msgstr ""
 
 #, fuzzy
 msgid "{addon} {version} admin content-review requested."
 msgstr "{addon} {version} సమీక్ష అభ్యర్థించబడింది."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "{addon} {version} సమీక్ష అభ్యర్థించబడింది."
+msgstr ""
 
 #, fuzzy
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} సమీక్ష అభ్యర్థించబడింది."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "{addon} {version} సమీక్ష అభ్యర్థించబడింది."
+msgstr ""
 
 #, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
@@ -2372,7 +2369,7 @@ msgid "Request More Info"
 msgstr "మరింత సమాచారం కోసం అభ్యర్థన"
 
 msgid "Flag"
-msgstr ""
+msgstr "ఫ్లాగ్ చేయి"
 
 msgid "Duplicate"
 msgstr "నకిలీ"
@@ -2393,7 +2390,7 @@ msgid "Violence, war, or weaponry images"
 msgstr "హింస, యుద్ధం, లేదా ఆయుధాల చిత్రాలు"
 
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "నాజీ లేదా ఇతర ద్వేషపూరిత విషయం"
 
 msgid "Defamatory content"
 msgstr ""
@@ -2405,7 +2402,7 @@ msgid "Spam content"
 msgstr ""
 
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "తక్కువ నాణ్యత, సాగదీసిన లేదా ఖాళీ చిత్రం"
 
 msgid "Header image alignment problem"
 msgstr ""
@@ -5911,11 +5908,10 @@ msgid_plural "Rating Reviews ({0})"
 msgstr[0] "విషయం సమీక్ష ({0})"
 msgstr[1] "విషయం సమీక్ష ({0})"
 
-#, fuzzy
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
-msgstr[0] "కొత్త పొడిగింత ({0})"
-msgstr[1] "కొత్త పొడిగింత ({0})"
+msgstr[0] "ఆటో అనుమతించబడినది ({0})"
+msgstr[1] "ఆటో అనుమతించబడినవి ({0})"
 
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
