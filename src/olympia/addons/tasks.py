@@ -588,7 +588,6 @@ def add_static_theme_from_lwt(lwt):
     # Logging
     activity.log_create(
         amo.LOG.CREATE_STATICTHEME_FROM_PERSONA, addon, user=author)
-    log.debug('New static theme %r created from %r' % (addon, lwt))
 
     # And finally sign the files (actually just one)
     for file_ in version.all_files:
@@ -612,8 +611,10 @@ def add_static_theme_from_lwt(lwt):
 def migrate_lwts_to_static_themes(ids, **kw):
     """With the specified ids, create new static themes based on an existing
     lightweight themes (personas), and delete the lightweight themes after."""
-    log.info(
-        'Migrating LWT to static theme %d-%d [%d].', ids[0], ids[-1], len(ids))
+    mlog = olympia.core.logger.getLogger('z.task.lwtmigrate')
+    mlog.info(
+        '[Info] Migrating LWT to static theme %d-%d [%d].', ids[0], ids[-1],
+        len(ids))
 
     # Incoming ids should already by type=persona only
     lwts = Addon.objects.filter(id__in=ids)
@@ -623,9 +624,11 @@ def migrate_lwts_to_static_themes(ids, **kw):
         try:
             with translation.override(lwt.default_locale):
                 static = add_static_theme_from_lwt(lwt)
+            mlog.info(
+                '[Success] Static theme %r created from LWT %r', static, lwt)
         except Exception as e:
             # If something went wrong, don't migrate - we need to debug.
-            log.debug(e)
+            mlog.debug('[Fail] LWT %r:', lwt, exc_info=e)
         if not static:
             continue
         MigratedLWT.objects.create(
