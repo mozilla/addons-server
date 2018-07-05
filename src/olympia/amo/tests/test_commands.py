@@ -47,6 +47,7 @@ def test_cron_jobs_setting():
         getattr(module, name)
 
 
+@pytest.mark.static_assets
 @override_settings(
     MINIFY_BUNDLES={'css': {'common_multi': [
         'css/zamboni/admin-django.css',
@@ -70,7 +71,15 @@ def test_compress_assets_command_without_git(subprocess_mock):
     assert contents_before != contents_after
 
 
-def test_compiled_css_correct_background_url(settings, tmpdir):
+@pytest.mark.static_assets
+def test_compress_assets_correctly_fetches_static_images(settings, tmpdir):
+    """
+    Make sure that `compress_assets` correctly fetches static assets
+    such as icons and writes them correctly into our compressed
+    and concatted files.
+
+    Refs https://github.com/mozilla/addons-server/issues/8760
+    """
     settings.MINIFY_BUNDLES = {
         'css': {'zamboni/css': ['css/legacy/main.css']}}
 
