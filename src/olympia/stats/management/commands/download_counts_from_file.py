@@ -45,7 +45,7 @@ class Command(BaseCommand):
 
     If stats_source is s3:
         This file will be located in
-            `<settings.AWS_STATS_S3_BUCKET>/amo_stats`.
+            `<settings.AWS_STATS_S3_BUCKET>/<settings.AWS_STATS_S3_PREFIX>`.
 
         File processed:
         - download_counts/YYYY-MM-DD/000000_0
@@ -91,7 +91,8 @@ class Command(BaseCommand):
 
         if options['stats_source'] == 's3':
             filepath = 's3://' + '/'.join([settings.AWS_STATS_S3_BUCKET,
-                                           'amo_stats', 'download_counts',
+                                           settings.AWS_STATS_S3_PREFIX,
+                                           'download_counts',
                                            day, '000000_0'])
 
         elif options['stats_source'] == 'file':

@@ -1882,6 +1882,7 @@ FXA_SQS_AWS_QUEUE_URL = (
 FXA_SQS_AWS_WAIT_TIME = 20  # Seconds.
 
 AWS_STATS_S3_BUCKET = env('AWS_STATS_S3_BUCKET', default=None)
+AWS_STATS_S3_PREFIX = env('AWS_STATS_S3_PREFIX', default='amo_stats')
 
 # For the Github webhook API.
 GITHUB_API_USER = env('GITHUB_API_USER', default='')
