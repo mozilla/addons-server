@@ -3,9 +3,11 @@ import subprocess
 import time
 
 from django.conf import settings
-from django.contrib.staticfiles.finders import find as static_finder
 
 import jinja2
+
+from jingo_minify.utils import get_media_url, get_path
+
 
 try:
     from build import BUILD_ID_CSS, BUILD_ID_JS, BUILD_ID_IMG, BUNDLE_HASHES
@@ -27,7 +29,7 @@ def _get_item_path(item):
     """
     if is_external(item):
         return item
-    return settings.STATIC_URL + item
+    return get_media_url() + item
 
 
 def _get_mtime(item):
@@ -68,6 +70,19 @@ def get_js_urls(bundle, debug=None):
         if bundle_full in BUNDLE_HASHES:
             build_id = BUNDLE_HASHES[bundle_full]
         return (_get_item_path('js/%s-min.js?build=%s' % (bundle, build_id,)),)
+
+
+def _get_compiled_css_url(item):
+    """
+    Compresses a preprocess file and returns its relative compressed URL.
+
+    :param item:
+        Name of the less file to compress into css.
+    """
+    if item.endswith('.less') and getattr(settings, 'LESS_PREPROCESS', False):
+        compile_css(item)
+        return item + '.css'
+    return item
 
 
 def get_css_urls(bundle, debug=None):
@@ -136,20 +151,3 @@ def build_ids(request):
     """A context processor for injecting the css/js build ids."""
     return {'BUILD_ID_CSS': BUILD_ID_CSS, 'BUILD_ID_JS': BUILD_ID_JS,
             'BUILD_ID_IMG': BUILD_ID_IMG}
-
-
-def get_path(path):
-    """Get a system path for a given file.
-    This properly handles storing files in `project/app/static`, and any other
-    location that Django's static files system supports.
-    ``path`` should be relative to ``STATIC_ROOT``.
-    """
-    full_path = os.path.join(settings.STATIC_ROOT, path)
-
-    found_path = static_finder(path)
-    # If the path is not found by Django's static finder (like we are
-    # trying to get an output path), it returns None, so fall back.
-    if found_path is not None:
-        full_path = found_path
-
-    return full_path

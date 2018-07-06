@@ -43,7 +43,7 @@ from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.forms import AgreementForm, CheckCompatibilityForm
 from olympia.devhub.models import BlogPost, RssKey
-from olympia.devhub.utils import process_validation
+from olympia.devhub.utils import add_dynamic_theme_tag, process_validation
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon
 from olympia.lib.crypto.packaged import sign_file
@@ -314,6 +314,12 @@ def edit(request, addon_id, addon):
     except Whiteboard.DoesNotExist:
         whiteboard = Whiteboard(pk=addon.pk)
 
+    previews = (
+        addon.current_version.previews.all()
+        if addon.current_version and addon.has_per_version_previews
+        else addon.previews.all())
+    header_preview = (
+        previews.first() if addon.type == amo.ADDON_STATICTHEME else None)
     data = {
         'page': 'edit',
         'addon': addon,
@@ -322,7 +328,8 @@ def edit(request, addon_id, addon):
         'show_listed_fields': addon.has_listed_versions(),
         'valid_slug': addon.slug,
         'tags': addon.tags.not_denied().values_list('tag_text', flat=True),
-        'previews': addon.previews.all(),
+        'previews': previews,
+        'header_preview': header_preview,
         'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
     }
 
@@ -1371,6 +1378,7 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
             addon.update(status=amo.STATUS_NOMINATED)
         # auto-sign versions (the method checks eligibility)
         auto_sign_version(version)
+        add_dynamic_theme_tag(version)
         next_url = (next_details
                     if channel == amo.RELEASE_CHANNEL_LISTED
                     else next_finish)
@@ -1575,7 +1583,8 @@ def _submit_finish(request, addon, version, is_file=False):
     return render(request, 'devhub/addons/submit/done.html',
                   {'addon': addon,
                    'uploaded_version': uploaded_version,
-                   'submit_page': submit_page})
+                   'submit_page': submit_page,
+                   'preview': uploaded_version.previews.first()})
 
 
 @dev_required(submitting=True)

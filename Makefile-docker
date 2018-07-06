@@ -130,7 +130,7 @@ update_db:
 	schematic src/olympia/migrations
 
 update_assets:
-	python manage.py compress_assets
+	python manage.py compress_assets --use-uuid
 	python manage.py collectstatic --noinput
 
 update: update_deps update_db update_assets

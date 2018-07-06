@@ -6,7 +6,7 @@ from celery import chord, group
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
-    add_firefox57_tag, bump_appver_for_legacy_addons,
+    add_dynamic_theme_tag, add_firefox57_tag, bump_appver_for_legacy_addons,
     delete_addon_not_compatible_with_firefoxes,
     delete_obsolete_applicationsversions,
     find_inconsistencies_between_es_and_db, migrate_lwts_to_static_themes)
@@ -72,6 +72,12 @@ tasks = {
                ~Q(appsupport__app__in=(amo.FIREFOX.id, amo.ANDROID.id))],
         'post': delete_obsolete_applicationsversions,
     },
+    'add_dynamic_theme_tag_for_theme_api': {
+        'method': add_dynamic_theme_tag,
+        'qs': [
+            Q(status=amo.STATUS_PUBLIC,
+              _current_version__files__is_webextension=True)
+        ]},
 }
 
 

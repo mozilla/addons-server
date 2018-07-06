@@ -1564,8 +1564,9 @@ class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert 'Preview' in doc('h3').text()
-        assert doc('img')[0].attrib['src'] == (
+        assert doc('div.edit-addon-section img')[0].attrib['src'] == (
             self.addon.current_version.previews.first().image_url)
+        assert len(doc('div.edit-addon-section img')) == 1  # Just one preview.
 
 
 class TestEditBasicStaticThemeUnlisted(StaticMixin, TestEditBasicUnlisted):
