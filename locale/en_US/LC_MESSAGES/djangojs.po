@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 05:59+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -709,18 +709,6 @@ msgstr "Remove this add-on from the collection"
 
 msgid "Remove"
 msgstr "Remove"
-
-msgid "Remove this user as a contributor"
-msgstr "Remove this user as a contributor"
-
-msgid "An email address is required."
-msgstr "An email address is required."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "You cannot add yourself as a contributor."
-
-msgid "You have already added that user."
-msgstr "You have already added that user."
 
 msgid "Add to favorites"
 msgstr "Add to favorites"

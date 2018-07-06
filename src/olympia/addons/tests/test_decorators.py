@@ -21,7 +21,8 @@ class TestAddonView(TestCase):
         self.request = mock.Mock()
         self.slug_path = urllib.quote(
             ('/addon/%s/reviews' % self.addon.slug).encode('utf8'))
-        self.request.path = self.id_path = u'/addon/%s/reviews' % self.addon.id
+        self.request.path = self.id_path = (
+            u'http://testserver/addon/%s/reviews' % self.addon.id)
         self.request.GET = {}
 
     def test_301_by_id(self):
@@ -29,8 +30,9 @@ class TestAddonView(TestCase):
         self.assert3xx(res, self.slug_path, 301)
 
     def test_slug_replace_no_conflict(self):
-        self.request.path = u'/addon/{id}/reviews/{id}345/path'.format(
-            id=self.addon.id)
+        path = u'http://testserver/addon/{id}/reviews/{id}345/path'
+        self.request.path = path.format(id=self.addon.id)
+
         res = self.view(self.request, str(self.addon.id))
         redirection = urllib.quote(
             u'/addon/{slug}/reviews/{id}345/path'.format(

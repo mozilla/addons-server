@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 05:59+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2015-11-03 11:53+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -710,18 +710,6 @@ msgstr "Usuń ten dodatek z kolekcji"
 
 msgid "Remove"
 msgstr "Usuń"
-
-msgid "Remove this user as a contributor"
-msgstr "Usuń tego użytkownika z listy autorów"
-
-msgid "An email address is required."
-msgstr "Adres e-mail jest wymagany."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Nie możesz dodać siebie jako współautora."
-
-msgid "You have already added that user."
-msgstr "Ten użytkownik został już dodany."
 
 msgid "Add to favorites"
 msgstr "Dodaj do ulubionych"

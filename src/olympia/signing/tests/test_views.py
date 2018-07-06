@@ -5,7 +5,6 @@ import os
 from datetime import datetime, timedelta
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.forms import ValidationError
 from django.test.utils import override_settings
 from django.utils import translation
@@ -18,7 +17,7 @@ from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import addon_factory
+from olympia.amo.tests import addon_factory, reverse_ns
 from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.applications.models import AppVersion
 from olympia.devhub import tasks
@@ -60,7 +59,7 @@ class BaseUploadVersionCase(SigningAPITestCase):
             args = [guid, version]
         if pk is not None:
             args.append(pk)
-        return reverse('v3:signing.version', args=args)
+        return reverse_ns('signing.version', args=args)
 
     def create_version(self, version):
         response = self.request('PUT', self.url(self.guid, version), version)
@@ -123,6 +122,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         self.auto_sign_version.assert_called_with(latest_version)
+        assert not addon.tags.filter(tag_text='dynamic theme').exists()
 
     def test_new_addon_random_slug_unlisted_channel(self):
         guid = '@create-webextension'
@@ -195,6 +195,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
         self.auto_sign_version.assert_called_with(version)
         assert not version.all_files[0].is_mozilla_signed_extension
+        assert not version.addon.tags.filter(tag_text='dynamic theme').exists()
 
     def test_version_already_uploaded(self):
         response = self.request('PUT', self.url(self.guid, '3.0'))
@@ -463,7 +464,7 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
     def test_addon_does_not_exist_webextension(self):
         response = self.request(
             'POST',
-            url=reverse('v3:signing.version'),
+            url=reverse_ns('signing.version'),
             addon='@create-webextension',
             version='1.0')
         assert response.status_code == 201
@@ -529,7 +530,7 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
     def test_optional_id_not_allowed_for_regular_addon(self):
         response = self.request(
             'POST',
-            url=reverse('v3:signing.version'),
+            url=reverse_ns('signing.version'),
             addon='@create-version-no-id',
             version='1.0')
         assert response.status_code == 400
@@ -537,7 +538,7 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
     def test_webextension_reuse_guid(self):
         response = self.request(
             'POST',
-            url=reverse('v3:signing.version'),
+            url=reverse_ns('signing.version'),
             addon='@create-webextension-with-guid',
             version='1.0')
 
@@ -552,14 +553,14 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
         # have to use the regular `PUT` endpoint for that.
         response = self.request(
             'POST',
-            url=reverse('v3:signing.version'),
+            url=reverse_ns('signing.version'),
             addon='@create-webextension-with-guid',
             version='1.0')
         assert response.status_code == 201
 
         response = self.request(
             'POST',
-            url=reverse('v3:signing.version'),
+            url=reverse_ns('signing.version'),
             addon='@create-webextension-with-guid',
             version='1.0')
         assert response.status_code == 400
@@ -570,7 +571,7 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
         # have to use the regular `PUT` endpoint for that.
         response = self.request(
             'POST',
-            url=reverse('v3:signing.version'),
+            url=reverse_ns('signing.version'),
             addon='@create-webextension-with-guid-and-version',
             version='99.0')
         assert response.status_code == 201
@@ -585,7 +586,7 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
 
         response = self.request(
             'POST',
-            url=reverse('v3:signing.version'),
+            url=reverse_ns('signing.version'),
             addon='@notify-link-clicks-i18n',
             version='1.0',
             filename=fname)
@@ -641,6 +642,33 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
             filename=fname)
         assert response.status_code == 201
         assert Addon.unfiltered.filter(guid=guid).exists()
+
+    def test_dynamic_theme_tag_added(self):
+        addon = Addon.objects.get(guid=self.guid)
+        addon.current_version.update(version='0.9')
+
+        def parse_addon_wrapper(*args, **kwargs):
+            from olympia.files.utils import parse_addon
+            parsed = parse_addon(*args, **kwargs)
+            parsed['permissions'] = parsed.get('permissions', []) + ['theme']
+            return parsed
+
+        with mock.patch('olympia.devhub.tasks.parse_addon',
+                        wraps=parse_addon_wrapper):
+            # But unlisted should be ignored
+            response = self.request(
+                'PUT', self.url(self.guid, '1.0'), version='1.0',
+                addon='@create-webextension', channel='unlisted')
+            assert response.status_code == 202, response.data['error']
+            assert not addon.tags.filter(tag_text='dynamic theme').exists()
+            addon.versions.latest().delete(hard=True)
+
+            # Only listed version get the tag
+            response = self.request(
+                'PUT', self.url(self.guid, '1.0'), version='1.0',
+                addon='@create-webextension', channel='listed')
+            assert response.status_code == 202, response.data['error']
+            assert addon.tags.filter(tag_text='dynamic theme').exists()
 
 
 class TestCheckVersion(BaseUploadVersionCase):
@@ -742,7 +770,7 @@ class TestCheckVersion(BaseUploadVersionCase):
         assert response.status_code == 200
         file_ = qs.get()
         assert response.data['files'][0]['download_url'] == absolutify(
-            reverse('v3:signing.file', kwargs={'file_id': file_.id}) +
+            reverse_ns('signing.file', kwargs={'file_id': file_.id}) +
             '/delicious_bookmarks-3.0-fx.xpi?src=api')
 
     def test_file_hash(self):
@@ -775,7 +803,7 @@ class TestSignedFile(SigningAPITestCase):
         self.file_ = self.create_file()
 
     def url(self):
-        return reverse('v3:signing.file', args=[self.file_.pk])
+        return reverse_ns('signing.file', args=[self.file_.pk])
 
     def create_file(self):
         addon = addon_factory(

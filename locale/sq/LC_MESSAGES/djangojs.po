@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 05:59+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2017-12-20 19:43+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -712,18 +712,6 @@ msgstr "Hiqe këtë shtesë prej koleksionit"
 
 msgid "Remove"
 msgstr "Hiqe"
-
-msgid "Remove this user as a contributor"
-msgstr "Hiqe këtë përdorues si kontribues"
-
-msgid "An email address is required."
-msgstr "Lypset një adresë email."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Nuk mund të shtoni vetveten si kontribues."
-
-msgid "You have already added that user."
-msgstr "E keni shtuar një herë atë përdorues."
 
 msgid "Add to favorites"
 msgstr "Shtojeni te të parapëlqyerit"

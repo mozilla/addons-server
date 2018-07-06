@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 06:00+0000\n"
-"PO-Revision-Date: 2018-06-14 11:39+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-24 20:09+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -814,9 +814,6 @@ msgstr "Teman"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Vill du ha mer anpassning? Prova <b>kompletta teman</b>"
 
-msgid "Most Followers"
-msgstr "Flest följare"
-
 msgid "Collections"
 msgstr "Samlingar"
 
@@ -935,21 +932,6 @@ msgstr ""
 "Om din applikation som stöds inte kräver en manifest-fil behöver du fortfarande inkludera en av följande egenskaper enligt "
 "specifikationen%(amo_manifests_mdn_link_open)shär%(amo_manifests_mdn_link_close)s."
 
-msgid "Contributors"
-msgstr "Bidragsgivare"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Samlingar :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Samlingar är grupper av tillägg som vem som helst kan skapa och dela."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Samlingar :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Bara jag kan se denna samling."
 
@@ -1001,20 +983,14 @@ msgstr "Denna anpassade URL kan inte användas."
 msgid "This add-on already belongs to the collection"
 msgstr "Denna tillägg hör redan till samlingen"
 
-msgid "Name"
-msgstr "Namn"
-
-msgid "Recently Updated"
-msgstr "Nyligen uppdaterad"
-
-msgid "Recently Popular"
-msgstr "Nyligen populära"
-
 msgid "Added"
 msgstr "Tillagd"
 
 msgid "Popularity"
 msgstr "Popularitet"
+
+msgid "Name"
+msgstr "Namn"
 
 msgid "Collection created!"
 msgstr "Samling skapad!"
@@ -1123,17 +1099,14 @@ msgstr "Gå till"
 msgid "What are Collections?"
 msgstr "Vad är samlingar?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Samlingar är grupper av tillägg som vem som helst kan skapa och dela."
+
 msgid "Explore Collections"
 msgstr "Utforska samlingar"
 
 msgid "Common Tags"
 msgstr "Vanliga taggar"
-
-msgid "More by this User"
-msgstr "Mer av denna användare"
-
-msgid "See all collections by this user"
-msgstr "Se alla samlingar denne användare gjort"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1224,63 +1197,8 @@ msgstr "Redigera {0}"
 msgid "Description"
 msgstr "Beskrivning"
 
-msgid "Contributors & More"
-msgstr "Bidragsgivare & mer"
-
 msgid "Save Changes"
 msgstr "Spara ändringar"
-
-msgid "Owner"
-msgstr "Ägare"
-
-msgid "Make Owner"
-msgstr "Gör till ägare"
-
-msgid "Remove this user as a contributor"
-msgstr "Ta bort den här användaren som en bidragsgivare"
-
-msgid "Remove"
-msgstr "Ta bort"
-
-msgid "Collection Contributors"
-msgstr "Bidragare till samling"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"Du kan lägga till flera bidragsgivare till denna samling. En bidragsgivare kan lägga till och ta bort tillägg från denna samling, men kan inte ändra dess namn eller beskrivning. För att lägga till "
-"en bidragsgivare, ange dess e-postadress i rutan nedan. Bidragsgivare måste ha ett Mozilla tilläggskonto."
-
-msgid "User"
-msgstr "Användare"
-
-msgid "Email"
-msgstr "E-postadress"
-
-msgid "Role"
-msgstr "Roll"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Ange e-postadressen till bidragsgivaren som ska läggas till"
-
-msgid "Add Contributor"
-msgstr "Lägg till bidragsgivare"
-
-msgid "Contributor"
-msgstr "Bidragsgivare"
-
-msgid "Admin Settings"
-msgstr "Administratörsinställningar"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Varning:</b> Om du byter ägare på den här samlingen kommer du inte längre att kunna ändra på den. Du kommer bara kunna lägga till och ta bort tillägg från den."
-
-msgid "Continue"
-msgstr "Fortsätt"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "eller <a id=\"change-owner-cancel\" href=\"#\">Avbryt</a>"
 
 msgid "Remove from favorites"
 msgstr "Ta bort från favoriter"
@@ -1295,27 +1213,9 @@ msgstr "Samlingar av {0}"
 msgid "No collections found."
 msgstr "Inga samlingar hittades."
 
-msgid "Most-Followed Collections"
-msgstr "Mest följda samlingar"
-
-msgid "Newest Collections"
-msgstr "Nyaste samlingar"
-
-msgid "Collections by Name"
-msgstr "Samlingar efter namn"
-
-msgid "Recently Updated Collections"
-msgstr "Nyligen uppdaterade samlingar"
-
-msgid "Recently Popular Collections"
-msgstr "Nyligen populära samlingar"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Samlingar är grupper av tillägg som vem som helst kan skapa och dela. Utforska samlingar skapade av andra användare eller <a href=\"%(url)s\">skapa din egen</a>."
-
-msgid "Subscribe"
-msgstr "Prenumerera"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1353,6 +1253,9 @@ msgstr "Tillägg"
 
 msgid "Comment"
 msgstr "Kommentar"
+
+msgid "Remove"
+msgstr "Ta bort"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Ange namnet på ett tillägg att inkludera"
@@ -1420,6 +1323,9 @@ msgstr "Flest användare"
 msgid "Weekly Downloads"
 msgstr "Nedladdningar per vecka"
 
+msgid "Recently Updated"
+msgstr "Nyligen uppdaterad"
+
 msgid "Up & Coming"
 msgstr "Bubblare"
 
@@ -1439,6 +1345,9 @@ msgstr "{0}: Utvalda tillägg"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Inga utvalda tillägg i {0}."
+
+msgid "Subscribe"
+msgstr "Prenumerera"
 
 msgid "Featured Add-ons"
 msgstr "Utvalda tillägg"
@@ -2045,6 +1954,9 @@ msgstr "Flaggad för ytterligare granskning"
 msgid "Unlisted"
 msgstr "Olistad"
 
+msgid "Owner"
+msgstr "Ägare"
+
 msgid "Developer"
 msgstr "Utvecklare"
 
@@ -2626,11 +2538,17 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategorier kan inte ändras när tillägget är utvalt."
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Tillägg för Thunderbird och SeaMonkey är nu listade och underhållna på addons.thunderbird.net. Du kan använda samma konto för att uppdatera dina tillägg på den nya sajten."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Från och med Firefox 53, kan nya tillägg på denna webbplats endast vara WebExtensions."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Äldre tillägg är inte kompatibla med Firefox 57 eller senare. Använd en maxVersion på 56.* eller lägre."
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr "Äldre språkpaket för Firefox stöds inte längre. En WebExtensions install manifest krävs. Se {mdn_link} för mer information."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Vi tillåter och uppmuntrar en uppgradering, men du kan inte ångra denna process. När användarna har WebExtension installerad, kommer de inte att kunna installera ett tillägg med arv."
@@ -3098,6 +3016,9 @@ msgstr "Hjälpinformation"
 msgid "Support Information for {0}"
 msgstr "Hjälpinformation för {0}"
 
+msgid "Email"
+msgstr "E-postadress"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
@@ -3277,6 +3198,16 @@ msgstr "Ange en bildtext till denna skärmdump:"
 
 msgid "Add a Screenshot..."
 msgstr "Lägg till en skärmdump..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+"PNG och JPG stöds. Den maximala och rekommenderade storleken för skärmdumpar är 1280x800 pixlar. 640x400 pixlar är ett bra alternativ om du bara har mindre bilder. Att ha skärmdumpar på din "
+"listningssida ökar kraftigt dina chanser att installeras och presenteras på hemsidan."
+
+msgid "Continue"
+msgstr "Fortsätt"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Kan andra dela ditt tillägg, så länge du omnämnes?"
@@ -4414,29 +4345,29 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} varning"
 msgstr[1] "{0} varningar"
 
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Annonsblockering och integritetsskydd {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Stoppa lömska trackers {start_sub_heading}med {addon_name}{end_sub_heading}"
 
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Med en enkel inställning kan du ta kontroll över de annonser du ser och hur du spåras på internet."
+msgid " Block invisible trackers and spying ads that follow you around the web."
+msgstr " Blockera osynliga trackers och spionannonser som följer dig på webben."
 
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Omvärdera flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgstr "Anpassa nya fliksidor {start_sub_heading}with {addon_name} {end_sub_heading}"
 
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr "Har du massor av öppna flikar? Organisera dem i en snygg sidopanel."
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgstr "Njut av en vacker ny sida med anpassningsbar bakgrund, lokal väderinfo och mer."
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stoppa spårning i Facebook {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Översätt enkelt {start_sub_heading}with {addon_name}{end_sub_heading}"
 
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Isolera din Facebook-identitet i en separat \"behållare\" som gör det svårare för Facebook att spåra dina rörelser på webben."
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr "Markera vilken text som helst, högerklicka och översätt direkt."
 
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sök efter bilder {start_sub_heading}med {addon_name}{end_sub_heading}"
 
-msgid " Perform reverse image searches from an array of engines."
-msgstr " Utför omvänd bildsökning från en rad olika motorer."
+msgid "Perform reverse image searches from an array of engines."
+msgstr "Utför omvänd bildsökning från en rad olika motorer."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
@@ -4887,11 +4818,9 @@ msgstr "Granska tillägg på webbplatsen. Det är med sannolikt att upphovsmän 
 msgid "I have a question"
 msgstr "Jag har en fråga"
 
-#, fuzzy, python-format
+#, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr ""
-"Ett bra ställe att börja är vår <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. Om du inte hittar ett svar där, kan du <a href=\"%(forum_url)s\"> fråga på vårt "
-"forum</a>."
+msgstr "Ett bra ställe att börja på är <a href=\"%(sumo_url)s\">Support</a> Mozilla. Om du inte hittar ett svar där, kan du <a href=\"%(forum_url)s\"> fråga på vårt forum</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -4900,11 +4829,8 @@ msgstr "Om du verkligen behöver kontakta någon från Mozillas grupp, se vår <
 msgid "Who works on this website?"
 msgstr "Som arbetar på denna webbplats?"
 
-#, fuzzy
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
-msgstr ""
-"Genom åren har många bidragit till denna webbplats, inklusive både volontärer från gemenskapen och särskilda AMO-medlemmar. En lista över betydande bidragsgivare kan hittas på vår <a "
-"href=\"%(url)s\">medarbetarsida</a>."
+msgstr "Genom åren har många bidragit till denna webbplats, inklusive både volontärer från gemenskapen och särskilda AMO-medlemmar."
 
 msgid "Sections"
 msgstr "Avdelningar"
@@ -6132,32 +6058,14 @@ msgstr "Uppdateringar"
 msgid "Maximum query length exceeded."
 msgstr "Maximal längd för förfrågan överskriven."
 
-msgid "Most popular this week"
-msgstr "Mest populära denna vecka"
-
-msgid "Most popular this month"
-msgstr "Mest populära denna månad"
-
-msgid "Most popular all time"
-msgstr "Mest populära totalt"
-
-msgid "Highest Rated"
-msgstr "Högst betyg"
-
 msgid "search for add-ons"
 msgstr "sök efter tillägg"
-
-msgid "search for collections"
-msgstr "sök efter samlingar"
 
 msgid "search for themes"
 msgstr "sök efter teman"
 
 msgid "search for apps"
 msgstr "sök efter appar"
-
-msgid "Sort By"
-msgstr "Sortera efter"
 
 msgid "Relevance"
 msgstr "Relevans"
@@ -6700,7 +6608,7 @@ msgid "Occupation"
 msgstr "Yrke"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "Du kan ändra din e-postadress i ditt Firefox-konto."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "URLen har ett ogiltigt format. Giltiga URLer ser ut som http://example.com/my_page."

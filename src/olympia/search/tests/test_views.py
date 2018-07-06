@@ -4,7 +4,6 @@ import urlparse
 
 from django.http import QueryDict
 from django.test.client import RequestFactory
-from django.utils.translation import trim_whitespace
 
 import mock
 import pytest
@@ -15,12 +14,10 @@ from pyquery import PyQuery as pq
 from olympia import amo
 from olympia.addons.models import (
     Addon, AddonCategory, AddonUser, Category, Persona)
-from olympia.amo.templatetags.jinja_helpers import (
-    format_date, locale_url, numberfmt, urlparams)
+from olympia.amo.templatetags.jinja_helpers import locale_url, urlparams
 from olympia.amo.tests import (
     ESTestCaseWithAddons, addon_factory, create_switch)
 from olympia.amo.urlresolvers import reverse
-from olympia.bandwagon.tasks import unindex_collections
 from olympia.search import views
 from olympia.search.utils import floor_version
 from olympia.search.views import version_sidebar
@@ -36,7 +33,7 @@ pytestmark = pytest.mark.django_db
 class TestSearchboxTarget(ESTestCaseWithAddons):
 
     def check(self, url, placeholder, cat=None, action=None, q=None):
-        # Checks that we search within addons, personas, collections, etc.
+        # Checks that we search within addons & personas.
         form = pq(self.client.get(url).content)('.header-search form')
         assert form.attr('action') == action or reverse('search.search')
         if cat:
@@ -52,10 +49,6 @@ class TestSearchboxTarget(ESTestCaseWithAddons):
     def test_themes(self):
         self.check(reverse('browse.themes'), 'search for add-ons',
                    '%s,0' % amo.ADDON_THEME)
-
-    def test_collections(self):
-        self.check(reverse('collections.list'), 'search for collections',
-                   'collections')
 
     def test_personas(self):
         self.check(reverse('browse.personas'), 'search for themes',
@@ -103,7 +96,7 @@ class SearchBase(ESTestCaseWithAddons):
         assert got == expected, params
 
     def check_appver_platform_ignored(self, expected):
-        # Collection results should not filter on `appver` nor `platform`.
+        # Persona search should not filter on `appver` nor `platform`.
         permutations = [
             {},
             {'appver': amo.FIREFOX.id},
@@ -863,277 +856,6 @@ class TestPersonaSearch(SearchBase):
         r = self.client.get(self.url + '&page=2', follow=True)
         assert r.status_code == 200
         assert pq(r.content)('.personas-grid li').length == 1
-
-
-class TestCollectionSearch(SearchBase):
-
-    def setUp(self):
-        super(TestCollectionSearch, self).setUp()
-        self.url = urlparams(reverse('search.search'), cat='collections')
-        self.all_collections = []
-
-    def tearDown(self):
-        unindex_collections([c.id for c in self.all_collections])
-        super(TestCollectionSearch, self).tearDown()
-
-    def _generate(self):
-        # Add some public collections.
-        count = 3
-        self.public_collections = []
-        for x in xrange(count):
-            collection = amo.tests.collection_factory(name='Collection %s' % x)
-            collection.update(modified=self.days_ago(x - count))
-            self.all_collections.append(collection)
-            self.public_collections.append(collection)
-
-        # Synchronized, favorites, and unlisted collections should be excluded.
-        for type_ in (amo.COLLECTION_SYNCHRONIZED, amo.COLLECTION_FAVORITES):
-            self.all_collections.append(
-                amo.tests.collection_factory(type=type_))
-        self.all_collections.append(amo.tests.collection_factory(listed=False))
-
-        self.refresh()
-
-    def test_legacy_redirect(self):
-        self._generate()
-        # Ensure `sort=newest` redirects to `sort=created`.
-        r = self.client.get(urlparams(self.url, sort='newest'))
-        self.assert3xx(r, urlparams(self.url, sort='created'), 301)
-
-    def test_sort_order_unknown(self):
-        self._generate()
-        self.check_sort_links('xxx')
-
-    def test_sort_order_default(self):
-        self._generate()
-        self.check_sort_links(None, sort_by='weekly_subscribers')
-
-    def test_sort_order_weekly(self):
-        self._generate()
-        self.check_sort_links('weekly', sort_by='weekly_subscribers')
-
-    def test_sort_order_default_with_term(self):
-        self._generate()
-        self.check_sort_links(None, sort_by='weekly_subscribers',
-                              params={'q': 'collection'})
-
-    def test_sort_order_weekly_with_term(self):
-        self._generate()
-        self.check_sort_links('weekly', sort_by='weekly_subscribers',
-                              params={'q': 'collection'})
-
-    def test_sort_order_monthly(self):
-        self._generate()
-        self.check_sort_links('monthly', sort_by='monthly_subscribers')
-
-    def test_sort_order_all(self):
-        self._generate()
-        self.check_sort_links('all', sort_by='subscribers')
-
-    def test_sort_order_rating(self):
-        self._generate()
-        self.check_sort_links('rating', sort_by='rating')
-
-    def test_sort_order_name(self):
-        self._generate()
-        self.check_sort_links('name', sort_by='name', reverse=False)
-
-    def test_sort_order_created(self):
-        self._generate()
-        self.check_sort_links('created', sort_by='created')
-
-    def test_sort_order_updated(self):
-        self._generate()
-        self.check_sort_links('updated', sort_by='modified')
-
-    def test_created_timestamp(self):
-        self._generate()
-        r = self.client.get(urlparams(self.url, sort='created'))
-        items = pq(r.content)('.primary .item')
-        for idx, c in enumerate(r.context['pager'].object_list):
-            assert trim_whitespace(items.eq(idx).find('.modified').text()) == (
-                'Added %s' % trim_whitespace(format_date(c.created)))
-
-    def test_updated_timestamp(self):
-        self._generate()
-        r = self.client.get(urlparams(self.url, sort='updated'))
-        items = pq(r.content)('.primary .item')
-        for idx, c in enumerate(r.context['pager'].object_list):
-            assert trim_whitespace(items.eq(idx).find('.modified').text()) == (
-                'Updated %s' % trim_whitespace(format_date(c.modified)))
-
-    def check_followers_count(self, sort, column):
-        # Checks that we show the correct type/number of followers.
-        r = self.client.get(urlparams(self.url, sort=sort))
-        items = pq(r.content)('.primary .item')
-        for idx, c in enumerate(r.context['pager'].object_list):
-            assert items.eq(idx).find('.followers').text().split()[0] == (
-                numberfmt(getattr(c, column)))
-
-    def test_followers_all(self):
-        self._generate()
-        for sort in ('', 'all', 'rating', 'created', 'modified', 'name'):
-            self.check_followers_count(sort, column='subscribers')
-
-    def test_followers_monthly(self):
-        self._generate()
-        self.check_followers_count('monthly', column='monthly_subscribers')
-
-    def test_followers_weekly(self):
-        self._generate()
-        self.check_followers_count('weekly', column='weekly_subscribers')
-
-    def test_heading(self):
-        # One is a lonely number. But that's all we need.
-        self.all_collections.append(amo.tests.collection_factory())
-        self.check_heading()
-
-    def test_results_blank_query(self):
-        self._generate()
-        collection_ids = sorted(p.id for p in self.public_collections)
-        r = self.client.get(self.url, follow=True)
-        assert r.status_code == 200
-        assert self.get_results(r) == collection_ids
-        doc = pq(r.content)
-        assert doc('.primary .item').length == len(collection_ids)
-        assert doc('.listing-footer').length == 0
-
-    def test_results_name_query(self):
-        self._generate()
-
-        c1 = self.public_collections[0]
-        c1.name = 'SeaVans: A Collection of Cars at the Beach'
-        c1.save()
-
-        c2 = self.public_collections[1]
-        c2.name = 'The Life Aquatic with SeaVan: An Underwater Collection'
-        c2.save()
-
-        self.refresh()
-
-        self.check_name_results(
-            {'q': 'collection'},
-            sorted(p.id for p in self.public_collections))
-
-        # This is a very specific search so we really just return precisely
-        # that.
-        self.check_name_results(
-            {'q': 'seavan: a collection of cars at the beach'},
-            [c1.id])
-
-        # Garbage search terms should return nothing.
-        for term in ('xxx', 'garbage', '£'):
-            self.check_name_results({'q': term}, [])
-
-        # Try to match 'SeaVans: A Collection of Cars at the Beach'.
-        for term in ('cars', 'beach'):
-            self.check_name_results({'q': term}, [c1.pk])
-
-        # Match 'The Life Aquatic with SeaVan: An Underwater Collection'.
-        for term in ('life aquatic', 'life', 'aquatic', 'underwater', 'under'):
-            self.check_name_results({'q': term}, [c2.pk])
-
-        # Match both results above.
-        for term in ('seavan', 'seavans'):
-            self.check_name_results({'q': term}, sorted([c1.pk, c2.pk]))
-
-    def test_results_popularity(self):
-        collections = [
-            ('Traveler Pack', 2000),
-        ]
-        webdev_collections = [
-            ('Tools for Developer', 67),
-            ('Web Developer', 250),
-            ('Web Developer Necessities', 50),
-            ('Web Pro', 200),
-            ('Web Developer Pack', 242),
-        ]
-        sorted_webdev_collections = sorted(
-            webdev_collections, key=lambda x: x[1], reverse=True)
-
-        # Create collections, in "random" order, with an additional collection
-        # that isn't relevant to our query.
-        for name, subscribers in (collections + webdev_collections):
-            self.all_collections.append(
-                amo.tests.collection_factory(
-                    name=name, subscribers=subscribers,
-                    weekly_subscribers=subscribers))
-        self.refresh()
-
-        # No sort = sort by weekly subscribers, 'all' = sort by subscribers.
-        for sort in ('', 'all'):
-            if sort:
-                r = self.client.get(urlparams(self.url, q='web developer',
-                                              sort=sort), follow=True)
-            else:
-                r = self.client.get(urlparams(self.url, q='web developer'),
-                                    follow=True)
-            assert r.status_code == 200
-            results = list(r.context['pager'].object_list)
-            assert len(results) == len(webdev_collections)
-            for coll, expected in zip(results, sorted_webdev_collections):
-                assert unicode(coll.name) == expected[0], (
-                    'Wrong order for sort %r.' % sort)
-                assert coll.subscribers == expected[1], (
-                    'Incorrect subscribers for sort %r.' % sort)
-
-    def test_results_appver_platform(self):
-        self._generate()
-        self.check_appver_platform_ignored(
-            sorted(c.id for c in self.public_collections))
-
-    def test_results_other_applications(self):
-        tb_collection = amo.tests.collection_factory(
-            application=amo.THUNDERBIRD.id)
-        self.all_collections.append(tb_collection)
-        sm_collection = amo.tests.collection_factory(
-            application=amo.SEAMONKEY.id)
-        self.all_collections.append(sm_collection)
-        self.refresh()
-
-        r = self.client.get(self.url)
-        assert self.get_results(r) == []
-
-        r = self.client.get(self.url.replace('firefox', 'thunderbird'))
-        assert self.get_results(r) == [tb_collection.id]
-
-        r = self.client.get(self.url.replace('firefox', 'seamonkey'))
-        assert self.get_results(r) == [sm_collection.id]
-
-    def test_version_sidebar(self):
-        request = RequestFactory()
-        request.GET = {}
-        request.APP = amo.FIREFOX
-
-        request.get(reverse('search.search'))
-        facets = {
-            u'platforms': [{u'doc_count': 58, u'key': 1}],
-            u'appversions': [{u'doc_count': 58, u'key': 5000000200100}],
-            u'categories': [{u'doc_count': 55, u'key': 1}],
-            u'tags': [],
-        }
-        versions = version_sidebar(request, {}, facets)
-        assert versions[0].selected
-
-        versions = version_sidebar(request, {'appver': '5.0'}, facets)
-        assert versions[1].selected
-
-        # We're not storing the version in the session anymore: no memories.
-        versions = version_sidebar(request, {}, facets)
-        assert versions[0].selected
-
-        # We read the appver from the cleaned form data.
-        request.GET['appver'] = '123.4'
-        # No form data, fallback to default (first entry).
-        versions = version_sidebar(request, {}, facets)
-        assert versions[0].selected
-        # Form data has the proper version, use it.
-        versions = version_sidebar(request, {'appver': '5.0'}, facets)
-        assert versions[1].selected
-        # Form data has the proper version, which is new: add it.
-        versions = version_sidebar(request, {'appver': '123.4'}, facets)
-        assert versions[1].selected
-        assert len(versions) == 3
 
 
 @pytest.mark.parametrize("test_input,expected", [

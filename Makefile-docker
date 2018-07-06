@@ -68,8 +68,13 @@ help_submake:
 
 initialize_db:
 	rm -rf ./user-media/* ./tmp/*
-	python manage.py reset_db
-	python manage.py syncdb --noinput
+	# The --no-utf8 is a temporary workaround for https://github.com/mozilla/addons-server/issues/8593
+	# The actual fix is pushed upstream in https://github.com/django-extensions/django-extensions/issues/1213
+	# as https://github.com/django-extensions/django-extensions/pull/1214
+	# So this will have to be reverted once an upstream fix lands.  --no-utf8 here actually *enables*
+	# utf-8 support.
+	python manage.py reset_db --no-utf8
+	python manage.py migrate --noinput
 	python manage.py loaddata initial.json
 	python manage.py import_prod_versions
 	schematic --fake src/olympia/migrations/
@@ -92,14 +97,18 @@ populate_data:
 	python manage.py cron category_totals
 	python manage.py update_permissions_from_mc
 
-install_python_dependencies:
+install_python_common_dependencies:
 	# Can't use --progress-bar=off for system packages as long as our docker image
 	# doesn't have pip 10 by default.
 	pip install --no-deps --exists-action=w -r requirements/system.txt
+
+install_python_test_dependencies: install_python_common_dependencies
+	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/tests.txt
+
+install_python_dev_dependencies: install_python_common_dependencies
 	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/flake8.txt
 	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
 	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
-	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_without_hash.txt
 	pip install -e .
 
 install_node_dependencies: install_node_js copy_node_js
@@ -112,7 +121,7 @@ copy_node_js:
 	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
 	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
 
-update_deps: install_python_dependencies install_node_dependencies
+update_deps: install_python_dev_dependencies install_node_dependencies
     # Make sure we pull our latest mozilla-product-data.
     # There were scenarios where this wouldn't happen automatically during our CircleCI ui-tests so we enforce it here as a workaround.
 	python manage.py update_product_details
@@ -133,8 +142,13 @@ reindex:
 setup-ui-tests:
 	rm -rf ./user-media/* ./tmp/*
 	# Reset the database and fake database migrations
-	python manage.py reset_db --noinput
-	python manage.py syncdb --noinput
+	# The --no-utf8 is a temporary workaround for https://github.com/mozilla/addons-server/issues/8593
+	# The actual fix is pushed upstream in https://github.com/django-extensions/django-extensions/issues/1213
+	# as https://github.com/django-extensions/django-extensions/pull/1214
+	# So this will have to be reverted once an upstream fix lands. --no-utf8 here actually *enables*
+	# utf-8 support.
+	python manage.py reset_db --noinput --no-utf8
+	python manage.py migrate --noinput
 	schematic --fake src/olympia/migrations/
 
 	# Let's load some initial data and import mozilla-product versions

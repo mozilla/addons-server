@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 05:59+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2017-08-10 19:22+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -722,18 +722,6 @@ msgstr "Tutón přidatk ze zběrki wotstronić"
 
 msgid "Remove"
 msgstr "Wotstronić"
-
-msgid "Remove this user as a contributor"
-msgstr "Wužiwarja jako sobuskutkowarja wotstronić"
-
-msgid "An email address is required."
-msgstr "E-mejlowa adresa je trěbna."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Njemóžeće sebje jako sobuskutkowaceho přidać."
-
-msgid "You have already added that user."
-msgstr "Sće hižo toho wužiwarja přidał."
 
 msgid "Add to favorites"
 msgstr "Faworitam přidać"

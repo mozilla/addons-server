@@ -34,7 +34,7 @@ from olympia.amo.templatetags.jinja_helpers import (
     user_media_path, user_media_url)
 from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, check_links, file_factory, formset,
-    initial, user_factory, version_factory)
+    initial, reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingFlag
@@ -1993,6 +1993,14 @@ class TestExpiredInfoRequestsQueue(QueueTest):
             addon=addon5,
             pending_info_request=self.days_ago(42))
 
+        # Invisible (user-disabled) addon with expired info request.
+        addon6 = addon_factory(name=u'Incomplete Addön 5',
+                               status=amo.STATUS_PUBLIC,
+                               disabled_by_user=True)
+        AddonReviewerFlags.objects.create(
+            addon=addon6,
+            pending_info_request=self.days_ago(42))
+
         self.expected_addons = [addon2, addon1]
 
     def test_results_no_permission(self):
@@ -2104,8 +2112,7 @@ class TestContentReviewQueue(QueueTest):
         AutoApprovalSummary.objects.create(
             version=addon4.current_version,
             verdict=amo.AUTO_APPROVED, confirmed=True)
-        assert not AddonApprovalsCounter.objects.no_cache().filter(
-            addon=addon4).exists()
+        assert not AddonApprovalsCounter.objects.filter(addon=addon4).exists()
 
         # Addons with no last_content_review date should be first, ordered by
         # their creation date, older first.
@@ -4702,16 +4709,16 @@ class TestAddonReviewerViewSet(TestCase):
         super(TestAddonReviewerViewSet, self).setUp()
         self.user = user_factory()
         self.addon = addon_factory()
-        self.subscribe_url = reverse(
-            'v3:reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
-        self.unsubscribe_url = reverse(
-            'v3:reviewers-addon-unsubscribe', kwargs={'pk': self.addon.pk})
-        self.enable_url = reverse(
-            'v3:reviewers-addon-enable', kwargs={'pk': self.addon.pk})
-        self.disable_url = reverse(
-            'v3:reviewers-addon-disable', kwargs={'pk': self.addon.pk})
-        self.flags_url = reverse(
-            'v3:reviewers-addon-flags', kwargs={'pk': self.addon.pk})
+        self.subscribe_url = reverse_ns(
+            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+        self.unsubscribe_url = reverse_ns(
+            'reviewers-addon-unsubscribe', kwargs={'pk': self.addon.pk})
+        self.enable_url = reverse_ns(
+            'reviewers-addon-enable', kwargs={'pk': self.addon.pk})
+        self.disable_url = reverse_ns(
+            'reviewers-addon-disable', kwargs={'pk': self.addon.pk})
+        self.flags_url = reverse_ns(
+            'reviewers-addon-flags', kwargs={'pk': self.addon.pk})
 
     def test_subscribe_not_logged_in(self):
         response = self.client.post(self.subscribe_url)
@@ -4725,8 +4732,8 @@ class TestAddonReviewerViewSet(TestCase):
     def test_subscribe_addon_does_not_exist(self):
         self.grant_permission(self.user, 'Addons:PostReview')
         self.client.login_api(self.user)
-        self.subscribe_url = reverse(
-            'v3:reviewers-addon-subscribe', kwargs={'pk': self.addon.pk + 42})
+        self.subscribe_url = reverse_ns(
+            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk + 42})
         response = self.client.post(self.subscribe_url)
         assert response.status_code == 404
 
@@ -4735,8 +4742,8 @@ class TestAddonReviewerViewSet(TestCase):
             user=self.user, addon=self.addon)
         self.grant_permission(self.user, 'Addons:PostReview')
         self.client.login_api(self.user)
-        self.subscribe_url = reverse(
-            'v3:reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+        self.subscribe_url = reverse_ns(
+            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
         response = self.client.post(self.subscribe_url)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 1
@@ -4744,8 +4751,8 @@ class TestAddonReviewerViewSet(TestCase):
     def test_subscribe(self):
         self.grant_permission(self.user, 'Addons:PostReview')
         self.client.login_api(self.user)
-        self.subscribe_url = reverse(
-            'v3:reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+        self.subscribe_url = reverse_ns(
+            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
         response = self.client.post(self.subscribe_url)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 1
@@ -4762,16 +4769,16 @@ class TestAddonReviewerViewSet(TestCase):
     def test_unsubscribe_addon_does_not_exist(self):
         self.grant_permission(self.user, 'Addons:PostReview')
         self.client.login_api(self.user)
-        self.unsubscribe_url = reverse(
-            'v3:reviewers-addon-subscribe', kwargs={'pk': self.addon.pk + 42})
+        self.unsubscribe_url = reverse_ns(
+            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk + 42})
         response = self.client.post(self.unsubscribe_url)
         assert response.status_code == 404
 
     def test_unsubscribe_not_subscribed(self):
         self.grant_permission(self.user, 'Addons:PostReview')
         self.client.login_api(self.user)
-        self.subscribe_url = reverse(
-            'v3:reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+        self.subscribe_url = reverse_ns(
+            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
         response = self.client.post(self.unsubscribe_url)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 0
@@ -4781,8 +4788,8 @@ class TestAddonReviewerViewSet(TestCase):
             user=self.user, addon=self.addon)
         self.grant_permission(self.user, 'Addons:PostReview')
         self.client.login_api(self.user)
-        self.subscribe_url = reverse(
-            'v3:reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+        self.subscribe_url = reverse_ns(
+            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
         response = self.client.post(self.unsubscribe_url)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 0
@@ -4798,8 +4805,8 @@ class TestAddonReviewerViewSet(TestCase):
             user=another_user, addon=self.addon)
         self.grant_permission(self.user, 'Addons:PostReview')
         self.client.login_api(self.user)
-        self.subscribe_url = reverse(
-            'v3:reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
+        self.subscribe_url = reverse_ns(
+            'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
         response = self.client.post(self.unsubscribe_url)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 2
@@ -4823,8 +4830,8 @@ class TestAddonReviewerViewSet(TestCase):
     def test_enable_addon_does_not_exist(self):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
-        self.enable_url = reverse(
-            'v3:reviewers-addon-enable', kwargs={'pk': self.addon.pk + 42})
+        self.enable_url = reverse_ns(
+            'reviewers-addon-enable', kwargs={'pk': self.addon.pk + 42})
         response = self.client.post(self.enable_url)
         assert response.status_code == 404
 
@@ -4891,8 +4898,8 @@ class TestAddonReviewerViewSet(TestCase):
     def test_disable_addon_does_not_exist(self):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
-        self.disable_url = reverse(
-            'v3:reviewers-addon-enable', kwargs={'pk': self.addon.pk + 42})
+        self.disable_url = reverse_ns(
+            'reviewers-addon-enable', kwargs={'pk': self.addon.pk + 42})
         response = self.client.post(self.disable_url)
         assert response.status_code == 404
 
@@ -4929,8 +4936,8 @@ class TestAddonReviewerViewSet(TestCase):
     def test_patch_flags_addon_does_not_exist(self):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
-        self.flags_url = reverse(
-            'v3:reviewers-addon-flags', kwargs={'pk': self.addon.pk + 42})
+        self.flags_url = reverse_ns(
+            'reviewers-addon-flags', kwargs={'pk': self.addon.pk + 42})
         response = self.client.patch(
             self.flags_url, {'auto_approval_disabled': True})
         assert response.status_code == 404

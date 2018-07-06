@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 05:59+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-05-05 16:49+0000\n"
 "Last-Translator: pirthi.d <pirthi.d@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -711,18 +711,6 @@ msgstr "ਭੰਡਾਰ ਵਿੱਚੋਂ ਇਹ ਐਡ-ਆਨ ਹਟਾਓ"
 
 msgid "Remove"
 msgstr "ਹਟਾਓ"
-
-msgid "Remove this user as a contributor"
-msgstr "ਇਸ ਯੂਜਰ ਨੂੰ ਯੋਗਦਾਨ ਦੇ ਤੌਰ ਤੇ ਹਟਾਓ"
-
-msgid "An email address is required."
-msgstr "ਇੱਕ ਈਮੇਲ ਐੱਡਰੈਸ ਦੀ ਜਰੂਰਤ ਹੈ।"
-
-msgid "You cannot add yourself as a contributor."
-msgstr "ਹਟਾਓ"
-
-msgid "You have already added that user."
-msgstr "ਤੁਸੀ ਇਸ ਯੂਜਰ ਨੂੰ ਪਹਿਲਾਂ ਹੀ ਸ਼ਾਮਲ ਕਰ ਚੁੱਕੇ ਹੋ"
 
 msgid "Add to favorites"
 msgstr "ਪਸੰਦ ਵਿੱਚ ਸ਼ਾਮਿਲ ਕਰੋ"

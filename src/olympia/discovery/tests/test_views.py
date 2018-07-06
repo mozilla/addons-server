@@ -3,28 +3,29 @@ from collections import OrderedDict
 
 import mock
 
+from rest_framework.settings import api_settings
 from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import TestCase, addon_factory, user_factory
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
 from olympia.discovery.data import DiscoItem, discopane_items as disco_data
+from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.utils import replace_extensions
 
 
 # Represents a dummy version of `olympia.discovery.data`
 def get_dummy_addons():
     return OrderedDict([
-        (16349, addon_factory(id=16349, type=amo.ADDON_PERSONA,
-                              description=u'16349')),
-        (9609, addon_factory(id=9609, type=amo.ADDON_EXTENSION)),
-        (5890, addon_factory(id=5890, type=amo.ADDON_EXTENSION)),
-        (46852, addon_factory(id=46852, type=amo.ADDON_PERSONA)),
-        (954390, addon_factory(id=954390, type=amo.ADDON_EXTENSION)),
+        (42019, addon_factory(id=42019, type=amo.ADDON_PERSONA,
+                              description=u'42019')),
+        (506646, addon_factory(id=506646, type=amo.ADDON_EXTENSION)),
+        (850407, addon_factory(id=850407, type=amo.ADDON_EXTENSION)),
+        (553386, addon_factory(id=553386, type=amo.ADDON_PERSONA)),
+        (445852, addon_factory(id=445852, type=amo.ADDON_EXTENSION)),
         (93451, addon_factory(id=93451, type=amo.ADDON_EXTENSION)),
-        (963836, addon_factory(id=963836, type=amo.ADDON_PERSONA,
-                               description=u'963836')),
+        (482976, addon_factory(id=482976, type=amo.ADDON_PERSONA,
+                               description=u'482976')),
         # And now the china edition addons
         (492244, addon_factory(id=492244, type=amo.ADDON_PERSONA,
                                description=u'492244')),
@@ -87,12 +88,13 @@ class DiscoveryTestMixin(object):
 class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
     def setUp(self):
         super(TestDiscoveryViewList, self).setUp()
-        self.url = reverse('v3:discovery-list')
+        self.url = reverse_ns('discovery-list')
 
         self.addons = get_dummy_addons()
 
     def test_reverse(self):
-        assert self.url == '/api/v3/discovery/'
+        assert self.url.endswith(
+            '/api/%s/discovery/' % api_settings.DEFAULT_VERSION)
 
     def test_list(self):
         response = self.client.get(self.url, {'lang': 'en-US'})
@@ -214,7 +216,7 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
         # If no recommendations then results should be as before - tests from
         # the parent class check this.
         self.get_recommendations.return_value = []
-        self.url = reverse('v3:discovery-list')
+        self.url = reverse_ns('discovery-list')
 
     def test_recommendations(self):
         author = user_factory()
@@ -317,3 +319,41 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
                 self._check_disco_theme(result, discopane_items_china[i])
             else:
                 self._check_disco_addon(result, discopane_items_china[i])
+
+
+class TestDiscoveryItemViewSet(TestCase):
+    def setUp(self):
+        DiscoveryItem.objects.create(
+            addon=addon_factory(),
+            custom_addon_name=u'Fôoooo')
+        DiscoveryItem.objects.create(
+            addon=addon_factory(),
+            custom_heading=u'My Custöm Headîng',
+            custom_description=u'')
+        DiscoveryItem.objects.create(
+            addon=addon_factory(),
+            custom_heading=u'Änother custom heading',
+            custom_description=u'This time with a custom description as well')
+        self.url = reverse_ns('discovery-editorial-list')
+
+    def test_basic(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert 'count' not in response.data
+        assert 'next' not in response.data
+        assert 'previous' not in response.data
+        assert 'count' not in response.data
+        assert 'results' in response.data
+
+        result = response.data['results'][0]
+        assert result['custom_heading'] == u''
+        assert result['custom_description'] == u''
+
+        result = response.data['results'][1]
+        assert result['custom_heading'] == u'My Custöm Headîng'
+        assert result['custom_description'] == u''
+
+        result = response.data['results'][2]
+        assert result['custom_heading'] == u'Änother custom heading'
+        assert result['custom_description'] == (
+            u'This time with a custom description as well')

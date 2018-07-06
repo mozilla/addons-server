@@ -1,19 +1,14 @@
 import contextlib
 import os
-import threading
 import time
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.utils import translation
-from django.utils.encoding import force_text
 
-import caching.base
 import elasticsearch
 import multidb.pinning
-
-from django_statsd.clients import statsd
 
 import olympia.core.logger
 import olympia.lib.queryset_transform as queryset_transform
@@ -22,12 +17,6 @@ from olympia.translations.hold import save_translations
 
 from . import search
 
-
-# Store whether we should be skipping cache-machine for this thread or not.
-# Note that because the value is initialized at import time, we can't use
-# override_settings() on CACHE_MACHINE_ENABLED.
-_locals = threading.local()
-_locals.skip_cache = not settings.CACHE_MACHINE_ENABLED
 
 log = olympia.core.logger.getLogger('z.addons')
 
@@ -43,18 +32,7 @@ def use_master():
         multidb.pinning._locals.pinned = old
 
 
-@contextlib.contextmanager
-def skip_cache():
-    """Within this context, no queries come from cache."""
-    old = getattr(_locals, 'skip_cache', not settings.CACHE_MACHINE_ENABLED)
-    _locals.skip_cache = True
-    try:
-        yield
-    finally:
-        _locals.skip_cache = old
-
-
-class TransformQuerySet(queryset_transform.TransformQuerySet):
+class BaseQuerySet(queryset_transform.TransformQuerySet):
 
     def pop_transforms(self):
         qs = self._clone()
@@ -71,11 +49,6 @@ class TransformQuerySet(queryset_transform.TransformQuerySet):
         # Add an extra select so these are cached separately.
         return (self.no_transforms().extra(select={'_only_trans': 1})
                 .transform(transformer.get_trans))
-
-    def transform(self, fn):
-        from . import decorators
-        f = decorators.skip_cache(fn)
-        return super(TransformQuerySet, self).transform(f)
 
 
 class RawQuerySet(models.query.RawQuerySet):
@@ -94,20 +67,17 @@ class RawQuerySet(models.query.RawQuerySet):
         return len(list(self.__iter__()))
 
 
-class CachingRawQuerySet(RawQuerySet, caching.base.CachingRawQuerySet):
-    """A RawQuerySet with __len__ and caching."""
-
-
-# Make TransformQuerySet one of CachingQuerySet's parents so that we can do
-# transforms on objects and then get them cached.
-CachingQuerySet = caching.base.CachingQuerySet
-CachingQuerySet.__bases__ = (TransformQuerySet,) + CachingQuerySet.__bases__
-
-
-class UncachedManagerBase(models.Manager):
+class ManagerBase(models.Manager):
+    # This needs to be set so that this manager class is being used
+    # for related objects too. This helps resolving translation fields
+    # on related fields.
+    # This also ensures we don't ignore soft-deleted items when traversing
+    # relations, if they are hidden by the objects manager, like we
+    # do with `addons.models:Addon`.
+    use_for_related_fields = True
 
     def get_queryset(self):
-        qs = self._with_translations(TransformQuerySet(self.model))
+        qs = self._with_translations(BaseQuerySet(self.model))
         return qs
 
     def _with_translations(self, qs):
@@ -142,37 +112,6 @@ class UncachedManagerBase(models.Manager):
                 if defaults is not None:
                     kw.update(defaults)
                 return self.create(**kw), True
-
-
-class ManagerBase(caching.base.CachingManager, UncachedManagerBase):
-    """
-    Base for all managers in AMO.
-
-    Returns TransformQuerySets from the queryset_transform project.
-
-    If a model has translated fields, they'll be attached through a transform
-    function.
-    """
-
-    def get_queryset(self):
-        qs = super(ManagerBase, self).get_queryset()
-        if getattr(_locals, 'skip_cache', False):
-            qs = qs.no_cache()
-        return self._with_translations(qs)
-
-    def raw(self, raw_query, params=None, *args, **kwargs):
-        return CachingRawQuerySet(raw_query, self.model, params=params,
-                                  using=self._db, *args, **kwargs)
-
-    def post_save(self, *args, **kwargs):
-        # Measure cache invalidation after saving an object.
-        with statsd.timer('cache_machine.manager.post_save'):
-            return super(ManagerBase, self).post_save(*args, **kwargs)
-
-    def post_delete(self, *args, **kwargs):
-        # Measure cache invalidation after deleting an object.
-        with statsd.timer('cache_machine.manager.post_delete'):
-            return super(ManagerBase, self).post_delete(*args, **kwargs)
 
 
 class _NoChangeInstance(object):
@@ -389,10 +328,9 @@ class SaveUpdateMixin(object):
         return super(SaveUpdateMixin, self).save(**kwargs)
 
 
-class UncachedModelBase(SearchMixin, SaveUpdateMixin, models.Model):
+class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
     """
-    Base class for AMO models to abstract some common features
-    (without cache-machine).
+    Base class for AMO models to abstract some common features.
 
     * Adds automatic created and modified fields to the model.
     * Fetches all translations in one subsequent query during initialization.
@@ -401,7 +339,7 @@ class UncachedModelBase(SearchMixin, SaveUpdateMixin, models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
-    objects = UncachedManagerBase()
+    objects = ManagerBase()
 
     class Meta:
         abstract = True
@@ -415,29 +353,6 @@ class UncachedModelBase(SearchMixin, SaveUpdateMixin, models.Model):
         need to pass a serializable reference to this instance without having
         to serialize the whole object."""
         return self._meta.app_label, self._meta.model_name, self.pk
-
-
-class ModelBase(caching.base.CachingMixin, UncachedModelBase, models.Model):
-    """
-    Base class for AMO models to abstract some common features.
-
-    * Adds automatic created and modified fields to the model.
-    * Fetches all translations in one subsequent query during initialization.
-    """
-    objects = ManagerBase()
-
-    class Meta(UncachedModelBase.Meta):
-        abstract = True
-
-    @classmethod
-    def _cache_key(cls, pk, db):
-        """
-        Custom django-cache-machine cache key implementation that avoids having
-        the real db in the key, since we are only using master-slaves we don't
-        need it and it avoids invalidation bugs with FETCH_BY_ID.
-        """
-        key_parts = ('o', cls._meta, pk, 'default')
-        return ':'.join(map(force_text, key_parts))
 
 
 def manual_order(qs, pks, pk_name='id'):
@@ -522,7 +437,10 @@ class BasePreview(object):
     def delete_preview_files(cls, sender, instance, **kw):
         """On delete of the Preview object from the database, unlink the image
         and thumb on the file system """
-        for filename in [instance.image_path, instance.thumbnail_path]:
+        image_paths = [
+            instance.image_path, instance.thumbnail_path,
+            instance.original_path]
+        for filename in image_paths:
             try:
                 log.info('Removing filename: %s for preview: %s'
                          % (filename, instance.pk))

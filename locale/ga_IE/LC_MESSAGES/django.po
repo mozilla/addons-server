@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 06:00+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -880,9 +880,6 @@ msgstr "Téamaí"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
 
-msgid "Most Followers"
-msgstr "Líon is mó leantóirí"
-
 msgid "Collections"
 msgstr "Bailiúcháin"
 
@@ -999,22 +996,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-#, fuzzy
-msgid "Contributors"
-msgstr "Rannpháirtí"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Bailiúcháin :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Is éard atá i mBailiúchán ná grúpa de bhreiseáin cosúil le chéile is féidir le héinne cruthú agus scaipeadh."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Bailiúcháin :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Mise amháin atá in ann an bailiúchán seo a fheiceáil."
 
@@ -1070,20 +1051,14 @@ msgstr "Ní féidir an t-ainm seo a úsáid."
 msgid "This add-on already belongs to the collection"
 msgstr "Tá an URL seo in úsáid ag bailiúchán eile cheana"
 
-msgid "Name"
-msgstr "Ainm"
-
-msgid "Recently Updated"
-msgstr "Nuashonraithe Le Déanaí"
-
-msgid "Recently Popular"
-msgstr "Éileamh Is Mó Le Déanaí"
-
 msgid "Added"
 msgstr "Cruthaithe"
 
 msgid "Popularity"
 msgstr "Éileamh"
+
+msgid "Name"
+msgstr "Ainm"
 
 msgid "Collection created!"
 msgstr "Bailiúchán cruthaithe!"
@@ -1201,17 +1176,14 @@ msgstr "Ar Aghaidh"
 msgid "What are Collections?"
 msgstr "Cad is Bailiúchán ann?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Is éard atá i mBailiúchán ná grúpa de bhreiseáin cosúil le chéile is féidir le héinne cruthú agus scaipeadh."
+
 msgid "Explore Collections"
 msgstr "Brabhsáil Bailiúcháin"
 
 msgid "Common Tags"
 msgstr "Clibeanna Coitianta"
-
-msgid "More by this User"
-msgstr "Tuilleadh ón Úsáideoir seo"
-
-msgid "See all collections by this user"
-msgstr "Féach ar gach bailiúchán a chruthaigh an t-úsáideoir seo"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1313,61 +1285,8 @@ msgstr "Cuir {0} in eagar"
 msgid "Description"
 msgstr "Cur Síos"
 
-msgid "Contributors & More"
-msgstr "Rannpháirtithe agus Tuilleadh"
-
 msgid "Save Changes"
 msgstr "Sábháil na hAthruithe"
-
-msgid "Owner"
-msgstr "Úinéir"
-
-msgid "Make Owner"
-msgstr "Déan Úinéir As"
-
-msgid "Remove this user as a contributor"
-msgstr "Bain an t-úsáideoir seo ó na rannpháirtithe"
-
-msgid "Remove"
-msgstr "Bain"
-
-msgid "Collection Contributors"
-msgstr "Rannpháirtithe an Bhailiúcháin"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-
-msgid "User"
-msgstr "Úsáideoir"
-
-msgid "Email"
-msgstr "Ríomhphost"
-
-msgid "Role"
-msgstr "Ról"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Cuir isteach seoladh ríomhphoist an rannpháirtí is mian leat cur leis"
-
-msgid "Add Contributor"
-msgstr "Cuir Rannpháirtí Leis"
-
-msgid "Contributor"
-msgstr "Rannpháirtí"
-
-msgid "Admin Settings"
-msgstr "Socruithe Riaracháin"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Rabhadh:</b> Má athraíonn tú úinéir an bhailiúcháin seo, ní bheidh tú in ann é a chur in eagar amach anseo.  Beidh tú in ann breiseáin a chur leis nó a bhaint uaidh amháin."
-
-msgid "Continue"
-msgstr "Ar Aghaidh"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "nó <a id=\"change-owner-cancel\" href=\"#\">Cealaigh</a>"
 
 msgid "Remove from favorites"
 msgstr "Bain ó na ceanáin"
@@ -1382,27 +1301,9 @@ msgstr "Bailiúcháin le {0}"
 msgid "No collections found."
 msgstr "Níor aimsíodh aon bhailiúcháin."
 
-msgid "Most-Followed Collections"
-msgstr "Bailiúcháin leis an lucht leanúna is mó"
-
-msgid "Newest Collections"
-msgstr "Bailiúcháin Is Nuaí"
-
-msgid "Collections by Name"
-msgstr "Bailiúcháin de réir Ainm"
-
-msgid "Recently Updated Collections"
-msgstr "Bailiúcháin Nuashonraithe Le Déanaí"
-
-msgid "Recently Popular Collections"
-msgstr ""
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
-
-msgid "Subscribe"
-msgstr "Liostáil"
 
 #, fuzzy, python-format
 msgid "by %(author_link)s"
@@ -1440,6 +1341,9 @@ msgstr "Breiseán"
 
 msgid "Comment"
 msgstr "Nóta"
+
+msgid "Remove"
+msgstr "Bain"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Cuir isteach ainm an bhreiseáin le cur leis"
@@ -1507,6 +1411,9 @@ msgstr "Líon is mó úsáideoirí"
 msgid "Weekly Downloads"
 msgstr "Íoslódálacha sa tSeachtain"
 
+msgid "Recently Updated"
+msgstr "Nuashonraithe Le Déanaí"
+
 msgid "Up & Coming"
 msgstr "Teacht Chun Cinn"
 
@@ -1526,6 +1433,9 @@ msgstr "{0}: Breiseáin Mhór-Le-Rá"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Níl aon bhreiseáin mhór-le-rá i {0}."
+
+msgid "Subscribe"
+msgstr "Liostáil"
 
 msgid "Featured Add-ons"
 msgstr "Breiseáin Mhór-Le-Rá"
@@ -2182,6 +2092,9 @@ msgstr ""
 msgid "Unlisted"
 msgstr "Neamhliostaithe"
 
+msgid "Owner"
+msgstr "Úinéir"
+
 msgid "Developer"
 msgstr "Forbróir"
 
@@ -2777,10 +2690,16 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -3249,6 +3168,9 @@ msgstr "Eolas Tacaíochta"
 msgid "Support Information for {0}"
 msgstr "Eolas Tacaíochta le haghaidh {0}"
 
+msgid "Email"
+msgstr "Ríomhphost"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3396,6 +3318,14 @@ msgstr "Cuir foscríbhinn leis an ngrianghraf seo:"
 
 msgid "Add a Screenshot..."
 msgstr "Cuir Grianghraf den Scáileán leis..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Ar Aghaidh"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
@@ -4568,28 +4498,28 @@ msgstr[2] "{0} rabhadh"
 msgstr[3] "{0} rabhadh"
 msgstr[4] "{0} rabhadh"
 
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgid " Block invisible trackers and spying ads that follow you around the web."
 msgstr ""
 
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr ""
 
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr ""
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid " Perform reverse image searches from an array of engines."
+msgid "Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6367,32 +6297,14 @@ msgstr "Nuashonruithe"
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr "Éileamh is mó an tseachtain seo"
-
-msgid "Most popular this month"
-msgstr "Éileamh is mó an mhí seo"
-
-msgid "Most popular all time"
-msgstr "Éileamh is mó riamh"
-
-msgid "Highest Rated"
-msgstr "Rátáil Is Airde"
-
 msgid "search for add-ons"
 msgstr "Lorg breiseáin"
-
-msgid "search for collections"
-msgstr "Lorg bailiúcháin"
 
 msgid "search for themes"
 msgstr "Lorg téamaí"
 
 msgid "search for apps"
 msgstr "Lorg aipeanna"
-
-msgid "Sort By"
-msgstr "Sórtáil De Réir"
 
 msgid "Relevance"
 msgstr "Ábharthacht"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 05:59+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2017-04-19 19:31+0000\n"
 "Last-Translator: Mikeyy <mihovil@miho.im>\n"
 "Language-Team: Croatian\n"
@@ -718,18 +718,6 @@ msgstr "Ukloni ovaj dodatak iz zbirke"
 
 msgid "Remove"
 msgstr "Ukloni"
-
-msgid "Remove this user as a contributor"
-msgstr "Ukloni korisnika kao suradnika"
-
-msgid "An email address is required."
-msgstr "Potrebna je email adresa."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Ne možete dodati sebe kao doprinositelja."
-
-msgid "You have already added that user."
-msgstr "Već ste dodali tog korisnika."
 
 msgid "Add to favorites"
 msgstr "Dodaj u favorite"

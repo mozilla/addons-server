@@ -1,24 +1,26 @@
 from django.contrib import admin
-from django.utils.translation import ugettext
 
-from .models import Collection, CollectionUser
+from .models import Collection, CollectionAddon
 
 
-class ContributorInline(admin.TabularInline):
-    model = CollectionUser
-    raw_id_fields = ('user',)
-    fields = ('user',)
-    verbose_name_plural = ugettext(u'Contributors')
+class CollectionAddonInline(admin.TabularInline):
+    model = CollectionAddon
+    raw_id_fields = ('addon',)
+    exclude = ('user', )
+    view_on_site = False
+    # FIXME: leaving 'comments' editable seems to break uniqueness checks for
+    # some reason, even though it's picked up as a translated fields correctly.
+    readonly_fields = ('comments',)
 
 
 class CollectionAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug', 'addon_count', 'downloads')
     list_filter = ('type', 'listed')
-    fields = ('name', 'slug', 'uuid', 'listed', 'type', 'default_locale',
-              'author')
+    fields = ('name', 'slug', 'uuid', 'listed', 'type', 'application',
+              'default_locale', 'author')
     raw_id_fields = ('author',)
-    readonly_fields = ('name', 'slug', 'uuid')
-    inlines = [ContributorInline]
+    readonly_fields = ('uuid',)
+    inlines = (CollectionAddonInline,)
 
 
 admin.site.register(Collection, CollectionAdmin)

@@ -25,6 +25,7 @@ from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.devhub import views
 from olympia.files.models import FileValidation
 from olympia.files.tests.test_models import UploadTest
+from olympia.files.utils import parse_addon
 from olympia.users.models import UserProfile
 from olympia.versions.models import License, VersionPreview
 from olympia.zadmin.models import Config, set_config
@@ -33,6 +34,12 @@ from olympia.zadmin.models import Config, set_config
 def get_addon_count(name):
     """Return the number of addons with the given name."""
     return Addon.unfiltered.filter(name__localized_string=name).count()
+
+
+def _parse_addon_theme_permission_wrapper(*args, **kwargs):
+    parsed = parse_addon(*args, **kwargs)
+    parsed['permissions'] = parsed.get('permissions', []) + ['theme']
+    return parsed
 
 
 class TestSubmitPersona(TestCase):
@@ -83,7 +90,7 @@ class TestSubmitBase(TestCase):
         self.addon = self.get_addon()
 
     def get_addon(self):
-        return Addon.objects.no_cache().get(pk=3615)
+        return Addon.objects.get(pk=3615)
 
     def get_version(self):
         return self.get_addon().versions.latest()
@@ -306,6 +313,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         log_items = ActivityLog.objects.for_addons(addon)
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
             'New add-on creation never logged.')
+        assert not addon.tags.filter(tag_text='dynamic theme').exists()
 
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_success_unlisted(self, mock_sign_file):
@@ -329,6 +337,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert addon.status == amo.STATUS_NULL
         assert mock_sign_file.called
+        assert not addon.tags.filter(tag_text='dynamic theme').exists()
 
     def test_missing_platforms(self):
         url = reverse('devhub.submit.upload', args=['listed'])
@@ -431,9 +440,10 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         all_ = sorted([f.filename for f in addon.current_version.all_files])
         assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
-        assert addon.current_version.previews.all().count() == 1
-        preview = addon.current_version.previews.last()
-        assert storage.exists(preview.image_path)
+        previews = list(addon.current_version.previews.all())
+        assert len(previews) == 2
+        assert storage.exists(previews[0].image_path)
+        assert storage.exists(previews[1].image_path)
 
     @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_submit_unlisted(self):
@@ -483,9 +493,10 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         all_ = sorted([f.filename for f in addon.current_version.all_files])
         assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
-        assert addon.current_version.previews.all().count() == 1
-        preview = addon.current_version.previews.last()
-        assert storage.exists(preview.image_path)
+        previews = list(addon.current_version.previews.all())
+        assert len(previews) == 2
+        assert storage.exists(previews[0].image_path)
+        assert storage.exists(previews[1].image_path)
 
     @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_unlisted(self):
@@ -519,6 +530,34 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
+
+    @mock.patch('olympia.devhub.forms.parse_addon',
+                wraps=_parse_addon_theme_permission_wrapper)
+    def test_listed_dynamic_theme_is_tagged(self, parse_addon_mock):
+        assert Addon.objects.count() == 0
+        path = os.path.join(
+            settings.ROOT,
+            'src/olympia/devhub/tests/addons/valid_webextension.xpi')
+        self.upload = self.get_upload(abspath=path)
+        response = self.post()
+        addon = Addon.objects.get()
+        self.assert3xx(
+            response, reverse('devhub.submit.details', args=[addon.slug]))
+        assert addon.tags.filter(tag_text='dynamic theme').exists()
+
+    @mock.patch('olympia.devhub.forms.parse_addon',
+                wraps=_parse_addon_theme_permission_wrapper)
+    def test_unlisted_dynamic_theme_isnt_tagged(self, parse_addon_mock):
+        assert Addon.objects.count() == 0
+        path = os.path.join(
+            settings.ROOT,
+            'src/olympia/devhub/tests/addons/valid_webextension.xpi')
+        self.upload = self.get_upload(abspath=path)
+        response = self.post(listed=False)
+        addon = Addon.objects.get()
+        self.assert3xx(
+            response, reverse('devhub.submit.finish', args=[addon.slug]))
+        assert not addon.tags.filter(tag_text='dynamic theme').exists()
 
 
 class DetailsPageMixin(object):
@@ -1110,8 +1149,10 @@ class TestAddonSubmitFinish(TestSubmitBase):
         assert "This version will be available after it passes review." in (
             response.content)
         # Show the preview we started generating just after the upload step.
-        assert content('img')[0].attrib['src'] == (
+        imgs = content('section.addon-submission-process img')
+        assert imgs[0].attrib['src'] == (
             version.previews.first().image_url)
+        assert len(imgs) == 1  # Just the one preview though.
 
     def test_finish_submitting_unlisted_static_theme(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)
@@ -1402,11 +1443,30 @@ class VersionSubmitUploadMixin(object):
         log_items = ActivityLog.objects.for_addons(self.addon)
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
         if self.channel == amo.RELEASE_CHANNEL_LISTED:
-            assert version.previews.all().count() == 1
-            preview = version.previews.last()
-            assert storage.exists(preview.image_path)
+            previews = list(version.previews.all())
+            assert len(previews) == 2
+            assert storage.exists(previews[0].image_path)
+            assert storage.exists(previews[1].image_path)
         else:
             assert version.previews.all().count() == 0
+
+    @mock.patch('olympia.devhub.forms.parse_addon',
+                wraps=_parse_addon_theme_permission_wrapper)
+    def test_dynamic_theme_tagging(self, parse_addon_mock):
+        self.addon.update(guid='beastify@mozilla.org')
+        path = os.path.join(
+            settings.ROOT,
+            'src/olympia/devhub/tests/addons/valid_webextension.xpi')
+        self.upload = self.get_upload(abspath=path)
+        response = self.post()
+        version = self.addon.find_latest_version(channel=self.channel)
+        self.assert3xx(
+            response, self.get_next_url(version))
+        if self.channel == amo.RELEASE_CHANNEL_LISTED:
+            assert self.addon.tags.filter(tag_text='dynamic theme').exists()
+        else:
+            assert not self.addon.tags.filter(
+                tag_text='dynamic theme').exists()
 
 
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):

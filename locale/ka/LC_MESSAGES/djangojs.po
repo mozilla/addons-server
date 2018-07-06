@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 05:59+0000\n"
-"PO-Revision-Date: 2018-05-09 18:18+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-07-01 15:11+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -657,10 +657,10 @@ msgstr "{0}-ში ჩადგმა"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr "{0}-ის დაყენება მიუხედავად ყველაფრისა"
+msgstr "მაინც დაყენდეს {0}-ისთვის"
 
 msgid "Download for {0} anyway"
-msgstr "{0}-ის ჩამოტვირთვა მიუხედავად ყველაფრისა"
+msgstr "მაინც ჩამოიტვირთოს {0}-ისთვის"
 
 msgid "Not available for your platform"
 msgstr "თქვენს პლატოფმრაზე ხელმისაწვდომი არაა"
@@ -711,18 +711,6 @@ msgstr "ამ დამატების კრებულიდან ამ
 msgid "Remove"
 msgstr "ამოშლა"
 
-msgid "Remove this user as a contributor"
-msgstr "ამ მომხმარებლის მოხალისეებიდან ამოშლა"
-
-msgid "An email address is required."
-msgstr "ელფოსტის მისამართი საჭიროა."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "საკუთარი თავის მოხალისედ დამატება არ შეგიძლიათ."
-
-msgid "You have already added that user."
-msgstr "ეს მომხმარებელი უკვე დაამატეთ."
-
 msgid "Add to favorites"
 msgstr "რჩეულებში დამატება"
 
@@ -733,7 +721,7 @@ msgid "Stop following"
 msgstr "გამოწერის გაუქმება"
 
 msgid "Your browser does not support the video tag"
-msgstr "თქვენს ბრაუზერს არ აქვს ვიდეო ჭდეების მხარდაჭერა"
+msgstr "თქვენს ბრაუზერს არ აქვს ვიდეოს ჭდეების მხარდაჭერა"
 
 msgid "Changes Saved"
 msgstr "ცვლილებები შენახულია"

@@ -8,6 +8,7 @@ from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 from olympia.amo.utils import pngcrush_image
+from olympia.devhub.tasks import resize_image
 from olympia.versions.models import VersionPreview
 
 from .utils import (
@@ -48,29 +49,25 @@ def _build_static_theme_preview_context(theme_manifest, header_root):
 
 @task
 @write
-def generate_static_theme_preview(theme_manifest, header_root, preview_pk):
-    preview = VersionPreview.objects.get(pk=preview_pk)
+def generate_static_theme_preview(theme_manifest, header_root, version_pk):
     tmpl = loader.get_template(
         'devhub/addons/includes/static_theme_preview_svg.xml')
     context = _build_static_theme_preview_context(theme_manifest, header_root)
-
-    # Then add the size and render
-    context.update(svg_render_size=amo.THEME_PREVIEW_SIZES['full'])
-    svg = tmpl.render(context).encode('utf-8')
-    preview_sizes = {}
-    if write_svg_to_png(svg, preview.image_path):
-        pngcrush_image(preview.image_path)
-        preview_sizes['image'] = amo.THEME_PREVIEW_SIZES['full']
-
-    # Then rerender at a different size
-    context.update(svg_render_size=amo.THEME_PREVIEW_SIZES['thumb'])
-    svg = tmpl.render(context).encode('utf-8')
-    if write_svg_to_png(svg, preview.thumbnail_path):
-        pngcrush_image(preview.thumbnail_path)
-        preview_sizes['thumbnail'] = amo.THEME_PREVIEW_SIZES['thumb']
-
-    if preview_sizes:
-        preview.update(sizes=preview_sizes)
+    for size in sorted(amo.THEME_PREVIEW_SIZES.values()):
+        # Create a Preview for this size.
+        preview = VersionPreview.objects.create(
+            version_id=version_pk, position=size['position'])
+        # Add the size to the context and render
+        context.update(svg_render_size=size['full'])
+        svg = tmpl.render(context).encode('utf-8')
+        if write_svg_to_png(svg, preview.image_path):
+            resize_image(
+                preview.image_path, preview.thumbnail_path, size['thumbnail'])
+            pngcrush_image(preview.image_path)
+            preview_sizes = {}
+            preview_sizes['image'] = size['full']
+            preview_sizes['thumbnail'] = size['thumbnail']
+            preview.update(sizes=preview_sizes)
 
 
 @task

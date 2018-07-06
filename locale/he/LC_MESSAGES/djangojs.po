@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 05:59+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2015-12-01 12:34+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -705,18 +705,6 @@ msgstr "הסרת תוספת זו מהאוסף"
 
 msgid "Remove"
 msgstr "הסרה"
-
-msgid "Remove this user as a contributor"
-msgstr "הסרת משתמש זה כתורם"
-
-msgid "An email address is required."
-msgstr "נדרשת כתובת דוא״ל."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "לא ניתן להוסיף את עצמך כתורם."
-
-msgid "You have already added that user."
-msgstr "כבר הוספת משתמש זה."
 
 msgid "Add to favorites"
 msgstr "הוספה למועדפים"

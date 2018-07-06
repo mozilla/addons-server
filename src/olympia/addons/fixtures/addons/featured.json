@@ -6,7 +6,6 @@
             "slug": "1001",
             "_current_version": 1001,
             "last_updated": "2007-04-04 12:30:11",
-            "dev_agreement": 1,
             "eula": null,
             "view_source": 0,
             "total_downloads": 20000,
@@ -87,7 +86,6 @@
         "model": "addons.addon",
         "fields": {
             "slug": "1002",
-            "dev_agreement": 0,
             "eula": null,
             "view_source": 0,
             "total_downloads": 13265,
@@ -124,7 +122,6 @@
         "fields": {
             "slug": "1003",
             "_current_version": 1003,
-            "dev_agreement": 1,
             "eula": null,
             "view_source": 1,
             "total_downloads": 1234,

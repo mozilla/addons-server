@@ -182,13 +182,6 @@ class TestPackaged(TestCase):
         assert not self.file_.hash
         assert not packaged.is_signed(self.file_.file_path)
 
-    def test_no_sign_hotfix_addons(self):
-        """Don't sign hotfix addons."""
-        for hotfix_guid in settings.HOTFIX_ADDON_GUIDS:
-            self.addon.update(guid=hotfix_guid)
-            packaged.sign_file(self.file_)
-            self.assert_not_signed()
-
     def test_no_sign_again_mozilla_signed_extensions(self):
         """Don't try to resign mozilla signed extensions."""
         self.file_.update(is_mozilla_signed_extension=True)

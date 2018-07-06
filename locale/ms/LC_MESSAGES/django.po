@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 06:00+0000\n"
-"PO-Revision-Date: 2018-06-14 12:42+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-21 08:22+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -800,9 +800,6 @@ msgstr "Tema"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Mahu lebih banyak penyesuaian? Cuba <b>Tema Lengkap</b>"
 
-msgid "Most Followers"
-msgstr "Pengikut Teramai"
-
 msgid "Collections"
 msgstr "Koleksi"
 
@@ -922,21 +919,6 @@ msgid ""
 msgstr ""
 "Jika aplikasi anda yang disokong tidak memerlukan fail manifes, anda masih perlu sertakan satu sifat seperti yang dinyatakan %(amo_manifests_mdn_link_open)sdi sini%(amo_manifests_mdn_link_close)s."
 
-msgid "Contributors"
-msgstr "Penyumbang"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Koleksi :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Koleksi ialah sekumpulan add-ons berkaitan yang boleh dicipta dan dikongsi oleh sesiapa sahaja."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Koleksi :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Hanya saya sendiri boleh lihat koleksi ini."
 
@@ -988,20 +970,14 @@ msgstr "URL penyesuaian ini tidak boleh digunakan."
 msgid "This add-on already belongs to the collection"
 msgstr "Add-on ini sudah ada dalam koleksi"
 
-msgid "Name"
-msgstr "Nama"
-
-msgid "Recently Updated"
-msgstr "Terkini Dikemaskini"
-
-msgid "Recently Popular"
-msgstr "Terkini Popular"
-
 msgid "Added"
 msgstr "Ditambah"
 
 msgid "Popularity"
 msgstr "Populariti"
+
+msgid "Name"
+msgstr "Nama"
 
 msgid "Collection created!"
 msgstr "Koleksi dicipta!"
@@ -1107,17 +1083,14 @@ msgstr "Teruskan"
 msgid "What are Collections?"
 msgstr "Apakah Koleksi?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Koleksi ialah sekumpulan add-ons berkaitan yang boleh dicipta dan dikongsi oleh sesiapa sahaja."
+
 msgid "Explore Collections"
 msgstr "Teroka Koleksi"
 
 msgid "Common Tags"
 msgstr "Tag Lazim"
-
-msgid "More by this User"
-msgstr "Selanjutnya oleh Pengguna ini"
-
-msgid "See all collections by this user"
-msgstr "Pamer semua koleksi pengguna ini"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1203,63 +1176,8 @@ msgstr "Edit {0}"
 msgid "Description"
 msgstr "Keterangan"
 
-msgid "Contributors & More"
-msgstr "Penyumbang & Lanjutan"
-
 msgid "Save Changes"
 msgstr "Simpan Perubahan"
-
-msgid "Owner"
-msgstr "Pemilik"
-
-msgid "Make Owner"
-msgstr "Jadi Pemilik"
-
-msgid "Remove this user as a contributor"
-msgstr "Singkir pengguna ini daripada penyumbang"
-
-msgid "Remove"
-msgstr "Buang"
-
-msgid "Collection Contributors"
-msgstr "Penyumbang Koleksi"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"Anda boleh masukkan beberapa penyumbang kepada koleksi ini. Penyumbang boleh menambah dan mengalih keluar add-ons daripada koleksi ini, tetapi tidak boleh mengubah nama atau perihalannya. Untuk "
-"masukkan penyumbang, masukkan e-mel mereka di dalam kotak di bawah. Penyumbang perlu ada akaun Add-ons Mozilla."
-
-msgid "User"
-msgstr "Pengguna"
-
-msgid "Email"
-msgstr "E-mel"
-
-msgid "Role"
-msgstr "Peranan"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Masukkan alamat e-mel penyumbang untuk dimasukkan"
-
-msgid "Add Contributor"
-msgstr "Masukkan Penyumbang"
-
-msgid "Contributor"
-msgstr "Penyumbang"
-
-msgid "Admin Settings"
-msgstr "Tetapan Pentadbir"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Amaran:</b> Dengan menukar pemilik koleksi ini, anda tidak boleh lagi mengeditnya. Anda hanya akan boleh menambah dan mengalihkan keluar add-ons daripadanya."
-
-msgid "Continue"
-msgstr "Sambung"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "atau <a id=\"change-owner-cancel\" href=\"#\">Batal</a>"
 
 msgid "Remove from favorites"
 msgstr "Buang daripada kegemaran"
@@ -1274,27 +1192,9 @@ msgstr "Koleksi oleh {0}"
 msgid "No collections found."
 msgstr "Tiada koleksi dijumpai."
 
-msgid "Most-Followed Collections"
-msgstr "Koleksi Paling-Diikuti"
-
-msgid "Newest Collections"
-msgstr "Koleksi Terbaru"
-
-msgid "Collections by Name"
-msgstr "Koleksi mengikut Nama"
-
-msgid "Recently Updated Collections"
-msgstr "Koleksi Terkini Dikemaskini"
-
-msgid "Recently Popular Collections"
-msgstr "Koleksi Terkini Popular"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Koleksi adalah sekumpulan add-ons yang boleh dicipta dan dikongsi oleh sesiapa. Layari koleksi yang dicipta oleh pengguna lain atau <a href=\"%(url)s\">cipta sendiri</a>."
-
-msgid "Subscribe"
-msgstr "Langgan"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1332,6 +1232,9 @@ msgstr "Add-on"
 
 msgid "Comment"
 msgstr "Komen"
+
+msgid "Remove"
+msgstr "Buang"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Masukkan nama add-on untuk disertakan"
@@ -1399,6 +1302,9 @@ msgstr "Ramai Pengguna"
 msgid "Weekly Downloads"
 msgstr "Muat turun Mingguan"
 
+msgid "Recently Updated"
+msgstr "Terkini Dikemaskini"
+
 msgid "Up & Coming"
 msgstr "Penampilan"
 
@@ -1418,6 +1324,9 @@ msgstr "{0}: Add-ons Sorotan"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Tiada add-ons sorotan dalam {0}."
+
+msgid "Subscribe"
+msgstr "Langgan"
 
 msgid "Featured Add-ons"
 msgstr "Add-ons Sorotan"
@@ -2018,6 +1927,9 @@ msgstr "Ditanda untuk semakan lanjut"
 msgid "Unlisted"
 msgstr "Tidak tersenarai"
 
+msgid "Owner"
+msgstr "Pemilik"
+
 msgid "Developer"
 msgstr "Pembangun"
 
@@ -2598,11 +2510,17 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategori tidak boleh ditukar semasa add-on anda ini menjadi ciri."
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Add-ons untuk Thunderbird dan SeaMonkey kini disenarai dan dikekalkan di addons.thunderbird.net. Anda boleh gunakan akaun yang sama untuk mengemaskini add-ons di laman yang baru."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Bermula dengan Firefox 53, add-ons baru dalam laman ini hanya WebExtensions."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Ekstensi legasi tidak serasi dengan Firefox 57 atau ke atas. Gunakan maxVersion 56.* atau ke bawah."
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr "Pek bahasa legasi untuk Firefox tidak lagi disokong. Perlukan manifes pemasangan WebExtensions. Lihat {mdn_link} untuk maklumat lanjut."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Kami izin dan menggalakkan kemaskini tetapi anda tidak boleh undurkan proses ini. Sebaik sahaja WebExtension dipasang oleh pengguna, mereka tidak akan boleh pasang add-on legasi."
@@ -3055,6 +2973,9 @@ msgstr "Maklumat Sokongan"
 msgid "Support Information for {0}"
 msgstr "Maklumat sokongan untuk {0}"
 
+msgid "Email"
+msgstr "E-mel"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
@@ -3212,6 +3133,16 @@ msgstr "Sila beri keterangan skrinsyot ini:"
 
 msgid "Add a Screenshot..."
 msgstr "Tambah Skrinsyot..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+"PNG dan JPG disokong. Saiz maksimum yang disyorkan untuk skrinsyot ialah 1280 x 800 piksel. 640 x 400 piksel adalah alternatif yang baik jika anda hanya ada gambar yang lebih kecil. Skrinsyot yang "
+"dibuat dalam halaman akan meningkatkan peluangnya untuk dipasang dan disenaraikan dalam laman."
+
+msgid "Continue"
+msgstr "Sambung"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Bolehkah pihak lain kongsikan Add-on, selagi anda diberi penghargaan?"
@@ -4330,29 +4261,29 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} amaran"
 
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan & perlindungan privasi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sekat penjejak {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Tetapan mudah yang membolehkan anda mengawal iklan dan cara anda dijejaki dalam internet."
+msgid " Block invisible trackers and spying ads that follow you around the web."
+msgstr " Sekat penjejak halimunan dan iklan pengintip yang mengikuti anda di seluruh web."
 
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ubah suai tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgstr "Penyesuaian halaman tab baru {start_sub_heading}dengan {addon_name} {end_sub_heading}"
 
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr "Anda ada banyak tab terbuka? Susun dengan kemas dalam bar sisi."
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgstr "Alami halaman baru dengan penyesuaian latar belakang, info cuaca tempatan, dan banyak lagi."
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Hentikan Facebook menjejaki {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Terjemahan mudah {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr "Asingkan identiti Facebook anda ke dalam “penyimpan” berasingan yang menyukarkan Facebook untuk menjejaki pergerakan anda dalam web."
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr "Serlahkan teks, klik kanan dan diterjemahkan serta-merta."
 
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Cari imej {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Carian imej {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
-msgid " Perform reverse image searches from an array of engines."
-msgstr " Laksanakan carian imej songsang daripada susunan enjin."
+msgid "Perform reverse image searches from an array of engines."
+msgstr "Laksanakan carian imej songsang daripada susunan enjin."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
@@ -6035,32 +5966,14 @@ msgstr "Kemaskini"
 msgid "Maximum query length exceeded."
 msgstr "Melebihi panjang pertanyaan maksimum."
 
-msgid "Most popular this week"
-msgstr "Paling popular minggu ini"
-
-msgid "Most popular this month"
-msgstr "Paling popular bulan ini"
-
-msgid "Most popular all time"
-msgstr "Paling popular sepanjang masa"
-
-msgid "Highest Rated"
-msgstr "Penarafan Tertinggi"
-
 msgid "search for add-ons"
 msgstr "cari add-ons"
-
-msgid "search for collections"
-msgstr "cari koleksi"
 
 msgid "search for themes"
 msgstr "cari tema"
 
 msgid "search for apps"
 msgstr "cari aplikasi"
-
-msgid "Sort By"
-msgstr "Susun Mengikut"
 
 msgid "Relevance"
 msgstr "Kaitan"

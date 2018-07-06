@@ -7,14 +7,14 @@ from django.core.files import temp
 import mock
 
 from pyquery import PyQuery as pq
-from rest_framework.reverse import reverse as drf_reverse
 
 from olympia import amo
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import TestCase, formset, initial, version_factory
+from olympia.amo.tests import (
+    TestCase, formset, initial, reverse_ns, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
@@ -476,8 +476,8 @@ class TestVersion(TestCase):
         # Test review history
         review_history_td = doc('#%s-review-history' % v1.id)[0]
         assert review_history_td.attrib['data-token'] == 'magicbeans'
-        api_url = absolutify(drf_reverse(
-            'v4:version-reviewnotes-list',
+        api_url = absolutify(reverse_ns(
+            'version-reviewnotes-list',
             args=[self.addon.id, self.version.id]))
         assert review_history_td.attrib['data-api-url'] == api_url
         assert doc('.review-history-hide').length == 2
@@ -571,7 +571,7 @@ class TestVersion(TestCase):
 class TestVersionEditMixin(object):
 
     def get_addon(self):
-        return Addon.objects.no_cache().get(id=3615)
+        return Addon.objects.get(id=3615)
 
     def get_version(self):
         return self.get_addon().current_version
@@ -798,7 +798,7 @@ class TestVersionEditSearchEngine(TestVersionEditMixin, TestCase):
 
         response = self.client.post(self.url, dd)
         assert response.status_code == 302
-        version = Addon.objects.no_cache().get(id=4594).current_version
+        version = Addon.objects.get(id=4594).current_version
         assert unicode(version.releasenotes) == 'xx'
         assert unicode(version.approvalnotes) == 'yy'
 
@@ -893,7 +893,7 @@ class TestVersionEditFiles(TestVersionEditBase):
         forms = self.client.get(self.url).context['file_form'].forms
         forms = map(initial, forms)
         self.client.post(self.url, self.formset(*forms, prefix='files'))
-        assert File.objects.no_cache().get(pk=bsd.pk).platform == (
+        assert File.objects.get(pk=bsd.pk).platform == (
             amo.PLATFORM_BSD.id)
 
     def test_all_unsupported_platforms_change(self):
@@ -903,7 +903,7 @@ class TestVersionEditFiles(TestVersionEditBase):
         # Update the file platform to Linux:
         forms[1]['platform'] = amo.PLATFORM_LINUX.id
         self.client.post(self.url, self.formset(*forms, prefix='files'))
-        assert File.objects.no_cache().get(pk=bsd.pk).platform == (
+        assert File.objects.get(pk=bsd.pk).platform == (
             amo.PLATFORM_LINUX.id)
         forms = self.client.get(self.url).context['file_form'].forms
         choices = self.get_platforms(forms[1])
@@ -945,7 +945,7 @@ class TestPlatformSearchEngine(TestVersionEditMixin, TestCase):
                           approvalnotes='yy')
         response = self.client.post(self.url, dd)
         assert response.status_code == 302
-        file_ = Version.objects.no_cache().get(id=42352).files.all()[0]
+        file_ = Version.objects.get(id=42352).files.all()[0]
         assert amo.PLATFORM_ALL.id == file_.platform
 
 

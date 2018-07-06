@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 05:59+0000\n"
-"PO-Revision-Date: 2017-08-11 21:28+0000\n"
-"Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-24 15:05+0000\n"
+"Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -712,18 +712,6 @@ msgstr "Αφαίρεση αυτού του πρόσθετου από τη συλ
 msgid "Remove"
 msgstr "Αφαίρεση"
 
-msgid "Remove this user as a contributor"
-msgstr "Αφαίρεση χρήστη από τους συντελεστές"
-
-msgid "An email address is required."
-msgstr "Απαιτείται διεύθυνση email."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Δε μπορείτε να προσθέσετε τον εαυτό σας στους συνεισφέροντες."
-
-msgid "You have already added that user."
-msgstr "Έχετε ήδη προσθέσει αυτόν τον χρήστη."
-
 msgid "Add to favorites"
 msgstr "Προσθήκη στα αγαπημένα"
 
@@ -834,7 +822,7 @@ msgid "Theme"
 msgstr "Θέμα"
 
 msgid "Reviewer"
-msgstr "Κριτικής"
+msgstr "Κριτής"
 
 msgid "Status"
 msgstr "Κατάσταση"

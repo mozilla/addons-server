@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 05:59+0000\n"
-"PO-Revision-Date: 2018-04-01 14:42+0000\n"
-"Last-Translator: Drashti <drashtipandya37@gmail.com>\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-25 22:44+0000\n"
+"Last-Translator: Mehul Patel <iamrowdymehul@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
 "MIME-Version: 1.0\n"
@@ -146,59 +146,59 @@ msgid "Videos must be in WebM."
 msgstr ""
 
 msgid "Follow this Collection"
-msgstr ""
+msgstr "આ સંગ્રહને અનુસરો"
 
 msgid "Stop Following"
-msgstr ""
+msgstr "અનુસરવાનું રોકો"
 
 msgid "Following"
-msgstr ""
+msgstr "અનુસરણો"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "આ થીમ તમારા {0} આવૃત્તિ સાથે અસંગત છે"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "બધા હકો અમારી પાસે રાખેલા છે"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "ક્રિએટિવ કૉમન્સ એટ્રિબ્યુશન 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "ક્રિએટિવ કૉમન્સ એટ્રિબ્યુશન-NonCommercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "ક્રિએટિવ કૉમન્સ એટ્રિબ્યુશન-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "ક્રિએટિવ કૉમન્સ એટ્રિબ્યુશન-NonCommercial-એકસરખું શેર કરો 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "ક્રિએટિવ કૉમન્સ એટ્રિબ્યુશન-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "ક્રિએટિવ કૉમન્સ એટ્રિબ્યુશન-ShareAlike 3.0"
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "તમારી થીમનું નામ"
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "સમીક્ષા માટે ફ્લેગ કરેલું"
 
 msgid "Your input is required"
-msgstr ""
+msgstr "તમારી ઉમેરાની જરૂરી છે"
 
 msgid "Marked for deletion"
-msgstr ""
+msgstr "કાઢી નાખવા માટે ચિહ્નિત"
 
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "પરિણામો સુધારી રહ્યાં છે&hellip;"
 
 msgid "Category"
-msgstr ""
+msgstr "વર્ગ"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "<b>{0}</b> માટે થીમ્સ શોધો"
 
 msgid "Search apps for <b>{0}</b>"
 msgstr ""
@@ -705,18 +705,6 @@ msgid "Remove this add-on from the collection"
 msgstr ""
 
 msgid "Remove"
-msgstr ""
-
-msgid "Remove this user as a contributor"
-msgstr ""
-
-msgid "An email address is required."
-msgstr ""
-
-msgid "You cannot add yourself as a contributor."
-msgstr ""
-
-msgid "You have already added that user."
 msgstr ""
 
 msgid "Add to favorites"

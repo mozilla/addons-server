@@ -61,7 +61,7 @@ class BaseTestEdit(TestCase):
         self.url = self.addon.get_dev_url()
 
     def get_addon(self):
-        return Addon.objects.no_cache().get(id=3615)
+        return Addon.objects.get(id=3615)
 
     def get_url(self, section, edit=False):
         args = [self.addon.slug, section]
@@ -1564,8 +1564,9 @@ class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert 'Preview' in doc('h3').text()
-        assert doc('img')[0].attrib['src'] == (
+        assert doc('div.edit-addon-section img')[0].attrib['src'] == (
             self.addon.current_version.previews.first().image_url)
+        assert len(doc('div.edit-addon-section img')) == 1  # Just one preview.
 
 
 class TestEditBasicStaticThemeUnlisted(StaticMixin, TestEditBasicUnlisted):
@@ -1598,60 +1599,6 @@ class TestEditTechnicalStaticThemeListed(StaticMixin,
 class TestEditTechnicalStaticThemeUnlisted(StaticMixin,
                                            TestEditTechnicalUnlisted):
     pass
-
-
-class TestAdmin(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
-
-    def login_admin(self):
-        assert self.client.login(email='admin@mozilla.com')
-
-    def login_user(self):
-        assert self.client.login(email='del@icio.us')
-
-    def test_show_admin_settings_admin(self):
-        self.login_admin()
-        url = reverse('devhub.addons.edit', args=['a3615'])
-        response = self.client.get(url)
-        assert response.status_code == 200
-        self.assertContains(response, 'Admin Settings')
-        assert 'admin_form' in response.context
-
-    def test_show_admin_settings_nonadmin(self):
-        self.login_user()
-        url = reverse('devhub.addons.edit', args=['a3615'])
-        response = self.client.get(url)
-        assert response.status_code == 200
-        self.assertNotContains(response, 'Admin Settings')
-        assert 'admin_form' not in response.context, (
-            'AdminForm not expected in context.')
-
-    def test_post_as_admin(self):
-        self.login_admin()
-        url = reverse('devhub.addons.admin', args=['a3615'])
-        response = self.client.post(url)
-        assert response.status_code == 200
-
-    def test_post_as_nonadmin(self):
-        self.login_user()
-        url = reverse('devhub.addons.admin', args=['a3615'])
-        response = self.client.post(url)
-        assert response.status_code == 403
-
-    def test_change_reputation_and_type(self):
-        addon = Addon.objects.get(pk=3615)
-        self.login_admin()
-        url = reverse('devhub.addons.admin', args=['a3615'])
-        data = {
-            'reputation': 3,
-            'type': amo.ADDON_THEME,
-        }
-        response = self.client.post(url, data)
-        assert response.status_code == 200
-        assert response.context['admin_form'].is_valid()
-        addon.reload()
-        assert addon.reputation == 3
-        assert addon.type == amo.ADDON_THEME
 
 
 class TestThemeEdit(TestCase):

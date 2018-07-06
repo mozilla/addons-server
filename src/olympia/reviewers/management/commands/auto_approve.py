@@ -44,7 +44,7 @@ class Command(BaseCommand):
             addon__status__in=(amo.STATUS_PUBLIC, amo.STATUS_NOMINATED),
             files__status=amo.STATUS_AWAITING_REVIEW,
             files__is_webextension=True)
-            .no_cache().order_by('nomination', 'created').distinct())
+            .order_by('nomination', 'created').distinct())
 
     def handle(self, *args, **options):
         """Command entry point."""

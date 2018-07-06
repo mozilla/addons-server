@@ -1,6 +1,5 @@
 from django.db import connections, models, router
 from django.db.models.deletion import Collector
-from django.utils.encoding import force_text
 
 import bleach
 
@@ -104,16 +103,6 @@ class Translation(ModelBase):
             return super(Translation, self).delete(using=using)
 
     delete.alters_data = True
-
-    @classmethod
-    def _cache_key(cls, pk, db):
-        # Hard-coding the class name here so that subclasses don't try to cache
-        # themselves under something like "o:translations.purifiedtranslation".
-        #
-        # Like in ModelBase, we avoid putting the real db in the key because it
-        # does us more harm than good.
-        key_parts = ('o', 'translations.translation', pk, 'default')
-        return ':'.join(map(force_text, key_parts))
 
     @classmethod
     def new(cls, string, locale, id=None):
@@ -252,7 +241,7 @@ class NoLinksNoMarkupTranslation(NoLinksMixin, LinkifiedTranslation):
 
 class TranslationSequence(models.Model):
     """
-    The translations_seq table, so syncdb will create it during testing.
+    The translations_seq table, so migrations will create it during testing.
     """
     id = models.IntegerField(primary_key=True)
 

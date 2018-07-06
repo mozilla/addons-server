@@ -13,6 +13,7 @@ from olympia import amo
 from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
+from olympia.tags.models import Tag
 from olympia.versions.compare import version_int
 
 from . import tasks
@@ -298,3 +299,11 @@ class Validator(object):
             'listed': (channel == amo.RELEASE_CHANNEL_LISTED),
             'is_webextension': is_webextension}
         return tasks.validate_file_path.subtask([upload.path], kwargs)
+
+
+def add_dynamic_theme_tag(version):
+    if version.channel != amo.RELEASE_CHANNEL_LISTED:
+        return
+    files = version.all_files
+    if any('theme' in file_.webext_permissions_list for file_ in files):
+        Tag(tag_text='dynamic theme').save_tag(version.addon)

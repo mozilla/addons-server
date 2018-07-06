@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 06:00+0000\n"
-"PO-Revision-Date: 2018-06-14 10:32+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-07-03 19:37+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -583,7 +583,7 @@ msgid "Some add-ons ask for permission to perform certain functions. Since you�
 msgstr "ישנן תוספות המבקשות הרשאה לביצוע פונקציות מסוימות. מכיוון שיש בבעלותך שליטה מלאה על ה־Firefox שלך, יש לך האפשרות לאשר או לדחות את הבקשות האלו."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr "לתשומת לבך: תוספת זו משתמשת בטכנולוגיה מיושנת שמעניקה גישה לכל תכונות הדפדפן והנתונים מבלי לבקש את רשותך."
+msgstr "לתשומת לבך: תוספת זו משתמשת בטכנולוגיה מיושנת שמעניקה לה גישה לכל תכונות הדפדפן והנתונים מבלי לבקש את רשותך."
 
 msgid "This add-on has been removed by its author."
 msgstr "תוספת זו הוסרה על ידי היוצר שלה."
@@ -833,9 +833,6 @@ msgstr "ערכות נושא"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "התאמה יותר אישית? כדאי לנסות את <b>ערכות הנושא המלאות</b>"
 
-msgid "Most Followers"
-msgstr "כמות עוקבים"
-
 msgid "Collections"
 msgstr "אוספים"
 
@@ -952,23 +949,6 @@ msgid ""
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-# 81%
-# 100%
-msgid "Contributors"
-msgstr "תורמים"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "אוספים :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "אוספים הם קבוצות של תוספות הקשורות זו לזו שכל אחד יכול ליצור ולשתף."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: אוספים :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "רק אני יכול לצפות באוסף זה."
 
@@ -1020,23 +1000,15 @@ msgstr "לא ניתן להשתמש בכתובת המותאמת אישית הזא
 msgid "This add-on already belongs to the collection"
 msgstr "תוספת זו כבר שייכת לאוסף"
 
-msgid "Name"
-msgstr "שם"
-
-# 75%
-# 100%
-msgid "Recently Updated"
-msgstr "עודכנו לאחרונה"
-
-msgid "Recently Popular"
-msgstr "פופולרי לאחרונה"
-
 msgid "Added"
 msgstr "נוספו"
 
 # 100%
 msgid "Popularity"
 msgstr "פופולריות"
+
+msgid "Name"
+msgstr "שם"
 
 msgid "Collection created!"
 msgstr "האוסף נוצר!"
@@ -1166,17 +1138,14 @@ msgstr "לך"
 msgid "What are Collections?"
 msgstr "מהם אוספים?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "אוספים הם קבוצות של תוספות הקשורות זו לזו שכל אחד יכול ליצור ולשתף."
+
 msgid "Explore Collections"
 msgstr "חקירת אוספים"
 
 msgid "Common Tags"
 msgstr "תגים נפוצים"
-
-msgid "More by this User"
-msgstr "עוד ממשתמש זה"
-
-msgid "See all collections by this user"
-msgstr "צפייה בכל האוספים ממשתמש זה"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1269,67 +1238,8 @@ msgstr "עריכת {0}"
 msgid "Description"
 msgstr "תיאור"
 
-msgid "Contributors & More"
-msgstr "תורמים ועוד"
-
 msgid "Save Changes"
 msgstr "שמירת שינויים"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "בעלים"
-
-msgid "Make Owner"
-msgstr "הפיכה לבעלים"
-
-msgid "Remove this user as a contributor"
-msgstr "הסרת משתמש זה כתורם"
-
-msgid "Remove"
-msgstr "הסרה"
-
-msgid "Collection Contributors"
-msgstr "תורמים לאוסף"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"ניתן להוסיף מגוון תורמים לאוסף זה. תורם יכול להוסיף ולהסיר תוספות מהאוסף הזה, אך אין לו הרשאות לשנות לו את השם או התיאור. כדי להוסיף תורם, יש לכתוב את כתובת הדוא״ל שלו בתיבה שלהלן. לתורמים חייב "
-"להיות חשבון בתוספות של Mozilla."
-
-msgid "User"
-msgstr "משתמש"
-
-msgid "Email"
-msgstr "דוא״ל"
-
-# Column name in a table.
-msgid "Role"
-msgstr "תפקיד"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "נא להכניס כתובת דוא״ל של תורם להוספה"
-
-msgid "Add Contributor"
-msgstr "הוספת תורם"
-
-# 81%
-# 100%
-msgid "Contributor"
-msgstr "תורם"
-
-msgid "Admin Settings"
-msgstr "הגדרות ניהול"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>אזהרה:</b> שינוי הבעלות על האוסף הזה ימנע ממך לערוך אותו. תהיה לך אפשרות להוסיף ולהסיר ממנו תוספות בלבד."
-
-msgid "Continue"
-msgstr "המשך"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "או <a id=\"change-owner-cancel\" href=\"#\">ביטול</a>"
 
 # 95%
 # 100%
@@ -1348,28 +1258,9 @@ msgstr "אוספים מאת {0}"
 msgid "No collections found."
 msgstr "לא נמצאו אוספים."
 
-msgid "Most-Followed Collections"
-msgstr "האוספים עם הכי הרבה עוקבים"
-
-msgid "Newest Collections"
-msgstr "האוספים החדשים ביותר"
-
-msgid "Collections by Name"
-msgstr "אוספים לפי שם"
-
-msgid "Recently Updated Collections"
-msgstr "אוספים שעודכנו לאחרונה"
-
-msgid "Recently Popular Collections"
-msgstr "אוספים פופולריים לאחרונה"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "אוספים הם קבוצות של תוספות הקשורות זו לזו שכל אחד יכול ליצור ולשתף. ניתן לחקור את האוספים שנוצרו על ידי משתמשים אחרים או <a href=\"%(url)s\">ליצור כאלה משלך</a>."
-
-# 100%
-msgid "Subscribe"
-msgstr "הרשמה כמנוי"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1409,6 +1300,9 @@ msgstr "תוספת"
 
 msgid "Comment"
 msgstr "תגובה"
+
+msgid "Remove"
+msgstr "הסרה"
 
 msgid "Enter the name of the add-on to include"
 msgstr "נא להכניס את שם התוספת להוספה"
@@ -1476,6 +1370,11 @@ msgstr "כמות משתמשים"
 msgid "Weekly Downloads"
 msgstr "הורדות בשבוע"
 
+# 75%
+# 100%
+msgid "Recently Updated"
+msgstr "עודכנו לאחרונה"
+
 msgid "Up & Coming"
 msgstr "בקרוב"
 
@@ -1496,6 +1395,10 @@ msgstr "{0}: תוספות מומלצות"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "אין תוספות מומלצות בקטגוריה {0}."
+
+# 100%
+msgid "Subscribe"
+msgstr "הרשמה כמנוי"
 
 msgid "Featured Add-ons"
 msgstr "תוספות מומלצות"
@@ -2110,6 +2013,10 @@ msgstr "סומן בדגל לסקירה נוספת"
 msgid "Unlisted"
 msgstr "לא ברשימה"
 
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "בעלים"
+
 msgid "Developer"
 msgstr "מפתח"
 
@@ -2695,11 +2602,17 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "לא ניתן לשנות קטגוריות בזמן שהתוספת שלך מופיעה במומלצים."
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "החל מ־Firefox 53, תוספות חדשות באתר זה יכולות להיות אך ורק בתבנית WebExtensions."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "תוספות מדור קודם אינן נתמכות ב־Firefox 57 ומעלה. יש להשתמש ב־maxVersion של *.56 ומטה."
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "אנו מאפשרים ומעודדים שדרוג אבל תהליך זה אינו הפיך. לאחר שהמשתמשים שלך יתקינו את WebExtension, לא תהיה להם אפשרות להתקין תוספת מדור קודם."
@@ -3149,6 +3062,9 @@ msgstr "מידע תמיכה"
 msgid "Support Information for {0}"
 msgstr "מידע תמיכה עבור {0}"
 
+msgid "Email"
+msgstr "דוא״ל"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
@@ -3301,6 +3217,14 @@ msgstr "נא לספק כותרת לצילום מסך זה:"
 
 msgid "Add a Screenshot..."
 msgstr "הוספת צילום מסך..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "המשך"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "האם אנשים אחרים יכולים לשתף את התוספת שלך, כל עוד יינתן לך קרדיט על כך?"
@@ -4438,31 +4362,30 @@ msgid_plural "{0} warnings"
 msgstr[0] "אזהרה אחת"
 msgstr[1] "{0} אזהרות"
 
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "חסימת פרסומות והגנת פרטיות {start_sub_heading}עם {addon_name}{end_sub_heading}"
-
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "מספר הגדרות פשוטות מאפשרות לך לשלוט בפרסומות שמוצגות בפניך ובאופן בו מתנהל המעקב אחריך באינטרנט."
-
 #, fuzzy
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "חיפוש תמונות הפוך {start_sub_heading}עם {addon_name}{end_sub_heading}"
-
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr "יש לך כמות נכבדת של לשוניות פתוחות? ניתן לארגן אותן בסרגל צד מסודר."
-
-#, fuzzy
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgid " Block invisible trackers and spying ads that follow you around the web."
 msgstr ""
 
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgstr "התאמה אישית של דפי הלשונית החדשה {start_sub_heading}עם {addon_name} {end_sub_heading}"
+
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgstr ""
+
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "תרגום בקלות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr ""
+
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "חיפוש תמונות {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #, fuzzy
-msgid " Perform reverse image searches from an array of engines."
+msgid "Perform reverse image searches from an array of engines."
 msgstr "עליך פשוט להדגיש טקסט בכל עמוד שהוא כדי לחפש את הביטוי מתוך מגוון מנועי חיפוש."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5324,7 +5247,7 @@ msgstr "סיום"
 #. L10n: Description of what can be searched for
 # 100%
 msgid "add-on, reviewer or comment"
-msgstr "תוספת, סוקר או הערה"
+msgstr "תוספת, סוקר או תגובה"
 
 msgid "Search by add-on name / author email"
 msgstr "חיפוש לפי שם תוספת / כתובת הדוא״ל של היוצר"
@@ -5374,7 +5297,7 @@ msgstr "מישהו אחר סוקר את ערכת הנושא הזאת."
 
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
-msgstr "ערכת נושא, סוקר או הערה"
+msgstr "ערכת נושא, סוקר או תגובה"
 
 msgid "Private Whiteboard"
 msgstr ""
@@ -6172,32 +6095,14 @@ msgstr "עדכונים"
 msgid "Maximum query length exceeded."
 msgstr "חרגת מאורך השאילתה המרבי."
 
-msgid "Most popular this week"
-msgstr "הכי מבוקש השבוע"
-
-msgid "Most popular this month"
-msgstr "הכי מבוקש החודש"
-
-msgid "Most popular all time"
-msgstr "הכי מבוקש אי־פעם"
-
-msgid "Highest Rated"
-msgstr "בעלות הדירוגים הגבוהים ביותר"
-
 msgid "search for add-ons"
 msgstr "חיפוש תוספות"
-
-msgid "search for collections"
-msgstr "חיפוש אוספים"
 
 msgid "search for themes"
 msgstr "חיפוש ערכות נושא"
 
 msgid "search for apps"
 msgstr "חיפוש יישומים"
-
-msgid "Sort By"
-msgstr "מיון לפי"
 
 msgid "Relevance"
 msgstr "רלוונטיות"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 06:00+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-06-04 08:25+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -827,9 +827,6 @@ msgstr "Temaer"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
 
-msgid "Most Followers"
-msgstr "Flest følgere"
-
 msgid "Collections"
 msgstr "Samlinger"
 
@@ -946,22 +943,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-#, fuzzy
-msgid "Contributors"
-msgstr "Bidragsyter"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Samlinger :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Samlinger er grupper av relaterte utvidelser som hvem som helst kan opprette og dele."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Samlinger :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Bare jeg kan vise denne samlingen."
 
@@ -1016,20 +997,14 @@ msgstr "\"{0}\" er en reservert tagg og kan ikke brukes."
 msgid "This add-on already belongs to the collection"
 msgstr "Denne url-en er allerede i bruk av en annen samling"
 
-msgid "Name"
-msgstr "Navn"
-
-msgid "Recently Updated"
-msgstr "Nylig oppdatert"
-
-msgid "Recently Popular"
-msgstr "Populære i det siste"
-
 msgid "Added"
 msgstr "Lagt til"
 
 msgid "Popularity"
 msgstr "Popularitet"
+
+msgid "Name"
+msgstr "Navn"
 
 msgid "Collection created!"
 msgstr "Samling opprettet!"
@@ -1138,17 +1113,14 @@ msgstr "Gå"
 msgid "What are Collections?"
 msgstr "Hva er samlinger?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Samlinger er grupper av relaterte utvidelser som hvem som helst kan opprette og dele."
+
 msgid "Explore Collections"
 msgstr "Utforsk samlinger"
 
 msgid "Common Tags"
 msgstr "Vanlige tagger"
-
-msgid "More by this User"
-msgstr "Mer av denne brukeren"
-
-msgid "See all collections by this user"
-msgstr "Se alle samlinger av denne brukeren"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1240,61 +1212,8 @@ msgstr "Rediger {0}"
 msgid "Description"
 msgstr "Beskrivelse"
 
-msgid "Contributors & More"
-msgstr "Bidragsytere og mer"
-
 msgid "Save Changes"
 msgstr "Lagre endringer"
-
-msgid "Owner"
-msgstr "Eier"
-
-msgid "Make Owner"
-msgstr "Sett som eier"
-
-msgid "Remove this user as a contributor"
-msgstr "Fjern denne brukeren som bidragsyter"
-
-msgid "Remove"
-msgstr "Fjern"
-
-msgid "Collection Contributors"
-msgstr "Bidragsytere til samlingen"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-
-msgid "User"
-msgstr "Bruker"
-
-msgid "Email"
-msgstr "E-post"
-
-msgid "Role"
-msgstr "Rolle"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Skriv inn e-postadressen av bidragsyteren som skal legges til"
-
-msgid "Add Contributor"
-msgstr "Legg til bidragsyter"
-
-msgid "Contributor"
-msgstr "Bidragsyter"
-
-msgid "Admin Settings"
-msgstr "Admin-innstillinger"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Advarsel</b>: Ved å endre eieren til denne samlingen vil du ikke lenger være i stand til å redigere den. Du vil bare kunne legge til og fjerne utvidelser fra den."
-
-msgid "Continue"
-msgstr "Fortsett"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "eller <a id=\"change-owner-cancel\" href=\"#\">Avbryt</a>"
 
 msgid "Remove from favorites"
 msgstr "Fjern fra favoritter"
@@ -1309,27 +1228,9 @@ msgstr "Samlinger av {0}"
 msgid "No collections found."
 msgstr "Ingen samlinger funnet."
 
-msgid "Most-Followed Collections"
-msgstr "Samlingene som flest følger"
-
-msgid "Newest Collections"
-msgstr "Nyeste samlinger"
-
-msgid "Collections by Name"
-msgstr "Samlinger etter navn"
-
-msgid "Recently Updated Collections"
-msgstr "Nylig oppdaterte samlinger"
-
-msgid "Recently Popular Collections"
-msgstr "Samlinger som nylig er blitt populære"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Samlinger er grupper av relaterte utvidelser som hvem som helst kan lage og dele. Utforsk samlinger laget av andre brukere eller <a href=\"%(url)s\">lag din egen</a>."
-
-msgid "Subscribe"
-msgstr "Abonner"
 
 #, fuzzy, python-format
 msgid "by %(author_link)s"
@@ -1367,6 +1268,9 @@ msgstr "Utvidelse"
 
 msgid "Comment"
 msgstr "Kommentar"
+
+msgid "Remove"
+msgstr "Fjern"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Skriv inn navnet på utvidelsen du vil ta med"
@@ -1434,6 +1338,9 @@ msgstr "Flest brukere"
 msgid "Weekly Downloads"
 msgstr "Ukentlige nedlastinger"
 
+msgid "Recently Updated"
+msgstr "Nylig oppdatert"
+
 msgid "Up & Coming"
 msgstr "Fremgangsrike"
 
@@ -1453,6 +1360,9 @@ msgstr "{0}: Fremhevede utvidelser"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Ingen fremhevede utvidelser i {0}."
+
+msgid "Subscribe"
+msgstr "Abonner"
 
 msgid "Featured Add-ons"
 msgstr "Fremhevede utvidelser"
@@ -2093,6 +2003,9 @@ msgstr "Flagget for videre gjennomgang"
 msgid "Unlisted"
 msgstr "Ikke oppført"
 
+msgid "Owner"
+msgstr "Eier"
+
 msgid "Developer"
 msgstr "Utvikler"
 
@@ -2696,10 +2609,16 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategorier kan ikke endres mens utvidelsen er fremhevet for denne applikasjonen."
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -3157,6 +3076,9 @@ msgstr ""
 msgid "Support Information for {0}"
 msgstr ""
 
+msgid "Email"
+msgstr "E-post"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3304,6 +3226,14 @@ msgstr ""
 
 msgid "Add a Screenshot..."
 msgstr "Legg til et skjermbilde…"
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Fortsett"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
@@ -4471,28 +4401,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} advarsel"
 msgstr[1] "{0} advarsler"
 
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgid " Block invisible trackers and spying ads that follow you around the web."
 msgstr ""
 
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr ""
 
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr ""
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid " Perform reverse image searches from an array of engines."
+msgid "Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6210,31 +6140,13 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr ""
-
-msgid "Most popular this month"
-msgstr ""
-
-msgid "Most popular all time"
-msgstr ""
-
-msgid "Highest Rated"
-msgstr "Høyest rangerte"
-
 msgid "search for add-ons"
-msgstr ""
-
-msgid "search for collections"
 msgstr ""
 
 msgid "search for themes"
 msgstr ""
 
 msgid "search for apps"
-msgstr ""
-
-msgid "Sort By"
 msgstr ""
 
 msgid "Relevance"

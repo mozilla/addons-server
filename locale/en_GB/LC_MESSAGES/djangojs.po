@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 05:59+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-01-01 16:26+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -707,18 +707,6 @@ msgstr "Remove this add-on from the collection"
 
 msgid "Remove"
 msgstr "Remove"
-
-msgid "Remove this user as a contributor"
-msgstr "Remove this user as a contributor"
-
-msgid "An email address is required."
-msgstr "An email address is required."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "You cannot add yourself as a contributor."
-
-msgid "You have already added that user."
-msgstr "You have already added that user."
 
 msgid "Add to favorites"
 msgstr "Add to favourites"

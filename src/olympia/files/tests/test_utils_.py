@@ -6,6 +6,7 @@ import time
 import zipfile
 
 from datetime import timedelta
+from operator import attrgetter
 
 from django import forms
 from django.conf import settings
@@ -17,9 +18,11 @@ import mock
 import pytest
 
 from defusedxml.common import EntitiesForbidden, NotSupportedError
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import TestCase, create_switch
+from olympia.amo.tests.test_helpers import get_addon_file
 from olympia.applications.models import AppVersion
 from olympia.files import utils
 from olympia.files.tests.test_file_viewer import get_file
@@ -78,6 +81,46 @@ class TestExtractor(TestCase):
         utils.Extractor.parse(fake_zip)
         assert not rdf_extractor.called
         assert manifest_json_extractor.called
+
+
+class TestRDFExtractor(TestCase):
+    def setUp(self):
+        self.firefox_versions = [
+            AppVersion.objects.create(application=amo.APPS['firefox'].id,
+                                      version='38.0a1'),
+            AppVersion.objects.create(application=amo.APPS['firefox'].id,
+                                      version='43.0'),
+        ]
+        self.thunderbird_versions = [
+            AppVersion.objects.create(application=amo.APPS['thunderbird'].id,
+                                      version='42.0'),
+            AppVersion.objects.create(application=amo.APPS['thunderbird'].id,
+                                      version='45.0'),
+        ]
+
+    def test_apps(self):
+        zip_file = utils.SafeZip(get_addon_file(
+            'valid_firefox_and_thunderbird_addon.xpi'))
+        extracted = utils.RDFExtractor(zip_file).parse()
+        apps = sorted(extracted['apps'], key=attrgetter('id'))
+        assert len(apps) == 2
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].min.version == '38.0a1'
+        assert apps[0].max.version == '43.0'
+        assert apps[1].appdata == amo.THUNDERBIRD
+        assert apps[1].min.version == '42.0'
+        assert apps[1].max.version == '45.0'
+
+    @override_switch('disallow-thunderbird-and-seamonkey', active=True)
+    def test_apps_disallow_thunderbird_and_seamonkey_waffle(self):
+        zip_file = utils.SafeZip(get_addon_file(
+            'valid_firefox_and_thunderbird_addon.xpi'))
+        extracted = utils.RDFExtractor(zip_file).parse()
+        apps = extracted['apps']
+        assert len(apps) == 1
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].min.version == '38.0a1'
+        assert apps[0].max.version == '43.0'
 
 
 class TestManifestJSONExtractor(TestCase):

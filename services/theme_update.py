@@ -1,6 +1,4 @@
-import base64
 import json
-import os
 import posixpath
 import re
 from time import time
@@ -8,8 +6,9 @@ from wsgiref.handlers import format_date_time
 
 from olympia.constants import base
 
-from services.utils import log_configure, log_exception, mypool
-from services.utils import settings, user_media_path, user_media_url
+from services.utils import (
+    get_cdn_url, log_configure, log_exception, mypool, settings,
+    user_media_url)
 
 # This has to be imported after the settings (utils).
 from django_statsd.clients import statsd
@@ -22,8 +21,71 @@ log_configure()
 class ThemeUpdate(object):
 
     def __init__(self, locale, id_, qs=None):
-        self.conn, self.cursor = None, None
         self.from_gp = qs == 'src=gp'
+        self.addon_id = id_
+        self.cursor = mypool.connect().cursor()
+
+    def get_headers(self, length):
+        return [('Cache-Control', 'public, max-age=86400'),
+                ('Content-Length', str(length)),
+                ('Content-Type', 'application/json'),
+                ('Expires', format_date_time(time() + 86400)),
+                ('Last-Modified', format_date_time(time()))]
+
+
+class MigratedUpdate(ThemeUpdate):
+
+    def get_data(self):
+        if hasattr(self, 'row'):
+            return self.row
+
+        primary_key = (
+            'getpersonas_id' if self.from_gp else 'lightweight_theme_id')
+
+        """sql from:
+            MigratedLWT.objects.filter(lightweight_theme_id=xxx).values_list(
+                'static_theme_id',
+                'static_theme___current_version__files__filename',
+                'static_theme___current_version__files__hash').query"""
+
+        sql = """
+        SELECT `migrated_personas`.`static_theme_id`,
+               `files`.`filename`,
+               `files`.`hash`
+        FROM `migrated_personas`
+        INNER JOIN `addons` T3 ON (
+            `migrated_personas`.`static_theme_id` = T3.`id` )
+        LEFT OUTER JOIN `versions` ON (
+            T3.`current_version` = `versions`.`id` )
+        LEFT OUTER JOIN `files` ON (
+            `versions`.`id` = `files`.`version_id` )
+        WHERE `migrated_personas`.{primary_key}=%(id)s
+        """.format(primary_key=primary_key)
+        self.cursor.execute(sql, {'id': self.addon_id})
+        row = self.cursor.fetchone()
+        self.data = (
+            dict(zip(('stheme_id', 'filename', 'hash'), row)) if row else {})
+        return self.data
+
+    @property
+    def is_migrated(self):
+        return bool(self.get_data())
+
+    def get_json(self):
+        if self.get_data():
+            response = {
+                "converted_theme": {
+                    "url": get_cdn_url(self.data['stheme_id'], self.data),
+                    "hash": self.data['hash']
+                }
+            }
+            return json.dumps(response)
+
+
+class LWThemeUpdate(ThemeUpdate):
+
+    def __init__(self, locale, id_, qs=None):
+        super(LWThemeUpdate, self).__init__(locale, id_, qs)
         self.data = {
             'locale': locale,
             'id': id_,
@@ -33,31 +95,6 @@ class ThemeUpdate(object):
             'atype': base.ADDON_PERSONA,
             'row': {}
         }
-        if not self.cursor:
-            self.conn = mypool.connect()
-            self.cursor = self.conn.cursor()
-
-    def base64_icon(self, addon_id):
-        path = self.image_path('icon.jpg')
-        if not os.path.isfile(path):
-            return ''
-
-        try:
-            with open(path, 'r') as f:
-                return base64.b64encode(f.read())
-        except IOError as e:
-            if len(e.args) == 1:
-                log_exception('I/O error: {0}'.format(e[0]))
-            else:
-                log_exception('I/O error({0}): {1}'.format(e[0], e[1]))
-            return ''
-
-    def get_headers(self, length):
-        return [('Cache-Control', 'public, max-age=3600'),
-                ('Content-Length', str(length)),
-                ('Content-Type', 'application/json'),
-                ('Expires', format_date_time(time() + 3600)),
-                ('Last-Modified', format_date_time(time()))]
 
     def get_update(self):
         """
@@ -120,7 +157,6 @@ class ThemeUpdate(object):
 
         return False
 
-    # TODO: Cache on row['modified']
     def get_json(self):
         if not self.get_update():
             # Persona not found.
@@ -148,7 +184,6 @@ class ThemeUpdate(object):
                                          '/addon/%s/' % row['slug']),
             'previewURL': self.image_url('preview.png'),
             'iconURL': self.image_url('icon.png'),
-            'dataurl': self.base64_icon(row['addon_id']),
             'accentcolor': '#%s' % accent if accent else None,
             'textcolor': '#%s' % text if text else None,
             'updateURL': self.locale_url(settings.VAMO_URL,
@@ -163,19 +198,6 @@ class ThemeUpdate(object):
             data['updateURL'] += '?src=gp'
 
         return json.dumps(data)
-
-    def image_path(self, filename):
-        row = self.data['row']
-
-        # Special cased for non-AMO-uploaded themes imported from getpersonas.
-        if row['persona_id'] != 0:
-            if filename == 'preview.png':
-                filename = 'preview.jpg'
-            elif filename == 'icon.png':
-                filename = 'preview_small.jpg'
-
-        return os.path.join(user_media_path('addons'), str(row['addon_id']),
-                            filename)
 
     def image_url(self, filename):
         row = self.data['row']
@@ -224,7 +246,10 @@ def application(environ, start_response):
             return ['']
 
         try:
-            update = ThemeUpdate(locale, id_, environ.get('QUERY_STRING'))
+            query_string = environ.get('QUERY_STRING')
+            update = MigratedUpdate(locale, id_, query_string)
+            if not update.is_migrated:
+                update = LWThemeUpdate(locale, id_, query_string)
             output = update.get_json()
             if not output:
                 start_response('404 Not Found', [])

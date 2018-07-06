@@ -31,7 +31,6 @@ from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
 from olympia.addons import forms as addon_forms
-from olympia.addons.decorators import addon_view
 from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages, utils as amo_utils
@@ -44,7 +43,7 @@ from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.forms import AgreementForm, CheckCompatibilityForm
 from olympia.devhub.models import BlogPost, RssKey
-from olympia.devhub.utils import process_validation
+from olympia.devhub.utils import add_dynamic_theme_tag, process_validation
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon
 from olympia.lib.crypto.packaged import sign_file
@@ -315,6 +314,12 @@ def edit(request, addon_id, addon):
     except Whiteboard.DoesNotExist:
         whiteboard = Whiteboard(pk=addon.pk)
 
+    previews = (
+        addon.current_version.previews.all()
+        if addon.current_version and addon.has_per_version_previews
+        else addon.previews.all())
+    header_preview = (
+        previews.first() if addon.type == amo.ADDON_STATICTHEME else None)
     data = {
         'page': 'edit',
         'addon': addon,
@@ -323,12 +328,10 @@ def edit(request, addon_id, addon):
         'show_listed_fields': addon.has_listed_versions(),
         'valid_slug': addon.slug,
         'tags': addon.tags.not_denied().values_list('tag_text', flat=True),
-        'previews': addon.previews.all(),
+        'previews': previews,
+        'header_preview': header_preview,
         'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
     }
-
-    if acl.action_allowed(request, amo.permissions.ADDONS_CONFIGURE):
-        data['admin_form'] = forms.AdminForm(instance=addon)
 
     return render(request, 'devhub/addons/edit.html', data)
 
@@ -834,7 +837,7 @@ def ajax_dependencies(request, addon_id, addon):
 def addons_section(request, addon_id, addon, section, editable=False):
     show_listed = addon.has_listed_versions()
     static_theme = addon.type == amo.ADDON_STATICTHEME
-    models = {'admin': forms.AdminForm}
+    models = {}
     if show_listed:
         models.update({
             'basic': addon_forms.AddonFormBasic,
@@ -1066,9 +1069,7 @@ def version_edit(request, addon_id, addon, version_id):
                                   amo.permissions.REVIEWS_ADMIN)
 
     if addon.accepts_compatible_apps():
-        # We should be in no-caching land but this one stays cached for some
-        # reason.
-        qs = version.apps.all().no_cache()
+        qs = version.apps.all()
         compat_form = forms.CompatFormSet(
             request.POST or None, queryset=qs,
             form_kwargs={'version': version})
@@ -1377,6 +1378,7 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
             addon.update(status=amo.STATUS_NOMINATED)
         # auto-sign versions (the method checks eligibility)
         auto_sign_version(version)
+        add_dynamic_theme_tag(version)
         next_url = (next_details
                     if channel == amo.RELEASE_CHANNEL_LISTED
                     else next_finish)
@@ -1581,7 +1583,8 @@ def _submit_finish(request, addon, version, is_file=False):
     return render(request, 'devhub/addons/submit/done.html',
                   {'addon': addon,
                    'uploaded_version': uploaded_version,
-                   'submit_page': submit_page})
+                   'submit_page': submit_page,
+                   'preview': uploaded_version.previews.first()})
 
 
 @dev_required(submitting=True)
@@ -1682,18 +1685,6 @@ def request_review(request, addon_id, addon):
             'You must provide further details to proceed.'))
     ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, addon.status)
     return redirect(addon.get_dev_url('versions'))
-
-
-@post_required
-@addon_view
-def admin(request, addon):
-    if not acl.action_allowed(request, amo.permissions.ADDONS_CONFIGURE):
-        raise PermissionDenied
-    form = forms.AdminForm(request, request.POST or None, instance=addon)
-    if form.is_valid():
-        form.save()
-    return render(request, 'devhub/addons/edit/admin.html',
-                  {'addon': addon, 'admin_form': form})
 
 
 def docs(request, doc_name=None):

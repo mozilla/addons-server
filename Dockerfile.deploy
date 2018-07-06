@@ -71,8 +71,6 @@ WORKDIR /data/olympia
 # Install all python requires
 RUN pip install --no-cache-dir --exists-action=w --no-deps -r requirements/system.txt              \
     && pip install --no-cache-dir --exists-action=w --no-deps -r requirements/prod.txt             \
-    && [ -f requirements/prod_without_hash.txt ]                                                   \
-    && pip install --no-cache-dir --exists-action=w --no-deps -r requirements/prod_without_hash.txt\
     && pip install --no-cache-dir --exists-action=w --no-deps -e .
 
 # Link /usr/sbin/uwsgi and /usr/bin/uwsgi to deal with migration from Centos -> Debian

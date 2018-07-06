@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib import admin
 
 from olympia.addons.admin import ReplacementAddonAdmin
 from olympia.addons.models import ReplacementAddon
@@ -10,50 +11,150 @@ from olympia.amo.urlresolvers import django_reverse, reverse
 class TestReplacementAddonForm(TestCase):
     def test_valid_addon(self):
         addon_factory(slug='bar')
-        form = ReplacementAddonAdmin(ReplacementAddon, None).get_form(None)(
-            {'guid': 'foo', 'path': '/addon/bar/'})
+        form = ReplacementAddonAdmin(
+            ReplacementAddon, admin.site).get_form(None)(
+                {'guid': 'foo', 'path': '/addon/bar/'})
         assert form.is_valid(), form.errors
         assert form.cleaned_data['path'] == '/addon/bar/'
 
     def test_invalid(self):
-        form = ReplacementAddonAdmin(ReplacementAddon, None).get_form(None)(
-            {'guid': 'foo', 'path': '/invalid_url/'})
+        form = ReplacementAddonAdmin(
+            ReplacementAddon, admin.site).get_form(None)(
+                {'guid': 'foo', 'path': '/invalid_url/'})
         assert not form.is_valid()
 
     def test_valid_collection(self):
         bagpuss = user_factory(username='bagpuss')
         collection_factory(slug='stuff', author=bagpuss)
-        form = ReplacementAddonAdmin(ReplacementAddon, None).get_form(None)(
-            {'guid': 'foo', 'path': '/collections/bagpuss/stuff/'})
+        form = ReplacementAddonAdmin(
+            ReplacementAddon, admin.site).get_form(None)(
+                {'guid': 'foo', 'path': '/collections/bagpuss/stuff/'})
         assert form.is_valid(), form.errors
         assert form.cleaned_data['path'] == '/collections/bagpuss/stuff/'
 
     def test_url(self):
-        form = ReplacementAddonAdmin(ReplacementAddon, None).get_form(None)(
-            {'guid': 'foo', 'path': 'https://google.com/'})
+        form = ReplacementAddonAdmin(
+            ReplacementAddon, admin.site).get_form(None)(
+                {'guid': 'foo', 'path': 'https://google.com/'})
         assert form.is_valid()
         assert form.cleaned_data['path'] == 'https://google.com/'
 
     def test_invalid_urls(self):
-        assert not ReplacementAddonAdmin(ReplacementAddon, None).get_form(
-            None)({'guid': 'foo', 'path': 'ftp://google.com/'}).is_valid()
-        assert not ReplacementAddonAdmin(ReplacementAddon, None).get_form(
-            None)({'guid': 'foo', 'path': 'https://88999@~'}).is_valid()
-        assert not ReplacementAddonAdmin(ReplacementAddon, None).get_form(
-            None)({'guid': 'foo', 'path': 'https://www. rutrt/'}).is_valid()
+        assert not ReplacementAddonAdmin(
+            ReplacementAddon, admin.site).get_form(None)(
+                {'guid': 'foo', 'path': 'ftp://google.com/'}).is_valid()
+        assert not ReplacementAddonAdmin(
+            ReplacementAddon, admin.site).get_form(None)(
+                {'guid': 'foo', 'path': 'https://88999@~'}).is_valid()
+        assert not ReplacementAddonAdmin(
+            ReplacementAddon, admin.site).get_form(None)(
+                {'guid': 'foo', 'path': 'https://www. rutrt/'}).is_valid()
 
         path = '/addon/bar/'
         site = settings.SITE_URL
         full_url = site + path
         # path is okay
-        assert ReplacementAddonAdmin(ReplacementAddon, None).get_form(
-            None)({'guid': 'foo', 'path': path}).is_valid()
+        assert ReplacementAddonAdmin(
+            ReplacementAddon, admin.site).get_form(None)(
+                {'guid': 'foo', 'path': path}).is_valid()
         # but we don't allow full urls for AMO paths
-        form = ReplacementAddonAdmin(ReplacementAddon, None).get_form(
-            None)({'guid': 'foo', 'path': full_url})
+        form = ReplacementAddonAdmin(
+            ReplacementAddon, admin.site).get_form(None)(
+                {'guid': 'foo', 'path': full_url})
         assert not form.is_valid()
         assert ('Paths for [%s] should be relative, not full URLs including '
                 'the domain name' % site in form.errors['path'])
+
+
+class TestAddonAdmin(TestCase):
+    def setUp(self):
+        self.list_url = reverse('admin:addons_addon_changelist')
+
+    def test_can_see_addon_module_in_admin_with_addons_edit(self):
+        pass
+
+    def test_can_list_with_addons_edit_permission(self):
+        addon = addon_factory()
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.list_url, follow=True)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+
+    def test_can_edit_with_addons_edit_permission(self):
+        addon = addon_factory(guid='@foo')
+        self.detail_url = reverse(
+            'admin:addons_addon_change', args=(addon.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+
+        post_data = {
+            # Django wants the whole form to be submitted, unfortunately.
+            'total_ratings': addon.total_ratings,
+            'text_ratings_count': addon.text_ratings_count,
+            'default_locale': addon.default_locale,
+            'weekly_downloads': addon.weekly_downloads,
+            'total_downloads': addon.total_downloads,
+            'average_rating': addon.average_rating,
+            'average_daily_users': addon.average_daily_users,
+            'bayesian_rating': addon.bayesian_rating,
+            'reputation': addon.reputation,
+            'type': addon.type,
+            'slug': addon.slug
+        }
+        post_data['guid'] = '@bar'
+        response = self.client.post(self.detail_url, post_data, follow=True)
+        assert response.status_code == 200
+        addon.reload()
+        assert addon.guid == '@bar'
+
+    def test_can_not_list_without_addons_edit_permission(self):
+        addon = addon_factory()
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+        response = self.client.get(self.list_url, follow=True)
+        assert response.status_code == 403
+        assert addon.guid not in response.content.decode('utf-8')
+
+    def test_can_not_edit_without_addons_edit_permission(self):
+        addon = addon_factory(guid='@foo')
+        self.detail_url = reverse(
+            'admin:addons_addon_change', args=(addon.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 403
+        assert addon.guid not in response.content.decode('utf-8')
+
+        post_data = {
+            # Django wants the whole form to be submitted, unfortunately.
+            'total_ratings': addon.total_ratings,
+            'text_ratings_count': addon.text_ratings_count,
+            'default_locale': addon.default_locale,
+            'weekly_downloads': addon.weekly_downloads,
+            'total_downloads': addon.total_downloads,
+            'average_rating': addon.average_rating,
+            'average_daily_users': addon.average_daily_users,
+            'bayesian_rating': addon.bayesian_rating,
+            'type': addon.type,
+            'slug': addon.slug
+        }
+        post_data['guid'] = '@bar'
+        response = self.client.post(self.detail_url, post_data, follow=True)
+        assert response.status_code == 403
+        addon.reload()
+        assert addon.guid == '@foo'
 
 
 class TestReplacementAddonList(TestCase):
@@ -61,7 +162,7 @@ class TestReplacementAddonList(TestCase):
         self.list_url = reverse('admin:addons_replacementaddon_changelist')
 
     def test_fields(self):
-        model_admin = ReplacementAddonAdmin(ReplacementAddon, None)
+        model_admin = ReplacementAddonAdmin(ReplacementAddon, admin.site)
         self.assertEqual(
             list(model_admin.get_list_display(None)),
             ['guid', 'path', 'guid_slug', '_url'])

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 05:59+0000\n"
-"PO-Revision-Date: 2018-03-20 23:08+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-20 16:59+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ca\n"
@@ -201,10 +201,10 @@ msgid "Search themes for <b>{0}</b>"
 msgstr ""
 
 msgid "Search apps for <b>{0}</b>"
-msgstr "Cerca aplicacions que continguen <b>{0}</b>"
+msgstr "Cerca aplicacions que contenen <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "Cerca complements que continguen <b>{0}</b>"
+msgstr "Cerca complements que contenen <b>{0}</b>"
 
 #, fuzzy
 msgid "Use original"
@@ -709,18 +709,6 @@ msgstr "Suprimeix aquest complement de la col·lecció"
 
 msgid "Remove"
 msgstr "Suprimeix"
-
-msgid "Remove this user as a contributor"
-msgstr "Suprimeix aquest usuari dels col·laboradors"
-
-msgid "An email address is required."
-msgstr "Cal una adreça electrònica."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "No es pot afegir un mateix com a col·laborador."
-
-msgid "You have already added that user."
-msgstr "Ja heu afegit aquest usuari."
 
 msgid "Add to favorites"
 msgstr "Afegeix als preferits"

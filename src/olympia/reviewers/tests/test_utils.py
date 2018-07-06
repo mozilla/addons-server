@@ -790,7 +790,7 @@ class TestReviewHelper(TestCase):
         assert activity.details['comments'] == ''
 
         # Check points awarded.
-        self._check_score(amo.REVIEWED_EXTENSION_HIGHEST_RISK)
+        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
     def test_public_with_unreviewed_version_addon_confirm_auto_approval(self):
         self.grant_permission(self.request.user, 'Addons:PostReview')
@@ -824,7 +824,7 @@ class TestReviewHelper(TestCase):
         assert activity.details['comments'] == ''
 
         # Check points awarded.
-        self._check_score(amo.REVIEWED_EXTENSION_HIGHEST_RISK)
+        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
     def test_public_with_disabled_version_addon_confirm_auto_approval(self):
         self.grant_permission(self.request.user, 'Addons:PostReview')
@@ -858,7 +858,7 @@ class TestReviewHelper(TestCase):
         assert activity.details['comments'] == ''
 
         # Check points awarded.
-        self._check_score(amo.REVIEWED_EXTENSION_HIGHEST_RISK)
+        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
     def test_unlisted_version_addon_confirm_auto_approval(self):
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
@@ -1171,7 +1171,7 @@ class TestReviewHelper(TestCase):
         assert logs[0].created == logs[1].created
 
         # Check points awarded.
-        self._check_score(amo.REVIEWED_EXTENSION_HIGH_RISK)
+        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
     def test_reject_multiple_versions_except_latest(self):
         old_version = self.version
@@ -1179,7 +1179,7 @@ class TestReviewHelper(TestCase):
         # Add yet another version we don't want to reject.
         self.version = version_factory(addon=self.addon, version='42.0')
         AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED, weight=21)
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=91)
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
 
         # Safeguards.

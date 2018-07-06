@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 06:00+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -832,9 +832,6 @@ msgstr "Gaiak"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
 
-msgid "Most Followers"
-msgstr "Jarraitzaile gehienekoak"
-
 msgid "Collections"
 msgstr "Bildumak"
 
@@ -951,22 +948,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-#, fuzzy
-msgid "Contributors"
-msgstr "Laguntzaileak"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr ""
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Edozeinek sortu eta parteka ditzakeen erlazionatutako gehigarrien multzoak dira bildumak."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Bildumak :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Nik bakarrik ikus dezaket bilduma hau."
 
@@ -1022,20 +1003,14 @@ msgstr "Ikonoak ezin dira animatuak izan."
 msgid "This add-on already belongs to the collection"
 msgstr "URLa beste bilduma batek darabil"
 
-msgid "Name"
-msgstr "Izena"
-
-msgid "Recently Updated"
-msgstr "Eguneraketak"
-
-msgid "Recently Popular"
-msgstr ""
-
 msgid "Added"
 msgstr ""
 
 msgid "Popularity"
 msgstr "Arrakasta"
+
+msgid "Name"
+msgstr "Izena"
 
 msgid "Collection created!"
 msgstr "Bilduma sortuta!"
@@ -1144,17 +1119,14 @@ msgstr "Joan"
 msgid "What are Collections?"
 msgstr "Zer dira bildumak?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Edozeinek sortu eta parteka ditzakeen erlazionatutako gehigarrien multzoak dira bildumak."
+
 msgid "Explore Collections"
 msgstr "Arakatu bildumak"
 
 msgid "Common Tags"
 msgstr "Ohiko etiketak"
-
-msgid "More by this User"
-msgstr ""
-
-msgid "See all collections by this user"
-msgstr ""
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1241,63 +1213,8 @@ msgstr "Editatu {0}"
 msgid "Description"
 msgstr "Deskribapena"
 
-msgid "Contributors & More"
-msgstr ""
-
 msgid "Save Changes"
 msgstr ""
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "Jabea"
-
-msgid "Make Owner"
-msgstr ""
-
-msgid "Remove this user as a contributor"
-msgstr ""
-
-msgid "Remove"
-msgstr ""
-
-msgid "Collection Contributors"
-msgstr ""
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-
-msgid "User"
-msgstr "Erabiltzailea"
-
-msgid "Email"
-msgstr "E-posta"
-
-# Column name in a table.
-msgid "Role"
-msgstr "Rola"
-
-msgid "Enter the email address of the contributor to add"
-msgstr ""
-
-msgid "Add Contributor"
-msgstr ""
-
-msgid "Contributor"
-msgstr "Laguntzaileak"
-
-msgid "Admin Settings"
-msgstr "Admin ezarpenak"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ""
-
-msgid "Continue"
-msgstr "Jarraitu"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "edo <a id=\"change-owner-cancel\" href=\"#\">Utzi</a>"
 
 msgid "Remove from favorites"
 msgstr "Kendu gogokoetatik"
@@ -1312,28 +1229,9 @@ msgstr "{0} erabiltzailearen bildumak"
 msgid "No collections found."
 msgstr "Ez da bildumarik aurkitu."
 
-msgid "Most-Followed Collections"
-msgstr ""
-
-msgid "Newest Collections"
-msgstr ""
-
-msgid "Collections by Name"
-msgstr ""
-
-msgid "Recently Updated Collections"
-msgstr ""
-
-msgid "Recently Popular Collections"
-msgstr ""
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
-
-# 100%
-msgid "Subscribe"
-msgstr "Harpidetu"
 
 #, fuzzy, python-format
 msgid "by %(author_link)s"
@@ -1371,6 +1269,9 @@ msgstr "Gehigarria"
 
 msgid "Comment"
 msgstr "Iruzkina"
+
+msgid "Remove"
+msgstr ""
 
 msgid "Enter the name of the add-on to include"
 msgstr ""
@@ -1438,6 +1339,9 @@ msgstr "Erabiltzaile gehien dituztenak"
 msgid "Weekly Downloads"
 msgstr ""
 
+msgid "Recently Updated"
+msgstr "Eguneraketak"
+
 msgid "Up & Coming"
 msgstr "Berrienak eta datozenak"
 
@@ -1457,6 +1361,10 @@ msgstr "{0}: Nabarmendutako gehigarriak"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Nabarmendutako gehigarririk ez {0}(e)n."
+
+# 100%
+msgid "Subscribe"
+msgstr "Harpidetu"
 
 msgid "Featured Add-ons"
 msgstr "Nabarmendutako gehigarriak"
@@ -2096,6 +2004,10 @@ msgstr ""
 msgid "Unlisted"
 msgstr ""
 
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "Jabea"
+
 msgid "Developer"
 msgstr "Garatzailea"
 
@@ -2699,10 +2611,16 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -3164,6 +3082,9 @@ msgstr ""
 msgid "Support Information for {0}"
 msgstr ""
 
+msgid "Email"
+msgstr "E-posta"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3312,6 +3233,14 @@ msgstr ""
 
 msgid "Add a Screenshot..."
 msgstr "Gehitu pantaila-argazkia..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Jarraitu"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
@@ -4515,28 +4444,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "abisu {0}"
 msgstr[1] "{0} abisu"
 
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgid " Block invisible trackers and spying ads that follow you around the web."
 msgstr ""
 
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr ""
 
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr ""
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid " Perform reverse image searches from an array of engines."
+msgid "Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6292,32 +6221,14 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr "Aste honetako ezagunenak"
-
-msgid "Most popular this month"
-msgstr "Hilabete honetako ezagunenak"
-
-msgid "Most popular all time"
-msgstr "Ezagunenak"
-
-msgid "Highest Rated"
-msgstr "Puntuazio onenak"
-
 msgid "search for add-ons"
 msgstr "bilatu gehigarriak"
-
-msgid "search for collections"
-msgstr "bilatu bildumak"
 
 msgid "search for themes"
 msgstr ""
 
 msgid "search for apps"
 msgstr ""
-
-msgid "Sort By"
-msgstr "Ordena"
 
 msgid "Relevance"
 msgstr "Garrantzia"

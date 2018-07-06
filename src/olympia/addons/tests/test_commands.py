@@ -11,11 +11,12 @@ from olympia import amo
 from olympia.activity.models import AddonLog
 from olympia.addons.management.commands import (
     approve_addons, process_addons as pa)
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AppSupport
+from olympia.addons.tasks import update_appsupport
 from olympia.amo.tests import (
     AMOPaths, TestCase, addon_factory, version_factory)
 from olympia.applications.models import AppVersion
-from olympia.files.models import FileValidation
+from olympia.files.models import FileValidation, WebextPermission
 from olympia.reviewers.models import AutoApprovalSummary, ReviewerScore
 from olympia.versions.models import ApplicationsVersions
 
@@ -276,6 +277,47 @@ class AddFirefox57TagTestCase(TestCase):
             set(['firefox57']))
 
 
+class TestAddDynamicThemeTagForThemeApiCommand(TestCase):
+    def test_affects_only_public_webextensions(self):
+        addon_factory()
+        addon_factory(file_kw={'is_webextension': True,
+                               'status': amo.STATUS_AWAITING_REVIEW},
+                      status=amo.STATUS_NOMINATED)
+        public_webextension = addon_factory(file_kw={'is_webextension': True})
+
+        with count_subtask_calls(pa.add_dynamic_theme_tag) as calls:
+            call_command(
+                'process_addons', task='add_dynamic_theme_tag_for_theme_api')
+
+        assert len(calls) == 1
+        assert calls[0]['kwargs']['args'] == [
+            [public_webextension.pk]
+        ]
+
+    def test_tag_added_for_is_dynamic_theme(self):
+        addon = addon_factory(file_kw={'is_webextension': True})
+        WebextPermission.objects.create(
+            file=addon.current_version.all_files[0],
+            permissions=['theme'])
+        assert addon.tags.all().count() == 0
+        # Add some more that shouldn't be tagged
+        no_perms = addon_factory(file_kw={'is_webextension': True})
+        not_a_theme = addon_factory(file_kw={'is_webextension': True})
+        WebextPermission.objects.create(
+            file=not_a_theme.current_version.all_files[0],
+            permissions=['downloads'])
+
+        call_command(
+            'process_addons', task='add_dynamic_theme_tag_for_theme_api')
+
+        assert (
+            list(addon.tags.all().values_list('tag_text', flat=True)) ==
+            [u'dynamic theme'])
+
+        assert not no_perms.tags.all().exists()
+        assert not not_a_theme.tags.all().exists()
+
+
 class RecalculateWeightTestCase(TestCase):
     def test_only_affects_auto_approved(self):
         # Non auto-approved add-on, should not be considered.
@@ -479,3 +521,90 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
         apv = ApplicationsVersions.objects.get(version=addon.current_version)
         # Shouldn't have been updated to 56.* since strictCompatibilty is true.
         assert apv.max != self.firefox_56_star
+
+
+class TestDeleteAddonsNotCompatibleWithFirefoxes(TestCase):
+    def make_the_call(self):
+        call_command('process_addons',
+                     task='delete_addons_not_compatible_with_firefoxes')
+
+    def test_basic(self):
+        av_min, _ = AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id, version='48.0')
+        av_max, _ = AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id, version='48.*')
+        av_seamonkey_min, _ = AppVersion.objects.get_or_create(
+            application=amo.SEAMONKEY.id, version='2.49.3')
+        av_seamonkey_max, _ = AppVersion.objects.get_or_create(
+            application=amo.SEAMONKEY.id, version='2.49.*')
+        # Those add-ons should not be deleted, because they are compatible with
+        # at least Firefox or Firefox for Android.
+        addon_factory()  # A pure Firefox add-on
+        addon_factory(version_kw={'application': amo.ANDROID.id})
+        addon_with_both_firefoxes = addon_factory()
+        ApplicationsVersions.objects.get_or_create(
+            application=amo.ANDROID.id,
+            version=addon_with_both_firefoxes.current_version,
+            min=av_min, max=av_max)
+        addon_with_thunderbird_and_android = addon_factory(
+            version_kw={'application': amo.THUNDERBIRD.id})
+        ApplicationsVersions.objects.get_or_create(
+            application=amo.ANDROID.id,
+            version=addon_with_thunderbird_and_android.current_version,
+            min=av_min, max=av_max)
+        addon_with_firefox_and_seamonkey = addon_factory(
+            version_kw={'application': amo.FIREFOX.id})
+        ApplicationsVersions.objects.get_or_create(
+            application=amo.SEAMONKEY.id,
+            version=addon_with_firefox_and_seamonkey.current_version,
+            min=av_seamonkey_min, max=av_seamonkey_max)
+        addon_factory(
+            status=amo.STATUS_NULL,  # Non-public, will cause it to be ignored.
+            version_kw={'application': amo.THUNDERBIRD.id})
+
+        # Those add-ons should be deleted as they are only compatible with
+        # Thunderbird or Seamonkey, or both.
+        addon = addon_factory(version_kw={'application': amo.THUNDERBIRD.id})
+        addon2 = addon_factory(version_kw={'application': amo.SEAMONKEY.id,
+                                           'min_app_version': '2.49.3',
+                                           'max_app_version': '2.49.*'})
+        addon3 = addon_factory(version_kw={'application': amo.THUNDERBIRD.id})
+        ApplicationsVersions.objects.get_or_create(
+            application=amo.SEAMONKEY.id,
+            version=addon3.current_version,
+            min=av_seamonkey_min, max=av_seamonkey_max)
+
+        # We've manually changed the ApplicationVersions, so let's run
+        # update_appsupport() on all public add-ons. In the real world that is
+        # done automatically when uploading a new version, either through the
+        # version_changed signal or via a cron that catches any versions that
+        # somehow fell through the cracks once a day.
+        update_appsupport(Addon.objects.public().values_list('pk', flat=True))
+
+        assert Addon.objects.count() == 9
+
+        with count_subtask_calls(
+                pa.delete_addon_not_compatible_with_firefoxes) as calls:
+            self.make_the_call()
+
+        assert len(calls) == 1
+        assert calls[0]['kwargs']['args'] == [[addon.pk, addon2.pk, addon3.pk]]
+        assert not Addon.objects.filter(pk=addon.pk).exists()
+        assert not Addon.objects.filter(pk=addon2.pk).exists()
+        assert not Addon.objects.filter(pk=addon3.pk).exists()
+
+        assert Addon.objects.count() == 6
+
+        # Make sure ApplicationsVersions targeting Thunderbird or Seamonkey are
+        # gone.
+        assert not ApplicationsVersions.objects.filter(
+            application=amo.SEAMONKEY.id).exists()
+        assert not ApplicationsVersions.objects.filter(
+            application=amo.THUNDERBIRD.id).exists()
+
+        # Make sure AppSupport targeting Thunderbird or Seamonkey are gone for
+        # add-ons we touched.
+        assert not AppSupport.objects.filter(
+            addon__in=(addon, addon2, addon3), app=amo.SEAMONKEY.id).exists()
+        assert not AppSupport.objects.filter(
+            addon__in=(addon, addon2, addon3), app=amo.THUNDERBIRD.id).exists()

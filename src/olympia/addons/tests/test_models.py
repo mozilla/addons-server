@@ -655,6 +655,14 @@ class TestAddonModels(TestCase):
         self._delete(3615)
         assert DeniedGuid.objects.filter(guid=addon.guid).exists()
 
+    def test_delete_unknown_type(self):
+        """
+        Test making sure deleting add-ons with an unknown type, like old
+        webapps from Marketplace that are somehow still around, is possible."""
+        addon = Addon.objects.get(pk=3615)
+        addon.update(type=11)
+        self._delete(3615)
+
     def test_incompatible_latest_apps(self):
         a = Addon.objects.get(pk=3615)
         assert a.incompatible_latest_apps() == []
@@ -1768,10 +1776,10 @@ class TestUpdateStatus(TestCase):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         addon.status = amo.STATUS_NOMINATED
         addon.save()
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NOMINATED)
         Version.objects.create(addon=addon)
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NULL)
 
     def test_no_valid_file_ends_with_NULL(self):
@@ -1781,22 +1789,22 @@ class TestUpdateStatus(TestCase):
                                 version=version)
         addon.status = amo.STATUS_NOMINATED
         addon.save()
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NOMINATED)
         f.status = amo.STATUS_DISABLED
         f.save()
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NULL)
 
     def test_unlisted_versions_ignored(self):
         addon = addon_factory(status=amo.STATUS_PUBLIC)
         addon.update_status()
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_PUBLIC)
 
         addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         # update_status will have been called via versions.models.update_status
-        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+        assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NULL)  # No listed versions so now NULL
 
 

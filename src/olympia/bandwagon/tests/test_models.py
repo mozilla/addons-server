@@ -10,8 +10,7 @@ from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory, collection_factory
 from olympia.bandwagon import tasks
 from olympia.bandwagon.models import (
-    Collection, CollectionAddon, CollectionUser, CollectionWatcher,
-    FeaturedCollection)
+    Collection, CollectionAddon, CollectionWatcher, FeaturedCollection)
 from olympia.users.models import UserProfile
 
 
@@ -118,23 +117,6 @@ class TestCollections(TestCase):
                                                        addon=addons[0])
         assert collection_addon.comments == 'This is a comment.'
 
-    def test_publishable_by(self):
-        c = Collection(pk=512, author=self.other)
-        CollectionUser(collection=c, user=self.user).save()
-        assert c.publishable_by(self.user)
-
-    def test_manager_publishable_by(self):
-        c1 = Collection.objects.create(author=self.user, name='B')
-        c2 = Collection.objects.create(author=self.user, name='A')
-        c3 = Collection.objects.create(author=self.other, name='D')
-        c4 = Collection.objects.create(author=self.other, name='C')
-        CollectionUser(collection=c1, user=self.user).save()
-        CollectionUser(collection=c2, user=self.other).save()
-        CollectionUser(collection=c3, user=self.user).save()
-        CollectionUser(collection=c4, user=self.other).save()
-        collections = Collection.objects.publishable_by(self.user)
-        assert list(collections) == [c2, c1, c3]
-
     def test_collection_meta(self):
         c = Collection.objects.create(author=self.user)
         assert c.addon_count == 0
@@ -188,13 +170,7 @@ class TestCollections(TestCase):
         group = Group.objects.create(name='Collections Agency',
                                      rules='CollectionStats:View')
         del fake_request.user.groups_list
-        grouser = GroupUser.objects.create(user=fake_request.user, group=group)
-        assert c.can_view_stats(fake_request)
-
-        # Developer.
-        grouser.delete()
-        CollectionUser.objects.create(collection=c, user=self.user)
-        fake_request.user = self.user
+        GroupUser.objects.create(user=fake_request.user, group=group)
         assert c.can_view_stats(fake_request)
 
 
@@ -220,13 +196,48 @@ class TestCollectionQuerySet(TestCase):
 
 class TestFeaturedCollectionSignals(TestCase):
     """The signal needs to fire for all cases when Addon.is_featured would
-    potentially change"""
+    potentially change."""
     MOCK_TARGET = 'olympia.bandwagon.models.Collection.update_featured_status'
 
     def setUp(self):
         super(TestFeaturedCollectionSignals, self).setUp()
         self.collection = collection_factory()
-        self.collection.add_addon(addon_factory())
+        self.addon = addon_factory()
+        self.collection.add_addon(self.addon)
+
+    def test_update_featured_status_does_index_addons(self):
+        from olympia.addons.tasks import index_addons
+
+        extra_addon = addon_factory()
+
+        # Make sure index_addons is a mock, and then clear it.
+        assert index_addons.delay.call_count
+        index_addons.delay.reset_mock()
+
+        # Featuring the collection indexes the add-ons in it.
+        FeaturedCollection.objects.create(
+            collection=self.collection,
+            application=self.collection.application)
+        assert index_addons.delay.call_count == 1
+        index_addons.delay.call_args[0] == ([self.addon.pk],)
+        index_addons.delay.reset_mock()
+
+        # Adding an add-on re-indexes all add-ons in the collection
+        # (we're not smart enough to know it's only necessary to do it for
+        # the one we just added and not the rest).
+        self.collection.add_addon(extra_addon)
+        assert index_addons.delay.call_count == 1
+        index_addons.delay.call_args[0] == ([self.addon.pk, extra_addon.pk],)
+        index_addons.delay.reset_mock()
+
+        # Removing an add-on needs 2 calls: one to reindex the add-ons that
+        # are still in the collection (again, we're not smart enough to realize
+        # it's not necessary) and one to reindex the add-on that has been
+        # removed.
+        self.collection.remove_addon(extra_addon)
+        assert index_addons.delay.call_count == 2
+        index_addons.delay.call_args[0] == ([self.addon.pk],)
+        index_addons.delay.call_args[1] == ([extra_addon.pk],)
 
     def test_addon_added_to_featured_collection(self):
         FeaturedCollection.objects.create(

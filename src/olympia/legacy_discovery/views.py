@@ -90,7 +90,6 @@ def pane_promos(request, version, platform, compat_mode=None):
 
 @non_atomic_requests
 def pane_more_addons(request, section, version, platform, compat_mode=None):
-
     if not compat_mode:
         compat_mode = get_compat_mode(version)
 
@@ -103,7 +102,9 @@ def pane_more_addons(request, section, version, platform, compat_mode=None):
         ctx = {'featured_addons': from_api('featured')}
     elif section == 'up-and-coming':
         ctx = {'up_and_coming': from_api('hotness')}
-    return render(request, 'legacy_discovery/more_addons.html', ctx)
+
+    content = render(request, 'legacy_discovery/more_addons.html', ctx)
+    return content
 
 
 def get_modules(request, platform, version):
@@ -145,10 +146,9 @@ def api_view(request, platform, version, list_type, api_version=1.5,
 def module_admin(request):
     APP = request.APP
     # Custom sorting to drop ordering=NULL objects to the bottom.
-    with amo.models.skip_cache():
-        qs = DiscoveryModule.objects.raw("""
-            SELECT * from discovery_modules WHERE app_id = %s
-            ORDER BY ordering IS NULL, ordering""", [APP.id])
+    qs = DiscoveryModule.objects.raw("""
+        SELECT * from discovery_modules WHERE app_id = %s
+        ORDER BY ordering IS NULL, ordering""", [APP.id])
     qs.ordered = True  # The formset looks for this.
     _sync_db_and_registry(qs, APP.id)
 

@@ -28,18 +28,18 @@
         <path d="M28,36 L28,0 L156,0 L156,36 L{{ svg_real_width }},36 L{{ svg_real_width }},92 L0,92 L0,36 L28,36 Z"
               class="toolbar" fill="{{ toolbar|d('rgba(255,255,255,0.6)') }}" data-fill="rgba(255,255,255,0.6)" />
         <rect width="128" height="5" x="28" class="textcolor" fill="{{ textcolor|d }}"/>
-        <rect width="76" height="7" x="54" y="17" rx="3.5" class="toolbar_text" fill="{{ toolbar_text|d }}"/>
-        <rect width="76" height="7" x="182" y="17" rx="3.5" class="textcolor" fill="{{ textcolor|d }}"/>
+        <rect width="76" height="5" x="54" y="18" rx="2.5" class="toolbar_text" fill="{{ toolbar_text|d }}"/>
+        <rect width="76" height="5" x="182" y="18" rx="2.5" class="textcolor" fill="{{ textcolor|d }}"/>
         <rect id="svg-url-field" width="{{ svg_real_width - 130 }}" height="30" x="82" y="47" rx="4"
               class="toolbar_field" fill="{{ toolbar_field|d('rgba(255,255,255,1)') }}" data-fill="rgba(255,255,255,1)"/>
-        <rect id="svg-url-field-text" width="{{ svg_real_width - 330 }}" height="7" x="96" y="59" rx="3.5"
+        <rect id="svg-url-field-text" width="{{ svg_real_width - 330 }}" height="5" x="96" y="61" rx="2.5"
               class="toolbar_field_text" fill="{{ toolbar_field_text|d }}"/>
-        <circle cx="24" cy="63" r="10" class="toolbar_text" fill="{{ toolbar_text|d }}"/>
-        <circle cx="58" cy="63" r="10" class="toolbar_text" fill="{{ toolbar_text|d }}"/>
+        <circle cx="27" cy="63" r="7" class="toolbar_text" fill="{{ toolbar_text|d }}"/>
+        <circle cx="55" cy="63" r="7" class="toolbar_text" fill="{{ toolbar_text|d }}"/>
         <g transform="translate({{ svg_real_width - 34 }} 54)" class="toolbar_text" fill="{{ toolbar_text|d }}">
-          <rect width="19.997" height="2.857" rx="1.428"/>
-          <rect width="19.997" height="2.857" y="7.142" rx="1.428"/>
-          <rect width="19.997" height="2.857" y="14.283" rx="1.428"/>
+          <rect width="18" height="2.667" rx="1.333"/>
+          <rect width="18" height="2.667" y="6.667" rx="1.333"/>
+          <rect width="18" height="2.667" y="13.333" rx="1.333"/>
         </g>
     </g>
 </svg>

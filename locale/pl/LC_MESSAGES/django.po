@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 06:00+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -842,9 +842,6 @@ msgstr "Motywy"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
 
-msgid "Most Followers"
-msgstr "Najczęściej obserwowane"
-
 msgid "Collections"
 msgstr "Kolekcje"
 
@@ -966,22 +963,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-#, fuzzy
-msgid "Contributors"
-msgstr "Współautor"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Kolekcje :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Kolekcje są grupami pokrewnych dodatków, które każdy może tworzyć i udostępniać."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Kolekcje :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Tylko ja mogę oglądać tę kolekcję."
 
@@ -1038,20 +1019,14 @@ msgstr "Ta nazwa użytkownika nie może być użyta."
 msgid "This add-on already belongs to the collection"
 msgstr "Ten adres url jest już używany przez inną kolekcję"
 
-msgid "Name"
-msgstr "Nazwa"
-
-msgid "Recently Updated"
-msgstr "Zaktualizowane"
-
-msgid "Recently Popular"
-msgstr "Ostatnio popularne"
-
 msgid "Added"
 msgstr "Dodano"
 
 msgid "Popularity"
 msgstr "Popularność"
+
+msgid "Name"
+msgstr "Nazwa"
 
 msgid "Collection created!"
 msgstr "Kolekcja została utworzona!"
@@ -1160,17 +1135,14 @@ msgstr "Przejdź"
 msgid "What are Collections?"
 msgstr "Co to są kolekcje?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "Kolekcje są grupami pokrewnych dodatków, które każdy może tworzyć i udostępniać."
+
 msgid "Explore Collections"
 msgstr "Przejrzyj kolekcje"
 
 msgid "Common Tags"
 msgstr "Często używane etykiety"
-
-msgid "More by this User"
-msgstr "Inne kolekcje tego użytkownika"
-
-msgid "See all collections by this user"
-msgstr "Wszystkie kolekcje tego użytkownika"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1262,66 +1234,8 @@ msgstr "Edytuj {0}"
 msgid "Description"
 msgstr "Opis"
 
-msgid "Contributors & More"
-msgstr "Współautorzy i więcej…"
-
 msgid "Save Changes"
 msgstr "Zapisz zmiany"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "Właściciel"
-
-msgid "Make Owner"
-msgstr "Właściciel"
-
-msgid "Remove this user as a contributor"
-msgstr "Usuń tego użytkownika z listy autorów"
-
-msgid "Remove"
-msgstr "Usuń"
-
-msgid "Collection Contributors"
-msgstr "Współautorzy kolekcji"
-
-#, fuzzy
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"Do tej kolekcji możesz dodać wielu współautorów. Współautorzy mogą dodawać dodatki do kolekcji i usuwać je, ale nie mogą zmieniać nazwy czy opisu dodatków. Aby dodać współautora, należy w polu "
-"znajdującym się poniżej podać jego adres e-mail. Współautorzy muszą na witrynie Mozilla Add-ons mieć założone konto."
-
-msgid "User"
-msgstr "Użytkownik"
-
-msgid "Email"
-msgstr "E-mail"
-
-# Column name in a table.
-msgid "Role"
-msgstr "Funkcja"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Aby dodać współautora, podaj jego adres e-mail"
-
-msgid "Add Contributor"
-msgstr "Dodaj współautora"
-
-msgid "Contributor"
-msgstr "Współautor"
-
-msgid "Admin Settings"
-msgstr "Ustawienia administratora"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Ostrzeżenie:</b> Po zmianie właściciela tej kolekcji nie będziesz mieć możliwości edytowania tej kolekcji. Będziesz tylko mieć możliwość dodawania i usuwania z niej dodatków."
-
-msgid "Continue"
-msgstr "Kontynuuj"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "lub <a id=\"change-owner-cancel\" href=\"#\">Anuluj</a>"
 
 msgid "Remove from favorites"
 msgstr "Usuń z ulubionych"
@@ -1336,27 +1250,9 @@ msgstr "Kolekcje autorstwa {0}"
 msgid "No collections found."
 msgstr "Nie znaleziono kolekcji."
 
-msgid "Most-Followed Collections"
-msgstr "Najczęściej obserwowane kolekcje"
-
-msgid "Newest Collections"
-msgstr "Najnowsze kolekcje"
-
-msgid "Collections by Name"
-msgstr "Kolekcje wg nazwy"
-
-msgid "Recently Updated Collections"
-msgstr "Ostatnio zaktualizowane kolekcje"
-
-msgid "Recently Popular Collections"
-msgstr "Ostatnio popularne kolekcje"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Kolekcje są grupami pokrewnych dodatków, które każdy może tworzyć i udostępniać. Wypróbuj kolekcje utworzone przez innych użytkowników lub <a href=\"%(url)s\">utwórz własną</a>."
-
-msgid "Subscribe"
-msgstr "Subskrybuj"
 
 #, fuzzy, python-format
 msgid "by %(author_link)s"
@@ -1396,6 +1292,9 @@ msgstr "Dodatek"
 
 msgid "Comment"
 msgstr "Komentarz"
+
+msgid "Remove"
+msgstr "Usuń"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Aby dodać dodatek, podaj jego nazwę"
@@ -1463,6 +1362,9 @@ msgstr "Najwięcej użytkowników"
 msgid "Weekly Downloads"
 msgstr "Tygodniowe pobrania"
 
+msgid "Recently Updated"
+msgstr "Zaktualizowane"
+
 msgid "Up & Coming"
 msgstr "Najczęściej używane"
 
@@ -1482,6 +1384,9 @@ msgstr "{0}: Polecane dodatki"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Nie ma polecanych dodatków w {0}."
+
+msgid "Subscribe"
+msgstr "Subskrybuj"
 
 msgid "Featured Add-ons"
 msgstr "Polecane dodatki"
@@ -2125,6 +2030,10 @@ msgstr "Oznaczone do późniejszego sprawdzenia"
 msgid "Unlisted"
 msgstr "Niewyświetlany"
 
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "Właściciel"
+
 msgid "Developer"
 msgstr "Autor"
 
@@ -2726,10 +2635,16 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Nie można zmieniać kategorii, gdy dodatek jest polecany dla tego programu."
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -3207,6 +3122,9 @@ msgstr "Informacje o pomocy"
 msgid "Support Information for {0}"
 msgstr "Informacje o pomocy dla {0}"
 
+msgid "Email"
+msgstr "E-mail"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3363,6 +3281,14 @@ msgstr "Podaj opis tego obrazka:"
 
 msgid "Add a Screenshot..."
 msgstr "Dodaj obrazek…"
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Kontynuuj"
 
 #, fuzzy
 msgid "Can others share your Add-on, as long as you're given credit?"
@@ -4584,28 +4510,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ostrzeżenie"
 msgstr[1] "{0} ostrzeżenia"
 
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgid " Block invisible trackers and spying ads that follow you around the web."
 msgstr ""
 
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr ""
 
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr ""
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid " Perform reverse image searches from an array of engines."
+msgid "Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6386,32 +6312,14 @@ msgstr "Aktualizacje"
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr "Najpopularniejsze w tym tygodniu"
-
-msgid "Most popular this month"
-msgstr "Najpopularniejsze w tym miesiącu"
-
-msgid "Most popular all time"
-msgstr "Najpopularniejsze"
-
-msgid "Highest Rated"
-msgstr "Najwyżej oceniane"
-
 msgid "search for add-ons"
 msgstr "szukaj dodatków"
-
-msgid "search for collections"
-msgstr "szukaj kolekcji"
 
 msgid "search for themes"
 msgstr "wyszukiwanie motywów"
 
 msgid "search for apps"
 msgstr "szukaj aplikacji"
-
-msgid "Sort By"
-msgstr "Sortuj wg"
 
 msgid "Relevance"
 msgstr "Ważność"

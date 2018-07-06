@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import urllib
 
 from StringIO import StringIO
 
@@ -10,10 +11,10 @@ import mock
 
 from services import theme_update
 
-from olympia.addons.models import Addon
-from olympia.amo.templatetags.jinja_helpers import (
-    user_media_path, user_media_url)
-from olympia.amo.tests import TestCase
+from olympia import amo
+from olympia.addons.models import Addon, MigratedLWT
+from olympia.amo.templatetags.jinja_helpers import user_media_url
+from olympia.amo.tests import addon_factory, TestCase
 from olympia.versions.models import Version
 
 
@@ -24,19 +25,22 @@ class TestWSGIApplication(TestCase):
         self.environ = {'wsgi.input': StringIO()}
         self.start_response = mock.Mock()
 
-    @mock.patch('services.theme_update.ThemeUpdate')
-    def test_wsgi_application_200(self, ThemeUpdate_mock):
+    @mock.patch('services.theme_update.MigratedUpdate')
+    @mock.patch('services.theme_update.LWThemeUpdate')
+    def test_wsgi_application_200(self, LWThemeUpdate_mock,
+                                  MigratedUpdate_mock):
         urls = {
             '/themes/update-check/5': ['en-US', 5, None],
             '/en-US/themes/update-check/5': ['en-US', 5, None],
             '/fr/themes/update-check/5': ['fr', 5, None]
         }
-
+        MigratedUpdate_mock.return_value.is_migrated = False
         # From AMO we consume the ID as the `addon_id`.
         for path_info, call_args in urls.iteritems():
             environ = dict(self.environ, PATH_INFO=path_info)
             theme_update.application(environ, self.start_response)
-            ThemeUpdate_mock.assert_called_with(*call_args)
+            LWThemeUpdate_mock.assert_called_with(*call_args)
+            MigratedUpdate_mock.assert_called_with(*call_args)
 
         # From getpersonas.com we append `?src=gp` so we know to consume
         # the ID as the `persona_id`.
@@ -45,11 +49,42 @@ class TestWSGIApplication(TestCase):
             environ = dict(self.environ, PATH_INFO=path_info)
             theme_update.application(environ, self.start_response)
             call_args[2] = 'src=gp'
-            ThemeUpdate_mock.assert_called_with(*call_args)
+            LWThemeUpdate_mock.assert_called_with(*call_args)
+            MigratedUpdate_mock.assert_called_with(*call_args)
             self.start_response.assert_called_with('200 OK', mock.ANY)
 
-    @mock.patch('services.theme_update.ThemeUpdate')
-    def test_wsgi_application_404(self, ThemeUpdate_mock):
+    @mock.patch('services.theme_update.MigratedUpdate')
+    @mock.patch('services.theme_update.LWThemeUpdate')
+    def test_wsgi_application_200_migrated(self, LWThemeUpdate_mock,
+                                           MigratedUpdate_mock):
+        urls = {
+            '/themes/update-check/5': ['en-US', 5, None],
+            '/en-US/themes/update-check/5': ['en-US', 5, None],
+            '/fr/themes/update-check/5': ['fr', 5, None]
+        }
+        MigratedUpdate_mock.return_value.is_migrated = True
+        # From AMO we consume the ID as the `addon_id`.
+        for path_info, call_args in urls.iteritems():
+            environ = dict(self.environ, PATH_INFO=path_info)
+            theme_update.application(environ, self.start_response)
+            assert not LWThemeUpdate_mock.called
+            MigratedUpdate_mock.assert_called_with(*call_args)
+
+        # From getpersonas.com we append `?src=gp` so we know to consume
+        # the ID as the `persona_id`.
+        self.environ['QUERY_STRING'] = 'src=gp'
+        for path_info, call_args in urls.iteritems():
+            environ = dict(self.environ, PATH_INFO=path_info)
+            theme_update.application(environ, self.start_response)
+            call_args[2] = 'src=gp'
+            assert not LWThemeUpdate_mock.called
+            MigratedUpdate_mock.assert_called_with(*call_args)
+            self.start_response.assert_called_with('200 OK', mock.ANY)
+
+    @mock.patch('services.theme_update.MigratedUpdate')
+    @mock.patch('services.theme_update.LWThemeUpdate')
+    def test_wsgi_application_404(self, LWThemeUpdate_mock,
+                                  MigratedUpdate_mock):
         urls = [
             '/xxx',
             '/themes/update-check/xxx',
@@ -60,7 +95,8 @@ class TestWSGIApplication(TestCase):
         for path_info in urls:
             environ = dict(self.environ, PATH_INFO=path_info)
             theme_update.application(environ, self.start_response)
-            assert not ThemeUpdate_mock.called
+            assert not LWThemeUpdate_mock.called
+            assert not MigratedUpdate_mock.called
             self.start_response.assert_called_with('404 Not Found', [])
 
 
@@ -79,7 +115,6 @@ class TestThemeUpdate(TestCase):
             'textcolor': '#ffffff',
             'id': '15663',
             'headerURL': '/15663/BCBG_Persona_header2.png?modified=fakehash',
-            'dataurl': '',
             'name': 'My Persona',
             'author': 'persona_author',
             'updateURL': (settings.VAMO_URL +
@@ -100,7 +135,7 @@ class TestThemeUpdate(TestCase):
                         k, v, got))
 
     def get_update(self, *args):
-        update = theme_update.ThemeUpdate(*args)
+        update = theme_update.LWThemeUpdate(*args)
         update.cursor = connection.cursor()
         return update
 
@@ -140,12 +175,6 @@ class TestThemeUpdate(TestCase):
         data = json.loads(self.get_update('en-US', addon.pk).get_json())
         assert data['footerURL'] == ''
 
-    def test_image_path(self):
-        up = self.get_update('en-US', 15663)
-        up.get_update()
-        image_path = up.image_path('foo.png')
-        assert user_media_path('addons') in image_path
-
     def test_image_url(self):
         up = self.get_update('en-US', 15663)
         up.get_update()
@@ -153,3 +182,61 @@ class TestThemeUpdate(TestCase):
         assert user_media_url('addons') in image_url
         # Persona has no checksum, add-on modified date is used.
         assert image_url.endswith('addons/15663/foo.png?modified=1238455060')
+
+
+class TestMigratedUpdate(TestCase):
+
+    def get_update(self, *args):
+        update = theme_update.MigratedUpdate(*args)
+        update.cursor = connection.cursor()
+        return update
+
+    def test_is_migrated(self):
+        lwt = addon_factory(type=amo.ADDON_PERSONA)
+        lwt.persona.persona_id = 1234
+        lwt.persona.save()
+        stheme = addon_factory(type=amo.ADDON_STATICTHEME)
+        assert not self.get_update('en-US', lwt.id).is_migrated
+        assert not self.get_update('en-US', 1234, 'src=gp').is_migrated
+
+        MigratedLWT.objects.create(
+            lightweight_theme=lwt, static_theme=stheme, getpersonas_id=1234)
+        assert self.get_update('en-US', lwt.id).is_migrated
+        assert self.get_update('en-US', 1234, 'src=gp').is_migrated
+        assert not self.get_update('en-US', lwt.id + 1).is_migrated
+        assert not self.get_update('en-US', 1235, 'src=gp').is_migrated
+
+    def test_response(self):
+        lwt = addon_factory(type=amo.ADDON_PERSONA)
+        lwt.persona.persona_id = 666
+        lwt.persona.save()
+        stheme = addon_factory(type=amo.ADDON_STATICTHEME)
+        stheme.current_version.files.all()[0].update(
+            filename='foo.xpi', hash='brown')
+        MigratedLWT.objects.create(
+            lightweight_theme=lwt, static_theme=stheme, getpersonas_id=666)
+        update = self.get_update('en-US', lwt.id)
+
+        response = json.loads(update.get_json())
+        url = '{0}{1}/{2}?{3}'.format(
+            user_media_url('addons'), str(stheme.id), 'foo.xpi',
+            urllib.urlencode({'filehash': 'brown'}))
+        assert update.data == {
+            'stheme_id': stheme.id, 'filename': 'foo.xpi', 'hash': 'brown'}
+        assert response == {
+            "converted_theme": {
+                "url": url,
+                "hash": 'brown'
+            }
+        }
+
+        update = self.get_update('en-US', 666, 'src=gp')
+        response = json.loads(update.get_json())
+        assert update.data == {
+            'stheme_id': stheme.id, 'filename': 'foo.xpi', 'hash': 'brown'}
+        assert response == {
+            "converted_theme": {
+                "url": url,
+                "hash": 'brown'
+            }
+        }

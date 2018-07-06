@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 05:59+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2017-08-12 12:35+0000\n"
 "Last-Translator: Michal Vašíček <michalvasicek@icloud.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -716,18 +716,6 @@ msgstr "Odebrat tento doplněk z kolekce"
 
 msgid "Remove"
 msgstr "Odebrat"
-
-msgid "Remove this user as a contributor"
-msgstr "Odebrat tohoto uživatele z přispěvatelů"
-
-msgid "An email address is required."
-msgstr "E-mailová adresa je vyžadována."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Nemůžete jako přispěvatele přidat sami sebe."
-
-msgid "You have already added that user."
-msgstr "Již jste tohoto uživatele přidali."
 
 msgid "Add to favorites"
 msgstr "Přidat k oblíbeným"

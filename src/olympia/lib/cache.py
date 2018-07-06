@@ -5,35 +5,47 @@ import re
 import uuid
 from contextlib import contextmanager
 
-from django.core.cache import cache, _create_cache
 from django.core.cache.backends.base import DEFAULT_TIMEOUT, BaseCache
-from django.core import cache as django_cache
+from django.core.cache import cache, caches, _create_cache
 from django.utils import encoding, translation
 from django.conf import settings
 
 
-def make_key(key=None, with_locale=True):
+def make_key(key, with_locale=True, normalize=False):
     """Generate the full key for ``k``, with a prefix."""
-    key = u'{prefix}:{key}'.format(prefix=settings.KEY_PREFIX, key=key)
-
     if with_locale:
-        key += translation.get_language()
-    # memcached keys must be < 250 bytes and w/o whitespace.
-    return hashlib.md5(encoding.smart_bytes(key)).hexdigest()
+        key = u'{key}:{lang}'.format(
+            key=key, lang=translation.get_language())
+
+    if normalize:
+        return hashlib.md5(encoding.smart_bytes(key)).hexdigest()
+    return encoding.smart_bytes(key)
 
 
-def cached(function, key, duration=DEFAULT_TIMEOUT):
-    """Check if `key` is in the cache, otherwise call `function` and cache
-    the result. Only works with functions returning something other than
-    None.
+def cache_get_or_set(key, default, timeout=DEFAULT_TIMEOUT, version=None):
     """
-    cache_key = make_key(key)
+    Fetch a given key from the cache. If the key does not exist,
+    the key is added and set to the default value. The default value can
+    also be any callable. If timeout is given, that timeout will be used
+    for the key; otherwise the default cache timeout will be used.
 
-    value = cache.get(cache_key)
-    if value is None:
-        value = function()
-        cache.set(cache_key, value, duration)
-    return value
+    Return the value of the key stored or retrieved.
+
+    Backport from Django 1.11.
+    """
+    val = cache.get(key, version=version)
+
+    if val is None:
+        if callable(default):
+            default = default()
+
+        if default is not None:
+            cache.add(key, default, timeout=timeout, version=version)
+            # Fetch the value again to avoid a race condition if another
+            # caller added a value between the first get() and the add()
+            # above.
+            return cache.get(key, default, version=version)
+    return val
 
 
 def memoize_key(prefix, *args, **kwargs):
@@ -55,43 +67,24 @@ def memoize_key(prefix, *args, **kwargs):
                                  prefix, key.hexdigest())
 
 
-def memoize_get(prefix, *args, **kwargs):
-    """
-    Returns the content of the cache.
-
-    :param prefix: a prefix for the key in memcache
-    :type prefix: string
-    :param args: arguments to be str()'d to form the key
-    :type args: list
-    :param kwargs: arguments to be str()'d to form the key
-    :type kwargs: list
-    """
-    return cache.get(memoize_key(prefix, *args, **kwargs))
-
-
-def memoize(prefix, time=60):
+def memoize(prefix, timeout=60):
     """
     A simple decorator that caches into memcache, using a simple
     key based on stringing args and kwargs.
-
     Arguments to the method must be easily and consistently serializable
     using str(..) otherwise the cache key will be inconsistent.
-
     :param prefix: a prefix for the key in memcache
     :type prefix: string
-    :param time: number of seconds to cache the key for, default 60 seconds
-    :type time: integer
+    :param timeout: number of seconds to cache the key for, default 60 seconds
+    :type timeout: integer
     """
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
+            def wrapped_func():
+                return func(*args, **kwargs)
             key = memoize_key(prefix, *args, **kwargs)
-            data = cache.get(key)
-            if data is not None:
-                return data
-            data = func(*args, **kwargs)
-            cache.set(key, data, time)
-            return data
+            return cache_get_or_set(key, wrapped_func, timeout=timeout)
         return wrapper
     return decorator
 
@@ -172,9 +165,7 @@ class CacheStatTracker(BaseCache):
         # settings object.
         options = params['OPTIONS'].copy()
         actual_backend = options.pop('ACTUAL_BACKEND')
-        params['OPTIONS'] = options
-
-        self._real_cache = _create_cache(actual_backend, **params)
+        self._real_cache = _create_cache(actual_backend, **options)
 
         self.requests_log = []
         self._setup_proxies()
@@ -211,8 +202,8 @@ class CacheStatTracker(BaseCache):
 
 
 @contextmanager
-def assert_cache_requests(num):
-    cache_using = django_cache.caches['default']
+def assert_cache_requests(num, alias='default'):
+    cache_using = caches[alias]
     cache_using.clear_log()
 
     yield
@@ -220,5 +211,4 @@ def assert_cache_requests(num):
     executed = len(cache_using.requests_log)
 
     assert executed == num, "%d requests executed, %d expected" % (
-        executed, num,
-    )
+        executed, num)

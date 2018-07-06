@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 05:59+0000\n"
-"PO-Revision-Date: 2017-08-15 09:12+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2015-10-28 17:23+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -123,8 +123,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de "
-"subir código fuente para evitar que tu envío sea rechazado."
+"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de subir"
+" código fuente para evitar que tu envío sea rechazado."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "El proceso de validación encontró estos problemas que pueden llevar a rechazos:"
@@ -708,18 +708,6 @@ msgstr "Eliminar este complemento de la colección"
 
 msgid "Remove"
 msgstr "Eliminar"
-
-msgid "Remove this user as a contributor"
-msgstr "Eliminar a este usuario como colaborador"
-
-msgid "An email address is required."
-msgstr "Es obligatoria una dirección de correo electrónico."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "No puedes agregarte como colaborador."
-
-msgid "You have already added that user."
-msgstr "Ya has agregado a ese usuario."
 
 msgid "Add to favorites"
 msgstr "Agregar a favoritos"

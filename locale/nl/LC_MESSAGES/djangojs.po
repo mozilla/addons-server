@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 05:59+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2017-10-30 15:47+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -713,18 +713,6 @@ msgstr "Deze add-on uit de collectie verwijderen"
 
 msgid "Remove"
 msgstr "Verwijderen"
-
-msgid "Remove this user as a contributor"
-msgstr "Deze gebruiker als medewerker verwijderen"
-
-msgid "An email address is required."
-msgstr "Een e-mailadres is verplicht."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "U kunt uzelf niet als medewerker toevoegen."
-
-msgid "You have already added that user."
-msgstr "U hebt die gebruiker al toegevoegd."
 
 msgid "Add to favorites"
 msgstr "Toevoegen aan favorieten"

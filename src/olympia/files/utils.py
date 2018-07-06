@@ -14,8 +14,9 @@ import scandir
 
 from cStringIO import StringIO as cStringIO
 from datetime import datetime, timedelta
+from waffle import switch_is_active
 from xml.dom import minidom
-from zipfile import BadZipfile, ZipFile
+from zipfile import ZipFile
 
 from django import forms
 from django.conf import settings
@@ -310,6 +311,11 @@ class RDFExtractor(object):
                 continue
             if app.guid not in amo.APP_GUIDS or app.id in seen_apps:
                 continue
+            if (app not in amo.APP_USAGE_FIREFOXES_ONLY and
+                    switch_is_active('disallow-thunderbird-and-seamonkey')):
+                # Ignore non-firefoxes compatibility (APP_GUIDS still contain
+                # thunderbird and seamonkey at the moment).
+                continue
             seen_apps.add(app.id)
 
             try:
@@ -580,11 +586,10 @@ def parse_search(fileorpath, addon=None):
 
 
 class SafeZip(object):
-    def __init__(self, source, mode='r', validate=True, raise_on_failure=True):
+    def __init__(self, source, mode='r', validate=True):
         self.source = source
         self.info_list = None
         self.mode = mode
-        self.raise_on_failure = raise_on_failure
 
         if validate:
             self._is_valid = self.is_valid()
@@ -597,14 +602,7 @@ class SafeZip(object):
         if getattr(self, '_is_valid', False):
             return True
 
-        try:
-            zip_file = zipfile.ZipFile(self.source, self.mode)
-        except (BadZipfile, IOError):
-            log.info('Error extracting %s', self.source, exc_info=True)
-            if self.raise_on_failure:
-                raise
-            return False
-
+        zip_file = zipfile.ZipFile(self.source, self.mode)
         info_list = zip_file.infolist()
 
         for info in info_list:
@@ -666,8 +664,7 @@ class SafeZip(object):
             parts = path.split('!')
             for part in parts[:-1]:
                 jar = self.__class__(
-                    StringIO.StringIO(jar.zip_file.read(part)),
-                    raise_on_failure=True)
+                    StringIO.StringIO(jar.zip_file.read(part)))
                 jar.is_valid()
             path = parts[-1]
         return jar.read(path[1:] if path.startswith('/') else path)
@@ -714,11 +711,11 @@ class SafeZip(object):
         return self.zip_file.read(path)
 
 
-def extract_zip(source, remove=False, raise_on_failure=True):
+def extract_zip(source, remove=False):
     """Extracts the zip file. If remove is given, removes the source file."""
     tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
 
-    zip_file = SafeZip(source, raise_on_failure=raise_on_failure)
+    zip_file = SafeZip(source)
     try:
         if zip_file.is_valid():
             zip_file.extract_to_dest(tempdir)
@@ -804,8 +801,16 @@ def extract_xpi(xpi, path, expand=False, verify=True):
                     if os.path.splitext(name)[1] in expand_allow_list:
                         src = os.path.join(root, name)
                         if not os.path.isdir(src):
-                            dest = extract_zip(
-                                src, remove=True, raise_on_failure=False)
+                            try:
+                                dest = extract_zip(src, remove=True)
+                            except zipfile.BadZipfile:
+                                # We can safely ignore this here, this is
+                                # only for recursive .zip/.jar extractions
+                                log.exception(
+                                    'Exception during recursive XPI expansion.'
+                                )
+                                continue
+
                             all_files.extend(get_all_files(
                                 dest, strip_prefix=tempdir, prefix=src))
                             if dest:
@@ -998,7 +1003,7 @@ def zip_folder_content(folder, filename):
 
 
 @contextlib.contextmanager
-def repack(xpi_path, raise_on_failure=True):
+def repack(xpi_path):
     """Unpack the XPI, yield the temp folder, and repack on exit.
 
     Usage:
@@ -1008,8 +1013,7 @@ def repack(xpi_path, raise_on_failure=True):
         # The 'foo.xpi' extension is now repacked, with the file changes.
     """
     # Unpack.
-    tempdir = extract_zip(
-        xpi_path, remove=False, raise_on_failure=raise_on_failure)
+    tempdir = extract_zip(xpi_path, remove=False)
     yield tempdir
     try:
         # Repack.

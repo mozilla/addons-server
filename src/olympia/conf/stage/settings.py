@@ -43,8 +43,6 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
                            default='addons.allizom.org')
 
-MOZLOG_NAME = "http_app_addons_stage"
-
 NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
 NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
 GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + '/guarded-addons'
@@ -80,9 +78,6 @@ SLAVE_DATABASES = ['slave']
 
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 
-# Disable cache-machine on dev to prepare for its removal.
-CACHE_MACHINE_ENABLED = False
-
 CACHES = {
     'filesystem': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
@@ -103,6 +98,10 @@ LOGGING['loggers'].update({
     'z.pool': {'level': logging.ERROR},
 })
 
+# Update the logger name used for mozlog
+LOGGING['formatters']['json']['logger_name'] = 'http_app_addons_stage'
+
+
 # This is used for `django-cache-machine`
 REDIS_BACKEND = env('REDIS_BACKENDS_CACHE')
 
@@ -112,8 +111,6 @@ REDIS_BACKENDS = {
     'master': get_redis_settings(env('REDIS_BACKENDS_MASTER')),
     'slave': get_redis_settings(env('REDIS_BACKENDS_SLAVE'))
 }
-
-CACHE_MACHINE_USE_REDIS = True
 
 csp = 'csp.middleware.CSPMiddleware'
 

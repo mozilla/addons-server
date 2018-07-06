@@ -10,7 +10,6 @@ from django.db import models
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext
 
-import caching.base
 import jinja2
 
 from django_extensions.db.fields.json import JSONField
@@ -225,9 +224,8 @@ class Version(OnChangeMixin, ModelBase):
 
             utils.extract_header_img(
                 version.all_files[0].file_path, theme_data, version_root)
-            preview = VersionPreview.objects.create(version=version)
             generate_static_theme_preview(
-                theme_data, version_root, preview.pk)
+                theme_data, version_root, version.pk)
 
         # Track the time it took from first upload through validation
         # (and whatever else) until a version was created.
@@ -359,7 +357,7 @@ class Version(OnChangeMixin, ModelBase):
     def all_activity(self):
         from olympia.activity.models import VersionLog  # yucky
         al = (VersionLog.objects.filter(version=self.id).order_by('created')
-              .select_related('activity_log', 'version').no_cache())
+              .select_related('activity_log', 'version'))
         return al
 
     @property
@@ -550,11 +548,9 @@ class Version(OnChangeMixin, ModelBase):
             return
 
         ids = set(v.id for v in versions)
-        # FIXME: find out why we have no_cache() here and try to remove it.
         avs = (ApplicationsVersions.objects.filter(version__in=ids)
-               .select_related('min', 'max')
-               .no_cache())
-        files = File.objects.filter(version__in=ids).no_cache()
+               .select_related('min', 'max'))
+        files = File.objects.filter(version__in=ids)
 
         def rollup(xs):
             groups = sorted_groupby(xs, 'version_id')
@@ -579,7 +575,7 @@ class Version(OnChangeMixin, ModelBase):
             return
 
         al = (VersionLog.objects.filter(version__in=ids).order_by('created')
-              .select_related('activity_log', 'version').no_cache())
+              .select_related('activity_log', 'version'))
 
         def rollup(xs):
             groups = sorted_groupby(xs, 'version_id')
@@ -613,8 +609,6 @@ class Version(OnChangeMixin, ModelBase):
             nomination = nomination or datetime.datetime.now()
             # We need signal=False not to call update_status (which calls us).
             self.update(nomination=nomination, _signal=False)
-            # But we need the cache to be flushed.
-            Version.objects.invalidate(self)
 
     def inherit_nomination(self, from_statuses=None):
         last_ver = (Version.objects.filter(addon=self.addon,
@@ -670,29 +664,24 @@ class Version(OnChangeMixin, ModelBase):
         return out
 
 
-def generate_static_theme_preview(theme_data, version_root, preview_pk):
+def generate_static_theme_preview(theme_data, version_root, version_pk):
     """This redirection is so we can mock generate_static_theme_preview, where
     needed, in tests."""
     # To avoid a circular import
     from . import tasks
     tasks.generate_static_theme_preview.delay(
-        theme_data, version_root, preview_pk)
+        theme_data, version_root, version_pk)
 
 
 class VersionPreview(BasePreview, ModelBase):
     version = models.ForeignKey(Version, related_name='previews')
+    position = models.IntegerField(default=0)
     sizes = JSONField(default={})
     media_folder = 'version-previews'
 
     class Meta:
         db_table = 'version_previews'
-
-    @cached_property
-    def position(self):
-        """We only don't support defining a position for previews because
-        they're auto-generated.  This is for compatibility with Addon Preview
-        objects. (it's a cached_property so it can be set transparently)"""
-        return 0
+        ordering = ('position', 'created')
 
     @cached_property
     def caption(self):
@@ -807,7 +796,6 @@ models.signals.post_delete.connect(
 
 
 class LicenseManager(ManagerBase):
-
     def builtins(self, cc=False):
         return self.filter(
             builtin__gt=0, creative_commons=cc).order_by('builtin')
@@ -848,7 +836,7 @@ models.signals.pre_save.connect(
     save_signal, sender=License, dispatch_uid='license_translations')
 
 
-class ApplicationsVersions(caching.base.CachingMixin, models.Model):
+class ApplicationsVersions(models.Model):
 
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                               db_column='application_id')
@@ -858,8 +846,6 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
                             related_name='min_set')
     max = models.ForeignKey(AppVersion, db_column='max',
                             related_name='max_set')
-
-    objects = caching.base.CachingManager()
 
     class Meta:
         db_table = u'applications_versions'

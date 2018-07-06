@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 05:59+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2017-07-04 16:04+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -727,18 +727,6 @@ msgstr "Bain an breiseán seo ón bhailiúchán"
 
 msgid "Remove"
 msgstr "Bain"
-
-msgid "Remove this user as a contributor"
-msgstr "Bain an t-úsáideoir seo ó na rannpháirtithe"
-
-msgid "An email address is required."
-msgstr ""
-
-msgid "You cannot add yourself as a contributor."
-msgstr ""
-
-msgid "You have already added that user."
-msgstr "Tá an t-úsáideoir sin ann cheana."
 
 msgid "Add to favorites"
 msgstr "Cuir leis na ceanáin"

@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 05:59+0000\n"
-"PO-Revision-Date: 2018-06-04 12:23+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"PO-Revision-Date: 2018-06-25 10:07+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -206,7 +206,7 @@ msgid "Search apps for <b>{0}</b>"
 msgstr "Søk i appar etter <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "Søk i utvidingar etter <b>{0}</b>"
+msgstr "Søk i tillegg etter <b>{0}</b>"
 
 msgid "Use original"
 msgstr "Bruk original"
@@ -221,7 +221,7 @@ msgid "{0} users"
 msgstr "{0} brukarar"
 
 msgid "{0} add-ons"
-msgstr "{0} utvidingar"
+msgstr "{0} tillegg"
 
 msgid "{0} collections"
 msgstr "{0} samlingar"
@@ -261,16 +261,16 @@ msgid "Collections Created"
 msgstr "Samlingar oppretta"
 
 msgid "Add-ons in Use"
-msgstr "Utvidingar i bruk"
+msgstr "Tillegg i bruk"
 
 msgid "Add-ons Created"
-msgstr "Utvidingar oppretta"
+msgstr "Tillegg oppretta"
 
 msgid "Add-ons Downloaded"
-msgstr "Utvidingar lasta ned"
+msgstr "Tillegg lasta ned"
 
 msgid "Add-ons Updated"
-msgstr "Utvidingane er oppdatert"
+msgstr "Tillegg oppdaterte"
 
 msgid "Reviews Written"
 msgstr "Skrivne vurderingar"
@@ -294,16 +294,16 @@ msgid "Unknown"
 msgstr "Ukjend"
 
 msgid "Add-ons Manager"
-msgstr "Utvidingshandsamar"
+msgstr "Tilleggshandterar"
 
 msgid "Add-ons Manager Promo"
-msgstr "Utvidingshandsamarpromo"
+msgstr "Tilleggshandterar-promo"
 
 msgid "Add-ons Manager Featured"
-msgstr "Utvidingshandsamar, framheva"
+msgstr "Tilleggshandterar, framheva"
 
 msgid "Add-ons Manager Learn More"
-msgstr "Utvidingshandsamar, les meir"
+msgstr "Tilleggshandterar, les meir"
 
 msgid "Search Suggestions"
 msgstr "Søkjeforslag"
@@ -526,35 +526,35 @@ msgstr "Nettsidestatistikk mellom {0} og {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr "Utvidingar i bruk, siste {0} dagar"
+msgstr "Tillegg i bruk, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr "Utvidingar i bruk frå {0} til {1}"
+msgstr "Tillegg i bruk frå {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr "Utvidingar lasta ned, siste {0} dagar"
+msgstr "Tillegg lasta ned, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "Utvidingar lasta ned frå {0} til {1}"
+msgstr "Tillegg lasta ned frå {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr "Utvidingar oppretta, siste {0} dagar"
+msgstr "Tillegg oppretta, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr "Utvidingar oppretta frå {0} til {1}"
+msgstr "Tillegg oppretta frå {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr "Utvidingar oppdatert, siste {0} dagar"
+msgstr "Tillegg oppdatert, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr "Utvidingar oppdatert frå {0} til {1}"
+msgstr "Tillegg oppdatert frå {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
@@ -638,13 +638,13 @@ msgstr "Vel ein applikasjon først"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Set utvidinga {0} til maksversjon på {1} og send e-post til utviklaren."
-msgstr[1] "Set utvidingane {0} til maksversjon på {1} og send e-post til utviklaren."
+msgstr[0] "Set tillegget {0} til maksversjon på {1} og send e-post til utviklaren."
+msgstr[1] "Set tillegga {0} til maksversjon på {1} og send e-post til utviklaren."
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Send e-post til utviklaren av {2} utviding som feila validering."
-msgstr[1] "Send e-post til utviklarane av {2} utvidingar som feila validering."
+msgstr[0] "Send e-post til utviklaren av tillegget {2} som feila validering."
+msgstr[1] "Send e-post til utviklarane av tillegga {2} som feila validering."
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
@@ -708,18 +708,6 @@ msgstr "Fjern denne utvidinga frå samlinga"
 
 msgid "Remove"
 msgstr "Fjern"
-
-msgid "Remove this user as a contributor"
-msgstr "Fjern denne brukaren som bidragsytar"
-
-msgid "An email address is required."
-msgstr "Ei e-postadresse er påkravd."
-
-msgid "You cannot add yourself as a contributor."
-msgstr "Du kan ikkje leggje til deg sjølv som bidragsytar."
-
-msgid "You have already added that user."
-msgstr "Du har allereie lagt til denne brukaren."
 
 msgid "Add to favorites"
 msgstr "Legg til i favorittar"

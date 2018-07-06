@@ -3,10 +3,10 @@ import json
 
 import django.test
 
-from django.core.cache import cache
-from django.forms import ValidationError
-from django.utils.datastructures import MultiValueDict
 from django.conf import settings
+from django.forms import ValidationError
+from django.test.utils import override_settings
+from django.utils.datastructures import MultiValueDict
 
 import pytest
 
@@ -14,20 +14,17 @@ from mock import Mock, patch
 from pyquery import PyQuery as pq
 
 from olympia import amo, core
-from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.tests import (
-    APITestClient, TestCase, addon_factory, collection_factory, user_factory)
+    APITestClient, TestCase, addon_factory, collection_factory, reverse_ns,
+    user_factory)
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.amo.utils import urlparams
 from olympia.bandwagon import forms
 from olympia.bandwagon.models import (
-    Collection, CollectionAddon, CollectionUser, CollectionVote,
-    CollectionWatcher)
-from olympia.bandwagon.views import CollectionFilter
-from olympia.browse.tests import TestFeeds
+    Collection, CollectionAddon, CollectionVote, CollectionWatcher)
 from olympia.users.models import UserProfile
 
 
@@ -252,18 +249,19 @@ class TestPrivacy(TestCase):
         assert pq(r.content)('.meta .view-stats').length == 0, (
             'Only add-on authors can view stats')
 
-    def test_publisher(self):
+    def test_contributer(self):
         self.c.listed = False
         self.c.save()
         self.assertLoginRedirects(self.client.get(self.url), self.url)
-        u = UserProfile.objects.get(email='fligtar@gmail.com')
-        CollectionUser.objects.create(collection=self.c, user=u)
+        user = UserProfile.objects.get(email='fligtar@gmail.com')
+        self.grant_permission(user, 'Collections:Contribute')
         self.client.login(email='fligtar@gmail.com')
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        # TODO(cvan): Uncomment when bug 719512 gets fixed.
-        # assert pq(r.content)('.meta .view-stats').length == 1, (
-        #    'Add-on authors (not just owners) should be able to view stats')
+        # should fail as self.c collection isn't special
+        assert self.client.get(self.url).status_code == 403
+        # But now with special collection will work
+        with override_settings(COLLECTION_FEATURED_THEMES_ID=self.c.id):
+            response = self.client.get(self.url)
+            assert response.status_code == 200
 
 
 class TestVotes(TestCase):
@@ -345,6 +343,9 @@ class TestCRUD(TestCase):
             'description': '',
             'listed': 'True'
         }
+        self.grant_permission(
+            UserProfile.objects.get(email='admin@mozilla.com'),
+            'Admin:Curation')
 
     def login_admin(self):
         assert self.client.login(email='admin@mozilla.com')
@@ -354,9 +355,9 @@ class TestCRUD(TestCase):
 
     def create_collection(self, **kw):
         self.data.update(kw)
-        r = self.client.post(self.add_url, self.data, follow=True)
-        assert r.status_code == 200
-        return r
+        response = self.client.post(self.add_url, self.data, follow=True)
+        assert response.status_code == 200
+        return response
 
     @patch('olympia.bandwagon.views.statsd.incr')
     def test_create_collection_statsd(self, mock_incr):
@@ -449,44 +450,11 @@ class TestCRUD(TestCase):
         assert r.context['form'].errors['slug'][0] == (
             'This url is already in use by another collection')
 
-    def test_reassign(self):
-        """
-        When reassigning an addon make sure we don't give it a duplicate slug.
-        """
-
-        # Create an addon by user 1.
-        self.create_collection()
-
-        # Create an addon by user 2 with matching slug.
-        self.login_regular()
-        self.client.post(self.add_url, self.data, follow=True)
-        # Add user1 to user 2.
-
-        # Make user1 owner of user2s addon.
-        url = reverse('collections.edit_contributors',
-                      args=['regularuser', self.slug])
-        r = self.client.post(
-            url,
-            {'contributor': 'admin@mozilla.com',
-             'new_owner': 'admin@mozilla.com'},
-            follow=True)
-        assert r.status_code == 200
-        # verify that user1's addon is slug + '-'
-        c = Collection.objects.get(slug=self.slug)
-        assert c.author_id == 4043307
-
     def test_edit(self):
         self.create_collection()
         url = reverse('collections.edit', args=['admin', self.slug])
         r = self.client.get(url, follow=True)
         assert r.status_code == 200
-
-    def test_edit_contributors_form(self):
-        self.create_collection()
-        url = reverse('collections.edit', args=['admin', self.slug])
-        r = self.client.get(url, follow=True)
-        assert Collection.objects.get(slug=self.slug).author_id == (
-            long(pq(r.content)('#contributor-ac').attr('data-owner')))
 
     def test_edit_post(self):
         """Test edit of collection."""
@@ -551,12 +519,6 @@ class TestCRUD(TestCase):
         r = self.client.post(url)
         assert r.status_code == 403
 
-        url = reverse('collections.edit_contributors', args=url_args)
-        r = self.client.get(url)
-        assert r.status_code == 403
-        r = self.client.post(url)
-        assert r.status_code == 403
-
         url = reverse('collections.edit_privacy', args=url_args)
         r = self.client.get(url)
         assert r.status_code == 403
@@ -571,74 +533,93 @@ class TestCRUD(TestCase):
 
     def test_acl_contributor(self):
         collection = self.create_collection().context['collection']
-        regular_user = UserProfile.objects.get(email='regular@mozilla.com')
-        collection.collectionuser_set.create(user=regular_user)
-        self.login_regular()
-        url_args = ['admin', self.slug]
+        with override_settings(COLLECTION_FEATURED_THEMES_ID=collection.id):
+            regular_user = UserProfile.objects.get(email='regular@mozilla.com')
+            self.grant_permission(regular_user, 'Collections:Contribute')
+            self.login_regular()
+            url_args = ['admin', self.slug]
 
-        url = reverse('collections.edit', args=url_args)
-        r = self.client.get(url)
-        assert r.status_code == 200
-        assert r.context['form'] is None
-        r = self.client.post(url)
-        assert r.status_code == 403
+            url = reverse('collections.edit', args=url_args)
+            r = self.client.get(url)
+            assert r.status_code == 200
+            assert r.context['form'] is None
+            r = self.client.post(url)
+            assert r.status_code == 403
 
-        url = reverse('collections.edit_addons', args=url_args)
-        r = self.client.get(url)
-        # Passed acl check, but this view needs a POST.
-        assert r.status_code == 405
-        r = self.client.post(url, {'addon': 3615}, follow=True)
-        assert r.status_code == 200
+            url = reverse('collections.edit_addons', args=url_args)
+            r = self.client.get(url)
+            # Passed acl check, but this view needs a POST.
+            assert r.status_code == 405
+            r = self.client.post(url, {'addon': 3615}, follow=True)
+            assert r.status_code == 200
 
-        url = reverse('collections.edit_contributors', args=url_args)
-        r = self.client.get(url)
-        assert r.status_code == 403
-        r = self.client.post(url)
-        assert r.status_code == 403
+            url = reverse('collections.edit_privacy', args=url_args)
+            r = self.client.get(url)
+            assert r.status_code == 403
+            r = self.client.post(url)
+            assert r.status_code == 403
 
-        url = reverse('collections.edit_privacy', args=url_args)
-        r = self.client.get(url)
-        assert r.status_code == 403
-        r = self.client.post(url)
-        assert r.status_code == 403
+            url = reverse('collections.delete', args=url_args)
+            r = self.client.get(url)
+            assert r.status_code == 403
+            r = self.client.post(url)
+            assert r.status_code == 403
 
-        url = reverse('collections.delete', args=url_args)
-        r = self.client.get(url)
-        assert r.status_code == 403
-        r = self.client.post(url)
-        assert r.status_code == 403
+    def test_acl_admin_curation(self):
+        # Test that even with 'Admin:Curation' you can't edit anyone's
+        # collection through the legacy frontend.
+        self.create_collection()
 
-    def test_acl_collections_edit(self):
-        # Test users in group with 'Collections:Edit' are allowed.
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        group = Group.objects.create(name='Staff', rules='Collections:Edit')
-        GroupUser.objects.create(user=user, group=group)
-        r = self.client.post(self.add_url, self.data, follow=True)
+        self.grant_permission(user, 'Admin:Curation')
         self.login_regular()
         url_args = ['admin', self.slug]
 
         url = reverse('collections.edit', args=url_args)
-        r = self.client.get(url)
-        assert r.status_code == 200
+        response = self.client.get(url)
+        assert response.status_code == 403
 
         url = reverse('collections.edit_addons', args=url_args)
-        r = self.client.get(url)
-        assert r.status_code == 405
-        # Passed acl check, but this view needs a POST.
-
-        url = reverse('collections.edit_contributors', args=url_args)
-        r = self.client.get(url)
-        assert r.status_code == 405
-        # Passed acl check, but this view needs a POST.
+        response = self.client.get(url)
+        assert response.status_code == 403
 
         url = reverse('collections.edit_privacy', args=url_args)
-        r = self.client.get(url)
-        assert r.status_code == 405
-        # Passed acl check, but this view needs a POST.
+        response = self.client.get(url)
+        assert response.status_code == 403
 
         url = reverse('collections.delete', args=url_args)
-        r = self.client.get(url)
-        assert r.status_code == 200
+        response = self.client.get(url)
+        assert response.status_code == 403
+
+    def test_acl_admin_curation_mozilla(self):
+        # Test that with 'Admin:Curation' you can edit collections by the
+        # user named "mozilla".
+        self.create_collection()
+        mozilla = UserProfile.objects.get(username='mozilla')
+        Collection.objects.get(slug=self.slug).update(author=mozilla)
+
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.grant_permission(user, 'Admin:Curation')
+        self.login_regular()
+        url_args = ['mozilla', self.slug]
+
+        url = reverse('collections.edit', args=url_args)
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+        url = reverse('collections.edit_addons', args=url_args)
+        response = self.client.get(url)
+        # Passed acl check, but this view needs a POST.
+        assert response.status_code == 405
+
+        url = reverse('collections.edit_privacy', args=url_args)
+        response = self.client.get(url)
+        # Passed acl check, but this view needs a POST.
+        assert response.status_code == 405
+
+        url = reverse('collections.delete', args=url_args)
+        response = self.client.get(url)
+        assert response.status_code == 200
 
     def test_edit_favorites(self):
         r = self.client.get(reverse('collections.list'))
@@ -648,35 +629,6 @@ class TestCRUD(TestCase):
 
         c = Collection.objects.get(id=fav.id)
         assert unicode(c.name) == 'xxx'
-
-    def test_edit_contrib_tab(self):
-        self.create_collection()
-        url = reverse('collections.edit', args=['admin', self.slug])
-        r = self.client.get(url)
-        doc = pq(r.content)
-        assert doc('.tab-nav li a[href$=users-edit]').length == 1
-        assert doc('#users-edit').length == 1
-
-    def test_edit_contrib_success_message(self):
-        self.create_collection()
-        url = reverse('collections.edit_contributors',
-                      args=['admin', self.slug])
-        r = self.client.post(url, {'contributor': 999,
-                                   'application': 1,
-                                   'type': 1},
-                             follow=True)
-        doc = pq(r.content)('.success')
-        assert doc('h2').text() == 'Collection updated!'
-        assert doc('p').text() == 'View your collection to see the changes.'
-
-    def test_edit_no_contrib_tab(self):
-        user = UserProfile.objects.get(email='admin@mozilla.com')
-
-        favorites_url = user.favorites_collection().edit_url()
-        response = self.client.get(favorites_url)
-        doc = pq(response.content)
-        assert not doc('.tab-nav li a[href$=users-edit]').length
-        assert not doc('#users-edit').length
 
     def test_edit_addons_get(self):
         self.create_collection()
@@ -719,46 +671,6 @@ class TestCRUD(TestCase):
         )
         assert name not in r.content
 
-    @patch('olympia.access.acl.action_allowed')
-    def test_admin(self, f):
-        self.create_collection()
-        url = reverse('collections.edit',
-                      args=['admin', self.slug])
-        r = self.client.get(url, follow=True)
-        assert r.status_code == 200
-        doc = pq(r.content)
-        assert 'Admin Settings' in doc('form h3').text()
-
-        r = self.client.post(url, dict(application=1, type=0), follow=True)
-        assert r.status_code == 200
-
-    def test_delete_link(self):
-        # Create an addon by user 1.
-        self.create_collection()
-
-        url = reverse('collections.edit_contributors',
-                      args=['admin', self.slug])
-        self.client.post(
-            url,
-            {
-                'contributor': 'regular@mozilla.com',
-                'application': 1,
-                'type': 1
-            },
-            follow=True)
-        url = reverse('collections.edit', args=['admin', self.slug])
-
-        r = self.client.get(url)
-        assert r.status_code == 200
-        doc = pq(r.content)
-        assert len(doc('a.delete')) == 2
-
-        self.login_regular()
-        r = self.client.get(url)
-        assert r.status_code == 200
-        doc = pq(r.content)
-        assert len(doc('a.delete')) == 0
-
     def test_form_uneditable_slug(self):
         """
         Editing a mobile or favorite collection should have an uneditable slug.
@@ -785,20 +697,24 @@ class TestCRUD(TestCase):
         assert Collection.objects.filter(slug='mobile', author=u)
 
     def test_no_changing_owners(self):
-        self.login_regular()
-        self.create_collection()
-        c = Collection.objects.get(slug=self.slug)
-
         self.login_admin()
-        r = self.client.post(c.edit_url(),
-                             dict(name='new name', slug=self.slug,
-                                  listed=True),
-                             follow=True)
-        assert r.status_code == 200
+        self.create_collection()
+        mozilla = UserProfile.objects.get(username='mozilla')
+        collection = Collection.objects.get(slug=self.slug)
+        collection.update(author=mozilla)
 
-        newc = Collection.objects.get(slug=self.slug,
-                                      author__username=c.author_username)
-        assert unicode(newc.name) == 'new name'
+        self.login_regular()
+        self.grant_permission(
+            UserProfile.objects.get(email='regular@mozilla.com'),
+            'Admin:Curation')
+        response = self.client.post(
+            collection.edit_url(),
+            {'name': 'new name', 'slug': self.slug, 'listed': True},
+            follow=True)
+        assert response.status_code == 200
+
+        collection.reload()
+        assert unicode(collection.name) == 'new name'
 
 
 class TestChangeAddon(TestCase):
@@ -833,10 +749,13 @@ class TestChangeAddon(TestCase):
         r = self.client.post(self.flig_add)
         assert r.status_code == 403
 
-    def test_publisher(self):
-        CollectionUser.objects.create(user_id=4043307, collection=self.flig)
-        r = self.client.post_ajax(self.flig_add, {'addon_id': self.addon.id})
-        self.check_redirect(r)
+    def test_contributer(self):
+        with override_settings(COLLECTION_FEATURED_THEMES_ID=self.flig.id):
+            user = UserProfile.objects.get(id=4043307)
+            self.grant_permission(user, 'Collections:Contribute')
+            response = self.client.post_ajax(
+                self.flig_add, {'addon_id': self.addon.id})
+            self.check_redirect(response)
 
     def test_no_addon(self):
         r = self.client.post(self.add)
@@ -1008,166 +927,10 @@ class TestWatching(TestCase):
         assert json.loads(r.content) == {'watching': True}
 
 
-class TestCollectionFeed(TestFeeds):
-    fixtures = TestFeeds.fixtures
-
-    def setUp(self):
-        super(TestCollectionFeed, self).setUp()
-        self.url = reverse('collections.list')
-        self.rss_url = reverse('collections.rss')
-        self.filter = CollectionFilter
-
-
-class TestCollectionListing(TestCase):
-    fixtures = ['base/users', 'base/addon_3615', 'base/category',
-                'base/featured', 'addons/featured', 'addons/listed',
-                'base/collections', 'bandwagon/featured_collections']
-
-    def setUp(self):
-        super(TestCollectionListing, self).setUp()
-        cache.clear()
-        self.url = reverse('collections.list')
-
-    def test_default_sort(self):
-        r = self.client.get(self.url)
-        assert r.context['sorting'] == 'featured'
-
-    def test_featured_sort(self):
-        r = self.client.get(urlparams(self.url, sort='featured'))
-        sel = pq(r.content)('#sorter ul > li.selected')
-        assert sel.find('a').attr('class') == 'opt'
-        assert sel.text() == 'Featured'
-
-    def test_users_redirect(self):
-        """Test that 'users' sort redirects to 'followers' sort."""
-        r = self.client.get(urlparams(self.url, sort='users'))
-        self.assert3xx(r, urlparams(self.url, sort='followers'), 301)
-
-    def test_mostsubscribers_sort(self):
-        r = self.client.get(urlparams(self.url, sort='followers'))
-        sel = pq(r.content)('#sorter ul > li.selected')
-        assert sel.find('a').attr('class') == 'opt'
-        assert sel.text() == 'Most Followers'
-        c = r.context['collections'].object_list
-        assert list(c) == sorted(c, key=lambda x: x.subscribers, reverse=True)
-
-    def test_newest_sort(self):
-        r = self.client.get(urlparams(self.url, sort='created'))
-        sel = pq(r.content)('#sorter ul > li.selected')
-        assert sel.find('a').attr('class') == 'opt'
-        assert sel.text() == 'Newest'
-        c = r.context['collections'].object_list
-        assert list(c) == sorted(c, key=lambda x: x.created, reverse=True)
-
-    def test_name_sort(self):
-        r = self.client.get(urlparams(self.url, sort='name'))
-        sel = pq(r.content)('#sorter ul > li.selected')
-        assert sel.find('a').attr('class') == 'extra-opt'
-        assert sel.text() == 'Name'
-        c = r.context['collections'].object_list
-        assert list(c) == sorted(c, key=lambda x: x.name)
-
-    def test_updated_sort(self):
-        r = self.client.get(urlparams(self.url, sort='updated'))
-        sel = pq(r.content)('#sorter ul > li.selected')
-        assert sel.find('a').attr('class') == 'extra-opt'
-        assert sel.text() == 'Recently Updated'
-        c = r.context['collections'].object_list
-        assert list(c) == sorted(c, key=lambda x: x.modified, reverse=True)
-
-    def test_popular_sort(self):
-        r = self.client.get(urlparams(self.url, sort='popular'))
-        sel = pq(r.content)('#sorter ul > li.selected')
-        assert sel.find('a').attr('class') == 'extra-opt'
-        assert sel.text() == 'Recently Popular'
-        c = r.context['collections'].object_list
-        assert list(c) == (
-            sorted(c, key=lambda x: x.weekly_subscribers, reverse=True))
-
-    def _test_exclude_empty_collections(self, url):
-        r = self.client.get(url)
-        initial_length = len(r.context['collections'].object_list)
-        Collection.objects.get(nickname='webdev').addons.clear()
-        r = self.client.get(url)
-        assert len(r.context['collections'].object_list) == initial_length - 1
-
-    def test_exclude_empty_collections_newest_sort(self):
-        url = urlparams(self.url, sort='created')
-        self._test_exclude_empty_collections(url)
-
-    def test_exclude_empty_collections_name_sort(self):
-        url = urlparams(self.url, sort='name')
-        self._test_exclude_empty_collections(url)
-
-    def test_exclude_empty_collections_updated_sort(self):
-        url = urlparams(self.url, sort='updated')
-        self._test_exclude_empty_collections(url)
-
-    def test_exclude_empty_collections_popular_sort(self):
-        url = urlparams(self.url, sort='popular')
-        self._test_exclude_empty_collections(url)
-
-    def test_added_date(self):
-        doc = pq(self.client.get(urlparams(self.url, sort='created')).content)
-        assert doc('.items .item .updated').text().startswith('Added')
-
-    def test_updated_date(self):
-        d = pq(self.client.get(urlparams(self.url, sort='updated')).content)
-        assert d('.items .item .updated').text().startswith('Updated')
-
-    def test_mostsubscribers_adu_unit(self):
-        d = pq(self.client.get(urlparams(self.url, sort='followers')).content)
-        assert 'follower' in d('.items .item .followers').text()
-        assert 'weekly follower' not in d('.items .item .followers').text()
-
-    def test_popular_adu_unit(self):
-        d = pq(self.client.get(urlparams(self.url, sort='popular')).content)
-        assert 'weekly follower' in d('.items .item .followers').text()
-
-
-class TestCollectionDetailFeed(TestCase):
-    fixtures = ['base/collection_57181']
-
-    def setUp(self):
-        super(TestCollectionDetailFeed, self).setUp()
-        self.collection = c = Collection.objects.get(id=57181)
-        self.feed_url = reverse('collections.detail.rss',
-                                args=[c.author.username, c.slug])
-
-    def test_collection_feed(self):
-        assert self.client.get(self.feed_url).status_code == 200
-
-    def test_feed_redirect(self):
-        r = self.client.get(self.collection.get_url_path() + '?format=rss')
-        assert r.status_code == 301
-        loc = r['Location']
-        assert loc.endswith(self.feed_url), loc
-
-    def test_private_collection(self):
-        self.collection.update(listed=False)
-        assert self.client.get(self.feed_url).status_code == 404
-
-    def test_feed_json(self):
-        theme = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
-        CollectionAddon.objects.create(addon=theme, collection=self.collection)
-        res = self.client.get(self.collection.get_url_path() + 'format:json')
-        data = json.loads(res.content)
-
-        assert len(data['addons']) == 1
-        assert data['addons'][0]['id'] == theme.id
-
-        assert data['addons'][0]['type'] == 'background-theme'
-        assert data['addons'][0]['theme']['id'] == (
-            unicode(theme.persona.persona_id))
-
-        assert data['addons'][0]['theme']['header']
-        assert data['addons'][0]['theme']['footer'] == ''
-
-
 class TestCollectionForm(TestCase):
     fixtures = ['base/collection_57181', 'users/test_backends']
 
-    @patch('olympia.amo.models.UncachedModelBase.update')
+    @patch('olympia.amo.models.ModelBase.update')
     def test_icon(self, update_mock):
         collection = Collection.objects.get(pk=57181)
         # TODO(andym): altering this form is too complicated, can we simplify?
@@ -1311,8 +1074,8 @@ class TestCollectionViewSetList(TestCase):
 
     def setUp(self):
         self.user = user_factory()
-        self.url = reverse(
-            'v3:collection-list', kwargs={'user_pk': self.user.pk})
+        self.url = reverse_ns(
+            'collection-list', kwargs={'user_pk': self.user.pk})
         super(TestCollectionViewSetList, self).setUp()
 
     def test_basic(self):
@@ -1334,8 +1097,8 @@ class TestCollectionViewSetList(TestCase):
 
     def test_different_user(self):
         random_user = user_factory()
-        other_url = reverse('v3:collection-list',
-                            kwargs={'user_pk': random_user.pk})
+        other_url = reverse_ns('collection-list',
+                               kwargs={'user_pk': random_user.pk})
         collection_factory(author=random_user)
 
         self.client.login_api(self.user)
@@ -1344,20 +1107,28 @@ class TestCollectionViewSetList(TestCase):
 
     def test_admin(self):
         random_user = user_factory()
-        other_url = reverse('v3:collection-list',
-                            kwargs={'user_pk': random_user.pk})
+        other_url = reverse_ns('collection-list',
+                               kwargs={'user_pk': random_user.pk})
         collection_factory(author=random_user)
 
         self.grant_permission(self.user, 'Collections:Edit')
         self.client.login_api(self.user)
         response = self.client.get(other_url)
-        assert response.status_code == 200
-        assert len(response.data['results']) == 1
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Collections:Contribute')
+        self.client.login_api(self.user)
+        response = self.client.get(other_url)
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Admin:Curation')
+        response = self.client.get(other_url)
+        assert response.status_code == 403
 
     def test_404(self):
         # Invalid user.
-        url = reverse(
-            'v3:collection-list', kwargs={'user_pk': self.user.pk + 66})
+        url = reverse_ns(
+            'collection-list', kwargs={'user_pk': self.user.pk + 66})
 
         # Not logged in.
         response = self.client.get(url)
@@ -1402,8 +1173,8 @@ class TestCollectionViewSetDetail(TestCase):
         super(TestCollectionViewSetDetail, self).setUp()
 
     def _get_url(self, user, collection):
-        return reverse(
-            'v3:collection-detail', kwargs={
+        return reverse_ns(
+            'collection-detail', kwargs={
                 'user_pk': user.pk, 'slug': collection.slug})
 
     def test_basic(self):
@@ -1413,13 +1184,13 @@ class TestCollectionViewSetDetail(TestCase):
 
     def test_no_id_lookup(self):
         collection = collection_factory(author=self.user, slug='999')
-        id_url = reverse(
-            'v3:collection-detail', kwargs={
+        id_url = reverse_ns(
+            'collection-detail', kwargs={
                 'user_pk': self.user.pk, 'slug': collection.id})
         response = self.client.get(id_url)
         assert response.status_code == 404
-        slug_url = reverse(
-            'v3:collection-detail', kwargs={
+        slug_url = reverse_ns(
+            'collection-detail', kwargs={
                 'user_pk': self.user.pk, 'slug': collection.slug})
         response = self.client.get(slug_url)
         assert response.status_code == 200
@@ -1453,34 +1224,57 @@ class TestCollectionViewSetDetail(TestCase):
         self.grant_permission(self.user, 'Collections:Edit')
         self.client.login_api(self.user)
         response = self.client.get(self._get_url(random_user, collection))
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Collections:Contribute')
+        self.client.login_api(self.user)
+        response = self.client.get(self._get_url(random_user, collection))
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Admin:Curation')
+        response = self.client.get(self._get_url(random_user, collection))
+        assert response.status_code == 403
+
+        random_user.update(username='mozilla')
+        response = self.client.get(self._get_url(random_user, collection))
         assert response.status_code == 200
-        assert response.data['id'] == collection.id
+        assert response.data['id'] == collection.pk
 
     def test_not_listed_contributor(self):
         self.collection.update(listed=False)
 
         random_user = user_factory()
-        self.client.login_api(random_user)
-        # Not their collection so not allowed.
+        setting_key = 'COLLECTION_FEATURED_THEMES_ID'
+        with override_settings(**{setting_key: self.collection.id}):
+            self.client.login_api(random_user)
+            # Not their collection so not allowed.
+            response = self.client.get(self.url)
+            assert response.status_code == 403
+
+            self.grant_permission(random_user, 'Collections:Contribute')
+            # Now they can access it.
+            response = self.client.get(self.url)
+            assert response.status_code == 200
+            assert response.data['id'] == self.collection.id
+
+        # Double check only the COLLECTION_FEATURED_THEMES_ID is allowed.
         response = self.client.get(self.url)
         assert response.status_code == 403
 
-        CollectionUser.objects.create(collection=self.collection,
-                                      user=random_user)
-        # Now they can access it.
+        # Even on a mozilla-owned collection.
+        self.collection.author.update(username='mozilla')
         response = self.client.get(self.url)
-        assert response.status_code == 200
-        assert response.data['id'] == self.collection.id
+        assert response.status_code == 403
 
     def test_404(self):
         # Invalid user.
-        response = self.client.get(reverse(
-            'v3:collection-detail', kwargs={
+        response = self.client.get(reverse_ns(
+            'collection-detail', kwargs={
                 'user_pk': self.user.pk + 66, 'slug': self.collection.slug}))
         assert response.status_code == 404
         # Invalid collection.
-        response = self.client.get(reverse(
-            'v3:collection-detail', kwargs={
+        response = self.client.get(reverse_ns(
+            'collection-detail', kwargs={
                 'user_pk': self.user.pk, 'slug': 'hello'}))
         assert response.status_code == 404
 
@@ -1629,7 +1423,7 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
         return self.client.post(url or self.url, data or self.data)
 
     def get_url(self, user):
-        return reverse('v3:collection-list', kwargs={'user_pk': user.pk})
+        return reverse_ns('collection-list', kwargs={'user_pk': user.pk})
 
     def test_basic_create(self):
         self.client.login_api(self.user)
@@ -1681,6 +1475,14 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
         response = self.send(url=url)
         assert response.status_code == 403
 
+        self.grant_permission(self.user, 'Collections:Contribute')
+        response = self.send(url=url)
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Admin:Curation')
+        response = self.send(url=url)
+        assert response.status_code == 403
+
     def test_create_numeric_slug(self):
         self.client.login_api(self.user)
         data = {
@@ -1704,8 +1506,8 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         return self.client.patch(url or self.url, data or self.data)
 
     def get_url(self, user):
-        return reverse(
-            'v3:collection-detail', kwargs={
+        return reverse_ns(
+            'collection-detail', kwargs={
                 'user_pk': user.pk, 'slug': self.collection.slug})
 
     def test_basic_patch(self):
@@ -1734,7 +1536,20 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         url = self.get_url(random_user)
         original = self.client.get(url).content
         response = self.send(url=url)
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Collections:Contribute')
+        response = self.send(url=url)
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Admin:Curation')
+        response = self.send(url=url)
+        assert response.status_code == 403
+
+        random_user.update(username='mozilla')
+        response = self.send(url=url)
         assert response.status_code == 200
+
         assert response.content != original
         self.collection = self.collection.reload()
         self.check_data(self.collection, self.data,
@@ -1746,15 +1561,16 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         self.client.login_api(self.user)
         random_user = user_factory()
         self.collection.update(author=random_user)
-        CollectionUser.objects.create(collection=self.collection,
-                                      user=self.user)
+        self.grant_permission(random_user, 'Collections:Contribute')
         url = self.get_url(random_user)
-        # Check setup is good and we can access the collection okay.
-        get_response = self.client.get(url)
-        assert get_response.status_code == 200
-        # But can't patch it.
-        response = self.send(url=url)
-        assert response.status_code == 403
+        setting_key = 'COLLECTION_FEATURED_THEMES_ID'
+        with override_settings(**{setting_key: self.collection.id}):
+            # Check setup is good and we can access the collection okay.
+            get_response = self.client.get(url)
+            assert get_response.status_code == 200
+            # But can't patch it.
+            response = self.send(url=url)
+            assert response.status_code == 403
 
 
 class TestCollectionViewSetDelete(TestCase):
@@ -1767,8 +1583,8 @@ class TestCollectionViewSetDelete(TestCase):
         super(TestCollectionViewSetDelete, self).setUp()
 
     def get_url(self, user):
-        return reverse(
-            'v3:collection-detail', kwargs={
+        return reverse_ns(
+            'collection-detail', kwargs={
                 'user_pk': user.pk, 'slug': self.collection.slug})
 
     def test_delete(self):
@@ -1796,22 +1612,37 @@ class TestCollectionViewSetDelete(TestCase):
         self.collection.update(author=random_user)
         url = self.get_url(random_user)
         response = self.client.delete(url)
-        assert response.status_code == 204
-        assert not Collection.objects.filter(id=self.collection.id).exists()
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Collections:Contribute')
+        response = self.client.delete(url)
+        assert response.status_code == 403
+
+        self.grant_permission(self.user, 'Admin:Curation')
+        response = self.client.delete(url)
+        assert response.status_code == 403
+        assert Collection.objects.filter(id=self.collection.id).exists()
+
+        # Curators can't delete collections even owned by mozilla.
+        random_user.update(username='mozilla')
+        response = self.client.delete(url)
+        assert response.status_code == 403
+        assert Collection.objects.filter(id=self.collection.id).exists()
 
     def test_contributor_fails(self):
         self.client.login_api(self.user)
         different_user = user_factory()
         self.collection.update(author=different_user)
-        CollectionUser.objects.create(collection=self.collection,
-                                      user=self.user)
+        self.grant_permission(different_user, 'Collections:Contribute')
         url = self.get_url(different_user)
-        # Check setup is good and we can access the collection okay.
-        get_response = self.client.get(url)
-        assert get_response.status_code == 200
-        # But can't delete it.
-        response = self.client.delete(url)
-        assert response.status_code == 403
+        setting_key = 'COLLECTION_FEATURED_THEMES_ID'
+        with override_settings(**{setting_key: self.collection.id}):
+            # Check setup is good and we can access the collection okay.
+            get_response = self.client.get(url)
+            assert get_response.status_code == 200
+            # But can't delete it.
+            response = self.client.delete(url)
+            assert response.status_code == 403
 
 
 class CollectionAddonViewSetMixin(object):
@@ -1843,17 +1674,36 @@ class CollectionAddonViewSetMixin(object):
         self.check_response(self.send(self.url))
 
     def test_not_listed_admin(self):
+        self.collection.update(listed=False)
         admin_user = user_factory()
         self.grant_permission(admin_user, 'Collections:Edit')
         self.client.login_api(admin_user)
+        response = self.send(self.url)
+        assert response.status_code == 403
+
+        self.grant_permission(admin_user, 'Collections:Contribute')
+        response = self.send(self.url)
+        assert response.status_code == 403
+
+        self.grant_permission(admin_user, 'Admin:Curation')
+        response = self.send(self.url)
+        assert response.status_code == 403
+
+        self.collection.author.update(username='mozilla')
         self.check_response(self.send(self.url))
 
     def test_contributor(self):
+        self.collection.update(listed=False)
         random_user = user_factory()
-        CollectionUser.objects.create(collection=self.collection,
-                                      user=random_user)
+        self.grant_permission(random_user, 'Collections:Contribute')
         self.client.login_api(random_user)
-        self.check_response(self.send(self.url))
+        # should fail as self.collection isn't special
+        response = self.send(self.url)
+        assert response.status_code == 403
+        # But now with special collection will work
+        setting_key = 'COLLECTION_FEATURED_THEMES_ID'
+        with override_settings(**{setting_key: self.collection.id}):
+            self.check_response(self.send(self.url))
 
 
 class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
@@ -1893,8 +1743,8 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         self.addon_pending.current_version.all_files[0].update(
             status=amo.STATUS_AWAITING_REVIEW)
 
-        self.url = reverse(
-            'v3:collection-addon-list', kwargs={
+        self.url = reverse_ns(
+            'collection-addon-list', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug})
         super(TestCollectionAddonViewSetList, self).setUp()
@@ -1905,14 +1755,14 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
 
     def test_404(self):
         # Invalid user.
-        response = self.client.get(reverse(
-            'v3:collection-addon-list', kwargs={
+        response = self.client.get(reverse_ns(
+            'collection-addon-list', kwargs={
                 'user_pk': self.user.pk + 66,
                 'collection_slug': self.collection.slug}))
         assert response.status_code == 404
         # Invalid collection.
-        response = self.client.get(reverse(
-            'v3:collection-addon-list', kwargs={
+        response = self.client.get(reverse_ns(
+            'collection-addon-list', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': 'hello'}))
         assert response.status_code == 404
@@ -2026,8 +1876,8 @@ class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
         self.collection = collection_factory(author=self.user)
         self.addon = addon_factory()
         self.collection.add_addon(self.addon)
-        self.url = reverse(
-            'v3:collection-addon-detail', kwargs={
+        self.url = reverse_ns(
+            'collection-addon-detail', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
                 'addon': self.addon.id})
@@ -2038,8 +1888,8 @@ class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
         assert response.data['addon']['id'] == self.addon.id
 
     def test_with_slug(self):
-        self.url = reverse(
-            'v3:collection-addon-detail', kwargs={
+        self.url = reverse_ns(
+            'collection-addon-detail', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
                 'addon': self.addon.slug})
@@ -2056,8 +1906,8 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
     def setUp(self):
         self.user = user_factory()
         self.collection = collection_factory(author=self.user)
-        self.url = reverse(
-            'v3:collection-addon-list', kwargs={
+        self.url = reverse_ns(
+            'collection-addon-list', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug})
         self.addon = addon_factory()
@@ -2140,8 +1990,8 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
         self.collection = collection_factory(author=self.user)
         self.addon = addon_factory()
         self.collection.add_addon(self.addon)
-        self.url = reverse(
-            'v3:collection-addon-detail', kwargs={
+        self.url = reverse_ns(
+            'collection-addon-detail', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
                 'addon': self.addon.id})
@@ -2185,8 +2035,8 @@ class TestCollectionAddonViewSetDelete(CollectionAddonViewSetMixin, TestCase):
         self.collection = collection_factory(author=self.user)
         self.addon = addon_factory()
         self.collection.add_addon(self.addon)
-        self.url = reverse(
-            'v3:collection-addon-detail', kwargs={
+        self.url = reverse_ns(
+            'collection-addon-detail', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
                 'addon': self.addon.id})

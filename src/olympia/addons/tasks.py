@@ -31,13 +31,15 @@ from olympia.constants.licenses import (
     LICENSE_COPYRIGHT_AR, PERSONA_LICENSES_IDS)
 from olympia.files.models import FileUpload
 from olympia.files.utils import RDFExtractor, get_file, parse_addon, SafeZip
+from olympia.amo.celery import pause_all_tasks, resume_all_tasks
 from olympia.lib.crypto.packaged import sign_file
 from olympia.lib.es.utils import index_objects
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import RereviewQueueTheme
+from olympia.stats.utils import migrate_theme_update_count
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
-from olympia.versions.models import License, Version
+from olympia.versions.models import ApplicationsVersions, License, Version
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -78,7 +80,7 @@ def update_last_updated(addon_id):
 def update_appsupport(ids):
     log.info("[%s@None] Updating appsupport for %s." % (len(ids), ids))
 
-    addons = Addon.objects.no_cache().filter(id__in=ids).no_transforms()
+    addons = Addon.objects.filter(id__in=ids).no_transforms()
     support = []
     for addon in addons:
         for app, appver in addon.compatible_apps.items():
@@ -97,9 +99,6 @@ def update_appsupport(ids):
     with transaction.atomic():
         AppSupport.objects.filter(addon__id__in=ids).delete()
         AppSupport.objects.bulk_create(support)
-
-    # All our updates were sql, so invalidate manually.
-    Addon.objects.invalidate(*addons)
 
 
 @task
@@ -423,6 +422,21 @@ def add_firefox57_tag(ids, **kw):
         Tag(tag_text='firefox57').save_tag(addon)
 
 
+@task
+@write
+def add_dynamic_theme_tag(ids, **kw):
+    """Add dynamic theme tag to addons with the specified ids."""
+    log.info(
+        'Adding  dynamic theme tag to addons %d-%d [%d].',
+        ids[0], ids[-1], len(ids))
+
+    addons = Addon.objects.filter(id__in=ids)
+    for addon in addons:
+        files = addon.current_version.all_files
+        if any('theme' in file_.webext_permissions_list for file_ in files):
+            Tag(tag_text='dynamic theme').save_tag(addon)
+
+
 def extract_strict_compatibility_value_for_addon(addon):
     strict_compatibility = None  # We don't know yet.
     try:
@@ -579,10 +593,16 @@ def add_static_theme_from_lwt(lwt):
         addon=lwt, activity_log__action__in=rating_activity_log_ids)
     [alog.transfer(addon) for alog in addonlog_qs.iterator()]
 
+    # Copy the ADU statistics - the raw(ish) daily UpdateCounts for stats
+    # dashboard and future update counts, and copy the summary numbers for now.
+    migrate_theme_update_count(lwt, addon)
+    addon_updates.update(
+        average_daily_users=lwt.persona.popularity or 0,
+        hotness=lwt.persona.movers or 0)
+
     # Logging
     activity.log_create(
         amo.LOG.CREATE_STATICTHEME_FROM_PERSONA, addon, user=author)
-    log.debug('New static theme %r created from %r' % (addon, lwt))
 
     # And finally sign the files (actually just one)
     for file_ in version.all_files:
@@ -593,6 +613,10 @@ def add_static_theme_from_lwt(lwt):
             status=amo.STATUS_PUBLIC)
     addon_updates['status'] = amo.STATUS_PUBLIC
 
+    # set the modified and creation dates to match the original.
+    addon_updates['created'] = lwt.created
+    addon_updates['modified'] = lwt.modified
+
     addon.update(**addon_updates)
     return addon
 
@@ -602,19 +626,24 @@ def add_static_theme_from_lwt(lwt):
 def migrate_lwts_to_static_themes(ids, **kw):
     """With the specified ids, create new static themes based on an existing
     lightweight themes (personas), and delete the lightweight themes after."""
-    log.info(
-        'Migrating LWT to static theme %d-%d [%d].', ids[0], ids[-1], len(ids))
+    mlog = olympia.core.logger.getLogger('z.task.lwtmigrate')
+    mlog.info(
+        '[Info] Migrating LWT to static theme %d-%d [%d].', ids[0], ids[-1],
+        len(ids))
 
     # Incoming ids should already by type=persona only
     lwts = Addon.objects.filter(id__in=ids)
+    pause_all_tasks()
     for lwt in lwts:
         static = None
         try:
             with translation.override(lwt.default_locale):
                 static = add_static_theme_from_lwt(lwt)
+            mlog.info(
+                '[Success] Static theme %r created from LWT %r', static, lwt)
         except Exception as e:
             # If something went wrong, don't migrate - we need to debug.
-            log.debug(e)
+            mlog.debug('[Fail] LWT %r:', lwt, exc_info=e)
         if not static:
             continue
         MigratedLWT.objects.create(
@@ -624,3 +653,31 @@ def migrate_lwts_to_static_themes(ids, **kw):
         slug = lwt.slug
         lwt.delete()
         static.update(slug=slug)
+    resume_all_tasks()
+
+
+@task
+@write
+def delete_addon_not_compatible_with_firefoxes(ids, **kw):
+    """
+    Delete the specified add-ons.
+    Used by process_addons --task=delete_addons_not_compatible_with_firefoxes
+    """
+    log.info(
+        'Deleting addons not compatible with firefoxes %d-%d [%d].',
+        ids[0], ids[-1], len(ids))
+    qs = Addon.objects.filter(id__in=ids)
+    for addon in qs:
+        addon.appsupport_set.filter(
+            app__in=(amo.THUNDERBIRD.id, amo.SEAMONKEY.id)).delete()
+        addon.delete()
+
+
+@task
+@write
+def delete_obsolete_applicationsversions(**kw):
+    """Delete ApplicationsVersions objects not relevant for Firefoxes."""
+    qs = ApplicationsVersions.objects.exclude(
+        application__in=(amo.FIREFOX.id, amo.ANDROID.id))
+    for av in qs.iterator():
+        av.delete()

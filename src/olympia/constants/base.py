@@ -231,16 +231,22 @@ VALID_CONTRIBUTION_DOMAINS = (
 ADDON_ICON_SIZES = [32, 48, 64, 128, 256, 512]
 
 _size_tuple = namedtuple('SizeTuple', 'width height')
-# Preview upload sizes
+# Preview upload sizes - see mozilla/addons-server#7908 for background.
 ADDON_PREVIEW_SIZES = {
-    'thumb': _size_tuple(200, 150),
-    'full': _size_tuple(700, 525)
+    'thumb': _size_tuple(320, 200),  # 1/4 of 'full' size.
+    'full': _size_tuple(1280, 800)  # Chrome store uses this size too.
 }
 
 # Static theme preview sizes
 THEME_PREVIEW_SIZES = {
-    'thumb': _size_tuple(670, 64),
-    'full': _size_tuple(680, 92)
+    'header': {
+        'thumbnail': _size_tuple(473, 64),
+        'full': _size_tuple(680, 92),
+        'position': 0},
+    'list': {
+        'thumbnail': _size_tuple(529, 64),
+        'full': _size_tuple(760, 92),
+        'position': 1},
 }
 THEME_ACCENTCOLOR_DEFAULT = 'rgba(229,230,232,1)'
 THEME_PREVIEW_HEIGHT = 92  # The template supports different widths only.

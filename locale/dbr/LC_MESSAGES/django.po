@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 06:00+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -812,9 +812,6 @@ msgstr "sǝɯǝɥ⊥"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "<b>sǝɯǝɥ⊥ ǝʇǝʅdɯoↃ</b> ʎɹ⊥ ¿uoıʇɐzıɯoʇsnɔ ǝɹoɯ ʇuɐＭ"
 
-msgid "Most Followers"
-msgstr "sɹǝʍoʅʅoℲ ʇsoW"
-
 msgid "Collections"
 msgstr "suoıʇɔǝʅʅoↃ"
 
@@ -933,21 +930,6 @@ msgstr ""
 ".%(amo_manifests_mdn_link_close)sǝɹǝɥ%(amo_manifests_mdn_link_open)s pǝıɟıɔǝds sɐ sǝıʇɹǝdoɹd pǝɹınbǝɹ ǝɥʇ ɥʇıʍ ǝuo ǝpnʅɔuı ʇsnɯ ʅʅıʇs noʎ ´ǝʅıɟ ʇsǝɟıuɐɯ ɐ ǝɹınbǝɹ ʇou sǝop uoıʇɐɔıʅddɐ pǝʇɹoddns "
 "ɹnoʎ ɟI"
 
-msgid "Contributors"
-msgstr "sɹoʇnqıɹʇuoↃ"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "%s :: suoıʇɔǝʅʅoↃ"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr ".ǝɹɐɥs puɐ ǝʇɐǝɹɔ uɐɔ ǝuoʎuɐ ʇɐɥʇ suo-ppɐ pǝʇɐʅǝɹ ɟo sdnoɹƃ ǝɹɐ suoıʇɔǝʅʅoↃ"
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{1} :: suoıʇɔǝʅʅoↃ :: {0}"
-
 msgid "Only I can view this collection."
 msgstr ".uoıʇɔǝʅʅoɔ sıɥʇ ʍǝıʌ uɐɔ I ʎʅuO"
 
@@ -999,20 +981,14 @@ msgstr ".pǝsn ǝq ʇouuɐɔ ⅂ᴚ∩ ɯoʇsnɔ sıɥ⊥"
 msgid "This add-on already belongs to the collection"
 msgstr "uoıʇɔǝʅʅoɔ ǝɥʇ oʇ sƃuoʅǝq ʎpɐǝɹʅɐ uo-ppɐ sıɥ⊥"
 
-msgid "Name"
-msgstr "ǝɯɐN"
-
-msgid "Recently Updated"
-msgstr "pǝʇɐpd∩ ʎʅʇuǝɔǝᴚ"
-
-msgid "Recently Popular"
-msgstr "ɹɐʅndoԀ ʎʅʇuǝɔǝᴚ"
-
 msgid "Added"
 msgstr "pǝpp∀"
 
 msgid "Popularity"
 msgstr "ʎʇıɹɐʅndoԀ"
+
+msgid "Name"
+msgstr "ǝɯɐN"
 
 msgid "Collection created!"
 msgstr "¡pǝʇɐǝɹɔ uoıʇɔǝʅʅoↃ"
@@ -1121,17 +1097,14 @@ msgstr "o⅁"
 msgid "What are Collections?"
 msgstr "¿suoıʇɔǝʅʅoↃ ǝɹɐ ʇɐɥＭ"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr ".ǝɹɐɥs puɐ ǝʇɐǝɹɔ uɐɔ ǝuoʎuɐ ʇɐɥʇ suo-ppɐ pǝʇɐʅǝɹ ɟo sdnoɹƃ ǝɹɐ suoıʇɔǝʅʅoↃ"
+
 msgid "Explore Collections"
 msgstr "suoıʇɔǝʅʅoↃ ǝɹoʅdxƎ"
 
 msgid "Common Tags"
 msgstr "sƃɐ⊥ uoɯɯoↃ"
-
-msgid "More by this User"
-msgstr "ɹǝs∩ sıɥʇ ʎq ǝɹoW"
-
-msgid "See all collections by this user"
-msgstr "ɹǝsn sıɥʇ ʎq suoıʇɔǝʅʅoɔ ʅʅɐ ǝǝS"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1222,63 +1195,8 @@ msgstr "{0} ʇıpƎ"
 msgid "Description"
 msgstr "uoıʇdıɹɔsǝᗡ"
 
-msgid "Contributors & More"
-msgstr "ǝɹoW ⅋ sɹoʇnqıɹʇuoↃ"
-
 msgid "Save Changes"
 msgstr "sǝƃuɐɥↃ ǝʌɐS"
-
-msgid "Owner"
-msgstr "ɹǝuʍO"
-
-msgid "Make Owner"
-msgstr "ɹǝuʍO ǝʞɐW"
-
-msgid "Remove this user as a contributor"
-msgstr "ɹoʇnqıɹʇuoɔ ɐ sɐ ɹǝsn sıɥʇ ǝʌoɯǝᴚ"
-
-msgid "Remove"
-msgstr "ǝʌoɯǝᴚ"
-
-msgid "Collection Contributors"
-msgstr "sɹoʇnqıɹʇuoↃ uoıʇɔǝʅʅoↃ"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-".ʇunoɔɔɐ suo-pp∀ ɐʅʅızoW ɐ ǝʌɐɥ ʇsnɯ sɹoʇnqıɹʇuoↃ .ʍoʅǝq xoq ǝɥʇ uı ʅıɐɯǝ ɹıǝɥʇ ɹǝʇuǝ ´ɹoʇnqıɹʇuoɔ ɐ ppɐ o⊥ .uoıʇdıɹɔsǝp ɹo ǝɯɐu sʇı ǝƃuɐɥɔ ʇouuɐɔ ʇnq ´uoıʇɔǝʅʅoɔ sıɥʇ ɯoɹɟ suo-ppɐ ǝʌoɯǝɹ puɐ ppɐ "
-"uɐɔ ɹoʇnqıɹʇuoɔ ∀ .uoıʇɔǝʅʅoɔ sıɥʇ oʇ sɹoʇnqıɹʇuoɔ ǝʅdıʇʅnɯ ppɐ uɐɔ no⅄"
-
-msgid "User"
-msgstr "ɹǝs∩"
-
-msgid "Email"
-msgstr "ʅıɐɯƎ"
-
-msgid "Role"
-msgstr "ǝʅoᴚ"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "ppɐ oʇ ɹoʇnqıɹʇuoɔ ǝɥʇ ɟo ssǝɹppɐ ʅıɐɯǝ ǝɥʇ ɹǝʇuƎ"
-
-msgid "Add Contributor"
-msgstr "ɹoʇnqıɹʇuoↃ pp∀"
-
-msgid "Contributor"
-msgstr "ɹoʇnqıɹʇuoↃ"
-
-msgid "Admin Settings"
-msgstr "sƃuıʇʇǝS uıɯp∀"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ".ʇı ɯoɹɟ suo-ppɐ ǝʌoɯǝɹ puɐ ppɐ oʇ ǝʅqɐ ǝq ʎʅuo ʅʅıʍ no⅄ .ʇı ʇıpǝ oʇ ǝʅqɐ ǝq ɹǝƃuoʅ ou ʅʅıʍ noʎ ´uoıʇɔǝʅʅoɔ sıɥʇ ɟo ɹǝuʍo ǝɥʇ ƃuıƃuɐɥɔ ʎԐ <b>:ƃuıuɹɐＭ</b>"
-
-msgid "Continue"
-msgstr "ǝnuıʇuoↃ"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "<a id=\"change-owner-cancel\" href=\"#\">ʅǝɔuɐↃ</a> ɹo"
 
 msgid "Remove from favorites"
 msgstr "sǝʇıɹoʌɐɟ ɯoɹɟ ǝʌoɯǝᴚ"
@@ -1293,27 +1211,9 @@ msgstr "{0} ʎq suoıʇɔǝʅʅoↃ"
 msgid "No collections found."
 msgstr ".punoɟ suoıʇɔǝʅʅoɔ oN"
 
-msgid "Most-Followed Collections"
-msgstr "suoıʇɔǝʅʅoↃ pǝʍoʅʅoℲ-ʇsoW"
-
-msgid "Newest Collections"
-msgstr "suoıʇɔǝʅʅoↃ ʇsǝʍǝN"
-
-msgid "Collections by Name"
-msgstr "ǝɯɐN ʎq suoıʇɔǝʅʅoↃ"
-
-msgid "Recently Updated Collections"
-msgstr "suoıʇɔǝʅʅoↃ pǝʇɐpd∩ ʎʅʇuǝɔǝᴚ"
-
-msgid "Recently Popular Collections"
-msgstr "suoıʇɔǝʅʅoↃ ɹɐʅndoԀ ʎʅʇuǝɔǝᴚ"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ".<a href=\"%(url)s\">uʍo ɹnoʎ ǝʇɐǝɹɔ</a> ɹo sɹǝsn ɹǝɥʇo ʎq pǝʇɐǝɹɔ suoıʇɔǝʅʅoɔ ǝɹoʅdxƎ .ǝɹɐɥs puɐ ǝʇɐǝɹɔ uɐɔ ǝuoʎuɐ ʇɐɥʇ suo-ppɐ pǝʇɐʅǝɹ ɟo sdnoɹƃ ǝɹɐ suoıʇɔǝʅʅoↃ"
-
-msgid "Subscribe"
-msgstr "ǝqıɹɔsqnS"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1351,6 +1251,9 @@ msgstr "uo-pp∀"
 
 msgid "Comment"
 msgstr "ʇuǝɯɯoↃ"
+
+msgid "Remove"
+msgstr "ǝʌoɯǝᴚ"
 
 msgid "Enter the name of the add-on to include"
 msgstr "ǝpnʅɔuı oʇ uo-ppɐ ǝɥʇ ɟo ǝɯɐu ǝɥʇ ɹǝʇuƎ"
@@ -1418,6 +1321,9 @@ msgstr "sɹǝs∩ ʇsoW"
 msgid "Weekly Downloads"
 msgstr "spɐoʅuʍoᗡ ʎʅʞǝǝＭ"
 
+msgid "Recently Updated"
+msgstr "pǝʇɐpd∩ ʎʅʇuǝɔǝᴚ"
+
 msgid "Up & Coming"
 msgstr "ƃuıɯoↃ ⅋ d∩"
 
@@ -1437,6 +1343,9 @@ msgstr "suo-pp∀ pǝɹnʇɐǝℲ :{0}"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr ".{0} uı suo-ppɐ pǝɹnʇɐǝɟ oN"
+
+msgid "Subscribe"
+msgstr "ǝqıɹɔsqnS"
 
 msgid "Featured Add-ons"
 msgstr "suo-pp∀ pǝɹnʇɐǝℲ"
@@ -2041,6 +1950,9 @@ msgstr "ʍǝıʌǝɹ ɹǝɥʇɹnɟ ɹoɟ pǝƃƃɐʅℲ"
 msgid "Unlisted"
 msgstr "pǝʇsıʅu∩"
 
+msgid "Owner"
+msgstr "ɹǝuʍO"
+
 msgid "Developer"
 msgstr "ɹǝdoʅǝʌǝᗡ"
 
@@ -2622,11 +2534,17 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr ".pǝɹnʇɐǝɟ sı uo-ppɐ ɹnoʎ ǝʅıɥʍ pǝƃuɐɥɔ ǝq ʇouuɐɔ sǝıɹoƃǝʇɐↃ"
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ".ǝʇıs ʍǝu ǝɥʇ uo suo-ppɐ ɹnoʎ ǝʇɐpdn oʇ ʇunoɔɔɐ ǝɯɐs ǝɥʇ ǝsn uɐɔ no⅄ .ʇǝu.pɹıqɹǝpunɥʇ.suoppɐ uo pǝuıɐʇuıɐɯ puɐ pǝʇsıʅ ʍou ǝɹɐ ʎǝʞuoWɐǝS puɐ pɹıqɹǝpunɥ⊥ ɹoɟ suo-pp∀"
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ".suoısuǝʇxƎqǝＭ ǝq ʎʅuo uɐɔ ǝʇıs sıɥʇ uo suo-ppɐ ʍǝu ´35 xoɟǝɹıℲ ɥʇıʍ ƃuıʇɹɐʇS"
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr ".ɹǝʍoʅ ɹo ⁎.65 ɟo uoısɹǝɅxɐɯ ɐ ǝs∩ .ɹǝɥƃıɥ ɹo 75 xoɟǝɹıℲ ɥʇıʍ ǝʅqıʇɐdɯoɔ ʇou ǝɹɐ suo-ppɐ ʎɔɐƃǝ⅂"
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ".sʅıɐʇǝp ǝɹoɯ ɹoɟ {mdn_link} ǝǝS .pǝɹınbǝɹ sı ʇsǝɟıuɐɯ ʅʅɐʇsuı suoısuǝʇxƎqǝＭ ∀ .pǝʇɹoddns ɹǝƃuoʅ ou ǝɹɐ xoɟǝɹıℲ ɹoɟ sʞɔɐd ǝƃɐnƃuɐʅ ʎɔɐƃǝ⅂"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ".uo-ppɐ ʎɔɐƃǝʅ ɐ ʅʅɐʇsuı oʇ ǝʅqɐ ǝq ʇou ʅʅıʍ ʎǝɥʇ ´pǝʅʅɐʇsuı uoısuǝʇxƎqǝＭ ǝɥʇ ǝʌɐɥ sɹǝsn ɹnoʎ ǝɔuO .ssǝɔoɹd sıɥʇ ǝsɹǝʌǝɹ ʇouuɐɔ noʎ ʇnq ǝpɐɹƃdn uɐ ǝƃɐɹnoɔuǝ puɐ ʍoʅʅɐ ǝＭ"
@@ -3087,6 +3005,9 @@ msgstr "uoıʇɐɯɹoɟuI ʇɹoddnS"
 msgid "Support Information for {0}"
 msgstr "{0} ɹoɟ uoıʇɐɯɹoɟuI ʇɹoddnS"
 
+msgid "Email"
+msgstr "ʅıɐɯƎ"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3244,6 +3165,16 @@ msgstr ":ʇoɥsuǝǝɹɔs sıɥʇ ɹoɟ uoıʇdɐɔ ɐ ǝpıʌoɹd ǝsɐǝʅԀ"
 
 msgid "Add a Screenshot..."
 msgstr "...ʇoɥsuǝǝɹɔS ɐ pp∀"
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+".ǝƃɐdǝɯoɥ ǝɥʇ uı pǝɹnʇɐǝɟ ƃuıǝq puɐ pǝʅʅɐʇsuı ƃuıǝq ɟo sǝɔuɐɥɔ sʇı sǝsɐǝɹɔuı ʎʅʇɐǝɹƃ ǝƃɐd ƃuıʇsıʅ ɹnoʎ uı sʇoɥsuǝǝɹɔs ƃuıʌɐH .sǝƃɐɯı ɹǝʅʅɐɯs ǝʌɐɥ ʎʅuo noʎ ɟı ǝʌıʇɐuɹǝʇʅɐ pooƃ ɐ sı sʅǝxıd 004x046 ."
+"sʅǝxıd 008x0821 sı sʇoɥsuǝǝɹɔs ɹoɟ ǝzıs pǝpuǝɯɯoɔǝɹ puɐ ɯnɯıxɐɯ ǝɥ⊥ .pǝʇɹoddns ⅁Ԁſ puɐ ⅁NԀ"
+
+msgid "Continue"
+msgstr "ǝnuıʇuoↃ"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "¿ʇıpǝɹɔ uǝʌıƃ ǝɹ,noʎ sɐ ƃuoʅ sɐ ´uo-pp∀ ɹnoʎ ǝɹɐɥs sɹǝɥʇo uɐↃ"
@@ -4359,29 +4290,29 @@ msgid_plural "{0} warnings"
 msgstr[0] "ƃuıuɹɐʍ {0}"
 msgstr[1] "sƃuıuɹɐʍ {0}"
 
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} uoıʇɔǝʇoɹd ʎɔɐʌıɹd ⅋ ƃuıʞɔoʅq p∀"
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sɹǝʞɔɐɹʇ ʎʞɐǝus doʇS"
 
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ".ʇǝuɹǝʇuı ǝɥʇ uo pǝʞɔɐɹʇ ǝɹ’noʎ ʍoɥ puɐ ǝǝs noʎ spɐ ǝɥʇ ɟo ʅoɹʇuoɔ ǝʞɐʇ noʎ sʇǝʅ dn-ʇǝs ǝʅdɯıs ∀"
+msgid " Block invisible trackers and spying ads that follow you around the web."
+msgstr ".qǝʍ ǝɥʇ punoɹɐ noʎ ʍoʅʅoɟ ʇɐɥʇ spɐ ƃuıʎds puɐ sɹǝʞɔɐɹʇ ǝʅqısıʌuı ʞɔoʅԐ "
 
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sqɐʇ ǝuıƃɐɯı-ǝᴚ"
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgstr "{start_sub_heading} {addon_name} ɥʇıʍ{end_sub_heading} sǝƃɐd qɐʇ ʍǝu ǝzıɯoʇsnↃ"
 
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ".ɹɐqǝpıs ʎpıʇ ɐ uı ɯǝɥʇ ǝzıuɐƃɹO ¿sqɐʇ uǝdo ɟo uoʇ ɐ ǝʌɐɥ noʎ oᗡ"
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgstr ".ǝɹoɯ puɐ ´oɟuı ɹǝɥʇɐǝʍ ʅɐɔoʅ ´spunoɹƃʞɔɐq ǝʅqɐzıɯoʇsnɔ ɥʇıʍ ǝƃɐd ʍǝu ʅnɟıʇnɐǝq ɐ ʎoɾuƎ"
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ƃuıʞɔɐɹʇ ʞooqǝɔɐℲ doʇS"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ʎʅısɐǝ ǝʇɐʅsuɐɹ⊥"
 
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
-msgstr ".qǝʍ ǝɥʇ punoɹɐ sʇuǝɯǝʌoɯ ɹnoʎ ʞɔɐɹʇ oʇ ʞooqǝɔɐℲ ɹoɟ ɹǝpɹɐɥ ʇı sǝʞɐɯ ʇɐɥʇ „ɹǝuıɐʇuoɔ„ ǝʇɐɹɐdǝs ɐ oʇuı ʎʇıʇuǝpı ʞooqǝɔɐℲ ɹnoʎ ǝʇɐʅosI"
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr ".ʎʅʇuɐʇsuı ǝʇɐʅsuɐɹʇ puɐ ´ʞɔıʅɔ-ʇɥƃıɹ ´ʇxǝʇ ʎuɐ ʇɥƃıʅɥƃıH"
 
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sǝƃɐɯı ɥɔɹɐǝS"
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sǝƃɐɯI ɥɔɹɐǝS"
 
-msgid " Perform reverse image searches from an array of engines."
-msgstr ".sǝuıƃuǝ ɟo ʎɐɹɹɐ uɐ ɯoɹɟ sǝɥɔɹɐǝs ǝƃɐɯı ǝsɹǝʌǝɹ ɯɹoɟɹǝԀ "
+msgid "Perform reverse image searches from an array of engines."
+msgstr ".sǝuıƃuǝ ɟo ʎɐɹɹɐ uɐ ɯoɹɟ sǝɥɔɹɐǝs ǝƃɐɯı ǝsɹǝʌǝɹ ɯɹoɟɹǝԀ"
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} soǝpıʌ pɐoʅuʍoᗡ"
@@ -6069,32 +6000,14 @@ msgstr "sǝʇɐpd∩"
 msgid "Maximum query length exceeded."
 msgstr ".pǝpǝǝɔxǝ ɥʇƃuǝʅ ʎɹǝnb ɯnɯıxɐW"
 
-msgid "Most popular this week"
-msgstr "ʞǝǝʍ sıɥʇ ɹɐʅndod ʇsoW"
-
-msgid "Most popular this month"
-msgstr "ɥʇuoɯ sıɥʇ ɹɐʅndod ʇsoW"
-
-msgid "Most popular all time"
-msgstr "ǝɯıʇ ʅʅɐ ɹɐʅndod ʇsoW"
-
-msgid "Highest Rated"
-msgstr "pǝʇɐᴚ ʇsǝɥƃıH"
-
 msgid "search for add-ons"
 msgstr "suo-ppɐ ɹoɟ ɥɔɹɐǝs"
-
-msgid "search for collections"
-msgstr "suoıʇɔǝʅʅoɔ ɹoɟ ɥɔɹɐǝs"
 
 msgid "search for themes"
 msgstr "sǝɯǝɥʇ ɹoɟ ɥɔɹɐǝs"
 
 msgid "search for apps"
 msgstr "sddɐ ɹoɟ ɥɔɹɐǝs"
-
-msgid "Sort By"
-msgstr "ʎԐ ʇɹoS"
 
 msgid "Relevance"
 msgstr "ǝɔuɐʌǝʅǝᴚ"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 06:00+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2018-05-02 02:02+0000\n"
 "Last-Translator: pirthi.d <pirthi.d@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -829,9 +829,6 @@ msgstr "ਥੀਮ"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
 
-msgid "Most Followers"
-msgstr "ਜਿਆਦਾਤਰ ਸਮਰਥਕ"
-
 msgid "Collections"
 msgstr "ਸੰਗ੍ਰਹਿ "
 
@@ -948,22 +945,6 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-#, fuzzy
-msgid "Contributors"
-msgstr "ਹਿੱਸੇਦਾਰ"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "ਸੰਗ੍ਰਹਿ :: %s"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "ਸੰਗ੍ਰਹਿ ਸਬੰਧਤ ਐਡ-ਆਨ ਦੇ ਗਰੁੱਪ ਹਨ ਜੋ ਹਰ ਕੋਈ ਬਣਾ ਅਤੇ ਵੰਡ ਸਕਦਾ ਹੈ।"
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: ਸੰਗ੍ਰਹਿ :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "ਕੇਵਲ ਮੈਂ ਇਹ ਸੰਗ੍ਰਹਿ ਵੇਖ ਸਕਦਾ।"
 
@@ -1020,20 +1001,14 @@ msgstr "ਇਹ ਉਪਭੋਗੀ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ 
 msgid "This add-on already belongs to the collection"
 msgstr "ਇਹ url ਪਹਿਲਾਂ ਹੀ ਕਿਸੇ ਹੋਰ ਸੰਗ੍ਰਹਿ ਵੱਲੋਂ ਵਰਤੀ ਜਾ ਰਹੀ ਹੈ"
 
-msgid "Name"
-msgstr "ਨਾਂ"
-
-msgid "Recently Updated"
-msgstr "ਹਾਲ ਹੀ ਵਿੱਚ ਅੱਪਡੇਟ ਕੀਤਾ"
-
-msgid "Recently Popular"
-msgstr "ਹੁਣੇ ਮਸ਼ਹੂਰ ਹੋਏ"
-
 msgid "Added"
 msgstr "ਸ਼ਾਮਲ ਹੋਏ"
 
 msgid "Popularity"
 msgstr "ਪ੍ਰਸਿੱਧੀ"
+
+msgid "Name"
+msgstr "ਨਾਂ"
 
 msgid "Collection created!"
 msgstr "ਸੰਗ੍ਰਹਿ ਰਚਿਆ!"
@@ -1142,17 +1117,14 @@ msgstr "ਜਾਓ"
 msgid "What are Collections?"
 msgstr "ਸੰਗ੍ਰਹਿ ਕੀ ਹਨ?"
 
+msgid "Collections are groups of related add-ons that anyone can create and share."
+msgstr "ਸੰਗ੍ਰਹਿ ਸਬੰਧਤ ਐਡ-ਆਨ ਦੇ ਗਰੁੱਪ ਹਨ ਜੋ ਹਰ ਕੋਈ ਬਣਾ ਅਤੇ ਵੰਡ ਸਕਦਾ ਹੈ।"
+
 msgid "Explore Collections"
 msgstr "ਸੰਗ੍ਰਹਿਾਂ ਦੀ ਪੜਚੋਲ"
 
 msgid "Common Tags"
 msgstr "ਆਮ ਟੈਗ"
-
-msgid "More by this User"
-msgstr "ਇਸ ਉਪਭੋਗੀ ਵੱਲੋਂ ਹੋਰ"
-
-msgid "See all collections by this user"
-msgstr "ਇਸ ਉਪਭੋਗੀ ਦੇ ਸਾਰੇ ਸੰਗ੍ਰਹਿ ਵੇਖੋ"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1244,61 +1216,8 @@ msgstr "ਸੋਧ {0}"
 msgid "Description"
 msgstr "ਵੇਰਵਾ"
 
-msgid "Contributors & More"
-msgstr "ਹਿੱਸੇਦਾਰ ਅਤੇ ਹੋਰ"
-
 msgid "Save Changes"
 msgstr "ਤਬਦੀਲੀ ਸੰਭਾਲ੍ਹੋ"
-
-msgid "Owner"
-msgstr "ਮਾਲਕ"
-
-msgid "Make Owner"
-msgstr "ਮਾਲਕ ਬਣਾਓ"
-
-msgid "Remove this user as a contributor"
-msgstr "ਹਿੱਸੇਦਾਰ ਦੇ ਤੌਰ ਤੇ ਇਸ ਉਪਭੋਗੀ ਨੂੰ ਹਟਾਓ"
-
-msgid "Remove"
-msgstr "ਹਟਾਓ"
-
-msgid "Collection Contributors"
-msgstr "ਸੰਗ੍ਰਹਿ ਹਿੱਸੇਦਾਰ"
-
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
-"email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-
-msgid "User"
-msgstr "ਉਪਭੋਗੀ"
-
-msgid "Email"
-msgstr "ਈਮੇਲ"
-
-msgid "Role"
-msgstr "ਭੂਮਿਕਾ"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "ਜੋੜਨ ਲਈ ਹਿੱਸੇਦਾਰ ਦਾ ਈਮੇਲ ਪਤਾ ਲਿੱਖੋ"
-
-msgid "Add Contributor"
-msgstr "ਹਿੱਸੇਦਾਰ ਜੋੜੋ"
-
-msgid "Contributor"
-msgstr "ਹਿੱਸੇਦਾਰ"
-
-msgid "Admin Settings"
-msgstr "ਸੰਚਾਲਨ ਸੈਟਿੰਗ"
-
-msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>ਚੇਤਾਵਨੀ:</b> ਇਸ ਸੰਗ੍ਰਹਿ ਦਾ ਮਾਲਕ ਬਦਲਣ ਨਾਲ, ਤੁਸੀਂ ਹੁਣ ਇਸ ਵਿੱਚ ਸੋਧ ਕਰਨ ਦੇ ਯੋਗ ਨਹੀਂ ਰਹੋਗੇ। ਤੁਸੀਂ ਇਸ ਵਿੱਚ ਕੇਵਲ ਐਡ-ਆਨ ਸ਼ਾਮਲ ਅਤੇ ਹਟਾਉਣ ਦੇ ਯੋਗ ਹੀ ਹੋਵੋਗੇ।"
-
-msgid "Continue"
-msgstr "ਜਾਰੀ"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "ਜਾਂ <a id=\"change-owner-cancel\" href=\"#\">ਰੱਦ</a>"
 
 msgid "Remove from favorites"
 msgstr "ਪਸੰਦੀਦਾ ਵਿੱਚੋ ਹਟਾਓ"
@@ -1313,27 +1232,9 @@ msgstr "{0} ਵੱਲੋਂ ਸੰਗ੍ਰਹਿ"
 msgid "No collections found."
 msgstr "ਕੋਈ ਸੰਗ੍ਰਹਿ ਨਹੀਂ ਮਿਲਿਆ।"
 
-msgid "Most-Followed Collections"
-msgstr "ਬਹੁਤੇ ਸਮਰਥਨ ਵਾਲੇ ਸੰਗ੍ਰਹਿ"
-
-msgid "Newest Collections"
-msgstr "ਬਿਲਕੁਲ ਨਵੇਂ ਸੰਗ੍ਰਹਿ"
-
-msgid "Collections by Name"
-msgstr "ਨਾਂ ਦੁਆਰਾ ਸੰਗ੍ਰਹਿ"
-
-msgid "Recently Updated Collections"
-msgstr "ਹਾਲ ਵਿੱਚ ਅੱਪਡੇਟ ਹੋਏ ਸੰਗ੍ਰਹਿ"
-
-msgid "Recently Popular Collections"
-msgstr "ਹਾਲ ਵਿੱਚ ਮਸ਼ਹੂਰ ਹੋਏ ਸੰਗ੍ਰਹਿ"
-
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "ਸੰਗ੍ਰਹਿ ਸਬੰਧਤ ਐਡ-ਆਨ ਦੇ ਗਰੁੱਪ ਹਨ ਜਿਹਨਾਂ ਨੂੰ ਹਰ ਕੋਈ ਬਣਾ ਅਤੇ ਸਾਂਝਾ ਕਰ ਸਕਦਾ ਹੈ। ਹੋਰਾਂ ਦੇ ਬਣਾਏ ਸੰਗ੍ਰਹਿਾਂ ਦੀ ਪੜਚੋਲ ਕਰੋ ਜਾਂ <a href=\"%(url)s\">ਆਪਣੇ ਆਪ ਬਣਾਓ</a>।"
-
-msgid "Subscribe"
-msgstr "ਗਾਹਕੀ"
 
 #, fuzzy, python-format
 msgid "by %(author_link)s"
@@ -1371,6 +1272,9 @@ msgstr "ਐਡ-ਆਨ"
 
 msgid "Comment"
 msgstr "ਟਿੱਪਣੀ"
+
+msgid "Remove"
+msgstr "ਹਟਾਓ"
 
 msgid "Enter the name of the add-on to include"
 msgstr "ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਐਡ-ਆਨ ਦਾ ਨਾਂ ਦਰਜ ਕਰੋ"
@@ -1438,6 +1342,9 @@ msgstr "ਬਹੁਤ ਸਾਰੇ ਉਪਭੋਗੀ"
 msgid "Weekly Downloads"
 msgstr "ਹਫ਼ਤੇਵਾਰ ਡਾਊਨਲੋਡ"
 
+msgid "Recently Updated"
+msgstr "ਹਾਲ ਹੀ ਵਿੱਚ ਅੱਪਡੇਟ ਕੀਤਾ"
+
 msgid "Up & Coming"
 msgstr "ਉੱਪਰ ਅਤੇ ਆ ਰਿਹਾ"
 
@@ -1457,6 +1364,9 @@ msgstr "{0}: ਪੇਸ਼ ਕੀਤੇ ਐਡ-ਆਨ"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "{0}ਵਿੱਚ ਕੋਈ ਐਡ-ਆਨ ਪੇਸ਼ਕਸ਼ ਨਹੀਂ।"
+
+msgid "Subscribe"
+msgstr "ਗਾਹਕੀ"
 
 msgid "Featured Add-ons"
 msgstr "ਪੇਸ਼ ਕੀਤੇ ਐਡ-ਆਨ"
@@ -2098,6 +2008,9 @@ msgstr "ਹੋਰ ਸਮੀਖਿਆ ਲਈ ਫ਼ਲੈਗ ਕੀਤਾ"
 msgid "Unlisted"
 msgstr "ਅਣਸੂਚੀਬੱਧ"
 
+msgid "Owner"
+msgstr "ਮਾਲਕ"
+
 msgid "Developer"
 msgstr "ਡਿਵੈਲਪਰ"
 
@@ -2706,10 +2619,16 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "ਵਰਗ ਬਦਲੇ ਨਹੀਂਂ ਜਾ ਸਕਦੇ ਜਦ ਕਿ ਤੁਹਾਡਾ ਐਡਓਨ ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਲਈ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਹੈ।"
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -3176,6 +3095,9 @@ msgstr "ਸਹਿਯੋਗ ਜਾਣਕਾਰੀ"
 msgid "Support Information for {0}"
 msgstr "{0} ਲਈ ਸਹਿਯੋਗ ਜਾਣਕਾਰੀ"
 
+msgid "Email"
+msgstr "ਈਮੇਲ"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
 "relevant for listed add-ons."
@@ -3328,6 +3250,14 @@ msgstr "ਕਿਰਪਾ ਕਰਕੇ ਇਸ ਐਡ-ਆਨ ਲਈ ਇੱਕ ਸ�
 
 msgid "Add a Screenshot..."
 msgstr "ਇੱਕ ਸਕਰੀਨਸ਼ਾੱਟ ਜੋੜੋ..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
+"page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "ਜਾਰੀ"
 
 #, fuzzy
 msgid "Can others share your Add-on, as long as you're given credit?"
@@ -4535,28 +4465,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ਚੇਤਾਵਨੀ"
 msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
 
-msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgid " Block invisible trackers and spying ads that follow you around the web."
 msgstr ""
 
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr ""
 
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr ""
 
-msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Isolate your Facebook identity into a separate \"container\" that makes it harder for Facebook to track your movements around the web."
+msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid " Perform reverse image searches from an array of engines."
+msgid "Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6316,32 +6246,14 @@ msgstr "ਅੱਪਡੇਟਾਂ"
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr "ਇਸ ਹਫ਼ਤੇ ਸੱਭ ਤੋਂ ਮਸ਼ਹੂਰ"
-
-msgid "Most popular this month"
-msgstr "ਇਸ ਮਹੀਨੇ ਸੱਭ ਤੋਂ ਮਸ਼ਹੂਰ"
-
-msgid "Most popular all time"
-msgstr "ਹਰ ਵੇਲੇ ਸੱਭ ਤੋਂ ਮਸ਼ਹੂਰ"
-
-msgid "Highest Rated"
-msgstr "ਸੱਭ ਤੋਂ ਵੱਧ ਰੇਟ ਹੋਇਆ"
-
 msgid "search for add-ons"
 msgstr "ਐਡ-ਆਨਾਂ ਦੀ ਖੋਜ ਕਰੋ"
-
-msgid "search for collections"
-msgstr "ਸੰਗ੍ਰਹਿਾਂ ਦੀ ਖੋਜ ਕਰੋ"
 
 msgid "search for themes"
 msgstr "ਥੀਮਾਂ ਲਈ ਖੋਜ ਕਰੋ"
 
 msgid "search for apps"
 msgstr "ਐਪਾਂ ਲਈ ਖੋਜ ਕਰੋ"
-
-msgid "Sort By"
-msgstr "ਦੁਆਰਾ ਕ੍ਰਮਬੱਧ"
 
 msgid "Relevance"
 msgstr "ਸਬੰਧਤ"

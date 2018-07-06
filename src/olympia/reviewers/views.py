@@ -49,7 +49,7 @@ from olympia.reviewers.serializers import AddonReviewerFlagsSerializer
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
     ReviewHelper, ViewFullReviewQueueTable, ViewPendingQueueTable,
-    ViewUnlistedAllListTable, is_limited_reviewer)
+    ViewUnlistedAllListTable)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
@@ -68,14 +68,12 @@ def base_context(**kw):
 
 def context(request, **kw):
     admin_reviewer = is_admin_reviewer(request)
-    limited_reviewer = is_limited_reviewer(request)
     extension_reviews = acl.action_allowed(
         request, amo.permissions.ADDONS_REVIEW)
     theme_reviews = acl.action_allowed(
         request, amo.permissions.STATIC_THEMES_REVIEW)
     ctx = {
         'queue_counts': queue_counts(admin_reviewer=admin_reviewer,
-                                     limited_reviewer=limited_reviewer,
                                      extension_reviews=extension_reviews,
                                      theme_reviews=theme_reviews),
     }
@@ -493,10 +491,6 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
         if not is_searching and not admin_reviewer:
             qs = filter_admin_review_for_legacy_queue(qs)
         if not unlisted:
-            if is_limited_reviewer(request):
-                qs = qs.having(
-                    'waiting_time_hours >=', amo.REVIEW_LIMITED_DELAY_HOURS)
-
             qs = filter_static_themes(
                 qs, acl.action_allowed(request, amo.permissions.ADDONS_REVIEW),
                 acl.action_allowed(
@@ -531,23 +525,21 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
                           unlisted=unlisted))
 
 
-def queue_counts(admin_reviewer, limited_reviewer, extension_reviews,
-                 theme_reviews):
+def queue_counts(admin_reviewer, extension_reviews, theme_reviews):
     def construct_query_from_sql_model(sqlmodel):
         qs = sqlmodel.objects
 
         if not admin_reviewer:
             qs = filter_admin_review_for_legacy_queue(qs)
-        if limited_reviewer:
-            qs = qs.having('waiting_time_hours >=',
-                           amo.REVIEW_LIMITED_DELAY_HOURS)
         qs = filter_static_themes(qs, extension_reviews, theme_reviews)
         return qs.count
 
     expired = (
         Addon.objects.filter(
-            addonreviewerflags__pending_info_request__lt=datetime.now()
-        ).order_by('addonreviewerflags__pending_info_request'))
+            addonreviewerflags__pending_info_request__lt=datetime.now(),
+            status__in=(amo.STATUS_NOMINATED, amo.STATUS_PUBLIC),
+            disabled_by_user=False)
+        .order_by('addonreviewerflags__pending_info_request'))
 
     counts = {
         'pending': construct_query_from_sql_model(ViewPendingQueue),
@@ -656,7 +648,8 @@ def queue_expired_info_requests(request):
     qs = (
         Addon.objects.filter(
             addonreviewerflags__pending_info_request__lt=datetime.now(),
-            status__in=(amo.STATUS_NOMINATED, amo.STATUS_PUBLIC))
+            status__in=(amo.STATUS_NOMINATED, amo.STATUS_PUBLIC),
+            disabled_by_user=False)
         .order_by('addonreviewerflags__pending_info_request'))
     return _queue(request, ExpiredInfoRequestsTable, 'expired_info_requests',
                   qs=qs, SearchForm=None)
@@ -1150,11 +1143,7 @@ class AddonReviewerViewSet(GenericViewSet):
         permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
     def disable(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
-        ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, amo.STATUS_DISABLED)
-        self.log.info('Addon "%s" status changed to: %s',
-                      addon.slug, amo.STATUS_DISABLED)
-        addon.update(status=amo.STATUS_DISABLED)
-        addon.update_version()
+        addon.force_disable()
         return Response(status=status.HTTP_202_ACCEPTED)
 
     @detail_route(
@@ -1162,13 +1151,7 @@ class AddonReviewerViewSet(GenericViewSet):
         permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
     def enable(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
-        ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, amo.STATUS_PUBLIC)
-        self.log.info('Addon "%s" status changed to: %s',
-                      addon.slug, amo.STATUS_PUBLIC)
-        addon.update(status=amo.STATUS_PUBLIC)
-        # Call update_status() to fix the status if the add-on is not actually
-        # in a state that allows it to be public.
-        addon.update_status()
+        addon.force_enable()
         return Response(status=status.HTTP_202_ACCEPTED)
 
     @detail_route(

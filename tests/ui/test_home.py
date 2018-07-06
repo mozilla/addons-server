@@ -50,7 +50,7 @@ def test_browse_all_themes_button_loads_correct_page(
         base_url, selenium):
     page = Home(selenium, base_url).open()
     page.featured_themes.browse_all
-    assert 'type=persona' in selenium.current_url
+    assert 'type=statictheme' in selenium.current_url
 
 
 @pytest.mark.nondestructive

@@ -33,7 +33,7 @@ from django.http import HttpResponse
 from django.template import engines, loader
 from django.utils import translation
 from django.utils.encoding import force_bytes, force_text
-from django.utils.http import _urlparse as django_urlparse
+from django.utils.http import _urlparse as django_urlparse, quote_etag
 
 import bleach
 import html5lib
@@ -711,7 +711,7 @@ class HttpResponseSendFile(HttpResponse):
         if settings.XSENDFILE:
             self[settings.XSENDFILE_HEADER] = header_path
         if etag:
-            self['ETag'] = '"%s"' % etag
+            self['ETag'] = quote_etag(etag)
 
     def __iter__(self):
         if settings.XSENDFILE:

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-14 06:00+0000\n"
+"POT-Creation-Date: 2018-06-21 06:01+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -940,9 +940,6 @@ msgstr "Teme"
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
 
-msgid "Most Followers"
-msgstr "Najviše pratioca"
-
 msgid "Collections"
 msgstr "Kolekcije"
 
@@ -1070,23 +1067,6 @@ msgid ""
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-#, fuzzy
-msgid "Contributors"
-msgstr "Saradnik"
-
-#. L10n: {0} is 'Add-ons for <app>'.
-#, python-format
-msgid "Collections :: %s"
-msgstr "Kolekcije :: %s"
-
-msgid ""
-"Collections are groups of related add-ons that anyone can create and share."
-msgstr "Kolekcije su grupe srodnih dodataka koje svako može da kreira i deli."
-
-#. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-msgid "{0} :: Collections :: {1}"
-msgstr "{0} :: Kolekcije :: {1}"
-
 msgid "Only I can view this collection."
 msgstr "Samo ja mogu da vidim ovu kolekciju."
 
@@ -1145,20 +1125,14 @@ msgstr "Ovo korisničko ime ne može da se koristi."
 msgid "This add-on already belongs to the collection"
 msgstr "Ovaj url je u upotrebi od strane druge kolekcije"
 
-msgid "Name"
-msgstr "Ime"
-
-msgid "Recently Updated"
-msgstr "Nedavno ažurirano"
-
-msgid "Recently Popular"
-msgstr "Skorije popularno"
-
 msgid "Added"
 msgstr "Dodato"
 
 msgid "Popularity"
 msgstr "Popularnost"
+
+msgid "Name"
+msgstr "Ime"
 
 msgid "Collection created!"
 msgstr "Kolekcija je kreirana!"
@@ -1278,17 +1252,15 @@ msgstr "Kreni"
 msgid "What are Collections?"
 msgstr "Šta su kolekcije?"
 
+msgid ""
+"Collections are groups of related add-ons that anyone can create and share."
+msgstr "Kolekcije su grupe srodnih dodataka koje svako može da kreira i deli."
+
 msgid "Explore Collections"
 msgstr "Istraži kolekcije"
 
 msgid "Common Tags"
 msgstr "Česte oznake"
-
-msgid "More by this User"
-msgstr "Više od ovog korisnika"
-
-msgid "See all collections by this user"
-msgstr "Pogledajte sve kolekcije ovog korisnika"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature "
@@ -1388,74 +1360,8 @@ msgstr "Izmeni {0}"
 msgid "Description"
 msgstr "Opis"
 
-msgid "Contributors & More"
-msgstr "Saradnici i još"
-
 msgid "Save Changes"
 msgstr "Sačuvaj izmene"
-
-# <option> text in a <select> for Author role in an add-on.
-msgid "Owner"
-msgstr "Vlasnik"
-
-msgid "Make Owner"
-msgstr "Učini vlasnikom"
-
-msgid "Remove this user as a contributor"
-msgstr "Ukloni ovog korisnika kao saradnika"
-
-msgid "Remove"
-msgstr "Ukloni"
-
-msgid "Collection Contributors"
-msgstr "Saradnici kolekcije"
-
-#, fuzzy
-msgid ""
-"You can add multiple contributors to this collection. A contributor can add "
-"and remove add-ons from this collection, but cannot change its name or "
-"description. To add a contributor, enter their email in the box below. "
-"Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"Možete dodati više saradnika ovoj kolekciji. Saradnik može da doda ili "
-"ukloni dodatke iz ove kolekcije, ali ne može da izmeni njegov naziv ili "
-"opis. Da biste dodali saradnika, unesite njihovu adresu e-pošte u polje "
-"ispod. Saradnici moraju da imaju Mozilla Add-ons nalog."
-
-msgid "User"
-msgstr "Korisnik"
-
-msgid "Email"
-msgstr "E-pošta"
-
-# Column name in a table.
-msgid "Role"
-msgstr "Uloga"
-
-msgid "Enter the email address of the contributor to add"
-msgstr "Unesite adresu e-pošte saradnika kojeg želite da dodate"
-
-msgid "Add Contributor"
-msgstr "Dodaj saradnika"
-
-msgid "Contributor"
-msgstr "Saradnik"
-
-msgid "Admin Settings"
-msgstr "Podešavanja administratora"
-
-msgid ""
-"<b>Warning:</b> By changing the owner of this collection, you will no longer "
-"be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ""
-"<b>Upozorenje:</b> Promenom vlasnika ove kolekcije, više nećete imati "
-"mogućnost njene izmene. Moći ćete samo da joj dodajete ili uklanjate dodatke."
-
-msgid "Continue"
-msgstr "Nastavi"
-
-msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr "ili <a id=\"change-owner-cancel\" href=\"#\">Otkaži</a>"
 
 msgid "Remove from favorites"
 msgstr "Ukloni iz omiljenih"
@@ -1470,21 +1376,6 @@ msgstr "Kolekcije od {0}"
 msgid "No collections found."
 msgstr "Nema nađenih kolekcija."
 
-msgid "Most-Followed Collections"
-msgstr "Najviše praćene kolekcije"
-
-msgid "Newest Collections"
-msgstr "Najnovije kolekcije"
-
-msgid "Collections by Name"
-msgstr "Kolekcije po nazivu"
-
-msgid "Recently Updated Collections"
-msgstr "Nedavno ažurirane kolekcije"
-
-msgid "Recently Popular Collections"
-msgstr "Nedavno popularne kolekcije"
-
 #, python-format
 msgid ""
 "Collections are groups of related add-ons that anyone can create and share. "
@@ -1494,9 +1385,6 @@ msgstr ""
 "Kolekcije su grupe srodnih dodataka koje svako može da kreira i deli. "
 "Istražite kolekcije napravljene od strane drugih korisnika ili <a href="
 "\"%(url)s\">napravite vlastitu</a>."
-
-msgid "Subscribe"
-msgstr "Pretplati se"
 
 #, fuzzy, python-format
 msgid "by %(author_link)s"
@@ -1542,6 +1430,9 @@ msgstr "Dodatak"
 
 msgid "Comment"
 msgstr "Komentariši"
+
+msgid "Remove"
+msgstr "Ukloni"
 
 msgid "Enter the name of the add-on to include"
 msgstr "Unesite naziv dodatka da biste da dodali"
@@ -1612,6 +1503,9 @@ msgstr "Većina korisnika"
 msgid "Weekly Downloads"
 msgstr "Sedmična preuzimanja"
 
+msgid "Recently Updated"
+msgstr "Nedavno ažurirano"
+
 msgid "Up & Coming"
 msgstr "Nadolazeće"
 
@@ -1631,6 +1525,9 @@ msgstr "{0}: Istaknuti dodaci"
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
 msgstr "Nema istaknutih dodataka u kategoriji {0}."
+
+msgid "Subscribe"
+msgstr "Pretplati se"
 
 msgid "Featured Add-ons"
 msgstr "Istaknuti dodaci"
@@ -2305,6 +2202,10 @@ msgstr "Označeno za dalju recenziju"
 msgid "Unlisted"
 msgstr ""
 
+# <option> text in a <select> for Author role in an add-on.
+msgid "Owner"
+msgstr "Vlasnik"
+
 msgid "Developer"
 msgstr "Autor"
 
@@ -2942,12 +2843,23 @@ msgstr ""
 "Kategorije se ne mogu izmeniti dok je Vaš dodatak izdvojen za ovu aplikaciju."
 
 msgid ""
+"Add-ons for Thunderbird and SeaMonkey are now listed and maintained on "
+"addons.thunderbird.net. You can use the same account to update your add-ons "
+"on the new site."
+msgstr ""
+
+msgid ""
 "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
 msgid ""
 "Legacy add-ons are not compatible with Firefox 57 or higher. Use a "
 "maxVersion of 56.* or lower."
+msgstr ""
+
+msgid ""
+"Legacy language packs for Firefox are no longer supported. A WebExtensions "
+"install manifest is required. See {mdn_link} for more details."
 msgstr ""
 
 msgid ""
@@ -3501,6 +3413,9 @@ msgstr "Informacije podrške"
 msgid "Support Information for {0}"
 msgstr "Informacije o podršci za {0}"
 
+msgid "Email"
+msgstr "E-pošta"
+
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it "
 "here. If you have different addresses for each language multiple "
@@ -3679,6 +3594,16 @@ msgstr "Molimo obezbedite opis za ovu sliku ekrana:"
 
 msgid "Add a Screenshot..."
 msgstr "Dodaj sliku ekrana..."
+
+msgid ""
+"PNG and JPG supported. The maximum and recommended size for screenshots is "
+"1280x800 pixels. 640x400 pixels is a good alternative if you only have "
+"smaller images. Having screenshots in your listing page greatly increases "
+"its chances of being installed and being featured in the homepage."
+msgstr ""
+
+msgid "Continue"
+msgstr "Nastavi"
 
 #, fuzzy
 msgid "Can others share your Add-on, as long as you're given credit?"
@@ -5068,34 +4993,33 @@ msgstr[0] "{0} upozorenje"
 msgstr[1] "{0} upozorenja"
 
 msgid ""
-"Ad blocking & privacy protection {start_sub_heading}with {addon_name}"
+"Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid ""
+" Block invisible trackers and spying ads that follow you around the web."
+msgstr ""
+
+msgid ""
+"Customize new tab pages {start_sub_heading}with {addon_name} "
 "{end_sub_heading}"
 msgstr ""
 
 msgid ""
-"A simple set-up lets you take control of the ads you see and how you’re "
-"tracked on the internet."
+"Enjoy a beautiful new page with customizable backgrounds, local weather "
+"info, and more."
 msgstr ""
 
-msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-msgid ""
-"Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid ""
-"Isolate your Facebook identity into a separate \"container\" that makes it "
-"harder for Facebook to track your movements around the web."
-msgstr ""
-
-msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid " Perform reverse image searches from an array of engines."
+msgid "Perform reverse image searches from an array of engines."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7098,32 +7022,14 @@ msgstr "Ažuriranja"
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Most popular this week"
-msgstr "Najpopularniji ove sedmice"
-
-msgid "Most popular this month"
-msgstr "Najpopularniji ovog meseca"
-
-msgid "Most popular all time"
-msgstr "Najpopularniji svih vremena"
-
-msgid "Highest Rated"
-msgstr "Najbolje ocenjene"
-
 msgid "search for add-ons"
 msgstr "pretraži dodatke"
-
-msgid "search for collections"
-msgstr "pretraži kolekcije"
 
 msgid "search for themes"
 msgstr "pretraži teme"
 
 msgid "search for apps"
 msgstr "pretraži aplikacije"
-
-msgid "Sort By"
-msgstr "Poređaj po"
 
 msgid "Relevance"
 msgstr "Relevantnost"

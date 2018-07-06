@@ -2,6 +2,7 @@ import mock
 import os
 import pytest
 import tempfile
+from datetime import datetime
 
 from django.conf import settings
 from django.test.utils import override_settings
@@ -22,6 +23,7 @@ from olympia.applications.models import AppVersion
 from olympia.constants import licenses
 from olympia.constants.categories import CATEGORIES
 from olympia.ratings.models import Rating
+from olympia.stats.models import ThemeUpdateCount, UpdateCount
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import License
@@ -119,6 +121,8 @@ def test_migrate_lwts_to_static_themes(add_static_theme_from_lwt_mock):
 @override_switch('allow-static-theme-uploads', active=True)
 @override_settings(ENABLE_ADDON_SIGNING=True)
 class TestAddStaticThemeFromLwt(TestCase):
+    create_date = datetime(2000, 1, 1, 1, 1, 1)
+    modify_date = datetime(2009, 9, 9, 9, 9, 9)
 
     def setUp(self):
         super(TestAddStaticThemeFromLwt, self).setUp()
@@ -142,14 +146,17 @@ class TestAddStaticThemeFromLwt(TestCase):
 
     def _check_result(self, static_theme, authors, tags, categories, license_,
                       ratings):
+        # metadata is correct
         assert list(static_theme.authors.all()) == authors
         assert list(static_theme.tags.all()) == tags
         assert [cat.name for cat in static_theme.all_categories] == [
             cat.name for cat in categories]
         assert static_theme.current_version.license.builtin == license_
+        # status is good
         assert static_theme.status == amo.STATUS_PUBLIC
         current_file = static_theme.current_version.files.get()
         assert current_file.status == amo.STATUS_PUBLIC
+        # Ratings were migrated
         assert list(Rating.unfiltered.filter(addon=static_theme)) == ratings
         log_entries = ActivityLog.objects.filter(
             action=amo.LOG.ADD_RATING.id, addonlog__addon=static_theme)
@@ -158,12 +165,19 @@ class TestAddStaticThemeFromLwt(TestCase):
             arguments = log_entry.arguments
             assert rating in arguments
             assert static_theme in arguments
+        # UpdateCounts were copied.
+        assert UpdateCount.objects.filter(
+            addon_id=static_theme.id).count() == 2
+        # xpi was signed
         self.call_signing_mock.assert_called_with(current_file)
         assert current_file.cert_serial_num == 'abcdefg1234'
+        assert static_theme.created == self.create_date
+        assert static_theme.modified == self.modify_date
 
     def test_add_static_theme_from_lwt(self):
         author = user_factory()
         persona = addon_factory(type=amo.ADDON_PERSONA, users=[author])
+        persona.update(created=self.create_date, modified=self.modify_date)
         persona.persona.license = licenses.LICENSE_CC_BY_ND.id
         Tag.objects.create(tag_text='themey').save_tag(persona)
         License.objects.create(builtin=licenses.LICENSE_CC_BY_ND.builtin)
@@ -171,6 +185,13 @@ class TestAddStaticThemeFromLwt(TestCase):
         rating = Rating.objects.create(
             addon=persona, version=persona.current_version, user=rating_user,
             rating=2, body=u'fooooo', user_responsible=rating_user)
+        ThemeUpdateCount.objects.create(
+            addon_id=persona.id, date=datetime(2018, 1, 1), count=123)
+        ThemeUpdateCount.objects.create(
+            addon_id=persona.id, date=datetime(2018, 2, 1), count=456)
+        # Create a count for an addon that shouldn't be migrated too.
+        ThemeUpdateCount.objects.create(
+            addon_id=addon_factory().id, date=datetime(2018, 2, 1), count=45)
 
         static_theme = add_static_theme_from_lwt(persona)
 
@@ -182,6 +203,7 @@ class TestAddStaticThemeFromLwt(TestCase):
     def test_add_static_theme_broken_lwt(self):
         """What if no author or license or category?"""
         persona = addon_factory(type=amo.ADDON_PERSONA)
+        persona.update(created=self.create_date, modified=self.modify_date)
 
         assert list(persona.authors.all()) == []  # no author
         persona.persona.license = None  # no license
@@ -200,6 +222,14 @@ class TestAddStaticThemeFromLwt(TestCase):
         Rating.objects.create(
             addon=addon_factory(), user=rating_user,
             rating=4, body=u'tgffd', user_responsible=rating_user)
+        ThemeUpdateCount.objects.create(
+            addon_id=persona.id, date=datetime(2018, 1, 1), count=123)
+        ThemeUpdateCount.objects.create(
+            addon_id=persona.id, date=datetime(2018, 2, 1), count=456)
+        # Create a count for an addon that shouldn't be migrated too.
+        ThemeUpdateCount.objects.create(
+            addon_id=addon_factory().id, date=datetime(2018, 2, 1), count=45)
+
         static_theme = add_static_theme_from_lwt(persona)
 
         default_author = UserProfile.objects.get(
