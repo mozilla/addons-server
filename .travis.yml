@@ -41,7 +41,7 @@ jobs:
       env: TEST=elasticsearch
       if: type IN (pull_request, push)
       install: make -f Makefile-docker update_deps
-      script: pytest -n 2 -m "es_tests" src/
+      script: pytest -m "es_tests" src/
     - stage: main tests
       env: TEST=signing
       if: type IN (pull_request, push)
