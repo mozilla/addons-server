@@ -139,6 +139,9 @@ update: update_deps update_db update_assets
 reindex:
 	python manage.py reindex $(ARGS)
 
+make-tmp-dir:
+	mkdir -p tmp/ui-tests/tmp/ui-tests/user-media/
+
 setup-ui-tests:
 	rm -rf ./user-media/* ./tmp/*
 	# Reset the database and fake database migrations

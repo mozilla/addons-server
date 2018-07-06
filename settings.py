@@ -18,8 +18,8 @@ INSTALLED_APPS += (
     'olympia.landfill',
 )
 
-MEDIA_ROOT = str(os.mkdir('tmp/ui-tests/user-media/'))
-TMP_PATH = str(os.mkdir('tmp/ui-tests/tmp/'))
+MEDIA_ROOT = str('tmp/ui-tests/user-media/')
+TMP_PATH = str('tmp/ui-tests/tmp/')
 NETAPP_STORAGE = TMP_PATH
 
 FILESYSTEM_CACHE_ROOT = os.path.join(TMP_PATH, 'cache')
