@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
-from amo.decorators import write
+from amo.decorators import use_primary_db
 from celeryutils import task
 from mkt.webapps.models import AddonExcludedRegion
 
 
 @task
-@write
+@use_primary_db
 def _task(**kw):
     # 3 - Canada
     # 5 - Australia

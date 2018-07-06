@@ -18,7 +18,7 @@ from django_statsd.clients import statsd
 import olympia.core.logger
 
 from olympia import activity, amo
-from olympia.amo.decorators import use_master
+from olympia.amo.decorators import use_primary_db
 from olympia.amo.models import (
     BasePreview, ManagerBase, ModelBase, OnChangeMixin)
 from olympia.amo.templatetags.jinja_helpers import (
@@ -696,7 +696,7 @@ models.signals.post_delete.connect(VersionPreview.delete_preview_files,
                                    dispatch_uid='delete_preview_files')
 
 
-@use_master
+@use_primary_db
 def update_status(sender, instance, **kw):
     if not kw.get('raw'):
         try:

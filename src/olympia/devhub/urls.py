@@ -2,7 +2,7 @@ from django.conf.urls import include, url
 from django.shortcuts import redirect
 
 from olympia.addons.urls import ADDON_ID
-from olympia.amo.decorators import write
+from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import partial
 from olympia.lib.misc.urlconf_decorator import decorate
 
@@ -134,7 +134,7 @@ redirect_patterns = [
         lambda r, id: redirect('devhub.addons.versions', id, permanent=True)),
 ]
 
-urlpatterns = decorate(write, [
+urlpatterns = decorate(use_primary_db, [
     url('^$', views.index, name='devhub.index'),
     url('', include(redirect_patterns)),
 

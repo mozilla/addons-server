@@ -35,7 +35,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.access.models import GroupUser
 from olympia.amo import messages
-from olympia.amo.decorators import write
+from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import fetch_subscribed_newsletters
 from olympia.api.authentication import (
     JWTKeyAuthentication, WebTokenAuthentication)
@@ -201,7 +201,7 @@ def with_user(format, config=None):
 
     def outer(fn):
         @functools.wraps(fn)
-        @write
+        @use_primary_db
         def inner(self, request):
             if config is None:
                 if hasattr(self, 'get_fxa_config'):

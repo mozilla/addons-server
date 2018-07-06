@@ -14,7 +14,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
-from olympia.amo.decorators import write
+from olympia.amo.decorators import use_primary_db
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.devhub.views import handle_upload
 from olympia.files.models import FileUpload
@@ -121,7 +121,7 @@ class VersionView(APIView):
             file_upload, context={'request': request})
         return Response(serializer.data, status=status_code)
 
-    @write
+    @use_primary_db
     def handle_upload(self, request, addon, version_string, guid=None):
         if 'upload' in request.FILES:
             filedata = request.FILES['upload']
@@ -212,7 +212,7 @@ class VersionView(APIView):
 
         return file_upload, created
 
-    @write
+    @use_primary_db
     @with_addon()
     def get(self, request, addon, version_string, uuid=None, guid=None):
         file_upload_qs = FileUpload.objects.filter(
@@ -248,6 +248,6 @@ class SignedFile(APIView):
     authentication_classes = [JWTKeyAuthentication]
     permission_classes = [IsAuthenticated]
 
-    @write
+    @use_primary_db
     def get(self, request, file_id):
         return version_views.download_file(request, file_id)

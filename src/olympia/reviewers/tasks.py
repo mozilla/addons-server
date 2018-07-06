@@ -9,7 +9,7 @@ from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     create_persona_preview_images, theme_checksum)
 from olympia.amo.celery import task
-from olympia.amo.decorators import write
+from olympia.amo.decorators import use_primary_db
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.utils import LocalFileStorage, send_mail_jinja
 from olympia.reviewers.models import AutoApprovalSummary
@@ -104,7 +104,7 @@ def send_mail(cleaned_data, theme_lock):
 
 
 @task
-@write
+@use_primary_db
 def approve_rereview(theme):
     """Replace original theme with pending theme on filesystem."""
     # If reuploaded theme, replace old theme design.
@@ -137,7 +137,7 @@ def approve_rereview(theme):
 
 
 @task
-@write
+@use_primary_db
 def reject_rereview(theme):
     """Delete pending theme from filesystem."""
     storage = LocalFileStorage()
@@ -149,7 +149,7 @@ def reject_rereview(theme):
 
 
 @task
-@write
+@use_primary_db
 def recalculate_post_review_weight(ids):
     """Recalculate the post-review weight that should be assigned to
     auto-approved add-on versions from a list of ids."""

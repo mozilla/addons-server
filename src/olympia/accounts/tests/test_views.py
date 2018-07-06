@@ -605,9 +605,9 @@ class TestAuthenticateView(BaseAuthenticationView):
         return absolutify(urlparams(reverse('users.login'), **params))
 
     def test_write_is_used(self, **params):
-        with mock.patch('olympia.amo.models.use_master') as use_master:
+        with mock.patch('olympia.amo.models.use_primary_db') as use_primary_db:
             self.client.get(self.url)
-        assert use_master.called
+        assert use_primary_db.called
 
     def test_no_code_provided(self):
         response = self.client.get(self.url)

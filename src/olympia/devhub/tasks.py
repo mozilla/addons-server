@@ -36,7 +36,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon, Persona, Preview
 from olympia.amo.celery import task
-from olympia.amo.decorators import atomic, set_modified_on, write
+from olympia.amo.decorators import atomic, set_modified_on, use_primary_db
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     image_size, pngcrush_image, resize_image, send_html_mail_jinja, send_mail,
@@ -89,7 +89,7 @@ def validate_and_submit(addon, file_, channel):
 
 
 @task
-@write
+@use_primary_db
 def submit_file(addon_pk, upload_pk, channel):
     addon = Addon.unfiltered.get(pk=addon_pk)
     upload = FileUpload.objects.get(pk=upload_pk)
@@ -201,7 +201,7 @@ def validate_file(file_id, hash_, is_webextension=False, **kw):
 
 
 @task
-@write
+@use_primary_db
 def handle_upload_validation_result(
         results, upload_pk, channel, is_mozilla_signed):
     """Annotate a set of validation results and save them to the given
@@ -285,7 +285,7 @@ def handle_upload_validation_result(
 # that needs to wait on a result, rather than just trigger the task to save
 # the result to a FileValidation object.
 @task(ignore_result=False)
-@write
+@use_primary_db
 def handle_file_validation_result(results, file_id, *args):
     """Annotate a set of validation results and save them to the given File
     instance."""
@@ -550,7 +550,7 @@ def check_for_api_keys_in_file(results, upload):
 
 
 @task
-@write
+@use_primary_db
 def revoke_api_key(key_id):
     try:
         # Fetch the original key, do not use `get_jwt_key`
@@ -576,7 +576,7 @@ def revoke_api_key(key_id):
 
 
 @task(soft_time_limit=settings.VALIDATOR_TIMEOUT)
-@write
+@use_primary_db
 def compatibility_check(upload_pk, app_guid, appversion_str, **kw):
     log.info('COMPAT CHECK for upload %s / app %s version %s'
              % (upload_pk, app_guid, appversion_str))
@@ -745,7 +745,7 @@ def track_validation_stats(json_result, addons_linter=False):
 
 
 @task
-@write
+@use_primary_db
 @set_modified_on
 def pngcrush_existing_icons(addon_id):
     """
@@ -771,7 +771,7 @@ def pngcrush_existing_icons(addon_id):
 
 
 @task
-@write
+@use_primary_db
 @set_modified_on
 def pngcrush_existing_preview(preview_id):
     """
@@ -787,7 +787,7 @@ def pngcrush_existing_preview(preview_id):
 
 
 @task
-@write
+@use_primary_db
 @set_modified_on
 def pngcrush_existing_theme(persona_id):
     """
@@ -888,7 +888,7 @@ def _recreate_images_for_preview(preview):
 
 
 @task
-@write
+@use_primary_db
 def recreate_previews(addon_ids, **kw):
     log.info('[%s@%s] Getting preview sizes for addons starting at id: %s...'
              % (len(addon_ids), recreate_previews.rate_limit, addon_ids[0]))
@@ -902,7 +902,7 @@ def recreate_previews(addon_ids, **kw):
 
 
 @task
-@write
+@use_primary_db
 def get_preview_sizes(ids, **kw):
     log.info('[%s@%s] Getting preview sizes for addons starting at id: %s...'
              % (len(ids), get_preview_sizes.rate_limit, ids[0]))
