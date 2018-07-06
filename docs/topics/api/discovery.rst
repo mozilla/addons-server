@@ -57,3 +57,19 @@ be replaced. The API will still return a total of 7 items.
     :query string platform: The platform identifier to be passed to TAAR.
     :query string branch: Additional parameter passed along to TAAR.
     :query string study: Additional parameter passed along to TAAR.
+
+-----------------
+Editorial Content
+-----------------
+
+.. _disco-editorial-content:
+
+This endpoint allows you to fetch all editorial content for Discovery Pane
+Recommendations. This is used internally to generate .po files containing the
+strings the content team came up with.
+
+ .. http:get:: /api/v4/discovery/editorial/
+
+    :>json array results: The array containing the results for this query. There is no pagination, all results are returned.
+    :>json string|null results[].custom_heading: The custom heading for this item, if any.
+    :>json string|null results[].custom_description: The custom description for this item, if any.

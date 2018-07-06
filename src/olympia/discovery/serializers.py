@@ -6,7 +6,20 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer, VersionSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.discovery.models import DiscoveryItem
 from olympia.versions.models import Version
+
+
+class DiscoveryEditorialContentSerializer(serializers.ModelSerializer):
+    """
+    Serializer used to fetch editorial-content only, for internal use when
+    generating the .po files containing all editorial content to be translated.
+    """
+    class Meta:
+        model = DiscoveryItem
+        # We only need fields that require a translation, that's custom_heading
+        # and custom_description.
+        fields = ('custom_heading', 'custom_description')
 
 
 class DiscoveryVersionSerializer(VersionSerializer):
