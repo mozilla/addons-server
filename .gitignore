@@ -9,13 +9,6 @@ shellng_local.py
 pip-log.txt
 docs/_gh-pages
 docs/api/_build
-src/olympia/lib/product_json/.gitignore
-src/olympia/lib/product_json/*.json
-src/olympia/lib/product_json/.last_update
-src/olympia/lib/product_json/*.json.last_modified
-src/olympia/lib/product_json/regions/*.json
-src/olympia/lib/product_json/regions/.last_update
-src/olympia/lib/product_json/regions/*.json.last_modified
 build*.py
 .DS_Store
 *.js.tmp
