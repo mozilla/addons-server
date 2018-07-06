@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-01 11:12+0000\n"
+"PO-Revision-Date: 2018-07-06 22:16+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4005,7 +4005,7 @@ msgid "The licensor permits others to copy, distribute, display and perform the 
 msgstr "ლიცენზიის მფლობელი ნებას რთავს მსურველებს, გაამრავლონ, გაავრცელონ და გამოიყენონ თავიანთი საჭიროებისამებრ, მათ შორის, გადამუშავებული სახით."
 
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "ლიცენზიის მფლობელი ნებას რთავს მსურველებს, გაამრავლონ, გაავრცელონ და გამოიყენონ თავიანთი საჭიროებისამებრ, მხოლოდ არსებული სახით — გადამუშავების გარეშე."
+msgstr "ლიცენზიის მფლობელი ნებას რთავს მსურველებს, გაამრავლონ, გაავრცელონ და გამოიყენონ თავიანთი საჭიროებისამებრ, მხოლოდ არსებული სახით – გადამუშავების გარეშე."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "თქვენი თემა გამოშვებული იქნება, მოცემული ლიცენზიის ქვეშ:"
@@ -4682,7 +4682,7 @@ msgid "Cancel Installation"
 msgstr "დაყენების შეწყვეტა"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr "Mozilla — თვის დამატება!"
+msgstr "Mozilla – თვის დამატება!"
 
 msgid "Become a Test Pilot"
 msgstr "გახდით გამომცდელი მფრინავი"
