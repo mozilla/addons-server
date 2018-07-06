@@ -52,7 +52,9 @@ jobs:
       env: TEST=locale-dependend-tests
       if: type IN (pull_request, push)
       install: make -f Makefile-docker update_deps
-      script: pytest -n 2 -m "needs_locales_compilation" src/
+      script: |
+        bash locale/compile-mo.sh locale/
+        pytest -n 2 -m "needs_locales_compilation" src/
     - <<: *run-pytest
       env: PYTEST_TEST_GROUP=1
     - <<: *run-pytest
