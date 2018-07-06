@@ -218,8 +218,8 @@ class TestActivity(HubTest):
 
     def test_logged_out(self):
         self.client.logout()
-        r = self.get_response(follow=False)
-        assert r.status_code == 302
+        response = self.get_response(follow=False)
+        assert response.status_code == 302
 
     def test_xss_addon(self):
         self.addon.name = ("<script>alert('Buy more Diet Mountain Dew.')"

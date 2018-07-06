@@ -2,8 +2,7 @@ from django.conf import settings
 
 from django import forms
 from django.utils.encoding import force_text
-from django.utils.html import conditional_escape, format_html
-from django.utils.safestring import mark_safe
+from django.utils.html import conditional_escape, format_html_join
 from django.utils.translation import ugettext
 
 from olympia.addons.models import Category
@@ -18,15 +17,14 @@ class IconTypeSelect(forms.RadioSelect):
             option_value = option['value']
             if option_value.split('/')[0] == 'icon' or option_value == '':
                 icon_name = option['label']
-                output.append(
-                    format_html(
-                        '<li><a href="#" class="{}">'
-                        '<img src="{}img/addon-icons/{}-32.png" alt="">'
-                        '</a></li>',
+                output.append((
+                    '<li><a href="#" class="{}">'
+                    '<img src="{}img/addon-icons/{}-32.png" alt="">'
+                    '</a></li>', (
                         'active' if option_value == value else '',
                         settings.STATIC_URL,
-                        icon_name))
-        return mark_safe(u''.join(output))
+                        icon_name)))
+        return format_html_join(output)
 
 
 class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
