@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-29 01:04+0000\n"
+"PO-Revision-Date: 2018-07-08 09:49+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -723,7 +723,7 @@ msgstr ""
 msgid "Not Found"
 msgstr "찾을 수 없습니다."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
@@ -732,16 +732,16 @@ msgid ""
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>죄송합니다. 현재 찾으시는 것을 발견하지 못했습니다.</h1> <p> 찾고자 하시는 페이지나 파일은 저희 사이트 내에 없었습니다. 너무 오래된 링크를 클릭했거나 주소를 정확히 입력하지 않았을 수도 있습니다. </p> <ul> <li>주소를 입력하신 거였다면 주소 철자를 다시 한번 점검해 보시기 바랍니다.</li> <li> 다른 사이트에 올라온 "
-"링크를 따라서 오신 거라면 <a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com 주소를 통해 저희에게 연락해 주십시오</a>. 사이트의 이름과 어떤 것을 찾고 있었는지 말씀해 주시면 저희가 최선을 다해 수정하도록 하겠습니다. </li> </ul> <p>저희 웹사이트의 인기 페이지로 가보시는 것도"
-" 권해드립니다.</p> <ul> <li><a href=\"%(rec)s\">추천 부가 기능 목록</a>에 관심이 있으십니까?</li> <li> <a href=\"%(search)s\">부가 기능을 검색</a>하고 싶으신가요? <a href=\"%(search)s\">검색 페이지</a>로 이동하시거나 윗부분의 검색창을 사용하셔도 됩니다. </li>  "
-"<li> 첫 페이지로 가서 다시 시작하고자 하신다면 <a href=\"%(home)s\">부가 기능 첫 페이지</a>로 이동하시기 바랍니다. </li> </ul>"
+"링크를 따라서 오신 거라면 <a href=\"https://github.com/mozilla/addons-server/issues/new/\">이슈 등록</a>을 부탁드립니다. 사이트의 이름과 어떤 것을 찾고 있었는지 말씀해 주시면 저희가 최선을 다해 수정하도록 하겠습니다. </li> </ul> <p>저희 웹사이트의 인기 페이지로 가보시는 것도 "
+"권해드립니다.</p> <ul> <li><a href=\"%(rec)s\">추천 부가 기능 목록</a>에 관심이 있으십니까?</li> <li> <a href=\"%(search)s\">부가 기능을 검색</a>하고 싶으신가요? <a href=\"%(search)s\">검색 페이지</a>로 이동하시거나 윗부분의 검색창을 사용하셔도 됩니다. </li> <li>"
+" 첫 페이지로 가서 다시 시작하고자 하신다면 <a href=\"%(home)s\">부가 기능 첫 페이지</a>로 이동하시기 바랍니다. </li> </ul>"
 
 msgid "Oops"
 msgstr "앗 이런"
 
-#, fuzzy, python-format
+#, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr "<h1>저런! 오류가 발생했습니다.</h1> <p>빠른 시일 내에 고치도록 하겠습니다.</p> <p> 현재 페이지를 새로고침해 보시거나 <a href=\"%(home)s\">부가 기능 대문</a>으로 돌아가시기 바랍니다. </p>"
+msgstr "<h1>저런!  오류가 발생했습니다.</h1> <p>빠른 시일 내에 고치도록 하겠습니다.</p> <p>현재 페이지를 새로고침해 보거나 <a href=\"%(home)s\">부가 기능 홈페이지</a>로 돌아가시기 바랍니다.</p>"
 
 msgid "Some rights reserved"
 msgstr "Some rights reserved"
@@ -902,9 +902,9 @@ msgstr "올바른 애플리케이션 버전"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr "모질라 부가 기능에 제출할 부가 기능은 아래 지원하는 어플리케이션들 중 적어도 하나의 매니페스트 파일을 가져야 합니다. 아래에 나열된 매니페스트 버전들만을 어플리케이션이 허용합니다."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "WebExtensions 는 <a href=\"%(version_url)s\">strict_min_version</a> 안에 \"*\" 문자를 허용하지 않음을 주의해 주십시오."
+msgstr "WebExtensions는 %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s 안에 \"*\" 문자를 허용하지 않음을 주의해 주십시오."
 
 msgid "GUID"
 msgstr "GUID"
@@ -912,11 +912,11 @@ msgstr "GUID"
 msgid "Versions"
 msgstr "버전"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "지원되는 애플리케이션이 매니페스트 파일을 요구하지 않으면, <a href=\"%(url)s\">이곳</a>에 명시된 요구 항목을 반드시 포함하고 있어야 합니다."
+msgstr "지원되는 애플리케이션이 매니페스트 파일을 요구하지 않으면, %(amo_manifests_mdn_link_open)s이곳%(amo_manifests_mdn_link_close)s에 명시된 요구 항목을 반드시 포함하고 있어야 합니다."
 
 msgid "Only I can view this collection."
 msgstr "자기 자신만 이 모음집을 볼 수 있습니다."
@@ -954,25 +954,20 @@ msgstr "아이콘은 반드시 PNG나 JPG 형식이어야 합니다."
 msgid "Icons cannot be animated."
 msgstr "움직이는 아이콘은 사용할 수 없습니다."
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "이 url은 이미 다른 모음집에서 사용중입니다"
+msgstr "이 URL은 이미 다른 모음집에서 사용중입니다."
 
-#, fuzzy
 msgid "Name cannot be empty."
-msgstr "이 이름은 사용할 수 없습니다."
+msgstr "이름은 비워둘 수 없습니다."
 
-#, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "문자, 숫자, 밑줄, 하이픈으로 이루어진 올바른 사용자 이름을 입력하세요."
+msgstr "문자, 숫자, 밑줄, 하이픈으로 이루어진 URL을 입력하세요."
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "이 사용자 이름은 사용할 수 없습니다."
+msgstr "이 URL은 사용할 수 없습니다."
 
-#, fuzzy
 msgid "This add-on already belongs to the collection"
-msgstr "이 url은 이미 다른 모음집에서 사용중입니다"
+msgstr "이 부가 기능은 이미 다른 모음집에서 사용중입니다"
 
 msgid "Added"
 msgstr "신규"
