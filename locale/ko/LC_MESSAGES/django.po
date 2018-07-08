@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-08 09:49+0000\n"
+"PO-Revision-Date: 2018-07-08 10:04+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -1096,11 +1096,10 @@ msgid ""
 "from public view, click the button below to make it private."
 msgstr "아래의 <b>선호 목록에 추가하기</b>를 선택하면 해당 부가 기능은 좋아하는 부가 기능으로 표시가 됩니다. 이 목록은 현재 <b>공개</b> 상태로, 모든 사람들이 목록을 볼 수 있다는 의미입니다. 남에게 보이고 싶지 않다면 아래의 버튼을 클릭해서 비공개 상태로 전환하시기 바랍니다."
 
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
-msgstr "아래의 <b>선호 목록에 추가하기</b>를 선택하면 해당 부가 기능은 좋아하는 부가 기능으로 표시가 됩니다. 이 목록은 현재 <b>비공개</b> 상태로, 자기 자신만 볼 수 있다는 의미입니다. 다른 사람들도 내 선호 목록을 보게 하고 싶다면 아래의 버튼을 클릭해서 공개 상태로 전환하시기 바랍니다."
+msgstr "<b>선호 목록에 추가하기</b> 기능을 사용해 선호 하는것으로 표시한 부가 기능은 아래에 나타납니다. 이 모음집은 현재 <b>비공개</b> 상태로, 자기 자신만 볼 수 있습니다. 다른 사람들도 내 선호 목록을 보게 하고 싶다면 아래의 버튼을 클릭해서 공개 상태로 전환하시기 바랍니다."
 
 msgid "My favorite add-ons"
 msgstr "좋아하는 부가 기능"
@@ -1192,9 +1191,9 @@ msgstr "모음집이 없습니다."
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "모음집은 서로 관련이 있는 부가 기능을 한데 엮어놓은 것으로 누구나 제작과 공유가 가능합니다. 다른 사용자가 제작한 모음집을 살펴보거나 <a href=\"%(url)s\">나만의 모음집을 제작</a>할 수도 있습니다."
 
-#, fuzzy, python-format
+#, python-format
 msgid "by %(author_link)s"
-msgstr "제작: %(users)s"
+msgstr "제작: %(author_link)s"
 
 msgid "Following"
 msgstr "팔로윙"
@@ -1211,13 +1210,11 @@ msgstr "모음집 아이콘"
 msgid "Reset"
 msgstr "초기화"
 
-#, fuzzy
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "PNG와 JPG 형식을 지원합니다. 이미지는 32x32 크기로 재조정될 것입니다."
+msgstr "PNG와 JPG 형식을 지원합니다.  이미지는 32x32 크기로 재조정될 것입니다."
 
-#, fuzzy
 msgid "There are errors in this form.  Please correct them below."
-msgstr "양식에 오류가 있습니다. 아래 사항을 정정해 주세요."
+msgstr "양식에 오류가 있습니다.  아래 사항을 정정해 주세요."
 
 msgid "Add-ons in Your Collection"
 msgstr "모음집에 들어있는 부가 기능"
@@ -1397,9 +1394,8 @@ msgid "Additional Resources"
 msgstr "부가 정보"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "{0}의 <a href=\"http://support.mozilla.com/kb/Search+bar\">검색 바</a>에 대해 더 알아보기"
+msgstr "{0}의 <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">검색 바</a>에 대해 더 알아보기"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "<a href=\"http://mycroftproject.com/\">mycroftproject.com</a>에서 더 많은 검색 도구를 찾아보실 수 있습니다"
@@ -1561,13 +1557,11 @@ msgstr "애플리케이션 빌드"
 msgid "Platform"
 msgstr "플랫폼"
 
-#, fuzzy
 msgid "e10s Enabled"
-msgstr "사용 안함"
+msgstr "e10s 사용"
 
-#, fuzzy
 msgid "e10s Compatible"
-msgstr "미완료"
+msgstr "e10s 호환"
 
 msgid "Submitted"
 msgstr "등록 완료"
@@ -1610,9 +1604,8 @@ msgid "{addon} enabled."
 msgstr "{addon}이(가) 사용 가능합니다."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "{addon}의 상태가 {0}(으)로 변경되었습니다."
+msgstr "{addon}이 {status} 상태로 변경되었습니다."
 
 msgid "{version} added to {addon}."
 msgstr "{addon}에 {version} 버전이 추가되었습니다."
@@ -1693,9 +1686,8 @@ msgstr "{addon}이(가) {collection}에 추가되었습니다."
 msgid "{addon} removed from {collection}."
 msgstr "{addon}이(가) {collection}에 삭제되었습니다."
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "{addon}에 {review} 평가가 작성되었습니다."
+msgstr "{addon}에 {rating} 평가가 작성되었습니다."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1719,9 +1711,8 @@ msgstr "{0} {1}이(가) 추가되었습니다."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "{addon}에서 {0.name}님의 역할이 {1}(으)로 변경되었습니다."
 
-#, fuzzy
 msgid "{addon} is now licensed under {0}."
-msgstr "{addon}이(가) {0.name} 라이선스를 채용했습니다."
+msgstr "{addon} 부가기능이 {0} 라이선스를 채용했습니다."
 
 msgid "{addon} policy changed."
 msgstr "{addon}의 개인 정보 보호 정책이 변경되었습니다."
@@ -1729,21 +1720,17 @@ msgstr "{addon}의 개인 정보 보호 정책이 변경되었습니다."
 msgid "{addon} icon changed."
 msgstr "{addon} 아이콘이 변경되었습니다."
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
-msgstr "{addon}의 {review}가 승인되었습니다."
+msgstr "{addon}의 {rating} 평가가 승인되었습니다."
 
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
-msgstr "{user}님이 {addon}의 {review}를 승인했습니다."
+msgstr "{user}님이 {addon}의 {rating} 평가를 승인했습니다."
 
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
-msgstr "{addon}의 삭제를 위해 {review}를 검토해 주십시오."
+msgstr "{addon}의 삭제를 위해 {rating} 평가를 검토해 주십시오."
 
-#, fuzzy
 msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} 님이 {addon}의 {review}를 제거하였습니다."
+msgstr "{user} 님이 {addon}의 {rating} 평가를 제거하였습니다."
 
 msgid "Application max version for {version} updated."
 msgstr "애플리케이션 최신 버전인 {version} 버전으로 업데이트 되었습니다."
@@ -1787,9 +1774,8 @@ msgstr "사용자 {user}님은 이용이 제한되고 있습니다."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "관리자 {0}님이 {user}님의 활동 내역을 조회했습니다."
 
-#, fuzzy
 msgid "{rating} for {addon} updated."
-msgstr "{addon}의 {review}이(가) 업데이트됐습니다."
+msgstr "{addon}의 {rating} 평가가 업데이트됐습니다."
 
 msgid "{addon} reviewed."
 msgstr "{addon}이(가) 심사를 받았습니다."
@@ -1837,13 +1823,11 @@ msgstr "{addon} {version} 버전에 대한 소스 코드가 업로드 되었습�
 msgid "Source code uploaded"
 msgstr "소스 코드가 업로드 됨"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "{addon} {version}의 승인 노트가 변경되었습니다."
+msgstr "{addon} {version}의 자동 승인이 확인되었습니다."
 
-#, fuzzy
 msgid "Auto-Approval confirmed"
-msgstr "승인 상태"
+msgstr "자동 승인 확인"
 
 #, fuzzy
 msgid "{addon} {version} re-enabled."
@@ -1861,9 +1845,8 @@ msgstr "{addon} {version}이(가) 승인되었습니다."
 msgid "Content approved"
 msgstr "이(가) 승인되었습니다"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version}이(가) 심사 거부 되었습니다."
+msgstr "{addon} {version} 컨텐츠의 심사가 거부 되었습니다."
 
 #, fuzzy
 msgid "Content rejected"
@@ -2165,9 +2148,8 @@ msgstr "위치 기반"
 msgid "Experimental"
 msgstr "테스트용"
 
-#, fuzzy
 msgid "Feeds, News, & Blogging"
-msgstr "RSS 뉴스 및 블로그"
+msgstr "피드, 뉴스 및 블로그"
 
 msgid "Performance"
 msgstr "성능"
@@ -2187,31 +2169,26 @@ msgstr "스포츠 및 게임"
 msgid "User Interface"
 msgstr "시용자 인터페이스"
 
-#, fuzzy
 msgid "Appearance and Customization"
-msgstr "맞춤형 디자인"
+msgstr "모양 및 사용자 지정"
 
-#, fuzzy
 msgid "Calendar and Date/Time"
-msgstr "일정 기능"
+msgstr "달력과 날짜/시간"
 
 msgid "Chat and IM"
 msgstr "채팅과 메신저"
 
-#, fuzzy
 msgid "Message Composition"
-msgstr "기부하기"
+msgstr "메시지 작성"
 
 msgid "Contacts"
 msgstr "연락처"
 
-#, fuzzy
 msgid "Folders and Filters"
-msgstr "모음집 및 선호 목록"
+msgstr "폴더 및 필터"
 
-#, fuzzy
 msgid "Import/Export"
-msgstr "내보내기"
+msgstr "가져오기/내보내기"
 
 msgid "Message and News Reading"
 msgstr "메일 읽기"
@@ -2295,9 +2272,8 @@ msgstr "페르소나"
 msgid "Manual Reviewer Points"
 msgstr "수동 심사 포인트"
 
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "부가 기능 전체 심사"
+msgstr "새로운 부가 기능 심사"
 
 msgid "Preliminary Add-on Review"
 msgstr "부가 기능 예비 심사"
@@ -2305,9 +2281,8 @@ msgstr "부가 기능 예비 심사"
 msgid "Updated Add-on Review"
 msgstr "업데이트된 부가 기능 심사"
 
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "사전 전체 심사"
+msgstr "새 사전 심사"
 
 msgid "Preliminary Dictionary Review"
 msgstr "사전 예비 심사"
@@ -2315,9 +2290,8 @@ msgstr "사전 예비 심사"
 msgid "Updated Dictionary Review"
 msgstr "업데이트된 사전 심사"
 
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "언어팩 전체 심사"
+msgstr "새 언어팩 심사"
 
 msgid "Preliminary Language Pack Review"
 msgstr "언어팩 예비 심사"
@@ -2332,9 +2306,8 @@ msgstr "테마 심사"
 msgid "Theme (Static) Review"
 msgstr "테마 상세 정보"
 
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "검색 도구 전체 심사"
+msgstr "새 검색 도구 심사"
 
 msgid "Preliminary Search Provider Review"
 msgstr "검색 도구 예비 심사"
@@ -2342,9 +2315,8 @@ msgstr "검색 도구 예비 심사"
 msgid "Updated Search Provider Review"
 msgstr "업데이트된 검색 도구 심사"
 
-#, fuzzy
 msgid "New Complete Theme Review"
-msgstr "완전 테마 심사"
+msgstr "새 완전 테마 심사"
 
 msgid "Preliminary Complete Theme Review"
 msgstr "예비 완전 테마 심사"
@@ -2539,9 +2511,8 @@ msgstr "모든 플랫폼을 특정 플랫폼과 합칠 수는 없습니다. "
 msgid "A platform can only be chosen once."
 msgstr "플랫폼은 한번에 한개만 선택할 수 있습니다."
 
-#, fuzzy
 msgid "Reputation"
-msgstr "해상도"
+msgstr "평판"
 
 msgid "Application"
 msgstr "애플리케이션"
@@ -2687,9 +2658,8 @@ msgstr "%s 버전이 다시 활성화되었습니다."
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "업로드한 파일의 검사 작업에 실패했으므로 완전한 검사 결과가 누락되었을 수 있습니다. 심사시 이점에 유의해 주세요."
 
-#, fuzzy
 msgid "Review requested."
-msgstr "심사 요청됨"
+msgstr "심사가 요청되었습니다."
 
 msgid "You must provide further details to proceed."
 msgstr ""
@@ -2944,9 +2914,8 @@ msgstr "테스트용"
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
 
-#, fuzzy
 msgid "This add-on is experimental."
-msgstr "이 부가 기능은 외부 소프트웨어를 필요로 합니다."
+msgstr "이 부가 기능은 테스트용입니다."
 
 #, fuzzy
 msgid "This add-on is ready for general use."
@@ -2990,9 +2959,8 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "금지 태그:"
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "기부금"
+msgstr "공헌 URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
@@ -3289,9 +3257,8 @@ msgstr "부가 기능을 삭제합니다."
 msgid "Delete"
 msgstr "삭제"
 
-#, fuzzy
 msgid "Edit information about this add-on."
-msgstr "상세 정보"
+msgstr "이 부가 기능에 대한 정보를 수정합니다."
 
 msgid "Upload a new version of this add-on."
 msgstr "이 부가 기능의 새 버전을 업로드 합니다."
@@ -3338,9 +3305,8 @@ msgstr "이 테마 삭제하기."
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "이 부가 기능은 현재 사용중인 %(app)s 버전과 호환되지 않습니다."
+msgstr "이 부가 기능은 버전이 없습니다."
 
 msgid "Status:"
 msgstr "상태:"
@@ -3357,54 +3323,44 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "현재 사용자 <strong>{0}</strong>명"
 
-#, fuzzy
 msgid "Submit a New File"
-msgstr "새로운 테마 올리기"
+msgstr "새로운 파일 올리기"
 
-#, fuzzy
 msgid "Submit a New Version"
-msgstr "새 부가 기능 등록"
+msgstr "새 버전 올리기"
 
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "부가 기능 정보를 입력하세요"
+msgstr "부가 기능 설명"
 
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "부가 기능 URL"
+msgstr "부가 기능 URL:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "URL엔 문자, 숫자, 밑줄과 대시문자만 사용하세요."
 
-#, fuzzy
 msgid "Summary:"
-msgstr "요약 정보"
+msgstr "요약:"
 
 msgid "required"
 msgstr "필수 입력"
 
-#, fuzzy
 msgid "This add-on is experimental"
-msgstr "이 부가 기능은 외부 소프트웨어를 필요로 합니다."
+msgstr "이 부가 기능은 테스트용입니다"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 
-#, fuzzy
 msgid "Select a category for this add-on:"
-msgstr "부가 기능이 속할 {1}용 분류를 <b>{0}개 까지</b> 선택하세요:"
+msgstr "이 부가 기능의 카테고리를 선택하세요:"
 
-#, fuzzy
 msgid "Support email:"
-msgstr "기술 지원 이메일"
+msgstr "기술 지원 이메일:"
 
-#, fuzzy
 msgid "Support website:"
-msgstr "기술 지원 사이트"
+msgstr "기술 지원 사이트:"
 
-#, fuzzy
 msgid "License:"
-msgstr "라이선스"
+msgstr "라이선스:"
 
 msgid "Please choose a license appropriate for the rights you grant."
 msgstr ""
@@ -3419,9 +3375,8 @@ msgstr "심사원 주의 사항"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "저희 심사원들이 이 add-on을 평가할 때 고려해야 할 점이 있습니까?"
 
-#, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "이 URL은 개발자에게만 노출됩니다."
+msgstr "이 노트는 귀하와 저희 심사원들에게만 보여집니다."
 
 #, fuzzy
 msgid "Cancel and Disable Version"
@@ -3431,13 +3386,11 @@ msgstr "인쇄용 버전"
 msgid "Submit Version"
 msgstr "새 부가 기능 등록"
 
-#, fuzzy
 msgid "Describe Version"
-msgstr "버전 사용 불가 상태 만들기"
+msgstr "버전 설명"
 
-#, fuzzy
 msgid "Release Notes:"
-msgstr "Release"
+msgstr "릴리즈 노트:"
 
 msgid "Let your users know what's new and what's changed in this version."
 msgstr "사용자들에게 이 버전에서 새로워진 것과 변경된 것을 알려주세요."
@@ -3458,9 +3411,8 @@ msgstr "등록 완료"
 msgid "You’re done!"
 msgstr "완료하셨습니다!"
 
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "버전 기록서 / 심사원에게 남기는 메모"
+msgstr "심사를 위해 제출된 버전"
 
 #, fuzzy
 msgid "Preview of the version submitted"
@@ -3486,16 +3438,14 @@ msgstr "자세한 설명과 스크린샷이 추가된다면 목록에서 더 성
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr "자세한 설명과 스크린샷이 추가된다면 목록에서 더 성공적일 것입니다. 게시를 위한 목록을 준비하세요:"
 
-#, fuzzy
 msgid "Manage Listing"
-msgstr "목록 보기"
+msgstr "목록 관리"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr "압축되거나 난독화, 컴파일된 코드를 포함하고 있다면 버전 노트나 소스코드를 추가하도록 버전을 수정할 수 있습니다."
 
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "베타 버전 {0}"
+msgstr "버전 {0} 수정"
 
 #, fuzzy
 msgid "File Signed"
@@ -3519,13 +3469,11 @@ msgstr "다운로드 {0}"
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr ""
 
-#, fuzzy
 msgid "Upload File"
-msgstr "다른 파일 업로드"
+msgstr "파일 업로드"
 
-#, fuzzy
 msgid "Go to My Submissions"
-msgstr "내 제출 내역"
+msgstr "나의 제출로 이동"
 
 msgid "Add-on Distribution Agreement"
 msgstr "부가 기능 배포 계약"
@@ -3542,9 +3490,8 @@ msgstr "대상 버전"
 msgid "Where to Host Version"
 msgstr "대상 버전"
 
-#, fuzzy
 msgid "Upload Version"
-msgstr "새 버전 업로드하기"
+msgstr "버전 업로드"
 
 #, fuzzy
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
@@ -3560,13 +3507,11 @@ msgstr "관리자 우선 작업내역"
 msgid "Create a Theme Version"
 msgstr "새로운 테마 만들기"
 
-#, fuzzy
 msgid "Create a Theme"
-msgstr "새로운 테마 만들기"
+msgstr "테마 만들기"
 
-#, fuzzy
 msgid "Submit File"
-msgstr "새로운 테마 올리기"
+msgstr "파일 제출"
 
 #, fuzzy
 msgid "Sign Add-on"
@@ -3683,9 +3628,8 @@ msgid ""
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
-#, fuzzy
 msgid "You don't have any API credentials."
-msgstr "계정이 없습니다."
+msgstr "API 자격 증명이 없습니다."
 
 msgid "Revoke"
 msgstr "취소"
@@ -3702,9 +3646,8 @@ msgstr "보이지 않음"
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "버전이나 누락된 메타데이터를 추가하여 부가 기능을 완성해주세요."
 
-#, fuzzy
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr "심사 완료시 이메일을 받아보게 됩니다. 그 전까지 부가 기능은 갤러리에 노출되지 않지만 해당 부가 기능의 상세 정보 페이지로 바로 접근은 가능합니다."
+msgstr "심사 완료시 이메일을 받아보게 됩니다. 그 전까지 부가 기능은 갤러리에 노출되지 않지만 해당 부가 기능의 상세 정보 페이지로 바로 접근은 가능합니다. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "부가 기능이 갤러리에 노출되고 있고 사용자들은 자동으로 업데이트를 받아보게 됩니다."
@@ -3720,9 +3663,8 @@ msgid "Created:"
 msgstr "제작일:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
 msgid "Add-on Multi Process Status:"
-msgstr "부가 기능 심사 과정"
+msgstr "부가 기능 멀티 프로세스 상태:"
 
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr ""
@@ -3760,9 +3702,8 @@ msgstr ""
 msgid "Latest Version:"
 msgstr "최신 버전:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version."
-msgstr "이 버전이 최신이지만 아직 사이트 상에 올라가지는 않았습니다."
+msgstr "이 버전은 아직 사이트 상에 올라가지 않은 최신 버전입니다."
 
 msgid "Upload New Version"
 msgstr "새 버전 업로드하기"
@@ -3901,7 +3842,7 @@ msgid "Compatibility Checker"
 msgstr "부가 기능 호환성 검사기"
 
 msgid "Promote"
-msgstr ""
+msgstr "승격"
 
 #, fuzzy
 msgid "Get Your Add-on Featured"
@@ -3931,7 +3872,7 @@ msgid "Join us!"
 msgstr "가입하기!"
 
 msgid "Write Some Code"
-msgstr ""
+msgstr "코드 작성"
 
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
@@ -5698,9 +5639,8 @@ msgstr "상세 정보"
 msgid "Image Gallery"
 msgstr "이미지 갤러리"
 
-#, fuzzy
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr "내용이 아무것도 없습니다! 이 개발자는 세부 정보를 전혀 올려놓지 않았습니다."
+msgstr "내용이 없습니다!  이 개발자는 세부 정보를 올려놓지 않았습니다."
 
 #, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
