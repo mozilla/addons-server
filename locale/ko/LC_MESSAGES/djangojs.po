@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2017-12-13 07:04+0000\n"
-"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
+"PO-Revision-Date: 2018-07-04 10:21+0000\n"
+"Last-Translator: seungjin <seungjin@seungjin.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -116,9 +116,7 @@ msgstr "제출을 마무리 하기 전에 다음 사항을 확인 하십시오. 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr ""
-"컴파일된 바이너리파일, 압축되거나 난독화된 스크립트(알려진 라이브러리 제외)는 리뷰를 위해 별도로 제출되어야 합니다. 귀하의 제출이 거절되지 않도록 소스 코드 업로드 필드를 사용하고 있는지 확인하십시"
-"오."
+msgstr "컴파일된 바이너리파일, 압축되거나 난독화된 스크립트(알려진 라이브러리 제외)는 리뷰를 위해 별도로 제출되어야 합니다. 귀하의 제출이 거절되지 않도록 소스 코드 업로드 필드를 사용하고 있는지 확인하십시오."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "유효성 검사 과정에서 거부 원인이 될 수 있는 문제들 발견:"
@@ -681,10 +679,10 @@ msgid "Removing Favorite&hellip;"
 msgstr "선호 목록에서 삭제중&hellip;"
 
 msgid "Add to Favorites"
-msgstr "선호 목록에 추가"
+msgstr "즐겨찾기에 추가"
 
 msgid "Remove from Favorites"
-msgstr "선호 목록에서 삭제"
+msgstr "즐겨찾기에서 삭제"
 
 msgid "Pending"
 msgstr "대기중"
