@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-07 09:52+0000\n"
-"Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
+"PO-Revision-Date: 2018-07-09 14:47+0000\n"
+"Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -4216,28 +4216,24 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個の警告"
 
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Facebook による追跡を拒否"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} コソコソした追跡を拒否"
 
 msgid " Block invisible trackers and spying ads that follow you around the web."
 msgstr ""
 
-#, fuzzy
 msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブを再考"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 新しいタブページをカスタマイズ"
 
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr ""
 
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブを再考"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 翻訳を簡単に"
 
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
-#, fuzzy
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 画像を検索"
 
