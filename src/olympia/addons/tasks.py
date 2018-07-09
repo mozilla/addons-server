@@ -435,6 +435,7 @@ def add_dynamic_theme_tag(ids, **kw):
         files = addon.current_version.all_files
         if any('theme' in file_.webext_permissions_list for file_ in files):
             Tag(tag_text='dynamic theme').save_tag(addon)
+            index_addons.delay([addon.id])
 
 
 def extract_strict_compatibility_value_for_addon(addon):
