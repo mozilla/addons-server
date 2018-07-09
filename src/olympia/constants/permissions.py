@@ -73,6 +73,9 @@ REVIEWS_ADMIN = AclPermission('Reviews', 'Admin')
 # Can access advanced admin features, like deletion.
 ADMIN_ADVANCED = AclPermission('Admin', 'Advanced')
 
+# Can add/edit/delete DiscoveryItems.
+DISCOVERY_EDIT = AclPermission('Discovery', 'Edit')
+
 # All permissions, for easy introspection
 PERMISSIONS_LIST = [
     x for x in vars().values() if isinstance(x, AclPermission)]
@@ -81,17 +84,23 @@ PERMISSIONS_LIST = [
 # require superuser admins (which also have all other permissions anyway) to do
 # something, and then add some custom ones.
 DJANGO_PERMISSIONS_MAPPING = defaultdict(lambda: SUPERPOWERS)
-# Curators can do anything to ReplacementAddon. In addition, the modeladmin
-# will also check for addons:edit and give them read-only access to the
-# changelist (obj=None passed to the has_change_permission() method)
+
 DJANGO_PERMISSIONS_MAPPING.update({
     'addons.change_addon': ADDONS_EDIT,
+    # Users with Admin:Curation can do anything to ReplacementAddon.
+    # In addition, the modeladmin will also check for Addons:Edit and give them
+    # read-only access to the changelist (obj=None passed to the
+    # has_change_permission() method)
     'addons.change_replacementaddon': ADMIN_CURATION,
     'addons.add_replacementaddon': ADMIN_CURATION,
     'addons.delete_replacementaddon': ADMIN_CURATION,
 
     'bandwagon.change_collection': COLLECTIONS_EDIT,
     'bandwagon.delete_collection': COLLECTIONS_EDIT,
+
+    'discovery.add_discoveryitem': DISCOVERY_EDIT,
+    'discovery.change_discoveryitem': DISCOVERY_EDIT,
+    'discovery.delete_discoveryitem': DISCOVERY_EDIT,
 
     'users.change_userprofile': USERS_EDIT,
     'users.delete_userprofile': ADMIN_ADVANCED,

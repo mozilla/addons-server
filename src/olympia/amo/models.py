@@ -22,7 +22,7 @@ log = olympia.core.logger.getLogger('z.addons')
 
 
 @contextlib.contextmanager
-def use_master():
+def use_primary_db():
     """Within this context, all queries go to the master."""
     old = getattr(multidb.pinning._locals, 'pinned', False)
     multidb.pinning.pin_this_thread()

@@ -85,20 +85,20 @@ argparse==1.4.0 \
     --hash=sha256:c31647edb69fd3d465a847ea3157d37bed1f95f19760b11a47aa91c04b666314 \
     --hash=sha256:62b089a55be1d8949cd2bc7e0df0bddb9e028faefc8c32038cc84862aefdd6e4
 # billiard is required by celery
-billiard==3.5.0.3 \
-    --hash=sha256:1d7b22bdc47aa52841120fcd22a74ae4fc8c13e9d3935643098184f5788c3ce6
+billiard==3.5.0.4 \
+    --hash=sha256:ed65448da5877b5558f19d2f7f11f8355ea76b3e63e1c0a6059f47cfae5f1c84
 bleach==1.5.0 \
     --hash=sha256:e67f46adcec78dbc3c04462f3aba3213a673d5652eba2609ed1ef15492a44b8d \
     --hash=sha256:978e758599b54cd3caa2e160d74102879b230ea8dc93871d0783721eef58bc65 # pyup: ==1.5.0
-boto3==1.7.51 \
-    --hash=sha256:5f6e63836e75eabc552598d5507bd611df594ba9c4faa90e439116afbd0b2563 \
-    --hash=sha256:ec06a267c70fae4fcc2daaf8f5d0ca77eed6b2b1bcbefa3ccccbf3bbdd4cd90a
+boto3==1.7.52 \
+    --hash=sha256:43255355cb4ad0fcba178658073120107695a6258259d4a5d387c0cb8354b928 \
+    --hash=sha256:d5413b68157d73515839c6b1bbc00c0a9b0722ce8b14475215cf68984003f82b
 celery==4.1.1 \
     --hash=sha256:6fc4678d1692af97e137b2a9f1c04efd8e7e2fb7134c5c5ad60738cdd927762f \
     --hash=sha256:d1f2a3359bdbdfb344edce98b8e891f5fe64f8a11c5a45538ec20ac237c971f5
-botocore==1.10.50 \
-    --hash=sha256:585a5df85d2cfef41fbe7ad32bfcf00d9a54eafa75a6e126a07619b692f548ea \
-    --hash=sha256:07b572ae6ae3df5ff6d5e8dc5cf9812b9842d5ea96502b54b51867700861ee07
+botocore==1.10.52 \
+    --hash=sha256:5e809e326564d1b6422b0c7235300da428601e6694c8e7d7f05e38329fe40e31 \
+    --hash=sha256:a4acb24c8ba2fb148e41b385e8acd10c5d96bf576ad22be1364919bed6f74f4e
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -214,9 +214,6 @@ isodate==0.6.0 \
 # jmespath is required by boto3
 jmespath==0.9.3 \
     --hash=sha256:f11b4461f425740a1d908e9a3f7365c3d2e569f6ca68a2ff8bc5bcd9676edd63
-jingo_minify==0.7.0 \
-    --hash=sha256:1427946e8d4082c909a98dbacfe1cd908cbdc83572003e1a0236da02b350e31f \
-    --hash=sha256:f47ec7868467a1b270e115c301a4270137836ddb7b5f57552e65dff5c86aee05
 # kombu is required by celery
 kombu==4.2.1 \
     --hash=sha256:b274db3a4eacc4789aeb24e1de3e460586db7c4fc8610f7adcc7a3a1709a60af \
@@ -251,9 +248,9 @@ mock==2.0.0 \
     --hash=sha256:5ce3c71c5545b472da17b72268978914d0252980348636840bd34a00b5cc96c1 \
     --hash=sha256:b158b6df76edd239b8208d481dc46b6afd45a846b7812ff0ce58971cf5bc8bba
 # natsort is required by amo-validator
-natsort==5.3.2 \
-    --hash=sha256:b06571dfe08c7649d7906392687381767f06e9002939afb71bd806685dbeb737 \
-    --hash=sha256:94056276c41be501d9fad3ade61d4eb4edf3b37fea53829b3294b75dc1d23708
+natsort==5.3.3 \
+    --hash=sha256:6d3e98c8c7ace4024181dca44dfdc57de3489fd92df11a494b8d4c50e81fb219 \
+    --hash=sha256:da930bfddce941526955dea8d35a44243c96adf919ceb758ba7bbd1ba5b0a39a
 newrelic==3.2.2.94 \
     --hash=sha256:916f96ded421efa1c5f97d24fa4131cce513039b6e875ccbd090b852dddc104e
 nobot==0.5 \

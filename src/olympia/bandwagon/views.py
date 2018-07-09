@@ -27,7 +27,7 @@ from olympia.addons.models import Addon
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages
 from olympia.amo.decorators import (
-    allow_mine, json_view, login_required, post_required, write)
+    allow_mine, json_view, login_required, post_required, use_primary_db)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, render, urlparams
 from olympia.api.filters import OrderingAliasFilter
@@ -250,7 +250,7 @@ def get_notes(collection, raw=False):
     yield rv
 
 
-@write
+@use_primary_db
 @login_required
 def collection_vote(request, username, slug, direction):
     collection = get_collection(request, username, slug)
@@ -301,7 +301,7 @@ def collection_message(request, collection, option):
     messages.success(request, title, msg, message_safe=True)
 
 
-@write
+@use_primary_db
 @login_required
 def add(request):
     """Displays/processes a form to create a collection."""
@@ -330,7 +330,7 @@ def add(request):
     return render_cat(request, 'bandwagon/add.html', ctx)
 
 
-@write
+@use_primary_db
 @login_required(redirect=False)
 def ajax_new(request):
     form = forms.CollectionForm(
@@ -363,7 +363,7 @@ def ajax_list(request):
                   {'collections': order_by_translation(qs, 'name')})
 
 
-@write
+@use_primary_db
 @login_required
 @post_required
 def collection_alter(request, username, slug, action):
@@ -391,7 +391,7 @@ def change_addon(request, collection, action):
     return http.HttpResponseRedirect(url)
 
 
-@write
+@use_primary_db
 @login_required
 @post_required
 def ajax_collection_alter(request, action):
@@ -403,7 +403,7 @@ def ajax_collection_alter(request, action):
     return change_addon(request, collection, action)
 
 
-@write
+@use_primary_db
 @login_required
 # Contributors are allowed to *see* the page, but there is another
 # permission check below to prevent them from doing any modifications.
@@ -451,7 +451,7 @@ def edit(request, collection, username, slug):
     return render_cat(request, 'bandwagon/edit.html', data)
 
 
-@write
+@use_primary_db
 @login_required
 @owner_required(require_owner=False)
 @post_required
@@ -467,7 +467,7 @@ def edit_addons(request, collection, username, slug):
     return http.HttpResponseRedirect(collection.edit_url() + '#addons-edit')
 
 
-@write
+@use_primary_db
 @login_required
 @owner_required
 @post_required
@@ -479,7 +479,7 @@ def edit_privacy(request, collection, username, slug):
     return http.HttpResponseRedirect(collection.get_url_path())
 
 
-@write
+@use_primary_db
 @login_required
 def delete(request, username, slug):
     collection = get_object_or_404(Collection, author__username=username,
@@ -506,7 +506,7 @@ def delete(request, username, slug):
 
 
 @require_POST
-@write
+@use_primary_db
 @login_required
 @owner_required
 @json_view

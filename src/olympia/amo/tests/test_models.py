@@ -29,12 +29,12 @@ class ManualOrderTest(TestCase):
         assert semi_arbitrary_order == [addon.id for addon in addons]
 
 
-def test_use_master():
+def test_use_primary_db():
     local = amo_models.multidb.pinning._locals
     assert not getattr(local, 'pinned', False)
-    with amo_models.use_master():
+    with amo_models.use_primary_db():
         assert local.pinned
-        with amo_models.use_master():
+        with amo_models.use_primary_db():
             assert local.pinned
         assert local.pinned
     assert not local.pinned

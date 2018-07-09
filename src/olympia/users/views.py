@@ -20,7 +20,7 @@ from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, Category
 from olympia.amo import messages
 from olympia.amo.decorators import (
-    json_view, login_required, permission_required, write)
+    json_view, login_required, permission_required, use_primary_db)
 from olympia.amo.forms import AbuseForm
 from olympia.amo.urlresolvers import get_url_prefix, reverse
 from olympia.amo.utils import escape_all, render
@@ -130,7 +130,7 @@ def delete_photo(request, user_id):
     return render(request, 'users/delete_photo.html', {'target_user': user})
 
 
-@write
+@use_primary_db
 @login_required
 def edit(request):
     # Don't use request.user since it has too much caching.
@@ -156,7 +156,7 @@ def edit(request):
                   {'form': form, 'amouser': amouser})
 
 
-@write
+@use_primary_db
 @login_required
 @permission_required(amo.permissions.USERS_EDIT)
 @user_view

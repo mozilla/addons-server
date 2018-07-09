@@ -10,6 +10,7 @@ from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
 from olympia.discovery.data import DiscoItem, discopane_items as disco_data
+from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.utils import replace_extensions
 
 
@@ -318,3 +319,41 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
                 self._check_disco_theme(result, discopane_items_china[i])
             else:
                 self._check_disco_addon(result, discopane_items_china[i])
+
+
+class TestDiscoveryItemViewSet(TestCase):
+    def setUp(self):
+        DiscoveryItem.objects.create(
+            addon=addon_factory(),
+            custom_addon_name=u'Fôoooo')
+        DiscoveryItem.objects.create(
+            addon=addon_factory(),
+            custom_heading=u'My Custöm Headîng',
+            custom_description=u'')
+        DiscoveryItem.objects.create(
+            addon=addon_factory(),
+            custom_heading=u'Änother custom heading',
+            custom_description=u'This time with a custom description as well')
+        self.url = reverse_ns('discovery-editorial-list')
+
+    def test_basic(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert 'count' not in response.data
+        assert 'next' not in response.data
+        assert 'previous' not in response.data
+        assert 'count' not in response.data
+        assert 'results' in response.data
+
+        result = response.data['results'][0]
+        assert result['custom_heading'] == u''
+        assert result['custom_description'] == u''
+
+        result = response.data['results'][1]
+        assert result['custom_heading'] == u'My Custöm Headîng'
+        assert result['custom_description'] == u''
+
+        result = response.data['results'][2]
+        assert result['custom_heading'] == u'Änother custom heading'
+        assert result['custom_description'] == (
+            u'This time with a custom description as well')

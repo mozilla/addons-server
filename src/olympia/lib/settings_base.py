@@ -535,7 +535,6 @@ INSTALLED_APPS = (
     'raven.contrib.django',
     'rest_framework',
     'waffle',
-    'jingo_minify',
     'django_jinja',
     'puente',
 
@@ -551,6 +550,15 @@ INSTALLED_APPS = (
     'django_statsd',
 )
 
+# This needs to point to prod, because that's where the database lives. You can
+# change it locally to test the extraction process, but be careful not to
+# accidentally nuke translations when doing that!
+DISCOVERY_EDITORIAL_CONTENT_API = (
+    'https://addons.mozilla.org/api/v4/discovery/editorial/')
+
+# Filename where the strings will be stored. Used in puente config below.
+DISCOVERY_EDITORIAL_CONTENT_FILENAME = 'src/olympia/discovery/strings.jinja2'
+
 # Tells the extract script what files to look for l10n in and what function
 # handles the extraction. The puente library expects this.
 PUENTE = {
@@ -560,6 +568,12 @@ PUENTE = {
     'DOMAIN_METHODS': {
         'django': [
             ('src/olympia/**.py', 'python'),
+
+            # Extract the generated file containing editorial content for all
+            # disco pane recommendations using jinja2 parser. It's not a real
+            # template, but it uses jinja2 syntax for convenience, hence why
+            # it's not in templates/ with a .html extension.
+            (DISCOVERY_EDITORIAL_CONTENT_FILENAME, 'jinja2'),
 
             # Make sure we're parsing django-admin templates with the django
             # template extractor
@@ -1710,8 +1724,6 @@ DEV_AGREEMENT_LAST_UPDATED = None
 # In production we do not want to allow this.
 ALLOW_SELF_REVIEWS = False
 
-# This saves us when we upgrade jingo-minify (jsocol/jingo-minify@916b054c).
-JINGO_MINIFY_USE_STATIC = True
 
 # Allow URL style format override. eg. "?format=json"
 URL_FORMAT_OVERRIDE = 'format'
@@ -1732,11 +1744,11 @@ CDN_HOST = ''
 # Static
 STATIC_ROOT = path('site-static')
 STATIC_URL = '/static/'
-JINGO_MINIFY_ROOT = path('static')
+
 STATICFILES_DIRS = (
     path('static'),
-    JINGO_MINIFY_ROOT
 )
+
 NETAPP_STORAGE = TMP_PATH
 GUARDED_ADDONS_PATH = ROOT + '/guarded-addons'
 

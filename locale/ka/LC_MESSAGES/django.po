@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-01 11:12+0000\n"
+"PO-Revision-Date: 2018-07-06 22:25+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1192,7 +1192,7 @@ msgstr "არა"
 
 #. {0} is the name of the collection.
 msgid "Edit {0}"
-msgstr "{0} - რედაქტირება"
+msgstr "{0} – ჩასწორება"
 
 msgid "Description"
 msgstr "აღწერა"
@@ -2235,19 +2235,19 @@ msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons Attribution 3.0 (ავტორის მითითებით)"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0 (არაკომერციული - ავტორის მითითებით)"
+msgstr "Creative Commons Attribution-NonCommercial 3.0 (არაკომერციული – ავტორის მითითებით)"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0 (არაკომერციული - ავტორის მითითებით - გადამუშავების გარეშე)"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0 (არაკომერციული – ავტორის მითითებით – გადამუშავების გარეშე)"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0 (არაკომერციული - ავტორის მითითებით - იმავე პირობებით)"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0 (არაკომერციული – ავტორის მითითებით – იმავე პირობებით)"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0 (ავტორის მითითებით - გადამუშავების გარეშე)"
+msgstr "Creative Commons Attribution-NoDerivs 3.0 (ავტორის მითითებით – გადამუშავების გარეშე)"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0 (ავტორის მითითებით - იმავე პირობებით)"
+msgstr "Creative Commons Attribution-ShareAlike 3.0 (ავტორის მითითებით – იმავე პირობებით)"
 
 msgid "Any"
 msgstr "ნებისმიერი"
@@ -2796,7 +2796,7 @@ msgstr "ბოლო მოქმედებები {0}-ზე"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> - %(user)s"
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> – %(user)s"
 
 msgid "No results found."
 msgstr "შედეგები ვერ მოიძებნა."
@@ -2872,7 +2872,7 @@ msgid "Preview of listed version"
 msgstr "გამოქვეყნებული ვერსიის წინასწარი ვარიანტი"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr "წინასწარი ვარიანტი ჯერ კიდევ იქმნება - შეამოწმეთ მოგვიანებით ან განაახლეთ გვერდი."
+msgstr "წინასწარი ვარიანტი ჯერ კიდევ იქმნება – შეამოწმეთ მოგვიანებით ან განაახლეთ გვერდი."
 
 msgid "Manage Authors & License"
 msgstr "ავტორებისა და ლიცენზიის მართვა"
@@ -4005,7 +4005,7 @@ msgid "The licensor permits others to copy, distribute, display and perform the 
 msgstr "ლიცენზიის მფლობელი ნებას რთავს მსურველებს, გაამრავლონ, გაავრცელონ და გამოიყენონ თავიანთი საჭიროებისამებრ, მათ შორის, გადამუშავებული სახით."
 
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "ლიცენზიის მფლობელი ნებას რთავს მსურველებს, გაამრავლონ, გაავრცელონ და გამოიყენონ თავიანთი საჭიროებისამებრ, მხოლოდ არსებული სახით — გადამუშავების გარეშე."
+msgstr "ლიცენზიის მფლობელი ნებას რთავს მსურველებს, გაამრავლონ, გაავრცელონ და გამოიყენონ თავიანთი საჭიროებისამებრ, მხოლოდ არსებული სახით – გადამუშავების გარეშე."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "თქვენი თემა გამოშვებული იქნება, მოცემული ლიცენზიის ქვეშ:"
@@ -4682,7 +4682,7 @@ msgid "Cancel Installation"
 msgstr "დაყენების შეწყვეტა"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr "Mozilla — თვის დამატება!"
+msgstr "Mozilla – თვის დამატება!"
 
 msgid "Become a Test Pilot"
 msgstr "გახდით გამომცდელი მფრინავი"
@@ -5542,7 +5542,7 @@ msgid "Rendered Preview"
 msgstr "შემუშავებული წინასწარი ვარიანტი"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr "ფონის ფაილი {0} / {1} - {2}"
+msgstr "ფონის ფაილი {0} / {1} – {2}"
 
 msgid "More about this add-on"
 msgstr "ვრცლად, ამ დამატების შესახებ"
@@ -6097,10 +6097,10 @@ msgid "Tag"
 msgstr "ჭდე"
 
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "{0} - {1} შედეგი {2}-იდან <strong>{3}</strong> ფრაზისთვის"
+msgstr "{0} – {1} შედეგი {2}-იდან <strong>{3}</strong> ფრაზისთვის"
 
 msgid "Showing {0} - {1} of {2} results"
-msgstr "ნაჩვენებია {0} - {1} შედეგი {2}-იდან"
+msgstr "ნაჩვენებია {0} – {1} შედეგი {2}-იდან"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "ზოგიერთი შესაძლებლობები დროებით შეზღუდულია, ვებსაიტზე ტექნიკური სამუშაოების მიმდინარეობის გამო. მოკლე ხანში, სრული დატვირთვით ამუშავდება."

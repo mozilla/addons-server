@@ -1,12 +1,15 @@
 from django_statsd.clients import statsd
 from rest_framework.mixins import ListModelMixin
+from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from waffle import switch_is_active
 
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.discovery.data import discopane_items
-from olympia.discovery.serializers import DiscoverySerializer
+from olympia.discovery.models import DiscoveryItem
+from olympia.discovery.serializers import (
+    DiscoveryEditorialContentSerializer, DiscoverySerializer)
 from olympia.discovery.utils import get_recommendations, replace_extensions
 
 
@@ -68,3 +71,17 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
                 # know something happened.
                 statsd.incr('discovery.api.missing_item')
         return result
+
+
+class DiscoveryItemViewSet(ListModelMixin, GenericViewSet):
+    pagination_class = None
+    permission_classes = []
+    queryset = DiscoveryItem.objects.all().order_by('pk')
+    serializer_class = DiscoveryEditorialContentSerializer
+
+    def list(self, request, *args, **kwargs):
+        # Ignore pagination (fetch all items!) but do wrap the data in a
+        # 'results' property to mimic what the rest of our APIs do.
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        return Response({'results': serializer.data})

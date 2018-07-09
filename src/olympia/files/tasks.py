@@ -10,7 +10,7 @@ from requests.exceptions import RequestException
 import olympia.core.logger
 
 from olympia.amo.celery import task
-from olympia.amo.decorators import write
+from olympia.amo.decorators import use_primary_db
 from olympia.files.models import (
     File, WebextPermission, WebextPermissionDescription)
 from olympia.files.utils import parse_xpi
@@ -22,7 +22,7 @@ log = olympia.core.logger.getLogger('z.files.task')
 
 
 @task
-@write
+@use_primary_db
 def extract_webext_permissions(ids, **kw):
     log.info('[%s@%s] Extracting permissions from Files, starting at id: %s...'
              % (len(ids), extract_webext_permissions.rate_limit, ids[0]))
@@ -53,7 +53,7 @@ WEBEXTPERMS_DESCRIPTION_REGEX = r'^webextPerms\.description\.(.+)=(.+)'
 
 
 @task
-@write
+@use_primary_db
 def update_webext_descriptions_all(primary, additional, **kw):
     """primary is a (url, locale) tuple; additional is a list of tuples."""
     url, locale = primary

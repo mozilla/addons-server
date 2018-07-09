@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-01 05:27+0000\n"
+"PO-Revision-Date: 2018-07-09 11:47+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3539,7 +3539,7 @@ msgid "Header area background"
 msgstr "Tallunt n ugerru"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr ""
+msgstr "Initen n ugilal n uqeṛṛu, i d-yettwaseknen deg uḥric n uqerru ur neffir ara neɣ win yettbanen s tugna n uqerru. Urti n umeskan: accentcolor."
 
 msgid "Header area text and icons"
 msgstr "Aḍris akked tignitin n uqerru"
@@ -3551,7 +3551,7 @@ msgid "Toolbar area background"
 msgstr "Agilal n ufeggag n yifecka"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
+msgstr "Ini n ugilal i ufeggag n tunigin, afeggag udmawan akked yiccer yettwafernen. Urti n umeskan: toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Aḍris akked tignitin n ufeggag n yifecka"
@@ -3607,6 +3607,8 @@ msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
+"Akken ad tegeḍ tuttriwin AP, azen <a href=\"%(jwt_url)s\">Ajiṭun JSON Web</a> deg uqerru n tsiregt. Ilaq-ak ad tsirweḍ JWT i yal tuttra, am akken i d-yettwammel deg <a href=\"%(docs_url)s\">tsemlit "
+"API</a>."
 
 msgid "You don't have any API credentials."
 msgstr "Ur ɣur-k ara talɣut n usesteb API."
@@ -3627,16 +3629,16 @@ msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Ma ulac aɣilif, kemmel azegrir-ik s tmerna n lqem neɣ iɣefiseka ixuṣṣen."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
+msgstr "Ad -dremseḍ imayl ticki acegger yemmed. Uqbel aya, azegrir-ik ur d-yettban ara deg tmidelt maca ad tizmireḍ ad tkecmeḍ srid seg usebter n telqayt."
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Azegrir inek yettwasken di tmidelt-nneɣ udiɣ iseqdacen ad d-remsen ileqman s wudem awurman."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
+msgstr "azegrir-ik yessens-it unedba n usmel, ur yezgi yettban-d deg timidelt-nneɣ. Ma ɣur-k isteqsiyen, azen-d imayl ar amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "Azegrir-ik ur yerni ara ar igmaḍ n unadi daɣen asebter n unadi n telqayt yemmal-d d akken tsenseḍ-t. Tuzniwin n ileqman imaynuten ur tezzin ad ttwaqeblen deg addad-agi."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
@@ -4294,7 +4296,7 @@ msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Suqel s wudem fessusen {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Sebruṛeq aḍris tebɣiḍ, sit s tqeffalt tayeffust sakin suqel-it imir imir."
 
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Nadi tugniwin {start_sub_heading} s {addon_name} {end_sub_heading}"

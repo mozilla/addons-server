@@ -76,7 +76,7 @@ class TestHomeAndIndex(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         modules = [x.text for x in doc('a.section')]
-        assert len(modules) == 16  # Increment as we add new admin modules.
+        assert len(modules) == 17  # Increment as we add new admin modules.
 
         # Redirected because no permissions if not logged in.
         self.client.logout()

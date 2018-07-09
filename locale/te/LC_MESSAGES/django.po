@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-05 16:46+0000\n"
+"PO-Revision-Date: 2018-07-09 13:29+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1693,9 +1693,8 @@ msgstr "{addon} {collection}లో జోడించబడింది."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} {collection} నుండి తొలగించబడింది."
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "రాసిన {addon} కోసం {review}."
+msgstr ""
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1719,9 +1718,8 @@ msgstr "{0} {1} జోడించబడింది."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "{addon} కోసం {0.name} పాత్ర {1} కు మార్చబడింది."
 
-#, fuzzy
 msgid "{addon} is now licensed under {0}."
-msgstr "{addon} ఇప్పుడు ఫీచర్ అవ్వుతోంది."
+msgstr "{addon} ఇప్పుడు {0} లైసెన్సు క్రింద లభ్యం."
 
 msgid "{addon} policy changed."
 msgstr "{addon} విధానం మార్చబడింది."
@@ -1732,16 +1730,14 @@ msgstr "{addon} ప్రతీకం మార్చబడింది."
 msgid "{rating} for {addon} approved."
 msgstr "{addon} కోసం {rating} ఆమోదించబడింది."
 
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
-msgstr "{addon} కోసం {user} {review}ను ఆమోదించారు."
+msgstr "{addon} కోసం {user} {rating}ను ఆమోదించారు."
 
 msgid "Review {rating} for {addon} deleted."
 msgstr ""
 
-#, fuzzy
 msgid "{user} deleted {rating} for {addon}."
-msgstr "{addon} కోసం {user} {review}ను తొలగించారు."
+msgstr "{addon} కోసం {user} {rating}ను తొలగించారు."
 
 msgid "Application max version for {version} updated."
 msgstr ""
@@ -1785,9 +1781,8 @@ msgstr "వాడుకరి {user} పరిమితం చేయబడ్డ
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
 
-#, fuzzy
 msgid "{rating} for {addon} updated."
-msgstr "{review} కోసం {addon} ఆమోదించబడింది."
+msgstr "{addon} కోసం {rating} తాజాకరించబడింది."
 
 msgid "{addon} reviewed."
 msgstr "{addon} సమీక్షించారు."
@@ -1871,30 +1866,26 @@ msgstr ""
 msgid "Information request removed"
 msgstr "సమాచార అభ్యర్థన తీసివేయబడింది"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} సమీక్ష అభ్యర్థించబడింది."
+msgstr ""
 
 msgid "Admin add-on-review requested"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} సమీక్ష అభ్యర్థించబడింది."
+msgstr ""
 
 msgid "Admin content-review requested"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "{addon} {version} సమీక్ష అభ్యర్థించబడింది."
+msgstr ""
 
 msgid "Admin theme-review requested"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "{addon} ప్రాధమిక నుండి వలసపోయింది."
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1924,7 +1915,7 @@ msgid "Incomplete"
 msgstr "అసంపూర్తి"
 
 msgid "Disabled by Mozilla"
-msgstr ""
+msgstr "మొజిల్లాచే అచేతనించబడింది"
 
 msgid "Deleted"
 msgstr "తొలగించబడింది"
@@ -1933,7 +1924,7 @@ msgid "Pending approval"
 msgstr "ఆమోదం కొరకు వేచివుంది"
 
 msgid "Flagged for further review"
-msgstr ""
+msgstr "తదుపరి సమీక్ష కోసం ఫ్లాగ్ చేయబడింది"
 
 msgid "Unlisted"
 msgstr "జాబితాచేయని"
@@ -2075,7 +2066,7 @@ msgid "Abstract"
 msgstr "సంక్షిప్తము"
 
 msgid "Causes"
-msgstr "కారణం"
+msgstr "కారణాలు"
 
 msgid "Fashion"
 msgstr "ఫ్యాషన్"
@@ -2484,7 +2475,7 @@ msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
 msgid "Version {version} already exists."
-msgstr ""
+msgstr "వెర్షను {version} ఇప్పటికే ఉంది."
 
 msgid "Continue with existing upload instead?"
 msgstr ""
@@ -2628,15 +2619,15 @@ msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "వెర్షను %s అచేతనమయ్యింది."
 
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "వెర్షను %s తొలగించబడింది."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "వెర్షను %s పునఃచేతనమయ్యింది."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
@@ -2724,7 +2715,7 @@ msgid "Add-ons Blog"
 msgstr "పొడగింతల బ్లాగు"
 
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "యాడ్-ఆన్ల చర్చావేదిక"
 
 msgid "More Resources"
 msgstr "మరిన్ని వనరులు"
@@ -3294,10 +3285,10 @@ msgid "Submit a New File"
 msgstr "క్రొత్త ఫైల్ను సమర్పించండి"
 
 msgid "Submit a New Version"
-msgstr ""
+msgstr "కొత్త వెర్షనును సమర్పించండి"
 
 msgid "Describe Add-on"
-msgstr ""
+msgstr "పొడగింతను వివరించండి"
 
 msgid "Add-on URL:"
 msgstr "పొడిగింత URL:"
@@ -3345,7 +3336,7 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
 msgid "Cancel and Disable Version"
-msgstr ""
+msgstr "రద్దుచేసి వెర్షనును అచేతనించు"
 
 msgid "Submit Version"
 msgstr ""
@@ -3363,13 +3354,13 @@ msgid "These notes will appear on the detail page."
 msgstr ""
 
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "ఈ వెర్షనువు ఎలా పంపిణీ చేయాలి"
 
 msgid "More information on Add-on Distribution and Signing"
 msgstr ""
 
 msgid "Submission Complete"
-msgstr ""
+msgstr "సమర్పణ పూర్తయింది"
 
 msgid "You’re done!"
 msgstr "మీరు పూర్తి చేశారు!"
@@ -3399,7 +3390,7 @@ msgid "Your listing will be more successful by adding a detailed description and
 msgstr ""
 
 msgid "Manage Listing"
-msgstr ""
+msgstr "జాబితాను నిర్వహించండి"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
@@ -3467,9 +3458,8 @@ msgstr "ఫైల్ను సమర్పించండి"
 msgid "Sign Add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Theme generate"
-msgstr "అలంకారం పేరు"
+msgstr ""
 
 msgid "Theme generator"
 msgstr "అలంకార జనకం"
@@ -3516,9 +3506,8 @@ msgstr ""
 msgid "Toolbar area text and icons"
 msgstr ""
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "పనిముట్ల పట్టీలో పాఠ్యం రంగు."
+msgstr ""
 
 msgid "Toolbar field area background"
 msgstr ""
@@ -4560,7 +4549,7 @@ msgid "Discover Add-ons"
 msgstr ""
 
 msgid "What are Add-ons?"
-msgstr ""
+msgstr "యాడ్-ఆన్లు అంటే ఏమిటి?"
 
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
@@ -4570,7 +4559,7 @@ msgid "Learn More"
 msgstr "ఇంకా తెలుసుకోండి"
 
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "యాడ్-ఆన్ల గురించి మరింత తెలుసుకోండి"
 
 msgid "See all"
 msgstr "అన్నింటినీ చూడండి"
@@ -4629,7 +4618,7 @@ msgid "About Mozilla Add-ons"
 msgstr ""
 
 msgid "What is this website?"
-msgstr ""
+msgstr "ఈ వెబ్‌సైటు ఏమిటి?"
 
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
@@ -5103,9 +5092,8 @@ msgstr "యాడ్-ఆన్, సమీక్షకులు లేదా వ�
 msgid "Search by add-on name / author email"
 msgstr ""
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "కొత్త పొడిగింత సమీక్ష"
+msgstr ""
 
 msgid "yes"
 msgstr "అవును"
@@ -5160,13 +5148,11 @@ msgstr ""
 msgid "Skip for now"
 msgstr "ప్రస్తుతం దాటవేయి"
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "పొడిగింత విషయం సమీక్ష"
+msgstr ""
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "కొత్త పొడిగింత సమీక్ష"
+msgstr ""
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack పొడిగింత"
@@ -5294,9 +5280,8 @@ msgstr "విషయం ఆమోదం"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "నా పొడిగింతలు"
+msgstr ""
 
 msgid "Static Themes"
 msgstr ""
@@ -5435,16 +5420,14 @@ msgstr "చివరి ఆమోదం తేదీ"
 msgid "Abuse Reports ({num})"
 msgstr "దుర్వినియోగ నివేదికలు ({num})"
 
-#, fuzzy
 msgid "Bad User Ratings ({num})"
-msgstr "దుర్వినియోగ నివేదికలు ({num})"
+msgstr "వాడుకరుల చెడు రేటింగులు ({num})"
 
 msgid "Theme Images"
 msgstr "అలంకారపు బొమ్మలు"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "తొలగించిన సమీక్షలు"
+msgstr ""
 
 msgid "Background file {0} of {1} - {2}"
 msgstr ""
@@ -5672,9 +5655,8 @@ msgstr ""
 msgid "Force-disable add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "వెర్షన్ను మళ్లీ ప్రారంభించు"
+msgstr ""
 
 msgid "Disable Auto-Approval"
 msgstr ""
@@ -5688,13 +5670,11 @@ msgstr "సమాచార అభ్యర్ధనను తుడిచివ�
 msgid "Clear Admin Code Review Flag"
 msgstr ""
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "పొడిగింత విషయం సమీక్ష"
+msgstr ""
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "పొడిగింత విషయం సమీక్ష"
+msgstr ""
 
 msgid "(admin)"
 msgstr "(నిర్వాహకుడు)"
@@ -5902,11 +5882,10 @@ msgid_plural "Updates ({0})"
 msgstr[0] "నవీకరణ ({0})"
 msgstr[1] "నవీకరణలు ({0})"
 
-#, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] "విషయం సమీక్ష ({0})"
-msgstr[1] "విషయం సమీక్ష ({0})"
+msgstr[0] "రేటింగు సమీక్ష ({0})"
+msgstr[1] "రేటింగు సమీక్షలు ({0})"
 
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"

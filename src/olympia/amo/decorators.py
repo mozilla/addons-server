@@ -102,16 +102,12 @@ json_view.error = lambda s: http.HttpResponseBadRequest(
     json.dumps(s), content_type='application/json')
 
 
-def use_master(f):
+def use_primary_db(f):
     @functools.wraps(f)
     def wrapper(*args, **kw):
-        with context.use_master():
+        with context.use_primary_db():
             return f(*args, **kw)
     return wrapper
-
-
-def write(f):
-    return use_master(f)
 
 
 def set_modified_on(f):
@@ -192,7 +188,7 @@ def atomic(fn):
     """
     # TODO: Make this the default for all transactions.
     @functools.wraps(fn)
-    @write
+    @use_primary_db
     def inner(*args, **kwargs):
         cursor = connection.cursor()
         cursor.execute('SET TRANSACTION ISOLATION LEVEL SERIALIZABLE')

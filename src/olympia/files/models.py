@@ -27,7 +27,7 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.lib.cache import memoize
-from olympia.amo.decorators import use_master
+from olympia.amo.decorators import use_primary_db
 from olympia.amo.models import ModelBase, OnChangeMixin, ManagerBase
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
@@ -469,7 +469,7 @@ def cache_localepicker(sender, instance, **kw):
         instance.get_localepicker()
 
 
-@use_master
+@use_primary_db
 def update_status(sender, instance, **kw):
     if not kw.get('raw'):
         try:
