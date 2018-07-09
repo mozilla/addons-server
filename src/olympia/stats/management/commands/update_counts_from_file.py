@@ -59,7 +59,7 @@ class Command(BaseCommand):
 
     If stats_source is s3:
         This file will be located in
-            `<settings.AWS_STATS_S3_BUCKET>/amo_stats`.
+            `<settings.AWS_STATS_S3_BUCKET>/<settings.AWS_STATS_S3_PREFIX>`.
 
         Five files are processed:
         - update_counts_by_version/YYYY-MM-DD/000000_0
@@ -109,7 +109,7 @@ class Command(BaseCommand):
         for group in groups:
             if options['stats_source'] == 's3':
                 filepath = 's3://' + '/'.join([settings.AWS_STATS_S3_BUCKET,
-                                               'amo_stats',
+                                               settings.AWS_STATS_S3_PREFIX,
                                                'update_counts_by_%s' % group,
                                                day, '000000_0'])
 
