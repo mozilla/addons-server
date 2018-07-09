@@ -1034,10 +1034,12 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         self.addon = addon_factory()
 
         result = self.serialize()
-        assert set(result.keys()) == set(['id', 'name', 'icon_url', u'url'])
+        assert set(result.keys()) == set(
+            ['id', 'name', 'icon_url', 'type', 'url'])
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': unicode(self.addon.name)}
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
+        assert result['type'] == 'extension'
         assert result['url'] == absolutify(self.addon.get_url_path())
 
     def test_translations(self):
@@ -1074,7 +1076,9 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         assert not persona.is_new()
 
         result = self.serialize()
-        assert set(result.keys()) == set(['id', 'name', 'icon_url', u'url'])
+        assert set(result.keys()) == set(
+            ['id', 'name', 'icon_url', 'type', 'url'])
+        assert result['type'] == 'persona'
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
 
     def test_icon_url_persona_with_no_persona_id(self):
@@ -1094,7 +1098,9 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         assert persona.is_new()
 
         result = self.serialize()
-        assert set(result.keys()) == set(['id', 'name', 'icon_url', u'url'])
+        assert set(result.keys()) == set(
+            ['id', 'name', 'icon_url', 'type', 'url'])
+        assert result['type'] == 'persona'
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
 
 
