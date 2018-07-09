@@ -19,8 +19,8 @@ class DiscoveryItem(ModelBase):
     custom_addon_name = models.CharField(
         max_length=255, blank=True,
         help_text='Custom add-on name, if needed for space constraints. '
-                  'Will be used in the heading if present, but will *not* be '
-                  'translated.')
+                  'Will be used in the heading if present, but will '
+                  '<strong>not</strong> be translated.')
     custom_heading = models.CharField(
         max_length=255, blank=True,
         help_text='Short text used in the header. Can contain the following '
