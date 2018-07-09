@@ -60,21 +60,6 @@ def mock_basket(settings):
         json={'status': 'ok', 'token': USER_TOKEN})
 
 
-@pytest.fixture(autouse=True)
-def mock_inline_css(monkeypatch):
-    """Mock jingo_minify.helpers.is_external: don't break on missing files.
-
-    When testing, we don't want nor need the bundled/minified css files, so
-    pretend that all the css files are external.
-
-    Mocking this will prevent amo.templatetags.jinja_helpers.inline_css to
-    believe it should bundle the css.
-
-    """
-    from olympia.amo.templatetags import jinja_helpers
-    monkeypatch.setattr(jinja_helpers, 'is_external', lambda css: True)
-
-
 def pytest_configure(config):
     from olympia.amo.tests import prefix_indexes
     prefix_indexes(config)
@@ -118,6 +103,7 @@ def test_pre_setup(request, tmpdir, settings):
 
     settings.MEDIA_ROOT = str(tmpdir.mkdir('media'))
     settings.TMP_PATH = str(tmpdir.mkdir('tmp'))
+    settings.STATIC_ROOT = str(tmpdir.mkdir('site-static'))
     settings.NETAPP_STORAGE = settings.TMP_PATH
 
     # Reset the prefixer and urlconf after updating media root
