@@ -19,7 +19,8 @@ INSTALLED_APPS += (
 )
 
 MEDIA_ROOT = path('tmp/ui-tests/user-media/')
-TMP_PATH = path('tmp/')
+# MEDIA_URL = 'tmp/ui-tests/user-media/'
+TMP_PATH = path('tmp/ui-tests/tmp/')
 NETAPP_STORAGE = TMP_PATH
 
 FILESYSTEM_CACHE_ROOT = os.path.join(TMP_PATH, 'cache')
