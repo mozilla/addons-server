@@ -11,7 +11,19 @@
   <div id="theme-wizard" data-version="{{ version_number }}">
     <div>
         <h3>{{ _('Theme name') }}<span class="req" title="{{ _('required') }}">*</span></h3>
-        <input type="text" id="theme-name"/>
+        {% if addon %}
+          <input type="hidden" id="theme-name" value="{{ addon.name }}"/>
+          {{ addon.name }}
+          <ul class="note">
+            <li>{% trans edit_url_open=('<a href="' + url('devhub.addons.edit', addon.slug) + '">')|safe,
+                         edit_url_close='</a>'|safe %}
+              To change the theme name, first go to {{ edit_url_open }}edit listing{{ edit_url_close }}.
+            {% endtrans %}</li>
+          </ul>
+      </ul>
+        {% else %}
+          <input type="text" id="theme-name"/>
+        {% endif %}
     </div>
     <div id="theme-header" class="row">
       <label class="row" for="header-img">
