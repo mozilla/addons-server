@@ -20,7 +20,7 @@ from olympia.addons.models import (
     attach_translations)
 from olympia.addons.utils import build_static_theme_xpi_from_lwt
 from olympia.amo.celery import task
-from olympia.amo.decorators import set_modified_on, write
+from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import (
@@ -46,7 +46,7 @@ log = olympia.core.logger.getLogger('z.task')
 
 
 @task
-@write
+@use_primary_db
 def version_changed(addon_id, **kw):
     update_last_updated(addon_id)
     update_appsupport([addon_id])
@@ -76,7 +76,7 @@ def update_last_updated(addon_id):
         Addon.objects.filter(pk=pk).update(last_updated=t)
 
 
-@write
+@use_primary_db
 def update_appsupport(ids):
     log.info("[%s@None] Updating appsupport for %s." % (len(ids), ids))
 
@@ -296,7 +296,7 @@ def rereviewqueuetheme_checksum(rqt, **kw):
 
 
 @task
-@write
+@use_primary_db
 def save_theme(header, addon_pk, **kw):
     """Save theme image and calculates checksum after theme save."""
     addon = Addon.objects.get(pk=addon_pk)
@@ -317,7 +317,7 @@ def save_theme(header, addon_pk, **kw):
 
 
 @task
-@write
+@use_primary_db
 def save_theme_reupload(header, addon_pk, **kw):
     addon = Addon.objects.get(pk=addon_pk)
     header_dst = None
@@ -344,7 +344,7 @@ def save_theme_reupload(header, addon_pk, **kw):
 
 
 @task
-@write
+@use_primary_db
 def calc_checksum(theme_id, **kw):
     """For migration 596."""
     lfs = LocalFileStorage()
@@ -371,7 +371,7 @@ def calc_checksum(theme_id, **kw):
 
 
 @task
-@write  # To bypass cache and use the primary replica.
+@use_primary_db  # To bypass cache and use the primary replica.
 def find_inconsistencies_between_es_and_db(ids, **kw):
     length = len(ids)
     log.info(
@@ -405,7 +405,7 @@ def find_inconsistencies_between_es_and_db(ids, **kw):
 
 
 @task
-@write
+@use_primary_db
 def add_firefox57_tag(ids, **kw):
     """Add firefox57 tag to addons with the specified ids."""
     log.info(
@@ -423,7 +423,7 @@ def add_firefox57_tag(ids, **kw):
 
 
 @task
-@write
+@use_primary_db
 def add_dynamic_theme_tag(ids, **kw):
     """Add dynamic theme tag to addons with the specified ids."""
     log.info(
@@ -490,7 +490,7 @@ def bump_appver_for_addon_if_necessary(
 # fired 250 times. With 5 workers at 5 tasks / minute limit we should do 25
 # tasks in a minute, taking ~ 10 minutes for the whole thing to finish.
 @task(rate_limit='5/m')
-@write
+@use_primary_db
 def bump_appver_for_legacy_addons(ids, **kw):
     """
     Task to bump the max appversion to 56.* for legacy add-ons that have not
@@ -623,7 +623,7 @@ def add_static_theme_from_lwt(lwt):
 
 
 @task
-@write
+@use_primary_db
 def migrate_lwts_to_static_themes(ids, **kw):
     """With the specified ids, create new static themes based on an existing
     lightweight themes (personas), and delete the lightweight themes after."""
@@ -658,7 +658,7 @@ def migrate_lwts_to_static_themes(ids, **kw):
 
 
 @task
-@write
+@use_primary_db
 def delete_addon_not_compatible_with_firefoxes(ids, **kw):
     """
     Delete the specified add-ons.
@@ -676,7 +676,7 @@ def delete_addon_not_compatible_with_firefoxes(ids, **kw):
 
 
 @task
-@write
+@use_primary_db
 def delete_obsolete_applicationsversions(**kw):
     """Delete ApplicationsVersions objects not relevant for Firefoxes."""
     qs = ApplicationsVersions.objects.exclude(

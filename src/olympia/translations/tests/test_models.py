@@ -11,12 +11,12 @@ from django.utils import translation
 from django.utils.functional import lazy
 
 import jinja2
-import multidb
 import pytest
 
 from mock import patch
 from pyquery import PyQuery as pq
 
+from olympia.amo.models import use_primary_db
 from olympia.amo.tests import BaseTestCase
 from olympia.translations.models import (
     LinkifiedTranslation, NoLinksNoMarkupTranslation, NoLinksTranslation,
@@ -513,7 +513,7 @@ class TranslationMultiDbTests(TransactionTestCase):
             # Make sure we are in a clean environnement.
             self.reset_queries()
 
-            with multidb.pinning.use_master:
+            with use_primary_db():
                 TranslatedModel.objects.get(pk=1)
                 assert len(connections['default'].queries) == 2
                 assert len(connections['slave-1'].queries) == 0

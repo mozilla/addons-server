@@ -4,7 +4,7 @@ import olympia.core.logger
 
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
-from olympia.amo.decorators import write
+from olympia.amo.decorators import use_primary_db
 from olympia.lib.cache import cache_get_or_set
 
 from .models import GroupedRating, Rating
@@ -14,7 +14,7 @@ log = olympia.core.logger.getLogger('z.task')
 
 
 @task(rate_limit='50/m')
-@write
+@use_primary_db
 def update_denorm(*pairs, **kw):
     """
     Takes a bunch of (addon, user) pairs and sets the denormalized fields for
@@ -38,7 +38,7 @@ def update_denorm(*pairs, **kw):
 
 
 @task
-@write
+@use_primary_db
 def addon_rating_aggregates(addons, **kw):
     if isinstance(addons, (int, long)):  # Got passed a single addon id.
         addons = [addons]
@@ -75,7 +75,7 @@ def addon_rating_aggregates(addons, **kw):
 
 
 @task
-@write
+@use_primary_db
 def addon_bayesian_rating(*addons, **kw):
     def addon_aggregates():
         return Addon.objects.valid().aggregate(rating=Avg('average_rating'),
@@ -108,7 +108,7 @@ def addon_bayesian_rating(*addons, **kw):
 
 
 @task
-@write
+@use_primary_db
 def addon_grouped_rating(*addons, **kw):
     """Roll up add-on ratings for the bar chart."""
     # We stick this all in memcached since it's not critical.

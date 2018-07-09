@@ -21,7 +21,7 @@ import olympia.core.logger
 
 from olympia import amo, core
 from olympia.access.models import Group, GroupUser
-from olympia.amo.decorators import write
+from olympia.amo.decorators import use_primary_db
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.query import order_by_translation
@@ -353,7 +353,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         """Is this user a Personas Artist?"""
         return self.cached_developer_status['is_artist']
 
-    @write
+    @use_primary_db
     def update_is_public(self):
         pre = self.is_public
         is_public = (

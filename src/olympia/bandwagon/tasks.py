@@ -7,7 +7,7 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.amo.celery import task
-from olympia.amo.decorators import set_modified_on, write
+from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import attach_trans_dict, resize_image
 from olympia.tags.models import Tag
@@ -20,7 +20,7 @@ log = olympia.core.logger.getLogger('z.task')
 
 
 @task
-@write
+@use_primary_db
 def collection_votes(*ids, **kw):
     log.info('[%s@%s] Updating collection votes.' %
              (len(ids), collection_votes.rate_limit))
@@ -66,7 +66,7 @@ def delete_icon(dst, **kw):
 
 
 @task
-@write
+@use_primary_db
 def collection_meta(*ids, **kw):
     log.info('[%s@%s] Updating collection metadata.' %
              (len(ids), collection_meta.rate_limit))
@@ -92,7 +92,7 @@ def collection_meta(*ids, **kw):
 
 
 @task
-@write
+@use_primary_db
 def collection_watchers(*ids, **kw):
     log.info('[%s@%s] Updating collection watchers.' %
              (len(ids), collection_watchers.rate_limit))

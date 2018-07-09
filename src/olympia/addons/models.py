@@ -31,7 +31,7 @@ from olympia import activity, amo, core
 from olympia.access import acl
 from olympia.addons.utils import (
     generate_addon_guid, get_creatured_ids, get_featured_ids)
-from olympia.amo.decorators import use_master, write
+from olympia.amo.decorators import use_primary_db
 from olympia.amo.models import (
     BasePreview, ManagerBase, manual_order, ModelBase, OnChangeMixin,
     SaveUpdateMixin, SlugField, BaseQuerySet)
@@ -417,7 +417,7 @@ class Addon(OnChangeMixin, ModelBase):
             status__in=amo.REVIEWED_STATUSES,
             current_version__exists=True)
 
-    @use_master
+    @use_primary_db
     def clean_slug(self, slug_field='slug'):
         if self.status == amo.STATUS_DELETED:
             return
@@ -779,7 +779,7 @@ class Addon(OnChangeMixin, ModelBase):
             latest = None
         return latest
 
-    @write
+    @use_primary_db
     def update_version(self, ignore=None, _signal=True):
         """
         Update the current_version field on this add-on if necessary.
@@ -956,7 +956,7 @@ class Addon(OnChangeMixin, ModelBase):
             settings.STATIC_URL, 'default', size
         )
 
-    @write
+    @use_primary_db
     def update_status(self, ignore_version=None):
         self.reload()
 

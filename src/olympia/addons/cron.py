@@ -18,7 +18,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon, AppSupport, FrozenAddon
 from olympia.amo.celery import task
-from olympia.amo.decorators import write
+from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import chunked, walkfiles
 from olympia.files.models import File
 from olympia.lib.es.utils import raise_if_reindex_in_progress
@@ -133,7 +133,7 @@ def _change_last_updated(next):
         addon.update(last_updated=changes[addon.id])
 
 
-@write
+@use_primary_db
 def addon_last_updated():
     next = {}
     for q in Addon._last_updated_queries().values():
