@@ -140,7 +140,8 @@ reindex:
 	python manage.py reindex $(ARGS)
 
 make-tmp-dir:
-	mkdir -p tmp/ui-tests/user-media/tmp/
+	mkdir -p tmp/ui-tests/user-media/tmp/cache/
+	mkdir -p tmp/ui-tests/user-media/tmp/persona_header/
 
 setup-ui-tests:
 	rm -rf ./user-media/* ./tmp/*
