@@ -17,15 +17,17 @@ Configuration
 -------------
 
 The root logger is set up from ``settings_base`` in the ``src/olympia/lib``
-of addons-server. It sets up sensible defaults, but you can tweak them to your liking::
+of addons-server. It sets up sensible defaults, but you can tweak them to your liking:
 
-``Log level``
-    There is no unified log level, instead every logger has it's own log level
-    because it depends on the context they're used in.
+Log level
+~~~~~~~~~
+There is no unified log level, instead every logger has it's own log level
+because it depends on the context they're used in.
 
-``LOGGING``
-    See PEP 391 for formatting help. Messages will not propagate through a
-    logger unless ``propagate: True`` is set.
+LOGGING
+~~~~~~~
+See PEP 391 for formatting help. Messages will not propagate through a
+logger unless ``propagate: True`` is set.
 
     ::
 
@@ -35,7 +37,7 @@ of addons-server. It sets up sensible defaults, but you can tweak them to your l
             },
         }
 
-    If you want to add more to this do something like this::
+If you want to add more to this do something like this::
 
         LOGGING['loggers'].update({
             'z.paypal': {

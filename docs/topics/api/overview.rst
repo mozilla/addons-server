@@ -118,8 +118,8 @@ Translated Fields
 ~~~~~~~~~~~~~~~~~
 
 Fields that can be translated by users (typically name, description) have a
-special behaviour. The default is to return them as an object, with languages
-as keys and translations as values:
+special behaviour. They are returned as an object, with languages as keys and
+translations as values, and by default all languages are returned:
 
 .. code-block:: json
 
@@ -134,18 +134,41 @@ as keys and translations as values:
 However, for performance, if you pass the ``lang`` parameter to a ``GET``
 request, then only the most relevant translation (the specified language or the
 fallback, depending on whether a translation is available in the requested
-language) will be returned as a string.
+language) will be returned.
 
 .. code-block:: json
 
     {
-        "name": "Games"
+        "name": {
+            "en-US": "Games"
+        }
     }
 
-This behaviour also applies to ``POST``, ``PATCH`` and ``PUT`` requests: you
-can either submit an object containing several translations, or just a string.
-If only a string is supplied, it will only be used to translate the field in
-the current language.
+For ``POST``, ``PATCH`` and ``PUT`` requests you submit an object containing
+translations for any languages needing to be updated/saved.  Any language not
+in the object is not updated, but is not removed.
+
+For example, if there were existing translations of::
+
+"name": {"en-US": "Games", "fr": "Jeux","kn": "ಆಟಗಳು"}
+
+and the following request was made:
+
+.. code-block:: json
+
+    {
+        "name": {
+            "en-US": "Fun"
+        }
+    }
+
+Then the resulting translations would be::
+
+"name": {"en-US": "Fun", "fr": "Jeux","kn": "ಆಟಗಳು"}
+
+To delete a translation, pass ``null`` as the value for that language.
+(Note: this behavior is currently buggy/broken)
+
 
 .. _api-overview-outgoing:
 
@@ -194,3 +217,6 @@ v4 API changelog
 * 2018-05-25: renamed ``rating.rating`` property to ``rating.score``  https://github.com/mozilla/addons-server/pull/8332
 * 2018-06-05: dropped ``rating.title`` property https://github.com/mozilla/addons-server/issues/8144
 * 2018-07-12: added ``type`` property to autocomplete API. This change was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/8803
+* 2018-07-19: localised field values are always returned as objects, even if only a single language is requested.
+  Setting a localised value with a string is removed too - it must always be an object of one or more translations.
+  https://github.com/mozilla/addons-server/issues/8794
