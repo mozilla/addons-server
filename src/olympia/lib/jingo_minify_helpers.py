@@ -3,11 +3,9 @@ import subprocess
 import time
 
 from django.conf import settings
+from django.contrib.staticfiles.finders import find as find_static_path
 
 import jinja2
-
-from jingo_minify.utils import get_media_url, get_path
-
 
 try:
     from build import BUILD_ID_CSS, BUILD_ID_JS, BUILD_ID_IMG, BUNDLE_HASHES
@@ -29,14 +27,14 @@ def _get_item_path(item):
     """
     if is_external(item):
         return item
-    return get_media_url() + item
+    return settings.STATIC_URL + item
 
 
 def _get_mtime(item):
     """Get a last-changed timestamp for development."""
     if item.startswith(('//', 'http://', 'https://')):
         return int(time.time())
-    return int(os.path.getmtime(get_path(item)))
+    return int(os.path.getmtime(find_static_path(item)))
 
 
 def _build_html(items, wrapping):
@@ -44,6 +42,17 @@ def _build_html(items, wrapping):
     Wrap `items` in wrapping.
     """
     return jinja2.Markup('\n'.join((wrapping % item for item in items)))
+
+
+def ensure_path_exists(path):
+    try:
+        os.makedirs(os.path.dirname(path))
+    except OSError as e:
+        # If the directory already exists, that is fine. Otherwise re-raise.
+        if e.errno != os.errno.EEXIST:
+            raise
+
+    return path
 
 
 def get_js_urls(bundle, debug=None):
@@ -72,19 +81,6 @@ def get_js_urls(bundle, debug=None):
         return (_get_item_path('js/%s-min.js?build=%s' % (bundle, build_id,)),)
 
 
-def _get_compiled_css_url(item):
-    """
-    Compresses a preprocess file and returns its relative compressed URL.
-
-    :param item:
-        Name of the less file to compress into css.
-    """
-    if item.endswith('.less') and getattr(settings, 'LESS_PREPROCESS', False):
-        compile_css(item)
-        return item + '.css'
-    return item
-
-
 def get_css_urls(bundle, debug=None):
     """
     Fetch URLs for the CSS files in the requested bundle.
@@ -102,9 +98,11 @@ def get_css_urls(bundle, debug=None):
     if debug:
         items = []
         for item in settings.MINIFY_BUNDLES['css'][bundle]:
-            if ((item.endswith('.less') and
-                    getattr(settings, 'LESS_PREPROCESS', False)) or
-                    item.endswith(('.sass', '.scss', '.styl'))):
+            should_compile = (
+                item.endswith('.less') and
+                getattr(settings, 'LESS_PREPROCESS', False))
+
+            if should_compile:
                 compile_css(item)
                 items.append('%s.css' % item)
             else:
@@ -121,26 +119,18 @@ def get_css_urls(bundle, debug=None):
                                (bundle, build_id)),)
 
 
-def ensure_path_exists(path):
-    try:
-        os.makedirs(path)
-    except OSError as e:
-        # If the directory already exists, that is fine. Otherwise re-raise.
-        if e.errno != os.errno.EEXIST:
-            raise
-
-
 def compile_css(item):
-    path_src = get_path(item)
-    path_dst = get_path('%s.css' % item)
+    path_src = find_static_path(item)
+    path_dst = os.path.join(
+        settings.ROOT, 'static', '%s.css' % item)
 
-    updated_src = os.path.getmtime(get_path(item))
-    updated_css = 0  # If the file doesn't exist, force a refresh.
+    updated_src = os.path.getmtime(find_static_path(item))
+    updated_dst = 0  # If the file doesn't exist, force a refresh.
     if os.path.exists(path_dst):
-        updated_css = os.path.getmtime(path_dst)
+        updated_dst = os.path.getmtime(path_dst)
 
     # Is the uncompiled version newer?  Then recompile!
-    if not updated_css or updated_src > updated_css:
+    if not updated_dst or updated_src > updated_dst:
         ensure_path_exists(os.path.dirname(path_dst))
         if item.endswith('.less'):
             with open(path_dst, 'w') as output:

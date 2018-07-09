@@ -520,7 +520,6 @@ INSTALLED_APPS = (
     'raven.contrib.django',
     'rest_framework',
     'waffle',
-    'jingo_minify',
     'django_jinja',
     'puente',
 
@@ -1709,8 +1708,6 @@ DEV_AGREEMENT_LAST_UPDATED = None
 # In production we do not want to allow this.
 ALLOW_SELF_REVIEWS = False
 
-# This saves us when we upgrade jingo-minify (jsocol/jingo-minify@916b054c).
-JINGO_MINIFY_USE_STATIC = True
 
 # Allow URL style format override. eg. "?format=json"
 URL_FORMAT_OVERRIDE = 'format'
@@ -1734,11 +1731,11 @@ CDN_HOST = ''
 # Static
 STATIC_ROOT = path('site-static')
 STATIC_URL = '/static/'
-JINGO_MINIFY_ROOT = path('static')
+
 STATICFILES_DIRS = (
     path('static'),
-    JINGO_MINIFY_ROOT
 )
+
 NETAPP_STORAGE = TMP_PATH
 GUARDED_ADDONS_PATH = ROOT + '/guarded-addons'
 
