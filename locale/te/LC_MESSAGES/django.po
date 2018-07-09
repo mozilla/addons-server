@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-09 13:23+0000\n"
+"PO-Revision-Date: 2018-07-09 13:29+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1924,7 +1924,7 @@ msgid "Pending approval"
 msgstr "ఆమోదం కొరకు వేచివుంది"
 
 msgid "Flagged for further review"
-msgstr ""
+msgstr "తదుపరి సమీక్ష కోసం ఫ్లాగ్ చేయబడింది"
 
 msgid "Unlisted"
 msgstr "జాబితాచేయని"
@@ -2066,7 +2066,7 @@ msgid "Abstract"
 msgstr "సంక్షిప్తము"
 
 msgid "Causes"
-msgstr "కారణం"
+msgstr "కారణాలు"
 
 msgid "Fashion"
 msgstr "ఫ్యాషన్"
@@ -2475,7 +2475,7 @@ msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
 msgid "Version {version} already exists."
-msgstr ""
+msgstr "వెర్షను {version} ఇప్పటికే ఉంది."
 
 msgid "Continue with existing upload instead?"
 msgstr ""
@@ -2619,15 +2619,15 @@ msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "వెర్షను %s అచేతనమయ్యింది."
 
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "వెర్షను %s తొలగించబడింది."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "వెర్షను %s పునఃచేతనమయ్యింది."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
@@ -2715,7 +2715,7 @@ msgid "Add-ons Blog"
 msgstr "పొడగింతల బ్లాగు"
 
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "యాడ్-ఆన్ల చర్చావేదిక"
 
 msgid "More Resources"
 msgstr "మరిన్ని వనరులు"
@@ -3285,10 +3285,10 @@ msgid "Submit a New File"
 msgstr "క్రొత్త ఫైల్ను సమర్పించండి"
 
 msgid "Submit a New Version"
-msgstr ""
+msgstr "కొత్త వెర్షనును సమర్పించండి"
 
 msgid "Describe Add-on"
-msgstr ""
+msgstr "పొడగింతను వివరించండి"
 
 msgid "Add-on URL:"
 msgstr "పొడిగింత URL:"
@@ -3336,7 +3336,7 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
 msgid "Cancel and Disable Version"
-msgstr ""
+msgstr "రద్దుచేసి వెర్షనును అచేతనించు"
 
 msgid "Submit Version"
 msgstr ""
@@ -3354,13 +3354,13 @@ msgid "These notes will appear on the detail page."
 msgstr ""
 
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "ఈ వెర్షనువు ఎలా పంపిణీ చేయాలి"
 
 msgid "More information on Add-on Distribution and Signing"
 msgstr ""
 
 msgid "Submission Complete"
-msgstr ""
+msgstr "సమర్పణ పూర్తయింది"
 
 msgid "You’re done!"
 msgstr "మీరు పూర్తి చేశారు!"
@@ -3390,7 +3390,7 @@ msgid "Your listing will be more successful by adding a detailed description and
 msgstr ""
 
 msgid "Manage Listing"
-msgstr ""
+msgstr "జాబితాను నిర్వహించండి"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
@@ -4549,7 +4549,7 @@ msgid "Discover Add-ons"
 msgstr ""
 
 msgid "What are Add-ons?"
-msgstr ""
+msgstr "యాడ్-ఆన్లు అంటే ఏమిటి?"
 
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
@@ -4559,7 +4559,7 @@ msgid "Learn More"
 msgstr "ఇంకా తెలుసుకోండి"
 
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "యాడ్-ఆన్ల గురించి మరింత తెలుసుకోండి"
 
 msgid "See all"
 msgstr "అన్నింటినీ చూడండి"
@@ -4618,7 +4618,7 @@ msgid "About Mozilla Add-ons"
 msgstr ""
 
 msgid "What is this website?"
-msgstr ""
+msgstr "ఈ వెబ్‌సైటు ఏమిటి?"
 
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
