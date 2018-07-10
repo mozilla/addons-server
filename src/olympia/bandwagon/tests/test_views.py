@@ -1392,7 +1392,7 @@ class CollectionViewSetDataMixin(object):
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'name': ['You must provide a dictionary of {lang-code:value}.']}
+            'name': ['You must provide an object of {lang-code:value}.']}
 
         # Passing a dict of localised values
         data.update(name={'en-US': u'   '})
@@ -1427,7 +1427,7 @@ class CollectionViewSetDataMixin(object):
         assert response.status_code == 400
         assert json.loads(response.content) == {
             'description': [
-                'You must provide a dictionary of {lang-code:value}.']}
+                'You must provide an object of {lang-code:value}.']}
 
         data.update(description={
             'en-US': '<a href="https://google.com">google</a>'})
@@ -1512,7 +1512,7 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'name': ['You must provide a dictionary of {lang-code:value}.']}
+            'name': ['You must provide an object of {lang-code:value}.']}
 
     @override_settings(DRF_API_GATES={
         api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)})
@@ -2029,7 +2029,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
                                    'notes': 'its good!'})
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'notes': ['You must provide a dictionary of {lang-code:value}.']}
+            'notes': ['You must provide an object of {lang-code:value}.']}
 
     @override_settings(DRF_API_GATES={
         api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)})
@@ -2126,7 +2126,7 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
         response = self.send(self.url, data)
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'notes': ['You must provide a dictionary of {lang-code:value}.']}
+            'notes': ['You must provide an object of {lang-code:value}.']}
         # But with the correct api gate, we can use the old behavior
         overridden_api_gates = {
             api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)}

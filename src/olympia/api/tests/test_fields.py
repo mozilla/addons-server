@@ -125,7 +125,7 @@ class TestTranslationSerializerField(TestCase):
         with self.assertRaises(ValidationError) as exc:
             field.to_internal_value(data['fr'])
         assert exc.exception.message == (
-            u'You must provide a dictionary of {lang-code:value}.')
+            u'You must provide an object of {lang-code:value}.')
 
     def test_to_internal_value_strip(self):
         data = {
