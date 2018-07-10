@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 14:05+0000\n"
+"PO-Revision-Date: 2018-07-10 14:14+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -6514,9 +6514,8 @@ msgstr "Tarihe göre kullanıcı dilleri"
 msgid "Platform usage by Date"
 msgstr "Tarihe göre platform kullanımı"
 
-#, fuzzy
 msgid "<b>{0}</b> Downloads"
-msgstr "<b>{0}</b> eklenti"
+msgstr "<b>{0}</b> indirme"
 
 msgid "Loading..."
 msgstr "Yükleniyor..."
@@ -6525,25 +6524,22 @@ msgstr "Yükleniyor..."
 msgid "<b>{0}</b> Average Daily Users"
 msgstr "Ortalama Günlük Kullanıcı"
 
-#, fuzzy
 msgid "Top Applications"
-msgstr "Uygulama sürümü"
+msgstr "Öne çıkan uygulamalar"
 
 msgid "See more applications&hellip;"
 msgstr "Daha fazla uygulama gör&hellip;"
 
-#, fuzzy
 msgid "Top Languages"
-msgstr "Dil"
+msgstr "Öne çıkan diller"
 
 msgid "See more languages&hellip;"
 msgstr "Daha fazla dil gör&hellip;"
 
 # 88%
 # 100%
-#, fuzzy
 msgid "Top Platforms"
-msgstr "Platform"
+msgstr "Öne çıkan platformlar"
 
 msgid "See more platforms&hellip;"
 msgstr "Daha fazla platform gör&hellip;"
@@ -6755,7 +6751,7 @@ msgid "Profile Photo"
 msgstr "Profil Resmi"
 
 msgid "Addons"
-msgstr ""
+msgstr "Eklentiler"
 
 #, fuzzy
 msgid "Activity Logs"
