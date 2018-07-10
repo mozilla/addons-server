@@ -187,7 +187,7 @@ def test_css_helper(getmtime, time):
 
     assert (
         rendered ==
-        '<link rel="stylesheet" media="all" href="/static/css/test.css?build=1" />\n'  # noqa
+        '<link rel="stylesheet" media="all" href="http://testserver/static/css/test.css?build=1" />\n'  # noqa
         '<link rel="stylesheet" media="all" href="http://example.com/test.css?build=1" />\n'  # noqa
         '<link rel="stylesheet" media="all" href="//example.com/test.css?build=1" />\n'  # noqa
         '<link rel="stylesheet" media="all" href="https://example.com/test.css?build=1" />')  # noqa

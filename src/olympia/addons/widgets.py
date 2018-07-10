@@ -3,6 +3,7 @@ from django.conf import settings
 from django import forms
 from django.utils.encoding import force_text
 from django.utils.html import conditional_escape, format_html_join
+from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext
 
 from olympia.addons.models import Category
