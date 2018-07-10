@@ -975,9 +975,6 @@ class ReplacementAddonView(ListAPIView):
 
 
 class CompatOverrideView(ListAPIView):
-    """
-    This view is being used by Firefox and thus is performance-critical.
-    """
     queryset = CompatOverride.objects.all()
     serializer_class = CompatOverrideSerializer
 
@@ -992,47 +989,17 @@ class CompatOverrideView(ListAPIView):
         guid_filter = AddonGuidQueryParam(self.request)
         return guid_filter.get_value()
 
-    def list(self, request, *args, **kwargs):
-        """Override the `list` logic to integrate custom caching."""
+    def filter_queryset(self, queryset):
         guids = self.get_guids()
-
-        def _key(guid):
-            return 'api::addons::CompatOverride::{guid}'.format(guid=guid)
-
         if not guids:
             raise exceptions.ParseError(
                 'Empty, or no, guid parameter provided.')
-
-        results = cache.get_many([_key(guid) for guid in guids]).values()
-
-        missing = set(guids) - set(item['addon_guid'] for item in results)
-
-        if missing:
-            # Evaluate the actual queryset. The amount of GUIDs we should get
-            # in real-life won't be paginated most of the time so it's safe to
-            # simply evaluate the query. The advantage here is that we are
-            # saving ourselves a `COUNT` query and these are expensive.
-            qset = list(
-                self.get_queryset().filter(guid__in=missing)
-                .transform(CompatOverride.transformer)
-                # We are ordering manually because we have to merge cache +
-                # database fetched entries
-                .order_by())
-
-            if qset:
-                missing_data = self.get_serializer(qset, many=True).data
-                results.extend(missing_data)
-
-                cache.set_many({
-                    _key(item['addon_guid']): dict(item)
-                    for item in missing_data})
-
-        results = sorted(results, key=lambda x: x['addon_id'])
-        page = self.paginate_queryset(results)
-        if page is not None:
-            return self.get_paginated_response(page)
-
-        return Response(results)
+        # Evaluate the actual queryset. The amount of GUIDs we should get
+        # in real-life won't be paginated most of the time so it's safe to
+        # simply evaluate the query. The advantage here is that we are saving
+        # ourselves a `COUNT` query and these are expensive.
+        return list(queryset.filter(guid__in=guids).transform(
+            CompatOverride.transformer).order_by('-pk'))
 
 
 class AddonRecommendationView(AddonSearchView):

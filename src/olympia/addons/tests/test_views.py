@@ -3766,8 +3766,7 @@ class TestCompatOverrideView(TestCase):
     def test_performance_no_matching_guid(self):
         # There is at least one query from the paginator, counting all objects
         # We do not query on `compat_override` though if the count is 0.
-        # The cache query is to try and fetch already cached GUIds
-        with assert_cache_requests(1):
+        with assert_cache_requests(0):
             with self.assertNumQueries(1):
                 response = self.client.get(
                     reverse_ns('addon-compat-override'),
@@ -3777,22 +3776,10 @@ class TestCompatOverrideView(TestCase):
                 assert len(data['results']) == 0
 
     def test_performance_matches_one_guid(self):
-        # 1. Cache-Query is the cache query to fetch already cached guids
-        # 2. Cache-Query is to set missing data
         # 1. Query is querying compat_override
         # 2. Query is adding CompatOverrideRange via the transformer
-        with assert_cache_requests(2):
+        with assert_cache_requests(0):
             with self.assertNumQueries(2):
-                response = self.client.get(
-                    reverse_ns('addon-compat-override'),
-                    data={'guid': u'extrabad@thing'})
-                assert response.status_code == 200
-                data = json.loads(response.content)
-                assert len(data['results']) == 1
-
-        # Now the entries are already cached
-        with assert_cache_requests(1):
-            with self.assertNumQueries(0):
                 response = self.client.get(
                     reverse_ns('addon-compat-override'),
                     data={'guid': u'extrabad@thing'})
@@ -3801,41 +3788,9 @@ class TestCompatOverrideView(TestCase):
                 assert len(data['results']) == 1
 
     def test_performance_matches_multiple_guid(self):
-        # 1. Cache-Query is the cache query to fetch already cached guids
-        # 2. Cache-Query is to set missing data
-        # 1. DB-Query is querying compat_override
-        # 2. DB-Query is adding CompatOverrideRange via the transformer
-        with assert_cache_requests(2):
-            with self.assertNumQueries(2):
-                response = self.client.get(
-                    reverse_ns('addon-compat-override'),
-                    data={'guid': (
-                        u'extrabad@thing,invalid@guid,notevenaguid$,'
-                        u'bad@thing')})
-                assert response.status_code == 200
-                data = json.loads(response.content)
-                assert len(data['results']) == 2
-
-        # Only one cache request because all data is already cached
-        # But also one database request to fetch potential missing
-        # guids. Fetching invalid GUIDs should not happen too often
-        # in real-life later.
-        with assert_cache_requests(1):
-            with self.assertNumQueries(1):
-                response = self.client.get(
-                    reverse_ns('addon-compat-override'),
-                    data={'guid': (
-                        u'extrabad@thing,invalid@guid,notevenaguid$,'
-                        u'bad@thing')})
-                assert response.status_code == 200
-                data = json.loads(response.content)
-                assert len(data['results']) == 2
-
-        cache.delete('api::addons::CompatOverride::bad@thing')
-
-        # We're back at two database queries because we need to fetch
-        # and serialize one existing override instance
-        with assert_cache_requests(2):
+        # 1. Query is querying compat_override
+        # 2. Query is adding CompatOverrideRange via the transformer
+        with assert_cache_requests(0):
             with self.assertNumQueries(2):
                 response = self.client.get(
                     reverse_ns('addon-compat-override'),
