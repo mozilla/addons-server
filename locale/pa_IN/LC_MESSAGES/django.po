@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 03:53+0000\n"
+"PO-Revision-Date: 2018-07-10 04:05+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -929,7 +929,7 @@ msgid "GUID"
 msgstr "GUID"
 
 msgid "Versions"
-msgstr "ਵਰਜਨ"
+msgstr "ਵੰਨਗੀਆਂ"
 
 #, python-format
 msgid ""
@@ -938,13 +938,13 @@ msgid ""
 msgstr ""
 
 msgid "Only I can view this collection."
-msgstr "ਕੇਵਲ ਮੈਂ ਇਹ ਸੰਗ੍ਰਹਿ ਵੇਖ ਸਕਦਾ।"
+msgstr "ਸਿਰਫ ਮੈਂ ਹੀ ਇਹ ਸੰਗ੍ਰਹਿ ਵੇਖ ਸਕਦਾ ਹਾਂ।"
 
 msgid "Anybody can view this collection."
 msgstr "ਕੋਈ ਵੀ ਇਹ ਸੰਗ੍ਰਹਿ ਵੇਖ ਸਕਦਾ ਹੈ।"
 
 msgid "Give your collection a name."
-msgstr "ਆਪਣੇ ਸੰਗ੍ਰਹਿ ਨੂੰ ਇੱਕ ਨਾਂ ਦਿਓ।"
+msgstr "ਆਪਣੇ ਸੰਗ੍ਰਹਿ ਨੂੰ ਇੱਕ ਨਾਂ ਦਿਉ।"
 
 msgid "URL:"
 msgstr "URL:"
@@ -953,7 +953,7 @@ msgid "Describe your collection (no links allowed)."
 msgstr "ਆਪਣੇ ਸੰਗ੍ਰਹਿ ਦਾ ਵੇਰਵਾ ਦਿਓ (ਕਿਸੇ ਲਿੰਕ ਦੀ ਇਜ਼ਾਜਤ ਨਹੀਂ)।"
 
 msgid "Privacy:"
-msgstr "ਪਰਦਾ ਨੀਤੀ:"
+msgstr "ਪਰਦੇਦਾਰੀ ਨੀਤੀ:"
 
 msgid "Icon"
 msgstr "ਆਈਕਾਨ"
@@ -1042,7 +1042,7 @@ msgid "Name:"
 msgstr "ਨਾਂ:"
 
 msgid "(optional)"
-msgstr "(ਵਿਕਲਪਿਕ)"
+msgstr "(ਚੋਣਵਾਂ)"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "ਜਾਂ <a id=\"collections-new-cancel\" href=\"#\">ਰੱਦ</a>"
@@ -1116,7 +1116,7 @@ msgid "Explore Collections"
 msgstr "ਸੰਗ੍ਰਹਿਾਂ ਦੀ ਪੜਚੋਲ"
 
 msgid "Common Tags"
-msgstr "ਆਮ ਟੈਗ"
+msgstr "ਆਮ ਨਿਸ਼ਾਨ"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1320,25 +1320,25 @@ msgstr "ਤੁਹਾਨੂੰ %s ਫ਼ੇਰਬਦਲ ਸ਼ੁਰੂ ਕਰਨ �
 #. L10n: %s is a category name.
 #, python-format
 msgid "Search tools relating to %s"
-msgstr "ਖੋਜ ਟੂਲ %s ਨਾਲ ਸਬੰਧਤ"
+msgstr "ਖੋਜ ਸੰਦ %s ਨਾਲ ਸਬੰਧਤ"
 
 msgid "Search tools and search-related extensions"
-msgstr "ਖੋਜ ਟੂਲ ਅਤੇ ਖੋਜ-ਸਬੰਧਤ ਇਕਸਟੈਨਸ਼ਨਾਂ"
+msgstr "ਖੋਜ ਸੰਦ ਅਤੇ ਖੋਜ-ਸਬੰਧਤ ਵਾਧਰੇ"
 
 msgid "Search tools"
-msgstr "ਖੋਜ ਟੂਲ"
+msgstr "ਖੋਜ ਸੰਦ"
 
 msgid "Most Users"
-msgstr "ਬਹੁਤ ਸਾਰੇ ਉਪਭੋਗੀ"
+msgstr "ਬਹੁਤੇ ਵਰਤੋਂਕਾਰ"
 
 msgid "Weekly Downloads"
 msgstr "ਹਫ਼ਤੇਵਾਰ ਡਾਊਨਲੋਡ"
 
 msgid "Recently Updated"
-msgstr "ਹਾਲ ਹੀ ਵਿੱਚ ਅੱਪਡੇਟ ਕੀਤਾ"
+msgstr "ਹਾਲ ਹੀ ਵਿੱਚ ਨਵਿਆਏ"
 
 msgid "Up & Coming"
-msgstr "ਉੱਪਰ ਅਤੇ ਆ ਰਿਹਾ"
+msgstr "ਅਗਲਾ ਅਤੇ ਆਉਣ ਵਾਲਾ"
 
 msgid "Recently Added"
 msgstr "ਹਾਲ ਹੀ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ"
@@ -1371,13 +1371,13 @@ msgid "Install Dictionary"
 msgstr "ਸ਼ਬਦਕੋਸ ਇੰਸਟਾਲ ਕਰੋ"
 
 msgid "Install Language Pack"
-msgstr "ਭਾਸ਼ਾ ਪੈਕ ਇੰਸਟਾਲ ਕਰੋ"
+msgstr "ਬੋਲੀ ਪੰਡ ਇੰਸਟਾਲ ਕਰੋ"
 
 msgid "Download Dictionary"
 msgstr "ਸ਼ਬਦਕੋਸ ਡਾਊਨਲੋਡ ਕਰੋ"
 
 msgid "Download Language Pack"
-msgstr "ਭਾਸ਼ਾ ਪੈਕ ਡਾਊਨਲੋਡ ਕਰੋ"
+msgstr "ਬੋਲੀ ਪੰਡ ਡਾਊਨਲੋਡ ਕਰੋ"
 
 #, python-format
 msgid ""
@@ -1386,29 +1386,29 @@ msgid ""
 msgstr ""
 
 msgid "Available in your locale"
-msgstr "ਤੁਹਾਡੇ ਲੋਕੇਲ ਵਿੱਚ ਉੱਪਲਬਧ"
+msgstr "ਤੁਹਾਡੀ ਬੋਲੀ ਵਿੱਚ ਮੁਹੱਈਆ"
 
 msgid "List of language packs and dictionaries available in your locale."
-msgstr "ਤੁਹਾਡੇ ਲੋਕੇਲ ਵਿੱਚ ਉੱਪਲਬਧ ਭਾਸ਼ਾ ਪੈਕ ਅਤੇ ਸ਼ਬਦਕੋਸ਼ਾਂ ਦੀ ਸੂਚੀ।"
+msgstr "ਤੁਹਾਡੀ ਬੋਲੀ ਵਿੱਚ ਉਪਲੱਬਧ ਬੋਲੀਆਂ ਦੀਆਂ ਪੰਡਾਂ ਅਤੇ ਸ਼ਬਦਕੋਸ਼ਾਂ ਦੀ ਸੂਚੀ।"
 
 msgid "Language"
-msgstr "ਭਾਸ਼ਾ"
+msgstr "ਬੋਲੀ"
 
 msgid "Dictionary"
 msgstr "ਸ਼ਬਦਕੋਸ"
 
 msgid "Language Pack"
-msgstr "ਭਾਸ਼ਾ ਪੈਕ"
+msgstr "ਬੋਲੀ ਦੀ ਪੰਡ"
 
 msgid "All locales"
-msgstr "ਸਾਰੇ ਲੋਕੇਲ"
+msgstr "ਸਾਰੀਆਂ ਬੋਲੀਆਂ"
 
 msgid "List of language packs and dictionaries."
-msgstr "ਭਾਸ਼ਾ ਪੈਕ ਅਤੇ ਸ਼ਬਦਕੋਸ਼ਾਂ ਦੀ ਸੂਚੀ।"
+msgstr "ਬੋਲੀਆਂ ਦੀਆਂ ਪੰਡਾਂ ਅਤੇ ਸ਼ਬਦਕੋਸ਼ਾਂ ਦੀ ਸੂਚੀ।"
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
-msgstr "{0}:: ਖੋਜ ਟੂਲ"
+msgstr "{0}:: ਖੋਜ ਸੰਦ"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
@@ -1417,16 +1417,16 @@ msgstr[0] "<b>{0}</b> ਐਡ-ਆਨ"
 msgstr[1] "<b>{0}</b> ਐਡ-ਆਨ"
 
 msgid "Search Extensions"
-msgstr "ਇਕਸਟੈਨਸ਼ਨਾਂ ਖੋਜੋ"
+msgstr "ਵਾਧਰੇ ਖੋਜੋ"
 
 msgid "Add search-related functionality to Firefox"
-msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ ਵਿੱਚ ਖੋਜ-ਸਬੰਧਤ ਕਾਰਜਕੁਸ਼ਲਤਾ ਸ਼ਾਮਲ ਕਰੋ"
+msgstr "ਫਾਇਰਫੌਕਸ ਵਿੱਚ ਖੋਜ-ਸਬੰਧਤ ਕਾਰਗੁਜਾਰੀ ਸ਼ਾਮਲ ਕਰੋ"
 
 msgid "Search Providers"
-msgstr "ਖੋਜ ਪ੍ਰਦਾਤਾ"
+msgstr "ਖੋਜ ਮੁਹੱਈਆਕਰਤਾ"
 
 msgid "Find new providers for your search bar"
-msgstr "ਆਪਣੀ ਖੋਜ ਬਾਰ ਲਈ ਨਵੇਂ ਖੋਜ ਪ੍ਰਦਾਤਾ ਲੱਭੋ"
+msgstr "ਆਪਣੀ ਖੋਜ ਪੱਟੀ ਲਈ ਨਵੇਂ ਖੋਜ ਮੁਹੱਈਆਕਰਤਾ ਲੱਭੋ"
 
 msgid "Additional Resources"
 msgstr "ਹੋਰ ਵਾਧੂ ਵਸੀਲੇ"
