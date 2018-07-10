@@ -975,6 +975,14 @@ class ReplacementAddonView(ListAPIView):
 
 
 class CompatOverrideView(ListAPIView):
+    """This view is used by Firefox so it's performance-critical.
+
+    Every firefox client requests the list of overrides approx. once per day.
+    Firefox requests the overrides via a list of GUIDs which makes caching
+    hard because the variation of possible GUID combinations avoid us to
+    simply add some dumb-caching and requires us to resolve cache-misses.
+    """
+
     queryset = CompatOverride.objects.all()
     serializer_class = CompatOverrideSerializer
 
