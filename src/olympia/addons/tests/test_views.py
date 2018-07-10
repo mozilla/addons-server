@@ -3757,6 +3757,19 @@ class TestCompatOverrideView(TestCase):
         assert response.status_code == 400
         assert 'Empty, or no, guid parameter provided.' in response.content
 
+    def test_performance_no_matching_guid(self):
+        """This view is used by Firefox directly and queried a lot.
+
+        We need to ensure some performance characteristics.
+        """
+        with self.assertNumQueries(1):
+            response = self.client.get(
+                reverse_ns('addon-compat-override'),
+                data={'guid': u'unknownguid'})
+            assert response.status_code == 200
+            data = json.loads(response.content)
+            assert len(data['results']) == 0
+
 
 class TestAddonRecommendationView(ESTestCase):
     client_class = APITestClient

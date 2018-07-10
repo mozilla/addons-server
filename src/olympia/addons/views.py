@@ -977,6 +977,12 @@ class CompatOverrideView(ListAPIView):
     queryset = CompatOverride.objects.all()
     serializer_class = CompatOverrideSerializer
 
+    @classmethod
+    def as_view(cls, **initkwargs):
+        """The API is read-only so we can turn off atomic requests."""
+        return non_atomic_requests(
+            super(CompatOverrideView, cls).as_view(**initkwargs))
+
     def filter_queryset(self, queryset):
         # Use the same Filter we use for AddonSearchView for consistency.
         guid_filter = AddonGuidQueryParam(self.request)
