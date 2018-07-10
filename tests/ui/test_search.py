@@ -2,8 +2,6 @@
 import pytest
 
 from pages.desktop.home import Home
-from pages.desktop.extensions import Extensions
-from pages.desktop.themes import Themes
 from pages.desktop.search import Search
 
 
