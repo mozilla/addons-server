@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 02:25+0000\n"
+"PO-Revision-Date: 2018-07-10 02:52+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -30,7 +30,7 @@ msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੇ ਅਖੀਰ ਵਿੱਚ .zip, .xpi, .crx, .jar ਜਾਂ .xml ਹੋਣਾ ਚਾਹੀਦਾ ਹੈI"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#, fuzzy, python-format
+#, python-format
 msgid "{0}% complete"
 msgstr "{0}% ਮੁਕੰਮਲ"
 
@@ -39,7 +39,7 @@ msgid "{0} of {1}"
 msgstr "{1} ਵਿੱਚੋਂ {0}"
 
 msgid "Cancel"
-msgstr "ਰੱਦ"
+msgstr "ਰੱਦ ਕਰੋ"
 
 msgid "Uploading {0}"
 msgstr "{0} ਅੱਪਲੋਡ ਹੋ ਰਿਹਾ"
@@ -207,9 +207,8 @@ msgstr "<b>{0}</b> ਲਈ ਐਪ ਖੋਜੋ"
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "<b>{0}</b> ਲਈ ਐਡ-ਆਨ ਖੋਜੋ"
 
-#, fuzzy
 msgid "Use original"
-msgstr "ਅਸਲੀ ਵਰਤੋ"
+msgstr "ਅਸਲ ਵਰਤੋ"
 
 msgid "Week of {0}"
 msgstr "{0} ਦਾ ਹਫਤਾ"
@@ -218,7 +217,7 @@ msgid " downloads"
 msgstr " ਡਾਊਨਲੋਡ"
 
 msgid "{0} users"
-msgstr "{0} ਯੂਜਰ"
+msgstr "{0} ਵਰਤੋਂਕਾਰ"
 
 msgid "{0} add-ons"
 msgstr "{0} ਐਡ-ਆਨ"
