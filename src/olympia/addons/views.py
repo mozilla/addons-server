@@ -1,6 +1,7 @@
 from collections import OrderedDict
 
 from django import http
+from django.core.cache import cache
 from django.db.models import Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
@@ -983,15 +984,22 @@ class CompatOverrideView(ListAPIView):
         return non_atomic_requests(
             super(CompatOverrideView, cls).as_view(**initkwargs))
 
-    def filter_queryset(self, queryset):
+    def get_guids(self):
         # Use the same Filter we use for AddonSearchView for consistency.
         guid_filter = AddonGuidQueryParam(self.request)
-        guids = guid_filter.get_value()
+        return guid_filter.get_value()
+
+    def filter_queryset(self, queryset):
+        guids = self.get_guids()
         if not guids:
             raise exceptions.ParseError(
                 'Empty, or no, guid parameter provided.')
-        return queryset.filter(guid__in=guids).transform(
-            CompatOverride.transformer).order_by('-pk')
+        # Evaluate the actual queryset. The amount of GUIDs we should get
+        # in real-life won't be paginated most of the time so it's safe to
+        # simply evaluate the query. The advantage here is that we are saving
+        # ourselves a `COUNT` query and these are expensive.
+        return list(queryset.filter(guid__in=guids).transform(
+            CompatOverride.transformer).order_by('-pk'))
 
 
 class AddonRecommendationView(AddonSearchView):
