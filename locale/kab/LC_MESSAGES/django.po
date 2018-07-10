@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-09 16:54+0000\n"
+"PO-Revision-Date: 2018-07-10 23:11+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3944,7 +3944,7 @@ msgid "Web-Ext"
 msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
-msgstr ""
+msgstr "Afecku s yizirig n tladna i tmerna, aselkem akked usekyed n yisiɣzaf."
 
 msgid "Automated code tests for your add-on."
 msgstr "Ikayaden n tengalt awurman i uzegrir-inek."
@@ -3971,7 +3971,7 @@ msgid "Add some tags to describe your Theme."
 msgstr "Rnu kra n tebzimin i usentel inek."
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr ""
+msgstr "Asegzi awezlan n timahilin timezwura n usentel-ik, ayen ara d-yettwaseknen deg tebdart akked igmaḍ n unadi akked idis n ufella n usebter n telqayt."
 
 msgid "Theme License"
 msgstr "Turagt n usentel"
@@ -3980,10 +3980,10 @@ msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "Wiyaḍ zemren ad bḍun asentel inek ma yella nan-d d kečč i d ameskar?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
+msgstr "Bab n yizerfan ad imudd azref n wiyaḍ akken ad neɣlen, ad zuzren, ad d-seknen neɣ ad sqedcen axeddim, ladɣa  deg uḥric n tnezzut."
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
+msgstr "Bab n yizerfan ad imudd azref n wiyaḍ akken ad neɣlen, ad zuzren, ad d-seknen neɣ ad sqedcen axeddim, ladɣa  deg uḥric beṛṛa n tnezzut."
 
 msgid "Can others make commercial use of your Theme?"
 msgstr "Zemren wiyaḍ ad zenzen asentel inek?"
@@ -3992,10 +3992,10 @@ msgid "Can others create derivative works from your Theme?"
 msgstr "Zemren wiyaḍ ad sqedcen asentel inek akken ad d-snufun wiyaḍ?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
+msgstr "Bab n yizerfan ad imudd azref n wiyaḍ akken ad neɣlen, ad zuzren, ad d-seknen neɣ ad sqedcen axeddim, ladɣa  akken ad d-yesnulfu ayen-nniḍen."
 
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
+msgstr "Bab n yizerfan ad imudd azref n wiyaḍ akken ad neɣlen, ad zuzren, daɣen ad neɣlen kan axeddi m akken yella."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Asentel inek ad d-yeffeɣ daw n turagt-agi:"
