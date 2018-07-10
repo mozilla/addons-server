@@ -3684,6 +3684,11 @@ class TestReplacementAddonView(TestCase):
 
 
 class TestCompatOverrideView(TestCase):
+    """This view is used by Firefox directly and queried a lot.
+
+    That's why there are performance sensitive tests.
+    """
+
     client_class = APITestClient
 
     def setUp(self):
@@ -3756,6 +3761,41 @@ class TestCompatOverrideView(TestCase):
         # And no guid param should be a 400 too
         assert response.status_code == 400
         assert 'Empty, or no, guid parameter provided.' in response.content
+
+    def test_performance_no_matching_guid(self):
+        # There is at least one query from the paginator, counting all objects
+        # We do not query on `compat_override` though if the count is 0.
+        with self.assertNumQueries(1):
+            response = self.client.get(
+                reverse_ns('addon-compat-override'),
+                data={'guid': u'unknownguid'})
+            assert response.status_code == 200
+            data = json.loads(response.content)
+            assert len(data['results']) == 0
+
+    def test_performance_matches_one_guid(self):
+        # 1. Query is querying compat_override
+        # 2. Query is adding CompatOverrideRange via the transformer
+        with self.assertNumQueries(2):
+            response = self.client.get(
+                reverse_ns('addon-compat-override'),
+                data={'guid': u'extrabad@thing'})
+            assert response.status_code == 200
+            data = json.loads(response.content)
+            assert len(data['results']) == 1
+
+    def test_performance_matches_multiple_guid(self):
+        # 1. Query is querying compat_override
+        # 2. Query is adding CompatOverrideRange via the transformer
+        with self.assertNumQueries(2):
+            response = self.client.get(
+                reverse_ns('addon-compat-override'),
+                data={'guid': (
+                    u'extrabad@thing,invalid@guid,notevenaguid$,'
+                    u'bad@thing')})
+            assert response.status_code == 200
+            data = json.loads(response.content)
+            assert len(data['results']) == 2
 
 
 class TestAddonRecommendationView(ESTestCase):
