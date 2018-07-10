@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 03:43+0000\n"
+"PO-Revision-Date: 2018-07-10 03:53+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -687,15 +687,14 @@ msgstr "ਡਿਵੈਲਪਰ ਹਬ"
 msgid "Manage API Keys"
 msgstr "API ਕੁੰਜੀਆਂ ਦਾ ਪ੍ਰਬੰਧ ਕਰੋ"
 
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "ਸਮੀਖਿਅਕ"
+msgstr "ਸਮੀਖਿਅਕ ਦੇ ਸੰਦ"
 
 msgid "Admin Tools"
-msgstr "ਐਡਮਿਨ ਟੂਲ"
+msgstr "ਐਡਮਿਨ ਸੰਦ"
 
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "ਗਲਤ, ਕਿਰਪਾ ਕਰ ਕੇ ਮੁੜ ਤੋਂ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
 msgid "Error verifying input, please try again."
 msgstr ""
@@ -704,10 +703,10 @@ msgid "This must be a valid hex color code, such as #000000."
 msgstr "ਇਹ ਇੱਕ ਜਾਇਜ ਹੈਕਸ ਕਲਰ ਕੋਡ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ, ਜਿਵੇਂ ਕਿ #000000।"
 
 msgid "Not allowed"
-msgstr "ਇਜ਼ਾਜਤ ਨਹੀਂ"
+msgstr "ਪਰਵਾਨਗੀ ਨਹੀਂ"
 
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr "<h1>ਓ ਹੋ! ਇਜ਼ਾਜਤ ਨਹੀਂ।</h1> <p>ਤੁਸੀਂ ਕੁੱਝ ਇਸ ਤਰ੍ਹਾਂ ਦਾ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ ਕੀਤੀ ਜਿਸਦੀ ਤੁਹਾਨੂੰ ਇਜ਼ਾਜਤ ਨਹੀਂ ਸੀ।</p>"
+msgstr "<h1>ਓ ਹੋ! ਪਰਵਾਨਗੀ ਨਹੀਂ।</h1> <p>ਤੁਸੀਂ ਕੁੱਝ ਇਸ ਤਰ੍ਹਾਂ ਦਾ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ ਕੀਤੀ ਜਿਸਦੀ ਤੁਹਾਨੂੰ ਪਰਵਾਨਗੀ ਨਹੀਂ ਸੀ।</p>"
 
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
 msgstr "<p>ਪਿਛਲੇ ਸਫ਼ੇ ਤੇ ਵਾਪਸ ਜਾਣ ਦੀ ਕੋਸ਼ਿਸ ਕਰ ਰਹੇ ਹੋ, ਤਾਜ਼ਾ ਕਰੋ ਅਤੇ ਫ਼ੇਰ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ ਕਰੋ।</p>"
@@ -715,15 +714,14 @@ msgstr "<p>ਪਿਛਲੇ ਸਫ਼ੇ ਤੇ ਵਾਪਸ ਜਾਣ ਦੀ ਕੋ
 msgid "Page Not Found"
 msgstr "ਇਹ ਸਫ਼ਾ ਨਹੀਂ ਲੱਭਿਆI"
 
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "ਹੋਰ ਐਡ-ਆਨ"
+msgstr "ਫਾਇਰਫੌਕਸ ਦੇ ਐਡ-ਆਨ"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
 msgstr ""
 
 msgid "Suggested Pages"
-msgstr ""
+msgstr "ਸੁਝਾਏ ਗਏ ਸਫ਼ੇ"
 
 #, fuzzy
 msgid "Browse all extensions"
@@ -783,7 +781,7 @@ msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <str
 msgstr "<strong>%(count)s</strong> ਵਿੱਚੋਂ <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> ਨਤੀਜੇ"
 
 msgid "Maintenance in progress"
-msgstr "ਰੱਖ ਰਖਾਵ ਚੱਲ ਰਿਹਾ"
+msgstr "ਰੱਖ ਰਖਾਅ ਚੱਲ ਰਿਹਾ"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
 msgstr "ਇਹ ਗੁਣ ਅਸਥਾਈ ਤੌਰ ਤੇ ਅਯੋਗ ਹੈ ਜਦੋਂ ਤੱਕ ਅਸੀਂ ਵੈਬਸਾਈਟ ਦੀ ਸਾਂਭ ਕਰ ਰਹੇ ਹਾਂ। ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਬਰਾਊਂਜਰ ਦੇ ਬੈਕ ਬਦਨ ਦੀ ਵਰਤੋਂ ਕਰੋ ਅਤੇ ਕੁੱਝ ਦੇਰ ਬਾਅਦ ਫ਼ੇਰ ਕੋਸ਼ਿਸ ਕਰੋ।"
@@ -814,7 +812,7 @@ msgid "Explore"
 msgstr "ਪੜਚੋਲ"
 
 msgid "Extensions"
-msgstr "ਇਕਸਟੈਨਸ਼ਨ"
+msgstr "ਵਾਧਰੇ"
 
 #. {0} is a category name. Ex: "Sports"
 msgid "Themes"
@@ -842,10 +840,10 @@ msgid "Add-ons for Mobile"
 msgstr "ਮੋਬਾਈਲ ਲਈ ਐਡ-ਆਨ"
 
 msgid "Dictionaries & Language Packs"
-msgstr "ਸ਼ਬਦਕੋਸ ਅਤੇ ਭਾਸ਼ਾ ਪੈਕ"
+msgstr "ਸ਼ਬਦਕੋਸ ਅਤੇ ਬੋਲੀ ਦੀਆਂ ਪੰਡਾਂ"
 
 msgid "Search Tools"
-msgstr "ਖੋਜ ਟੂਲ"
+msgstr "ਖੋਜ ਸੰਦ"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, fuzzy, python-format
@@ -875,16 +873,16 @@ msgid "{0} ago"
 msgstr "{0} ਪਹਿਲਾਂ"
 
 msgid "Title"
-msgstr "ਟਾਈਟਲ"
+msgstr "ਸਿਰਲੇਖ"
 
 msgid "Body"
 msgstr "ਬਾਡੀ"
 
 msgid "Another Title"
-msgstr "ਦੂਜਾ ਟਾਈਟਲ"
+msgstr "ਦੂਜਾ ਸਿਰਲੇਖ"
 
 msgid "Another Body"
-msgstr "ਦੂਜੀ ਬਾਡੀ"
+msgstr "ਦੂਜਾ ਧੜ੍ਹ"
 
 msgid "Invalid Authorization header. No credentials provided."
 msgstr ""
@@ -912,13 +910,13 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Application Versions"
-msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵਰਜਨ"
+msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵੰਨਗੀ"
 
 msgid "Acceptable versions for all applications on AMO."
 msgstr "AMO ਤੇ ਸਾਰੀਆਂ ਐਪਲੀਕੇਸ਼ਨਾਂ ਦੇ ਸਵੀਕਾਰਯੋਗ ਵਰਜਨ।"
 
 msgid "Valid Application Versions"
-msgstr "ਠੀਕ ਐਪਲੀਕੇਸ਼ਨ ਵਰਜਨ"
+msgstr "ਸਹੀ ਐਪਲੀਕੇਸ਼ਨ ਵੰਨਗੀ"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
