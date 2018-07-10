@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 03:03+0000\n"
+"PO-Revision-Date: 2018-07-10 03:09+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -419,29 +419,29 @@ msgid "Sunbird"
 msgstr "ਸਨਬਰਡ"
 
 msgid "SeaMonkey"
-msgstr "ਸੀਮੌਂਕੀ"
+msgstr "ਸੀਅਮੌਂਕੀ"
 
 msgid "Fennec"
-msgstr "ਫਿੱਨਸ"
+msgstr "ਫੇਨੇਕ"
 
 msgid "Android"
-msgstr "ਐਨਡਰੋਇਡ"
+msgstr "ਐਂਡਰੌਇਡ"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
+msgstr "ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr "ਇੰਸਟਾਲ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
+msgstr "ਇੰਸਟਾਲ ਅਤੇ ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr "{0} ਤੋ {1} ਤੱਕ ਇੰਸਟਾਲ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ"
+msgstr "{0} ਤੋ {1} ਤੱਕ ਇੰਸਟਾਲ ਅਤੇ ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
@@ -453,11 +453,11 @@ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr "ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
+msgstr "ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਰੋਜਾਨਾਂ ਯੂਜਰ"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
@@ -469,27 +469,27 @@ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਪਲੀਕੇਸ਼ਨ"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr "ਪਲੇਟਫਾਰਮ, ਆਖਰੀ {0} ਦਿਨ"
+msgstr "ਮੰਚ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਪਲੇਟਫਾਰਮ"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਮੰਚ"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr "ਭਾਸ਼ਾਵਾਂ, ਆਖਰੀ {0} ਦਿਨ"
+msgstr "ਬੋਲੀਆਂ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਭਾਸ਼ਾਵਾਂ"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਬੋਲੀਆਂ"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr "ਐਡ-ਆਨ ਵਰਜਨ, ਆਖਰੀ {0} ਦਿਨ"
+msgstr "ਐਡ-ਆਨ ਵੰਨਗੀਆਂ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਵਰਜਨ"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਵੰਨਗੀਆਂ"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
@@ -501,11 +501,11 @@ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਸਥਿਤੀ"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr "ਡਾਊਨਲੋਡ ਸਰੋਤ, ਆਖਰੀ {0} ਦਿਨ"
+msgstr "ਡਾਊਨਲੋਡ ਸੋਮੇ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਸਰੋਤ"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਸੋਮੇ"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
