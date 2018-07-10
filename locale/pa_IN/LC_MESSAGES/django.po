@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 04:21+0000\n"
+"PO-Revision-Date: 2018-07-10 04:34+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -1590,32 +1590,30 @@ msgstr "ਸੂਚਨਾ ਕਿਸਮ"
 msgid "Version"
 msgstr "ਵੰਨਗੀ"
 
-#, fuzzy
 msgid "Application Version"
-msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵਰਜਨ"
+msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵੰਨਗੀ"
 
 msgid "Application Build"
-msgstr "ਐਪਲੀਕੇਸ਼ਨ ਬਿਲਡ"
+msgstr "ਐਪਲੀਕੇਸ਼ਨ ਉਸਾਰੀ"
 
 msgid "Platform"
-msgstr "ਪਲੇਟਫ਼ਾਰਮ"
+msgstr "ਮੰਚ"
 
-#, fuzzy
 msgid "e10s Enabled"
-msgstr "ਅਯੋਗ ਹੋਇਆ"
+msgstr "e10s ਜਗਾਏ ਗਏ"
 
 #, fuzzy
 msgid "e10s Compatible"
 msgstr "ਅਧੂਰਾ"
 
 msgid "Submitted"
-msgstr "ਭੇਜਿਆ"
+msgstr "ਦਾਖਲ ਕੀਤੇ"
 
 msgid "Success"
 msgstr "ਸਫ਼ਲਤਾ"
 
 msgid "Problem"
-msgstr "ਪਰੇਸ਼ਾਨੀ"
+msgstr "ਮੁਸ਼ਕਲ"
 
 msgid "No reports found."
 msgstr "ਕੋਈ ਰਿਪੋਰਟ ਨਹੀਂ ਮਿਲੀ।"
@@ -1640,7 +1638,7 @@ msgid "{0.name} ({1}) removed from {addon}."
 msgstr "{0.name} ({1}) {addon}ਵਿੱਚੋਂ ਹਟਾਇਆ।"
 
 msgid "Contributions for {addon}."
-msgstr "{addon}ਲਈ ਯੋਗਦਾਨ।"
+msgstr "{addon} ਲਈ ਯੋਗਦਾਨ।"
 
 msgid "{addon} disabled."
 msgstr "{addon} ਆਯੋਗ ਹੋਇਆ।"
@@ -1792,7 +1790,7 @@ msgid "Email sent to Author about add-on compatibility."
 msgstr "ਐਡ-ਆਨ ਅਨੁਕੂਲਤਾ ਬਾਰੇ ਲੇਖਕ ਨੂੰ ਈਮੇਲ ਭੇਜੀ ਗਈ।"
 
 msgid "Password changed."
-msgstr "ਪਾਸਵਰਡ ਬਦਲਿਆ।"
+msgstr "ਪਛਾਣ-ਸ਼ਬਦ ਬਦਲਿਆ।"
 
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr "{addon} {version} ਸਵੀਕਾਰ ਹੋਇਆ ਪਰ ਜਨਤਕ ਹੋਣ ਦੀ ਉਡੀਕ ਕਰ ਰਿਹਾ।"
@@ -1801,7 +1799,7 @@ msgid "Approved but waiting"
 msgstr "ਸਵੀਕਾਰ ਹੋਇਆ ਪਰ ਉਡੀਕ ਕਰ ਰਿਹਾ"
 
 msgid "Account updated."
-msgstr "ਖਾਤਾ ਅੱਪਡੇਟ ਹੋਇਆ।"
+msgstr "ਖਾਤਾ ਨਵਿਆਇਆ ਗਿਆ।"
 
 msgid "Created: {0}."
 msgstr "ਰਚਿਆ: {0}।"
@@ -1810,16 +1808,16 @@ msgid "Edited field: {2} set to: {0}."
 msgstr "ਸੋਧਿਆ ਗਿਆ ਖੇਤਰ: {2} ਸੈੱਟ ਕੀਤਾ: {0}।"
 
 msgid "Deleted: {1}."
-msgstr "ਹਟਾਇਆ: {1}।"
+msgstr "ਮਿਟਾਏ ਗਏ: {1}।"
 
 msgid "User {user} edited, reason: {1}"
-msgstr "ਉਪਭੋਗੀ {user} ਸੋਧਿਆ ਗਿਆ, ਕਾਰਨ: {1}"
+msgstr "ਵਰਤੋਂਕਾਰ {user} ਸੋਧਿਆ ਗਿਆ, ਕਾਰਨ: {1}"
 
 msgid "User {user} anonymized."
-msgstr "ਉਪਭੋਗੀ {user} ਗੁਮਨਾਮ ਹੋਇਆ।"
+msgstr "ਵਰਤੋਂਕਾਰ {user} ਗੁਮਨਾਮ ਹੋਇਆ।"
 
 msgid "User {user} restricted."
-msgstr "ਉਪਭੋਗੀ {user} ਸੀਮਿਤ ਹੋਇਆ।"
+msgstr "ਵਰਤੋਂਕਾਰ {user} ਦੀ ਹੱਦ ਮਿੱਥੀ।"
 
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "ਐਡਮਿਨ {0} ਨੇ {user} ਲਈ ਸਰਗਰਮੀ ਲਾਗ ਸਮਝਿਆ।"
@@ -1832,10 +1830,10 @@ msgid "{addon} reviewed."
 msgstr "{addon} ਦੀ ਸਮੀਖਿਆ ਹੋਈ।"
 
 msgid "User {0.name} added to {group}."
-msgstr "ਉਪਭੋਗੀ {0.name} ਨੂੰ {group}ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ।"
+msgstr "ਵਰਤੋਂਕਾਰ {0.name} ਨੂੰ {group} ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ।"
 
 msgid "User {0.name} removed from {group}."
-msgstr "{group} ਤੋਂ ਉਪਭੋਗੀ {0.name} ਹਟਾਇਆ।"
+msgstr "ਵਰਤੋਂਕਾਰ {0.name} ਨੂੰ {group} ਤੋਂ ਹਟਾਇਆ।"
 
 msgid "{addon} unlisted."
 msgstr "{addon} ਅਣਸੂਚੀਬੱਧ।"
@@ -1855,27 +1853,23 @@ msgstr "{addon} {version} ਨੂੰ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ 
 msgid "Reply by developer on {addon} {version}."
 msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
 
-#, fuzzy
 msgid "Developer Reply"
-msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
+msgstr "ਵਿਕਾਸਕਾਰ ਦਾ ਜੁਆਬ"
 
-#, fuzzy
 msgid "Reply by reviewer on {addon} {version}."
-msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
+msgstr "{addon} {version} ਤੇ ਸਮੀਖਿਆਕਾਰ ਦੇ ਜੁਆਬ।"
 
 msgid "Reviewer Reply"
-msgstr "ਸਮੀਖਿਅਕ ਨੂੰ ਜਵਾਬ ਦਿਓ"
+msgstr "ਸਮੀਖਿਆਕਾਰ ਦਾ ਜੁਆਬ"
 
-#, fuzzy
 msgid "Approval notes changed for {addon} {version}."
-msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
+msgstr "{addon} {version} ਲਈ ਪਰਵਾਨਗੀ ਟਿੱਪਣੀਆਂ ਬਦਲੀਆਂ ਗਈਆਂ।"
 
 msgid "Approval notes changed"
-msgstr ""
+msgstr "ਪਰਵਾਨਗੀ ਟਿੱਪਣੀਆਂ ਬਦਲੀਆਂ ਗਈਆਂ"
 
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
+msgstr "{addon} {version} ਲਈ ਸਰੋਤ ਕੋਡ ਲੱਦਿਆ ਗਿਆ।"
 
 #, fuzzy
 msgid "Source code uploaded"
