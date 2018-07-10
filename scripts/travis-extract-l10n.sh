@@ -39,9 +39,7 @@ function init_environment {
 
 
 function extract_locales {
-    # Uncomment this next line once the disco strings database & API are ready
-    # in production.
-    # python manage.py extract_disco_strings
+    python manage.py extract_disco_strings
     python manage.py extract
 
     pushd locale > /dev/null
