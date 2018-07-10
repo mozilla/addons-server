@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 02:37+0000\n"
+"PO-Revision-Date: 2018-07-10 03:33+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -227,10 +227,10 @@ msgid "Most Popular"
 msgstr "ਸੱਭ ਤੋਂ ਮਸ਼ਹੂਰ"
 
 msgid "All »"
-msgstr "ਸਾਰੇ »"
+msgstr "ਸੱਭ »"
 
 msgid "See all »"
-msgstr "ਵੇਖੋ ਸਾਰੇ »"
+msgstr "ਵੇਖੋ ਸੱਭ »"
 
 msgid "Up &amp; Coming Extensions"
 msgstr "ਉੱਤੇ &amp; ਆ ਰਹੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ"
@@ -283,7 +283,7 @@ msgstr[1] "{0} ਹਫ਼ਤੇਵਾਰ ਡਾਊਨਲੋਡ"
 #. {0} is the number of users.
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} ਉਪਭੋਗੀ"
+msgstr[0] "{0} ਵਰਤੋਂਕਾਰ"
 msgstr[1] "{0} ਉਪਭੋਗੀ"
 
 msgid "by"
@@ -291,7 +291,7 @@ msgstr "ਵੱਲੋਂ"
 
 #. {0} is a category name, such as Nature
 msgid "More {0} Themes"
-msgstr "ਹੇਰ {0} ਥੀਮ"
+msgstr "{0} ਹੋਰ ਥੀਮ"
 
 #. {0} is a category name, such as Nature
 msgid "See all {0} Themes"
@@ -313,10 +313,10 @@ msgid "Artist"
 msgstr "ਕਲਾਕਾਰ"
 
 msgid "Rating"
-msgstr "ਰੇਟਿੰਗ"
+msgstr "ਦਰਜਾਬੰਦੀ"
 
 msgid "Daily Users"
-msgstr "ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ"
+msgstr "ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
 
 msgid "License"
 msgstr "ਲਾਇਸੰਸ"
@@ -333,8 +333,8 @@ msgstr "ਮਨਜ਼ੂਰ ਹੋਇਆ"
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> ਉਪਭੋਗੀ"
-msgstr[1] "<strong>{0}</strong> ਉਪਭੋਗੀ"
+msgstr[0] "<strong>{0}</strong> ਵਰਤੋਂਕਾਰ"
+msgstr[1] "<strong>{0}</strong> ਵਰਤੋਂਕਾਰ"
 
 msgid "Hover to Preview"
 msgstr "ਝਲਕ ਵੇਖਣ ਲਈ ਘੁਮਾਓ"
@@ -343,7 +343,7 @@ msgid "Add"
 msgstr "ਜੋੜੋ"
 
 msgid "Edit"
-msgstr "ਸੋਧ"
+msgstr "ਸੋਧੋ"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
@@ -351,28 +351,27 @@ msgid "by {0} on {1}"
 msgstr "{1} ਤੇ {0} ਵੱਲੋਂ"
 
 msgid "Not yet rated"
-msgstr "ਅਜੇ ਤੱਕ ਰੇਟ ਨਹੀਂ ਕੀਤਾ"
+msgstr "ਅਜੇ ਤੱਕ ਦਰਜਾਬੰਦੀ ਨਹੀਂ ਕੀਤੀ"
 
 msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> ਉਪਭੋਗੀ"
+msgstr "<b>{0}</b> ਵਰਤੋਂਕਾਰ"
 
 #. {0} is the number of users.
-#, fuzzy
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] "ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ"
-msgstr[1] "ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ"
+msgstr[0] "{0} ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
+msgstr[1] "{0} ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
-msgstr "ਲਈ ਪਰਦਾ ਨੀਤੀ {0}"
+msgstr "{0} ਲਈ ਪਰਦਾਦਾਰੀ ਨੀਤੀ"
 
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
-msgstr "ਪਰਦਾ ਨੀਤੀ"
+msgstr "ਪਰਦੇਦਾਰੀ ਦੀ ਨੀਤੀ"
 
 msgid "Report Abuse"
-msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾ"
+msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾ ਦਿਉ"
 
 #, python-format
 msgid ""
