@@ -3846,50 +3846,6 @@ class TestCompatOverrideView(TestCase):
                 data = json.loads(response.content)
                 assert len(data['results']) == 2
 
-    def test_api_cache_invalidation(self):
-        # Fill the cache
-        with assert_cache_requests(2):
-            with self.assertNumQueries(2):
-                response = self.client.get(
-                    reverse_ns('addon-compat-override'),
-                    data={'guid': u'extrabad@thing'})
-                assert response.status_code == 200
-                data = json.loads(response.content)
-                assert len(data['results']) == 1
-
-        # Make sure the cache is filled
-        with assert_cache_requests(1):
-            with self.assertNumQueries(0):
-                response = self.client.get(
-                    reverse_ns('addon-compat-override'),
-                    data={'guid': u'extrabad@thing'})
-                assert response.status_code == 200
-                data = json.loads(response.content)
-                assert len(data['results']) == 1
-
-        # This invalidates the cache
-        self.override_addon.save()
-
-        # Now we're back to the original query characteristics
-        with assert_cache_requests(2):
-            with self.assertNumQueries(2):
-                response = self.client.get(
-                    reverse_ns('addon-compat-override'),
-                    data={'guid': u'extrabad@thing'})
-                assert response.status_code == 200
-                data = json.loads(response.content)
-                assert len(data['results']) == 1
-
-        # Make sure the cache is filled again
-        with assert_cache_requests(1):
-            with self.assertNumQueries(0):
-                response = self.client.get(
-                    reverse_ns('addon-compat-override'),
-                    data={'guid': u'extrabad@thing'})
-                assert response.status_code == 200
-                data = json.loads(response.content)
-                assert len(data['results']) == 1
-
 
 class TestAddonRecommendationView(ESTestCase):
     client_class = APITestClient

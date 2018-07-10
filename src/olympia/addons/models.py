@@ -13,7 +13,6 @@ from datetime import datetime
 from operator import attrgetter
 
 from django.conf import settings
-from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError, models, transaction
 from django.db.models import F, Max, Q, signals as dbsignals
@@ -2063,10 +2062,6 @@ class CompatOverride(ModelBase):
         for compat_id, ranges in sorted_groupby(qs, 'compat_id'):
             id_map[compat_id].compat_ranges = list(ranges)
 
-    @staticmethod
-    def get_api_cache_key(guid):
-        return 'api::addons::CompatOverride::{guid}'.format(guid=guid)
-
     # May be filled in by a transformer for performance.
     @cached_property
     def compat_ranges(self):
@@ -2092,11 +2087,6 @@ class CompatOverride(ModelBase):
                 item.apps.append(app)
             rv.append(item)
         return rv
-
-
-@receiver(dbsignals.post_save, sender=CompatOverride)
-def clear_compat_override_cache(sender, instance, **kw):
-    cache.delete(CompatOverride.get_api_cache_key(instance.guid))
 
 
 OVERRIDE_TYPES = (
@@ -2128,11 +2118,6 @@ class CompatOverrideRange(ModelBase):
     def override_type(self):
         """This is what Firefox wants to see in the XML output."""
         return {0: 'compatible', 1: 'incompatible'}[self.type]
-
-
-@receiver(dbsignals.post_save, sender=CompatOverrideRange)
-def clear_compat_override_cache_via_compat_range(sender, instance, **kw):
-    cache.delete(CompatOverride.get_api_cache_key(instance.compat.guid))
 
 
 class IncompatibleVersions(ModelBase):

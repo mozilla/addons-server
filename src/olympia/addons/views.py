@@ -995,12 +995,16 @@ class CompatOverrideView(ListAPIView):
     def list(self, request, *args, **kwargs):
         """Override the `list` logic to integrate custom caching."""
         guids = self.get_guids()
+
+        def _key(guid):
+            return 'api::addons::CompatOverride::{guid}'.format(guid=guid)
+
         if not guids:
             raise exceptions.ParseError(
                 'Empty, or no, guid parameter provided.')
 
-        _key = CompatOverride.get_api_cache_key
         results = cache.get_many([_key(guid) for guid in guids]).values()
+
         missing = set(guids) - set(item['addon_guid'] for item in results)
 
         if missing:
