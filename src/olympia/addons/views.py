@@ -1,7 +1,6 @@
 from collections import OrderedDict
 
 from django import http
-from django.core.cache import cache
 from django.db.models import Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
