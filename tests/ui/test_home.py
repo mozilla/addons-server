@@ -46,6 +46,9 @@ def test_browse_all_button_loads_correct_page(base_url, selenium):
 
 
 @pytest.mark.nondestructive
+@pytest.mark.xfail(
+    'No static themes since '
+    'https://github.com/mozilla/addons-frontend/pull/5501/')
 def test_browse_all_themes_button_loads_correct_page(
         base_url, selenium):
     page = Home(selenium, base_url).open()
