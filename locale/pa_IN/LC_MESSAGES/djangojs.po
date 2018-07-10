@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 03:09+0000\n"
+"PO-Revision-Date: 2018-07-10 03:22+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -160,7 +160,7 @@ msgid "This theme is incompatible with your version of {0}"
 msgstr "{0} ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਨਾਲ ਇਹ ਥੀਮ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ"
 
 msgid "All Rights Reserved"
-msgstr "ਸਭ ਹੱਕ ਰਾਖਵੇ ਹਨ"
+msgstr "ਸੱਭ ਹੱਕ ਰਾਖਵੇਂ ਹਨ"
 
 msgid "Creative Commons Attribution 3.0"
 msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ 3.0"
@@ -184,7 +184,7 @@ msgid "Your Theme's Name"
 msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾ ਨਾਮ"
 
 msgid "Flagged for review"
-msgstr "ਸਮੀਖਿਆ ਲਈ ਫਲੈਗ ਕੀਤਾ"
+msgstr "ਸਮੀਖਿਆ ਲਈ ਨਿਸ਼ਾਨਬੱਧ ਕੀਤਾ"
 
 msgid "Your input is required"
 msgstr "ਤੁਹਾਡੇ ਇਨਪੁੱਟ ਦੀ ਲੋੜ ਹੈ"
@@ -196,7 +196,7 @@ msgid "Updating results&hellip;"
 msgstr "ਅੱਪਡੇਟ ਨਤੀਜੇ&hellip;"
 
 msgid "Category"
-msgstr "ਕੈਟਾਗਿਰੀ"
+msgstr "ਵਰਗ"
 
 msgid "Search themes for <b>{0}</b>"
 msgstr "<b>{0}</b> ਲਈ ਥੀਮ ਖੋਜੋ"
@@ -229,7 +229,7 @@ msgid "{0} reviews"
 msgstr "{0} ਸਮੀਖਿਅਕ"
 
 msgid "{0} sales"
-msgstr "{0} ਵੇਚ"
+msgstr "{0} ਵਿਕਰੀ"
 
 msgid "{0} refunds"
 msgstr "{0} ਮੁੜਾਈ"
@@ -284,7 +284,7 @@ msgid "Ratings"
 msgstr "ਦਰਜਾਬੰਦੀ"
 
 msgid "Sales"
-msgstr "ਵੇਚ"
+msgstr "ਵਿਕਰੀ"
 
 msgid "Installs"
 msgstr "ਇੰਸਟਾਲ"
@@ -344,7 +344,7 @@ msgid "Upsell"
 msgstr "ਵਾਧੂ ਖਰੀਦਦਾਰੀ ਲਈ ਉਕਸਾਉਣਾ"
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "ਵਿਕਾਸਕਾਰ ਨੂੰ ਮਿਲੋ"
 
 msgid "User Profile"
 msgstr "ਵਰਤੋਂਕਾਰ ਦਾ ਬਿਉਰਾ"
@@ -517,7 +517,7 @@ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੋਗਦਾਨ"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਸਾਈਟ ਮੈਟ੍ਰਿਕਸ"
+msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਸਾਈਟ ਬਿਉਰਾ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
@@ -565,11 +565,11 @@ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਯੂਜਰ ਸਾਈਨ ਅੱਪ"
+msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਵਰਤੋਂਕਾਰ ਸਾਈਨ ਅੱਪ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੂਜਰ ਸਾਈਨ ਅੱਪ"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਵਰਤੋਂਕਾਰ ਸਾਈਨ ਅੱਪ"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
