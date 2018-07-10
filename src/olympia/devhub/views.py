@@ -373,6 +373,7 @@ def delete(request, addon_id, addon, theme=False):
         messages.error(request, msg)
         return redirect(addon.get_dev_url('versions'))
 
+    any_theme = theme or addon.type == amo.ADDON_STATICTHEME
     form = forms.DeleteForm(request.POST, addon=addon)
     if form.is_valid():
         reason = form.cleaned_data.get('reason', '')
@@ -380,19 +381,16 @@ def delete(request, addon_id, addon, theme=False):
         messages.success(
             request,
             ugettext('Theme deleted.')
-            if theme else ugettext('Add-on deleted.'))
-        return redirect('devhub.%s' % ('themes' if theme else 'addons'))
+            if any_theme else ugettext('Add-on deleted.'))
+        return redirect('devhub.%s' % ('themes' if any_theme else 'addons'))
     else:
-        if theme:
-            messages.error(
-                request,
-                ugettext('URL name was incorrect. Theme was not deleted.'))
-            return redirect(addon.get_dev_url())
-        else:
-            messages.error(
-                request,
-                ugettext('URL name was incorrect. Add-on was not deleted.'))
-            return redirect(addon.get_dev_url('versions'))
+        messages.error(
+            request,
+            ugettext('URL name was incorrect. Theme was not deleted.')
+            if any_theme else
+            ugettext('URL name was incorrect. Add-on was not deleted.'))
+        return redirect(
+            addon.get_dev_url() if theme else addon.get_dev_url('versions'))
 
 
 @dev_required
