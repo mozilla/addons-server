@@ -105,7 +105,7 @@ def _update_addon_download_totals(data, **kw):
         except Addon.DoesNotExist:
             # We exclude deleted add-ons in the cron, but an add-on could have
             # been deleted by the time the task is processed.
-            m = ("Got new download totals (total=%s,avg=%s) but the add-on"
+            m = ("Got new download totals (total=%s) but the add-on"
                  "doesn't exist (%s)" % (sum_download_counts, pk))
             task_log.debug(m)
 

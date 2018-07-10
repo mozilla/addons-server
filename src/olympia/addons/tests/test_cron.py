@@ -296,6 +296,17 @@ class TestAvgDailyUserCountTestCase(TestCase):
         addon2.reload()
         assert addon2.total_downloads == 21
 
+    @mock.patch('olympia.addons.cron.Addon.objects.get')
+    def test_total_and_average_downloads_addon_doesnotexist(self, get_mock):
+        """Regression test
+
+        for https://github.com/mozilla/addons-server/issues/8711
+        """
+        get_mock.side_effect = Addon.DoesNotExist()
+
+        # Make sure that we don't raise an error when logging
+        cron.update_addon_download_totals()
+
 
 class TestCleanupImageFiles(TestCase):
 
