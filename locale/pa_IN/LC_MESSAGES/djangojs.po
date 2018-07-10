@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 02:52+0000\n"
+"PO-Revision-Date: 2018-07-10 03:03+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -229,10 +229,10 @@ msgid "{0} reviews"
 msgstr "{0} ਸਮੀਖਿਅਕ"
 
 msgid "{0} sales"
-msgstr "{0} ਸੇਲ"
+msgstr "{0} ਵੇਚ"
 
 msgid "{0} refunds"
-msgstr "{0} ਰਿਫੰਡ"
+msgstr "{0} ਮੁੜਾਈ"
 
 msgid "{0} installs"
 msgstr "{0} ਇੰਸਟਾਲ"
@@ -241,10 +241,10 @@ msgid "Downloads"
 msgstr "ਡਾਊਨਲੋਡ"
 
 msgid "Daily Users"
-msgstr "ਰੋਜਾਨਾਂ ਯੂਜਰ"
+msgstr "ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
 
 msgid "Amount, in USD"
-msgstr "USA ਵਿੱਚ, ਰਾਸ਼ੀ"
+msgstr "USD ਵਿੱਚ ਰਾਸ਼ੀ"
 
 msgid "Number of Contributions"
 msgstr "ਯੋਗਦਾਨ ਦੀ ਗਿਣਤੀ"
@@ -254,46 +254,46 @@ msgstr "ਜਿਆਦਾ ਜਾਣਕਾਰੀ...."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr "{0} ਲਈ ਵੇਰਵਾ"
+msgstr "{0} ਲਈ ਵੇਰਵੇ"
 
 msgid "Collections Created"
-msgstr "ਬਣਾਇਆ ਭੰਡਾਰ"
+msgstr "ਬਣਾਏ ਭੰਡਾਰ"
 
 msgid "Add-ons in Use"
-msgstr "ਐਡ-ਆਨ ਵਿੱਚ ਵਰਤੋ"
+msgstr "ਵਰਤਿਆ ਜਾ ਰਿਹਾ ਐਡ-ਆਨ"
 
 msgid "Add-ons Created"
-msgstr "ਐਡ-ਆਨ ਬਣਾਓ"
+msgstr "ਐਡ-ਆਨ ਬਣਾਇਆ ਗਿਆ"
 
 msgid "Add-ons Downloaded"
-msgstr "ਐਡ-ਆਨ ਡਾਊਨਲੋਡ"
+msgstr "ਡਾਉਨਲੋਡ ਕੀਤੇ ਗਏ ਐਡ-ਆਨ"
 
 msgid "Add-ons Updated"
-msgstr "ਐਡ-ਆਨ ਅੱਪਡੇਟ"
+msgstr "ਨਵਿਆਏ ਗਏ ਐਡ-ਆਨ"
 
 msgid "Reviews Written"
-msgstr "ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
+msgstr "ਲਿਖੀਆਂ ਗਈਆਂ ਸਮੀਖਿਆਵਾਂ"
 
 msgid "User Signups"
-msgstr "ਯੂਜਰ ਸਾਈਨਅੱਪ"
+msgstr "ਵਾਰਤੋਂਕਾਰਾਂ ਦੇ ਸਾਈਨਅੱਪ"
 
 msgid "Subscribers"
 msgstr "ਗਾਹਕ"
 
 msgid "Ratings"
-msgstr "ਰੇਟਿੰਗ"
+msgstr "ਦਰਜਾਬੰਦੀ"
 
 msgid "Sales"
-msgstr "ਸੇਲ"
+msgstr "ਵੇਚ"
 
 msgid "Installs"
 msgstr "ਇੰਸਟਾਲ"
 
 msgid "Unknown"
-msgstr "ਅਣਜਾਣ"
+msgstr "ਅਣਪਛਾਤੇ"
 
 msgid "Add-ons Manager"
-msgstr "ਐਡ-ਆਨ ਮਨੇਜਰ"
+msgstr "ਐਡ-ਆਨ ਪ੍ਰਬੰਧਕ"
 
 msgid "Add-ons Manager Promo"
 msgstr ""
@@ -347,10 +347,10 @@ msgid "Meet the Developer"
 msgstr ""
 
 msgid "User Profile"
-msgstr "ਵਰਤੋਂਕਾਰ ਦਾ ਪਰੋਫਾਇਲ"
+msgstr "ਵਰਤੋਂਕਾਰ ਦਾ ਬਿਉਰਾ"
 
 msgid "Version History"
-msgstr "ਵਰਜ਼ਨ ਦਾ ਅਤੀਤ"
+msgstr "ਵੰਨਗੀ ਦਾ ਅਤੀਤ"
 
 msgid "Sharing"
 msgstr "ਵੰਡਣਾ"
@@ -407,10 +407,10 @@ msgid "Usage"
 msgstr "ਵਰਤੋਂ"
 
 msgid "Firefox"
-msgstr "ਫਾਇਰਫਾਕਸ"
+msgstr "ਫਾਇਰਫੌਕਸ"
 
 msgid "Mozilla"
-msgstr "ਮੌਜੀਲਾ"
+msgstr "ਮੌਜ਼ਿਲਾ"
 
 msgid "Thunderbird"
 msgstr "ਥੰਡਰਬਰਡ"
