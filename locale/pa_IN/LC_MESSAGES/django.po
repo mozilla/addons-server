@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 02:34+0000\n"
+"PO-Revision-Date: 2018-07-10 02:37+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -589,7 +589,7 @@ msgid "Source Code License"
 msgstr "ਸੋਰਸ ਕੋਡ ਲਾਇਸੰਸ"
 
 msgid "support section"
-msgstr "ਸਮਰ"
+msgstr "ਸਮਰਥਨ ਹਿੱਸਾ"
 
 #, fuzzy
 msgid "support email"
@@ -714,9 +714,8 @@ msgstr "<h1>ਓ ਹੋ! ਇਜ਼ਾਜਤ ਨਹੀਂ।</h1> <p>ਤੁਸੀ�
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
 msgstr "<p>ਪਿਛਲੇ ਸਫ਼ੇ ਤੇ ਵਾਪਸ ਜਾਣ ਦੀ ਕੋਸ਼ਿਸ ਕਰ ਰਹੇ ਹੋ, ਤਾਜ਼ਾ ਕਰੋ ਅਤੇ ਫ਼ੇਰ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ ਕਰੋ।</p>"
 
-#, fuzzy
 msgid "Page Not Found"
-msgstr "ਨਹੀਂ ਮਿਲਿਆ"
+msgstr "ਇਹ ਸਫ਼ਾ ਨਹੀਂ ਲੱਭਿਆI"
 
 #, fuzzy
 msgid "Firefox Add-ons"
@@ -732,9 +731,8 @@ msgstr ""
 msgid "Browse all extensions"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
 
-#, fuzzy
 msgid "Browse all themes"
-msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
+msgstr "ਸਾਰੇ ਥੀਮਾੰ ਦੀ ਝਲਕ ਵੇਖੋ"
 
 #, fuzzy
 msgid "Add-ons Home Page"
