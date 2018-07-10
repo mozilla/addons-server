@@ -285,7 +285,7 @@ class AddonSerializerOutputTestMixin(object):
             'en-US': unicode(self.addon.support_url),
         }
         assert 'theme_data' not in result
-        assert set(result['tags']) == set(['some_tag', 'some_other_tag'])
+        assert set(result['tags']) == {'some_tag', 'some_other_tag'}
         assert result['type'] == 'extension'
         assert result['url'] == absolutify(self.addon.get_url_path())
         assert result['weekly_downloads'] == self.addon.weekly_downloads
@@ -988,8 +988,10 @@ class TestLanguageToolsSerializerOutput(TestCase):
         result = self.serialize()
         assert 'current_compatible_version' in result
         assert result['current_compatible_version'] is not None
-        assert set(result['current_compatible_version'].keys()) == set(
-            ['id', 'files', 'reviewed', 'version'])
+        assert (
+            set(result['current_compatible_version'].keys()) ==
+            {'id', 'files', 'reviewed', 'version'}
+        )
 
         self.addon.compatible_versions = None
         result = self.serialize()
@@ -1034,10 +1036,14 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         self.addon = addon_factory()
 
         result = self.serialize()
-        assert set(result.keys()) == set(['id', 'name', 'icon_url', u'url'])
+        assert (
+            set(result.keys()) ==
+            {'id', 'name', 'icon_url', 'type', 'url'}
+        )
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': unicode(self.addon.name)}
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
+        assert result['type'] == 'extension'
         assert result['url'] == absolutify(self.addon.get_url_path())
 
     def test_translations(self):
@@ -1074,7 +1080,11 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         assert not persona.is_new()
 
         result = self.serialize()
-        assert set(result.keys()) == set(['id', 'name', 'icon_url', u'url'])
+        assert (
+            set(result.keys()) ==
+            {'id', 'name', 'icon_url', 'type', 'url'}
+        )
+        assert result['type'] == 'persona'
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
 
     def test_icon_url_persona_with_no_persona_id(self):
@@ -1094,7 +1104,11 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         assert persona.is_new()
 
         result = self.serialize()
-        assert set(result.keys()) == set(['id', 'name', 'icon_url', u'url'])
+        assert (
+            set(result.keys()) ==
+            {'id', 'name', 'icon_url', 'type', 'url'}
+        )
+        assert result['type'] == 'persona'
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
 
 
