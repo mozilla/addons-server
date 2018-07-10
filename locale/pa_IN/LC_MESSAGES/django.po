@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 03:33+0000\n"
+"PO-Revision-Date: 2018-07-10 03:43+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -417,7 +417,7 @@ msgid ""
 msgstr ""
 
 msgid "Review Guidelines"
-msgstr "ਹਿਦਾਇਤਾਂ ਦੀ ਸਮੀਖਿਆ"
+msgstr "ਹਿਦਾਇਤਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ"
 
 msgid "Reviews"
 msgstr "ਸਮੀਖਿਆਵਾਂ"
@@ -436,7 +436,7 @@ msgstr[0] "ਇਸ ਐਡ-ਆਨ ਦੀਆਂ ਸਾਰੀਆਂ ਸਮੀਖਿ�
 msgstr[1] ""
 
 msgid "Tags"
-msgstr "ਟੈਗ"
+msgstr "ਨਿਸ਼ਾਨਬੱਧ"
 
 msgid "Icon for {0}"
 msgstr ""
@@ -527,33 +527,33 @@ msgid "Support E-mail"
 msgstr "ਸਹਿਯੋਗ ਈ-ਮੇਲ"
 
 msgid "Info"
-msgstr "ਇੰਫ਼ੋ"
+msgstr "ਜਾਣਕਾਰੀ"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
-msgstr "ਆਖਰੀ ਅੱਪਡੇਟ ਹੋਇਆ:"
+msgstr "ਆਖਰੀ ਵਾਰ ਨਵਿਆਇਆ ਗਿਆ:"
 
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "<a href=\"%(url)s\">%(name)s</a> ਦੇ ਅਧੀਨ ਜਾਰੀ ਹੋਇਆ"
 
 msgid "Custom License"
-msgstr "ਕਸਟਮ ਲਾਇਸੰਸ"
+msgstr "ਚੋਣਵਾਂ ਲਾਇਸੰਸ"
 
 msgid "About this Add-on"
 msgstr "ਇਸ ਐਡ-ਆਨ ਬਾਰੇ"
 
 msgid "Developer’s Comments"
-msgstr "ਡਿਵੈਲਪਰ ਦੀਆਂ ਟਿੱਪਣੀਆਂ"
+msgstr "ਵਿਕਾਸਕਾਰ ਦੀਆਂ ਟਿੱਪਣੀਆਂ"
 
 msgid "Version Information"
-msgstr "ਵਰਜਨ ਜਾਣਕਾਰੀ"
+msgstr "ਵੰਨਗੀ ਦੀ ਜਾਣਕਾਰੀ"
 
 msgid "See complete version history"
-msgstr "ਵੇਖੋ ਸੰਪੂਰਨ ਵਰਜਨ ਇਤਿਹਾਸ"
+msgstr "ਵੰਨਗੀ ਦਾ ਸੰਪੂਰਨ ਇਤਿਹਾਸ ਵੇਖੋ"
 
 msgid "close"
-msgstr "ਬੰਦ"
+msgstr "ਬੰਦ ਕਰੋ"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
 msgstr ""
@@ -581,18 +581,17 @@ msgid "This add-on has been disabled by an administrator."
 msgstr "ਇਹ ਐਡ-ਆਨ ਪ੍ਰਬੰਧਕ ਵੱਲੋਂ ਅਯੋਗ ਕੀਤਾ ਜਾ ਚੁੱਕਿਆ ਹੈ।"
 
 msgid "Source Code License for {addon}"
-msgstr "{addon}ਲਈ ਸੋਰਸ ਕੋਡ ਲਾਇਸੰਸ"
+msgstr "{addon} ਲਈ ਸੋਮਾ ਕੋਡ ਲਾਇਸੰਸ"
 
 #. The License for this add-on.
 msgid "Source Code License"
-msgstr "ਸੋਰਸ ਕੋਡ ਲਾਇਸੰਸ"
+msgstr "ਸੋਮਾ ਕੋਡ ਲਾਇਸੰਸ"
 
 msgid "support section"
 msgstr "ਸਮਰਥਨ ਹਿੱਸਾ"
 
-#, fuzzy
 msgid "support email"
-msgstr "ਸਹਿਯੋਗ ਈ-ਮੇਲ"
+msgstr "ਸਮਰਥਨ ਈ-ਚਿੱਠੀ"
 
 msgid "permalink"
 msgstr "ਪਰਮਾਲਿੰਕ"
@@ -600,17 +599,17 @@ msgstr "ਪਰਮਾਲਿੰਕ"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "ਸਾਰੀਆਂ ਉਪਭੋਗੀ ਸਮੀਖਿਆਵਾਂ ਵੇਖੋ"
-msgstr[1] "ਸਾਰੀਆਂ %(cnt)s ਉਪਭੋਗੀ ਸਮੀਖਿਆਵਾਂ ਵੇਖੋ"
+msgstr[0] "ਸਾਰੀਆਂ ਵਰਤੋਂਕਾਰ ਸਮੀਖਿਆਵਾਂ ਵੇਖੋ"
+msgstr[1] "ਸਾਰੀਆਂ %(cnt)s ਵਰਤੋਂਕਾਰ ਸਮੀਖਿਆਵਾਂ ਵੇਖੋ"
 
 msgid "This add-on has not yet been reviewed."
 msgstr "ਇਸ ਐਡ-ਆਨ ਦੀ ਅਜੇ ਸਮੀਖਿਆ ਨਹੀਂ ਹੋਈ।"
 
 msgid "Be the first!"
-msgstr "ਪਹਿਲੇ ਹੋ!"
+msgstr "ਪਹਿਲੇ ਬਣੋ!"
 
 msgid "{0} users"
-msgstr "{0} ਉਪਭੋਗੀ"
+msgstr "{0} ਵਰਤੋਂਕਾਰ"
 
 msgid "More"
 msgstr "ਹੋਰ"
@@ -632,13 +631,13 @@ msgid "Edit Theme"
 msgstr "ਥੀਮ ਸੋਧ"
 
 msgid "Approve / Reject"
-msgstr "ਮਨਜ਼ੂਰ / ਨਾ ਮਨਜ਼ੂਰ"
+msgstr "ਮਨਜ਼ੂਰ / ਨਾਮੰਨਜ਼ੂਰ"
 
 msgid "Review History"
-msgstr "ਸਮੀਖਿਆ ਇਤਿਹਾਸ"
+msgstr "ਸਮੀਖਿਆ ਅਤੀਤ"
 
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr "ਮੁਆਫ਼ੀ, ਇਹ ਥੀਮ ਅਧੂਰਾ ਪਿਆ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਅਾਓ।"
+msgstr "ਮੁਆਫ਼ ਕਰਨਾ, ਇਹ ਥੀਮ ਅਧੂਰਾ ਪਿਆ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਅਾਇਉ।"
 
 msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "ਇਹ ਥੀਮ ਅਧੂਰਾ ਪਿਆ ਹੈ। ਇਹ ਹਰੇਕ ਲਈ ਅਲੋਪ ਹੈ ਪਰ ਤੁਸੀਂ।"
@@ -653,13 +652,13 @@ msgstr[0] "<strong>{0}</strong> ਹਫ਼ਤੇਵਾਰ ਡਾਊਨਲੋਡ"
 msgstr[1] "<strong>{0}</strong> ਹਫ਼ਤੇਵਾਰ ਡਾਊਨਲੋਡ"
 
 msgid "Not Reviewed"
-msgstr "ਪੁਨਰ ਵਿਚਾਰ ਨਹੀਂ"
+msgstr "ਸਮੀਖਿਆ ਨਹੀਂ ਹੋਈ"
 
 msgid "Tools"
-msgstr "ਟੂਲ"
+msgstr "ਸੰਦ"
 
 msgid "My Profile"
-msgstr "ਮੇਰੀ ਪ੍ਰੋਫ਼ਾਈਲ"
+msgstr "ਮੇਰਾ ਬਿਉਰਾ"
 
 msgid "Account Settings"
 msgstr "ਖਾਤਾ ਸੈਟਿੰਗ"
@@ -671,7 +670,7 @@ msgid "My Favorites"
 msgstr "ਮੇਰੇ ਪਸੰਦੀਦਾ"
 
 msgid "Log out"
-msgstr "ਲਾਗ ਆਉਟ"
+msgstr "ਬਾਹਰ ਹੋਵੋ"
 
 msgid "Manage My Submissions"
 msgstr "ਮੇਰੀਆਂ ਪੇਸ਼ਕਸ਼ਾਂ ਦਾ ਪ੍ਰਬੰਧ ਕਰੋ"
@@ -686,7 +685,7 @@ msgid "Developer Hub"
 msgstr "ਡਿਵੈਲਪਰ ਹਬ"
 
 msgid "Manage API Keys"
-msgstr ""
+msgstr "API ਕੁੰਜੀਆਂ ਦਾ ਪ੍ਰਬੰਧ ਕਰੋ"
 
 #, fuzzy
 msgid "Reviewer Tools"
