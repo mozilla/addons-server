@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 02:21+0000\n"
+"PO-Revision-Date: 2018-07-10 02:25+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -664,9 +664,8 @@ msgid "Not available for your platform"
 msgstr "ਤੁਹਾਡੇ ਪਲੇਟਫਾਰਮ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "{0} ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਨਾਲ ਇਹ ਥੀਮ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ"
+msgstr "ਇਹ ਐਡ-ਆਨ ਤੁਹਾਡੀ {0} ਵਾਲੀ ਵੰਨਗੀ ਦੇ ਮੇਚ ਦਾ ਨਹੀਂ ਹੈI"
 
 msgid "View other versions"
 msgstr "ਹੋਰ ਵਰਜਨ ਦੇਖੋ"
