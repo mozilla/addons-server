@@ -994,10 +994,13 @@ class CompatOverrideView(ListAPIView):
         if not guids:
             raise exceptions.ParseError(
                 'Empty, or no, guid parameter provided.')
-        # Evaluate the actual queryset. The amount of GUIDs we should get
-        # in real-life won't be paginated most of the time so it's safe to
-        # simply evaluate the query. The advantage here is that we are saving
-        # ourselves a `COUNT` query and these are expensive.
+        # Evaluate the queryset and cast it into a list.
+        # This will force Django to simply use len(queryset) instead of
+        # calling .count() on it and avoids an additional COUNT query.
+        # The amount of GUIDs we should get in real-life won't be paginated
+        # most of the time so it's safe to simply evaluate the query.
+        # The advantage here is that we are saving ourselves a `COUNT` query
+        # and these are expensive.
         return list(queryset.filter(guid__in=guids).transform(
             CompatOverride.transformer).order_by('-pk'))
 
