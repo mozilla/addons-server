@@ -978,7 +978,7 @@ class CompatOverrideView(ListAPIView):
 
     Every firefox client requests the list of overrides approx. once per day.
     Firefox requests the overrides via a list of GUIDs which makes caching
-    hard because the variation of possible GUID combinations avoid us to
+    hard because the variation of possible GUID combinations prevent us to
     simply add some dumb-caching and requires us to resolve cache-misses.
     """
 
