@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 05:04+0000\n"
+"PO-Revision-Date: 2018-07-10 05:14+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -2319,67 +2319,61 @@ msgid "Persona"
 msgstr "ਪਰਸੋਨਾ"
 
 msgid "Manual Reviewer Points"
-msgstr "ਦਸਤਾਵੇਜ਼ ਸਮੀਖਿਅਕ ਅੰਕ"
+msgstr "ਦਸਤੀ ਸਮੀਖਿਆ ਬਿੰਦੂ"
 
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "ਪੂਰੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
+msgstr "ਨਵੇਂ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ"
 
 msgid "Preliminary Add-on Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
+msgstr "ਐਡ-ਆਨ ਦੀ ਮੁੱਢਲੀ ਸਮੀਖਿਆ"
 
 msgid "Updated Add-on Review"
-msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋੋਈ"
+msgstr "ਐਡ-ਆਨ ਦੀ ਨਵਿਆਈ ਸਮੀਖਿਆ"
 
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "ਪੂਰੀ ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ"
+msgstr "ਨਵੇਂ ਸ਼ਬਦਕੋਸ ਦੀ ਸਮੀਖਿਆ"
 
 msgid "Preliminary Dictionary Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ"
+msgstr "ਮੁੱਢਲੀ ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ"
 
 msgid "Updated Dictionary Review"
-msgstr "ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
+msgstr "ਸ਼ਬਦਕੋਸ ਦੀ ਨਵਿਆਈ ਸਮੀਖਿਆ"
 
 msgid "New Language Pack Review"
 msgstr "ਨਵੀਂ ਬੋਲੀ ਪੰਡ ਦੀ ਸਮੀਖਿਆ"
 
 msgid "Preliminary Language Pack Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ"
+msgstr "ਬੋਲੀ ਦੀ ਪੰਡ ਦੀ ਮੁੱਢਲੀ ਸਮੀਖਿਆ"
 
 msgid "Updated Language Pack Review"
-msgstr "ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
+msgstr "ਬੋਲੀ ਦੀ ਪੰਡ ਦੀ ਨਵਿਆਈ ਸਮੀਖਿਆ"
 
 msgid "Theme Review"
 msgstr "ਥੀਮ ਸਮੀਖਿਆ"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "ਥੀਮ ਵੇਰਵਾ"
+msgstr "ਥੀਮ (ਸਥਾਈ) ਸਮੀਖਿਆ"
 
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "ਪੂਰੇ ਖੋਜ ਪ੍ਰਦਾਤਾ ਦੀ ਸਮੀਖਿਆ"
+msgstr "ਨਵੇਂ ਖੋਜ ਮੁਹੱਈਆ-ਕਰਤਾ ਦੀ ਸਮੀਖਿਆ"
 
 msgid "Preliminary Search Provider Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਖੋਜ ਪ੍ਰਦਾਤਾ ਸਮੀਖਿਆ"
+msgstr "ਖੋਜ ਮੁਹੱਈਆ-ਕਰਤਾ ਦੀ ਮੁੱਢਲੀ ਸਮੀਖਿਆ"
 
 msgid "Updated Search Provider Review"
-msgstr "ਖੋਜ ਪ੍ਰਦਾਤਾ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
+msgstr "ਖੋਜ ਮੁਹੱਈਆ-ਕਰਤਾ ਦੀ ਨਵਿਆਈ ਸਮੀਖਿਆ"
 
-#, fuzzy
 msgid "New Complete Theme Review"
-msgstr "ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ"
+msgstr "ਥੀਮ ਦੀ ਨਵੀਂ ਮੁਕੰਮਲ ਸਮੀਖਿਆ"
 
 msgid "Preliminary Complete Theme Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ"
+msgstr "ਮੁੱਢਲੀ ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ"
 
 msgid "Updated Complete Theme Review"
-msgstr "ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
+msgstr "ਮੁਕੰਮਲ ਥੀਮ ਦੀ ਨਵਿਆਈ ਸਮੀਖਿਆ"
 
-#, fuzzy
 msgid "Moderated Add-on Review"
-msgstr "ਮੱਧਮ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
+msgstr "ਠੀਕ-ਠਾਕ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
 
 #, fuzzy
 msgid "Add-on Review Moderation Reverted"
@@ -2402,22 +2396,22 @@ msgid "Post-Approval Add-on Review (Low Risk)"
 msgstr ""
 
 msgid "Level 1"
-msgstr "ਮਿਆਰ 1"
+msgstr "ਪੱਧਰ ੧"
 
 msgid "Level 2"
-msgstr "ਮਿਆਰ 2"
+msgstr "ਪੱਧਰ ੨"
 
 msgid "Level 3"
-msgstr "ਮਿਆਰ 3"
+msgstr "ਪੱਧਰ ੩"
 
 msgid "Level 4"
-msgstr "ਮਿਆਰ 4"
+msgstr "ਪੱਧਰ ੪"
 
 msgid "Level 5"
-msgstr "ਮਿਆਰ 5"
+msgstr "ਪੱਧਰ ੫"
 
 msgid "Level 6"
-msgstr "ਮਿਆਰ 6"
+msgstr "ਪੱਧਰ ੬"
 
 msgid "Level 7"
 msgstr ""
