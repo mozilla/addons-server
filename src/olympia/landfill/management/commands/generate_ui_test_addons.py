@@ -11,12 +11,10 @@ from olympia.landfill.serializers import GenerateAddonsSerializer
 #  Featured collections on the homepage.
 #  Needs to be updated as the homepage is updated
 featured_collections = [
-    u'good-time-tabs',
-    u'wikipedia-boosters',
-    u'social-media-customization',
-    u'translation-tools',
-    u'privacy-matters',
-    u'change-up-your-tabs',
+    'social-media-customization',
+    'dynamic-media-downloaders',
+    'summer-themes',
+    'must-have-media',
 ]
 
 #  Featured collections on the homepage.
@@ -32,25 +30,24 @@ base_collections = [
 #  Addons that exist in the carousel.
 #  Needs to be updated as the homepage is updated
 hero_addons = [
-    u'ublock-origin',
-    u'ghostery',
-    u'multi-account-containers',
-    u'facebook-video-downloader-hd',
-    u'myki-password-manager',
-    u'worldwide-radio',
-    u'black-menu-google',
-    u'container',
-    u'tabless',
-    u'share-backported',
-    u'veiw-page-archive',
-    u'groupspeeddial',
-    u'swift-selection-search',
-    u'web-security',
-    u'vertical-tabs-reloaded',
-    u'page-translate',
-    u'image-search-options',
-    u'forget_me_not',
-    u'turbo-download-manager',
+    u'facebook-container'
+    u'midnight-lizard-quantum'
+    u'turbo-download-manager'
+    u'auth-helper'
+    u'ip-address-and-domain-info'
+    u'ublock-origin'
+    u'ghostery'
+    u'multi-account-containers'
+    u'transparent-standalone-image'
+    u'tabliss'
+    u'share-backported'
+    u'view-page-archive'
+    u'privacy-possum'
+    u'page-translate'
+    u'textmarkerpro'
+    u'forget_me_not'
+    u'groupspeeddial'
+    u'styl-us'
 ]
 
 
