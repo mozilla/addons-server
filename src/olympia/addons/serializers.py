@@ -625,7 +625,7 @@ class ESAddonSerializerWithUnlistedData(
 
 class ESAddonAutoCompleteSerializer(ESAddonSerializer):
     class Meta(ESAddonSerializer.Meta):
-        fields = ('id', 'icon_url', 'name', 'url')
+        fields = ('id', 'icon_url', 'name', 'type', 'url')
         model = Addon
 
     def get_url(self, obj):
