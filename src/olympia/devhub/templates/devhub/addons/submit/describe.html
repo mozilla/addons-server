@@ -10,7 +10,7 @@
     {% csrf_token %}
     <div class="addon-submission-field">
       <label for="id_name">{{ _("Name:") }}</label>
-      <span class="tip tooltip" title="{{ _('Name on listing on this site.  May be different to the name inside the add-on, which is shown inside Firefox') }}" data-oldtitle="">?</span>
+      <span class="tip tooltip" title="{{ _('Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox') }}" data-oldtitle="">?</span>
       {{ form.name }}
       {{ form.name.errors }}
     </div>

@@ -15,7 +15,7 @@
           <input type="hidden" id="theme-name" value="{{ addon.name }}"/>
           {{ addon.name }}
           <ul class="note">
-            <li>{% trans edit_url_open=('<a href="' + url('devhub.addons.edit', addon.slug) + '">')|safe,
+            <li>{% trans edit_url_open='<a href="{}">'|format_html(url('devhub.addons.edit', addon.slug)),
                          edit_url_close='</a>'|safe %}
               To change the theme name, first go to {{ edit_url_open }}edit listing{{ edit_url_close }}.
             {% endtrans %}</li>
