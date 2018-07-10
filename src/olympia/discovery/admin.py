@@ -47,10 +47,12 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
         return super(DiscoveryItemAdmin, self).formfield_for_foreignkey(
             db_field, request, **kwargs)
 
-    def build_preview(self, obj):
+    def build_preview(self, obj, locale):
         return format_html(
-            u'<br/><h2 class="heading">{}</h2>'
-            u'<div class="editorial-description">{}</div>',
+            u'<div class="discovery-preview" data-locale="{}">'
+            u'<h2 class="heading">{}</h2>'
+            u'<div class="editorial-description">{}</div></div>',
+            locale,
             mark_safe(obj.heading),
             mark_safe(obj.description))
 
@@ -58,7 +60,7 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
         translations = []
         for locale in ('en-US', ) + KEY_LOCALES_FOR_EDITORIAL_CONTENT:
             with translation.override(locale):
-                translations.append(self.build_preview(obj))
+                translations.append(self.build_preview(obj, locale))
         return format_html(u''.join(translations))
 
 

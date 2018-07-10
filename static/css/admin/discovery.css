@@ -2,6 +2,11 @@
     width: 13em;
 }
 
+.field-previews .discovery-preview {
+    clear: left;
+    margin-top: 2em;
+}
+
 .field-previews h2.heading {
     background: none;
     color: #444;
@@ -39,4 +44,9 @@
     font-size: inherit;
     margin-left: 0;
     padding-left: 0;
+}
+
+.field-previews .discovery-preview::before {
+    content: attr(data-locale);
+    display: block;
 }
