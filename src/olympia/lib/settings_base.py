@@ -1769,9 +1769,10 @@ DRF_API_GATES = {
     'v3': (
         'ratings-rating-shim',
         'ratings-title-shim',
+        'l10n_flat_input_output',
     ),
     'v4': (
-    )
+    ),
 }
 
 REST_FRAMEWORK = {

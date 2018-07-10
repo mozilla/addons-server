@@ -12,6 +12,8 @@ import pytest
 
 from mock import Mock, patch
 from pyquery import PyQuery as pq
+from rest_framework.fields import empty
+from rest_framework.settings import api_settings
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
@@ -1312,14 +1314,32 @@ class TestCollectionViewSetDetail(TestCase):
         assert response.data['id'] == self.collection.id
         addon_data = response.data['addons'][0]['addon']
         assert addon_data['id'] == addon.id
-        assert isinstance(addon_data['name'], basestring)
-        assert addon_data['name'] == unicode(addon.name)
-        assert isinstance(addon_data['homepage'], basestring)
-        assert addon_data['homepage'] == get_outgoing_url(
-            unicode(addon.homepage))
-        assert isinstance(addon_data['support_url'], basestring)
-        assert addon_data['support_url'] == get_outgoing_url(
-            unicode(addon.support_url))
+        assert isinstance(addon_data['name']['en-US'], basestring)
+        assert addon_data['name'] == {'en-US': unicode(addon.name)}
+        assert isinstance(addon_data['homepage']['en-US'], basestring)
+        assert addon_data['homepage'] == {
+            'en-US': get_outgoing_url(unicode(addon.homepage))}
+        assert isinstance(addon_data['support_url']['en-US'], basestring)
+        assert addon_data['support_url'] == {
+            'en-US': get_outgoing_url(unicode(addon.support_url))}
+
+        overridden_api_gates = {
+            api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)}
+        with override_settings(DRF_API_GATES=overridden_api_gates):
+            response = self.client.get(
+                self.url + '?with_addons&lang=en-US&wrap_outgoing_links')
+            assert response.status_code == 200
+            assert response.data['id'] == self.collection.id
+            addon_data = response.data['addons'][0]['addon']
+            assert addon_data['id'] == addon.id
+            assert isinstance(addon_data['name'], basestring)
+            assert addon_data['name'] == unicode(addon.name)
+            assert isinstance(addon_data['homepage'], basestring)
+            assert addon_data['homepage'] == get_outgoing_url(
+                unicode(addon.homepage))
+            assert isinstance(addon_data['support_url'], basestring)
+            assert addon_data['support_url'] == get_outgoing_url(
+                unicode(addon.support_url))
 
 
 class CollectionViewSetDataMixin(object):
@@ -1367,6 +1387,25 @@ class CollectionViewSetDataMixin(object):
     def test_update_name_invalid(self):
         self.client.login_api(self.user)
         data = dict(self.data)
+        # Sending a single value for localized field is now forbidden.
+        data.update(name=u'   ')
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'name': ['You must provide an object of {lang-code:value}.']}
+
+        # Passing a dict of localised values
+        data.update(name={'en-US': u'   '})
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'name': ['Name cannot be empty.']}
+
+    @override_settings(DRF_API_GATES={
+        api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)})
+    def test_update_name_invalid_flat_input(self):
+        self.client.login_api(self.user)
+        data = dict(self.data)
         data.update(name=u'   ')
         response = self.send(data=data)
         assert response.status_code == 400
@@ -1381,6 +1420,25 @@ class CollectionViewSetDataMixin(object):
             'name': ['Name cannot be empty.']}
 
     def test_biography_no_links(self):
+        self.client.login_api(self.user)
+        data = dict(self.data)
+        data.update(description='<a href="https://google.com">google</a>')
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'description': [
+                'You must provide an object of {lang-code:value}.']}
+
+        data.update(description={
+            'en-US': '<a href="https://google.com">google</a>'})
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'description': ['No links are allowed.']}
+
+    @override_settings(DRF_API_GATES={
+        api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)})
+    def test_biography_no_links_flat_input(self):
         self.client.login_api(self.user)
         data = dict(self.data)
         data.update(description='<a href="https://google.com">google</a>')
@@ -1437,6 +1495,30 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
     def test_create_minimal(self):
         self.client.login_api(self.user)
         data = {
+            'name': {'en-US': u'this'},
+            'slug': u'minimal',
+        }
+        response = self.send(data=data)
+        assert response.status_code == 201, response.content
+        collection = Collection.objects.get()
+        assert collection.name == data['name']['en-US']
+        assert collection.slug == data['slug']
+
+        # Double-check trying to create with a non-dict name now fails
+        data = {
+            'name': u'this',
+            'slug': u'minimal',
+        }
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'name': ['You must provide an object of {lang-code:value}.']}
+
+    @override_settings(DRF_API_GATES={
+        api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)})
+    def test_create_minimal_flat_input(self):
+        self.client.login_api(self.user)
+        data = {
             'name': u'this',
             'slug': u'minimal',
         }
@@ -1449,7 +1531,7 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
     def test_create_cant_set_readonly(self):
         self.client.login_api(self.user)
         data = {
-            'name': u'this',
+            'name': {'en-US': u'this'},
             'slug': u'minimal',
             'addon_count': 99,  # In the serializer but read-only.
             'subscribers': 999,  # Not in the serializer.
@@ -1486,13 +1568,13 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
     def test_create_numeric_slug(self):
         self.client.login_api(self.user)
         data = {
-            'name': u'this',
+            'name': {'en-US': u'this'},
             'slug': u'1',
         }
         response = self.send(data=data)
         assert response.status_code == 201, response.content
         collection = Collection.objects.get()
-        assert collection.name == data['name']
+        assert collection.name == data['name']['en-US']
         assert collection.slug == data['slug']
 
 
@@ -1933,6 +2015,28 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
         self.client.login_api(self.user)
         response = self.send(self.url,
                              data={'addon': self.addon.pk,
+                                   'notes': {'en-US': 'its good!'}})
+        self.check_response(response)
+        collection_addon = CollectionAddon.objects.get(
+            collection=self.collection.id, addon=self.addon.id)
+        assert collection_addon.addon == self.addon
+        assert collection_addon.collection == self.collection
+        assert collection_addon.comments == 'its good!'
+
+        # Double-check trying to create with a non-dict name now fails
+        response = self.send(self.url,
+                             data={'addon': self.addon.pk,
+                                   'notes': 'its good!'})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'notes': ['You must provide an object of {lang-code:value}.']}
+
+    @override_settings(DRF_API_GATES={
+        api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)})
+    def test_add_with_comments_flat_input(self):
+        self.client.login_api(self.user)
+        response = self.send(self.url,
+                             data={'addon': self.addon.pk,
                                    'notes': 'its good!'})
         self.check_response(response)
         collection_addon = CollectionAddon.objects.get(
@@ -1943,7 +2047,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
 
     def test_fail_when_no_addon(self):
         self.client.login_api(self.user)
-        response = self.send(self.url, data={'notes': ''})
+        response = self.send(self.url, data={'notes': {'en-US': ''}})
         assert response.status_code == 400
         assert json.loads(response.content) == {
             'addon': [u'This field is required.']}
@@ -1997,17 +2101,17 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
                 'addon': self.addon.id})
         super(TestCollectionAddonViewSetPatch, self).setUp()
 
-    def check_response(self, response, data=None):
-        data = data or {'notes': 'it does things'}
+    def check_response(self, response, notes=empty):
+        notes = notes if notes != empty else u'it does things'
         assert response.status_code == 200, response.content
         collection_addon = CollectionAddon.objects.get(
             collection=self.collection.id)
         assert collection_addon.addon == self.addon
         assert collection_addon.collection == self.collection
-        assert collection_addon.comments == data['notes']
+        assert collection_addon.comments == notes
 
     def send(self, url, data=None):
-        data = data or {'notes': 'it does things'}
+        data = data or {'notes': {'en-US': 'it does things'}}
         return self.client.patch(url, data=data)
 
     def test_basic(self):
@@ -2015,12 +2119,27 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
         response = self.send(self.url)
         self.check_response(response)
 
+    def test_flat_input(self):
+        self.client.login_api(self.user)
+        data = {'notes': 'it does things'}
+        # By default this should be rejected
+        response = self.send(self.url, data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'notes': ['You must provide an object of {lang-code:value}.']}
+        # But with the correct api gate, we can use the old behavior
+        overridden_api_gates = {
+            api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)}
+        with override_settings(DRF_API_GATES=overridden_api_gates):
+            response = self.send(self.url, data)
+            self.check_response(response)
+
     def test_cant_change_addon(self):
         self.client.login_api(self.user)
         new_addon = addon_factory()
         response = self.send(self.url,
                              data={'addon': new_addon.id})
-        self.check_response(response, data={'notes': None})
+        self.check_response(response, notes=None)
 
     def test_deleted(self):
         self.addon.delete()

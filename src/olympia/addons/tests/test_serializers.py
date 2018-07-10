@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.test.utils import override_settings
 from django.utils.translation import override
 
 from rest_framework.test import APIRequestFactory
@@ -314,6 +315,18 @@ class AddonSerializerOutputTestMixin(object):
         result = self.serialize()
         assert result['contributions_url'] == (
             get_outgoing_url(unicode(self.addon.contributions)))
+        assert result['homepage'] == {
+            'en-US': get_outgoing_url(unicode(self.addon.homepage)),
+        }
+        assert result['support_url'] == {
+            'en-US': get_outgoing_url(unicode(self.addon.support_url)),
+        }
+        # And again, but with v3 style flat strings
+        gates = {None: ('l10n_flat_input_output',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+        assert result['contributions_url'] == (
+            get_outgoing_url(unicode(self.addon.contributions)))
         assert result['homepage'] == (
             get_outgoing_url(unicode(self.addon.homepage))
         )
@@ -476,6 +489,14 @@ class AddonSerializerOutputTestMixin(object):
         self.request = APIRequestFactory().get('/', {'lang': 'fr'})
         with override('fr'):
             result = self.serialize()
+        assert result['description'] == {'fr': translated_descriptions['fr']}
+        assert result['homepage'] == {'fr': translated_homepages['fr']}
+
+        # And again, but with v3 style flat strings
+        with override('fr'):
+            gates = {None: ('l10n_flat_input_output',)}
+            with override_settings(DRF_API_GATES=gates):
+                result = self.serialize()
         assert result['description'] == translated_descriptions['fr']
         assert result['homepage'] == translated_homepages['fr']
 
@@ -1064,6 +1085,13 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         self.request = APIRequestFactory().get('/', {'lang': 'fr'})
         with override('fr'):
             result = self.serialize()
+        assert result['name'] == {'fr': translated_name['fr']}
+
+        # And again, but with v3 style flat strings
+        with override('fr'):
+            gates = {None: ('l10n_flat_input_output',)}
+            with override_settings(DRF_API_GATES=gates):
+                result = self.serialize()
         assert result['name'] == translated_name['fr']
 
     def test_icon_url_with_persona_id(self):

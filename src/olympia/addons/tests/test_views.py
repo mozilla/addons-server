@@ -19,6 +19,7 @@ from elasticsearch import Elasticsearch
 from mock import patch
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
+from rest_framework.settings import api_settings
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
@@ -1766,23 +1767,45 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             'fr': u'Mon Addôn, le mien',
         }
         self.addon.save()
+
         response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.status_code == 200
         result = json.loads(response.content)
         assert result['id'] == self.addon.pk
-        assert result['name'] == u'My Addôn, mine'
+        assert result['name'] == {'en-US': u'My Addôn, mine'}
 
         response = self.client.get(self.url, {'lang': 'fr'})
         assert response.status_code == 200
         result = json.loads(response.content)
         assert result['id'] == self.addon.pk
-        assert result['name'] == u'Mon Addôn, le mien'
+        assert result['name'] == {'fr': u'Mon Addôn, le mien'}
 
-        response = self.client.get(self.url, {'lang': 'en-US'})
+        response = self.client.get(self.url, {'lang': 'de'})
         assert response.status_code == 200
         result = json.loads(response.content)
         assert result['id'] == self.addon.pk
-        assert result['name'] == u'My Addôn, mine'
+        assert result['name'] == {'en-US': u'My Addôn, mine'}
+
+        overridden_api_gates = {
+            api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)}
+        with override_settings(DRF_API_GATES=overridden_api_gates):
+            response = self.client.get(self.url, {'lang': 'en-US'})
+            assert response.status_code == 200
+            result = json.loads(response.content)
+            assert result['id'] == self.addon.pk
+            assert result['name'] == u'My Addôn, mine'
+
+            response = self.client.get(self.url, {'lang': 'fr'})
+            assert response.status_code == 200
+            result = json.loads(response.content)
+            assert result['id'] == self.addon.pk
+            assert result['name'] == u'Mon Addôn, le mien'
+
+            response = self.client.get(self.url, {'lang': 'de'})
+            assert response.status_code == 200
+            result = json.loads(response.content)
+            assert result['id'] == self.addon.pk
+            assert result['name'] == u'My Addôn, mine'
 
 
 class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
@@ -3049,11 +3072,22 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         # Search in a different language than the one used for the name: we
         # should fall back to default_locale and find the translation.
         data = self.perform_search(self.url, {'q': 'foobar', 'lang': 'fr'})
-        assert data['results'][0]['name'] == 'foobar'
+        assert data['results'][0]['name'] == {'pt-BR': 'foobar'}
 
         # Same deal in en-US.
         data = self.perform_search(self.url, {'q': 'foobar', 'lang': 'en-US'})
-        assert data['results'][0]['name'] == 'foobar'
+        assert data['results'][0]['name'] == {'pt-BR': 'foobar'}
+
+        # And repeat with v3-style flat output when lang is specified:
+        overridden_api_gates = {
+            api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)}
+        with override_settings(DRF_API_GATES=overridden_api_gates):
+            data = self.perform_search(self.url, {'q': 'foobar', 'lang': 'fr'})
+            assert data['results'][0]['name'] == 'foobar'
+
+            data = self.perform_search(
+                self.url, {'q': 'foobar', 'lang': 'en-US'})
+            assert data['results'][0]['name'] == 'foobar'
 
     def test_empty(self):
         data = self.perform_search(self.url)
