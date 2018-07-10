@@ -475,6 +475,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         doc = pq(response.content)
         assert doc('#theme-wizard')
         assert doc('#theme-wizard').attr('data-version') == '1.0'
+        assert doc('input#theme-name').attr('type') == 'text'
 
         # And then check the upload works.  In reality the zip is generated
         # client side in JS but the zip file is the same.
@@ -507,6 +508,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         doc = pq(response.content)
         assert doc('#theme-wizard')
         assert doc('#theme-wizard').attr('data-version') == '1.0'
+        assert doc('input#theme-name').attr('type') == 'text'
 
         # And then check the upload works.  In reality the zip is generated
         # client side in JS but the zip file is the same.
@@ -1426,6 +1428,9 @@ class VersionSubmitUploadMixin(object):
         doc = pq(response.content)
         assert doc('#theme-wizard')
         assert doc('#theme-wizard').attr('data-version') == '3.0'
+        assert doc('input#theme-name').attr('type') == 'hidden'
+        assert doc('input#theme-name').attr('value') == (
+            unicode(self.addon.name))
 
         # And then check the upload works.
         path = os.path.join(

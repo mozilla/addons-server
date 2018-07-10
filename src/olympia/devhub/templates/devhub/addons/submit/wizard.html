@@ -11,7 +11,13 @@
   <div id="theme-wizard" data-version="{{ version_number }}">
     <div>
         <h3>{{ _('Theme name') }}<span class="req" title="{{ _('required') }}">*</span></h3>
-        <input type="text" id="theme-name"/>
+        {% if addon %}
+          <input type="hidden" id="theme-name" value="{{ addon.name }}"/>
+          {{ addon.name }}
+      </ul>
+        {% else %}
+          <input type="text" id="theme-name"/>
+        {% endif %}
     </div>
     <div id="theme-header" class="row">
       <label class="row" for="header-img">
