@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 05:23+0000\n"
+"PO-Revision-Date: 2018-07-10 05:33+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -2703,7 +2703,7 @@ msgid "Review requested."
 msgstr "ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕੀਤੀ ਗਈ।"
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "ਅੱਗੇ ਵਧਣ ਲਈ ਤੁਹਾਨੂੰ ਹੋਰ ਵੇਰਵੇ ਦੇਣੇ ਜਰੂਰੀ ਹਨ।"
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr ""
@@ -2712,10 +2712,10 @@ msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
 msgid "New API key created"
-msgstr ""
+msgstr "ਨਵੀਂ API ਕੁੰਜੀ ਬਣਾਈ ਗਈ"
 
 msgid "API key revoked"
-msgstr ""
+msgstr "API ਕੁੰਜੀ ਰੱਦ ਕੀਤੀ ਗਈ"
 
 #, fuzzy
 msgid ""
@@ -2726,15 +2726,14 @@ msgstr "ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "ਸਮੀਖਿਆ ਮਿਤੀ"
+msgstr "ਨੀਤੀਆਂ ਅਤੇ ਨਿਯਮਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "ਮੈਂ ਨਿਯਮ ਅਤੇ ਨੀਤੀਆਂ ਪੜ੍ਹ ਲਏ ਤੇ ਮੰਨਜ਼ੂਰ ਕਰ ਲਏ ਹਨ"
 
 msgid "Accept"
-msgstr ""
+msgstr "ਪਰਵਾਨ ਹੈ"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ਜਾਂ <a href=\"{0}\">ਰੱਦ</a>"
@@ -2877,7 +2876,7 @@ msgid "Add Another Application&hellip;"
 msgstr "ਹੋਰ ਐਪਲੀਕੇਸ਼ਨ ਜੋੜੋ&hellip;"
 
 msgid "Close"
-msgstr "ਬੰਦ"
+msgstr "ਬੰਦ ਕਰੋ"
 
 msgid "Recent Activity"
 msgstr "ਤਾਜ਼ਾ ਸਰਗਰਮੀ"
@@ -2895,9 +2894,8 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> ਥੀਮ"
 msgstr[1] "<b>{0}</b> ਥੀਮ"
 
-#, fuzzy
 msgid "Edit Information"
-msgstr "ਮੁੱਢਲੀ ਜਾਣਕਾਰੀ"
+msgstr "ਜਾਣਕਾਰੀ ਸੋਧੋ"
 
 msgid "None"
 msgstr "ਕੋਈ ਨਹੀਂ"
@@ -2905,12 +2903,11 @@ msgstr "ਕੋਈ ਨਹੀਂ"
 msgid "Preview"
 msgstr "ਝਲਕ"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "ਦੁਜੇ ਵਰਜਨ ਵੇਖੋ"
+msgstr "ਸੂਚੀਬੱਧ ਵੰਨਗੀ ਦੀ ਪਹਿਲ ਝਲਕ"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "ਝਲਕ ਅਜੇ ਵੀ ਤਿਆਰ ਕੀਤੀ ਜਾ ਰਹੀ ਐ - ਮੁੜ ਕੇ ਆਇਉ ਜਾਂ ਵਰਕਾ ਸੱਜਰਾ ਕਰੋ।"
 
 msgid "Manage Authors & License"
 msgstr "ਲੇਖਕਾਂ ਅਤੇ ਲਾਇਸੰਸ ਦਾ ਪ੍ਰਬੰਧ ਕਰੋ"
@@ -2947,7 +2944,7 @@ msgid "View Listing"
 msgstr "ਸੂਚੀ ਵੇਖੋ"
 
 msgid "Summary"
-msgstr "ਸੰਖੇਪ"
+msgstr "ਸਾਰ"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -3031,7 +3028,7 @@ msgid "A longer explanation of features, functionality, and other relevant infor
 msgstr "ਗੁਣਾਂ, ਕਾਰਗੁਜ਼ਾਰੀ, ਅਤੇ ਹੋਰ ਸੰਬੰਧਤ ਜਾਣਕਾਰੀ ਦੀ ਇੱਕ ਲੰਬੀ ਵਿਆਖਿਆ। ਇਹ ਖੇਤਰ ਕੇਵਲ ਐਡ-ਆਨ ਦੇ ਮੁੱਖ ਸਫ਼ੇ ਤੇ ਵਿਆਖਿਆ ਜਾਂਦਾ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵੀਂ ਹੈ।"
 
 msgid "Default Locale"
-msgstr "ਮੂਲ ਲੋਕੇਲ"
+msgstr "ਮੂਲ ਬੋਲੀ"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਬਾਰੇ ਜਾਣਕਾਰੀ ਇਸ ਲੋਕੇਲ ਵਿੱਚ ਵਿਖਾਈ ਜਾਂਦੀ ਹੈ ਜਦ ਤੱਕ ਤੁਸੀਂ ਇਸ ਨੂੰ ਇੱਕ ਖ਼ਾਸ-ਲੋਕੇਲ ਤਰਜਮੇ ਨਾਲ ਮੁੜ ਨਹੀਂ ਲਿੱਖਦੇ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
@@ -3050,14 +3047,14 @@ msgid "Images"
 msgstr "ਤਸਵੀਰਾਂ"
 
 msgid "Support Information"
-msgstr "ਸਹਿਯੋਗ ਜਾਣਕਾਰੀ"
+msgstr "ਸਮਰਥਨ ਜਾਣਕਾਰੀ"
 
 #. {0} is an addon name
 msgid "Support Information for {0}"
 msgstr "{0} ਲਈ ਸਹਿਯੋਗ ਜਾਣਕਾਰੀ"
 
 msgid "Email"
-msgstr "ਈਮੇਲ"
+msgstr "ਈ-ਚਿੱਠੀ"
 
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
@@ -3077,14 +3074,14 @@ msgstr ""
 " ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
 msgid "Technical Details"
-msgstr "ਤਕਨੀਕੀ ਜਾਣਕਾਰੀ"
+msgstr "ਤਕਨੀਕੀ ਵੇਰਵੇ"
 
 #. {0} is an addon name
 msgid "Technical Details for {0}"
-msgstr "{0} ਲਈ ਤਕਨੀਕੀ ਜਾਣਕਾਰੀ"
+msgstr "{0} ਲਈ ਤਕਨੀਕੀ ਵੇਰਵੇ"
 
 msgid "Developer Comments"
-msgstr "ਡਿਵੈਲਪਰ ਟਿੱਪਣੀਆਂ"
+msgstr "ਵਿਕਾਸਕਾਰ ਦੀਆਂ ਟਿੱਪਣੀਆਂ"
 
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
