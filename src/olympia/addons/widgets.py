@@ -12,20 +12,23 @@ from olympia.addons.models import Category
 class IconTypeSelect(forms.RadioSelect):
 
     def render(self, name, value, attrs=None, renderer=None):
-        output = []
+        args = []
 
         for option in self.options(name, value, attrs):
             option_value = option['value']
             if option_value.split('/')[0] == 'icon' or option_value == '':
                 icon_name = option['label']
-                output.append((
-                    '<li><a href="#" class="{}">'
-                    '<img src="{}img/addon-icons/{}-32.png" alt="">'
-                    '</a></li>', (
-                        'active' if option_value == value else '',
-                        settings.STATIC_URL,
-                        icon_name)))
-        return format_html_join(output)
+                args.append((
+                    'active' if option_value == value else '',
+                    settings.STATIC_URL,
+                    icon_name))
+
+        tmpl = (
+            '<li><a href="#" class="{}">'
+            '<img src="{}img/addon-icons/{}-32.png" alt="">'
+            '</a></li>')
+
+        return format_html_join('', tmpl, args)
 
 
 class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
