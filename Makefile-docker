@@ -145,6 +145,7 @@ make-tmp-dir:
 
 setup-ui-tests:
 	rm -rf ./user-media/* ./tmp/*
+	mkdir tmp/ui-tests/user-media/tmp/cache
 	# Reset the database and fake database migrations
 	# The --no-utf8 is a temporary workaround for https://github.com/mozilla/addons-server/issues/8593
 	# The actual fix is pushed upstream in https://github.com/django-extensions/django-extensions/issues/1213
