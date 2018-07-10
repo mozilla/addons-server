@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 04:15+0000\n"
+"PO-Revision-Date: 2018-07-10 04:21+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -1500,16 +1500,16 @@ msgstr "{0} ਥੀਮ"
 
 #. {0} is a user's name.
 msgid "{0}'s Themes"
-msgstr "{0}'s ਥੀਮ"
+msgstr "{0} ਦੇ ਥੀਮ"
 
 msgid "View Profile"
-msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਵੇਖੋ"
+msgstr "ਬਿਉਰਾ ਵੇਖੋ"
 
 msgid "Create Your Own Theme"
 msgstr "ਤੁਹਾਡੇ ਆਪਣੇ ਥੀਮ ਰਚੋ"
 
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr "ਤੁਹਾਡਾ ਬਰਾਊਂਜਰ, ਤੁਹਾਡਾ ਸ਼ੈਲੀ! ਇਸ ਨੂੰ ਤੁਹਾਡੇ ਆਪਣੇ ਡਿਜ਼ਾਇਨ ਨਾਲ ਤਿਆਰ ਕਰੋ!"
+msgstr "ਤੁਹਾਡਾ ਬਰਾਊਂਜਰ, ਤੁਹਾਡੀ ਸ਼ੈਲੀ! ਇਸ ਨੂੰ ਤੁਹਾਡੀ ਆਪਣੀ ਬਣਤਰ ਨਾਲ ਤਿਆਰ ਕਰੋ!"
 
 msgid "Learn more"
 msgstr "ਹੋਰ ਜਾਣੋ"
@@ -1528,7 +1528,7 @@ msgid "Over 300,000 designs to personalize your browser! Move your mouse over a 
 msgstr "ਤੁਹਾਡੇ ਬਰਾਊਂਜਰ ਨੂੰ ਨਿਜੀ ਬਣਾਉਣ ਲਈ 300,000 ਤੋਂ ਵੱਧ ਡਿਜ਼ਾਇਨ! ਆਪਣੇ ਮਾਊਸ ਨੂੰ ਇੱਕ ਬੈਕਗਰਾਊਂਡ ਥੀਮ ਦੇ ਉੱਪਰ ਚਲਾਓ ਉਸ ਦੀ ਵਰਤੋਂ ਕਰਨ ਲਈ। <a href=\"%(url)s\" class=\"more-info\">ਪੜਚੋਲ ਸ਼ੁਰੂ ਕਰੋ</a>"
 
 msgid "Want more personalization?"
-msgstr "ਹੋਰ ਨਿਜੀ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
+msgstr "ਹੋਰ ਨਿੱਜੀ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -1537,16 +1537,16 @@ msgid "Complete Themes transform the look of your browser with styles for the wi
 msgstr "ਮੁਕੰਮਲ ਥੀਮ ਵਿੰਡੋ ਫ਼ਰੇਮ, ਅਡਰੈੱਸ ਬਾਰ, ਬਦਨਾਂ, ਟੈਬਾਂ, ਅਤੇ ਮੀਨੂੰ ਲਈ ਸਟਾਈਲਾਂ ਦੇ ਨਾਲ ਤੁਹਾਡੇ ਬਰਾਊਂਜਰ ਦਾ ਰੂਪ ਬਦਲ ਦੇਣਗੇ। <a href=\"%(url)s\" class=\"more-info\">ਪੜਚੋਲ ਸ਼ੁਰੂ ਕਰੋ</a>"
 
 msgid "Up & Coming Themes"
-msgstr "ਉੱਤੇ ਅਤੇ ਆ ਰਹੇ ਥੀਮ"
+msgstr "ਅਗਲੇ ਤੇ ਆਉਣ ਵਾਲੇ ਥੀਮ"
 
 msgid "View All Up & Coming"
-msgstr "ਉੱਤੇ ਅਤੇ ਆ ਰਹੇ ਸਾਰੇ ਵੇਖੋ"
+msgstr "ਅਗਲੇ ਤੇ ਆਉਣ ਵਾਲੇ ਸਾਰੇ ਵੇਖੋ"
 
 msgid "No themes found"
 msgstr "ਕੋਈ ਥੀਮ ਨਹੀਂ ਮਿਲਿਆ"
 
 msgid "All"
-msgstr "ਸਾਰੇ"
+msgstr "ਸੱਭ"
 
 msgid "Add-on Compatibility Reports"
 msgstr "ਐਡ-ਆਨ ਅਨੁਕੂਲਤਾ ਸੂਚਨਾਵਾਂ"
@@ -1575,20 +1575,20 @@ msgstr[1] "{0} ਸਫ਼ਲਤਾ ਰਿਪੋਰਟਾਂ"
 
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] "{0} ਸਮੱਸਿਆ ਰਿਪੋਰਟ"
-msgstr[1] "{0} ਸਮੱਸਿਆ ਰਿਪੋਰਟਾਂ"
+msgstr[0] "{0} ਮੁਸ਼ਕਲ ਸੂਚਨਾ"
+msgstr[1] "{0} ਮੁਸ਼ਕਲ ਸੂਚਨਾਵਾਂ"
 
 msgid "View all"
-msgstr "ਸਾਰੇ ਵੇਖੋ"
+msgstr "ਸੱਭ ਵੇਖੋ"
 
 msgid "Filter by Application"
-msgstr "ਐਪਲੀਕੇਸ਼ਨ ਦੁਆਰਾ ਫ਼ਿਲਟਰ"
+msgstr "ਐਪਲੀਕੇਸ਼ਨ ਦੇ ਹਿਸਾਬ ਨਾਲ ਛਾਣੋ"
 
 msgid "Report Type"
-msgstr "ਰਿਪਰੋਟ ਟਾਈਪ"
+msgstr "ਸੂਚਨਾ ਕਿਸਮ"
 
 msgid "Version"
-msgstr "ਵਰਜਨ"
+msgstr "ਵੰਨਗੀ"
 
 #, fuzzy
 msgid "Application Version"
