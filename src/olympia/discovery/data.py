@@ -25,61 +25,63 @@ class DiscoItem(object):
 # add-on by another.
 discopane_items = {
     'default': [
-        # 'Bokeh Beta' theme.
+        # 'abstract colorful owl' theme.
         DiscoItem(
-            addon_id=42019, type=amo.ADDON_PERSONA),
+            addon_id=677612, type=amo.ADDON_PERSONA),
 
-        # Privacy Badger
+        # Forget Me Not
         DiscoItem(
-            addon_id=506646,
-            heading=_(u'Stop sneaky trackers {start_sub_heading}'
+            addon_id=884014,
+            heading=_(u'Leave a clean digital trail {start_sub_heading}'
                       u'with {addon_name}{end_sub_heading}'),
             description=string_concat(
                 '<blockquote>',
-                _(u' Block invisible trackers and spying ads that follow you '
-                  u'around the web.'),
+                _(u'Make Firefox forget website data like cookies and local '
+                  u'storage, but only for domains you choose.'),
                 '</blockquote>')),
 
-        # Tabliss
+        # Enhancer for YouTube
         DiscoItem(
-            addon_id=850407,
-            heading=_(u'Customize new tab pages {start_sub_heading}with '
+            addon_id=700308,
+            heading=_(u'Improve videos {start_sub_heading}with '
                       u'{addon_name} {end_sub_heading}'),
             description=string_concat(
                 '<blockquote>',
-                _(u'Enjoy a beautiful new page with customizable backgrounds, '
-                  u'local weather info, and more.'),
+                _(u'Enjoy a suite of new YouTube features, like cinema mode, '
+                  u'ad blocking, auto-play, and more.'),
                 '</blockquote>')),
 
-        # 'Foggy Dawn' theme
+        # 'Strands of Gold' theme
         DiscoItem(
-            addon_id=553386, type=amo.ADDON_PERSONA,
-            addon_name='Foggy Dawn'),
+            addon_id=599898, type=amo.ADDON_PERSONA,
+            addon_name='Strands of Gold'),
 
-        # To Google Translate
+        # uBlock Origin
         DiscoItem(
-            addon_id=445852,
-            heading=_(u'Translate easily {start_sub_heading}'
+            addon_id=607454,
+            heading=_(u'Block ads {start_sub_heading}'
                       u'with {addon_name}{end_sub_heading}'),
             description=string_concat(
                 '<blockquote>',
-                _(u'Highlight any text, right-click, and translate '
-                  u'instantly.'),
+                _(u'A lightweight and effective ad blocker. uBlock Origin '
+                  u'enforces thousands of content filters without chewing up '
+                  u'a lot of memory.'),
                 '</blockquote>')),
 
-        # Image Search Options
+        # Emoji Cheatsheet
         DiscoItem(
-            addon_id=93451,
-            heading=_(u'Search Images {start_sub_heading}with {addon_name}'
-                      u'{end_sub_heading}'),
+            addon_id=511962,
+            heading=_(u'Up your emoji game {start_sub_heading}'
+                      u'with {addon_name}{end_sub_heading}'),
             description=string_concat(
                 '<blockquote>',
-                _(u'Perform reverse image searches from an array of engines.'),
+                _(u'Dozens of amazing emojis for every occasion—just a click '
+                  u'away.'),
                 '</blockquote>')),
 
-        # 'Sakura Blossoms & Birds' theme.
+        # 'Phoenix in the Clouds' theme.
         DiscoItem(
-            addon_id=482976, type=amo.ADDON_PERSONA),
+            addon_id=297738, type=amo.ADDON_PERSONA),
     ],
     # China Edition Firefox shows a different selection of add-ons.
     # See discopane_items comments above for more detail on format.
