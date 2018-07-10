@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 05:14+0000\n"
+"PO-Revision-Date: 2018-07-10 05:23+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -2414,19 +2414,19 @@ msgid "Level 6"
 msgstr "ਪੱਧਰ ੬"
 
 msgid "Level 7"
-msgstr ""
+msgstr "ਪੱਧਰ ੭"
 
 msgid "Level 8"
-msgstr ""
+msgstr "ਪੱਧਰ ੮"
 
 msgid "Level 9"
-msgstr ""
+msgstr "ਪੱਧਰ ੯"
 
 msgid "Request More Info"
-msgstr "ਹੋਰ ਇੰਫ਼ੋ ਲਈ ਬੇਨਤੀ"
+msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ ਬੇਨਤੀ"
 
 msgid "Flag"
-msgstr "ਫ਼ਲੈਗ"
+msgstr "ਨਿਸ਼ਾਨਬੱਧ"
 
 msgid "Duplicate"
 msgstr "ਨਕਲ"
@@ -2435,10 +2435,10 @@ msgid "Reject"
 msgstr "ਰੱਦ"
 
 msgid "Approve"
-msgstr "ਸਵੀਕਾਰ"
+msgstr "ਪਰਵਾਨ"
 
 msgid "Sexual or pornographic content"
-msgstr "ਜਿਨਸੀ ਜਾਂ ਅਸ਼ਲੀਲ ਸਮੱਗਰੀ"
+msgstr "ਜਿਣਸੀ ਜਾਂ ਅਸ਼ਲੀਲ ਸਮੱਗਰੀ"
 
 msgid "Inappropriate or offensive content"
 msgstr "ਬੇਤੁਕੀ ਜਾਂ ਅਪਮਾਨਜਨਕ ਸਮੱਗਰੀ"
@@ -2450,7 +2450,7 @@ msgid "Nazi or other hate content"
 msgstr "ਨਾਜੀ ਜਾਂ ਹੋਰ ਨਫ਼ਰਤ ਸਮੱਗਰੀ"
 
 msgid "Defamatory content"
-msgstr "ਇਤਰਾਜ਼ਯੋਗ ਸਮੱਗਰੀ"
+msgstr "ਬਦਨਾਮੀ ਦੀ ਸਮੱਗਰੀ"
 
 msgid "Online gambling"
 msgstr "ਆਨਲਾਈਨ ਜੂਆ"
@@ -2487,7 +2487,7 @@ msgid "Slug incorrect."
 msgstr ""
 
 msgid "Details"
-msgstr "ਵੇਰਵਾ"
+msgstr "ਵੇਰਵੇ"
 
 msgid "What is your license's name?"
 msgstr "ਤੁਹਾਡੇ ਲਾਇਸੰਸ ਦਾ ਨਾਂ ਕੀ ਹੈ?"
@@ -2517,7 +2517,7 @@ msgid "View current"
 msgstr "ਮੌਜੂਦਾ ਵੇਖੋ"
 
 msgid "Invalid version range."
-msgstr "ਗਲਤ ਵਰਜਨ ਹੱਦ।"
+msgstr "ਗਲਤ ਵੰਨਗੀ ਹੱਦ।"
 
 msgid "Need at least one compatible application."
 msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਅਨੁਕੂਲ ਐਪਲੀਕੇਸ਼ਨ ਦੀ ਲੋੜ।"
@@ -2535,14 +2535,13 @@ msgid "You cannot upload any more files for this version."
 msgstr "ਤੁਸੀਂ ਇਸ ਵਰਜਨ ਲਈ ਹੋਰ ਜਿਆਦਾ ਫ਼ਾਈਲਾਂ ਅੱਪਲੋਡ ਨਹੀਂ ਕਰ ਸਕਦੇ।"
 
 msgid "Version doesn't match"
-msgstr "ਵਰਜਨ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ।"
+msgstr "ਵੰਨਗੀ ਮੇਲ ਨਹੀਂ ਖਾਂਦੀ।"
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr ""
+msgstr "ਵੰਨਗੀ {version} ਪਹਿਲਾਂ ਲੱਦੀ ਅਤੇ ਮਿਟਾਈ ਗਈ।"
 
-#, fuzzy
 msgid "Version {version} already exists."
-msgstr "{addon} {version} ਮਨਜ਼ੂਰ ਹੋਇਆ।"
+msgstr "ਵੰਨਗੀ {version} ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਮੌਜੂਦ ਹੈ।"
 
 msgid "Continue with existing upload instead?"
 msgstr ""
@@ -2553,9 +2552,8 @@ msgstr "ਪਲੇਟਫ਼ਾਰਮ ਆਲ ਨੂੰ ਖਾਸ ਪਲੇਟਫ਼ਾ�
 msgid "A platform can only be chosen once."
 msgstr "ਇੱਕ ਪਲੇਟਫ਼ਾਰਮ ਨੂੰ ਇੱਕ ਵਾਰ ਹੀ ਚੁਣਿਆ ਜਾ ਸਕਦਾ।"
 
-#, fuzzy
 msgid "Reputation"
-msgstr "ਮਤਾ"
+msgstr "ਰਸੂਖ"
 
 msgid "Application"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ"
@@ -2634,16 +2632,16 @@ msgid "Add-on Status"
 msgstr "ਐਡ-ਆਨ ਦਰਜਾ"
 
 msgid "User Collections"
-msgstr "ਉਪਭੋਗੀ ਸੰਗ੍ਰਹਿ"
+msgstr "ਵਰਤੋਂਕਾਰ ਸੰਗ੍ਰਹਿ"
 
 msgid "User Reviews"
-msgstr "ਉਪਭੋਗੀ ਸਮੀਖਿਆਵਾਂ"
+msgstr "ਵਰਤੋਂਕਾਰ ਸਮੀਖਿਆਵਾਂ"
 
 msgid "Changes successfully saved."
-msgstr "ਬਦਲਾਵ ਸਫ਼ਲਤਾਪੂਰਕ ਸੰਭਾਲ੍ਹੇ ਗਏ।"
+msgstr "ਬਦਲਾਅ ਸਫ਼ਲਤਾਪੂਰਕ ਸੰਭਾਲ੍ਹੇ ਗਏ।"
 
 msgid "Please check the form for errors."
-msgstr "ਗਲਤੀਆਂ ਲਈ ਫ਼ਾਰਮ ਦੀ ਪੜਤਾਲ ਕਰੋ।"
+msgstr "ਕਿਰਪਾ ਕਰਕੇ ਗਲਤੀਆਂ ਲਈ ਫ਼ਾਰਮ ਦੀ ਪੜਤਾਲ ਕਰੋ।"
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "ਐਡ-ਆਨ ਹਟਾਇਆ ਨਹੀਂ ਜਾ ਸਕਿਆ। ਇਸ ਦੀ ਬਜਾਏ ਇਸ ਐਡ-ਆਨ ਨੂੰ ਅਯੋਗ ਕਰੋ।"
@@ -2688,22 +2686,21 @@ msgstr "ਤੁਹਾਡੀ ਝਲਕ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਵ�
 
 #, python-format
 msgid "Version %s disabled."
-msgstr "ਵਰਜਨ %s ਅਯੋਗ ਹੋਇਆ।"
+msgstr "ਵੰਨਗੀ %s ਅਯੋਗ ਹੋਈ।"
 
 #, python-format
 msgid "Version %s deleted."
-msgstr "ਵਰਜਨ %s ਹਟਾਇਆ।"
+msgstr "ਵੰਨਗੀ %s ਮਿਟਾਈ ਗਈ।"
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "ਵੰਨਗੀ %s ਮੁੜ-ਯੋਗ ਕੀਤੀ ਗਈ।"
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "ਇਸ ਅੱਪਲੋਡ ਦੀ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ ਅਤੇ ਹੋ ਸਕਦਾ ਮੁਕੰਮਲ ਪ੍ਰਮਾਣਿਕਤਾ ਨਤੀਜਿਆਂ ਦੀ ਘਾਟ ਹੋਵੇ। ਕਿਰਪਾ ਕਰਕੇ ਪੂਰਾ ਧਿਆਨ ਦੇਵੋ ਜਦੋਂ ਇਸ ਦੀ ਸਮੀਖਿਆ ਕਰ ਰਹੇ ਹੋਵੋ।"
 
-#, fuzzy
 msgid "Review requested."
-msgstr "ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ"
+msgstr "ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕੀਤੀ ਗਈ।"
 
 msgid "You must provide further details to proceed."
 msgstr ""
