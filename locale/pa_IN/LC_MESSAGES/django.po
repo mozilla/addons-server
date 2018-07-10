@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 04:05+0000\n"
+"PO-Revision-Date: 2018-07-10 04:15+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -1432,9 +1432,8 @@ msgid "Additional Resources"
 msgstr "ਹੋਰ ਵਾਧੂ ਵਸੀਲੇ"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "{0} ਵਿੱਚ <a href=\"http://support.mozilla.com/kb/Search+bar\">ਖੋਜ ਬਾਰ</a> ਬਾਰੇ ਹੋਰ ਜਾਣੋ"
+msgstr "{0} ਵਿੱਚ <a href=\"http://support.mozilla.com/kb/Search+bar\">ਖੋਜ ਪੱਟੀ</a> ਬਾਰੇ ਹੋਰ ਜਾਣੋ"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr ""
@@ -1444,25 +1443,25 @@ msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
 msgstr ""
 
 msgid "Most Popular Extensions"
-msgstr "ਸੱਭ ਤੋਂ ਮਸ਼ਹੂਰ ਇਕਸਟੈਨਸ਼ਨਾਂ"
+msgstr "ਸੱਭ ਤੋਂ ਮਕਬੂਲ ਵਾਧਰੇ"
 
 msgid "Top-Rated Extensions"
-msgstr "ਚੋਟੀ ਤੇ ਰੇਟ ਹੋਈਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ"
+msgstr "ਸਿਖਰਲੀ ਦਰਜਾਬੰਦੀ ਦੇ ਵਾਧਰੇ"
 
 msgid "Newest Extensions"
-msgstr "ਬਿਲਕੁਲ ਨਵੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ"
+msgstr "ਨਵੇਂ ਨਕੋਰ ਵਾਧਰੇ"
 
 msgid "Extensions by Name"
-msgstr "ਨਾਂ ਦੁਆਰਾ ਇਕਸਟੈਨਸ਼ਨਾਂ"
+msgstr "ਨਾਂ ਨਾਲ ਕ੍ਰਮਬੱਧ ਵਾਧਰੇ"
 
 msgid "Extensions by Weekly Downloads"
-msgstr "ਹਫ਼ਤੇਵਾਰ ਡਾਊਨਲੋਡ ਦੁਆਰਾ ਇਕਸਟੈਨਸ਼ਨਾਂ"
+msgstr "ਹਫ਼ਤਾਵਾਰ ਡਾਉਨਲੋਡ ਦੇ ਹਿਸਾਬ ਨਾਲ ਕ੍ਰਮਬੱਧ ਵਾਧਰੇ"
 
 msgid "Recently Updated Extensions"
-msgstr "ਹਾਲ ਵਿੱਚ ਅੱਪਡੇਟ ਹੋਈਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ"
+msgstr "ਹਾਲੀਆ ਨਵਿਆਏ ਵਾਧਰੇ"
 
 msgid "Up & Coming Extensions"
-msgstr "ਉੱਪਰ ਅਤੇ ਆ ਰਹੀਆਂ ਇਕਸਟੈਨਸ਼ਨਾਂ"
+msgstr "ਅਗਲੇ ਅਤੇ ਆਉਣ ਵਾਲੇ ਵਾਧਰੇ"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -1493,8 +1492,8 @@ msgstr "ਉੱਤੇ ਅਤੇ ਆ ਰਹੇ ਮੁਕਮੰਲ ਥੀਮ"
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] "%(name)s &raquo ਵਿੱਚ %(cnt)s ਇਕਸਟੈਨਸ਼ਨ ਵੇਖੋ; "
-msgstr[1] "%(name)s &raquo ਵਿੱਚ %(cnt)s ਇਕਸਟੈਨਸ਼ਨਾਂ ਵੇਖੋ; "
+msgstr[0] "%(name)s &raquo; ਵਿੱਚ %(cnt)s ਵਾਧਰਾ ਵੇਖੋ"
+msgstr[1] "%(name)s &raquo; ਵਿੱਚ %(cnt)s ਸਾਰੇ ਵਾਧਰੇ ਵੇਖੋ"
 
 msgid "{0} Themes"
 msgstr "{0} ਥੀਮ"
