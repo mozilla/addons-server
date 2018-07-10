@@ -79,7 +79,7 @@ class TranslationSerializerField(fields.Field):
         'min_length': _(u'The field must have a length of at least {num} '
                         u'characters.'),
         'unknown_locale': _(u'The language code {lang_code} is invalid.'),
-        'no_dict': _(u'You must provide a dictionary of {lang-code:value}.')
+        'no_dict': _(u'You must provide an object of {lang-code:value}.')
     }
 
     def __init__(self, *args, **kwargs):
