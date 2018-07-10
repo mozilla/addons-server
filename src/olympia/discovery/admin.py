@@ -9,6 +9,11 @@ from olympia.addons.models import Addon
 from olympia.discovery.models import DiscoveryItem
 
 
+# Popular locales, we typically don't want to show a string if it's not
+# translated in those.
+KEY_LOCALES_FOR_EDITORIAL_CONTENT = ('de', 'fr', 'es', 'pl', 'it', 'ja')
+
+
 class SlugOrPkChoiceField(forms.ModelChoiceField):
     """A ModelChoiceField that supports entering slugs instead of PKs for
     convenience."""
@@ -51,16 +56,9 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
 
     def previews(self, obj):
         translations = []
-        with translation.override('en-US'):
-            translations.append(self.build_preview(obj))
-        with translation.override('de'):
-            translations.append(self.build_preview(obj))
-        with translation.override('es'):
-            translations.append(self.build_preview(obj))
-        with translation.override('fr'):
-            translations.append(self.build_preview(obj))
-        with translation.override('it'):
-            translations.append(self.build_preview(obj))
+        for locale in ('en-US', ) + KEY_LOCALES_FOR_EDITORIAL_CONTENT:
+            with translation.override(locale):
+                translations.append(self.build_preview(obj))
         return format_html(u''.join(translations))
 
 
