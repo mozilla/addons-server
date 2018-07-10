@@ -609,7 +609,7 @@ def add_static_theme_from_lwt(lwt):
     for file_ in version.all_files:
         sign_file(file_)
         file_.update(
-            datestatuschanged=datetime.now(),
+            datestatuschanged=lwt.last_updated,
             reviewed=datetime.now(),
             status=amo.STATUS_PUBLIC)
     addon_updates['status'] = amo.STATUS_PUBLIC
@@ -617,6 +617,7 @@ def add_static_theme_from_lwt(lwt):
     # set the modified and creation dates to match the original.
     addon_updates['created'] = lwt.created
     addon_updates['modified'] = lwt.modified
+    addon_updates['last_updated'] = lwt.last_updated
 
     addon.update(**addon_updates)
     return addon

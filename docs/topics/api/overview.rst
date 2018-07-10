@@ -191,5 +191,6 @@ v4 API changelog
 ----------------
 
 * 2018-05-18: renamed /reviews/ endpoint to /ratings/  https://github.com/mozilla/addons-server/issues/6849
-* 2018-05-25: renamed rating.rating property to rating.score  https://github.com/mozilla/addons-server/pull/8332
-* 2018-06-05: dropped rating.title property https://github.com/mozilla/addons-server/issues/8144
+* 2018-05-25: renamed ``rating.rating`` property to ``rating.score``  https://github.com/mozilla/addons-server/pull/8332
+* 2018-06-05: dropped ``rating.title`` property https://github.com/mozilla/addons-server/issues/8144
+* 2018-07-12: added ``type`` property to autocomplete API. This change was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/8803

@@ -972,18 +972,42 @@ class ReplacementAddonView(ListAPIView):
 
 
 class CompatOverrideView(ListAPIView):
+    """This view is used by Firefox so it's performance-critical.
+
+    Every firefox client requests the list of overrides approx. once per day.
+    Firefox requests the overrides via a list of GUIDs which makes caching
+    hard because the variation of possible GUID combinations prevent us to
+    simply add some dumb-caching and requires us to resolve cache-misses.
+    """
+
     queryset = CompatOverride.objects.all()
     serializer_class = CompatOverrideSerializer
 
-    def filter_queryset(self, queryset):
+    @classmethod
+    def as_view(cls, **initkwargs):
+        """The API is read-only so we can turn off atomic requests."""
+        return non_atomic_requests(
+            super(CompatOverrideView, cls).as_view(**initkwargs))
+
+    def get_guids(self):
         # Use the same Filter we use for AddonSearchView for consistency.
         guid_filter = AddonGuidQueryParam(self.request)
-        guids = guid_filter.get_value()
+        return guid_filter.get_value()
+
+    def filter_queryset(self, queryset):
+        guids = self.get_guids()
         if not guids:
             raise exceptions.ParseError(
                 'Empty, or no, guid parameter provided.')
-        return queryset.filter(guid__in=guids).transform(
-            CompatOverride.transformer).order_by('-pk')
+        # Evaluate the queryset and cast it into a list.
+        # This will force Django to simply use len(queryset) instead of
+        # calling .count() on it and avoids an additional COUNT query.
+        # The amount of GUIDs we should get in real-life won't be paginated
+        # most of the time so it's safe to simply evaluate the query.
+        # The advantage here is that we are saving ourselves a `COUNT` query
+        # and these are expensive.
+        return list(queryset.filter(guid__in=guids).transform(
+            CompatOverride.transformer).order_by('-pk'))
 
 
 class AddonRecommendationView(AddonSearchView):

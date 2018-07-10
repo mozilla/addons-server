@@ -1,9 +1,17 @@
 from django import forms
 from django.contrib import admin
 from django.contrib.admin.widgets import ForeignKeyRawIdWidget
+from django.utils import translation
+from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 
 from olympia.addons.models import Addon
 from olympia.discovery.models import DiscoveryItem
+
+
+# Popular locales, we typically don't want to show a string if it's not
+# translated in those.
+KEY_LOCALES_FOR_EDITORIAL_CONTENT = ('de', 'fr', 'es', 'pl', 'it', 'ja')
 
 
 class SlugOrPkChoiceField(forms.ModelChoiceField):
@@ -22,10 +30,11 @@ class SlugOrPkChoiceField(forms.ModelChoiceField):
 class DiscoveryItemAdmin(admin.ModelAdmin):
     class Media:
         css = {
-            'all': ('css/admin/larger_raw_id.css',)
+            'all': ('css/admin/discovery.css',)
         }
-    raw_id_fields = ('addon',)
     list_display = ('__unicode__', 'custom_addon_name', 'custom_heading',)
+    raw_id_fields = ('addon',)
+    readonly_fields = ('previews',)
     view_on_site = False
 
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
@@ -37,6 +46,22 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
             return SlugOrPkChoiceField(**kwargs)
         return super(DiscoveryItemAdmin, self).formfield_for_foreignkey(
             db_field, request, **kwargs)
+
+    def build_preview(self, obj, locale):
+        return format_html(
+            u'<div class="discovery-preview" data-locale="{}">'
+            u'<h2 class="heading">{}</h2>'
+            u'<div class="editorial-description">{}</div></div>',
+            locale,
+            mark_safe(obj.heading),
+            mark_safe(obj.description))
+
+    def previews(self, obj):
+        translations = []
+        for locale in ('en-US', ) + KEY_LOCALES_FOR_EDITORIAL_CONTENT:
+            with translation.override(locale):
+                translations.append(self.build_preview(obj, locale))
+        return format_html(u''.join(translations))
 
 
 admin.site.register(DiscoveryItem, DiscoveryItemAdmin)
