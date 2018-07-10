@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 04:56+0000\n"
+"PO-Revision-Date: 2018-07-10 05:04+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -2212,36 +2212,32 @@ msgid "Social Networking"
 msgstr "ਸਮਾਜਕ ਮੇਲ ਮਿਲਾਪ"
 
 msgid "Sports & Games"
-msgstr ""
+msgstr "ਖੇਡਾਂ"
 
 #, fuzzy
 msgid "User Interface"
 msgstr "ਤੋਂ ਉਪਭੋਗੀ "
 
 msgid "Appearance and Customization"
-msgstr ""
+msgstr "ਦਿੱਖ ਅਤੇ ਚੁਣਿੰਦਾਕਰਣ"
 
 msgid "Calendar and Date/Time"
-msgstr ""
+msgstr "ਕਲੰਡਰ ਅਤੇ ਮਿਤੀ/Time"
 
 msgid "Chat and IM"
-msgstr ""
+msgstr "ਗੱਲਬਾਤ ਅਤੇ ਨਿੱਜੀ ਸੁਨੇਹੇ"
 
-#, fuzzy
 msgid "Message Composition"
-msgstr "ਯੋਗਦਾਨ ਪਾਓ"
+msgstr "ਸੁਨੇਹੇ ਦੀ ਬਣਤਰ"
 
-#, fuzzy
 msgid "Contacts"
-msgstr "ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰ ਰਿਹਾਂ"
+msgstr "ਸੰਪਰਕ"
 
-#, fuzzy
 msgid "Folders and Filters"
-msgstr "ਸੰਗ੍ਰਹਿ ਅਤੇ ਪਸੰਦੀਦਾ"
+msgstr "ਜਿਲਦਾਂ ਅਤੇ ਛਾਨਣੇ"
 
-#, fuzzy
 msgid "Import/Export"
-msgstr "ਬਰਾਮਦ"
+msgstr "ਬਰਾਮਦ/Export"
 
 msgid "Message and News Reading"
 msgstr ""
@@ -2256,7 +2252,7 @@ msgid "Interface Customizations"
 msgstr ""
 
 msgid "Language Support and Translation"
-msgstr ""
+msgstr "ਬੋਲੀ ਸਮਰਥਨ ਅਤੇ ਲਿਪੀਅੰਤਰ"
 
 msgid "Photos and Media"
 msgstr ""
@@ -2268,12 +2264,11 @@ msgstr ""
 msgid "Site-specific"
 msgstr "ਸਾਈਟ ਖਾਸ਼"
 
-#, fuzzy
 msgid "Web and Developer Tools"
-msgstr "ਡਿਵੈਲਪਰ ਦਸਤਾਵੇਜ਼ ਖੋਜੋ"
+msgstr "ਵੈੱਬ ਅਤੇ ਵਿਕਾਸਕਾਰ ਸੰਦ"
 
 msgid "All Rights Reserved"
-msgstr "ਸਾਰੇ ਹੱਕ ਰਾਖਵੇਂ ਹਨ"
+msgstr "ਸੱਭ ਹੱਕ ਰਾਖਵੇਂ ਹਨ"
 
 msgid "Creative Commons Attribution 3.0"
 msgstr "ਕਰੀਏਟਿਵ ਕਾਮਜ਼ ਐਟ੍ਰਿਬਯੂਸ਼ਨ 3.0"
@@ -2294,7 +2289,7 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "ਕਰੀਏਟਿਵ ਕਾਮਜ਼ ਐਟ੍ਰਿਬ੍ਯੂਸ਼ਨ-ਸ਼ੇਅਰ ਅਲਾਈਕ 3.0"
 
 msgid "Any"
-msgstr "ਕੋਈ"
+msgstr "ਕੋਈ ਵੀ"
 
 msgid "All Platforms"
 msgstr "ਸਾਰੇ ਪਲੇਟਫ਼ਾਰਮ"
@@ -2312,14 +2307,13 @@ msgid "Windows"
 msgstr "ਵਿੰਡੋਜ਼"
 
 msgid "Solaris"
-msgstr "ਸੋਲਰਿਸ"
+msgstr "ਸੋਲੈਰਿਸ"
 
 msgid "Android"
-msgstr "ਐਨਡਰੋਇਡ"
+msgstr "ਐਂਡਰੌਇਡ"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "ਥੀਮ ਦਾਖਲ ਕਰੋ"
+msgstr "ਸਥਾਈ ਥੀਮ"
 
 msgid "Persona"
 msgstr "ਪਰਸੋਨਾ"
@@ -2347,9 +2341,8 @@ msgstr "ਸ਼ੁਰੂਆਤੀ ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ"
 msgid "Updated Dictionary Review"
 msgstr "ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
 
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "ਪੂਰੀ ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ"
+msgstr "ਨਵੀਂ ਬੋਲੀ ਪੰਡ ਦੀ ਸਮੀਖਿਆ"
 
 msgid "Preliminary Language Pack Review"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ"
