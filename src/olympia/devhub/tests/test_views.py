@@ -462,17 +462,12 @@ class TestDelete(TestCase):
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.get_url = lambda: self.get_addon()[0].get_dev_url('delete')
 
-    def make_theme(self):
-        theme = addon_factory(
-            name='xpi name', type=amo.ADDON_PERSONA, slug='theme-slug')
-        theme.authors.through.objects.create(addon=theme, user=self.user)
-        return theme
-
     def test_post_not(self):
         response = self.client.post(self.get_url(), follow=True)
         assert pq(response.content)('.notification-box').text() == (
             'URL name was incorrect. Add-on was not deleted.')
         assert self.get_addon().exists()
+        self.assert3xx(response, self.get_addon()[0].get_dev_url('versions'))
 
     def test_post(self):
         self.get_addon().get().update(slug='addon-slug')
@@ -481,6 +476,7 @@ class TestDelete(TestCase):
         assert pq(response.content)('.notification-box').text() == (
             'Add-on deleted.')
         assert not self.get_addon().exists()
+        self.assert3xx(response, reverse('devhub.addons'))
 
     def test_post_wrong_slug(self):
         self.get_addon().get().update(slug='addon-slug')
@@ -489,22 +485,51 @@ class TestDelete(TestCase):
         assert pq(response.content)('.notification-box').text() == (
             'URL name was incorrect. Add-on was not deleted.')
         assert self.get_addon().exists()
+        self.assert3xx(response, self.get_addon()[0].get_dev_url('versions'))
 
-    def test_post_theme(self):
-        theme = self.make_theme()
+    def test_post_lwtheme(self):
+        theme = addon_factory(
+            name='xpi name', type=amo.ADDON_PERSONA, slug='theme-slug',
+            users=[self.user])
         response = self.client.post(
             theme.get_dev_url('delete'), {'slug': 'theme-slug'}, follow=True)
         assert pq(response.content)('.notification-box').text() == (
             'Theme deleted.')
         assert not Addon.objects.filter(id=theme.id).exists()
+        self.assert3xx(response, reverse('devhub.themes'))
 
-    def test_post_theme_wrong_slug(self):
-        theme = self.make_theme()
+    def test_post_lwtheme_wrong_slug(self):
+        theme = addon_factory(
+            name='xpi name', type=amo.ADDON_PERSONA, slug='theme-slug',
+            users=[self.user])
         response = self.client.post(
             theme.get_dev_url('delete'), {'slug': 'addon-slug'}, follow=True)
         assert pq(response.content)('.notification-box').text() == (
             'URL name was incorrect. Theme was not deleted.')
         assert Addon.objects.filter(id=theme.id).exists()
+        self.assert3xx(response, theme.get_dev_url())
+
+    def test_post_statictheme(self):
+        theme = addon_factory(
+            name='xpi name', type=amo.ADDON_STATICTHEME, slug='stheme-slug',
+            users=[self.user])
+        response = self.client.post(
+            theme.get_dev_url('delete'), {'slug': 'stheme-slug'}, follow=True)
+        assert pq(response.content)('.notification-box').text() == (
+            'Theme deleted.')
+        assert not Addon.objects.filter(id=theme.id).exists()
+        self.assert3xx(response, reverse('devhub.themes'))
+
+    def test_post_statictheme_wrong_slug(self):
+        theme = addon_factory(
+            name='xpi name', type=amo.ADDON_STATICTHEME, slug='stheme-slug',
+            users=[self.user])
+        response = self.client.post(
+            theme.get_dev_url('delete'), {'slug': 'foo-slug'}, follow=True)
+        assert pq(response.content)('.notification-box').text() == (
+            'URL name was incorrect. Theme was not deleted.')
+        assert Addon.objects.filter(id=theme.id).exists()
+        self.assert3xx(response, theme.get_dev_url('versions'))
 
 
 class TestHome(TestCase):
