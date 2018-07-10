@@ -65,6 +65,23 @@ class TestViews(TestCase):
         self.assert3xx(
             response, self.url_list + '?page=3#version-%s' % version)
 
+    # We are overriding this here for now till
+    # https://github.com/mozilla/addons-server/issues/8602 is fixed.
+    @override_settings(CACHES={'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211')
+    }})
+    def test_version_detail_cache_key_normalized(self):
+        """Test regression with memcached cache-key.
+
+        https://github.com/mozilla/addons-server/issues/8622
+        """
+        url = reverse(
+            'addons.versions', args=[self.addon.slug, u'Âûáèðàåì âåðñèþ 23.0'])
+
+        response = self.client.get(url, follow=True)
+        assert response.status_code == 404
+
     def test_version_detail_404(self):
         bad_pk = self.addon.current_version.pk + 42
         response = self.client.get(reverse('addons.versions',
