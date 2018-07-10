@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-09 11:47+0000\n"
+"PO-Revision-Date: 2018-07-09 16:54+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3652,13 +3652,13 @@ msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr "Amṣada-inek n izegrar akked Firefox agetsekkeran (e10s)."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "Ad d-banen ɣef usmel-a deffir n ucegger n tengalt. Ileqman iwurmanen ttwasefraken deg usmel-agi."
 
 msgid "Listed Version:"
 msgstr "Lqem yettwabedren:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr ""
+msgstr "D lqem n uzegrir ara yebedden ticki yiwen isenned ɣef tqeffalt Sebedd di addons.mozilla.org."
 
 msgid "Next Listed Version:"
 msgstr "Lqem yettwabedren d-iteddun:"
@@ -3751,12 +3751,13 @@ msgstr ""
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
+"Ma yella azegrir-ik yettazen isefka seg uselkim n useqdac, tasertit tabadnit tlaq akken ad tesfehmeḍ isefka ara yettwaznen daɣen amek ara ttwasqedcen. Urti-agi ilaq kan i yizegrar yettwabedren."
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
 msgstr "Ma yella azegri inek yegber afaylu imsin neɣ tangalt n uskussem ur yettwasnen ara d temkaṛḍiyin, sali-d aɣbalu yines akken ad ittucegger."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr ""
+msgstr "Seddu ma ulac aɣilif tarrayt ara tḍefreḍ akken ad theggiḍ afaylu n uzegrir. Tzemreḍ ad tesqedceḍ afaylu README neɣ tizmilin i yimsekyaden n lqem-agi."
 
 msgid "Read more about the source code review policy."
 msgstr "Ɣeṛ ugar ɣef tsertit n ucegger n tengalt aɣbalu."
@@ -3828,7 +3829,7 @@ msgid "Review Add-ons"
 msgstr "Cegger izegrar"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "Imsenqaden iwiziwen ttmuddun-aɣ-d afus akken ad neḥrez izegrar d iɣelsanen, ttwamanen. Ttfaṛasen tagnit daɣen seg warazen!"
 
 msgid "Join us!"
 msgstr "Rnu-d ɣur-neɣ!"
@@ -3846,7 +3847,7 @@ msgid "More Ways to Participate"
 msgstr "Tarrayin-nniḍen n uttekki"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "Ur tesriḍ ara ad tissineḍ asihel ad tmuddeḍ afus akken Firefox ad yeqqim d iminig udmawan ugar!"
 
 msgid "See how"
 msgstr "Ẓer amek"
@@ -3882,7 +3883,7 @@ msgid "View All Submissions"
 msgstr "Wali akk tuzniwin"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
+msgstr "Dagi ad tizmireḍ ad tsekneḍ daɣen ad tesferkeḍ izegrar-ik akked isental-ik. Akken ad tessuffɣeḍ azegrir-ik amenzu, sit ɣef \"Azen azegrir-ik amenzu\" neɣ \"Sumer asentel-ik amenzu\"."
 
 msgid "Submit Your First Add-on"
 msgstr "Azen azegrir inek amezwaru"
