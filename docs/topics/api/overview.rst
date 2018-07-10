@@ -167,7 +167,8 @@ Then the resulting translations would be::
 "name": {"en-US": "Fun", "fr": "Jeux","kn": "ಆಟಗಳು"}
 
 To delete a translation, pass ``null`` as the value for that language.
-(Note: this behavior is currently buggy/broken)
+(Note: this behavior is currently buggy/broken - see
+https://github.com/mozilla/addons-server/issues/8816 for more details)
 
 
 .. _api-overview-outgoing:
