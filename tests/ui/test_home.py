@@ -49,7 +49,7 @@ def test_browse_all_button_loads_correct_page(base_url, selenium):
 def test_browse_all_themes_button_loads_correct_page(
         base_url, selenium):
     page = Home(selenium, base_url).open()
-    page.featured_themes.browse_all
+    page.popular_themes.browse_all
     assert 'type=statictheme' in selenium.current_url
 
 
