@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"POT-Creation-Date: 2018-07-11 09:12+0000\n"
 "PO-Revision-Date: 2018-03-25 14:57+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,6 +72,9 @@ msgstr "Review note"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Only latest versions of addons can have notes added."
+
+msgid "Status"
+msgstr "Status"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Add-on not on AMO -"
@@ -896,6 +899,9 @@ msgstr "The field must have a length of at least {num} characters."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "The language code {lang_code} is invalid."
+
+msgid "You must provide an object of {lang-code:value}."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1810,6 +1816,14 @@ msgstr "{rating} for {addon} updated."
 msgid "{addon} reviewed."
 msgstr "{addon} reviewed."
 
+#, fuzzy
+msgid "User {user} banned."
+msgstr "User {user} anonymised."
+
+#, fuzzy
+msgid "User {user} picture deleted."
+msgstr "User {user} restricted."
+
 msgid "User {0.name} added to {group}."
 msgstr "User {0.name} added to {group}."
 
@@ -2287,6 +2301,19 @@ msgstr "Submit Theme"
 msgid "Persona"
 msgstr "Persona"
 
+#, fuzzy
+msgid "No Reputation"
+msgstr "Reputation"
+
+msgid "Good (1)"
+msgstr ""
+
+msgid "Very Good (2)"
+msgstr ""
+
+msgid "Excellent (3)"
+msgstr ""
+
 msgid "Manual Reviewer Points"
 msgstr "Manual Reviewer Points"
 
@@ -2519,9 +2546,6 @@ msgstr "The platform All cannot be combined with specific platforms."
 
 msgid "A platform can only be chosen once."
 msgstr "A platform can only be chosen once."
-
-msgid "Reputation"
-msgstr "Reputation"
 
 msgid "Application"
 msgstr "Application"
@@ -3386,6 +3410,9 @@ msgstr "Submit a New Version"
 msgid "Describe Add-on"
 msgstr "Describe Add-on"
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr ""
+
 msgid "Add-on URL:"
 msgstr "Add-on URL:"
 
@@ -3916,16 +3943,18 @@ msgstr "Manage Your Add-on"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Sign In to Edit and Update Your Add-on"
 
-msgid "Help us improve the developer experience"
+msgid "Resources for a successful launch"
 msgstr ""
 
+#, python-format
 msgid ""
-"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
-"development work."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
-msgid "Take Survey"
-msgstr ""
+#, fuzzy
+msgid "View Resources for Publishers"
+msgstr "View statistics for user"
 
 #, fuzzy
 msgid "Welcome Back"
@@ -3936,6 +3965,13 @@ msgstr ""
 
 msgid "Learn How"
 msgstr "Learn How"
+
+#, python-format
+msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
+msgstr ""
+
+msgid "Learn More"
+msgstr "Learn More"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4274,9 +4310,6 @@ msgstr "Listed versions"
 msgid "Currently on AMO"
 msgstr "Currently on AMO"
 
-msgid "Status"
-msgstr "Status"
-
 msgid "Validation"
 msgstr "Validation"
 
@@ -4352,32 +4385,33 @@ msgstr[0] "{0} warning"
 msgstr[1] "{0} warnings"
 
 #, fuzzy
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tab Customisation {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
 
-msgid " Block invisible trackers and spying ads that follow you around the web."
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr ""
 
 #, fuzzy
-msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgstr "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 
-msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
 msgstr ""
 
 #, fuzzy
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
 msgstr ""
 
 #, fuzzy
-msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 
-msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+#, fuzzy
+msgid "Dozens of amazing emojis for every occasion—just a click away."
+msgstr "Dozens of amazing emojis for every occasion—always just one click away."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4687,9 +4721,6 @@ msgstr "What are Add-ons?"
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
 msgstr "Add-ons are applications that let you personalise %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-
-msgid "Learn More"
-msgstr "Learn More"
 
 msgid "Learn More About Add-ons"
 msgstr "Learn More About Add-ons"
@@ -6610,6 +6641,21 @@ msgstr "Are you sure you want to remove all <b>{0}</b> translations? This cannot
 msgid "Delete Locale"
 msgstr "Delete Locale"
 
+#, python-format
+msgid "The user \"%(user)s\" has been banned.user"
+msgstr ""
+
+#, python-format
+msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" have been banned.users, "
+msgstr ""
+
+msgid "Ban selected users"
+msgstr ""
+
 msgid "Profile Photo"
 msgstr "Profile Photo"
 
@@ -6640,9 +6686,6 @@ msgstr "This URL has an invalid format. Valid URLs look like http://example.com/
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "To anonymise, enter a reason for the change but do not change any other field."
-
-msgid "Please enter at least one name to be denied."
-msgstr "Please enter at least one name to be denied."
 
 msgid "No user with that email."
 msgstr "No user with that email."
@@ -6714,6 +6757,14 @@ msgstr "User reported."
 
 msgid "new"
 msgstr "new"
+
+#, fuzzy
+msgid "Ban"
+msgstr "and"
+
+#, fuzzy
+msgid "Delete picture"
+msgstr "Delete my user picture now"
 
 msgid "Delete User Account"
 msgstr "Delete User Account"

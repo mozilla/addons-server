@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"POT-Creation-Date: 2018-07-11 09:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,6 +71,9 @@ msgstr "Řḗṽīḗẇ ƞǿŧḗ"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Ǿƞŀẏ ŀȧŧḗşŧ ṽḗřşīǿƞş ǿƒ ȧḓḓǿƞş ƈȧƞ ħȧṽḗ ƞǿŧḗş ȧḓḓḗḓ."
+
+msgid "Status"
+msgstr "Şŧȧŧŭş"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Aḓḓ-ǿƞ ƞǿŧ ǿƞ AḾǾ -"
@@ -894,6 +897,9 @@ msgstr "Ŧħḗ ƒīḗŀḓ ḿŭşŧ ħȧṽḗ ȧ ŀḗƞɠŧħ ǿƒ ȧŧ ŀ�
 
 msgid "The language code {lang_code} is invalid."
 msgstr "Ŧħḗ ŀȧƞɠŭȧɠḗ ƈǿḓḗ {lang_code} īş īƞṽȧŀīḓ."
+
+msgid "You must provide an object of {lang-code:value}."
+msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧƞ ǿƀĵḗƈŧ ǿƒ {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1807,6 +1813,12 @@ msgstr "{rating} ƒǿř {addon} ŭƥḓȧŧḗḓ."
 msgid "{addon} reviewed."
 msgstr "{addon} řḗṽīḗẇḗḓ."
 
+msgid "User {user} banned."
+msgstr "Ŭşḗř {user} ƀȧƞƞḗḓ."
+
+msgid "User {user} picture deleted."
+msgstr "Ŭşḗř {user} ƥīƈŧŭřḗ ḓḗŀḗŧḗḓ."
+
 msgid "User {0.name} added to {group}."
 msgstr "Ŭşḗř {0.name} ȧḓḓḗḓ ŧǿ {group}."
 
@@ -2274,6 +2286,18 @@ msgstr "Şŧȧŧīƈ Ŧħḗḿḗ"
 msgid "Persona"
 msgstr "Ƥḗřşǿƞȧ"
 
+msgid "No Reputation"
+msgstr "Ƞǿ Řḗƥŭŧȧŧīǿƞ"
+
+msgid "Good (1)"
+msgstr "Ɠǿǿḓ (1)"
+
+msgid "Very Good (2)"
+msgstr "Ṽḗřẏ Ɠǿǿḓ (2)"
+
+msgid "Excellent (3)"
+msgstr "Ḗẋƈḗŀŀḗƞŧ (3)"
+
 msgid "Manual Reviewer Points"
 msgstr "Ḿȧƞŭȧŀ Řḗṽīḗẇḗř Ƥǿīƞŧş"
 
@@ -2505,9 +2529,6 @@ msgstr "Ŧħḗ ƥŀȧŧƒǿřḿ Aŀŀ ƈȧƞƞǿŧ ƀḗ ƈǿḿƀīƞḗḓ �
 
 msgid "A platform can only be chosen once."
 msgstr "A ƥŀȧŧƒǿřḿ ƈȧƞ ǿƞŀẏ ƀḗ ƈħǿşḗƞ ǿƞƈḗ."
-
-msgid "Reputation"
-msgstr "Řḗƥŭŧȧŧīǿƞ"
 
 msgid "Application"
 msgstr "Aƥƥŀīƈȧŧīǿƞ"
@@ -3342,6 +3363,9 @@ msgstr "Şŭƀḿīŧ ȧ Ƞḗẇ Ṽḗřşīǿƞ"
 msgid "Describe Add-on"
 msgstr "Ḓḗşƈřīƀḗ Aḓḓ-ǿƞ"
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr "Ƞȧḿḗ ǿƞ ŀīşŧīƞɠ ǿƞ ŧħīş şīŧḗ. Ḿȧẏ ƀḗ ḓīƒƒḗřḗƞŧ ŧǿ ŧħḗ ƞȧḿḗ īƞşīḓḗ ŧħḗ ȧḓḓ-ǿƞ, ẇħīƈħ īş şħǿẇƞ īƞşīḓḗ Ƒīřḗƒǿẋ"
+
 msgid "Add-on URL:"
 msgstr "Aḓḓ-ǿƞ ŬŘĿ:"
 
@@ -3859,18 +3883,19 @@ msgstr "Ḿȧƞȧɠḗ Ẏǿŭř Aḓḓ-ǿƞ"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Şīɠƞ Īƞ ŧǿ Ḗḓīŧ ȧƞḓ Ŭƥḓȧŧḗ Ẏǿŭř Aḓḓ-ǿƞ"
 
-msgid "Help us improve the developer experience"
-msgstr "Ħḗŀƥ ŭş īḿƥřǿṽḗ ŧħḗ ḓḗṽḗŀǿƥḗř ḗẋƥḗřīḗƞƈḗ"
+msgid "Resources for a successful launch"
+msgstr "Řḗşǿŭřƈḗş ƒǿř ȧ şŭƈƈḗşşƒŭŀ ŀȧŭƞƈħ"
 
+#, python-format
 msgid ""
-"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
-"development work."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
-"Ẇḗ’řḗ īƞŧḗřḗşŧḗḓ īƞ ẏǿŭř ƒḗḗḓƀȧƈķ ȧƀǿŭŧ ŧħḗ ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḿḗƞŧ ḗẋƥḗřīḗƞƈḗ! Ŧȧķḗ ǿŭř şħǿřŧ şŭřṽḗẏ ŧǿ ŀḗŧ ŭş ķƞǿẇ ẇħȧŧ ķīƞḓş ǿƒ ḓǿƈŭḿḗƞŧȧŧīǿƞ, AƤĪş, ȧƞḓ ŧǿǿŀş ẇǿŭŀḓ ƀḗ ḿǿşŧ ŭşḗƒŭŀ ŧǿ ẏǿŭř "
-"ḓḗṽḗŀǿƥḿḗƞŧ ẇǿřķ."
+"Ẏǿŭ'ṽḗ ƀŭīŀŧ ẏǿŭř ḗẋŧḗƞşīǿƞ ȧƞḓ ȧřḗ řḗȧḓẏ ŧǿ ƥŭƀŀīşħ īŧ. Ẇħȧŧ ƈǿḿḗş ƞḗẋŧ? Ƈħḗƈķ ǿŭŧ ǿŭř ŧīƥş ƒǿř ƈřḗȧŧīƞɠ ȧƞ ȧƥƥḗȧŀīƞɠ ŀīşŧīƞɠ ƥȧɠḗ, ɠḗŧŧīƞɠ ẏǿŭř ḗẋŧḗƞşīǿƞ ƒḗȧŧŭřḗḓ ǿƞ %(amo_link_open)sȧḓḓǿƞş."
+"ḿǿẑīŀŀȧ.ǿřɠ%(amo_link_close)s, ƒīƞḓīƞɠ ȧƞşẇḗřş ŧǿ ḓḗṽḗŀǿƥḿḗƞŧ ɋŭḗşŧīǿƞş, ȧƞḓ şŧȧẏīƞɠ ŭƥ-ŧǿ-ḓȧŧḗ ẇīŧħ ƞḗẇş ȧƞḓ ḗṽḗƞŧş řḗŀḗṽȧƞŧ ŧǿ ḗẋŧḗƞşīǿƞ ḓḗṽḗŀǿƥḗřş."
 
-msgid "Take Survey"
-msgstr "Ŧȧķḗ Şŭřṽḗẏ"
+msgid "View Resources for Publishers"
+msgstr "Ṽīḗẇ Řḗşǿŭřƈḗş ƒǿř Ƥŭƀŀīşħḗřş"
 
 msgid "Welcome Back"
 msgstr "Ẇḗŀƈǿḿḗ Ɓȧƈķ"
@@ -3880,6 +3905,13 @@ msgstr "Ħḗŀƥ ŭşḗřş ḓīşƈǿṽḗř ẏǿŭř ḗẋŧḗƞşīǿ�
 
 msgid "Learn How"
 msgstr "Ŀḗȧřƞ Ħǿẇ"
+
+#, python-format
+msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
+msgstr "Ẇȧƞŧ ẏǿŭř ḗẋŧḗƞşīǿƞ ŧǿ ƀḗ ƒḗȧŧŭřḗḓ ǿƞ %(amo_link_open)sȧḓḓǿƞş.ḿǿẑīŀŀȧ.ǿřɠ%(amo_link_close)s? Ǿŭř ƒḗȧŧŭřḗḓ ḗẋŧḗƞşīǿƞş ƥǿŀīƈīḗş ẇīŀŀ ŧḗŀŀ ẏǿŭ ẇħȧŧ ẏǿŭ ƞḗḗḓ ŧǿ ķƞǿẇ."
+
+msgid "Learn More"
+msgstr "Ŀḗȧřƞ Ḿǿřḗ"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4212,9 +4244,6 @@ msgstr "Ŀīşŧḗḓ ṽḗřşīǿƞş"
 msgid "Currently on AMO"
 msgstr "Ƈŭřřḗƞŧŀẏ ǿƞ AḾǾ"
 
-msgid "Status"
-msgstr "Şŧȧŧŭş"
-
 msgid "Validation"
 msgstr "Ṽȧŀīḓȧŧīǿƞ"
 
@@ -4289,29 +4318,29 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ẇȧřƞīƞɠ"
 msgstr[1] "{0} ẇȧřƞīƞɠş"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Şŧǿƥ şƞḗȧķẏ ŧřȧƈķḗřş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŀḗȧṽḗ ȧ ƈŀḗȧƞ ḓīɠīŧȧŀ ŧřȧīŀ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
-msgid " Block invisible trackers and spying ads that follow you around the web."
-msgstr " Ɓŀǿƈķ īƞṽīşīƀŀḗ ŧřȧƈķḗřş ȧƞḓ şƥẏīƞɠ ȧḓş ŧħȧŧ ƒǿŀŀǿẇ ẏǿŭ ȧřǿŭƞḓ ŧħḗ ẇḗƀ."
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+msgstr "Ḿȧķḗ Ƒīřḗƒǿẋ ƒǿřɠḗŧ ẇḗƀşīŧḗ ḓȧŧȧ ŀīķḗ ƈǿǿķīḗş ȧƞḓ ŀǿƈȧŀ şŧǿřȧɠḗ, ƀŭŧ ǿƞŀẏ ƒǿř ḓǿḿȧīƞş ẏǿŭ ƈħǿǿşḗ."
 
-msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "Ƈŭşŧǿḿīẑḗ ƞḗẇ ŧȧƀ ƥȧɠḗş {start_sub_heading}ẇīŧħ {addon_name} {end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgstr "Īḿƥřǿṽḗ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_name} {end_sub_heading}"
 
-msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr "Ḗƞĵǿẏ ȧ ƀḗȧŭŧīƒŭŀ ƞḗẇ ƥȧɠḗ ẇīŧħ ƈŭşŧǿḿīẑȧƀŀḗ ƀȧƈķɠřǿŭƞḓş, ŀǿƈȧŀ ẇḗȧŧħḗř īƞƒǿ, ȧƞḓ ḿǿřḗ."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
+msgstr "Ḗƞĵǿẏ ȧ şŭīŧḗ ǿƒ ƞḗẇ ẎǿŭŦŭƀḗ ƒḗȧŧŭřḗş, ŀīķḗ ƈīƞḗḿȧ ḿǿḓḗ, ȧḓ ƀŀǿƈķīƞɠ, ȧŭŧǿ-ƥŀȧẏ, ȧƞḓ ḿǿřḗ."
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ŧřȧƞşŀȧŧḗ ḗȧşīŀẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ɓŀǿƈķ ȧḓş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text, right-click, and translate instantly."
-msgstr "Ħīɠħŀīɠħŧ ȧƞẏ ŧḗẋŧ, řīɠħŧ-ƈŀīƈķ, ȧƞḓ ŧřȧƞşŀȧŧḗ īƞşŧȧƞŧŀẏ."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
+msgstr "A ŀīɠħŧẇḗīɠħŧ ȧƞḓ ḗƒƒḗƈŧīṽḗ ȧḓ ƀŀǿƈķḗř. ŭƁŀǿƈķ Ǿřīɠīƞ ḗƞƒǿřƈḗş ŧħǿŭşȧƞḓş ǿƒ ƈǿƞŧḗƞŧ ƒīŀŧḗřş ẇīŧħǿŭŧ ƈħḗẇīƞɠ ŭƥ ȧ ŀǿŧ ǿƒ ḿḗḿǿřẏ."
 
-msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Şḗȧřƈħ Īḿȧɠḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŭƥ ẏǿŭř ḗḿǿĵī ɠȧḿḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
-msgid "Perform reverse image searches from an array of engines."
-msgstr "Ƥḗřƒǿřḿ řḗṽḗřşḗ īḿȧɠḗ şḗȧřƈħḗş ƒřǿḿ ȧƞ ȧřřȧẏ ǿƒ ḗƞɠīƞḗş."
+msgid "Dozens of amazing emojis for every occasion—just a click away."
+msgstr "Ḓǿẑḗƞş ǿƒ ȧḿȧẑīƞɠ ḗḿǿĵīş ƒǿř ḗṽḗřẏ ǿƈƈȧşīǿƞ—ĵŭşŧ ȧ ƈŀīƈķ ȧẇȧẏ."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ḓǿẇƞŀǿȧḓ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
@@ -4621,9 +4650,6 @@ msgstr "Ẇħȧŧ ȧřḗ Aḓḓ-ǿƞş?"
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
 msgstr "Aḓḓ-ǿƞş ȧřḗ ȧƥƥŀīƈȧŧīǿƞş ŧħȧŧ ŀḗŧ ẏǿŭ ƥḗřşǿƞȧŀīẑḗ %(app)s ẇīŧħ ḗẋŧřȧ ƒŭƞƈŧīǿƞȧŀīŧẏ ǿř şŧẏŀḗ. Ŧřẏ ȧ ŧīḿḗ-şȧṽīƞɠ şīḓḗƀȧř, ȧ ẇḗȧŧħḗř ƞǿŧīƒīḗř, ǿř ȧ ŧħḗḿḗḓ ŀǿǿķ ŧǿ ḿȧķḗ %(app)s ẏǿŭř ǿẇƞ."
-
-msgid "Learn More"
-msgstr "Ŀḗȧřƞ Ḿǿřḗ"
 
 msgid "Learn More About Add-ons"
 msgstr "Ŀḗȧřƞ Ḿǿřḗ Aƀǿŭŧ Aḓḓ-ǿƞş"
@@ -6527,6 +6553,21 @@ msgstr "Ařḗ ẏǿŭ şŭřḗ ẏǿŭ ẇȧƞŧ ŧǿ řḗḿǿṽḗ ȧŀŀ 
 msgid "Delete Locale"
 msgstr "Ḓḗŀḗŧḗ Ŀǿƈȧŀḗ"
 
+#, python-format
+msgid "The user \"%(user)s\" has been banned.user"
+msgstr "Ŧħḗ ŭşḗř \"%(user)s\" ħȧş ƀḗḗƞ ƀȧƞƞḗḓ.ŭşḗř"
+
+#, python-format
+msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgstr "Ŧħḗ ƥīƈŧŭřḗ ƀḗŀǿƞɠīƞɠ ŧǿ ŭşḗř \"%(user)s\" ħȧş ƀḗḗƞ ḓḗŀḗŧḗḓ.ŭşḗř"
+
+#, python-format
+msgid "The users \"%(users)s\" have been banned.users, "
+msgstr "Ŧħḗ ŭşḗřş \"%(users)s\" ħȧṽḗ ƀḗḗƞ ƀȧƞƞḗḓ.ŭşḗřş, "
+
+msgid "Ban selected users"
+msgstr "Ɓȧƞ şḗŀḗƈŧḗḓ ŭşḗřş"
+
 msgid "Profile Photo"
 msgstr "Ƥřǿƒīŀḗ Ƥħǿŧǿ"
 
@@ -6556,9 +6597,6 @@ msgstr "Ŧħīş ŬŘĿ ħȧş ȧƞ īƞṽȧŀīḓ ƒǿřḿȧŧ. Ṽȧŀīḓ
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "Ŧǿ ȧƞǿƞẏḿīẑḗ, ḗƞŧḗř ȧ řḗȧşǿƞ ƒǿř ŧħḗ ƈħȧƞɠḗ ƀŭŧ ḓǿ ƞǿŧ ƈħȧƞɠḗ ȧƞẏ ǿŧħḗř ƒīḗŀḓ."
-
-msgid "Please enter at least one name to be denied."
-msgstr "Ƥŀḗȧşḗ ḗƞŧḗř ȧŧ ŀḗȧşŧ ǿƞḗ ƞȧḿḗ ŧǿ ƀḗ ḓḗƞīḗḓ."
 
 msgid "No user with that email."
 msgstr "Ƞǿ ŭşḗř ẇīŧħ ŧħȧŧ ḗḿȧīŀ."
@@ -6630,6 +6668,12 @@ msgstr "Ŭşḗř řḗƥǿřŧḗḓ."
 
 msgid "new"
 msgstr "ƞḗẇ"
+
+msgid "Ban"
+msgstr "Ɓȧƞ"
+
+msgid "Delete picture"
+msgstr "Ḓḗŀḗŧḗ ƥīƈŧŭřḗ"
 
 msgid "Delete User Account"
 msgstr "Ḓḗŀḗŧḗ Ŭşḗř Aƈƈǿŭƞŧ"

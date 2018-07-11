@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"POT-Creation-Date: 2018-07-11 09:12+0000\n"
 "PO-Revision-Date: 2018-06-20 17:05+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -80,6 +80,9 @@ msgstr "Comentari"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
+
+msgid "Status"
+msgstr "Estat"
 
 msgid "- Add-on not on AMO -"
 msgstr ""
@@ -940,6 +943,9 @@ msgid "The field must have a length of at least {num} characters."
 msgstr ""
 
 msgid "The language code {lang_code} is invalid."
+msgstr ""
+
+msgid "You must provide an object of {lang-code:value}."
 msgstr ""
 
 #, python-format
@@ -1874,6 +1880,14 @@ msgstr "S'ha aprovat el comentari {review} del complement {addon}."
 msgid "{addon} reviewed."
 msgstr ""
 
+#, fuzzy
+msgid "User {user} banned."
+msgstr "L'usuari {user} resta anònim."
+
+#, fuzzy
+msgid "User {user} picture deleted."
+msgstr "L'usuari {user} resta anònim."
+
 msgid "User {0.name} added to {group}."
 msgstr ""
 
@@ -2374,6 +2388,19 @@ msgstr "Temes destacats"
 msgid "Persona"
 msgstr "Persona"
 
+#, fuzzy
+msgid "No Reputation"
+msgstr "Excepció"
+
+msgid "Good (1)"
+msgstr ""
+
+msgid "Very Good (2)"
+msgstr ""
+
+msgid "Excellent (3)"
+msgstr ""
+
 msgid "Manual Reviewer Points"
 msgstr "Punts de revisors manuals"
 
@@ -2615,10 +2642,6 @@ msgstr "La plataforma Totes no es pot combinar amb plataformes específiques."
 
 msgid "A platform can only be chosen once."
 msgstr "Només es pot seleccionar la plataforma una vegada."
-
-#, fuzzy
-msgid "Reputation"
-msgstr "Excepció"
 
 msgid "Application"
 msgstr "Aplicació"
@@ -3451,6 +3474,9 @@ msgstr "Envia un complement nou"
 msgid "Describe Add-on"
 msgstr "Descriviu el vostre complement"
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr ""
+
 #, fuzzy
 msgid "Add-on URL:"
 msgstr "URL del complement"
@@ -4032,16 +4058,18 @@ msgstr "Més complements"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-msgid "Help us improve the developer experience"
+msgid "Resources for a successful launch"
 msgstr ""
 
+#, python-format
 msgid ""
-"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
-"development work."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
-msgid "Take Survey"
-msgstr ""
+#, fuzzy
+msgid "View Resources for Publishers"
+msgstr "Mostra les estadístiques de l'usuari"
 
 #, fuzzy
 msgid "Welcome Back"
@@ -4052,6 +4080,13 @@ msgstr ""
 
 #, fuzzy
 msgid "Learn How"
+msgstr "Més informació"
+
+#, python-format
+msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
+msgstr ""
+
+msgid "Learn More"
 msgstr "Més informació"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
@@ -4399,9 +4434,6 @@ msgstr "Altres versions"
 msgid "Currently on AMO"
 msgstr ""
 
-msgid "Status"
-msgstr "Estat"
-
 # Header for a column in a table
 msgid "Validation"
 msgstr "Validació"
@@ -4480,28 +4512,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} avís"
 msgstr[1] "{0} avisos"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid " Block invisible trackers and spying ads that follow you around the web."
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr ""
 
-msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr ""
 
-msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
 msgstr ""
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
 msgstr ""
 
-msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Perform reverse image searches from an array of engines."
+msgid "Dozens of amazing emojis for every occasion—just a click away."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4819,9 +4851,6 @@ msgid "Add-ons are applications that let you personalize %(app)s with extra func
 msgstr ""
 "Els complements són aplicacions que us permeten personalitzar el %(app)s amb funcionalitats o estils addicionals. Proveu una barra lateral per estalviar temps, un notificador meteorològic, o un "
 "disseny que faci que el %(app)s sigui més propi."
-
-msgid "Learn More"
-msgstr "Més informació"
 
 msgid "Learn More About Add-ons"
 msgstr ""
@@ -6793,6 +6822,21 @@ msgstr ""
 msgid "Delete Locale"
 msgstr ""
 
+#, python-format
+msgid "The user \"%(user)s\" has been banned.user"
+msgstr ""
+
+#, python-format
+msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" have been banned.users, "
+msgstr ""
+
+msgid "Ban selected users"
+msgstr ""
+
 msgid "Profile Photo"
 msgstr "Perfil de la foto"
 
@@ -6823,10 +6867,6 @@ msgstr "Aquest URL no té un format vàlid. Els URL són de la forma http://exam
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr ""
-
-#, fuzzy
-msgid "Please enter at least one name to be denied."
-msgstr "Suggeriu una quantitat inferior a ${0}."
 
 msgid "No user with that email."
 msgstr "No hi ha cap usuari amb una adreça de correu."
@@ -6898,6 +6938,14 @@ msgstr "S'ha denunciat l'usuari."
 
 msgid "new"
 msgstr ""
+
+#, fuzzy
+msgid "Ban"
+msgstr "i"
+
+#, fuzzy
+msgid "Delete picture"
+msgstr "Suprimeix la meva foto d'usuari"
 
 msgid "Delete User Account"
 msgstr "Suprimeix el compte d'usuari"
