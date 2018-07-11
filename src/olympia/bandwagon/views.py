@@ -677,8 +677,11 @@ class CollectionAddonViewSet(ModelViewSet):
         return super(CollectionAddonViewSet, self).get_object()
 
     def get_queryset(self):
-        qs = CollectionAddon.objects.filter(
-            collection=self.get_collection_viewset().get_object())
+        qs = (
+            CollectionAddon.objects
+            .filter(collection=self.get_collection_viewset().get_object())
+            .prefetch_related('addon'))
+
         filter_param = self.request.GET.get('filter')
         # We only filter list action.
         include_all_with_deleted = (filter_param == 'all_with_deleted' or
