@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"POT-Creation-Date: 2018-07-11 10:53+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -77,6 +77,9 @@ msgstr "Nóta léirmheasa"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Ní féidir nótaí a chur ach leis an leagan is déanaí de bhreiseán."
+
+msgid "Status"
+msgstr "Stádas"
 
 msgid "- Add-on not on AMO -"
 msgstr ""
@@ -962,6 +965,9 @@ msgid "The field must have a length of at least {num} characters."
 msgstr ""
 
 msgid "The language code {lang_code} is invalid."
+msgstr ""
+
+msgid "You must provide an object of {lang-code:value}."
 msgstr ""
 
 #, python-format
@@ -1916,6 +1922,14 @@ msgstr "{review} ar {addon} ceadaithe."
 msgid "{addon} reviewed."
 msgstr ""
 
+#, fuzzy
+msgid "User {user} banned."
+msgstr "Coinnigh ainm úsáideoir {user} faoi cheilt."
+
+#, fuzzy
+msgid "User {user} picture deleted."
+msgstr "Coinnigh ainm úsáideoir {user} faoi cheilt."
+
 msgid "User {0.name} added to {group}."
 msgstr ""
 
@@ -2424,6 +2438,19 @@ msgstr "Cuir an Téama in Eagar"
 msgid "Persona"
 msgstr "Pearsantacht"
 
+#, fuzzy
+msgid "No Reputation"
+msgstr "Réiteach"
+
+msgid "Good (1)"
+msgstr ""
+
+msgid "Very Good (2)"
+msgstr ""
+
+msgid "Excellent (3)"
+msgstr ""
+
 msgid "Manual Reviewer Points"
 msgstr ""
 
@@ -2664,10 +2691,6 @@ msgstr ""
 
 msgid "A platform can only be chosen once."
 msgstr "Ní féidir ardán a roghnú ach uair amháin."
-
-#, fuzzy
-msgid "Reputation"
-msgstr "Réiteach"
 
 msgid "Application"
 msgstr "Feidhmchlár"
@@ -3496,6 +3519,9 @@ msgstr "Seol Leagan Nua"
 msgid "Describe Add-on"
 msgstr "Déan cur síos ar an mbreiseán"
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr ""
+
 msgid "Add-on URL:"
 msgstr "URL an Bhreiseáin:"
 
@@ -4052,15 +4078,16 @@ msgstr "Do Bhreiseán a Bhainistiú"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-msgid "Help us improve the developer experience"
+msgid "Resources for a successful launch"
 msgstr ""
 
+#, python-format
 msgid ""
-"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
-"development work."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
-msgid "Take Survey"
+msgid "View Resources for Publishers"
 msgstr ""
 
 #, fuzzy
@@ -4072,6 +4099,13 @@ msgstr ""
 
 #, fuzzy
 msgid "Learn How"
+msgstr "Tuilleadh Eolais"
+
+#, python-format
+msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
+msgstr ""
+
+msgid "Learn More"
 msgstr "Tuilleadh Eolais"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
@@ -4411,9 +4445,6 @@ msgstr "Féach leaganacha eile"
 msgid "Currently on AMO"
 msgstr ""
 
-msgid "Status"
-msgstr "Stádas"
-
 # Header for a column in a table
 msgid "Validation"
 msgstr "Bailíochtú"
@@ -4498,28 +4529,28 @@ msgstr[2] "{0} rabhadh"
 msgstr[3] "{0} rabhadh"
 msgstr[4] "{0} rabhadh"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid " Block invisible trackers and spying ads that follow you around the web."
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr ""
 
-msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr ""
 
-msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
 msgstr ""
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
 msgstr ""
 
-msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Perform reverse image searches from an array of engines."
+msgid "Dozens of amazing emojis for every occasion—just a click away."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4832,9 +4863,6 @@ msgid "Add-ons are applications that let you personalize %(app)s with extra func
 msgstr ""
 "Is éard atá i mbreiseán ná feidhmchlár a ligeann duit %(app)s a chur in oiriúint duit féin.  Bain triail as barra taoibh chun luas a chur le do chuid oibre, breiseán réamhaisnéis na haimsire, nó "
 "téama chun %(app)s a mhaisiú."
-
-msgid "Learn More"
-msgstr "Tuilleadh Eolais"
 
 msgid "Learn More About Add-ons"
 msgstr ""
@@ -6831,6 +6859,21 @@ msgstr ""
 msgid "Delete Locale"
 msgstr "Scrios an Teanga"
 
+#, python-format
+msgid "The user \"%(user)s\" has been banned.user"
+msgstr ""
+
+#, python-format
+msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" have been banned.users, "
+msgstr ""
+
+msgid "Ban selected users"
+msgstr ""
+
 msgid "Profile Photo"
 msgstr "Grianghraf na Próifíle"
 
@@ -6861,10 +6904,6 @@ msgstr "Tá formáid an URL seo neamhbhailí. Ba chóir dó a bheith cosúil le 
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr ""
-
-#, fuzzy
-msgid "Please enter at least one name to be denied."
-msgstr "Cuir isteach deontas molta, níos lú ná ${0}."
 
 msgid "No user with that email."
 msgstr "Níl aon úsáideoir leis an seoladh ríomhphoist sin."
@@ -6936,6 +6975,14 @@ msgstr "Rinneadh tuairisc ar an úsáideoir."
 
 msgid "new"
 msgstr "nua"
+
+#, fuzzy
+msgid "Ban"
+msgstr "agus"
+
+#, fuzzy
+msgid "Delete picture"
+msgstr "Scrios mo ghrianghraf úsáideora anois"
 
 msgid "Delete User Account"
 msgstr "Scrios Cuntas"

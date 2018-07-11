@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"POT-Creation-Date: 2018-07-11 10:53+0000\n"
 "PO-Revision-Date: 2018-03-04 16:16+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,6 +72,9 @@ msgstr "পর্যালোচনা নোট"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "শুধুমাত্র অ্যাডঅনসটির সর্বশেষ সংস্করণে যোগকৃত নোটগুলো থাকতে পারে।"
+
+msgid "Status"
+msgstr "স্ট্যাটাস"
 
 msgid "- Add-on not on AMO -"
 msgstr ""
@@ -888,6 +891,9 @@ msgstr "ফিল্ডের অবশ্যই ন্যূনতম {num} দ
 
 msgid "The language code {lang_code} is invalid."
 msgstr "{lang_code} ভাষা কোড অবৈধ।"
+
+msgid "You must provide an object of {lang-code:value}."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1802,6 +1808,14 @@ msgstr "{addon} এর {review} হালনাগাদ করা হয়েছ�
 msgid "{addon} reviewed."
 msgstr "{addon} পর্যালোচনা করা হয়েছে।"
 
+#, fuzzy
+msgid "User {user} banned."
+msgstr "{user} এর তথ্য গোপন করা হয়েছে।"
+
+#, fuzzy
+msgid "User {user} picture deleted."
+msgstr "{user} এর প্রবেশের অনুমতি নেই।"
+
 msgid "User {0.name} added to {group}."
 msgstr "{0.name} কে {group} এ যুক্ত করা হয়েছে।"
 
@@ -2298,6 +2312,19 @@ msgstr "থিম সাবমিট করুন"
 msgid "Persona"
 msgstr "পারসোনা"
 
+#, fuzzy
+msgid "No Reputation"
+msgstr "রেজুলেশন"
+
+msgid "Good (1)"
+msgstr ""
+
+msgid "Very Good (2)"
+msgstr ""
+
+msgid "Excellent (3)"
+msgstr ""
+
 msgid "Manual Reviewer Points"
 msgstr "ম্যানুয়াল রিভিউয়ার পয়েন্ট সমূহ"
 
@@ -2533,10 +2560,6 @@ msgstr ""
 
 msgid "A platform can only be chosen once."
 msgstr ""
-
-#, fuzzy
-msgid "Reputation"
-msgstr "রেজুলেশন"
 
 msgid "Application"
 msgstr "অ্যাপ্লিকেশন"
@@ -3347,6 +3370,9 @@ msgstr "নতুন সংস্করণ জমা দিন"
 msgid "Describe Add-on"
 msgstr "অ্যাড-অন ব্যাথ্যা করুন"
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr ""
+
 msgid "Add-on URL:"
 msgstr "এড-অন URL:"
 
@@ -3890,15 +3916,16 @@ msgstr "আরও অ্যাড-অন"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-msgid "Help us improve the developer experience"
+msgid "Resources for a successful launch"
 msgstr ""
 
+#, python-format
 msgid ""
-"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
-"development work."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
-msgid "Take Survey"
+msgid "View Resources for Publishers"
 msgstr ""
 
 #, fuzzy
@@ -3910,6 +3937,13 @@ msgstr ""
 
 #, fuzzy
 msgid "Learn How"
+msgstr "আরও জানুন"
+
+#, python-format
+msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
+msgstr ""
+
+msgid "Learn More"
 msgstr "আরও জানুন"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
@@ -4246,9 +4280,6 @@ msgstr "অন্য সংস্করণসূমহ দেখুন"
 msgid "Currently on AMO"
 msgstr ""
 
-msgid "Status"
-msgstr "স্ট্যাটাস"
-
 msgid "Validation"
 msgstr ""
 
@@ -4324,28 +4355,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} টি সতর্কতা"
 msgstr[1] ""
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid " Block invisible trackers and spying ads that follow you around the web."
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr ""
 
-msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr ""
 
-msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
 msgstr ""
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
 msgstr ""
 
-msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Perform reverse image searches from an array of engines."
+msgid "Dozens of amazing emojis for every occasion—just a click away."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4656,9 +4687,6 @@ msgstr "অ্যাড-অন কী?"
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
 msgstr ""
-
-msgid "Learn More"
-msgstr "আরও জানুন"
 
 msgid "Learn More About Add-ons"
 msgstr ""
@@ -6588,6 +6616,21 @@ msgstr ""
 msgid "Delete Locale"
 msgstr ""
 
+#, python-format
+msgid "The user \"%(user)s\" has been banned.user"
+msgstr ""
+
+#, python-format
+msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" have been banned.users, "
+msgstr ""
+
+msgid "Ban selected users"
+msgstr ""
+
 msgid "Profile Photo"
 msgstr "প্রোফাইল ছবি"
 
@@ -6618,10 +6661,6 @@ msgstr ""
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr ""
-
-#, fuzzy
-msgid "Please enter at least one name to be denied."
-msgstr "দয়া করে 0 থেকে বড় একটি প্রস্তাবিত সংখ্যা প্রবেশ করান।"
 
 msgid "No user with that email."
 msgstr ""
@@ -6693,6 +6732,14 @@ msgstr ""
 
 msgid "new"
 msgstr "নতুন"
+
+#, fuzzy
+msgid "Ban"
+msgstr "এবং"
+
+#, fuzzy
+msgid "Delete picture"
+msgstr "উত্তরটি মুছুণ"
 
 msgid "Delete User Account"
 msgstr "ব্যবহারকরীর অ্যাকাউন্ট অপসারণ করুন"

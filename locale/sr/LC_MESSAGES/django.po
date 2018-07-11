@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"POT-Creation-Date: 2018-07-11 10:53+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -73,6 +73,9 @@ msgstr "Датум рецензије"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
+
+msgid "Status"
+msgstr "Статус"
 
 msgid "- Add-on not on AMO -"
 msgstr ""
@@ -919,6 +922,9 @@ msgid "The field must have a length of at least {num} characters."
 msgstr ""
 
 msgid "The language code {lang_code} is invalid."
+msgstr ""
+
+msgid "You must provide an object of {lang-code:value}."
 msgstr ""
 
 #, python-format
@@ -1850,6 +1856,14 @@ msgstr "{review} за {addon} је ажуриран."
 msgid "{addon} reviewed."
 msgstr "{addon} је прегледан."
 
+#, fuzzy
+msgid "User {user} banned."
+msgstr "Корисник {user} промењен у анонимног."
+
+#, fuzzy
+msgid "User {user} picture deleted."
+msgstr "Корисник {user} је ограничен."
+
 msgid "User {0.name} added to {group}."
 msgstr "Корисник {0.name} је додат у {group}."
 
@@ -2381,6 +2395,19 @@ msgstr "Поднеси тему"
 msgid "Persona"
 msgstr "Persona"
 
+#, fuzzy
+msgid "No Reputation"
+msgstr "Резолуција"
+
+msgid "Good (1)"
+msgstr ""
+
+msgid "Very Good (2)"
+msgstr ""
+
+msgid "Excellent (3)"
+msgstr ""
+
 msgid "Manual Reviewer Points"
 msgstr "Поени самосталног рецензента"
 
@@ -2622,10 +2649,6 @@ msgstr "Платформа Све не може се укомбиновати с
 
 msgid "A platform can only be chosen once."
 msgstr "Платформа се може само једном изабрати."
-
-#, fuzzy
-msgid "Reputation"
-msgstr "Резолуција"
 
 msgid "Application"
 msgstr "Апликација"
@@ -3463,6 +3486,9 @@ msgstr "Поднеси нови додатак"
 msgid "Describe Add-on"
 msgstr "Опишите свој додатак"
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr ""
+
 #, fuzzy
 msgid "Add-on URL:"
 msgstr "URL адреса додатка"
@@ -4046,16 +4072,18 @@ msgstr "Управљање Вашим додатком"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-msgid "Help us improve the developer experience"
+msgid "Resources for a successful launch"
 msgstr ""
 
+#, python-format
 msgid ""
-"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
-"development work."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
-msgid "Take Survey"
-msgstr ""
+#, fuzzy
+msgid "View Resources for Publishers"
+msgstr "Погледај статистику за корисника"
 
 #, fuzzy
 msgid "Welcome Back"
@@ -4066,6 +4094,13 @@ msgstr ""
 
 #, fuzzy
 msgid "Learn How"
+msgstr "Сазнајте више"
+
+#, python-format
+msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
+msgstr ""
+
+msgid "Learn More"
 msgstr "Сазнајте више"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
@@ -4417,9 +4452,6 @@ msgstr "Погледајте друге верзије"
 msgid "Currently on AMO"
 msgstr "Тренутно на AMO"
 
-msgid "Status"
-msgstr "Статус"
-
 msgid "Validation"
 msgstr "Провера исправности"
 
@@ -4499,28 +4531,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} упозорење"
 msgstr[1] "{0} упозорења"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid " Block invisible trackers and spying ads that follow you around the web."
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr ""
 
-msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr ""
 
-msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
 msgstr ""
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
 msgstr ""
 
-msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Perform reverse image searches from an array of engines."
+msgid "Dozens of amazing emojis for every occasion—just a click away."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4836,9 +4868,6 @@ msgid "Add-ons are applications that let you personalize %(app)s with extra func
 msgstr ""
 "Додаци су апликације које Вам омогућавају да персонализујете %(app)s са додатним функцијама или стилом. Испробајте неку од трака за уштеду времена, додатак за обеваштавање о времену, или тематски "
 "изглед за %(app)s."
-
-msgid "Learn More"
-msgstr "Сазнајте више"
 
 msgid "Learn More About Add-ons"
 msgstr "Сазнајте више о додацима"
@@ -6818,6 +6847,21 @@ msgstr "Да ли сте сигурни да желите да уклоните 
 msgid "Delete Locale"
 msgstr "Избриши локал"
 
+#, python-format
+msgid "The user \"%(user)s\" has been banned.user"
+msgstr ""
+
+#, python-format
+msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" have been banned.users, "
+msgstr ""
+
+msgid "Ban selected users"
+msgstr ""
+
 msgid "Profile Photo"
 msgstr "Профилна слика"
 
@@ -6848,10 +6892,6 @@ msgstr "Овај URL је неисправног формата. Валидне 
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "На анонимном, унесите разлог за промену али не мењајте било које друго поље."
-
-#, fuzzy
-msgid "Please enter at least one name to be denied."
-msgstr "Молимо да унесете бар једно име на црну листу."
 
 msgid "No user with that email."
 msgstr "Нема корисника са том адресом е-поште."
@@ -6924,6 +6964,14 @@ msgstr "Корисник је пријавњен."
 
 msgid "new"
 msgstr "нови"
+
+#, fuzzy
+msgid "Ban"
+msgstr "и"
+
+#, fuzzy
+msgid "Delete picture"
+msgstr "Обриши моју корисничку слику"
 
 msgid "Delete User Account"
 msgstr "Избриши налог"

@@ -2,12 +2,12 @@
 # Pascal Chevrel <pascal.chevrel@free.fr>, 2006-2009.
 # Jean-Bernard Marcon <goofy@babelzilla.org>, 2009-2010.
 # Alexandre Lissy <lissyx@mozfr.org>, 2009, 2010, 2011, 2012, 2013.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"POT-Creation-Date: 2018-07-11 10:53+0000\n"
 "PO-Revision-Date: 2018-02-19 22:22+0000\n"
 "Last-Translator: mail <mail@ad5001.eu>\n"
 "Language-Team: français <>\n"
@@ -117,8 +117,8 @@ msgstr "Ajouter des notes de version détaillées (cela peut être effectué lor
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"S’il est nécessaire d’avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d’utilisateur et un mot de passe d’un compte de test dans les notes pour le réviseur (cela peut"
-" être effectué à la prochaine étape)."
+"S’il est nécessaire d’avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d’utilisateur et un mot de passe d’un compte de test dans les notes pour le réviseur (cela "
+"peut être effectué à la prochaine étape)."
 
 msgid "Add-on submission checklist"
 msgstr "Liste de points à vérifier pour l’envoi d’un module"

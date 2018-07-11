@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"POT-Creation-Date: 2018-07-11 10:53+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -79,6 +79,9 @@ msgstr "Data sprawdzenia"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
+
+msgid "Status"
+msgstr "Status"
 
 msgid "- Add-on not on AMO -"
 msgstr ""
@@ -929,6 +932,9 @@ msgid "The field must have a length of at least {num} characters."
 msgstr ""
 
 msgid "The language code {lang_code} is invalid."
+msgstr ""
+
+msgid "You must provide an object of {lang-code:value}."
 msgstr ""
 
 #, python-format
@@ -1861,6 +1867,14 @@ msgstr "Zaktualizowano {review} dla {addon}."
 msgid "{addon} reviewed."
 msgstr "Sprawdzono {addon}."
 
+#, fuzzy
+msgid "User {user} banned."
+msgstr "Włączono anonimowość dla użytkownika {user}."
+
+#, fuzzy
+msgid "User {user} picture deleted."
+msgstr "Użytkownik {user} został ograniczony."
+
 msgid "User {0.name} added to {group}."
 msgstr "Użytkownik {0.name} został dodany do {group}."
 
@@ -2367,6 +2381,19 @@ msgstr "Przesyłanie motywu"
 msgid "Persona"
 msgstr "Minimotyw"
 
+#, fuzzy
+msgid "No Reputation"
+msgstr "Decyzja"
+
+msgid "Good (1)"
+msgstr ""
+
+msgid "Very Good (2)"
+msgstr ""
+
+msgid "Excellent (3)"
+msgstr ""
+
 msgid "Manual Reviewer Points"
 msgstr "Punkty recenzenta"
 
@@ -2608,10 +2635,6 @@ msgstr "Oznaczenie „Wszystkie” nie może być połączone z konkretnymi syst
 
 msgid "A platform can only be chosen once."
 msgstr "System może zostać wybrany tylko raz."
-
-#, fuzzy
-msgid "Reputation"
-msgstr "Decyzja"
 
 msgid "Application"
 msgstr "Program"
@@ -3465,6 +3488,9 @@ msgstr "Zamieść nowy dodatek"
 msgid "Describe Add-on"
 msgstr "Opisz swój dodatek"
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr ""
+
 #, fuzzy
 msgid "Add-on URL:"
 msgstr "Adres URL dodatku"
@@ -4055,16 +4081,18 @@ msgstr "Zarządzanie swoim dodatkiem"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-msgid "Help us improve the developer experience"
+msgid "Resources for a successful launch"
 msgstr ""
 
+#, python-format
 msgid ""
-"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
-"development work."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
-msgid "Take Survey"
-msgstr ""
+#, fuzzy
+msgid "View Resources for Publishers"
+msgstr "Statystyki dla użytkownika"
 
 #, fuzzy
 msgid "Welcome Back"
@@ -4075,6 +4103,13 @@ msgstr ""
 
 #, fuzzy
 msgid "Learn How"
+msgstr "Dowiedz się więcej"
+
+#, python-format
+msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
+msgstr ""
+
+msgid "Learn More"
 msgstr "Dowiedz się więcej"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
@@ -4427,9 +4462,6 @@ msgstr "Zobacz inne wersje"
 msgid "Currently on AMO"
 msgstr "Aktualnie na AMO"
 
-msgid "Status"
-msgstr "Status"
-
 # Header for a column in a table
 msgid "Validation"
 msgstr "Weryfikuj"
@@ -4510,28 +4542,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ostrzeżenie"
 msgstr[1] "{0} ostrzeżenia"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid " Block invisible trackers and spying ads that follow you around the web."
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr ""
 
-msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr ""
 
-msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
 msgstr ""
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
 msgstr ""
 
-msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Perform reverse image searches from an array of engines."
+msgid "Dozens of amazing emojis for every occasion—just a click away."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4847,9 +4879,6 @@ msgid "Add-ons are applications that let you personalize %(app)s with extra func
 msgstr ""
 "Dodatki to małe aplikacje umożliwiające spersonalizowanie programu %(app)s za pomocą dodatkowych funkcji lub stylów. Wypróbuj pozwalający zaoszczędzić czas panel boczny, informacje o pogodzie lub "
 "motywy zmieniające wygląd programu %(app)s według twoich upodobań."
-
-msgid "Learn More"
-msgstr "Dowiedz się więcej"
 
 msgid "Learn More About Add-ons"
 msgstr "Dowiedz się więcej o dodatkach"
@@ -6854,6 +6883,21 @@ msgstr "Czy na pewno chcesz usunąć wszystkie tłumaczenia <b>{0}</b>? Tej oper
 msgid "Delete Locale"
 msgstr "Usuń lokalizację"
 
+#, python-format
+msgid "The user \"%(user)s\" has been banned.user"
+msgstr ""
+
+#, python-format
+msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" have been banned.users, "
+msgstr ""
+
+msgid "Ban selected users"
+msgstr ""
+
 msgid "Profile Photo"
 msgstr "Zdjęcie do profilu"
 
@@ -6884,10 +6928,6 @@ msgstr "Ten adres URL ma nieprawidłowy format. Poprawny adres URL wygląda jak:
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "Aby zachować anonimowość, podaj powód zmiany, ale nie zmieniaj żadnych innych pól."
-
-#, fuzzy
-msgid "Please enter at least one name to be denied."
-msgstr "Wprowadź przynajmniej jedną nazwę na czarną listę."
 
 msgid "No user with that email."
 msgstr "Nie ma użytkownika z takim adresem e-mail."
@@ -6960,6 +7000,14 @@ msgstr "Użytkownik został zgłoszony."
 
 msgid "new"
 msgstr "nowość"
+
+#, fuzzy
+msgid "Ban"
+msgstr "i"
+
+#, fuzzy
+msgid "Delete picture"
+msgstr "Usuń moje zdjęcie"
 
 msgid "Delete User Account"
 msgstr "Usuwanie konta użytkownika"
