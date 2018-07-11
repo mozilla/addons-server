@@ -27,7 +27,12 @@ def run_command(command):
 
 class Command(BaseCommand):
     help = ('Compresses css and js assets defined in settings.MINIFY_BUNDLES')
-    requires_model_validation = False
+
+    # This command must not do any system checks because Django runs db-field
+    # related checks since 1.10 which require a working MySQL connection.
+    # We don't have that during our docker builds and since `compress_assets`
+    # is being used while building our docker images we have to disable them.
+    requires_system_checks = False
 
     checked_hash = {}
     bundle_hashes = {}
