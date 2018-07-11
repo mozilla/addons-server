@@ -418,7 +418,7 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
     def self_view(self):
         return (
             self.request.user.is_authenticated() and
-            self.kwargs.get('pk') == self.request.user.pk)
+            self.get_object() == self.request.user)
 
     @property
     def admin_viewing(self):
