@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-07 01:02+0000\n"
+"PO-Revision-Date: 2018-07-11 13:47+0000\n"
 "Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1774,13 +1774,11 @@ msgstr "{addon} 的 {rating} 已更新。"
 msgid "{addon} reviewed."
 msgstr "{addon} 已审核。"
 
-#, fuzzy
 msgid "User {user} banned."
-msgstr "用户 {user} 已匿名。"
+msgstr ""
 
-#, fuzzy
 msgid "User {user} picture deleted."
-msgstr "用户 {user} 已限制。"
+msgstr ""
 
 msgid "User {0.name} added to {group}."
 msgstr "用户 {0.name} 已添加到组 {group}。"
@@ -2252,9 +2250,8 @@ msgstr "静态主题"
 msgid "Persona"
 msgstr "炫彩风格"
 
-#, fuzzy
 msgid "No Reputation"
-msgstr "声誉"
+msgstr ""
 
 msgid "Good (1)"
 msgstr ""
@@ -4237,32 +4234,29 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 个警告"
 
-#, fuzzy
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "轻松翻译 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr ""
 
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr ""
 
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
+msgstr "尊享全新的 YouTube 功能，如剧院模式、广告拦截、自动播放等等。"
 
 #, fuzzy
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
-msgstr ""
+msgstr "一款轻量又高效的广告拦截工具。uBlock Origin 能够在不消耗大量内存的情况下执行上千条过滤规则。"
 
 #, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "增强您的 emoji 体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—just a click away."
 msgstr "无数的精美 emoji，只需一键。"
 
