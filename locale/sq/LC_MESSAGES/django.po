@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"POT-Creation-Date: 2018-07-11 10:53+0000\n"
 "PO-Revision-Date: 2018-05-12 09:36+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -75,6 +75,9 @@ msgstr "Shënim shqyrtimi"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Shënime mund të shtohen vetëm te versionet më të reja të shtesave."
+
+msgid "Status"
+msgstr "Gjendje"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Shtesë jo në AMO -"
@@ -909,6 +912,9 @@ msgstr "Fusha duhet të ketë një gjatësi e pakta {num} shenja."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "Kodi {lang_code} për gjuhën është i pavlefshëm."
+
+msgid "You must provide an object of {lang-code:value}."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1831,6 +1837,14 @@ msgstr "{rating} për {addon} u përditësua."
 msgid "{addon} reviewed."
 msgstr "{addon} u shqyrtua."
 
+#, fuzzy
+msgid "User {user} banned."
+msgstr "Përdoruesi {user} u anonimizua."
+
+#, fuzzy
+msgid "User {user} picture deleted."
+msgstr "Përdoruesi {user} u kufizua."
+
 msgid "User {0.name} added to {group}."
 msgstr "Përdoruesi {0.name} u shtua te {group}."
 
@@ -2302,6 +2316,19 @@ msgstr "Temë Statike"
 msgid "Persona"
 msgstr "Persona"
 
+#, fuzzy
+msgid "No Reputation"
+msgstr "Reputacion"
+
+msgid "Good (1)"
+msgstr ""
+
+msgid "Very Good (2)"
+msgstr ""
+
+msgid "Excellent (3)"
+msgstr ""
+
 msgid "Manual Reviewer Points"
 msgstr "Pikë Shqyrtuesi Dorazi"
 
@@ -2533,9 +2560,6 @@ msgstr "Platforma Krejt s’mund të ndërthuret me platforma të caktuara."
 
 msgid "A platform can only be chosen once."
 msgstr "Platforma mund të zgjidhet vetëm një herë."
-
-msgid "Reputation"
-msgstr "Reputacion"
 
 msgid "Application"
 msgstr "Aplikacion"
@@ -3376,6 +3400,9 @@ msgstr "Parashtroni një Version të Ri"
 msgid "Describe Add-on"
 msgstr "Përshkruani Shtesën"
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr ""
+
 msgid "Add-on URL:"
 msgstr "URL Shtese:"
 
@@ -3898,16 +3925,18 @@ msgstr "Administroni Shtesën Tuaj"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Që të Përpunoni dhe Përditësoni Shtesën Tuaj, Bëni Hyrjen"
 
-msgid "Help us improve the developer experience"
+msgid "Resources for a successful launch"
 msgstr ""
 
+#, python-format
 msgid ""
-"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
-"development work."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
-msgid "Take Survey"
-msgstr ""
+#, fuzzy
+msgid "View Resources for Publishers"
+msgstr "Shihni statistikat për përdorues"
 
 # %s is the user's name
 #, fuzzy
@@ -3919,6 +3948,13 @@ msgstr "Ndihmojini përdoruesit të zbulojnë zgjerimin tuaj duke krijuar një p
 
 msgid "Learn How"
 msgstr "Mësoni Se Si"
+
+#, python-format
+msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
+msgstr ""
+
+msgid "Learn More"
+msgstr "Mësoni Më Tepër"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4257,9 +4293,6 @@ msgstr "Versione publike"
 msgid "Currently on AMO"
 msgstr "Në AMO"
 
-msgid "Status"
-msgstr "Gjendje"
-
 # Header for a column in a table
 msgid "Validation"
 msgstr "Vleftësim"
@@ -4340,33 +4373,33 @@ msgstr[0] "{0} sinjalizim"
 msgstr[1] "{0} sinjalizime"
 
 #, fuzzy
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ndaleni gjurmimin nga Facebook-u, {start_sub_heading}përmes {addon_name}{end_sub_heading}"
-
-msgid " Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
-
-#, fuzzy
-msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ripërfytyroni skedat {start_sub_heading}përmes {addon_name}{end_sub_heading}"
 
-msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr ""
 
 #, fuzzy
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ripërfytyroni skedat {start_sub_heading}përmes {addon_name}{end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
 msgstr ""
 
 #, fuzzy
-msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Kërkoni për figura, {start_sub_heading}përmes {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
+msgstr ""
 
 #, fuzzy
-msgid "Perform reverse image searches from an array of engines."
-msgstr " Kryeni kërkime figurash së prapthi që nga një grup motorësh kërkimi."
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{end_sub_heading}"
+
+#, fuzzy
+msgid "Dozens of amazing emojis for every occasion—just a click away."
+msgstr "Dhjetra emoji mahnitës, për çfarëdo nevoje - vetëm një klik larg."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
@@ -4680,9 +4713,6 @@ msgid "Add-ons are applications that let you personalize %(app)s with extra func
 msgstr ""
 "Shtesat janë aplikacione që ju lejojnë të personalizoni %(app)s me funksione ose stil ekstra. Provoni një anështyllë që bën diçka e ju kursen kohë, një njoftues moti, ose një pamje sipas një "
 "tematike të caktuar, që ta bëni %(app)s si e doni."
-
-msgid "Learn More"
-msgstr "Mësoni Më Tepër"
 
 msgid "Learn More About Add-ons"
 msgstr "Mësoni Më Tepër Rreth Shtesave"
@@ -6610,6 +6640,21 @@ msgstr "Jeni i sigurt se doni të hiqen krejt përkthimet për <b>{0}</b>? Kjo s
 msgid "Delete Locale"
 msgstr "Fshije Vendoren"
 
+#, python-format
+msgid "The user \"%(user)s\" has been banned.user"
+msgstr ""
+
+#, python-format
+msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" have been banned.users, "
+msgstr ""
+
+msgid "Ban selected users"
+msgstr ""
+
 msgid "Profile Photo"
 msgstr "Foto Profili"
 
@@ -6640,9 +6685,6 @@ msgstr "Kjo URL ka format të pavlefshëm. URL-të e vlefshme kanë pamje si kjo
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "Për anonimizim, jepni një arsye për ndryshimin, por mos ndryshoni ndonjë fushë tjetër."
-
-msgid "Please enter at least one name to be denied."
-msgstr "Ju lutemi, jepni të paktën një emër që duhet mohuar."
 
 msgid "No user with that email."
 msgstr "S’ka përdorues me këtë email."
@@ -6714,6 +6756,14 @@ msgstr "Përdoruesi u raportua."
 
 msgid "new"
 msgstr "e re"
+
+#, fuzzy
+msgid "Ban"
+msgstr "dhe"
+
+#, fuzzy
+msgid "Delete picture"
+msgstr "Fshije tani foton time të përdoruesit"
 
 msgid "Delete User Account"
 msgstr "Fshi Llogari Përdoruesi"
