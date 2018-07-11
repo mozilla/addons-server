@@ -399,7 +399,7 @@ class File(OnChangeMixin, ModelBase):
         3) other known permissions in alphabetical order
         """
         knowns = list(WebextPermissionDescription.objects.filter(
-            name__in=self.webext_permissions_list).iterator())
+            name__in=self.webext_permissions_list))
 
         urls = []
         match_url = None

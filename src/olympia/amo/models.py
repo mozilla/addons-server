@@ -6,12 +6,12 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.utils import translation
+from django.db.models.query import ModelIterable
 
 import elasticsearch
 import multidb.pinning
 
 import olympia.core.logger
-import olympia.lib.queryset_transform as queryset_transform
 
 from olympia.translations.hold import save_translations
 
@@ -32,7 +32,31 @@ def use_primary_db():
         multidb.pinning._locals.pinned = old
 
 
-class BaseQuerySet(queryset_transform.TransformQuerySet):
+class BaseQuerySet(models.QuerySet):
+
+    def __init__(self, *args, **kwargs):
+        super(BaseQuerySet, self).__init__(*args, **kwargs)
+        self._transform_fns = []
+
+    def _fetch_all(self):
+        if self._result_cache is None:
+            super(BaseQuerySet, self)._fetch_all()
+            # At this point, _result_cache should have been filled up. If we
+            # are dealing with a "regular" queryset (not values() etc) then we
+            # call the transformers.
+            if issubclass(self._iterable_class, ModelIterable):
+                for func in self._transform_fns:
+                    func(self._result_cache)
+
+    def _clone(self, **kwargs):
+        clone = super(BaseQuerySet, self)._clone(**kwargs)
+        clone._transform_fns = self._transform_fns[:]
+        return clone
+
+    def transform(self, fn):
+        clone = self._clone()
+        clone._transform_fns.append(fn)
+        return clone
 
     def pop_transforms(self):
         qs = self._clone()
@@ -68,17 +92,19 @@ class RawQuerySet(models.query.RawQuerySet):
 
 
 class ManagerBase(models.Manager):
-    # This needs to be set so that this manager class is being used
-    # for related objects too. This helps resolving translation fields
-    # on related fields.
-    # This also ensures we don't ignore soft-deleted items when traversing
-    # relations, if they are hidden by the objects manager, like we
-    # do with `addons.models:Addon`.
-    use_for_related_fields = True
+    """
+    Base for all managers in AMO.
+
+    Returns BaseQuerySets.
+
+    If a model has translated fields, they'll be attached through a transform
+    function.
+    """
+    _queryset_class = BaseQuerySet
 
     def get_queryset(self):
-        qs = self._with_translations(BaseQuerySet(self.model))
-        return qs
+        qs = self._queryset_class(self.model, using=self._db)
+        return self._with_translations(qs)
 
     def _with_translations(self, qs):
         from olympia.translations import transformer
@@ -104,6 +130,9 @@ class ManagerBase(models.Manager):
         This is subjective, but I don't trust get_or_create until #13906
         gets fixed. It's probably fine, but this makes me happy for the moment
         and solved a get_or_create we've had in the past.
+
+        This should be replaced by "read committed" state:
+        https://github.com/mozilla/addons-server/issues/7158
         """
         with transaction.atomic():
             try:
@@ -344,6 +373,16 @@ class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
     class Meta:
         abstract = True
         get_latest_by = 'created'
+        # This is important: Setting this to `objects` makes sure
+        # that Django is using the manager set as `objects` on this
+        # instance reather than the `_default_manager` or even
+        # `_base_manager` that are by default configured by Django.
+        # That's the only way currently to reliably tell Django to resolve
+        # translation objects / call transformers.
+        # This also ensures we don't ignore soft-deleted items when traversing
+        # relations, if they are hidden by the objects manager, like we
+        # do with `addons.models:Addon`
+        base_manager_name = 'objects'
 
     def get_absolute_url(self, *args, **kwargs):
         return self.get_url_path(*args, **kwargs)

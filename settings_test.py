@@ -24,7 +24,10 @@ SEND_REAL_EMAIL = True
 
 PAYPAL_PERMISSIONS_URL = ''
 
-SITE_URL = 'http://testserver'
+SITE_URL = CDN_HOST = 'http://testserver'
+
+STATIC_URL = '%s/static/' % CDN_HOST
+MEDIA_URL = '%s/user-media/' % CDN_HOST
 
 # We don't want to share cache state between processes. Always use the local
 # memcache backend for tests.

@@ -113,6 +113,9 @@ class Version(OnChangeMixin, ModelBase):
 
     class Meta(ModelBase.Meta):
         db_table = 'versions'
+        # This is very important: please read the lengthy comment in Addon.Meta
+        # description
+        base_manager_name = 'unfiltered'
         ordering = ['-created', '-modified']
 
     def __init__(self, *args, **kwargs):
@@ -804,8 +807,8 @@ class LicenseManager(ManagerBase):
 class License(ModelBase):
     OTHER = 0
 
-    name = TranslatedField(db_column='name')
-    url = models.URLField(null=True, db_column='url')
+    name = TranslatedField()
+    url = models.URLField(null=True)
     builtin = models.PositiveIntegerField(default=OTHER)
     text = LinkifiedField()
     on_form = models.BooleanField(

@@ -17,7 +17,7 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
     Addon, AddonCategory, Category, DeniedSlug, Persona)
 from olympia.addons.tasks import save_theme, save_theme_reupload
-from olympia.addons.widgets import CategoriesSelectMultiple, IconWidgetRenderer
+from olympia.addons.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.fields import (
     ColorField, HttpHttpsOnlyURLField, ReCaptchaField)
@@ -25,7 +25,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     remove_icons, slug_validator, slugify, sorted_groupby)
 from olympia.devhub import tasks as devhub_tasks
-from olympia.lib import happyforms
 from olympia.tags.models import Tag
 from olympia.translations import LOCALES
 from olympia.translations.fields import TransField, TransTextarea
@@ -105,7 +104,7 @@ def clean_tags(request, tags):
     return target
 
 
-class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
+class AddonFormBase(TranslationFormMixin, forms.ModelForm):
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -121,7 +120,9 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
     def clean_name(self):
         user = getattr(self.request, 'user', None)
 
-        name = verify_mozilla_trademark(self.cleaned_data['name'], user)
+        name = verify_mozilla_trademark(
+            self.cleaned_data['name'], user,
+            form=self)
 
         return name
 
@@ -310,8 +311,8 @@ def icons():
 
 
 class AddonFormMedia(AddonFormBase):
-    icon_type = forms.CharField(widget=forms.RadioSelect(
-        renderer=IconWidgetRenderer, choices=[]), required=False)
+    icon_type = forms.CharField(widget=IconTypeSelect(
+        choices=[]), required=False)
     icon_upload_hash = forms.CharField(required=False)
 
     class Meta:
@@ -411,7 +412,7 @@ class AddonFormTechnicalUnlisted(AddonFormBase):
         fields = ()
 
 
-class AbuseForm(happyforms.Form):
+class AbuseForm(forms.Form):
     recaptcha = ReCaptchaField(label='')
     text = forms.CharField(required=True,
                            label='',
@@ -654,7 +655,7 @@ class EditThemeForm(AddonFormBase):
         return data
 
 
-class EditThemeOwnerForm(happyforms.Form):
+class EditThemeOwnerForm(forms.Form):
     owner = UserEmailField()
 
     def __init__(self, *args, **kw):

@@ -3,7 +3,7 @@ from functools import update_wrapper
 from django.conf.urls import url
 from django.contrib import admin, messages
 from django.contrib.admin.utils import unquote
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db.utils import IntegrityError
 from django.http import (
     Http404, HttpResponseForbidden, HttpResponseNotAllowed,
@@ -178,8 +178,10 @@ class UserAdmin(admin.ModelAdmin):
         from django.contrib.admin.utils import display_for_value
         # We sort by -created by default, so first() gives us the last one, or
         # None.
-        return display_for_value(UserLog.objects.filter(
-            user=obj).values_list('created', flat=True).first())
+        user_log = (
+            UserLog.objects.filter(user=obj)
+            .values_list('created', flat=True).first())
+        return display_for_value(user_log, '')
 
     def related_content_link(self, obj, related_class, related_field,
                              related_manager='objects'):

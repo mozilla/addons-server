@@ -1,6 +1,11 @@
 """Loads and instantiates Celery, registers our tasks, and performs any other
 necessary Celery-related setup. Also provides Celery-related utility methods,
-in particular exposing a shortcut to the @task decorator."""
+in particular exposing a shortcut to the @task decorator.
+
+Please note that this module should not import model-related code because
+Django may not be properly set-up during import time (e.g if this module
+is directly being run/imported by Celery)
+"""
 from __future__ import absolute_import
 
 import datetime
@@ -18,8 +23,6 @@ from raven import Client
 from raven.contrib.celery import register_logger_signal, register_signal
 
 import olympia.core.logger
-
-from olympia.amo.utils import chunked, utc_millesecs_from_epoch
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -150,6 +153,7 @@ def track_task_run_time(task_id, task, **kw):
 class TaskTimer(object):
 
     def __init__(self):
+        from olympia.amo.utils import utc_millesecs_from_epoch
         self.current_datetime = datetime.datetime.now()
         self.current_epoch_ms = utc_millesecs_from_epoch(
             self.current_datetime)
@@ -163,6 +167,7 @@ def create_subtasks(task, qs, chunk_size, countdown=None, task_args=None):
     Splits a task depending on a queryset into a bunch of subtasks of the
     specified chunk_size, passing a chunked queryset and optional additional
     arguments to each."""
+    from olympia.amo.utils import chunked
     if task_args is None:
         task_args = ()
 

@@ -7,7 +7,6 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
-from django.db.models.functions import Func
 from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -48,13 +47,6 @@ VIEW_QUEUE_FLAGS = (
     ('sources_provided', 'sources-provided', _('Sources provided')),
     ('is_webextension', 'webextension', _('WebExtension')),
 )
-
-
-# Django 1.8 does not have Cast(), so this is a simple dumb implementation
-# that only handles Cast(..., DateTimeField())
-class DateTimeCast(Func):
-    function = 'CAST'
-    template = '%(function)s(%(expressions)s AS DATETIME(6))'
 
 
 def get_reviewing_cache_key(addon_id):
@@ -1135,6 +1127,9 @@ class RereviewQueueTheme(ModelBase):
 
     class Meta:
         db_table = 'rereview_queue_theme'
+        # This is very important: please read the lengthy comment in Addon.Meta
+        # description
+        base_manager_name = 'unfiltered'
 
     def __str__(self):
         return str(self.id)

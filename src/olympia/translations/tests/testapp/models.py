@@ -11,6 +11,9 @@ class TranslatedModel(ModelBase):
     default_locale = models.CharField(max_length=10)
     no_locale = TranslatedField(require_locale=False)
 
+    translated_through_fk = models.ForeignKey(
+        'TranslatedModelLinkedAsForeignKey',
+        null=True, default=None)
     objects = ManagerBase()
 
 
@@ -31,3 +34,24 @@ class FancyModel(ModelBase):
 
 models.signals.pre_save.connect(save_signal, sender=FancyModel,
                                 dispatch_uid='testapp_fancymodel')
+
+
+class TranslatedModelWithDefaultNull(ModelBase):
+    name = TranslatedField(default=None)
+
+    objects = ManagerBase()
+
+
+class TranslatedModelLinkedAsForeignKey(ModelBase):
+    name = TranslatedField()
+
+
+models.signals.pre_save.connect(
+    save_signal, sender=TranslatedModelLinkedAsForeignKey,
+    dispatch_uid='testapp_translatedmodellinkedasforeignkey_translations')
+
+
+models.signals.pre_save.connect(
+    save_signal,
+    sender=TranslatedModelWithDefaultNull,
+    dispatch_uid='testapp_translatedmodelwithdefaultnull')

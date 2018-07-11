@@ -1,6 +1,8 @@
 import mock
 import pytest
 
+from django.contrib.auth.models import AnonymousUser
+
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
@@ -89,7 +91,6 @@ class TestHasPerm(TestCase):
     def fake_request_with_user(self, user):
         request = mock.Mock()
         request.user = user
-        request.user.is_authenticated = mock.Mock(return_value=True)
         return request
 
     def login_admin(self):
@@ -97,7 +98,7 @@ class TestHasPerm(TestCase):
         return UserProfile.objects.get(email='admin@mozilla.com')
 
     def test_anonymous(self):
-        self.request.user.is_authenticated.return_value = False
+        self.request.user = AnonymousUser()
         self.client.logout()
         assert not check_addon_ownership(self.request, self.addon)
 

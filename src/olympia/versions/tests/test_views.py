@@ -203,14 +203,15 @@ class TestDownloadsBase(TestCase):
         assert response[settings.XSENDFILE_HEADER] == file_path
 
     def assert_served_locally(self, response, file_=None, attachment=False):
-        host = settings.SITE_URL + user_media_url('addons')
+        path = user_media_url('addons')
         if attachment:
-            host += '_attachments/'
-        self.assert_served_by_host(response, host, file_)
+            path += '_attachments/'
+        self.assert_served_by_host(response, path, file_)
 
     def assert_served_by_cdn(self, response, file_=None):
-        url = settings.SITE_URL + user_media_url('addons')
-        self.assert_served_by_host(response, url, file_)
+        assert response.url.startswith(settings.MEDIA_URL)
+        assert response.url.startswith('http')
+        self.assert_served_by_host(response, user_media_url('addons'), file_)
 
 
 class TestDownloadsUnlistedVersions(TestDownloadsBase):
@@ -296,7 +297,6 @@ class TestDownloads(TestDownloadsBase):
 
     def test_unicode_url(self):
         self.file.update(filename=u'图像浏览器-0.5-fx.xpi')
-
         self.assert_served_by_cdn(self.client.get(self.file_url))
 
 

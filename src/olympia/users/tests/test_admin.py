@@ -186,8 +186,8 @@ class TestUserAdmin(TestCase):
 
         response = self.client.post(ban_url, follow=True)
         assert response.status_code == 200
-        assert response.redirect_chain[0][0].endswith(self.detail_url)
-        assert response.redirect_chain[0][1] == 302
+        assert response.redirect_chain[-1][0].endswith(self.detail_url)
+        assert response.redirect_chain[-1][1] == 301
         self.user.reload()
         assert self.user.deleted
         assert self.user.email
@@ -218,8 +218,8 @@ class TestUserAdmin(TestCase):
 
         response = self.client.post(delete_picture_url, follow=True)
         assert response.status_code == 200
-        assert response.redirect_chain[0][0].endswith(self.detail_url)
-        assert response.redirect_chain[0][1] == 302
+        assert response.redirect_chain[-1][0].endswith(self.detail_url)
+        assert response.redirect_chain[-1][1] == 301
 
         assert delete_picture_mock.call_count == 1
 
@@ -269,8 +269,7 @@ class TestUserAdmin(TestCase):
         addon = addon_factory()
 
         model_admin = UserAdmin(UserProfile, admin.site)
-        assert (unicode(model_admin.last_known_activity_time(self.user)) ==
-                u'(None)')  # Nothing yet.
+        assert unicode(model_admin.last_known_activity_time(self.user)) == ''
 
         # Add various activities. They will be attached to whatever user is
         # set in the thread global at the time, so set that in advance.

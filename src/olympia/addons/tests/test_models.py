@@ -1140,7 +1140,7 @@ class TestAddonModels(TestCase):
         # one that does not exist in the constants.
         unknown_cat = Category.objects.create(
             application=amo.SUNBIRD.id, id=123456, type=amo.ADDON_EXTENSION,
-            name='Sunny D')
+            db_name='Sunny D')
         AddonCategory.objects.create(addon=addon, category=unknown_cat)
         thunderbird_static_cat = (
             CATEGORIES[amo.THUNDERBIRD.id][amo.ADDON_EXTENSION]['appearance'])

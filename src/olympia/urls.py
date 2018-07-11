@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.shortcuts import redirect
 from django.views.decorators.cache import cache_page
 from django.views.i18n import javascript_catalog
+from django.views.static import serve as serve_static
 
 from olympia.addons import views as addons_views
 from olympia.amo.urlresolvers import reverse
@@ -158,6 +159,6 @@ if settings.DEBUG:
     urlpatterns.append(
         url(
             r'^%s/(?P<path>.*)$' % media_url,
-            'django.views.static.serve',
+            serve_static,
             {'document_root': settings.MEDIA_ROOT}),
     )

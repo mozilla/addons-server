@@ -7,7 +7,7 @@ from datetime import datetime
 
 from django.apps import apps
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 from django.utils.translation import ugettext
 
