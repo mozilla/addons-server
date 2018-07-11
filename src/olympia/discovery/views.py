@@ -6,7 +6,7 @@ from waffle import switch_is_active
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.discovery.data import discopane_items
+from olympia.discovery.data import discopane_items, statictheme_disco_item
 from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.serializers import (
     DiscoveryEditorialContentSerializer, DiscoverySerializer)
@@ -48,6 +48,11 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
                     # Leave the non-extensions (personas) alone.
                     self.discopane_items = replace_extensions(
                         self.discopane_items, recommendations)
+            if switch_is_active('disco-staticthemes-dev'):
+                # Replace the first discopane item with a static theme to
+                # enable development on frontend.
+                self.discopane_items = list(self.discopane_items)
+                self.discopane_items[0] = statictheme_disco_item
         return self.discopane_items
 
     def get_queryset(self):

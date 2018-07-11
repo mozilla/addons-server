@@ -10,7 +10,8 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
-from olympia.discovery.data import DiscoItem, discopane_items as disco_data
+from olympia.discovery.data import (
+    DiscoItem, discopane_items as disco_data, statictheme_disco_item)
 from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.utils import replace_extensions
 
@@ -27,6 +28,7 @@ def get_dummy_addons():
         (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
         (297738, addon_factory(id=297738, type=amo.ADDON_PERSONA,
                                description=u'297738')),
+
         # And now the china edition addons
         (492244, addon_factory(id=492244, type=amo.ADDON_PERSONA,
                                description=u'492244')),
@@ -38,12 +40,18 @@ def get_dummy_addons():
         (287841, addon_factory(id=287841, type=amo.ADDON_EXTENSION)),
         (153659, addon_factory(id=153659, type=amo.ADDON_PERSONA,
                                description=u'153659')),
+
+        # The static theme we swap in when 'disco-staticthemes-dev' is enabled.
+        (496012, addon_factory(id=496012, type=amo.ADDON_STATICTHEME,
+                               description=u'496012')),
     ])
 
 
 class DiscoveryTestMixin(object):
-    def _check_disco_addon(self, result, item, flat_name=False):
+    def _check_disco_addon(self, result, item, flat_name=False,
+                           type_='extension'):
         addon = self.addons[item.addon_id]
+        assert result['addon']['type'] == type_
         assert result['addon']['id'] == item.addon_id == addon.pk
         if flat_name:
             assert result['addon']['name'] == unicode(addon.name)
@@ -74,6 +82,7 @@ class DiscoveryTestMixin(object):
 
     def _check_disco_theme(self, result, item, flat_name=False):
         addon = self.addons[item.addon_id]
+        assert result['addon']['type'] == 'persona'
         assert result['addon']['id'] == item.addon_id == addon.pk
         if flat_name:
             assert result['addon']['name'] == unicode(addon.name)
@@ -227,6 +236,28 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
         for i, result in enumerate(response.data['results']):
             assert result['is_recommendation'] is False
             if 'theme_data' in result['addon']:
+                self._check_disco_theme(result, discopane_items[i])
+            else:
+                self._check_disco_addon(result, discopane_items[i])
+
+    @override_switch('disco-staticthemes-dev', active=True)
+    def test_with_static_theme(self):
+        response = self.client.get(self.url, {'lang': 'en-US'})
+        assert response.data
+
+        discopane_items = disco_data['default']
+        assert response.data['count'] == len(discopane_items)
+        assert response.data['next'] is None
+        assert response.data['previous'] is None
+        assert response.data['results']
+
+        for i, result in enumerate(response.data['results']):
+            assert result['is_recommendation'] is False
+            if i == 0:
+                # We're just replacing the first discopane_item
+                self._check_disco_addon(
+                    result, statictheme_disco_item, type_='statictheme')
+            elif 'theme_data' in result['addon']:
                 self._check_disco_theme(result, discopane_items[i])
             else:
                 self._check_disco_addon(result, discopane_items[i])
