@@ -102,7 +102,8 @@ jobs:
             docker-compose restart worker
             docker-compose exec web make -f Makefile-docker update_deps
             docker-compose restart web
-            # chown to change permissions of olympia.egg*
+            # chown to change permissions of olympia.egg* and all folders/file
+            # This is done because cirlceci has permissions do not allow the user `circleci` to remove or add files create by the root, even if it is part of the root group.
             sudo chown -R circleci:circleci .
             # Start Test in Firefox docker container
             docker-compose exec --user circleci selenium-firefox tox -e ui-tests
