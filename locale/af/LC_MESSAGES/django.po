@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"POT-Creation-Date: 2018-07-11 09:12+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -74,6 +74,9 @@ msgid "Review note"
 msgstr "Resensie"
 
 msgid "Only latest versions of addons can have notes added."
+msgstr ""
+
+msgid "Status"
 msgstr ""
 
 msgid "- Add-on not on AMO -"
@@ -929,6 +932,9 @@ msgid "The field must have a length of at least {num} characters."
 msgstr ""
 
 msgid "The language code {lang_code} is invalid."
+msgstr ""
+
+msgid "You must provide an object of {lang-code:value}."
 msgstr ""
 
 #, python-format
@@ -1880,6 +1886,12 @@ msgstr ""
 msgid "{addon} reviewed."
 msgstr ""
 
+msgid "User {user} banned."
+msgstr ""
+
+msgid "User {user} picture deleted."
+msgstr ""
+
 msgid "User {0.name} added to {group}."
 msgstr ""
 
@@ -2373,6 +2385,19 @@ msgstr "Skep u eie tema"
 msgid "Persona"
 msgstr "Persona"
 
+#, fuzzy
+msgid "No Reputation"
+msgstr "Dokumentasie"
+
+msgid "Good (1)"
+msgstr ""
+
+msgid "Very Good (2)"
+msgstr ""
+
+msgid "Excellent (3)"
+msgstr ""
+
 msgid "Manual Reviewer Points"
 msgstr ""
 
@@ -2613,10 +2638,6 @@ msgstr ""
 
 msgid "A platform can only be chosen once."
 msgstr ""
-
-#, fuzzy
-msgid "Reputation"
-msgstr "Dokumentasie"
 
 msgid "Application"
 msgstr ""
@@ -3441,6 +3462,9 @@ msgstr "Dien nuwe byvoeging in"
 msgid "Describe Add-on"
 msgstr "Ontdek byvoegings"
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr ""
+
 #, fuzzy
 msgid "Add-on URL:"
 msgstr "Byvoegings"
@@ -4004,15 +4028,16 @@ msgstr "Meer byvoegings"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-msgid "Help us improve the developer experience"
+msgid "Resources for a successful launch"
 msgstr ""
 
+#, python-format
 msgid ""
-"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
-"development work."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
-msgid "Take Survey"
+msgid "View Resources for Publishers"
 msgstr ""
 
 #, fuzzy
@@ -4024,6 +4049,13 @@ msgstr ""
 
 #, fuzzy
 msgid "Learn How"
+msgstr "Meer inligting"
+
+#, python-format
+msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
+msgstr ""
+
+msgid "Learn More"
 msgstr "Meer inligting"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
@@ -4369,9 +4401,6 @@ msgstr "Beta-weergawe {0}"
 msgid "Currently on AMO"
 msgstr ""
 
-msgid "Status"
-msgstr ""
-
 # Header for a column in a table
 msgid "Validation"
 msgstr ""
@@ -4450,28 +4479,28 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} waarskuwing"
 msgstr[1] "{0} waarskuwings"
 
-msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid " Block invisible trackers and spying ads that follow you around the web."
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr ""
 
-msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr ""
 
-msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
 msgstr ""
 
-msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Highlight any text, right-click, and translate instantly."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
 msgstr ""
 
-msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Perform reverse image searches from an array of engines."
+msgid "Dozens of amazing emojis for every occasion—just a click away."
 msgstr ""
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4785,9 +4814,6 @@ msgid "Add-ons are applications that let you personalize %(app)s with extra func
 msgstr ""
 "Byvoegings is programme waarmee mens %(app)s kan verpersoonlik met ekstra funksionaliteit of styl. Probeer 'n tydbesparende kantpaneel, 'n weerkennisgewing, of 'n tematiese baadjie om %(app)s jou "
 "eie te maak."
-
-msgid "Learn More"
-msgstr "Meer inligting"
 
 msgid "Learn More About Add-ons"
 msgstr ""
@@ -6757,6 +6783,21 @@ msgstr ""
 msgid "Delete Locale"
 msgstr ""
 
+#, python-format
+msgid "The user \"%(user)s\" has been banned.user"
+msgstr ""
+
+#, python-format
+msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgstr ""
+
+#, python-format
+msgid "The users \"%(users)s\" have been banned.users, "
+msgstr ""
+
+msgid "Ban selected users"
+msgstr ""
+
 msgid "Profile Photo"
 msgstr "Profielfoto"
 
@@ -6787,10 +6828,6 @@ msgstr ""
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr ""
-
-#, fuzzy
-msgid "Please enter at least one name to be denied."
-msgstr "Gee 'n voorgestelde bedrag minder as ${0}."
 
 msgid "No user with that email."
 msgstr "Geen gebruiker met daardie e-posadres nie."
@@ -6866,6 +6903,15 @@ msgstr ""
 
 msgid "new"
 msgstr ""
+
+msgid "Ban"
+msgstr ""
+
+# 80%
+# 100%
+#, fuzzy
+msgid "Delete picture"
+msgstr "Skrap my gebruikerfoto nou"
 
 msgid "Delete User Account"
 msgstr ""
