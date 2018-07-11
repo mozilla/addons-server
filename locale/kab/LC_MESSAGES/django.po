@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-07-10 23:11+0000\n"
+"PO-Revision-Date: 2018-07-11 09:44+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4082,7 +4082,7 @@ msgstr "Mudd-d ugar n telqayt ɣef usentel s <a href=\"%(edit_url)s\"> teẓrigt
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr ""
+msgstr "Wali daɣen jerred ar <a href=\"%(feed_url)s\"> usuddem n urmud</a> n usentel-ik akken ad teqqimeḍ deg isallen n usentem-is, tigrummiwin d wayen-nniḍen."
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
@@ -4119,7 +4119,7 @@ msgstr "Tizmilin n lqem"
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
-msgstr ""
+msgstr "Talɣut ɣef ibeddilen n lqem-agi, timahilin timaynutin, uguren yettwassnen akked telɣut-nniḍen icudden ar lqem-agi. Talɣut-agi ad tettwasken daɣen deg umsefrak n yizegrar di lawan n uleqqem."
 
 msgid "Approval Status"
 msgstr "Addad n usentem"
@@ -4128,13 +4128,13 @@ msgid "Notes for Reviewers"
 msgstr "Tizmilin i yimceggiren"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr ""
+msgstr "Aru ma tebɣiḍ talɣut izemren ad telhu i umsekyed n uzegrir, am imiḍanen n usekyed."
 
 msgid "Source code"
 msgstr "Tangalt aɣbalu"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr ""
+msgstr "Ma yella  azegrir-ik yegber tangalt timsint neɣ tussiḍt, sers dagi iɣbula i wid ara yeceggren."
 
 msgid "File {file_id} ({platform})"
 msgstr "Afaylu {file_id} ({platform})"
@@ -4285,13 +4285,13 @@ msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Sewḥel aḍfaṛ n sneaky {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 msgid " Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Sewḥel ineḍfaṛen uffiren akked udellel aneḍfaṛ i k-yeṭṭafaṛen di Web."
 
 msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "Mudd udem i yisebtar n yiccer amaynut  {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Faṛes tagnit n usebter amaynut s ugilal udmawan, talɣut ɣef tegnawt tadigant d ayen-nniḍen."
 
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Suqel s wudem fessusen {start_sub_heading} s {addon_name} {end_sub_heading}"
@@ -4303,7 +4303,7 @@ msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Nadi tugniwin {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Nadi s wudem yettin tugniwin seg tagrumma n yimseddayen n unadi."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
@@ -4321,7 +4321,7 @@ msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr ""
+msgstr "Ddeqs n tignitin n yiḥulfan, yal tikelt ɣef afus."
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
