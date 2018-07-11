@@ -1841,7 +1841,7 @@ msgid "User {user} banned."
 msgstr "Gebruiker {user} verbannen."
 
 msgid "User {user} picture deleted."
-msgstr "Gebruiker {user} afbeelding verwijderd."
+msgstr ""
 
 msgid "User {0.name} added to {group}."
 msgstr "Gebruiker {0.name} toegevoegd aan {group}."
