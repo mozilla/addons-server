@@ -37,7 +37,6 @@ services:
       - ./static:/srv/static
       - ./site-static:/srv/site-static
       - ./user-media/:/srv/user-media
-      - ./tmp/ui-tests/user-media/:/srv/user-media
 
   memcached:
     image: memcached:1.4
