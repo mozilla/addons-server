@@ -4246,9 +4246,8 @@ msgstr ""
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
 msgstr "尊享全新的 YouTube 功能，如剧院模式、广告拦截、自动播放等等。"
 
-#, fuzzy
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr ""
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
 msgstr "一款轻量又高效的广告拦截工具。uBlock Origin 能够在不消耗大量内存的情况下执行上千条过滤规则。"
@@ -6549,13 +6548,11 @@ msgstr "用户已报告。"
 msgid "new"
 msgstr "新的"
 
-#, fuzzy
 msgid "Ban"
-msgstr "至"
+msgstr ""
 
-#, fuzzy
 msgid "Delete picture"
-msgstr "立即删除我的用户图片"
+msgstr ""
 
 msgid "Delete User Account"
 msgstr "删除用户账户"
