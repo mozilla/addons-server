@@ -32,7 +32,7 @@ def get_dummy_addons():
         (3006, addon_factory(id=3006, type=amo.ADDON_EXTENSION)),
         (626810, addon_factory(id=626810, type=amo.ADDON_EXTENSION)),
         (25725, addon_factory(id=25725, type=amo.ADDON_PERSONA)),
-        # disable while 511692 is above in the default addons
+        # disable while 511962 is above in the default addons
         # (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
         (287841, addon_factory(id=287841, type=amo.ADDON_EXTENSION)),
         (153659, addon_factory(id=153659, type=amo.ADDON_PERSONA,
