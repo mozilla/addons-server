@@ -7,7 +7,12 @@ from pages.desktop.base import Base
 
 
 class DevHub(Base):
+    """Developer Hub for uploading addons.
 
+    This page represents the logacy view of the developer hub. It can be used
+    to upload an addon.
+
+    """
     URL_TEMPLATE = 'developers/'
 
     _root_locator = (By.CLASS_NAME, 'DevHub-Navigation')
@@ -56,21 +61,19 @@ class DevHub(Base):
         els = self.find_elements(*self._addons_item_locator)
         return [self.AddonsListItem(self, el) for el in els]
 
-    def upload_addon(self):
+    def upload_addon(self, xpi=None):
         """Upload an addon via devhub.
 
         This will use the override validation option.
         """
-        file_to_upload = 'webextension_no_id.xpi'
-        file_path = get_file(file_to_upload)
+        file_path = get_file(xpi)
         self.selenium.find_element(*self._submit_addon_btn_locator).click()
         self.selenium.find_element(*self._continue_sub_btn_locator).click()
         upload = self.selenium.find_element(*self._upload_addon_locator)
         upload.send_keys(file_path)
         self.wait.until(
-            expected.element_to_be_clickable(self._override_validation_locator)
+            expected.element_to_be_clickable(self._submit_upload_btn_locator)
         )
-        self.selenium.find_element(*self._override_validation_locator).click()
         self.selenium.find_element(*self._submit_upload_btn_locator).click()
         from pages.desktop.devhub_submission import DevhubSubmission
 

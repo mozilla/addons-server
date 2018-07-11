@@ -4,7 +4,11 @@ from pages.desktop.base import Base
 
 
 class DevhubSubmission(Base):
+    """Devhub submission page legacy view.
 
+    This will fill and submit an addon.
+
+    """
     _name_locator = (By.ID, 'id_name')
     _summary_locator = (By.ID, 'id_summary_0')
     _license_btn_locator = (By.ID, 'id_license-builtin_0')
@@ -25,8 +29,13 @@ class DevhubSubmission(Base):
         return self
 
     def fill_addon_submission_form(self):
-        """Fill addon submission form."""
-        self.find_element(*self._name_locator).send_keys('-ui-test-addon-2')
+        """Fill addon submission form.
+
+        Currently there is a prefilled suggested name, specificying your own
+        name will just be added to the end of the current name. The default
+        name is "Ui-Test-Devhub-ext".
+
+        """
         self.find_element(*self._summary_locator).send_keys('Words go here')
         self.find_element(*self._appearance_categories_locator).click()
         self.find_element(*self._bookmarks_categories_locator).click()

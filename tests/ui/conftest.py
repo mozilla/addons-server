@@ -4,10 +4,10 @@ from olympia import amo
 
 from pages.desktop.devhub import DevHub
 
-
 # Window resolutions
 DESKTOP = (1080, 1920)
 MOBILE = (414, 738)
+
 
 @pytest.fixture
 def firefox_options(firefox_options):
@@ -15,6 +15,15 @@ def firefox_options(firefox_options):
 
     These options configure firefox to allow for addon installation,
     as well as allowing it to run headless.
+
+    'extensions.install.requireBuiltInCerts', False: This allows extensions to
+        be installed with a self-signed certificate.
+    'xpinstall.signatures.required', False: This allows an extension to be
+        installed without a certificate.
+    'extensions.webapi.testing', True: This is needed for whitelisting
+        mozAddonManager
+    '-foreground': Firefox will run in the foreground with priority
+    '-headless': Firefox will run headless
 
     """
     firefox_options.set_preference(
@@ -24,7 +33,7 @@ def firefox_options(firefox_options):
     firefox_options.set_preference('extensions.webapi.testing', True)
     firefox_options.set_preference('ui.popup.disable_autohide', True)
     firefox_options.add_argument('-foreground')
-    firefox_options.add_argument('-headless')
+    # firefox_options.add_argument('-headless')
     firefox_options.log.level = 'trace'
     return firefox_options
 
@@ -67,11 +76,6 @@ def selenium(selenium, request):
     return selenium
 
 
-@pytest.fixture(scope='session')
-def base_url(base_url):
-    return base_url
-
-
 @pytest.fixture
 def devhub_login(selenium, fxa_account):
     """Log into the devhub."""
@@ -90,7 +94,7 @@ def devhub_upload(devhub_login):
 
     """
     devhub = devhub_login
-    addon = devhub.upload_addon()
+    addon = devhub.upload_addon('ui-test_devhub_ext-1.0.xpi')
     return addon.fill_addon_submission_form()
 
 

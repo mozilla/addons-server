@@ -81,6 +81,7 @@ jobs:
       - run:
           name: Install Docker Compose
           command: |
+            # using curl to install for better ci -> local compatibility
             set -x
             curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
             chmod +x ~/docker-compose
@@ -101,6 +102,7 @@ jobs:
             docker-compose restart worker
             docker-compose exec web make -f Makefile-docker update_deps
             docker-compose restart web
+            # chown to change permissions of olympia.egg*
             sudo chown -R circleci:circleci .
             # Start Test in Firefox docker container
             docker-compose exec --user circleci selenium-firefox tox -e ui-tests
