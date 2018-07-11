@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-11 14:23+0000\n"
+"PO-Revision-Date: 2018-07-11 15:22+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -3313,7 +3313,7 @@ msgid "Describe Add-on"
 msgstr "描述附加元件"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "在本站上架時的名稱。可以與附加元件（也是在 Firefox 當中顯示）的名稱不同。"
 
 msgid "Add-on URL:"
 msgstr "附加元件網址："
@@ -3834,13 +3834,13 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "登入後即可編輯並更新您的附加元件"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "成功上架的相關資源"
 
 #, python-format
 msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
-msgstr ""
+msgstr "您已經打造好擴充套件，準備發布了嗎？接下來還要作什麼？請參考我們提供，如何建立吸引人的上架頁面、讓擴充套件能在 %(amo_link_open)saddons.mozilla.org%(amo_link_close)s 成為精選套件、尋找開發問題相關解答，以及隨時取得擴充套件開發相關訊息與活動的資訊與解答。"
 
 msgid "View Resources for Publishers"
 msgstr "檢視發布者的資源"
@@ -3856,7 +3856,7 @@ msgstr "更多資訊"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "想讓您的擴充套件成為 %(amo_link_open)saddons.mozilla.org%(amo_link_close)s 上的精選套件嗎？我們的精選套件挑選原則將告訴您要注意哪些事項。"
 
 msgid "Learn More"
 msgstr "更多資訊"
@@ -4270,13 +4270,13 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "{addon_name} {start_sub_heading}清除數位足跡{end_sub_heading}"
 
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "讓 Firefox 針對您指定的網域，忘記 Cookie、本機儲存空間等網站資料。"
 
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}改善影片播放功能{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
+msgstr "享用全新的 YouTube 功能大補包，諸如電影院模式、封鎖廣告、自動播放等功能。"
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
