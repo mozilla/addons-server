@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-11 21:22+0000\n"
+"PO-Revision-Date: 2018-07-11 21:42+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -908,7 +908,7 @@ msgid "The language code {lang_code} is invalid."
 msgstr "O código do idioma {lang_code} é inválido."
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "Deve providenciar um objeto de {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -2311,13 +2311,13 @@ msgid "No Reputation"
 msgstr "Sem reputação"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "Bom (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Muito bom (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "Excelente (3)"
 
 msgid "Manual Reviewer Points"
 msgstr "Pontos do manual do revisor"
@@ -3391,7 +3391,7 @@ msgid "Describe Add-on"
 msgstr "Descreva o extra"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Nome na listagem deste site. Pode ser diferente do nome dentro do extra, que é mostrado dentro do Firefox"
 
 msgid "Add-on URL:"
 msgstr "URL do extra:"
@@ -3921,7 +3921,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Iniciar sessão para editar e atualizar o seu extra"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "Recursos para um lançamento com sucesso"
 
 #, python-format
 msgid ""
@@ -3943,7 +3943,7 @@ msgstr "Saber mais"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "Quer a sua extensão em destaque em %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? As nossas políticas de extensões em destaque irão dizer-lhe o que precisa de saber."
 
 msgid "Learn More"
 msgstr "Saber mais"
@@ -4369,24 +4369,23 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Deixe um rasto digital limpo {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Faça com que o Firefox se esqueça dos dados de websites como cookies e armazenamento local, mas apenas para domínios que escolha."
 
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "Melhore os vídeos {start_sub_heading}com {addon_name} {end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
+msgstr "Desfrute de uma suite de funcionalidades do YouTube, como modo cinema, bloqueio de anúncios, reprodução automática, e mais."
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bloqueie anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
-msgstr ""
+msgstr "Um bloqueador de anúncios leve e eficaz. O uBlock Origin aplica milhares de filtros de conteúdo sem mastigar um monte de memória."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Melhore o seu jogo de emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—just a click away."
 msgstr "Dezenas de emojis fantásticos para toda a ocasião—sempre a um clique de distância."
 
@@ -6634,7 +6633,7 @@ msgstr "Eliminar idioma"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned.user"
-msgstr ""
+msgstr "O utilizador \"%(user)s\" foi banido."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
@@ -6645,7 +6644,7 @@ msgid "The users \"%(users)s\" have been banned.users, "
 msgstr ""
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "Banir utilizadores selecionados"
 
 msgid "Profile Photo"
 msgstr "Fotografia do perfil"
