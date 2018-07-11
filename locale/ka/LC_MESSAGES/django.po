@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-11 14:42+0000\n"
+"PO-Revision-Date: 2018-07-11 14:53+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3915,6 +3915,7 @@ msgstr "გაიგეთ, როგორ"
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
+"გსურთ, თქვენი გაფართოება გახდეს რჩეული %(amo_link_open)saddons.mozilla.org%(amo_link_close)s საიტზე? რჩეული გაფართოებების შესახებ ჩვენი დებულებები დაგეხმარებათ გაიგოთ, რა არის ამისთვის საჭირო."
 
 msgid "Learn More"
 msgstr "იხილეთ ვრცლად"
@@ -4327,26 +4328,23 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} გაფრთხილება"
 msgstr[1] "{0} გაფრთხილება"
 
-#, fuzzy
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "თარგმნეთ მარტივად {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "დატოვეთ სუფთა „ციფრული კვალი“ {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Firefox არ დაიტოვებს ვებსაიტის ისეთ მონაცემებს, როგორიცაა ფუნთუშები და სხვა ადგილობრივად შენახულ მასალები, გარდა, თქვენ მიერ მითითებული საიტების."
 
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "ჩამოტვირთეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "გააუმჯობესეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
+msgstr "ისარგებლეთ YouTube-ის ახალი შესაძლებლობების კრებულით, რაც მოიცავს კინოთეატრის რეჟიმს, რეკლამების შეზღუდვას, თვითგაშვებას და ა.შ."
 
-#, fuzzy
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ჩამოტვირთეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
-msgstr ""
+msgstr "მსუბუქი და მძლავრი რეკლამების შემზღუდავი. uBlock Origin გაფართოებას, შეუძლია ათასობით ფილტრის გამოყენება, მეხსიერების დატვირთვის გარეშე."
 
 #, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
