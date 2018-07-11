@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-11 14:32+0000\n"
+"PO-Revision-Date: 2018-07-11 14:42+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3889,17 +3889,19 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "შედით ანგარიშზე, თქვენი დამატებების ჩასასწორებლად და გასაახლებლად"
 
 msgid "Resources for a successful launch"
-msgstr "საშუალებები, წარმატებული გაშვებისთვის"
+msgstr "სასარგებლო მასალები, წარმატებული გაშვებისთვის"
 
 #, python-format
 msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
+"გაფართოება უკვე შემუშავებულია და მზადაა გამოსაქვეყნებლად. რა იქნება შემდეგ? გაეცანით ჩვენს რჩევებს, მიმზიდველი გვერდის შექმნის თაობაზე, თქვენი გაფართოების შესაძლებლობების სრულად წარმოსაჩენად "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s საიტზე, მოიძიეთ პასუხები შემუშავებასთან დაკავშირებულ კითხვებზე და მუდმივად მიიღეთ სიახლეები, გაფართოებების შემმუშავებლებთან დაკავშირებული "
+"ღონისძიებების შესახებ."
 
-#, fuzzy
 msgid "View Resources for Publishers"
-msgstr "მომხმარებლის სტატისტიკის ნახვა"
+msgstr "სასარგებლო მასალები, ნამუშევრის გამოქვეყნებისთვის"
 
 msgid "Welcome Back"
 msgstr "კეთილი იყოს თქვენი დაბრუნება"
