@@ -18,10 +18,6 @@ INSTALLED_APPS += (
     'olympia.landfill',
 )
 
-MEDIA_ROOT = path('tmp/ui-tests/user-media/')
-TMP_PATH = path('tmp/ui-tests/tmp/')
-NETAPP_STORAGE = TMP_PATH
-
 FILESYSTEM_CACHE_ROOT = os.path.join(TMP_PATH, 'cache')
 
 # Disable cache-machine locally and in tests to prepare for its removal.
