@@ -677,14 +677,9 @@ class CollectionAddonViewSet(ModelViewSet):
         return super(CollectionAddonViewSet, self).get_object()
 
     def get_queryset(self):
-        collection = (
-            self.get_collection_viewset().get_queryset()
-            .no_transforms()
-            .get(slug=self.kwargs['collection_slug']))
-
         qs = (
             CollectionAddon.objects
-            .filter(collection=collection)
+            .filter(collection=self.get_collection_viewset().get_object())
             .prefetch_related('addon'))
 
         filter_param = self.request.GET.get('filter')
