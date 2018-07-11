@@ -18,22 +18,23 @@ from olympia.discovery.utils import replace_extensions
 # Represents a dummy version of `olympia.discovery.data`
 def get_dummy_addons():
     return OrderedDict([
-        (42019, addon_factory(id=42019, type=amo.ADDON_PERSONA,
-                              description=u'42019')),
-        (506646, addon_factory(id=506646, type=amo.ADDON_EXTENSION)),
-        (850407, addon_factory(id=850407, type=amo.ADDON_EXTENSION)),
-        (553386, addon_factory(id=553386, type=amo.ADDON_PERSONA)),
-        (445852, addon_factory(id=445852, type=amo.ADDON_EXTENSION)),
-        (93451, addon_factory(id=93451, type=amo.ADDON_EXTENSION)),
-        (482976, addon_factory(id=482976, type=amo.ADDON_PERSONA,
-                               description=u'482976')),
+        (677612, addon_factory(id=677612, type=amo.ADDON_PERSONA,
+                               description=u'677612')),
+        (884014, addon_factory(id=884014, type=amo.ADDON_EXTENSION)),
+        (700308, addon_factory(id=700308, type=amo.ADDON_EXTENSION)),
+        (599898, addon_factory(id=599898, type=amo.ADDON_PERSONA)),
+        (607454, addon_factory(id=607454, type=amo.ADDON_EXTENSION)),
+        (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
+        (297738, addon_factory(id=297738, type=amo.ADDON_PERSONA,
+                               description=u'297738')),
         # And now the china edition addons
         (492244, addon_factory(id=492244, type=amo.ADDON_PERSONA,
                                description=u'492244')),
         (3006, addon_factory(id=3006, type=amo.ADDON_EXTENSION)),
         (626810, addon_factory(id=626810, type=amo.ADDON_EXTENSION)),
         (25725, addon_factory(id=25725, type=amo.ADDON_PERSONA)),
-        (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
+        # disable while 511962 is above in the default addons
+        # (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
         (287841, addon_factory(id=287841, type=amo.ADDON_EXTENSION)),
         (153659, addon_factory(id=153659, type=amo.ADDON_PERSONA,
                                description=u'153659')),
