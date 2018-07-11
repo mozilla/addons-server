@@ -6791,6 +6791,8 @@ msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
+"אין לך אפשרות למחוק את החשבון שלך אם נרשמת בתור <a href=\"%(link)s\">יוצר של תוספת כלשהי</a>. כדי למחוק את החשבון שלך, נא לבקש ממישהו בקבוצת הפיתוח שלך למחוק אותך מרשימת היוצרים של התוספות שלך. לאחר"
+" מכן יתאפשר לך למחוק את החשבון שלך כאן."
 
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
 msgstr "על ידי לחיצה על כפתור המחיקה, החשבון שלך <strong>יימחק לצמיתות</strong>. זאת אומרת:"
