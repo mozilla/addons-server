@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-12 03:02+0000\n"
+"PO-Revision-Date: 2018-07-12 03:13+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3865,6 +3865,8 @@ msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
+"Anda telah membina ekstensi dan sedia untuk diterbitkan. Apa pula selepas ini? Lihat panduan yang kami sediakan untuk mencipta halaman penyenaraian yang menarik, supaya ekstensi dapat dipaparkan di "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, mendapatkan jawapan berkaitan pembangunan, dan sentiasa mengikuti berita dan acara berkaitan pembangun ekstensi."
 
 #, fuzzy
 msgid "View Resources for Publishers"
@@ -3881,7 +3883,7 @@ msgstr "Belajar Caranya"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "Anda mahu ekstensi anda dipaparkan di %(amo_link_open)saddons.mozilla.org%(amo_link_close)s Anda boleh ketahuinya dalam polisi ekstensi serlahan yang disediakan."
 
 msgid "Learn More"
 msgstr "Ketahui Selanjutnya"
@@ -4297,7 +4299,7 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Terjemahan mudah {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Jadikan Firefox lupa akan maklumat laman web seperti kuki dan storan lokal, cuma domain yang anda pilih."
 
 #, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
