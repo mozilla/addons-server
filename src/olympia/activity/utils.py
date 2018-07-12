@@ -61,7 +61,11 @@ class ActivityEmailParser(object):
     address_prefix = REPLY_TO_PREFIX
 
     def __init__(self, message):
-        if (not isinstance(message, dict) or 'TextBody' not in message):
+        invalid_email = (
+            not isinstance(message, dict) or
+            not message.get('TextBody', None))
+
+        if invalid_email:
             log.exception('ActivityEmailParser didn\'t get a valid message.')
             raise ActivityEmailEncodingError(
                 'Invalid or malformed json message object.')
