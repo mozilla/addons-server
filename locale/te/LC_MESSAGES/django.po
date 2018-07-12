@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-12 09:35+0000\n"
+"PO-Revision-Date: 2018-07-12 09:48+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2408,19 +2408,19 @@ msgid "Nazi or other hate content"
 msgstr "నాజీ లేదా ఇతర ద్వేషపూరిత విషయం"
 
 msgid "Defamatory content"
-msgstr ""
+msgstr "అపనిందాపూర్వక విషయం"
 
 msgid "Online gambling"
 msgstr "ఆన్‌లైను జూదం"
 
 msgid "Spam content"
-msgstr ""
+msgstr "స్పామ్ విషయం"
 
 msgid "Low-quality, stretched, or blank image"
 msgstr "తక్కువ నాణ్యత, సాగదీసిన లేదా ఖాళీ చిత్రం"
 
 msgid "Header image alignment problem"
-msgstr ""
+msgstr "శీర్షిక చిత్రం అమరిక సమస్య"
 
 msgid "Core"
 msgstr "అంర్భాగం"
@@ -2454,7 +2454,7 @@ msgid "Provide the text of your license."
 msgstr "మీ లైసెన్స్ యొక్క టెక్స్ట్ ను అందించండి."
 
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "ఇతర ఎంపిక చేసుకున్నప్పుడు లైసెన్సు పాఠ్యం తప్పనిసరి."
 
 msgid "This add-on has an End-User License Agreement"
 msgstr ""
