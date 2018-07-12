@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-12 03:13+0000\n"
+"PO-Revision-Date: 2018-07-12 03:22+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4313,7 +4313,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
-msgstr ""
+msgstr "Penyekat iklan yang ringkas dan efektif. uBlock Origin melaksanakan ribuan tapisan kandungan tanpa menggunakan banyak memori."
 
 #, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6530,7 +6530,7 @@ msgstr "Buang Lokaliti"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned.user"
-msgstr ""
+msgstr "Pengguna \"%(user)s\" telah disekat"
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
