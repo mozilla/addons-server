@@ -5,6 +5,7 @@ from pages.desktop.base import Base
 
 
 class ManageSubmissions(Base):
+    """Submission management legacy page."""
 
     _root_locator = (By.CSS_SELECTOR, '.listing .island')
     _page_title_locator = (By.CSS_SELECTOR, '.primary .hero > h2')
