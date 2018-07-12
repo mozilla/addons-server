@@ -6681,7 +6681,7 @@ msgid "The users \"%(users)s\" have been banned.users, "
 msgstr "Wužiwarjo „%(users)s“ su so zahnali."
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "Wubranych wužiwarjow zahnać"
 
 msgid "Profile Photo"
 msgstr "Profilowe foto"
