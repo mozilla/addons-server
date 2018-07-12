@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-12 11:29+0000\n"
+"PO-Revision-Date: 2018-07-12 11:38+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -942,7 +942,7 @@ msgid "The language code {lang_code} is invalid."
 msgstr "Koda jezika {lang_code} je neveljavna."
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "Podati morate objekt za {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -3984,7 +3984,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Prijavite se za urejanje in upravljanje dodatka"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "Viri za uspešno izdajo"
 
 #, python-format
 msgid ""
@@ -3992,9 +3992,8 @@ msgid ""
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "View Resources for Publishers"
-msgstr "Prikaži statistiko za uporabnika"
+msgstr "Prikaži vire za objavitelje"
 
 msgid "Welcome Back"
 msgstr "Dobrodošli nazaj"
@@ -4007,7 +4006,7 @@ msgstr "Več o tem"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "Želite, da bi se vašo razširitev predstavilo na %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Naši pravilniki za izbrane razširitve vam bodo razložili, kar morate vedeti."
 
 msgid "Learn More"
 msgstr "Več o tem"
