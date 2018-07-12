@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-11 14:22+0000\n"
+"PO-Revision-Date: 2018-07-12 03:02+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -3335,7 +3335,7 @@ msgid "Describe Add-on"
 msgstr "Huraikan Add-on"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Nama senarai dalam laman ini. Mungkin berbeza dengan nama di dalam add-on yang dipaparkan di dalam Firefox"
 
 msgid "Add-on URL:"
 msgstr "URL Add-on:"
@@ -3858,7 +3858,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Daftar masuk untuk Mengedit dan Mengemaskini Add-on Anda"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "Sumber untuk pelancaran yang berjaya"
 
 #, python-format
 msgid ""
