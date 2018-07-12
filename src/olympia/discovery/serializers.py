@@ -65,8 +65,8 @@ class DiscoverySerializer(serializers.Serializer):
                 '{addon_name}', addon_link)
 
         if data['description'] is None:
-            if (instance.addon.type == amo.ADDON_EXTENSION and
-                    instance.addon.summary):
+            has_summary = (amo.ADDON_EXTENSION, amo.ADDON_STATICTHEME)
+            if (instance.addon.type in has_summary and instance.addon.summary):
                 data['description'] = (
                     u'<blockquote>%s</blockquote>' % instance.addon.summary)
             elif (instance.addon.type == amo.ADDON_PERSONA and

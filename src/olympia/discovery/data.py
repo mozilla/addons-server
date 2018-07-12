@@ -146,3 +146,6 @@ discopane_items = {
             addon_id=153659, type=amo.ADDON_PERSONA),
     ],
 }
+
+# Tigers Matter https://addons-dev.allizom.org/addon/tigers-matter
+statictheme_disco_item = DiscoItem(addon_id=496012, type=amo.ADDON_STATICTHEME)
