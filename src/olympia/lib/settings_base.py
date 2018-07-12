@@ -1046,7 +1046,6 @@ ADDON_ICONS_DEFAULT_PATH = os.path.join(ROOT, 'static', 'img', 'addon-icons')
 # URL paths
 # paths for images, e.g. mozcdn.com/amo or '/static'
 VAMO_URL = 'https://versioncheck.addons.mozilla.org'
-NEW_PERSONAS_UPDATE_URL = VAMO_URL + '/%(locale)s/themes/update-check/%(id)d'
 
 
 # Outgoing URL bouncer

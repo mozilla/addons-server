@@ -1679,7 +1679,8 @@ class Persona(models.Model):
     @cached_property
     def update_url(self):
         locale = settings.LANGUAGE_URL_MAP.get(trans_real.get_language())
-        return settings.NEW_PERSONAS_UPDATE_URL % {
+        url = settings.VAMO_URL + '/%(locale)s/themes/update-check/%(id)d'
+        return url % {
             'locale': locale or settings.LANGUAGE_CODE,
             'id': self.addon.id
         }
