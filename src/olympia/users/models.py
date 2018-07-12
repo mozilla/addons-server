@@ -328,16 +328,16 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @cached_property
     def cached_developer_status(self):
-        qset = list(
+        addon_types = list(
             self.addonuser_set
             .exclude(addon__status=amo.STATUS_DELETED)
             .values_list('addon__type', flat=True))
 
+        all_themes = [t for t in addon_types if t in amo.GROUP_TYPE_THEME]
         return {
-            'is_developer': bool(qset),
-            'is_addon_developer': bool(
-                [t for t in qset if t != amo.ADDON_PERSONA]),
-            'is_artist': bool([t for t in qset if t == amo.ADDON_PERSONA])
+            'is_developer': bool(addon_types),
+            'is_extension_developer': len(all_themes) != len(addon_types),
+            'is_theme_developer': bool(all_themes)
         }
 
     @property
@@ -346,12 +346,12 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def is_addon_developer(self):
-        return self.cached_developer_status['is_addon_developer']
+        return self.cached_developer_status['is_extension_developer']
 
     @property
     def is_artist(self):
         """Is this user a Personas Artist?"""
-        return self.cached_developer_status['is_artist']
+        return self.cached_developer_status['is_theme_developer']
 
     @use_primary_db
     def update_is_public(self):
