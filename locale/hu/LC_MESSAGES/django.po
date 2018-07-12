@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-12 20:21+0000\n"
+"PO-Revision-Date: 2018-07-12 20:26+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -3929,6 +3929,8 @@ msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
+"Elkészítette a kiegészítőjét, és készen áll a közzétételre. Most mi következik? Nézze meg a tippjeinket a vonzó részletező oldal létrehozásáról, emelje ki a kiterjesztését az "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s-on, találjon választ fejlesztési kérdésekre, és legyen naprakész a kiegészítőfejlesztőkkel kapcsolatos hírekkel és eseményekkel."
 
 msgid "View Resources for Publishers"
 msgstr "Kiadóknak szóló erőforrások megtekintése"
@@ -3944,7 +3946,7 @@ msgstr "Tudja meg hogyan"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "Szeretné kiemelni a kiterjesztését az %(amo_link_open)saddons.mozilla.org%(amo_link_close)s-on? A kiemelt kiegészítők irányelvei tartalmaznak mindent, amit tudnia kell."
 
 msgid "Learn More"
 msgstr "További infó"
@@ -4364,7 +4366,7 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Ne hagyjon digitális nyomot {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Felejtesse el a Firefoxszal a webhelyadatokat, mint a sütiket és a helyi tárolót, de csak azoknál az oldalaknál, amelyeket kiválaszt."
 
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "Javítsa a videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
