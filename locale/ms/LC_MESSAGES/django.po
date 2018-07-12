@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-12 03:25+0000\n"
+"PO-Revision-Date: 2018-07-12 04:21+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1791,13 +1791,11 @@ msgstr "{rating} untuk {addon} dikemaskini."
 msgid "{addon} reviewed."
 msgstr "{addon} disemak."
 
-#, fuzzy
 msgid "User {user} banned."
-msgstr "Pengguna {user} anonimus."
+msgstr "Pengguna {user} disekat."
 
-#, fuzzy
 msgid "User {user} picture deleted."
-msgstr "Pengguna {user} dihadkan."
+msgstr "Gambar pengguna {user} dibuang."
 
 msgid "User {0.name} added to {group}."
 msgstr "Pengguna {0.name} dimasukkan ke {group}."
@@ -2266,9 +2264,8 @@ msgstr "Tema Statik"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "No Reputation"
-msgstr "Reputasi"
+msgstr "Tiada Reputasi"
 
 msgid "Good (1)"
 msgstr "Baik (1)"
@@ -3868,9 +3865,8 @@ msgstr ""
 "Anda telah membina ekstensi dan sedia untuk diterbitkan. Apa pula selepas ini? Lihat panduan yang kami sediakan untuk mencipta halaman penyenaraian yang menarik, supaya ekstensi dapat dipaparkan di "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, mendapatkan jawapan berkaitan pembangunan, dan sentiasa mengikuti berita dan acara berkaitan pembangun ekstensi."
 
-#, fuzzy
 msgid "View Resources for Publishers"
-msgstr "Papar statistik untuk pengguna"
+msgstr "Lihat Sumber untuk Penerbit"
 
 msgid "Welcome Back"
 msgstr "Selamat Kembali"
@@ -4294,28 +4290,24 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} amaran"
 
-#, fuzzy
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Terjemahan mudah {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Tinggalkan jejak digital yang bersih {start_sub_heading}dengan{addon_name}{end_sub_heading}"
 
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "Jadikan Firefox lupa akan maklumat laman web seperti kuki dan storan lokal, cuma domain yang anda pilih."
 
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name} {end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
+msgstr "Nikmati set ciri YouTube yang baru, seperti mod pawagam, menyekat iklan, kawalan auto-main dan banyak lagi."
 
-#, fuzzy
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
 msgstr "Penyekat iklan yang ringkas dan efektif. uBlock Origin melaksanakan ribuan tapisan kandungan tanpa menggunakan banyak memori."
 
-#, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
