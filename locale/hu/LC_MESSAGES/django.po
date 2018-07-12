@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-11 16:41+0000\n"
+"PO-Revision-Date: 2018-07-12 11:16+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -916,7 +916,7 @@ msgid "The language code {lang_code} is invalid."
 msgstr "A következő nyelvkód érvénytelen: {lang_code}."
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "Meg kell adnia egy {lang-code:value} objektumot."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -2314,13 +2314,13 @@ msgid "No Reputation"
 msgstr "Nincs hírneve"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "Jó (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Nagyon jó (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "Kiváló (3)"
 
 msgid "Manual Reviewer Points"
 msgstr "Kézi értékelői pontok"
@@ -4370,13 +4370,13 @@ msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "Javítsa a videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
+msgstr "Élvezzen egy csokornyi új YouTube funkciót, mint a mozi mód, reklámblokkolás, automatikus lejátszás, és így tovább."
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
-msgstr ""
+msgstr "Egy könnyűsúlyú és hatékony reklámblokkoló. Az uBlock Origin tartalomszűrők ezreit tartatja be, anélkül hogy sok memóriát fogyasztana."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Még több emodzsi {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
@@ -6617,18 +6617,18 @@ msgstr "Területi beállítás törlése"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned.user"
-msgstr ""
+msgstr "„%(user)s” felhasználó ki lett tiltva."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
-msgstr ""
+msgstr "„%(user)s” felhasználó képe törölve lett."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned.users, "
-msgstr ""
+msgstr "„%(users)s” felhasználók ki lettek tiltva."
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "Kiválasztott felhasználók kitiltása"
 
 msgid "Profile Photo"
 msgstr "Profilkép"
