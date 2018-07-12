@@ -5,7 +5,6 @@ Inspired by django.contrib.auth.management.commands.createsuperuser.
 (http://bit.ly/2cTgsNV)
 """
 import json
-import os
 
 from datetime import datetime
 
