@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-12 05:14+0000\n"
+"PO-Revision-Date: 2018-07-12 07:04+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -936,7 +936,7 @@ msgid "The language code {lang_code} is invalid."
 msgstr "Rěčny kod {lang_code} je njepłaćiwy."
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "Dyrbiće objekt za {lang-code:value} podać."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -2352,13 +2352,13 @@ msgid "No Reputation"
 msgstr "Žane mjeno"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "Dobry (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Jara dobry (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "Wuběrny (3)"
 
 msgid "Manual Reviewer Points"
 msgstr "Dypki za manuelne přepruwowanje"
@@ -3432,7 +3432,7 @@ msgid "Describe Add-on"
 msgstr "Přidatk wopisać"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Mjeno w zapisku na tutym sydle. Smě so wot mjena w přidatku rozeznawać, kotrež je so w Firefox pokazuje"
 
 msgid "Add-on URL:"
 msgstr "URL přidatka:"
@@ -3956,7 +3956,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Přizjewće so, zo byšće swój přidatk wobdźěłował a aktualizował"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "Resursy za wuspěšny start"
 
 #, python-format
 msgid ""
@@ -3978,7 +3978,7 @@ msgstr "Zhońće, kak to dźe"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "Chceće, zo so waše rozšěrjenje na %(amo_link_open)saddons.mozilla.org%(amo_link_close)s předstaja? Naše prawidła za předstajene rozšěrjenja wam zdźěla, štož dyrbiće wědźeć."
 
 msgid "Learn More"
 msgstr "Dalše informacije"
@@ -4399,13 +4399,13 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Zawostajće čiste digitalne slědy {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Dajće Firefox daty websydł kaž na přikład placki a lokalny składowak zabyć, ale jenož za wubrane domeny."
 
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "Polěpšće wideja {start_sub_heading}z {addon_name} {end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
+msgstr "Wužiwajće rjad nowych funkcijow Youtube, na přikład kinowy modus, blokowanje wabjenja, awotmatiske wothraće a wjace."
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokujće wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
@@ -6670,15 +6670,15 @@ msgstr "Rěč zhašeć"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned.user"
-msgstr ""
+msgstr "Wužiwar „%(user)s“ je so zahnał"
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
-msgstr ""
+msgstr "Wobraz, kotryž wužiwarjej „%(user)s“ słuša, je so zhašał"
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned.users, "
-msgstr ""
+msgstr "Wužiwarjo „%(users)s“ su so zahnali."
 
 msgid "Ban selected users"
 msgstr ""
