@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-12 04:21+0000\n"
+"PO-Revision-Date: 2018-07-12 04:23+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4311,9 +4311,8 @@ msgstr "Penyekat iklan yang ringkas dan efektif. uBlock Origin melaksanakan ribu
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—just a click away."
-msgstr "Pelbagai emoji menarik—hanya perlu klik sahaja."
+msgstr "Pelbagai emoji menarik untuk setiap keadaan—hanya perlu klik sahaja."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
@@ -6636,13 +6635,11 @@ msgstr "Pengguna dilaporkan."
 msgid "new"
 msgstr "baru"
 
-#, fuzzy
 msgid "Ban"
-msgstr "dan"
+msgstr "Sekat"
 
-#, fuzzy
 msgid "Delete picture"
-msgstr "Buang foto pengguna saya sekarang"
+msgstr "Buang gambar"
 
 msgid "Delete User Account"
 msgstr "Buang Akaun Pengguna"
