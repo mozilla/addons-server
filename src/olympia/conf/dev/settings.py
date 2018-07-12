@@ -192,3 +192,5 @@ RAVEN_ALLOW_LIST = ['addons-dev.allizom.org', 'addons-dev-cdn.allizom.org']
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-east-1.amazonaws.com/927034868273/'
     'amo-account-change-dev')
+
+VAMO_URL = 'https://versioncheck-dev.allizom.org'

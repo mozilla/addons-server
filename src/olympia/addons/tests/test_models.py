@@ -2037,11 +2037,9 @@ class TestPersonaModel(TestCase):
     def test_json_data(self):
         self.persona.addon.all_categories = [Category(db_name='Yolo Art')]
 
-        VAMO = 'https://vamo/%(locale)s/themes/update-check/%(id)d'
-
         with self.settings(LANGUAGE_CODE='fr',
                            LANGUAGE_URL_MAP={},
-                           NEW_PERSONAS_UPDATE_URL=VAMO,
+                           VAMO_URL='https://vamo',
                            SITE_URL='https://omgsh.it'):
             data = self.persona.theme_data
 
@@ -2076,11 +2074,9 @@ class TestPersonaModel(TestCase):
 
         self.persona.addon.all_categories = [Category(db_name='Yolo Art')]
 
-        VAMO = 'https://vamo/%(locale)s/themes/update-check/%(id)d'
-
         with self.settings(LANGUAGE_CODE='fr',
                            LANGUAGE_URL_MAP={},
-                           NEW_PERSONAS_UPDATE_URL=VAMO,
+                           VAMO_URL='https://vamo',
                            SITE_URL='https://omgsh.it'):
             data = self.persona.theme_data
 
