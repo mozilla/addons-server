@@ -272,8 +272,10 @@ def dashboard(request):
             request, amo.permissions.REVIEWS_ADMIN):
         expired = (
             Addon.objects.filter(
-                addonreviewerflags__pending_info_request__lt=datetime.now()
-            ).order_by('addonreviewerflags__pending_info_request'))
+                addonreviewerflags__pending_info_request__lt=datetime.now(),
+                status__in=(amo.STATUS_NOMINATED, amo.STATUS_PUBLIC),
+                disabled_by_user=False)
+            .order_by('addonreviewerflags__pending_info_request'))
 
         sections[ugettext('Admin Tools')] = [(
             ugettext('Expired Information Requests ({0})'.format(
