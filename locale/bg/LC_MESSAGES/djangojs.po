@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-02-02 13:41+0000\n"
+"PO-Revision-Date: 2018-07-12 10:19+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -102,7 +102,7 @@ msgstr "Надстройка към WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
-"Разрешаваме и насърчаваме надстройката, но този процес е еднопосочен. След като веднъж потребителите ви имат инсталирана версията като WebExtension, те няма да могат да инсталират старата добавка."
+"Разрешаваме и насърчаваме надстройката, но този процес е еднопосочен. След като веднъж потребителите ви имат инсталирано изданието като WebExtension, те няма да могат да инсталират старата добавка."
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Пренаписване на стари добавки за Firefox на MDN"
