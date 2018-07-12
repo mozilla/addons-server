@@ -155,9 +155,9 @@ VALIDATOR_TIMEOUT = 360
 
 ES_DEFAULT_NUM_SHARDS = 10
 
-RAVEN_DSN = (
+RAVEN_JS_DSN = (
     'https://8c1c5936578948a9a0614cbbafccf049@sentry.prod.mozaws.net/78')
-RAVEN_ALLOW_LIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']
+RAVEN_JS_ALLOW_LIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']
 
 
 RECOMMENDATION_ENGINE_URL = env(

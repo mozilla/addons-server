@@ -179,9 +179,9 @@ FXA_CONFIG = {
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
-RAVEN_DSN = (
+RAVEN_JS_DSN = (
     'https://e35602be5252460d97587478bcc642df@sentry.prod.mozaws.net/77')
-RAVEN_ALLOW_LIST = ['addons.allizom.org', 'addons-cdn.allizom.org']
+RAVEN_JS_ALLOW_LIST = ['addons.allizom.org', 'addons-cdn.allizom.org']
 
 TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
     'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
