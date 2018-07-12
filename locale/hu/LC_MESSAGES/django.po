@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-12 11:16+0000\n"
+"PO-Revision-Date: 2018-07-12 20:21+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -3392,7 +3392,7 @@ msgid "Describe Add-on"
 msgstr "Kiegészítő leírása"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Név az ezen oldalon felsoroláshoz. Különbözhet a kiegészítőben található névtől, amely a Firefoxon belül jelenik meg"
 
 msgid "Add-on URL:"
 msgstr "Kiegészítő URL:"
@@ -3922,7 +3922,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Jelentkezzen be, hogy szerkessze és frissítse a kiegészítőjét"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "Erőforrások a sikeres induláshoz"
 
 #, python-format
 msgid ""
