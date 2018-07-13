@@ -1838,7 +1838,7 @@ def get_raven_release():
         try:
             with open(version_json, 'rb') as fobj:
                 data = json.loads(fobj.read())
-                version = data.get('version', data.get('commit', None))
+                version = data.get('version') or data.get('commit')
         except (IOError, KeyError):
             version = None
 

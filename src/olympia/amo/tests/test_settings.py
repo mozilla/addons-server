@@ -71,3 +71,16 @@ def test_raven_release_config():
     if original:
         with open(version_json, 'wb') as fobj:
             fobj.write(original)
+
+    # Usual state of things, version is empty but commit is set
+    with open(version_json, 'wb') as fobj:
+        fobj.write(json.dumps({
+            'version': '',
+            'commit': '1111111'
+        }))
+
+    assert get_raven_release() == '1111111'
+
+    if original:
+        with open(version_json, 'wb') as fobj:
+            fobj.write(original)
