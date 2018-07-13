@@ -67,7 +67,7 @@
   <eula>{%- if new_api %}{{ addon.eula }}{% else %}{{ addon.eula|clean(true) }}{% endif -%}</eula>
   {%- if new_api -%}
   <previews>
-    {%- for preview in addon.all_previews -%}
+    {%- for preview in addon.current_previews -%}
     <preview position="{{ preview.position|int }}">
       <full type="image/png"{% with sizes=preview.image_size -%}{% if sizes %} width="{{ sizes[0] }}" height="{{ sizes[1] }}"{% endif %}{% endwith -%}>
         {{ preview.image_url|urlparams(src='api') }}
