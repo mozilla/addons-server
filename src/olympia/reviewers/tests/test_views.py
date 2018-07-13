@@ -510,10 +510,47 @@ class TestDashboard(TestCase):
         admins_group = Group.objects.create(name='Admins', rules='*:*')
         GroupUser.objects.create(user=self.user, group=admins_group)
 
-        # Addon with expired info request
-        expired = addon_factory(name=u'Expired')
+        # Pending addon with expired info request.
+        addon1 = addon_factory(name=u'Pending Addön 1',
+                               status=amo.STATUS_NOMINATED)
         AddonReviewerFlags.objects.create(
-            addon=expired,
+            addon=addon1,
+            pending_info_request=self.days_ago(2))
+
+        # Public addon with expired info request.
+        addon2 = addon_factory(name=u'Public Addön 2',
+                               status=amo.STATUS_PUBLIC)
+        AddonReviewerFlags.objects.create(
+            addon=addon2,
+            pending_info_request=self.days_ago(42))
+
+        # Deleted addon with expired info request.
+        addon3 = addon_factory(name=u'Deleted Addön 3',
+                               status=amo.STATUS_DELETED)
+        AddonReviewerFlags.objects.create(
+            addon=addon3,
+            pending_info_request=self.days_ago(42))
+
+        # Mozilla-disabled addon with expired info request.
+        addon4 = addon_factory(name=u'Disabled Addön 4',
+                               status=amo.STATUS_DISABLED)
+        AddonReviewerFlags.objects.create(
+            addon=addon4,
+            pending_info_request=self.days_ago(42))
+
+        # Incomplete addon with expired info request.
+        addon5 = addon_factory(name=u'Incomplete Addön 5',
+                               status=amo.STATUS_NULL)
+        AddonReviewerFlags.objects.create(
+            addon=addon5,
+            pending_info_request=self.days_ago(42))
+
+        # Invisible (user-disabled) addon with expired info request.
+        addon6 = addon_factory(name=u'Incomplete Addön 5',
+                               status=amo.STATUS_PUBLIC,
+                               disabled_by_user=True)
+        AddonReviewerFlags.objects.create(
+            addon=addon6,
             pending_info_request=self.days_ago(42))
 
         # Rating
@@ -563,7 +600,7 @@ class TestDashboard(TestCase):
         assert (doc('.dashboard a')[18].text ==
                 'Ratings Awaiting Moderation (1)')
         assert (doc('.dashboard a')[24].text ==
-                'Expired Information Requests (1)')
+                'Expired Information Requests (2)')
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
