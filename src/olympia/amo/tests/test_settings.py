@@ -47,9 +47,10 @@ def test_raven_release_config():
 
         os.remove(version_json)
 
-    # by default it simply fetches a git-sha
+    # by default, if no version.json exists it simply fetches a git-sha
     assert len(get_raven_release()) == 40
 
+    # It fetches `version` from the version.json
     with open(version_json, 'wb') as fobj:
         fobj.write(json.dumps({
             'version': '2018.07.19'
@@ -58,6 +59,14 @@ def test_raven_release_config():
     assert get_raven_release() == '2018.07.19'
 
     os.remove(version_json)
+
+    # Or tries to get the commit from version.json alternatively
+    with open(version_json, 'wb') as fobj:
+        fobj.write(json.dumps({
+            'commit': '1111111'
+        }))
+
+    assert get_raven_release() == '1111111'
 
     if original:
         with open(version_json, 'wb') as fobj:

@@ -1838,11 +1838,12 @@ def get_raven_release():
     if os.path.exists(version_json):
         try:
             with open(version_json, 'rb') as fobj:
-                version = json.loads(fobj.read())['version']
+                data = json.loads(fobj.read())
+                version = data.get('version', data.get('commit', None))
         except (IOError, KeyError):
             version = None
 
-    if version is None or version == 'origin/master':
+    if not version or version == 'origin/master':
         version = raven.fetch_git_sha(ROOT)
     return version
 
