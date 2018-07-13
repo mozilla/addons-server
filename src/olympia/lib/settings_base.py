@@ -1843,7 +1843,10 @@ def get_raven_release():
             version = None
 
     if not version or version == 'origin/master':
-        version = raven.fetch_git_sha(ROOT)
+        try:
+            version = raven.fetch_git_sha(ROOT)
+        except raven.exceptions.InvalidGitRepository:
+            version = None
     return version
 
 
