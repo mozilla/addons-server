@@ -51,8 +51,8 @@
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
         data-static-url="{{ STATIC_URL }}"
-        data-raven-dsn="{{ settings.RAVEN_DSN }}"
-        data-raven-urls="{{ settings.RAVEN_ALLOW_LIST }}"
+        data-raven-dsn="{{ settings.RAVEN_JS_DSN }}"
+        data-raven-urls="{{ settings.RAVEN_JS_ALLOW_LIST }}"
         {% block bodyattrs %}{% endblock %}>
 
     <div id="main-wrapper">

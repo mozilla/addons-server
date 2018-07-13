@@ -5,10 +5,12 @@ import environ
 import logging
 import os
 import socket
+import json
 
 from django.urls import reverse_lazy
 from django.utils.functional import lazy
 
+import raven
 from kombu import Queue
 
 import olympia.core.logger
@@ -53,11 +55,8 @@ def path(*folders):
     return os.path.join(ROOT, *folders)
 
 
-# We need to track this because hudson can't just call its checkout "olympia".
-# It puts it in a dir called "workspace".  Way to be, hudson.
-ROOT_PACKAGE = os.path.basename(ROOT)
-
 DEBUG = False
+
 # Ensure that exceptions aren't re-raised.
 DEBUG_PROPAGATE_EXCEPTIONS = False
 SILENCED_SYSTEM_CHECKS = (
@@ -1585,8 +1584,6 @@ REDIS_BACKENDS = {
     'master': get_redis_settings(REDIS_LOCATION)
 }
 
-RESPONSYS_ID = env('RESPONSYS_ID', default=None)
-
 # Number of seconds before celery tasks will abort addon validation:
 VALIDATOR_TIMEOUT = 110
 
@@ -1832,8 +1829,32 @@ REST_FRAMEWORK = {
     'ORDERING_PARAM': 'sort',
 }
 
+
+def get_raven_release():
+    version_json = os.path.join(ROOT, 'version.json')
+    version = None
+
+    if os.path.exists(version_json):
+        try:
+            with open(version_json, 'rb') as fobj:
+                data = json.loads(fobj.read())
+                version = data.get('version', data.get('commit', None))
+        except (IOError, KeyError):
+            version = None
+
+    if not version or version == 'origin/master':
+        version = raven.fetch_git_sha(ROOT)
+    return version
+
+
 # This is the DSN to the Sentry service.
-SENTRY_DSN = env('SENTRY_DSN', default=os.environ.get('SENTRY_DSN'))
+RAVEN_CONFIG = {
+    'dsn': env('SENTRY_DSN', default=os.environ.get('SENTRY_DSN')),
+    # Automatically configure the release based on git information.
+    # This uses our `version.json` file if possible or tries to fetch
+    # the current git-sha.
+    'release': get_raven_release(),
+}
 
 # Automatically do 'from olympia import amo' when running shell_plus.
 SHELL_PLUS_POST_IMPORTS = (

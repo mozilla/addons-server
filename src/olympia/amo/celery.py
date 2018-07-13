@@ -82,7 +82,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 # Hook up Sentry in celery.
-raven_client = Client(settings.SENTRY_DSN)
+raven_client = Client(settings.RAVEN_CONFIG['dsn'])
 
 # register a custom filter to filter out duplicate logs
 register_logger_signal(raven_client)
