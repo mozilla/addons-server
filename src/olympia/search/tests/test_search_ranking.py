@@ -415,6 +415,8 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_open_image_new_tab(self):
         # TODO, should not put the "a new tab" thing first :-/
+        # But maybe the "in a" is part of a stop-word that make exact
+        # matches harder?
         self._check_scenario('Open Image in New Tab', (
             'Open image in a new tab',
             'Open Image in New Tab',
@@ -489,27 +491,26 @@ class TestRankingScenarios(ESTestCase):
         # No direct match, "Download Flash and Video" has
         # huge amount of users that puts it first here
         self._check_scenario('DownloadHelper', (
-            'Download Flash and Video',
-            '1-Click YouTube Video Download',
             'RapidShare DownloadHelper',
             'MegaUpload DownloadHelper',
+            'Download Flash and Video',
+            '1-Click YouTube Video Download',
         ))
 
     def test_scenario_megaupload(self):
         self._check_scenario('MegaUpload', (
-            # TODO: I have litterally NO idea :-/
-            'Popup Blocker',
             'MegaUpload DownloadHelper',
+            'Popup Blocker',
         ))
 
     def test_scenario_no_flash(self):
-        # TODO: Doesn't put "No Flash" on first line, does the "No"
-        # do something special here?
+        # TODO: Doesn't put "No Flash" on first line, "No" is probably
+        # a stop-word that makes an exact match hard.
         self._check_scenario('No Flash', (
             'Download Flash and Video',
+            'No Flash',
             'YouTube Flash Player',
-            'YouTube Flash Video Player',
-            'No Flash'
+            'YouTube Flash Video Player'
         ))
 
     def test_scenario_disable_hello_pocket_reader_plus(self):

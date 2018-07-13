@@ -21,6 +21,11 @@ indexers = (AddonIndexer, AppCompatIndexer,)
 # "decompose compound words found in many German languages"
 # and all the words in the list are English... (cgrebs 042017)
 INDEX_SETTINGS = {
+    'similarity': {
+        'default': {
+            'type': 'classic'
+        }
+    },
     'analysis': {
         'analyzer': {
             'standardPlusWordDelimiter': {
