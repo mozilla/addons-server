@@ -33,7 +33,7 @@ class DiscoveryAddonSerializer(AddonSerializer):
 
     class Meta:
         fields = ('id', 'current_version', 'guid', 'icon_url', 'name',
-                  'slug', 'theme_data', 'type', 'url',)
+                  'previews', 'slug', 'theme_data', 'type', 'url',)
         model = Addon
 
 

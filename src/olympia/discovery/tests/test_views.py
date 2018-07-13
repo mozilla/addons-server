@@ -14,6 +14,7 @@ from olympia.discovery.data import (
     DiscoItem, discopane_items as disco_data, statictheme_disco_item)
 from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.utils import replace_extensions
+from olympia.versions.models import VersionPreview
 
 
 # Represents a dummy version of `olympia.discovery.data`
@@ -79,6 +80,7 @@ class DiscoveryTestMixin(object):
                 u', '.join(author.name for author in addon.listed_authors)
             ) == result['heading']
         assert result['description']
+        assert len(result['addon']['previews']) == len(addon.current_previews)
 
     def _check_disco_theme(self, result, item, flat_name=False):
         addon = self.addons[item.addon_id]
@@ -242,6 +244,10 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
     @override_switch('disco-staticthemes-dev', active=True)
     def test_with_static_theme(self):
+        disco_addon = self.addons[statictheme_disco_item.addon_id]
+        VersionPreview.objects.create(
+            version=disco_addon.current_version,
+            sizes={'thumbnail': [12, 34], 'image': [56, 78]})
         response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.data
 
@@ -257,6 +263,8 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
                 # We're just replacing the first discopane_item
                 self._check_disco_addon(
                     result, statictheme_disco_item, type_='statictheme')
+                # Check the preview is there
+                assert result['addon']['previews'][0]['image_size'] == [56, 78]
             elif 'theme_data' in result['addon']:
                 self._check_disco_theme(result, discopane_items[i])
             else:
