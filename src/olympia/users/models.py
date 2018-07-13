@@ -569,7 +569,7 @@ class UserNotification(ModelBase):
 
     @property
     def notification(self):
-        return NOTIFICATIONS_BY_ID[self.notification_id]
+        return NOTIFICATIONS_BY_ID.get(self.notification_id)
 
     def __str__(self):
         return (

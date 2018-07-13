@@ -1378,6 +1378,19 @@ class TestAccountNotificationViewSetList(TestCase):
             {'name': u'reply', 'enabled': False, 'mandatory': False} in
             response.data)
 
+    def test_old_notifications_are_safely_ignored(self):
+        UserNotification.objects.create(
+            user=self.user, notification_id=69,
+            enabled=True)
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data) == 10
+        # Check for any known notification, just to see the response looks okay
+        assert (
+            {'name': u'reply', 'enabled': True, 'mandatory': False} in
+            response.data)
+
     def test_basket_integration(self):
         create_switch('activate-basket-sync')
 
