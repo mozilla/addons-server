@@ -309,8 +309,12 @@ class File(OnChangeMixin, ModelBase):
         """Returns the current path of the file, whether or not it is
         guarded."""
 
-        return (self.guarded_file_path if self.status == amo.STATUS_DISABLED
-                else self.file_path)
+        file_disabled = self.status == amo.STATUS_DISABLED
+        addon_disabled = self.addon.is_disabled
+        if file_disabled or addon_disabled:
+            return self.guarded_file_path
+        else:
+            return self.file_path
 
     @property
     def extension(self):
