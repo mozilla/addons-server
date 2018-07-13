@@ -5,7 +5,6 @@ Inspired by django.contrib.auth.management.commands.createsuperuser.
 (http://bit.ly/2cTgsNV)
 """
 import json
-import os
 
 from datetime import datetime
 
@@ -38,14 +37,6 @@ and email address and that's it.
             dest='add_to_supercreate_group',
             default=False,
             help='Assign the user to the Accounts:SuperCreate group',
-        )
-
-        parser.add_argument(
-            '--save-api-credentials',
-            type=str,
-            dest='save_api_credentials',
-            default=False,
-            help='Saves the generated API credentials into a JSON file',
         )
 
         parser.add_argument(
@@ -113,27 +104,6 @@ and email address and that's it.
                 'api-secret': apikey.secret,
                 'fxa-id': user.fxa_id,
             }))
-
-        if options.get('save_api_credentials', False):
-            hostname = options.get('hostname', os.environ.get(
-                'PYTEST_BASE_URL', None))
-            # json object for variables file
-            # set hostname to stdin or env variable
-
-            if hostname:
-                credentials = {
-                    'api': {
-                        hostname: {
-                            'username': user.username,
-                            'jwt_issuer': apikey.key,
-                            'jwt_secret': apikey.secret,
-                        }
-                    }
-                }
-
-                # write to json file
-                with open(options.get('save_api_credentials'), 'w') as outfile:
-                    json.dump(credentials, outfile, indent=2)
 
     def get_value(self, field_name):
         field = get_user_model()._meta.get_field(field_name)
