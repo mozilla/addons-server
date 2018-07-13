@@ -45,9 +45,6 @@ def global_settings(request):
 
         account_links.append({'text': ugettext('My Profile'),
                               'href': request.user.get_url_path()})
-        if request.user.is_artist:
-            account_links.append({'text': ugettext('My Themes'),
-                                  'href': request.user.get_themes_url_path()})
 
         account_links.append({'text': ugettext('Account Settings'),
                               'href': reverse('users.edit')})
