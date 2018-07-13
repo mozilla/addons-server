@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-11 11:25+0000\n"
+"PO-Revision-Date: 2018-07-12 00:31+0000\n"
 "Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -882,7 +882,7 @@ msgid "The language code {lang_code} is invalid."
 msgstr "语言代码 {lang_code} 无效。"
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "您必须提供一个 {lang-code:value} 的对象。"
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -2251,16 +2251,16 @@ msgid "Persona"
 msgstr "炫彩风格"
 
 msgid "No Reputation"
-msgstr ""
+msgstr "不知名"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "好 (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "很好 (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "极好 (3)"
 
 msgid "Manual Reviewer Points"
 msgstr "人工审核员点数"
@@ -6444,7 +6444,7 @@ msgid "The users \"%(users)s\" have been banned.users, "
 msgstr ""
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "封禁所选用户"
 
 msgid "Profile Photo"
 msgstr "个人资料照片"
@@ -6548,10 +6548,10 @@ msgid "new"
 msgstr "新的"
 
 msgid "Ban"
-msgstr ""
+msgstr "封禁"
 
 msgid "Delete picture"
-msgstr ""
+msgstr "删除照片"
 
 msgid "Delete User Account"
 msgstr "删除用户账户"
