@@ -1,5 +1,6 @@
 import re
 
+from collections import OrderedDict
 from urllib2 import unquote
 
 from django.utils.translation import ugettext
@@ -136,7 +137,8 @@ class RatingVersionSerializer(SimpleVersionSerializer):
         # Version queryset is unfiltered, the version is checked more
         # thoroughly in `RatingSerializer.validate()` method.
         field = PrimaryKeyRelatedField(queryset=Version.unfiltered)
-        return field.to_internal_value(data)
+        value = field.to_internal_value(data)
+        return OrderedDict([('id', data), ('version', value)])
 
 
 class RatingSerializer(BaseRatingSerializer):
@@ -170,7 +172,8 @@ class RatingSerializer(BaseRatingSerializer):
             # BaseRatingSerializer.validate() should complain about that, not
             # this method.
             return None
-        if version.addon_id != addon.pk or not version.is_public():
+        version_inst = version['version']
+        if version_inst.addon_id != addon.pk or not version_inst.is_public():
             raise serializers.ValidationError(
                 ugettext(u'This version of the add-on doesn\'t exist or '
                          u'isn\'t public.'))
@@ -185,9 +188,16 @@ class RatingSerializer(BaseRatingSerializer):
 
             rating_exists_on_this_version = Rating.objects.filter(
                 addon=data['addon'], user=data['user'],
-                version=data['version']).using('default').exists()
+                version=data['version']['version']).using('default').exists()
             if rating_exists_on_this_version:
                 raise serializers.ValidationError(
                     ugettext(u'You can\'t leave more than one review for the '
                              u'same version of an add-on.'))
         return data
+
+    def create(self, validated_data):
+        if 'version' in validated_data:
+            # Flatten this because create can't handle nested serializers
+            validated_data['version'] = (
+                validated_data['version'].get('version'))
+        return super(RatingSerializer, self).create(validated_data)

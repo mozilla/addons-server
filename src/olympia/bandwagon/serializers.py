@@ -109,7 +109,7 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
         if self.partial:
             # addon is read_only but SplitField messes with the initialization.
             # DRF normally ignores updates to read_only fields, so do the same.
-            data.pop('addon')
+            data.pop('addon', None)
         return super(CollectionAddonSerializer, self).validate(data)
 
 
