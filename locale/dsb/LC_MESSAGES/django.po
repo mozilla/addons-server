@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-14 11:08+0000\n"
+"PO-Revision-Date: 2018-07-14 11:21+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3963,6 +3963,9 @@ msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
+"Sćo swójo rozšyrjenje wuwił a móžośo jo něnto wózjawiś. Co ako pśiduce pśiźo? Cytajśo naše pokaze, kak móžośo spódobny bok zapiska napóraś, aby se wašo rozšyrjenje na "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s pśedstajiło, by se wótegrona na wuwijańske pšašanja namakali a z nowosćami a tšojenjami na běžnem wóstali, kótarež su relewantne za wuwijarje "
+"rozšyrjenjow."
 
 msgid "View Resources for Publishers"
 msgstr "Resursy za wudawarje pokazaś"
@@ -3978,7 +3981,7 @@ msgstr "Zgóńśo, kak to źo"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "Cośo, až se waše rozšyrjenje na %(amo_link_open)saddons.mozilla.org%(amo_link_close)s pśedstaja? Naše pšawidła za pśedstajone rozšyrjenja wam k wěsći daju, což musyśo wěźeś."
 
 msgid "Learn More"
 msgstr "Dalšne informacije"
@@ -4399,19 +4402,19 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Zawóstajśo cyste digitalne slědy {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Dajśo Firefox daty websydła ako na pśikład cookieje a lokalny składowak zabyś, ale jano za wubrane domeny."
 
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "Pólěpšćo wideo {start_sub_heading}z {addon_name} {end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
+msgstr "Wužywajśo rěd nowych funkcijow Youtube, na pśikład kinowy modus, blokěrowanje wabjenja, awtomatiske wótgraśe a wěcej."
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokěrujśo wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
-msgstr ""
+msgstr "Lažki a efiektiwny blokěrowak wabjenja. uBlock Origin towzynty wopśimjeśowych filtrow wuwjedujo, mimo aby wjele składa pśetrjebał."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pólěpšćo swójo emoźijowe graśe {start_sub_heading}z {addon_name}{end_sub_heading}"
@@ -6666,7 +6669,7 @@ msgstr "Rěc lašowaś"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned.user"
-msgstr ""
+msgstr "Wužywaŕ „%(user)s“ jo se wugnał"
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
