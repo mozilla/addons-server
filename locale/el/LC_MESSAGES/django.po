@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-14 21:47+0000\n"
+"PO-Revision-Date: 2018-07-14 22:23+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2058,7 +2058,7 @@ msgid "Language Packs (Add-on)"
 msgstr "Πακέτα γλώσσας (Πρόσθετο)"
 
 msgid "Plugins"
-msgstr "Πρόσθετες λειτουργίες"
+msgstr "Αρθρώματα"
 
 msgid "Themes (Static)"
 msgstr "Θέματα (Στατικά)"
@@ -2409,9 +2409,8 @@ msgstr "Ενημερωμένη επιθεώρηση θέματος"
 msgid "Moderated Add-on Review"
 msgstr "Συντονισμένος έλεγχος προσθέτου"
 
-#, fuzzy
 msgid "Add-on Review Moderation Reverted"
-msgstr "Διαδικασία αξιολόγησης προσθέτου"
+msgstr "Αναιρέθηκε ο έλεγχος της αξιολόγησης του προσθέτου"
 
 msgid "Add-on Content Review"
 msgstr "Αξιολόγηση περιεχομένου προσθέτου"
@@ -2598,16 +2597,20 @@ msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
+"Σε αυτή την ιστοσελίδα. <span class=\"helptext\">Η υποβολή σας θα συμπεριληφθεί σε αυτή την ιστοσελίδα και τη Διαχείριση προσθέτων του Firefox για εκατομμύρια χρήστες, αφού περάσει την αξιολόγηση "
+"κώδικα. Οι αυτόματες ενημερώσεις διαχειρίζονται από αυτή την ιστοσελίδα. Αυτό το πρόσθετο θα είναι υποψήφιο και για τους διαγωνισμούς προώθησης της Mozilla. Η αυτοδιανομή αξιολογημένων αρχείων είναι"
+" επίσης δυνατή.</span>"
 
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
-msgstr ""
+msgstr "Μόνοι σας. <span class=\"helptext\">Η υποβολή σας θα υπογραφεί άμεσα για αυτοδιανομή. Οι ενημερώσεις θα διαχειρίζονται από εσάς μέσω updateURL ή ενημερώσεων εξωτερικής εφαρμογής.</span>"
 
-#, fuzzy
 msgid "Categories cannot be changed while your add-on is featured."
-msgstr "Δε μπορείτε να αλλάξετε κατηγορίες καθώς το πρόσθετο σας προβάλλεται για αυτή την εφαρμογή."
+msgstr "Δεν είναι δυνατή η αλλαγή κατηγορίας, όσο το πρόσθετο σας είναι στα προτεινόμενα."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
+"Τα πρόσθετα για το Thunderbird και το SeaMonkey απαριθμούνται και συντηρούνται στο addons.thunderbird.net. Μπορείτε να χρησιμοποιήσετε τον ίδιο λογαριασμό για να ενημερώσετε το πρόσθετό σας στη νέα "
+"ιστοσελίδα."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
