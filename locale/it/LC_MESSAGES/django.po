@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-14 13:23+0000\n"
+"PO-Revision-Date: 2018-07-14 16:54+0000\n"
 "Last-Translator: Giorgio Romano <ascotwork@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4414,29 +4414,25 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Traduci facilmente {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Fa in modo che Firefox dimentichi i dati relativi ai siti web, come cookie e archiviazione locale, ma solo per i domini che tu scegli."
 
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "Scarica video {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
+msgstr "Divertiti con una serie di nuove funzionalità per YouTube, come modalità cinema, blocco delle pubblicità, riproduzione automatica e molto altro."
 
-#, fuzzy
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Scarica video {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Blocca le pubblicità {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
-msgstr ""
+msgstr "Un metodo, leggero ed efficace, per bloccare le pubblicità, uBlock Origin applica migliaia di fitlri per i contenuti senza consumare molta memoria."
 
-#, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Arricchisci i tuoi testi di emoji {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Arricchisci i tuoi testi con le emoji {start_sub_heading}con {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—just a click away."
-msgstr "Tante, bellissime emoji per ogni occasione, sempre a portata di clic."
+msgstr "Tante bellissime emoji per ogni occasione, sempre a portata di clic."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Scarica video {start_sub_heading}con {addon_name}{end_sub_heading}"
@@ -6688,7 +6684,7 @@ msgstr "Elimina locale"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned.user"
-msgstr ""
+msgstr "L’utente \"%(user)s\" è stato bloccato"
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
@@ -6696,10 +6692,10 @@ msgstr ""
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned.users, "
-msgstr ""
+msgstr "Gli utenti \"%(users)s\" sono stati bloccati, "
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "Blocca gli utenti selezionati"
 
 msgid "Profile Photo"
 msgstr "Immagine del profilo"
@@ -6802,13 +6798,11 @@ msgstr "Utente segnalato."
 msgid "new"
 msgstr "nuovo"
 
-#, fuzzy
 msgid "Ban"
-msgstr "e"
+msgstr "Blocca"
 
-#, fuzzy
 msgid "Delete picture"
-msgstr "Elimina adesso la mia immagine utente"
+msgstr "Elimina immagine"
 
 msgid "Delete User Account"
 msgstr "Eliminazione account utente"
