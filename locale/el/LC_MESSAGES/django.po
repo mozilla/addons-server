@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-14 22:31+0000\n"
+"PO-Revision-Date: 2018-07-14 22:39+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2623,12 +2623,16 @@ msgstr "Τα πακέτα γλωσσών παλαιού τύπου για το F
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
+"Επιτρέπουμε και ενθαρρύνουμε να κάνετε μια αναβάθμιση, αλλά δεν μπορείτε να αναστρέψετε αυτή τη διαδικασία. Μόλις οι χρήστες έχουν εγκαταστήσει το WebExtension, δεν θα μπορούν να εγκαταστήσουν το "
+"πρόσθετο παλαιού τύπου."
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
+"Δεν μπορείτε να ενημερώσετε ένα πρόσθετο WebExtensions σε ένα πρόσθετο παλαιού τύπου. Οι χρήστες δεν θα μπορούν να χρησιμοποιήσουν τη νέα έκδοσή σας, επειδή το Firefox δεν υποστηρίζει αυτό τον τύπο "
+"ενημέρωσης."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr ""
+msgstr "Το κλειδί API προγραμματιστή σας βρέθηκε στο υποβεβλημμένο αρχείο. Για να προστατεύσετε το λογαριασμό σας, το κλειδί θα ανακληθεί."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
