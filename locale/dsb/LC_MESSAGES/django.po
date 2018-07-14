@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-12 05:18+0000\n"
+"PO-Revision-Date: 2018-07-14 11:08+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -936,7 +936,7 @@ msgid "The language code {lang_code} is invalid."
 msgstr "Rěcny kod {lang_code} jo njepłaśiwy."
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "Musyśo objekt za {lang-code:value} pódaś."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -2352,13 +2352,13 @@ msgid "No Reputation"
 msgstr "Žedno mě"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "Dobry (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Wjelgin dobry (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "Wuběrny (3)"
 
 msgid "Manual Reviewer Points"
 msgstr "Dypki za manuelne pśeglědanje"
@@ -3432,7 +3432,7 @@ msgid "Describe Add-on"
 msgstr "Dodank wopisaś"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Mě w zapisku na toś tom sedle. Smějo se wót mjenja w dodanku rozeznawaś, kótarež jo se w Firefox pokazujo"
 
 msgid "Add-on URL:"
 msgstr "URL dodanka:"
@@ -3956,7 +3956,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Pśizjawśo se, aby swój dodank wobźěłował a aktualizěrował"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "Resurse za wuspěšny start"
 
 #, python-format
 msgid ""
