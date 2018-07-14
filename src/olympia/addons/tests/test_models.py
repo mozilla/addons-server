@@ -191,6 +191,18 @@ class TestCleanSlug(TestCase):
         addon = Addon.objects.create(name=u'Addön 1')
         assert addon.slug == u'addön-1'
 
+    def test_name_only_has_invalid_slug_chars(self):
+        # Create an addon and save it to have an id.
+        a = Addon.objects.create()
+        # Give the Addon a name that would slugify would reduce to ''.
+        a.slug = ''
+        a.name = '%$#'
+        a.clean_slug()
+
+        # Slugs that are generated from add-ons without an name use
+        # uuid without the node bit so have the length 20.
+        assert len(a.slug) == 20
+
 
 class TestAddonManager(TestCase):
     fixtures = ['base/appversion', 'base/users',
