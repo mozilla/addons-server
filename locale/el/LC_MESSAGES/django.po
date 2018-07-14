@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-14 22:23+0000\n"
+"PO-Revision-Date: 2018-07-14 22:31+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2613,10 +2613,10 @@ msgstr ""
 "ιστοσελίδα."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr ""
+msgstr "Ξεκινώντας από το Firefox 53, τα νέα πρόσθετα σε αυτή την ιστοσελίδα μπορούν μόνο να είναι WebExtensions."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "Τα πρόσθετα παλαιού τύπου δεν είναι συμβατά με το Firefox 57 ή νεότερα. Χρησιμοποιήστε για maxVersion το 56.* ή μικρότερο."
 
 msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
 msgstr "Τα πακέτα γλωσσών παλαιού τύπου για το Firefox δεν υποστηρίζονται πλέον. Απαιτείται μανιφέστο εγκατάστασης WebExtensions. Δείτε το {mdn_link} για περισσότερες λεπτομέρειες."
@@ -2646,7 +2646,7 @@ msgid "Could not contact host at \"%s\"."
 msgstr "Αδυναμία επικοινωνίας με «%s»."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Σημείωση ασφαλείας της Mozilla: Τα διαπιστευτήρια του AMO API σας έχουν ανακληθεί"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
