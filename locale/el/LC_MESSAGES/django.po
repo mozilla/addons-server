@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-14 17:31+0000\n"
+"PO-Revision-Date: 2018-07-14 21:43+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1879,7 +1879,7 @@ msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr "Το ID προσθέτου id {0} με GUID {1} έχει διαγραφεί"
 
 msgid "{addon} migrated from preliminary."
-msgstr ""
+msgstr "Το {addon} μεταφέρθηκε από τον πρώτο έλεγχο."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Απάντηση προγραμματιστή στο {addon} {version}."
@@ -1968,7 +1968,7 @@ msgid "Admin theme-review requested"
 msgstr "Ζητήθηκε αξιολόγηση θέματος από διαχειριστή"
 
 msgid "{addon} was migrated from a lightweight theme."
-msgstr ""
+msgstr "Το {addon} μεταφέρθηκε από \"ελαφρύ\" θέμα."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2417,16 +2417,16 @@ msgid "Add-on Content Review"
 msgstr "Αξιολόγηση περιεχομένου προσθέτου"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+msgstr "Αξιολόγηση πρόσθετου μετά από έγκριση (Ύψιστος κίνδυνος)"
 
 msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+msgstr "Αξιολόγηση πρόσθετου μετά από έγκριση (Υψηλός κίνδυνος)"
 
 msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+msgstr "Αξιολόγηση πρόσθετου μετά από έγκριση (Μέτριος κίνδυνος)"
 
 msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+msgstr "Αξιολόγηση πρόσθετου μετά από έγκριση (Χαμηλός κίνδυνος)"
 
 msgid "Level 1"
 msgstr "Επίπεδο 1"
