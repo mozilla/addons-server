@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-12 18:43+0000\n"
+"PO-Revision-Date: 2018-07-14 11:17+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4399,13 +4399,13 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Zawostajće čiste digitalne slědy {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Dajće Firefox daty websydł kaž na přikład placki a lokalny składowak zabyć, ale jenož za wubrane domeny."
+msgstr "Dajće Firefox daty websydła kaž na přikład placki a lokalny składowak zabyć, ale jenož za wubrane domeny."
 
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "Polěpšće wideja {start_sub_heading}z {addon_name} {end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr "Wužiwajće rjad nowych funkcijow Youtube, na přikład kinowy modus, blokowanje wabjenja, awotmatiske wothraće a wjace."
+msgstr "Wužiwajće rjad nowych funkcijow Youtube, na přikład kinowy modus, blokowanje wabjenja, awtomatiske wothraće a wjace."
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokujće wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
@@ -5387,7 +5387,7 @@ msgid "Is locked by a reviewer."
 msgstr "Je wot přepruwowarja zawrjeny."
 
 msgid "Has auto-approval disabled flag set."
-msgstr "Je marku „awotmatiske schwalenje znjemóžnjene“ stajił."
+msgstr "Je marku „awtomatiske schwalenje znjemóžnjene“ stajił."
 
 msgid "Duplicate Submission"
 msgstr "Dwójne zapodaće"
