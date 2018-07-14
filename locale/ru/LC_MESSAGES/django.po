@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-14 19:04+0000\n"
+"PO-Revision-Date: 2018-07-14 19:06+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -3993,7 +3993,7 @@ msgstr "Узнайте как"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "Хотите, чтобы ваше расширение попало в избранные на %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Наша политика по отбору избранных расширений расскажет вам то, что вам нужно знать."
 
 msgid "Learn More"
 msgstr "Подробнее"
