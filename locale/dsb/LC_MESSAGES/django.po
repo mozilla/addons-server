@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-14 11:21+0000\n"
+"PO-Revision-Date: 2018-07-14 11:23+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6673,14 +6673,14 @@ msgstr "Wužywaŕ „%(user)s“ jo se wugnał"
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
-msgstr ""
+msgstr "Wobraz, kótaryž wužywarjoju „%(user)s“ słuša, jo se wulašował"
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned.users, "
-msgstr ""
+msgstr "Wužywarje „%(users)s“ su se wugnali."
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "Wubrane wužywarje wugnaś"
 
 msgid "Profile Photo"
 msgstr "Profilowe foto"
