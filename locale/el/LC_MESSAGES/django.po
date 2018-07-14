@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-14 22:39+0000\n"
+"PO-Revision-Date: 2018-07-14 22:46+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2632,10 +2632,10 @@ msgstr ""
 "ενημέρωσης."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr "Το κλειδί API προγραμματιστή σας βρέθηκε στο υποβεβλημμένο αρχείο. Για να προστατεύσετε το λογαριασμό σας, το κλειδί θα ανακληθεί."
+msgstr "Το κλειδί API προγραμματιστή σας βρέθηκε στο υποβεβλημένο αρχείο. Για να προστατεύσετε το λογαριασμό σας, το κλειδί θα ανακληθεί."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
+msgstr "Το κλειδί API προγραμματιστή του συνδημιουργού βρέθηκε στο υποβεβλημένο αρχείο. Για να προστατεύσετε το πρόσθετό σας, το κλειδί θα ανακληθεί."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -2743,7 +2743,7 @@ msgid "You must provide further details to proceed."
 msgstr "Πρέπει να παραθέσετε περαιτέρω λεπτομέρειες για να συνεχίσετε."
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr ""
+msgstr "Τα παλαιά διαπιστευτήριά σας ανακλήθηκαν και δεν είναι πλέον έγκυρα. Μην ξεχάσετε να ενημερώσετε όλους τους πελάτες API με τα νέα διαπιστευτήρια."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Τα παλιά σας διαπιστευτήρια ανακλήθηκαν και δεν είναι πλέον έγκυρα."
