@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-14 13:13+0000\n"
+"PO-Revision-Date: 2018-07-14 13:23+0000\n"
 "Last-Translator: Giorgio Romano <ascotwork@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -3964,7 +3964,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Effettua l’accesso per aggiornare il tuo componente aggiuntivo"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "Risorse per un lancio di successo"
 
 #, python-format
 msgid ""
@@ -3972,9 +3972,8 @@ msgid ""
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "View Resources for Publishers"
-msgstr "Visualizza statistiche per utente"
+msgstr "Visualizza le risorse per gli sviluppatori"
 
 msgid "Welcome Back"
 msgstr "Bentornato"
@@ -3988,6 +3987,7 @@ msgstr "Scopri come fare"
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
+"Vuoi che la tua estensione sia posta in evidenza su %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Leggi le nostre regole relative alle estensioni in primo piano per sapere cosa serve fare."
 
 msgid "Learn More"
 msgstr "Ulteriori informazioni"
