@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-15 20:47+0000\n"
+"PO-Revision-Date: 2018-07-15 21:52+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3946,9 +3946,8 @@ msgid ""
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "View Resources for Publishers"
-msgstr "Προβολή στατιστικών χρήστη"
+msgstr "Προβολή πόρων για εκδότες"
 
 msgid "Welcome Back"
 msgstr "Καλώς ορίσατε ξανά"
@@ -5502,9 +5501,8 @@ msgstr "Νέα θέματα ({0})"
 msgid "Themes Updates ({0})"
 msgstr "Ενημερώσεις θεμάτων ({0})"
 
-#, fuzzy
 msgid "Flagged Themes ({0})"
-msgstr "Θέματα με επισήμανση"
+msgstr "Επισημασμένα θέματα ({0})"
 
 #, fuzzy
 msgid "Lightweight Themes Review Log"
