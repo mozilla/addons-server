@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-15 21:52+0000\n"
+"PO-Revision-Date: 2018-07-15 22:04+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1753,9 +1753,8 @@ msgstr "Το {addon} προστέθηκε στη συλλογή {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "Αφαιρέθηκε το {addon} από τη συλλογή {collection}."
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "Συντάχθηκε η αξιολόγηση {review} για το {addon}."
+msgstr "Υπεβλήθη η βαθμολογία {rating} για το {addon}."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1779,9 +1778,8 @@ msgstr "Προστέθηκε ο {0} {1}."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "Ο ρόλος του/της {0.name} άλλαξε σε: {1} για το {addon}."
 
-#, fuzzy
 msgid "{addon} is now licensed under {0}."
-msgstr "Το {addon} έχει τώρα την άδεια χρήσης {0.name}."
+msgstr "Το {addon} υπόκειται στην άδεια {0}."
 
 msgid "{addon} policy changed."
 msgstr "Άλλαξε η πολιτική του {addon}."
@@ -1789,21 +1787,17 @@ msgstr "Άλλαξε η πολιτική του {addon}."
 msgid "{addon} icon changed."
 msgstr "Άλλαξε το εικονίδιο του {addon}."
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
-msgstr "Η αξιολόγηση {review} για το {addon} εγκρίθηκε."
+msgstr "Εγκρίθηκε η βαθμολογία {rating} για το {addon}."
 
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
-msgstr "Ο/Η {user} ενέκρινε την αξιολόγηση {review} για το πρόσθετο {addon}."
+msgstr "Ο/Η {user} ενέκρινε τη βαθμολογία {rating} για το {addon}."
 
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
-msgstr "Η αξιολόγηση {review} για το {addon} διαγράφηκε."
+msgstr "Διαγράφτηκε η βαθμολογία κριτικής {rating} για το {addon}."
 
-#, fuzzy
 msgid "{user} deleted {rating} for {addon}."
-msgstr "Ο χρήστης {user} διέγραψε την αξιολόγηση {review} για το {addon}."
+msgstr "Ο/Η {user} διέγραψε τη βαθμολογία {rating} για το {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Ενημερώθηκε το max version υποστηριζόμενης εφαρμογής για την έκδοση {version}."
@@ -1847,20 +1841,17 @@ msgstr "Ο χρήστης {user} περιορίστηκε."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Ο διαχειριστής {0} προέβαλε την καταγραφή δραστηριότητας για τον χρήστη {user}."
 
-#, fuzzy
 msgid "{rating} for {addon} updated."
-msgstr "{review} για {addon} ενημερώθηκε."
+msgstr "Ενημερώθηκε η βαθμολογία {rating} για το {addon}."
 
 msgid "{addon} reviewed."
 msgstr "{addon} αξιολογήθηκε."
 
-#, fuzzy
 msgid "User {user} banned."
-msgstr "Ο χρήστης {user} είναι ανώνυμος."
+msgstr "Ο χρήστης {user} έχει αποκλειστεί."
 
-#, fuzzy
 msgid "User {user} picture deleted."
-msgstr "Ο χρήστης {user} περιορίστηκε."
+msgstr "Η εικόνα του χρήστη {user} διαγράφτηκε."
 
 msgid "User {0.name} added to {group}."
 msgstr "Ο χρήστης {0.name} προστέθηκε στο {group}."
@@ -1911,9 +1902,8 @@ msgstr "Η αυτόματη έγκριση επιβεβαιώθηκε για τ�
 msgid "Auto-Approval confirmed"
 msgstr "Η αυτόματη έγκριση επιβεβαιώθηκε"
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "Το {addon} {version} απορίφθηκε."
+msgstr "Η έκδοση {version} του {addon} ενεργοποιήθηκε ξανά."
 
 msgid "{addon} {version} disabled."
 msgstr "Η έκδοση {version} του {addon} απενεργοποιήθηκε."
@@ -1930,9 +1920,8 @@ msgstr "Απορρίφθηκε το περιεχόμενο της έκδοσης
 msgid "Content rejected"
 msgstr "Το περιεχόμενο απορρίφθηκε"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
+msgstr "Το αίτημα πληροφοριών του {addon} άλλαξε ή αφαιρέθηκε από διαχειριστή."
 
 msgid "Information request altered"
 msgstr "Το αίτημα πληροφοριών άλλαξε"
@@ -1948,9 +1937,8 @@ msgstr "Το αίτημα πληροφοριών αφαιρέθηκε"
 msgid "{addon} {version} admin add-on-review requested."
 msgstr "Έγινε αίτηση αξιολόγησης για το {addon} {version}."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "Ζητήθηκε υπερ αξιολόγηση"
+msgstr "Ζητήθηκε αξιολόγηση προσθέτου από διαχειριστή"
 
 #, fuzzy
 msgid "{addon} {version} admin content-review requested."
@@ -3100,7 +3088,7 @@ msgid ""
 msgstr ""
 
 msgid "Website"
-msgstr "Ιστότοπος"
+msgstr "Ιστοσελίδα"
 
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
@@ -3162,7 +3150,7 @@ msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Όχι, τα στατιστικά αυτού του προσθέτου δεν είναι σε δημόσια προβολή"
 
 msgid "Upgrade SDK?"
-msgstr "Να γίνει ενημέρωση του SDK;"
+msgstr "Ενημέρωση του SDK;"
 
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
 msgstr ""
@@ -3191,7 +3179,7 @@ msgid ""
 msgstr ""
 
 msgid "Remove this dependent add-on"
-msgstr "Αφαίρεαση αυτού του εξαρτώμενου προσθέτου"
+msgstr "Αφαίρεση εξαρτώμενου προσθέτου"
 
 msgid "Enter the name of an add-on"
 msgstr "Εισάγετε το όνομα του πρόσθετου"
@@ -3275,12 +3263,11 @@ msgstr "Το θέμα σας θα εκδοθεί υπό την ακόλουθη 
 msgid "Select a different license."
 msgstr "Επιλέξτε μια διαφορετική άδεια."
 
-#, fuzzy
 msgid "More information on Creative Commons licenses"
-msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
+msgstr "Περισσότερες πληροφορίες για τις άδειες Creative Commons"
 
 msgid "Tests"
-msgstr "Ελέγχοι"
+msgstr "Δοκιμές"
 
 msgid "General Tests"
 msgstr "Γενικές δοκιμές"
@@ -3295,10 +3282,10 @@ msgid "Localization Tests"
 msgstr "Δοκιμές μεταφράσεων"
 
 msgid "Compatibility Tests"
-msgstr "Έλεγχοι συμβατότητας"
+msgstr "Δοκιμές συμβατότητας"
 
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Απόκρυψη μη απαιτούμενων μηνυμάτων για την αυτοματοποιημένη υπογραφή"
 
 msgid "Hide messages present in previous version and ignored"
 msgstr ""
@@ -4808,7 +4795,7 @@ msgid "This sounds great! How can I get involved?"
 msgstr "Ακούγεται τέλειο! Πώς μπορώ να συνεισφέρω;"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "Υπάρχουν πολλοί τρόποι συνεισφοράς. Αν είστε στην τεχνική πλευρά:"
 
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
@@ -5536,9 +5523,8 @@ msgstr "Ανακοίνωση"
 msgid "Update message of the day"
 msgstr "Ενημέρωση του μηνύματος της ημέρας"
 
-#, fuzzy
 msgid "Expired Information Requests ({0})"
-msgstr "Απαιτούνται περισσότερες πληροφορίες"
+msgstr "Ληγμένα αιτήματα πληροφοριών ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Προέκυψε άγνωστο σφάλμα"
@@ -5594,7 +5580,6 @@ msgstr "Ημερομηνία τελευταίας έγκρισης"
 msgid "Abuse Reports ({num})"
 msgstr "Αναφορές κατάχρησης ({num})"
 
-#, fuzzy
 msgid "Bad User Ratings ({num})"
 msgstr "Κακές κριτικές χρηστών ({num})"
 
