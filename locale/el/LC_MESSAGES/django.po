@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-15 22:33+0000\n"
+"PO-Revision-Date: 2018-07-15 22:38+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1211,7 +1211,7 @@ msgid "Delete {0}"
 msgstr "Διαγραφή {0}"
 
 msgid "Are you sure?"
-msgstr "Είστε σίγουροι;"
+msgstr "Σίγουρα;"
 
 msgid "Yes"
 msgstr "Ναι"
@@ -2934,9 +2934,8 @@ msgstr "Κανένα"
 msgid "Preview"
 msgstr "Προεπισκόπηση"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Αναγραφόμενες εκδόσεις"
+msgstr "Προεπισκόπηση αναγραφόμενης έκδοσης"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Η προεπισκόπηση δημιουργείται ακόμη - επιστρέψτε αργότερα ή ανανεώστε τη σελίδα."
@@ -2950,14 +2949,12 @@ msgstr "Δημιουργοί"
 msgid "About author roles"
 msgstr "Σχετικά με τους ρόλους των συντελεστών"
 
-#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Τα πρόσθετα μπορούν να έχουν οποιονδήποτε αριθμό συντακτών με 3 πιθανούς ρόλους:</p> <ul> <li><b>Ιδιοκτήτης:</b> Μπορεί να διαχειριστεί κάθε πτυχή των καταχωρήσεων, συμπεριλαμβανομένων της "
-"πρόσθεσης και αφαίρεσης συντακτών</li> <li><b>Προγραμματιστής:</b> Μπορεί να διαχειριστεί κάθε πτυχή των καταχωρήσεων του προσθέτου, εκτός της πρόσθεσης και αφαίρεσης συντακτών καθώς και των "
-"πληρωμών</li> <li><b>Θεατής:</b> Μπορεί να δει όλες τις ρυθμίσεις του προσθέτου καθώς και τα στατιστικά, μα δε μπορεί να κάνει αλλαγές</li> </ul>"
+"<p>Τα πρόσθετα μπορούν να έχουν οποιονδήποτε αριθμό δημιουργών με 2 πιθανούς ρόλους:</p> <ul> <li><b>Ιδιοκτήτης:</b> Μπορεί να διαχειριστεί κάθε πτυχή της καταχώρησης του προσθέτου, όπως προσθήκη "
+"και αφαίρεση άλλων δημιουργών</li> <li><b>Προγραμματιστής:</b> Μπορεί να διαχειριστεί κάθε πτυχή της καταχώρησης του προσθέτου, εκτός από προσθήκη και αφαίρεση άλλων δημιουργών</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Βασικές πληροφορίες"
@@ -3011,13 +3008,13 @@ msgstr "Οι κατηγορίες είναι ο κύριος τρόπος με �
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Οι κατηγορίες δε μπορούν να τροποποιηθούν καθώς το πρόσθετο σας προβάλλεται για αυτή την εφαρμογή. Παρακαλώ στείλτε email στο <a href=\"mailto:%(email)s\">%(email)s</a> αν υπάρχει λόγος για να "
+"Οι κατηγορίες δεν μπορούν να τροποποιηθούν ενώ το πρόσθετό σας προτείνεται για αυτή την εφαρμογή. Παρακαλούμε στείλτε email στο <a href=\"mailto:%(email)s\">%(email)s</a> αν υπάρχει λόγος για να "
 "τροποποιήσετε τις κατηγορίες σας."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Οι κατηγορίες δε μπορούν να τροποποιηθούν καθώς το πρόσθετο σας προβάλλεται για αυτή την εφαρμογή. Παρακαλώ στείλτε email στο <a href=\"mailto:%(email)s\">%(email)s</a> αν υπάρχει λόγος για να "
+"Οι κατηγορίες δεν μπορούν να τροποποιηθούν ενώ το πρόσθετό σας προτείνεται για αυτή την εφαρμογή. Παρακαλούμε στείλτε email στο <a href=\"mailto:%(email)s\">%(email)s</a> αν υπάρχει λόγος για να "
 "τροποποιήσετε τις κατηγορίες σας."
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
