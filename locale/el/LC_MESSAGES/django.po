@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-15 14:05+0000\n"
+"PO-Revision-Date: 2018-07-15 14:16+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3018,7 +3018,7 @@ msgid "This add-on doesn't require any additional payments, paid services or sof
 msgstr "Αυτό το πρόσθετο δεν απαιτεί καμία επιπρόσθετη πληρωμή, επί πληρωμή υπηρεσίες ή λογισμικό, ή επιπρόσθετο υλικό."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
+msgstr "Οι κατηγορίες είναι ο κύριος τρόπος με τον οποίο οι χρήστες περιηγούνται στα πρόσθετα. Επιλέξτε αυτή που ταιριάζει στη λειτουργία του προσθέτου σας για μέγιστη προβολή."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
