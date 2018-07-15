@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-15 14:33+0000\n"
+"PO-Revision-Date: 2018-07-15 20:47+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3069,7 +3069,7 @@ msgid "Default Locale"
 msgstr "Αρχικές ρυθμίσεις γλώσσας"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Οι πληροφορίες σχετικά με το πρόσθετό σας εμφανίζονται σε αυτή τη γλώσσα, εκτός κι αν την παρακάμψετε με μια μετάφραση για μια ορισμένη γλώσσα. Είναι σχετικό μόνο με αναγραφόμενα πρόσθετα."
 
 msgid "Homepage"
 msgstr "Αρχική σελίδα"
@@ -3078,6 +3078,8 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Το πρόσθετό σας έχει μια άλλη αρχική σελίδα, εισάγετε τη διεύθυνση εδώ. Αν η ιστοσελίδα σας μεταφράζεται σε άλλες γλώσσες, μπορούν να προστεθούν πολλαπλές μεταφράσεις του πεδίου. Είναι σχετικό μόνο "
+"με αναγραφόμενα πρόσθετα."
 
 msgid "Images"
 msgstr "Εικόνες"
@@ -4280,7 +4282,7 @@ msgid "Reply"
 msgstr "Απάντηση"
 
 msgid "Listing visibility"
-msgstr ""
+msgstr "Ορατότητα στη λίστα"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
 msgstr "{label_open}Ορατό:{label_close} Ορατό σε όλους στο {site_url} και περιλαμβάνεται στα αποτελέσματα αναζήτησης και τις σελίδες καταγραφών."
@@ -4481,7 +4483,7 @@ msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Άκυρο όνομα αρχείου στο αρχείο: {0}"
 
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
@@ -5334,7 +5336,7 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
-msgstr ""
+msgstr "Κλειδωμένο από αξιολογητή."
 
 msgid "Has auto-approval disabled flag set."
 msgstr ""
