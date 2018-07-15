@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-15 22:04+0000\n"
+"PO-Revision-Date: 2018-07-15 22:10+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2023,7 +2023,7 @@ msgid "Language Pack (Add-on)"
 msgstr "Πακέτο γλώσσας (Πρόσθετο)"
 
 msgid "Plugin"
-msgstr "Πρόσθετη λειτουργία"
+msgstr "Άρθρωμα"
 
 msgid "Theme"
 msgstr "Θέμα"
@@ -3377,7 +3377,7 @@ msgid "Delete this theme."
 msgstr "Διαγραφή αυτού του θέματος."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Λείπουν ορισμένες απαιτούμενες πληροφορίες από αυτό το πρόσθετο, πριν μπορέσει να υποβληθεί προς έκδοση."
 
 msgid "This add-on doesn't have any versions."
 msgstr "Αυτό το πρόσθετο δεν έχει καμία έκδοση."
@@ -3441,7 +3441,7 @@ msgid "License:"
 msgstr "Άδεια:"
 
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr ""
+msgstr "Παρακαλούμε επιλέξτε μια κατάλληλη άδεια για τα δικαιώματα που χορηγείτε."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
@@ -3453,7 +3453,7 @@ msgid "Is there anything our reviewers should bear in mind when reviewing this a
 msgstr ""
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "Αυτές οι σημειώσεις είναι ορατές μόνος σε εσάς και τους αξιολογητές μας."
 
 msgid "Cancel and Disable Version"
 msgstr "Ακύρωση και απενεργοποίηση έκδοσης"
@@ -3925,7 +3925,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Συνδεθείτε για να επεξεργαστείτε και να ενημερώσετε το πρόσθετό σας"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "Πόροι για μια επιτυχή αρχή"
 
 #, python-format
 msgid ""
@@ -4436,7 +4436,7 @@ msgid "This file is a directory."
 msgstr "Αυτό το αρχείο είναι κατάλογος."
 
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "Αδυναμία διαφοροποίησης έκδοσης με τον εαυτό της"
 
 msgid "Access your data for {name}"
 msgstr "Πρόσβαση στα δεδομένα σας για {name}"
@@ -5903,7 +5903,7 @@ msgid "Recent Points"
 msgstr "Πρόσφατοι πόντοι"
 
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Δεν έχουν απονεμηθεί ακόμη πόντοι."
 
 msgid "Top Reviewers (past 7 days)"
 msgstr "Κορυφαίοι αξιολογητές (τελευταίες 7 ημέρες)"
@@ -6641,7 +6641,7 @@ msgid "Occupation"
 msgstr "Απασχόληση"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "Μπορείτε να αλλάξετε τη διεύθυνση email σας στους Λογαριασμούς Firefox."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Αυτό το  URL έχει μη έγκυρη μορφή. Τα έγκυρα URL έχουν τη μορφή http://example.com/my_page."
