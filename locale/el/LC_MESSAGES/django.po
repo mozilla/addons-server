@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-15 14:02+0000\n"
+"PO-Revision-Date: 2018-07-15 14:05+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3015,7 +3015,7 @@ msgid "This add-on requires payment, non-free services or software, or additiona
 msgstr "Αυτό το πρόσθετο απαιτεί πληρωμή, επί πληρωμή υπηρεσίες ή λογισμικό, ή επιπρόσθετο υλικό."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "Αυτό το πρόσθετο δεν απαιτεί καμία επιπρόσθετη πληρωμή, επί πληρωμή υπηρεσίες ή λογισμικό, ή επιπρόσθετο υλικό."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr ""
