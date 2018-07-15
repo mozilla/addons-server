@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-15 13:51+0000\n"
+"PO-Revision-Date: 2018-07-15 14:02+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2991,13 +2991,13 @@ msgid "Summary"
 msgstr "Σύνοψη"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "Αυτή η περίληψη θα πρέπει να εξηγεί σαφώς τι κάνει το πρόσθετό σας. Θα εμφανίζεται σε λίστες και αναζητήσεις και θα χρησιμοποιηθεί από τους αξιολογητές για δοκιμή του προσθέτου σας."
 
 msgid "Experimental?"
 msgstr "Πειραματικό;"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "Αν το πρόσθετό σας είναι πειραματικό ή μη έτοιμο για γενική χρήση. Το πρόσθετο θα αναγράφεται, αλλά θα έχει μειωμένη ορατότητα. "
 
 msgid "This add-on is experimental."
 msgstr "Αυτό το πρόσθετο είναι πειραματικό."
@@ -3009,10 +3009,10 @@ msgid "Requires Payment?"
 msgstr "Απαιτεί πληρωμή;"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Επιλέξτε το αν οι κύριες λειτουργίες του προσθέτου αυτού απαιτούν κάποια μορφή πληρωμής από την αρχή ή μετά από μια δοκιμαστική περίοδο."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Αυτό το πρόσθετο απαιτεί πληρωμή, επί πληρωμή υπηρεσίες ή λογισμικό, ή επιπρόσθετο υλικό."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
