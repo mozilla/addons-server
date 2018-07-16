@@ -1370,6 +1370,12 @@ LOGGING = {
             'level': logging.ERROR,
             'propagate': True,
         },
+        # Django CSRF related warnings
+        'django.security.csrf': {
+            'handlers': ['mozlog'],
+            'level': logging.WARNING,
+            'propagate': True
+        },
         'elasticsearch': {
             'handlers': ['null'],
             'level': logging.DEBUG,
