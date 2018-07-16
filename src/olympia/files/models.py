@@ -320,29 +320,35 @@ class File(OnChangeMixin, ModelBase):
     def extension(self):
         return os.path.splitext(self.filename)[-1]
 
-    @classmethod
-    def mv(cls, src, dst, msg):
-        """Move a file from src to dst."""
+    def move_file(self, source, destination, log_message):
+        """Move a file from `source` to `destination`."""
+        # Make sure we are passing bytes to Python's io system.
+        source, destination = force_bytes(source), force_bytes(destination)
+
         try:
-            if storage.exists(src):
-                log.info(msg % (src, dst))
-                move_stored_file(src, dst)
-        except UnicodeEncodeError:
-            msg = 'Move Failure: %s %s' % (force_bytes(src), force_bytes(dst))
-            log.error(msg)
+            if storage.exists(source):
+                log.info(log_message.format(
+                    source=source, destination=destination))
+                move_stored_file(source, destination)
+        except (UnicodeEncodeError, IOError):
+            msg = 'Move Failure: {} {}'.format(
+                force_bytes(source), force_bytes(destination))
+            log.exception(msg)
 
     def hide_disabled_file(self):
         """Move a disabled file to the guarded file path."""
         if not self.filename:
             return
         src, dst = self.file_path, self.guarded_file_path
-        self.mv(src, dst, 'Moving disabled file: %s => %s')
+        self.move_file(
+            src, dst, 'Moving disabled file: {source} => {destination}')
 
     def unhide_disabled_file(self):
         if not self.filename:
             return
         src, dst = self.guarded_file_path, self.file_path
-        self.mv(src, dst, 'Moving undisabled file: %s => %s')
+        self.move_file(
+            src, dst, 'Moving undisabled file: {source} => {destination}')
 
     _get_localepicker = re.compile('^locale browser ([\w\-_]+) (.*)$', re.M)
 
