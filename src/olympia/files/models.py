@@ -336,13 +336,15 @@ class File(OnChangeMixin, ModelBase):
         if not self.filename:
             return
         src, dst = self.file_path, self.guarded_file_path
-        self.move_file(src, dst, 'Moving disabled file: %s => %s')
+        self.move_file(
+            src, dst, 'Moving disabled file: {source} => {destination}')
 
     def unhide_disabled_file(self):
         if not self.filename:
             return
         src, dst = self.guarded_file_path, self.file_path
-        self.move_file(src, dst, 'Moving undisabled file: %s => %s')
+        self.move_file(
+            src, dst, 'Moving undisabled file: {source} => {destination}')
 
     _get_localepicker = re.compile('^locale browser ([\w\-_]+) (.*)$', re.M)
 
