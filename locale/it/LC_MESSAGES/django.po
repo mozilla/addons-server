@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-14 16:49+0000\n"
-"Last-Translator: Giorgio Romano <ascotwork@gmail.com>\n"
+"PO-Revision-Date: 2018-07-14 17:40+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -1847,9 +1847,8 @@ msgstr "Il componente aggiuntivo {addon} è stato revisionato."
 msgid "User {user} banned."
 msgstr "Utente {user} bloccato."
 
-#, fuzzy
 msgid "User {user} picture deleted."
-msgstr "Utente {user} limitato."
+msgstr "Foto utente di {user} eliminata."
 
 msgid "User {0.name} added to {group}."
 msgstr "L’utente {0.name} è stato aggiunto al gruppo {group}."
@@ -2321,15 +2320,14 @@ msgstr "Tema statico"
 msgid "Persona"
 msgstr "Tema di Personas"
 
-#, fuzzy
 msgid "No Reputation"
-msgstr "Reputazione"
+msgstr "Nessuna reputazione"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "Buona (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Molto buona (2)"
 
 msgid "Excellent (3)"
 msgstr "Eccellente (3)"
@@ -3427,7 +3425,7 @@ msgid "Describe Add-on"
 msgstr "Descrizione del componente aggiuntivo"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Il nome che appare su questo sito. Può essere diverso dal nome interno del componente aggiuntivo che viene mostrato in Firefox."
 
 msgid "Add-on URL:"
 msgstr "URL del componente aggiuntivo:"
@@ -3971,6 +3969,9 @@ msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
+"Hai creato la tua estensione e sei pronto a pubblicarla? Qual è il prossimo passo? Controlla i nostri consigli per creare una pagina profilo attraente, portare la tua estensione in primo piano su "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, trovare risposte alle tue domande sullo sviluppo e restare aggiornato sulle notizie e gli eventi d’interesse per gli sviluppatori di "
+"estensioni."
 
 msgid "View Resources for Publishers"
 msgstr "Visualizza le risorse per gli sviluppatori"
@@ -4409,15 +4410,14 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} avviso"
 msgstr[1] "{0} avvisi"
 
-#, fuzzy
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Traduci facilmente {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Fai perdere la tua traccia digitale {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "Fa in modo che Firefox dimentichi i dati relativi ai siti web, come cookie e archiviazione locale, ma solo per i domini che tu scegli."
 
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr ""
+msgstr "Perfeziona la tua esperienza video {start_sub_heading}con {addon_name} {end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
 msgstr "Divertiti con una serie di nuove funzionalità per YouTube, come modalità cinema, blocco delle pubblicità, riproduzione automatica e molto altro."
@@ -6688,7 +6688,7 @@ msgstr "L’utente \"%(user)s\" è stato bloccato"
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
-msgstr ""
+msgstr "L’immagine appartenente all’utente \"%(user)s\" è stata eliminata."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned.users, "
