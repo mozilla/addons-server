@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-12 09:48+0000\n"
+"PO-Revision-Date: 2018-07-16 17:31+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -569,7 +569,7 @@ msgid "This add-on has been removed by its author."
 msgstr "ఈ పొడిగింత దాని రచయితచే తొలగించబడింది."
 
 msgid "This add-on has been disabled by an administrator."
-msgstr ""
+msgstr "ఈ పొడగింతను నిర్వాహకులు అచేతనించారు."
 
 msgid "Source Code License for {addon}"
 msgstr "{addon} కోసం సోర్సు కోడు లైసెన్సు"
@@ -2475,7 +2475,7 @@ msgid "View current"
 msgstr ""
 
 msgid "Invalid version range."
-msgstr ""
+msgstr "చెల్లని వెర్షను అవధి."
 
 msgid "Need at least one compatible application."
 msgstr ""
@@ -2654,10 +2654,10 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr ""
 
 msgid "Review requested."
-msgstr ""
+msgstr "సమీక్ష అభ్యర్థించబడింది."
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "కొనసాగడానికి మీరు మరిన్ని వివరాలను అందించాలి."
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr ""
@@ -2703,7 +2703,7 @@ msgstr "తిరిగి DevHub ముంగిలి పేజీకి వ�
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "<small> పొడగింతల</small> డెవలపర్ హబ్"
 
 msgid "more add-ons..."
 msgstr "మరిన్ని పొడగింతలు..."
@@ -2715,7 +2715,7 @@ msgid "Extension Development"
 msgstr "పొడగింతల డెవలప్‌మెంట్"
 
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "తేలికపాటి అలంకారాలు"
 
 msgid "Add-on Policies"
 msgstr "పొడిగింత విధానాలు"
@@ -3096,7 +3096,7 @@ msgid "Add-on Media for {0}"
 msgstr ""
 
 msgid "Add-on icon"
-msgstr ""
+msgstr "పొడగింత ప్రతీకం"
 
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
@@ -3136,7 +3136,7 @@ msgid "Please provide a caption for this screenshot:"
 msgstr ""
 
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "తెరపట్టుని జోడించండి..."
 
 msgid ""
 "PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
