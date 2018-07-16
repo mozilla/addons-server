@@ -1,10 +1,12 @@
 from django.db.models import Avg, Count, F
+from django.conf import settings
 
 import olympia.core.logger
 
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
+from olympia.lib.akismet.models import AkismetReport
 from olympia.lib.cache import cache_get_or_set
 
 from .models import GroupedRating, Rating
@@ -116,3 +118,16 @@ def addon_grouped_rating(*addons, **kw):
              (len(addons), addon_grouped_rating.rate_limit))
     for addon in addons:
         GroupedRating.set(addon, using='default')
+
+
+@task
+def check_with_akismet(rating_id, user_agent, referrer):
+    from olympia.ratings.models import Rating, RatingFlag  # circular import
+
+    rating = Rating.objects.get(id=rating_id)
+    akismet = AkismetReport.create_for_rating(rating, user_agent, referrer)
+    outcome = akismet.comment_check()
+    if outcome in (AkismetReport.DEFINITE_SPAM, AkismetReport.MAYBE_SPAM):
+        RatingFlag.objects.get_or_create(
+            rating=rating, user_id=settings.TASK_USER_ID, flag=RatingFlag.SPAM)
+        rating.update(editorreview=True)

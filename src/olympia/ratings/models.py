@@ -30,7 +30,7 @@ class RatingQuerySet(models.QuerySet):
             Q(addon__isnull=True) |
             Q(version__channel=amo.RELEASE_CHANNEL_UNLISTED) |
             Q(ratingflag__isnull=True)).filter(
-                editorreview=1, addon__status__in=amo.VALID_ADDON_STATUSES)
+                editorreview=True, addon__status__in=amo.VALID_ADDON_STATUSES)
 
     def delete(self, user_responsible=None, hard_delete=False):
         if hard_delete:
