@@ -221,3 +221,4 @@ v4 API changelog
 * 2018-07-19: localised field values are always returned as objects, even if only a single language is requested.
   Setting a localised value with a string is removed too - it must always be an object of one or more translations.
   https://github.com/mozilla/addons-server/issues/8794
+* 2018-07-18: added ``previews`` property to discovery API ``addons`` object. This change was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/8863
