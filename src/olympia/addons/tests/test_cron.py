@@ -78,7 +78,7 @@ class TestLastUpdated(TestCase):
 
 
 class TestHideDisabledFiles(TestCase):
-    msg = 'Moving disabled file: %s => %s'
+    msg = 'Moving disabled file: {source} => {destination}'
 
     def setUp(self):
         super(TestHideDisabledFiles, self).setUp()
@@ -166,11 +166,11 @@ class TestHideDisabledFiles(TestCase):
 
         cron.hide_disabled_files()
 
-        # Check that f2 was moved.
+        # Check that we called `move_stored_file` for f2 properly
         f2 = self.f2
         mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path)
 
-        # Check that f1 was moved as well.
+        # Check that we called `move_stored_file` for f1 properly
         f1 = self.f1
         mv_mock.call_args = mv_mock.call_args_list[0]
         mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path)
