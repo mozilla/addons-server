@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-15 22:38+0000\n"
+"PO-Revision-Date: 2018-07-16 13:57+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1926,16 +1926,14 @@ msgstr "Το αίτημα πληροφοριών του {addon} άλλαξε ή 
 msgid "Information request altered"
 msgstr "Το αίτημα πληροφοριών άλλαξε"
 
-#, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Απάντηση προγραμματιστή στο {addon} {version}."
+msgstr "Το αίτημα πληροφοριών εκκαθαρίστηκε από τον προγραμματιστή στο {addon} {version}."
 
 msgid "Information request removed"
 msgstr "Το αίτημα πληροφοριών αφαιρέθηκε"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "Έγινε αίτηση αξιολόγησης για το {addon} {version}."
+msgstr "Ζητήθηκε αξιολόγηση προσθέτου από το διαχειριστή του {addon} {version}."
 
 msgid "Admin add-on-review requested"
 msgstr "Ζητήθηκε αξιολόγηση προσθέτου από διαχειριστή"
@@ -6041,20 +6039,18 @@ msgid_plural "Updates ({0})"
 msgstr[0] "Ενημέρωση ({0})"
 msgstr[1] "Ενημερώσεις ({0})"
 
-#, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Ελεγμένη αξιολόγηση ({0})"
-msgstr[1] "Ελεγμένες αξιολογήσεις ({0})"
+msgstr[0] "Αξιολόγηση βαθμολογίας ({0})"
+msgstr[1] "Αξιολογήσεις βαθμολογίας ({0})"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
-msgstr[0] "Αυτόματα εγκεκριμένο πρόσθετο ({0})"
-msgstr[1] "Αυτόματα εγκεκριμένα πρόσθετα ({0})"
+msgstr[0] "Αυτόματα εγκεκριμένο ({0})"
+msgstr[1] "Αυτόματα εγκεκριμένα ({0})"
 
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
