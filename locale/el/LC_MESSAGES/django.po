@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-16 14:13+0000\n"
+"PO-Revision-Date: 2018-07-16 14:51+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5228,9 +5228,8 @@ msgstr "πρόσθετο, αξιολογητής ή σχόλιο"
 msgid "Search by add-on name / author email"
 msgstr "Αναζήτηση με βάση το όνομα του πρόσθετου/ email δημιουργού"
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "Αξιολόγηση συντάκτη"
+msgstr "Απαιτεί αξιολόγηση κώδικα από διαχειριστή"
 
 msgid "yes"
 msgstr "ναι"
@@ -5285,13 +5284,11 @@ msgstr "Διατήρηση αξιολόγησης· απομάκρυνση σή�
 msgid "Skip for now"
 msgstr "Παράκαμψη για την ώρα"
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "Υποβολή Επιθεώρησης"
+msgstr "Απαιτεί αξιολόγηση περιεχομένου από διαχειριστή"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Αξιολόγηση συντάκτη"
+msgstr "Απαιτεί αξιολόγηση στατικού θέματος από διαχειριστή"
 
 msgid "Jetpack Add-on"
 msgstr "Πρόσθετο Jetpack"
@@ -5299,9 +5296,8 @@ msgstr "Πρόσθετο Jetpack"
 msgid "More Information Requested"
 msgstr "Απαιτούνται περισσότερες πληροφορίες"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Απαιτούνται περισσότερες πληροφορίες"
+msgstr "Ληγμένο αίτημα πληροφοριών"
 
 msgid "Contains Reviewer Comment"
 msgstr "Περιέχει σχόλιο κριτή"
@@ -5482,9 +5478,8 @@ msgstr "Ενημερώσεις θεμάτων ({0})"
 msgid "Flagged Themes ({0})"
 msgstr "Επισημασμένα θέματα ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "\"Ελαφριά\" θέματα"
+msgstr "Αρχείο καταγραφής αξιολόγησης \"ελαφριών\" θεμάτων"
 
 msgid "Deleted Themes Log"
 msgstr "Αρχείο διαγραμμένων θεμάτων"
@@ -5501,9 +5496,8 @@ msgstr ""
 msgid "Moderation Guide"
 msgstr "Οδηγός συντονισμού"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "Πρόσθετα Android"
+msgstr "Μη αναγραφόμενα πρόσθετα"
 
 msgid "All Unlisted Add-ons"
 msgstr ""
@@ -5577,9 +5571,8 @@ msgstr "Κακές κριτικές χρηστών ({num})"
 msgid "Theme Images"
 msgstr "Εικόνες θέματος"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Διαγραμμένες αξιολογήσεις  "
+msgstr "Προβαλλόμενη προεπισκόπηση"
 
 msgid "Background file {0} of {1} - {2}"
 msgstr "Αρχείο παρασκηνίου {0} από {1} - {2}"
@@ -5819,17 +5812,14 @@ msgstr "Ενεργοποίηση αυτόματης έγκρισης"
 msgid "Clear information request"
 msgstr "Εκκαθάριση αιτήματος πληροφοριών"
 
-#, fuzzy
 msgid "Clear Admin Code Review Flag"
-msgstr "Αξιολόγηση συντάκτη"
+msgstr "Εκκαθάριση επισήμανσης αξιολόγησης κώδικα από διαχειριστή"
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "Υποβολή Επιθεώρησης"
+msgstr "Εκκαθάριση επισήμανσης αξιολόγησης περιεχομένου από διαχειριστή"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Αξιολόγηση συντάκτη"
+msgstr "Εκκαθάριση επισήμανσης αξιολόγησης στατικού θέματος από διαχειριστή"
 
 msgid "(admin)"
 msgstr "(διαχειριστής)"
