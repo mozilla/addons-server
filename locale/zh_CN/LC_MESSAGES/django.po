@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-12 00:31+0000\n"
-"Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
+"PO-Revision-Date: 2018-07-17 16:57+0000\n"
+"Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -1775,10 +1775,10 @@ msgid "{addon} reviewed."
 msgstr "{addon} 已审核。"
 
 msgid "User {user} banned."
-msgstr ""
+msgstr "已封禁用户 {user}。"
 
 msgid "User {user} picture deleted."
-msgstr ""
+msgstr "已删除用户 {user} 的照片。"
 
 msgid "User {0.name} added to {group}."
 msgstr "用户 {0.name} 已添加到组 {group}。"
@@ -3292,7 +3292,7 @@ msgid "Describe Add-on"
 msgstr "描述附加组件"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "在此站点上列出的名称；可能与附加组件的名称（显示在 Firefox 之中）不同"
 
 msgid "Add-on URL:"
 msgstr "附加组件网址："
@@ -3808,7 +3808,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "登录以编辑和更新您的附加组件"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "成功上架的相关资源"
 
 #, python-format
 msgid ""
@@ -3817,7 +3817,7 @@ msgid ""
 msgstr ""
 
 msgid "View Resources for Publishers"
-msgstr ""
+msgstr "查看发布者的资源"
 
 msgid "Welcome Back"
 msgstr "欢迎回来"
@@ -3830,7 +3830,7 @@ msgstr "了解方法"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "想让您的扩展出现在 %(amo_link_open)saddons.mozilla.org%(amo_link_close)s 的“精选扩展”中吗？我们的精选扩展政策将告诉您需要了解的内容。"
 
 msgid "Learn More"
 msgstr "了解更多"
@@ -4235,25 +4235,25 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} 个警告"
 
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "保持干净的数字足迹 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "让 Firefox 对您选择的域名，忘记 Cookie 和本地存储等网站数据。"
 
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr ""
+msgstr "改善视频体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
 msgstr "尊享全新的 YouTube 功能，如剧院模式、广告拦截、自动播放等等。"
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
 msgstr "一款轻量又高效的广告拦截工具。uBlock Origin 能够在不消耗大量内存的情况下执行上千条过滤规则。"
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "提高您的 emoji 技巧 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis for every occasion—just a click away."
 msgstr "无数的精美 emoji，只需一键。"
@@ -6433,15 +6433,15 @@ msgstr "删除语言"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned.user"
-msgstr ""
+msgstr "用户“%(user)s”已被封禁。用户"
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
-msgstr ""
+msgstr "用户\"%(user)s\"所属的照片已被删除。用户"
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned.users, "
-msgstr ""
+msgstr "用户“%(users)s”已被封禁。用户，"
 
 msgid "Ban selected users"
 msgstr "封禁所选用户"
