@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-11 14:27+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2018-07-15 11:02+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -1841,7 +1841,7 @@ msgid "User {user} banned."
 msgstr "Gebruiker {user} verbannen."
 
 msgid "User {user} picture deleted."
-msgstr ""
+msgstr "Afbeelding van gebruiker {user} verwijderd."
 
 msgid "User {0.name} added to {group}."
 msgstr "Gebruiker {0.name} toegevoegd aan {group}."
@@ -3397,7 +3397,7 @@ msgid "Describe Add-on"
 msgstr "Beschrijf uw add-on"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Naam in vermelding op deze website. Kan anders zijn dan de naam binnen de add-on, die binnen Firefox wordt getoond"
 
 msgid "Add-on URL:"
 msgstr "Add-on-URL:"
@@ -3924,13 +3924,16 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Meld u aan om uw add-on te bewerken en bij te werken"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "Bronnen voor een succesvolle lancering"
 
 #, python-format
 msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
+"U hebt uw extensie gebouwd en bent klaar voor publicatie ervan. Wat nu? Bekijk onze tips voor het maken van een aantrekkelijke vermeldingspagina, het aanbevolen krijgen van uw extensie op "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, het vinden van antwoorden op ontwikkelvragen, en het up-to-date blijven over nieuws en evenementen die relevant zijn voor "
+"extensieontwikkelaars."
 
 msgid "View Resources for Publishers"
 msgstr "Hulpbronnen voor uitgevers bekijken"
@@ -3946,7 +3949,7 @@ msgstr "Meer info"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "Wilt u dat uw extensie wordt aanbevolen op %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Onze beleidsregels voor aanbevolen extensies geven aan wat u dient te weten."
 
 msgid "Learn More"
 msgstr "Meer info"
@@ -4366,19 +4369,19 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Laat een schoon digitaal spoor na {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Laat Firefox websitegegevens zoals cookies en lokale opslag vergeten, maar alleen voor gekozen domeinen."
 
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "Verbeter video’s {start_sub_heading}met {addon_name} {end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
+msgstr "Geniet van een pakket nieuwe YouTube-functies, zoals bioscoopmodus, advertentieblokkering, automatisch afspelen en meer."
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
-msgstr ""
+msgstr "Een lichtgewicht en effectieve adblocker. uBlock Origin hanteert duizenden inhoudsfilters zonder veel geheugen te gebruiken."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
@@ -6623,18 +6626,18 @@ msgstr "Locale verwijderen"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned.user"
-msgstr ""
+msgstr "De gebruiker ‘%(user)s’ is verbannen."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
-msgstr ""
+msgstr "De afbeelding van gebruiker ‘%(user)s’ is verwijderd."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned.users, "
-msgstr ""
+msgstr "De gebruikers ‘%(users)s’ zijn verbannen."
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "Geselecteerde gebruikers verbannen"
 
 msgid "Profile Photo"
 msgstr "Profielfoto"
@@ -6778,7 +6781,7 @@ msgid "Delete User Photo"
 msgstr "Gebruikersfoto verwijderen"
 
 msgid "Delete my user picture now"
-msgstr "Mijn gebruikersfoto nu verwijderen"
+msgstr "Mijn gebruikersafbeelding nu verwijderen"
 
 msgid "Please set your display name"
 msgstr "Stel uw schermnaam in"
