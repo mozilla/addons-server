@@ -426,6 +426,25 @@ SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_HSTS_SECONDS = 31536000
 
+# Prefer using `X-Forwarded-Port` header instead of `Port` header.
+# We are behind both, the ELB and nginx which forwards requests to our
+# uwsgi app.
+# Our current request flow is this:
+# Request -> ELB (terminates SSL) -> Nginx -> Uwsgi -> addons-server
+#
+# The ELB terminates SSL and properly sets `X-Forwarded-Port` header
+# as well as `X-Forwarded-Proto` and others.
+# Nginx on the other hand runs on port 81 and thus sets `Port` to be
+# 81 but to make CSRF detection and other mechanisms work properly
+# we need to know that we're running on either port 80 or 443, or do something
+# with SECURE_PROXY_SSL_HEADER but we shouldn't if we can avoid that.
+# So, let's simply grab the properly set `X-Forwarded-Port` header.
+# https://github.com/mozilla/addons-server/issues/8835#issuecomment-405340432
+#
+# This is also backwards compatible for our local setup since Django falls back
+# to using `Port` if `X-Forwarded-Port` isn't set.
+USE_X_FORWARDED_PORT = True
+
 MIDDLEWARE_CLASSES = (
     # Gzip (for API only) middleware needs to be executed after every
     # modification to the response, so it's placed at the top of the list.
