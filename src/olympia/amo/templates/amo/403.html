@@ -54,5 +54,14 @@
     {{ reason }}
     </pre>
     {% endif %}
+    <p>Other debug data</p>
+        <p>request_is_secure: <pre>{{ request_is_secure }}</pre></p>
+        <p>referer: <pre>{{ referer }}</pre></p>
+        <p>X-Forwarded-Proto: <pre>{{ x_forwarded_proto }}</pre></p>
+        <p>Port: <pre>{{ port }}</pre></p>
+        <p>Host: <pre>{{ host }}</pre></p>
+        <p>good referer: <pre>{{ good_referer }}</pre></p>
+      </li>
+    </ul>
   </section>
 {% endblock %}
