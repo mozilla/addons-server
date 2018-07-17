@@ -33,9 +33,10 @@
   <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
 </hgroup>
 
+<div id="addon" class="primary addon-type-{{ amo.ADDON_SLUGS.get(addon.type, addon.type) }}" role="main" data-id="{{ addon.id }}" data-url="{{ url('reviewers.review_viewing') }}">
+
 <form method="POST" action="#review-actions" class="review-form">
   {% csrf_token %}
-  <div id="addon" class="primary addon-type-{{ amo.ADDON_SLUGS.get(addon.type, addon.type) }}" role="main" data-id="{{ addon.id }}" data-url="{{ url('reviewers.review_viewing') }}">
 
   {% include 'reviewers/addon_details_box.html' %}
 
@@ -370,7 +371,7 @@
     </ul>
     {% endif %}
   </div>
-</div>
+</form>
 {% endif %}
 
 </div> {# /#primary #}
