@@ -112,6 +112,8 @@ def csrf_failure(request, reason=''):
         'referer': request.META.get('HTTP_REFERER'),
         'x_forwarded_proto': request.META.get('HTTP_X_FORWARDED_PROTO'),
         'port': request.get_port(),
+        'x_forwarded_port': request.META.get('HTTP_X_FORWARDED_PORT'),
+        'server_port': request.META.get('SERVER_PORT'),
         'host': request.get_host(),
         'good_referer': good_referer,
     }
