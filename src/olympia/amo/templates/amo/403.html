@@ -11,10 +11,7 @@
   </section>
 
   <section class="primary">
-    {#
-      Temporary code for debugging. The text is based on Django's default CSRF
-      view content.
-    #}
+    {# Taken primarily from Django's CSRF page #}
     {% if no_referer %}
       <p>
         {% trans %}
@@ -47,24 +44,5 @@
         requests.
       </p>
     {% endif %}
-
-    {% if reason %}
-    <p>Reason given for failure:</p>
-    <pre>
-    {{ reason }}
-    </pre>
-    {% endif %}
-    <p>Other debug data</p>
-        <p>request_is_secure: <pre>{{ request_is_secure }}</pre></p>
-        <p>referer: <pre>{{ referer }}</pre></p>
-        <p>X-Forwarded-Proto: <pre>{{ x_forwarded_proto }}</pre></p>
-        <p>Port: <pre>{{ port }}</pre></p>
-        <p>Host: <pre>{{ host }}</pre></p>
-        <p>good referer: <pre>{{ good_referer }}</pre></p>
-        <p>X-Forwarded-Port: <pre>{{ x_forwarded_port }}</pre></p>
-        <p>Server port: <pre>{{ server_port }}</pre></p>
-
-      </li>
-    </ul>
   </section>
 {% endblock %}
