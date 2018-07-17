@@ -26,6 +26,11 @@ class TranslationFormMixin(object):
     A mixin for forms with translations that tells fields about the object's
     default locale.
     """
+    # Hack to restore behavior from pre Django 1.10 times.
+    # Django 1.10 enabled `required` rendering for required widgets. That
+    # wasn't the case before, this should be fixed properly but simplifies
+    # the actual Django 1.11 deployment for now.
+    use_required_attribute = False
 
     def __init__(self, *args, **kwargs):
         kwargs['error_class'] = LocaleErrorList
