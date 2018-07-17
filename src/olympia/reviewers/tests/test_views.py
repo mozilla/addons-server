@@ -4472,6 +4472,14 @@ class TestReviewPending(ReviewBase):
         assert doc('.auto_approval li').eq(0).text() == (
             'Is locked by a reviewer.')
 
+    def test_comments_box_doesnt_have_required_html_attribute(self):
+        """Regression test
+
+        https://github.com/mozilla/addons-server/issues/8907"""
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('#id_comments').attr('required') is None
+
 
 class TestReviewerMOTD(ReviewerTest):
 
