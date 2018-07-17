@@ -98,10 +98,22 @@ def handler500(request):
 @non_atomic_requests
 def csrf_failure(request, reason=''):
     from django.middleware.csrf import REASON_NO_REFERER, REASON_NO_CSRF_COOKIE
+    good_referer = (
+        settings.SESSION_COOKIE_DOMAIN
+        if settings.CSRF_USE_SESSIONS
+        else settings.CSRF_COOKIE_DOMAIN
+    )
     ctx = {
         'reason': reason,
         'no_referer': reason == REASON_NO_REFERER,
         'no_cookie': reason == REASON_NO_CSRF_COOKIE,
+        # Data that is used by CSRF middleware, for debugging
+        'request_is_secure': request.is_secure(),
+        'referer': request.META.get('HTTP_REFERER'),
+        'x_forwarded_proto': request.META.get('HTTP_X_FORWARDED_PROTO'),
+        'port': request.get_port(),
+        'host': request.get_host(),
+        'good_referer': good_referer,
     }
     return render(request, 'amo/403.html', ctx, status=403)
 
