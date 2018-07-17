@@ -68,12 +68,7 @@ help_submake:
 
 initialize_db:
 	rm -rf ./user-media/* ./tmp/*
-	# The --no-utf8 is a temporary workaround for https://github.com/mozilla/addons-server/issues/8593
-	# The actual fix is pushed upstream in https://github.com/django-extensions/django-extensions/issues/1213
-	# as https://github.com/django-extensions/django-extensions/pull/1214
-	# So this will have to be reverted once an upstream fix lands.  --no-utf8 here actually *enables*
-	# utf-8 support.
-	python manage.py reset_db --no-utf8
+	python manage.py reset_db
 	python manage.py migrate --noinput --run-syncdb
 	python manage.py loaddata initial.json
 	python manage.py import_prod_versions
@@ -142,12 +137,7 @@ reindex:
 setup-ui-tests:
 	rm -rf ./user-media/* ./tmp/*
 	# Reset the database and fake database migrations
-	# The --no-utf8 is a temporary workaround for https://github.com/mozilla/addons-server/issues/8593
-	# The actual fix is pushed upstream in https://github.com/django-extensions/django-extensions/issues/1213
-	# as https://github.com/django-extensions/django-extensions/pull/1214
-	# So this will have to be reverted once an upstream fix lands. --no-utf8 here actually *enables*
-	# utf-8 support.
-	python manage.py reset_db --noinput --no-utf8
+	python manage.py reset_db --noinput
 	python manage.py migrate --noinput --run-syncdb
 	schematic --fake src/olympia/migrations/
 
