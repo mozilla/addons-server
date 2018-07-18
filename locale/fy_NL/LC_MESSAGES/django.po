@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-12 06:52+0000\n"
+"PO-Revision-Date: 2018-07-18 06:32+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3391,7 +3391,7 @@ msgid "Describe Add-on"
 msgstr "Beskriuw jo add-on"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Namme yn fermelding op dizze website. Kin oars wêze as de namme binnen de add-on, dy’t binnen Firefox toand wurdt"
 
 msgid "Add-on URL:"
 msgstr "Add-on-URL:"
@@ -3918,13 +3918,15 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Meld jo oan om jo add-on te bewurkjen en by te wurkjen"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "Boarnen foar in suksesfolle lansearring"
 
 #, python-format
 msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
+"Jo hawwe jo útwreiding bouwd en binne ree foar publikaasje derfan. Wat no? Besjoch ús tips foar it meitsjen fan in oantreklike fermeldingsside, it oanrekommandearre krijen fan jo útwreiding op "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, it finen fan antwurden op ûntwikkelfragen, en it by-de-tiid bliuwen oer nijs en eveneminten dy’t relevant binne foar útwreidigsûntwikkelers."
 
 msgid "View Resources for Publishers"
 msgstr "Boarnen foar auteurs besjen"
@@ -3941,6 +3943,7 @@ msgstr "Mear ynfo"
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
+"Wolle jo dat jo útwreiding oanrekommandearre wurdt op %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Us beliedsrigels foar oanrekommandearre útwreidingen jouwe oan wat jo witte moatte."
 
 msgid "Learn More"
 msgstr "Mear ynfo"
@@ -4362,19 +4365,19 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Lit in skjin digitaal spoar nei {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Lit Firefox websitegegevens lykas cookies en lokale opslach ferjitte, mar allinnich foar keazen domeinen."
 
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "Ferbetterje fideo’s {start_sub_heading}mei {addon_name} {end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
+msgstr "Genietsje fan in pakket nije YouTube-funksjes, lykas bioskoopmodus, advertinsjeblokkearring, automatysk ôfspylje en mear."
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
-msgstr ""
+msgstr "In ljochtgewicht en effektive adblocker. uBlock Origin hantearret tûzenen ynhâldsfilters sûnder in protte ûnthâld te brûken."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ferbetterje jo emojispultsje {start_sub_heading}mei {addon_name}{end_sub_heading}"
@@ -6614,11 +6617,11 @@ msgstr "Taal fuortsmite"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned.user"
-msgstr ""
+msgstr "De brûker ‘%(user)s’ is ferballe."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
-msgstr ""
+msgstr "De ôfbylding fan brûker ‘%(user)s’ is fuortsmiten."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned.users, "
