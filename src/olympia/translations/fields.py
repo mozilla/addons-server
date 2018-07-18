@@ -60,7 +60,7 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
         else:
             try:
                 trans = getattr(instance, self.field.name)
-            except AttributeError, instance.DoesNotExist:
+            except (AttributeError, instance.DoesNotExist):
                 trans = None
             if trans is not None and to_language(trans.locale) == lang.lower():
                 # Replace the translation in the current language.
@@ -245,7 +245,7 @@ class _TransField(object):
                 if self.default_locale.lower() == locale:
                     super(_TransField, self).validate(val)
                 super(_TransField, self).run_validators(val)
-            except forms.ValidationError, e:
+            except forms.ValidationError as e:
                 for message in e.messages:
                     self.parent_form.add_error(
                         self._field_name,
