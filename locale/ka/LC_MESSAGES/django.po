@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-11 14:58+0000\n"
+"PO-Revision-Date: 2018-07-18 11:34+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -106,7 +106,7 @@ msgstr "ეს დაბოლოება უკვე გამოიყენ
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "მისამართის დაბოლოება ვერ იქნება \"%(slug)s\". გთხოვთ აარჩიოთ სხვა."
+msgstr "მისამართის დაბოლოება ვერ იქნება „%(slug)s“. გთხოვთ აარჩიოთ სხვა."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -117,8 +117,8 @@ msgstr[1] "არასწორი ჭდე: {0}"
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" ჭდე დაკავებულია და მისი გამოყენება ვერ მოხერხდება."
-msgstr[1] "\"{0}\" ჭდე დაკავებულია და მისი გამოყენება ვერ მოხერხდება."
+msgstr[0] "„{0}“ ჭდე დაკავებულია და მისი გამოყენება ვერ მოხერხდება."
+msgstr[1] "„{0}“ ჭდე დაკავებულია და მისი გამოყენება ვერ მოხერხდება."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -170,7 +170,7 @@ msgid "Listed"
 msgstr "გამოქვეყნებულია"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr "დამატებისა და კრებულის მისამართები უნდა მთავრდებოდეს \"/\" სიმბოლოთი"
+msgstr "დამატებისა და კრებულის მისამართები უნდა მთავრდებოდეს „/“ სიმბოლოთი"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "დამატების სახელში Mozilla-ს ან Firefox-ის სავაჭრო ნიშნების გამოყენება დაუშვებელია."
@@ -906,7 +906,7 @@ msgstr "საჭიროა {lang-code:value} ობიექტის მი�
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr "არასწორი pk ან slug \"%s\" - ობიექტი არ არსებობს."
+msgstr "არასწორი pk ან ბმულის დაბოლოება „%s“ - ობიექტი არ არსებობს."
 
 msgid "Application Versions"
 msgstr "აპლიკაციის ვერსიები"
@@ -2530,7 +2530,7 @@ msgid "Continue with existing upload instead?"
 msgstr "გაგრძელდეს მიმდინარე ატვირთვა?"
 
 msgid "The platform All cannot be combined with specific platforms."
-msgstr "პლატფორმა \"ყველასთან\" ერთად, სხვა რომელიმე პლატფორმა ვერ მიეთითება."
+msgstr "პლატფორმა „ყველასთან“ ერთად, სხვა რომელიმე ცალკეული პლატფორმა ვერ მიეთითება."
 
 msgid "A platform can only be chosen once."
 msgstr "პლატფორმა, მხოლოდ ერთხელ შეიძლება მიეთითოს."
@@ -2590,11 +2590,11 @@ msgstr "%s უპასუხა %s-ს (%s)."
 
 #, python-format
 msgid "Connection to \"%s\" timed out."
-msgstr "\"%s\"-თან კავშირი ვადაგასულია."
+msgstr "„%s“-თან კავშირი ვადაგასულია."
 
 #, python-format
 msgid "Could not contact host at \"%s\"."
-msgstr "\"%s\"-თან დაკავშირება ვერ ხერხდება."
+msgstr "„%s“-თან დაკავშირება ვერ ხერხდება."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Mozilla-ს უსაფრთხოების განაცხადი: თქვენი AMO API მონაცემები გაუქმებულია"
