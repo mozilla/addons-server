@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-18 14:08+0000\n"
+"PO-Revision-Date: 2018-07-18 14:38+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5580,7 +5580,7 @@ msgid "Return to the Reviewer Tools dashboard"
 msgstr ""
 
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Πίνακας κριτών"
 
 msgid "No review points awarded yet."
 msgstr ""
@@ -5827,7 +5827,7 @@ msgid "Resolution"
 msgstr "Ανάλυση"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Κριτής"
 
 msgid "Add-on has been deleted."
 msgstr "Διαγράφηκε το πρόσθετο."
@@ -6224,10 +6224,10 @@ msgid "User Signups"
 msgstr "Εγγραφές χρηστών"
 
 msgid "Archived Data"
-msgstr ""
+msgstr "Αρχειοθετημένα δεδομένα"
 
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Προσαρμοσμένο εύρος ημερομηνιών"
 
 msgid "From"
 msgstr "Από"
@@ -6304,10 +6304,10 @@ msgid "No data available."
 msgstr "Κανένα διαθέσιμο δεδομένο."
 
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Αυτός ο πίνακας είναι <b>δημόσιος</b>."
 
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Αυτός ο πίνακας είναι <b>ιδιωτικός</b>."
 
 msgid "Change settings."
 msgstr "Αλλαγή ρυθμίσεων."
@@ -6331,7 +6331,7 @@ msgid "Collections Created by Date"
 msgstr ""
 
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Λήψεις κατά ημερομηνία"
 
 msgid "How are downloads counted?"
 msgstr "Πώς μετρούνται οι λήψεις;"
@@ -6586,7 +6586,7 @@ msgid "The users \"%(users)s\" have been banned.users, "
 msgstr ""
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "Φραγή επιλεγμένων χρηστών"
 
 msgid "Profile Photo"
 msgstr "Φωτογραφία προφίλ"
