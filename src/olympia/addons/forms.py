@@ -16,7 +16,7 @@ from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
     Addon, AddonCategory, Category, DeniedSlug, Persona)
-from olympia.addons.tasks import save_theme, save_theme_reupload
+from olympia.addons.tasks import save_theme, save_theme_reupload, index_addons
 from olympia.addons.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.fields import (
@@ -225,6 +225,9 @@ class CategoryForm(forms.Form):
 
         # Remove old, outdated categories cache on the model.
         del addon.all_categories
+
+        # Make sure the add-on is properly re-indexed
+        index_addons.delay([addon.id])
 
     def clean_categories(self):
         categories = self.cleaned_data['categories']
