@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-18 06:32+0000\n"
+"PO-Revision-Date: 2018-07-18 06:33+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -6625,7 +6625,7 @@ msgstr "De ôfbylding fan brûker ‘%(user)s’ is fuortsmiten."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned.users, "
-msgstr ""
+msgstr "De brûkers ‘%(users)s’ binne ferballe."
 
 msgid "Ban selected users"
 msgstr "Selektearre brûkers ferbalje"
