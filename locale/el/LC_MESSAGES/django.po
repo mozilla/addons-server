@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-16 14:51+0000\n"
+"PO-Revision-Date: 2018-07-18 13:53+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1938,17 +1938,14 @@ msgstr "Ζητήθηκε αξιολόγηση προσθέτου από το δ�
 msgid "Admin add-on-review requested"
 msgstr "Ζητήθηκε αξιολόγηση προσθέτου από διαχειριστή"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "Έγινε αίτηση αξιολόγησης για το {addon} {version}."
+msgstr "Ζητήθηκε αξιολόγηση περιεχομένου από διαχειριστή του {addon} {version}."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "Ζητήθηκε υπερ αξιολόγηση"
+msgstr "Ζητήθηκε αξιολόγηση περιεχομένου από διαχειριστή"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "Έγινε αίτηση αξιολόγησης για το {addon} {version}."
+msgstr "Ζητήθηκε αξιολόγηση θέματος από διαχειριστή του {addon} {version}."
 
 msgid "Admin theme-review requested"
 msgstr "Ζητήθηκε αξιολόγηση θέματος από διαχειριστή"
@@ -3233,17 +3230,14 @@ msgstr ""
 msgid "Continue"
 msgstr "Συνέχεια"
 
-#, fuzzy
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr "Μπορούν οι άλλοι χρήστες να μοιραστούν το θέμα σας, εφόσον σάς αναφέρουν ως δημιουργό;"
+msgstr "Μπορούν οι άλλοι χρήστες να μοιραστούν το πρόσθετό σας, εφόσον σάς αναφέρουν ως δημιουργό;"
 
-#, fuzzy
 msgid "Can others make commercial use of your Add-on?"
-msgstr "Μπορούν οι άλλοι χρήστες να κάνουν εμπορική χρήση του θέματός σας;"
+msgstr "Μπορούν οι άλλοι χρήστες να κάνουν εμπορική χρήση του προσθέτου σας;"
 
-#, fuzzy
 msgid "Can others create derivative works from your Add-on?"
-msgstr "Μπορούν οι άλλοι χρήστες να δημιουργήσουν παράγωγα έργα από το θέμα σας;"
+msgstr "Μπορούν οι άλλοι χρήστες να δημιουργήσουν παράγωγα έργα από το πρόσθετό σας;"
 
 msgid "Yes, as long as they share alike"
 msgstr ""
@@ -3251,9 +3245,8 @@ msgstr ""
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
 
-#, fuzzy
 msgid "Your Add-on will be released under the following license:"
-msgstr "Το θέμα σας θα εκδοθεί υπό την ακόλουθη άδεια:"
+msgstr "Το πρόσθετό σας θα εκδοθεί υπό την ακόλουθη άδεια:"
 
 msgid "Select a different license."
 msgstr "Επιλέξτε μια διαφορετική άδεια."
@@ -4354,16 +4347,14 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} προειδοποίηση"
 msgstr[1] "{0} προειδοποιήσεις"
 
-#, fuzzy
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Μεταφράστε εύκολα {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Διαγράψτε τα ψηφιακά ίχνη σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr ""
 
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "Κάντε λήψη βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Βελτιώστε τα βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
 msgstr ""
@@ -5076,9 +5067,8 @@ msgstr ""
 msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
-#, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "Ευχαριστούμε, η αξιολόγηση έχει σημειωθεί για να εγκριθεί από τους συντάκτες μας."
+msgstr "Ευχαριστούμε· αυτή η αξιολόγηση έχει επισημανθεί για έγκριση αξιολογητή."
 
 msgid "Add a review for {0}"
 msgstr "Προσθήκη αξιολόγησης για το {0}"
