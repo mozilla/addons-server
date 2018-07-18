@@ -61,7 +61,7 @@ class File(OnChangeMixin, ModelBase):
     # The original hash of the file, before we sign it, or repackage it in
     # any other way.
     original_hash = models.CharField(max_length=255, default='')
-    jetpack_version = models.CharField(max_length=10, null=True)
+    jetpack_version = models.CharField(max_length=10, null=True, blank=True)
     status = models.PositiveSmallIntegerField(
         choices=STATUS_CHOICES.items(), default=amo.STATUS_AWAITING_REVIEW)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
@@ -69,7 +69,7 @@ class File(OnChangeMixin, ModelBase):
     strict_compatibility = models.BooleanField(default=False)
     # The XPI contains JS that calls require("chrome").
     requires_chrome = models.BooleanField(default=False)
-    reviewed = models.DateTimeField(null=True)
+    reviewed = models.DateTimeField(null=True, blank=True)
     # The `binary` field is used to store the flags from amo-validator when it
     # files files with binary extensions or files that may contain binary
     # content.
