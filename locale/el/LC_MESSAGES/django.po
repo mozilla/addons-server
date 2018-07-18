@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-18 14:03+0000\n"
+"PO-Revision-Date: 2018-07-18 14:08+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4007,7 +4007,7 @@ msgid "Web-Ext"
 msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
-msgstr ""
+msgstr "Μια γραμμή εντολών για ανάπτυξη, εκτέλεση και δοκιμή επεκτάσεων."
 
 msgid "Automated code tests for your add-on."
 msgstr "Αυτοματοποιημένες δοκιμές κώδικα για το πρόσθετό σας."
@@ -4921,7 +4921,7 @@ msgid "Yes, add-on authors can provide a single response to a review. You can se
 msgstr ""
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr ""
+msgstr "Είμαι δημιουργός προσθέτου, μπορώ να διαγράψω μη ευνοϊκές κριτικές ή βαθμολογίες;"
 
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
@@ -4962,7 +4962,7 @@ msgid "Type about:addons into the location bar, and press enter."
 msgstr "Πληκτρολογήστε about:addons στη γραμμή διευθύνσεων και πατήστε enter."
 
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "Βρείτε το Plugin Safety στη λίστα προσθέτων."
 
 msgid "Click the remove button."
 msgstr "Κάντε κλικ στο κουμπί αφαίρεσης."
@@ -6630,31 +6630,31 @@ msgid "My Mobile Add-ons"
 msgstr "Τα πρόσθετα μου για κινητό"
 
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "ένας προγραμματιστής προσθέτου απαντά στην κριτική μου"
 
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "νέα πρόσθετα ή λειτουργίες του Firefox γίνονται διαθέσιμα"
 
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "η συμβατότητα του προσθέτου μου αναβαθμίζεται επιτυχώς"
 
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "το πρόσθετό μου με βάση sdk έχει αναβαθμιστεί επιτυχώς"
 
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "κάποιος γράφει μια κριτική για το πρόσθετό μου"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "η συμβατότητα του προσθέτου μου δεν μπορεί να αναβαθμιστεί"
 
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "το πρόσθετό μου με βάση sdk δεν μπορεί να αναβαθμιστεί"
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr ""
+msgstr "το πρόσθετό μου αξιολογείται από έναν κριτή"
 
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr "Η Mozilla πρέπει να επικοινωνήσει μαζί μου σχετικά με το μεμονωμένο μου πρόσθετο"
