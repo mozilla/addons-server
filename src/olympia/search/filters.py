@@ -20,6 +20,7 @@ def get_locale_analyzer(lang):
 
 class AddonQueryParam(object):
     """Helper to build a simple ES query from a request.GET param."""
+
     operator = 'term'  # ES filter to use when filtering.
     query_param = None
     reverse_dict = None
@@ -91,17 +92,27 @@ class AddonAppVersionQueryParam(AddonQueryParam):
                 raise ValueError('Invalid "%s" parameter.' % self.query_param)
             return app, low, high
         raise ValueError(
-            'Invalid combination of "%s" and "%s" parameters.' % (
-                AddonAppQueryParam.query_param,
-                self.query_param))
+            'Invalid combination of "%s" and "%s" parameters.'
+            % (AddonAppQueryParam.query_param, self.query_param)
+        )
 
     def get_es_query(self):
         app_id, low, high = self.get_values()
         return [
-            Q('range', **{'current_version.compatible_apps.%d.min' % app_id:
-              {'lte': low}}),
-            Q('range', **{'current_version.compatible_apps.%d.max' % app_id:
-              {'gte': high}}),
+            Q(
+                'range',
+                **{
+                    'current_version.compatible_apps.%d.min'
+                    % app_id: {'lte': low}
+                }
+            ),
+            Q(
+                'range',
+                **{
+                    'current_version.compatible_apps.%d.max'
+                    % app_id: {'gte': high}
+                }
+            ),
         ]
 
 
@@ -199,10 +210,13 @@ class AddonCategoryQueryParam(AddonQueryParam):
             self.reverse_dict = [CATEGORIES[app][type_] for type_ in types]
         except KeyError:
             raise ValueError(
-                'Invalid combination of "%s", "%s" and "%s" parameters.' % (
+                'Invalid combination of "%s", "%s" and "%s" parameters.'
+                % (
                     AddonAppQueryParam.query_param,
                     AddonTypeQueryParam.query_param,
-                    self.query_param))
+                    self.query_param,
+                )
+            )
 
     def get_value(self):
         value = super(AddonCategoryQueryParam, self).get_value()
@@ -272,8 +286,11 @@ class AddonFeaturedQueryParam(AddonQueryParam):
     def get_es_query(self):
         self.get_value()  # Call to validate the value - we only want True.
         app_filter = AddonAppQueryParam(self.request)
-        app = (app_filter.get_value()
-               if self.request.GET.get(app_filter.query_param) else None)
+        app = (
+            app_filter.get_value()
+            if self.request.GET.get(app_filter.query_param)
+            else None
+        )
         locale = self.request.GET.get('lang')
         if not app and not locale:
             # If neither app nor locale is specified fall back on is_featured.
@@ -281,14 +298,15 @@ class AddonFeaturedQueryParam(AddonQueryParam):
         queries = []
         if app:
             # Search for featured collections targeting `app`.
-            queries.append(
-                Q('term', **{'featured_for.application': app}))
+            queries.append(Q('term', **{'featured_for.application': app}))
         if locale:
             # Search for featured collections targeting `locale` or all locales
             queries.append(
-                Q('terms', **{'featured_for.locales': [locale, 'ALL']}))
-        return [Q('nested', path='featured_for',
-                  query=query.Bool(must=queries))]
+                Q('terms', **{'featured_for.locales': [locale, 'ALL']})
+            )
+        return [
+            Q('nested', path='featured_for', query=query.Bool(must=queries))
+        ]
 
 
 class SearchQueryFilter(BaseFilterBackend):
@@ -296,6 +314,7 @@ class SearchQueryFilter(BaseFilterBackend):
     A django-rest-framework filter backend that performs an ES query according
     to what's in the `q` GET parameter.
     """
+
     MAX_QUERY_LENGTH = 100
     MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH = 20
 
@@ -321,30 +340,41 @@ class SearchQueryFilter(BaseFilterBackend):
             # getting in our way.
             # Put the raw query first to give it a higher priority during
             # Scoring, `boost` alone doesn't necessarily put it first.
-            query.Term(**{
-                'name.raw': {
-                    'value': search_query, 'boost': 100
-                }
-            })
+            query.Term(**{'name.raw': {'value': search_query, 'boost': 100}})
         ]
 
         rules = [
-            (query.MatchPhrase, {
-                'query': search_query, 'boost': 4, 'slop': 1}),
-            (query.Match, {
-                'query': search_query, 'boost': 3,
-                'analyzer': 'standard', 'operator': 'and'}),
-            (query.Prefix, {
-                'value': search_query, 'boost': 1.5}),
+            (
+                query.MatchPhrase,
+                {'query': search_query, 'boost': 4, 'slop': 1},
+            ),
+            (
+                query.Match,
+                {
+                    'query': search_query,
+                    'boost': 3,
+                    'analyzer': 'standard',
+                    'operator': 'and',
+                },
+            ),
+            (query.Prefix, {'value': search_query, 'boost': 1.5}),
         ]
 
         # Add a rule for fuzzy matches ("fire bug" => firebug) (boost=2) for
         # short query strings only (long strings, depending on what characters
         # they contain and how many words are present, can be too costly).
         if len(search_query) < self.MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH:
-            rules.append((query.Match, {
-                'query': search_query, 'boost': 2,
-                'prefix_length': 4, 'fuzziness': 'AUTO'}))
+            rules.append(
+                (
+                    query.Match,
+                    {
+                        'query': search_query,
+                        'boost': 2,
+                        'prefix_length': 4,
+                        'fuzziness': 'AUTO',
+                    },
+                )
+            )
 
         # Apply rules to search on few base fields. Some might not be present
         # in every document type / indexes.
@@ -356,14 +386,17 @@ class SearchQueryFilter(BaseFilterBackend):
         # and analyzer.
         if analyzer:
             should.append(
-                query.Match(**{
-                    'name_l10n_%s' % analyzer: {
-                        'query': search_query,
-                        'boost': 2.5,
-                        'analyzer': analyzer,
-                        'operator': 'and'
+                query.Match(
+                    **{
+                        'name_l10n_%s'
+                        % analyzer: {
+                            'query': search_query,
+                            'boost': 2.5,
+                            'analyzer': analyzer,
+                            'operator': 'and',
+                        }
                     }
-                })
+                )
             )
 
         return should
@@ -386,8 +419,9 @@ class SearchQueryFilter(BaseFilterBackend):
         """
         should = [
             query.MatchPhrase(summary={'query': search_query, 'boost': 0.8}),
-            query.MatchPhrase(description={
-                'query': search_query, 'boost': 0.3}),
+            query.MatchPhrase(
+                description={'query': search_query, 'boost': 0.3}
+            ),
         ]
 
         # Append a separate 'match' query for every word to boost tag matches
@@ -397,14 +431,30 @@ class SearchQueryFilter(BaseFilterBackend):
         # For description and summary, also search in translated field with the
         # right language and analyzer.
         if analyzer:
-            should.extend([
-                query.MatchPhrase(**{'summary_l10n_%s' % analyzer: {
-                    'query': search_query, 'boost': 0.6,
-                    'analyzer': analyzer}}),
-                query.MatchPhrase(**{'description_l10n_%s' % analyzer: {
-                    'query': search_query, 'boost': 0.6,
-                    'analyzer': analyzer}})
-            ])
+            should.extend(
+                [
+                    query.MatchPhrase(
+                        **{
+                            'summary_l10n_%s'
+                            % analyzer: {
+                                'query': search_query,
+                                'boost': 0.6,
+                                'analyzer': analyzer,
+                            }
+                        }
+                    ),
+                    query.MatchPhrase(
+                        **{
+                            'description_l10n_%s'
+                            % analyzer: {
+                                'query': search_query,
+                                'boost': 0.6,
+                                'analyzer': analyzer,
+                            }
+                        }
+                    ),
+                ]
+            )
 
         return should
 
@@ -420,28 +470,30 @@ class SearchQueryFilter(BaseFilterBackend):
         # We alter scoring depending on the "boost" field which is defined in
         # the mapping (used to boost public addons higher than the rest) and,
         # if the waffle switch is on, whether or an addon is a webextension.
-        functions = [
-            query.SF('field_value_factor', field='boost'),
-        ]
+        functions = [query.SF('field_value_factor', field='boost')]
         if waffle.switch_is_active('boost-webextensions-in-search'):
-            webext_boost_filter = (
-                Q('term', **{'current_version.files.is_webextension': True}) |
-                Q('term', **{
-                    'current_version.files.is_mozilla_signed_extension': True})
+            webext_boost_filter = Q(
+                'term', **{'current_version.files.is_webextension': True}
+            ) | Q(
+                'term',
+                **{'current_version.files.is_mozilla_signed_extension': True}
             )
 
             functions.append(
-                query.SF({
-                    'weight': WEBEXTENSIONS_WEIGHT,
-                    'filter': webext_boost_filter
-                })
+                query.SF(
+                    {
+                        'weight': WEBEXTENSIONS_WEIGHT,
+                        'filter': webext_boost_filter,
+                    }
+                )
             )
 
         # Assemble everything together and return the search "queryset".
         return qs.query(
             'function_score',
             query=query.Bool(should=primary_should + secondary_should),
-            functions=functions)
+            functions=functions,
+        )
 
     def filter_queryset(self, request, qs, view):
         search_query = request.GET.get('q', '').lower()
@@ -451,7 +503,8 @@ class SearchQueryFilter(BaseFilterBackend):
 
         if len(search_query) > self.MAX_QUERY_LENGTH:
             raise serializers.ValidationError(
-                ugettext('Maximum query length exceeded.'))
+                ugettext('Maximum query length exceeded.')
+            )
 
         return self.apply_search_query(search_query, qs)
 
@@ -462,11 +515,18 @@ class SearchParameterFilter(BaseFilterBackend):
     matching a specific set of params in request.GET: app, appversion,
     author, category, exclude_addons, platform, tag and type.
     """
-    available_filters = [AddonAppQueryParam, AddonAppVersionQueryParam,
-                         AddonAuthorQueryParam, AddonCategoryQueryParam,
-                         AddonGuidQueryParam, AddonFeaturedQueryParam,
-                         AddonPlatformQueryParam, AddonTagQueryParam,
-                         AddonTypeQueryParam]
+
+    available_filters = [
+        AddonAppQueryParam,
+        AddonAppVersionQueryParam,
+        AddonAuthorQueryParam,
+        AddonCategoryQueryParam,
+        AddonGuidQueryParam,
+        AddonFeaturedQueryParam,
+        AddonPlatformQueryParam,
+        AddonTagQueryParam,
+        AddonTypeQueryParam,
+    ]
 
     available_excludes = [AddonExcludeAddonsQueryParam]
 
@@ -486,10 +546,10 @@ class SearchParameterFilter(BaseFilterBackend):
     def filter_queryset(self, request, qs, view):
         bool_kwargs = {}
 
-        must = self.get_applicable_clauses(
-            request, self.available_filters)
+        must = self.get_applicable_clauses(request, self.available_filters)
         must_not = self.get_applicable_clauses(
-            request, self.available_excludes)
+            request, self.available_excludes
+        )
 
         if must:
             bool_kwargs['must'] = must
@@ -506,13 +566,20 @@ class ReviewedContentFilter(BaseFilterBackend):
     an ES query -- those listed, not deleted, with a reviewed status and not
     disabled.
     """
+
     def filter_queryset(self, request, qs, view):
         return qs.query(
             query.Bool(
-                must=[Q('terms', status=amo.REVIEWED_STATUSES),
-                      Q('exists', field='current_version')],
-                must_not=[Q('term', is_deleted=True),
-                          Q('term', is_disabled=True)]))
+                must=[
+                    Q('terms', status=amo.REVIEWED_STATUSES),
+                    Q('exists', field='current_version'),
+                ],
+                must_not=[
+                    Q('term', is_deleted=True),
+                    Q('term', is_disabled=True),
+                ],
+            )
+        )
 
 
 class SortingFilter(BaseFilterBackend):
@@ -520,6 +587,7 @@ class SortingFilter(BaseFilterBackend):
     A django-rest-framework filter backend that applies sorting to an ES query
     according to the request.
     """
+
     SORTING_PARAMS = {
         'created': '-created',
         'downloads': '-weekly_downloads',
@@ -540,8 +608,9 @@ class SortingFilter(BaseFilterBackend):
         if sort_param is not None:
             split_sort_params = sort_param.split(',')
             try:
-                order_by = [self.SORTING_PARAMS[name] for name in
-                            split_sort_params]
+                order_by = [
+                    self.SORTING_PARAMS[name] for name in split_sort_params
+                ]
             except KeyError:
                 raise serializers.ValidationError('Invalid "sort" parameter.')
 
@@ -549,7 +618,8 @@ class SortingFilter(BaseFilterBackend):
             # First, it can't be combined with other sorts.
             if 'random' in split_sort_params and len(split_sort_params) > 1:
                 raise serializers.ValidationError(
-                    'The "random" "sort" parameter can not be combined.')
+                    'The "random" "sort" parameter can not be combined.'
+                )
 
             # Second, for perf reasons it's only available when the 'featured'
             # param is present (to limit the number of documents we'll have to
@@ -558,17 +628,19 @@ class SortingFilter(BaseFilterBackend):
             # search query).
             if sort_param == 'random':
                 is_random_sort_available = (
-                    AddonFeaturedQueryParam.query_param in request.GET and
-                    not search_query_param
+                    AddonFeaturedQueryParam.query_param in request.GET
+                    and not search_query_param
                 )
                 if is_random_sort_available:
                     qs = qs.query(
-                        'function_score', functions=[query.SF('random_score')])
+                        'function_score', functions=[query.SF('random_score')]
+                    )
                 else:
                     raise serializers.ValidationError(
                         'The "sort" parameter "random" can only be specified '
                         'when the "featured" parameter is also present, and '
-                        'the "q" parameter absent.')
+                        'the "q" parameter absent.'
+                    )
 
         # The default sort depends on the presence of a query: we sort by
         # relevance if we have a query, otherwise by downloads.

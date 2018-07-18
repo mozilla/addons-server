@@ -21,7 +21,8 @@ class TestDiscoveryAdmin(TestCase):
         # Use django's reverse, since that's what the admin will use. Using our
         # own would fail the assertion because of the locale that gets added.
         self.list_url = django_reverse(
-            'admin:discovery_discoveryitem_changelist')
+            'admin:discovery_discoveryitem_changelist'
+        )
         assert self.list_url in response.content.decode('utf-8')
 
     def test_can_list_with_discovery_edit_permission(self):
@@ -51,12 +52,15 @@ class TestDiscoveryAdmin(TestCase):
         assert DiscoveryItem._meta.get_field('addon').help_text in content
 
         response = self.client.post(
-            self.detail_url, {
+            self.detail_url,
+            {
                 'addon': unicode(addon.pk),
                 'custom_addon_name': u'Xäxâxàxaxaxa !',
                 'custom_heading': u'This heading is totally custom.',
                 'custom_description': u'This description is as well!',
-            }, follow=True)
+            },
+            follow=True,
+        )
         assert response.status_code == 200
         item.reload()
         assert DiscoveryItem.objects.count() == 1
@@ -82,7 +86,8 @@ class TestDiscoveryAdmin(TestCase):
 
         # Change add-on using the slug.
         response = self.client.post(
-            self.detail_url, {'addon': unicode(addon2.slug)}, follow=True)
+            self.detail_url, {'addon': unicode(addon2.slug)}, follow=True
+        )
         assert response.status_code == 200
         item.reload()
         assert DiscoveryItem.objects.count() == 1
@@ -90,7 +95,8 @@ class TestDiscoveryAdmin(TestCase):
 
         # Change add-on using the id.
         response = self.client.post(
-            self.detail_url, {'addon': unicode(addon.pk)}, follow=True)
+            self.detail_url, {'addon': unicode(addon.pk)}, follow=True
+        )
         assert response.status_code == 200
         item.reload()
         assert DiscoveryItem.objects.count() == 1
@@ -110,7 +116,8 @@ class TestDiscoveryAdmin(TestCase):
 
         # Try changing using an unknown slug.
         response = self.client.post(
-            self.detail_url, {'addon': u'gârbage'}, follow=True)
+            self.detail_url, {'addon': u'gârbage'}, follow=True
+        )
         assert response.status_code == 200
         assert not response.context_data['adminform'].form.is_valid()
         assert 'addon' in response.context_data['adminform'].form.errors
@@ -119,7 +126,8 @@ class TestDiscoveryAdmin(TestCase):
 
         # Try changing using an unknown id.
         response = self.client.post(
-            self.detail_url, {'addon': unicode(addon2.pk + 666)}, follow=True)
+            self.detail_url, {'addon': unicode(addon2.pk + 666)}, follow=True
+        )
         assert response.status_code == 200
         assert not response.context_data['adminform'].form.is_valid()
         assert 'addon' in response.context_data['adminform'].form.errors
@@ -129,7 +137,8 @@ class TestDiscoveryAdmin(TestCase):
         # Try changing using a non-public add-on id.
         addon3 = addon_factory(status=amo.STATUS_DISABLED)
         response = self.client.post(
-            self.detail_url, {'addon': unicode(addon3.pk)}, follow=True)
+            self.detail_url, {'addon': unicode(addon3.pk)}, follow=True
+        )
         assert response.status_code == 200
         assert not response.context_data['adminform'].form.is_valid()
         assert 'addon' in response.context_data['adminform'].form.errors
@@ -139,7 +148,8 @@ class TestDiscoveryAdmin(TestCase):
         # Try changing to an add-on that is already used by another item.
         item2 = DiscoveryItem.objects.create(addon=addon2)
         response = self.client.post(
-            self.detail_url, {'addon': unicode(addon2.pk)}, follow=True)
+            self.detail_url, {'addon': unicode(addon2.pk)}, follow=True
+        )
         assert response.status_code == 200
         assert not response.context_data['adminform'].form.is_valid()
         assert 'addon' in response.context_data['adminform'].form.errors
@@ -164,7 +174,8 @@ class TestDiscoveryAdmin(TestCase):
 
         # Can actually delete.
         response = self.client.post(
-            self.delete_url, data={'post': 'yes'}, follow=True)
+            self.delete_url, data={'post': 'yes'}, follow=True
+        )
         assert response.status_code == 200
         assert not DiscoveryItem.objects.filter(pk=item.pk).exists()
 
@@ -179,12 +190,15 @@ class TestDiscoveryAdmin(TestCase):
         assert response.status_code == 200
         assert DiscoveryItem.objects.count() == 0
         response = self.client.post(
-            self.add_url, {
+            self.add_url,
+            {
                 'addon': unicode(addon.pk),
                 'custom_addon_name': u'Xäxâxàxaxaxa !',
                 'custom_heading': u'This heading is totally custom.',
                 'custom_description': u'This description is as well!',
-            }, follow=True)
+            },
+            follow=True,
+        )
         assert response.status_code == 200
         assert DiscoveryItem.objects.count() == 1
         item = DiscoveryItem.objects.get()
@@ -202,9 +216,8 @@ class TestDiscoveryAdmin(TestCase):
         response = self.client.get(self.add_url, follow=True)
         assert response.status_code == 403
         response = self.client.post(
-            self.add_url, {
-                'addon': unicode(addon.pk),
-            }, follow=True)
+            self.add_url, {'addon': unicode(addon.pk)}, follow=True
+        )
         assert response.status_code == 403
         assert DiscoveryItem.objects.count() == 0
 
@@ -221,12 +234,15 @@ class TestDiscoveryAdmin(TestCase):
         assert response.status_code == 403
 
         response = self.client.post(
-            self.detail_url, {
+            self.detail_url,
+            {
                 'addon': unicode(addon.pk),
                 'custom_addon_name': u'Noooooô !',
                 'custom_heading': u'I should not be able to do this.',
                 'custom_description': u'This is wrong.',
-            }, follow=True)
+            },
+            follow=True,
+        )
         assert response.status_code == 403
         item.reload()
         assert DiscoveryItem.objects.count() == 1
@@ -250,6 +266,7 @@ class TestDiscoveryAdmin(TestCase):
 
         # Can not actually delete either.
         response = self.client.post(
-            self.delete_url, data={'post': 'yes'}, follow=True)
+            self.delete_url, data={'post': 'yes'}, follow=True
+        )
         assert response.status_code == 403
         assert DiscoveryItem.objects.filter(pk=item.pk).exists()

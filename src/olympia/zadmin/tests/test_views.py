@@ -20,7 +20,12 @@ from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, CompatOverride, CompatOverrideRange
 from olympia.amo.tests import (
-    TestCase, formset, initial, user_factory, version_factory)
+    TestCase,
+    formset,
+    initial,
+    user_factory,
+    version_factory,
+)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
@@ -39,8 +44,8 @@ SHORT_LIVED_CACHE_PARAMS['default']['TIMEOUT'] = 2
 
 
 ZADMIN_TEST_FILES = os.path.join(
-    os.path.dirname(olympia.__file__),
-    'zadmin', 'tests', 'resources')
+    os.path.dirname(olympia.__file__), 'zadmin', 'tests', 'resources'
+)
 
 
 class TestHomeAndIndex(TestCase):
@@ -61,8 +66,8 @@ class TestHomeAndIndex(TestCase):
         # Add fake log that would be shown in the index page.
         user = UserProfile.objects.get(email='admin@mozilla.com')
         ActivityLog.create(
-            amo.LOG.GROUP_USER_ADDED, user.groups.latest('pk'), user,
-            user=user)
+            amo.LOG.GROUP_USER_ADDED, user.groups.latest('pk'), user, user=user
+        )
         url = reverse('zadmin.index')
         response = self.client.get(url, follow=True)
         assert response.status_code == 200
@@ -81,15 +86,17 @@ class TestHomeAndIndex(TestCase):
         # Redirected because no permissions if not logged in.
         self.client.logout()
         response = self.client.get(url)
-        self.assert3xx(response, '/admin/models/login/?'
-                                 'next=/en-US/admin/models/')
+        self.assert3xx(
+            response, '/admin/models/login/?' 'next=/en-US/admin/models/'
+        )
 
         # Redirected when logged in without enough permissions.
         user = user_factory(username='staffperson', email='staffperson@m.c')
         self.client.login(email='staffperson@m.c')
         response = self.client.get(url)
-        self.assert3xx(response, '/admin/models/login/?'
-                                 'next=/en-US/admin/models/')
+        self.assert3xx(
+            response, '/admin/models/login/?' 'next=/en-US/admin/models/'
+        )
 
         # Can access with a "is_staff" user.
         self.grant_permission(user, 'Admin:Something')
@@ -163,16 +170,24 @@ class TestEmailPreview(TestCase):
         self.topic = EmailPreviewTopic(addon)
 
     def test_csv(self):
-        self.topic.send_mail('the subject', u'Hello Ivan Krsti\u0107',
-                             from_email='admin@mozilla.org',
-                             recipient_list=['funnyguy@mozilla.org'])
-        r = self.client.get(reverse('zadmin.email_preview_csv',
-                            args=[self.topic.topic]))
+        self.topic.send_mail(
+            'the subject',
+            u'Hello Ivan Krsti\u0107',
+            from_email='admin@mozilla.org',
+            recipient_list=['funnyguy@mozilla.org'],
+        )
+        r = self.client.get(
+            reverse('zadmin.email_preview_csv', args=[self.topic.topic])
+        )
         assert r.status_code == 200
         rdr = csv.reader(StringIO(r.content))
         assert next(rdr) == ['from_email', 'recipient_list', 'subject', 'body']
-        assert next(rdr) == ['admin@mozilla.org', 'funnyguy@mozilla.org',
-                             'the subject', 'Hello Ivan Krsti\xc4\x87']
+        assert next(rdr) == [
+            'admin@mozilla.org',
+            'funnyguy@mozilla.org',
+            'the subject',
+            'Hello Ivan Krsti\xc4\x87',
+        ]
 
 
 class TestMonthlyPick(TestCase):
@@ -183,10 +198,12 @@ class TestMonthlyPick(TestCase):
         assert self.client.login(email='admin@mozilla.com')
         self.url = reverse('zadmin.monthly_pick')
         addon = Addon.objects.get(pk=3615)
-        MonthlyPick.objects.create(addon=addon,
-                                   locale='zh-CN',
-                                   blurb="test data",
-                                   image="http://www.google.com")
+        MonthlyPick.objects.create(
+            addon=addon,
+            locale='zh-CN',
+            blurb="test data",
+            image="http://www.google.com",
+        )
         self.f = self.client.get(self.url).context['form'].initial_forms[0]
         self.initial = self.f.initial
 
@@ -228,7 +245,8 @@ class TestMonthlyPick(TestCase):
         data = formset(initial(self.f), dupe, initial_count=1)
         r = self.client.post(self.url, data)
         assert r.context['form'].errors[1]['blurb'][0] == (
-            'Ensure this value has at most 200 characters (it has 201).')
+            'Ensure this value has at most 200 characters (it has 201).'
+        )
 
     def test_success_update(self):
         d = initial(self.f)
@@ -256,8 +274,9 @@ class TestFeatures(TestCase):
         super(TestFeatures, self).setUp()
         assert self.client.login(email='admin@mozilla.com')
         self.url = reverse('zadmin.features')
-        FeaturedCollection.objects.create(application=amo.FIREFOX.id,
-                                          locale='zh-CN', collection_id=80)
+        FeaturedCollection.objects.create(
+            application=amo.FIREFOX.id, locale='zh-CN', collection_id=80
+        )
         self.f = self.client.get(self.url).context['form'].initial_forms[0]
         self.initial = self.f.initial
 
@@ -272,8 +291,10 @@ class TestFeatures(TestCase):
         doc = pq(response.content)
         assert doc('#features tr').attr('data-app') == str(amo.FIREFOX.id)
         assert doc('#features td.app').hasClass(amo.FIREFOX.short)
-        assert doc('#features td.collection.loading').attr(
-            'data-collection') == '80'
+        assert (
+            doc('#features td.collection.loading').attr('data-collection')
+            == '80'
+        )
         assert doc('#features .collection-ac.js-hidden')
         assert not doc('#features .collection-ac[disabled]')
 
@@ -291,45 +312,54 @@ class TestFeatures(TestCase):
         response = self.client.post(self.url, formset(data, initial_count=1))
         assert response.status_code == 200
         assert response.context['form'].errors[0]['application'] == (
-            ['This field is required.'])
+            ['This field is required.']
+        )
         assert response.context['form'].errors[0]['collection'] == (
-            ['Invalid collection for this application.'])
+            ['Invalid collection for this application.']
+        )
 
     def test_bad_app(self):
         data = initial(self.f)
         data['application'] = 999
         response = self.client.post(self.url, formset(data, initial_count=1))
         assert response.context['form'].errors[0]['application'] == [
-            'Select a valid choice. 999 is not one of the available choices.']
+            'Select a valid choice. 999 is not one of the available choices.'
+        ]
 
     def test_bad_collection_for_app(self):
         data = initial(self.f)
         data['application'] = amo.THUNDERBIRD.id
         response = self.client.post(self.url, formset(data, initial_count=1))
         assert response.context['form'].errors[0]['collection'] == (
-            ['Invalid collection for this application.'])
+            ['Invalid collection for this application.']
+        )
 
     def test_bad_locale(self):
         data = initial(self.f)
         data['locale'] = 'klingon'
         response = self.client.post(self.url, formset(data, initial_count=1))
         assert response.context['form'].errors[0]['locale'] == (
-            ['Select a valid choice. klingon is not one of the available '
-             'choices.'])
+            [
+                'Select a valid choice. klingon is not one of the available '
+                'choices.'
+            ]
+        )
 
     def test_required_collection(self):
         data = initial(self.f)
         del data['collection']
         response = self.client.post(self.url, formset(data, initial_count=1))
         assert response.context['form'].errors[0]['collection'] == (
-            ['This field is required.'])
+            ['This field is required.']
+        )
 
     def test_bad_collection(self):
         data = initial(self.f)
         data['collection'] = 999
         response = self.client.post(self.url, formset(data, initial_count=1))
         assert response.context['form'].errors[0]['collection'] == (
-            ['Invalid collection for this application.'])
+            ['Invalid collection for this application.']
+        )
 
     def test_success_insert(self):
         dupe = initial(self.f)
@@ -377,10 +407,8 @@ class TestLookup(TestCase):
         for d in expected:
             id = d['value']
             email = u'%s' % d['label']
-            assert id in ids, (
-                'Expected user ID "%s" not found' % id)
-            assert email in emails, (
-                'Expected username "%s" not found' % email)
+            assert id in ids, 'Expected user ID "%s" not found' % id
+            assert email in emails, 'Expected username "%s" not found' % email
 
     def test_lookup_wrong_model(self):
         self.url = reverse('zadmin.search', args=['doesnt', 'exist'])
@@ -389,20 +417,25 @@ class TestLookup(TestCase):
 
     def test_lookup_empty(self):
         users = UserProfile.objects.values('id', 'email')
-        self.check_results('', [dict(
-            value=u['id'], label=u['email']) for u in users])
+        self.check_results(
+            '', [dict(value=u['id'], label=u['email']) for u in users]
+        )
 
     def test_lookup_by_id(self):
-        self.check_results(self.user.id, [dict(value=self.user.id,
-                                               label=self.user.email)])
+        self.check_results(
+            self.user.id, [dict(value=self.user.id, label=self.user.email)]
+        )
 
     def test_lookup_by_email(self):
-        self.check_results(self.user.email, [dict(value=self.user.id,
-                                                  label=self.user.email)])
+        self.check_results(
+            self.user.email, [dict(value=self.user.id, label=self.user.email)]
+        )
 
     def test_lookup_by_username(self):
-        self.check_results(self.user.username, [dict(value=self.user.id,
-                                                     label=self.user.email)])
+        self.check_results(
+            self.user.username,
+            [dict(value=self.user.id, label=self.user.email)],
+        )
 
 
 class TestAddonSearch(amo.tests.ESTestCase):
@@ -434,7 +467,8 @@ class TestAddonAdmin(TestCase):
         rows = doc('#result_list tbody tr')
         assert rows.length == 1
         assert rows.find('a').attr('href') == (
-            '/en-US/admin/models/addons/addon/3615/change/')
+            '/en-US/admin/models/addons/addon/3615/change/'
+        )
 
 
 class TestAddonManagement(TestCase):
@@ -454,20 +488,23 @@ class TestAddonManagement(TestCase):
     def test_addon_mixed_channels(self):
         first_version = self.addon.current_version
         second_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
 
         first_expected_review_link = reverse(
-            'reviewers.review', args=(self.addon.slug,))
+            'reviewers.review', args=(self.addon.slug,)
+        )
         elms = doc('a[href="%s"]' % first_expected_review_link)
         assert len(elms) == 1
         assert elms[0].attrib['title'] == str(first_version.pk)
         assert elms[0].text == first_version.version
 
         second_expected_review_link = reverse(
-            'reviewers.review', args=('unlisted', self.addon.slug,))
+            'reviewers.review', args=('unlisted', self.addon.slug)
+        )
         elms = doc('a[href="%s"]' % second_expected_review_link)
         assert len(elms) == 1
         assert elms[0].attrib['title'] == str(second_version.pk)
@@ -509,13 +546,18 @@ class TestAddonManagement(TestCase):
         # But no change.
         assert file.status == 4
 
-    @mock.patch.object(File, 'file_path',
-                       amo.tests.AMOPaths().file_fixture_path(
-                           'delicious_bookmarks-2.1.106-fx.xpi'))
+    @mock.patch.object(
+        File,
+        'file_path',
+        amo.tests.AMOPaths().file_fixture_path(
+            'delicious_bookmarks-2.1.106-fx.xpi'
+        ),
+    )
     def test_regenerate_hash(self):
         version = Version.objects.create(addon_id=3615)
         file = File.objects.create(
-            filename='delicious_bookmarks-2.1.106-fx.xpi', version=version)
+            filename='delicious_bookmarks-2.1.106-fx.xpi', version=version
+        )
 
         r = self.client.post(reverse('zadmin.recalc_hash', args=[file.id]))
         assert json.loads(r.content)[u'success'] == 1
@@ -525,14 +567,19 @@ class TestAddonManagement(TestCase):
         assert file.size, 'File size should not be zero'
         assert file.hash, 'File hash should not be empty'
 
-    @mock.patch.object(File, 'file_path',
-                       amo.tests.AMOPaths().file_fixture_path(
-                           'delicious_bookmarks-2.1.106-fx.xpi'))
+    @mock.patch.object(
+        File,
+        'file_path',
+        amo.tests.AMOPaths().file_fixture_path(
+            'delicious_bookmarks-2.1.106-fx.xpi'
+        ),
+    )
     def test_regenerate_hash_get(self):
         """ Don't allow GET """
         version = Version.objects.create(addon_id=3615)
         file = File.objects.create(
-            filename='delicious_bookmarks-2.1.106-fx.xpi', version=version)
+            filename='delicious_bookmarks-2.1.106-fx.xpi', version=version
+        )
 
         r = self.client.get(reverse('zadmin.recalc_hash', args=[file.id]))
         assert r.status_code == 405  # GET out of here
@@ -554,8 +601,9 @@ class TestCompat(TestCompatibilityReportCronMixin, amo.tests.ESTestCase):
 
     def test_defaults(self):
         addon = self.populate()
-        self.generate_reports(addon, good=0, bad=0, app=amo.FIREFOX,
-                              app_version=self.app_version)
+        self.generate_reports(
+            addon, good=0, bad=0, app=amo.FIREFOX, app_version=self.app_version
+        )
         self.run_compatibility_report()
 
         r = self.client.get(self.url)
@@ -574,24 +622,31 @@ class TestCompat(TestCompatibilityReportCronMixin, amo.tests.ESTestCase):
         assert name.find('a').attr('href') == addon.get_url_path()
 
         assert tr.find('.maxver').text() == (
-            addon.compatible_apps[amo.FIREFOX].max.version)
+            addon.compatible_apps[amo.FIREFOX].max.version
+        )
 
         incompat = tr.find('.incompat')
         assert incompat.find('.bad').text() == str(bad)
         assert incompat.find('.total').text() == str(good + bad)
         percentage += '%'
         assert percentage in incompat.text(), (
-            'Expected incompatibility to be %r' % percentage)
+            'Expected incompatibility to be %r' % percentage
+        )
 
         assert tr.find('.version a').attr('href') == (
-            reverse('devhub.versions.edit',
-                    args=[addon.slug, addon.current_version.id]))
+            reverse(
+                'devhub.versions.edit',
+                args=[addon.slug, addon.current_version.id],
+            )
+        )
         assert tr.find('.reports a').attr('href') == (
-            reverse('compat.reporter_detail', args=[addon.guid]))
+            reverse('compat.reporter_detail', args=[addon.guid])
+        )
 
         form = tr.find('.overrides form')
         assert form.attr('action') == reverse(
-            'admin:addons_compatoverride_add')
+            'admin:addons_compatoverride_add'
+        )
         self.check_field(form, '_compat_ranges-TOTAL_FORMS', '1')
         self.check_field(form, '_compat_ranges-INITIAL_FORMS', '0')
         self.check_field(form, '_continue', '1')
@@ -602,41 +657,58 @@ class TestCompat(TestCompatibilityReportCronMixin, amo.tests.ESTestCase):
         compat_field = '_compat_ranges-0-%s'
         self.check_field(form, compat_field % 'min_version', '0')
         self.check_field(form, compat_field % 'max_version', version)
-        self.check_field(form, compat_field % 'min_app_version',
-                         app_version + 'a1')
-        self.check_field(form, compat_field % 'max_app_version',
-                         app_version + '*')
+        self.check_field(
+            form, compat_field % 'min_app_version', app_version + 'a1'
+        )
+        self.check_field(
+            form, compat_field % 'max_app_version', app_version + '*'
+        )
 
     def check_field(self, form, name, val):
         assert form.find('input[name="%s"]' % name).val() == val
 
     def test_firefox_hosted(self):
         addon = self.populate()
-        self.generate_reports(addon, good=0, bad=11, app=amo.FIREFOX,
-                              app_version=self.app_version)
+        self.generate_reports(
+            addon,
+            good=0,
+            bad=11,
+            app=amo.FIREFOX,
+            app_version=self.app_version,
+        )
         self.run_compatibility_report()
 
         tr = self.get_pq().find('tr[data-guid="%s"]' % addon.guid)
-        self.check_row(tr, addon, good=0, bad=11, percentage='100.0',
-                       app_version=self.app_version)
+        self.check_row(
+            tr,
+            addon,
+            good=0,
+            bad=11,
+            percentage='100.0',
+            app_version=self.app_version,
+        )
 
         # Add an override for this current app version.
         compat = CompatOverride.objects.create(addon=addon, guid=addon.guid)
         CompatOverrideRange.objects.create(
             compat=compat,
-            app=amo.FIREFOX.id, min_app_version=self.app_version + 'a1',
-            max_app_version=self.app_version + '*')
+            app=amo.FIREFOX.id,
+            min_app_version=self.app_version + 'a1',
+            max_app_version=self.app_version + '*',
+        )
 
         # Check that there is an override for this current app version.
         tr = self.get_pq().find('tr[data-guid="%s"]' % addon.guid)
         assert tr.find('.overrides a').attr('href') == (
-            reverse('admin:addons_compatoverride_change', args=[compat.id]))
+            reverse('admin:addons_compatoverride_change', args=[compat.id])
+        )
 
     def test_non_default_version(self):
         app_version = FIREFOX_COMPAT[2]['main']
         addon = self.populate()
-        self.generate_reports(addon, good=0, bad=11, app=amo.FIREFOX,
-                              app_version=app_version)
+        self.generate_reports(
+            addon, good=0, bad=11, app=amo.FIREFOX, app_version=app_version
+        )
         self.run_compatibility_report()
 
         pq = self.get_pq()
@@ -644,26 +716,50 @@ class TestCompat(TestCompatibilityReportCronMixin, amo.tests.ESTestCase):
 
         appver = app_version
         tr = self.get_pq(appver=appver)('tr[data-guid="%s"]' % addon.guid)
-        self.check_row(tr, addon, good=0, bad=11, percentage='100.0',
-                       app_version=app_version)
+        self.check_row(
+            tr,
+            addon,
+            good=0,
+            bad=11,
+            percentage='100.0',
+            app_version=app_version,
+        )
 
     def test_minor_versions(self):
         addon = self.populate()
-        self.generate_reports(addon, good=0, bad=1, app=amo.FIREFOX,
-                              app_version=self.app_version)
-        self.generate_reports(addon, good=1, bad=2, app=amo.FIREFOX,
-                              app_version=self.app_version + 'a2')
+        self.generate_reports(
+            addon, good=0, bad=1, app=amo.FIREFOX, app_version=self.app_version
+        )
+        self.generate_reports(
+            addon,
+            good=1,
+            bad=2,
+            app=amo.FIREFOX,
+            app_version=self.app_version + 'a2',
+        )
         self.run_compatibility_report()
 
-        tr = self.get_pq(ratio=0.0, minimum=0).find('tr[data-guid="%s"]' %
-                                                    addon.guid)
-        self.check_row(tr, addon, good=1, bad=3, percentage='75.0',
-                       app_version=self.app_version)
+        tr = self.get_pq(ratio=0.0, minimum=0).find(
+            'tr[data-guid="%s"]' % addon.guid
+        )
+        self.check_row(
+            tr,
+            addon,
+            good=1,
+            bad=3,
+            percentage='75.0',
+            app_version=self.app_version,
+        )
 
     def test_ratio(self):
         addon = self.populate()
-        self.generate_reports(addon, good=11, bad=11, app=amo.FIREFOX,
-                              app_version=self.app_version)
+        self.generate_reports(
+            addon,
+            good=11,
+            bad=11,
+            app=amo.FIREFOX,
+            app_version=self.app_version,
+        )
         self.run_compatibility_report()
 
         # Should not show up for > 80%.
@@ -680,8 +776,13 @@ class TestCompat(TestCompatibilityReportCronMixin, amo.tests.ESTestCase):
 
     def test_min_incompatible(self):
         addon = self.populate()
-        self.generate_reports(addon, good=0, bad=11, app=amo.FIREFOX,
-                              app_version=self.app_version)
+        self.generate_reports(
+            addon,
+            good=0,
+            bad=11,
+            app=amo.FIREFOX,
+            app_version=self.app_version,
+        )
         self.run_compatibility_report()
 
         # Should show up for >= 10.
@@ -730,7 +831,8 @@ class TestElastic(amo.tests.ESTestCase):
     def test_login(self):
         self.client.logout()
         self.assertLoginRedirects(
-            self.client.get(self.url), to='/en-US/admin/elastic')
+            self.client.get(self.url), to='/en-US/admin/elastic'
+        )
 
 
 class TestEmailDevs(TestCase):
@@ -741,12 +843,22 @@ class TestEmailDevs(TestCase):
         self.login('admin')
         self.addon = Addon.objects.get(pk=3615)
 
-    def post(self, recipients='eula', subject='subject', message='msg',
-             preview_only=False):
-        return self.client.post(reverse('zadmin.email_devs'),
-                                dict(recipients=recipients, subject=subject,
-                                     message=message,
-                                     preview_only=preview_only))
+    def post(
+        self,
+        recipients='eula',
+        subject='subject',
+        message='msg',
+        preview_only=False,
+    ):
+        return self.client.post(
+            reverse('zadmin.email_devs'),
+            dict(
+                recipients=recipients,
+                subject=subject,
+                message=message,
+                preview_only=preview_only,
+            ),
+        )
 
     def test_preview(self):
         res = self.post(preview_only=True)
@@ -774,8 +886,11 @@ class TestEmailDevs(TestCase):
         assert len(mail.outbox) == 0
 
     def test_sdk_devs(self):
-        (File.objects.filter(version__addon=self.addon)
-                     .update(jetpack_version='1.5'))
+        (
+            File.objects.filter(version__addon=self.addon).update(
+                jetpack_version='1.5'
+            )
+        )
         res = self.post(recipients='sdk')
         self.assertNoFormErrors(res)
         assert len(mail.outbox) == 1
@@ -809,8 +924,11 @@ class TestEmailDevs(TestCase):
     def test_depreliminary_addon_devs(self):
         # We just need a user for the log(), it would normally be task user.
         ActivityLog.create(
-            amo.LOG.PRELIMINARY_ADDON_MIGRATED, self.addon,
-            details={'email': True}, user=self.addon.authors.get())
+            amo.LOG.PRELIMINARY_ADDON_MIGRATED,
+            self.addon,
+            details={'email': True},
+            user=self.addon.authors.get(),
+        )
         res = self.post(recipients='depreliminary')
         self.assertNoFormErrors(res)
         self.assert3xx(res, reverse('zadmin.email_devs'))
@@ -827,8 +945,11 @@ class TestEmailDevs(TestCase):
     def test_we_only_email_devs_that_need_emailing(self):
         # Doesn't matter the reason, but this addon doesn't get an email.
         ActivityLog.create(
-            amo.LOG.PRELIMINARY_ADDON_MIGRATED, self.addon,
-            details={'email': False}, user=self.addon.authors.get())
+            amo.LOG.PRELIMINARY_ADDON_MIGRATED,
+            self.addon,
+            details={'email': False},
+            user=self.addon.authors.get(),
+        )
         res = self.post(recipients='depreliminary')
         self.assertNoFormErrors(res)
         self.assert3xx(res, reverse('zadmin.email_devs'))
@@ -844,8 +965,9 @@ class TestFileDownload(TestCase):
         assert self.client.login(email='admin@mozilla.com')
 
         self.file = open(get_image_path('animated.png'), 'rb')
-        resp = self.client.post(reverse('devhub.upload'),
-                                {'upload': self.file})
+        resp = self.client.post(
+            reverse('devhub.upload'), {'upload': self.file}
+        )
         assert resp.status_code == 302
 
         self.upload = FileUpload.objects.get()
@@ -909,4 +1031,5 @@ class TestPerms(TestCase):
         # Anonymous users should also get a 403.
         self.client.logout()
         self.assertLoginRedirects(
-            self.client.get(reverse('zadmin.index')), to='/en-US/admin/')
+            self.client.get(reverse('zadmin.index')), to='/en-US/admin/'
+        )

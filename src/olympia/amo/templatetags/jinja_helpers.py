@@ -15,7 +15,11 @@ from django.utils.functional import lazy
 from django.utils.html import format_html as django_format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import (
-    get_language, to_locale, trim_whitespace, ugettext)
+    get_language,
+    to_locale,
+    trim_whitespace,
+    ugettext,
+)
 
 import jinja2
 import waffle
@@ -28,7 +32,10 @@ from olympia import amo
 from olympia.amo import urlresolvers, utils
 from olympia.constants.licenses import PERSONA_LICENSES_IDS
 from olympia.lib.jingo_minify_helpers import (
-    _build_html, get_css_urls, get_js_urls)
+    _build_html,
+    get_css_urls,
+    get_js_urls,
+)
 from olympia.lib.cache import cache_get_or_set, make_key
 
 
@@ -51,8 +58,10 @@ def switch_is_active(switch_name):
 
 @library.filter
 def link(item):
-    html = """<a href="%s">%s</a>""" % (item.get_url_path(),
-                                        jinja2.escape(item.name))
+    html = """<a href="%s">%s</a>""" % (
+        item.get_url_path(),
+        jinja2.escape(item.name),
+    )
     return jinja2.Markup(html)
 
 
@@ -82,10 +91,12 @@ def url(viewname, *args, **kwargs):
     add_prefix = kwargs.pop('add_prefix', True)
     host = kwargs.pop('host', '')
     src = kwargs.pop('src', '')
-    url = '%s%s' % (host, urlresolvers.reverse(viewname,
-                                               args=args,
-                                               kwargs=kwargs,
-                                               add_prefix=add_prefix))
+    url = '%s%s' % (
+        host,
+        urlresolvers.reverse(
+            viewname, args=args, kwargs=kwargs, add_prefix=add_prefix
+        ),
+    )
     if src:
         url = urlparams(url, src=src)
     return url
@@ -100,7 +111,8 @@ def drf_url(context, viewname, *args, **kwargs):
         if not hasattr(request, 'versioning_scheme'):
             request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
         request.version = request.versioning_scheme.determine_version(
-            request, *args, **kwargs)
+            request, *args, **kwargs
+        )
     return drf_reverse(viewname, request=request, args=args, kwargs=kwargs)
 
 
@@ -126,12 +138,14 @@ def impala_paginator(pager):
 def sidebar(app):
     """Populates the sidebar with (categories, types)."""
     from olympia.addons.models import Category
+
     if app is None:
         return [], []
 
     # Fetch categories...
-    qs = Category.objects.filter(application=app.id, weight__gte=0,
-                                 type=amo.ADDON_EXTENSION)
+    qs = Category.objects.filter(
+        application=app.id, weight__gte=0, type=amo.ADDON_EXTENSION
+    )
     # Now sort them in python according to their name property (which looks up
     # the translated name using gettext + our constants)
     categories = sorted(qs, key=attrgetter('weight', 'name'))
@@ -148,7 +162,8 @@ def sidebar(app):
     }
     titles = dict(
         amo.ADDON_TYPES,
-        **{amo.ADDON_DICT: ugettext('Dictionaries & Language Packs')})
+        **{amo.ADDON_DICT: ugettext('Dictionaries & Language Packs')}
+    )
     for type_, url in shown_types.items():
         if type_ in app.types:
             types.append(Type(type_, titles[type_], url))
@@ -157,7 +172,6 @@ def sidebar(app):
 
 
 class PaginationRenderer(object):
-
     def __init__(self, pager):
         self.pager = pager
 
@@ -186,8 +200,11 @@ class PaginationRenderer(object):
         return range(max(lower + 1, 1), min(total, upper) + 1)
 
     def render(self):
-        c = {'pager': self.pager, 'num_pages': self.num_pages,
-             'count': self.count}
+        c = {
+            'pager': self.pager,
+            'num_pages': self.num_pages,
+            'count': self.count,
+        }
         t = loader.get_template('amo/paginator.html').render(c)
         return jinja2.Markup(t)
 
@@ -264,6 +281,7 @@ def license_link(license):
     """Link to a code license, including icon where applicable."""
     # If passed in an integer, try to look up the License.
     from olympia.versions.models import License
+
     if isinstance(license, (long, int)):
         if license in PERSONA_LICENSES_IDS:
             # Grab built-in license.
@@ -289,9 +307,10 @@ def field(field, label=None, **attrs):
     if label is not None:
         field.label = label
     # HTML from Django is already escaped.
-    return jinja2.Markup(u'%s<p>%s%s</p>' %
-                         (field.errors, field.label_tag(),
-                          field.as_widget(attrs=attrs)))
+    return jinja2.Markup(
+        u'%s<p>%s%s</p>'
+        % (field.errors, field.label_tag(), field.as_widget(attrs=attrs))
+    )
 
 
 @library.global_function
@@ -373,14 +392,17 @@ def side_nav(context, addon_type, category=None):
         'side-nav-%s-%s-%s' % (app, addon_type, cat),
         # We have potentially very long names in the cache-key,
         # normalize to not hit any memcached key-limits
-        normalize=True)
+        normalize=True,
+    )
     return cache_get_or_set(
-        cache_key, lambda: _side_nav(context, addon_type, category))
+        cache_key, lambda: _side_nav(context, addon_type, category)
+    )
 
 
 def _side_nav(context, addon_type, cat):
     # Prevent helpers generating circular imports.
     from olympia.addons.models import Category, Addon
+
     request = context['request']
     qs = Category.objects.filter(weight__gte=0)
     if addon_type != amo.ADDON_PERSONA:
@@ -391,8 +413,13 @@ def _side_nav(context, addon_type, cat):
         base_url = cat.get_url_path()
     else:
         base_url = Addon.get_type_url(addon_type)
-    ctx = dict(request=request, base_url=base_url, categories=categories,
-               addon_type=addon_type, amo=amo)
+    ctx = dict(
+        request=request,
+        base_url=base_url,
+        categories=categories,
+        addon_type=addon_type,
+        amo=amo,
+    )
     template = loader.get_template('amo/side_nav.html')
     return jinja2.Markup(template.render(ctx))
 
@@ -408,18 +435,23 @@ def site_nav(context):
 def _site_nav(context):
     # Prevent helpers from generating circular imports.
     from olympia.addons.models import Category
+
     request = context['request']
 
     def sorted_cats(qs):
         return sorted(qs, key=attrgetter('weight', 'name'))
 
     extensions = Category.objects.filter(
-        application=request.APP.id, weight__gte=0, type=amo.ADDON_EXTENSION)
+        application=request.APP.id, weight__gte=0, type=amo.ADDON_EXTENSION
+    )
     personas = Category.objects.filter(weight__gte=0, type=amo.ADDON_PERSONA)
 
-    ctx = dict(request=request, amo=amo,
-               extensions=sorted_cats(extensions),
-               personas=sorted_cats(personas))
+    ctx = dict(
+        request=request,
+        amo=amo,
+        extensions=sorted_cats(extensions),
+        personas=sorted_cats(personas),
+    )
     template = loader.get_template('amo/site_nav.html')
     return jinja2.Markup(template.render(ctx))
 
@@ -574,8 +606,9 @@ def css(bundle, media=False, debug=None):
     if not media:
         media = getattr(settings, 'CSS_MEDIA_DEFAULT', 'screen,projection,tv')
 
-    return _build_html(urls, '<link rel="stylesheet" media="%s" href="%%s" />'
-                             % media)
+    return _build_html(
+        urls, '<link rel="stylesheet" media="%s" href="%%s" />' % media
+    )
 
 
 @library.filter

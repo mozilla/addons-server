@@ -33,14 +33,20 @@ class RatingsRss(NonAtomicFeed):
 
     def items(self, addon):
         """Return the Ratings for this Addon to be output as RSS <item>'s"""
-        qs = (Rating.without_replies.all().filter(
-            addon=addon).order_by('-created'))
+        qs = (
+            Rating.without_replies.all()
+            .filter(addon=addon)
+            .order_by('-created')
+        )
         return qs.all()[:30]
 
     def item_link(self, rating):
         """Link for a particular rating (<item><link>)"""
-        return jinja_helpers.absolutify(jinja_helpers.url(
-            'addons.ratings.detail', self.addon.slug, rating.id))
+        return jinja_helpers.absolutify(
+            jinja_helpers.url(
+                'addons.ratings.detail', self.addon.slug, rating.id
+            )
+        )
 
     def item_title(self, rating):
         """Title for particular rating (<item><title>)"""
@@ -57,7 +63,8 @@ class RatingsRss(NonAtomicFeed):
     def item_guid(self, rating):
         """Guid for a particuar rating  (<item><guid>)"""
         guid_url = jinja_helpers.absolutify(
-            jinja_helpers.url('addons.ratings.list', self.addon.slug))
+            jinja_helpers.url('addons.ratings.list', self.addon.slug)
+        )
         return guid_url + urllib.quote(str(rating.id))
 
     def item_author_name(self, rating):

@@ -80,14 +80,14 @@ REVIEWED_CHOICES = {
     REVIEWED_ADDON_REVIEW: _('Moderated Add-on Review'),
     REVIEWED_ADDON_REVIEW_POORLY: _('Add-on Review Moderation Reverted'),
     REVIEWED_CONTENT_REVIEW: _('Add-on Content Review'),
-    REVIEWED_EXTENSION_HIGHEST_RISK:
-        _('Post-Approval Add-on Review (Highest Risk)'),
-    REVIEWED_EXTENSION_HIGH_RISK:
-        _('Post-Approval Add-on Review (High Risk)'),
-    REVIEWED_EXTENSION_MEDIUM_RISK:
-        _('Post-Approval Add-on Review (Medium Risk)'),
-    REVIEWED_EXTENSION_LOW_RISK:
-        _('Post-Approval Add-on Review (Low Risk)'),
+    REVIEWED_EXTENSION_HIGHEST_RISK: _(
+        'Post-Approval Add-on Review (Highest Risk)'
+    ),
+    REVIEWED_EXTENSION_HIGH_RISK: _('Post-Approval Add-on Review (High Risk)'),
+    REVIEWED_EXTENSION_MEDIUM_RISK: _(
+        'Post-Approval Add-on Review (Medium Risk)'
+    ),
+    REVIEWED_EXTENSION_LOW_RISK: _('Post-Approval Add-on Review (Low Risk)'),
 }
 
 REVIEWED_OVERDUE_BONUS = 2
@@ -166,7 +166,7 @@ REVIEW_ACTIONS = {
     ACTION_FLAG: _('Flag'),
     ACTION_DUPLICATE: _('Duplicate'),
     ACTION_REJECT: _('Reject'),
-    ACTION_APPROVE: _('Approve')
+    ACTION_APPROVE: _('Approve'),
 }
 
 THEME_REJECT_REASONS = {
@@ -189,10 +189,14 @@ AUTO_APPROVED = 2
 NOT_AUTO_APPROVED = 3
 
 AUTO_APPROVAL_VERDICT_CHOICES = (
-    (WOULD_NOT_HAVE_BEEN_AUTO_APPROVED,
-        'Would have been auto-approved (dry-run mode was in effect)'),
-    (WOULD_HAVE_BEEN_AUTO_APPROVED,
-        'Would *not* have been auto-approved (dry-run mode was in effect)'),
+    (
+        WOULD_NOT_HAVE_BEEN_AUTO_APPROVED,
+        'Would have been auto-approved (dry-run mode was in effect)',
+    ),
+    (
+        WOULD_HAVE_BEEN_AUTO_APPROVED,
+        'Would *not* have been auto-approved (dry-run mode was in effect)',
+    ),
     (AUTO_APPROVED, 'Was auto-approved'),
     (NOT_AUTO_APPROVED, 'Was *not* auto-approved'),
 )

@@ -31,18 +31,26 @@ class Command(BaseCommand):
         """Handle command arguments."""
         parser.add_argument('num', type=int)
         parser.add_argument(
-            '--owner', action='store', dest='email',
+            '--owner',
+            action='store',
+            dest='email',
             default='nobody@mozilla.org',
-            help="Specific owner's email to be created.")
+            help="Specific owner's email to be created.",
+        )
         parser.add_argument(
-            '--app', action='store', dest='app_name',
+            '--app',
+            action='store',
+            dest='app_name',
             default='firefox',
-            help="Specific application targeted by add-ons creation.")
+            help="Specific application targeted by add-ons creation.",
+        )
 
     def handle(self, *args, **kwargs):
         if not settings.DEBUG:
-            raise CommandError('You can only run this command with your '
-                               'DEBUG setting set to True.')
+            raise CommandError(
+                'You can only run this command with your '
+                'DEBUG setting set to True.'
+            )
 
         num = int(kwargs.get('num'))
         email = kwargs.get('email')

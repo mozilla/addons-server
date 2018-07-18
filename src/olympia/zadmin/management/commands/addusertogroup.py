@@ -20,7 +20,8 @@ class Command(BaseCommand):
         do_adduser(options['user'], options['group_id'])
 
         msg = 'Adding {user} to {group}\n'.format(
-            user=options['user'], group=options['group_id'])
+            user=options['user'], group=options['group_id']
+        )
         self.log.info(msg)
         self.stdout.write(msg)
 
@@ -43,5 +44,6 @@ def do_adduser(user, group):
     except UserProfile.DoesNotExist:
         raise CommandError('User ({user}) does not exist.'.format(user=user))
     except Group.DoesNotExist:
-        raise CommandError('Group ({group}) does not exist.'
-                           .format(group=group))
+        raise CommandError(
+            'Group ({group}) does not exist.'.format(group=group)
+        )

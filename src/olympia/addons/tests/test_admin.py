@@ -4,66 +4,80 @@ from django.contrib import admin
 from olympia.addons.admin import ReplacementAddonAdmin
 from olympia.addons.models import ReplacementAddon
 from olympia.amo.tests import (
-    TestCase, addon_factory, collection_factory, user_factory)
+    TestCase,
+    addon_factory,
+    collection_factory,
+    user_factory,
+)
 from olympia.amo.urlresolvers import django_reverse, reverse
 
 
 class TestReplacementAddonForm(TestCase):
     def test_valid_addon(self):
         addon_factory(slug='bar')
-        form = ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': '/addon/bar/'})
+        form = ReplacementAddonAdmin(ReplacementAddon, admin.site).get_form(
+            None
+        )({'guid': 'foo', 'path': '/addon/bar/'})
         assert form.is_valid(), form.errors
         assert form.cleaned_data['path'] == '/addon/bar/'
 
     def test_invalid(self):
-        form = ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': '/invalid_url/'})
+        form = ReplacementAddonAdmin(ReplacementAddon, admin.site).get_form(
+            None
+        )({'guid': 'foo', 'path': '/invalid_url/'})
         assert not form.is_valid()
 
     def test_valid_collection(self):
         bagpuss = user_factory(username='bagpuss')
         collection_factory(slug='stuff', author=bagpuss)
-        form = ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': '/collections/bagpuss/stuff/'})
+        form = ReplacementAddonAdmin(ReplacementAddon, admin.site).get_form(
+            None
+        )({'guid': 'foo', 'path': '/collections/bagpuss/stuff/'})
         assert form.is_valid(), form.errors
         assert form.cleaned_data['path'] == '/collections/bagpuss/stuff/'
 
     def test_url(self):
-        form = ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': 'https://google.com/'})
+        form = ReplacementAddonAdmin(ReplacementAddon, admin.site).get_form(
+            None
+        )({'guid': 'foo', 'path': 'https://google.com/'})
         assert form.is_valid()
         assert form.cleaned_data['path'] == 'https://google.com/'
 
     def test_invalid_urls(self):
-        assert not ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': 'ftp://google.com/'}).is_valid()
-        assert not ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': 'https://88999@~'}).is_valid()
-        assert not ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': 'https://www. rutrt/'}).is_valid()
+        assert (
+            not ReplacementAddonAdmin(ReplacementAddon, admin.site)
+            .get_form(None)({'guid': 'foo', 'path': 'ftp://google.com/'})
+            .is_valid()
+        )
+        assert (
+            not ReplacementAddonAdmin(ReplacementAddon, admin.site)
+            .get_form(None)({'guid': 'foo', 'path': 'https://88999@~'})
+            .is_valid()
+        )
+        assert (
+            not ReplacementAddonAdmin(ReplacementAddon, admin.site)
+            .get_form(None)({'guid': 'foo', 'path': 'https://www. rutrt/'})
+            .is_valid()
+        )
 
         path = '/addon/bar/'
         site = settings.SITE_URL
         full_url = site + path
         # path is okay
-        assert ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': path}).is_valid()
+        assert (
+            ReplacementAddonAdmin(ReplacementAddon, admin.site)
+            .get_form(None)({'guid': 'foo', 'path': path})
+            .is_valid()
+        )
         # but we don't allow full urls for AMO paths
-        form = ReplacementAddonAdmin(
-            ReplacementAddon, admin.site).get_form(None)(
-                {'guid': 'foo', 'path': full_url})
+        form = ReplacementAddonAdmin(ReplacementAddon, admin.site).get_form(
+            None
+        )({'guid': 'foo', 'path': full_url})
         assert not form.is_valid()
-        assert ('Paths for [%s] should be relative, not full URLs including '
-                'the domain name' % site in form.errors['path'])
+        assert (
+            'Paths for [%s] should be relative, not full URLs including '
+            'the domain name' % site in form.errors['path']
+        )
 
 
 class TestAddonAdmin(TestCase):
@@ -108,7 +122,7 @@ class TestAddonAdmin(TestCase):
             'bayesian_rating': addon.bayesian_rating,
             'reputation': addon.reputation,
             'type': addon.type,
-            'slug': addon.slug
+            'slug': addon.slug,
         }
         post_data['guid'] = '@bar'
         response = self.client.post(self.detail_url, post_data, follow=True)
@@ -148,7 +162,7 @@ class TestAddonAdmin(TestCase):
             'average_daily_users': addon.average_daily_users,
             'bayesian_rating': addon.bayesian_rating,
             'type': addon.type,
-            'slug': addon.slug
+            'slug': addon.slug,
         }
         post_data['guid'] = '@bar'
         response = self.client.post(self.detail_url, post_data, follow=True)
@@ -165,7 +179,8 @@ class TestReplacementAddonList(TestCase):
         model_admin = ReplacementAddonAdmin(ReplacementAddon, admin.site)
         self.assertEqual(
             list(model_admin.get_list_display(None)),
-            ['guid', 'path', 'guid_slug', '_url'])
+            ['guid', 'path', 'guid_slug', '_url'],
+        )
 
     def test_can_see_replacementaddon_module_in_admin_with_addons_edit(self):
         user = user_factory()
@@ -179,7 +194,8 @@ class TestReplacementAddonList(TestCase):
         # Use django's reverse, since that's what the admin will use. Using our
         # own would fail the assertion because of the locale that gets added.
         self.list_url = django_reverse(
-            'admin:addons_replacementaddon_changelist')
+            'admin:addons_replacementaddon_changelist'
+        )
         assert self.list_url in response.content.decode('utf-8')
 
     def test_can_see_replacementaddon_module_in_admin_with_admin_curate(self):
@@ -193,12 +209,14 @@ class TestReplacementAddonList(TestCase):
         # Use django's reverse, since that's what the admin will use. Using our
         # own would fail the assertion because of the locale that gets added.
         self.list_url = django_reverse(
-            'admin:addons_replacementaddon_changelist')
+            'admin:addons_replacementaddon_changelist'
+        )
         assert self.list_url in response.content.decode('utf-8')
 
     def test_can_list_with_addons_edit_permission(self):
         ReplacementAddon.objects.create(
-            guid='@bar', path='/addon/bar-replacement/')
+            guid='@bar', path='/addon/bar-replacement/'
+        )
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Addons:Edit')
@@ -209,7 +227,8 @@ class TestReplacementAddonList(TestCase):
 
     def test_can_not_edit_with_addons_edit_permission(self):
         replacement = ReplacementAddon.objects.create(
-            guid='@bar', path='/addon/bar-replacement/')
+            guid='@bar', path='/addon/bar-replacement/'
+        )
         self.detail_url = reverse(
             'admin:addons_replacementaddon_change', args=(replacement.pk,)
         )
@@ -220,13 +239,16 @@ class TestReplacementAddonList(TestCase):
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 403
         response = self.client.post(
-            self.detail_url, {'guid': '@bar', 'path': replacement.path},
-            follow=True)
+            self.detail_url,
+            {'guid': '@bar', 'path': replacement.path},
+            follow=True,
+        )
         assert response.status_code == 403
 
     def test_can_not_delete_with_addons_edit_permission(self):
         replacement = ReplacementAddon.objects.create(
-            guid='@foo', path='/addon/foo-replacement/')
+            guid='@foo', path='/addon/foo-replacement/'
+        )
         self.delete_url = reverse(
             'admin:addons_replacementaddon_delete', args=(replacement.pk,)
         )
@@ -237,13 +259,15 @@ class TestReplacementAddonList(TestCase):
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 403
         response = self.client.post(
-            self.delete_url, data={'post': 'yes'}, follow=True)
+            self.delete_url, data={'post': 'yes'}, follow=True
+        )
         assert response.status_code == 403
         assert ReplacementAddon.objects.filter(pk=replacement.pk).exists()
 
     def test_can_edit_with_admin_curation_permission(self):
         replacement = ReplacementAddon.objects.create(
-            guid='@foo', path='/addon/foo-replacement/')
+            guid='@foo', path='/addon/foo-replacement/'
+        )
         self.detail_url = reverse(
             'admin:addons_replacementaddon_change', args=(replacement.pk,)
         )
@@ -255,15 +279,18 @@ class TestReplacementAddonList(TestCase):
         assert '/addon/foo-replacement/' in response.content
 
         response = self.client.post(
-            self.detail_url, {'guid': '@bar', 'path': replacement.path},
-            follow=True)
+            self.detail_url,
+            {'guid': '@bar', 'path': replacement.path},
+            follow=True,
+        )
         assert response.status_code == 200
         replacement.reload()
         assert replacement.guid == '@bar'
 
     def test_can_delete_with_admin_curation_permission(self):
         replacement = ReplacementAddon.objects.create(
-            guid='@foo', path='/addon/foo-replacement/')
+            guid='@foo', path='/addon/foo-replacement/'
+        )
         self.delete_url = reverse(
             'admin:addons_replacementaddon_delete', args=(replacement.pk,)
         )
@@ -273,7 +300,8 @@ class TestReplacementAddonList(TestCase):
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 200
         response = self.client.post(
-            self.delete_url, data={'post': 'yes'}, follow=True)
+            self.delete_url, data={'post': 'yes'}, follow=True
+        )
         assert response.status_code == 200
         assert not ReplacementAddon.objects.filter(pk=replacement.pk).exists()
 
@@ -287,8 +315,10 @@ class TestReplacementAddonList(TestCase):
         assert response.status_code == 200
         assert '@foofoo&amp;foo' in response.content
         assert '/addon/bar/' in response.content
-        test_url = str('<a href="%s">Test</a>' % (
-            reverse('addons.find_replacement') + '?guid=%40foofoo%26foo'))
+        test_url = str(
+            '<a href="%s">Test</a>'
+            % (reverse('addons.find_replacement') + '?guid=%40foofoo%26foo')
+        )
         assert test_url in response.content, response.content
         # guid is not on AMO so no slug to show
         assert '- Add-on not on AMO -' in response.content

@@ -5,9 +5,14 @@ from olympia.amo.tests import TestCase
 
 
 class TestHelpers(TestCase):
-    fixtures = ['base/addon_3615', 'base/users',
-                'addons/featured', 'base/collections',
-                'base/featured', 'bandwagon/featured_collections']
+    fixtures = [
+        'base/addon_3615',
+        'base/users',
+        'addons/featured',
+        'base/collections',
+        'base/featured',
+        'bandwagon/featured_collections',
+    ]
 
     def test_statusflags(self):
         ctx = {'APP': amo.FIREFOX, 'LANG': 'en-US'}

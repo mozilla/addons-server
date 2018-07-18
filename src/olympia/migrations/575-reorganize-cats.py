@@ -30,8 +30,9 @@ def run():
         print('Renamed "Entertainment & Sports" to "Entertainment"')
 
     # (b) Create a new category called "Sports."
-    Category.objects.create(type=amo.ADDON_WEBAPP, slug='sports',
-                            name='Sports')
+    Category.objects.create(
+        type=amo.ADDON_WEBAPP, slug='sports', name='Sports'
+    )
     print('Created "Sports"')
 
     # --
@@ -73,8 +74,9 @@ def run():
         print('Renamed "Books & Reference" to "Books"')
 
     # (b) Create a new category called "Reference."
-    Category.objects.create(type=amo.ADDON_WEBAPP, slug='reference',
-                            name='Reference')
+    Category.objects.create(
+        type=amo.ADDON_WEBAPP, slug='reference', name='Reference'
+    )
     print('Created "Reference"')
 
     # --
@@ -93,6 +95,7 @@ def run():
     # --
 
     # (6) Add "Maps & Navigation."
-    Category.objects.create(type=amo.ADDON_WEBAPP, slug='maps-navigation',
-                            name='Maps & Navigation')
+    Category.objects.create(
+        type=amo.ADDON_WEBAPP, slug='maps-navigation', name='Maps & Navigation'
+    )
     print('Created "Maps & Navigation"')

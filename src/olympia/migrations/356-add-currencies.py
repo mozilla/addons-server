@@ -131,7 +131,7 @@ currencies = {
         'Tier 28': '3100',
         'Tier 29': '3480',
         'Tier 30': '3860',
-    }
+    },
 }
 
 
@@ -140,8 +140,8 @@ def run():
         for k, v in prices.items():
             try:
                 tier = Price.objects.get(name__localized_string=k)
-                PriceCurrency.objects.create(tier=tier,
-                                             price=Decimal(v),
-                                             currency=currency)
+                PriceCurrency.objects.create(
+                    tier=tier, price=Decimal(v), currency=currency
+                )
             except Price.DoesNotExist:
                 print('Skipping creating: %s, %s for %s' % (k, v, currency))

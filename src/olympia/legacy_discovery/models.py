@@ -11,8 +11,10 @@ class DiscoveryModule(ModelBase):
     The modules are defined statically in modules.py and linked to a database
     row through the module's name.
     """
-    app = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
-                                      db_column='app_id')
+
+    app = models.PositiveIntegerField(
+        choices=amo.APPS_CHOICES, db_column='app_id'
+    )
     module = models.CharField(max_length=255)
     ordering = models.IntegerField(null=True, blank=True)
     locales = models.CharField(max_length=255, blank=True, default='')

@@ -16,18 +16,21 @@ def test_translated_field_supports_migration():
     Since `TranslatedField` is a ForeignKey migrations pass `to=` explicitly
     and we have to pop it in our __init__.
     """
-    fields = {
-        'charfield': TranslatedField(),
-    }
+    fields = {'charfield': TranslatedField()}
 
-    migration = type(str('Migration'), (migrations.Migration,), {
-        'operations': [
-            migrations.CreateModel(
-                name='MyModel', fields=tuple(fields.items()),
-                bases=(models.Model,)
-            ),
-        ],
-    })
+    migration = type(
+        str('Migration'),
+        (migrations.Migration,),
+        {
+            'operations': [
+                migrations.CreateModel(
+                    name='MyModel',
+                    fields=tuple(fields.items()),
+                    bases=(models.Model,),
+                )
+            ]
+        },
+    )
     writer = MigrationWriter(migration)
     output = writer.as_string()
 

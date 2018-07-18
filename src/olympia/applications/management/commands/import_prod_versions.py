@@ -12,7 +12,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         log = self.stdout.write
         doc = PyQuery(
-            url='https://addons.mozilla.org/en-US/firefox/pages/appversions/')
+            url='https://addons.mozilla.org/en-US/firefox/pages/appversions/'
+        )
         codes = doc('.prose ul li code')
         for i in range(0, len(codes), 2):
             try:
@@ -23,5 +24,6 @@ class Command(BaseCommand):
             log('Import versions for {0}'.format(app.short))
             versions = codes[i + 1].text.split(', ')
             for version in versions:
-                AppVersion.objects.get_or_create(application=app.id,
-                                                 version=version)
+                AppVersion.objects.get_or_create(
+                    application=app.id, version=version
+                )

@@ -11,8 +11,9 @@ from olympia.users.models import UserProfile
 
 class AbuseReport(ModelBase):
     # NULL if the reporter is anonymous.
-    reporter = models.ForeignKey(UserProfile, null=True,
-                                 blank=True, related_name='abuse_reported')
+    reporter = models.ForeignKey(
+        UserProfile, null=True, blank=True, related_name='abuse_reported'
+    )
     ip_address = models.CharField(max_length=255, default='0.0.0.0')
     # An abuse report can be for an addon or a user.
     # If user is non-null then both addon and guid should be null.
@@ -21,8 +22,9 @@ class AbuseReport(ModelBase):
     # If both addon and user is null guid should be set.
     addon = models.ForeignKey(Addon, null=True, related_name='abuse_reports')
     guid = models.CharField(max_length=255, null=True)
-    user = models.ForeignKey(UserProfile, null=True,
-                             related_name='abuse_reports')
+    user = models.ForeignKey(
+        UserProfile, null=True, related_name='abuse_reports'
+    )
     message = models.TextField()
 
     class Meta:
@@ -34,11 +36,18 @@ class AbuseReport(ModelBase):
         else:
             user_name = 'An anonymous coward'
 
-        target_url = ('%s%s' % (settings.SITE_URL, self.target.get_url_path())
-                      if self.target else 'GUID not in database')
+        target_url = (
+            '%s%s' % (settings.SITE_URL, self.target.get_url_path())
+            if self.target
+            else 'GUID not in database'
+        )
         name = self.target.name if self.target else self.guid
         msg = u'%s reported abuse for %s (%s).\n\n%s' % (
-            user_name, name, target_url, self.message)
+            user_name,
+            name,
+            target_url,
+            self.message,
+        )
         send_mail(unicode(self), msg, recipient_list=(settings.ABUSE_EMAIL,))
 
     @property
@@ -48,8 +57,13 @@ class AbuseReport(ModelBase):
     @property
     def type(self):
         with translation.override(settings.LANGUAGE_CODE):
-            type_ = (translation.ugettext(amo.ADDON_TYPE[self.addon.type])
-                     if self.addon else 'User' if self.user else 'Addon')
+            type_ = (
+                translation.ugettext(amo.ADDON_TYPE[self.addon.type])
+                if self.addon
+                else 'User'
+                if self.user
+                else 'Addon'
+            )
         return type_
 
     def __unicode__(self):
@@ -59,8 +73,9 @@ class AbuseReport(ModelBase):
 
 def send_abuse_report(request, obj, message):
     # Only used by legacy frontend
-    report = AbuseReport(ip_address=request.META.get('REMOTE_ADDR'),
-                         message=message)
+    report = AbuseReport(
+        ip_address=request.META.get('REMOTE_ADDR'), message=message
+    )
     if request.user.is_authenticated():
         report.reporter = request.user
     if isinstance(obj, Addon):

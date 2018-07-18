@@ -13,7 +13,12 @@ from olympia.addons.tests.test_views import TestPersonas
 from olympia.amo.tests import TestCase
 from olympia.users.models import UserProfile
 from olympia.users.templatetags.jinja_helpers import (
-    addon_users_list, emaillink, manage_fxa_link, user_link, users_list)
+    addon_users_list,
+    emaillink,
+    manage_fxa_link,
+    user_link,
+    users_list,
+)
 
 
 pytestmark = pytest.mark.django_db
@@ -24,47 +29,69 @@ def test_emaillink():
     obfuscated = unicode(emaillink(email))
 
     # remove junk
-    m = re.match(r'<a href="#"><span class="emaillink">(.*?)'
-                 r'<span class="i">null</span>(.*)</span></a>'
-                 r'<span class="emaillink js-hidden">(.*?)'
-                 r'<span class="i">null</span>(.*)</span>', obfuscated)
-    obfuscated = (''.join((m.group(1), m.group(2)))
-                  .replace('&#x0040;', '@').replace('&#x002E;', '.'))[::-1]
+    m = re.match(
+        r'<a href="#"><span class="emaillink">(.*?)'
+        r'<span class="i">null</span>(.*)</span></a>'
+        r'<span class="emaillink js-hidden">(.*?)'
+        r'<span class="i">null</span>(.*)</span>',
+        obfuscated,
+    )
+    obfuscated = (
+        ''.join((m.group(1), m.group(2)))
+        .replace('&#x0040;', '@')
+        .replace('&#x002E;', '.')
+    )[::-1]
     assert email == obfuscated
 
     title = 'E-mail your question'
     obfuscated = unicode(emaillink(email, title))
-    m = re.match(r'<a href="#">(.*)</a>'
-                 r'<span class="emaillink js-hidden">(.*?)'
-                 r'<span class="i">null</span>(.*)</span>', obfuscated)
+    m = re.match(
+        r'<a href="#">(.*)</a>'
+        r'<span class="emaillink js-hidden">(.*?)'
+        r'<span class="i">null</span>(.*)</span>',
+        obfuscated,
+    )
     assert title == m.group(1)
-    obfuscated = (''.join((m.group(2), m.group(3)))
-                  .replace('&#x0040;', '@').replace('&#x002E;', '.'))[::-1]
+    obfuscated = (
+        ''.join((m.group(2), m.group(3)))
+        .replace('&#x0040;', '@')
+        .replace('&#x002E;', '.')
+    )[::-1]
     assert email == obfuscated
 
 
 def test_user_link():
     u = UserProfile(username='jconnor', display_name='John Connor', pk=1)
     assert user_link(u) == (
-        '<a href="%s" title="%s">John Connor</a>' % (u.get_url_path(),
-                                                     u.name))
+        '<a href="%s" title="%s">John Connor</a>' % (u.get_url_path(), u.name)
+    )
 
     # handle None gracefully
     assert user_link(None) == ''
 
 
 def test_user_link_xss():
-    u = UserProfile(username='jconnor',
-                    display_name='<script>alert(1)</script>', pk=1)
+    u = UserProfile(
+        username='jconnor', display_name='<script>alert(1)</script>', pk=1
+    )
     html = "&lt;script&gt;alert(1)&lt;/script&gt;"
     assert user_link(u) == '<a href="%s" title="%s">%s</a>' % (
-        u.get_url_path(), html, html)
+        u.get_url_path(),
+        html,
+        html,
+    )
 
-    u = UserProfile(username='jconnor',
-                    display_name="""xss"'><iframe onload=alert(3)>""", pk=1)
+    u = UserProfile(
+        username='jconnor',
+        display_name="""xss"'><iframe onload=alert(3)>""",
+        pk=1,
+    )
     html = """xss&#34;&#39;&gt;&lt;iframe onload=alert(3)&gt;"""
     assert user_link(u) == '<a href="%s" title="%s">%s</a>' % (
-        u.get_url_path(), html, html)
+        u.get_url_path(),
+        html,
+        html,
+    )
 
 
 def test_users_list():
@@ -87,29 +114,32 @@ def test_short_users_list():
 
 
 def test_users_list_truncate_display_name():
-    u = UserProfile(username='oscar',
-                    display_name='Some Very Long Display Name', pk=1)
+    u = UserProfile(
+        username='oscar', display_name='Some Very Long Display Name', pk=1
+    )
     truncated_list = users_list([u], None, 10)
     assert truncated_list == (
-        u'<a href="%s" title="%s">Some Very...</a>' % (u.get_url_path(),
-                                                       u.name))
+        u'<a href="%s" title="%s">Some Very...</a>'
+        % (u.get_url_path(), u.name)
+    )
 
 
 def test_user_link_unicode():
     """make sure helper won't choke on unicode input"""
     u = UserProfile(username=u'jmüller', display_name=u'Jürgen Müller', pk=1)
     assert user_link(u) == (
-        u'<a href="%s" title="%s">Jürgen Müller</a>' % (
-            u.get_url_path(), u.name))
+        u'<a href="%s" title="%s">Jürgen Müller</a>'
+        % (u.get_url_path(), u.name)
+    )
 
     u = UserProfile(username='\xe5\xaf\x92\xe6\x98\x9f', pk=1)
     assert user_link(u) == (
-        u'<a href="%s" title="%s">%s</a>' % (u.get_url_path(), u.name,
-                                             u.username))
+        u'<a href="%s" title="%s">%s</a>'
+        % (u.get_url_path(), u.name, u.username)
+    )
 
 
 class TestAddonUsersList(TestPersonas, TestCase):
-
     def setUp(self):
         super(TestAddonUsersList, self).setUp()
         self.addon = Addon.objects.get(id=15663)
@@ -126,7 +156,8 @@ def test_manage_fxa_link():
     user = mock.MagicMock(email='me@someplace.ca', fxa_id='abcd1234')
     link = urlparse.urlparse(manage_fxa_link({'user': user}))
     url = '{scheme}://{netloc}{path}'.format(
-        scheme=link.scheme, netloc=link.netloc, path=link.path)
+        scheme=link.scheme, netloc=link.netloc, path=link.path
+    )
     assert url == 'https://stable.dev.lcip.org/settings'
     query = urlparse.parse_qs(link.query)
     assert query == {

@@ -77,7 +77,8 @@ def test_clean():
     # Links are not mangled, bad HTML is escaped, newlines are slimmed.
     s = '<ul><li><a href="#woo">\n\nyeah</a></li>\n\n<li><script></li></ul>'
     assert jinja_helpers.clean(s) == (
-        '<ul><li><a href="#woo">\n\nyeah</a></li><li>&lt;script&gt;</li></ul>')
+        '<ul><li><a href="#woo">\n\nyeah</a></li><li>&lt;script&gt;</li></ul>'
+    )
 
 
 def test_clean_in_template():
@@ -119,7 +120,8 @@ def test_l10n_menu():
 
     # Use the remove_locale_url taken from the addon in the context.
     menu = jinja_helpers.l10n_menu(
-        {'addon': Addon()}, remove_locale_url='some/url/')
+        {'addon': Addon()}, remove_locale_url='some/url/'
+    )
     assert 'data-rm-locale="/en-US/developers/addon/None/rmlocale"' in menu
 
 
@@ -137,11 +139,7 @@ class TestAllLocales(TestCase):
 
     def test_all_locales(self):
         obj = TranslatedModel()
-        obj.description = {
-            'en-US': 'There',
-            'es': 'Is No',
-            'fr': 'Spoon'
-        }
+        obj.description = {'en-US': 'There', 'es': 'Is No', 'fr': 'Spoon'}
         # Pretend the TranslateModel instance was saved to force Translation
         # objects to be saved.
         save_signal(sender=TranslatedModel, instance=obj)
@@ -154,11 +152,7 @@ class TestAllLocales(TestCase):
 
     def test_all_locales_empty(self):
         obj = TranslatedModel()
-        obj.description = {
-            'en-US': 'There',
-            'es': 'Is No',
-            'fr': ''
-        }
+        obj.description = {'en-US': 'There', 'es': 'Is No', 'fr': ''}
         # Pretend the TranslateModel instance was saved to force Translation
         # objects to be saved.
         save_signal(sender=TranslatedModel, instance=obj)
@@ -170,7 +164,8 @@ class TestAllLocales(TestCase):
         assert u'<span lang="fr"></span>' in result
 
         result = jinja_helpers.all_locales(
-            obj, 'description', prettify_empty=True)
+            obj, 'description', prettify_empty=True
+        )
         assert u'<div class="trans" data-name="description">' in result
         assert u'<span lang="en-us">There</span>' in result
         assert u'<span lang="es">Is No</span>' in result

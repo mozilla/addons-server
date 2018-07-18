@@ -9,7 +9,8 @@ from mock import ANY, patch
 
 from olympia.amo.tests import TestCase, user_factory
 from olympia.users.management.commands.createsuperuser import (
-    Command as CreateSuperUser)
+    Command as CreateSuperUser
+)
 from olympia.users.models import UserProfile
 
 
@@ -34,10 +35,7 @@ class TestCreateSuperUser(TestCase):
 
     @patch('olympia.users.management.commands.createsuperuser.input')
     def test_creates_user(self, input):
-        responses = {
-            'Username: ': 'myusername',
-            'Email: ': 'me@mozilla.org',
-        }
+        responses = {'Username: ': 'myusername', 'Email: ': 'me@mozilla.org'}
         input.side_effect = lambda label: responses[label]
         count = UserProfile.objects.count()
         CreateSuperUser().handle()
@@ -55,7 +53,8 @@ class TestCreateSuperUser(TestCase):
             email='me@mozilla.org',
             add_to_supercreate_group=True,
             fxa_id=fxa_id,
-            stdout=out)
+            stdout=out,
+        )
 
         user = UserProfile.objects.get(username='myusername')
         assert user.email == 'me@mozilla.org'
@@ -74,13 +73,10 @@ class TestCreateSuperUser(TestCase):
 
 
 class TestUpdateDeletedUsers(TestCase):
-
     def test_updates_deleted_metadata(self):
         user = user_factory(fxa_id='foobar', last_login_ip='192.168.1.1')
 
-        call_command(
-            'update_deleted_users',
-            interactive=False)
+        call_command('update_deleted_users', interactive=False)
 
         # Nothing happened, the user wasn't deleted
         user.refresh_from_db()
@@ -93,9 +89,7 @@ class TestUpdateDeletedUsers(TestCase):
         # Now set something and make sure `.delete` get's called again
         user.update(fxa_id='foobar', last_login_ip='192.168.1.1')
 
-        call_command(
-            'update_deleted_users',
-            interactive=False)
+        call_command('update_deleted_users', interactive=False)
 
         user.refresh_from_db()
         assert user.fxa_id is None

@@ -17,21 +17,17 @@ def report_menu(context, request, report, obj=None):
     if obj:
         if isinstance(obj, Addon):
             has_privs = False
-            if (request.user.is_authenticated() and (
-                    acl.action_allowed(request, amo.permissions.STATS_VIEW) or
-                    obj.has_author(request.user))):
+            if request.user.is_authenticated() and (
+                acl.action_allowed(request, amo.permissions.STATS_VIEW)
+                or obj.has_author(request.user)
+            ):
                 has_privs = True
             t = loader.get_template('stats/addon_report_menu.html')
-            c = {
-                'addon': obj,
-                'has_privs': has_privs
-            }
+            c = {'addon': obj, 'has_privs': has_privs}
             return jinja2.Markup(t.render(c))
         if isinstance(obj, Collection):
             t = loader.get_template('stats/collection_report_menu.html')
-            c = {
-                'collection': obj,
-            }
+            c = {'collection': obj}
             return jinja2.Markup(t.render(c))
 
     t = loader.get_template('stats/global_report_menu.html')

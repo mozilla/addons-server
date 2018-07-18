@@ -15,5 +15,4 @@ def run():
             continue
 
         print('Created tier: %s' % tier)
-        Price.objects.create(name='Tier 0', price=Decimal(tier),
-                             active=True)
+        Price.objects.create(name='Tier 0', price=Decimal(tier), active=True)

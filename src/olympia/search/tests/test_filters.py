@@ -11,8 +11,11 @@ from olympia import amo
 from olympia.amo.tests import TestCase, create_switch
 from olympia.constants.categories import CATEGORIES
 from olympia.search.filters import (
-    ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
-    SortingFilter)
+    ReviewedContentFilter,
+    SearchParameterFilter,
+    SearchQueryFilter,
+    SortingFilter,
+)
 
 
 class FilterTestsBase(TestCase):
@@ -28,8 +31,9 @@ class FilterTestsBase(TestCase):
         req = req or RequestFactory().get('/', data=data or {})
         queryset = Search()
         for filter_class in self.filter_classes:
-            queryset = filter_class().filter_queryset(req, queryset,
-                                                      self.view_class)
+            queryset = filter_class().filter_queryset(
+                req, queryset, self.view_class
+            )
         return queryset.to_dict()
 
 
@@ -44,24 +48,21 @@ class TestQueryFilter(FilterTestsBase):
 
         expected = {
             'match_phrase': {
-                'name': {
-                    'query': 'tea pot', 'boost': 4, 'slop': 1
-                }
+                'name': {'query': 'tea pot', 'boost': 4, 'slop': 1}
             }
         }
         assert expected in should
 
-        expected = {
-            'prefix': {'name': {'boost': 1.5, 'value': 'tea pot'}}
-        }
+        expected = {'prefix': {'name': {'boost': 1.5, 'value': 'tea pot'}}}
         assert expected in should
 
         expected = {
             'match': {
                 'name_l10n_english': {
-                    'query': 'tea pot', 'boost': 2.5,
+                    'query': 'tea pot',
+                    'boost': 2.5,
                     'analyzer': 'english',
-                    'operator': 'and'
+                    'operator': 'and',
                 }
             }
         }
@@ -97,7 +98,9 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name': {
-                    'boost': 2, 'prefix_length': 4, 'query': 'blah',
+                    'boost': 2,
+                    'prefix_length': 4,
+                    'query': 'blah',
                     'fuzziness': 'AUTO',
                 }
             }
@@ -110,7 +113,9 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name': {
-                    'boost': 2, 'prefix_length': 4, 'query': 'search terms',
+                    'boost': 2,
+                    'prefix_length': 4,
+                    'query': 'search terms',
                     'fuzziness': 'AUTO',
                 }
             }
@@ -128,7 +133,8 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name': {
-                    'boost': 2, 'prefix_length': 4,
+                    'boost': 2,
+                    'prefix_length': 4,
                     'query': 'this search query is too long.',
                     'fuzziness': 'AUTO',
                 }
@@ -139,7 +145,8 @@ class TestQueryFilter(FilterTestsBase):
         # Re-do the same test but mocking the limit to a higher value, the
         # fuzzy query should be present.
         with patch.object(
-                SearchQueryFilter, 'MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH', 100):
+            SearchQueryFilter, 'MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH', 100
+        ):
             should = do_test()
             assert expected in should
 
@@ -153,12 +160,22 @@ class TestQueryFilter(FilterTestsBase):
         assert len(functions) == 2
         assert functions[1] == {
             'weight': 2.0,  # WEBEXTENSIONS_WEIGHT,
-            'filter': {'bool': {'should': [
-                {'term': {'current_version.files.is_webextension': True}},
-                {'term': {
-                    'current_version.files.is_mozilla_signed_extension': True
-                }}
-            ]}}
+            'filter': {
+                'bool': {
+                    'should': [
+                        {
+                            'term': {
+                                'current_version.files.is_webextension': True
+                            }
+                        },
+                        {
+                            'term': {
+                                'current_version.files.is_mozilla_signed_extension': True
+                            }
+                        },
+                    ]
+                }
+            },
         }
 
     def test_q_exact(self):
@@ -166,11 +183,7 @@ class TestQueryFilter(FilterTestsBase):
         should = qs['query']['function_score']['query']['bool']['should']
 
         expected = {
-            'term': {
-                'name.raw': {
-                    'boost': 100, 'value': u'adblock plus',
-                }
-            }
+            'term': {'name.raw': {'boost': 100, 'value': u'adblock plus'}}
         }
 
         assert expected in should
@@ -233,12 +246,16 @@ class TestSortingFilter(FilterTestsBase):
 
     def test_sort_query_multiple(self):
         qs = self._filter(data={'sort': ['rating,created']})
-        assert qs['sort'] == [self._reformat_order('-bayesian_rating'),
-                              self._reformat_order('-created')]
+        assert qs['sort'] == [
+            self._reformat_order('-bayesian_rating'),
+            self._reformat_order('-created'),
+        ]
 
         qs = self._filter(data={'sort': 'created,rating'})
-        assert qs['sort'] == [self._reformat_order('-created'),
-                              self._reformat_order('-bayesian_rating')]
+        assert qs['sort'] == [
+            self._reformat_order('-created'),
+            self._reformat_order('-bayesian_rating'),
+        ]
 
         # If the sort query is wrong.
         with self.assertRaises(serializers.ValidationError) as context:
@@ -257,9 +274,11 @@ class TestSortingFilter(FilterTestsBase):
         assert context.exception.detail == [expected]
 
     def test_sort_random_restrictions(self):
-        expected = ('The "sort" parameter "random" can only be specified when '
-                    'the "featured" parameter is also present, and the "q" '
-                    'parameter absent.')
+        expected = (
+            'The "sort" parameter "random" can only be specified when '
+            'the "featured" parameter is also present, and the "q" '
+            'parameter absent.'
+        )
 
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(data={'q': 'something', 'sort': 'random'})
@@ -267,7 +286,8 @@ class TestSortingFilter(FilterTestsBase):
 
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(
-                data={'q': 'something', 'featured': 'true', 'sort': 'random'})
+                data={'q': 'something', 'featured': 'true', 'sort': 'random'}
+            )
         assert context.exception.detail == [expected]
 
     def test_sort_random(self):
@@ -312,9 +332,9 @@ class TestSearchParameterFilter(FilterTestsBase):
 
         qs = self._filter(data={'type': 'persona,extension'})
         must = qs['query']['bool']['must']
-        assert (
-            {'terms': {'type': [amo.ADDON_PERSONA, amo.ADDON_EXTENSION]}}
-            in must)
+        assert {
+            'terms': {'type': [amo.ADDON_PERSONA, amo.ADDON_EXTENSION]}
+        } in must
 
     def test_search_by_app_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
@@ -349,25 +369,36 @@ class TestSearchParameterFilter(FilterTestsBase):
 
     def test_search_by_appversion_app_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'appversion': '46.0',
-                               'app': 'internet_explorer'})
+            self._filter(
+                data={'appversion': '46.0', 'app': 'internet_explorer'}
+            )
         assert context.exception.detail == ['Invalid "app" parameter.']
 
     def test_search_by_appversion_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'appversion': 'not_a_version',
-                               'app': 'firefox'})
+            self._filter(
+                data={'appversion': 'not_a_version', 'app': 'firefox'}
+            )
         assert context.exception.detail == ['Invalid "appversion" parameter.']
 
     def test_search_by_appversion(self):
-        qs = self._filter(data={'appversion': '46.0',
-                                'app': 'firefox'})
+        qs = self._filter(data={'appversion': '46.0', 'app': 'firefox'})
         must = qs['query']['bool']['must']
         assert {'term': {'app': amo.FIREFOX.id}} in must
-        assert {'range': {'current_version.compatible_apps.1.min':
-                {'lte': 46000000200100}}} in must
-        assert {'range': {'current_version.compatible_apps.1.max':
-                {'gte': 46000000000100}}} in must
+        assert {
+            'range': {
+                'current_version.compatible_apps.1.min': {
+                    'lte': 46000000200100
+                }
+            }
+        } in must
+        assert {
+            'range': {
+                'current_version.compatible_apps.1.max': {
+                    'gte': 46000000000100
+                }
+            }
+        } in must
 
     def test_search_by_platform_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
@@ -380,44 +411,56 @@ class TestSearchParameterFilter(FilterTestsBase):
     def test_search_by_platform_id(self):
         qs = self._filter(data={'platform': unicode(amo.PLATFORM_WIN.id)})
         must = qs['query']['bool']['must']
-        assert {'terms': {'platforms': [
-            amo.PLATFORM_WIN.id, amo.PLATFORM_ALL.id]}} in must
+        assert {
+            'terms': {'platforms': [amo.PLATFORM_WIN.id, amo.PLATFORM_ALL.id]}
+        } in must
 
         qs = self._filter(data={'platform': unicode(amo.PLATFORM_LINUX.id)})
         must = qs['query']['bool']['must']
-        assert {'terms': {'platforms': [
-            amo.PLATFORM_LINUX.id, amo.PLATFORM_ALL.id]}} in must
+        assert {
+            'terms': {
+                'platforms': [amo.PLATFORM_LINUX.id, amo.PLATFORM_ALL.id]
+            }
+        } in must
 
     def test_search_by_platform_string(self):
         qs = self._filter(data={'platform': 'windows'})
         must = qs['query']['bool']['must']
-        assert {'terms': {'platforms': [
-            amo.PLATFORM_WIN.id, amo.PLATFORM_ALL.id]}} in must
+        assert {
+            'terms': {'platforms': [amo.PLATFORM_WIN.id, amo.PLATFORM_ALL.id]}
+        } in must
 
         qs = self._filter(data={'platform': 'win'})
         must = qs['query']['bool']['must']
-        assert {'terms': {'platforms': [
-            amo.PLATFORM_WIN.id, amo.PLATFORM_ALL.id]}} in must
+        assert {
+            'terms': {'platforms': [amo.PLATFORM_WIN.id, amo.PLATFORM_ALL.id]}
+        } in must
 
         qs = self._filter(data={'platform': 'darwin'})
         must = qs['query']['bool']['must']
-        assert {'terms': {'platforms': [
-            amo.PLATFORM_MAC.id, amo.PLATFORM_ALL.id]}} in must
+        assert {
+            'terms': {'platforms': [amo.PLATFORM_MAC.id, amo.PLATFORM_ALL.id]}
+        } in must
 
         qs = self._filter(data={'platform': 'mac'})
         must = qs['query']['bool']['must']
-        assert {'terms': {'platforms': [
-            amo.PLATFORM_MAC.id, amo.PLATFORM_ALL.id]}} in must
+        assert {
+            'terms': {'platforms': [amo.PLATFORM_MAC.id, amo.PLATFORM_ALL.id]}
+        } in must
 
         qs = self._filter(data={'platform': 'macosx'})
         must = qs['query']['bool']['must']
-        assert {'terms': {'platforms': [
-            amo.PLATFORM_MAC.id, amo.PLATFORM_ALL.id]}} in must
+        assert {
+            'terms': {'platforms': [amo.PLATFORM_MAC.id, amo.PLATFORM_ALL.id]}
+        } in must
 
         qs = self._filter(data={'platform': 'linux'})
         must = qs['query']['bool']['must']
-        assert {'terms': {'platforms': [
-            amo.PLATFORM_LINUX.id, amo.PLATFORM_ALL.id]}} in must
+        assert {
+            'terms': {
+                'platforms': [amo.PLATFORM_LINUX.id, amo.PLATFORM_ALL.id]
+            }
+        } in must
 
     def test_search_by_category_slug_no_app_or_type(self):
         with self.assertRaises(serializers.ValidationError) as context:
@@ -431,39 +474,37 @@ class TestSearchParameterFilter(FilterTestsBase):
 
     def test_search_by_category_slug(self):
         category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['other']
-        qs = self._filter(data={
-            'category': 'other',
-            'app': 'firefox',
-            'type': 'extension'
-        })
+        qs = self._filter(
+            data={'category': 'other', 'app': 'firefox', 'type': 'extension'}
+        )
         must = qs['query']['bool']['must']
         assert {'terms': {'category': [category.id]}} in must
 
     def test_search_by_category_slug_multiple_types(self):
         category_a = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['other']
         category_b = CATEGORIES[amo.FIREFOX.id][amo.ADDON_PERSONA]['other']
-        qs = self._filter(data={
-            'category': 'other',
-            'app': 'firefox',
-            'type': 'extension,persona'
-        })
+        qs = self._filter(
+            data={
+                'category': 'other',
+                'app': 'firefox',
+                'type': 'extension,persona',
+            }
+        )
         must = qs['query']['bool']['must']
-        assert (
-            {'terms': {'category': [category_a.id, category_b.id]}} in must)
+        assert {'terms': {'category': [category_a.id, category_b.id]}} in must
 
     def test_search_by_category_id(self):
-        qs = self._filter(data={
-            'category': 1,
-            'app': 'firefox',
-            'type': 'extension'
-        })
+        qs = self._filter(
+            data={'category': 1, 'app': 'firefox', 'type': 'extension'}
+        )
         must = qs['query']['bool']['must']
         assert {'terms': {'category': [1]}} in must
 
     def test_search_by_category_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(
-                data={'category': 666, 'app': 'firefox', 'type': 'extension'})
+                data={'category': 666, 'app': 'firefox', 'type': 'extension'}
+            )
         assert context.exception.detail == ['Invalid "category" parameter.']
 
     def test_search_by_tag(self):
@@ -525,8 +566,9 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert context.exception.detail == ['Invalid "app" parameter.']
 
     def test_search_by_featured_yes_app_yes_locale(self):
-        qs = self._filter(data={'featured': 'true', 'app': 'firefox',
-                                'lang': 'fr'})
+        qs = self._filter(
+            data={'featured': 'true', 'app': 'firefox', 'lang': 'fr'}
+        )
         must = qs['query']['bool']['must']
         assert {'term': {'is_featured': True}} not in must
         assert must[0] == {'term': {'app': amo.FIREFOX.id}}
@@ -554,6 +596,7 @@ class TestCombinedFilter(FilterTestsBase):
     expected query structure.
 
     """
+
     filter_classes = [SearchQueryFilter, ReviewedContentFilter, SortingFilter]
 
     def test_combined(self):
@@ -573,8 +616,10 @@ class TestCombinedFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name_l10n_english': {
-                    'analyzer': 'english', 'boost': 2.5, 'query': u'test',
-                    'operator': 'and'
+                    'analyzer': 'english',
+                    'boost': 2.5,
+                    'query': u'test',
+                    'operator': 'and',
                 }
             }
         }

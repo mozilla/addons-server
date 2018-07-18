@@ -14,40 +14,60 @@ class Command(BaseCommand):
         parser.add_argument('addon_id', nargs='*')
 
         parser.add_argument(
-            '--force', action='store_true', dest='force',
-            help='Sign the addon if it is already signed.')
+            '--force',
+            action='store_true',
+            dest='force',
+            help='Sign the addon if it is already signed.',
+        )
 
         parser.add_argument(
-            '--reason', action='store', type=str, dest='reason',
+            '--reason',
+            action='store',
+            type=str,
+            dest='reason',
             help='The reason for the resign that we will send '
-                 'the developer.')
+            'the developer.',
+        )
 
         parser.add_argument(
-            '--autograph-server-url', action='store', type=str,
+            '--autograph-server-url',
+            action='store',
+            type=str,
             dest='autograph_server_url',
-            help='The optional server URL for the autograph signing server.')
+            help='The optional server URL for the autograph signing server.',
+        )
 
         parser.add_argument(
-            '--autograph-user-id', action='store', type=str,
+            '--autograph-user-id',
+            action='store',
+            type=str,
             dest='autograph_user_id',
-            help='The optional user id for the autograph signing server.')
+            help='The optional user id for the autograph signing server.',
+        )
 
         parser.add_argument(
-            '--autograph-key', action='store', type=str,
+            '--autograph-key',
+            action='store',
+            type=str,
             dest='autograph_key',
-            help='The optional key for the autograph signing server.')
+            help='The optional key for the autograph signing server.',
+        )
 
         parser.add_argument(
-            '--autograph-signer', action='store', type=str,
+            '--autograph-signer',
+            action='store',
+            type=str,
             dest='autograph_signer',
-            help='The optional signer for the autograph signing server.')
+            help='The optional signer for the autograph signing server.',
+        )
 
     def handle(self, *args, **options):
         if len(options['addon_id']) == 0:  # Sign all the addons?
             raise CommandError(
                 'Please provide at least one addon id to sign. If you want to '
                 'sign them all, use the "process_addons --task sign_addons" '
-                'management command.')
+                'management command.'
+            )
 
         defaults = settings.AUTOGRAPH_CONFIG
 
@@ -58,9 +78,11 @@ class Command(BaseCommand):
             'server_url': _get_option_or_default('server_url'),
             'user_id': _get_option_or_default('user_id'),
             'key': _get_option_or_default('key'),
-            'signer': _get_option_or_default('signer')}
+            'signer': _get_option_or_default('signer'),
+        }
 
         with override_settings(AUTOGRAPH_CONFIG=autograph_config):
             addon_ids = [int(addon_id) for addon_id in options['addon_id']]
             sign_addons(
-                addon_ids, force=options['force'], reason=options['reason'])
+                addon_ids, force=options['force'], reason=options['reason']
+            )

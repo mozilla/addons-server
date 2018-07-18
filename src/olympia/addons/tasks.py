@@ -15,20 +15,35 @@ import olympia.core.logger
 from olympia import amo, activity
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
-    Addon, AddonCategory, AppSupport, Category, CompatOverride,
-    IncompatibleVersions, MigratedLWT, Persona, Preview, attach_tags,
-    attach_translations)
+    Addon,
+    AddonCategory,
+    AppSupport,
+    Category,
+    CompatOverride,
+    IncompatibleVersions,
+    MigratedLWT,
+    Persona,
+    Preview,
+    attach_tags,
+    attach_translations,
+)
 from olympia.addons.utils import build_static_theme_xpi_from_lwt
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import (
-    ImageCheck, LocalFileStorage, cache_ns_key, pngcrush_image)
+    ImageCheck,
+    LocalFileStorage,
+    cache_ns_key,
+    pngcrush_image,
+)
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import (
-    LICENSE_COPYRIGHT_AR, PERSONA_LICENSES_IDS)
+    LICENSE_COPYRIGHT_AR,
+    PERSONA_LICENSES_IDS,
+)
 from olympia.files.models import FileUpload
 from olympia.files.utils import RDFExtractor, get_file, parse_addon, SafeZip
 from olympia.amo.celery import pause_all_tasks, resume_all_tasks
@@ -57,8 +72,10 @@ def update_last_updated(addon_id):
     try:
         addon = Addon.objects.get(pk=addon_id)
     except Addon.DoesNotExist:
-        log.info('[1@None] Updating last updated for %s failed, no addon found'
-                 % addon_id)
+        log.info(
+            '[1@None] Updating last updated for %s failed, no addon found'
+            % addon_id
+        )
         return
 
     log.info('[1@None] Updating last updated for %s.' % addon_id)
@@ -90,8 +107,9 @@ def update_appsupport(ids):
             else:
                 min_, max_ = appver.min.version_int, appver.max.version_int
 
-            support.append(AppSupport(addon=addon, app=app.id,
-                                      min=min_, max=max_))
+            support.append(
+                AppSupport(addon=addon, app=app.id, min=min_, max=max_)
+            )
 
     if not support:
         return
@@ -110,8 +128,14 @@ def delete_preview_files(id, **kw):
 def index_addons(ids, **kw):
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
     transforms = (attach_tags, attach_translations)
-    index_objects(ids, Addon, AddonIndexer.extract_document,
-                  kw.pop('index', None), transforms, Addon.unfiltered)
+    index_objects(
+        ids,
+        Addon,
+        AddonIndexer.extract_document,
+        kw.pop('index', None),
+        transforms,
+        Addon.unfiltered,
+    )
 
 
 @task
@@ -201,8 +225,10 @@ def update_incompatible_appversions(data, **kw):
         try:
             version = Version.objects.get(pk=version_id)
         except Version.DoesNotExist:
-            log.info('Version ID [%d] not found. Incompatible versions were '
-                     'cleared.' % version_id)
+            log.info(
+                'Version ID [%d] not found. Incompatible versions were '
+                'cleared.' % version_id
+            )
             return
 
         addon_ids.add(version.addon_id)
@@ -210,8 +236,10 @@ def update_incompatible_appversions(data, **kw):
         try:
             compat = CompatOverride.objects.get(addon=version.addon)
         except CompatOverride.DoesNotExist:
-            log.info('Compat override for addon with version ID [%d] not '
-                     'found. Incompatible versions were cleared.' % version_id)
+            log.info(
+                'Compat override for addon with version ID [%d] not '
+                'found. Incompatible versions were cleared.' % version_id
+            )
             return
 
         app_ranges = []
@@ -228,28 +256,34 @@ def update_incompatible_appversions(data, **kw):
                 min_id = max_id = None
 
                 if range.min == '0':
-                    versions = (Version.objects.filter(addon=version.addon_id)
-                                .order_by('id')
-                                .values_list('id', flat=True)[:1])
+                    versions = (
+                        Version.objects.filter(addon=version.addon_id)
+                        .order_by('id')
+                        .values_list('id', flat=True)[:1]
+                    )
                     if versions:
                         min_id = versions[0]
                 else:
                     try:
-                        min_id = Version.objects.get(addon=version.addon_id,
-                                                     version=range.min).id
+                        min_id = Version.objects.get(
+                            addon=version.addon_id, version=range.min
+                        ).id
                     except Version.DoesNotExist:
                         pass
 
                 if range.max == '*':
-                    versions = (Version.objects.filter(addon=version.addon_id)
-                                .order_by('-id')
-                                .values_list('id', flat=True)[:1])
+                    versions = (
+                        Version.objects.filter(addon=version.addon_id)
+                        .order_by('-id')
+                        .values_list('id', flat=True)[:1]
+                    )
                     if versions:
                         max_id = versions[0]
                 else:
                     try:
-                        max_id = Version.objects.get(addon=version.addon_id,
-                                                     version=range.max).id
+                        max_id = Version.objects.get(
+                            addon=version.addon_id, version=range.max
+                        ).id
                     except Version.DoesNotExist:
                         pass
 
@@ -258,13 +292,17 @@ def update_incompatible_appversions(data, **kw):
                         app_ranges.extend(range.apps)
 
         for app_range in app_ranges:
-            IncompatibleVersions.objects.create(version=version,
-                                                app=app_range.app.id,
-                                                min_app_version=app_range.min,
-                                                max_app_version=app_range.max)
-            log.info('Added incompatible version for version ID [%d]: '
-                     'app:%d, %s -> %s' % (version_id, app_range.app.id,
-                                           app_range.min, app_range.max))
+            IncompatibleVersions.objects.create(
+                version=version,
+                app=app_range.app.id,
+                min_app_version=app_range.min,
+                max_app_version=app_range.max,
+            )
+            log.info(
+                'Added incompatible version for version ID [%d]: '
+                'app:%d, %s -> %s'
+                % (version_id, app_range.app.id, app_range.min, app_range.max)
+            )
 
     # Increment namespace cache of compat versions.
     for addon_id in addon_ids:
@@ -307,9 +345,13 @@ def save_theme(header, addon_pk, **kw):
     try:
         save_persona_image(src=header, full_dst=header_dst)
         create_persona_preview_images(
-            src=header, full_dst=[os.path.join(dst_root, 'preview.png'),
-                                  os.path.join(dst_root, 'icon.png')],
-            set_modified_on=addon.serializable_reference())
+            src=header,
+            full_dst=[
+                os.path.join(dst_root, 'preview.png'),
+                os.path.join(dst_root, 'icon.png'),
+            ],
+            set_modified_on=addon.serializable_reference(),
+        )
         theme_checksum(addon.persona)
     except IOError:
         addon.delete()
@@ -355,8 +397,10 @@ def calc_checksum(theme_id, **kw):
     try:
         Image.open(header)
     except IOError:
-        log.info('Deleting invalid theme [%s] (header: %s)' %
-                 (theme.addon.id, header))
+        log.info(
+            'Deleting invalid theme [%s] (header: %s)'
+            % (theme.addon.id, header)
+        )
         theme.addon.delete()
         theme.delete()
         rm_stored_dir(header.replace('header.png', ''), storage=lfs)
@@ -376,32 +420,47 @@ def find_inconsistencies_between_es_and_db(ids, **kw):
     length = len(ids)
     log.info(
         'Searching for inconsistencies between db and es %d-%d [%d].',
-        ids[0], ids[-1], length)
+        ids[0],
+        ids[-1],
+        length,
+    )
     db_addons = Addon.unfiltered.in_bulk(ids)
-    es_addons = Search(
-        doc_type=AddonIndexer.get_doctype_name(),
-        index=AddonIndexer.get_index_alias(),
-        using=amo.search.get_es()).filter('ids', values=ids)[:length].execute()
+    es_addons = (
+        Search(
+            doc_type=AddonIndexer.get_doctype_name(),
+            index=AddonIndexer.get_index_alias(),
+            using=amo.search.get_es(),
+        )
+        .filter('ids', values=ids)[:length]
+        .execute()
+    )
     es_addons = es_addons
     db_len = len(db_addons)
     es_len = len(es_addons)
     if db_len != es_len:
-        log.info('Inconsistency found: %d in db vs %d in es.',
-                 db_len, es_len)
+        log.info('Inconsistency found: %d in db vs %d in es.', db_len, es_len)
     for result in es_addons.hits.hits:
         pk = result['_source']['id']
         db_modified = db_addons[pk].modified.isoformat()
         es_modified = result['_source']['modified']
         if db_modified != es_modified:
-            log.info('Inconsistency found for addon %d: '
-                     'modified is %s in db vs %s in es.',
-                     pk, db_modified, es_modified)
+            log.info(
+                'Inconsistency found for addon %d: '
+                'modified is %s in db vs %s in es.',
+                pk,
+                db_modified,
+                es_modified,
+            )
         db_status = db_addons[pk].status
         es_status = result['_source']['status']
         if db_status != es_status:
-            log.info('Inconsistency found for addon %d: '
-                     'status is %s in db vs %s in es.',
-                     pk, db_status, es_status)
+            log.info(
+                'Inconsistency found for addon %d: '
+                'status is %s in db vs %s in es.',
+                pk,
+                db_status,
+                es_status,
+            )
 
 
 @task
@@ -409,8 +468,8 @@ def find_inconsistencies_between_es_and_db(ids, **kw):
 def add_firefox57_tag(ids, **kw):
     """Add firefox57 tag to addons with the specified ids."""
     log.info(
-        'Adding firefox57 tag to addons %d-%d [%d].',
-        ids[0], ids[-1], len(ids))
+        'Adding firefox57 tag to addons %d-%d [%d].', ids[0], ids[-1], len(ids)
+    )
 
     addons = Addon.objects.filter(id__in=ids)
     for addon in addons:
@@ -428,7 +487,10 @@ def add_dynamic_theme_tag(ids, **kw):
     """Add dynamic theme tag to addons with the specified ids."""
     log.info(
         'Adding  dynamic theme tag to addons %d-%d [%d].',
-        ids[0], ids[-1], len(ids))
+        ids[0],
+        ids[-1],
+        len(ids),
+    )
 
     addons = Addon.objects.filter(id__in=ids)
     for addon in addons:
@@ -453,29 +515,37 @@ def extract_strict_compatibility_value_for_addon(addon):
         # A number of things can go wrong: missing file, path somehow not
         # existing, etc. In any case, that means the add-on is in a weird
         # state and should be ignored (this is a one off task).
-        log.exception(u'bump_appver_for_legacy_addons: ignoring addon %d, '
-                      u'received %s when extracting.', addon.pk, unicode(exp))
+        log.exception(
+            u'bump_appver_for_legacy_addons: ignoring addon %d, '
+            u'received %s when extracting.',
+            addon.pk,
+            unicode(exp),
+        )
     return strict_compatibility
 
 
 def bump_appver_for_addon_if_necessary(
-        addon, application_id, new_max_appver, strict_compatibility=None):
+    addon, application_id, new_max_appver, strict_compatibility=None
+):
     # Find the applicationversion for Firefox for the current version of this
     # addon.
     application_versions = addon.current_version.compatible_apps.get(
-        amo.APPS_ALL[application_id])
+        amo.APPS_ALL[application_id]
+    )
 
     # Make sure it's not compatible already...
     if application_versions and (
-            application_versions.max.version_int < new_max_appver.version_int):
+        application_versions.max.version_int < new_max_appver.version_int
+    ):
         if strict_compatibility is None:
             # We don't know yet if the add-on had strictCompatibility enabled
             # (either because it's the first time we called the function for
             # this addon, or because it was not neccessary to bump the last
             # time we called, or because we had an error before). Let's parse
             # it to find out.
-            strict_compatibility = (
-                extract_strict_compatibility_value_for_addon(addon))
+            strict_compatibility = extract_strict_compatibility_value_for_addon(
+                addon
+            )
         if strict_compatibility is False:
             # It had not enabled strict compatibility. That means we should
             # bump it!
@@ -500,15 +570,18 @@ def bump_appver_for_legacy_addons(ids, **kw):
     # The AppVersions we want to point to now.
     new_max_appversions = {
         amo.FIREFOX.id: AppVersion.objects.get(
-            application=amo.FIREFOX.id, version='56.*'),
+            application=amo.FIREFOX.id, version='56.*'
+        ),
         amo.ANDROID.id: AppVersion.objects.get(
-            application=amo.ANDROID.id, version='56.*')
+            application=amo.ANDROID.id, version='56.*'
+        ),
     }
 
     addons_to_reindex = []
     for addon in addons:
         strict_compatibility = bump_appver_for_addon_if_necessary(
-            addon, amo.FIREFOX.id, new_max_appversions[amo.FIREFOX.id])
+            addon, amo.FIREFOX.id, new_max_appversions[amo.FIREFOX.id]
+        )
         # If strict_compatibility is True, we know we should skip bumping this
         # add-on entirely. Otherwise (False or None), we need to continue with
         # Firefox for Android, which might have different compat info than
@@ -517,11 +590,16 @@ def bump_appver_for_legacy_addons(ids, **kw):
         # re-extracting a second time.
         if strict_compatibility is not True:
             android_strict_compatibility = bump_appver_for_addon_if_necessary(
-                addon, amo.ANDROID.id, new_max_appversions[amo.ANDROID.id],
-                strict_compatibility=strict_compatibility)
+                addon,
+                amo.ANDROID.id,
+                new_max_appversions[amo.ANDROID.id],
+                strict_compatibility=strict_compatibility,
+            )
 
-            if (android_strict_compatibility is False or
-                    strict_compatibility is False):
+            if (
+                android_strict_compatibility is False
+                or strict_compatibility is False
+            ):
                 # We did something to that add-on compat, it needs reindexing.
                 addons_to_reindex.append(addon.pk)
     if addons_to_reindex:
@@ -530,7 +608,8 @@ def bump_appver_for_legacy_addons(ids, **kw):
 
 def _get_lwt_default_author():
     user, created = UserProfile.objects.get_or_create(
-        email=settings.MIGRATED_LWT_DEFAULT_OWNER_EMAIL)
+        email=settings.MIGRATED_LWT_DEFAULT_OWNER_EMAIL
+    )
     if created:
         user.anonymize_username()
     return user
@@ -539,40 +618,50 @@ def _get_lwt_default_author():
 @transaction.atomic
 def add_static_theme_from_lwt(lwt):
     from olympia.activity.models import AddonLog
+
     # Try to handle LWT with no authors
     author = (lwt.listed_authors or [_get_lwt_default_author()])[0]
     # Wrap zip in FileUpload for Addon/Version from_upload to consume.
-    upload = FileUpload.objects.create(
-        user=author, valid=True)
+    upload = FileUpload.objects.create(user=author, valid=True)
     destination = os.path.join(
-        user_media_path('addons'), 'temp', uuid.uuid4().hex + '.xpi')
+        user_media_path('addons'), 'temp', uuid.uuid4().hex + '.xpi'
+    )
     build_static_theme_xpi_from_lwt(lwt, destination)
     upload.update(path=destination)
 
     # Create addon + version
     parsed_data = parse_addon(upload, user=author)
     addon = Addon.initialize_addon_from_upload(
-        parsed_data, upload, amo.RELEASE_CHANNEL_LISTED, author)
+        parsed_data, upload, amo.RELEASE_CHANNEL_LISTED, author
+    )
     addon_updates = {}
     # Version.from_upload sorts out platforms for us.
     version = Version.from_upload(
-        upload, addon, platforms=None, channel=amo.RELEASE_CHANNEL_LISTED,
-        parsed_data=parsed_data)
+        upload,
+        addon,
+        platforms=None,
+        channel=amo.RELEASE_CHANNEL_LISTED,
+        parsed_data=parsed_data,
+    )
 
     # Set category
     static_theme_categories = CATEGORIES.get(amo.FIREFOX.id, []).get(
-        amo.ADDON_STATICTHEME, [])
+        amo.ADDON_STATICTHEME, []
+    )
     lwt_category = (lwt.categories.all() or [None])[0]  # lwt only have 1 cat.
     lwt_category_slug = lwt_category.slug if lwt_category else 'other'
     static_category = static_theme_categories.get(
-        lwt_category_slug, static_theme_categories.get('other'))
+        lwt_category_slug, static_theme_categories.get('other')
+    )
     AddonCategory.objects.create(
         addon=addon,
-        category=Category.from_static_category(static_category, True))
+        category=Category.from_static_category(static_category, True),
+    )
 
     # Set license
     lwt_license = PERSONA_LICENSES_IDS.get(
-        lwt.persona.license, LICENSE_COPYRIGHT_AR)  # default to full copyright
+        lwt.persona.license, LICENSE_COPYRIGHT_AR
+    )  # default to full copyright
     static_license = License.objects.get(builtin=lwt_license.builtin)
     version.update(license=static_license)
 
@@ -585,13 +674,16 @@ def add_static_theme_from_lwt(lwt):
         average_rating=lwt.average_rating,
         bayesian_rating=lwt.bayesian_rating,
         total_ratings=lwt.total_ratings,
-        text_ratings_count=lwt.text_ratings_count)
+        text_ratings_count=lwt.text_ratings_count,
+    )
     Rating.unfiltered.filter(addon=lwt).update(addon=addon, version=version)
     # Modify the activity log entry too.
     rating_activity_log_ids = [
-        l.id for l in amo.LOG if getattr(l, 'action_class', '') == 'review']
+        l.id for l in amo.LOG if getattr(l, 'action_class', '') == 'review'
+    ]
     addonlog_qs = AddonLog.objects.filter(
-        addon=lwt, activity_log__action__in=rating_activity_log_ids)
+        addon=lwt, activity_log__action__in=rating_activity_log_ids
+    )
     [alog.transfer(addon) for alog in addonlog_qs.iterator()]
 
     # Copy the ADU statistics - the raw(ish) daily UpdateCounts for stats
@@ -599,11 +691,13 @@ def add_static_theme_from_lwt(lwt):
     migrate_theme_update_count(lwt, addon)
     addon_updates.update(
         average_daily_users=lwt.persona.popularity or 0,
-        hotness=lwt.persona.movers or 0)
+        hotness=lwt.persona.movers or 0,
+    )
 
     # Logging
     activity.log_create(
-        amo.LOG.CREATE_STATICTHEME_FROM_PERSONA, addon, user=author)
+        amo.LOG.CREATE_STATICTHEME_FROM_PERSONA, addon, user=author
+    )
 
     # And finally sign the files (actually just one)
     for file_ in version.all_files:
@@ -611,7 +705,8 @@ def add_static_theme_from_lwt(lwt):
         file_.update(
             datestatuschanged=lwt.last_updated,
             reviewed=datetime.now(),
-            status=amo.STATUS_PUBLIC)
+            status=amo.STATUS_PUBLIC,
+        )
     addon_updates['status'] = amo.STATUS_PUBLIC
 
     # set the modified and creation dates to match the original.
@@ -630,8 +725,11 @@ def migrate_lwts_to_static_themes(ids, **kw):
     lightweight themes (personas), and delete the lightweight themes after."""
     mlog = olympia.core.logger.getLogger('z.task.lwtmigrate')
     mlog.info(
-        '[Info] Migrating LWT to static theme %d-%d [%d].', ids[0], ids[-1],
-        len(ids))
+        '[Info] Migrating LWT to static theme %d-%d [%d].',
+        ids[0],
+        ids[-1],
+        len(ids),
+    )
 
     # Incoming ids should already by type=persona only
     lwts = Addon.objects.filter(id__in=ids)
@@ -642,15 +740,18 @@ def migrate_lwts_to_static_themes(ids, **kw):
             with translation.override(lwt.default_locale):
                 static = add_static_theme_from_lwt(lwt)
             mlog.info(
-                '[Success] Static theme %r created from LWT %r', static, lwt)
+                '[Success] Static theme %r created from LWT %r', static, lwt
+            )
         except Exception as e:
             # If something went wrong, don't migrate - we need to debug.
             mlog.debug('[Fail] LWT %r:', lwt, exc_info=e)
         if not static:
             continue
         MigratedLWT.objects.create(
-            lightweight_theme=lwt, getpersonas_id=lwt.persona.persona_id,
-            static_theme=static)
+            lightweight_theme=lwt,
+            getpersonas_id=lwt.persona.persona_id,
+            static_theme=static,
+        )
         # Steal the lwt's slug after it's deleted.
         slug = lwt.slug
         lwt.delete()
@@ -667,12 +768,16 @@ def delete_addon_not_compatible_with_firefoxes(ids, **kw):
     """
     log.info(
         'Deleting addons not compatible with firefoxes %d-%d [%d].',
-        ids[0], ids[-1], len(ids))
+        ids[0],
+        ids[-1],
+        len(ids),
+    )
     qs = Addon.objects.filter(id__in=ids)
     for addon in qs:
         with transaction.atomic():
             addon.appsupport_set.filter(
-                app__in=(amo.THUNDERBIRD.id, amo.SEAMONKEY.id)).delete()
+                app__in=(amo.THUNDERBIRD.id, amo.SEAMONKEY.id)
+            ).delete()
             addon.delete()
 
 
@@ -681,6 +786,7 @@ def delete_addon_not_compatible_with_firefoxes(ids, **kw):
 def delete_obsolete_applicationsversions(**kw):
     """Delete ApplicationsVersions objects not relevant for Firefoxes."""
     qs = ApplicationsVersions.objects.exclude(
-        application__in=(amo.FIREFOX.id, amo.ANDROID.id))
+        application__in=(amo.FIREFOX.id, amo.ANDROID.id)
+    )
     for av in qs.iterator():
         av.delete()

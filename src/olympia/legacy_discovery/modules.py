@@ -6,7 +6,9 @@ import jinja2
 
 from olympia.addons.models import Addon
 from olympia.bandwagon.models import (
-    Collection, MonthlyPick as MonthlyPickModel)
+    Collection,
+    MonthlyPick as MonthlyPickModel,
+)
 from olympia.legacy_api.views import addon_filter
 from olympia.versions.compare import version_int
 from olympia.lib.cache import cache_get_or_set, make_key
@@ -33,6 +35,7 @@ class PromoModule(object):
     Subclasses should assign a slug and define render().  The slug is only used
     internally, so it doesn't have to really be a slug.
     """
+
     __metaclass__ = PromoModuleMeta
     abstract = True
     slug = None
@@ -101,7 +104,8 @@ class CollectionPromo(PromoModule):
         try:
             self.collection = Collection.objects.get(
                 author__username=self.collection_author,
-                slug=self.collection_slug)
+                slug=self.collection_slug,
+            )
         except Collection.DoesNotExist:
             pass
 
@@ -116,7 +120,7 @@ class CollectionPromo(PromoModule):
             'app': self.request.APP,
             'platform': self.platform,
             'version': self.version,
-            'compat_mode': self.compat_mode
+            'compat_mode': self.compat_mode,
         }
 
         def fetch_and_filter_addons():
@@ -125,8 +129,8 @@ class CollectionPromo(PromoModule):
         # The cache-key can be very long, let's normalize it to make sure
         # we never hit the 250-char limit of memcached.
         cache_key = make_key(
-            'collections-promo-get-addons:{}'.format(repr(kw)),
-            normalize=True)
+            'collections-promo-get-addons:{}'.format(repr(kw)), normalize=True
+        )
         return cache_get_or_set(cache_key, fetch_and_filter_addons)
 
     def render(self, module_context='discovery'):
@@ -136,12 +140,13 @@ class CollectionPromo(PromoModule):
         context = {
             'promo': self,
             'module_context': module_context,
-            'descriptions': self.get_descriptions()
+            'descriptions': self.get_descriptions(),
         }
         if self.collection:
             context['addons'] = self.get_addons()
-        return jinja2.Markup(render_to_string(
-            self.template, context, request=self.request))
+        return jinja2.Markup(
+            render_to_string(self.template, context, request=self.request)
+        )
 
 
 class ShoppingCollection(CollectionPromo):
@@ -149,8 +154,9 @@ class ShoppingCollection(CollectionPromo):
     collection_author, collection_slug = 'mozilla', 'onlineshopping'
     cls = 'promo promo-purple'
     title = _(u'Shopping Made Easy')
-    subtitle = _(u'Save on your favorite items '
-                 u'from the comfort of your browser.')
+    subtitle = _(
+        u'Save on your favorite items ' u'from the comfort of your browser.'
+    )
 
 
 class WebdevCollection(CollectionPromo):
@@ -179,12 +185,18 @@ class StarterPack(CollectionPromo):
 
     def get_descriptions(self):
         return {
-            2257: _(u'Translate content on the web from and into over 40 '
-                    'languages.'),
-            1833: _(u"Easily connect to your social networks, and share or "
-                    "comment on the page you're visiting."),
-            11377: _(u'A quick view to compare prices when you shop online '
-                     'or search for flights.')
+            2257: _(
+                u'Translate content on the web from and into over 40 '
+                'languages.'
+            ),
+            1833: _(
+                u"Easily connect to your social networks, and share or "
+                "comment on the page you're visiting."
+            ),
+            11377: _(
+                u'A quick view to compare prices when you shop online '
+                'or search for flights.'
+            ),
         }
 
 
@@ -194,8 +206,9 @@ class StPatricksPersonas(CollectionPromo):
     id = 'st-patricks'
     cls = 'promo'
     title = _(u'St. Patrick&rsquo;s Day Themes')
-    subtitle = _(u'Decorate your browser to celebrate '
-                 'St. Patrick&rsquo;s Day.')
+    subtitle = _(
+        u'Decorate your browser to celebrate ' 'St. Patrick&rsquo;s Day.'
+    )
 
 
 class SchoolCollection(CollectionPromo):
@@ -204,19 +217,21 @@ class SchoolCollection(CollectionPromo):
     id = 'school'
     cls = 'promo'
     title = _(u'A+ add-ons for School')
-    subtitle = _(u'Add-ons for teachers, parents, and students heading back '
-                 'to school.')
+    subtitle = _(
+        u'Add-ons for teachers, parents, and students heading back '
+        'to school.'
+    )
 
     def get_descriptions(self):
         return {
             3456: _(u'Would you like to know which websites you can trust?'),
             2410: _(u'Xmarks is the #1 bookmarking add-on.'),
-            2444: _(u'Web page and text translator, dictionary, and more!')
+            2444: _(u'Web page and text translator, dictionary, and more!'),
         }
 
 
 # The add-ons that go with the promo modal. Not an actual PromoModule
-class PromoVideoCollection():
+class PromoVideoCollection:
     items = (349111, 349155, 349157, 52659, 5579, 252539, 11377, 2257)
 
     def get_items(self):
@@ -237,8 +252,9 @@ class Fitness(CollectionPromo):
     cls = 'promo promo-yellow'
     collection_author, collection_slug = 'mozilla', 'fitness'
     title = _(u'Get up and move!')
-    subtitle = _(u'Install these fitness add-ons to keep you active and '
-                 u'healthy.')
+    subtitle = _(
+        u'Install these fitness add-ons to keep you active and ' u'healthy.'
+    )
 
 
 class UpAndComing(CollectionPromo):
@@ -254,8 +270,9 @@ class Privacy(CollectionPromo):
     cls = 'promo promo-purple'
     collection_author, collection_slug = 'mozilla', 'privacy'
     title = _(u'Worry-free browsing')
-    subtitle = _(u'Protect your privacy online with the add-ons in this '
-                 u'collection.')
+    subtitle = _(
+        u'Protect your privacy online with the add-ons in this ' u'collection.'
+    )
 
 
 class Featured(CollectionPromo):
@@ -263,8 +280,10 @@ class Featured(CollectionPromo):
     cls = 'promo promo-yellow'
     collection_author, collection_slug = 'mozilla', 'featured-add-ons'
     title = _(u'Featured Add-ons')
-    subtitle = _(u'Great add-ons for work, fun, privacy, productivity&hellip; '
-                 u'just about anything!')
+    subtitle = _(
+        u'Great add-ons for work, fun, privacy, productivity&hellip; '
+        u'just about anything!'
+    )
 
 
 class Games(CollectionPromo):
@@ -272,9 +291,11 @@ class Games(CollectionPromo):
     cls = 'promo promo-purple'
     collection_author, collection_slug = 'mozilla', 'games'
     title = _(u'Games!')
-    subtitle = _(u'Add more fun to your Firefox. Play dozens of games right '
-                 u'from your browser—puzzles, classic arcade, action games, '
-                 u'and more!')
+    subtitle = _(
+        u'Add more fun to your Firefox. Play dozens of games right '
+        u'from your browser—puzzles, classic arcade, action games, '
+        u'and more!'
+    )
     linkify_title = True
 
 
@@ -283,7 +304,9 @@ class MustHaveMedia(CollectionPromo):
     cls = 'promo promo-purple'
     collection_author, collection_slug = 'mozilla', 'must-have-media'
     title = _(u'Must-Have Media')
-    subtitle = _(u'Take better screenshots, improve your online video '
-                 u'experience, finally learn how to make a GIF, and other '
-                 u'great media tools.')
+    subtitle = _(
+        u'Take better screenshots, improve your online video '
+        u'experience, finally learn how to make a GIF, and other '
+        u'great media tools.'
+    )
     linkify_title = True

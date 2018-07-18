@@ -5,7 +5,8 @@ from django.utils.encoding import force_bytes
 
 MAXVERSION = 2 ** 63 - 1
 
-version_re = re.compile(r"""(?P<major>\d+|\*)      # major (x in x.y)
+version_re = re.compile(
+    r"""(?P<major>\d+|\*)      # major (x in x.y)
                             \.?(?P<minor1>\d+|\*)? # minor1 (y in x.y)
                             \.?(?P<minor2>\d+|\*)? # minor2 (z in x.y.z)
                             \.?(?P<minor3>\d+|\*)? # minor3 (w in x.y.z.w)
@@ -14,7 +15,8 @@ version_re = re.compile(r"""(?P<major>\d+|\*)      # major (x in x.y)
                             (?P<pre>pre)?          # pre release
                             (?P<pre_ver>\d)?       # pre release version
                         """,
-                        re.VERBOSE)
+    re.VERBOSE,
+)
 
 
 def dict_from_int(version_int):
@@ -62,8 +64,7 @@ def version_dict(version):
 
 def version_int(version):
     d = version_dict(force_bytes(version))
-    for key in ['alpha_ver', 'major', 'minor1', 'minor2', 'minor3',
-                'pre_ver']:
+    for key in ['alpha_ver', 'major', 'minor1', 'minor2', 'minor3', 'pre_ver']:
         if not d[key]:
             d[key] = 0
     atrans = {'a': 0, 'b': 1}
@@ -71,6 +72,13 @@ def version_int(version):
     d['pre'] = 0 if d['pre'] else 1
 
     v = "%d%02d%02d%02d%d%02d%d%02d" % (
-        d['major'], d['minor1'], d['minor2'], d['minor3'], d['alpha'],
-        d['alpha_ver'], d['pre'], d['pre_ver'])
+        d['major'],
+        d['minor1'],
+        d['minor2'],
+        d['minor3'],
+        d['alpha'],
+        d['alpha_ver'],
+        d['pre'],
+        d['pre_ver'],
+    )
     return min(int(v), MAXVERSION)

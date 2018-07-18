@@ -45,17 +45,25 @@ def pane(request, version, platform, compat_mode=None):
         compat_mode = get_compat_mode(version)
 
     def from_api(list_type):
-        return api_view(request, platform, version, list_type,
-                        compat_mode=compat_mode)
+        return api_view(
+            request, platform, version, list_type, compat_mode=compat_mode
+        )
 
     promovideo = PromoVideoCollection().get_items()
 
-    return render(request, 'legacy_discovery/pane.html',
-                  {'up_and_coming': from_api('hotness'),
-                   'featured_addons': from_api('featured'),
-                   'featured_personas': get_featured_personas(request),
-                   'version': version, 'platform': platform,
-                   'promovideo': promovideo, 'compat_mode': compat_mode})
+    return render(
+        request,
+        'legacy_discovery/pane.html',
+        {
+            'up_and_coming': from_api('hotness'),
+            'featured_addons': from_api('featured'),
+            'featured_personas': get_featured_personas(request),
+            'version': version,
+            'platform': platform,
+            'promovideo': promovideo,
+            'compat_mode': compat_mode,
+        },
+    )
 
 
 @non_atomic_requests
@@ -66,8 +74,11 @@ def pane_account(request):
     except GlobalStat.DoesNotExist:
         addon_downloads = None
 
-    return render(request, 'legacy_discovery/pane_account.html',
-                  {'addon_downloads': addon_downloads})
+    return render(
+        request,
+        'legacy_discovery/pane_account.html',
+        {'addon_downloads': addon_downloads},
+    )
 
 
 @non_atomic_requests
@@ -76,8 +87,11 @@ def promos(request, context, version, platform, compat_mode='strict'):
         platform = platform.lower()
     platform = amo.PLATFORM_DICT.get(platform, amo.PLATFORM_ALL)
     modules = get_modules(request, platform.api_name, version)
-    return render(request, 'addons/impala/homepage_promos.html',
-                  {'modules': modules, 'module_context': context})
+    return render(
+        request,
+        'addons/impala/homepage_promos.html',
+        {'modules': modules, 'module_context': context},
+    )
 
 
 @non_atomic_requests
@@ -94,8 +108,9 @@ def pane_more_addons(request, section, version, platform, compat_mode=None):
         compat_mode = get_compat_mode(version)
 
     def from_api(list_type):
-        return api_view(request, platform, version, list_type,
-                        compat_mode=compat_mode)
+        return api_view(
+            request, platform, version, list_type, compat_mode=compat_mode
+        )
 
     ctx = {}
     if section == 'featured':
@@ -111,14 +126,17 @@ def get_modules(request, platform, version):
     lang = request.LANG
     qs = DiscoveryModule.objects.filter(app=request.APP.id)
     # Remove any modules without a registered backend or an ordering.
-    modules = [m for m in qs
-               if m.module in module_registry and m.ordering is not None]
+    modules = [
+        m for m in qs if m.module in module_registry and m.ordering is not None
+    ]
     # Remove modules that specify a locales string we're not part of.
-    modules = [m for m in modules
-               if not m.locales or lang in m.locales.split()]
+    modules = [
+        m for m in modules if not m.locales or lang in m.locales.split()
+    ]
     modules = sorted(modules, key=lambda x: x.ordering)
-    return [module_registry[m.module](request, platform, version)
-            for m in modules]
+    return [
+        module_registry[m.module](request, platform, version) for m in modules
+    ]
 
 
 def get_featured_personas(request, category=None, num_personas=6):
@@ -129,15 +147,23 @@ def get_featured_personas(request, category=None, num_personas=6):
 
 
 @non_atomic_requests
-def api_view(request, platform, version, list_type, api_version=1.5,
-             format='json', content_type='application/json',
-             compat_mode='strict'):
+def api_view(
+    request,
+    platform,
+    version,
+    list_type,
+    api_version=1.5,
+    format='json',
+    content_type='application/json',
+    compat_mode='strict',
+):
     """Wrapper for calling an API view."""
     view = legacy_api_views.ListView()
     view.request, view.version = request, api_version
     view.format, view.content_type = format, content_type
-    r = view.process_request(list_type, platform=platform, version=version,
-                             compat_mode=compat_mode)
+    r = view.process_request(
+        list_type, platform=platform, version=version, compat_mode=compat_mode
+    )
     return json.loads(r.content)
 
 
@@ -146,14 +172,18 @@ def api_view(request, platform, version, list_type, api_version=1.5,
 def module_admin(request):
     APP = request.APP
     # Custom sorting to drop ordering=NULL objects to the bottom.
-    qs = DiscoveryModule.objects.raw("""
+    qs = DiscoveryModule.objects.raw(
+        """
         SELECT * from discovery_modules WHERE app_id = %s
-        ORDER BY ordering IS NULL, ordering""", [APP.id])
+        ORDER BY ordering IS NULL, ordering""",
+        [APP.id],
+    )
     qs.ordered = True  # The formset looks for this.
     _sync_db_and_registry(qs, APP.id)
 
-    Form = modelformset_factory(DiscoveryModule, form=DiscoveryModuleForm,
-                                can_delete=True, extra=0)
+    Form = modelformset_factory(
+        DiscoveryModule, form=DiscoveryModuleForm, can_delete=True, extra=0
+    )
     formset = Form(request.POST or None, queryset=qs)
 
     if request.method == 'POST' and formset.is_valid():
@@ -161,7 +191,8 @@ def module_admin(request):
         return redirect('discovery.module_admin')
 
     return render(
-        request, 'legacy_discovery/module_admin.html', {'formset': formset})
+        request, 'legacy_discovery/module_admin.html', {'formset': formset}
+    )
 
 
 def _sync_db_and_registry(qs, app_id):
@@ -181,21 +212,32 @@ def _sync_db_and_registry(qs, app_id):
 def addon_detail(request, addon):
     reviews = Rating.without_replies.all().filter(addon=addon, is_latest=True)
     src = request.GET.get('src', 'discovery-details')
-    return render(request, 'legacy_discovery/addons/detail.html',
-                  {'addon': addon, 'reviews': reviews,
-                   'get_replies': Rating.get_replies, 'src': src})
+    return render(
+        request,
+        'legacy_discovery/addons/detail.html',
+        {
+            'addon': addon,
+            'reviews': reviews,
+            'get_replies': Rating.get_replies,
+            'src': src,
+        },
+    )
 
 
 @addon_view
 @non_atomic_requests
 def addon_eula(request, addon, file_id):
     if not addon.eula:
-        return http.HttpResponseRedirect(reverse('discovery.addons.detail',
-                                         args=[addon.slug]))
+        return http.HttpResponseRedirect(
+            reverse('discovery.addons.detail', args=[addon.slug])
+        )
     if file_id is not None:
         version = get_object_or_404(addon.versions, files__id=file_id)
     else:
         version = addon.current_version
     src = request.GET.get('src', 'discovery-details')
-    return render(request, 'legacy_discovery/addons/eula.html',
-                  {'addon': addon, 'version': version, 'src': src})
+    return render(
+        request,
+        'legacy_discovery/addons/eula.html',
+        {'addon': addon, 'version': version, 'src': src},
+    )

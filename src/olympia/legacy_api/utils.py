@@ -19,14 +19,16 @@ def addon_to_dict(addon, disco=False, src='api'):
     """
     Renders an addon into a dict for the legacy API.
     """
+
     def url(u, **kwargs):
         return settings.SITE_URL + urlparams(u, **kwargs)
 
     v = addon.current_version
 
     if disco:
-        learnmore = settings.SERVICES_URL + reverse('discovery.addons.detail',
-                                                    args=[addon.slug])
+        learnmore = settings.SERVICES_URL + reverse(
+            'discovery.addons.detail', args=[addon.slug]
+        )
         learnmore = urlparams(learnmore, src='discovery-personalrec')
     else:
         learnmore = url(addon.get_url_path(), src=src)
@@ -37,11 +39,17 @@ def addon_to_dict(addon, disco=False, src='api'):
         'guid': addon.guid,
         'status': amo.STATUS_CHOICES_API[addon.status],
         'type': amo.ADDON_SLUGS_UPDATE[addon.type],
-        'authors': [{'id': a.id, 'name': unicode(a.name),
-                     'link': absolutify(a.get_url_path(src=src))}
-                    for a in addon.listed_authors],
+        'authors': [
+            {
+                'id': a.id,
+                'name': unicode(a.name),
+                'link': absolutify(a.get_url_path(src=src)),
+            }
+            for a in addon.listed_authors
+        ],
         'summary': (
-            strip_tags(unicode(addon.summary)) if addon.summary else None),
+            strip_tags(unicode(addon.summary)) if addon.summary else None
+        ),
         'description': strip_tags(unicode(addon.description)),
         'icon': addon.icon_url,
         'learnmore': learnmore,
@@ -60,12 +68,20 @@ def addon_to_dict(addon, disco=False, src='api'):
     if v:
         d['version'] = v.version
         d['platforms'] = [unicode(a.name) for a in v.supported_platforms]
-        d['compatible_apps'] = [{
-            unicode(amo.APP_IDS[appver.application].pretty): {
-                'min': unicode(appver.min) if appver else (
-                    amo.D2C_MIN_VERSIONS.get(app.id, '1.0')),
-                'max': unicode(appver.max) if appver else amo.FAKE_MAX_VERSION,
-            }} for app, appver in v.compatible_apps.items() if appver]
+        d['compatible_apps'] = [
+            {
+                unicode(amo.APP_IDS[appver.application].pretty): {
+                    'min': unicode(appver.min)
+                    if appver
+                    else (amo.D2C_MIN_VERSIONS.get(app.id, '1.0')),
+                    'max': unicode(appver.max)
+                    if appver
+                    else amo.FAKE_MAX_VERSION,
+                }
+            }
+            for app, appver in v.compatible_apps.items()
+            if appver
+        ]
     if addon.eula:
         d['eula'] = unicode(addon.eula)
 
@@ -73,17 +89,18 @@ def addon_to_dict(addon, disco=False, src='api'):
         d['dev_comments'] = unicode(addon.developer_comments)
 
     if addon.contributions:
-        d['contribution'] = {
-            'meet_developers': addon.contributions,
-        }
+        d['contribution'] = {'meet_developers': addon.contributions}
 
     if addon.type == amo.ADDON_PERSONA:
         d['previews'] = [addon.persona.preview_url]
     else:
+
         def preview_as_dict(preview, src):
-            d = {'full': urlparams(preview.image_url, src=src),
-                 'thumbnail': urlparams(preview.thumbnail_url, src=src),
-                 'caption': unicode(preview.caption)}
+            d = {
+                'full': urlparams(preview.image_url, src=src),
+                'thumbnail': urlparams(preview.thumbnail_url, src=src),
+                'caption': unicode(preview.caption),
+            }
             return d
 
         d['previews'] = [preview_as_dict(p, src) for p in addon.all_previews]
@@ -91,8 +108,9 @@ def addon_to_dict(addon, disco=False, src='api'):
     return d
 
 
-def find_compatible_version(addon, app_id, app_version=None, platform=None,
-                            compat_mode='strict'):
+def find_compatible_version(
+    addon, app_id, app_version=None, platform=None, compat_mode='strict'
+):
     """Returns the newest compatible version (ordered by version id desc)
     for the given addon."""
     if not app_id:
@@ -106,9 +124,11 @@ def find_compatible_version(addon, app_id, app_version=None, platform=None,
         else:
             platform = None
 
-    log.debug(u'Checking compatibility for add-on ID:%s, APP:%s, V:%s, '
-              u'OS:%s, Mode:%s' % (addon.id, app_id, app_version, platform,
-                                   compat_mode))
+    log.debug(
+        u'Checking compatibility for add-on ID:%s, APP:%s, V:%s, '
+        u'OS:%s, Mode:%s'
+        % (addon.id, app_id, app_version, platform, compat_mode)
+    )
     valid_file_statuses = ','.join(map(str, addon.valid_file_statuses))
     data = {
         'id': addon.id,
@@ -125,12 +145,19 @@ def find_compatible_version(addon, app_id, app_version=None, platform=None,
         compat_mode = 'ignore'
 
     ns_key = cache_ns_key('d2c-versions:%s' % addon.id)
-    cache_key = '%s:%s:%s:%s:%s' % (ns_key, app_id, app_version, platform,
-                                    compat_mode)
+    cache_key = '%s:%s:%s:%s:%s' % (
+        ns_key,
+        app_id,
+        app_version,
+        platform,
+        compat_mode,
+    )
     version_id = cache.get(cache_key)
     if version_id is not None:
-        log.debug(u'Found compatible version in cache: %s => %s' % (
-                  cache_key, version_id))
+        log.debug(
+            u'Found compatible version in cache: %s => %s'
+            % (cache_key, version_id)
+        )
         if version_id == 0:
             return None
         else:
@@ -139,7 +166,8 @@ def find_compatible_version(addon, app_id, app_version=None, platform=None,
             except Version.DoesNotExist:
                 pass
 
-    raw_sql = ["""
+    raw_sql = [
+        """
         SELECT versions.*
         FROM versions
         INNER JOIN addons
@@ -154,7 +182,8 @@ def find_compatible_version(addon, app_id, app_version=None, platform=None,
             AND appmax.application_id = %(app_id)s
         INNER JOIN files
             ON files.version_id = versions.id AND
-               (files.platform_id = 1"""]
+               (files.platform_id = 1"""
+    ]
 
     if platform:
         raw_sql.append(' OR files.platform_id = %(platform)s')
@@ -170,21 +199,23 @@ def find_compatible_version(addon, app_id, app_version=None, platform=None,
         pass  # No further SQL modification required.
 
     elif compat_mode == 'normal':
-        raw_sql.append("""AND
+        raw_sql.append(
+            """AND
             CASE WHEN files.strict_compatibility = 1 OR
                       files.binary_components = 1
             THEN appmax.version_int >= %(version_int)s ELSE 1 END
-        """)
+        """
+        )
         # Filter out versions that don't have the minimum maxVersion
         # requirement to qualify for default-to-compatible.
         d2c_max = amo.D2C_MIN_VERSIONS.get(app_id)
         if d2c_max:
             data['d2c_max_version'] = version_int(d2c_max)
-            raw_sql.append(
-                "AND appmax.version_int >= %(d2c_max_version)s ")
+            raw_sql.append("AND appmax.version_int >= %(d2c_max_version)s ")
 
         # Filter out versions found in compat overrides
-        raw_sql.append("""AND
+        raw_sql.append(
+            """AND
             NOT versions.id IN (
             SELECT version_id FROM incompatible_versions
             WHERE app_id=%(app_id)s AND
@@ -193,7 +224,8 @@ def find_compatible_version(addon, app_id, app_version=None, platform=None,
               (min_app_version_int <= %(version_int)s AND
                    max_app_version='*') OR
               (min_app_version_int <= %(version_int)s AND
-                   max_app_version_int >= %(version_int)s)) """)
+                   max_app_version_int >= %(version_int)s)) """
+        )
 
     else:  # Not defined or 'strict'.
         raw_sql.append('AND appmax.version_int >= %(version_int)s ')

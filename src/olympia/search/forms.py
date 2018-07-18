@@ -11,12 +11,13 @@ PER_PAGE = 20
 SEARCH_CHOICES = (
     ('all', _(u'search for add-ons')),
     ('themes', _(u'search for themes')),
-    ('apps', _(u'search for apps'))
+    ('apps', _(u'search for apps')),
 )
 
 
 class SimpleSearchForm(forms.Form):
     """Powers the search box on every page."""
+
     q = forms.CharField(required=False)
     cat = forms.CharField(required=False, widget=forms.HiddenInput)
     appver = forms.CharField(required=False, widget=forms.HiddenInput)
@@ -48,8 +49,9 @@ class ESSearchForm(forms.Form):
     tag = forms.CharField(required=False)
     platform = forms.CharField(required=False)
     appver = forms.CharField(required=False)
-    atype = forms.TypedChoiceField(required=False, coerce=int,
-                                   choices=amo.ADDON_TYPES.iteritems())
+    atype = forms.TypedChoiceField(
+        required=False, coerce=int, choices=amo.ADDON_TYPES.iteritems()
+    )
     cat = forms.CharField(required=False)
     sort = forms.CharField(required=False)
 

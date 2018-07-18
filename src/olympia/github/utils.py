@@ -20,7 +20,6 @@ log = olympia.core.logger.getLogger('z.github')
 
 
 class GithubCallback(object):
-
     def __init__(self, data):
         if data['type'] != 'github':
             raise ValueError('Not a github callback.')
@@ -42,7 +41,8 @@ class GithubCallback(object):
             res = requests.post(
                 url,
                 json=data,
-                auth=(settings.GITHUB_API_USER, settings.GITHUB_API_TOKEN))
+                auth=(settings.GITHUB_API_USER, settings.GITHUB_API_TOKEN),
+            )
             log.info('Response: {}'.format(res.content))
             res.raise_for_status()
 
@@ -50,27 +50,30 @@ class GithubCallback(object):
         self.post(self.data['status_url'], data={'state': 'pending'})
 
     def success(self, url):
-        self.post(self.data['status_url'], data={
-            'state': 'success',
-            'target_url': url
-        })
+        self.post(
+            self.data['status_url'],
+            data={'state': 'success', 'target_url': url},
+        )
 
     def error(self, url):
-        self.post(self.data['status_url'], data={
-            'state': 'error',
-            # Not localising because we aren't sure what locale to localise to.
-            # I would like to pass a longer string here that shows more details
-            # however, we are limited to "A short description of the status."
-            # Which means all the fancy things I wanted to do got truncated.
-            'description': 'This add-on did not validate.',
-            'target_url': url
-        })
+        self.post(
+            self.data['status_url'],
+            data={
+                'state': 'error',
+                # Not localising because we aren't sure what locale to localise to.
+                # I would like to pass a longer string here that shows more details
+                # however, we are limited to "A short description of the status."
+                # Which means all the fancy things I wanted to do got truncated.
+                'description': 'This add-on did not validate.',
+                'target_url': url,
+            },
+        )
 
     def failure(self):
         data = {
             'state': 'failure',
             # Not localising because we aren't sure what locale to localise to.
-            'description': 'The validator failed to run correctly.'
+            'description': 'The validator failed to run correctly.',
         }
         self.post(self.data['status_url'], data=data)
 
@@ -95,7 +98,8 @@ class GithubRequest(forms.Form):
         return (
             self.repo['archive_url']
             .replace('{archive_format}', 'zipball')
-            .replace('{/ref}', '/' + self.sha))
+            .replace('{/ref}', '/' + self.sha)
+        )
 
     def validate_url(self, url):
         if not url.startswith('https://api.github.com/'):
@@ -103,10 +107,7 @@ class GithubRequest(forms.Form):
         return url
 
     def clean(self):
-        fields = (
-            ('status_url', self.get_status),
-            ('zip_url', self.get_zip),
-        )
+        fields = (('status_url', self.get_status), ('zip_url', self.get_zip))
         for url, method in fields:
             try:
                 self.cleaned_data[url] = self.validate_url(method())

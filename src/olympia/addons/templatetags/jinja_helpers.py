@@ -34,7 +34,8 @@ def flag(context, addon):
     status = statusflags(context, addon)
     msg = {
         'unreviewed': ugettext('Not Reviewed'),
-        'featuredaddon': ugettext('Featured')}
+        'featuredaddon': ugettext('Featured'),
+    }
     if status:
         return jinja2.Markup(u'<h5 class="flag">%s</h5>' % msg[status])
     else:
@@ -97,16 +98,21 @@ def tags_box(context, addon, tags=None):
     ones.
     """
     c = dict(context.items())
-    c.update({'addon': addon,
-              'tags': tags})
+    c.update({'addon': addon, 'tags': tags})
     return c
 
 
 @library.global_function
 @library.render_with('addons/listing/items.html')
 @jinja2.contextfunction
-def addon_listing_items(context, addons, show_date=False,
-                        show_downloads=False, src=None, notes=None):
+def addon_listing_items(
+    context,
+    addons,
+    show_date=False,
+    show_downloads=False,
+    src=None,
+    notes=None,
+):
     if notes is None:
         notes = {}
     return new_context(**locals())
@@ -115,8 +121,9 @@ def addon_listing_items(context, addons, show_date=False,
 @library.global_function
 @library.render_with('addons/impala/listing/items.html')
 @jinja2.contextfunction
-def impala_addon_listing_items(context, addons, field=None, src=None,
-                               dl_src=None, notes=None):
+def impala_addon_listing_items(
+    context, addons, field=None, src=None, dl_src=None, notes=None
+):
     if notes is None:
         notes = {}
     if not src:
@@ -143,9 +150,14 @@ def addon_listing_header(context, url_base, sort_opts, selected):
 @library.global_function
 @library.render_with('addons/impala/listing/sorter.html')
 @jinja2.contextfunction
-def impala_addon_listing_header(context, url_base, sort_opts=None,
-                                selected=None, extra_sort_opts=None,
-                                search_filter=None):
+def impala_addon_listing_header(
+    context,
+    url_base,
+    sort_opts=None,
+    selected=None,
+    extra_sort_opts=None,
+    search_filter=None,
+):
     if sort_opts is None:
         sort_opts = {}
     if extra_sort_opts is None:
@@ -192,8 +204,16 @@ def addon_hovercard(context, addon, lazyload=False, src=None, dl_src=None):
 @library.filter
 @jinja2.contextfilter
 @library.render_with('addons/impala/addon_grid.html')
-def addon_grid(context, addons, src=None, dl_src=None, pagesize=6, cols=2,
-               vital_summary='rating', vital_more='adu'):
+def addon_grid(
+    context,
+    addons,
+    src=None,
+    dl_src=None,
+    pagesize=6,
+    cols=2,
+    vital_summary='rating',
+    vital_more='adu',
+):
     if not src:
         src = context.get('src')
     # dl_src is an optional src parameter just for the download links
@@ -234,16 +254,34 @@ def new_context(context, **kw):
 @library.global_function
 @library.render_with('addons/persona_preview.html')
 @jinja2.contextfunction
-def persona_preview(context, persona, size='large', linked=True, extra=None,
-                    details=False, title=False, caption=False, url=None):
-    preview_map = {'large': persona.preview_url,
-                   'small': persona.thumb_url}
+def persona_preview(
+    context,
+    persona,
+    size='large',
+    linked=True,
+    extra=None,
+    details=False,
+    title=False,
+    caption=False,
+    url=None,
+):
+    preview_map = {'large': persona.preview_url, 'small': persona.thumb_url}
     addon = persona.addon
     c = dict(context.items())
-    c.update({'persona': persona, 'addon': addon, 'linked': linked,
-              'size': size, 'preview': preview_map[size], 'extra': extra,
-              'details': details, 'title': title, 'caption': caption,
-              'url_': url})
+    c.update(
+        {
+            'persona': persona,
+            'addon': addon,
+            'linked': linked,
+            'size': size,
+            'preview': preview_map[size],
+            'extra': extra,
+            'details': details,
+            'title': title,
+            'caption': caption,
+            'url_': url,
+        }
+    )
     return c
 
 
@@ -259,8 +297,9 @@ def persona_grid(context, addons):
 @library.render_with('addons/impala/persona_grid.html')
 def impala_persona_grid(context, personas, src=None, pagesize=6, cols=3):
     c = dict(context.items())
-    return dict(pages=chunked(personas, pagesize),
-                columns='cols-%d' % cols, **c)
+    return dict(
+        pages=chunked(personas, pagesize), columns='cols-%d' % cols, **c
+    )
 
 
 @library.filter

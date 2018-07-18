@@ -29,8 +29,8 @@ from olympia.versions.models import License
 
 
 ADDONS_TEST_FILES = os.path.join(
-    os.path.dirname(olympia.__file__),
-    'devhub', 'tests', 'addons')
+    os.path.dirname(olympia.__file__), 'devhub', 'tests', 'addons'
+)
 
 
 pytestmark = pytest.mark.django_db
@@ -74,9 +74,10 @@ def test_page_title():
 
     # Check the dirty unicodes.
     request.APP = amo.FIREFOX
-    s = render('{{ page_title(x) }}',
-               {'request': request,
-                'x': force_bytes(u'\u05d0\u05d5\u05e1\u05e3')})
+    s = render(
+        '{{ page_title(x) }}',
+        {'request': request, 'x': force_bytes(u'\u05d0\u05d5\u05e1\u05e3')},
+    )
 
 
 def test_page_title_markup():
@@ -87,7 +88,8 @@ def test_page_title_markup():
     # Markup isn't double escaped.
     res = render(
         '{{ page_title("{0}"|format_html("It\'s all text")) }}',
-        {'request': request})
+        {'request': request},
+    )
     assert res == 'It&#39;s all text :: Add-ons for Firefox'
 
 
@@ -103,7 +105,8 @@ def test_template_escaping():
     # as expected
     expected = '<a href="...">This is a test</a>'
     original = (
-        '{{ _(\'<a href="...">{0}</a>\')|format_html("This is a test") }}')
+        '{{ _(\'<a href="...">{0}</a>\')|format_html("This is a test") }}'
+    )
     assert render(original) == expected
 
     # The html provided in the translatable string won't be escaped
@@ -111,50 +114,61 @@ def test_template_escaping():
     expected = '<a href="...">This is a &lt;h1&gt;test&lt;/h1&gt;</a>'
     original = (
         '{{ _(\'<a href="...">{0}</a>\')|format_html('
-        '"This is a <h1>test</h1>") }}')
+        '"This is a <h1>test</h1>") }}'
+    )
     assert render(original) == expected
 
     # Unless marked explicitly as safe
     expected = '<a href="...">This is a <h1>test</h1></a>'
     original = (
         '{{ _(\'<a href="...">{0}</a>\')'
-        '|format_html("This is a <h1>test</h1>"|safe) }}')
+        '|format_html("This is a <h1>test</h1>"|safe) }}'
+    )
     assert render(original) == expected
 
     # Document how newstyle gettext behaves, everything that get's passed in
     # like that needs to be escaped!
     expected = '&lt;script&gt;&lt;/script&gt;'
     assert render('{{ _(foo) }}', {'foo': '<script></script>'}) != expected
-    assert render(
-        '{{ _(foo|escape) }}', {'foo': '<script></script>'}) == expected
+    assert (
+        render('{{ _(foo|escape) }}', {'foo': '<script></script>'}) == expected
+    )
 
     # Various tests for gettext related helpers and make sure they work
     # properly just as `_()` does.
     expected = '<b>5 users</b>'
-    assert render(
-        '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)'
-        '|format_html(5) }}'
-    ) == expected
+    assert (
+        render(
+            '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)'
+            '|format_html(5) }}'
+        )
+        == expected
+    )
 
     # You could also mark the whole output as |safe but note that this
     # still escapes the arguments of |format_html unless explicitly
     # marked as safe
     expected = '<b>&lt;script&gt; users</b>'
-    assert render(
-        '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)'
-        '|format_html("<script>")|safe }}'
-    ) == expected
+    assert (
+        render(
+            '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)'
+            '|format_html("<script>")|safe }}'
+        )
+        == expected
+    )
 
 
 @patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.reverse')
 def test_url(mock_reverse):
     render('{{ url("viewname", 1, z=2) }}')
-    mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2},
-                                    add_prefix=True)
+    mock_reverse.assert_called_with(
+        'viewname', args=(1,), kwargs={'z': 2}, add_prefix=True
+    )
 
     render('{{ url("viewname", 1, z=2, host="myhost") }}')
-    mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2},
-                                    add_prefix=True)
+    mock_reverse.assert_called_with(
+        'viewname', args=(1,), kwargs={'z': 2}, add_prefix=True
+    )
 
 
 def test_url_src():
@@ -170,7 +184,8 @@ def test_drf_url():
     rendered = render(fragment, context={'request': request})
     # As no /vX/ in the request, RESTFRAMEWORK['DEFAULT_VERSION'] is used.
     assert rendered == jinja_helpers.absolutify(
-        reverse_ns('addon-detail', args=['a3615']))
+        reverse_ns('addon-detail', args=['a3615'])
+    )
 
     with pytest.raises(NoReverseMatch):
         # Without a request it can't resolve the name correctly.
@@ -179,10 +194,13 @@ def test_drf_url():
 
 def test_urlparams():
     url = '/en-US/firefox/themes/category'
-    c = {'base': url,
-         'base_frag': url + '#hash',
-         'base_query': url + '?x=y',
-         'sort': 'name', 'frag': 'frag'}
+    c = {
+        'base': url,
+        'base_frag': url + '#hash',
+        'base_query': url + '?x=y',
+        'sort': 'name',
+        'frag': 'frag',
+    }
 
     # Adding a query.
     s = render('{{ base_frag|urlparams(sort=sort) }}', c)
@@ -226,8 +244,7 @@ def test_urlparams_returns_safe_string():
     s = render('{{ "https://foo.com/"|urlparams(param="help+me") }}', {})
     assert s == 'https://foo.com/?param=help%2Bme'
 
-    s = render(
-        u'{{ "https://foo.com/"|urlparams(param="obiwankénobi") }}', {})
+    s = render(u'{{ "https://foo.com/"|urlparams(param="obiwankénobi") }}', {})
     assert s == 'https://foo.com/?param=obiwank%C3%A9nobi'
 
     s = render(u'{{ "https://foo.com/"|urlparams(param=42) }}', {})
@@ -287,8 +304,8 @@ def test_external_url():
 
 
 @patch(
-    'olympia.amo.templatetags.jinja_helpers.urlresolvers.'
-    'get_outgoing_url')
+    'olympia.amo.templatetags.jinja_helpers.urlresolvers.' 'get_outgoing_url'
+)
 def test_linkify_bounce_url_callback(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'bar'
 
@@ -301,7 +318,8 @@ def test_linkify_bounce_url_callback(mock_get_outgoing_url):
 
 @patch(
     'olympia.amo.templatetags.jinja_helpers.urlresolvers.'
-    'linkify_bounce_url_callback')
+    'linkify_bounce_url_callback'
+)
 def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
     def side_effect(attrs, new=False):
         attrs['href'] = 'bar'
@@ -310,8 +328,9 @@ def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
     mock_linkify_bounce_url_callback.side_effect = side_effect
 
     # Without nofollow.
-    res = urlresolvers.linkify_with_outgoing('a text http://example.com link',
-                                             nofollow=False)
+    res = urlresolvers.linkify_with_outgoing(
+        'a text http://example.com link', nofollow=False
+    )
     assert res == 'a text <a href="bar">http://example.com</a> link'
 
     # With nofollow (default).
@@ -320,14 +339,16 @@ def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
     doc = PyQuery(res)
     assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'http://example.com'
 
-    res = urlresolvers.linkify_with_outgoing('a text http://example.com link',
-                                             nofollow=True)
+    res = urlresolvers.linkify_with_outgoing(
+        'a text http://example.com link', nofollow=True
+    )
     assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'http://example.com'
 
 
 @patch(
     'olympia.amo.templatetags.jinja_helpers.urlresolvers.'
-    'linkify_bounce_url_callback')
+    'linkify_bounce_url_callback'
+)
 def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
     def side_effect(attrs, new=False):
         attrs['href'] = 'bar'
@@ -338,45 +359,56 @@ def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
     # Without nofollow.
     res = urlresolvers.linkify_with_outgoing(
         'a markup <a href="http://example.com">link</a> with text',
-        nofollow=False)
+        nofollow=False,
+    )
     assert res == 'a markup <a href="bar">link</a> with text'
 
     # With nofollow (default).
     res = urlresolvers.linkify_with_outgoing(
-        'a markup <a href="http://example.com">link</a> with text')
+        'a markup <a href="http://example.com">link</a> with text'
+    )
     # Use PyQuery because the attributes could be rendered in any order.
     doc = PyQuery(res)
     assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'link'
 
     res = urlresolvers.linkify_with_outgoing(
         'a markup <a href="http://example.com">link</a> with text',
-        nofollow=True)
+        nofollow=True,
+    )
     assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'link'
 
 
 class TestLicenseLink(TestCase):
-
     def test_license_link(self):
         mit = License.objects.create(
-            name='MIT/X11 License', builtin=6, url='http://m.it')
+            name='MIT/X11 License', builtin=6, url='http://m.it'
+        )
         copyright = License.objects.create(
-            name='All Rights Reserved', icons='copyr', builtin=7)
+            name='All Rights Reserved', icons='copyr', builtin=7
+        )
         cc = License.objects.create(
-            name='Creative Commons', url='http://cre.at', builtin=8,
-            some_rights=True, icons='cc-attrib cc-noncom cc-share')
+            name='Creative Commons',
+            url='http://cre.at',
+            builtin=8,
+            some_rights=True,
+            icons='cc-attrib cc-noncom cc-share',
+        )
         cc.save()
         expected = {
             mit: (
                 '<ul class="license"><li class="text">'
-                '<a href="http://m.it">MIT/X11 License</a></li></ul>'),
+                '<a href="http://m.it">MIT/X11 License</a></li></ul>'
+            ),
             copyright: (
                 '<ul class="license"><li class="icon copyr"></li>'
-                '<li class="text">All Rights Reserved</li></ul>'),
+                '<li class="text">All Rights Reserved</li></ul>'
+            ),
             cc: (
                 '<ul class="license"><li class="icon cc-attrib"></li>'
                 '<li class="icon cc-noncom"></li><li class="icon cc-share">'
                 '</li><li class="text"><a href="http://cre.at" '
-                'title="Creative Commons">Some rights reserved</a></li></ul>'),
+                'title="Creative Commons">Some rights reserved</a></li></ul>'
+            ),
         }
         for lic, ex in expected.items():
             res = render('{{ license_link(lic) }}', {'lic': lic})
@@ -409,25 +441,34 @@ class TestLicenseLink(TestCase):
 
     def test_license_link_xss(self):
         mit = License.objects.create(
-            name='<script>', builtin=6, url='<script>')
+            name='<script>', builtin=6, url='<script>'
+        )
         copyright = License.objects.create(
-            name='<script>', icons='<script>', builtin=7)
+            name='<script>', icons='<script>', builtin=7
+        )
         cc = License.objects.create(
-            name='<script>', url='<script>', builtin=8,
-            some_rights=True, icons='<script> cc-noncom cc-share')
+            name='<script>',
+            url='<script>',
+            builtin=8,
+            some_rights=True,
+            icons='<script> cc-noncom cc-share',
+        )
         cc.save()
         expected = {
             mit: (
                 '<ul class="license"><li class="text">'
-                '<a href="&lt;script&gt;">&lt;script&gt;</a></li></ul>'),
+                '<a href="&lt;script&gt;">&lt;script&gt;</a></li></ul>'
+            ),
             copyright: (
                 '<ul class="license"><li class="icon &lt;script&gt;"></li>'
-                '<li class="text">&lt;script&gt;</li></ul>'),
+                '<li class="text">&lt;script&gt;</li></ul>'
+            ),
             cc: (
                 '<ul class="license"><li class="icon &lt;script&gt;"></li>'
                 '<li class="icon cc-noncom"></li><li class="icon cc-share">'
                 '</li><li class="text"><a href="&lt;script&gt;" '
-                'title="&lt;script&gt;">Some rights reserved</a></li></ul>'),
+                'title="&lt;script&gt;">Some rights reserved</a></li></ul>'
+            ),
         }
         for lic, ex in expected.items():
             res = render('{{ license_link(lic) }}', {'lic': lic})
@@ -437,13 +478,15 @@ class TestLicenseLink(TestCase):
 
 def get_image_path(name):
     return os.path.join(
-        settings.ROOT, 'src', 'olympia', 'amo', 'tests', 'images', name)
+        settings.ROOT, 'src', 'olympia', 'amo', 'tests', 'images', name
+    )
 
 
 def get_uploaded_file(name):
     data = open(get_image_path(name)).read()
-    return SimpleUploadedFile(name, data,
-                              content_type=mimetypes.guess_type(name)[0])
+    return SimpleUploadedFile(
+        name, data, content_type=mimetypes.guess_type(name)[0]
+    )
 
 
 def get_addon_file(name):
@@ -451,7 +494,6 @@ def get_addon_file(name):
 
 
 class TestAnimatedImages(TestCase):
-
     def test_animated_images(self):
         img = ImageCheck(open(get_image_path('animated.png')))
         assert img.is_animated()
@@ -500,9 +542,11 @@ def test_jinja_trans_monkeypatch():
 
 def test_absolutify():
     assert jinja_helpers.absolutify('/woo'), urljoin(
-        settings.SITE_URL == '/woo')
+        settings.SITE_URL == '/woo'
+    )
     assert jinja_helpers.absolutify('https://addons.mozilla.org') == (
-        'https://addons.mozilla.org')
+        'https://addons.mozilla.org'
+    )
 
 
 def test_timesince():
@@ -518,7 +562,6 @@ def test_format_unicode():
 
 
 class TestStoragePath(TestCase):
-
     @override_settings(ADDONS_PATH=None, MEDIA_ROOT="/path/")
     def test_without_settings(self):
         del settings.ADDONS_PATH
@@ -532,7 +575,6 @@ class TestStoragePath(TestCase):
 
 
 class TestMediaUrl(TestCase):
-
     @override_settings(USERPICS_URL=None)
     def test_without_settings(self):
         del settings.USERPICS_URL
@@ -542,7 +584,6 @@ class TestMediaUrl(TestCase):
 
 
 class TestIdToPath(TestCase):
-
     def test_with_1_digit(self):
         assert jinja_helpers.id_to_path(1) == '1/1/1'
 

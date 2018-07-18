@@ -19,8 +19,13 @@ from olympia.versions.models import Version
 
 
 class TestLastUpdated(TestCase):
-    fixtures = ['base/addon_3615', 'addons/listed',
-                'addons/persona', 'base/seamonkey', 'base/thunderbird']
+    fixtures = [
+        'base/addon_3615',
+        'addons/listed',
+        'addons/persona',
+        'base/seamonkey',
+        'base/thunderbird',
+    ]
 
     def test_personas(self):
         Addon.objects.update(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC)
@@ -38,13 +43,17 @@ class TestLastUpdated(TestCase):
         """Make sure the catch-all last_updated is stable and accurate."""
         # Nullify all datestatuschanged so the public add-ons hit the
         # catch-all.
-        (File.objects.filter(status=amo.STATUS_PUBLIC)
-         .update(datestatuschanged=None))
+        (
+            File.objects.filter(status=amo.STATUS_PUBLIC).update(
+                datestatuschanged=None
+            )
+        )
         Addon.objects.update(last_updated=None)
 
         cron.addon_last_updated()
-        for addon in Addon.objects.filter(status=amo.STATUS_PUBLIC,
-                                          type=amo.ADDON_EXTENSION):
+        for addon in Addon.objects.filter(
+            status=amo.STATUS_PUBLIC, type=amo.ADDON_EXTENSION
+        ):
             assert addon.last_updated == addon.created
 
         # Make sure it's stable.
@@ -65,16 +74,22 @@ class TestLastUpdated(TestCase):
         AppSupport.objects.all().delete()
         assert AppSupport.objects.filter(addon=3723).count() == 0
         cron.update_addon_appsupport()
-        assert AppSupport.objects.filter(
-            addon=3723, app=amo.FIREFOX.id).count() == 0
+        assert (
+            AppSupport.objects.filter(addon=3723, app=amo.FIREFOX.id).count()
+            == 0
+        )
 
     def test_appsupport_seamonkey(self):
         addon = Addon.objects.get(pk=15663)
         addon.update(status=amo.STATUS_PUBLIC)
         AppSupport.objects.all().delete()
         cron.update_addon_appsupport()
-        assert AppSupport.objects.filter(
-            addon=15663, app=amo.SEAMONKEY.id).count() == 1
+        assert (
+            AppSupport.objects.filter(
+                addon=15663, app=amo.SEAMONKEY.id
+            ).count()
+            == 1
+        )
 
 
 class TestHideDisabledFiles(TestCase):
@@ -85,16 +100,20 @@ class TestHideDisabledFiles(TestCase):
         p = amo.PLATFORM_ALL.id
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         self.version = Version.objects.create(addon=self.addon)
-        self.f1 = File.objects.create(version=self.version, platform=p,
-                                      filename='f1')
-        self.f2 = File.objects.create(version=self.version, filename='f2',
-                                      platform=p)
+        self.f1 = File.objects.create(
+            version=self.version, platform=p, filename='f1'
+        )
+        self.f2 = File.objects.create(
+            version=self.version, filename='f2', platform=p
+        )
 
     @mock.patch('olympia.files.models.os')
     def test_leave_nondisabled_files(self, os_mock):
         # All these addon/file status pairs should stay.
-        stati = ((amo.STATUS_PUBLIC, amo.STATUS_PUBLIC),
-                 (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW))
+        stati = (
+            (amo.STATUS_PUBLIC, amo.STATUS_PUBLIC),
+            (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW),
+        )
         for addon_status, file_status in stati:
             self.addon.update(status=addon_status)
             File.objects.update(status=file_status)
@@ -105,36 +124,42 @@ class TestHideDisabledFiles(TestCase):
     def test_move_user_disabled_addon(self, mv_mock):
         # Use Addon.objects.update so the signal handler isn't called.
         Addon.objects.filter(id=self.addon.id).update(
-            status=amo.STATUS_PUBLIC, disabled_by_user=True)
+            status=amo.STATUS_PUBLIC, disabled_by_user=True
+        )
         File.objects.update(status=amo.STATUS_PUBLIC)
         cron.hide_disabled_files()
         # Check that f2 was moved.
         f2 = self.f2
-        mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path,
-                                   self.msg)
+        mv_mock.assert_called_with(
+            f2.file_path, f2.guarded_file_path, self.msg
+        )
         # Check that f1 was moved as well.
         f1 = self.f1
         mv_mock.call_args = mv_mock.call_args_list[0]
-        mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path,
-                                   self.msg)
+        mv_mock.assert_called_with(
+            f1.file_path, f1.guarded_file_path, self.msg
+        )
         # There's only 2 files, both should have been moved.
         assert mv_mock.call_count == 2
 
     @mock.patch('olympia.files.models.File.move_file')
     def test_move_admin_disabled_addon(self, mv_mock):
         Addon.objects.filter(id=self.addon.id).update(
-            status=amo.STATUS_DISABLED)
+            status=amo.STATUS_DISABLED
+        )
         File.objects.update(status=amo.STATUS_PUBLIC)
         cron.hide_disabled_files()
         # Check that f2 was moved.
         f2 = self.f2
-        mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path,
-                                   self.msg)
+        mv_mock.assert_called_with(
+            f2.file_path, f2.guarded_file_path, self.msg
+        )
         # Check that f1 was moved as well.
         f1 = self.f1
         mv_mock.call_args = mv_mock.call_args_list[0]
-        mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path,
-                                   self.msg)
+        mv_mock.assert_called_with(
+            f1.file_path, f1.guarded_file_path, self.msg
+        )
         # There's only 2 files, both should have been moved.
         assert mv_mock.call_count == 2
 
@@ -143,12 +168,14 @@ class TestHideDisabledFiles(TestCase):
         Addon.objects.filter(id=self.addon.id).update(status=amo.STATUS_PUBLIC)
         File.objects.filter(id=self.f1.id).update(status=amo.STATUS_DISABLED)
         File.objects.filter(id=self.f2.id).update(
-            status=amo.STATUS_AWAITING_REVIEW)
+            status=amo.STATUS_AWAITING_REVIEW
+        )
         cron.hide_disabled_files()
         # Only f1 should have been moved.
         f1 = self.f1
-        mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path,
-                                   self.msg)
+        mv_mock.assert_called_with(
+            f1.file_path, f1.guarded_file_path, self.msg
+        )
         assert mv_mock.call_count == 1
 
     @mock.patch('olympia.files.models.storage.exists')
@@ -161,7 +188,8 @@ class TestHideDisabledFiles(TestCase):
 
         # Use Addon.objects.update so the signal handler isn't called.
         Addon.objects.filter(id=self.addon.id).update(
-            status=amo.STATUS_PUBLIC, disabled_by_user=True)
+            status=amo.STATUS_PUBLIC, disabled_by_user=True
+        )
         File.objects.update(status=amo.STATUS_PUBLIC)
 
         cron.hide_disabled_files()
@@ -181,14 +209,14 @@ class TestHideDisabledFiles(TestCase):
 
 
 class TestUnhideDisabledFiles(TestCase):
-
     def setUp(self):
         super(TestUnhideDisabledFiles, self).setUp()
         p = amo.PLATFORM_ALL.id
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         self.version = Version.objects.create(addon=self.addon)
-        self.file_ = File.objects.create(version=self.version, platform=p,
-                                         filename=u'fé')
+        self.file_ = File.objects.create(
+            version=self.version, platform=p, filename=u'fé'
+        )
 
     @mock.patch('olympia.files.models.os')
     def test_leave_disabled_files(self, os_mock):
@@ -239,16 +267,30 @@ class TestAvgDailyUserCountTestCase(TestCase):
         stats = [
             (today - datetime.timedelta(days=days_in_past), update_count)
             for days_in_past, update_count in (
-                (1, 82708), (2, 78793), (3, 99586), (4, 104426), (5, 105431),
-                (6, 106065), (7, 98093), (8, 81710), (9, 78843), (10, 99383),
-                (11, 104431), (12, 105943), (13, 105039), (14, 100183),
-                (15, 82265)
-            )]
+                (1, 82708),
+                (2, 78793),
+                (3, 99586),
+                (4, 104426),
+                (5, 105431),
+                (6, 106065),
+                (7, 98093),
+                (8, 81710),
+                (9, 78843),
+                (10, 99383),
+                (11, 104431),
+                (12, 105943),
+                (13, 105039),
+                (14, 100183),
+                (15, 82265),
+            )
+        ]
 
-        UpdateCount.objects.bulk_create([
-            UpdateCount(addon=addon, date=date, count=count)
-            for date, count in stats
-        ])
+        UpdateCount.objects.bulk_create(
+            [
+                UpdateCount(addon=addon, date=date, count=count)
+                for date, count in stats
+            ]
+        )
 
         addon.update(average_daily_users=0)
 
@@ -257,8 +299,19 @@ class TestAvgDailyUserCountTestCase(TestCase):
         addon.refresh_from_db()
 
         assert (
-            82708 + 78793 + 99586 + 104426 + 105431 + 106065 + 98093 +
-            81710 + 78843 + 99383 + 104431 + 105943) / 12 == 95451
+            82708
+            + 78793
+            + 99586
+            + 104426
+            + 105431
+            + 106065
+            + 98093
+            + 81710
+            + 78843
+            + 99383
+            + 104431
+            + 105943
+        ) / 12 == 95451
 
         assert addon.average_daily_users == 95451
 
@@ -266,14 +319,13 @@ class TestAvgDailyUserCountTestCase(TestCase):
         addon = Addon.objects.get(pk=3615)
 
         now = datetime.datetime.now()
-        counter = UpdateCount.objects.create(addon=addon, date=now,
-                                             count=1234)
+        counter = UpdateCount.objects.create(addon=addon, date=now, count=1234)
         counter.save()
 
-        assert \
-            addon.average_daily_users > addon.total_downloads + 10000, \
-            ('Unexpected ADU count. ADU of %d not greater than %d' % (
-                addon.average_daily_users, addon.total_downloads + 10000))
+        assert addon.average_daily_users > addon.total_downloads + 10000, (
+            'Unexpected ADU count. ADU of %d not greater than %d'
+            % (addon.average_daily_users, addon.total_downloads + 10000)
+        )
 
         adu = cron.update_addon_average_daily_users
         flag_reindexing_amo('new', 'old', 'alias')
@@ -295,23 +347,28 @@ class TestAvgDailyUserCountTestCase(TestCase):
         addon = Addon.objects.get(pk=3615)
         old_total_downloads = addon.total_downloads
         DownloadCount.objects.update_or_create(
-            addon=addon, date=datetime.date.today(), defaults={'count': 42})
+            addon=addon, date=datetime.date.today(), defaults={'count': 42}
+        )
         DownloadCount.objects.update_or_create(
             addon=addon,
             date=datetime.date.today() - datetime.timedelta(days=1),
-            defaults={'count': 59})
+            defaults={'count': 59},
+        )
 
         addon_deleted = addon_factory()
         addon_deleted.delete()
         DownloadCount.objects.update_or_create(
             addon=addon_deleted,
-            date=datetime.date.today(), defaults={'count': 666})
+            date=datetime.date.today(),
+            defaults={'count': 666},
+        )
 
         addon2 = addon_factory()
         DownloadCount.objects.update_or_create(
             addon=addon2,
             date=datetime.date.today() - datetime.timedelta(days=366),
-            defaults={'count': 21})
+            defaults={'count': 21},
+        )
 
         addon_factory()  # No downloads for this add-on
 
@@ -337,7 +394,6 @@ class TestAvgDailyUserCountTestCase(TestCase):
 
 
 class TestCleanupImageFiles(TestCase):
-
     @mock.patch('olympia.addons.cron.os')
     def test_cleanup_image_files_exists(self, os_mock):
         cron.cleanup_image_files()
@@ -347,8 +403,9 @@ class TestCleanupImageFiles(TestCase):
     @mock.patch('olympia.addons.cron.os.stat')
     @mock.patch('olympia.addons.cron.os.listdir')
     @mock.patch('olympia.addons.cron.os.path')
-    def test_cleanup_image_files_age(self, os_path_mock, os_listdir_mock,
-                                     os_stat_mock, os_unlink_mock):
+    def test_cleanup_image_files_age(
+        self, os_path_mock, os_listdir_mock, os_stat_mock, os_unlink_mock
+    ):
         os_path_mock.exists.return_value = True
         os_listdir_mock.return_value = ['foo']
 

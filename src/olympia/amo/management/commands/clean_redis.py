@@ -51,9 +51,13 @@ def cleanup(master, slave):
         for k in ks:
             pipe.scard(k)
         try:
-            drop = [k for k, size in zip(ks, pipe.execute())
-                    if not k.startswith(settings.CACHE_PREFIX) or
-                    0 < size < MIN or size > MAX]
+            drop = [
+                k
+                for k, size in zip(ks, pipe.execute())
+                if not k.startswith(settings.CACHE_PREFIX)
+                or 0 < size < MIN
+                or size > MAX
+            ]
         except RedisError as err:
             log.warning('ignoring pipe.execute() error: {}'.format(err))
             continue
@@ -72,8 +76,10 @@ def cleanup(master, slave):
         time.sleep(1)  # Poor man's rate limiting.
 
     if total[0]:
-        log.info('Dropped %s keys [%.1f%%].' % (
-            total[1], round(float(total[1]) / total[0] * 100, 1)))
+        log.info(
+            'Dropped %s keys [%.1f%%].'
+            % (total[1], round(float(total[1]) / total[0] * 100, 1))
+        )
 
 
 def get_redis_backend(backend_uri):
@@ -88,8 +94,13 @@ def get_redis_backend(backend_uri):
     except (KeyError, ValueError):
         socket_timeout = None
 
-    return redislib.Redis(host=host, port=port, db=db, password=password,
-                          socket_timeout=socket_timeout)
+    return redislib.Redis(
+        host=host,
+        port=port,
+        db=db,
+        password=password,
+        socket_timeout=socket_timeout,
+    )
 
 
 class Command(BaseCommand):

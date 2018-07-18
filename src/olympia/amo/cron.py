@@ -28,18 +28,21 @@ log = olympia.core.logger.getLogger('z.cron')
 
 def gc(test_result=True):
     """Site-wide garbage collections."""
+
     def days_ago(days):
         return datetime.today() - timedelta(days=days)
 
     log.debug('Collecting data to delete')
 
-    logs = (ActivityLog.objects.filter(created__lt=days_ago(90))
-            .exclude(action__in=amo.LOG_KEEP).values_list('id', flat=True))
+    logs = (
+        ActivityLog.objects.filter(created__lt=days_ago(90))
+        .exclude(action__in=amo.LOG_KEEP)
+        .values_list('id', flat=True)
+    )
 
-    collections_to_delete = (
-        Collection.objects.filter(created__lt=days_ago(2),
-                                  type=amo.COLLECTION_ANONYMOUS)
-        .values_list('id', flat=True))
+    collections_to_delete = Collection.objects.filter(
+        created__lt=days_ago(2), type=amo.COLLECTION_ANONYMOUS
+    ).values_list('id', flat=True)
 
     for chunk in chunked(logs, 100):
         tasks.delete_logs.delay(chunk)
@@ -51,9 +54,23 @@ def gc(test_result=True):
     log.debug('Cleaning up test results extraction cache.')
     # lol at check for '/'
     if settings.MEDIA_ROOT and settings.MEDIA_ROOT != '/':
-        cmd = ('find', settings.MEDIA_ROOT, '-maxdepth', '1', '-name',
-               'validate-*', '-mtime', '+7', '-type', 'd',
-               '-exec', 'rm', '-rf', "{}", ';')
+        cmd = (
+            'find',
+            settings.MEDIA_ROOT,
+            '-maxdepth',
+            '1',
+            '-name',
+            'validate-*',
+            '-mtime',
+            '+7',
+            '-type',
+            'd',
+            '-exec',
+            'rm',
+            '-rf',
+            "{}",
+            ';',
+        )
 
         output = Popen(cmd, stdout=PIPE).communicate()[0]
 
@@ -66,9 +83,20 @@ def gc(test_result=True):
     if user_media_path('collection_icons'):
         log.debug('Cleaning up uncompressed icons.')
 
-        cmd = ('find', user_media_path('collection_icons'),
-               '-name', '*__unconverted', '-mtime', '+1', '-type', 'f',
-               '-exec', 'rm', '{}', ';')
+        cmd = (
+            'find',
+            user_media_path('collection_icons'),
+            '-name',
+            '*__unconverted',
+            '-mtime',
+            '+1',
+            '-type',
+            'f',
+            '-exec',
+            'rm',
+            '{}',
+            ';',
+        )
         output = Popen(cmd, stdout=PIPE).communicate()[0]
 
         for line in output.split("\n"):
@@ -78,9 +106,20 @@ def gc(test_result=True):
     if USERPICS_PATH:
         log.debug('Cleaning up uncompressed userpics.')
 
-        cmd = ('find', USERPICS_PATH,
-               '-name', '*__unconverted', '-mtime', '+1', '-type', 'f',
-               '-exec', 'rm', '{}', ';')
+        cmd = (
+            'find',
+            USERPICS_PATH,
+            '-name',
+            '*__unconverted',
+            '-mtime',
+            '+1',
+            '-type',
+            'f',
+            '-exec',
+            'rm',
+            '{}',
+            ';',
+        )
         output = Popen(cmd, stdout=PIPE).communicate()[0]
 
         for line in output.split("\n"):
@@ -88,10 +127,14 @@ def gc(test_result=True):
 
     # Delete stale FileUploads.
     stale_uploads = FileUpload.objects.filter(
-        created__lte=days_ago(180)).order_by('id')
+        created__lte=days_ago(180)
+    ).order_by('id')
     for file_upload in stale_uploads:
-        log.debug(u'[FileUpload:{uuid}] Removing file: {path}'
-                  .format(uuid=file_upload.uuid, path=file_upload.path))
+        log.debug(
+            u'[FileUpload:{uuid}] Removing file: {path}'.format(
+                uuid=file_upload.uuid, path=file_upload.path
+            )
+        )
         if file_upload.path:
             try:
                 storage.delete(file_upload.path)
@@ -109,7 +152,8 @@ def category_totals():
     file_statuses = ",".join(['%s'] * len(VALID_FILE_STATUSES))
 
     with connection.cursor() as cursor:
-        cursor.execute("""
+        cursor.execute(
+            """
         UPDATE categories AS t INNER JOIN (
          SELECT at.category_id, COUNT(DISTINCT Addon.id) AS ct
           FROM addons AS Addon
@@ -125,8 +169,10 @@ def category_totals():
           GROUP BY at.category_id)
         AS j ON (t.id = j.category_id)
         SET t.count = j.ct
-        """ % (file_statuses, addon_statuses),
-            VALID_FILE_STATUSES + VALID_ADDON_STATUSES)
+        """
+            % (file_statuses, addon_statuses),
+            VALID_FILE_STATUSES + VALID_ADDON_STATUSES,
+        )
 
 
 def collection_subscribers():
@@ -139,11 +185,14 @@ def collection_subscribers():
         return False
 
     with connection.cursor() as cursor:
-        cursor.execute("""
+        cursor.execute(
+            """
             UPDATE collections
             SET weekly_subscribers = 0, monthly_subscribers = 0
-        """)
-        cursor.execute("""
+        """
+        )
+        cursor.execute(
+            """
             UPDATE collections AS c
             INNER JOIN (
                 SELECT
@@ -163,7 +212,8 @@ def collection_subscribers():
             ) AS monthly ON (c.id = monthly.collection_id)
             SET c.weekly_subscribers = weekly.count,
                 c.monthly_subscribers = monthly.count
-        """)
+        """
+        )
 
 
 def weekly_downloads():
@@ -177,12 +227,14 @@ def weekly_downloads():
     raise_if_reindex_in_progress('amo')
 
     with connection.cursor() as cursor:
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT addon_id, SUM(count) AS weekly_count
             FROM download_counts
             WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
             GROUP BY addon_id
-            ORDER BY addon_id""")
+            ORDER BY addon_id"""
+        )
         counts = cursor.fetchall()
 
     addon_ids = [r[0] for r in counts]
@@ -191,21 +243,30 @@ def weekly_downloads():
         return
 
     with connection.cursor() as cursor:
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT id, 0
             FROM addons
-            WHERE id NOT IN %s""", (addon_ids,))
+            WHERE id NOT IN %s""",
+            (addon_ids,),
+        )
         counts += cursor.fetchall()
 
-        cursor.execute("""
+        cursor.execute(
+            """
             CREATE TEMPORARY TABLE tmp_wd
-            (addon_id INT PRIMARY KEY, count INT)""")
-        cursor.execute('INSERT INTO tmp_wd VALUES %s' %
-                       ','.join(['(%s,%s)'] * len(counts)),
-                       list(itertools.chain(*counts)))
+            (addon_id INT PRIMARY KEY, count INT)"""
+        )
+        cursor.execute(
+            'INSERT INTO tmp_wd VALUES %s'
+            % ','.join(['(%s,%s)'] * len(counts)),
+            list(itertools.chain(*counts)),
+        )
 
-        cursor.execute("""
+        cursor.execute(
+            """
             UPDATE addons INNER JOIN tmp_wd
                 ON addons.id = tmp_wd.addon_id
-            SET weeklydownloads = tmp_wd.count""")
+            SET weeklydownloads = tmp_wd.count"""
+        )
         cursor.execute("DROP TABLE IF EXISTS tmp_wd")

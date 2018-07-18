@@ -11,30 +11,48 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import ACTIVITY_MAIL_GROUP
 from olympia.addons.models import (
-    AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
+    AddonApprovalsCounter,
+    AddonReviewerFlags,
+    AddonUser,
+)
 from olympia.amo.tests import (
-    TestCase, addon_factory, file_factory, user_factory, version_factory)
+    TestCase,
+    addon_factory,
+    file_factory,
+    user_factory,
+    version_factory,
+)
 from olympia.files.models import FileValidation
 from olympia.files.utils import atomic_lock
 from olympia.reviewers.management.commands import auto_approve
 from olympia.reviewers.models import (
-    AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
-    AutoApprovalSummary, ReviewerScore, get_reviewing_cache)
+    AutoApprovalNotEnoughFilesError,
+    AutoApprovalNoValidationResultError,
+    AutoApprovalSummary,
+    ReviewerScore,
+    get_reviewing_cache,
+)
 
 
 class TestAutoApproveCommand(TestCase):
     def setUp(self):
         self.user = user_factory(
-            id=settings.TASK_USER_ID, username='taskuser',
-            email='taskuser@mozilla.com')
+            id=settings.TASK_USER_ID,
+            username='taskuser',
+            email='taskuser@mozilla.com',
+        )
         self.addon = addon_factory(average_daily_users=666)
         self.version = version_factory(
-            addon=self.addon, file_kw={
+            addon=self.addon,
+            file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
-                'is_webextension': True})
+                'is_webextension': True,
+            },
+        )
         self.file = self.version.all_files[0]
         self.file_validation = FileValidation.objects.create(
-            file=self.version.all_files[0], validation=u'{}')
+            file=self.version.all_files[0], validation=u'{}'
+        )
         AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
 
         # Always mock log_final_summary() method so we can look at the stats
@@ -59,12 +77,17 @@ class TestAutoApproveCommand(TestCase):
         # still be fetched as a candidate, just rejected later on when
         # calculating the verdict.
         AddonReviewerFlags.objects.create(
-            addon=self.addon, auto_approval_disabled=True)
+            addon=self.addon, auto_approval_disabled=True
+        )
 
         # Add nominated add-on: it should be considered.
-        new_addon = addon_factory(status=amo.STATUS_NOMINATED, file_kw={
-            'status': amo.STATUS_AWAITING_REVIEW,
-            'is_webextension': True})
+        new_addon = addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True,
+            },
+        )
         new_addon_version = new_addon.versions.all()[0]
         new_addon_version.update(nomination=self.days_ago(2))
         # Even add an empty reviewer flags instance, that should not matter.
@@ -72,9 +95,13 @@ class TestAutoApproveCommand(TestCase):
 
         # Add langpack: it should also be considered.
         langpack = addon_factory(
-            type=amo.ADDON_LPAPP, status=amo.STATUS_NOMINATED, file_kw={
+            type=amo.ADDON_LPAPP,
+            status=amo.STATUS_NOMINATED,
+            file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
-                'is_webextension': True})
+                'is_webextension': True,
+            },
+        )
         langpack_version = langpack.versions.all()[0]
         langpack_version.update(nomination=self.days_ago(3))
 
@@ -84,28 +111,41 @@ class TestAutoApproveCommand(TestCase):
 
         # Non-extension with updates.
         search_addon = addon_factory(type=amo.ADDON_SEARCH)
-        version_factory(addon=search_addon, file_kw={
-            'status': amo.STATUS_AWAITING_REVIEW,
-            'is_webextension': True})
+        version_factory(
+            addon=search_addon,
+            file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True,
+            },
+        )
 
         # Disabled add-on with updates.
         disabled_addon = addon_factory(disabled_by_user=True)
-        version_factory(addon=disabled_addon, file_kw={
-            'status': amo.STATUS_AWAITING_REVIEW,
-            'is_webextension': True})
+        version_factory(
+            addon=disabled_addon,
+            file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True,
+            },
+        )
 
         # Add-on with deleted version.
         addon_with_deleted_version = addon_factory()
         deleted_version = version_factory(
-            addon=addon_with_deleted_version, file_kw={
+            addon=addon_with_deleted_version,
+            file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
-                'is_webextension': True})
+                'is_webextension': True,
+            },
+        )
         deleted_version.delete()
 
         # Add-on with a non-webextension update.
         non_webext_addon = addon_factory()
-        version_factory(addon=non_webext_addon, file_kw={
-            'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
+            addon=non_webext_addon,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
 
         # Add-on with 3 versions:
         # - one webext, listed, public.
@@ -113,15 +153,20 @@ class TestAutoApproveCommand(TestCase):
         # - one listed non-webext awaiting review.
         complex_addon = addon_factory(file_kw={'is_webextension': True})
         version_factory(
-            addon=complex_addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
-            file_kw={'is_webextension': True})
-        version_factory(addon=complex_addon, file_kw={
-            'status': amo.STATUS_AWAITING_REVIEW})
+            addon=complex_addon,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'is_webextension': True},
+        )
+        version_factory(
+            addon=complex_addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        )
 
         # Finally, add a second file to self.version to test the distinct().
         file_factory(
-            version=self.version, status=amo.STATUS_AWAITING_REVIEW,
-            is_webextension=True)
+            version=self.version,
+            status=amo.STATUS_AWAITING_REVIEW,
+            is_webextension=True,
+        )
 
         # Gather the candidates.
         command = auto_approve.Command()
@@ -137,20 +182,24 @@ class TestAutoApproveCommand(TestCase):
         assert qs[2] == self.version
 
     @mock.patch(
-        'olympia.reviewers.management.commands.auto_approve.statsd.incr')
+        'olympia.reviewers.management.commands.auto_approve.statsd.incr'
+    )
     @mock.patch(
-        'olympia.reviewers.management.commands.auto_approve.ReviewHelper')
+        'olympia.reviewers.management.commands.auto_approve.ReviewHelper'
+    )
     def test_approve(self, review_helper_mock, statsd_incr_mock):
         command = auto_approve.Command()
         command.approve(self.version)
         assert review_helper_mock.call_count == 1
         assert review_helper_mock.call_args == (
-            (), {'addon': self.addon, 'version': self.version}
+            (),
+            {'addon': self.addon, 'version': self.version},
         )
         assert review_helper_mock().handler.process_public.call_count == 1
         assert statsd_incr_mock.call_count == 1
         assert statsd_incr_mock.call_args == (
-            ('reviewers.auto_approve.approve',), {}
+            ('reviewers.auto_approve.approve',),
+            {},
         )
 
     @mock.patch('olympia.reviewers.utils.sign_file')
@@ -190,21 +239,30 @@ class TestAutoApproveCommand(TestCase):
         assert msg.to == [self.author.email]
         assert msg.from_email == settings.ADDONS_EMAIL
         assert msg.subject == 'Mozilla Add-ons: %s %s Approved' % (
-            unicode(self.addon.name), self.version.version)
+            unicode(self.addon.name),
+            self.version.version,
+        )
 
     @mock.patch.object(auto_approve, 'set_reviewing_cache')
     @mock.patch.object(auto_approve, 'clear_reviewing_cache')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
     def test_locking(
-            self, create_summary_for_version_mock, clear_reviewing_cache_mock,
-            set_reviewing_cache_mock):
+        self,
+        create_summary_for_version_mock,
+        clear_reviewing_cache_mock,
+        set_reviewing_cache_mock,
+    ):
         create_summary_for_version_mock.return_value = (
-            AutoApprovalSummary(), {})
+            AutoApprovalSummary(),
+            {},
+        )
         call_command('auto_approve')
         assert create_summary_for_version_mock.call_count == 1
         assert set_reviewing_cache_mock.call_count == 1
         assert set_reviewing_cache_mock.call_args == (
-            (self.addon.pk, settings.TASK_USER_ID), {})
+            (self.addon.pk, settings.TASK_USER_ID),
+            {},
+        )
         assert clear_reviewing_cache_mock.call_count == 1
         assert clear_reviewing_cache_mock.call_args == ((self.addon.pk,), {})
 
@@ -213,11 +271,17 @@ class TestAutoApproveCommand(TestCase):
     @mock.patch.object(AutoApprovalSummary, 'check_is_locked')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
     def test_no_locking_if_already_locked(
-            self, create_summary_for_version_mock, check_is_locked_mock,
-            clear_reviewing_cache_mock, set_reviewing_cache_mock):
+        self,
+        create_summary_for_version_mock,
+        check_is_locked_mock,
+        clear_reviewing_cache_mock,
+        set_reviewing_cache_mock,
+    ):
         check_is_locked_mock.return_value = True
         create_summary_for_version_mock.return_value = (
-            AutoApprovalSummary(), {})
+            AutoApprovalSummary(),
+            {},
+        )
         call_command('auto_approve')
         assert create_summary_for_version_mock.call_count == 1
         assert set_reviewing_cache_mock.call_count == 0
@@ -226,7 +290,8 @@ class TestAutoApproveCommand(TestCase):
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
     def test_not_enough_files_error(self, create_summary_for_version_mock):
         create_summary_for_version_mock.side_effect = (
-            AutoApprovalNotEnoughFilesError)
+            AutoApprovalNotEnoughFilesError
+        )
         call_command('auto_approve')
         assert get_reviewing_cache(self.addon.pk) is None
         assert create_summary_for_version_mock.call_count == 1
@@ -235,7 +300,8 @@ class TestAutoApproveCommand(TestCase):
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
     def test_no_validation_result(self, create_summary_for_version_mock):
         create_summary_for_version_mock.side_effect = (
-            AutoApprovalNoValidationResultError)
+            AutoApprovalNoValidationResultError
+        )
         call_command('auto_approve')
         assert get_reviewing_cache(self.addon.pk) is None
         assert create_summary_for_version_mock.call_count == 1
@@ -244,51 +310,59 @@ class TestAutoApproveCommand(TestCase):
     @mock.patch.object(auto_approve.Command, 'approve')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
     def test_successful_verdict_dry_run(
-            self, create_summary_for_version_mock, approve_mock):
+        self, create_summary_for_version_mock, approve_mock
+    ):
         create_summary_for_version_mock.return_value = (
-            AutoApprovalSummary(verdict=amo.WOULD_HAVE_BEEN_AUTO_APPROVED), {})
+            AutoApprovalSummary(verdict=amo.WOULD_HAVE_BEEN_AUTO_APPROVED),
+            {},
+        )
         call_command('auto_approve', '--dry-run')
         assert approve_mock.call_count == 0
         assert create_summary_for_version_mock.call_args == (
-            (self.version, ), {'dry_run': True})
+            (self.version,),
+            {'dry_run': True},
+        )
         assert get_reviewing_cache(self.addon.pk) is None
         self._check_stats({'total': 1, 'auto_approved': 1})
 
     @mock.patch.object(auto_approve.Command, 'approve')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
     def test_successful_verdict(
-            self, create_summary_for_version_mock, approve_mock):
+        self, create_summary_for_version_mock, approve_mock
+    ):
         create_summary_for_version_mock.return_value = (
-            AutoApprovalSummary(verdict=amo.AUTO_APPROVED), {})
+            AutoApprovalSummary(verdict=amo.AUTO_APPROVED),
+            {},
+        )
         call_command('auto_approve')
         assert create_summary_for_version_mock.call_count == 1
         assert create_summary_for_version_mock.call_args == (
-            (self.version, ), {'dry_run': False})
+            (self.version,),
+            {'dry_run': False},
+        )
         assert get_reviewing_cache(self.addon.pk) is None
         assert approve_mock.call_count == 1
-        assert approve_mock.call_args == (
-            (self.version, ), {})
+        assert approve_mock.call_args == ((self.version,), {})
         self._check_stats({'total': 1, 'auto_approved': 1})
 
     @mock.patch.object(auto_approve.Command, 'approve')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
     def test_failed_verdict(
-            self, create_summary_for_version_mock, approve_mock):
-        fake_verdict_info = {
-            'is_locked': True
-        }
+        self, create_summary_for_version_mock, approve_mock
+    ):
+        fake_verdict_info = {'is_locked': True}
         create_summary_for_version_mock.return_value = (
             AutoApprovalSummary(verdict=amo.NOT_AUTO_APPROVED),
-            fake_verdict_info)
+            fake_verdict_info,
+        )
         call_command('auto_approve')
         assert approve_mock.call_count == 0
         assert create_summary_for_version_mock.call_args == (
-            (self.version, ), {'dry_run': False})
+            (self.version,),
+            {'dry_run': False},
+        )
         assert get_reviewing_cache(self.addon.pk) is None
-        self._check_stats({
-            'total': 1,
-            'is_locked': 1,
-        })
+        self._check_stats({'total': 1, 'is_locked': 1})
 
     def test_prevent_multiple_runs_in_parallel(self):
         # Create a lock manually, the command should exit immediately without
@@ -309,16 +383,25 @@ class TestAwardPostReviewPoints(TestCase):
         self.addon2 = addon_factory()
         # First user approved content of addon1.
         ActivityLog.create(
-            amo.LOG.APPROVE_CONTENT, self.addon1,
-            self.addon1.current_version, user=self.user1)
+            amo.LOG.APPROVE_CONTENT,
+            self.addon1,
+            self.addon1.current_version,
+            user=self.user1,
+        )
         # Second user confirmed auto-approved of addon2.
         ActivityLog.create(
-            amo.LOG.CONFIRM_AUTO_APPROVED, self.addon2,
-            self.addon2.current_version, user=self.user2)
+            amo.LOG.CONFIRM_AUTO_APPROVED,
+            self.addon2,
+            self.addon2.current_version,
+            user=self.user2,
+        )
         # Third user approved content of addon2.
         ActivityLog.create(
-            amo.LOG.APPROVE_CONTENT, self.addon2,
-            self.addon2.current_version, user=self.user3,)
+            amo.LOG.APPROVE_CONTENT,
+            self.addon2,
+            self.addon2.current_version,
+            user=self.user3,
+        )
 
     def test_missing_auto_approval_summary(self):
         assert ReviewerScore.objects.count() == 0
@@ -329,45 +412,56 @@ class TestAwardPostReviewPoints(TestCase):
         first_score = ReviewerScore.objects.filter(user=self.user1).get()
         assert first_score.addon == self.addon1
         assert first_score.note == (
-            'Retroactively awarded for past post/content review approval.')
+            'Retroactively awarded for past post/content review approval.'
+        )
         assert first_score.note_key == amo.REVIEWED_CONTENT_REVIEW
 
         second_score = ReviewerScore.objects.filter(user=self.user3).get()
         assert second_score.addon == self.addon2
         assert second_score.note == (
-            'Retroactively awarded for past post/content review approval.')
+            'Retroactively awarded for past post/content review approval.'
+        )
         assert second_score.note_key == amo.REVIEWED_CONTENT_REVIEW
 
     def test_full(self):
         AutoApprovalSummary.objects.create(
-            version=self.addon2.current_version, verdict=amo.AUTO_APPROVED,
-            weight=151, confirmed=True)
+            version=self.addon2.current_version,
+            verdict=amo.AUTO_APPROVED,
+            weight=151,
+            confirmed=True,
+        )
         assert ReviewerScore.objects.count() == 0
         call_command('award_post_review_points')
         assert ReviewerScore.objects.count() == 3
         first_score = ReviewerScore.objects.filter(user=self.user1).get()
         assert first_score.addon == self.addon1
         assert first_score.note == (
-            'Retroactively awarded for past post/content review approval.')
+            'Retroactively awarded for past post/content review approval.'
+        )
         assert first_score.note_key == amo.REVIEWED_CONTENT_REVIEW
 
         second_score = ReviewerScore.objects.filter(user=self.user2).get()
         assert second_score.addon == self.addon2
         assert second_score.note == (
-            'Retroactively awarded for past post/content review approval.')
+            'Retroactively awarded for past post/content review approval.'
+        )
         assert second_score.note_key == amo.REVIEWED_EXTENSION_MEDIUM_RISK
 
         third_score = ReviewerScore.objects.filter(user=self.user3).get()
         assert third_score.addon == self.addon2
         assert third_score.note == (
-            'Retroactively awarded for past post/content review approval.')
+            'Retroactively awarded for past post/content review approval.'
+        )
         assert third_score.note_key == amo.REVIEWED_CONTENT_REVIEW
 
     def test_run_twice(self):
         # Running twice should only generate the scores once.
         AutoApprovalSummary.objects.create(
-            version=self.addon2.current_version, verdict=amo.AUTO_APPROVED,
-            weight=151, confirmed=True)
+            version=self.addon2.current_version,
+            verdict=amo.AUTO_APPROVED,
+            weight=151,
+            confirmed=True,
+        )
         call_command('award_post_review_points')
         call_command('award_post_review_points')
         assert ReviewerScore.objects.count() == 3
@@ -379,7 +473,9 @@ class TestRecalculatePostReviewWeightsCommand(TestCase):
         addon = addon_factory()
         AutoApprovalSummary.objects.create(
             version=addon.current_version,
-            verdict=amo.AUTO_APPROVED, confirmed=True)
+            verdict=amo.AUTO_APPROVED,
+            confirmed=True,
+        )
         call_command('recalculate_post_review_weights')
         assert calculate_weight_mock.call_count == 0
 
@@ -388,7 +484,9 @@ class TestRecalculatePostReviewWeightsCommand(TestCase):
         addon = addon_factory()
         AutoApprovalSummary.objects.create(
             version=addon.current_version,
-            verdict=amo.NOT_AUTO_APPROVED, confirmed=False)
+            verdict=amo.NOT_AUTO_APPROVED,
+            confirmed=False,
+        )
         call_command('recalculate_post_review_weights')
         assert calculate_weight_mock.call_count == 0
 
@@ -396,7 +494,10 @@ class TestRecalculatePostReviewWeightsCommand(TestCase):
         addon = addon_factory()
         summary = AutoApprovalSummary.objects.create(
             version=addon.current_version,
-            verdict=amo.AUTO_APPROVED, confirmed=False, weight=500)
+            verdict=amo.AUTO_APPROVED,
+            confirmed=False,
+            weight=500,
+        )
         old_modified_date = self.days_ago(42)
         summary.update(modified=old_modified_date)
         call_command('recalculate_post_review_weights')
@@ -408,7 +509,10 @@ class TestRecalculatePostReviewWeightsCommand(TestCase):
         addon = addon_factory()
         summary = AutoApprovalSummary.objects.create(
             version=addon.current_version,
-            verdict=amo.AUTO_APPROVED, confirmed=False, weight=666)
+            verdict=amo.AUTO_APPROVED,
+            confirmed=False,
+            weight=666,
+        )
         old_modified_date = self.days_ago(42)
         summary.update(modified=old_modified_date)
         call_command('recalculate_post_review_weights')
@@ -418,29 +522,35 @@ class TestRecalculatePostReviewWeightsCommand(TestCase):
 
 
 class TestSendInfoRequestLastWarningNotification(TestCase):
-    @mock.patch('olympia.reviewers.management.commands.'
-                'send_info_request_last_warning_notifications.'
-                'notify_about_activity_log')
+    @mock.patch(
+        'olympia.reviewers.management.commands.'
+        'send_info_request_last_warning_notifications.'
+        'notify_about_activity_log'
+    )
     def test_non_expired(self, notify_about_activity_log_mock):
         addon_factory()  # Normal add-on, no pending info request.
         addon_not_expired = addon_factory()
         flags = AddonReviewerFlags.objects.create(
             addon=addon_not_expired,
-            pending_info_request=datetime.now() + timedelta(days=1, hours=3))
+            pending_info_request=datetime.now() + timedelta(days=1, hours=3),
+        )
         call_command('send_info_request_last_warning_notifications')
         assert notify_about_activity_log_mock.call_count == 0
         assert flags.notified_about_expiring_info_request is False
 
-    @mock.patch('olympia.reviewers.management.commands.'
-                'send_info_request_last_warning_notifications.'
-                'notify_about_activity_log')
+    @mock.patch(
+        'olympia.reviewers.management.commands.'
+        'send_info_request_last_warning_notifications.'
+        'notify_about_activity_log'
+    )
     def test_already_notified(self, notify_about_activity_log_mock):
         addon_factory()
         addon_already_notified = addon_factory()
         flags = AddonReviewerFlags.objects.create(
             addon=addon_already_notified,
             pending_info_request=datetime.now() + timedelta(hours=23),
-            notified_about_expiring_info_request=True)
+            notified_about_expiring_info_request=True,
+        )
         call_command('send_info_request_last_warning_notifications')
         assert notify_about_activity_log_mock.call_count == 0
         assert flags.notified_about_expiring_info_request is True
@@ -453,14 +563,19 @@ class TestSendInfoRequestLastWarningNotification(TestCase):
         flags = AddonReviewerFlags.objects.create(
             addon=addon,
             pending_info_request=datetime.now() + timedelta(hours=23),
-            notified_about_expiring_info_request=False)
+            notified_about_expiring_info_request=False,
+        )
         # Create reviewer and staff users, and create the request for info
         # activity. Neither the reviewer nor the staff user should be cc'ed.
         reviewer = user_factory(username=u'Revièwer')
         self.grant_permission(reviewer, 'Addons:Review')
         ActivityLog.create(
-            amo.LOG.REQUEST_INFORMATION, addon, addon.current_version,
-            user=reviewer, details={'comments': u'Fly you fôöls!'})
+            amo.LOG.REQUEST_INFORMATION,
+            addon,
+            addon.current_version,
+            user=reviewer,
+            details={'comments': u'Fly you fôöls!'},
+        )
         staff = user_factory(username=u'Staff Ûser')
         self.grant_permission(staff, 'Some:Perm', name=ACTIVITY_MAIL_GROUP)
 
@@ -471,7 +586,9 @@ class TestSendInfoRequestLastWarningNotification(TestCase):
         msg = mail.outbox[0]
         assert msg.to == [author.email]
         assert msg.subject == u'Mozilla Add-ons: Action Required for %s %s' % (
-            addon.name, addon.current_version.version)
+            addon.name,
+            addon.current_version.version,
+        )
         assert 'an issue when reviewing ' in msg.body
         assert 'within one (1) day' in msg.body
 

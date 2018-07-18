@@ -47,8 +47,14 @@ def clean_url_prefixes():
         delattr(_local, 'prefix')
 
 
-def reverse(viewname, urlconf=None, args=None, kwargs=None,
-            current_app=None, add_prefix=True):
+def reverse(
+    viewname,
+    urlconf=None,
+    args=None,
+    kwargs=None,
+    current_app=None,
+    add_prefix=True,
+):
     """Wraps django's reverse to prepend the correct locale and app."""
     prefixer = get_url_prefix()
     url = django_reverse(viewname, urlconf, args, kwargs, current_app)
@@ -76,7 +82,6 @@ urls.resolve = resolve
 
 
 class Prefixer(object):
-
     def __init__(self, request):
         self.request = request
         split = self.split_path(request.path_info)
@@ -137,7 +142,7 @@ class Prefixer(object):
         user's Accept Language header to determine which is best.  This
         mostly follows the RFCs but read bug 439568 for details.
         """
-        data = (self.request.GET or self.request.POST)
+        data = self.request.GET or self.request.POST
         if 'lang' in data:
             lang = data['lang'].lower()
             if lang in settings.LANGUAGE_URL_MAP:
@@ -182,17 +187,21 @@ def get_outgoing_url(url):
         return '/'
 
     # No double-escaping, and some domain names are excluded.
-    if (url_netloc == urlparse(settings.REDIRECT_URL).netloc or
-            url_netloc in settings.REDIRECT_URL_ALLOW_LIST):
+    if (
+        url_netloc == urlparse(settings.REDIRECT_URL).netloc
+        or url_netloc in settings.REDIRECT_URL_ALLOW_LIST
+    ):
         return url
 
     url = force_bytes(jinja2.utils.Markup(url).unescape())
-    sig = hmac.new(settings.REDIRECT_SECRET_KEY,
-                   msg=url, digestmod=hashlib.sha256).hexdigest()
+    sig = hmac.new(
+        settings.REDIRECT_SECRET_KEY, msg=url, digestmod=hashlib.sha256
+    ).hexdigest()
     # Let '&=' through so query params aren't escaped.  We probably shouldn't
     # bother to quote the query part at all.
-    return '/'.join([settings.REDIRECT_URL.rstrip('/'), sig,
-                     urllib.quote(url, safe='/&=')])
+    return '/'.join(
+        [settings.REDIRECT_URL.rstrip('/'), sig, urllib.quote(url, safe='/&=')]
+    )
 
 
 def linkify_bounce_url_callback(attrs, new=False):
@@ -217,9 +226,10 @@ def linkify_only_full_urls(attrs, new=False):
 # URLs end at the first occurrence of white space, or certain special
 # characters (<>()"'). Full stops and commas are included unless
 # they're followed by a space, or the end of the string.
-URL_RE = re.compile(r'\bhttps?://([a-z0-9-]+\.)+({0})/'
-                    r'([^\s<>()"\x27.,]|[.,](?!\s|$))*'
-                    .format('|'.join(bleach.TLDS)))
+URL_RE = re.compile(
+    r'\bhttps?://([a-z0-9-]+\.)+({0})/'
+    r'([^\s<>()"\x27.,]|[.,](?!\s|$))*'.format('|'.join(bleach.TLDS))
+)
 
 
 def linkify_escape(text):

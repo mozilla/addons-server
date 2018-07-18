@@ -14,10 +14,8 @@ from olympia.github.tests.test_github import GithubBaseTestCase
 
 @override_settings(GITHUB_API_USER='key', GITHUB_API_TOKEN='token')
 class TestGithub(AMOPaths, GithubBaseTestCase):
-
     def get_url(self, upload_uuid):
-        return absolutify(
-            reverse('devhub.upload_detail', args=[upload_uuid]))
+        return absolutify(reverse('devhub.upload_detail', args=[upload_uuid]))
 
     def test_good_results(self):
         upload = FileUpload.objects.create(
@@ -33,22 +31,28 @@ class TestGithub(AMOPaths, GithubBaseTestCase):
 
     def test_error_results(self):
         upload = FileUpload.objects.create(
-            validation=json.dumps({
-                'errors': 1,
-                'messages': [{
-                    'description': ['foo'],
-                    'file': 'some/file',
-                    'line': 3,
-                    'type': 'error'
-                }]
-            })
+            validation=json.dumps(
+                {
+                    'errors': 1,
+                    'messages': [
+                        {
+                            'description': ['foo'],
+                            'file': 'some/file',
+                            'line': 3,
+                            'type': 'error',
+                        }
+                    ],
+                }
+            )
         )
         process_results(upload.pk, self.data)
         error = self.requests.post.call_args_list[0]
         self.check_status(
             'error',
-            call=error, description=mock.ANY,
-            target_url=self.get_url(upload.uuid))
+            call=error,
+            description=mock.ANY,
+            target_url=self.get_url(upload.uuid),
+        )
 
     def test_webhook(self):
         upload = FileUpload.objects.create()

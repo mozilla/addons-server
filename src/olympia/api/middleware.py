@@ -17,4 +17,5 @@ class GZipMiddlewareForAPIOnly(GZipMiddleware):
             return response
 
         return super(GZipMiddlewareForAPIOnly, self).process_response(
-            request, response)
+            request, response
+        )

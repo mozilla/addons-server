@@ -13,7 +13,6 @@ def test_default_settings_no_report_only():
 
 @override_settings(CSP_REPORT_ONLY=False)
 class TestCSPHeaders(TestCase):
-
     def test_for_specific_csp_settings(self):
         """Test that required settings are provided as headers."""
         response = self.client.get('/en-US/firefox/')
@@ -111,8 +110,10 @@ class TestCSPHeaders(TestCase):
         """Check for anaytics hosts in img-src and script-src"""
         analytics_host = base_settings.ANALYTICS_HOST
         assert analytics_host in base_settings.CSP_IMG_SRC
-        assert 'https://ssl.google-analytics.com/ga.js' in \
-            base_settings.CSP_SCRIPT_SRC
+        assert (
+            'https://ssl.google-analytics.com/ga.js'
+            in base_settings.CSP_SCRIPT_SRC
+        )
 
     def test_csp_settings_not_overriden_for_prod(self):
         """Checks sites/prod/settings.py doesn't have CSP_* settings.
@@ -126,7 +127,8 @@ class TestCSPHeaders(TestCase):
 
         """
         path = os.path.join(
-            settings.ROOT, 'src', 'olympia', 'conf', 'prod', 'settings.py')
+            settings.ROOT, 'src', 'olympia', 'conf', 'prod', 'settings.py'
+        )
 
         with open(path) as f:
             data = f.read()

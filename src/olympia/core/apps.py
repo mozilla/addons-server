@@ -30,6 +30,7 @@ class CoreConfig(AppConfig):
     def enable_urllib_certificate_checking(self):
         # From requests's packages/urllib3/contrib/pyopenssl.py
         import urllib3.contrib.pyopenssl
+
         urllib3.contrib.pyopenssl.inject_into_urllib3()
 
     def load_product_details(self):
@@ -55,8 +56,11 @@ class CoreConfig(AppConfig):
             try:
                 limit = int(os.environ['RECURSION_LIMIT'])
             except TypeError:
-                log.warning('Unable to parse RECURSION_LIMIT "{}"'.format(
-                    os.environ['RECURSION_LIMIT']))
+                log.warning(
+                    'Unable to parse RECURSION_LIMIT "{}"'.format(
+                        os.environ['RECURSION_LIMIT']
+                    )
+                )
             else:
                 sys.setrecursionlimit(limit)
                 log.info('Set RECURSION_LIMIT to {}'.format(limit))

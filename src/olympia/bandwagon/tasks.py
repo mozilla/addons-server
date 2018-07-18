@@ -13,7 +13,11 @@ from olympia.amo.utils import attach_trans_dict, resize_image
 from olympia.tags.models import Tag
 
 from .models import (
-    Collection, CollectionAddon, CollectionVote, CollectionWatcher)
+    Collection,
+    CollectionAddon,
+    CollectionVote,
+    CollectionWatcher,
+)
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -22,8 +26,10 @@ log = olympia.core.logger.getLogger('z.task')
 @task
 @use_primary_db
 def collection_votes(*ids, **kw):
-    log.info('[%s@%s] Updating collection votes.' %
-             (len(ids), collection_votes.rate_limit))
+    log.info(
+        '[%s@%s] Updating collection votes.'
+        % (len(ids), collection_votes.rate_limit)
+    )
     for collection_id in ids:
         qs = CollectionVote.objects.filter(collection=collection_id)
         votes = dict(qs.values_list('vote').annotate(Count('vote')))
@@ -68,15 +74,24 @@ def delete_icon(dst, **kw):
 @task
 @use_primary_db
 def collection_meta(*ids, **kw):
-    log.info('[%s@%s] Updating collection metadata.' %
-             (len(ids), collection_meta.rate_limit))
-    qs = (CollectionAddon.objects.filter(collection__in=ids)
-          .values_list('collection'))
+    log.info(
+        '[%s@%s] Updating collection metadata.'
+        % (len(ids), collection_meta.rate_limit)
+    )
+    qs = CollectionAddon.objects.filter(collection__in=ids).values_list(
+        'collection'
+    )
     counts = dict(qs.annotate(Count('id')))
-    persona_counts = dict(qs.filter(addon__type=amo.ADDON_PERSONA)
-                          .annotate(Count('id')))
-    tags = (Tag.objects.not_denied().values_list('id')
-            .annotate(cnt=Count('id')).filter(cnt__gt=1).order_by('-cnt'))
+    persona_counts = dict(
+        qs.filter(addon__type=amo.ADDON_PERSONA).annotate(Count('id'))
+    )
+    tags = (
+        Tag.objects.not_denied()
+        .values_list('id')
+        .annotate(cnt=Count('id'))
+        .filter(cnt__gt=1)
+        .order_by('-cnt')
+    )
     for collection in Collection.objects.filter(id__in=ids):
         addon_count = counts.get(collection.id, 0)
         all_personas = addon_count == persona_counts.get(collection.id, None)
@@ -84,22 +99,25 @@ def collection_meta(*ids, **kw):
         # top_tags is a special object that updates directly in cache when you
         # set it.
         collection.top_tags = [
-            t for t, _ in tags.filter(addons__in=addons)[:5]]
+            t for t, _ in tags.filter(addons__in=addons)[:5]
+        ]
         # Update addon_count and all_personas, avoiding to hit the post_save
         # signal by using queryset.update().
         Collection.objects.filter(id=collection.id).update(
-            addon_count=addon_count, all_personas=all_personas)
+            addon_count=addon_count, all_personas=all_personas
+        )
 
 
 @task
 @use_primary_db
 def collection_watchers(*ids, **kw):
-    log.info('[%s@%s] Updating collection watchers.' %
-             (len(ids), collection_watchers.rate_limit))
+    log.info(
+        '[%s@%s] Updating collection watchers.'
+        % (len(ids), collection_watchers.rate_limit)
+    )
     for pk in ids:
         try:
-            watchers = (CollectionWatcher.objects.filter(collection=pk)
-                                         .count())
+            watchers = CollectionWatcher.objects.filter(collection=pk).count()
             Collection.objects.filter(pk=pk).update(subscribers=watchers)
             log.info('Updated collection watchers: %s' % pk)
         except Exception as e:

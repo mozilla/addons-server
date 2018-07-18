@@ -25,7 +25,8 @@ class ManualOrderTest(TestCase):
 
         semi_arbitrary_order = [40, 5299, 3615]
         addons = amo_models.manual_order(
-            Addon.objects.all(), semi_arbitrary_order)
+            Addon.objects.all(), semi_arbitrary_order
+        )
         assert semi_arbitrary_order == [addon.id for addon in addons]
 
 
@@ -98,12 +99,12 @@ class TestModelBase(TestCase):
         assert kw['sender'] == Addon
 
     def test_change_is_not_recursive(self):
-
         class fn:
             called = False
 
-        def callback(old_attr=None, new_attr=None, instance=None,
-                     sender=None, **kw):
+        def callback(
+            old_attr=None, new_attr=None, instance=None, sender=None, **kw
+        ):
             fn.called = True
             # Both save and update should be protected:
             instance.update(public_stats=True)
@@ -146,7 +147,6 @@ class TestModelBase(TestCase):
 
 
 class BasePreviewMixin(object):
-
     def get_object(self):
         raise NotImplementedError
 
@@ -194,10 +194,12 @@ class BaseQuerysetTestCase(TestCase):
         # We test with the SiteEvent model because it's a simple model
         # with no translated fields, no caching or other fancy features.
         SiteEvent.objects.create(start=datetime.now(), description='Zero')
-        first = SiteEvent.objects.create(start=datetime.now(),
-                                         description='First')
-        second = SiteEvent.objects.create(start=datetime.now(),
-                                          description='Second')
+        first = SiteEvent.objects.create(
+            start=datetime.now(), description='First'
+        )
+        second = SiteEvent.objects.create(
+            start=datetime.now(), description='Second'
+        )
         SiteEvent.objects.create(start=datetime.now(), description='Third')
         SiteEvent.objects.create(start=datetime.now(), description='')
 
@@ -208,10 +210,13 @@ class BaseQuerysetTestCase(TestCase):
             qs = amo_models.BaseQuerySet(SiteEvent)
             qs = qs.exclude(description='').order_by('id')[1:3]
             qs = qs.transform(
-                lambda items: seen_by_first_transform.extend(list(items)))
+                lambda items: seen_by_first_transform.extend(list(items))
+            )
             qs = qs.transform(
                 lambda items: seen_by_second_transform.extend(
-                    list(reversed(items))))
+                    list(reversed(items))
+                )
+            )
         with self.assertNumQueries(1):
             assert list(qs) == [first, second]
         # Check that each transform function was hit correctly, once.

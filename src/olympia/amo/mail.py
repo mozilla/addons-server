@@ -50,8 +50,9 @@ class DevEmailBackend(BaseEmailBackend):
 
     def view_all(self):
         """Useful for displaying messages in admin panel."""
-        return (FakeEmail.objects.values_list('message', flat=True)
-                .order_by('-created'))
+        return FakeEmail.objects.values_list('message', flat=True).order_by(
+            '-created'
+        )
 
     def clear(self):
         return FakeEmail.objects.all().delete()

@@ -20,8 +20,13 @@ def truncate_text(text, limit, killwords=False, end='...'):
     # Explicitly add "end" in any case, as Jinja can't know we're truncating
     # for real here, even though we might be at the end of a word.
     text = jinja2.filters.do_truncate(
-        engines['jinja2'].env, text, length=limit, killwords=killwords,
-        leeway=0, end='')
+        engines['jinja2'].env,
+        text,
+        length=limit,
+        killwords=killwords,
+        leeway=0,
+        end='',
+    )
 
     return text + end, 0
 
@@ -77,7 +82,8 @@ def truncate(html, length, killwords=False, end='...'):
         walker = html5lib.treewalkers.getTreeWalker('etree')
         stream = walker(short)
         serializer = html5lib.serializer.htmlserializer.HTMLSerializer(
-            quote_attr_values=True, omit_optional_tags=False)
+            quote_attr_values=True, omit_optional_tags=False
+        )
         return jinja2.Markup(force_text(serializer.render(stream)))
 
 
@@ -94,8 +100,14 @@ def transfield_changed(field, initial, data):
                                                          'en-us': 'x',
                                                          'en-br': 'y'}
     """
-    initial = [(k, v.localized_string) for k, v in initial.iteritems()
-               if '%s_' % field in k and v is not None]
-    data = [('%s_%s' % (field, k), v) for k, v in data[field].iteritems()
-            if k != 'init']
+    initial = [
+        (k, v.localized_string)
+        for k, v in initial.iteritems()
+        if '%s_' % field in k and v is not None
+    ]
+    data = [
+        ('%s_%s' % (field, k), v)
+        for k, v in data[field].iteritems()
+        if k != 'init'
+    ]
     return set(initial) != set(data)

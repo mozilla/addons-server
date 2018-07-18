@@ -7,7 +7,8 @@ from django.conf import settings  # noqa
 
 
 sys.path.insert(
-    0, dirname(dirname(dirname(dirname(os.path.abspath(__file__))))))
+    0, dirname(dirname(dirname(dirname(os.path.abspath(__file__)))))
+)
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
@@ -33,4 +34,5 @@ else:
 db = s.format(**config)
 table = 'schema_version'
 handlers = {
-    '.py': sys.executable + ' -B manage.py runscript olympia.migrations.%s'}
+    '.py': sys.executable + ' -B manage.py runscript olympia.migrations.%s'
+}

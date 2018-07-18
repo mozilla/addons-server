@@ -29,14 +29,19 @@ class Command(BaseCommand):
         """Handle command arguments."""
         parser.add_argument('num', type=int)
         parser.add_argument(
-            '--owner', action='store', dest='email',
+            '--owner',
+            action='store',
+            dest='email',
             default='nobody@mozilla.org',
-            help="Specific owner's email to be created.")
+            help="Specific owner's email to be created.",
+        )
 
     def handle(self, *args, **kwargs):
         if not settings.DEBUG:
-            raise CommandError('You can only run this command with your '
-                               'DEBUG setting set to True.')
+            raise CommandError(
+                'You can only run this command with your '
+                'DEBUG setting set to True.'
+            )
         num = int(kwargs.get('num'))
         email = kwargs.get('email')
 

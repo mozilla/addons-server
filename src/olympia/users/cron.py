@@ -36,13 +36,17 @@ def update_user_ratings():
                 AND reviews.rating > 0
                 AND addons.status IN (%s)
               GROUP BY addons_users.user_id
-              """ % (",".join(map(str, VALID_ADDON_STATUSES)))
+              """ % (
+        ",".join(map(str, VALID_ADDON_STATUSES))
+    )
 
     cursor.execute(q)
     d = cursor.fetchall()
     cursor.close()
 
-    ts = [update_user_ratings_task.subtask(args=[chunk])
-          for chunk in chunked(d, 1000)]
+    ts = [
+        update_user_ratings_task.subtask(args=[chunk])
+        for chunk in chunked(d, 1000)
+    ]
 
     group(ts).apply_async()

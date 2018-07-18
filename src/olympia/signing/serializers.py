@@ -49,27 +49,42 @@ class FileUploadSerializer(serializers.ModelSerializer):
         super(FileUploadSerializer, self).__init__(*args, **kwargs)
 
     def get_url(self, instance):
-        return absolutify(drf_reverse(
-            'signing.version', request=self._context.get('request'),
-            args=[instance.addon.guid, instance.version, instance.uuid.hex]))
+        return absolutify(
+            drf_reverse(
+                'signing.version',
+                request=self._context.get('request'),
+                args=[
+                    instance.addon.guid,
+                    instance.version,
+                    instance.uuid.hex,
+                ],
+            )
+        )
 
     def get_validation_url(self, instance):
         return absolutify(
-            dj_reverse('devhub.upload_detail', args=[instance.uuid.hex]))
+            dj_reverse('devhub.upload_detail', args=[instance.uuid.hex])
+        )
 
     def _get_download_url(self, file_):
         url = drf_reverse(
-            'signing.file', request=self._context.get('request'),
-            kwargs={'file_id': file_.id})
+            'signing.file',
+            request=self._context.get('request'),
+            kwargs={'file_id': file_.id},
+        )
         url = os.path.join(url, file_.filename)
         return absolutify(urlparams(url, src='api'))
 
     def get_files(self, instance):
         if self.version is not None:
-            return [{'download_url': self._get_download_url(f),
-                     'hash': f.hash,
-                     'signed': f.is_signed}
-                    for f in self.version.files.all()]
+            return [
+                {
+                    'download_url': self._get_download_url(f),
+                    'hash': f.hash,
+                    'signed': f.is_signed,
+                }
+                for f in self.version.files.all()
+            ]
         else:
             return []
 
@@ -87,8 +102,10 @@ class FileUploadSerializer(serializers.ModelSerializer):
 
     def get_active(self, instance):
         if self.version is not None:
-            return all(file_.status in amo.REVIEWED_STATUSES
-                       for file_ in self.version.all_files)
+            return all(
+                file_.status in amo.REVIEWED_STATUSES
+                for file_ in self.version.all_files
+            )
         else:
             return False
 

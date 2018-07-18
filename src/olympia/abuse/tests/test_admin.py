@@ -19,8 +19,11 @@ class TestAbuse(TestCase):
         # Create a few abuse reports
         AbuseReport.objects.create(addon=addon, message='Foo')
         AbuseReport.objects.create(
-            addon=addon, ip_address='1.2.3.4', reporter=user_factory(),
-            message='Bar')
+            addon=addon,
+            ip_address='1.2.3.4',
+            reporter=user_factory(),
+            message='Bar',
+        )
         # This is a report for an addon not in the database
         AbuseReport.objects.create(guid='@guid', message='Foo')
         AbuseReport.objects.create(user=user_factory(), message='Eheheheh')

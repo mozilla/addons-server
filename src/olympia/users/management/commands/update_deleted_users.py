@@ -5,6 +5,7 @@ from olympia.users.models import UserProfile
 
 class Command(BaseCommand):
     """Make sure we are correctly anonymizing deleted users."""
+
     help = 'Re-anonymize already deleted users.'
 
     def handle(self, *args, **options):
@@ -13,4 +14,5 @@ class Command(BaseCommand):
 
         self.stdout.write(
             'Done, all anonymized users got re-anonymized again. '
-            'New fields got deleted/anonymized now.')
+            'New fields got deleted/anonymized now.'
+        )

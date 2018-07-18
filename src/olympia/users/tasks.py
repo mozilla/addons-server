@@ -18,8 +18,9 @@ def delete_photo(dst, **kw):
     task_log.debug('[1@None] Deleting photo: %s.' % dst)
 
     if not dst.startswith(user_media_path('userpics')):
-        task_log.error("Someone tried deleting something they shouldn't: %s"
-                       % dst)
+        task_log.error(
+            "Someone tried deleting something they shouldn't: %s" % dst
+        )
         return
 
     try:
@@ -43,8 +44,11 @@ def resize_photo(src, dst, locally=False, **kw):
 
 @task(rate_limit='15/m')
 def update_user_ratings_task(data, **kw):
-    task_log.info("[%s@%s] Updating add-on author's ratings." %
-                  (len(data), update_user_ratings_task.rate_limit))
+    task_log.info(
+        "[%s@%s] Updating add-on author's ratings."
+        % (len(data), update_user_ratings_task.rate_limit)
+    )
     for pk, rating in data:
         UserProfile.objects.filter(pk=pk).update(
-            averagerating=round(float(rating), 2))
+            averagerating=round(float(rating), 2)
+        )

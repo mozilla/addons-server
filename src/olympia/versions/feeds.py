@@ -29,11 +29,13 @@ class PagedFeed(DefaultFeed):
         # http://tools.ietf.org/html/rfc5005#section-3
         self.add_page_relation(handler, 'first', 1)
         if self.page.has_previous():
-            self.add_page_relation(handler, 'previous',
-                                   self.page.previous_page_number())
+            self.add_page_relation(
+                handler, 'previous', self.page.previous_page_number()
+            )
         if self.page.has_next():
-            self.add_page_relation(handler, 'next',
-                                   self.page.next_page_number())
+            self.add_page_relation(
+                handler, 'next', self.page.next_page_number()
+            )
         self.add_page_relation(handler, 'last', self.page.paginator.num_pages)
 
 
@@ -49,9 +51,11 @@ class VersionsRss(NonAtomicFeed):
         self.addon = get_object_or_404(qs.id_or_slug(addon_id) & qs.valid())
 
         status_list = amo.VALID_FILE_STATUSES
-        items_qs = (self.addon.versions
-                    .filter(files__status__in=status_list)
-                    .distinct().order_by('-created'))
+        items_qs = (
+            self.addon.versions.filter(files__status__in=status_list)
+            .distinct()
+            .order_by('-created')
+        )
         self.feed_type.page = amo.utils.paginate(request, items_qs, PER_PAGE)
         return self.addon
 
@@ -79,8 +83,10 @@ class VersionsRss(NonAtomicFeed):
         """Title for particular version (<item><title>)"""
         # L10n: This is the Title for this Version of the Addon
         return u'{name} {version} - {created}'.format(
-            name=self.addon.name, version=version.version,
-            created=format_date(version.created))
+            name=self.addon.name,
+            version=version.version,
+            created=format_date(version.created),
+        )
 
     def item_description(self, version):
         """Description for particular version (<item><description>)"""

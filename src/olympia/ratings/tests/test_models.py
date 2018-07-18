@@ -36,8 +36,10 @@ class TestRatingModel(TestCase):
         rating = Rating.objects.get(id=1)
         rating.delete(user_responsible=user_responsible)
         assert log_mock.info.call_count == 1
-        assert (log_mock.info.call_args[0][0] ==
-                'Rating deleted: %s deleted id:%s by %s ("%s")')
+        assert (
+            log_mock.info.call_args[0][0]
+            == 'Rating deleted: %s deleted id:%s by %s ("%s")'
+        )
         assert log_mock.info.call_args[0][1] == user_responsible.name
         assert log_mock.info.call_args[0][2] == rating.pk
         assert log_mock.info.call_args[0][3] == rating.user.name
@@ -66,8 +68,10 @@ class TestRatingModel(TestCase):
     def test_soft_delete_replies_are_hidden(self):
         rating = Rating.objects.get(pk=1)
         Rating.objects.create(
-            addon=rating.addon, reply_to=rating,
-            user=UserProfile.objects.all()[0])
+            addon=rating.addon,
+            reply_to=rating,
+            user=UserProfile.objects.all()[0],
+        )
         assert Rating.objects.count() == 3
         assert Rating.unfiltered.count() == 3
         assert Rating.without_replies.count() == 2
@@ -117,8 +121,10 @@ class TestRatingModel(TestCase):
         assert activity_log.arguments == [rating.addon, rating]
 
         assert log_mock.info.call_count == 1
-        assert (log_mock.info.call_args[0][0] ==
-                'Rating deleted: %s deleted id:%s by %s ("%s")')
+        assert (
+            log_mock.info.call_args[0][0]
+            == 'Rating deleted: %s deleted id:%s by %s ("%s")'
+        )
         assert log_mock.info.call_args[0][1] == moderator.name
         assert log_mock.info.call_args[0][2] == rating.pk
         assert log_mock.info.call_args[0][3] == rating.user.name
@@ -161,8 +167,9 @@ class TestRatingModel(TestCase):
     def test_no_filter_for_relations(self):
         # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
         rating = Rating.objects.get(id=1)
-        flag = RatingFlag.objects.create(rating=rating,
-                                         flag='review_flag_reason_spam')
+        flag = RatingFlag.objects.create(
+            rating=rating, flag='review_flag_reason_spam'
+        )
         assert flag.rating == rating
 
         # Delete the review: <RatingFlag>.review should still work.
@@ -175,8 +182,11 @@ class TestRatingModel(TestCase):
         addon_author = addon.authors.first()
         review_user = user_factory()
         rating = Rating.objects.create(
-            user=review_user, addon=addon,
-            body=u'Rêviiiiiiew', user_responsible=review_user)
+            user=review_user,
+            addon=addon,
+            body=u'Rêviiiiiiew',
+            user_responsible=review_user,
+        )
 
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.user == review_user
@@ -187,8 +197,12 @@ class TestRatingModel(TestCase):
         email = mail.outbox[0]
         rating_url = jinja_helpers.absolutify(
             jinja_helpers.url(
-                'addons.ratings.detail', addon.slug, rating.pk,
-                add_prefix=False))
+                'addons.ratings.detail',
+                addon.slug,
+                rating.pk,
+                add_prefix=False,
+            )
+        )
         assert email.subject == 'Mozilla Add-on User Rating: my addon name'
         assert 'A user has rated your add-on,' in email.body
         assert 'my addon name' in email.body
@@ -200,16 +214,24 @@ class TestRatingModel(TestCase):
         rating = Rating.objects.get(id=1)
         user = user_factory()
         Rating.objects.create(
-            reply_to=rating, user=user, addon=rating.addon,
-            body=u'Rêply', user_responsible=user)
+            reply_to=rating,
+            user=user,
+            addon=rating.addon,
+            body=u'Rêply',
+            user_responsible=user,
+        )
 
         assert not ActivityLog.objects.exists()
         assert len(mail.outbox) == 1
         email = mail.outbox[0]
         reply_url = jinja_helpers.absolutify(
             jinja_helpers.url(
-                'addons.ratings.detail', rating.addon.slug, rating.pk,
-                add_prefix=False))
+                'addons.ratings.detail',
+                rating.addon.slug,
+                rating.pk,
+                add_prefix=False,
+            )
+        )
         assert email.subject == 'Mozilla Add-on Developer Reply: my addon name'
         assert 'A developer has replied to your review' in email.body
         assert 'add-on my addon name' in email.body
@@ -236,7 +258,8 @@ class TestRatingModel(TestCase):
     def test_edit_reply_triggers_logging_but_no_email(self):
         rating = Rating.objects.get(id=1)
         reply = Rating.objects.create(
-            reply_to=rating, user=user_factory(), addon=rating.addon)
+            reply_to=rating, user=user_factory(), addon=rating.addon
+        )
         assert not ActivityLog.objects.exists()
         assert mail.outbox == []
 
@@ -280,12 +303,14 @@ class TestGroupedRating(TestCase):
 
         # GroupedRating should ignore replies, so let's add one.
         Rating.objects.create(
-            addon=cls.addon, rating=5, user=user_factory(), reply_to=rating)
+            addon=cls.addon, rating=5, user=user_factory(), reply_to=rating
+        )
 
         # GroupedRating should also ignore reviews that aren't the latest for
         # this user and addon, so let's add another one from the same user.
         Rating.objects.create(
-            addon=cls.addon, rating=4, user=user, is_latest=False)
+            addon=cls.addon, rating=4, user=user, is_latest=False
+        )
 
         # There are three '1' ratings, one '2' rating, 2 'three' ratings,
         # and zero for '4' and '5' since replies and non-latest reviews do not
@@ -300,18 +325,21 @@ class TestGroupedRating(TestCase):
         assert GroupedRating.get(self.addon.pk, update_none=False) is None
         GroupedRating.set(self.addon.pk)
         assert GroupedRating.get(self.addon.pk, update_none=False) == (
-            self.expected_grouped_rating)
+            self.expected_grouped_rating
+        )
 
     def test_cron(self):
         assert GroupedRating.get(self.addon.pk, update_none=False) is None
         tasks.addon_grouped_rating(self.addon.pk)
         assert GroupedRating.get(self.addon.pk, update_none=False) == (
-            self.expected_grouped_rating)
+            self.expected_grouped_rating
+        )
 
     def test_update_none(self):
         assert GroupedRating.get(self.addon.pk, update_none=False) is None
         assert GroupedRating.get(self.addon.pk, update_none=True) == (
-            self.expected_grouped_rating)
+            self.expected_grouped_rating
+        )
 
 
 class TestRefreshTest(ESTestCase):

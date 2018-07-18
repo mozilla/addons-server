@@ -16,7 +16,8 @@ def test_process_email(_mock):
     process_email(message)
     assert _mock.call_count == 1
     assert ActivityLogEmails.objects.filter(
-        messageid='This is a MessageID').exists()
+        messageid='This is a MessageID'
+    ).exists()
     # don't try to process the same message twice
     process_email(message)
     assert _mock.call_count == 1
@@ -27,11 +28,13 @@ def test_process_email(_mock):
 @mock.patch('olympia.activity.tasks.add_email_to_activity_log_wrapper')
 def test_process_email_different_messageid(_mock):
     # Test 'Message-ID' works too.
-    message = {'CustomHeaders': [
-        {'Name': 'Message-ID', 'Value': '<gmail_tastic>'}]}
+    message = {
+        'CustomHeaders': [{'Name': 'Message-ID', 'Value': '<gmail_tastic>'}]
+    }
     process_email(message)
     assert ActivityLogEmails.objects.filter(
-        messageid='<gmail_tastic>').exists()
+        messageid='<gmail_tastic>'
+    ).exists()
     assert _mock.call_count == 1
     # don't try to process the same message twice
     process_email(message)
@@ -43,11 +46,9 @@ def test_process_email_different_messageid(_mock):
 @mock.patch('olympia.activity.tasks.add_email_to_activity_log_wrapper')
 def test_process_email_different_messageid_case(_mock):
     # Test 'Message-Id' (different case)
-    message = {'CustomHeaders': [
-        {'Name': 'Message-Id', 'Value': '<its_ios>'}]}
+    message = {'CustomHeaders': [{'Name': 'Message-Id', 'Value': '<its_ios>'}]}
     process_email(message)
-    assert ActivityLogEmails.objects.filter(
-        messageid='<its_ios>').exists()
+    assert ActivityLogEmails.objects.filter(messageid='<its_ios>').exists()
     assert _mock.call_count == 1
     # don't try to process the same message twice
     process_email(message)

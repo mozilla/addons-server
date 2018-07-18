@@ -34,7 +34,7 @@ def allowed(request, file):
         # issues, we're working on a fix but for now, let's not do this.
         # (cgrebs, 06042017)
         is_owner = acl.check_addon_ownership(request, addon, dev=True)
-        if (acl.is_reviewer(request, addon) or is_owner):
+        if acl.is_reviewer(request, addon) or is_owner:
             return True  # Public and sources are visible, or reviewer.
         raise PermissionDenied  # Listed but not allowed.
     # Not listed? Needs an owner or an "unlisted" admin.
@@ -74,8 +74,9 @@ def file_view(func, **kwargs):
         try:
             obj = FileViewer(file_)
         except ObjectDoesNotExist:
-            log.error('Error 404 for file %s: %s' % (
-                file_id, traceback.format_exc()))
+            log.error(
+                'Error 404 for file %s: %s' % (file_id, traceback.format_exc())
+            )
             raise http.Http404
 
         response = func(request, obj, *args, **kw)
@@ -83,6 +84,7 @@ def file_view(func, **kwargs):
             response['ETag'] = quote_etag(obj.selected.get('sha256'))
             response['Last-Modified'] = http_date(obj.selected.get('modified'))
         return response
+
     return wrapper
 
 
@@ -103,9 +105,11 @@ def compare_file_view(func, **kwargs):
         response = func(request, obj, *args, **kw)
         if obj.left.selected:
             response['ETag'] = quote_etag(obj.left.selected.get('sha256'))
-            response['Last-Modified'] = http_date(obj.left.selected
-                                                          .get('modified'))
+            response['Last-Modified'] = http_date(
+                obj.left.selected.get('modified')
+            )
         return response
+
     return wrapper
 
 
@@ -121,4 +125,5 @@ def file_view_token(func, **kwargs):
             log.error('Denying access to %s, token invalid.' % viewer.file.id)
             raise PermissionDenied
         return func(request, viewer, key, *args, **kw)
+
     return wrapper

@@ -26,7 +26,7 @@ class AmoLoggerAdapter(logging.LoggerAdapter):
     def process(self, msg, kwargs):
         kwargs['extra'] = {
             'REMOTE_ADDR': core.get_remote_addr() or '',
-            'USERNAME': getattr(core.get_user(), 'username', None) or '<anon>'
+            'USERNAME': getattr(core.get_user(), 'username', None) or '<anon>',
         }
         return msg, kwargs
 
@@ -51,5 +51,6 @@ class JsonFormatter(dockerflow.logging.JsonLogFormatter):
     def format(self, record):
         record.__dict__['uid'] = record.__dict__.pop('USERNAME', '')
         record.__dict__['remoteAddressChain'] = record.__dict__.pop(
-            'REMOTE_ADDR', '')
+            'REMOTE_ADDR', ''
+        )
         return super(JsonFormatter, self).format(record)

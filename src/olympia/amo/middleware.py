@@ -50,13 +50,15 @@ class LocaleAndAppURLMiddleware(object):
         urlresolvers.set_url_prefix(prefixer)
         full_path = prefixer.fix(prefixer.shortened_path)
 
-        if (prefixer.app == amo.MOBILE.short and
-                request.path.rstrip('/').endswith('/' + amo.MOBILE.short)):
+        if prefixer.app == amo.MOBILE.short and request.path.rstrip(
+            '/'
+        ).endswith('/' + amo.MOBILE.short):
             return redirect_type(request.path.replace('/mobile', '/android'))
 
-        if ('lang' in request.GET and not re.match(
-                settings.SUPPORTED_NONAPPS_NONLOCALES_REGEX,
-                prefixer.shortened_path)):
+        if 'lang' in request.GET and not re.match(
+            settings.SUPPORTED_NONAPPS_NONLOCALES_REGEX,
+            prefixer.shortened_path,
+        ):
             # Blank out the locale so that we can set a new one.  Remove lang
             # from query params so we don't have an infinite loop.
             prefixer.locale = ''
@@ -101,14 +103,16 @@ class AuthenticationMiddlewareWithoutAPI(AuthenticationMiddleware):
     Like AuthenticationMiddleware, but disabled for the API, which uses its
     own authentication mechanism.
     """
+
     def process_request(self, request):
-        if (request.path.startswith('/api/') and
-                not auth_path.match(request.path)):
+        if request.path.startswith('/api/') and not auth_path.match(
+            request.path
+        ):
             request.user = AnonymousUser()
         else:
             return super(
-                AuthenticationMiddlewareWithoutAPI,
-                self).process_request(request)
+                AuthenticationMiddlewareWithoutAPI, self
+            ).process_request(request)
 
 
 class NoVarySessionMiddleware(SessionMiddleware):
@@ -121,6 +125,7 @@ class NoVarySessionMiddleware(SessionMiddleware):
     We skip the cache in Zeus if someone has an AMOv3+ cookie, so varying on
     Cookie at this level only hurts us.
     """
+
     def process_response(self, request, response):
         if settings.READ_ONLY:
             return response
@@ -130,9 +135,9 @@ class NoVarySessionMiddleware(SessionMiddleware):
         if hasattr(response, 'get'):
             vary = response.get('Vary', None)
 
-        new_response = (
-            super(NoVarySessionMiddleware, self)
-            .process_response(request, response))
+        new_response = super(NoVarySessionMiddleware, self).process_response(
+            request, response
+        )
 
         if vary:
             new_response['Vary'] = vary
@@ -150,10 +155,12 @@ class RemoveSlashMiddleware(object):
     """
 
     def process_response(self, request, response):
-        if (response.status_code == 404 and
-                request.path_info.endswith('/') and
-                not is_valid_path(request.path_info) and
-                is_valid_path(request.path_info[:-1])):
+        if (
+            response.status_code == 404
+            and request.path_info.endswith('/')
+            and not is_valid_path(request.path_info)
+            and is_valid_path(request.path_info[:-1])
+        ):
             # Use request.path because we munged app/locale in path_info.
             newurl = request.path[:-1]
             if request.GET:
@@ -181,14 +188,12 @@ def safe_query_string(request):
 
 
 class CommonMiddleware(common.CommonMiddleware):
-
     def process_request(self, request):
         with safe_query_string(request):
             return super(CommonMiddleware, self).process_request(request)
 
 
 class ReadOnlyMiddleware(object):
-
     def process_request(self, request):
         if request.method == 'POST':
             return render(request, 'amo/read-only.html', status=503)
@@ -205,6 +210,7 @@ class SetRemoteAddrFromForwardedFor(object):
     Our application servers should always be behind a load balancer that sets
     this header correctly.
     """
+
     def is_valid_ip(self, ip):
         for af in (socket.AF_INET, socket.AF_INET6):
             try:
@@ -218,8 +224,10 @@ class SetRemoteAddrFromForwardedFor(object):
         ips = []
 
         if 'HTTP_X_FORWARDED_FOR' in request.META:
-            xff = [i.strip() for i in
-                   request.META['HTTP_X_FORWARDED_FOR'].split(',')]
+            xff = [
+                i.strip()
+                for i in request.META['HTTP_X_FORWARDED_FOR'].split(',')
+            ]
             ips = [ip for ip in xff if self.is_valid_ip(ip)]
         else:
             return

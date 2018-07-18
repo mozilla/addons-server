@@ -20,19 +20,22 @@ class Command(BaseCommand):
                     apikey = APIKey.objects.get(key=key, is_active=True)
                 except APIKey.DoesNotExist:
                     self.stdout.write(
-                        'Ignoring APIKey {}, it does not exist.\n'.format(key))
+                        'Ignoring APIKey {}, it does not exist.\n'.format(key)
+                    )
                     continue
                 if apikey.secret != secret:
                     self.stdout.write(
-                        'Ignoring APIKey {}, secret differs.\n'.format(key))
+                        'Ignoring APIKey {}, secret differs.\n'.format(key)
+                    )
                     continue
                 else:
                     with transaction.atomic():
                         apikey.update(is_active=None)
                         APIKey.new_jwt_credentials(user=apikey.user)
                     revoked_count += 1
-                    self.stdout.write(
-                        'Revoked APIKey {}.\n'.format(key))
+                    self.stdout.write('Revoked APIKey {}.\n'.format(key))
             self.stdout.write(
                 'Done. Revoked {} keys out of {} entries.'.format(
-                    revoked_count, idx))
+                    revoked_count, idx
+                )
+            )

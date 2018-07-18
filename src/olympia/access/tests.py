@@ -10,10 +10,17 @@ from olympia.amo.tests import addon_factory, TestCase, req_factory_factory
 from olympia.users.models import UserProfile
 
 from .acl import (
-    action_allowed, check_addon_ownership, check_addons_reviewer,
-    check_ownership, check_personas_reviewer, check_static_theme_reviewer,
+    action_allowed,
+    check_addon_ownership,
+    check_addons_reviewer,
+    check_ownership,
+    check_personas_reviewer,
+    check_static_theme_reviewer,
     check_unlisted_addons_reviewer,
-    is_reviewer, is_user_any_kind_of_reviewer, match_rules)
+    is_reviewer,
+    is_user_any_kind_of_reviewer,
+    match_rules,
+)
 
 
 pytestmark = pytest.mark.django_db
@@ -57,8 +64,9 @@ def test_match_rules():
     )
 
     for rule in rules:
-        assert not match_rules(rule, 'Admin', '%'), \
+        assert not match_rules(rule, 'Admin', '%'), (
             "%s == Admin:%% and shouldn't" % rule
+        )
 
 
 def test_anonymous_user():
@@ -68,6 +76,7 @@ def test_anonymous_user():
 
 class ACLTestCase(TestCase):
     """Test some basic ACLs by going to various locked pages on AMO."""
+
     fixtures = ['access/login.json']
 
     def test_admin_login_anon(self):
@@ -115,8 +124,9 @@ class TestHasPerm(TestCase):
         self.request = self.fake_request_with_user(self.login_admin())
         assert check_ownership(self.request, self.addon, require_author=False)
 
-        assert not check_ownership(self.request, self.addon,
-                                   require_author=True)
+        assert not check_ownership(
+            self.request, self.addon, require_author=True
+        )
 
     def test_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
@@ -131,8 +141,9 @@ class TestHasPerm(TestCase):
 
     def test_ignore_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        assert check_addon_ownership(self.request, self.addon,
-                                     ignore_disabled=True)
+        assert check_addon_ownership(
+            self.request, self.addon, ignore_disabled=True
+        )
 
     def test_owner(self):
         assert check_addon_ownership(self.request, self.addon)

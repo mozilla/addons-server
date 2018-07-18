@@ -3,14 +3,18 @@ from django.conf import settings
 from access.models import Group, GroupUser
 
 
-LANGS = sorted(list(
-    set(settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES) -
-    set(['en-US'])))
+LANGS = sorted(
+    list(
+        set(settings.AMO_LANGUAGES + settings.HIDDEN_LANGUAGES)
+        - set(['en-US'])
+    )
+)
 
 
 def run():
-    Group.objects.create(pk=50006, name='Senior Localizers',
-                         rules='Locales:Edit')
+    Group.objects.create(
+        pk=50006, name='Senior Localizers', rules='Locales:Edit'
+    )
 
     for idx, locale in enumerate(LANGS):
         pk = 50007 + idx

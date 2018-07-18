@@ -14,11 +14,19 @@ log = olympia.core.logger.getLogger('z.task')
 
 
 @task(rate_limit='3/s')
-def admin_email(all_recipients, subject, body, preview_only=False,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                preview_topic='admin_email', **kw):
-    log.info('[%s@%s] admin_email about %r'
-             % (len(all_recipients), admin_email.rate_limit, subject))
+def admin_email(
+    all_recipients,
+    subject,
+    body,
+    preview_only=False,
+    from_email=settings.DEFAULT_FROM_EMAIL,
+    preview_topic='admin_email',
+    **kw
+):
+    log.info(
+        '[%s@%s] admin_email about %r'
+        % (len(all_recipients), admin_email.rate_limit, subject)
+    )
     if preview_only:
         send = EmailPreviewTopic(topic=preview_topic).send_mail
     else:
@@ -28,9 +36,12 @@ def admin_email(all_recipients, subject, body, preview_only=False,
 
 
 def get_context(addon, version, job, results, fileob=None):
-    result_links = (absolutify(reverse('devhub.bulk_compat_result',
-                                       args=[addon.slug, r.pk]))
-                    for r in results)
+    result_links = (
+        absolutify(
+            reverse('devhub.bulk_compat_result', args=[addon.slug, r.pk])
+        )
+        for r in results
+    )
     addon_name = addon.name
     if fileob and fileob.platform != amo.PLATFORM_ALL.id:
         addon_name = u'%s (%s)' % (addon_name, fileob.get_platform_display())
@@ -38,10 +49,11 @@ def get_context(addon, version, job, results, fileob=None):
         'ADDON_NAME': addon_name,
         'ADDON_VERSION': version.version,
         'APPLICATION': str(job.application),
-        'COMPAT_LINK': absolutify(reverse('devhub.versions.edit',
-                                          args=[addon.pk, version.pk])),
+        'COMPAT_LINK': absolutify(
+            reverse('devhub.versions.edit', args=[addon.pk, version.pk])
+        ),
         'RESULT_LINKS': ' '.join(result_links),
-        'VERSION': job.target_version.version
+        'VERSION': job.target_version.version,
     }
 
 

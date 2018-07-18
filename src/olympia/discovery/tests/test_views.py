@@ -11,7 +11,10 @@ from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
 from olympia.discovery.data import (
-    DiscoItem, discopane_items as disco_data, statictheme_disco_item)
+    DiscoItem,
+    discopane_items as disco_data,
+    statictheme_disco_item,
+)
 from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.utils import replace_extensions
 from olympia.versions.models import VersionPreview
@@ -19,38 +22,61 @@ from olympia.versions.models import VersionPreview
 
 # Represents a dummy version of `olympia.discovery.data`
 def get_dummy_addons():
-    return OrderedDict([
-        (677612, addon_factory(id=677612, type=amo.ADDON_PERSONA,
-                               description=u'677612')),
-        (884014, addon_factory(id=884014, type=amo.ADDON_EXTENSION)),
-        (700308, addon_factory(id=700308, type=amo.ADDON_EXTENSION)),
-        (599898, addon_factory(id=599898, type=amo.ADDON_PERSONA)),
-        (607454, addon_factory(id=607454, type=amo.ADDON_EXTENSION)),
-        (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
-        (297738, addon_factory(id=297738, type=amo.ADDON_PERSONA,
-                               description=u'297738')),
-
-        # And now the china edition addons
-        (492244, addon_factory(id=492244, type=amo.ADDON_PERSONA,
-                               description=u'492244')),
-        (3006, addon_factory(id=3006, type=amo.ADDON_EXTENSION)),
-        (626810, addon_factory(id=626810, type=amo.ADDON_EXTENSION)),
-        (25725, addon_factory(id=25725, type=amo.ADDON_PERSONA)),
-        # disable while 511962 is above in the default addons
-        # (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
-        (287841, addon_factory(id=287841, type=amo.ADDON_EXTENSION)),
-        (153659, addon_factory(id=153659, type=amo.ADDON_PERSONA,
-                               description=u'153659')),
-
-        # The static theme we swap in when 'disco-staticthemes-dev' is enabled.
-        (496012, addon_factory(id=496012, type=amo.ADDON_STATICTHEME,
-                               description=u'496012')),
-    ])
+    return OrderedDict(
+        [
+            (
+                677612,
+                addon_factory(
+                    id=677612, type=amo.ADDON_PERSONA, description=u'677612'
+                ),
+            ),
+            (884014, addon_factory(id=884014, type=amo.ADDON_EXTENSION)),
+            (700308, addon_factory(id=700308, type=amo.ADDON_EXTENSION)),
+            (599898, addon_factory(id=599898, type=amo.ADDON_PERSONA)),
+            (607454, addon_factory(id=607454, type=amo.ADDON_EXTENSION)),
+            (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
+            (
+                297738,
+                addon_factory(
+                    id=297738, type=amo.ADDON_PERSONA, description=u'297738'
+                ),
+            ),
+            # And now the china edition addons
+            (
+                492244,
+                addon_factory(
+                    id=492244, type=amo.ADDON_PERSONA, description=u'492244'
+                ),
+            ),
+            (3006, addon_factory(id=3006, type=amo.ADDON_EXTENSION)),
+            (626810, addon_factory(id=626810, type=amo.ADDON_EXTENSION)),
+            (25725, addon_factory(id=25725, type=amo.ADDON_PERSONA)),
+            # disable while 511962 is above in the default addons
+            # (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
+            (287841, addon_factory(id=287841, type=amo.ADDON_EXTENSION)),
+            (
+                153659,
+                addon_factory(
+                    id=153659, type=amo.ADDON_PERSONA, description=u'153659'
+                ),
+            ),
+            # The static theme we swap in when 'disco-staticthemes-dev' is enabled.
+            (
+                496012,
+                addon_factory(
+                    id=496012,
+                    type=amo.ADDON_STATICTHEME,
+                    description=u'496012',
+                ),
+            ),
+        ]
+    )
 
 
 class DiscoveryTestMixin(object):
-    def _check_disco_addon(self, result, item, flat_name=False,
-                           type_='extension'):
+    def _check_disco_addon(
+        self, result, item, flat_name=False, type_='extension'
+    ):
         addon = self.addons[item.addon_id]
         assert result['addon']['type'] == type_
         assert result['addon']['id'] == item.addon_id == addon.pk
@@ -60,25 +86,34 @@ class DiscoveryTestMixin(object):
             assert result['addon']['name'] == {'en-US': unicode(addon.name)}
         assert result['addon']['slug'] == addon.slug
         assert result['addon']['icon_url'] == absolutify(
-            addon.get_icon_url(64))
-        assert (result['addon']['current_version']['files'][0]['id'] ==
-                addon.current_version.all_files[0].pk)
+            addon.get_icon_url(64)
+        )
+        assert (
+            result['addon']['current_version']['files'][0]['id']
+            == addon.current_version.all_files[0].pk
+        )
 
         if item.heading:
             # Predefined discopane items have a different heading format.
-            assert u'<a href="{0}">{1} by {2}</a>'.format(
-                absolutify(addon.get_url_path()),
-                unicode(item.addon_name or addon.name),
-                u', '.join(author.name for author in addon.listed_authors),
-            ) in result['heading']
+            assert (
+                u'<a href="{0}">{1} by {2}</a>'.format(
+                    absolutify(addon.get_url_path()),
+                    unicode(item.addon_name or addon.name),
+                    u', '.join(author.name for author in addon.listed_authors),
+                )
+                in result['heading']
+            )
             assert '<span>' in result['heading']
             assert '</span>' in result['heading']
         else:
-            assert u'{1} <span>by <a href="{0}">{2}</a></span>'.format(
-                absolutify(addon.get_url_path()),
-                unicode(item.addon_name or addon.name),
-                u', '.join(author.name for author in addon.listed_authors)
-            ) == result['heading']
+            assert (
+                u'{1} <span>by <a href="{0}">{2}</a></span>'.format(
+                    absolutify(addon.get_url_path()),
+                    unicode(item.addon_name or addon.name),
+                    u', '.join(author.name for author in addon.listed_authors),
+                )
+                == result['heading']
+            )
         assert result['description']
         assert len(result['addon']['previews']) == len(addon.current_previews)
 
@@ -92,14 +127,19 @@ class DiscoveryTestMixin(object):
             assert result['addon']['name'] == {'en-US': unicode(addon.name)}
         assert result['addon']['slug'] == addon.slug
 
-        assert u'{1} <span>by <a href="{0}">{2}</a></span>'.format(
-            absolutify(addon.get_url_path()),
-            unicode(item.addon_name or addon.name),
-            u', '.join(author.name for author in addon.listed_authors)
-        ) == result['heading']
+        assert (
+            u'{1} <span>by <a href="{0}">{2}</a></span>'.format(
+                absolutify(addon.get_url_path()),
+                unicode(item.addon_name or addon.name),
+                u', '.join(author.name for author in addon.listed_authors),
+            )
+            == result['heading']
+        )
         description_output = (
             (u'<blockquote>%s</blockquote>' % addon.description)
-            if addon.description else None)
+            if addon.description
+            else None
+        )
         assert result['description'] == description_output
         assert result['addon']['theme_data'] == addon.persona.theme_data
 
@@ -113,7 +153,8 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
     def test_reverse(self):
         assert self.url.endswith(
-            '/api/%s/discovery/' % api_settings.DEFAULT_VERSION)
+            '/api/%s/discovery/' % api_settings.DEFAULT_VERSION
+        )
 
     def test_list(self):
         response = self.client.get(self.url, {'lang': 'en-US'})
@@ -132,8 +173,11 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
             else:
                 self._check_disco_addon(result, discopane_items[i])
 
-    @override_settings(DRF_API_GATES={
-        api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)})
+    @override_settings(
+        DRF_API_GATES={
+            api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)
+        }
+    )
     def test_list_flat_output(self):
         response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.data
@@ -148,10 +192,12 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
             assert result['is_recommendation'] is False
             if 'theme_data' in result['addon']:
                 self._check_disco_theme(
-                    result, discopane_items[i], flat_name=True)
+                    result, discopane_items[i], flat_name=True
+                )
             else:
                 self._check_disco_addon(
-                    result, discopane_items[i], flat_name=True)
+                    result, discopane_items[i], flat_name=True
+                )
 
     def test_list_unicode_locale(self):
         """Test that disco pane API still works in a locale with non-ascii
@@ -193,7 +239,8 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
     def test_china_edition_list(self):
         response = self.client.get(
-            self.url, {'lang': 'en-US', 'edition': 'china'})
+            self.url, {'lang': 'en-US', 'edition': 'china'}
+        )
         assert response.data
 
         discopane_items_china = disco_data['china']
@@ -211,7 +258,8 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
     def test_invalid_edition_returns_default(self):
         response = self.client.get(
-            self.url, {'lang': 'en-US', 'edition': 'platinum'})
+            self.url, {'lang': 'en-US', 'edition': 'platinum'}
+        )
         assert response.data
 
         discopane_items = disco_data['default']
@@ -226,7 +274,8 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
     def test_with_wrap_outgoing_links(self):
         response = self.client.get(
-            self.url, {'lang': 'en-US', 'wrap_outgoing_links': 'true'})
+            self.url, {'lang': 'en-US', 'wrap_outgoing_links': 'true'}
+        )
         assert response.data
 
         discopane_items = disco_data['default']
@@ -247,7 +296,8 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
         disco_addon = self.addons[statictheme_disco_item.addon_id]
         VersionPreview.objects.create(
             version=disco_addon.current_version,
-            sizes={'thumbnail': [12, 34], 'image': [56, 78]})
+            sizes={'thumbnail': [12, 34], 'image': [56, 78]},
+        )
         response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.data
 
@@ -262,7 +312,8 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
             if i == 0:
                 # We're just replacing the first discopane_item
                 self._check_disco_addon(
-                    result, statictheme_disco_item, type_='statictheme')
+                    result, statictheme_disco_item, type_='statictheme'
+                )
                 # Check the preview is there
                 assert result['addon']['previews'][0]['image_size'] == [56, 78]
             elif 'theme_data' in result['addon']:
@@ -277,8 +328,7 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
         super(TestDiscoveryRecommendations, self).setUp()
         # Represents a dummy version of `olympia.discovery.data`
         self.addons = get_dummy_addons()
-        patcher = mock.patch(
-            'olympia.discovery.views.get_recommendations')
+        patcher = mock.patch('olympia.discovery.views.get_recommendations')
         self.get_recommendations = patcher.start()
         self.addCleanup(patcher.stop)
         # If no recommendations then results should be as before - tests from
@@ -304,10 +354,16 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
         self.get_recommendations.return_value = replacement_items
 
         response = self.client.get(
-            self.url, {'lang': 'en-US', 'telemetry-client-id': '666',
-                       'platform': 'WINNT'})
+            self.url,
+            {
+                'lang': 'en-US',
+                'telemetry-client-id': '666',
+                'platform': 'WINNT',
+            },
+        )
         self.get_recommendations.assert_called_with(
-            '666', {'locale': 'en-US', 'platform': 'WINNT'})
+            '666', {'locale': 'en-US', 'platform': 'WINNT'}
+        )
 
         # should still be the same number of results.
         discopane_items = disco_data['default']
@@ -316,7 +372,8 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
 
         # personas aren't replaced by recommendations, so should be as before.
         new_discopane_items = replace_extensions(
-            discopane_items, replacement_items)
+            discopane_items, replacement_items
+        )
         for i, result in enumerate(response.data['results']):
             if 'theme_data' in result['addon']:
                 self._check_disco_theme(result, new_discopane_items[i])
@@ -329,53 +386,71 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
     def test_extra_params(self):
         author = user_factory()
         recommendations = {
-            101: addon_factory(id=101, guid='101@mozilla', users=[author]),
+            101: addon_factory(id=101, guid='101@mozilla', users=[author])
         }
-        replacement_items = [
-            DiscoItem(addon_id=101, is_recommendation=True),
-        ]
+        replacement_items = [DiscoItem(addon_id=101, is_recommendation=True)]
         self.addons.update(recommendations)
         self.get_recommendations.return_value = replacement_items
 
         # send known taar parameters
         known_params = {
-            'lang': 'en-US', 'telemetry-client-id': '666', 'platform': 'WINNT',
-            'branch': 'bob', 'study': 'sally'}
+            'lang': 'en-US',
+            'telemetry-client-id': '666',
+            'platform': 'WINNT',
+            'branch': 'bob',
+            'study': 'sally',
+        }
         response = self.client.get(self.url, known_params)
         self.get_recommendations.assert_called_with(
-            '666', {'locale': 'en-US', 'platform': 'WINNT', 'branch': 'bob',
-                    'study': 'sally'})
+            '666',
+            {
+                'locale': 'en-US',
+                'platform': 'WINNT',
+                'branch': 'bob',
+                'study': 'sally',
+            },
+        )
         assert response.data['results']
 
         # Sense check to make sure we're testing all known params in this test
         # strip out 'edition' as providing it means no taar.
-        taar_allowed_params = [p for p in amo.DISCO_API_ALLOWED_PARAMETERS
-                               if p != 'edition']
+        taar_allowed_params = [
+            p for p in amo.DISCO_API_ALLOWED_PARAMETERS if p != 'edition'
+        ]
         assert sorted(known_params.keys()) == sorted(taar_allowed_params)
 
         # Send some extra unknown parameters to be ignored.
         with_unknown_params = {
-            'lang': 'en-US', 'telemetry-client-id': '666', 'platform': 'WINNT',
-            'extra': 'stuff', 'this': 'too'}
+            'lang': 'en-US',
+            'telemetry-client-id': '666',
+            'platform': 'WINNT',
+            'extra': 'stuff',
+            'this': 'too',
+        }
         response = self.client.get(self.url, with_unknown_params)
         self.get_recommendations.assert_called_with(
-            '666', {'locale': 'en-US', 'platform': 'WINNT'})
+            '666', {'locale': 'en-US', 'platform': 'WINNT'}
+        )
         assert response.data['results']
 
     def test_no_recommendations_for_china_edition(self):
         author = user_factory()
         recommendations = {
-            101: addon_factory(id=101, guid='101@mozilla', users=[author]),
+            101: addon_factory(id=101, guid='101@mozilla', users=[author])
         }
-        replacement_items = [
-            DiscoItem(addon_id=101, is_recommendation=True),
-        ]
+        replacement_items = [DiscoItem(addon_id=101, is_recommendation=True)]
         self.addons.update(recommendations)
         self.get_recommendations.return_value = replacement_items
 
         response = self.client.get(
-            self.url, {'lang': 'en-US', 'telemetry-client-id': '666',
-                       'platform': 'WINNT', 'edition': 'china'})
+            self.url,
+            {
+                'lang': 'en-US',
+                'telemetry-client-id': '666',
+                'platform': 'WINNT',
+                'edition': 'china',
+            },
+        )
         self.get_recommendations.assert_not_called()
 
         # should be normal results
@@ -392,16 +467,18 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
 class TestDiscoveryItemViewSet(TestCase):
     def setUp(self):
         DiscoveryItem.objects.create(
-            addon=addon_factory(),
-            custom_addon_name=u'Fôoooo')
+            addon=addon_factory(), custom_addon_name=u'Fôoooo'
+        )
         DiscoveryItem.objects.create(
             addon=addon_factory(),
             custom_heading=u'My Custöm Headîng',
-            custom_description=u'')
+            custom_description=u'',
+        )
         DiscoveryItem.objects.create(
             addon=addon_factory(),
             custom_heading=u'Änother custom heading',
-            custom_description=u'This time with a custom description as well')
+            custom_description=u'This time with a custom description as well',
+        )
         self.url = reverse_ns('discovery-editorial-list')
 
     def test_basic(self):
@@ -424,4 +501,5 @@ class TestDiscoveryItemViewSet(TestCase):
         result = response.data['results'][2]
         assert result['custom_heading'] == u'Änother custom heading'
         assert result['custom_description'] == (
-            u'This time with a custom description as well')
+            u'This time with a custom description as well'
+        )

@@ -13,8 +13,11 @@ import olympia.core.logger
 from olympia.amo.celery import task
 from olympia.amo.search import get_es
 from olympia.lib.es.utils import (
-    flag_reindexing_amo, is_reindexing_amo, timestamp_index,
-    unflag_reindexing_amo)
+    flag_reindexing_amo,
+    is_reindexing_amo,
+    timestamp_index,
+    unflag_reindexing_amo,
+)
 from olympia.search import indexers as search_indexers
 from olympia.stats import search as stats_search
 
@@ -22,7 +25,8 @@ from olympia.stats import search as stats_search
 logger = olympia.core.logger.getLogger('z.elasticsearch')
 
 time_limits = settings.CELERY_TIME_LIMITS[
-    'olympia.lib.es.management.commands.reindex']
+    'olympia.lib.es.management.commands.reindex'
+]
 
 
 ES = get_es()
@@ -40,7 +44,7 @@ def get_modules(with_stats=True):
         # The 'default' in ES_INDEXES is confusingly named 'addons', but it
         # contains all the main document types we search for in AMO: addons,
         # and app compatibility.
-        settings.ES_INDEXES['default']: search_indexers,
+        settings.ES_INDEXES['default']: search_indexers
     }
     if with_stats:
         rval[settings.ES_INDEXES['stats']] = stats_search
@@ -64,20 +68,23 @@ def update_aliases(actions):
 @task(ignore_result=False)
 def create_new_index(alias, new_index):
     logger.info(
-        'Create the index {0}, for alias: {1}'.format(new_index, alias))
+        'Create the index {0}, for alias: {1}'.format(new_index, alias)
+    )
     get_modules()[alias].create_new_index(new_index)
 
 
-@task(ignore_result=False, timeout=time_limits['hard'],
-      soft_timeout=time_limits['soft'])
+@task(
+    ignore_result=False,
+    timeout=time_limits['hard'],
+    soft_timeout=time_limits['soft'],
+)
 def index_data(alias, index):
     logger.info('Reindexing {0}'.format(index))
 
     try:
         get_modules()[alias].reindex(index)
     except Exception as exc:
-        index_data.retry(
-            args=(alias, index), exc=exc, max_retries=3)
+        index_data.retry(args=(alias, index), exc=exc, max_retries=3)
         raise
 
 
@@ -114,25 +121,32 @@ class Command(BaseCommand):
         parser.add_argument(
             '--force',
             action='store_true',
-            help=('Bypass the database flag that says '
-                  'another indexation is ongoing'),
-            default=False),
+            help=(
+                'Bypass the database flag that says '
+                'another indexation is ongoing'
+            ),
+            default=False,
+        ),
         parser.add_argument(
             '--wipe',
             action='store_true',
             help=('Deletes AMO indexes prior to reindexing.'),
-            default=False),
+            default=False,
+        ),
         parser.add_argument(
             '--with-stats',
             action='store_true',
             help=('Whether to also reindex AMO stats. Default: False'),
-            default=False),
+            default=False,
+        ),
         parser.add_argument(
             '--noinput',
             action='store_true',
-            help=('Do not ask for confirmation before wiping. '
-                  'Default: False'),
-            default=False),
+            help=(
+                'Do not ask for confirmation before wiping. ' 'Default: False'
+            ),
+            default=False,
+        ),
 
     def handle(self, *args, **kwargs):
         """Reindexing work.
@@ -145,8 +159,9 @@ class Command(BaseCommand):
         force = kwargs.get('force', False)
 
         if is_reindexing_amo() and not force:
-            raise CommandError('Indexation already occurring - use --force to '
-                               'bypass')
+            raise CommandError(
+                'Indexation already occurring - use --force to ' 'bypass'
+            )
 
         self.stdout.write('Starting the reindexation')
 
@@ -156,13 +171,15 @@ class Command(BaseCommand):
             skip_confirmation = kwargs.get('noinput', False)
             confirm = ''
             if not skip_confirmation:
-                confirm = raw_input('Are you sure you want to wipe all AMO '
-                                    'Elasticsearch indexes? (yes/no): ')
+                confirm = raw_input(
+                    'Are you sure you want to wipe all AMO '
+                    'Elasticsearch indexes? (yes/no): '
+                )
 
                 while confirm not in ('yes', 'no'):
                     confirm = raw_input('Please enter either "yes" or "no": ')
 
-            if (confirm == 'yes' or skip_confirmation):
+            if confirm == 'yes' or skip_confirmation:
                 unflag_database()
                 for index in set(modules.keys()):
                     ES.indices.delete(index, ignore=404)
@@ -211,9 +228,9 @@ class Command(BaseCommand):
 
             # Flag the database.
             workflow.append(
-                flag_database.si(new_index, old_index, alias) |
-                create_new_index.si(alias, new_index) |
-                index_data.si(alias, new_index)
+                flag_database.si(new_index, old_index, alias)
+                | create_new_index.si(alias, new_index)
+                | index_data.si(alias, new_index)
             )
 
             # Adding new index to the alias.
@@ -240,7 +257,7 @@ class Command(BaseCommand):
         try:
             workflow.apply_async()
             if not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
-                time.sleep(10)   # give celeryd some time to flag the DB
+                time.sleep(10)  # give celeryd some time to flag the DB
             while is_reindexing_amo():
                 self.stdout.write('.')
                 self.stdout.flush()

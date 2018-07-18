@@ -37,25 +37,30 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
     # be displayed to the client. Be careful not to reveal anything
     # sensitive. When you raise other exceptions, the user will see
     # a generic failure message.
-    token_data = jwt.decode(token, options={
-        'verify_signature': False,
-        'verify_exp': False,
-        'verify_nbf': False,
-        'verify_iat': False,
-        'verify_aud': False,
-    })
+    token_data = jwt.decode(
+        token,
+        options={
+            'verify_signature': False,
+            'verify_exp': False,
+            'verify_nbf': False,
+            'verify_iat': False,
+            'verify_aud': False,
+        },
+    )
 
     if 'iss' not in token_data:
         log.info('No issuer in JWT auth token: {}'.format(token_data))
         raise exceptions.AuthenticationFailed(
-            detail='JWT iss (issuer) claim is missing.')
+            detail='JWT iss (issuer) claim is missing.'
+        )
 
     try:
         api_key = get_api_key(key=token_data['iss'])
     except ObjectDoesNotExist as exc:
         log.info('No API key for JWT issuer: {}'.format(token_data['iss']))
         raise exceptions.AuthenticationFailed(
-            detail='Unknown JWT iss (issuer).')
+            detail='Unknown JWT iss (issuer).'
+        )
 
     # TODO: add nonce checking to prevent replays. bug 1213354.
 
@@ -78,7 +83,7 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
             api_key.secret,
             options=options,
             leeway=api_settings.JWT_LEEWAY,
-            algorithms=[api_settings.JWT_ALGORITHM]
+            algorithms=[api_settings.JWT_ALGORITHM],
         )
 
         # Verify clock skew for future iat-values pyjwt removed that check in
@@ -87,28 +92,40 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
         # that `iat` is a proper number.
         if int(payload['iat']) > (now + api_settings.JWT_LEEWAY):
             raise jwt.InvalidIssuedAtError(
-                'Issued At claim (iat) cannot be in the future.')
+                'Issued At claim (iat) cannot be in the future.'
+            )
     except jwt.MissingRequiredClaimError as exc:
-        log.info(u'Missing required claim during JWT authentication: '
-                 u'{e.__class__.__name__}: {e}'.format(e=exc))
+        log.info(
+            u'Missing required claim during JWT authentication: '
+            u'{e.__class__.__name__}: {e}'.format(e=exc)
+        )
         raise exceptions.AuthenticationFailed(
-            detail=u'Invalid JWT: {}.'.format(exc))
+            detail=u'Invalid JWT: {}.'.format(exc)
+        )
     except jwt.InvalidIssuedAtError as exc:
-        log.info(u'Invalid iat during JWT authentication: '
-                 u'{e.__class__.__name__}: {e}'.format(e=exc))
+        log.info(
+            u'Invalid iat during JWT authentication: '
+            u'{e.__class__.__name__}: {e}'.format(e=exc)
+        )
         raise exceptions.AuthenticationFailed(
             detail='JWT iat (issued at time) is invalid. Make sure your '
-                   'system clock is synchronized with something like TLSdate.')
+            'system clock is synchronized with something like TLSdate.'
+        )
     except Exception as exc:
-        log.warning(u'Unhandled exception during JWT authentication: '
-                    u'{e.__class__.__name__}: {e}'.format(e=exc))
+        log.warning(
+            u'Unhandled exception during JWT authentication: '
+            u'{e.__class__.__name__}: {e}'.format(e=exc)
+        )
         raise
 
     max_jwt_auth_token_lifetime = settings.MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME
     if payload['exp'] - payload['iat'] > max_jwt_auth_token_lifetime:
-        log.info('JWT auth: expiration is too long; '
-                 'iss={iss}, iat={iat}, exp={exp}'.format(**payload))
+        log.info(
+            'JWT auth: expiration is too long; '
+            'iss={iss}, iat={iat}, exp={exp}'.format(**payload)
+        )
         raise exceptions.AuthenticationFailed(
-            detail='JWT exp (expiration) is too long.')
+            detail='JWT exp (expiration) is too long.'
+        )
 
     return payload

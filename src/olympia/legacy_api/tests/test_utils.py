@@ -8,6 +8,6 @@ class TestCompatibleVersion(TestCase):
         addon = addon_factory()
         version = version_factory(addon=addon, version='99')
         version_factory(
-            addon=addon, version='100',
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
+            addon=addon, version='100', channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
         assert find_compatible_version(addon, amo.FIREFOX.id) == version

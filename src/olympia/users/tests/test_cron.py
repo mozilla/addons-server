@@ -17,20 +17,35 @@ class TestUpdateUserRatings(TestCase):
         addon_deleted.delete()
 
         Rating.objects.create(
-            rating=4, addon=addon1, version=addon1.current_version,
-            user=user_factory())
+            rating=4,
+            addon=addon1,
+            version=addon1.current_version,
+            user=user_factory(),
+        )
         Rating.objects.create(
-            rating=5, addon=addon1, version=addon1.current_version,
-            user=user_factory())
+            rating=5,
+            addon=addon1,
+            version=addon1.current_version,
+            user=user_factory(),
+        )
         Rating.objects.create(
-            rating=3, addon=addon2, version=addon2.current_version,
-            user=user_factory())
+            rating=3,
+            addon=addon2,
+            version=addon2.current_version,
+            user=user_factory(),
+        )
         Rating.objects.create(
-            rating=5, addon=addon_deleted,
-            version=version_deleted, user=user_factory())  # Should be ignored.
+            rating=5,
+            addon=addon_deleted,
+            version=version_deleted,
+            user=user_factory(),
+        )  # Should be ignored.
         Rating.objects.create(
-            rating=0, addon=addon3, version=addon3.current_version,
-            user=user_factory())  # Should be ignored.
+            rating=0,
+            addon=addon3,
+            version=addon3.current_version,
+            user=user_factory(),
+        )  # Should be ignored.
 
         update_user_ratings()
 

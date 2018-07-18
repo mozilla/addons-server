@@ -36,8 +36,9 @@ def process_validation(validation, is_compatibility=False, file_hash=None):
     validation.setdefault('ending_tier', 0)
 
     if not validation['ending_tier'] and validation['messages']:
-        validation['ending_tier'] = max(msg.get('tier', -1)
-                                        for msg in validation['messages'])
+        validation['ending_tier'] = max(
+            msg.get('tier', -1) for msg in validation['messages']
+        )
 
     limit_validation_results(validation)
 
@@ -72,6 +73,7 @@ def limit_validation_results(validation):
 
         def message_key(message):
             return TYPES.get(message.get('type'))
+
         messages.sort(key=message_key)
 
         leftover_count = len(messages) - lim
@@ -86,23 +88,33 @@ def limit_validation_results(validation):
         else:
             msg_type = 'notice'
 
-        compat_type = (msg_type if any(msg.get('compatibility_type')
-                                       for msg in messages)
-                       else None)
+        compat_type = (
+            msg_type
+            if any(msg.get('compatibility_type') for msg in messages)
+            else None
+        )
 
-        message = ugettext(
-            'Validation generated too many errors/warnings so %s '
-            'messages were truncated. After addressing the visible '
-            'messages, you\'ll be able to see the others.') % leftover_count
+        message = (
+            ugettext(
+                'Validation generated too many errors/warnings so %s '
+                'messages were truncated. After addressing the visible '
+                'messages, you\'ll be able to see the others.'
+            )
+            % leftover_count
+        )
 
-        messages.insert(0, {
-            'tier': 1,
-            'type': msg_type,
-            # To respect the message structure, see bug 1139674.
-            'id': ['validation', 'messages', 'truncated'],
-            'message': message,
-            'description': [],
-            'compatibility_type': compat_type})
+        messages.insert(
+            0,
+            {
+                'tier': 1,
+                'type': msg_type,
+                # To respect the message structure, see bug 1139674.
+                'id': ['validation', 'messages', 'truncated'],
+                'message': message,
+                'description': [],
+                'compatibility_type': compat_type,
+            },
+        )
 
 
 def htmlify_validation(validation):
@@ -119,7 +131,8 @@ def htmlify_validation(validation):
                 msg['description'] = [msg['description']]
 
             msg['description'] = [
-                linkify_escape(text) for text in msg['description']]
+                linkify_escape(text) for text in msg['description']
+            ]
 
 
 def fix_addons_linter_output(validation, listed=True):
@@ -152,18 +165,14 @@ def fix_addons_linter_output(validation, listed=True):
         'listed': listed,
         'identified_files': identified_files,
         'processed_by_addons_linter': True,
-        'is_webextension': True
+        'is_webextension': True,
     }
     # Add metadata already set by the linter.
     metadata.update(validation.get('metadata', {}))
 
     return {
         'success': not validation['errors'],
-        'compatibility_summary': {
-            'warnings': 0,
-            'errors': 0,
-            'notices': 0,
-        },
+        'compatibility_summary': {'warnings': 0, 'errors': 0, 'notices': 0},
         'notices': validation['summary']['notices'],
         'warnings': validation['summary']['warnings'],
         'errors': validation['summary']['errors'],
@@ -188,22 +197,28 @@ def find_previous_version(addon, file, version_string, channel):
     # Find all previous files of this add-on with the correct status and in
     # the right channel.
     qs = File.objects.filter(
-        version__addon=addon, version__channel=channel, status__in=statuses)
+        version__addon=addon, version__channel=channel, status__in=statuses
+    )
 
     if file:
         # Add some extra filters if we're validating a File instance,
         # to try to get the closest possible match.
-        qs = (qs.exclude(pk=file.pk)
-              # Files which are not for the same platform, but have
-              # other files in the same version which are.
-                .exclude(~Q(platform=file.platform) &
-                         Q(version__files__platform=file.platform))
-              # Files which are not for either the same platform or for
-              # all platforms, but have other versions in the same
-              # version which are.
-                .exclude(~Q(platform__in=(file.platform,
-                                          amo.PLATFORM_ALL.id)) &
-                         Q(version__files__platform=amo.PLATFORM_ALL.id)))
+        qs = (
+            qs.exclude(pk=file.pk)
+            # Files which are not for the same platform, but have
+            # other files in the same version which are.
+            .exclude(
+                ~Q(platform=file.platform)
+                & Q(version__files__platform=file.platform)
+            )
+            # Files which are not for either the same platform or for
+            # all platforms, but have other versions in the same
+            # version which are.
+            .exclude(
+                ~Q(platform__in=(file.platform, amo.PLATFORM_ALL.id))
+                & Q(version__files__platform=amo.PLATFORM_ALL.id)
+            )
+        )
 
     vint = version_int(version_string)
     for file_ in qs.order_by('-id'):
@@ -223,8 +238,11 @@ class Validator(object):
 
         if isinstance(file_, FileUpload):
             assert listed is not None
-            channel = (amo.RELEASE_CHANNEL_LISTED if listed else
-                       amo.RELEASE_CHANNEL_UNLISTED)
+            channel = (
+                amo.RELEASE_CHANNEL_LISTED
+                if listed
+                else amo.RELEASE_CHANNEL_UNLISTED
+            )
             save = tasks.handle_upload_validation_result
             is_webextension = False
             is_mozilla_signed = False
@@ -236,10 +254,14 @@ class Validator(object):
                 addon_data = parse_addon(file_, minimal=True)
                 is_webextension = addon_data['is_webextension']
                 is_mozilla_signed = addon_data.get(
-                    'is_mozilla_signed_extension', False)
+                    'is_mozilla_signed_extension', False
+                )
             except ValidationError as form_error:
-                log.info('could not parse addon for upload {}: {}'
-                         .format(file_.pk, form_error))
+                log.info(
+                    'could not parse addon for upload {}: {}'.format(
+                        file_.pk, form_error
+                    )
+                )
                 addon_data = None
             else:
                 file_.update(version=addon_data.get('version'))
@@ -257,36 +279,48 @@ class Validator(object):
 
             self.file = file_
             self.addon = self.file.version.addon
-            addon_data = {'guid': self.addon.guid,
-                          'version': self.file.version.version}
+            addon_data = {
+                'guid': self.addon.guid,
+                'version': self.file.version.version,
+            }
         else:
             raise ValueError
 
         # Fallback error handler to save a set of exception results, in case
         # anything unexpected happens during processing.
         on_error = save.subtask(
-            [amo.VALIDATOR_SKELETON_EXCEPTION, file_.pk, channel,
-             is_mozilla_signed],
-            immutable=True)
+            [
+                amo.VALIDATOR_SKELETON_EXCEPTION,
+                file_.pk,
+                channel,
+                is_mozilla_signed,
+            ],
+            immutable=True,
+        )
 
         # When the validation jobs complete, pass the results to the
         # appropriate save task for the object type.
-        self.task = chain(validate, save.subtask(
-            [file_.pk, channel, is_mozilla_signed],
-            link_error=on_error))
+        self.task = chain(
+            validate,
+            save.subtask(
+                [file_.pk, channel, is_mozilla_signed], link_error=on_error
+            ),
+        )
 
         # Create a cache key for the task, so multiple requests to
         # validate the same object do not result in duplicate tasks.
         opts = file_._meta
         self.cache_key = 'validation-task:{0}.{1}:{2}:{3}'.format(
-            opts.app_label, opts.object_name, file_.pk, listed)
+            opts.app_label, opts.object_name, file_.pk, listed
+        )
 
     @staticmethod
     def validate_file(file):
         """Return a subtask to validate a File instance."""
         kwargs = {
             'hash_': file.original_hash,
-            'is_webextension': file.is_webextension}
+            'is_webextension': file.is_webextension,
+        }
         return tasks.validate_file.subtask([file.pk], kwargs)
 
     @staticmethod
@@ -297,7 +331,8 @@ class Validator(object):
         kwargs = {
             'hash_': upload.hash,
             'listed': (channel == amo.RELEASE_CHANNEL_LISTED),
-            'is_webextension': is_webextension}
+            'is_webextension': is_webextension,
+        }
         return tasks.validate_file_path.subtask([upload.path], kwargs)
 
 

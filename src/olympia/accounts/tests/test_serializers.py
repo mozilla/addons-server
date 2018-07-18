@@ -4,8 +4,11 @@ from rest_framework.test import APIRequestFactory
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.serializers import (
-    BaseUserSerializer, PublicUserProfileSerializer,
-    UserNotificationSerializer, UserProfileSerializer)
+    BaseUserSerializer,
+    PublicUserProfileSerializer,
+    UserNotificationSerializer,
+    UserProfileSerializer,
+)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, days_ago, user_factory
 from olympia.users.models import UserNotification, UserProfile
@@ -60,16 +63,20 @@ class TestPublicUserProfileSerializer(TestCase):
     serializer = PublicUserProfileSerializer
     user_kwargs = {
         'username': 'amo',
-        'biography': 'stuff', 'homepage': 'http://mozilla.org/',
-        'location': 'everywhere', 'occupation': 'job'}
+        'biography': 'stuff',
+        'homepage': 'http://mozilla.org/',
+        'location': 'everywhere',
+        'occupation': 'job',
+    }
 
     def setUp(self):
         self.request = APIRequestFactory().get('/')
         self.user = user_factory(**self.user_kwargs)
 
     def serialize(self):
-        return (self.serializer(context={'request': self.request})
-                .to_representation(self.user))
+        return self.serializer(
+            context={'request': self.request}
+        ).to_representation(self.user)
 
     def test_picture(self):
         serial = self.serialize()
@@ -119,7 +126,8 @@ class TestPublicUserProfileSerializer(TestCase):
 
     def test_anonymous_username_display_name(self):
         self.user = user_factory(
-            username='anonymous-bb4f3cbd422e504080e32f2d9bbfcee0')
+            username='anonymous-bb4f3cbd422e504080e32f2d9bbfcee0'
+        )
         data = self.serialize()
         assert self.user.has_anonymous_username is True
         assert data['has_anonymous_username'] is True
@@ -145,38 +153,52 @@ class PermissionsTestMixin(object):
         group = Group.objects.create(name='a', rules='Addons:Review')
         GroupUser.objects.create(group=group, user=self.user)
         assert self.serializer(self.user).data['permissions'] == [
-            'Addons:Review']
+            'Addons:Review'
+        ]
 
         # Multiple permissions
         group.update(rules='Addons:Review,Personas:Review,Addons:Edit')
         del self.user.groups_list
         assert self.serializer(self.user).data['permissions'] == [
-            'Addons:Edit', 'Addons:Review', 'Personas:Review']
+            'Addons:Edit',
+            'Addons:Review',
+            'Personas:Review',
+        ]
 
         # Change order to test sort
         group.update(rules='Personas:Review,Addons:Review,Addons:Edit')
         del self.user.groups_list
         assert self.serializer(self.user).data['permissions'] == [
-            'Addons:Edit', 'Addons:Review', 'Personas:Review']
+            'Addons:Edit',
+            'Addons:Review',
+            'Personas:Review',
+        ]
 
         # Add a second group membership to test duplicates
         group2 = Group.objects.create(name='b', rules='Foo:Bar,Addons:Edit')
         GroupUser.objects.create(group=group2, user=self.user)
         assert self.serializer(self.user).data['permissions'] == [
-            'Addons:Edit', 'Addons:Review', 'Foo:Bar', 'Personas:Review']
+            'Addons:Edit',
+            'Addons:Review',
+            'Foo:Bar',
+            'Personas:Review',
+        ]
 
 
-class TestUserProfileSerializer(TestPublicUserProfileSerializer,
-                                PermissionsTestMixin):
+class TestUserProfileSerializer(
+    TestPublicUserProfileSerializer, PermissionsTestMixin
+):
     serializer = UserProfileSerializer
 
     def setUp(self):
         self.now = days_ago(0)
-        self.user_kwargs.update({
-            'email': u'a@m.o',
-            'display_name': u'This is my náme',
-            'last_login_ip': '123.45.67.89',
-        })
+        self.user_kwargs.update(
+            {
+                'email': u'a@m.o',
+                'display_name': u'This is my náme',
+                'last_login_ip': '123.45.67.89',
+            }
+        )
         super(TestUserProfileSerializer, self).setUp()
 
     def test_basic(self):
@@ -184,19 +206,20 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer,
         self.user.update(last_login=self.now, read_dev_agreement=self.now)
         data = super(TestUserProfileSerializer, self).test_basic()
         assert data['last_login'] == (
-            self.now.replace(microsecond=0).isoformat() + 'Z')
+            self.now.replace(microsecond=0).isoformat() + 'Z'
+        )
         assert data['read_dev_agreement'] == data['last_login']
 
 
 class TestUserNotificationSerializer(TestCase):
-
     def setUp(self):
         self.user = user_factory()
 
     def test_basic(self):
         notification = NOTIFICATIONS_BY_SHORT['upgrade_fail']
         user_notification = UserNotification.objects.create(
-            user=self.user, notification_id=notification.id, enabled=True)
+            user=self.user, notification_id=notification.id, enabled=True
+        )
         data = UserNotificationSerializer(user_notification).data
         assert data['name'] == user_notification.notification.short
         assert data['enabled'] == user_notification.enabled

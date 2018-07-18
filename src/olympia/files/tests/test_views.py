@@ -38,7 +38,6 @@ def create_directory(path):
 
 
 class FilesBase(object):
-
     def login_as_admin(self):
         assert self.client.login(email='admin@mozilla.com')
 
@@ -57,31 +56,34 @@ class FilesBase(object):
         self.file.update(platform=p[0])
 
         files = [
-            (
-                'dictionary-test.xpi',
-                self.file),
+            ('dictionary-test.xpi', self.file),
             (
                 'dictionary-test.xpi',
                 File.objects.create(
                     version=self.version,
                     platform=p[1],
                     hash='abc123',
-                    filename='dictionary-test.xpi')),
+                    filename='dictionary-test.xpi',
+                ),
+            ),
             (
                 'dictionary-test-changed.xpi',
                 File.objects.create(
                     version=self.version,
                     platform=p[2],
                     hash='abc123',
-                    filename='dictionary-test.xpi'))]
+                    filename='dictionary-test.xpi',
+                ),
+            ),
+        ]
 
         fixtures_base_path = os.path.join(settings.ROOT, files_fixtures)
 
         for xpi_file, file_obj in files:
             create_directory(os.path.dirname(file_obj.file_path))
             shutil.copyfile(
-                os.path.join(fixtures_base_path, xpi_file),
-                file_obj.file_path)
+                os.path.join(fixtures_base_path, xpi_file), file_obj.file_path
+            )
 
         self.files = [x[1] for x in files]
 
@@ -187,8 +189,9 @@ class FilesBase(object):
         self.file_viewer.select('install.js')
         obj = getattr(self.file_viewer, 'left', self.file_viewer)
         etag = quote_etag(obj.selected.get('sha256'))
-        res = self.client.get(self.file_url('install.js'),
-                              HTTP_IF_NONE_MATCH=etag)
+        res = self.client.get(
+            self.file_url('install.js'), HTTP_IF_NONE_MATCH=etag
+        )
         assert res.status_code == 304
 
     def test_content_headers_if_modified(self):
@@ -196,8 +199,9 @@ class FilesBase(object):
         self.file_viewer.select('install.js')
         obj = getattr(self.file_viewer, 'left', self.file_viewer)
         date = http_date(obj.selected.get('modified'))
-        res = self.client.get(self.file_url('install.js'),
-                              HTTP_IF_MODIFIED_SINCE=date)
+        res = self.client.get(
+            self.file_url('install.js'), HTTP_IF_MODIFIED_SINCE=date
+        )
         assert res.status_code == 304
 
     def test_file_header(self):
@@ -246,12 +250,13 @@ class FilesBase(object):
     def test_diff_redirect(self):
         ids = self.files[0].id, self.files[1].id
 
-        res = self.client.post(self.file_url(),
-                               {'left': ids[0], 'right': ids[1]})
+        res = self.client.post(
+            self.file_url(), {'left': ids[0], 'right': ids[1]}
+        )
         self.assert3xx(res, reverse('files.compare', args=ids))
 
     def test_browse_redirect(self):
-        ids = self.files[0].id,
+        ids = (self.files[0].id,)
 
         res = self.client.post(self.file_url(), {'left': ids[0]})
         self.assert3xx(res, reverse('files.list', args=ids))
@@ -287,8 +292,12 @@ class FilesBase(object):
         public_file = doc('#id_left > optgroup > option.status-public')
         assert public_file.text() == str(self.files[0].get_platform_display())
         assert unreviewed_file.text() == (
-            '%s, %s' % (self.files[1].get_platform_display(),
-                        self.files[2].get_platform_display()))
+            '%s, %s'
+            % (
+                self.files[1].get_platform_display(),
+                self.files[2].get_platform_display(),
+            )
+        )
 
         assert public_file.attr('value') == str(self.files[0].id)
         assert unreviewed_file.attr('value') == str(self.files[1].id)
@@ -316,11 +325,16 @@ class FilesBase(object):
     def test_all_versions_shown_for_admin(self):
         self.login_as_admin()
         listed_ver = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
-            version='4.0', created=self.days_ago(1))
+            addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_LISTED,
+            version='4.0',
+            created=self.days_ago(1),
+        )
         unlisted_ver = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
-            version='5.0')
+            addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            version='5.0',
+        )
         assert self.addon.versions.count() == 3
         res = self.client.get(self.file_url())
         doc = pq(res.content)
@@ -331,9 +345,11 @@ class FilesBase(object):
         assert len(file_options) == 3, left_select.html()
         # Check the files in the list are the two we added and the default.
         assert file_options.eq(0).attr('value') == str(
-            unlisted_ver.all_files[0].pk)
+            unlisted_ver.all_files[0].pk
+        )
         assert file_options.eq(1).attr('value') == str(
-            listed_ver.all_files[0].pk)
+            listed_ver.all_files[0].pk
+        )
         assert file_options.eq(2).attr('value') == str(self.file.pk)
         # Check there are prefixes on the labels for the channels
         assert file_options.eq(0).text().endswith('[Self]')
@@ -357,11 +373,13 @@ class FilesBase(object):
 
     def test_only_listed_versions_shown_for_reviewer(self):
         listed_ver = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
-            version='4.0')
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED, version='4.0'
+        )
         version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
-            version='5.0')
+            addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            version='5.0',
+        )
         assert self.addon.versions.count() == 3
         res = self.client.get(self.file_url())
         doc = pq(res.content)
@@ -372,7 +390,8 @@ class FilesBase(object):
         file_options = left_select('option.status-public')
         assert len(file_options) == 2, left_select.html()
         assert file_options.eq(0).attr('value') == str(
-            listed_ver.all_files[0].pk)
+            listed_ver.all_files[0].pk
+        )
         assert file_options.eq(1).attr('value') == str(self.file.pk)
         # Check there are NO prefixes on the labels for the channels
         assert not file_options.eq(0).text().endswith('[AMO]')
@@ -501,7 +520,8 @@ class TestFileViewer(FilesBase, TestCase):
         res = self.client.get(self.files_redirect(binary), follow=True)
         assert res.status_code == 200
         assert res[settings.XSENDFILE_HEADER] == (
-            self.file_viewer.get_files().get(binary)['full'])
+            self.file_viewer.get_files().get(binary)['full']
+        )
 
     @patch.object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size(self):
@@ -524,21 +544,24 @@ class TestFileViewer(FilesBase, TestCase):
         doc = pq(res.content)
 
         assert doc('#id_left option[selected]').attr('value') == (
-            str(self.files[0].id))
+            str(self.files[0].id)
+        )
         assert len(doc('#id_right option[value][selected]')) == 0
 
     def test_file_chooser_non_ascii_platform(self):
         PLATFORM_NAME = u'所有移动平台'
         f = self.files[0]
-        with patch.object(File, 'get_platform_display',
-                          lambda self: PLATFORM_NAME):
+        with patch.object(
+            File, 'get_platform_display', lambda self: PLATFORM_NAME
+        ):
             assert f.get_platform_display() == PLATFORM_NAME
 
             res = self.client.get(self.file_url())
             doc = pq(res.content.decode('utf-8'))
 
             assert doc('#id_left option[value="%d"]' % f.id).text() == (
-                PLATFORM_NAME)
+                PLATFORM_NAME
+            )
 
     def test_content_file_size_uses_binary_prefix(self):
         self.file_viewer.extract()
@@ -554,8 +577,9 @@ class TestDiffViewer(FilesBase, TestCase):
         self.file_viewer = DiffHelper(self.files[0], self.files[1])
 
     def poll_url(self):
-        return reverse('files.compare.poll', args=[self.files[0].pk,
-                                                   self.files[1].pk])
+        return reverse(
+            'files.compare.poll', args=[self.files[0].pk, self.files[1].pk]
+        )
 
     def add_file(self, file_obj, name, contents):
         dest = os.path.join(file_obj.dest, name)
@@ -636,9 +660,11 @@ class TestDiffViewer(FilesBase, TestCase):
         doc = pq(res.content)
 
         assert doc('#id_left option[selected]').attr('value') == (
-            str(self.files[0].id))
+            str(self.files[0].id)
+        )
         assert doc('#id_right option[selected]').attr('value') == (
-            str(self.files[1].id))
+            str(self.files[1].id)
+        )
 
     def test_file_chooser_selection_same_hash(self):
         """
@@ -646,20 +672,22 @@ class TestDiffViewer(FilesBase, TestCase):
         have an actual entry for certain files. Instead, the entry with the
         identical hash should be selected.
         """
-        res = self.client.get(reverse('files.compare',
-                                      args=(self.files[0].id,
-                                            self.files[2].id)))
+        res = self.client.get(
+            reverse('files.compare', args=(self.files[0].id, self.files[2].id))
+        )
         doc = pq(res.content)
 
         assert doc('#id_left option[selected]').attr('value') == (
-            str(self.files[0].id))
+            str(self.files[0].id)
+        )
         assert doc('#id_right option[selected]').attr('value') == (
-            str(self.files[1].id))
+            str(self.files[1].id)
+        )
 
     def test_files_list_uses_correct_links(self):
-        res = self.client.get(reverse('files.compare',
-                                      args=(self.files[0].id,
-                                            self.files[2].id)))
+        res = self.client.get(
+            reverse('files.compare', args=(self.files[0].id, self.files[2].id))
+        )
         doc = pq(res.content)
 
         install_js_link = doc(
@@ -668,6 +696,7 @@ class TestDiffViewer(FilesBase, TestCase):
 
         expected = reverse(
             'files.compare',
-            args=(self.files[0].id, self.files[2].id, 'file', 'install.js'))
+            args=(self.files[0].id, self.files[2].id, 'file', 'install.js'),
+        )
 
         assert install_js_link == expected

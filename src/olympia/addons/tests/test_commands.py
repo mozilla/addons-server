@@ -10,11 +10,17 @@ import pytest
 from olympia import amo
 from olympia.activity.models import AddonLog
 from olympia.addons.management.commands import (
-    approve_addons, process_addons as pa)
+    approve_addons,
+    process_addons as pa,
+)
 from olympia.addons.models import Addon, AppSupport
 from olympia.addons.tasks import update_appsupport
 from olympia.amo.tests import (
-    AMOPaths, TestCase, addon_factory, version_factory)
+    AMOPaths,
+    TestCase,
+    addon_factory,
+    version_factory,
+)
 from olympia.applications.models import AppVersion
 from olympia.files.models import FileValidation, WebextPermission
 from olympia.reviewers.models import AutoApprovalSummary, ReviewerScore
@@ -27,21 +33,26 @@ SIGN_ADDONS = 'olympia.addons.management.commands.sign_addons.sign_addons'
 
 def test_sign_addons_force_signing(monkeypatch):
     """You can force signing an addon even if it's already signed."""
+
     def not_forced(ids, force, reason):
         assert not force
+
     monkeypatch.setattr(SIGN_ADDONS, not_forced)
     call_command('sign_addons', '123')
 
     def is_forced(ids, force, reason):
         assert force
+
     monkeypatch.setattr(SIGN_ADDONS, is_forced)
     call_command('sign_addons', '123', force=True)
 
 
 def test_sign_addons_reason(monkeypatch):
     """You can pass a reason."""
+
     def has_reason(ids, force, reason):
         assert reason == 'expiry'
+
     monkeypatch.setattr(SIGN_ADDONS, has_reason)
     call_command('sign_addons', '123', reason='expiry')
 
@@ -56,11 +67,13 @@ def test_sign_addons_overwrite_autograph_settings(monkeypatch):
 
     monkeypatch.setattr(SIGN_ADDONS, has_config_overwrite)
     call_command(
-        'sign_addons', '123',
+        'sign_addons',
+        '123',
         autograph_server_url='dummy server url',
         autograph_user_id='dummy user id',
         autograph_key='dummy key',
-        autograph_signer='dummy signer')
+        autograph_signer='dummy signer',
+    )
 
 
 @pytest.mark.django_db
@@ -75,12 +88,14 @@ def test_approve_addons_get_files_bad_guid():
     """An add-on with another guid doesn't get approved."""
     addon1 = addon_factory(status=amo.STATUS_NOMINATED, guid='foo')
     addon1_file = addon1.find_latest_version(
-        amo.RELEASE_CHANNEL_LISTED).files.get()
+        amo.RELEASE_CHANNEL_LISTED
+    ).files.get()
     addon1_file.update(status=amo.STATUS_AWAITING_REVIEW)
     # Create another add-on that we won't get the files for.
     addon2 = addon_factory(status=amo.STATUS_NOMINATED, guid='bar')
     addon2_file = addon2.find_latest_version(
-        amo.RELEASE_CHANNEL_LISTED).files.get()
+        amo.RELEASE_CHANNEL_LISTED
+    ).files.get()
     addon2_file.update(status=amo.STATUS_AWAITING_REVIEW)
     # There's only the addon1's file returned, no other.
     assert approve_addons.get_files(['foo']) == [addon1_file]
@@ -99,16 +114,21 @@ def id_function(fixture_value):
     unreviewed.
     """
     addon_status, file_status, review_type = fixture_value
-    return '{0}-{1}-{2}'.format(amo.STATUS_CHOICES_API[addon_status],
-                                amo.STATUS_CHOICES_API[file_status],
-                                review_type)
+    return '{0}-{1}-{2}'.format(
+        amo.STATUS_CHOICES_API[addon_status],
+        amo.STATUS_CHOICES_API[file_status],
+        review_type,
+    )
 
 
 @pytest.fixture(
-    params=[(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, 'full'),
-            (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW, 'full')],
+    params=[
+        (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, 'full'),
+        (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW, 'full'),
+    ],
     # ids are used to build better names for the tests using this fixture.
-    ids=id_function)
+    ids=id_function,
+)
 def use_case(request, db):
     """This fixture will return quadruples for different use cases.
 
@@ -170,8 +190,7 @@ def test_approve_addons_approve_files(use_case, mozilla_user):
     Use cases are quadruples taken from the "use_case" fixture above.
     """
     addon, file1, file2, review_type = use_case
-    approve_addons.approve_files([(file1, review_type),
-                                  (file2, review_type)])
+    approve_addons.approve_files([(file1, review_type), (file2, review_type)])
     assert file1.reload().status == amo.STATUS_PUBLIC
     assert file2.reload().status == amo.STATUS_PUBLIC
     logs = AddonLog.objects.filter(addon=addon)
@@ -237,16 +256,22 @@ def count_subtask_calls(original_function):
 class AddFirefox57TagTestCase(TestCase):
     def test_affects_only_public_webextensions(self):
         addon_factory()
-        addon_factory(file_kw={'is_webextension': True,
-                               'status': amo.STATUS_AWAITING_REVIEW},
-                      status=amo.STATUS_NOMINATED)
+        addon_factory(
+            file_kw={
+                'is_webextension': True,
+                'status': amo.STATUS_AWAITING_REVIEW,
+            },
+            status=amo.STATUS_NOMINATED,
+        )
         public_webextension = addon_factory(file_kw={'is_webextension': True})
-        public_mozilla_signed = addon_factory(file_kw={
-            'is_mozilla_signed_extension': True})
+        public_mozilla_signed = addon_factory(
+            file_kw={'is_mozilla_signed_extension': True}
+        )
 
         with count_subtask_calls(pa.add_firefox57_tag) as calls:
             call_command(
-                'process_addons', task='add_firefox57_tag_to_webextensions')
+                'process_addons', task='add_firefox57_tag_to_webextensions'
+            )
 
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [
@@ -258,61 +283,69 @@ class AddFirefox57TagTestCase(TestCase):
         assert self.addon.tags.all().count() == 0
 
         call_command(
-            'process_addons', task='add_firefox57_tag_to_webextensions')
+            'process_addons', task='add_firefox57_tag_to_webextensions'
+        )
 
-        assert (
-            set(self.addon.tags.all().values_list('tag_text', flat=True)) ==
-            set(['firefox57']))
+        assert set(
+            self.addon.tags.all().values_list('tag_text', flat=True)
+        ) == set(['firefox57'])
 
     def test_tag_added_for_is_mozilla_signed_extension(self):
         self.addon = addon_factory(
-            file_kw={'is_mozilla_signed_extension': True})
+            file_kw={'is_mozilla_signed_extension': True}
+        )
         assert self.addon.tags.all().count() == 0
 
         call_command(
-            'process_addons', task='add_firefox57_tag_to_webextensions')
+            'process_addons', task='add_firefox57_tag_to_webextensions'
+        )
 
-        assert (
-            set(self.addon.tags.all().values_list('tag_text', flat=True)) ==
-            set(['firefox57']))
+        assert set(
+            self.addon.tags.all().values_list('tag_text', flat=True)
+        ) == set(['firefox57'])
 
 
 class TestAddDynamicThemeTagForThemeApiCommand(TestCase):
     def test_affects_only_public_webextensions(self):
         addon_factory()
-        addon_factory(file_kw={'is_webextension': True,
-                               'status': amo.STATUS_AWAITING_REVIEW},
-                      status=amo.STATUS_NOMINATED)
+        addon_factory(
+            file_kw={
+                'is_webextension': True,
+                'status': amo.STATUS_AWAITING_REVIEW,
+            },
+            status=amo.STATUS_NOMINATED,
+        )
         public_webextension = addon_factory(file_kw={'is_webextension': True})
 
         with count_subtask_calls(pa.add_dynamic_theme_tag) as calls:
             call_command(
-                'process_addons', task='add_dynamic_theme_tag_for_theme_api')
+                'process_addons', task='add_dynamic_theme_tag_for_theme_api'
+            )
 
         assert len(calls) == 1
-        assert calls[0]['kwargs']['args'] == [
-            [public_webextension.pk]
-        ]
+        assert calls[0]['kwargs']['args'] == [[public_webextension.pk]]
 
     def test_tag_added_for_is_dynamic_theme(self):
         addon = addon_factory(file_kw={'is_webextension': True})
         WebextPermission.objects.create(
-            file=addon.current_version.all_files[0],
-            permissions=['theme'])
+            file=addon.current_version.all_files[0], permissions=['theme']
+        )
         assert addon.tags.all().count() == 0
         # Add some more that shouldn't be tagged
         no_perms = addon_factory(file_kw={'is_webextension': True})
         not_a_theme = addon_factory(file_kw={'is_webextension': True})
         WebextPermission.objects.create(
             file=not_a_theme.current_version.all_files[0],
-            permissions=['downloads'])
+            permissions=['downloads'],
+        )
 
         call_command(
-            'process_addons', task='add_dynamic_theme_tag_for_theme_api')
+            'process_addons', task='add_dynamic_theme_tag_for_theme_api'
+        )
 
-        assert (
-            list(addon.tags.all().values_list('tag_text', flat=True)) ==
-            [u'dynamic theme'])
+        assert list(addon.tags.all().values_list('tag_text', flat=True)) == [
+            u'dynamic theme'
+        ]
 
         assert not no_perms.tags.all().exists()
         assert not not_a_theme.tags.all().exists()
@@ -327,13 +360,15 @@ class RecalculateWeightTestCase(TestCase):
         # should not be considered.
         AutoApprovalSummary.objects.create(
             version=addon_factory().current_version,
-            verdict=amo.NOT_AUTO_APPROVED)
+            verdict=amo.NOT_AUTO_APPROVED,
+        )
 
         # Add-on with the current version not auto-approved, should not be
         # considered.
         extra_addon = addon_factory()
         AutoApprovalSummary.objects.create(
-            version=extra_addon.current_version, verdict=amo.AUTO_APPROVED)
+            version=extra_addon.current_version, verdict=amo.AUTO_APPROVED
+        )
         extra_addon.current_version.update(created=self.days_ago(1))
         version_factory(addon=extra_addon)
 
@@ -342,17 +377,21 @@ class RecalculateWeightTestCase(TestCase):
         auto_approved_addon = addon_factory()
         AutoApprovalSummary.objects.create(
             version=auto_approved_addon.current_version,
-            verdict=amo.AUTO_APPROVED)
+            verdict=amo.AUTO_APPROVED,
+        )
         # Add some extra versions that should not have an impact.
         version_factory(
             addon=auto_approved_addon,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
         version_factory(
-            addon=auto_approved_addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+            addon=auto_approved_addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
 
         with count_subtask_calls(pa.recalculate_post_review_weight) as calls:
             call_command(
-                'process_addons', task='recalculate_post_review_weight')
+                'process_addons', task='recalculate_post_review_weight'
+            )
 
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [[auto_approved_addon.pk]]
@@ -360,14 +399,15 @@ class RecalculateWeightTestCase(TestCase):
     def test_task_works_correctly(self):
         addon = addon_factory(average_daily_users=100000)
         FileValidation.objects.create(
-            file=addon.current_version.all_files[0], validation=u'{}')
+            file=addon.current_version.all_files[0], validation=u'{}'
+        )
         addon = Addon.objects.get(pk=addon.pk)
         summary = AutoApprovalSummary.objects.create(
-            version=addon.current_version, verdict=amo.AUTO_APPROVED)
+            version=addon.current_version, verdict=amo.AUTO_APPROVED
+        )
         assert summary.weight == 0
 
-        call_command(
-            'process_addons', task='recalculate_post_review_weight')
+        call_command('process_addons', task='recalculate_post_review_weight')
 
         summary.reload()
         # Weight should be 10 because of average_daily_users / 10000.
@@ -377,9 +417,11 @@ class RecalculateWeightTestCase(TestCase):
 class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
     def setUp(self):
         self.firefox_56_star, _ = AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='56.*')
+            application=amo.FIREFOX.id, version='56.*'
+        )
         self.firefox_for_android_56_star, _ = AppVersion.objects.get_or_create(
-            application=amo.ANDROID.id, version='56.*')
+            application=amo.ANDROID.id, version='56.*'
+        )
 
     def test_only_affects_legacy_addons_targeting_firefox_lower_than_56(self):
         # Should be included:
@@ -394,16 +436,22 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
         # Firefox and Thunderbird - with a low version for Thunderbird, but a
         # high enough (56.*) for Firefox to be ignored by the task.
         weird_addon = addon_factory(
-            version_kw={'application': amo.THUNDERBIRD.id})
+            version_kw={'application': amo.THUNDERBIRD.id}
+        )
         av_min, _ = AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='48.*')
+            application=amo.FIREFOX.id, version='48.*'
+        )
         ApplicationsVersions.objects.get_or_create(
-            application=amo.FIREFOX.id, version=weird_addon.current_version,
-            min=av_min, max=self.firefox_56_star)
+            application=amo.FIREFOX.id,
+            version=weird_addon.current_version,
+            min=av_min,
+            max=self.firefox_56_star,
+        )
 
         with count_subtask_calls(pa.bump_appver_for_legacy_addons) as calls:
             call_command(
-                'process_addons', task='bump_appver_for_legacy_addons')
+                'process_addons', task='bump_appver_for_legacy_addons'
+            )
 
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [[addon.pk, addon2.pk, addon3.pk]]
@@ -411,7 +459,8 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
     @mock.patch('olympia.addons.tasks.index_addons.delay')
     @mock.patch('olympia.addons.tasks.bump_appver_for_addon_if_necessary')
     def test_reindex_if_updated_for_firefox_and_android(
-            self, bump_appver_for_addon_if_necessary_mock, index_addons_mock):
+        self, bump_appver_for_addon_if_necessary_mock, index_addons_mock
+    ):
         bump_appver_for_addon_if_necessary_mock.return_value = False
         # Note: technically this add-on is only compatible with Firefox, but
         # we're mocking the function that does the check anyway... we only care
@@ -428,7 +477,8 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
     @mock.patch('olympia.addons.tasks.index_addons.delay')
     @mock.patch('olympia.addons.tasks.bump_appver_for_addon_if_necessary')
     def test_reindex_if_updated_for_firefox(
-            self, bump_appver_for_addon_if_necessary_mock, index_addons_mock):
+        self, bump_appver_for_addon_if_necessary_mock, index_addons_mock
+    ):
         bump_appver_for_addon_if_necessary_mock.side_effect = (False, None)
         addon = addon_factory()
         index_addons_mock.reset_mock()
@@ -441,7 +491,8 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
     @mock.patch('olympia.addons.tasks.index_addons.delay')
     @mock.patch('olympia.addons.tasks.bump_appver_for_addon_if_necessary')
     def test_reindex_if_updated_for_android(
-            self, bump_appver_for_addon_if_necessary_mock, index_addons_mock):
+        self, bump_appver_for_addon_if_necessary_mock, index_addons_mock
+    ):
         bump_appver_for_addon_if_necessary_mock.side_effect = (None, False)
         addon = addon_factory()
         index_addons_mock.reset_mock()
@@ -454,7 +505,8 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
     @mock.patch('olympia.addons.tasks.index_addons.delay')
     @mock.patch('olympia.addons.tasks.bump_appver_for_addon_if_necessary')
     def test_no_update_necessary(
-            self, bump_appver_for_addon_if_necessary_mock, index_addons_mock):
+        self, bump_appver_for_addon_if_necessary_mock, index_addons_mock
+    ):
         bump_appver_for_addon_if_necessary_mock.return_value = True
         addon_factory()
         index_addons_mock.reset_mock()
@@ -476,8 +528,7 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
 
     @mock.patch('olympia.addons.tasks.index_addons.delay')
     @mock.patch('olympia.addons.tasks.storage.open')
-    def test_exception_when_reading_xpi(
-            self, open_mock, index_addons_mock):
+    def test_exception_when_reading_xpi(self, open_mock, index_addons_mock):
         open_mock.side_effect = Exception
         # Add 2 add-ons for Firefox. We want to make sure both are considered
         # even though the open() calls are raising an exception (i.e. the
@@ -494,11 +545,13 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
 
     def test_correctly_updated(self):
         # This is a full test without mocks, so the file needs to exist.
-        addon = addon_factory(version_kw={
-            # Might as well match the xpi contents.
-            'min_app_version': '3.0',
-            'max_app_version': '3.6.*'
-        })
+        addon = addon_factory(
+            version_kw={
+                # Might as well match the xpi contents.
+                'min_app_version': '3.0',
+                'max_app_version': '3.6.*',
+            }
+        )
         apv = ApplicationsVersions.objects.get(version=addon.current_version)
         assert apv.max != self.firefox_56_star
         self.xpi_copy_over(addon.current_version.all_files[0], 'extension.xpi')
@@ -508,15 +561,18 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
 
     def test_correctly_ignored_because_strict_compatibility_is_enabled(self):
         # This is a full test without mocks, so the file needs to exist.
-        addon = addon_factory(version_kw={
-            # Might as well match the xpi contents.
-            'min_app_version': '3.0',
-            'max_app_version': '3.6.*'
-        })
+        addon = addon_factory(
+            version_kw={
+                # Might as well match the xpi contents.
+                'min_app_version': '3.0',
+                'max_app_version': '3.6.*',
+            }
+        )
         apv = ApplicationsVersions.objects.get(version=addon.current_version)
         assert apv.max != self.firefox_56_star
         self.xpi_copy_over(
-            addon.current_version.all_files[0], 'strict-compat.xpi')
+            addon.current_version.all_files[0], 'strict-compat.xpi'
+        )
         call_command('process_addons', task='bump_appver_for_legacy_addons')
         apv = ApplicationsVersions.objects.get(version=addon.current_version)
         # Shouldn't have been updated to 56.* since strictCompatibilty is true.
@@ -525,18 +581,24 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
 
 class TestDeleteAddonsNotCompatibleWithFirefoxes(TestCase):
     def make_the_call(self):
-        call_command('process_addons',
-                     task='delete_addons_not_compatible_with_firefoxes')
+        call_command(
+            'process_addons',
+            task='delete_addons_not_compatible_with_firefoxes',
+        )
 
     def test_basic(self):
         av_min, _ = AppVersion.objects.get_or_create(
-            application=amo.ANDROID.id, version='48.0')
+            application=amo.ANDROID.id, version='48.0'
+        )
         av_max, _ = AppVersion.objects.get_or_create(
-            application=amo.ANDROID.id, version='48.*')
+            application=amo.ANDROID.id, version='48.*'
+        )
         av_seamonkey_min, _ = AppVersion.objects.get_or_create(
-            application=amo.SEAMONKEY.id, version='2.49.3')
+            application=amo.SEAMONKEY.id, version='2.49.3'
+        )
         av_seamonkey_max, _ = AppVersion.objects.get_or_create(
-            application=amo.SEAMONKEY.id, version='2.49.*')
+            application=amo.SEAMONKEY.id, version='2.49.*'
+        )
         # Those add-ons should not be deleted, because they are compatible with
         # at least Firefox or Firefox for Android.
         addon_factory()  # A pure Firefox add-on
@@ -545,34 +607,49 @@ class TestDeleteAddonsNotCompatibleWithFirefoxes(TestCase):
         ApplicationsVersions.objects.get_or_create(
             application=amo.ANDROID.id,
             version=addon_with_both_firefoxes.current_version,
-            min=av_min, max=av_max)
+            min=av_min,
+            max=av_max,
+        )
         addon_with_thunderbird_and_android = addon_factory(
-            version_kw={'application': amo.THUNDERBIRD.id})
+            version_kw={'application': amo.THUNDERBIRD.id}
+        )
         ApplicationsVersions.objects.get_or_create(
             application=amo.ANDROID.id,
             version=addon_with_thunderbird_and_android.current_version,
-            min=av_min, max=av_max)
+            min=av_min,
+            max=av_max,
+        )
         addon_with_firefox_and_seamonkey = addon_factory(
-            version_kw={'application': amo.FIREFOX.id})
+            version_kw={'application': amo.FIREFOX.id}
+        )
         ApplicationsVersions.objects.get_or_create(
             application=amo.SEAMONKEY.id,
             version=addon_with_firefox_and_seamonkey.current_version,
-            min=av_seamonkey_min, max=av_seamonkey_max)
+            min=av_seamonkey_min,
+            max=av_seamonkey_max,
+        )
         addon_factory(
             status=amo.STATUS_NULL,  # Non-public, will cause it to be ignored.
-            version_kw={'application': amo.THUNDERBIRD.id})
+            version_kw={'application': amo.THUNDERBIRD.id},
+        )
 
         # Those add-ons should be deleted as they are only compatible with
         # Thunderbird or Seamonkey, or both.
         addon = addon_factory(version_kw={'application': amo.THUNDERBIRD.id})
-        addon2 = addon_factory(version_kw={'application': amo.SEAMONKEY.id,
-                                           'min_app_version': '2.49.3',
-                                           'max_app_version': '2.49.*'})
+        addon2 = addon_factory(
+            version_kw={
+                'application': amo.SEAMONKEY.id,
+                'min_app_version': '2.49.3',
+                'max_app_version': '2.49.*',
+            }
+        )
         addon3 = addon_factory(version_kw={'application': amo.THUNDERBIRD.id})
         ApplicationsVersions.objects.get_or_create(
             application=amo.SEAMONKEY.id,
             version=addon3.current_version,
-            min=av_seamonkey_min, max=av_seamonkey_max)
+            min=av_seamonkey_min,
+            max=av_seamonkey_max,
+        )
 
         # We've manually changed the ApplicationVersions, so let's run
         # update_appsupport() on all public add-ons. In the real world that is
@@ -584,7 +661,8 @@ class TestDeleteAddonsNotCompatibleWithFirefoxes(TestCase):
         assert Addon.objects.count() == 9
 
         with count_subtask_calls(
-                pa.delete_addon_not_compatible_with_firefoxes) as calls:
+            pa.delete_addon_not_compatible_with_firefoxes
+        ) as calls:
             self.make_the_call()
 
         assert len(calls) == 1
@@ -598,13 +676,17 @@ class TestDeleteAddonsNotCompatibleWithFirefoxes(TestCase):
         # Make sure ApplicationsVersions targeting Thunderbird or Seamonkey are
         # gone.
         assert not ApplicationsVersions.objects.filter(
-            application=amo.SEAMONKEY.id).exists()
+            application=amo.SEAMONKEY.id
+        ).exists()
         assert not ApplicationsVersions.objects.filter(
-            application=amo.THUNDERBIRD.id).exists()
+            application=amo.THUNDERBIRD.id
+        ).exists()
 
         # Make sure AppSupport targeting Thunderbird or Seamonkey are gone for
         # add-ons we touched.
         assert not AppSupport.objects.filter(
-            addon__in=(addon, addon2, addon3), app=amo.SEAMONKEY.id).exists()
+            addon__in=(addon, addon2, addon3), app=amo.SEAMONKEY.id
+        ).exists()
         assert not AppSupport.objects.filter(
-            addon__in=(addon, addon2, addon3), app=amo.THUNDERBIRD.id).exists()
+            addon__in=(addon, addon2, addon3), app=amo.THUNDERBIRD.id
+        ).exists()

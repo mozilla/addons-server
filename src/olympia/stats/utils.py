@@ -7,7 +7,8 @@ def migrate_theme_update_count(lwt, static_theme, **kw):
     copied.  Any additional **kw are passed to the filter to - for example to
     limit to a certain day or day range."""
     theme_update_counts = ThemeUpdateCount.objects.filter(
-        addon_id=lwt.id, **kw).iterator()
+        addon_id=lwt.id, **kw
+    ).iterator()
     update_counts = [
         UpdateCount(addon_id=static_theme.id, date=tuc.date, count=tuc.count)
         for tuc in theme_update_counts

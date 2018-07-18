@@ -13,15 +13,14 @@ from olympia.users.models import UserProfile
 # in our database.
 SYMMETRIC_JWT_TYPE = 1
 
-API_KEY_TYPES = [
-    SYMMETRIC_JWT_TYPE,
-]
+API_KEY_TYPES = [SYMMETRIC_JWT_TYPE]
 
 
 class APIKey(ModelBase):
     """
     A developer's key/secret pair to access the API.
     """
+
     user = models.ForeignKey(UserProfile, related_name='api_keys')
 
     # A user can only have one active key at the same time, it's enforced by
@@ -30,7 +29,8 @@ class APIKey(ModelBase):
     # is_active=False when revoking keys).
     is_active = models.NullBooleanField(default=True)
     type = models.PositiveIntegerField(
-        choices=dict(zip(API_KEY_TYPES, API_KEY_TYPES)).items(), default=0)
+        choices=dict(zip(API_KEY_TYPES, API_KEY_TYPES)).items(), default=0
+    )
     key = models.CharField(max_length=255, db_index=True, unique=True)
     # TODO: use RSA public keys instead? If we were to use JWT RSA keys
     # then we'd only need to store the public key.
@@ -41,10 +41,12 @@ class APIKey(ModelBase):
         unique_together = (('user', 'is_active'),)
 
     def __unicode__(self):
-        return (
-            u'<{cls} user={user}, type={type}, key={key} secret=...>'
-            .format(cls=self.__class__.__name__, key=self.key,
-                    type=self.type, user=self.user))
+        return u'<{cls} user={user}, type={type}, key={key} secret=...>'.format(
+            cls=self.__class__.__name__,
+            key=self.key,
+            type=self.type,
+            user=self.user,
+        )
 
     @classmethod
     def get_jwt_key(cls, **kwargs):
@@ -63,21 +65,28 @@ class APIKey(ModelBase):
         Returns an instance of APIKey.
         """
         key = cls.get_unique_key('user:{}:'.format(user.pk))
-        return cls.objects.create(key=key, secret=cls.generate_secret(32),
-                                  type=SYMMETRIC_JWT_TYPE, user=user,
-                                  is_active=True)
+        return cls.objects.create(
+            key=key,
+            secret=cls.generate_secret(32),
+            type=SYMMETRIC_JWT_TYPE,
+            user=user,
+            is_active=True,
+        )
 
     @classmethod
     def get_unique_key(cls, prefix, try_count=1, max_tries=1000):
         if try_count >= max_tries:
             raise RuntimeError(
-                'a unique API key could not be found after {} tries'
-                .format(max_tries))
+                'a unique API key could not be found after {} tries'.format(
+                    max_tries
+                )
+            )
 
         key = '{}{}'.format(prefix, random.randint(0, 999))
         if cls.objects.filter(key=key).exists():
-            return cls.get_unique_key(prefix, try_count=try_count + 1,
-                                      max_tries=max_tries)
+            return cls.get_unique_key(
+                prefix, try_count=try_count + 1, max_tries=max_tries
+            )
         return key
 
     @staticmethod
@@ -93,6 +102,8 @@ class APIKey(ModelBase):
         """
         if byte_length < 32:  # at least 256 bit
             raise ValueError(
-                '{} is too short; secrets must be longer than 32 bytes'
-                .format(byte_length))
+                '{} is too short; secrets must be longer than 32 bytes'.format(
+                    byte_length
+                )
+            )
         return os.urandom(byte_length).encode('hex')

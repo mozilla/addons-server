@@ -23,22 +23,27 @@ class TestAddonRatingAggregates(TestCase):
         # Add an old rating that should not be used to calculate the average,
         # because the same user posts a new one right after that.
         old_rating = Rating.objects.create(
-            addon=addon, rating=1, user=user, is_latest=False, body=u'old')
-        new_rating = Rating.objects.create(addon=addon, rating=3, user=user,
-                                           body=u'new')
-        Rating.objects.create(addon=addon, rating=3, user=user_factory(),
-                              body=u'foo')
+            addon=addon, rating=1, user=user, is_latest=False, body=u'old'
+        )
+        new_rating = Rating.objects.create(
+            addon=addon, rating=3, user=user, body=u'new'
+        )
+        Rating.objects.create(
+            addon=addon, rating=3, user=user_factory(), body=u'foo'
+        )
         Rating.objects.create(addon=addon, rating=2, user=user_factory())
         Rating.objects.create(addon=addon, rating=1, user=user_factory())
 
         # On another addon as well.
         Rating.objects.create(addon=addon2, rating=1, user=user_factory())
-        Rating.objects.create(addon=addon2, rating=1, user=user_factory(),
-                              body=u'two')
+        Rating.objects.create(
+            addon=addon2, rating=1, user=user_factory(), body=u'two'
+        )
 
         # addon_rating_aggregates should ignore replies, so let's add one.
         Rating.objects.create(
-            addon=addon, rating=5, user=user_factory(), reply_to=new_rating)
+            addon=addon, rating=5, user=user_factory(), reply_to=new_rating
+        )
 
         # Make sure old_review is considered old, new_review considered new.
         old_rating.reload()
@@ -73,8 +78,9 @@ class TestAddonRatingAggregates(TestCase):
         assert addon2.text_ratings_count == 1
 
         # Trigger the task with a single add-on.
-        Rating.objects.create(addon=addon2, rating=5, user=user_factory(),
-                              body=u'xxx')
+        Rating.objects.create(
+            addon=addon2, rating=5, user=user_factory(), body=u'xxx'
+        )
         addon2.reload()
         assert addon2.total_ratings == 2
 

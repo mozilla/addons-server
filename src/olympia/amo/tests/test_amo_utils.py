@@ -13,9 +13,18 @@ from product_details import product_details
 
 from olympia.amo.tests import BaseTestCase
 from olympia.amo.utils import (
-    LocalFileStorage, cache_ns_key, escape_all, find_language, from_string,
-    no_jinja_autoescape, resize_image, rm_local_tmp_dir,
-    slug_validator, slugify, to_language)
+    LocalFileStorage,
+    cache_ns_key,
+    escape_all,
+    find_language,
+    from_string,
+    no_jinja_autoescape,
+    resize_image,
+    rm_local_tmp_dir,
+    slug_validator,
+    slugify,
+    to_language,
+)
 
 
 pytestmark = pytest.mark.django_db
@@ -31,19 +40,23 @@ def test_slug_validator():
     pytest.raises(ValidationError, slug_validator, 'tags/')
 
 
-@pytest.mark.parametrize("test_input,expected", [
-    ('xx x  - "#$@ x', 'xx-x-x'),
-    (u'Bän...g (bang)', u'bäng-bang'),
-    (u, u.lower()),
-    ('-'.join([u, u]), '-'.join([u, u]).lower()),
-    (' - '.join([u, u]), '-'.join([u, u]).lower()),
-    ('    a ', 'a'),
-    ('tags/', 'tags'),
-    ('holy_wars', 'holy_wars'),
-    # I don't really care what slugify returns.  Just don't crash.
-    (u'x荿', u'x\u837f'),
-    (u'ϧ΃蒬蓣', u'\u03e7\u84ac\u84e3'),
-    (u'¿x', u'x')])
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        ('xx x  - "#$@ x', 'xx-x-x'),
+        (u'Bän...g (bang)', u'bäng-bang'),
+        (u, u.lower()),
+        ('-'.join([u, u]), '-'.join([u, u]).lower()),
+        (' - '.join([u, u]), '-'.join([u, u]).lower()),
+        ('    a ', 'a'),
+        ('tags/', 'tags'),
+        ('holy_wars', 'holy_wars'),
+        # I don't really care what slugify returns.  Just don't crash.
+        (u'x荿', u'x\u837f'),
+        (u'ϧ΃蒬蓣', u'\u03e7\u84ac\u84e3'),
+        (u'¿x', u'x'),
+    ],
+)
 def test_slugify(test_input, expected):
     assert slugify(test_input) == expected
     slug_validator(slugify(test_input))
@@ -56,8 +69,14 @@ def test_resize_image():
 
 def test_resize_transparency():
     src = os.path.join(
-        settings.ROOT, 'src', 'olympia', 'amo', 'tests',
-        'images', 'transparent.png')
+        settings.ROOT,
+        'src',
+        'olympia',
+        'amo',
+        'tests',
+        'images',
+        'transparent.png',
+    )
     dest = tempfile.mkstemp(dir=settings.TMP_PATH)[1]
     expected = src.replace('.png', '-expected.png')
     try:
@@ -76,8 +95,8 @@ def test_resize_transparency_for_P_mode_bug_1181221():
     # which caused the issue in bug 1181221. Since then we upgraded Pillow, and
     # we don't need it anymore. We thus don't have this issue anymore.
     src = os.path.join(
-        settings.ROOT, 'src', 'olympia', 'amo', 'tests',
-        'images', 'icon64.png')
+        settings.ROOT, 'src', 'olympia', 'amo', 'tests', 'images', 'icon64.png'
+    )
     dest = tempfile.mkstemp(dir=settings.TMP_PATH)[1]
     expected = src.replace('.png', '-expected.png')
     try:
@@ -90,40 +109,47 @@ def test_resize_transparency_for_P_mode_bug_1181221():
             os.remove(dest)
 
 
-@pytest.mark.parametrize("test_input,expected", [
-    ('en-us', 'en-US'),
-    ('en_US', 'en-US'),
-    ('en_us', 'en-US'),
-    ('FR', 'fr'),
-    ('el', 'el'),
-    # see https://github.com/mozilla/addons-server/issues/3375
-    ('x_zh_cn', 'x-ZH-CN'),
-    ('sr_Cyrl_BA', 'sr-CYRL-BA'),
-    ('zh_Hans_CN', 'zh-HANS-CN')
-])
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        ('en-us', 'en-US'),
+        ('en_US', 'en-US'),
+        ('en_us', 'en-US'),
+        ('FR', 'fr'),
+        ('el', 'el'),
+        # see https://github.com/mozilla/addons-server/issues/3375
+        ('x_zh_cn', 'x-ZH-CN'),
+        ('sr_Cyrl_BA', 'sr-CYRL-BA'),
+        ('zh_Hans_CN', 'zh-HANS-CN'),
+    ],
+)
 def test_to_language(test_input, expected):
     assert to_language(test_input) == expected
 
 
-@pytest.mark.parametrize("test_input,expected", [
-    ('en-us', 'en-US'),
-    ('en_US', 'en-US'),
-    ('en', 'en-US'),
-    ('FR', 'fr'),
-    ('es-ES', None),  # We don't go from specific to generic.
-    ('xxx', None),
-    # see https://github.com/mozilla/addons-server/issues/3375
-    ('x_zh-CN', None),
-    ('sr_Cyrl_BA', None),
-    ('zh_Hans_CN', None)
-])
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        ('en-us', 'en-US'),
+        ('en_US', 'en-US'),
+        ('en', 'en-US'),
+        ('FR', 'fr'),
+        ('es-ES', None),  # We don't go from specific to generic.
+        ('xxx', None),
+        # see https://github.com/mozilla/addons-server/issues/3375
+        ('x_zh-CN', None),
+        ('sr_Cyrl_BA', None),
+        ('zh_Hans_CN', None),
+    ],
+)
 def test_find_language(test_input, expected):
     assert find_language(test_input) == expected
 
 
 @pytest.mark.skipif(
     not product_details.last_update,
-    reason="We don't want to download product_details on travis")
+    reason="We don't want to download product_details on travis",
+)
 def test_spotcheck():
     """Check a couple product-details files to make sure they're available."""
     languages = product_details.languages
@@ -131,11 +157,11 @@ def test_spotcheck():
     assert languages['el']['native'] == u'Ελληνικά'
 
     assert product_details.firefox_history_major_releases['1.0'] == (
-        '2004-11-09')
+        '2004-11-09'
+    )
 
 
 class TestLocalFileStorage(BaseTestCase):
-
     def setUp(self):
         super(TestLocalFileStorage, self).setUp()
         self.tmp = tempfile.mkdtemp(dir=settings.TMP_PATH)
@@ -170,7 +196,8 @@ class TestLocalFileStorage(BaseTestCase):
         dp = os.path.join(self.tmp, 'path', 'to')
         self.stor.open(os.path.join(dp, 'file.txt'), 'w').close()
         assert os.path.exists(self.stor.path(dp)), (
-            'Directory not created: %r' % dp)
+            'Directory not created: %r' % dp
+        )
 
     def test_do_not_make_file_dirs_when_reading(self):
         fpath = os.path.join(self.tmp, 'file.txt')
@@ -212,7 +239,6 @@ class TestLocalFileStorage(BaseTestCase):
 
 
 class TestCacheNamespaces(BaseTestCase):
-
     def setUp(self):
         super(TestCacheNamespaces, self).setUp()
         cache.clear()
@@ -227,7 +253,8 @@ class TestCacheNamespaces(BaseTestCase):
     def test_no_preexisting_key_incr(self, epoch_mock):
         epoch_mock.return_value = 123456
         assert cache_ns_key(self.namespace, increment=True) == (
-            '123456:ns:%s' % self.namespace)
+            '123456:ns:%s' % self.namespace
+        )
 
     @mock.patch('olympia.amo.utils.epoch')
     def test_key_incr(self, epoch_mock):
@@ -239,35 +266,44 @@ class TestCacheNamespaces(BaseTestCase):
         assert cache_ns_key(self.namespace) == expected
 
 
-@pytest.mark.parametrize("test_input,expected", [
-    ('<script>alert("BALL SO HARD")</script>',
-     '&lt;script&gt;alert("BALL SO HARD")&lt;/script&gt;'),
-    (u'Bän...g (bang)', u'Bän...g (bang)'),
-    (u, u),
-    ('-'.join([u, u]), '-'.join([u, u])),
-    (' - '.join([u, u]), ' - '.join([u, u])),
-    (u'x荿', u'x\u837f'),
-    (u'ϧ΃蒬蓣', u'\u03e7\u0383\u84ac\u84e3'),
-    (u'¿x', u'¿x'),
-])
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        (
+            '<script>alert("BALL SO HARD")</script>',
+            '&lt;script&gt;alert("BALL SO HARD")&lt;/script&gt;',
+        ),
+        (u'Bän...g (bang)', u'Bän...g (bang)'),
+        (u, u),
+        ('-'.join([u, u]), '-'.join([u, u])),
+        (' - '.join([u, u]), ' - '.join([u, u])),
+        (u'x荿', u'x\u837f'),
+        (u'ϧ΃蒬蓣', u'\u03e7\u0383\u84ac\u84e3'),
+        (u'¿x', u'¿x'),
+    ],
+)
 def test_escape_all(test_input, expected):
     assert escape_all(test_input) == expected
 
 
 @mock.patch(
-    'olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url')
+    'olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url'
+)
 @mock.patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
 def test_escape_all_linkify_only_full(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'https://outgoing.firefox.com'
 
     assert escape_all('http://firefox.com', linkify_only_full=True) == (
-        '<a href="https://outgoing.firefox.com">http://firefox.com</a>')
+        '<a href="https://outgoing.firefox.com">http://firefox.com</a>'
+    )
     assert escape_all('http://firefox.com', linkify_only_full=False) == (
-        '<a href="https://outgoing.firefox.com">http://firefox.com</a>')
+        '<a href="https://outgoing.firefox.com">http://firefox.com</a>'
+    )
 
     assert escape_all('firefox.com', linkify_only_full=True) == 'firefox.com'
     assert escape_all('firefox.com', linkify_only_full=False) == (
-        '<a href="https://outgoing.firefox.com">firefox.com</a>')
+        '<a href="https://outgoing.firefox.com">firefox.com</a>'
+    )
 
 
 def test_no_jinja_autoescape():

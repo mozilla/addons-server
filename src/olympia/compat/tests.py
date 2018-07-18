@@ -21,7 +21,6 @@ from olympia.versions.models import ApplicationsVersions
 
 
 class TestCompatReportModel(TestCase):
-
     def test_none(self):
         assert CompatReport.get_counts('xxx') == {'success': 0, 'failure': 0}
 
@@ -31,32 +30,36 @@ class TestCompatReportModel(TestCase):
             guid=guid,
             works_properly=True,
             app_multiprocess_enabled=True,
-            multiprocess_compatible=True)
+            multiprocess_compatible=True,
+        )
         CompatReport.objects.create(
             guid=guid,
             works_properly=True,
             app_multiprocess_enabled=False,
-            multiprocess_compatible=True)
+            multiprocess_compatible=True,
+        )
         CompatReport.objects.create(
             guid=guid,
             works_properly=False,
             app_multiprocess_enabled=False,
-            multiprocess_compatible=True)
+            multiprocess_compatible=True,
+        )
         CompatReport.objects.create(
             guid='ballin',
             works_properly=True,
             app_multiprocess_enabled=True,
-            multiprocess_compatible=True)
+            multiprocess_compatible=True,
+        )
         CompatReport.objects.create(
             guid='ballin',
             works_properly=False,
             app_multiprocess_enabled=True,
-            multiprocess_compatible=True)
+            multiprocess_compatible=True,
+        )
         assert CompatReport.get_counts(guid) == {'success': 2, 'failure': 1}
 
 
 class TestIncoming(TestCase):
-
     def setUp(self):
         super(TestIncoming, self).setUp()
         self.url = reverse('compat.incoming')
@@ -78,8 +81,9 @@ class TestIncoming(TestCase):
 
     def test_success(self):
         count = CompatReport.objects.count()
-        r = self.client.post(self.url, self.json,
-                             content_type='application/json')
+        r = self.client.post(
+            self.url, self.json, content_type='application/json'
+        )
         assert r.status_code == 204
         assert CompatReport.objects.count() == count + 1
 
@@ -90,9 +94,11 @@ class TestIncoming(TestCase):
         assert cr.comments == self.data['comments']
         assert cr.client_ip == '127.0.0.1'
         assert cr.app_multiprocess_enabled == (
-            self.data['appMultiprocessEnabled'])
+            self.data['appMultiprocessEnabled']
+        )
         assert cr.multiprocess_compatible == (
-            self.data['multiprocessCompatible'])
+            self.data['multiprocessCompatible']
+        )
 
         # Check that the other_addons field is stored as json.
         vals = CompatReport.objects.filter(id=cr.id).values('other_addons')
@@ -107,8 +113,9 @@ class TestIncoming(TestCase):
         self.json = json.dumps(self.data)
 
         count = CompatReport.objects.count()
-        r = self.client.post(self.url, self.json,
-                             content_type='application/json')
+        r = self.client.post(
+            self.url, self.json, content_type='application/json'
+        )
         assert r.status_code == 204
         assert CompatReport.objects.count() == count + 1
 
@@ -116,8 +123,9 @@ class TestIncoming(TestCase):
         assert cr.multiprocess_compatible is None
 
     def test_bad_json(self):
-        r = self.client.post(self.url, 'wuuu#$',
-                             content_type='application/json')
+        r = self.client.post(
+            self.url, 'wuuu#$', content_type='application/json'
+        )
         assert r.status_code == 400
 
     def test_bad_field(self):
@@ -140,45 +148,61 @@ class TestReporter(TestCase):
         assert r.status_code == 200
 
     def test_redirect(self):
-        CompatReport.objects.create(guid=self.addon.guid,
-                                    app_guid=amo.FIREFOX.guid)
+        CompatReport.objects.create(
+            guid=self.addon.guid, app_guid=amo.FIREFOX.guid
+        )
         expected = reverse('compat.reporter_detail', args=[self.addon.guid])
 
         self.assert3xx(
-            self.client.get(self.url.format(self.addon.id)), expected)
+            self.client.get(self.url.format(self.addon.id)), expected
+        )
         self.assert3xx(
-            self.client.get(self.url.format(self.addon.slug)), expected)
+            self.client.get(self.url.format(self.addon.slug)), expected
+        )
         self.assert3xx(
-            self.client.get(self.url.format(self.addon.guid)), expected)
+            self.client.get(self.url.format(self.addon.guid)), expected
+        )
         self.assert3xx(
-            self.client.get(self.url.format(self.addon.guid[:5])), expected)
+            self.client.get(self.url.format(self.addon.guid[:5])), expected
+        )
 
-    @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
-                lambda r, a: True)
+    @mock.patch(
+        'olympia.compat.views.owner_or_unlisted_reviewer', lambda r, a: True
+    )
     def test_unlisted_addon_redirect_for_authorized(self):
         """Can display the reports for an unlisted addon if authorized."""
         self.make_addon_unlisted(self.addon)
         self.test_redirect()
 
-    @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
-                lambda r, a: False)
+    @mock.patch(
+        'olympia.compat.views.owner_or_unlisted_reviewer', lambda r, a: False
+    )
     def test_unlisted_addon_no_redirect_for_unauthorized(self):
         """If the user isn't authorized, don't redirect to unlisted addon."""
         self.make_addon_unlisted(self.addon)
-        CompatReport.objects.create(guid=self.addon.guid,
-                                    app_guid=amo.FIREFOX.guid)
+        CompatReport.objects.create(
+            guid=self.addon.guid, app_guid=amo.FIREFOX.guid
+        )
 
-        assert self.client.get(
-            self.url.format(self.addon.id)).status_code == 200
-        assert self.client.get(
-            self.url.format(self.addon.slug)).status_code == 200
-        assert self.client.get(
-            self.url.format(self.addon.guid)).status_code == 200
-        assert self.client.get(
-            self.url.format(self.addon.guid[:5])).status_code == 200
+        assert (
+            self.client.get(self.url.format(self.addon.id)).status_code == 200
+        )
+        assert (
+            self.client.get(self.url.format(self.addon.slug)).status_code
+            == 200
+        )
+        assert (
+            self.client.get(self.url.format(self.addon.guid)).status_code
+            == 200
+        )
+        assert (
+            self.client.get(self.url.format(self.addon.guid[:5])).status_code
+            == 200
+        )
 
-    @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
-                lambda r, a: False)
+    @mock.patch(
+        'olympia.compat.views.owner_or_unlisted_reviewer', lambda r, a: False
+    )
     def test_mixed_listed_unlisted_redirect_for_unauthorized(self):
         """If the user isn't authorized, and the add-on has both unlisted and
         listed versions, redirect to show the listed versions."""
@@ -213,8 +237,13 @@ class TestReporterDetail(TestCase):
         ]
         if version is None:
             version = self.addon.find_latest_version(channel=None)
-        for (app_guid, app_version, works_properly, multiprocess_compatible,
-             app_multiprocess_enabled) in apps:
+        for (
+            app_guid,
+            app_version,
+            works_properly,
+            multiprocess_compatible,
+            app_multiprocess_enabled,
+        ) in apps:
             report = CompatReport.objects.create(
                 guid=self.addon.guid,
                 version=version,
@@ -222,11 +251,13 @@ class TestReporterDetail(TestCase):
                 app_version=app_version,
                 works_properly=works_properly,
                 multiprocess_compatible=multiprocess_compatible,
-                app_multiprocess_enabled=app_multiprocess_enabled)
+                app_multiprocess_enabled=app_multiprocess_enabled,
+            )
             self.reports.append(report.pk)
 
     def check_table(
-            self, data=None, good=0, bad=0, appver=None, report_pks=None):
+        self, data=None, good=0, bad=0, appver=None, report_pks=None
+    ):
         if data is None:
             data = {}
         if report_pks is None:
@@ -236,7 +267,8 @@ class TestReporterDetail(TestCase):
 
         # Check that we got the correct reports.
         assert sorted(r.id for r in r.context['reports'].object_list) == (
-            sorted(self.reports[pk] for pk in report_pks))
+            sorted(self.reports[pk] for pk in report_pks)
+        )
 
         doc = pq(r.content)
         assert doc('.compat-info tbody tr').length == good + bad
@@ -258,89 +290,131 @@ class TestReporterDetail(TestCase):
     def test_appver_all(self):
         self._generate()
         self.check_table(
-            good=3, bad=2, appver='',
-            report_pks=[idx for idx, val in enumerate(self.reports)])
+            good=3,
+            bad=2,
+            appver='',
+            report_pks=[idx for idx, val in enumerate(self.reports)],
+        )
 
     def test_single(self):
         self._generate()
         appver = FIREFOX_COMPAT[2]['main']
-        self.check_table(data={'appver': appver}, good=0, bad=1, appver=appver,
-                         report_pks=[3])
+        self.check_table(
+            data={'appver': appver},
+            good=0,
+            bad=1,
+            appver=appver,
+            report_pks=[3],
+        )
 
     def test_multiple(self):
         self._generate()
         appver = FIREFOX_COMPAT[0]['main']
-        self.check_table(data={'appver': appver}, good=2, bad=0, appver=appver,
-                         report_pks=[0, 1])
+        self.check_table(
+            data={'appver': appver},
+            good=2,
+            bad=0,
+            appver=appver,
+            report_pks=[0, 1],
+        )
 
     def test_empty(self):
         self._generate()
         # Pick a version we haven't generated any reports for.
         appver = FIREFOX_COMPAT[4]['main']
-        self.check_table(data={'appver': appver}, good=0, bad=0, appver=appver,
-                         report_pks=[])
+        self.check_table(
+            data={'appver': appver},
+            good=0,
+            bad=0,
+            appver=appver,
+            report_pks=[],
+        )
 
     def test_unknown(self):
         self._generate()
         # If we have a bad version, we don't apply any filters.
         appver = '0.9999'
         self.check_table(
-            data={'appver': appver}, good=3, bad=2,
-            report_pks=[idx for idx, val in enumerate(self.reports)])
+            data={'appver': appver},
+            good=3,
+            bad=2,
+            report_pks=[idx for idx, val in enumerate(self.reports)],
+        )
 
     def test_app_unknown(self):
         # Testing for some unknown application such as 'Conkeror'.
         app_guid = '{a79fe89b-6662-4ff4-8e88-09950ad4dfde}'
         report = CompatReport.objects.create(
-            guid=self.addon.guid, app_guid=app_guid, app_version='0.9.3',
-            works_properly=True)
+            guid=self.addon.guid,
+            app_guid=app_guid,
+            app_version='0.9.3',
+            works_properly=True,
+        )
         self.reports.append(report.pk)
         self.check_table(good=1, bad=0, appver='', report_pks=[0])
 
-    @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
-                lambda r, a: True)
+    @mock.patch(
+        'olympia.compat.views.owner_or_unlisted_reviewer', lambda r, a: True
+    )
     def test_unlisted_addon_details_for_authorized(self):
         """If the user is authorized, display the reports."""
         self.make_addon_unlisted(self.addon)
         self._generate()
         self.check_table(
-            good=3, bad=2, appver='',
-            report_pks=[idx for idx, val in enumerate(self.reports)])
+            good=3,
+            bad=2,
+            appver='',
+            report_pks=[idx for idx, val in enumerate(self.reports)],
+        )
 
-    @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
-                lambda r, a: False)
+    @mock.patch(
+        'olympia.compat.views.owner_or_unlisted_reviewer', lambda r, a: False
+    )
     def test_unlisted_addon_no_details_for_unauthorized(self):
         """If the user isn't authorized, don't display the reports."""
         self.make_addon_unlisted(self.addon)
         self._generate()
-        self.check_table(
-            good=0, bad=0, appver=None,
-            report_pks=[])
+        self.check_table(good=0, bad=0, appver=None, report_pks=[])
 
-    @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
-                lambda r, a: False)
+    @mock.patch(
+        'olympia.compat.views.owner_or_unlisted_reviewer', lambda r, a: False
+    )
     def test_mixed_listed_unlisted_details_for_unauthorized(self):
         """If the user isn't authorized, and the add-on has both unlisted and
         listed versions, display the listed versions."""
         self.make_addon_unlisted(self.addon)
         version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
         # Generate compat reports for the listed version.
-        self._generate(version=self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED))
+        self._generate(
+            version=self.addon.find_latest_version(
+                channel=amo.RELEASE_CHANNEL_LISTED
+            )
+        )
         reports_listed_only = list(self.reports)
         # And generate some for the unlisted version we shouldn't see.
-        self._generate(version=self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_UNLISTED))
+        self._generate(
+            version=self.addon.find_latest_version(
+                channel=amo.RELEASE_CHANNEL_UNLISTED
+            )
+        )
 
         self.check_table(
-            good=3, bad=2, appver='',
-            report_pks=[idx for idx, val in enumerate(reports_listed_only)])
+            good=3,
+            bad=2,
+            appver='',
+            report_pks=[idx for idx, val in enumerate(reports_listed_only)],
+        )
 
     def test_e10s_field_appears(self):
         self._generate()
         appver = FIREFOX_COMPAT[0]['main']
-        r = self.check_table(data={'appver': appver}, good=2, bad=0,
-                             appver=appver, report_pks=[0, 1])
+        r = self.check_table(
+            data={'appver': appver},
+            good=2,
+            bad=0,
+            appver=appver,
+            report_pks=[0, 1],
+        )
         doc = pq(r.content)
         assert doc('.app-multiprocess-enabled').length > 0
         assert doc('.multiprocess-compatible').length > 0
@@ -382,7 +456,8 @@ class TestCompatibilityReportCronMixin(object):
         defaults = {
             'guid': addon.guid,
             'app_guid': app.guid,
-            'app_version': app_version}
+            'app_version': app_version,
+        }
         for x in xrange(good):
             CompatReport.objects.create(works_properly=True, **defaults)
         for x in xrange(bad):
@@ -390,7 +465,8 @@ class TestCompatibilityReportCronMixin(object):
 
 
 class TestCompatibilityReportCron(
-        TestCompatibilityReportCronMixin, ESTestCase):
+    TestCompatibilityReportCronMixin, ESTestCase
+):
     def setUp(self):
         self.app_version = FIREFOX_COMPAT[0]['main']
         super(TestCompatibilityReportCron, self).setUp()
@@ -400,15 +476,22 @@ class TestCompatibilityReportCron(
         # supports Firefox but does not have Firefox in its compatible apps for
         # some reason (https://github.com/mozilla/addons-server/issues/3353).
         addon = self.populate()
-        self.generate_reports(addon=addon, good=1, bad=1, app=amo.FIREFOX,
-                              app_version=self.app_version)
+        self.generate_reports(
+            addon=addon,
+            good=1,
+            bad=1,
+            app=amo.FIREFOX,
+            app_version=self.app_version,
+        )
 
         # Now change compatibility to support Thunderbird instead of Firefox,
         # but make sure AppSupport stays in the previous state.
-        ApplicationsVersions.objects.filter(
-            application=amo.FIREFOX.id).update(application=amo.THUNDERBIRD.id)
+        ApplicationsVersions.objects.filter(application=amo.FIREFOX.id).update(
+            application=amo.THUNDERBIRD.id
+        )
         assert AppSupport.objects.filter(
-            addon=addon, app=amo.FIREFOX.id).exists()
+            addon=addon, app=amo.FIREFOX.id
+        ).exists()
 
         self.run_compatibility_report()
 
@@ -419,12 +502,18 @@ class TestCompatibilityReportCron(
         # Test containing an add-on which has `None` as its compat info for
         # Firefox (https://github.com/mozilla/addons-server/issues/6161).
         addon = self.populate()
-        self.generate_reports(addon=addon, good=1, bad=1, app=amo.FIREFOX,
-                              app_version=self.app_version)
+        self.generate_reports(
+            addon=addon,
+            good=1,
+            bad=1,
+            app=amo.FIREFOX,
+            app_version=self.app_version,
+        )
 
         addon.update(type=amo.ADDON_DICT)
         assert AppSupport.objects.filter(
-            addon=addon, app=amo.FIREFOX.id).exists()
+            addon=addon, app=amo.FIREFOX.id
+        ).exists()
 
         self.run_compatibility_report()
 
@@ -439,10 +528,20 @@ class TestCompatibilityReportCron(
         addon2 = self.populate()
         # count needs to be higher than 50 to test totals properly.
         UpdateCount.objects.filter(addon=addon1).update(count=60)
-        self.generate_reports(addon1, good=1, bad=2, app=amo.FIREFOX,
-                              app_version=self.app_version)
-        self.generate_reports(addon2, good=3, bad=4, app=amo.FIREFOX,
-                              app_version=self.app_version)
+        self.generate_reports(
+            addon1,
+            good=1,
+            bad=2,
+            app=amo.FIREFOX,
+            app_version=self.app_version,
+        )
+        self.generate_reports(
+            addon2,
+            good=3,
+            bad=4,
+            app=amo.FIREFOX,
+            app_version=self.app_version,
+        )
 
         self.run_compatibility_report()
 
@@ -457,10 +556,20 @@ class TestCompatibilityReportCron(
         addon2 = self.populate()
         # count needs to be higher than 50 to test totals properly.
         UpdateCount.objects.filter(addon=addon1).update(count=60)
-        self.generate_reports(addon1, good=1, bad=2, app=amo.FIREFOX,
-                              app_version=self.app_version)
-        self.generate_reports(addon2, good=3, bad=4, app=amo.FIREFOX,
-                              app_version=self.app_version)
+        self.generate_reports(
+            addon1,
+            good=1,
+            bad=2,
+            app=amo.FIREFOX,
+            app_version=self.app_version,
+        )
+        self.generate_reports(
+            addon2,
+            good=3,
+            bad=4,
+            app=amo.FIREFOX,
+            app_version=self.app_version,
+        )
 
         self.run_compatibility_report()
 

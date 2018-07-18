@@ -3,8 +3,15 @@ import re
 from django.utils.translation import ugettext_lazy as _
 
 from .base import (
-    ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_PERSONA, ADDON_PLUGIN,
-    ADDON_SEARCH, ADDON_STATICTHEME, ADDON_THEME)
+    ADDON_DICT,
+    ADDON_EXTENSION,
+    ADDON_LPAPP,
+    ADDON_PERSONA,
+    ADDON_PLUGIN,
+    ADDON_SEARCH,
+    ADDON_STATICTHEME,
+    ADDON_THEME,
+)
 
 from olympia.versions.compare import version_int as vint
 
@@ -22,8 +29,16 @@ class FIREFOX(App):
     short = 'firefox'
     pretty = _(u'Firefox')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
-             ADDON_LPAPP, ADDON_PLUGIN, ADDON_PERSONA, ADDON_STATICTHEME]
+    types = [
+        ADDON_EXTENSION,
+        ADDON_THEME,
+        ADDON_DICT,
+        ADDON_SEARCH,
+        ADDON_LPAPP,
+        ADDON_PLUGIN,
+        ADDON_PERSONA,
+        ADDON_STATICTHEME,
+    ]
     guid = '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
     min_display_version = 3.0
     # These versions were relabeled and should not be displayed.
@@ -34,8 +49,11 @@ class FIREFOX(App):
     @classmethod
     def matches_user_agent(cls, user_agent):
         matches = cls.user_agent_string in user_agent
-        if ('Android' in user_agent or 'Mobile' in user_agent or
-                'Tablet' in user_agent):
+        if (
+            'Android' in user_agent
+            or 'Mobile' in user_agent
+            or 'Tablet' in user_agent
+        ):
             matches = False
         return matches
 
@@ -46,8 +64,13 @@ class THUNDERBIRD(App):
     shortername = 'tb'
     pretty = _(u'Thunderbird')
     browser = False
-    types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_LPAPP,
-             ADDON_PERSONA]
+    types = [
+        ADDON_EXTENSION,
+        ADDON_THEME,
+        ADDON_DICT,
+        ADDON_LPAPP,
+        ADDON_PERSONA,
+    ]
     guid = '{3550f703-e582-4d05-9a08-453d09bdfdc6}'
     min_display_version = 1.0
     user_agent_string = 'Thunderbird'
@@ -60,8 +83,15 @@ class SEAMONKEY(App):
     shortername = 'sm'
     pretty = _(u'SeaMonkey')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
-             ADDON_LPAPP, ADDON_PLUGIN, ADDON_PERSONA]
+    types = [
+        ADDON_EXTENSION,
+        ADDON_THEME,
+        ADDON_DICT,
+        ADDON_SEARCH,
+        ADDON_LPAPP,
+        ADDON_PLUGIN,
+        ADDON_PERSONA,
+    ]
     guid = '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'
     min_display_version = 1.0
     exclude_versions = (1.5,)
@@ -73,6 +103,7 @@ class SEAMONKEY(App):
 class SUNBIRD(App):
     """This application is retired and should not be used on the site.  It
     remains as there are still some sunbird add-ons in the db."""
+
     id = 52
     short = 'sunbird'
     shortername = 'sb'
@@ -90,13 +121,19 @@ class MOBILE(App):
     """Old Firefox for Mobile.
 
     Not supported anymore, should not be added to APPS."""
+
     id = 60
     short = 'mobile'
     shortername = 'fn'
     pretty = _(u'Mobile')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH,
-             ADDON_LPAPP, ADDON_PERSONA]
+    types = [
+        ADDON_EXTENSION,
+        ADDON_DICT,
+        ADDON_SEARCH,
+        ADDON_LPAPP,
+        ADDON_PERSONA,
+    ]
     guid = '{a23983c0-fd0e-11dc-95ff-0800200c9a66}'
     min_display_version = 0.1
     user_agent_string = 'Fennec'
@@ -110,18 +147,25 @@ class ANDROID(App):
     shortername = 'an'
     pretty = _(u'Firefox for Android')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_SEARCH,
-             ADDON_LPAPP, ADDON_PERSONA]
+    types = [
+        ADDON_EXTENSION,
+        ADDON_DICT,
+        ADDON_SEARCH,
+        ADDON_LPAPP,
+        ADDON_PERSONA,
+    ]
     guid = '{aa3c5121-dab2-40e2-81ca-7ea25febc110}'
     min_display_version = 11.0
     user_agent_string = 'Fennec'
     # Mobile and Android have the same user agent. The only way to distinguish
     # is by the version number.
-    user_agent_re = [re.compile('Fennec/([\d.]+)'),
-                     re.compile('Android; Mobile; rv:([\d.]+)'),
-                     re.compile('Android; Tablet; rv:([\d.]+)'),
-                     re.compile('Mobile; rv:([\d.]+)'),
-                     re.compile('Tablet; rv:([\d.]+)')]
+    user_agent_re = [
+        re.compile('Fennec/([\d.]+)'),
+        re.compile('Android; Mobile; rv:([\d.]+)'),
+        re.compile('Android; Tablet; rv:([\d.]+)'),
+        re.compile('Mobile; rv:([\d.]+)'),
+        re.compile('Tablet; rv:([\d.]+)'),
+    ]
     platforms = 'mobile'
     latest_version = None
 
@@ -140,19 +184,27 @@ class MOZILLA(App):
     Stats and other modules may reference this for history.
     This should NOT be added to APPS.
     """
+
     id = 2
     short = 'mz'
     shortername = 'mz'
     pretty = _(u'Mozilla')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
-             ADDON_LPAPP, ADDON_PLUGIN]
+    types = [
+        ADDON_EXTENSION,
+        ADDON_THEME,
+        ADDON_DICT,
+        ADDON_SEARCH,
+        ADDON_LPAPP,
+        ADDON_PLUGIN,
+    ]
     guid = '{86c18b42-e466-45a9-ae7a-9b95ba6f5640}'
     platforms = 'desktop'  # DESKTOP_PLATFORMS (set in constants.platforms)
 
 
 class UNKNOWN_APP(App):
     """Placeholder for unknown applications."""
+
     pretty = _(u'Unknown')
 
 

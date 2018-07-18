@@ -25,7 +25,7 @@ FXA_CONFIG = {
         'oauth_host': 'https://accounts.firefox.com/oauth',
         'redirect_url': 'https://testserver/fxa',
         'scope': 'profile',
-    },
+    }
 }
 
 
@@ -66,7 +66,8 @@ def test_default_fxa_login_url_with_state():
     raw_url = utils.default_fxa_login_url(request)
     url = urlparse.urlparse(raw_url)
     base = '{scheme}://{netloc}{path}'.format(
-        scheme=url.scheme, netloc=url.netloc, path=url.path)
+        scheme=url.scheme, netloc=url.netloc, path=url.path
+    )
     assert base == 'https://accounts.firefox.com/oauth/authorization'
     query = urlparse.parse_qs(url.query)
     next_path = urlsafe_b64encode(path).rstrip('=')
@@ -87,7 +88,8 @@ def test_default_fxa_register_url_with_state():
     raw_url = utils.default_fxa_register_url(request)
     url = urlparse.urlparse(raw_url)
     base = '{scheme}://{netloc}{path}'.format(
-        scheme=url.scheme, netloc=url.netloc, path=url.path)
+        scheme=url.scheme, netloc=url.netloc, path=url.path
+    )
     assert base == 'https://accounts.firefox.com/oauth/authorization'
     query = urlparse.parse_qs(url.query)
     next_path = urlsafe_b64encode(path).rstrip('=')
@@ -121,18 +123,22 @@ def test_redirect_for_login(default_fxa_login_url):
 
 
 class TestProcessSqsQueue(TestCase):
-
     @mock.patch('boto3._get_default_session')
     @mock.patch('olympia.accounts.utils.process_fxa_event')
     @mock.patch('boto3.client')
     def test_process_sqs_queue(self, client, process_fxa_event, get_session):
         messages = [
-            {'Body': 'foo', 'ReceiptHandle': '$$$'}, {'Body': 'bar'}, None,
-            {'Body': 'thisonetoo'}]
+            {'Body': 'foo', 'ReceiptHandle': '$$$'},
+            {'Body': 'bar'},
+            None,
+            {'Body': 'thisonetoo'},
+        ]
         sqs = mock.MagicMock(
-            **{'receive_message.side_effect': [{'Messages': messages}]})
+            **{'receive_message.side_effect': [{'Messages': messages}]}
+        )
         session_mock = mock.MagicMock(
-            **{'get_available_regions.side_effect': ['nowh-ere']})
+            **{'get_available_regions.side_effect': ['nowh-ere']}
+        )
         get_session.return_value = session_mock
         delete_mock = mock.MagicMock()
         sqs.delete_message = delete_mock
@@ -140,21 +146,22 @@ class TestProcessSqsQueue(TestCase):
 
         with self.assertRaises(StopIteration):
             utils.process_sqs_queue(
-                queue_url='https://sqs.nowh-ere.aws.com/123456789/')
+                queue_url='https://sqs.nowh-ere.aws.com/123456789/'
+            )
 
         client.assert_called()
-        client.assert_called_with(
-            'sqs', region_name='nowh-ere'
-        )
+        client.assert_called_with('sqs', region_name='nowh-ere')
         process_fxa_event.assert_called()
         # The 'None' in messages would cause an exception, but it should be
         # handled, and the remaining message(s) still processed.
         process_fxa_event.assert_has_calls(
-            [mock.call('foo'), mock.call('bar'), mock.call('thisonetoo')])
+            [mock.call('foo'), mock.call('bar'), mock.call('thisonetoo')]
+        )
         delete_mock.assert_called_once()  # Receipt handle is present in foo.
         delete_mock.assert_called_with(
             QueueUrl='https://sqs.nowh-ere.aws.com/123456789/',
-            ReceiptHandle='$$$')
+            ReceiptHandle='$$$',
+        )
 
 
 def totimestamp(datetime_obj):
@@ -164,23 +171,34 @@ def totimestamp(datetime_obj):
 class TestProcessFxAEvent(TestCase):
     def setUp(self):
         self.email_changed_date = self.days_ago(42)
-        self.body = json.dumps({'Message': json.dumps(
-            {'email': 'new-email@example.com', 'event': 'primaryEmailChanged',
-             'uid': 'ABCDEF012345689',
-             'ts': totimestamp(self.email_changed_date)})})
+        self.body = json.dumps(
+            {
+                'Message': json.dumps(
+                    {
+                        'email': 'new-email@example.com',
+                        'event': 'primaryEmailChanged',
+                        'uid': 'ABCDEF012345689',
+                        'ts': totimestamp(self.email_changed_date),
+                    }
+                )
+            }
+        )
 
     def test_success_integration(self):
-        user = user_factory(email='old-email@example.com',
-                            fxa_id='ABCDEF012345689')
+        user = user_factory(
+            email='old-email@example.com', fxa_id='ABCDEF012345689'
+        )
         process_fxa_event(self.body)
         user.reload()
         assert user.email == 'new-email@example.com'
         assert user.email_changed == self.email_changed_date
 
     def test_success_integration_previously_changed_once(self):
-        user = user_factory(email='old-email@example.com',
-                            fxa_id='ABCDEF012345689',
-                            email_changed=datetime(2017, 10, 11))
+        user = user_factory(
+            email='old-email@example.com',
+            fxa_id='ABCDEF012345689',
+            email_changed=datetime(2017, 10, 11),
+        )
         process_fxa_event(self.body)
         user.reload()
         assert user.email == 'new-email@example.com'
@@ -191,8 +209,10 @@ class TestProcessFxAEvent(TestCase):
         process_fxa_event(self.body)
         primary_email_change_event.assert_called()
         primary_email_change_event.assert_called_with(
-            'new-email@example.com', 'ABCDEF012345689',
-            totimestamp(self.email_changed_date))
+            'new-email@example.com',
+            'ABCDEF012345689',
+            totimestamp(self.email_changed_date),
+        )
 
     @mock.patch('olympia.accounts.utils.primary_email_change_event.delay')
     def test_malformed_body_doesnt_throw(self, primary_email_change_event):
@@ -200,11 +220,32 @@ class TestProcessFxAEvent(TestCase):
         process_fxa_event(json.dumps({'Message': ''}))
         process_fxa_event(json.dumps({'Message': 'ddfdfd'}))
         # No timestamp
-        process_fxa_event(json.dumps({'Message': json.dumps(
-            {'email': 'foo@baa', 'event': 'primaryEmailChanged',
-             'uid': '999'})}))
+        process_fxa_event(
+            json.dumps(
+                {
+                    'Message': json.dumps(
+                        {
+                            'email': 'foo@baa',
+                            'event': 'primaryEmailChanged',
+                            'uid': '999',
+                        }
+                    )
+                }
+            )
+        )
         # Not a supported event type
-        process_fxa_event(json.dumps({'Message': json.dumps(
-            {'email': 'foo@baa', 'event': 'not-an-event', 'uid': '999',
-             'ts': totimestamp(datetime.now())})}))
+        process_fxa_event(
+            json.dumps(
+                {
+                    'Message': json.dumps(
+                        {
+                            'email': 'foo@baa',
+                            'event': 'not-an-event',
+                            'uid': '999',
+                            'ts': totimestamp(datetime.now()),
+                        }
+                    )
+                }
+            )
+        )
         primary_email_change_event.assert_not_called()

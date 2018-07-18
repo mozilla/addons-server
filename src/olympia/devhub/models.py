@@ -19,8 +19,11 @@ class RssKey(models.Model):
     # of 36 defined in the database and maybe store things with a hyphen
     # or maybe not...
     key = models.CharField(
-        db_column='rsskey', max_length=36,
-        default=lambda: uuid.uuid4().hex, unique=True)
+        db_column='rsskey',
+        max_length=36,
+        default=lambda: uuid.uuid4().hex,
+        unique=True,
+    )
     addon = models.ForeignKey(Addon, null=True, unique=True)
     user = models.ForeignKey(UserProfile, null=True, unique=True)
     created = models.DateField(default=datetime.now)

@@ -19,19 +19,29 @@ from . import get_date, get_stats_data
 log = olympia.core.logger.getLogger('adi.updatecounts')
 
 # Validate a locale: must be like 'fr', 'en-us', 'zap-MX-diiste', ...
-LOCALE_REGEX = re.compile(r"""^[a-z]{2,3}      # General: fr, en, dsb,...
+LOCALE_REGEX = re.compile(
+    r"""^[a-z]{2,3}      # General: fr, en, dsb,...
                               (-[A-Z]{2,3})?   # Region: -US, -GB, ...
                               (-[a-z]{2,12})?$ # Locality: -valencia, -diiste
-                          """, re.VERBOSE)
-VALID_STATUSES = ["userDisabled,incompatible", "userEnabled", "Unknown",
-                  "userDisabled", "userEnabled,incompatible"]
+                          """,
+    re.VERBOSE,
+)
+VALID_STATUSES = [
+    "userDisabled,incompatible",
+    "userEnabled",
+    "Unknown",
+    "userDisabled",
+    "userEnabled,incompatible",
+]
 UPDATE_COUNT_TRIGGER = "userEnabled"
 VALID_APP_GUIDS = amo.APP_GUIDS.keys()
 APPVERSION_REGEX = re.compile(
     r"""^[0-9]{1,3}                # Major version: 2, 35
         \.[0-9]{1,3}([ab][0-9])?   # Minor version + alpha or beta: .0a1, .0b2
         (\.[0-9]{1,3})?$           # Patch version: .1, .23
-    """, re.VERBOSE)
+    """,
+    re.VERBOSE,
+)
 
 
 class Command(BaseCommand):
@@ -59,7 +69,7 @@ class Command(BaseCommand):
 
     If stats_source is s3:
         This file will be located in
-            `<settings.AWS_STATS_S3_BUCKET>/<settings.AWS_STATS_S3_PREFIX>`.
+            `<settings.AWS_STATS_S3_BUCKET>/amo_stats`.
 
         Five files are processed:
         - update_counts_by_version/YYYY-MM-DD/000000_0
@@ -79,21 +89,33 @@ class Command(BaseCommand):
     guid and the application version.
 
     """
+
     help = __doc__
 
     def add_arguments(self, parser):
         """Handle command arguments."""
         parser.add_argument('folder_name', default='hive_results', nargs='?')
         parser.add_argument(
-            '--stats_source', default='s3',
+            '--stats_source',
+            default='s3',
             choices=['s3', 'file'],
-            help='Source of stats data')
+            help='Source of stats data',
+        )
         parser.add_argument(
-            '--date', action='store', type=str,
-            dest='date', help='Date in the YYYY-MM-DD format.')
+            '--date',
+            action='store',
+            type=str,
+            dest='date',
+            help='Date in the YYYY-MM-DD format.',
+        )
         parser.add_argument(
-            '--separator', action='store', type=str, default='\t',
-            dest='separator', help='Field separator in file.')
+            '--separator',
+            action='store',
+            type=str,
+            default='\t',
+            dest='separator',
+            help='Field separator in file.',
+        )
 
     def handle(self, *args, **options):
         sep = options['separator']
@@ -108,20 +130,27 @@ class Command(BaseCommand):
         # Make sure we're not trying to update with mismatched data.
         for group in groups:
             if options['stats_source'] == 's3':
-                filepath = 's3://' + '/'.join([settings.AWS_STATS_S3_BUCKET,
-                                               settings.AWS_STATS_S3_PREFIX,
-                                               'update_counts_by_%s' % group,
-                                               day, '000000_0'])
+                filepath = 's3://' + '/'.join(
+                    [
+                        settings.AWS_STATS_S3_BUCKET,
+                        'amo_stats',
+                        'update_counts_by_%s' % group,
+                        day,
+                        '000000_0',
+                    ]
+                )
 
             elif options['stats_source'] == 'file':
                 folder = options['folder_name']
                 folder = path.join(settings.TMP_PATH, folder, day)
-                filepath = path.join(folder,
-                                     'update_counts_by_%s.hive' % group)
+                filepath = path.join(
+                    folder, 'update_counts_by_%s.hive' % group
+                )
 
             if get_date(filepath, sep) != day:
-                raise CommandError('%s file contains data for another day' %
-                                   filepath)
+                raise CommandError(
+                    '%s file contains data for another day' % filepath
+                )
             group_filepaths.append((group, filepath))
 
         # First, make sure we don't have any existing counts for the same day,
@@ -133,10 +162,12 @@ class Command(BaseCommand):
         # Perf: preload all the addons once and for all.
         # This builds a dict where each key (the addon guid we get from the
         # hive query) has the addon_id as value.
-        guids_to_addon = (dict(Addon.objects.public()
-                                            .exclude(guid__isnull=True)
-                                            .exclude(type=amo.ADDON_PERSONA)
-                                            .values_list('guid', 'id')))
+        guids_to_addon = dict(
+            Addon.objects.public()
+            .exclude(guid__isnull=True)
+            .exclude(type=amo.ADDON_PERSONA)
+            .values_list('guid', 'id')
+        )
 
         for group, filepath in group_filepaths:
             count_file = get_stats_data(filepath)
@@ -146,14 +177,16 @@ class Command(BaseCommand):
 
                 splitted = line[:-1].split(sep)
 
-                if ((group == 'app' and len(splitted) != 6) or
-                        (group != 'app' and len(splitted) != 5)):
+                if (group == 'app' and len(splitted) != 6) or (
+                    group != 'app' and len(splitted) != 5
+                ):
                     log.debug('Badly formatted row: %s' % line)
                     continue
 
                 if group == 'app':
-                    day, addon_guid, app_id, app_ver, count, \
-                        update_type = splitted
+                    day, addon_guid, app_id, app_ver, count, update_type = (
+                        splitted
+                    )
                 else:
                     day, addon_guid, data, count, update_type = splitted
 
@@ -163,8 +196,14 @@ class Command(BaseCommand):
 
                 # Old versions of Firefox don't provide the update type.
                 # All the following are "empty-like" values.
-                if update_type in ['0', 'NULL', 'None', '', '\N',
-                                   '%UPDATE_TYPE%']:
+                if update_type in [
+                    '0',
+                    'NULL',
+                    'None',
+                    '',
+                    r'\N',
+                    '%UPDATE_TYPE%',
+                ]:
                     update_type = None
 
                 try:
@@ -181,16 +220,20 @@ class Command(BaseCommand):
                 # > 16, if not, ignore the request.
                 # > udpateType & 31 == 16 == valid request.
                 if update_type and update_type & 31 != 16:
-                    log.debug("Update type doesn't add to 16: %s" %
-                              update_type)
+                    log.debug(
+                        "Update type doesn't add to 16: %s" % update_type
+                    )
                     continue
 
                 # Does this addon exist?
                 if addon_guid and addon_guid in guids_to_addon:
                     addon_id = guids_to_addon[addon_guid]
                 else:
-                    log.debug(u"Addon {guid} doesn't exist."
-                              .format(guid=addon_guid.strip()))
+                    log.debug(
+                        u"Addon {guid} doesn't exist.".format(
+                            guid=addon_guid.strip()
+                        )
+                    )
                     continue
 
                 # Memoize the UpdateCount.
@@ -245,22 +288,25 @@ class Command(BaseCommand):
     def update_version(self, update_count, version, count):
         """Update the versions on the update_count with the given version."""
         version = version[:32]  # Limit the version to a (random) length.
-        update_count.versions = update_inc(update_count.versions, version,
-                                           count)
+        update_count.versions = update_inc(
+            update_count.versions, version, count
+        )
 
     def update_status(self, update_count, status, count):
         """Update the statuses on the update_count with the given status."""
         # Only update if the given status is valid.
         if status in VALID_STATUSES:
-            update_count.statuses = update_inc(update_count.statuses, status,
-                                               count)
+            update_count.statuses = update_inc(
+                update_count.statuses, status, count
+            )
 
     def update_app(self, update_count, app_id, app_ver, count):
         """Update the applications on the update_count with the given data."""
         # Only update if app_id is a valid application guid, and if app_ver
         # "could be" a valid version.
-        if (app_id not in VALID_APP_GUIDS or
-                not re.match(APPVERSION_REGEX, app_ver)):
+        if app_id not in VALID_APP_GUIDS or not re.match(
+            APPVERSION_REGEX, app_ver
+        ):
             return
         # Applications is a dict of dicts, eg:
         # {"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}":
@@ -273,7 +319,8 @@ class Command(BaseCommand):
         # Now overwrite this application's dict with
         # incremented counts for its versions.
         update_count.applications.update(
-            {app_id: update_inc(app, app_ver, count)})
+            {app_id: update_inc(app, app_ver, count)}
+        )
 
     def update_os(self, update_count, os, count):
         """Update the OSes on the update_count with the given OS."""
@@ -289,8 +336,9 @@ class Command(BaseCommand):
         # allowed characters, some kind of format, and the total length, and
         # hope to not miss out on too many locales.
         if re.match(LOCALE_REGEX, locale):
-            update_count.locales = update_inc(update_count.locales, locale,
-                                              count)
+            update_count.locales = update_inc(
+                update_count.locales, locale, count
+            )
 
     def trim_field(self, field):
         """Trim (in-place) the dict provided, keeping the most used items.
@@ -299,6 +347,7 @@ class Command(BaseCommand):
         or version as the key, and the count as the value.
 
         """
+
         def fits(field):
             """Does the json version of the field fits in the db TEXT field?"""
             return len(json.dumps(field)) < (2 ** 16)  # Max len of TEXT field.

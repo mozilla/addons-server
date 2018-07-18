@@ -18,8 +18,9 @@ class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):
         groups = {}
 
         # Mark the mandatory fields.
-        mandatory = [k for k, v in
-                     email.NOTIFICATIONS_BY_ID.iteritems() if v.mandatory]
+        mandatory = [
+            k for k, v in email.NOTIFICATIONS_BY_ID.iteritems() if v.mandatory
+        ]
         str_values = set(mandatory + str_values)
 
         for idx, label in sorted(self.choices):
@@ -31,19 +32,22 @@ class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):
                 cb_attrs = dict(cb_attrs, disabled=1)
                 notes.append(u'<span title="required" class="req">*</span>')
 
-            if (hasattr(self.form_instance, 'choices_status') and
-                    self.form_instance.choices_status.get(idx)):
+            if hasattr(
+                self.form_instance, 'choices_status'
+            ) and self.form_instance.choices_status.get(idx):
                 notes.append(u'<sup class="msg">%s</sup>' % ugettext('new'))
 
             cb = forms.CheckboxInput(
-                cb_attrs, check_test=lambda value: value in str_values)
+                cb_attrs, check_test=lambda value: value in str_values
+            )
 
             rendered_cb = cb.render(name, idx)
             label_for = u' for="%s"' % cb_attrs['id']
 
             groups.setdefault(notification.group, []).append(
-                u'<li><label class="check" %s>%s %s %s</label></li>' % (
-                    label_for, rendered_cb, label, ''.join(notes)))
+                u'<li><label class="check" %s>%s %s %s</label></li>'
+                % (label_for, rendered_cb, label, ''.join(notes))
+            )
 
         output = []
         template_url = 'users/edit_notification_checkboxes.html'
@@ -51,7 +55,8 @@ class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):
             if e in groups:
                 context = {'title': name, 'options': groups[e]}
                 output.append(
-                    loader.get_template(template_url).render(context))
+                    loader.get_template(template_url).render(context)
+                )
 
         return mark_safe(u'<ol class="complex">%s</ol>' % u'\n'.join(output))
 

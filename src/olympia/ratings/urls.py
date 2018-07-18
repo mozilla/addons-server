@@ -20,6 +20,9 @@ urlpatterns = [
     url('^add$', views.add, name='addons.ratings.add'),
     url('^(?P<review_id>\d+)/', include(rating_detail_patterns)),
     url('^format:rss$', RatingsRss(), name='addons.ratings.list.rss'),
-    url('^user:(?P<user_id>\d+)$', views.review_list,
-        name='addons.ratings.user'),
+    url(
+        '^user:(?P<user_id>\d+)$',
+        views.review_list,
+        name='addons.ratings.user',
+    ),
 ]

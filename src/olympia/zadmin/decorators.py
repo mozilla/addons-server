@@ -11,10 +11,12 @@ def admin_required(f):
     """
     Decorator to apply to views that require an admin to access.
     """
+
     @login_required
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
         if action_allowed(request, amo.permissions.ADMIN_TOOLS):
             return f(request, *args, **kw)
         raise PermissionDenied
+
     return wrapper

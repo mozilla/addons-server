@@ -16,11 +16,17 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         """Handle command arguments."""
         parser.add_argument(
-            '--change', action='store_true',
-            dest='change', help='Changes files to platform all.')
+            '--change',
+            action='store_true',
+            dest='change',
+            help='Changes files to platform all.',
+        )
         parser.add_argument(
-            '--report', action='store_true',
-            dest='report', help='Reports files that might conflict.')
+            '--report',
+            action='store_true',
+            dest='report',
+            help='Reports files that might conflict.',
+        )
 
     def handle(self, *args, **options):
         if options.get('change', False):
@@ -30,9 +36,11 @@ class Command(BaseCommand):
 
 
 def change():
-    files = list(File.objects.values_list('pk', flat=True)
-                     .filter(version__addon__type=amo.ADDON_SEARCH)
-                     .exclude(platform=amo.PLATFORM_ALL.id))
+    files = list(
+        File.objects.values_list('pk', flat=True)
+        .filter(version__addon__type=amo.ADDON_SEARCH)
+        .exclude(platform=amo.PLATFORM_ALL.id)
+    )
     k = 0
     print('Changing %s files' % len(files))
     for chunk in chunked(files, 100):
@@ -47,19 +55,25 @@ def change():
 
 
 def report():
-    versions = list(Version.objects.values_list('pk', flat=True)
-                           .annotate(files_count=Count('files'))
-                           .filter(addon__type=amo.ADDON_SEARCH)
-                           .filter(files_count__gt=1))
+    versions = list(
+        Version.objects.values_list('pk', flat=True)
+        .annotate(files_count=Count('files'))
+        .filter(addon__type=amo.ADDON_SEARCH)
+        .filter(files_count__gt=1)
+    )
     for chunk in chunked(versions, 100):
         for version in Version.objects.filter(pk__in=chunk):
-            print('Addon: %s, %s' % (version.addon.pk,
-                                     version.addon.name))
-            print('Version: %s - %s files' % (version.pk,
-                                              version.files.count()))
-            print('URL: %s' % reverse('devhub.versions.edit',
-                                      args=[version.addon.slug,
-                                            version.pk]))
+            print('Addon: %s, %s' % (version.addon.pk, version.addon.name))
+            print(
+                'Version: %s - %s files' % (version.pk, version.files.count())
+            )
+            print(
+                'URL: %s'
+                % reverse(
+                    'devhub.versions.edit',
+                    args=[version.addon.slug, version.pk],
+                )
+            )
             hashes = []
             for file in version.all_files:
                 print('File: %s, %s' % (file.filename, file.hash))

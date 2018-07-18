@@ -9,11 +9,18 @@ import olympia.core.logger
 
 from olympia.amo.celery import create_subtasks
 from olympia.stats.models import (
-    CollectionCount, DownloadCount, ThemeUserCount, UpdateCount)
+    CollectionCount,
+    DownloadCount,
+    ThemeUserCount,
+    UpdateCount,
+)
 from olympia.stats.search import CHUNK_SIZE
 from olympia.stats.tasks import (
-    index_collection_counts, index_download_counts, index_theme_user_counts,
-    index_update_counts)
+    index_collection_counts,
+    index_download_counts,
+    index_theme_user_counts,
+    index_update_counts,
+)
 
 
 log = olympia.core.logger.getLogger('z.stats')
@@ -38,19 +45,21 @@ To limit the  date range:
 
 def index_stats(index, addons=None, dates=None):
     queries = [
-        (UpdateCount.objects, index_update_counts,
-            {'date': 'date'}),
-        (DownloadCount.objects, index_download_counts,
-            {'date': 'date'}),
-        (ThemeUserCount.objects, index_theme_user_counts,
-            {'date': 'date'})
+        (UpdateCount.objects, index_update_counts, {'date': 'date'}),
+        (DownloadCount.objects, index_download_counts, {'date': 'date'}),
+        (ThemeUserCount.objects, index_theme_user_counts, {'date': 'date'}),
     ]
 
     if not addons:
         # We can't filter this by addons, so if that is specified,
         # we'll skip that.
-        queries.append((CollectionCount.objects, index_collection_counts,
-                        {'date': 'date'}))
+        queries.append(
+            (
+                CollectionCount.objects,
+                index_collection_counts,
+                {'date': 'date'},
+            )
+        )
 
     for qs, task, fields in queries:
         date_field = fields['date']
@@ -66,18 +75,18 @@ def index_stats(index, addons=None, dates=None):
 
         if dates:
             if ':' in dates:
-                qs = qs.filter(**{'%s__range' % date_field:
-                                  dates.split(':')})
+                qs = qs.filter(**{'%s__range' % date_field: dates.split(':')})
             else:
                 qs = qs.filter(**{date_field: dates})
 
         if not (dates or addons):
             # We're loading the whole world. Do it in stages so we get most
             # recent stats first and don't do huge queries.
-            limits = (qs.model.objects.filter(**{'%s__isnull' %
-                                                 date_field: False})
-                      .extra(where=['%s <> "0000-00-00"' % date_field])
-                      .aggregate(min=Min(date_field), max=Max(date_field)))
+            limits = (
+                qs.model.objects.filter(**{'%s__isnull' % date_field: False})
+                .extra(where=['%s <> "0000-00-00"' % date_field])
+                .aggregate(min=Min(date_field), max=Max(date_field))
+            )
             # If there isn't any data at all, skip over.
             if not (limits['max'] or limits['min']):
                 continue
@@ -86,21 +95,29 @@ def index_stats(index, addons=None, dates=None):
             today = date.today()
             for start in range(0, num_days, STEP):
                 stop = start + STEP
-                date_range = (today - timedelta(days=stop),
-                              today - timedelta(days=start))
+                date_range = (
+                    today - timedelta(days=stop),
+                    today - timedelta(days=start),
+                )
 
-                data = list(qs.filter(**{
-                    '%s__range' % date_field: date_range
-                }))
+                data = list(
+                    qs.filter(**{'%s__range' % date_field: date_range})
+                )
                 create_subtasks(
-                    task, data, CHUNK_SIZE,
+                    task,
+                    data,
+                    CHUNK_SIZE,
                     countdown=random.randint(1, 6),
-                    task_args=(index,))
+                    task_args=(index,),
+                )
         else:
             create_subtasks(
-                task, list(qs), CHUNK_SIZE,
+                task,
+                list(qs),
+                CHUNK_SIZE,
                 countdown=random.randint(1, 6),
-                task_args=(index,))
+                task_args=(index,),
+            )
 
 
 class Command(BaseCommand):
@@ -110,18 +127,18 @@ class Command(BaseCommand):
         """Handle command arguments."""
         parser.add_argument(
             '--addons',
-            help='Add-on ids to process. Use commas to separate multiple ids.')
+            help='Add-on ids to process. Use commas to separate multiple ids.',
+        )
 
         parser.add_argument(
             '--date',
             help='The date or date range to process. Use the format '
-                 'YYYY-MM-DD for a single date or '
-                 'YYYY-MM-DD:YYYY-MM-DD to index a range of dates '
-                 '(inclusive).')
+            'YYYY-MM-DD for a single date or '
+            'YYYY-MM-DD:YYYY-MM-DD to index a range of dates '
+            '(inclusive).',
+        )
 
-        parser.add_argument(
-            '--index',
-            help='Optional index name to use.')
+        parser.add_argument('--index', help='Optional index name to use.')
 
     def handle(self, *args, **kw):
         addons, dates, index = kw['addons'], kw['date'], kw['index']

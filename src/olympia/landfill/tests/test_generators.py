@@ -8,12 +8,14 @@ from olympia.constants.applications import APPS
 from olympia.constants.base import ADDON_EXTENSION, ADDON_PERSONA
 from olympia.constants.categories import CATEGORIES
 from olympia.landfill.generators import (
-    _yield_name_and_cat, create_addon, create_theme)
+    _yield_name_and_cat,
+    create_addon,
+    create_theme,
+)
 from olympia.versions.models import Version
 
 
 class _BaseAddonGeneratorMixin(object):
-
     def test_tinyset(self):
         size = 4
         data = list(_yield_name_and_cat(size, self.app, self.type))
@@ -54,8 +56,7 @@ class FirefoxAddonGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
     type = ADDON_EXTENSION
 
 
-class ThunderbirdAddonGeneratorTests(_BaseAddonGeneratorMixin,
-                                     TestCase):
+class ThunderbirdAddonGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
     app = APPS['thunderbird']
     type = ADDON_EXTENSION
 
@@ -65,8 +66,7 @@ class AndroidAddonGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
     type = ADDON_EXTENSION
 
 
-class SeamonkeyAddonGeneratorTests(_BaseAddonGeneratorMixin,
-                                   TestCase):
+class SeamonkeyAddonGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
     app = APPS['seamonkey']
     type = ADDON_EXTENSION
 
@@ -77,7 +77,6 @@ class ThemeGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
 
 
 class CreateGeneratorTests(TestCase):
-
     def test_create_addon(self):
         addon = create_addon('foo', 'icon/default', APPS['android'])
         assert Addon.objects.last().name == addon.name

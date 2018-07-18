@@ -18,6 +18,7 @@ class XMLParser(_XMLParser):
 
         if resolve_entities:
             raise NotSupportedError(
-                'resolve_entities is forbidden for security reasons.')
+                'resolve_entities is forbidden for security reasons.'
+            )
 
         super(XMLParser, self).__init__(*args, **kwargs)

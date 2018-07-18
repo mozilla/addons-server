@@ -8,7 +8,7 @@ from inspect import isclass
 from django.utils.translation import ugettext_lazy as _
 
 
-__all__ = ('LOG', 'LOG_BY_ID', 'LOG_KEEP',)
+__all__ = ('LOG', 'LOG_BY_ID', 'LOG_KEEP')
 
 
 class _LOG(object):
@@ -24,6 +24,7 @@ class CREATE_ADDON(_LOG):
 
 class EDIT_PROPERTIES(_LOG):
     """ Expects: addon """
+
     id = 2
     action_class = 'edit'
     format = _(u'{addon} properties edited.')
@@ -115,6 +116,7 @@ class DELETE_FILE_FROM_VERSION(_LOG):
     Because the file is being deleted, filename and version
     should be strings and not the object.
     """
+
     id = 20
     action_class = 'delete'
     format = _(u'File {0} deleted from {version} of {addon}.')
@@ -202,10 +204,12 @@ class REQUEST_SUPER_REVIEW(_LOG):
     short = _(u'Super review requested')
     keep = True
     review_queue = True
-    sanitize = _(u'The addon has been flagged for Admin Review.  It\'s still '
-                 u'in our review queue, but it will need to be checked by one '
-                 u'of our admin reviewers. The review might take longer than '
-                 u'usual.')
+    sanitize = _(
+        u'The addon has been flagged for Admin Review.  It\'s still '
+        u'in our review queue, but it will need to be checked by one '
+        u'of our admin reviewers. The review might take longer than '
+        u'usual.'
+    )
     reviewer_review_action = True
 
 
@@ -285,6 +289,7 @@ class ADD_APPVERSION(_LOG):
 
 class CHANGE_USER_WITH_ROLE(_LOG):
     """ Expects: author.user, role, addon """
+
     id = 36
     # L10n: {0} is a user, {1} is their role
     format = _(u'{0.name} role changed to {1} for {addon}.')
@@ -293,6 +298,7 @@ class CHANGE_USER_WITH_ROLE(_LOG):
 
 class CHANGE_LICENSE(_LOG):
     """ Expects: license, addon """
+
     id = 37
     action_class = 'edit'
     format = _(u'{addon} is now licensed under {0}.')
@@ -321,6 +327,7 @@ class APPROVE_RATING(_LOG):
 
 class DELETE_RATING(_LOG):
     """Requires rating.id and add-on objects."""
+
     id = 41
     action_class = 'review'
     format = _(u'Review {rating} for {addon} deleted.')
@@ -609,8 +616,9 @@ class ADMIN_ALTER_INFO_REQUEST(_LOG):
 
 class DEVELOPER_CLEAR_INFO_REQUEST(_LOG):
     id = 150
-    format = _(u'Information request cleared by developer on '
-               u'{addon} {version}.')
+    format = _(
+        u'Information request cleared by developer on ' u'{addon} {version}.'
+    )
     short = _(u'Information request removed')
     keep = True
     review_queue = True
@@ -650,8 +658,11 @@ class CREATE_STATICTHEME_FROM_PERSONA(_LOG):
     keep = True
 
 
-LOGS = [x for x in vars().values()
-        if isclass(x) and issubclass(x, _LOG) and x != _LOG]
+LOGS = [
+    x
+    for x in vars().values()
+    if isclass(x) and issubclass(x, _LOG) and x != _LOG
+]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len(set(log.id for log in LOGS))
 
@@ -662,14 +673,18 @@ LOG_KEEP = [l.id for l in LOGS if hasattr(l, 'keep')]
 LOG_RATING_MODERATION = [l.id for l in LOGS if hasattr(l, 'reviewer_event')]
 LOG_REVIEW_QUEUE = [l.id for l in LOGS if hasattr(l, 'review_queue')]
 LOG_REVIEWER_REVIEW_ACTION = [
-    l.id for l in LOGS if hasattr(l, 'reviewer_review_action')]
+    l.id for l in LOGS if hasattr(l, 'reviewer_review_action')
+]
 
 # Is the user emailed the message?
 LOG_REVIEW_EMAIL_USER = [l.id for l in LOGS if hasattr(l, 'review_email_user')]
 # Logs *not* to show to the developer.
-LOG_HIDE_DEVELOPER = [l.id for l in LOGS
-                      if (getattr(l, 'hide_developer', False) or
-                          l.id in LOG_ADMINS)]
+LOG_HIDE_DEVELOPER = [
+    l.id
+    for l in LOGS
+    if (getattr(l, 'hide_developer', False) or l.id in LOG_ADMINS)
+]
 # Review Queue logs to show to developer (i.e. hiding admin/private)
-LOG_REVIEW_QUEUE_DEVELOPER = list(set(LOG_REVIEW_QUEUE) -
-                                  set(LOG_HIDE_DEVELOPER))
+LOG_REVIEW_QUEUE_DEVELOPER = list(
+    set(LOG_REVIEW_QUEUE) - set(LOG_HIDE_DEVELOPER)
+)

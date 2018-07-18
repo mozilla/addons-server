@@ -51,8 +51,9 @@ def memcache():
 
             memcache_results.append((ip, port, result))
         if not using_twemproxy and len(memcache_results) < 2:
-            status = ('2+ memcache servers are required.'
-                      '%s available') % len(memcache_results)
+            status = (
+                '2+ memcache servers are required.' '%s available'
+            ) % len(memcache_results)
             monitor_log.warning(status)
 
     if not memcache_results:
@@ -96,22 +97,27 @@ def elastic():
 
 def path():
     # Check file paths / permissions
-    rw = (settings.TMP_PATH,
-          settings.MEDIA_ROOT,
-          user_media_path('addons'),
-          user_media_path('guarded_addons'),
-          user_media_path('addon_icons'),
-          user_media_path('collection_icons'),
-          user_media_path('previews'),
-          user_media_path('userpics'),
-          user_media_path('reviewer_attachments'),
-          dump_apps.Command.get_json_path(),)
-    r = [os.path.join(settings.ROOT, 'locale'),
-         # The deploy process will want write access to this.
-         # We do not want Django to have write access though.
-         settings.PROD_DETAILS_DIR]
-    filepaths = [(path, os.R_OK | os.W_OK, 'We want read + write')
-                 for path in rw]
+    rw = (
+        settings.TMP_PATH,
+        settings.MEDIA_ROOT,
+        user_media_path('addons'),
+        user_media_path('guarded_addons'),
+        user_media_path('addon_icons'),
+        user_media_path('collection_icons'),
+        user_media_path('previews'),
+        user_media_path('userpics'),
+        user_media_path('reviewer_attachments'),
+        dump_apps.Command.get_json_path(),
+    )
+    r = [
+        os.path.join(settings.ROOT, 'locale'),
+        # The deploy process will want write access to this.
+        # We do not want Django to have write access though.
+        settings.PROD_DETAILS_DIR,
+    ]
+    filepaths = [
+        (path, os.R_OK | os.W_OK, 'We want read + write') for path in rw
+    ]
     filepaths += [(path, os.R_OK, 'We want read') for path in r]
     filepath_results = []
     filepath_status = True
@@ -162,7 +168,8 @@ def redis():
         for alias, backend in settings.REDIS_BACKENDS.items():
             if not isinstance(backend, dict):
                 raise ImproperlyConfigured(
-                    'REDIS_BACKENDS is now required to be a dictionary.')
+                    'REDIS_BACKENDS is now required to be a dictionary.'
+                )
 
             host = backend.get('HOST')
             port = backend.get('PORT')
@@ -172,8 +179,12 @@ def redis():
 
             try:
                 redis_connection = redislib.Redis(
-                    host=host, port=port, db=db, password=password,
-                    socket_timeout=socket_timeout)
+                    host=host,
+                    port=port,
+                    db=db,
+                    password=password,
+                    socket_timeout=socket_timeout,
+                )
                 redis_results[alias] = redis_connection.info()
             except Exception as e:
                 redis_results[alias] = None
@@ -195,11 +206,13 @@ def signer():
         try:
             response = requests.get(
                 '{host}/__heartbeat__'.format(host=autograph_url),
-                timeout=settings.SIGNING_SERVER_MONITORING_TIMEOUT)
+                timeout=settings.SIGNING_SERVER_MONITORING_TIMEOUT,
+            )
             if response.status_code != 200:
                 status = (
                     'Failed to chat with signing service. '
-                    'Invalid HTTP response code.')
+                    'Invalid HTTP response code.'
+                )
                 monitor_log.critical(status)
                 signer_results = False
             else:

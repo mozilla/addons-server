@@ -42,7 +42,8 @@ def action_allowed_user(user, permission):
     assert permission in amo.permissions.PERMISSIONS_LIST  # constants only.
     return any(
         match_rules(group.rules, permission.app, permission.action)
-        for group in user.groups_list)
+        for group in user.groups_list
+    )
 
 
 def submission_allowed(user, parsed_addon_data):
@@ -50,22 +51,31 @@ def submission_allowed(user, parsed_addon_data):
 
     See bug 1220097.
     """
-    return (
-        not parsed_addon_data.get('is_experiment', False) or
-        action_allowed_user(user, amo.permissions.EXPERIMENTS_SUBMIT))
+    return not parsed_addon_data.get(
+        'is_experiment', False
+    ) or action_allowed_user(user, amo.permissions.EXPERIMENTS_SUBMIT)
 
 
-def check_ownership(request, obj, require_owner=False, require_author=False,
-                    ignore_disabled=False, admin=True):
+def check_ownership(
+    request,
+    obj,
+    require_owner=False,
+    require_author=False,
+    ignore_disabled=False,
+    admin=True,
+):
     """
     A convenience function.  Check if request.user has permissions
     for the object.
     """
     if hasattr(obj, 'check_ownership'):
-        return obj.check_ownership(request, require_owner=require_owner,
-                                   require_author=require_author,
-                                   ignore_disabled=ignore_disabled,
-                                   admin=admin)
+        return obj.check_ownership(
+            request,
+            require_owner=require_owner,
+            require_author=require_author,
+            ignore_disabled=ignore_disabled,
+            admin=admin,
+        )
     return False
 
 
@@ -76,19 +86,23 @@ def check_collection_ownership(request, collection, require_owner=False):
     if request.user.id == collection.author_id:
         return True
     elif collection.author.username == 'mozilla' and action_allowed_user(
-            request.user, amo.permissions.ADMIN_CURATION):
+        request.user, amo.permissions.ADMIN_CURATION
+    ):
         return True
     elif not require_owner:
         return (
-            collection.pk == settings.COLLECTION_FEATURED_THEMES_ID and
-            action_allowed_user(
-                request.user, amo.permissions.COLLECTIONS_CONTRIBUTE))
+            collection.pk == settings.COLLECTION_FEATURED_THEMES_ID
+            and action_allowed_user(
+                request.user, amo.permissions.COLLECTIONS_CONTRIBUTE
+            )
+        )
     else:
         return False
 
 
-def check_addon_ownership(request, addon, dev=False, admin=True,
-                          ignore_disabled=False):
+def check_addon_ownership(
+    request, addon, dev=False, admin=True, ignore_disabled=False
+):
     """
     Check request.user's permissions for the addon.
 
@@ -112,15 +126,17 @@ def check_addon_ownership(request, addon, dev=False, admin=True,
     roles = (amo.AUTHOR_ROLE_OWNER,)
     if dev:
         roles += (amo.AUTHOR_ROLE_DEV,)
-    return addon.authors.filter(pk=request.user.pk,
-                                addonuser__role__in=roles).exists()
+    return addon.authors.filter(
+        pk=request.user.pk, addonuser__role__in=roles
+    ).exists()
 
 
 def check_addons_reviewer(request):
     return (
-        action_allowed(request, amo.permissions.ADDONS_REVIEW) or
-        action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW) or
-        action_allowed(request, amo.permissions.ADDONS_POST_REVIEW))
+        action_allowed(request, amo.permissions.ADDONS_REVIEW)
+        or action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW)
+        or action_allowed(request, amo.permissions.ADDONS_POST_REVIEW)
+    )
 
 
 def check_unlisted_addons_reviewer(request):
@@ -157,11 +173,12 @@ def is_user_any_kind_of_reviewer(user):
     add-on but still need to be restricted to reviewers only.
     """
     allow_access = (
-        action_allowed_user(user, amo.permissions.REVIEWER_TOOLS_VIEW) or
-        action_allowed_user(user, amo.permissions.ADDONS_REVIEW) or
-        action_allowed_user(user, amo.permissions.ADDONS_REVIEW_UNLISTED) or
-        action_allowed_user(user, amo.permissions.ADDONS_CONTENT_REVIEW) or
-        action_allowed_user(user, amo.permissions.ADDONS_POST_REVIEW) or
-        action_allowed_user(user, amo.permissions.THEMES_REVIEW) or
-        action_allowed_user(user, amo.permissions.STATIC_THEMES_REVIEW))
+        action_allowed_user(user, amo.permissions.REVIEWER_TOOLS_VIEW)
+        or action_allowed_user(user, amo.permissions.ADDONS_REVIEW)
+        or action_allowed_user(user, amo.permissions.ADDONS_REVIEW_UNLISTED)
+        or action_allowed_user(user, amo.permissions.ADDONS_CONTENT_REVIEW)
+        or action_allowed_user(user, amo.permissions.ADDONS_POST_REVIEW)
+        or action_allowed_user(user, amo.permissions.THEMES_REVIEW)
+        or action_allowed_user(user, amo.permissions.STATIC_THEMES_REVIEW)
+    )
     return allow_access

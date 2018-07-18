@@ -22,13 +22,14 @@ def call_recommendation_server(id_or_guid, params, server):
     params = OrderedDict(sorted(params.items(), key=lambda t: t[0]))
     endpoint = urlparse.urljoin(
         server,
-        '%s/%s%s' % (id_or_guid, '?' if params else '', urlencode(params)))
+        '%s/%s%s' % (id_or_guid, '?' if params else '', urlencode(params)),
+    )
     log.debug(u'Calling recommendation server: {0}'.format(endpoint))
     try:
         with statsd.timer('services.recommendations'):
             response = requests.get(
-                endpoint,
-                timeout=settings.RECOMMENDATION_ENGINE_TIMEOUT)
+                endpoint, timeout=settings.RECOMMENDATION_ENGINE_TIMEOUT
+            )
         if response.status_code != 200:
             raise requests.exceptions.RequestException()
     except requests.exceptions.RequestException as e:
@@ -42,16 +43,28 @@ def call_recommendation_server(id_or_guid, params, server):
 
 def get_recommendations(telemetry_id, params):
     from olympia.addons.models import Addon  # circular import
-    guids = call_recommendation_server(
-        telemetry_id, params, settings.RECOMMENDATION_ENGINE_URL) or []
-    ids = (Addon.objects.public().filter(guid__in=guids)
-           .values_list('id', flat=True))
-    return [data.DiscoItem(addon_id=id_, is_recommendation=True)
-            for id_ in ids]
+
+    guids = (
+        call_recommendation_server(
+            telemetry_id, params, settings.RECOMMENDATION_ENGINE_URL
+        )
+        or []
+    )
+    ids = (
+        Addon.objects.public()
+        .filter(guid__in=guids)
+        .values_list('id', flat=True)
+    )
+    return [
+        data.DiscoItem(addon_id=id_, is_recommendation=True) for id_ in ids
+    ]
 
 
 def replace_extensions(source, replacements):
     replacements = list(replacements)  # copy so we can pop it.
-    return [replacements.pop(0)
-            if item.type == amo.ADDON_EXTENSION and replacements else item
-            for item in source]
+    return [
+        replacements.pop(0)
+        if item.type == amo.ADDON_EXTENSION and replacements
+        else item
+        for item in source
+    ]

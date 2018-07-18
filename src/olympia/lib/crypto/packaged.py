@@ -65,24 +65,26 @@ def call_signing(file_obj):
     log.debug('Calling autograph service: {0}'.format(conf['server_url']))
 
     # create the signing request
-    signing_request = [{
-        'input': b64encode(signed_manifest),
-        'keyid': conf['signer'],
-        'options': {
-            'id': get_id(file_obj.version.addon),
-        },
-    }]
+    signing_request = [
+        {
+            'input': b64encode(signed_manifest),
+            'keyid': conf['signer'],
+            'options': {'id': get_id(file_obj.version.addon)},
+        }
+    ]
 
     # post the request
     with statsd.timer('services.sign.addon.autograph'):
         response = requests.post(
             '{server}/sign/data'.format(server=conf['server_url']),
             json=signing_request,
-            auth=HawkAuth(id=conf['user_id'], key=conf['key']))
+            auth=HawkAuth(id=conf['user_id'], key=conf['key']),
+        )
 
     if response.status_code != requests.codes.CREATED:
         msg = u'Posting to add-on signing failed: {0} {1}'.format(
-            response.reason, response.text)
+            response.reason, response.text
+        )
         log.error(msg)
         raise SigningError(msg)
 
@@ -99,7 +101,8 @@ def call_signing(file_obj):
         signed_manifest=signed_manifest,
         signature=pkcs7,
         sigpath=u'mozilla',
-        outpath=temp_filename)
+        outpath=temp_filename,
+    )
     shutil.move(temp_filename, file_obj.file_path)
     return cert_serial_num
 
@@ -113,8 +116,9 @@ def sign_file(file_obj):
     Otherwise return the signed file.
     """
     if not settings.ENABLE_ADDON_SIGNING:
-        log.info(u'Not signing file {0}: no active endpoint'.format(
-            file_obj.pk))
+        log.info(
+            u'Not signing file {0}: no active endpoint'.format(file_obj.pk)
+        )
         return
 
     # No file? No signature.
@@ -124,21 +128,26 @@ def sign_file(file_obj):
 
     # Don't sign Mozilla signed extensions (they're already signed).
     if file_obj.is_mozilla_signed_extension:
-        log.info(u'Not signing file {0}: mozilla signed extension is already '
-                 u'signed'.format(file_obj.pk))
+        log.info(
+            u'Not signing file {0}: mozilla signed extension is already '
+            u'signed'.format(file_obj.pk)
+        )
         return
 
     # Don't sign multi-package XPIs. Their inner add-ons need to be signed.
     if file_obj.is_multi_package:
-        log.info(u'Not signing file {0}: multi-package XPI'.format(
-            file_obj.pk))
+        log.info(
+            u'Not signing file {0}: multi-package XPI'.format(file_obj.pk)
+        )
         return
 
     # We only sign files that are compatible with Firefox.
     if not supports_firefox(file_obj):
         log.info(
-            u'Not signing version {0}: not for a Firefox version we support'
-            .format(file_obj.version.pk))
+            u'Not signing version {0}: not for a Firefox version we support'.format(
+                file_obj.version.pk
+            )
+        )
         return
 
     # Sign the file. If there's any exception, we skip the rest.
@@ -148,10 +157,12 @@ def sign_file(file_obj):
 
     # Save the certificate serial number for revocation if needed, and re-hash
     # the file now that it's been signed.
-    file_obj.update(cert_serial_num=cert_serial_num,
-                    hash=file_obj.generate_hash(),
-                    is_signed=True,
-                    size=size)
+    file_obj.update(
+        cert_serial_num=cert_serial_num,
+        hash=file_obj.generate_hash(),
+        is_signed=True,
+        size=size,
+    )
     log.info(u'Signing complete for file {0}'.format(file_obj.pk))
     return file_obj
 
@@ -174,5 +185,10 @@ def is_signed(file_path):
             filenames = set(zf.namelist())
     except (zipfile.BadZipfile, IOError):
         filenames = set()
-    return set([u'META-INF/mozilla.rsa', u'META-INF/mozilla.sf',
-                u'META-INF/manifest.mf']).issubset(filenames)
+    return set(
+        [
+            u'META-INF/mozilla.rsa',
+            u'META-INF/mozilla.sf',
+            u'META-INF/manifest.mf',
+        ]
+    ).issubset(filenames)

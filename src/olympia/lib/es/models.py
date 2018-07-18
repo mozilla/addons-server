@@ -10,10 +10,9 @@ class ReindexingManager(models.Manager):
         if self._is_reindexing(site):
             return  # Already flagged.
 
-        return self.create(new_index=new_index,
-                           old_index=old_index,
-                           alias=alias,
-                           site=site)
+        return self.create(
+            new_index=new_index, old_index=old_index, alias=alias, site=site
+        )
 
     def flag_reindexing_amo(self, new_index, old_index, alias):
         """Flag the database for an AMO reindex."""
@@ -44,16 +43,17 @@ class ReindexingManager(models.Manager):
         try:
             reindex = self.get(alias=index)
             # Yes. Let's reindex on both indexes.
-            return [idx for idx in (reindex.new_index, reindex.old_index)
-                    if idx is not None]
+            return [
+                idx
+                for idx in (reindex.new_index, reindex.old_index)
+                if idx is not None
+            ]
         except Reindexing.DoesNotExist:
             return [index]
 
 
 class Reindexing(models.Model):
-    SITE_CHOICES = (
-        ('amo', 'AMO'),
-    )
+    SITE_CHOICES = (('amo', 'AMO'),)
     start_date = models.DateTimeField(default=timezone.now)
     old_index = models.CharField(max_length=255, null=True)
     new_index = models.CharField(max_length=255)

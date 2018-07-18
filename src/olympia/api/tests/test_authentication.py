@@ -19,9 +19,15 @@ from rest_framework_jwt.views import refresh_jwt_token
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    APITestClient, TestCase, WithDynamicEndpoints, user_factory)
+    APITestClient,
+    TestCase,
+    WithDynamicEndpoints,
+    user_factory,
+)
 from olympia.api.authentication import (
-    JWTKeyAuthentication, WebTokenAuthentication)
+    JWTKeyAuthentication,
+    WebTokenAuthentication,
+)
 from olympia.api.tests.test_jwt_auth import JWTAuthKeyTester
 
 
@@ -30,6 +36,7 @@ class JWTKeyAuthTestView(APIView):
     This is an example of a view that would be protected by
     JWTKeyAuthentication, used in TestJWTKeyAuthProtectedView below.
     """
+
     permission_classes = [IsAuthenticated]
     authentication_classes = [JWTKeyAuthentication]
 
@@ -55,8 +62,9 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester):
     def _create_token(self, api_key=None):
         if api_key is None:
             api_key = self.create_api_key(self.user)
-        return self.create_auth_token(api_key.user, api_key.key,
-                                      api_key.secret)
+        return self.create_auth_token(
+            api_key.user, api_key.key, api_key.secret
+        )
 
     def test_get_user(self):
         user, _ = self.auth.authenticate(self.request(self._create_token()))
@@ -131,7 +139,8 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester):
             self.auth.authenticate(self.request(token))
         assert ctx.exception.detail == (
             "API key based tokens are not refreshable, don't include "
-            "`orig_iat` in their payload.")
+            "`orig_iat` in their payload."
+        )
 
     def test_cant_refresh_token(self):
         # Developers generate tokens, not us, they should not be refreshable,
@@ -163,9 +172,9 @@ class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester):
         return handler('/en-US/firefox/dynamic-endpoint', *args, **kw)
 
     def jwt_request(self, token, method, *args, **kw):
-        return self.request(method,
-                            HTTP_AUTHORIZATION='JWT {}'.format(token),
-                            *args, **kw)
+        return self.request(
+            method, HTTP_AUTHORIZATION='JWT {}'.format(token), *args, **kw
+        )
 
     def test_get_requires_auth(self):
         res = self.request('get')
@@ -177,8 +186,9 @@ class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester):
 
     def test_can_post_with_jwt_header(self):
         api_key = self.create_api_key(self.user)
-        token = self.create_auth_token(api_key.user, api_key.key,
-                                       api_key.secret)
+        token = self.create_auth_token(
+            api_key.user, api_key.key, api_key.secret
+        )
         res = self.jwt_request(token, 'post', {})
 
         assert res.status_code == 200, res.content
@@ -187,8 +197,9 @@ class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester):
 
     def test_api_key_must_be_active(self):
         api_key = self.create_api_key(self.user, is_active=None)
-        token = self.create_auth_token(api_key.user, api_key.key,
-                                       api_key.secret)
+        token = self.create_auth_token(
+            api_key.user, api_key.key, api_key.secret
+        )
         res = self.jwt_request(token, 'post', {})
         assert res.status_code == 401, res.content
 
@@ -206,8 +217,10 @@ class TestWebTokenAuthentication(TestCase):
         url = absolutify('/api/v3/whatever/')
         prefix = WebTokenAuthentication.auth_header_prefix
         request = self.factory.post(
-            url, HTTP_HOST='testserver',
-            HTTP_AUTHORIZATION='{0} {1}'.format(prefix, token))
+            url,
+            HTTP_HOST='testserver',
+            HTTP_AUTHORIZATION='{0} {1}'.format(prefix, token),
+        )
 
         return self.auth.authenticate(request)
 
@@ -218,30 +231,34 @@ class TestWebTokenAuthentication(TestCase):
 
     def test_authenticate_header(self):
         request = self.factory.post('/api/v3/whatever/')
-        assert (self.auth.authenticate_header(request) ==
-                'bearer realm="api"')
+        assert self.auth.authenticate_header(request) == 'bearer realm="api"'
 
     def test_wrong_header_only_prefix(self):
         request = self.factory.post(
             '/api/v3/whatever/',
-            HTTP_AUTHORIZATION=WebTokenAuthentication.auth_header_prefix)
+            HTTP_AUTHORIZATION=WebTokenAuthentication.auth_header_prefix,
+        )
         with self.assertRaises(AuthenticationFailed) as exp:
             self.auth.authenticate(request)
         assert exp.exception.detail['code'] == 'ERROR_INVALID_HEADER'
         assert exp.exception.detail['detail'] == (
-            'Invalid Authorization header. No credentials provided.')
+            'Invalid Authorization header. No credentials provided.'
+        )
 
     def test_wrong_header_too_many_spaces(self):
         request = self.factory.post(
             '/api/v3/whatever/',
             HTTP_AUTHORIZATION='{} foo bar'.format(
-                WebTokenAuthentication.auth_header_prefix))
+                WebTokenAuthentication.auth_header_prefix
+            ),
+        )
         with self.assertRaises(AuthenticationFailed) as exp:
             self.auth.authenticate(request)
         assert exp.exception.detail['code'] == 'ERROR_INVALID_HEADER'
         assert exp.exception.detail['detail'] == (
             'Invalid Authorization header. '
-            'Credentials string should not contain spaces.')
+            'Credentials string should not contain spaces.'
+        )
 
     def test_no_token(self):
         request = self.factory.post('/api/v3/whatever/')
@@ -249,7 +266,8 @@ class TestWebTokenAuthentication(TestCase):
 
     def test_expired_token(self):
         old_date = datetime.now() - timedelta(
-            seconds=settings.SESSION_COOKIE_AGE + 1)
+            seconds=settings.SESSION_COOKIE_AGE + 1
+        )
         with freeze_time(old_date):
             token = self.client.generate_api_token(self.user)
         with self.assertRaises(AuthenticationFailed) as exp:
@@ -259,7 +277,8 @@ class TestWebTokenAuthentication(TestCase):
 
     def test_still_valid_token(self):
         not_so_old_date = datetime.now() - timedelta(
-            seconds=settings.SESSION_COOKIE_AGE - 30)
+            seconds=settings.SESSION_COOKIE_AGE - 30
+        )
         with freeze_time(not_so_old_date):
             token = self.client.generate_api_token(self.user)
         assert self._authenticate(token)[0] == self.user
@@ -277,17 +296,13 @@ class TestWebTokenAuthentication(TestCase):
             self._authenticate(token)
 
     def test_no_user_id_in_payload(self):
-        data = {
-            'auth_hash': self.user.get_session_auth_hash(),
-        }
+        data = {'auth_hash': self.user.get_session_auth_hash()}
         token = signing.dumps(data, salt=WebTokenAuthentication.salt)
         with self.assertRaises(AuthenticationFailed):
             self._authenticate(token)
 
     def test_no_auth_hash_in_payload(self):
-        data = {
-            'user_id': self.user.pk,
-        }
+        data = {'user_id': self.user.pk}
         token = signing.dumps(data, salt=WebTokenAuthentication.salt)
         with self.assertRaises(AuthenticationFailed):
             self._authenticate(token)

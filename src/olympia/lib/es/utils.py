@@ -24,8 +24,9 @@ unflag_reindexing_amo = Reindexing.objects.unflag_reindexing_amo
 get_indices = Reindexing.objects.get_indices
 
 
-def index_objects(ids, model, extract_func, index=None, transforms=None,
-                  objects=None):
+def index_objects(
+    ids, model, extract_func, index=None, transforms=None, objects=None
+):
     if index is None:
         index = model._get_index()
     if objects is None:
@@ -44,12 +45,14 @@ def index_objects(ids, model, extract_func, index=None, transforms=None,
     for ob in qs:
         data = extract_func(ob)
         for index in indices:
-            bulk.append({
-                "_source": data,
-                "_id": ob.id,
-                "_type": ob.get_mapping_type(),
-                "_index": index
-            })
+            bulk.append(
+                {
+                    "_source": data,
+                    "_id": ob.id,
+                    "_type": ob.get_mapping_type(),
+                    "_index": index,
+                }
+            )
 
     es = amo_search.get_es()
     return helpers.bulk(es, bulk)
@@ -63,9 +66,11 @@ def raise_if_reindex_in_progress(site):
     """
     already_reindexing = Reindexing.objects._is_reindexing(site)
     if already_reindexing and 'FORCE_INDEXING' not in os.environ:
-        raise CommandError("Indexation already occurring. Add a "
-                           "FORCE_INDEXING variable in the environ "
-                           "to force it")
+        raise CommandError(
+            "Indexation already occurring. Add a "
+            "FORCE_INDEXING variable in the environ "
+            "to force it"
+        )
 
 
 def timestamp_index(index):
@@ -90,19 +95,19 @@ def create_index(index, config=None):
         config = {}
 
     if 'settings' not in config:
-        config['settings'] = {
-            'index': {}
-        }
+        config['settings'] = {'index': {}}
     else:
         # Make a deepcopy of the settings in the config that was passed, so
         # that we can modify it freely to add shards and replicas settings.
         config['settings'] = deepcopy(config['settings'])
 
-    config['settings']['index'].update({
-        'number_of_shards': settings.ES_DEFAULT_NUM_SHARDS,
-        'number_of_replicas': settings.ES_DEFAULT_NUM_REPLICAS,
-        'max_result_window': settings.ES_MAX_RESULT_WINDOW,
-    })
+    config['settings']['index'].update(
+        {
+            'number_of_shards': settings.ES_DEFAULT_NUM_SHARDS,
+            'number_of_replicas': settings.ES_DEFAULT_NUM_REPLICAS,
+            'max_result_window': settings.ES_MAX_RESULT_WINDOW,
+        }
+    )
 
     if not es.indices.exists(index):
         es.indices.create(index, body=config)

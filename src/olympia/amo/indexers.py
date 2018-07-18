@@ -52,15 +52,18 @@ class BaseSearchIndexer(object):
 
         for field_name in field_names:
             # _translations is the suffix in TranslationSerializer.
-            mapping[doc_name]['properties'].update({
-                '%s_translations' % field_name: {
-                    'type': 'object',
-                    'properties': {
-                        'lang': {'type': 'text', 'index': False},
-                        'string': {'type': 'text', 'index': False}
+            mapping[doc_name]['properties'].update(
+                {
+                    '%s_translations'
+                    % field_name: {
+                        'type': 'object',
+                        'properties': {
+                            'lang': {'type': 'text', 'index': False},
+                            'string': {'type': 'text', 'index': False},
+                        },
                     }
                 }
-            })
+            )
 
     @classmethod
     def attach_language_specific_analyzers(cls, mapping, field_names):
@@ -91,7 +94,8 @@ class BaseSearchIndexer(object):
             db_field = '%s_id' % field
 
         extend_with_me = {
-            '%s_translations' % field: [
+            '%s_translations'
+            % field: [
                 {'lang': to_language(lang), 'string': string}
                 for lang, string in obj.translations[getattr(obj, db_field)]
                 if string
@@ -110,7 +114,8 @@ class BaseSearchIndexer(object):
 
         extend_with_me = {
             field: list(
-                set(s for _, s in obj.translations[getattr(obj, db_field)]))
+                set(s for _, s in obj.translations[getattr(obj, db_field)])
+            )
         }
         return extend_with_me
 
@@ -129,8 +134,13 @@ class BaseSearchIndexer(object):
         # index with analyzer if the string's locale matches.
         for analyzer, languages in SEARCH_ANALYZER_MAP.iteritems():
             extend_with_me['%s_l10n_%s' % (field, analyzer)] = list(
-                set(string for locale, string
-                    in obj.translations[getattr(obj, db_field)]
-                    if locale.lower() in languages))
+                set(
+                    string
+                    for locale, string in obj.translations[
+                        getattr(obj, db_field)
+                    ]
+                    if locale.lower() in languages
+                )
+            )
 
         return extend_with_me

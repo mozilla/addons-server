@@ -11,6 +11,7 @@ class Command(BaseCommand):
     processing each as it is found.  It polls indefinitely and does not return;
     to interrupt execution you'll need to e.g. SIGINT the process.
     """
+
     help = 'Monitor the AWS SQS queue for FxA events.'
 
     def add_arguments(self, parser):
@@ -20,7 +21,8 @@ class Command(BaseCommand):
             action='store',
             dest='queue_url',
             default=settings.FXA_SQS_AWS_QUEUE_URL,
-            help='Monitor specified SQS queue, rather than default.')
+            help='Monitor specified SQS queue, rather than default.',
+        )
 
     def handle(self, *args, **options):
         queue_url = options['queue_url']

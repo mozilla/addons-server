@@ -7,8 +7,7 @@ from olympia.amo.tests import TestCase
 
 
 class TestManagement(TestCase):
-    fixtures = ['base/addon_3615',
-                'tags/tags.json']
+    fixtures = ['base/addon_3615', 'tags/tags.json']
 
     def test_tags_details_view(self):
         """Test that there are some tags being shown on the details page."""
@@ -20,8 +19,7 @@ class TestManagement(TestCase):
 
 
 class TestXSS(TestCase):
-    fixtures = ['base/addon_3615',
-                'tags/tags.json']
+    fixtures = ['base/addon_3615', 'tags/tags.json']
 
     xss = "<script src='foo.bar'>"
     escaped = "&lt;script src=&#39;foo.bar&#39;&gt;"
@@ -42,8 +40,7 @@ class TestXSS(TestCase):
 
 
 class TestXSSURLFail(TestCase):
-    fixtures = ['base/addon_3615',
-                'tags/tags.json']
+    fixtures = ['base/addon_3615', 'tags/tags.json']
 
     xss = "<script>alert('xss')</script>"
     escaped = "&lt;script&gt;alert(&#39;xss&#39;)&lt;/script&gt;"
@@ -64,8 +61,9 @@ class TestXSSURLFail(TestCase):
 
     def test_tags_xss_home(self):
         """Test xss tag home."""
-        self.assertRaises(NoReverseMatch, reverse,
-                          'tags.detail', args=[self.xss])
+        self.assertRaises(
+            NoReverseMatch, reverse, 'tags.detail', args=[self.xss]
+        )
 
     def test_no_reverse(self):
         assert not self.tag.can_reverse()

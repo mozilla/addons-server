@@ -23,16 +23,18 @@ CDN_HOST = 'https://addons.cdn.mozilla.net'
 DOMAIN = env('DOMAIN', default='addons.mozilla.org')
 SERVER_EMAIL = 'zprod@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
-SERVICES_URL = env('SERVICES_URL',
-                   default='https://services.addons.mozilla.org')
+SERVICES_URL = env(
+    'SERVICES_URL', default='https://services.addons.mozilla.org'
+)
 STATIC_URL = '%s/static/' % CDN_HOST
 MEDIA_URL = '%s/user-media/' % CDN_HOST
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 # Domain emails should be sent to.
-INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
-                           default='addons.mozilla.org')
+INBOUND_EMAIL_DOMAIN = env(
+    'INBOUND_EMAIL_DOMAIN', default='addons.mozilla.org'
+)
 
 NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
 NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
@@ -77,22 +79,26 @@ CACHES = {
 }
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
-CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
+CACHES['default'][
+    'BACKEND'
+] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
 # Celery
 CELERY_BROKER_CONNECTION_TIMEOUT = 0.5
 
-LOGGING['loggers'].update({
-    'adi.updatecounts': {'level': logging.INFO},
-    'amqp': {'level': logging.WARNING},
-    'raven': {'level': logging.WARNING},
-    'requests': {'level': logging.WARNING},
-    'z.addons': {'level': logging.INFO},
-    'z.task': {'level': logging.DEBUG},
-    'z.redis': {'level': logging.DEBUG},
-    'z.pool': {'level': logging.ERROR},
-})
+LOGGING['loggers'].update(
+    {
+        'adi.updatecounts': {'level': logging.INFO},
+        'amqp': {'level': logging.WARNING},
+        'raven': {'level': logging.WARNING},
+        'requests': {'level': logging.WARNING},
+        'z.addons': {'level': logging.INFO},
+        'z.task': {'level': logging.DEBUG},
+        'z.redis': {'level': logging.DEBUG},
+        'z.pool': {'level': logging.ERROR},
+    }
+)
 
 # This is used for `django-cache-machine`
 REDIS_BACKEND = env('REDIS_BACKENDS_CACHE')
@@ -101,7 +107,7 @@ REDIS_BACKENDS = {
     'cache': get_redis_settings(env('REDIS_BACKENDS_CACHE')),
     'cache_slave': get_redis_settings(env('REDIS_BACKENDS_CACHE_SLAVE')),
     'master': get_redis_settings(env('REDIS_BACKENDS_MASTER')),
-    'slave': get_redis_settings(env('REDIS_BACKENDS_SLAVE'))
+    'slave': get_redis_settings(env('REDIS_BACKENDS_SLAVE')),
 }
 
 ES_TIMEOUT = 60
@@ -132,8 +138,7 @@ FXA_CONFIG = {
         'content_host': 'https://accounts.firefox.com',
         'oauth_host': 'https://oauth.accounts.firefox.com/v1',
         'profile_host': 'https://profile.accounts.firefox.com/v1',
-        'redirect_url':
-            'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
+        'redirect_url': 'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
         'scope': 'profile',
     },
     'amo': {
@@ -142,8 +147,7 @@ FXA_CONFIG = {
         'content_host': 'https://accounts.firefox.com',
         'oauth_host': 'https://oauth.accounts.firefox.com/v1',
         'profile_host': 'https://profile.accounts.firefox.com/v1',
-        'redirect_url':
-            'https://addons.mozilla.org/api/v3/accounts/authenticate/',
+        'redirect_url': 'https://addons.mozilla.org/api/v3/accounts/authenticate/',
         'scope': 'profile',
         'skip_register_redirect': True,
     },
@@ -156,19 +160,25 @@ VALIDATOR_TIMEOUT = 360
 ES_DEFAULT_NUM_SHARDS = 10
 
 RAVEN_JS_DSN = (
-    'https://8c1c5936578948a9a0614cbbafccf049@sentry.prod.mozaws.net/78')
+    'https://8c1c5936578948a9a0614cbbafccf049@sentry.prod.mozaws.net/78'
+)
 RAVEN_JS_ALLOW_LIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']
 
 
 RECOMMENDATION_ENGINE_URL = env(
     'RECOMMENDATION_ENGINE_URL',
-    default='https://taar.prod.mozaws.net/api/recommendations/')
+    default='https://taar.prod.mozaws.net/api/recommendations/',
+)
 
 TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
     'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
-    default=('https://taarlite.prod.mozaws.net/taarlite/api/v1/'
-             'addon_recommendations/'))
+    default=(
+        'https://taarlite.prod.mozaws.net/taarlite/api/v1/'
+        'addon_recommendations/'
+    ),
+)
 
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-west-2.amazonaws.com/361527076523/'
-    'amo-account-change-prod')
+    'amo-account-change-prod'
+)

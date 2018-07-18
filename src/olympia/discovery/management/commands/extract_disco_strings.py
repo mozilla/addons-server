@@ -24,7 +24,8 @@ class Command(BaseCommand):
         response = requests.get(settings.DISCOVERY_EDITORIAL_CONTENT_API)
         if response.status_code != 200:
             raise CommandError(
-                'Fetching Discovery Pane editorial content failed.')
+                'Fetching Discovery Pane editorial content failed.'
+            )
         return json.loads(response.content)['results']
 
     def build_output_for_item(self, item):
@@ -38,13 +39,16 @@ class Command(BaseCommand):
         return u''.join(output)
 
     def build_output_for_single_value(self, value):
-        output = (u'{# L10n: editorial content for the discovery pane. #}\n'
-                  u'{%% trans %%}%s{%% endtrans %%}\n' % value)
+        output = (
+            u'{# L10n: editorial content for the discovery pane. #}\n'
+            u'{%% trans %%}%s{%% endtrans %%}\n' % value
+        )
         return output
 
     def generate_file_from_api_results(self, results):
         log.info('Building Discovery Pane strings file.')
         content = u'\n'.join(
-            self.build_output_for_item(item) for item in results)
+            self.build_output_for_item(item) for item in results
+        )
         with open(settings.DISCOVERY_EDITORIAL_CONTENT_FILENAME, 'w') as f:
             f.write(content.encode('utf-8'))

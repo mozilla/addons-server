@@ -5,6 +5,7 @@ class AppCompatIndexer(BaseSearchIndexer):
     @classmethod
     def get_model(cls):
         from olympia.compat.models import AppCompat
+
         return AppCompat
 
     @classmethod
@@ -15,8 +16,8 @@ class AppCompatIndexer(BaseSearchIndexer):
             doc_name: {
                 'properties': {
                     # We use dynamic mapping for everything for this indexer.
-                },
-            },
+                }
+            }
         }
 
     # extract_document() is not implemented because AppCompat uses its own

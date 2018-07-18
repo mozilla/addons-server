@@ -17,7 +17,6 @@ from olympia.versions.models import Version
 
 
 class ButtonTest(TestCase):
-
     def setUp(self):
         super(ButtonTest, self).setUp()
         self.addon = Mock(spec=Addon)
@@ -201,15 +200,13 @@ class TestButton(ButtonTest):
 
         self.addon.type = amo.ADDON_DICT
         b = self.get_button()
-        assert b.attrs() == {
-            'data-no-compat-necessary': 'true'
-        }
+        assert b.attrs() == {'data-no-compat-necessary': 'true'}
 
         self.addon.type = amo.ADDON_SEARCH
         b = self.get_button()
         assert b.attrs() == {
             'data-search': 'true',
-            'data-no-compat-necessary': 'true'
+            'data-no-compat-necessary': 'true',
         }
 
     def test_file_details(self):
@@ -222,7 +219,8 @@ class TestButton(ButtonTest):
         assert text == 'Download Now'
         assert url == '/firefox/downloads/latest/a-slug/addon-42-latest'
         assert download_url == (
-            '/firefox/downloads/latest/a-slug/type:attachment/addon-42-latest')
+            '/firefox/downloads/latest/a-slug/type:attachment/addon-42-latest'
+        )
         assert os is None
 
         # Platformer.
@@ -236,7 +234,8 @@ class TestButton(ButtonTest):
         assert url == 'http://testserver/firefox/downloads/file/666/?src='
         assert download_url == (
             'http://testserver/firefox/downloads/file/666/type:attachment/'
-            '?src=')
+            '?src='
+        )
 
     def test_file_details_unreviewed(self):
         file = self.get_file(amo.PLATFORM_ALL.id)
@@ -247,7 +246,8 @@ class TestButton(ButtonTest):
         assert url == 'http://testserver/firefox/downloads/file/666/?src='
         assert download_url == (
             'http://testserver/firefox/downloads/file/666/type:attachment/'
-            '?src=')
+            '?src='
+        )
 
     def test_fix_link(self):
         b = self.get_button()
@@ -262,8 +262,9 @@ class TestButton(ButtonTest):
         assert b.fix_link('foo.com') == 'foo.com?collection_id=xxx'
 
         b = self.get_button(collection=collection, src='src')
-        self.assertUrlEqual(b.fix_link('foo.com'),
-                            'foo.com?src=src&collection_id=xxx')
+        self.assertUrlEqual(
+            b.fix_link('foo.com'), 'foo.com?src=src&collection_id=xxx'
+        )
 
     def test_links(self):
         self.version.all_files = self.platform_files
@@ -292,12 +293,11 @@ class TestButton(ButtonTest):
         assert install_button_mock.call_args[1] == {
             'detailed': True,
             'show_download_anyway': True,
-            'size': 'prominent'
+            'size': 'prominent',
         }
 
 
 class TestButtonHtml(ButtonTest):
-
     def test_basics(self):
         a = self.addon
         a.id = '12345'
@@ -318,7 +318,8 @@ class TestButtonHtml(ButtonTest):
         assert 'icon url' == install.attr('data-icon')
         assert 'meet.dev' == install.attr('data-developers')
         assert reverse('addons.versions', args=[a.id]) == (
-            install.attr('data-versions'))
+            install.attr('data-versions')
+        )
         assert 'addon name' == install.attr('data-name')
         assert None is install.attr('data-min')
         assert None is install.attr('data-max')
@@ -327,13 +328,15 @@ class TestButtonHtml(ButtonTest):
         assert ['button', 'download'] == button.attr('class').split()
         assert 'file hash' == button.attr('data-hash')
         assert button.attr('href') == (
-            '/firefox/downloads/latest/a-slug/addon-42-latest')
+            '/firefox/downloads/latest/a-slug/addon-42-latest'
+        )
 
     def test_featured(self):
         self.addon.is_featured.return_value = True
         doc = self.render()
         assert ['install', 'featuredaddon'] == (
-            doc('.install').attr('class').split())
+            doc('.install').attr('class').split()
+        )
         assert 'Featured' == doc('.install strong:last-child').text()
 
     def test_detailed_privacy_policy(self):
@@ -349,7 +352,8 @@ class TestButtonHtml(ButtonTest):
         self.addon.is_experimental = True
         warning = self.render(detailed=True)('.install-shell .warning')
         assert warning.text() == (
-            'This add-on has been marked as experimental by its developers.')
+            'This add-on has been marked as experimental by its developers.'
+        )
 
     def test_multi_platform(self):
         self.version.all_files = self.platform_files
@@ -357,8 +361,9 @@ class TestButtonHtml(ButtonTest):
         assert doc('.button').length == 2
 
         for platform in self.platforms:
-            os = doc('.button.%s .os' %
-                     amo.PLATFORMS[platform].shortname).attr('data-os')
+            os = doc(
+                '.button.%s .os' % amo.PLATFORMS[platform].shortname
+            ).attr('data-os')
             assert amo.PLATFORMS[platform].name == os
 
     def test_compatible_apps(self):

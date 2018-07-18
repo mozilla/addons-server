@@ -14,7 +14,6 @@ log = olympia.core.logger.getLogger('z.access')
 
 
 class UserAndAddrMiddleware(object):
-
     def process_request(self, request):
         """Attach authentication/permission helpers to request, and persist
         user and remote addr in current thread."""

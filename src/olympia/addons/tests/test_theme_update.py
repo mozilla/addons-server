@@ -19,7 +19,6 @@ from olympia.versions.models import Version
 
 
 class TestWSGIApplication(TestCase):
-
     def setUp(self):
         super(TestWSGIApplication, self).setUp()
         self.environ = {'wsgi.input': StringIO()}
@@ -27,12 +26,13 @@ class TestWSGIApplication(TestCase):
 
     @mock.patch('services.theme_update.MigratedUpdate')
     @mock.patch('services.theme_update.LWThemeUpdate')
-    def test_wsgi_application_200(self, LWThemeUpdate_mock,
-                                  MigratedUpdate_mock):
+    def test_wsgi_application_200(
+        self, LWThemeUpdate_mock, MigratedUpdate_mock
+    ):
         urls = {
             '/themes/update-check/5': ['en-US', 5, None],
             '/en-US/themes/update-check/5': ['en-US', 5, None],
-            '/fr/themes/update-check/5': ['fr', 5, None]
+            '/fr/themes/update-check/5': ['fr', 5, None],
         }
         MigratedUpdate_mock.return_value.is_migrated = False
         # From AMO we consume the ID as the `addon_id`.
@@ -55,12 +55,13 @@ class TestWSGIApplication(TestCase):
 
     @mock.patch('services.theme_update.MigratedUpdate')
     @mock.patch('services.theme_update.LWThemeUpdate')
-    def test_wsgi_application_200_migrated(self, LWThemeUpdate_mock,
-                                           MigratedUpdate_mock):
+    def test_wsgi_application_200_migrated(
+        self, LWThemeUpdate_mock, MigratedUpdate_mock
+    ):
         urls = {
             '/themes/update-check/5': ['en-US', 5, None],
             '/en-US/themes/update-check/5': ['en-US', 5, None],
-            '/fr/themes/update-check/5': ['fr', 5, None]
+            '/fr/themes/update-check/5': ['fr', 5, None],
         }
         MigratedUpdate_mock.return_value.is_migrated = True
         # From AMO we consume the ID as the `addon_id`.
@@ -83,13 +84,14 @@ class TestWSGIApplication(TestCase):
 
     @mock.patch('services.theme_update.MigratedUpdate')
     @mock.patch('services.theme_update.LWThemeUpdate')
-    def test_wsgi_application_404(self, LWThemeUpdate_mock,
-                                  MigratedUpdate_mock):
+    def test_wsgi_application_404(
+        self, LWThemeUpdate_mock, MigratedUpdate_mock
+    ):
         urls = [
             '/xxx',
             '/themes/update-check/xxx',
             '/en-US/themes/update-check/xxx',
-            '/fr/themes/update-check/xxx'
+            '/fr/themes/update-check/xxx',
         ]
 
         for path_info in urls:
@@ -117,10 +119,11 @@ class TestThemeUpdate(TestCase):
             'headerURL': '/15663/BCBG_Persona_header2.png?modified=fakehash',
             'name': 'My Persona',
             'author': 'persona_author',
-            'updateURL': (settings.VAMO_URL +
-                          '/en-US/themes/update-check/15663'),
+            'updateURL': (
+                settings.VAMO_URL + '/en-US/themes/update-check/15663'
+            ),
             'version': '0',
-            'footerURL': '/15663/BCBG_Persona_footer2.png?modified=fakehash'
+            'footerURL': '/15663/BCBG_Persona_footer2.png?modified=fakehash',
         }
 
     def check_good(self, data):
@@ -128,11 +131,12 @@ class TestThemeUpdate(TestCase):
             got = data[k]
             if k.endswith('URL'):
                 if k in ('detailURL', 'updateURL'):
-                    assert got.startswith('http'), (
-                        'Expected absolute URL for "%s": %s' % (k, got))
-                assert got.endswith(v), (
-                    'Expected "%s" to end with "%s". Got "%s".' % (
-                        k, v, got))
+                    assert got.startswith(
+                        'http'
+                    ), 'Expected absolute URL for "%s": %s' % (k, got)
+                assert got.endswith(
+                    v
+                ), 'Expected "%s" to end with "%s". Got "%s".' % (k, v, got)
 
     def get_update(self, *args):
         update = theme_update.LWThemeUpdate(*args)
@@ -153,19 +157,22 @@ class TestThemeUpdate(TestCase):
         addon.increment_theme_version_number()
 
         # Testing `addon_id` from AMO.
-        self.check_good(
-            json.loads(self.get_update('en-US', 15663).get_json()))
+        self.check_good(json.loads(self.get_update('en-US', 15663).get_json()))
 
         # Testing `persona_id` from GP.
-        self.good.update({
-            'id': '813',
-            'updateURL': (settings.VAMO_URL +
-                          '/en-US/themes/update-check/813?src=gp'),
-            'version': '1'
-        })
+        self.good.update(
+            {
+                'id': '813',
+                'updateURL': (
+                    settings.VAMO_URL + '/en-US/themes/update-check/813?src=gp'
+                ),
+                'version': '1',
+            }
+        )
 
         self.check_good(
-            json.loads(self.get_update('en-US', 813, 'src=gp').get_json()))
+            json.loads(self.get_update('en-US', 813, 'src=gp').get_json())
+        )
 
     def test_blank_footer_url(self):
         addon = Addon.objects.get()
@@ -185,7 +192,6 @@ class TestThemeUpdate(TestCase):
 
 
 class TestMigratedUpdate(TestCase):
-
     def get_update(self, *args):
         update = theme_update.MigratedUpdate(*args)
         update.cursor = connection.cursor()
@@ -200,7 +206,8 @@ class TestMigratedUpdate(TestCase):
         assert not self.get_update('en-US', 1234, 'src=gp').is_migrated
 
         MigratedLWT.objects.create(
-            lightweight_theme=lwt, static_theme=stheme, getpersonas_id=1234)
+            lightweight_theme=lwt, static_theme=stheme, getpersonas_id=1234
+        )
         assert self.get_update('en-US', lwt.id).is_migrated
         assert self.get_update('en-US', 1234, 'src=gp').is_migrated
         assert not self.get_update('en-US', lwt.id + 1).is_migrated
@@ -212,31 +219,32 @@ class TestMigratedUpdate(TestCase):
         lwt.persona.save()
         stheme = addon_factory(type=amo.ADDON_STATICTHEME)
         stheme.current_version.files.all()[0].update(
-            filename='foo.xpi', hash='brown')
+            filename='foo.xpi', hash='brown'
+        )
         MigratedLWT.objects.create(
-            lightweight_theme=lwt, static_theme=stheme, getpersonas_id=666)
+            lightweight_theme=lwt, static_theme=stheme, getpersonas_id=666
+        )
         update = self.get_update('en-US', lwt.id)
 
         response = json.loads(update.get_json())
         url = '{0}{1}/{2}?{3}'.format(
-            user_media_url('addons'), str(stheme.id), 'foo.xpi',
-            urllib.urlencode({'filehash': 'brown'}))
+            user_media_url('addons'),
+            str(stheme.id),
+            'foo.xpi',
+            urllib.urlencode({'filehash': 'brown'}),
+        )
         assert update.data == {
-            'stheme_id': stheme.id, 'filename': 'foo.xpi', 'hash': 'brown'}
-        assert response == {
-            "converted_theme": {
-                "url": url,
-                "hash": 'brown'
-            }
+            'stheme_id': stheme.id,
+            'filename': 'foo.xpi',
+            'hash': 'brown',
         }
+        assert response == {"converted_theme": {"url": url, "hash": 'brown'}}
 
         update = self.get_update('en-US', 666, 'src=gp')
         response = json.loads(update.get_json())
         assert update.data == {
-            'stheme_id': stheme.id, 'filename': 'foo.xpi', 'hash': 'brown'}
-        assert response == {
-            "converted_theme": {
-                "url": url,
-                "hash": 'brown'
-            }
+            'stheme_id': stheme.id,
+            'filename': 'foo.xpi',
+            'hash': 'brown',
         }
+        assert response == {"converted_theme": {"url": url, "hash": 'brown'}}

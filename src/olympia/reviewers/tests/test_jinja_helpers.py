@@ -32,44 +32,60 @@ class TestCompareLink(TestCase):
         self.version = Version.objects.create(addon=self.addon)
 
     def test_same_platform(self):
-        file = File.objects.create(version=self.version,
-                                   platform=self.current.platform)
-        assert file.pk == jinja_helpers.file_compare(
-            self.current, self.version).pk
+        file = File.objects.create(
+            version=self.version, platform=self.current.platform
+        )
+        assert (
+            file.pk
+            == jinja_helpers.file_compare(self.current, self.version).pk
+        )
 
     def test_different_platform(self):
-        file = File.objects.create(version=self.version,
-                                   platform=self.current.platform)
-        File.objects.create(version=self.version,
-                            platform=amo.PLATFORM_LINUX.id)
-        assert file.pk == jinja_helpers.file_compare(
-            self.current, self.version).pk
+        file = File.objects.create(
+            version=self.version, platform=self.current.platform
+        )
+        File.objects.create(
+            version=self.version, platform=amo.PLATFORM_LINUX.id
+        )
+        assert (
+            file.pk
+            == jinja_helpers.file_compare(self.current, self.version).pk
+        )
 
     def test_specific_platform(self):
         self.current.platform_id = amo.PLATFORM_LINUX.id
         self.current.save()
 
-        linux = File.objects.create(version=self.version,
-                                    platform=amo.PLATFORM_LINUX.id)
-        assert linux.pk == jinja_helpers.file_compare(
-            self.current, self.version).pk
+        linux = File.objects.create(
+            version=self.version, platform=amo.PLATFORM_LINUX.id
+        )
+        assert (
+            linux.pk
+            == jinja_helpers.file_compare(self.current, self.version).pk
+        )
 
     def test_no_platform(self):
         self.current.platform_id = amo.PLATFORM_LINUX.id
         self.current.save()
-        file = File.objects.create(version=self.version,
-                                   platform=amo.PLATFORM_WIN.id)
-        assert file.pk == jinja_helpers.file_compare(
-            self.current, self.version).pk
+        file = File.objects.create(
+            version=self.version, platform=amo.PLATFORM_WIN.id
+        )
+        assert (
+            file.pk
+            == jinja_helpers.file_compare(self.current, self.version).pk
+        )
 
 
 def test_version_status():
     addon = Addon()
     version = Version()
-    version.all_files = [File(status=amo.STATUS_PUBLIC),
-                         File(status=amo.STATUS_AWAITING_REVIEW)]
+    version.all_files = [
+        File(status=amo.STATUS_PUBLIC),
+        File(status=amo.STATUS_AWAITING_REVIEW),
+    ]
     assert u'Approved,Awaiting Review' == (
-        jinja_helpers.version_status(addon, version))
+        jinja_helpers.version_status(addon, version)
+    )
 
     version.all_files = [File(status=amo.STATUS_AWAITING_REVIEW)]
     assert u'Awaiting Review' == jinja_helpers.version_status(addon, version)
@@ -78,7 +94,8 @@ def test_version_status():
 def test_file_review_status_handles_invalid_status_id():
     # When status is a valid one, one of STATUS_CHOICES_FILE return label.
     assert amo.STATUS_CHOICES_FILE[amo.STATUS_PUBLIC] == (
-        jinja_helpers.file_review_status(None, File(status=amo.STATUS_PUBLIC)))
+        jinja_helpers.file_review_status(None, File(status=amo.STATUS_PUBLIC))
+    )
 
     # 99 isn't a valid status, so return the status code for reference.
     status = jinja_helpers.file_review_status(None, File(status=99))

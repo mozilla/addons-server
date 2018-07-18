@@ -45,8 +45,10 @@ def update_addon_average_daily_users():
     d = cursor.fetchall()
     cursor.close()
 
-    ts = [_update_addon_average_daily_users.subtask(args=[chunk])
-          for chunk in chunked(d, 250)]
+    ts = [
+        _update_addon_average_daily_users.subtask(args=[chunk])
+        for chunk in chunked(d, 250)
+    ]
     group(ts).apply_async()
 
 
@@ -76,20 +78,22 @@ def update_addon_download_totals():
         return False
 
     qs = (
-        Addon.objects
-             .annotate(sum_download_count=Sum('downloadcount__count'))
-             .values_list('id', 'sum_download_count')
-             .order_by('id')
+        Addon.objects.annotate(sum_download_count=Sum('downloadcount__count'))
+        .values_list('id', 'sum_download_count')
+        .order_by('id')
     )
-    ts = [_update_addon_download_totals.subtask(args=[chunk])
-          for chunk in chunked(qs, 250)]
+    ts = [
+        _update_addon_download_totals.subtask(args=[chunk])
+        for chunk in chunked(qs, 250)
+    ]
     group(ts).apply_async()
 
 
 @task
 def _update_addon_download_totals(data, **kw):
-    task_log.info('[%s] Updating add-ons download+average totals.' %
-                  (len(data)))
+    task_log.info(
+        '[%s] Updating add-ons download+average totals.' % (len(data))
+    )
 
     if not waffle.switch_is_active('local-statistics-processing'):
         return False
@@ -99,14 +103,18 @@ def _update_addon_download_totals(data, **kw):
             addon = Addon.objects.get(pk=pk)
             # Don't trigger a save unless we have to (the counts may not have
             # changed)
-            if (sum_download_counts and
-                    addon.total_downloads != sum_download_counts):
+            if (
+                sum_download_counts
+                and addon.total_downloads != sum_download_counts
+            ):
                 addon.update(total_downloads=sum_download_counts)
         except Addon.DoesNotExist:
             # We exclude deleted add-ons in the cron, but an add-on could have
             # been deleted by the time the task is processed.
-            m = ("Got new download totals (total=%s) but the add-on"
-                 "doesn't exist (%s)" % (sum_download_counts, pk))
+            m = (
+                "Got new download totals (total=%s) but the add-on"
+                "doesn't exist (%s)" % (sum_download_counts, pk)
+            )
             task_log.debug(m)
 
 
@@ -143,42 +151,52 @@ def addon_last_updated():
     _change_last_updated(next)
 
     # Get anything that didn't match above.
-    other = (Addon.objects.filter(last_updated__isnull=True)
-             .values_list('id', 'created'))
+    other = Addon.objects.filter(last_updated__isnull=True).values_list(
+        'id', 'created'
+    )
     _change_last_updated(dict(other))
 
 
 def update_addon_appsupport():
     # Find all the add-ons that need their app support details updated.
-    newish = (Q(last_updated__gte=F('appsupport__created')) |
-              Q(appsupport__created__isnull=True))
+    newish = Q(last_updated__gte=F('appsupport__created')) | Q(
+        appsupport__created__isnull=True
+    )
     # Search providers don't list supported apps.
     has_app = Q(versions__apps__isnull=False) | Q(type=amo.ADDON_SEARCH)
     has_file = Q(versions__files__status__in=amo.VALID_FILE_STATUSES)
     good = Q(has_app, has_file) | Q(type=amo.ADDON_PERSONA)
-    ids = (Addon.objects.valid().distinct()
-           .filter(newish, good).values_list('id', flat=True))
+    ids = (
+        Addon.objects.valid()
+        .distinct()
+        .filter(newish, good)
+        .values_list('id', flat=True)
+    )
 
     task_log.info('Updating appsupport for %d new-ish addons.' % len(ids))
-    ts = [_update_appsupport.subtask(args=[chunk])
-          for chunk in chunked(ids, 20)]
+    ts = [
+        _update_appsupport.subtask(args=[chunk]) for chunk in chunked(ids, 20)
+    ]
     group(ts).apply_async()
 
 
 def update_all_appsupport():
     from .tasks import update_appsupport
+
     ids = sorted(set(AppSupport.objects.values_list('addon', flat=True)))
     task_log.info('Updating appsupport for %s addons.' % len(ids))
     for idx, chunk in enumerate(chunked(ids, 100)):
         if idx % 10 == 0:
-            task_log.info('[%s/%s] Updating appsupport.'
-                          % (idx * 100, len(ids)))
+            task_log.info(
+                '[%s/%s] Updating appsupport.' % (idx * 100, len(ids))
+            )
         update_appsupport(chunk)
 
 
 @task
 def _update_appsupport(ids, **kw):
     from .tasks import update_appsupport
+
     task_log.info('Updating appsupport for %d of new-ish addons.' % len(ids))
     update_appsupport(ids)
 
@@ -186,10 +204,12 @@ def _update_appsupport(ids, **kw):
 def hide_disabled_files():
     # If an add-on or a file is disabled, it should be moved to
     # GUARDED_ADDONS_PATH so it's not publicly visible.
-    q = (Q(version__addon__status=amo.STATUS_DISABLED) |
-         Q(version__addon__disabled_by_user=True))
-    ids = (File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
-           .values_list('id', flat=True))
+    q = Q(version__addon__status=amo.STATUS_DISABLED) | Q(
+        version__addon__disabled_by_user=True
+    )
+    ids = File.objects.filter(q | Q(status=amo.STATUS_DISABLED)).values_list(
+        'id', flat=True
+    )
     for chunk in chunked(ids, 300):
         qs = File.objects.filter(id__in=chunk)
         qs = qs.select_related('version')
@@ -201,24 +221,30 @@ def unhide_disabled_files():
     # Files are getting stuck in /guarded-addons for some reason. This job
     # makes sure guarded add-ons are supposed to be disabled.
     log = olympia.core.logger.getLogger('z.files.disabled')
-    q = (Q(version__addon__status=amo.STATUS_DISABLED) |
-         Q(version__addon__disabled_by_user=True))
-    files = set(File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
-                .values_list('version__addon', 'filename'))
+    q = Q(version__addon__status=amo.STATUS_DISABLED) | Q(
+        version__addon__disabled_by_user=True
+    )
+    files = set(
+        File.objects.filter(q | Q(status=amo.STATUS_DISABLED)).values_list(
+            'version__addon', 'filename'
+        )
+    )
     for filepath in walkfiles(settings.GUARDED_ADDONS_PATH):
         filepath = force_text(filepath)
         addon, filename = filepath.split('/')[-2:]
         if tuple([int(addon), filename]) not in files:
             log.warning(u'File that should not be guarded: %s.', filepath)
             try:
-                file_ = (File.objects.select_related('version__addon')
-                         .get(version__addon=addon, filename=filename))
+                file_ = File.objects.select_related('version__addon').get(
+                    version__addon=addon, filename=filename
+                )
                 file_.unhide_disabled_file()
             except File.DoesNotExist:
                 log.warning(u'File object does not exist for: %s.' % filepath)
             except Exception:
-                log.error(u'Could not unhide file: %s.' % filepath,
-                          exc_info=True)
+                log.error(
+                    u'Could not unhide file: %s.' % filepath, exc_info=True
+                )
 
 
 def deliver_hotness():
@@ -230,17 +256,24 @@ def deliver_hotness():
     hotness = (a-b) / b if a > 1000 and b > 1 else 0
     """
     frozen = set(f.id for f in FrozenAddon.objects.all())
-    all_ids = list((Addon.objects.exclude(type=amo.ADDON_PERSONA)
-                   .filter(status__in=amo.VALID_ADDON_STATUSES)
-                   .values_list('id', flat=True)))
+    all_ids = list(
+        (
+            Addon.objects.exclude(type=amo.ADDON_PERSONA)
+            .filter(status__in=amo.VALID_ADDON_STATUSES)
+            .values_list('id', flat=True)
+        )
+    )
     now = datetime.now()
     one_week = now - timedelta(days=7)
     four_weeks = now - timedelta(days=28)
     for ids in chunked(all_ids, 300):
         addons = Addon.objects.filter(id__in=ids).no_transforms()
         ids = [a.id for a in addons if a.id not in frozen]
-        qs = (UpdateCount.objects.filter(addon__in=ids)
-              .values_list('addon').annotate(Avg('count')))
+        qs = (
+            UpdateCount.objects.filter(addon__in=ids)
+            .values_list('addon')
+            .annotate(Avg('count'))
+        )
         thisweek = dict(qs.filter(date__gte=one_week))
         threeweek = dict(qs.filter(date__range=(four_weeks, one_week)))
         for addon in addons:
@@ -255,11 +288,14 @@ def deliver_hotness():
 
 def reindex_addons(index=None, addon_type=None):
     from . import tasks
+
     ids = Addon.unfiltered.values_list('id', flat=True)
     if addon_type:
         ids = ids.filter(type=addon_type)
-    ts = [tasks.index_addons.subtask(args=[chunk], kwargs=dict(index=index))
-          for chunk in chunked(sorted(list(ids)), 150)]
+    ts = [
+        tasks.index_addons.subtask(args=[chunk], kwargs=dict(index=index))
+        for chunk in chunked(sorted(list(ids)), 150)
+    ]
     group(ts).apply_async()
 
 
@@ -272,7 +308,7 @@ def cleanup_image_files():
 
     """
     log.info('Removing one day old temporary image files for themes.')
-    for folder in ('persona_header', ):
+    for folder in ('persona_header',):
         root = os.path.join(settings.TMP_PATH, folder)
         if not os.path.exists(root):
             continue
@@ -280,6 +316,7 @@ def cleanup_image_files():
             full_path = os.path.join(root, path)
             age = time.time() - os.stat(full_path).st_atime
             if age > 60 * 60 * 24:  # One day.
-                log.debug('Removing image file: %s, %dsecs old.' %
-                          (full_path, age))
+                log.debug(
+                    'Removing image file: %s, %dsecs old.' % (full_path, age)
+                )
                 os.unlink(full_path)

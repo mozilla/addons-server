@@ -6,7 +6,10 @@ from django.utils.translation import ugettext
 
 from rest_framework import status
 from rest_framework.decorators import (
-    api_view, authentication_classes, permission_classes)
+    api_view,
+    authentication_classes,
+    permission_classes,
+)
 from rest_framework.exceptions import ParseError
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
@@ -19,17 +22,25 @@ from olympia.activity.models import ActivityLog
 from olympia.activity.serializers import ActivityLogSerializer
 from olympia.activity.tasks import process_email
 from olympia.activity.utils import (
-    action_from_user, filter_queryset_to_pending_replies, log_and_notify)
+    action_from_user,
+    filter_queryset_to_pending_replies,
+    log_and_notify,
+)
 from olympia.addons.views import AddonChildMixin
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted, AnyOf)
+    AllowAddonAuthor,
+    AllowReviewer,
+    AllowReviewerUnlisted,
+    AnyOf,
+)
 from olympia.versions.models import Version
 
 
-class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,
-                                RetrieveModelMixin, GenericViewSet):
+class VersionReviewNotesViewSet(
+    AddonChildMixin, ListModelMixin, RetrieveModelMixin, GenericViewSet
+):
     permission_classes = [
-        AnyOf(AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted),
+        AnyOf(AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted)
     ]
     serializer_class = ActivityLogSerializer
 
@@ -39,12 +50,14 @@ class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,
 
     def get_addon_object(self):
         return super(VersionReviewNotesViewSet, self).get_addon_object(
-            permission_classes=self.permission_classes)
+            permission_classes=self.permission_classes
+        )
 
     def get_version_object(self):
         return get_object_or_404(
             Version.unfiltered.filter(addon=self.get_addon_object()),
-            pk=self.kwargs['version_pk'])
+            pk=self.kwargs['version_pk'],
+        )
 
     def check_object_permissions(self, request, obj):
         """Check object permissions against the Addon, not the ActivityLog."""
@@ -55,19 +68,27 @@ class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,
     def get_serializer_context(self):
         ctx = super(VersionReviewNotesViewSet, self).get_serializer_context()
         ctx['to_highlight'] = filter_queryset_to_pending_replies(
-            self.get_queryset())
+            self.get_queryset()
+        )
         return ctx
 
     def create(self, request, *args, **kwargs):
         version = self.get_version_object()
         latest_version = version.addon.find_latest_version(
-            channel=version.channel, exclude=())
+            channel=version.channel, exclude=()
+        )
         if version != latest_version:
-            raise ParseError(ugettext(
-                'Only latest versions of addons can have notes added.'))
+            raise ParseError(
+                ugettext(
+                    'Only latest versions of addons can have notes added.'
+                )
+            )
         activity_object = log_and_notify(
-            action_from_user(request.user, version), request.data['comments'],
-            request.user, version)
+            action_from_user(request.user, version),
+            request.data['comments'],
+            request.user,
+            version,
+        )
         serializer = self.get_serializer(activity_object)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -88,8 +109,10 @@ class EmailCreationPermission(object):
 
         secret_key = data.get('SecretKey', '')
         if not secret_key == settings.INBOUND_EMAIL_SECRET_KEY:
-            log.info('Invalid secret key [%s] provided; data [%s]' % (
-                secret_key, data))
+            log.info(
+                'Invalid secret key [%s] provided; data [%s]'
+                % (secret_key, data)
+            )
             return False
 
         remote_ip = request.META.get('REMOTE_ADDR', '')
@@ -108,14 +131,11 @@ def inbound_email(request):
     validation_response = settings.INBOUND_EMAIL_VALIDATION_KEY
     if request.data.get('Type', '') == 'Validation':
         # Its just a verification check that the end-point is working.
-        return Response(data=validation_response,
-                        status=status.HTTP_200_OK)
+        return Response(data=validation_response, status=status.HTTP_200_OK)
 
     message = request.data.get('Message', None)
     if not message:
-        raise ParseError(
-            detail='Message not present in the POST data.')
+        raise ParseError(detail='Message not present in the POST data.')
 
     process_email.apply_async((message,))
-    return Response(data=validation_response,
-                    status=status.HTTP_201_CREATED)
+    return Response(data=validation_response, status=status.HTTP_201_CREATED)

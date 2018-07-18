@@ -33,10 +33,15 @@ class DoubleSafe(safestring.SafeData, jinja2.Markup):
     """
 
 
-def _make_message(title=None, message=None, title_safe=False,
-                  message_safe=False):
-    c = {'title': title, 'message': message,
-         'title_safe': title_safe, 'message_safe': message_safe}
+def _make_message(
+    title=None, message=None, title_safe=False, message_safe=False
+):
+    c = {
+        'title': title,
+        'message': message,
+        'title_safe': title_safe,
+        'message_safe': message_safe,
+    }
     t = loader.get_template('message_content.html').render(c)
     return DoubleSafe(t)
 
@@ -66,8 +71,16 @@ def _is_dupe(msg, request):
     return is_dupe
 
 
-def _file_message(type_, request, title, message=None, extra_tags='',
-                  fail_silently=False, title_safe=False, message_safe=False):
+def _file_message(
+    type_,
+    request,
+    title,
+    message=None,
+    extra_tags='',
+    fail_silently=False,
+    title_safe=False,
+    message_safe=False,
+):
     msg = _make_message(title, message, title_safe, message_safe)
     # Don't save duplicates.
     if _is_dupe(msg, request):

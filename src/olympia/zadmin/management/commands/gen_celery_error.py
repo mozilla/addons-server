@@ -8,5 +8,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         celery_error.delay()
-        print('A RuntimeError exception was raised from a celery task. '
-              'Check the logs!')
+        print(
+            'A RuntimeError exception was raised from a celery task. '
+            'Check the logs!'
+        )

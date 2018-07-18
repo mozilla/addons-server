@@ -6,8 +6,10 @@ from olympia.addons.models import Addon, Persona
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES
 from olympia.devhub.tasks import (
-    pngcrush_existing_preview, pngcrush_existing_icons,
-    pngcrush_existing_theme)
+    pngcrush_existing_preview,
+    pngcrush_existing_icons,
+    pngcrush_existing_theme,
+)
 from olympia.discovery.data import discopane_items
 from olympia.users.models import UserProfile
 
@@ -22,7 +24,8 @@ class Command(BaseCommand):
             action='store_true',
             dest='dry_run',
             default=False,
-            help='Do not really fire the tasks.')
+            help='Do not really fire the tasks.',
+        )
 
     def handle(self, *args, **options):
         """Command entry point."""
@@ -38,16 +41,19 @@ class Command(BaseCommand):
                     if addon.persona.is_new():
                         pngcrush_existing_theme.delay(
                             addon.persona.pk,
-                            set_modified_on=addon.serializable_reference())
+                            set_modified_on=addon.serializable_reference(),
+                        )
                 except Persona.DoesNotExist:
                     pass
             else:
                 pngcrush_existing_icons.delay(
-                    addon.pk, set_modified_on=addon.serializable_reference())
+                    addon.pk, set_modified_on=addon.serializable_reference()
+                )
                 for preview in addon.previews.all():
                     pngcrush_existing_preview.delay(
                         preview.pk,
-                        set_modified_on=preview.serializable_reference())
+                        set_modified_on=preview.serializable_reference(),
+                    )
 
     def fetch_addons(self):
         """
@@ -72,29 +78,45 @@ class Command(BaseCommand):
 
         print('Fetching 5 top-rated extensions/themes from each category.')
         for cat in CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION].values():
-            addons.update(Addon.objects.public().filter(
-                category=cat.id).order_by('-bayesian_rating')[:5])
+            addons.update(
+                Addon.objects.public()
+                .filter(category=cat.id)
+                .order_by('-bayesian_rating')[:5]
+            )
         for cat in CATEGORIES[amo.FIREFOX.id][amo.ADDON_PERSONA].values():
-            addons.update(Addon.objects.public().filter(
-                category=cat.id).order_by('-bayesian_rating')[:5])
+            addons.update(
+                Addon.objects.public()
+                .filter(category=cat.id)
+                .order_by('-bayesian_rating')[:5]
+            )
 
         print('Fetching 5 trending extensions/themes from each category.')
         for cat in CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION].values():
-            addons.update(Addon.objects.public().filter(
-                category=cat.id).order_by('-hotness')[:5])
+            addons.update(
+                Addon.objects.public()
+                .filter(category=cat.id)
+                .order_by('-hotness')[:5]
+            )
         for cat in CATEGORIES[amo.FIREFOX.id][amo.ADDON_PERSONA].values():
-            addons.update(Addon.objects.public().filter(
-                category=cat.id).order_by('-hotness')[:5])
+            addons.update(
+                Addon.objects.public()
+                .filter(category=cat.id)
+                .order_by('-hotness')[:5]
+            )
 
         print('Fetching 25 most popular themes.')
         addons.update(
-            Addon.objects.public().filter(
-                type=amo.ADDON_PERSONA).order_by('-average_daily_users')[:25])
+            Addon.objects.public()
+            .filter(type=amo.ADDON_PERSONA)
+            .order_by('-average_daily_users')[:25]
+        )
 
         print('Fetching disco pane add-ons.')
         addons.update(
             Addon.objects.public().filter(
-                id__in=[item.addon_id for item in discopane_items['default']]))
+                id__in=[item.addon_id for item in discopane_items['default']]
+            )
+        )
 
         print('Done fetching, %d add-ons to process total.' % len(addons))
         return addons

@@ -10,7 +10,8 @@ from datetime import datetime
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.management.commands.createsuperuser import (
-    Command as CreateSuperUserCommand)
+    Command as CreateSuperUserCommand
+)
 from django.core import exceptions
 from django.core.management.base import CommandError
 from django.utils.six.moves import input
@@ -68,10 +69,12 @@ and email address and that's it.
                     if options.get(field_name, None):
                         field = self.UserModel._meta.get_field(field_name)
                         user_data[field_name] = field.clean(
-                            options[field_name], None)
+                            options[field_name], None
+                        )
                     else:
                         raise CommandError(
-                            'You must use --%s with --noinput.' % field_name)
+                            'You must use --%s with --noinput.' % field_name
+                        )
             except exceptions.ValidationError as exc:
                 raise CommandError('; '.join(exc.messages))
         else:
@@ -82,8 +85,7 @@ and email address and that's it.
 
         if options.get('fxa_id', None):
             field = self.UserModel._meta.get_field('fxa_id')
-            user_data['fxa_id'] = field.clean(
-                options['fxa_id'], None)
+            user_data['fxa_id'] = field.clean(options['fxa_id'], None)
 
         user = get_user_model()._default_manager.create_superuser(**user_data)
 
@@ -93,17 +95,22 @@ and email address and that's it.
 
             group, _ = Group.objects.get_or_create(
                 rules='Accounts:SuperCreate',
-                defaults={'name': 'Account Super Creators'})
+                defaults={'name': 'Account Super Creators'},
+            )
             GroupUser.objects.create(user=user, group=group)
             apikey = APIKey.new_jwt_credentials(user=user)
 
-            self.stdout.write(json.dumps({
-                'username': user.username,
-                'email': user.email,
-                'api-key': apikey.key,
-                'api-secret': apikey.secret,
-                'fxa-id': user.fxa_id,
-            }))
+            self.stdout.write(
+                json.dumps(
+                    {
+                        'username': user.username,
+                        'email': user.email,
+                        'api-key': apikey.key,
+                        'api-secret': apikey.secret,
+                        'fxa-id': user.fxa_id,
+                    }
+                )
+            )
 
     def get_value(self, field_name):
         field = get_user_model()._meta.get_field(field_name)

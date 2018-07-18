@@ -17,7 +17,6 @@ log = olympia.core.logger.getLogger('z.github')
 
 
 class GithubView(APIView):
-
     def post(self, request):
         if request.META.get('HTTP_X_GITHUB_EVENT') != 'pull_request':
             # That's ok, we are just going to ignore it, we'll return a 2xx
@@ -28,8 +27,10 @@ class GithubView(APIView):
         # payload parameter.
         #
         # See: https://developer.github.com/webhooks/creating/#content-type
-        if (request.META.get('CONTENT_TYPE') ==
-           'application/x-www-form-urlencoded'):
+        if (
+            request.META.get('CONTENT_TYPE')
+            == 'application/x-www-form-urlencoded'
+        ):
             data = json.loads(request.data['payload'])
         else:
             data = request.data
@@ -50,12 +51,16 @@ class GithubView(APIView):
             # robot as a contributor, so we'll get a 404 from GitHub. Let's
             # try and get a nice error message back into the GitHub UI.
             if err.response.status_code == status.HTTP_404_NOT_FOUND:
-                return Response({
-                    'details': (
-                        'Writing pending status failed. Please ensure '
-                        'the addons.mozilla.org GitHub account has write '
-                        'access to this repository.')},
-                    status=status.HTTP_404_NOT_FOUND)
+                return Response(
+                    {
+                        'details': (
+                            'Writing pending status failed. Please ensure '
+                            'the addons.mozilla.org GitHub account has write '
+                            'access to this repository.'
+                        )
+                    },
+                    status=status.HTTP_404_NOT_FOUND,
+                )
 
         process_webhook.delay(upload.pk, data)
         return Response({}, status=status.HTTP_201_CREATED)

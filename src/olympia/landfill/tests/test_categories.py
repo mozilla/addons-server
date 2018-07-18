@@ -8,7 +8,6 @@ from olympia.landfill.categories import generate_categories
 
 
 class CategoriesTests(TestCase):
-
     def test_categories_themes_generation(self):
         data = generate_categories(APPS['firefox'], ADDON_PERSONA)
         assert len(data) == Category.objects.all().count()
@@ -20,7 +19,8 @@ class CategoriesTests(TestCase):
         assert len(data) == 11
 
         category = Category.objects.get(
-            id=CATEGORIES[APPS['android'].id][ADDON_EXTENSION]['shopping'].id)
+            id=CATEGORIES[APPS['android'].id][ADDON_EXTENSION]['shopping'].id
+        )
         assert unicode(category.name) == u'Shopping'
 
         # Re-generating should not create any more.
@@ -30,5 +30,6 @@ class CategoriesTests(TestCase):
 
         # Name should still be the same.
         category = Category.objects.get(
-            id=CATEGORIES[APPS['android'].id][ADDON_EXTENSION]['shopping'].id)
+            id=CATEGORIES[APPS['android'].id][ADDON_EXTENSION]['shopping'].id
+        )
         assert unicode(category.name) == u'Shopping'

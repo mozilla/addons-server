@@ -6,7 +6,10 @@ from datetime import datetime
 from olympia import amo
 from olympia.amo.utils import slugify
 from olympia.bandwagon.models import (
-    Collection, CollectionAddon, FeaturedCollection)
+    Collection,
+    CollectionAddon,
+    FeaturedCollection,
+)
 
 from .translations import generate_translations
 
@@ -29,8 +32,9 @@ def create_collection(application, **kwargs):
     c = Collection(**data)
     c.slug = slugify(data['name'])
     c.rating = (c.upvotes - c.downvotes) * math.log(c.upvotes + c.downvotes)
-    c.created = c.modified = datetime(2014, 10, 27, random.randint(0, 23),
-                                      random.randint(0, 59))
+    c.created = c.modified = datetime(
+        2014, 10, 27, random.randint(0, 23), random.randint(0, 59)
+    )
     c.save()
     return c
 
@@ -49,5 +53,6 @@ def generate_collection(addon, app=None, **kwargs):
     generate_translations(c)
     CollectionAddon.objects.create(addon=addon, collection=c)
     if app is not None:  # Useless for themes.
-        FeaturedCollection.objects.create(application=application,
-                                          collection=c)
+        FeaturedCollection.objects.create(
+            application=application, collection=c
+        )

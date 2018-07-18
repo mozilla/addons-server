@@ -23,15 +23,18 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         if not options['name']:
             log.error("Cron called without args")
-            raise CommandError('These jobs are available:\n%s' % '\n'.join(
-                sorted(settings.CRON_JOBS.keys())))
+            raise CommandError(
+                'These jobs are available:\n%s'
+                % '\n'.join(sorted(settings.CRON_JOBS.keys()))
+            )
 
         name, args = options['name'], options['cron_args']
 
         path = settings.CRON_JOBS.get(name)
         if not path:
-            log.error('Cron called with an unknown cron job: %s %s' %
-                      (name, args))
+            log.error(
+                'Cron called with an unknown cron job: %s %s' % (name, args)
+            )
             raise CommandError(u'Unrecognized job name: %s' % name)
 
         module = import_module(path)

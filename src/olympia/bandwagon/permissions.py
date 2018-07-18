@@ -7,7 +7,6 @@ from olympia.access import acl
 
 
 class AllowCollectionAuthor(BasePermission):
-
     def has_permission(self, request, view):
         return view.get_account_viewset().self_view
 
@@ -22,9 +21,8 @@ class AllowCollectionContributor(BasePermission):
     actions."""
 
     def has_permission(self, request, view):
-        return (
-            request.user.is_authenticated() and
-            acl.action_allowed(request, amo.permissions.COLLECTIONS_CONTRIBUTE)
+        return request.user.is_authenticated() and acl.action_allowed(
+            request, amo.permissions.COLLECTIONS_CONTRIBUTE
         )
 
     def has_object_permission(self, request, view, obj):
@@ -38,9 +36,8 @@ class AllowContentCurators(BasePermission):
     actions."""
 
     def has_permission(self, request, view):
-        return (
-            request.user.is_authenticated() and
-            acl.action_allowed(request, amo.permissions.ADMIN_CURATION)
+        return request.user.is_authenticated() and acl.action_allowed(
+            request, amo.permissions.ADMIN_CURATION
         )
 
     def has_object_permission(self, request, view, obj):

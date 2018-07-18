@@ -13,8 +13,9 @@ def get_date(path, sep):
     parsed = urlparse(path)
 
     if parsed.scheme == 's3':
-        obj = get_object_from_s3(parsed.netloc, parsed.path,
-                                 range='bytes=0-4096')
+        obj = get_object_from_s3(
+            parsed.netloc, parsed.path, range='bytes=0-4096'
+        )
         line = obj.splitlines()[0]
     else:
         with open(path) as f:
@@ -40,6 +41,7 @@ def get_object_from_s3(bucket, object_key, range=''):
     """Get the ojbect from the s3"""
 
     client = boto3.client('s3')
-    obj = client.get_object(Bucket=bucket, Key=object_key.lstrip('/'),
-                            Range=range)
+    obj = client.get_object(
+        Bucket=bucket, Key=object_key.lstrip('/'), Range=range
+    )
     return obj['Body'].read().decode('utf-8')

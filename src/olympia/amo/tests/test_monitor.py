@@ -15,8 +15,8 @@ class TestMonitor(TestCase):
         mocked_caches = {
             'default': {
                 'BACKEND': 'django.core.cache.backends.memcached'
-                           '.MemcachedCache',
-                'LOCATION': '127.0.0.1:6666'
+                '.MemcachedCache',
+                'LOCATION': '127.0.0.1:6666',
             }
         }
         cache_info = mocked_caches['default']['LOCATION'].split(':')
@@ -30,7 +30,8 @@ class TestMonitor(TestCase):
             connect_call_args = mock_socket_instance.connect.call_args_list
             assert len(connect_call_args) == 1
             mock_socket_instance.connect.assert_called_with(
-                (cache_info[0], int(cache_info[1])))
+                (cache_info[0], int(cache_info[1]))
+            )
 
             # Expect memcached_results to contain cache info and then a boolean
             # indicating everything is OK.
@@ -72,16 +73,12 @@ class TestMonitor(TestCase):
             'master': {
                 'DB': 0,
                 'HOST': 'localhost',
-                'OPTIONS': {
-                    'socket_timeout': 0.5
-                },
+                'OPTIONS': {'socket_timeout': 0.5},
                 'PASSWORD': None,
-                'PORT': 4242
+                'PORT': 4242,
             }
         }
-        mocked_redis_info = {
-            'redis_build_id': 'not_a_real_redis',
-        }
+        mocked_redis_info = {'redis_build_id': 'not_a_real_redis'}
         mock_redislib.Redis.return_value.info = lambda: mocked_redis_info
         with override_settings(REDIS_BACKENDS=mocked_redis_backends):
             status, redis_results = monitors.redis()

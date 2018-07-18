@@ -26,9 +26,7 @@ def process_webhook(upload_pk, callbacks):
 
     log.info('Validating: {}'.format(upload_pk))
     validate(
-        upload,
-        listed=True,
-        subtask=process_results.si(upload_pk, callbacks)
+        upload, listed=True, subtask=process_results.si(upload_pk, callbacks)
     )
 
 
@@ -38,8 +36,7 @@ def process_results(upload_pk, callbacks):
     upload = FileUpload.objects.get(pk=upload_pk)
     validation = json.loads(upload.validation) if upload.validation else {}
     github = GithubCallback(callbacks)
-    url = absolutify(
-        reverse('devhub.upload_detail', args=[upload.uuid]))
+    url = absolutify(reverse('devhub.upload_detail', args=[upload.uuid]))
 
     if not validation:
         log.error('Validation not written: {}'.format(upload_pk))

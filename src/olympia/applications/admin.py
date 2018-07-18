@@ -4,7 +4,7 @@ from .models import AppVersion
 
 
 class AppVersionAdmin(admin.ModelAdmin):
-    list_display = ('version', 'application',)
+    list_display = ('version', 'application')
     model = AppVersion
     ordering = ('-version_int',)
 

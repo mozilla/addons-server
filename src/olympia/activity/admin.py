@@ -4,11 +4,11 @@ from .models import ActivityLog
 
 
 class ActivityLogAdmin(admin.ModelAdmin):
-    list_display = ('created', 'user', '__unicode__',)
+    list_display = ('created', 'user', '__unicode__')
     raw_id_fields = ('user',)
-    readonly_fields = ('created', 'user', '__unicode__',)
+    readonly_fields = ('created', 'user', '__unicode__')
     date_hierarchy = 'created'
-    fields = ('user', 'created', '__unicode__',)
+    fields = ('user', 'created', '__unicode__')
     raw_id_fields = ('user',)
 
     def has_add_permission(self, request):

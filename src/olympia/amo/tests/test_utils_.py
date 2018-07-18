@@ -13,8 +13,12 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.utils import (
-    attach_trans_dict, get_locale_from_lang, pngcrush_image,
-    translations_for_field, walkfiles)
+    attach_trans_dict,
+    get_locale_from_lang,
+    pngcrush_image,
+    translations_for_field,
+    walkfiles,
+)
 from olympia.versions.models import Version
 
 
@@ -30,10 +34,15 @@ class TestAttachTransDict(TestCase):
 
     def test_basic(self):
         addon = addon_factory(
-            name='Name', description='Description <script>alert(42)</script>!',
-            eula='', summary='Summary', homepage='http://home.pa.ge',
+            name='Name',
+            description='Description <script>alert(42)</script>!',
+            eula='',
+            summary='Summary',
+            homepage='http://home.pa.ge',
             developer_comments='Developer Comments',
-            support_email='sup@example.com', support_url='http://su.pport.url')
+            support_email='sup@example.com',
+            support_url='http://su.pport.url',
+        )
         addon.save()
 
         # Quick sanity checks: is description properly escaped? The underlying
@@ -58,15 +67,15 @@ class TestAttachTransDict(TestCase):
         # Build expected translations dict.
         expected_translations = {
             addon.eula_id: [('en-us', unicode(addon.eula))],
-            addon.description_id: [
-                ('en-us', unicode(addon.description))],
-            addon.developer_comments_id:
-                [('en-us', unicode(addon.developer_comments))],
+            addon.description_id: [('en-us', unicode(addon.description))],
+            addon.developer_comments_id: [
+                ('en-us', unicode(addon.developer_comments))
+            ],
             addon.summary_id: [('en-us', unicode(addon.summary))],
             addon.homepage_id: [('en-us', unicode(addon.homepage))],
             addon.name_id: [('en-us', unicode(addon.name))],
             addon.support_email_id: [('en-us', unicode(addon.support_email))],
-            addon.support_url_id: [('en-us', unicode(addon.support_url))]
+            addon.support_url_id: [('en-us', unicode(addon.support_url))],
         }
         assert translations == expected_translations
 
@@ -74,24 +83,34 @@ class TestAttachTransDict(TestCase):
         addon = addon_factory()
         addon.description = {
             'fr': 'French Description',
-            'en-us': 'English Description'
+            'en-us': 'English Description',
         }
         addon.save()
         addon2 = addon_factory(description='English 2 Description')
         addon2.name = {
             'fr': 'French 2 Name',
             'en-us': 'English 2 Name',
-            'es': 'Spanish 2 Name'
+            'es': 'Spanish 2 Name',
         }
         addon2.save()
         attach_trans_dict(Addon, [addon, addon2])
         assert set(addon.translations[addon.description_id]) == (
-            set([('en-us', 'English Description'),
-                 ('fr', 'French Description')]))
+            set(
+                [
+                    ('en-us', 'English Description'),
+                    ('fr', 'French Description'),
+                ]
+            )
+        )
         assert set(addon2.translations[addon2.name_id]) == (
-            set([('en-us', 'English 2 Name'),
-                 ('es', 'Spanish 2 Name'),
-                 ('fr', 'French 2 Name')]))
+            set(
+                [
+                    ('en-us', 'English 2 Name'),
+                    ('es', 'Spanish 2 Name'),
+                    ('fr', 'French 2 Name'),
+                ]
+            )
+        )
 
     def test_translations_for_field(self):
         version = Version.objects.create(addon=Addon.objects.create())
@@ -141,7 +160,6 @@ def test_cached_property():
     callme = mock.Mock()
 
     class Foo(object):
-
         @cached_property
         def bar(self):
             callme()
@@ -160,7 +178,6 @@ def test_set_writable_cached_property():
     callme = mock.Mock()
 
     class Foo(object):
-
         @cached_property
         def bar(self):
             callme()
@@ -186,9 +203,10 @@ def test_get_locale_from_lang(lang):
     debug_or_ignored_languages = ('cak', 'dbg', 'dbr', 'dbl')
     long_languages = ('ast', 'dsb', 'hsb', 'kab')
     expected_language = (
-        lang[:3] if lang in long_languages else (
-            lang[:2] if lang not in debug_or_ignored_languages else 'en'
-        ))
+        lang[:3]
+        if lang in long_languages
+        else (lang[:2] if lang not in debug_or_ignored_languages else 'en')
+    )
 
     assert isinstance(locale, Locale)
     assert locale.language == expected_language
@@ -213,8 +231,12 @@ def test_pngcrush_image(subprocess_mock):
     assert pngcrush_image('/tmp/some_file.png')
     assert subprocess_mock.Popen.call_count == 1
     assert subprocess_mock.Popen.call_args_list[0][0][0] == [
-        settings.PNGCRUSH_BIN, '-q', '-reduce', '-ow',
-        '/tmp/some_file.png', '/tmp/some_file.crush.png',
+        settings.PNGCRUSH_BIN,
+        '-q',
+        '-reduce',
+        '-ow',
+        '/tmp/some_file.png',
+        '/tmp/some_file.crush.png',
     ]
     assert subprocess_mock.Popen.call_args_list[0][1] == {
         'stdout': subprocess_mock.PIPE,

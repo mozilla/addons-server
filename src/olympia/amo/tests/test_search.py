@@ -14,9 +14,15 @@ class TestESIndexing(ESTestCaseWithAddons):
         # Did all the right addons get indexed?
         count = Addon.search().filter(type=1, is_disabled=False).count()
         # Created in the setUpClass.
-        assert count == 4 == (
-            Addon.objects.filter(disabled_by_user=False,
-                                 status__in=amo.VALID_ADDON_STATUSES).count())
+        assert (
+            count
+            == 4
+            == (
+                Addon.objects.filter(
+                    disabled_by_user=False, status__in=amo.VALID_ADDON_STATUSES
+                ).count()
+            )
+        )
 
     def test_get_es_not_mocked(self):
         es = search.get_es()
@@ -24,17 +30,18 @@ class TestESIndexing(ESTestCaseWithAddons):
 
 
 class TestNoESIndexing(TestCase):
-
     def test_no_es(self):
-        assert not getattr(self, 'es', False), (
-            'TestCase should not have "es" attribute')
+        assert not getattr(
+            self, 'es', False
+        ), 'TestCase should not have "es" attribute'
 
     def test_not_indexed(self):
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
-                                     status=amo.STATUS_PUBLIC)
+        addon = Addon.objects.create(
+            type=amo.ADDON_EXTENSION, status=amo.STATUS_PUBLIC
+        )
         assert issubclass(
-            Addon.search().filter(id__in=addon.id).count().__class__,
-            mock.Mock)
+            Addon.search().filter(id__in=addon.id).count().__class__, mock.Mock
+        )
 
     def test_get_es_mocked(self):
         es = search.get_es()
@@ -55,12 +62,14 @@ class TestESWithoutMakingQueries(TestCase):
     def test_filter(self):
         qs = Addon.search().filter(type=1)
         assert qs._build_query()['query']['bool']['filter'] == (
-            [{'term': {'type': 1}}])
+            [{'term': {'type': 1}}]
+        )
 
     def test_in_filter(self):
         qs = Addon.search().filter(type__in=[1, 2])
         assert qs._build_query()['query']['bool']['filter'] == (
-            [{'terms': {'type': [1, 2]}}])
+            [{'terms': {'type': [1, 2]}}]
+        )
 
     def test_and(self):
         qs = Addon.search().filter(type=1, category__in=[1, 2])
@@ -73,13 +82,11 @@ class TestESWithoutMakingQueries(TestCase):
 
     def test_query(self):
         qs = Addon.search().query(type=1)
-        assert qs._build_query()['query'] == (
-            {'term': {'type': 1}})
+        assert qs._build_query()['query'] == ({'term': {'type': 1}})
 
     def test_query_match(self):
         qs = Addon.search().query(name__match='woo woo')
-        assert qs._build_query()['query'] == (
-            {'match': {'name': 'woo woo'}})
+        assert qs._build_query()['query'] == ({'match': {'name': 'woo woo'}})
 
     def test_query_multiple_and_range(self):
         qs = Addon.search().query(type=1, status__gte=1)
@@ -180,17 +187,18 @@ class TestESWithoutMakingQueries(TestCase):
     def test_lt2(self):
         qs = Addon.search().filter(status__lt=4)
         assert qs._build_query()['query']['bool']['filter'] == (
-            [{'range': {'status': {'lt': 4}}}])
+            [{'range': {'status': {'lt': 4}}}]
+        )
 
     def test_range(self):
         qs = Addon.search().filter(date__range=('a', 'b'))
         assert qs._build_query()['query']['bool']['filter'] == (
-            [{'range': {'date': {'gte': 'a', 'lte': 'b'}}}])
+            [{'range': {'date': {'gte': 'a', 'lte': 'b'}}}]
+        )
 
     def test_prefix(self):
         qs = Addon.search().query(name__startswith='woo')
-        assert qs._build_query()['query'] == (
-            {'prefix': {'name': 'woo'}})
+        assert qs._build_query()['query'] == ({'prefix': {'name': 'woo'}})
 
     def test_values(self):
         qs = Addon.search().values('name')
@@ -224,26 +232,30 @@ class TestESWithoutMakingQueries(TestCase):
 
         qs = Addon.search().order_by('-id').extra(order_by=['-rating'])
         assert qs._build_query()['sort'] == [
-            {'id': 'desc'}, {'rating': 'desc'}]
+            {'id': 'desc'},
+            {'rating': 'desc'},
+        ]
 
     def test_extra_query(self):
         qs = Addon.search().extra(query={'type': 1})
-        assert qs._build_query()['query'] == (
-            {'term': {'type': 1}})
+        assert qs._build_query()['query'] == ({'term': {'type': 1}})
 
         qs = Addon.search().filter(status=1).extra(query={'type': 1})
         filtered = qs._build_query()['query']['bool']
-        assert filtered['must'] == (
-            [{'term': {'type': 1}}])
+        assert filtered['must'] == ([{'term': {'type': 1}}])
         assert filtered['filter'] == [{'term': {'status': 1}}]
 
     def test_extra_filter(self):
         qs = Addon.search().extra(filter={'category__in': [1, 2]})
         assert qs._build_query()['query']['bool']['filter'] == (
-            [{'terms': {'category': [1, 2]}}])
+            [{'terms': {'category': [1, 2]}}]
+        )
 
-        qs = (Addon.search().filter(type=1)
-              .extra(filter={'category__in': [1, 2]}))
+        qs = (
+            Addon.search()
+            .filter(type=1)
+            .extra(filter={'category__in': [1, 2]})
+        )
         filters = qs._build_query()['query']['bool']['filter']
         # Filters:
         # [{'term': {'type': 1}}, {'terms': {'category': [1, 2]}}]
@@ -322,4 +334,6 @@ class TestES(ESTestCaseWithAddons):
             u'tags': [
                 {u'doc_count': 3, u'key': u'sky'},
                 {u'doc_count': 2, u'key': u'earth'},
-                {u'doc_count': 1, u'key': u'ocean'}]}
+                {u'doc_count': 1, u'key': u'ocean'},
+            ]
+        }

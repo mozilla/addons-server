@@ -18,17 +18,34 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import (
-    Addon, AddonCategory, AppSupport, Category, FrozenAddon, Persona)
+    Addon,
+    AddonCategory,
+    AppSupport,
+    Category,
+    FrozenAddon,
+    Persona,
+)
 from olympia.amo.templatetags.jinja_helpers import (
-    absolutify, format_date, numberfmt, urlparams)
+    absolutify,
+    format_date,
+    numberfmt,
+    urlparams,
+)
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import (
-    Collection, CollectionAddon, FeaturedCollection)
+    Collection,
+    CollectionAddon,
+    FeaturedCollection,
+)
 from olympia.browse import feeds
 from olympia.browse.views import (
-    MIN_COUNT_FOR_LANDING, PAGINATE_PERSONAS_BY, AddonFilter, ThemeFilter,
-    locale_display_name)
+    MIN_COUNT_FOR_LANDING,
+    PAGINATE_PERSONAS_BY,
+    AddonFilter,
+    ThemeFilter,
+    locale_display_name,
+)
 from olympia.constants.applications import THUNDERBIRD
 from olympia.translations.models import Translation
 from olympia.versions.models import Version
@@ -61,7 +78,6 @@ def _test_default_sort(self, sort, key=None, reverse=True, sel_class='opt'):
 
 
 def test_locale_display_name():
-
     def check(locale, english, native):
         actual = locale_display_name(locale)
         assert actual == (english, native)
@@ -72,10 +88,17 @@ def test_locale_display_name():
 
 
 class TestListing(TestCase):
-    fixtures = ['base/appversion', 'base/users', 'base/category',
-                'base/featured', 'addons/featured', 'addons/listed',
-                'base/collections', 'bandwagon/featured_collections',
-                'base/addon_3615']
+    fixtures = [
+        'base/appversion',
+        'base/users',
+        'base/category',
+        'base/featured',
+        'addons/featured',
+        'addons/listed',
+        'base/collections',
+        'bandwagon/featured_collections',
+        'base/addon_3615',
+    ]
 
     def setUp(self):
         super(TestListing, self).setUp()
@@ -107,7 +130,8 @@ class TestListing(TestCase):
         assert sel.text() == 'Most Users'
         a = r.context['addons'].object_list
         assert list(a) == (
-            sorted(a, key=lambda x: x.average_daily_users, reverse=True))
+            sorted(a, key=lambda x: x.average_daily_users, reverse=True)
+        )
 
     def test_toprated_sort(self):
         r = self.client.get(urlparams(self.url, sort='rating'))
@@ -116,7 +140,8 @@ class TestListing(TestCase):
         assert sel.text() == 'Top Rated'
         a = r.context['addons'].object_list
         assert list(a) == sorted(
-            a, key=lambda x: x.bayesian_rating, reverse=True)
+            a, key=lambda x: x.bayesian_rating, reverse=True
+        )
 
     def test_newest_sort(self):
         r = self.client.get(urlparams(self.url, sort='created'))
@@ -141,7 +166,8 @@ class TestListing(TestCase):
         assert sel.text() == 'Weekly Downloads'
         a = r.context['addons'].object_list
         assert list(a) == sorted(
-            a, key=lambda x: x.weekly_downloads, reverse=True)
+            a, key=lambda x: x.weekly_downloads, reverse=True
+        )
 
     def test_updated_sort(self):
         r = self.client.get(urlparams(self.url, sort='updated'))
@@ -166,7 +192,8 @@ class TestListing(TestCase):
             addon_id = item('.install').attr('data-addon')
             ts = Addon.objects.get(id=addon_id).created
             assert item('.updated').text() == (
-                u'Added %s' % trim_whitespace(format_date(ts)))
+                u'Added %s' % trim_whitespace(format_date(ts))
+            )
 
     def test_updated_date(self):
         doc = pq(self.client.get(urlparams(self.url, sort='updated')).content)
@@ -175,7 +202,8 @@ class TestListing(TestCase):
             addon_id = item('.install').attr('data-addon')
             ts = Addon.objects.get(id=addon_id).last_updated
             assert item('.updated').text() == (
-                u'Updated %s' % trim_whitespace(format_date(ts)))
+                u'Updated %s' % trim_whitespace(format_date(ts))
+            )
 
     def test_users_adu_unit(self):
         doc = pq(self.client.get(urlparams(self.url, sort='users')).content)
@@ -184,7 +212,8 @@ class TestListing(TestCase):
             addon_id = item('.install').attr('data-addon')
             adu = Addon.objects.get(id=addon_id).average_daily_users
             assert item('.adu').text() == (
-                '%s user%s' % (numberfmt(adu), 's' if adu != 1 else ''))
+                '%s user%s' % (numberfmt(adu), 's' if adu != 1 else '')
+            )
 
     def test_popular_adu_unit(self):
         doc = pq(self.client.get(urlparams(self.url, sort='popular')).content)
@@ -193,15 +222,17 @@ class TestListing(TestCase):
             addon_id = item('.install').attr('data-addon')
             adu = Addon.objects.get(id=addon_id).weekly_downloads
             assert item('.adu').text() == (
-                '%s weekly download%s' % (numberfmt(adu),
-                                          's' if adu != 1 else ''))
+                '%s weekly download%s'
+                % (numberfmt(adu), 's' if adu != 1 else '')
+            )
 
     def test_seeall_link_should_have_a_sort(self):
         category = Category.objects.get(pk=1)
         url = reverse('browse.extensions', kwargs={'category': category.slug})
         response = self.client.get(url)
-        self.assertTemplateUsed(response,
-                                "browse/impala/category_landing.html")
+        self.assertTemplateUsed(
+            response, "browse/impala/category_landing.html"
+        )
         doc = pq(response.content)
         assert "sort=popular" in doc('.seeall a').attr('href')
 
@@ -306,20 +337,22 @@ class TestThemes(TestCase):
         _test_listing_sort(self, 'created', 'created')
 
     def test_name_sort(self):
-        _test_listing_sort(self, 'name', 'name', reverse=False,
-                           sel_class='extra-opt')
+        _test_listing_sort(
+            self, 'name', 'name', reverse=False, sel_class='extra-opt'
+        )
 
     def test_featured_sort(self):
-        _test_listing_sort(self, 'featured', reverse=False,
-                           sel_class='opt')
+        _test_listing_sort(self, 'featured', reverse=False, sel_class='opt')
 
     def test_downloads_sort(self):
-        _test_listing_sort(self, 'popular', 'weekly_downloads',
-                           sel_class='extra-opt')
+        _test_listing_sort(
+            self, 'popular', 'weekly_downloads', sel_class='extra-opt'
+        )
 
     def test_updated_sort(self):
-        _test_listing_sort(self, 'updated', 'last_updated',
-                           sel_class='extra-opt')
+        _test_listing_sort(
+            self, 'updated', 'last_updated', sel_class='extra-opt'
+        )
 
     def test_upandcoming_sort(self):
         _test_listing_sort(self, 'hotness', 'hotness', sel_class='extra-opt')
@@ -332,10 +365,17 @@ class TestThemes(TestCase):
 
 
 class TestFeeds(TestCase):
-    fixtures = ['base/appversion', 'base/users', 'base/category',
-                'base/featured', 'addons/featured', 'addons/listed',
-                'base/collections', 'bandwagon/featured_collections',
-                'base/addon_3615']
+    fixtures = [
+        'base/appversion',
+        'base/users',
+        'base/category',
+        'base/featured',
+        'addons/featured',
+        'addons/listed',
+        'base/collections',
+        'bandwagon/featured_collections',
+        'base/addon_3615',
+    ]
 
     def setUp(self):
         super(TestFeeds, self).setUp()
@@ -365,10 +405,15 @@ class TestFeeds(TestCase):
         # We have to set `parser=xml` because of
         # https://github.com/gawel/pyquery/issues/93
         items_urls = zip(
-            sorted((absolutify(pq(x).find('h3 a').attr('href')), pq(x))
-                   for x in pg_items),
-            sorted((pq(x).find('link').text(), pq(x, parser='xml'))
-                   for x in rss_items))
+            sorted(
+                (absolutify(pq(x).find('h3 a').attr('href')), pq(x))
+                for x in pg_items
+            ),
+            sorted(
+                (pq(x).find('link').text(), pq(x, parser='xml'))
+                for x in rss_items
+            ),
+        )
         for (pg_url, pg_item), (rss_url, rss_item) in items_urls:
             abs_url = pg_url.split('?')[0]
             assert rss_url.endswith(abs_url), 'Unexpected URL: %s' % abs_url
@@ -378,7 +423,8 @@ class TestFeeds(TestCase):
                 rss_ts = rss_item.find('pubDate').text()
                 # Look at YMD, since we don't have h:m on listing pages.
                 assert parse_dt(pg_ts).isocalendar() == (
-                    parse_dt(rss_ts).isocalendar())
+                    parse_dt(rss_ts).isocalendar()
+                )
 
     def _check_sort_urls(self, items, opts):
         items = sorted(items, key=lambda x: x.get('href'))
@@ -398,8 +444,9 @@ class TestFeeds(TestCase):
     def test_themes_feed(self):
         Addon.objects.update(type=amo.ADDON_THEME)
         Category.objects.update(type=amo.ADDON_THEME)
-        r = self.client.get(reverse('browse.themes.rss',
-                                    args=['alerts-updates']))
+        r = self.client.get(
+            reverse('browse.themes.rss', args=['alerts-updates'])
+        )
         assert r.status_code == 200
 
     def test_extensions_sort_opts_urls(self):
@@ -430,11 +477,18 @@ class TestFeeds(TestCase):
 
 
 class TestFeaturedLocale(TestCase):
-    fixtures = ['base/appversion', 'base/category', 'base/users',
-                'base/addon_3615', 'base/featured', 'addons/featured',
-                'browse/nameless-addon', 'base/collections',
-                'bandwagon/featured_collections',
-                'base/addon_3615_featuredcollection']
+    fixtures = [
+        'base/appversion',
+        'base/category',
+        'base/users',
+        'base/addon_3615',
+        'base/featured',
+        'addons/featured',
+        'browse/nameless-addon',
+        'base/collections',
+        'bandwagon/featured_collections',
+        'base/addon_3615_featuredcollection',
+    ]
 
     def setUp(self):
         super(TestFeaturedLocale, self).setUp()
@@ -442,8 +496,11 @@ class TestFeaturedLocale(TestCase):
         self.persona = Addon.objects.get(pk=15679)
         self.extension = Addon.objects.get(pk=2464)
         self.category = Category.objects.get(slug='bookmarks')
-        self.url = urlparams(reverse('browse.extensions', args=['bookmarks']),
-                             {}, sort='featured')
+        self.url = urlparams(
+            reverse('browse.extensions', args=['bookmarks']),
+            {},
+            sort='featured',
+        )
         cache.clear()
 
     def reset(self):
@@ -575,9 +632,14 @@ class TestFeaturedLocale(TestCase):
     def test_homepage_filter(self):
         # Ensure that the base homepage filter is applied.
         res = self.client.get(reverse('home'))
-        listed = [p.pk for p in (Addon.objects
-                                      .listed(amo.FIREFOX)
-                                      .exclude(type=amo.ADDON_PERSONA))]
+        listed = [
+            p.pk
+            for p in (
+                Addon.objects.listed(amo.FIREFOX).exclude(
+                    type=amo.ADDON_PERSONA
+                )
+            )
+        ]
 
         featured = Addon.featured_random(amo.FIREFOX, 'en-US')
         actual = [p.pk for p in res.context['featured']]
@@ -640,10 +702,13 @@ class TestFeaturedLocale(TestCase):
     def change_addon(self, addon, locale='es'):
         fc = FeaturedCollection.objects.filter(collection__addons=addon.id)[0]
         feature = FeaturedCollection.objects.create(
-            locale=locale, application=amo.FIREFOX.id,
-            collection=Collection.objects.create())
-        c = CollectionAddon.objects.filter(addon=addon,
-                                           collection=fc.collection)[0]
+            locale=locale,
+            application=amo.FIREFOX.id,
+            collection=Collection.objects.create(),
+        )
+        c = CollectionAddon.objects.filter(
+            addon=addon, collection=fc.collection
+        )[0]
         c.collection = feature.collection
         c.save()
         self.reset()
@@ -653,10 +718,13 @@ class TestFeaturedLocale(TestCase):
         locales = (locale or '').split(',')
         for locale in locales:
             c = CollectionAddon.objects.create(
-                addon=addon, collection=Collection.objects.create())
+                addon=addon, collection=Collection.objects.create()
+            )
             FeaturedCollection.objects.create(
-                locale=locale, application=amo.FIREFOX.id,
-                collection=c.collection)
+                locale=locale,
+                application=amo.FIREFOX.id,
+                collection=c.collection,
+            )
         self.reset()
 
 
@@ -692,8 +760,13 @@ class TestListingByStatus(TestCase):
 
 
 class BaseSearchToolsTest(TestCase):
-    fixtures = ('base/appversion', 'base/featured',
-                'addons/featured', 'base/category', 'addons/listed')
+    fixtures = (
+        'base/appversion',
+        'base/featured',
+        'addons/featured',
+        'base/category',
+        'addons/listed',
+    )
 
     def setUp(self):
         super(BaseSearchToolsTest, self).setUp()
@@ -706,7 +779,8 @@ class BaseSearchToolsTest(TestCase):
 
         # One will be an extension in the search category:
         limon = Addon.objects.get(
-            name__localized_string='Limon free English-Hebrew dictionary')
+            name__localized_string='Limon free English-Hebrew dictionary'
+        )
         limon.type = amo.ADDON_EXTENSION
         limon.status = amo.STATUS_PUBLIC
         limon.save()
@@ -722,7 +796,6 @@ class BaseSearchToolsTest(TestCase):
 
 
 class TestSearchToolsPages(BaseSearchToolsTest):
-
     def test_landing_page(self):
         self.setup_tools_and_extensions()
         response = self.client.get(reverse('browse.search-tools'))
@@ -732,12 +805,15 @@ class TestSearchToolsPages(BaseSearchToolsTest):
         # Should have add-ons ordered by popularity (weekly downloads):
         assert [u'FoxyProxy Standard', u'Read It Later', u'Lady Gaga'] == [
             a.name.localized_string
-            for a in response.context['addons'].object_list]
+            for a in response.context['addons'].object_list
+        ]
 
         # Ensure that all heading links have the proper base URL
         # between the category / no category cases.
-        sort_links = [urlparse(a.attrib['href']).path for a in
-                      doc('.listing-header ul li a')]
+        sort_links = [
+            urlparse(a.attrib['href']).path
+            for a in doc('.listing-header ul li a')
+        ]
         assert set(sort_links) == set([reverse('browse.search-tools')])
 
     def test_sidebar_extensions_links(self):
@@ -748,19 +824,27 @@ class TestSearchToolsPages(BaseSearchToolsTest):
         links = doc('#search-tools-sidebar a')
 
         assert sorted([a.text.strip() for a in links]) == (
-            sorted(['Most Popular', 'Recently Added',  # Search Extensions.
-                    'Bookmarks']))  # Search Providers.
+            sorted(
+                [
+                    'Most Popular',
+                    'Recently Added',  # Search Extensions.
+                    'Bookmarks',
+                ]
+            )
+        )  # Search Providers.
 
-        search_ext_url = urlparse(reverse('browse.extensions',
-                                  kwargs=dict(category='search-tools')))
+        search_ext_url = urlparse(
+            reverse('browse.extensions', kwargs=dict(category='search-tools'))
+        )
 
         assert urlparse(links[0].attrib['href']).path == search_ext_url.path
         assert urlparse(links[1].attrib['href']).path == search_ext_url.path
 
     def test_additional_resources(self):
         for prefix, app in (
-                ('/en-US/firefox', amo.FIREFOX.pretty),
-                ('/en-US/seamonkey', amo.SEAMONKEY.pretty)):
+            ('/en-US/firefox', amo.FIREFOX.pretty),
+            ('/en-US/seamonkey', amo.SEAMONKEY.pretty),
+        ):
             app = unicode(app)  # get the proxied unicode obj
             response = self.client.get('%s/search-tools/' % prefix)
             assert response.status_code == 200
@@ -787,11 +871,11 @@ class TestSearchToolsPages(BaseSearchToolsTest):
             assert len(all_addons)
             for addon in all_addons:
                 assert addon.type == amo.ADDON_SEARCH, (
-                    "sort=%s; Unexpected Add-on type for %r" % (
-                        sort_key, addon))
+                    "sort=%s; Unexpected Add-on type for %r"
+                    % (sort_key, addon)
+                )
 
     def test_rss_links_per_page(self):
-
         def get_link(url):
             r = self.client.get(url)
             assert r.status_code == 200
@@ -799,18 +883,21 @@ class TestSearchToolsPages(BaseSearchToolsTest):
             return doc('head link[type="application/rss+xml"]').attr('href')
 
         assert get_link(reverse('browse.search-tools')) == (
-            reverse('browse.search-tools.rss') + '?sort=popular')
+            reverse('browse.search-tools.rss') + '?sort=popular'
+        )
 
         assert get_link(reverse('browse.search-tools') + '?sort=name') == (
-            reverse('browse.search-tools.rss') + '?sort=name')
+            reverse('browse.search-tools.rss') + '?sort=name'
+        )
 
         link = get_link(reverse('browse.search-tools', args=('bookmarks',)))
-        assert link == (reverse('browse.search-tools.rss',
-                                args=('bookmarks',)) + '?sort=popular')
+        assert link == (
+            reverse('browse.search-tools.rss', args=('bookmarks',))
+            + '?sort=popular'
+        )
 
 
 class TestSearchToolsFeed(BaseSearchToolsTest):
-
     def test_created_search_tools(self):
         self.setup_tools_and_extensions()
         url = reverse('browse.search-tools.rss') + '?sort=created'
@@ -819,15 +906,17 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
         doc = pq(r.content)
 
         assert doc('rss channel title')[0].text == (
-            'Search Tools :: Add-ons for Firefox')
+            'Search Tools :: Add-ons for Firefox'
+        )
         link = doc('rss channel link')[0].text
         rel_link = reverse('browse.search-tools.rss') + '?sort=created'
-        assert link.endswith(rel_link), ('Unexpected link: %r' % link)
+        assert link.endswith(rel_link), 'Unexpected link: %r' % link
         assert doc('rss channel description')[0].text == "Search tools"
 
         # There should be tools ordered by created date.
         assert [e.text for e in doc('rss channel item title')] == (
-            ['Lady Gaga 0', 'Read It Later 2.0.3', 'FoxyProxy Standard 2.17'])
+            ['Lady Gaga 0', 'Read It Later 2.0.3', 'FoxyProxy Standard 2.17']
+        )
 
     def test_search_tools_no_sorting(self):
         url = reverse('browse.search-tools.rss')
@@ -837,12 +926,15 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
 
         link = doc('rss channel link')[0].text
         rel_link = reverse('browse.search-tools.rss') + '?sort=popular'
-        assert link.endswith(rel_link), ('Unexpected link: %r' % link)
+        assert link.endswith(rel_link), 'Unexpected link: %r' % link
 
     def test_search_tools_by_name(self):
         # Pretend Foxy is a search add-on
-        (Addon.objects.filter(name__localized_string='FoxyProxy Standard')
-                      .update(type=amo.ADDON_SEARCH))
+        (
+            Addon.objects.filter(
+                name__localized_string='FoxyProxy Standard'
+            ).update(type=amo.ADDON_SEARCH)
+        )
 
         url = reverse('browse.search-tools.rss') + '?sort=name'
         r = self.client.get(url)
@@ -853,7 +945,8 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
 
         # There should be only search tools.
         assert [e.text for e in doc('rss channel item title')] == (
-            ['FoxyProxy Standard 2.17'])
+            ['FoxyProxy Standard 2.17']
+        )
 
     def test_search_tools_within_a_category(self):
         # Pretend Foxy is the only bookmarks related search add-on
@@ -863,27 +956,35 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
         foxy.save()
         bookmarks = Category.objects.get(slug='bookmarks')
         AddonCategory.objects.create(
-            addon=foxy, category=bookmarks, feature=False)
+            addon=foxy, category=bookmarks, feature=False
+        )
 
-        url = reverse('browse.search-tools.rss',
-                      args=('bookmarks',)) + '?sort=popular'
+        url = (
+            reverse('browse.search-tools.rss', args=('bookmarks',))
+            + '?sort=popular'
+        )
         r = self.client.get(url)
         assert r.status_code == 200
         doc = pq(r.content)
 
         assert doc('rss channel title')[0].text == (
-            'Bookmarks :: Search Tools :: Add-ons for Firefox')
+            'Bookmarks :: Search Tools :: Add-ons for Firefox'
+        )
 
         link = doc('rss channel link')[0].text
-        rel_link = reverse('browse.search-tools.rss',
-                           args=('bookmarks',)) + '?sort=popular'
-        assert link.endswith(rel_link), ('Unexpected link: %r' % link)
+        rel_link = (
+            reverse('browse.search-tools.rss', args=('bookmarks',))
+            + '?sort=popular'
+        )
+        assert link.endswith(rel_link), 'Unexpected link: %r' % link
 
         assert doc('rss channel description')[0].text == (
-            "Search tools relating to Bookmarks")
+            "Search tools relating to Bookmarks"
+        )
 
         assert [e.text for e in doc('rss channel item title')] == (
-            ['FoxyProxy Standard 2.17'])
+            ['FoxyProxy Standard 2.17']
+        )
 
     def test_non_ascii_titles(self):
         bookmarks = Category.objects.get(slug='bookmarks')
@@ -891,14 +992,14 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
         bookmarks.slug = 'foobar'
         bookmarks.save()
 
-        url = reverse('browse.search-tools.rss',
-                      args=('foobar',))
+        url = reverse('browse.search-tools.rss', args=('foobar',))
         r = self.client.get(url)
         assert r.status_code == 200
         doc = pq(r.content)
 
         assert doc('rss channel title')[0].text == (
-            u'Ivan Krstić :: Search Tools :: Add-ons for Firefox')
+            u'Ivan Krstić :: Search Tools :: Add-ons for Firefox'
+        )
 
 
 class TestLegacyRedirects(TestCase):
@@ -915,14 +1016,20 @@ class TestLegacyRedirects(TestCase):
         self.redirects('/browse/type:1/cat:all/', '/extensions/')
         self.redirects('/browse/type:1/cat:72', '/extensions/alerts-updates/')
         self.redirects('/browse/type:1/cat:72/', '/extensions/alerts-updates/')
-        self.redirects('/browse/type:1/cat:72/sort:newest/format:rss',
-                       '/extensions/alerts-updates/format:rss?sort=created')
-        self.redirects('/browse/type:1/cat:72/sort:weeklydownloads/format:rss',
-                       '/extensions/alerts-updates/format:rss?sort=popular')
+        self.redirects(
+            '/browse/type:1/cat:72/sort:newest/format:rss',
+            '/extensions/alerts-updates/format:rss?sort=created',
+        )
+        self.redirects(
+            '/browse/type:1/cat:72/sort:weeklydownloads/format:rss',
+            '/extensions/alerts-updates/format:rss?sort=popular',
+        )
 
         Category.objects.get(id=72).update(type=amo.ADDON_THEME)
-        self.redirects('/browse/type:2/cat:72/format:rss',
-                       '/complete-themes/alerts-updates/format:rss')
+        self.redirects(
+            '/browse/type:2/cat:72/format:rss',
+            '/complete-themes/alerts-updates/format:rss',
+        )
 
         self.redirects('/browse/type:2', '/complete-themes/')
         self.redirects('/browse/type:3', '/language-tools/')
@@ -940,15 +1047,20 @@ class TestLegacyRedirects(TestCase):
         cat.update(type=amo.ADDON_THEME)
 
         # without the slash there's an intermediate redirect
-        self.redirects('/themes/feeds-news-blogging?sort=rating',
-                       '/themes/feeds-news-blogging/?sort=rating')
+        self.redirects(
+            '/themes/feeds-news-blogging?sort=rating',
+            '/themes/feeds-news-blogging/?sort=rating',
+        )
         # which then redirects to the right place
-        self.redirects('/themes/feeds-news-blogging/?sort=rating',
-                       '/complete-themes/feeds-news-blogging?sort=rating')
+        self.redirects(
+            '/themes/feeds-news-blogging/?sort=rating',
+            '/complete-themes/feeds-news-blogging?sort=rating',
+        )
 
         self.redirects(
             '/themes/feeds-news-blogging/format:rss?sort=users',
-            '/complete-themes/feeds-news-blogging/format:rss?sort=users')
+            '/complete-themes/feeds-news-blogging/format:rss?sort=users',
+        )
 
     def test_personas(self):
         cat = Category.objects.filter(slug='feeds-news-blogging')
@@ -957,24 +1069,34 @@ class TestLegacyRedirects(TestCase):
         self.redirects('/personas/', '/themes/')
 
         # A former Persona category should now live at /themes/.
-        self.redirects('/personas/feeds-news-blogging?sort=rating',
-                       '/themes/feeds-news-blogging/?sort=rating')
+        self.redirects(
+            '/personas/feeds-news-blogging?sort=rating',
+            '/themes/feeds-news-blogging/?sort=rating',
+        )
 
         # The trailing slash should be added - We're just
         # testing that we don't redirect to /complete-themes/.
-        self.redirects('/themes/feeds-news-blogging?sort=rating',
-                       '/themes/feeds-news-blogging/?sort=rating')
+        self.redirects(
+            '/themes/feeds-news-blogging?sort=rating',
+            '/themes/feeds-news-blogging/?sort=rating',
+        )
 
     def test_creatured(self):
-        self.redirects('/extensions/feeds-news-blogging/featured',
-                       '/extensions/feeds-news-blogging/?sort=featured')
+        self.redirects(
+            '/extensions/feeds-news-blogging/featured',
+            '/extensions/feeds-news-blogging/?sort=featured',
+        )
 
     def test_creatured_with_more_than_one_category_slug(self):
-        Category.objects.create(application=THUNDERBIRD.id,
-                                type=amo.ADDON_EXTENSION,
-                                slug='feeds-news-blogging')
-        self.redirects('/extensions/feeds-news-blogging/featured',
-                       '/extensions/feeds-news-blogging/?sort=featured')
+        Category.objects.create(
+            application=THUNDERBIRD.id,
+            type=amo.ADDON_EXTENSION,
+            slug='feeds-news-blogging',
+        )
+        self.redirects(
+            '/extensions/feeds-news-blogging/featured',
+            '/extensions/feeds-news-blogging/?sort=featured',
+        )
 
     def test_missing_rss_redirections_749754(self):
         url = '/en-US/firefox/browse/type:{type}/cat:1/format:rss?sort=updated'
@@ -985,7 +1107,6 @@ class TestLegacyRedirects(TestCase):
 
 
 class TestCategoriesFeed(TestCase):
-
     def setUp(self):
         super(TestCategoriesFeed, self).setUp()
         self.feed = feeds.CategoriesRss()
@@ -1002,48 +1123,66 @@ class TestCategoriesFeed(TestCase):
 
     def test_title(self):
         assert self.feed.title(self.category) == (
-            u'%s :: Add-ons for %s' % (self.wut, self.u))
+            u'%s :: Add-ons for %s' % (self.wut, self.u)
+        )
 
     def test_item_title(self):
         assert self.feed.item_title(self.addon) == (
-            u'%s v%s' % (self.u, self.u))
+            u'%s v%s' % (self.u, self.u)
+        )
 
     def test_item_guid(self):
         t = self.feed.item_guid(self.addon)
-        url = u'/addon/%s/versions/v%s' % (self.addon.slug,
-                                           urllib.urlquote(self.u))
+        url = u'/addon/%s/versions/v%s' % (
+            self.addon.slug,
+            urllib.urlquote(self.u),
+        )
         assert t.endswith(url), t
 
 
 class TestFeaturedFeed(TestCase):
-    fixtures = ['addons/featured', 'base/addon_3615',
-                'base/appversion', 'base/appversion', 'base/collections',
-                'base/featured', 'base/users',
-                'bandwagon/featured_collections']
+    fixtures = [
+        'addons/featured',
+        'base/addon_3615',
+        'base/appversion',
+        'base/appversion',
+        'base/collections',
+        'base/featured',
+        'base/users',
+        'bandwagon/featured_collections',
+    ]
 
     def test_feed_elements_present(self):
         url = reverse('browse.featured.rss')
         r = self.client.get(url, follow=True)
         doc = pq(r.content)
         assert doc('rss channel title')[0].text == (
-            'Featured Add-ons :: Add-ons for Firefox')
+            'Featured Add-ons :: Add-ons for Firefox'
+        )
         assert doc('rss channel link')[0].text.endswith('/en-US/firefox/')
         assert doc('rss channel description')[0].text == (
             "Here's a few of our favorite add-ons to help you get started "
-            "customizing Firefox.")
+            "customizing Firefox."
+        )
         assert len(doc('rss channel item')) == (
-            Addon.objects.featured(amo.FIREFOX).count())
+            Addon.objects.featured(amo.FIREFOX).count()
+        )
 
 
 class TestPersonas(TestCase):
-    fixtures = ('base/appversion', 'base/featured',
-                'addons/featured', 'addons/persona')
+    fixtures = (
+        'base/appversion',
+        'base/featured',
+        'addons/featured',
+        'addons/persona',
+    )
 
     def setUp(self):
         super(TestPersonas, self).setUp()
         self.landing_url = reverse('browse.personas')
         self.upandcoming_url = '{path}?sort=up-and-coming'.format(
-            path=self.landing_url)
+            path=self.landing_url
+        )
         self.created_url = '{path}?sort=created'.format(path=self.landing_url)
         self.grid_template = 'browse/personas/grid.html'
         self.landing_template = 'browse/personas/category_landing.html'
@@ -1097,8 +1236,9 @@ class TestPersonas(TestCase):
         Show landing page if there are greater than
         MIN_COUNT_FOR_LANDING popular Personas.
         """
-        self.create_personas(MIN_COUNT_FOR_LANDING,
-                             persona_extras={'popularity': 100})
+        self.create_personas(
+            MIN_COUNT_FOR_LANDING, persona_extras={'popularity': 100}
+        )
         base = Addon.objects.public().filter(type=amo.ADDON_PERSONA)
         assert base.count() == MIN_COUNT_FOR_LANDING + 2
         r = self.client.get(self.landing_url)
@@ -1106,8 +1246,11 @@ class TestPersonas(TestCase):
 
         # Whatever the `category.count` is.
         category = Category(
-            type=amo.ADDON_PERSONA, slug='abc',
-            count=MIN_COUNT_FOR_LANDING + 1, application=amo.FIREFOX.id)
+            type=amo.ADDON_PERSONA,
+            slug='abc',
+            count=MIN_COUNT_FOR_LANDING + 1,
+            application=amo.FIREFOX.id,
+        )
         category.save()
         response = self.client.get(self.landing_url)
         self.assertTemplateUsed(response, self.landing_template)
@@ -1115,7 +1258,8 @@ class TestPersonas(TestCase):
     def test_personas_grid_sorting(self):
         """Ensure we hit a grid page if there is a sorting."""
         category = Category(
-            type=amo.ADDON_PERSONA, slug='abc', application=amo.FIREFOX.id)
+            type=amo.ADDON_PERSONA, slug='abc', application=amo.FIREFOX.id
+        )
         category.save()
         category_url = reverse('browse.personas', args=[category.slug])
         r = self.client.get(category_url + '?sort=created')
@@ -1160,15 +1304,17 @@ class TestPersonas(TestCase):
         r = self.client.get(self.upandcoming_url)
         assert str(r.context['addons']) == '<Page 1 of 1>'
         # Otherwise we paginate on 10, hardcoded.
-        self.create_personas(PAGINATE_PERSONAS_BY,
-                             persona_extras={'popularity': 100})
+        self.create_personas(
+            PAGINATE_PERSONAS_BY, persona_extras={'popularity': 100}
+        )
         r = self.client.get(self.upandcoming_url)
         assert str(r.context['addons']) == '<Page 1 of 2>'
         # Even if the number of retrieved personas is higher than
         # 10 pages we shouldn't have a bump in page numbers.
         self.create_personas(
             PAGINATE_PERSONAS_BY * settings.PERSONA_DEFAULT_PAGES,
-            persona_extras={'popularity': 100})
+            persona_extras={'popularity': 100},
+        )
         r = self.client.get(self.upandcoming_url)
         assert str(r.context['addons']) == '<Page 1 of 2>'
 

@@ -7,6 +7,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         from olympia.files.models import FileUpload
         from olympia.devhub import tasks
+
         qs = FileUpload.objects.filter(validation=None)
         pks = qs.values_list('pk', flat=True)
         print('Restarting %s tasks.' % len(pks))

@@ -34,7 +34,6 @@ class TestOwnership(TestCase):
 
 
 class TestEditPolicy(TestOwnership):
-
     def formset(self, *args, **kw):
         init = self.client.get(self.url).context['user_form'].initial_forms
         args = args + tuple(f.initial for f in init)
@@ -70,16 +69,20 @@ class TestEditPolicy(TestOwnership):
 
 
 class TestEditLicense(TestOwnership):
-
     def setUp(self):
         super(TestEditLicense, self).setUp()
         self.version.license = None
         self.version.save()
-        self.license = License.objects.create(builtin=1, name='bsd',
-                                              url='license.url', on_form=True)
+        self.license = License.objects.create(
+            builtin=1, name='bsd', url='license.url', on_form=True
+        )
         self.cc_license = License.objects.create(
-            builtin=11, name='copyright', url='license.url',
-            creative_commons=True, on_form=True)
+            builtin=11,
+            name='copyright',
+            url='license.url',
+            creative_commons=True,
+            on_form=True,
+        )
 
     def formset(self, *args, **kw):
         init = self.client.get(self.url).context['user_form'].initial_forms
@@ -108,8 +111,12 @@ class TestEditLicense(TestOwnership):
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         assert self.license == self.get_version().license
-        assert ActivityLog.objects.filter(
-            action=amo.LOG.CHANGE_LICENSE.id).count() == 1
+        assert (
+            ActivityLog.objects.filter(
+                action=amo.LOG.CHANGE_LICENSE.id
+            ).count()
+            == 1
+        )
 
     def test_success_add_builtin_creative_commons(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)  # cc licenses for themes
@@ -117,8 +124,12 @@ class TestEditLicense(TestOwnership):
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         assert self.cc_license == self.get_version().license
-        assert ActivityLog.objects.filter(
-            action=amo.LOG.CHANGE_LICENSE.id).count() == 1
+        assert (
+            ActivityLog.objects.filter(
+                action=amo.LOG.CHANGE_LICENSE.id
+            ).count()
+            == 1
+        )
 
     def test_success_add_custom(self):
         data = self.formset(builtin=License.OTHER, text='text', name='name')
@@ -171,8 +182,12 @@ class TestEditLicense(TestOwnership):
         data = self.formset(builtin=License.OTHER, name='name')
         response = self.client.post(self.url, data)
         assert response.status_code == 200
-        self.assertFormError(response, 'license_form', None,
-                             'License text is required when choosing Other.')
+        self.assertFormError(
+            response,
+            'license_form',
+            None,
+            'License text is required when choosing Other.',
+        )
 
     def test_custom_has_name(self):
         data = self.formset(builtin=License.OTHER, text='text')
@@ -197,7 +212,8 @@ class TestEditLicense(TestOwnership):
         for license in License.objects.builtins():
             radio = 'input.license[value="%s"]' % license.builtin
             assert doc(radio).parent().text() == (
-                unicode(license.name) + ' Details')
+                unicode(license.name) + ' Details'
+            )
             assert doc(radio + '+ a').attr('href') == license.url
         assert doc('input[name=builtin]:last-child').parent().text() == 'Other'
 
@@ -216,7 +232,6 @@ class TestEditLicense(TestOwnership):
 
 
 class TestEditAuthor(TestOwnership):
-
     def test_reorder_authors(self):
         """
         Re-ordering authors should not generate role changes in the
@@ -228,7 +243,7 @@ class TestEditAuthor(TestOwnership):
             'user': 'regular@mozilla.com',
             'listed': True,
             'role': amo.AUTHOR_ROLE_DEV,
-            'position': 0
+            'position': 0,
         }
         data = self.formset(form.initial, user_data, initial_count=1)
         response = self.client.post(self.url, data)
@@ -246,8 +261,9 @@ class TestEditAuthor(TestOwnership):
         assert ActivityLog.objects.all().count() == orig
 
     def test_success_add_user(self):
-        qs = (AddonUser.objects.filter(addon=3615)
-              .values_list('user', flat=True))
+        qs = AddonUser.objects.filter(addon=3615).values_list(
+            'user', flat=True
+        )
         assert list(qs.all()) == [55021]
 
         form = self.client.get(self.url).context['user_form'].initial_forms[0]
@@ -255,7 +271,7 @@ class TestEditAuthor(TestOwnership):
             'user': 'regular@mozilla.com',
             'listed': True,
             'role': amo.AUTHOR_ROLE_DEV,
-            'position': 0
+            'position': 0,
         }
         data = self.formset(form.initial, user_data, initial_count=1)
         response = self.client.post(self.url, data)
@@ -264,8 +280,9 @@ class TestEditAuthor(TestOwnership):
 
         # An email has been sent to the authors to warn them.
         author_added = mail.outbox[0]
-        assert author_added.subject == ('An author has been added to your '
-                                        'add-on')
+        assert author_added.subject == (
+            'An author has been added to your ' 'add-on'
+        )
         # Make sure all the authors are aware of the addition.
         assert 'del@icio.us' in author_added.to  # The original author.
         assert 'regular@mozilla.com' in author_added.to  # The new one.
@@ -277,7 +294,7 @@ class TestEditAuthor(TestOwnership):
             'user': 'regular@mozilla.com',
             'listed': True,
             'role': amo.AUTHOR_ROLE_DEV,
-            'position': 1
+            'position': 1,
         }
         data = self.formset(form.initial, user_data, initial_count=1)
         self.client.post(self.url, data)
@@ -287,12 +304,7 @@ class TestEditAuthor(TestOwnership):
         user_form = self.client.get(self.url).context['user_form']
         one, two = user_form.initial_forms
         del two.initial['listed']
-        empty = {
-            'user': '',
-            'listed': True,
-            'role': 5,
-            'position': 0
-        }
+        empty = {'user': '', 'listed': True, 'role': 5, 'position': 0}
         data = self.formset(one.initial, two.initial, empty, initial_count=2)
         response = self.client.post(self.url, data)
         self.assert3xx(response, self.url, 302)
@@ -305,7 +317,7 @@ class TestEditAuthor(TestOwnership):
             'user': 'regular@mozilla.com',
             'listed': True,
             'role': amo.AUTHOR_ROLE_DEV,
-            'position': 1
+            'position': 1,
         }
         data = self.formset(form.initial, user_data, initial_count=1)
         self.client.post(self.url, data)
@@ -319,7 +331,7 @@ class TestEditAuthor(TestOwnership):
             'user': '',
             'listed': True,
             'role': amo.AUTHOR_ROLE_OWNER,
-            'position': 0
+            'position': 0,
         }
         data = self.formset(one.initial, two.initial, empty, initial_count=2)
         response = self.client.post(self.url, data)
@@ -327,8 +339,9 @@ class TestEditAuthor(TestOwnership):
 
         # An email has been sent to the authors to warn them.
         author_edit = mail.outbox[1]  # First mail was for the addition.
-        assert author_edit.subject == ('An author has a role changed on your '
-                                       'add-on')
+        assert author_edit.subject == (
+            'An author has a role changed on your ' 'add-on'
+        )
         # Make sure all the authors are aware of the addition.
         assert 'del@icio.us' in author_edit.to  # The original author.
         assert 'regular@mozilla.com' in author_edit.to  # The edited one.
@@ -339,14 +352,16 @@ class TestEditAuthor(TestOwnership):
             'user': 'regular@mozilla.com',
             'listed': True,
             'role': amo.AUTHOR_ROLE_DEV,
-            'position': 1
+            'position': 1,
         }
         data = self.formset(
-            form.initial, user_data, user_data, initial_count=1)
+            form.initial, user_data, user_data, initial_count=1
+        )
         response = self.client.post(self.url, data)
         assert response.status_code == 200
         assert response.context['user_form'].non_form_errors() == (
-            ['An author can only be listed once.'])
+            ['An author can only be listed once.']
+        )
 
     def test_success_delete_user(self):
         # Add a new user so we have one to delete.
@@ -354,7 +369,7 @@ class TestEditAuthor(TestOwnership):
             'user': 'regular@mozilla.com',
             'listed': True,
             'role': amo.AUTHOR_ROLE_OWNER,
-            'position': 1
+            'position': 1,
         }
         data = self.formset(user_data, initial_count=0)
         self.client.post(self.url, data)
@@ -368,8 +383,9 @@ class TestEditAuthor(TestOwnership):
 
         # An email has been sent to the authors to warn them.
         author_delete = mail.outbox[1]  # First mail was for the addition.
-        assert author_delete.subject == ('An author has been removed from your'
-                                         ' add-on')
+        assert author_delete.subject == (
+            'An author has been removed from your' ' add-on'
+        )
         # Make sure all the authors are aware of the addition.
         assert 'del@icio.us' in author_delete.to  # The original author.
         assert 'regular@mozilla.com' in author_delete.to  # The removed one.
@@ -382,10 +398,18 @@ class TestEditAuthor(TestOwnership):
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         assert 999 == AddonUser.objects.get(addon=3615).user_id
-        assert ActivityLog.objects.filter(
-            action=amo.LOG.ADD_USER_WITH_ROLE.id).count() == 1
-        assert ActivityLog.objects.filter(
-            action=amo.LOG.REMOVE_USER_WITH_ROLE.id).count() == 1
+        assert (
+            ActivityLog.objects.filter(
+                action=amo.LOG.ADD_USER_WITH_ROLE.id
+            ).count()
+            == 1
+        )
+        assert (
+            ActivityLog.objects.filter(
+                action=amo.LOG.REMOVE_USER_WITH_ROLE.id
+            ).count()
+            == 1
+        )
 
     def test_only_owner_can_edit(self):
         form = self.client.get(self.url).context['user_form'].initial_forms[0]
@@ -393,7 +417,7 @@ class TestEditAuthor(TestOwnership):
             'user': 'regular@mozilla.com',
             'listed': True,
             'role': amo.AUTHOR_ROLE_DEV,
-            'position': 0
+            'position': 0,
         }
         data = self.formset(form.initial, user_data, initial_count=1)
         self.client.post(self.url, data)
@@ -415,7 +439,8 @@ class TestEditAuthor(TestOwnership):
         data = self.formset(form.initial, initial_count=1)
         response = self.client.post(self.url, data)
         assert response.context['user_form'].non_form_errors() == (
-            ['At least one author must be listed.'])
+            ['At least one author must be listed.']
+        )
 
     def test_must_have_owner(self):
         form = self.client.get(self.url).context['user_form'].initial_forms[0]
@@ -423,7 +448,8 @@ class TestEditAuthor(TestOwnership):
         data = self.formset(form.initial, initial_count=1)
         response = self.client.post(self.url, data)
         assert response.context['user_form'].non_form_errors() == (
-            ['Must have at least one owner.'])
+            ['Must have at least one owner.']
+        )
 
     def test_must_have_owner_delete(self):
         form = self.client.get(self.url).context['user_form'].initial_forms[0]
@@ -431,7 +457,8 @@ class TestEditAuthor(TestOwnership):
         data = self.formset(form.initial, initial_count=1)
         response = self.client.post(self.url, data)
         assert response.context['user_form'].non_form_errors() == (
-            ['Must have at least one owner.'])
+            ['Must have at least one owner.']
+        )
 
 
 class TestEditAuthorStaticTheme(TestEditAuthor):
@@ -439,8 +466,8 @@ class TestEditAuthorStaticTheme(TestEditAuthor):
         super(TestEditAuthorStaticTheme, self).setUp()
         self.addon.update(type=amo.ADDON_STATICTHEME)
         self.cc_license = License.objects.create(
-            builtin=11, url='license.url',
-            creative_commons=True, on_form=True)
+            builtin=11, url='license.url', creative_commons=True, on_form=True
+        )
 
     def formset(self, *args, **kw):
         defaults = {'builtin': 11}

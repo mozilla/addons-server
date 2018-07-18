@@ -27,20 +27,27 @@ def build_query(model, connection):
         fallback = settings.LANGUAGE_CODE
 
     if not hasattr(model._meta, 'translated_fields'):
-        model._meta.translated_fields = [f for f in model._meta.fields
-                                         if isinstance(f, TranslatedField)]
+        model._meta.translated_fields = [
+            f for f in model._meta.fields if isinstance(f, TranslatedField)
+        ]
 
     # Add the selects and joins for each translated field on the model.
     for field in model._meta.translated_fields:
         if isinstance(fallback, models.Field):
-            fallback_str = '%s.%s' % (qn(model._meta.db_table),
-                                      qn(fallback.column))
+            fallback_str = '%s.%s' % (
+                qn(model._meta.db_table),
+                qn(fallback.column),
+            )
         else:
             fallback_str = '%s'
 
         name = field.column
-        d = {'t1': 't1_' + name, 't2': 't2_' + name,
-             'model': qn(model._meta.db_table), 'name': name}
+        d = {
+            't1': 't1_' + name,
+            't2': 't2_' + name,
+            'model': qn(model._meta.db_table),
+            'name': name,
+        }
 
         selects.extend(isnull.format(col=f, **d) for f in trans_fields)
 
@@ -57,8 +64,12 @@ def build_query(model, connection):
     # ids will be added later on.
     sql = """SELECT {model}.{pk}, {selects} FROM {model} {joins}
              WHERE {model}.{pk} IN {{ids}}"""
-    s = sql.format(selects=','.join(selects), joins='\n'.join(joins),
-                   model=qn(model._meta.db_table), pk=model._meta.pk.column)
+    s = sql.format(
+        selects=','.join(selects),
+        joins='\n'.join(joins),
+        model=qn(model._meta.db_table),
+        pk=model._meta.pk.column,
+    )
     return s, params
 
 
@@ -83,6 +94,6 @@ def get_trans(items):
             item = item_dict[row[0]]
             for index, field in enumerate(model._meta.translated_fields):
                 start = 1 + step * index
-                t = Translation(*row[start:start + step])
+                t = Translation(*row[start : start + step])
                 if t.id is not None and t.localized_string is not None:
                     setattr(item, field.name, t)

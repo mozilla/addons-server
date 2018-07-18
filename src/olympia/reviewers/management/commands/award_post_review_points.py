@@ -21,9 +21,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         self.award_all_points_for_action(
-            amo.LOG.APPROVE_CONTENT, content_review=True)
+            amo.LOG.APPROVE_CONTENT, content_review=True
+        )
         self.award_all_points_for_action(
-            amo.LOG.CONFIRM_AUTO_APPROVED, content_review=False)
+            amo.LOG.CONFIRM_AUTO_APPROVED, content_review=False
+        )
 
     def award_all_points_for_action(self, action, content_review=False):
         for activity_log in ActivityLog.objects.filter(action=action.id):
@@ -32,8 +34,10 @@ class Command(BaseCommand):
                 addon = activity_log.arguments[0]
                 version = activity_log.arguments[1]
             except IndexError:
-                log.error('ActivityLog %d is missing one or more arguments',
-                          activity_log.pk)
+                log.error(
+                    'ActivityLog %d is missing one or more arguments',
+                    activity_log.pk,
+                )
                 continue
 
             # If there is already a score recorded in the database for this
@@ -41,16 +45,29 @@ class Command(BaseCommand):
             # somehow (maybe we ran the script twice...), so ignore it.
             # Otherwise award the points!
             event = ReviewerScore.get_event(
-                addon, amo.STATUS_PUBLIC, version=version,
-                post_review=True, content_review=content_review)
+                addon,
+                amo.STATUS_PUBLIC,
+                version=version,
+                post_review=True,
+                content_review=content_review,
+            )
             if not ReviewerScore.objects.filter(
-                    user=user, addon=addon, note_key=event,
-                    note=MANUAL_NOTE).exists():
+                user=user, addon=addon, note_key=event, note=MANUAL_NOTE
+            ).exists():
                 ReviewerScore.award_points(
-                    user, addon, amo.STATUS_PUBLIC,
-                    version=version, post_review=True,
-                    content_review=content_review, extra_note=MANUAL_NOTE)
+                    user,
+                    addon,
+                    amo.STATUS_PUBLIC,
+                    version=version,
+                    post_review=True,
+                    content_review=content_review,
+                    extra_note=MANUAL_NOTE,
+                )
             else:
-                log.error('Already awarded points for "%s" action on %s %s',
-                          action.short, addon, version)
+                log.error(
+                    'Already awarded points for "%s" action on %s %s',
+                    action.short,
+                    addon,
+                    version,
+                )
                 continue

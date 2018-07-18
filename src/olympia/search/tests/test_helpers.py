@@ -15,16 +15,16 @@ def test_showing_helper():
     pager.start_index = lambda: 1
     pager.end_index = lambda: 20
     pager.paginator.count = 1000
-    context = {
-        'pager': pager
-    }
+    context = {'pager': pager}
 
     context['query'] = ''
     assert render(tpl, context) == 'Showing 1 - 20 of 1000 results'
 
     context['query'] = 'foobar'
-    assert (render(tpl, context) ==
-            'Showing 1 - 20 of 1000 results for <strong>foobar</strong>')
+    assert (
+        render(tpl, context)
+        == 'Showing 1 - 20 of 1000 results for <strong>foobar</strong>'
+    )
 
 
 def test_showing_helper_xss():
@@ -34,11 +34,10 @@ def test_showing_helper_xss():
     pager.start_index = lambda: 1
     pager.end_index = lambda: 20
     pager.paginator.count = 1000
-    context = {
-        'pager': pager
-    }
+    context = {'pager': pager}
 
     context['query'] = '<script>alert(42)</script>'
-    assert (render(tpl, context) ==
-            'Showing 1 - 20 of 1000 results for <strong>'
-            '&lt;script&gt;alert(42)&lt;/script&gt;</strong>')
+    assert (
+        render(tpl, context) == 'Showing 1 - 20 of 1000 results for <strong>'
+        '&lt;script&gt;alert(42)&lt;/script&gt;</strong>'
+    )

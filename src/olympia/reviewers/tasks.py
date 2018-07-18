@@ -6,8 +6,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.activity.models import ActivityLog, CommentLog, VersionLog
 from olympia.addons.models import Addon
-from olympia.addons.tasks import (
-    create_persona_preview_images, theme_checksum)
+from olympia.addons.tasks import create_persona_preview_images, theme_checksum
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
@@ -21,8 +20,10 @@ log = olympia.core.logger.getLogger('z.task')
 
 @task
 def add_commentlog(items, **kw):
-    log.info('[%s@%s] Adding CommentLog starting with ActivityLog: %s' %
-             (len(items), add_commentlog.rate_limit, items[0]))
+    log.info(
+        '[%s@%s] Adding CommentLog starting with ActivityLog: %s'
+        % (len(items), add_commentlog.rate_limit, items[0])
+    )
 
     for al in ActivityLog.objects.filter(pk__in=items):
         # Delete existing entries:
@@ -35,8 +36,10 @@ def add_commentlog(items, **kw):
 
 @task
 def add_versionlog(items, **kw):
-    log.info('[%s@%s] Adding VersionLog starting with ActivityLog: %s' %
-             (len(items), add_versionlog.rate_limit, items[0]))
+    log.info(
+        '[%s@%s] Adding VersionLog starting with ActivityLog: %s'
+        % (len(items), add_versionlog.rate_limit, items[0])
+    )
 
     for al in ActivityLog.objects.filter(pk__in=items):
         # Delete existing entries:
@@ -73,7 +76,7 @@ def send_mail(cleaned_data, theme_lock):
             'theme': theme,
             'base_url': settings.SITE_URL,
             'reason': reason,
-            'comment': comment
+            'comment': comment,
         }
 
         subject = None
@@ -97,10 +100,14 @@ def send_mail(cleaned_data, theme_lock):
             template = 'reviewers/themes/emails/moreinfo.html'
             context['reviewer_email'] = theme_lock.reviewer.email
 
-        send_mail_jinja(subject, template, context,
-                        recipient_list=emails,
-                        from_email=settings.ADDONS_EMAIL,
-                        headers={'Reply-To': settings.THEMES_EMAIL})
+        send_mail_jinja(
+            subject,
+            template,
+            context,
+            recipient_list=emails,
+            from_email=settings.ADDONS_EMAIL,
+            headers={'Reply-To': settings.THEMES_EMAIL},
+        )
 
 
 @task
@@ -115,20 +122,23 @@ def approve_rereview(theme):
     if reupload.header_path != reupload.theme.header_path:
         create_persona_preview_images(
             src=reupload.header_path,
-            full_dst=[
-                reupload.theme.thumb_path,
-                reupload.theme.icon_path],
-            set_modified_on=reupload.theme.addon.serializable_reference())
+            full_dst=[reupload.theme.thumb_path, reupload.theme.icon_path],
+            set_modified_on=reupload.theme.addon.serializable_reference(),
+        )
 
         if not reupload.theme.is_new():
             # Legacy themes also need a preview_large.jpg.
             # Modern themes use preview.png for both thumb and preview so there
             # is no problem there.
-            copy_stored_file(reupload.theme.thumb_path,
-                             reupload.theme.preview_path, storage=storage)
+            copy_stored_file(
+                reupload.theme.thumb_path,
+                reupload.theme.preview_path,
+                storage=storage,
+            )
 
         move_stored_file(
-            reupload.header_path, reupload.theme.header_path, storage=storage)
+            reupload.header_path, reupload.theme.header_path, storage=storage
+        )
 
     theme = reupload.theme
     rereview.delete()
@@ -156,7 +166,8 @@ def recalculate_post_review_weight(ids):
     addons = Addon.objects.filter(id__in=ids)
     for addon in addons:
         summaries = AutoApprovalSummary.objects.filter(
-            version__in=addon.versions.all())
+            version__in=addon.versions.all()
+        )
 
         for summary in summaries:
             summary.calculate_weight()

@@ -14,7 +14,7 @@ GROUPS_TO_REMOVE = (
     'Payment transactions clients',
     'Price currency manipulation',
     'Senior App Reviewers',
-    'Support Staff'
+    'Support Staff',
 )
 
 

@@ -5,7 +5,6 @@ from olympia.amo.tests import TestCase
 
 
 class HttpHttpsOnlyURLFieldTestCase(TestCase):
-
     def setUp(self):
         super(HttpHttpsOnlyURLFieldTestCase, self).setUp()
         self.field = HttpHttpsOnlyURLField()

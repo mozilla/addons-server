@@ -24,13 +24,12 @@ class CompatReport(ModelBase):
 
     @classmethod
     def get_counts(self, guid):
-        works = dict(CompatReport.objects.filter(guid=guid)
-                     .values_list('works_properly')
-                     .annotate(models.Count('id')))
-        return {
-            'success': works.get(True, 0),
-            'failure': works.get(False, 0)
-        }
+        works = dict(
+            CompatReport.objects.filter(guid=guid)
+            .values_list('works_properly')
+            .annotate(models.Count('id'))
+        )
+        return {'success': works.get(True, 0), 'failure': works.get(False, 0)}
 
 
 class AppCompat(ModelBase):
@@ -63,6 +62,7 @@ class CompatTotals(ModelBase):
     """
     Cache for totals of success/failure reports.
     """
+
     total = models.PositiveIntegerField()
 
     class Meta:

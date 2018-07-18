@@ -12,5 +12,6 @@ APPVER_CHOICES = [
 
 
 class AppVerForm(forms.Form):
-    appver = forms.ChoiceField(choices=[('', _('All'))] + APPVER_CHOICES,
-                               required=False)
+    appver = forms.ChoiceField(
+        choices=[('', _('All'))] + APPVER_CHOICES, required=False
+    )

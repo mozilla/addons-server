@@ -76,10 +76,12 @@ class Command(BaseCommand):
             serializer.create_featured_themes()
             for addon in featured_collections:
                 serializer.create_a_named_collection_and_addon(
-                    addon, author='mozilla')
+                    addon, author='mozilla'
+                )
             for addon in base_collections:
                 serializer.create_a_named_collection_and_addon(
-                    addon, author='mozilla')
+                    addon, author='mozilla'
+                )
             for addon in hero_addons:
                 serializer.create_named_addon_with_author(addon)
             serializer.create_installable_addon()

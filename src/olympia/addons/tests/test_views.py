@@ -25,17 +25,35 @@ from rest_framework.test import APIRequestFactory
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
-    Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Category,
-    CompatOverride, CompatOverrideRange, Persona, ReplacementAddon,
-    AddonCategory)
+    Addon,
+    AddonDependency,
+    AddonFeatureCompatibility,
+    AddonUser,
+    Category,
+    CompatOverride,
+    CompatOverrideRange,
+    Persona,
+    ReplacementAddon,
+    AddonCategory,
+)
 from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import (
-    DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
-    AddonAutoCompleteSearchView, AddonSearchView)
+    DEFAULT_FIND_REPLACEMENT_PATH,
+    FIND_REPLACEMENT_SRC,
+    AddonAutoCompleteSearchView,
+    AddonSearchView,
+)
 from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
 from olympia.amo.tests import (
-    APITestClient, ESTestCase, TestCase, addon_factory, collection_factory,
-    reverse_ns, user_factory, version_factory)
+    APITestClient,
+    ESTestCase,
+    TestCase,
+    addon_factory,
+    collection_factory,
+    reverse_ns,
+    user_factory,
+    version_factory,
+)
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
@@ -45,7 +63,11 @@ from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.users.templatetags.jinja_helpers import users_list
 from olympia.versions.models import (
-    ApplicationsVersions, AppVersion, Version, VersionPreview)
+    ApplicationsVersions,
+    AppVersion,
+    Version,
+    VersionPreview,
+)
 
 
 def norm(s):
@@ -79,12 +101,12 @@ def _test_hovercards(self, doc, addons, src=''):
         assert btn.length == 1
         hc = btn.parents('.addon.hovercard')
         assert hc.find('a').attr('href') == (
-            urlparams(addon.get_url_path(), src=src))
+            urlparams(addon.get_url_path(), src=src)
+        )
         assert hc.find('h3').text() == unicode(addon.name)
 
 
 class TestHomepage(TestCase):
-
     def setUp(self):
         super(TestHomepage, self).setUp()
         self.base_url = reverse('home')
@@ -94,13 +116,15 @@ class TestHomepage(TestCase):
         response = self.client.get(self.url)
         assert 'ETag' in response
 
-        response = self.client.get(self.url,
-                                   HTTP_IF_NONE_MATCH=response['ETag'])
+        response = self.client.get(
+            self.url, HTTP_IF_NONE_MATCH=response['ETag']
+        )
         assert response.status_code == 304
         assert not response.content
 
-        response = self.client.get(self.url,
-                                   HTTP_IF_NONE_MATCH='random_etag_string')
+        response = self.client.get(
+            self.url, HTTP_IF_NONE_MATCH='random_etag_string'
+        )
         assert response.status_code == 200
         assert response.content
 
@@ -115,12 +139,14 @@ class TestHomepage(TestCase):
         welcome = pq(r.content)('#site-welcome').remove('a.close')
         assert welcome.text() == (
             'Welcome to Firefox Add-ons.\nChoose from thousands of extra '
-            'features and styles to make Firefox your own.')
+            'features and styles to make Firefox your own.'
+        )
         r = self.client.get('/en-US/thunderbird/')
         welcome = pq(r.content)('#site-welcome').remove('a.close')
         assert welcome.text() == (
             'Welcome to Thunderbird Add-ons.\nAdd extra features and styles '
-            'to make Thunderbird your own.')
+            'to make Thunderbird your own.'
+        )
 
     def test_try_new_frontend_banner_presence(self):
         self.url = '/en-US/firefox/'
@@ -133,14 +159,16 @@ class TestHomepage(TestCase):
 
 
 class TestHomepageFeatures(TestCase):
-    fixtures = ['base/appversion',
-                'base/users',
-                'base/addon_3615',
-                'base/collections',
-                'base/global-stats',
-                'base/featured',
-                'addons/featured',
-                'bandwagon/featured_collections']
+    fixtures = [
+        'base/appversion',
+        'base/users',
+        'base/addon_3615',
+        'base/collections',
+        'base/global-stats',
+        'base/featured',
+        'addons/featured',
+        'bandwagon/featured_collections',
+    ]
 
     def setUp(self):
         super(TestHomepageFeatures, self).setUp()
@@ -213,10 +241,14 @@ class TestOldContributionRedirects(TestCase):
 
 
 class TestContributionsURL(TestCase):
-    fixtures = ['base/addon_3615', 'base/addon_592',
-                'base/users', 'addons/eula+contrib-addon',
-                'addons/addon_228106_info+dev+bio.json',
-                'addons/addon_228107_multiple-devs.json']
+    fixtures = [
+        'base/addon_3615',
+        'base/addon_592',
+        'base/users',
+        'addons/eula+contrib-addon',
+        'addons/addon_228106_info+dev+bio.json',
+        'addons/addon_228107_multiple-devs.json',
+    ]
 
     def setUp(self):
         self.addon = Addon.objects.get(pk=592)
@@ -230,12 +262,12 @@ class TestContributionsURL(TestCase):
 
         # Set it and it appears though.
         self.addon.update(contributions='https://paypal.me/foooo')
-        response = self.client.get(self.addon.get_url_path()
-                                   )
+        response = self.client.get(self.addon.get_url_path())
         button = pq(response.content)('#contribution-url-button')
         assert button.length == 1, response.content
         assert button[0].attrib['href'] == get_outgoing_url(
-            'https://paypal.me/foooo')
+            'https://paypal.me/foooo'
+        )
 
 
 class TestLicensePage(TestCase):
@@ -248,14 +280,15 @@ class TestLicensePage(TestCase):
 
     def test_legacy_redirect(self):
         response = self.client.get(
-            '/en-US/firefox/versions/license/%s' % self.version.id,
-            follow=True)
+            '/en-US/firefox/versions/license/%s' % self.version.id, follow=True
+        )
         self.assert3xx(response, self.version.license_url(), 301)
 
     def test_legacy_redirect_deleted(self):
         self.version.delete()
         response = self.client.get(
-            '/en-US/firefox/versions/license/%s' % self.version.id)
+            '/en-US/firefox/versions/license/%s' % self.version.id
+        )
         assert response.status_code == 404
 
     def test_explicit_version(self):
@@ -297,8 +330,9 @@ class TestLicensePage(TestCase):
         assert r.context['version'] == self.addon.current_version
 
     def test_cat_sidebar(self):
-        check_cat_sidebar(reverse('addons.license', args=['a3615']),
-                          self.addon)
+        check_cat_sidebar(
+            reverse('addons.license', args=['a3615']), self.addon
+        )
 
 
 class TestICloudRedirect(TestCase):
@@ -319,13 +353,15 @@ class TestICloudRedirect(TestCase):
 
 
 class TestDetailPage(TestCase):
-    fixtures = ['base/addon_3615',
-                'base/users',
-                'base/addon_59',
-                'base/addon_592',
-                'base/addon_4594_a9',
-                'addons/listed',
-                'addons/persona']
+    fixtures = [
+        'base/addon_3615',
+        'base/users',
+        'base/addon_59',
+        'base/addon_592',
+        'base/addon_4594_a9',
+        'addons/listed',
+        'addons/persona',
+    ]
 
     def setUp(self):
         super(TestDetailPage, self).setUp()
@@ -341,21 +377,26 @@ class TestDetailPage(TestCase):
             response = self.client.get(self.url)
             assert 'AMO is getting a new look.' in response.content
 
-    @pytest.mark.xfail(reason=(
-        'ETags currently don\'t work for add-on detail page. This is testing '
-        'a legacy page which will be gone quite soon and we didn\'t win '
-        'too much because of ETags anyway.'))
+    @pytest.mark.xfail(
+        reason=(
+            'ETags currently don\'t work for add-on detail page. This is testing '
+            'a legacy page which will be gone quite soon and we didn\'t win '
+            'too much because of ETags anyway.'
+        )
+    )
     def test_304(self):
         response = self.client.get(self.url)
         assert 'ETag' in response
 
-        response = self.client.get(self.url,
-                                   HTTP_IF_NONE_MATCH=response['ETag'])
+        response = self.client.get(
+            self.url, HTTP_IF_NONE_MATCH=response['ETag']
+        )
         assert response.status_code == 304
         assert not response.content
 
-        response = self.client.get(self.url,
-                                   HTTP_IF_NONE_MATCH='random_etag_string')
+        response = self.client.get(
+            self.url, HTTP_IF_NONE_MATCH='random_etag_string'
+        )
         assert response.status_code == 200
         assert response.content
 
@@ -385,13 +426,15 @@ class TestDetailPage(TestCase):
         a.save()
         response = self.client.get(reverse('addons.detail', args=['a15663']))
         assert (
-            '&lt;script&gt;alert(&quot;fff&quot;)&lt;/script&gt;' in
-            response.content)
+            '&lt;script&gt;alert(&quot;fff&quot;)&lt;/script&gt;'
+            in response.content
+        )
         assert '<script>' not in response.content
 
     def test_report_abuse_links_to_form_age(self):
         response = self.client.get_ajax(
-            reverse('addons.detail', args=['a3615']))
+            reverse('addons.detail', args=['a3615'])
+        )
         doc = pq(response.content)
         expected = reverse('addons.abuse', args=['3615'])
         assert doc('#report-abuse').attr('href') == expected
@@ -444,11 +487,12 @@ class TestDetailPage(TestCase):
         # Thunderbird can't do search engines
         prefixer = amo.urlresolvers.get_url_prefix()
         prefixer.app = amo.THUNDERBIRD.short
-        response = self.client.get(reverse('addons.detail', args=['a4594']),
-                                   follow=False)
+        response = self.client.get(
+            reverse('addons.detail', args=['a4594']), follow=False
+        )
         assert response.status_code == 301
         assert response['Location'].find(amo.THUNDERBIRD.short) == -1
-        assert (response['Location'].find(amo.FIREFOX.short) >= 0)
+        assert response['Location'].find(amo.FIREFOX.short) >= 0
 
     def test_compatible_app_redirect(self):
         """
@@ -456,8 +500,11 @@ class TestDetailPage(TestCase):
         that's supported.
         """
         comp_app = self.addon.compatible_apps.keys()[0]
-        not_comp_app = [a for a in amo.APP_USAGE
-                        if a not in self.addon.compatible_apps.keys()][0]
+        not_comp_app = [
+            a
+            for a in amo.APP_USAGE
+            if a not in self.addon.compatible_apps.keys()
+        ][0]
 
         # no SeaMonkey version => redirect
         prefixer = amo.urlresolvers.get_url_prefix()
@@ -477,8 +524,9 @@ class TestDetailPage(TestCase):
         """Check that external URLs are properly escaped."""
         response = self.client.get(self.url)
         doc = pq(response.content)
-        assert doc(
-            'aside a.home[href^="%s"]' % settings.REDIRECT_URL).length == 1
+        assert (
+            doc('aside a.home[href^="%s"]' % settings.REDIRECT_URL).length == 1
+        )
 
     def test_no_privacy_policy(self):
         """Make sure privacy policy is not shown when not present."""
@@ -500,14 +548,23 @@ class TestDetailPage(TestCase):
     def test_permissions_webext(self):
         file_ = self.addon.current_version.all_files[0]
         file_.update(is_webextension=True)
-        WebextPermission.objects.create(file=file_, permissions=[
-            u'http://*/*', u'<all_urls>', u'bookmarks', u'nativeMessaging',
-            u'made up permission'])
+        WebextPermission.objects.create(
+            file=file_,
+            permissions=[
+                u'http://*/*',
+                u'<all_urls>',
+                u'bookmarks',
+                u'nativeMessaging',
+                u'made up permission',
+            ],
+        )
         WebextPermissionDescription.objects.create(
-            name=u'bookmarks', description=u'Read and modify bookmarks')
+            name=u'bookmarks', description=u'Read and modify bookmarks'
+        )
         WebextPermissionDescription.objects.create(
             name=u'nativeMessaging',
-            description=u'Exchange messages with programs other than Firefox')
+            description=u'Exchange messages with programs other than Firefox',
+        )
 
         response = self.client.get(self.url)
         doc = pq(response.content)
@@ -516,14 +573,16 @@ class TestDetailPage(TestCase):
         # And the model dialog
         assert doc('#webext-permissions').length == 1
         assert u'perform certain functions (example: a tab management' in (
-            doc('#webext-permissions div.prose').text())
+            doc('#webext-permissions div.prose').text()
+        )
         assert doc('ul.webext-permissions-list').length == 1
         assert doc('li.webext-permissions-list').length == 3
         # See File.webext_permissions for the order logic
         assert doc('li.webext-permissions-list').text() == (
             u'Access your data for all websites '
             u'Exchange messages with programs other than Firefox '
-            u'Read and modify bookmarks')
+            u'Read and modify bookmarks'
+        )
 
     def test_permissions_webext_no_permissions(self):
         file_ = self.addon.current_version.all_files[0]
@@ -548,7 +607,8 @@ class TestDetailPage(TestCase):
         # And the model dialog
         assert doc('#webext-permissions').length == 1
         assert u'Please note this add-on uses legacy technology' in (
-            doc('#webext-permissions div.prose').text())
+            doc('#webext-permissions div.prose').text()
+        )
         assert doc('.webext-permissions-list').length == 0
 
     def test_permissions_non_extension(self):
@@ -565,28 +625,34 @@ class TestDetailPage(TestCase):
     def test_permissions_xss_single_url(self):
         file_ = self.addon.current_version.all_files[0]
         file_.update(is_webextension=True)
-        WebextPermission.objects.create(file=file_, permissions=[
-            u'<script>alert("//")</script>'])
+        WebextPermission.objects.create(
+            file=file_, permissions=[u'<script>alert("//")</script>']
+        )
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('li.webext-permissions-list').text() == (
-            u'Access your data for '
-            u'<script>alert("//")</script>')
+            u'Access your data for ' u'<script>alert("//")</script>'
+        )
         assert '<script>alert(' not in response.content
         assert '&lt;script&gt;alert(' in response.content
 
     def test_permissions_xss_multiple_url(self):
         file_ = self.addon.current_version.all_files[0]
         file_.update(is_webextension=True)
-        WebextPermission.objects.create(file=file_, permissions=[
-            '<script>alert("//")</script>',
-            '<script>foo("https://")</script>'])
+        WebextPermission.objects.create(
+            file=file_,
+            permissions=[
+                '<script>alert("//")</script>',
+                '<script>foo("https://")</script>',
+            ],
+        )
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('li.webext-permissions-list').text() == (
             u'Access your data on the following websites:\n'
             u'<script>alert("//")</script>\n'
-            u'<script>foo("https://")</script>')
+            u'<script>foo("https://")</script>'
+        )
         assert '<script>alert(' not in response.content
         assert '<script>foo(' not in response.content
         assert '&lt;script&gt;alert(' in response.content
@@ -614,13 +680,15 @@ class TestDetailPage(TestCase):
         doc = pq(r.content)
 
         assert norm(doc(".policy-statement strong")) == (
-            "<strong> what the hell..</strong>")
+            "<strong> what the hell..</strong>"
+        )
         assert norm(doc(".policy-statement ul")) == (
-            "<ul><li>papparapara</li><li>todotodotodo</li></ul>")
-        assert doc(".policy-statement ol a").text() == (
-            "firefox")
+            "<ul><li>papparapara</li><li>todotodotodo</li></ul>"
+        )
+        assert doc(".policy-statement ol a").text() == ("firefox")
         assert norm(doc(".policy-statement ol li:first")) == (
-            "<li>papparapara2</li>")
+            "<li>papparapara2</li>"
+        )
 
     def test_evil_html_is_not_rendered_in_privacy(self):
         self.addon.privacy_policy = """
@@ -635,41 +703,53 @@ class TestDetailPage(TestCase):
         doc = pq(r.content)
 
         policy = str(doc(".policy-statement"))
-        assert policy.startswith(
-            '<div class="policy-statement">&lt;script'), (
-                'Unexpected: %s' % policy[0:50])
+        assert policy.startswith('<div class="policy-statement">&lt;script'), (
+            'Unexpected: %s' % policy[0:50]
+        )
 
     def test_button_size(self):
         """Make sure install buttons on the detail page are prominent."""
-        response = self.client.get(reverse('addons.detail', args=['a3615']),
-                                   follow=True)
+        response = self.client.get(
+            reverse('addons.detail', args=['a3615']), follow=True
+        )
         assert pq(response.content)('.button').hasClass('prominent')
 
     def test_button_src_default(self):
         r = self.client.get(self.url, follow=True)
-        assert (pq(r.content)('#addon .button').attr(
-            'href').endswith('?src=dp-btn-primary'))
+        assert (
+            pq(r.content)('#addon .button')
+            .attr('href')
+            .endswith('?src=dp-btn-primary')
+        )
 
     def test_button_src_trickle(self):
         r = self.client.get(self.url + '?src=trickleortreat', follow=True)
-        assert (pq(r.content)('#addon .button').attr(
-            'href').endswith('?src=trickleortreat'))
+        assert (
+            pq(r.content)('#addon .button')
+            .attr('href')
+            .endswith('?src=trickleortreat')
+        )
 
     def test_version_button_src_default(self):
         r = self.client.get(self.url, follow=True)
-        assert (pq(r.content)('#detail-relnotes .button').attr(
-            'href').endswith('?src=dp-btn-version'))
+        assert (
+            pq(r.content)('#detail-relnotes .button')
+            .attr('href')
+            .endswith('?src=dp-btn-version')
+        )
 
     def test_version_button_src_trickle(self):
         r = self.client.get(self.url + '?src=trickleortreat', follow=True)
-        assert (pq(r.content)('#detail-relnotes .button').attr(
-            'href').endswith('?src=trickleortreat'))
+        assert (
+            pq(r.content)('#detail-relnotes .button')
+            .attr('href')
+            .endswith('?src=trickleortreat')
+        )
 
     def test_version_more_link(self):
         doc = pq(self.client.get(self.url).content)
         versions_url = reverse('addons.versions', args=[self.addon.slug])
-        assert (doc('#detail-relnotes a.more-info').attr('href') ==
-                versions_url)
+        assert doc('#detail-relnotes a.more-info').attr('href') == versions_url
 
     def test_invalid_version(self):
         """Only render details pages for add-ons that have a version."""
@@ -687,8 +767,7 @@ class TestDetailPage(TestCase):
 
     def test_authors_xss(self):
         name = '<script>alert(1)</script>'
-        user = UserProfile.objects.create(username='test',
-                                          display_name=name)
+        user = UserProfile.objects.create(username='test', display_name=name)
 
         output = users_list([user])
 
@@ -708,7 +787,8 @@ class TestDetailPage(TestCase):
 
     def test_is_restart_required(self):
         span_is_restart_required = (
-            '<span class="is-restart-required">Requires Restart</span>')
+            '<span class="is-restart-required">Requires Restart</span>'
+        )
         file_ = self.addon.current_version.all_files[0]
 
         assert file_.is_restart_required is False
@@ -739,8 +819,8 @@ class TestDetailPage(TestCase):
         doc = pq(response.content)
         link = doc('a.is-webextension')
         assert (
-            link.attr['href'] ==
-            'https://support.mozilla.org/kb/firefox-add-technology-modernizing'
+            link.attr['href']
+            == 'https://support.mozilla.org/kb/firefox-add-technology-modernizing'
         )
 
     def test_fx57_label_is_mozilla_signed_extension(self):
@@ -763,8 +843,8 @@ class TestDetailPage(TestCase):
         doc = pq(response.content)
         link = doc('a.is-webextension')
         assert (
-            link.attr['href'] ==
-            'https://support.mozilla.org/kb/firefox-add-technology-modernizing'
+            link.attr['href']
+            == 'https://support.mozilla.org/kb/firefox-add-technology-modernizing'
         )
 
     def test_version_displayed(self):
@@ -794,7 +874,8 @@ class TestDetailPage(TestCase):
     def test_more_url(self):
         response = self.client.get(self.url)
         assert pq(response.content)('#more-webpage').attr('data-more-url') == (
-            self.addon.get_url_path(more=True))
+            self.addon.get_url_path(more=True)
+        )
 
     def test_unlisted_addon_returns_404(self):
         """Unlisted addons are not listed and return 404."""
@@ -803,8 +884,10 @@ class TestDetailPage(TestCase):
 
     def test_admin_buttons(self):
         def get_detail():
-            return self.client.get(reverse('addons.detail', args=['a3615']),
-                                   follow=True)
+            return self.client.get(
+                reverse('addons.detail', args=['a3615']), follow=True
+            )
+
         # No login, no buttons.
         assert pq(get_detail().content)('.manage-button').length == 0
 
@@ -817,32 +900,39 @@ class TestDetailPage(TestCase):
         content = get_detail().content
         assert pq(content)('.manage-button').length == 1
         assert pq(content)('.manage-button a').eq(0).attr('href') == (
-            self.addon.get_dev_url())
+            self.addon.get_dev_url()
+        )
 
         # reviewer gets an 'Add-on Review' button
         self.client.login(email='reviewer@mozilla.com')
         content = get_detail().content
         assert pq(content)('.manage-button').length == 1
         assert pq(content)('.manage-button a').eq(0).attr('href') == (
-            reverse('reviewers.review', args=[self.addon.slug]))
+            reverse('reviewers.review', args=[self.addon.slug])
+        )
 
         # admins gets devhub, 'Add-on Review' and 'Admin Manage' button too
         self.client.login(email='admin@mozilla.com')
         content = get_detail().content
         assert pq(content)('.manage-button').length == 3
         assert pq(content)('.manage-button a').eq(0).attr('href') == (
-            self.addon.get_dev_url())
+            self.addon.get_dev_url()
+        )
         assert pq(content)('.manage-button a').eq(1).attr('href') == (
-            reverse('reviewers.review', args=[self.addon.slug]))
+            reverse('reviewers.review', args=[self.addon.slug])
+        )
         assert pq(content)('.manage-button a').eq(2).attr('href') == (
-            reverse('zadmin.addon_manage', args=[self.addon.slug]))
+            reverse('zadmin.addon_manage', args=[self.addon.slug])
+        )
 
     def test_reviews(self):
         def create_review(body='review text'):
             return Rating.objects.create(
-                addon=self.addon, user=user_factory(),
+                addon=self.addon,
+                user=user_factory(),
                 rating=random.randrange(0, 6),
-                body=body)
+                body=body,
+            )
 
         url = reverse('addons.detail', args=['a3615'])
 
@@ -876,11 +966,13 @@ class TestDetailPage(TestCase):
 
         # Check that ADU does link to public statistics dashboard.
         assert adu.find('a').attr('href') == (
-            reverse('stats.overview', args=[self.addon.slug]))
+            reverse('stats.overview', args=[self.addon.slug])
+        )
 
         # Check formatted count.
         assert adu.text().split()[0] == numberfmt(
-            self.addon.average_daily_users)
+            self.addon.average_daily_users
+        )
 
         # Check if we hide link when there are no ADU.
         self.addon.update(average_daily_users=0)
@@ -897,7 +989,8 @@ class TestDetailPage(TestCase):
         self.client.login(email='del@icio.us')
         # Check link to statistics dashboard for add-on authors.
         assert self.get_pq()('#daily-users a.stats').attr('href') == (
-            reverse('stats.overview', args=[self.addon.slug]))
+            reverse('stats.overview', args=[self.addon.slug])
+        )
 
     def test_downloads_stats_private(self):
         self.addon.update(type=amo.ADDON_SEARCH)
@@ -913,7 +1006,8 @@ class TestDetailPage(TestCase):
 
         # Check that weekly downloads links to statistics dashboard.
         assert dls.find('a').attr('href') == (
-            reverse('stats.overview', args=[self.addon.slug]))
+            reverse('stats.overview', args=[self.addon.slug])
+        )
 
         # Check formatted count.
         assert dls.text().split()[0] == numberfmt(self.addon.weekly_downloads)
@@ -935,7 +1029,8 @@ class TestDetailPage(TestCase):
         self.client.login(email='del@icio.us')
         # Check link to statistics dashboard for add-on authors.
         assert self.get_pq()('#weekly-downloads a.stats').attr('href') == (
-            reverse('stats.overview', args=[self.addon.slug]))
+            reverse('stats.overview', args=[self.addon.slug])
+        )
 
     def test_dependencies(self):
         assert self.get_pq()('.dependencies').length == 0
@@ -947,8 +1042,11 @@ class TestDetailPage(TestCase):
         assert d.length == 1
         assert d.find('h3').text() == unicode(req.name)
         assert d.find('a').attr('href').endswith('?src=dp-dl-dependencies')
-        assert d.find('.install-button a').attr('href').endswith(
-            '?src=dp-hc-dependencies')
+        assert (
+            d.find('.install-button a')
+            .attr('href')
+            .endswith('?src=dp-hc-dependencies')
+        )
 
     def test_license_link_builtin(self):
         g = 'http://google.com'
@@ -995,8 +1093,9 @@ class TestDetailPage(TestCase):
         """Ensure listed add-ons by the same author show up."""
         other = Addon.objects.get(id=592)
         Addon.objects.get(id=4594).delete()
-        assert list(Addon.objects.listed(amo.FIREFOX).exclude(
-            id=self.addon.id)) == [other]
+        assert list(
+            Addon.objects.listed(amo.FIREFOX).exclude(id=self.addon.id)
+        ) == [other]
 
         add_addon_author(other, self.addon)
         doc = self.get_more_pq()('#author-addons')
@@ -1021,15 +1120,17 @@ class TestDetailPage(TestCase):
 
     def test_categories(self):
         links = self.get_more_pq()('#related ul:first').find('a')
-        expected = [(unicode(c.name), c.get_url_path())
-                    for c in self.addon.categories.filter(
-                        application=amo.FIREFOX.id)]
+        expected = [
+            (unicode(c.name), c.get_url_path())
+            for c in self.addon.categories.filter(application=amo.FIREFOX.id)
+        ]
         amo.tests.check_links(expected, links)
 
     def test_static_theme_detail(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)
         version_preview = VersionPreview.objects.create(
-            version=self.addon.current_version)
+            version=self.addon.current_version
+        )
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -1058,7 +1159,6 @@ cache_settings['default'] = {
 
 @override_settings(CACHES=cache_settings)
 class TestPersonaDetailPage(TestPersonas, TestCase):
-
     def setUp(self):
         super(TestPersonas, self).setUp()
         self.addon = Addon.objects.get(id=15663)
@@ -1072,8 +1172,9 @@ class TestPersonaDetailPage(TestPersonas, TestCase):
         assert doc('h2.addon img').attr('src') == self.persona.icon_url
         style = doc('#persona div[data-browsertheme]').attr('style')
         assert self.persona.preview_url in style, (
-            'style attribute %s does not link to %s' % (
-                style, self.persona.preview_url))
+            'style attribute %s does not link to %s'
+            % (style, self.persona.preview_url)
+        )
 
     def test_more_personas(self):
         other = addon_factory(type=amo.ADDON_PERSONA)
@@ -1095,7 +1196,8 @@ class TestPersonaDetailPage(TestPersonas, TestCase):
         r = self.client.get(self.url)
         profile = UserProfile.objects.get(id=999).get_url_path()
         assert pq(r.content)('#more-artist .more-link').attr('href') == (
-            profile + '?src=addon-detail')
+            profile + '?src=addon-detail'
+        )
 
     def test_other_personas(self):
         """Ensure listed personas by the same author show up."""
@@ -1123,16 +1225,18 @@ class TestPersonaDetailPage(TestPersonas, TestCase):
         self._test_by()
 
     def test_personas_categories(self):
-        static_category = (
-            CATEGORIES[amo.FIREFOX.id][amo.ADDON_PERSONA]['film-and-tv'])
+        static_category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_PERSONA][
+            'film-and-tv'
+        ]
         category = Category.from_static_category(static_category, True)
 
         AddonCategory.objects.create(addon=self.addon, category=category)
 
         r = self.client.get(self.url)
         assert (
-            pq(r.content)('#more-category>h3').text() ==
-            'More Film and TV Themes')
+            pq(r.content)('#more-category>h3').text()
+            == 'More Film and TV Themes'
+        )
 
 
 class TestStatus(TestCase):
@@ -1185,8 +1289,10 @@ class TestStatus(TestCase):
             self.persona.status = status
             self.persona.save()
             assert self.client.head(self.persona_url).status_code == (
-                200 if status in [amo.STATUS_PUBLIC, amo.STATUS_PENDING]
-                else 404)
+                200
+                if status in [amo.STATUS_PUBLIC, amo.STATUS_PENDING]
+                else 404
+            )
 
     def test_persona_disabled(self):
         for status in Persona.STATUS_CHOICES.keys():
@@ -1203,21 +1309,21 @@ class TestTagsBox(TestCase):
 
     def test_tag_box(self):
         """Verify that we don't show duplicate tags."""
-        r = self.client.get_ajax(reverse('addons.detail_more', args=[8680]),
-                                 follow=True)
+        r = self.client.get_ajax(
+            reverse('addons.detail_more', args=[8680]), follow=True
+        )
         doc = pq(r.content)
         assert 'SEO' == doc('#tagbox ul').children().text()
 
 
 class TestEulaPolicyRedirects(TestCase):
-
     def test_eula_legacy_url(self):
         """
         See that we get a 301 to the zamboni style URL
         """
         response = self.client.get('/en-US/firefox/addons/policy/0/592/42')
         assert response.status_code == 301
-        assert (response['Location'].find('/addon/592/eula/42') != -1)
+        assert response['Location'].find('/addon/592/eula/42') != -1
 
     def test_policy_legacy_url(self):
         """
@@ -1225,7 +1331,7 @@ class TestEulaPolicyRedirects(TestCase):
         """
         response = self.client.get('/en-US/firefox/addons/policy/0/592/')
         assert response.status_code == 301
-        assert (response['Location'].find('/addon/592/privacy/') != -1)
+        assert response['Location'].find('/addon/592/privacy/') != -1
 
 
 class TestEula(TestCase):
@@ -1267,12 +1373,15 @@ class TestEula(TestCase):
         doc = pq(r.content)
 
         assert norm(doc('.policy-statement strong')) == (
-            '<strong> what the hell..</strong>')
+            '<strong> what the hell..</strong>'
+        )
         assert norm(doc('.policy-statement ul')) == (
-            '<ul><li>papparapara</li><li>todotodotodo</li></ul>')
+            '<ul><li>papparapara</li><li>todotodotodo</li></ul>'
+        )
         assert doc('.policy-statement ol a').text() == 'firefox'
         assert norm(doc('.policy-statement ol li:first')) == (
-            '<li>papparapara2</li>')
+            '<li>papparapara2</li>'
+        )
 
     def test_evil_html_is_not_rendered(self):
         self.addon.eula = """
@@ -1288,7 +1397,8 @@ class TestEula(TestCase):
 
         policy = str(doc('.policy-statement'))
         assert policy.startswith('<div class="policy-statement">&lt;script'), (
-            'Unexpected: %s' % policy[:50])
+            'Unexpected: %s' % policy[:50]
+        )
 
     def test_old_version(self):
         old = self.addon.versions.order_by('created')[0]
@@ -1313,7 +1423,6 @@ class TestEula(TestCase):
 
 
 class TestXssOnName(amo.tests.TestXss):
-
     def test_eula_page(self):
         url = reverse('addons.eula', args=[self.addon.slug])
         self.assertNameAndNoXSS(url)
@@ -1404,8 +1513,9 @@ class TestReportAbuse(TestCase):
 
         # and now just test it works
         self.client.login(email='regular@mozilla.com')
-        r = self.client.post(reverse('addons.abuse', args=['a15663']),
-                             {'text': 'spammy'})
+        r = self.client.post(
+            reverse('addons.abuse', args=['a15663']), {'text': 'spammy'}
+        )
         self.assert3xx(r, shared_url)
         assert len(mail.outbox) == 1
         assert 'spammy' in mail.outbox[0].body
@@ -1418,7 +1528,8 @@ class TestFindReplacement(TestCase):
         response = self.client.get(self.url)
         self.assert3xx(
             response,
-            DEFAULT_FIND_REPLACEMENT_PATH + '?src=%s' % FIND_REPLACEMENT_SRC)
+            DEFAULT_FIND_REPLACEMENT_PATH + '?src=%s' % FIND_REPLACEMENT_SRC,
+        )
 
     def test_match(self):
         addon_factory(slug='replacey')
@@ -1426,7 +1537,8 @@ class TestFindReplacement(TestCase):
         self.url = reverse('addons.find_replacement') + '?guid=xxx'
         response = self.client.get(self.url)
         self.assert3xx(
-            response, '/addon/replacey/?src=%s' % FIND_REPLACEMENT_SRC)
+            response, '/addon/replacey/?src=%s' % FIND_REPLACEMENT_SRC
+        )
 
     def test_match_no_leading_slash(self):
         addon_factory(slug='replacey')
@@ -1434,7 +1546,8 @@ class TestFindReplacement(TestCase):
         self.url = reverse('addons.find_replacement') + '?guid=xxx'
         response = self.client.get(self.url)
         self.assert3xx(
-            response, '/addon/replacey/?src=%s' % FIND_REPLACEMENT_SRC)
+            response, '/addon/replacey/?src=%s' % FIND_REPLACEMENT_SRC
+        )
 
     def test_no_guid_param_is_404(self):
         self.url = reverse('addons.find_replacement')
@@ -1443,16 +1556,17 @@ class TestFindReplacement(TestCase):
 
     def test_external_url(self):
         ReplacementAddon.objects.create(
-            guid='xxx', path='https://mozilla.org/')
+            guid='xxx', path='https://mozilla.org/'
+        )
         self.url = reverse('addons.find_replacement') + '?guid=xxx'
         response = self.client.get(self.url)
-        self.assert3xx(
-            response, get_outgoing_url('https://mozilla.org/'))
+        self.assert3xx(response, get_outgoing_url('https://mozilla.org/'))
 
 
 class AddonAndVersionViewSetDetailMixin(object):
     """Tests that play with addon state and permissions. Shared between addon
     and version viewset detail tests since both need to react the same way."""
+
     def _test_url(self):
         raise NotImplementedError
 
@@ -1495,7 +1609,8 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 401
         data = json.loads(response.content)
         assert data['detail'] == (
-            'Authentication credentials were not provided.')
+            'Authentication credentials were not provided.'
+        )
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is False
 
@@ -1507,7 +1622,8 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 403
         data = json.loads(response.content)
         assert data['detail'] == (
-            'You do not have permission to perform this action.')
+            'You do not have permission to perform this action.'
+        )
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is False
 
@@ -1533,7 +1649,8 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 401
         data = json.loads(response.content)
         assert data['detail'] == (
-            'Authentication credentials were not provided.')
+            'Authentication credentials were not provided.'
+        )
         assert data['is_disabled_by_developer'] is True
         assert data['is_disabled_by_mozilla'] is False
 
@@ -1545,7 +1662,8 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 403
         data = json.loads(response.content)
         assert data['detail'] == (
-            'You do not have permission to perform this action.')
+            'You do not have permission to perform this action.'
+        )
         assert data['is_disabled_by_developer'] is True
         assert data['is_disabled_by_mozilla'] is False
 
@@ -1555,7 +1673,8 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 401
         data = json.loads(response.content)
         assert data['detail'] == (
-            'Authentication credentials were not provided.')
+            'Authentication credentials were not provided.'
+        )
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is True
 
@@ -1567,7 +1686,8 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 403
         data = json.loads(response.content)
         assert data['detail'] == (
-            'You do not have permission to perform this action.')
+            'You do not have permission to perform this action.'
+        )
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is True
 
@@ -1577,7 +1697,8 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 401
         data = json.loads(response.content)
         assert data['detail'] == (
-            'Authentication credentials were not provided.')
+            'Authentication credentials were not provided.'
+        )
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is False
 
@@ -1589,7 +1710,8 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 403
         data = json.loads(response.content)
         assert data['detail'] == (
-            'You do not have permission to perform this action.')
+            'You do not have permission to perform this action.'
+        )
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is False
 
@@ -1602,7 +1724,8 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 403
         data = json.loads(response.content)
         assert data['detail'] == (
-            'You do not have permission to perform this action.')
+            'You do not have permission to perform this action.'
+        )
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is False
 
@@ -1701,7 +1824,8 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     def setUp(self):
         super(TestAddonViewSetDetail, self).setUp()
         self.addon = addon_factory(
-            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon'
+        )
         self._set_tested_url(self.addon.pk)
 
     def _test_url(self):
@@ -1712,7 +1836,8 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == self.addon.slug
         assert result['last_updated'] == (
-            self.addon.last_updated.replace(microsecond=0).isoformat() + 'Z')
+            self.addon.last_updated.replace(microsecond=0).isoformat() + 'Z'
+        )
         return result
 
     def _set_tested_url(self, param):
@@ -1725,7 +1850,8 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_hide_latest_unlisted_version_anonymous(self):
         unlisted_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
         unlisted_version.update(created=self.days_ago(1))
         result = self._test_url()
         assert 'latest_unlisted_version' not in result
@@ -1736,7 +1862,8 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.client.login_api(user)
 
         unlisted_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
         unlisted_version.update(created=self.days_ago(1))
         result = self._test_url()
         assert 'latest_unlisted_version' not in result
@@ -1747,7 +1874,8 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.client.login_api(user)
 
         unlisted_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
         unlisted_version.update(created=self.days_ago(1))
         result = self._test_url()
         assert result['latest_unlisted_version']
@@ -1759,7 +1887,8 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.client.login_api(user)
 
         unlisted_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
         unlisted_version.update(created=self.days_ago(1))
         result = self._test_url()
         assert result['latest_unlisted_version']
@@ -1791,7 +1920,8 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result['name'] == {'en-US': u'My Addôn, mine'}
 
         overridden_api_gates = {
-            api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)}
+            api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)
+        }
         with override_settings(DRF_API_GATES=overridden_api_gates):
             response = self.client.get(self.url, {'lang': 'en-US'})
             assert response.status_code == 200
@@ -1818,7 +1948,8 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     def setUp(self):
         super(TestVersionViewSetDetail, self).setUp()
         self.addon = addon_factory(
-            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon'
+        )
 
         # Don't use addon.current_version, changing its state as we do in
         # the tests might render the add-on itself inaccessible.
@@ -1833,12 +1964,16 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result['version'] == self.version.version
 
     def _set_tested_url(self, param):
-        self.url = reverse_ns('addon-version-detail', kwargs={
-            'addon_pk': param, 'pk': self.version.pk})
+        self.url = reverse_ns(
+            'addon-version-detail',
+            kwargs={'addon_pk': param, 'pk': self.version.pk},
+        )
 
     def test_version_get_not_found(self):
-        self.url = reverse_ns('addon-version-detail', kwargs={
-            'addon_pk': self.addon.pk, 'pk': self.version.pk + 42})
+        self.url = reverse_ns(
+            'addon-version-detail',
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.version.pk + 42},
+        )
         response = self.client.get(self.url)
         assert response.status_code == 404
 
@@ -1958,7 +2093,8 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
     def setUp(self):
         super(TestVersionViewSetList, self).setUp()
         self.addon = addon_factory(
-            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon'
+        )
         self.old_version = self.addon.current_version
         self.old_version.update(created=self.days_ago(2))
 
@@ -1971,8 +2107,10 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         # shown when requesting to see unlisted stuff explicitly, with the
         # right permissions.
         self.unlisted_version = version_factory(
-            addon=self.addon, version='42.0',
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
+            addon=self.addon,
+            version='42.0',
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
 
         self._set_tested_url(self.addon.pk)
 
@@ -2058,10 +2196,12 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self.version.files.update(status=amo.STATUS_DISABLED)
         self._test_url_only_contains_old_version()
         response = self.client.get(
-            self.url, data={'filter': 'all_without_unlisted'})
+            self.url, data={'filter': 'all_without_unlisted'}
+        )
         assert response.status_code == 401
         response = self.client.get(
-            self.url, data={'filter': 'all_with_deleted'})
+            self.url, data={'filter': 'all_with_deleted'}
+        )
         assert response.status_code == 401
 
     def test_disabled_version_user_but_not_author(self):
@@ -2070,10 +2210,12 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self.version.files.update(status=amo.STATUS_DISABLED)
         self._test_url_only_contains_old_version()
         response = self.client.get(
-            self.url, data={'filter': 'all_without_unlisted'})
+            self.url, data={'filter': 'all_without_unlisted'}
+        )
         assert response.status_code == 403
         response = self.client.get(
-            self.url, data={'filter': 'all_with_deleted'})
+            self.url, data={'filter': 'all_with_deleted'}
+        )
         assert response.status_code == 403
 
     def test_deleted_version_reviewer(self):
@@ -2084,10 +2226,12 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self._test_url_only_contains_old_version()
         self._test_url_only_contains_old_version(filter='all_without_unlisted')
         response = self.client.get(
-            self.url, data={'filter': 'all_with_deleted'})
+            self.url, data={'filter': 'all_with_deleted'}
+        )
         assert response.status_code == 403
         response = self.client.get(
-            self.url, data={'filter': 'all_with_unlisted'})
+            self.url, data={'filter': 'all_with_unlisted'}
+        )
         assert response.status_code == 403
 
     def test_deleted_version_author(self):
@@ -2098,7 +2242,8 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self._test_url_only_contains_old_version()
         self._test_url_only_contains_old_version(filter='all_without_unlisted')
         response = self.client.get(
-            self.url, data={'filter': 'all_with_deleted'})
+            self.url, data={'filter': 'all_with_deleted'}
+        )
         assert response.status_code == 403
 
     def test_deleted_version_admin(self):
@@ -2138,15 +2283,18 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self._test_url_only_contains_old_version()
 
         response = self.client.get(
-            self.url, data={'filter': 'all_with_deleted'})
+            self.url, data={'filter': 'all_with_deleted'}
+        )
         assert response.status_code == 401
 
     def test_all_without_and_with_unlisted_anonymous(self):
         response = self.client.get(
-            self.url, data={'filter': 'all_without_unlisted'})
+            self.url, data={'filter': 'all_without_unlisted'}
+        )
         assert response.status_code == 401
         response = self.client.get(
-            self.url, data={'filter': 'all_with_unlisted'})
+            self.url, data={'filter': 'all_with_unlisted'}
+        )
         assert response.status_code == 401
 
     def test_deleted_version_user_but_not_author(self):
@@ -2156,7 +2304,8 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self._test_url_only_contains_old_version()
 
         response = self.client.get(
-            self.url, data={'filter': 'all_with_deleted'})
+            self.url, data={'filter': 'all_with_deleted'}
+        )
         assert response.status_code == 403
 
     def test_all_without_and_with_unlisted_user_but_not_author(self):
@@ -2164,10 +2313,12 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self.client.login_api(user)
         self.version.delete()
         response = self.client.get(
-            self.url, data={'filter': 'all_without_unlisted'})
+            self.url, data={'filter': 'all_without_unlisted'}
+        )
         assert response.status_code == 403
         response = self.client.get(
-            self.url, data={'filter': 'all_with_unlisted'})
+            self.url, data={'filter': 'all_with_unlisted'}
+        )
         assert response.status_code == 403
 
 
@@ -2177,13 +2328,16 @@ class TestAddonViewSetFeatureCompatibility(TestCase):
     def setUp(self):
         super(TestAddonViewSetFeatureCompatibility, self).setUp()
         self.addon = addon_factory(
-            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon'
+        )
         self.url = reverse_ns(
-            'addon-feature-compatibility', kwargs={'pk': self.addon.pk})
+            'addon-feature-compatibility', kwargs={'pk': self.addon.pk}
+        )
 
     def test_url(self):
         self.detail_url = reverse_ns(
-            'addon-detail', kwargs={'pk': self.addon.pk})
+            'addon-detail', kwargs={'pk': self.addon.pk}
+        )
         assert self.url == '%s%s' % (self.detail_url, 'feature_compatibility/')
 
     def test_disabled_anonymous(self):
@@ -2199,7 +2353,8 @@ class TestAddonViewSetFeatureCompatibility(TestCase):
 
     def test_feature_compatibility_compatible(self):
         AddonFeatureCompatibility.objects.create(
-            addon=self.addon, e10s=amo.E10S_COMPATIBLE)
+            addon=self.addon, e10s=amo.E10S_COMPATIBLE
+        )
         response = self.client.get(self.url)
         assert response.status_code == 200
         data = json.loads(response.content)
@@ -2212,13 +2367,16 @@ class TestAddonViewSetEulaPolicy(TestCase):
     def setUp(self):
         super(TestAddonViewSetEulaPolicy, self).setUp()
         self.addon = addon_factory(
-            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon'
+        )
         self.url = reverse_ns(
-            'addon-eula-policy', kwargs={'pk': self.addon.pk})
+            'addon-eula-policy', kwargs={'pk': self.addon.pk}
+        )
 
     def test_url(self):
         self.detail_url = reverse_ns(
-            'addon-detail', kwargs={'pk': self.addon.pk})
+            'addon-detail', kwargs={'pk': self.addon.pk}
+        )
         assert self.url == '%s%s' % (self.detail_url, 'eula_policy/')
 
     def test_disabled_anonymous(self):
@@ -2260,8 +2418,11 @@ class TestAddonSearchView(ESTestCase):
 
     def test_get_queryset_excludes(self):
         addon_factory(slug='my-addon', name=u'My Addôn', weekly_downloads=666)
-        addon_factory(slug='my-second-addon', name=u'My second Addôn',
-                      weekly_downloads=555)
+        addon_factory(
+            slug='my-second-addon',
+            name=u'My second Addôn',
+            weekly_downloads=555,
+        )
         self.refresh()
 
         view = AddonSearchView()
@@ -2269,8 +2430,17 @@ class TestAddonSearchView(ESTestCase):
         qset = view.get_queryset()
 
         assert set(qset.to_dict()['_source']['excludes']) == set(
-            ('*.raw', 'boost', 'hotness', 'name', 'description',
-             'name_l10n_*', 'description_l10n_*', 'summary', 'summary_l10n_*')
+            (
+                '*.raw',
+                'boost',
+                'hotness',
+                'name',
+                'description',
+                'name_l10n_*',
+                'description_l10n_*',
+                'summary',
+                'summary_l10n_*',
+            )
         )
 
         response = qset.execute()
@@ -2280,21 +2450,15 @@ class TestAddonSearchView(ESTestCase):
         # TODO: 'name', 'description', 'hotness' and 'summary' are in there...
         # for some reason I don't yet understand... (cgrebs 0717)
         # maybe because they're used for boosting or filtering or so?
-        assert not any(key in source_keys for key in (
-            'boost',
-        ))
+        assert not any(key in source_keys for key in ('boost',))
 
-        assert not any(
-            key.startswith('name_l10n_') for key in source_keys
-        )
+        assert not any(key.startswith('name_l10n_') for key in source_keys)
 
         assert not any(
             key.startswith('description_l10n_') for key in source_keys
         )
 
-        assert not any(
-            key.startswith('summary_l10n_') for key in source_keys
-        )
+        assert not any(key.startswith('summary_l10n_') for key in source_keys)
 
     def perform_search(self, url, data=None, expected_status=200, **headers):
         # Just to cache the waffle switch, to avoid polluting the
@@ -2308,10 +2472,14 @@ class TestAddonSearchView(ESTestCase):
         return data
 
     def test_basic(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              weekly_downloads=666)
-        addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn',
-                               weekly_downloads=555)
+        addon = addon_factory(
+            slug='my-addon', name=u'My Addôn', weekly_downloads=666
+        )
+        addon2 = addon_factory(
+            slug='my-second-addon',
+            name=u'My second Addôn',
+            weekly_downloads=555,
+        )
         self.refresh()
 
         data = self.perform_search(self.url)  # No query.
@@ -2323,7 +2491,8 @@ class TestAddonSearchView(ESTestCase):
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'
         assert result['last_updated'] == (
-            addon.last_updated.replace(microsecond=0).isoformat() + 'Z')
+            addon.last_updated.replace(microsecond=0).isoformat() + 'Z'
+        )
 
         # latest_unlisted_version should never be exposed in public search.
         assert 'latest_unlisted_version' not in result
@@ -2343,8 +2512,8 @@ class TestAddonSearchView(ESTestCase):
 
     def test_es_queries_made_no_results(self):
         with patch.object(
-                Elasticsearch, 'search',
-                wraps=amo.search.get_es().search) as search_mock:
+            Elasticsearch, 'search', wraps=amo.search.get_es().search
+        ) as search_mock:
             data = self.perform_search(self.url, data={'q': 'foo'})
             assert data['count'] == 0
             assert len(data['results']) == 0
@@ -2356,31 +2525,40 @@ class TestAddonSearchView(ESTestCase):
         self.refresh()
 
         with patch.object(
-                Elasticsearch, 'search',
-                wraps=amo.search.get_es().search) as search_mock:
+            Elasticsearch, 'search', wraps=amo.search.get_es().search
+        ) as search_mock:
             data = self.perform_search(
-                self.url, data={'q': 'foo', 'page_size': 1})
+                self.url, data={'q': 'foo', 'page_size': 1}
+            )
             assert data['count'] == 2
             assert len(data['results']) == 1
             assert search_mock.call_count == 1
 
     def test_no_unlisted(self):
-        addon_factory(slug='my-addon', name=u'My Addôn',
-                      status=amo.STATUS_NULL,
-                      weekly_downloads=666,
-                      version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        addon_factory(
+            slug='my-addon',
+            name=u'My Addôn',
+            status=amo.STATUS_NULL,
+            weekly_downloads=666,
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+        )
         self.refresh()
         data = self.perform_search(self.url)
         assert data['count'] == 0
         assert len(data['results']) == 0
 
     def test_pagination(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              weekly_downloads=33)
-        addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn',
-                               weekly_downloads=22)
-        addon_factory(slug='my-third-addon', name=u'My third Addôn',
-                      weekly_downloads=11)
+        addon = addon_factory(
+            slug='my-addon', name=u'My Addôn', weekly_downloads=33
+        )
+        addon2 = addon_factory(
+            slug='my-second-addon',
+            name=u'My second Addôn',
+            weekly_downloads=22,
+        )
+        addon_factory(
+            slug='my-third-addon', name=u'My third Addôn', weekly_downloads=11
+        )
         self.refresh()
 
         data = self.perform_search(self.url, {'page_size': 1})
@@ -2409,8 +2587,9 @@ class TestAddonSearchView(ESTestCase):
         addon_factory(slug='only-happy-when-itrains', name=u'Garbage')
         self.refresh()
 
-        data = self.perform_search(self.url, {
-            'page_size': 1, 'q': u'addôn', 'sort': 'name'})
+        data = self.perform_search(
+            self.url, {'page_size': 1, 'q': u'addôn', 'sort': 'name'}
+        )
         assert data['count'] == 3
         assert len(data['results']) == 1
 
@@ -2430,17 +2609,29 @@ class TestAddonSearchView(ESTestCase):
         assert result['name'] == {'en-US': u'By second Addôn'}
 
     def test_filtering_only_reviewed_addons(self):
-        public_addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                                     weekly_downloads=222)
-        addon_factory(slug='my-incomplete-addon', name=u'My incomplete Addôn',
-                      status=amo.STATUS_NULL)
-        addon_factory(slug='my-disabled-addon', name=u'My disabled Addôn',
-                      status=amo.STATUS_DISABLED)
-        addon_factory(slug='my-unlisted-addon', name=u'My unlisted Addôn',
-                      version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
-        addon_factory(slug='my-disabled-by-user-addon',
-                      name=u'My disabled by user Addôn',
-                      disabled_by_user=True)
+        public_addon = addon_factory(
+            slug='my-addon', name=u'My Addôn', weekly_downloads=222
+        )
+        addon_factory(
+            slug='my-incomplete-addon',
+            name=u'My incomplete Addôn',
+            status=amo.STATUS_NULL,
+        )
+        addon_factory(
+            slug='my-disabled-addon',
+            name=u'My disabled Addôn',
+            status=amo.STATUS_DISABLED,
+        )
+        addon_factory(
+            slug='my-unlisted-addon',
+            name=u'My unlisted Addôn',
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+        )
+        addon_factory(
+            slug='my-disabled-by-user-addon',
+            name=u'My disabled by user Addôn',
+            disabled_by_user=True,
+        )
         self.refresh()
 
         data = self.perform_search(self.url)
@@ -2453,8 +2644,9 @@ class TestAddonSearchView(ESTestCase):
         assert result['slug'] == 'my-addon'
 
     def test_with_query(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addon',
-                              tags=['some_tag'])
+        addon = addon_factory(
+            slug='my-addon', name=u'My Addon', tags=['some_tag']
+        )
         addon_factory(slug='unrelated', name=u'Unrelated')
         self.refresh()
 
@@ -2477,10 +2669,12 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_type(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn')
-        theme = addon_factory(slug='my-theme', name=u'My Thème',
-                              type=amo.ADDON_THEME)
-        addon_factory(slug='my-search', name=u'My Seárch',
-                      type=amo.ADDON_SEARCH)
+        theme = addon_factory(
+            slug='my-theme', name=u'My Thème', type=amo.ADDON_THEME
+        )
+        addon_factory(
+            slug='my-search', name=u'My Seárch', type=amo.ADDON_SEARCH
+        )
         self.refresh()
 
         data = self.perform_search(self.url, {'type': 'extension'})
@@ -2516,25 +2710,29 @@ class TestAddonSearchView(ESTestCase):
         fx_addon = addon_factory(slug='my-addon', name=u'Featured Addôn')
         collection = collection_factory()
         FeaturedCollection.objects.create(
-            collection=collection, application=amo.FIREFOX.id)
+            collection=collection, application=amo.FIREFOX.id
+        )
         collection.add_addon(fx_addon)
 
         fx_fr_addon = addon_factory(slug='my-addon', name=u'Lé Featured Addôn')
         collection = collection_factory()
         FeaturedCollection.objects.create(
-            collection=collection, application=amo.FIREFOX.id, locale='fr')
+            collection=collection, application=amo.FIREFOX.id, locale='fr'
+        )
         collection.add_addon(fx_fr_addon)
 
         fn_addon = addon_factory(slug='my-addon', name=u'Featured Addôn 2 go')
         collection = collection_factory()
         FeaturedCollection.objects.create(
-            collection=collection, application=amo.ANDROID.id)
+            collection=collection, application=amo.ANDROID.id
+        )
         collection.add_addon(fn_addon)
 
         fn_fr_addon = addon_factory(slug='my-addon', name=u'Lé Featured Mobil')
         collection = collection_factory()
         FeaturedCollection.objects.create(
-            collection=collection, application=amo.ANDROID.id, locale='fr')
+            collection=collection, application=amo.ANDROID.id, locale='fr'
+        )
         collection.add_addon(fn_fr_addon)
 
         addon_factory(slug='other-addon', name=u'Other Addôn')
@@ -2542,8 +2740,9 @@ class TestAddonSearchView(ESTestCase):
 
         # Searching for just Firefox should return the two Firefox collections.
         # The filter should be `Q('term', **{'featured_for.application': app})`
-        data = self.perform_search(self.url, {'featured': 'true',
-                                              'app': 'firefox'})
+        data = self.perform_search(
+            self.url, {'featured': 'true', 'app': 'firefox'}
+        )
         assert data['count'] == 2 == len(data['results'])
         ids = {data['results'][0]['id'], data['results'][1]['id']}
         self.assertSetEqual(ids, {fx_addon.pk, fx_fr_addon.pk})
@@ -2552,46 +2751,59 @@ class TestAddonSearchView(ESTestCase):
         # In addition to the app query above, this will be executed too:
         # `Q('terms', **{'featured_for.locales': [locale, 'ALL']}))`
         data = self.perform_search(
-            self.url, {'featured': 'true', 'app': 'firefox', 'lang': 'fr'})
+            self.url, {'featured': 'true', 'app': 'firefox', 'lang': 'fr'}
+        )
         assert data['count'] == 2 == len(data['results'])
         ids = {data['results'][0]['id'], data['results'][1]['id']}
         self.assertSetEqual(ids, {fx_addon.pk, fx_fr_addon.pk})
 
         # But 'en-US' will exclude the 'fr' collection.
         data = self.perform_search(
-            self.url, {'featured': 'true', 'app': 'firefox',
-                       'lang': 'en-US'})
+            self.url, {'featured': 'true', 'app': 'firefox', 'lang': 'en-US'}
+        )
         assert data['count'] == 1 == len(data['results'])
         assert data['results'][0]['id'] == fx_addon.pk
 
         # If we only search for lang, application is ignored.
         # Just `Q('terms', **{'featured_for.locales': [locale, 'ALL']}))` now.
         data = self.perform_search(
-            self.url, {'featured': 'true', 'lang': 'en-US'})
+            self.url, {'featured': 'true', 'lang': 'en-US'}
+        )
         assert data['count'] == 2 == len(data['results'])
         ids = {data['results'][0]['id'], data['results'][1]['id']}
         self.assertSetEqual(ids, {fx_addon.pk, fn_addon.pk})
 
         data = self.perform_search(
-            self.url, {'featured': 'true', 'lang': 'fr'})
+            self.url, {'featured': 'true', 'lang': 'fr'}
+        )
         assert data['count'] == 4 == len(data['results'])
-        ids = {data['results'][0]['id'], data['results'][1]['id'],
-               data['results'][2]['id'], data['results'][3]['id']}
+        ids = {
+            data['results'][0]['id'],
+            data['results'][1]['id'],
+            data['results'][2]['id'],
+            data['results'][3]['id'],
+        }
         self.assertSetEqual(
-            ids, {fx_addon.pk, fx_fr_addon.pk, fn_addon.pk, fn_fr_addon.pk})
+            ids, {fx_addon.pk, fx_fr_addon.pk, fn_addon.pk, fn_fr_addon.pk}
+        )
 
     def test_filter_by_platform(self):
         # First add-on is available for all platforms.
-        addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              weekly_downloads=33)
+        addon = addon_factory(
+            slug='my-addon', name=u'My Addôn', weekly_downloads=33
+        )
         addon_factory(
-            slug='my-linux-addon', name=u'My linux-only Addön',
+            slug='my-linux-addon',
+            name=u'My linux-only Addön',
             file_kw={'platform': amo.PLATFORM_LINUX.id},
-            weekly_downloads=22)
+            weekly_downloads=22,
+        )
         mac_addon = addon_factory(
-            slug='my-mac-addon', name=u'My mac-only Addön',
+            slug='my-mac-addon',
+            name=u'My mac-only Addön',
             file_kw={'platform': amo.PLATFORM_MAC.id},
-            weekly_downloads=11)
+            weekly_downloads=11,
+        )
         self.refresh()
 
         data = self.perform_search(self.url)
@@ -2607,26 +2819,39 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_app(self):
         addon = addon_factory(
-            slug='my-addon', name=u'My Addôn', weekly_downloads=33,
-            version_kw={'min_app_version': '42.0',
-                        'max_app_version': '*'})
+            slug='my-addon',
+            name=u'My Addôn',
+            weekly_downloads=33,
+            version_kw={'min_app_version': '42.0', 'max_app_version': '*'},
+        )
         tb_addon = addon_factory(
-            slug='my-tb-addon', name=u'My TBV Addøn', weekly_downloads=22,
-            version_kw={'application': amo.THUNDERBIRD.id,
-                        'min_app_version': '42.0',
-                        'max_app_version': '*'})
+            slug='my-tb-addon',
+            name=u'My TBV Addøn',
+            weekly_downloads=22,
+            version_kw={
+                'application': amo.THUNDERBIRD.id,
+                'min_app_version': '42.0',
+                'max_app_version': '*',
+            },
+        )
         both_addon = addon_factory(
-            slug='my-both-addon', name=u'My Both Addøn', weekly_downloads=11,
-            version_kw={'min_app_version': '43.0',
-                        'max_app_version': '*'})
+            slug='my-both-addon',
+            name=u'My Both Addøn',
+            weekly_downloads=11,
+            version_kw={'min_app_version': '43.0', 'max_app_version': '*'},
+        )
         # both_addon was created with firefox compatibility, manually add
         # thunderbird, making it compatible with both.
         ApplicationsVersions.objects.create(
-            application=amo.THUNDERBIRD.id, version=both_addon.current_version,
+            application=amo.THUNDERBIRD.id,
+            version=both_addon.current_version,
             min=AppVersion.objects.create(
-                application=amo.THUNDERBIRD.id, version='43.0'),
+                application=amo.THUNDERBIRD.id, version='43.0'
+            ),
             max=AppVersion.objects.get(
-                application=amo.THUNDERBIRD.id, version='*'))
+                application=amo.THUNDERBIRD.id, version='*'
+            ),
+        )
         # Because the manually created ApplicationsVersions was created after
         # the initial save, we need to reindex and not just refresh.
         self.reindex(Addon)
@@ -2645,127 +2870,168 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_appversion(self):
         addon = addon_factory(
-            slug='my-addon', name=u'My Addôn', weekly_downloads=33,
-            version_kw={'min_app_version': '42.0',
-                        'max_app_version': '*'})
+            slug='my-addon',
+            name=u'My Addôn',
+            weekly_downloads=33,
+            version_kw={'min_app_version': '42.0', 'max_app_version': '*'},
+        )
         tb_addon = addon_factory(
-            slug='my-tb-addon', name=u'My TBV Addøn', weekly_downloads=22,
-            version_kw={'application': amo.THUNDERBIRD.id,
-                        'min_app_version': '42.0',
-                        'max_app_version': '*'})
+            slug='my-tb-addon',
+            name=u'My TBV Addøn',
+            weekly_downloads=22,
+            version_kw={
+                'application': amo.THUNDERBIRD.id,
+                'min_app_version': '42.0',
+                'max_app_version': '*',
+            },
+        )
         both_addon = addon_factory(
-            slug='my-both-addon', name=u'My Both Addøn', weekly_downloads=11,
-            version_kw={'min_app_version': '43.0',
-                        'max_app_version': '*'})
+            slug='my-both-addon',
+            name=u'My Both Addøn',
+            weekly_downloads=11,
+            version_kw={'min_app_version': '43.0', 'max_app_version': '*'},
+        )
         # both_addon was created with firefox compatibility, manually add
         # thunderbird, making it compatible with both.
         ApplicationsVersions.objects.create(
-            application=amo.THUNDERBIRD.id, version=both_addon.current_version,
+            application=amo.THUNDERBIRD.id,
+            version=both_addon.current_version,
             min=AppVersion.objects.create(
-                application=amo.THUNDERBIRD.id, version='43.0'),
+                application=amo.THUNDERBIRD.id, version='43.0'
+            ),
             max=AppVersion.objects.get(
-                application=amo.THUNDERBIRD.id, version='*'))
+                application=amo.THUNDERBIRD.id, version='*'
+            ),
+        )
         # Because the manually created ApplicationsVersions was created after
         # the initial save, we need to reindex and not just refresh.
         self.reindex(Addon)
 
-        data = self.perform_search(self.url, {'app': 'firefox',
-                                              'appversion': '46.0'})
+        data = self.perform_search(
+            self.url, {'app': 'firefox', 'appversion': '46.0'}
+        )
         assert data['count'] == 2
         assert len(data['results']) == 2
         assert data['results'][0]['id'] == addon.pk
         assert data['results'][1]['id'] == both_addon.pk
 
-        data = self.perform_search(self.url, {'app': 'thunderbird',
-                                              'appversion': '43.0.1'})
+        data = self.perform_search(
+            self.url, {'app': 'thunderbird', 'appversion': '43.0.1'}
+        )
         assert data['count'] == 2
         assert len(data['results']) == 2
         assert data['results'][0]['id'] == tb_addon.pk
         assert data['results'][1]['id'] == both_addon.pk
 
-        data = self.perform_search(self.url, {'app': 'firefox',
-                                              'appversion': '42.0'})
+        data = self.perform_search(
+            self.url, {'app': 'firefox', 'appversion': '42.0'}
+        )
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
 
-        data = self.perform_search(self.url, {'app': 'thunderbird',
-                                              'appversion': '42.0.1'})
+        data = self.perform_search(
+            self.url, {'app': 'thunderbird', 'appversion': '42.0.1'}
+        )
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == tb_addon.pk
 
     def test_filter_by_category(self):
-        static_category = (
-            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['alerts-updates'])
+        static_category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION][
+            'alerts-updates'
+        ]
         category = Category.from_static_category(static_category, True)
         addon = addon_factory(
-            slug='my-addon', name=u'My Addôn', category=category)
+            slug='my-addon', name=u'My Addôn', category=category
+        )
 
         self.refresh()
 
         # Create an add-on in a different category.
-        static_category = (
-            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['tabs'])
+        static_category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION][
+            'tabs'
+        ]
         other_category = Category.from_static_category(static_category, True)
         addon_factory(slug='different-addon', category=other_category)
 
         self.refresh()
 
         # Search for add-ons in the first category. There should be only one.
-        data = self.perform_search(self.url, {'app': 'firefox',
-                                              'type': 'extension',
-                                              'category': category.slug})
+        data = self.perform_search(
+            self.url,
+            {'app': 'firefox', 'type': 'extension', 'category': category.slug},
+        )
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
 
     def test_filter_by_category_multiple_types(self):
         def get_category(type_, name):
-            static_category = (
-                CATEGORIES[amo.FIREFOX.id][type_][name])
+            static_category = CATEGORIES[amo.FIREFOX.id][type_][name]
             return Category.from_static_category(static_category, True)
 
         addon_lwt = addon_factory(
-            slug='my-addon-lwt', name=u'My Addôn LWT',
+            slug='my-addon-lwt',
+            name=u'My Addôn LWT',
             category=get_category(amo.ADDON_PERSONA, 'holiday'),
-            type=amo.ADDON_PERSONA)
+            type=amo.ADDON_PERSONA,
+        )
         addon_st = addon_factory(
-            slug='my-addon-st', name=u'My Addôn ST',
+            slug='my-addon-st',
+            name=u'My Addôn ST',
             category=get_category(amo.ADDON_STATICTHEME, 'holiday'),
-            type=amo.ADDON_STATICTHEME)
+            type=amo.ADDON_STATICTHEME,
+        )
 
         self.refresh()
 
         # Create some add-ons in a different category.
         addon_factory(
-            slug='different-addon-lwt', name=u'Diff Addôn LWT',
+            slug='different-addon-lwt',
+            name=u'Diff Addôn LWT',
             category=get_category(amo.ADDON_PERSONA, 'sports'),
-            type=amo.ADDON_PERSONA)
+            type=amo.ADDON_PERSONA,
+        )
         addon_factory(
-            slug='different-addon-st', name=u'Diff Addôn ST',
+            slug='different-addon-st',
+            name=u'Diff Addôn ST',
             category=get_category(amo.ADDON_STATICTHEME, 'sports'),
-            type=amo.ADDON_STATICTHEME)
+            type=amo.ADDON_STATICTHEME,
+        )
 
         self.refresh()
 
         # Search for add-ons in the first category. There should be two.
-        data = self.perform_search(self.url, {'app': 'firefox',
-                                              'type': 'persona,statictheme',
-                                              'category': 'holiday'})
+        data = self.perform_search(
+            self.url,
+            {
+                'app': 'firefox',
+                'type': 'persona,statictheme',
+                'category': 'holiday',
+            },
+        )
         assert data['count'] == 2
         assert len(data['results']) == 2
         result_ids = (data['results'][0]['id'], data['results'][1]['id'])
         assert sorted(result_ids) == [addon_lwt.pk, addon_st.pk]
 
     def test_filter_with_tags(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              tags=['some_tag'], weekly_downloads=999)
-        addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
-                               tags=['unique_tag', 'some_tag'],
-                               weekly_downloads=333)
-        addon3 = addon_factory(slug='unrelated', name=u'Unrelated',
-                               tags=['unrelated'])
+        addon = addon_factory(
+            slug='my-addon',
+            name=u'My Addôn',
+            tags=['some_tag'],
+            weekly_downloads=999,
+        )
+        addon2 = addon_factory(
+            slug='another-addon',
+            name=u'Another Addôn',
+            tags=['unique_tag', 'some_tag'],
+            weekly_downloads=333,
+        )
+        addon3 = addon_factory(
+            slug='unrelated', name=u'Unrelated', tags=['unrelated']
+        )
         self.refresh()
 
         data = self.perform_search(self.url, {'tag': 'some_tag'})
@@ -2801,17 +3067,25 @@ class TestAddonSearchView(ESTestCase):
 
     def test_bad_filter(self):
         data = self.perform_search(
-            self.url, {'app': 'lol'}, expected_status=400)
+            self.url, {'app': 'lol'}, expected_status=400
+        )
         assert data == ['Invalid "app" parameter.']
 
     def test_filter_by_author(self):
         author = user_factory(username=u'my-fancyAuthôr')
-        addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              tags=['some_tag'], weekly_downloads=999)
+        addon = addon_factory(
+            slug='my-addon',
+            name=u'My Addôn',
+            tags=['some_tag'],
+            weekly_downloads=999,
+        )
         AddonUser.objects.create(addon=addon, user=author)
-        addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
-                               tags=['unique_tag', 'some_tag'],
-                               weekly_downloads=333)
+        addon2 = addon_factory(
+            slug='another-addon',
+            name=u'Another Addôn',
+            tags=['unique_tag', 'some_tag'],
+            weekly_downloads=333,
+        )
         author2 = user_factory(username=u'my-FancyAuthôrName')
         AddonUser.objects.create(addon=addon2, user=author2)
         self.reindex(Addon)
@@ -2828,13 +3102,20 @@ class TestAddonSearchView(ESTestCase):
         author = user_factory(username='foo')
         author2 = user_factory(username='bar')
         another_author = user_factory(username='someoneelse')
-        addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              tags=['some_tag'], weekly_downloads=999)
+        addon = addon_factory(
+            slug='my-addon',
+            name=u'My Addôn',
+            tags=['some_tag'],
+            weekly_downloads=999,
+        )
         AddonUser.objects.create(addon=addon, user=author)
         AddonUser.objects.create(addon=addon, user=author2)
-        addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
-                               tags=['unique_tag', 'some_tag'],
-                               weekly_downloads=333)
+        addon2 = addon_factory(
+            slug='another-addon',
+            name=u'Another Addôn',
+            tags=['unique_tag', 'some_tag'],
+            weekly_downloads=333,
+        )
         AddonUser.objects.create(addon=addon2, user=author2)
         another_addon = addon_factory()
         AddonUser.objects.create(addon=another_addon, user=another_author)
@@ -2852,8 +3133,12 @@ class TestAddonSearchView(ESTestCase):
         assert result['slug'] == addon2.slug
 
     def test_filter_by_guid(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              guid='random@guid', weekly_downloads=999)
+        addon = addon_factory(
+            slug='my-addon',
+            name=u'My Addôn',
+            guid='random@guid',
+            weekly_downloads=999,
+        )
         addon_factory()
         self.reindex(Addon)
 
@@ -2866,16 +3151,24 @@ class TestAddonSearchView(ESTestCase):
         assert result['slug'] == addon.slug
 
     def test_filter_by_multiple_guid(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              guid='random@guid', weekly_downloads=999)
-        addon2 = addon_factory(slug='another-addon', name=u'Another Addôn',
-                               guid='random2@guid',
-                               weekly_downloads=333)
+        addon = addon_factory(
+            slug='my-addon',
+            name=u'My Addôn',
+            guid='random@guid',
+            weekly_downloads=999,
+        )
+        addon2 = addon_factory(
+            slug='another-addon',
+            name=u'Another Addôn',
+            guid='random2@guid',
+            weekly_downloads=333,
+        )
         addon_factory()
         self.reindex(Addon)
 
         data = self.perform_search(
-            self.url, {'guid': u'random@guid,random2@guid'})
+            self.url, {'guid': u'random@guid,random2@guid'}
+        )
         assert data['count'] == 2
         assert len(data['results']) == 2
 
@@ -2888,8 +3181,8 @@ class TestAddonSearchView(ESTestCase):
 
         # Throw in soome random invalid guids too that will be ignored.
         data = self.perform_search(
-            self.url, {
-                'guid': u'random@guid,invalid@guid,notevenaguid$,random2@guid'}
+            self.url,
+            {'guid': u'random@guid,invalid@guid,notevenaguid$,random2@guid'},
         )
         assert data['count'] == len(data['results']) == 2
         assert data['results'][0]['id'] == addon.pk
@@ -2908,12 +3201,12 @@ class TestAddonSearchView(ESTestCase):
 
             addon.name = {'es': u'Banana Bonkers espanole'}
             addon.description = {
-                'es': u'Deje que su navegador coma sus plátanos'}
+                'es': u'Deje que su navegador coma sus plátanos'
+            }
             addon.summary = {'es': u'resumen banana'}
             addon.save()
 
-        addon_factory(
-            slug='English Addon', name=u'My English Addôn')
+        addon_factory(slug='English Addon', name=u'My English Addôn')
 
         self.reindex(Addon)
 
@@ -2927,7 +3220,8 @@ class TestAddonSearchView(ESTestCase):
                 assert len(data['results']) == 2
 
                 data = self.perform_search(
-                    url, {'q': 'Banana', 'lang': locale})
+                    url, {'q': 'Banana', 'lang': locale}
+                )
 
                 result = data['results'][0]
                 assert result['id'] == addon.pk
@@ -2941,8 +3235,8 @@ class TestAddonSearchView(ESTestCase):
 
         # Exclude addon2 and addon3 by slug.
         data = self.perform_search(
-            self.url, {'exclude_addons': u','.join(
-                (addon2.slug, addon3.slug))})
+            self.url, {'exclude_addons': u','.join((addon2.slug, addon3.slug))}
+        )
 
         assert len(data['results']) == 1
         assert data['count'] == 1
@@ -2950,8 +3244,13 @@ class TestAddonSearchView(ESTestCase):
 
         # Exclude addon1 and addon2 by pk.
         data = self.perform_search(
-            self.url, {'exclude_addons': u','.join(
-                map(unicode, (addon2.pk, addon1.pk)))})
+            self.url,
+            {
+                'exclude_addons': u','.join(
+                    map(unicode, (addon2.pk, addon1.pk))
+                )
+            },
+        )
 
         assert len(data['results']) == 1
         assert data['count'] == 1
@@ -2959,8 +3258,9 @@ class TestAddonSearchView(ESTestCase):
 
         # Exclude addon1 by pk and addon3 by slug.
         data = self.perform_search(
-            self.url, {'exclude_addons': u','.join(
-                (unicode(addon1.pk), addon3.slug))})
+            self.url,
+            {'exclude_addons': u','.join((unicode(addon1.pk), addon3.slug))},
+        )
 
         assert len(data['results']) == 1
         assert data['count'] == 1
@@ -2968,15 +3268,19 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_fuzziness(self):
         with self.activate('de'):
-            addon = addon_factory(slug='my-addon', name={
-                'de': 'Mein Taschenmesser'
-            }, default_locale='de')
+            addon = addon_factory(
+                slug='my-addon',
+                name={'de': 'Mein Taschenmesser'},
+                default_locale='de',
+            )
 
             # Won't get matched, we have a prefix length of 4 so that
             # the first 4 characters are not analyzed for fuzziness
-            addon_factory(slug='my-addon2', name={
-                'de': u'Mein Hufrinnenmesser'
-            }, default_locale='de')
+            addon_factory(
+                slug='my-addon2',
+                name={'de': u'Mein Hufrinnenmesser'},
+                default_locale='de',
+            )
 
         self.refresh()
 
@@ -2998,8 +3302,9 @@ class TestAddonSearchView(ESTestCase):
         for i in range(0, 10):
             addon_factory()
         self.refresh()
-        query = (u'남포역립카페추천 ˇjjtat닷컴ˇ ≡제이제이♠♣ 남포역스파 '
-                 u'남포역op남포역유흥≡남포역안마남포역오피 ♠♣')
+        query = (
+            u'남포역립카페추천 ˇjjtat닷컴ˇ ≡제이제이♠♣ 남포역스파 ' u'남포역op남포역유흥≡남포역안마남포역오피 ♠♣'
+        )
         data = self.perform_search(self.url, {'q': query})
         # No results, but no 500 either.
         assert data['count'] == 0
@@ -3046,17 +3351,22 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
     def test_type(self):
         addon = addon_factory(
-            slug='my-addon', name=u'My Addôn', type=amo.ADDON_EXTENSION)
+            slug='my-addon', name=u'My Addôn', type=amo.ADDON_EXTENSION
+        )
         addon2 = addon_factory(
-            slug='my-second-addon', name=u'My second Addôn',
-            type=amo.ADDON_PERSONA)
+            slug='my-second-addon',
+            name=u'My second Addôn',
+            type=amo.ADDON_PERSONA,
+        )
         addon_factory(slug='nonsense', name=u'Nope Nope Nope')
         addon_factory(
-            slug='whocares', name=u'My xul theme', type=amo.ADDON_THEME)
+            slug='whocares', name=u'My xul theme', type=amo.ADDON_THEME
+        )
         self.refresh()
 
         data = self.perform_search(
-            self.url, {'q': 'my', 'type': 'persona,extension'})  # No db query.
+            self.url, {'q': 'my', 'type': 'persona,extension'}
+        )  # No db query.
         assert 'count' not in data
         assert 'next' not in data
         assert 'prev' not in data
@@ -3084,13 +3394,15 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
         # And repeat with v3-style flat output when lang is specified:
         overridden_api_gates = {
-            api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)}
+            api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)
+        }
         with override_settings(DRF_API_GATES=overridden_api_gates):
             data = self.perform_search(self.url, {'q': 'foobar', 'lang': 'fr'})
             assert data['results'][0]['name'] == 'foobar'
 
             data = self.perform_search(
-                self.url, {'q': 'foobar', 'lang': 'en-US'})
+                self.url, {'q': 'foobar', 'lang': 'en-US'}
+            )
             assert data['results'][0]['name'] == 'foobar'
 
     def test_empty(self):
@@ -3099,19 +3411,28 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         assert len(data['results']) == 0
 
     def test_get_queryset_excludes(self):
-        addon_factory(slug='my-addon', name=u'My Addôn',
-                      weekly_downloads=666)
-        addon_factory(slug='my-persona', name=u'My Persona',
-                      type=amo.ADDON_PERSONA)
+        addon_factory(slug='my-addon', name=u'My Addôn', weekly_downloads=666)
+        addon_factory(
+            slug='my-persona', name=u'My Persona', type=amo.ADDON_PERSONA
+        )
         self.refresh()
 
         view = AddonAutoCompleteSearchView()
         view.request = APIRequestFactory().get('/')
         qset = view.get_queryset()
 
-        includes = set((
-            'default_locale', 'icon_type', 'id', 'modified',
-            'name_translations', 'persona', 'slug', 'type'))
+        includes = set(
+            (
+                'default_locale',
+                'icon_type',
+                'id',
+                'modified',
+                'name_translations',
+                'persona',
+                'slug',
+                'type',
+            )
+        )
 
         assert set(qset.to_dict()['_source']['includes']) == includes
 
@@ -3123,10 +3444,13 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         assert set(hit[1]['_source'].keys()) == includes
 
     def test_no_unlisted(self):
-        addon_factory(slug='my-addon', name=u'My Addôn',
-                      status=amo.STATUS_NULL,
-                      weekly_downloads=666,
-                      version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        addon_factory(
+            slug='my-addon',
+            name=u'My Addôn',
+            status=amo.STATUS_NULL,
+            weekly_downloads=666,
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+        )
         self.refresh()
         data = self.perform_search(self.url)
         assert 'count' not in data
@@ -3154,7 +3478,8 @@ class TestAddonFeaturedView(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'detail': 'Invalid app, category and/or type parameter(s).'}
+            'detail': 'Invalid app, category and/or type parameter(s).'
+        }
 
     @patch('olympia.addons.views.get_featured_ids')
     def test_app_only(self, get_featured_ids_mock):
@@ -3164,10 +3489,13 @@ class TestAddonFeaturedView(TestCase):
 
         response = self.client.get(self.url, {'app': 'firefox'})
         assert get_featured_ids_mock.call_count == 1
-        assert (get_featured_ids_mock.call_args_list[0][0][0] ==
-                amo.FIREFOX)  # app
-        assert (get_featured_ids_mock.call_args_list[0][1] ==
-                {'types': None, 'lang': None})
+        assert (
+            get_featured_ids_mock.call_args_list[0][0][0] == amo.FIREFOX
+        )  # app
+        assert get_featured_ids_mock.call_args_list[0][1] == {
+            'types': None,
+            'lang': None,
+        }
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['results']
@@ -3181,14 +3509,17 @@ class TestAddonFeaturedView(TestCase):
         addon2 = addon_factory()
         get_featured_ids_mock.return_value = [addon1.pk, addon2.pk]
 
-        response = self.client.get(self.url, {
-            'app': 'firefox', 'type': 'extension'
-        })
+        response = self.client.get(
+            self.url, {'app': 'firefox', 'type': 'extension'}
+        )
         assert get_featured_ids_mock.call_count == 1
-        assert (get_featured_ids_mock.call_args_list[0][0][0] ==
-                amo.FIREFOX)  # app
-        assert (get_featured_ids_mock.call_args_list[0][1] ==
-                {'types': [amo.ADDON_EXTENSION], 'lang': None})
+        assert (
+            get_featured_ids_mock.call_args_list[0][0][0] == amo.FIREFOX
+        )  # app
+        assert get_featured_ids_mock.call_args_list[0][1] == {
+            'types': [amo.ADDON_EXTENSION],
+            'lang': None,
+        }
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['results']
@@ -3202,15 +3533,17 @@ class TestAddonFeaturedView(TestCase):
         addon2 = addon_factory()
         get_featured_ids_mock.return_value = [addon1.pk, addon2.pk]
 
-        response = self.client.get(self.url, {
-            'app': 'firefox', 'type': 'extension,theme'
-        })
+        response = self.client.get(
+            self.url, {'app': 'firefox', 'type': 'extension,theme'}
+        )
         assert get_featured_ids_mock.call_count == 1
-        assert (get_featured_ids_mock.call_args_list[0][0][0] ==
-                amo.FIREFOX)  # app
-        assert (get_featured_ids_mock.call_args_list[0][1] ==
-                {'types': [amo.ADDON_EXTENSION, amo.ADDON_THEME],
-                 'lang': None})
+        assert (
+            get_featured_ids_mock.call_args_list[0][0][0] == amo.FIREFOX
+        )  # app
+        assert get_featured_ids_mock.call_args_list[0][1] == {
+            'types': [amo.ADDON_EXTENSION, amo.ADDON_THEME],
+            'lang': None,
+        }
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['results']
@@ -3224,14 +3557,17 @@ class TestAddonFeaturedView(TestCase):
         addon2 = addon_factory()
         get_featured_ids_mock.return_value = [addon1.pk, addon2.pk]
 
-        response = self.client.get(self.url, {
-            'app': 'firefox', 'type': 'extension', 'lang': 'es'
-        })
+        response = self.client.get(
+            self.url, {'app': 'firefox', 'type': 'extension', 'lang': 'es'}
+        )
         assert get_featured_ids_mock.call_count == 1
-        assert (get_featured_ids_mock.call_args_list[0][0][0] ==
-                amo.FIREFOX)  # app
-        assert (get_featured_ids_mock.call_args_list[0][1] ==
-                {'types': [amo.ADDON_EXTENSION], 'lang': 'es'})
+        assert (
+            get_featured_ids_mock.call_args_list[0][0][0] == amo.FIREFOX
+        )  # app
+        assert get_featured_ids_mock.call_args_list[0][1] == {
+            'types': [amo.ADDON_EXTENSION],
+            'lang': 'es',
+        }
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['results']
@@ -3241,30 +3577,36 @@ class TestAddonFeaturedView(TestCase):
 
     def test_invalid_app(self):
         response = self.client.get(
-            self.url, {'app': 'foxeh', 'type': 'extension'})
+            self.url, {'app': 'foxeh', 'type': 'extension'}
+        )
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'detail': 'Invalid app, category and/or type parameter(s).'}
+            'detail': 'Invalid app, category and/or type parameter(s).'
+        }
 
     def test_invalid_type(self):
         response = self.client.get(self.url, {'app': 'firefox', 'type': 'lol'})
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'detail': 'Invalid app, category and/or type parameter(s).'}
+            'detail': 'Invalid app, category and/or type parameter(s).'
+        }
 
     def test_category_no_app_or_type(self):
         response = self.client.get(self.url, {'category': 'lol'})
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'detail': 'Invalid app, category and/or type parameter(s).'}
+            'detail': 'Invalid app, category and/or type parameter(s).'
+        }
 
     def test_invalid_category(self):
-        response = self.client.get(self.url, {
-            'category': 'lol', 'app': 'firefox', 'type': 'extension'
-        })
+        response = self.client.get(
+            self.url,
+            {'category': 'lol', 'app': 'firefox', 'type': 'extension'},
+        )
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'detail': 'Invalid app, category and/or type parameter(s).'}
+            'detail': 'Invalid app, category and/or type parameter(s).'
+        }
 
     @patch('olympia.addons.views.get_creatured_ids')
     def test_category(self, get_creatured_ids_mock):
@@ -3272,9 +3614,14 @@ class TestAddonFeaturedView(TestCase):
         addon2 = addon_factory()
         get_creatured_ids_mock.return_value = [addon1.pk, addon2.pk]
 
-        response = self.client.get(self.url, {
-            'category': 'alerts-updates', 'app': 'firefox', 'type': 'extension'
-        })
+        response = self.client.get(
+            self.url,
+            {
+                'category': 'alerts-updates',
+                'app': 'firefox',
+                'type': 'extension',
+            },
+        )
         assert get_creatured_ids_mock.call_count == 1
         assert get_creatured_ids_mock.call_args_list[0][0][0] == 72  # category
         assert get_creatured_ids_mock.call_args_list[0][0][1] is None  # lang
@@ -3291,10 +3638,14 @@ class TestAddonFeaturedView(TestCase):
         addon2 = addon_factory()
         get_creatured_ids_mock.return_value = [addon1.pk, addon2.pk]
 
-        response = self.client.get(self.url, {
-            'category': 'nature', 'app': 'firefox',
-            'type': 'persona,statictheme'
-        })
+        response = self.client.get(
+            self.url,
+            {
+                'category': 'nature',
+                'app': 'firefox',
+                'type': 'persona,statictheme',
+            },
+        )
         assert get_creatured_ids_mock.call_count == 2
         assert get_creatured_ids_mock.call_args_list[0][0][0] == 102  # cat
         assert get_creatured_ids_mock.call_args_list[0][0][1] is None  # lang
@@ -3313,10 +3664,15 @@ class TestAddonFeaturedView(TestCase):
         addon2 = addon_factory()
         get_creatured_ids_mock.return_value = [addon1.pk, addon2.pk]
 
-        response = self.client.get(self.url, {
-            'category': 'alerts-updates', 'app': 'firefox',
-            'type': 'extension', 'lang': 'fr',
-        })
+        response = self.client.get(
+            self.url,
+            {
+                'category': 'alerts-updates',
+                'app': 'firefox',
+                'type': 'extension',
+                'lang': 'fr',
+            },
+        )
         assert get_creatured_ids_mock.call_count == 1
         assert get_creatured_ids_mock.call_args_list[0][0][0] == 72  # cat id.
         assert get_creatured_ids_mock.call_args_list[0][0][1] == 'fr'  # lang
@@ -3354,7 +3710,7 @@ class TestStaticCategoryView(TestCase):
             u'application': u'firefox',
             u'description': None,
             u'type': u'extension',
-            u'slug': u'feeds-news-blogging'
+            u'slug': u'feeds-news-blogging',
         }
 
     def test_with_description(self):
@@ -3379,7 +3735,7 @@ class TestStaticCategoryView(TestCase):
             u'application': u'firefox',
             u'description': u'does stuff',
             u'type': u'extension',
-            u'slug': u'feeds-news-blogging'
+            u'slug': u'feeds-news-blogging',
         }
 
     @pytest.mark.needs_locales_compilation
@@ -3409,36 +3765,48 @@ class TestLanguageToolsView(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 400
         assert response.data == {
-            'detail': u'Invalid or missing app parameter.'}
+            'detail': u'Invalid or missing app parameter.'
+        }
 
         response = self.client.get(self.url, {'app': 'foo'})
         assert response.status_code == 400
         assert response.data == {
-            'detail': u'Invalid or missing app parameter.'}
+            'detail': u'Invalid or missing app parameter.'
+        }
 
     def test_basic(self):
         dictionary = addon_factory(type=amo.ADDON_DICT, target_locale='fr')
         dictionary_spelling_variant = addon_factory(
-            type=amo.ADDON_DICT, target_locale='fr',
-            locale_disambiguation='For spelling reform')
+            type=amo.ADDON_DICT,
+            target_locale='fr',
+            locale_disambiguation='For spelling reform',
+        )
         language_pack = addon_factory(
-            type=amo.ADDON_LPAPP, target_locale='es',
+            type=amo.ADDON_LPAPP,
+            target_locale='es',
             file_kw={'strict_compatibility': True},
-            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'},
+        )
 
         # These add-ons below should be ignored: they are either not public or
         # of the wrong type, not supporting the app we care about, or their
         # target locale is empty.
         addon_factory(
-            type=amo.ADDON_LPAPP, target_locale='de',
-            version_kw={'application': amo.THUNDERBIRD.id})
+            type=amo.ADDON_LPAPP,
+            target_locale='de',
+            version_kw={'application': amo.THUNDERBIRD.id},
+        )
         addon_factory(
-            type=amo.ADDON_DICT, target_locale='fr',
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+            type=amo.ADDON_DICT,
+            target_locale='fr',
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+        )
         addon_factory(
-            type=amo.ADDON_LPAPP, target_locale='es',
+            type=amo.ADDON_LPAPP,
+            target_locale='es',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            status=amo.STATUS_NOMINATED)
+            status=amo.STATUS_NOMINATED,
+        )
         addon_factory(type=amo.ADDON_DICT, target_locale='')
         addon_factory(type=amo.ADDON_LPAPP, target_locale=None)
         addon_factory(target_locale='fr')
@@ -3449,9 +3817,9 @@ class TestLanguageToolsView(TestCase):
         assert len(data['results']) == 3
         expected = [dictionary, dictionary_spelling_variant, language_pack]
         assert len(data['results']) == len(expected)
-        assert (
-            set(item['id'] for item in data['results']) ==
-            set(item.pk for item in expected))
+        assert set(item['id'] for item in data['results']) == set(
+            item.pk for item in expected
+        )
 
         assert 'locale_disambiguation' in data['results'][0]
         assert 'target_locale' in data['results'][0]
@@ -3461,16 +3829,19 @@ class TestLanguageToolsView(TestCase):
 
     def test_with_appversion_but_no_type(self):
         response = self.client.get(
-            self.url, {'app': 'firefox', 'appversion': '57.0'})
+            self.url, {'app': 'firefox', 'appversion': '57.0'}
+        )
         assert response.status_code == 400
         assert response.data == {
             'detail': 'Invalid or missing type parameter while appversion '
-                      'parameter is set.'}
+            'parameter is set.'
+        }
 
     def test_with_invalid_appversion(self):
         response = self.client.get(
             self.url,
-            {'app': 'firefox', 'type': 'language', 'appversion': u'foôbar'})
+            {'app': 'firefox', 'type': 'language', 'appversion': u'foôbar'},
+        )
         assert response.status_code == 400
         assert response.data == {'detail': 'Invalid appversion parameter.'}
 
@@ -3489,15 +3860,16 @@ class TestLanguageToolsView(TestCase):
 
         response = self.client.get(
             self.url,
-            {'app': 'firefox', 'type': 'language', 'author': u'mozillä'})
+            {'app': 'firefox', 'type': 'language', 'author': u'mozillä'},
+        )
         assert response.status_code == 200
         data = json.loads(response.content)
         expected = [addon1, addon2]
 
         assert len(data['results']) == len(expected)
-        assert (
-            set(item['id'] for item in data['results']) ==
-            set(item.pk for item in expected))
+        assert set(item['id'] for item in data['results']) == set(
+            item.pk for item in expected
+        )
 
     def test_with_multiple_authors_filtering(self):
         user1 = user_factory(username=u'mozillä')
@@ -3515,105 +3887,153 @@ class TestLanguageToolsView(TestCase):
 
         response = self.client.get(
             self.url,
-            {'app': 'firefox', 'type': 'language',
-             'author': u'mozillä,firefôx'})
+            {
+                'app': 'firefox',
+                'type': 'language',
+                'author': u'mozillä,firefôx',
+            },
+        )
         assert response.status_code == 200
         data = json.loads(response.content)
         expected = [addon1, addon2]
         assert len(data['results']) == len(expected)
-        assert (
-            set(item['id'] for item in data['results']) ==
-            set(item.pk for item in expected))
+        assert set(item['id'] for item in data['results']) == set(
+            item.pk for item in expected
+        )
 
     def test_with_appversion_filtering(self):
         # Add compatible add-ons. We're going to request language packs
         # compatible with 58.0.
         compatible_pack1 = addon_factory(
             name='Spanish Language Pack',
-            type=amo.ADDON_LPAPP, target_locale='es',
+            type=amo.ADDON_LPAPP,
+            target_locale='es',
             file_kw={'strict_compatibility': True},
-            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'},
+        )
         compatible_pack1.current_version.update(created=self.days_ago(2))
         compatible_version1 = version_factory(
-            addon=compatible_pack1, file_kw={'strict_compatibility': True},
-            min_app_version='58.0', max_app_version='58.*')
+            addon=compatible_pack1,
+            file_kw={'strict_compatibility': True},
+            min_app_version='58.0',
+            max_app_version='58.*',
+        )
         compatible_version1.update(created=self.days_ago(1))
         compatible_pack2 = addon_factory(
             name='French Language Pack',
-            type=amo.ADDON_LPAPP, target_locale='fr',
+            type=amo.ADDON_LPAPP,
+            target_locale='fr',
             file_kw={'strict_compatibility': True},
-            version_kw={'min_app_version': '58.0', 'max_app_version': '58.*'})
+            version_kw={'min_app_version': '58.0', 'max_app_version': '58.*'},
+        )
         compatible_version2 = compatible_pack2.current_version
         compatible_version2.update(created=self.days_ago(1))
         version_factory(
-            addon=compatible_pack2, file_kw={'strict_compatibility': True},
-            min_app_version='59.0', max_app_version='59.*')
+            addon=compatible_pack2,
+            file_kw={'strict_compatibility': True},
+            min_app_version='59.0',
+            max_app_version='59.*',
+        )
         # Add a more recent version for both add-ons, that would be compatible
         # with 58.0, but is not public/listed so should not be returned.
         version_factory(
-            addon=compatible_pack1, file_kw={'strict_compatibility': True},
-            min_app_version='58.0', max_app_version='58.*',
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
+            addon=compatible_pack1,
+            file_kw={'strict_compatibility': True},
+            min_app_version='58.0',
+            max_app_version='58.*',
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
         version_factory(
             addon=compatible_pack2,
-            file_kw={'strict_compatibility': True,
-                     'status': amo.STATUS_DISABLED},
-            min_app_version='58.0', max_app_version='58.*')
+            file_kw={
+                'strict_compatibility': True,
+                'status': amo.STATUS_DISABLED,
+            },
+            min_app_version='58.0',
+            max_app_version='58.*',
+        )
         # And for the first pack, add a couple of versions that are also
         # compatible. We should not use them though, because we only need to
         # return the latest public version that is compatible.
         extra_compatible_version_1 = version_factory(
-            addon=compatible_pack1, file_kw={'strict_compatibility': True},
-            min_app_version='58.0', max_app_version='58.*')
+            addon=compatible_pack1,
+            file_kw={'strict_compatibility': True},
+            min_app_version='58.0',
+            max_app_version='58.*',
+        )
         extra_compatible_version_1.update(created=self.days_ago(3))
         extra_compatible_version_2 = version_factory(
-            addon=compatible_pack1, file_kw={'strict_compatibility': True},
-            min_app_version='58.0', max_app_version='58.*')
+            addon=compatible_pack1,
+            file_kw={'strict_compatibility': True},
+            min_app_version='58.0',
+            max_app_version='58.*',
+        )
         extra_compatible_version_2.update(created=self.days_ago(4))
 
         # Add a few of incompatible add-ons.
         incompatible_pack1 = addon_factory(
             name='German Language Pack (incompatible with 58.0)',
-            type=amo.ADDON_LPAPP, target_locale='fr',
+            type=amo.ADDON_LPAPP,
+            target_locale='fr',
             file_kw={'strict_compatibility': True},
-            version_kw={'min_app_version': '56.0', 'max_app_version': '56.*'})
+            version_kw={'min_app_version': '56.0', 'max_app_version': '56.*'},
+        )
         version_factory(
-            addon=incompatible_pack1, file_kw={'strict_compatibility': True},
-            min_app_version='59.0', max_app_version='59.*')
+            addon=incompatible_pack1,
+            file_kw={'strict_compatibility': True},
+            min_app_version='59.0',
+            max_app_version='59.*',
+        )
         addon_factory(
             name='Italian Language Pack (incompatible with 58.0)',
-            type=amo.ADDON_LPAPP, target_locale='it',
+            type=amo.ADDON_LPAPP,
+            target_locale='it',
             file_kw={'strict_compatibility': True},
-            version_kw={'min_app_version': '59.0', 'max_app_version': '59.*'})
+            version_kw={'min_app_version': '59.0', 'max_app_version': '59.*'},
+        )
         addon_factory(
             name='Thunderbird Polish Language Pack',
-            type=amo.ADDON_LPAPP, target_locale='pl',
+            type=amo.ADDON_LPAPP,
+            target_locale='pl',
             file_kw={'strict_compatibility': True},
             version_kw={
                 'application': amo.THUNDERBIRD.id,
-                'min_app_version': '58.0', 'max_app_version': '58.*'})
+                'min_app_version': '58.0',
+                'max_app_version': '58.*',
+            },
+        )
         # Even add a pack with a compatible version... not public. And another
         # one with a compatible version... not listed.
         incompatible_pack2 = addon_factory(
             name='Japanese Language Pack (public, but 58.0 version is not)',
-            type=amo.ADDON_LPAPP, target_locale='ja',
+            type=amo.ADDON_LPAPP,
+            target_locale='ja',
             file_kw={'strict_compatibility': True},
-            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'},
+        )
         version_factory(
             addon=incompatible_pack2,
-            min_app_version='58.0', max_app_version='58.*',
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW,
-                     'strict_compatibility': True})
+            min_app_version='58.0',
+            max_app_version='58.*',
+            file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'strict_compatibility': True,
+            },
+        )
         incompatible_pack3 = addon_factory(
             name='Nederlands Language Pack (58.0 version is unlisted)',
-            type=amo.ADDON_LPAPP, target_locale='ja',
+            type=amo.ADDON_LPAPP,
+            target_locale='ja',
             file_kw={'strict_compatibility': True},
-            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'},
+        )
         version_factory(
             addon=incompatible_pack3,
-            min_app_version='58.0', max_app_version='58.*',
+            min_app_version='58.0',
+            max_app_version='58.*',
             channel=amo.RELEASE_CHANNEL_UNLISTED,
-            file_kw={'strict_compatibility': True})
+            file_kw={'strict_compatibility': True},
+        )
 
         # Test it.
         with self.assertNumQueries(5):
@@ -3627,8 +4047,13 @@ class TestLanguageToolsView(TestCase):
             # - 1 for the files for those versions
             response = self.client.get(
                 self.url,
-                {'app': 'firefox', 'appversion': '58.0', 'type': 'language',
-                 'lang': 'en-US'})
+                {
+                    'app': 'firefox',
+                    'appversion': '58.0',
+                    'type': 'language',
+                    'lang': 'en-US',
+                },
+            )
         assert response.status_code == 200, response.content
         results = response.data['results']
         assert len(results) == 2
@@ -3638,44 +4063,59 @@ class TestLanguageToolsView(TestCase):
         assert results[0]['current_compatible_version']
         assert results[1]['current_compatible_version']
 
-        expected_versions = set((
-            (compatible_pack1.pk, compatible_version1.pk),
-            (compatible_pack2.pk, compatible_version2.pk),
-        ))
-        returned_versions = set((
-            (results[0]['id'], results[0]['current_compatible_version']['id']),
-            (results[1]['id'], results[1]['current_compatible_version']['id']),
-        ))
+        expected_versions = set(
+            (
+                (compatible_pack1.pk, compatible_version1.pk),
+                (compatible_pack2.pk, compatible_version2.pk),
+            )
+        )
+        returned_versions = set(
+            (
+                (
+                    results[0]['id'],
+                    results[0]['current_compatible_version']['id'],
+                ),
+                (
+                    results[1]['id'],
+                    results[1]['current_compatible_version']['id'],
+                ),
+            )
+        )
         assert expected_versions == returned_versions
 
     def test_memoize(self):
         addon_factory(type=amo.ADDON_DICT, target_locale='fr')
         addon_factory(
-            type=amo.ADDON_DICT, target_locale='fr',
-            locale_disambiguation='For spelling reform')
+            type=amo.ADDON_DICT,
+            target_locale='fr',
+            locale_disambiguation='For spelling reform',
+        )
         addon_factory(type=amo.ADDON_LPAPP, target_locale='es')
         addon_factory(
-            type=amo.ADDON_LPAPP, target_locale='de',
-            version_kw={'application': amo.THUNDERBIRD.id})
+            type=amo.ADDON_LPAPP,
+            target_locale='de',
+            version_kw={'application': amo.THUNDERBIRD.id},
+        )
 
         with self.assertNumQueries(2):
             response = self.client.get(
-                self.url, {'app': 'firefox', 'lang': 'fr'})
+                self.url, {'app': 'firefox', 'lang': 'fr'}
+            )
         assert response.status_code == 200
         assert len(json.loads(response.content)['results']) == 3
 
         # Same again, should be cached; no queries.
         with self.assertNumQueries(0):
             assert self.client.get(
-                self.url, {'app': 'firefox', 'lang': 'fr'}).content == (
-                    response.content
-            )
+                self.url, {'app': 'firefox', 'lang': 'fr'}
+            ).content == (response.content)
 
         with self.assertNumQueries(2):
             assert (
                 self.client.get(
-                    self.url, {'app': 'thunderbird', 'lang': 'fr'}).content !=
-                response.content
+                    self.url, {'app': 'thunderbird', 'lang': 'fr'}
+                ).content
+                != response.content
             )
         # Same again, should be cached; no queries.
         with self.assertNumQueries(0):
@@ -3692,8 +4132,8 @@ class TestReplacementAddonView(TestCase):
         # Add a single addon replacement
         rep_addon1 = addon_factory()
         ReplacementAddon.objects.create(
-            guid='legacy2addon@moz',
-            path=urlunquote(rep_addon1.get_url_path()))
+            guid='legacy2addon@moz', path=urlunquote(rep_addon1.get_url_path())
+        )
         # Add a collection replacement
         author = user_factory()
         collection = collection_factory(author=author)
@@ -3702,23 +4142,27 @@ class TestReplacementAddonView(TestCase):
         collection.set_addons([rep_addon2.id, rep_addon3.id])
         ReplacementAddon.objects.create(
             guid='legacy2collection@moz',
-            path=urlunquote(collection.get_url_path()))
+            path=urlunquote(collection.get_url_path()),
+        )
         # Add an invalid path
         ReplacementAddon.objects.create(
-            guid='notgonnawork@moz',
-            path='/addon/áddonmissing/')
+            guid='notgonnawork@moz', path='/addon/áddonmissing/'
+        )
 
         response = self.client.get(reverse_ns('addon-replacement-addon'))
         assert response.status_code == 200
         data = json.loads(response.content)
         results = data['results']
         assert len(results) == 3
-        assert ({'guid': 'legacy2addon@moz',
-                 'replacement': [rep_addon1.guid]} in results)
-        assert ({'guid': 'legacy2collection@moz',
-                 'replacement': [rep_addon2.guid, rep_addon3.guid]} in results)
-        assert ({'guid': 'notgonnawork@moz',
-                 'replacement': []} in results)
+        assert {
+            'guid': 'legacy2addon@moz',
+            'replacement': [rep_addon1.guid],
+        } in results
+        assert {
+            'guid': 'legacy2collection@moz',
+            'replacement': [rep_addon2.guid, rep_addon3.guid],
+        } in results
+        assert {'guid': 'notgonnawork@moz', 'replacement': []} in results
 
 
 class TestCompatOverrideView(TestCase):
@@ -3732,18 +4176,23 @@ class TestCompatOverrideView(TestCase):
     def setUp(self):
         self.addon = addon_factory(guid='extrabad@thing')
         self.override_addon = CompatOverride.objects.create(
-            name='override with addon', guid=self.addon.guid, addon=self.addon)
+            name='override with addon', guid=self.addon.guid, addon=self.addon
+        )
         CompatOverrideRange.objects.create(
-            compat=self.override_addon, app=amo.FIREFOX.id)
+            compat=self.override_addon, app=amo.FIREFOX.id
+        )
         self.override_without = CompatOverride.objects.create(
-            name='override no addon', guid='bad@thing')
+            name='override no addon', guid='bad@thing'
+        )
         CompatOverrideRange.objects.create(
-            compat=self.override_without, app=amo.FIREFOX.id)
+            compat=self.override_without, app=amo.FIREFOX.id
+        )
 
     def test_single_guid(self):
         response = self.client.get(
             reverse_ns('addon-compat-override'),
-            data={'guid': u'extrabad@thing'})
+            data={'guid': u'extrabad@thing'},
+        )
         assert response.status_code == 200
         data = json.loads(response.content)
         assert len(data['results']) == 1
@@ -3755,7 +4204,8 @@ class TestCompatOverrideView(TestCase):
     def test_multiple_guid(self):
         response = self.client.get(
             reverse_ns('addon-compat-override'),
-            data={'guid': u'extrabad@thing,bad@thing'})
+            data={'guid': u'extrabad@thing,bad@thing'},
+        )
         assert response.status_code == 200
         data = json.loads(response.content)
         results = data['results']
@@ -3771,8 +4221,12 @@ class TestCompatOverrideView(TestCase):
         # Throw in some random invalid guids too that will be ignored.
         response = self.client.get(
             reverse_ns('addon-compat-override'),
-            data={'guid': (
-                u'extrabad@thing,invalid@guid,notevenaguid$,bad@thing')})
+            data={
+                'guid': (
+                    u'extrabad@thing,invalid@guid,notevenaguid$,bad@thing'
+                )
+            },
+        )
         assert response.status_code == 200
         data = json.loads(response.content)
         results = data['results']
@@ -3783,19 +4237,20 @@ class TestCompatOverrideView(TestCase):
     def test_no_guid_param(self):
         response = self.client.get(
             reverse_ns('addon-compat-override'),
-            data={'guid': u'invalid@thing'})
+            data={'guid': u'invalid@thing'},
+        )
         # Searching for non-matching guids, it should be an empty 200 response.
         assert response.status_code == 200
         assert len(json.loads(response.content)['results']) == 0
 
         response = self.client.get(
-            reverse_ns('addon-compat-override'), data={'guid': ''})
+            reverse_ns('addon-compat-override'), data={'guid': ''}
+        )
         # Empty query is a 400 because a guid is required for overrides.
         assert response.status_code == 400
         assert 'Empty, or no, guid parameter provided.' in response.content
 
-        response = self.client.get(
-            reverse_ns('addon-compat-override'))
+        response = self.client.get(reverse_ns('addon-compat-override'))
         # And no guid param should be a 400 too
         assert response.status_code == 400
         assert 'Empty, or no, guid parameter provided.' in response.content
@@ -3806,7 +4261,8 @@ class TestCompatOverrideView(TestCase):
         with self.assertNumQueries(1):
             response = self.client.get(
                 reverse_ns('addon-compat-override'),
-                data={'guid': u'unknownguid'})
+                data={'guid': u'unknownguid'},
+            )
             assert response.status_code == 200
             data = json.loads(response.content)
             assert len(data['results']) == 0
@@ -3817,7 +4273,8 @@ class TestCompatOverrideView(TestCase):
         with self.assertNumQueries(2):
             response = self.client.get(
                 reverse_ns('addon-compat-override'),
-                data={'guid': u'extrabad@thing'})
+                data={'guid': u'extrabad@thing'},
+            )
             assert response.status_code == 200
             data = json.loads(response.content)
             assert len(data['results']) == 1
@@ -3828,9 +4285,13 @@ class TestCompatOverrideView(TestCase):
         with self.assertNumQueries(2):
             response = self.client.get(
                 reverse_ns('addon-compat-override'),
-                data={'guid': (
-                    u'extrabad@thing,invalid@guid,notevenaguid$,'
-                    u'bad@thing')})
+                data={
+                    'guid': (
+                        u'extrabad@thing,invalid@guid,notevenaguid$,'
+                        u'bad@thing'
+                    )
+                },
+            )
             assert response.status_code == 200
             data = json.loads(response.content)
             assert len(data['results']) == 2
@@ -3844,8 +4305,7 @@ class TestAddonRecommendationView(ESTestCase):
     def setUp(self):
         super(TestAddonRecommendationView, self).setUp()
         self.url = reverse_ns('addon-recommendations')
-        patcher = mock.patch(
-            'olympia.addons.views.get_addon_recommendations')
+        patcher = mock.patch('olympia.addons.views.get_addon_recommendations')
         self.get_recommendations_mock = patcher.start()
         self.addCleanup(patcher.stop)
 
@@ -3868,11 +4328,14 @@ class TestAddonRecommendationView(ESTestCase):
         addon4 = addon_factory(id=104, guid='104@mozilla')
         self.get_recommendations_mock.return_value = (
             ['101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'],
-            'recommended', 'no_reason')
+            'recommended',
+            'no_reason',
+        )
         self.refresh()
 
         data = self.perform_search(
-            self.url, {'guid': 'foo@baa', 'recommended': 'False'})
+            self.url, {'guid': 'foo@baa', 'recommended': 'False'}
+        )
         self.get_recommendations_mock.assert_called_with('foo@baa', False)
         assert data['outcome'] == 'recommended'
         assert data['fallback_reason'] == 'no_reason'
@@ -3904,14 +4367,19 @@ class TestAddonRecommendationView(ESTestCase):
         addon8 = addon_factory(id=108, guid='108@mozilla')
         self.get_recommendations_mock.return_value = (
             ['101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'],
-            'recommended', None)
+            'recommended',
+            None,
+        )
         get_addon_recommendations_invalid.return_value = (
             ['105@mozilla', '106@mozilla', '107@mozilla', '108@mozilla'],
-            'failed', 'invalid')
+            'failed',
+            'invalid',
+        )
         self.refresh()
 
         data = self.perform_search(
-            self.url, {'guid': 'foo@baa', 'recommended': 'True'})
+            self.url, {'guid': 'foo@baa', 'recommended': 'True'}
+        )
         self.get_recommendations_mock.assert_called_with('foo@baa', True)
         assert data['outcome'] == 'recommended'
         assert data['fallback_reason'] is None
@@ -3935,7 +4403,8 @@ class TestAddonRecommendationView(ESTestCase):
         addon1.delete()
         self.refresh()
         data = self.perform_search(
-            self.url, {'guid': 'foo@baa', 'recommended': 'True'})
+            self.url, {'guid': 'foo@baa', 'recommended': 'True'}
+        )
         self.get_recommendations_mock.assert_called_with('foo@baa', True)
         assert data['outcome'] == 'failed'
         assert data['fallback_reason'] == 'invalid'
@@ -3957,13 +4426,16 @@ class TestAddonRecommendationView(ESTestCase):
 
     def test_es_queries_made_no_results(self):
         self.get_recommendations_mock.return_value = (
-            ['@a', '@b'], 'foo', 'baa')
+            ['@a', '@b'],
+            'foo',
+            'baa',
+        )
         with patch.object(
-                Elasticsearch, 'search',
-                wraps=amo.search.get_es().search) as search_mock:
+            Elasticsearch, 'search', wraps=amo.search.get_es().search
+        ) as search_mock:
             with patch.object(
-                    Elasticsearch, 'count',
-                    wraps=amo.search.get_es().count) as count_mock:
+                Elasticsearch, 'count', wraps=amo.search.get_es().count
+            ) as count_mock:
                 data = self.perform_search(self.url, data={'guid': '@foo'})
                 assert data['count'] == 0
                 assert len(data['results']) == 0
@@ -3978,15 +4450,19 @@ class TestAddonRecommendationView(ESTestCase):
         self.refresh()
 
         self.get_recommendations_mock.return_value = (
-            ['@a', '@b', '@c', '@d'], 'recommended', None)
+            ['@a', '@b', '@c', '@d'],
+            'recommended',
+            None,
+        )
         with patch.object(
-                Elasticsearch, 'search',
-                wraps=amo.search.get_es().search) as search_mock:
+            Elasticsearch, 'search', wraps=amo.search.get_es().search
+        ) as search_mock:
             with patch.object(
-                    Elasticsearch, 'count',
-                    wraps=amo.search.get_es().count) as count_mock:
+                Elasticsearch, 'count', wraps=amo.search.get_es().count
+            ) as count_mock:
                 data = self.perform_search(
-                    self.url, data={'guid': '@foo', 'recommended': 'true'})
+                    self.url, data={'guid': '@foo', 'recommended': 'true'}
+                )
                 assert data['count'] == 4
                 assert len(data['results']) == 4
                 assert search_mock.call_count == 1

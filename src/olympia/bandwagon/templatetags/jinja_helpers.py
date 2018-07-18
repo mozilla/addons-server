@@ -36,8 +36,12 @@ def user_collection_list(collections=None, heading='', id='', link=None):
     """list of collections, as used on the user profile page"""
     if collections is None:
         collections = []
-    c = {'collections': collections, 'heading': heading, 'link': link,
-         'id': id}
+    c = {
+        'collections': collections,
+        'heading': heading,
+        'link': link,
+        'id': id,
+    }
     template = loader.get_template('bandwagon/users/collection_list.html')
     return jinja2.Markup(template.render(c))
 
@@ -80,7 +84,8 @@ def barometer(context, collection):
 
     if total_votes:
         up_ratio = int(
-            math.ceil(round(100 * collection.upvotes / total_votes, 2)))
+            math.ceil(round(100 * collection.upvotes / total_votes, 2))
+        )
         down_ratio = 100 - up_ratio
 
         up_width = max(up_ratio - 1, 0)
@@ -127,14 +132,19 @@ def favorites_widget(context, addon, condensed=False):
 
         unfaved_text = '' if condensed else ugettext('Add to favorites')
         faved_text = (
-            ugettext('Favorite') if condensed else
-            ugettext('Remove from favorites'))
+            ugettext('Favorite')
+            if condensed
+            else ugettext('Remove from favorites')
+        )
 
-        add_url = reverse('collections.alter',
-                          args=[request.user.username, 'favorites', 'add'])
-        remove_url = reverse('collections.alter',
-                             args=[request.user.username,
-                                   'favorites', 'remove'])
+        add_url = reverse(
+            'collections.alter',
+            args=[request.user.username, 'favorites', 'add'],
+        )
+        remove_url = reverse(
+            'collections.alter',
+            args=[request.user.username, 'favorites', 'remove'],
+        )
 
         c.update(locals())
         t = loader.get_template('bandwagon/favorites_widget.html').render(c)
@@ -147,7 +157,6 @@ def collection_widgets(context, collection, condensed=False):
     """Displays collection widgets"""
     c = dict(context.items())
     if collection:
-        c.update({'condensed': condensed,
-                  'c': collection})
+        c.update({'condensed': condensed, 'c': collection})
         template = loader.get_template('bandwagon/collection_widgets.html')
         return jinja2.Markup(template.render(c))

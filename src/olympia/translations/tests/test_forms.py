@@ -16,7 +16,6 @@ class DummyForm(forms.TranslationFormMixin, ModelForm):
 
 
 class TestTranslationFormMixin(TestCase):
-
     def test_default_locale(self):
         obj = TranslatedModel()
         obj.get_fallback = lambda: 'pl'

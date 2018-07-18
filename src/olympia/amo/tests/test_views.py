@@ -22,7 +22,11 @@ from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import (
-    TestCase, WithDynamicEndpoints, check_links, reverse_ns)
+    TestCase,
+    WithDynamicEndpoints,
+    check_links,
+    reverse_ns,
+)
 from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
 
@@ -53,7 +57,6 @@ class Test403(TestCase):
 
 
 class Test404(TestCase):
-
     def test_404_no_app(self):
         """Make sure a 404 without an app doesn't turn into a 500."""
         # That could happen if helpers or templates expect APP to be defined.
@@ -213,7 +216,8 @@ class TestCommon(TestCase):
             ('Admin Tools', reverse('zadmin.index')),
         ]
         check_links(
-            expected, pq(response.content)('#aux-nav .tools a'), verify=False)
+            expected, pq(response.content)('#aux-nav .tools a'), verify=False
+        )
 
     def test_tools_developer_and_admin(self):
         # Make them a developer.
@@ -239,7 +243,8 @@ class TestCommon(TestCase):
             ('Admin Tools', reverse('zadmin.index')),
         ]
         check_links(
-            expected, pq(response.content)('#aux-nav .tools a'), verify=False)
+            expected, pq(response.content)('#aux-nav .tools a'), verify=False
+        )
 
 
 class TestOtherStuff(TestCase):
@@ -273,8 +278,9 @@ class TestOtherStuff(TestCase):
         response = self.client.get('/en-US/thunderbird/')
         doc = pq(response.content)
         assert doc('#site-notice').length == 1
-        assert doc('#site-nonfx').length == 0, (
-            'This balloon should appear for Firefox only')
+        assert (
+            doc('#site-nonfx').length == 0
+        ), 'This balloon should appear for Firefox only'
         assert doc('#site-welcome').length == 1
 
     def test_heading(self):
@@ -288,13 +294,16 @@ class TestOtherStuff(TestCase):
         title_eq('/thunderbird/', 'Thunderbird', 'Add-ons')
         title_eq('/android/', 'Firefox for Android', 'Android Add-ons')
 
-    @patch('olympia.accounts.utils.default_fxa_login_url',
-           lambda request: 'https://login.com')
+    @patch(
+        'olympia.accounts.utils.default_fxa_login_url',
+        lambda request: 'https://login.com',
+    )
     def test_login_link(self):
         r = self.client.get(reverse('home'), follow=True)
         doc = pq(r.content)
         assert 'https://login.com' == (
-            doc('.account.anonymous a')[1].attrib['href'])
+            doc('.account.anonymous a')[1].attrib['href']
+        )
 
     def test_tools_loggedout(self):
         r = self.client.get(reverse('home'), follow=True)
@@ -317,9 +326,12 @@ class TestOtherStuff(TestCase):
         """Make sure we're setting REMOTE_ADDR from X_FORWARDED_FOR."""
         client = test.Client()
         # Send X-Forwarded-For as it shows up in a wsgi request.
-        client.get('/en-US/firefox/', follow=True,
-                   HTTP_X_FORWARDED_FOR='1.1.1.1',
-                   REMOTE_ADDR='127.0.0.1')
+        client.get(
+            '/en-US/firefox/',
+            follow=True,
+            HTTP_X_FORWARDED_FOR='1.1.1.1',
+            REMOTE_ADDR='127.0.0.1',
+        )
         assert set_remote_addr_mock.call_count == 2
         assert set_remote_addr_mock.call_args_list[0] == (('1.1.1.1',), {})
         assert set_remote_addr_mock.call_args_list[1] == ((None,), {})
@@ -333,10 +345,12 @@ class TestOtherStuff(TestCase):
         js_url = '%s%s' % (settings.CDN_HOST, reverse('jsi18n'))
         url_with_build = doc('script[src^="%s"]' % js_url).attr('src')
 
-        response = client.get(url_with_build.replace(settings.CDN_HOST, ''),
-                              follow=False)
-        self.assertCloseToNow(response['Expires'],
-                              now=datetime.now() + timedelta(days=365))
+        response = client.get(
+            url_with_build.replace(settings.CDN_HOST, ''), follow=False
+        )
+        self.assertCloseToNow(
+            response['Expires'], now=datetime.now() + timedelta(days=365)
+        )
 
     @pytest.mark.needs_locales_compilation
     def test_jsi18n(self):
@@ -357,7 +371,8 @@ class TestOtherStuff(TestCase):
     def test_dictionaries_link(self):
         doc = pq(test.Client().get('/', follow=True).content)
         assert doc('#site-nav #more .more-lang a').attr('href') == (
-            reverse('browse.language-tools'))
+            reverse('browse.language-tools')
+        )
 
     def test_mobile_link_firefox(self):
         doc = pq(test.Client().get('/firefox', follow=True).content)
@@ -416,16 +431,16 @@ class TestCORS(TestCase):
 
 
 class TestContribute(TestCase):
-
     def test_contribute_json(self):
         res = self.client.get('/contribute.json')
         assert res.status_code == 200
         assert res._headers['content-type'] == (
-            'Content-Type', 'application/json')
+            'Content-Type',
+            'application/json',
+        )
 
 
 class TestRobots(TestCase):
-
     @override_settings(ENGAGE_ROBOTS=True)
     def test_disable_collections(self):
         """Make sure /en-US/firefox/collections/ gets disabled"""
@@ -436,7 +451,6 @@ class TestRobots(TestCase):
 
 
 class TestAtomicRequests(WithDynamicEndpoints, TransactionTestCase):
-
     def setUp(self):
         super(TestAtomicRequests, self).setUp()
         self.slug = 'slug-{}'.format(random.randint(1, 1000))
@@ -445,7 +459,8 @@ class TestAtomicRequests(WithDynamicEndpoints, TransactionTestCase):
     def view(self, request):
         Addon.objects.create(slug=self.slug)
         raise RuntimeError(
-            'pretend this is an error that would roll back the transaction')
+            'pretend this is an error that would roll back the transaction'
+        )
 
     def test_exception_rolls_back_transaction(self):
         qs = Addon.objects.filter(slug=self.slug)
@@ -459,9 +474,10 @@ class TestAtomicRequests(WithDynamicEndpoints, TransactionTestCase):
 
 
 class TestVersion(TestCase):
-
     def test_version_json(self):
         res = self.client.get('/__version__')
         assert res.status_code == 200
         assert res._headers['content-type'] == (
-            'Content-Type', 'application/json')
+            'Content-Type',
+            'application/json',
+        )

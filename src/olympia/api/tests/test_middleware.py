@@ -38,8 +38,9 @@ class TestGzipMiddleware(TestCase):
         # Sadly, raven inserts 2 middlewares before, but luckily the ones it
         # automatically inserts not modify the response.
         assert (
-            settings.MIDDLEWARE_CLASSES[2] ==
-            'olympia.api.middleware.GZipMiddlewareForAPIOnly')
+            settings.MIDDLEWARE_CLASSES[2]
+            == 'olympia.api.middleware.GZipMiddlewareForAPIOnly'
+        )
 
     def test_api_endpoint_gzipped(self):
         """Test a simple API endpoint to make sure gzip is active there."""
@@ -51,15 +52,18 @@ class TestGzipMiddleware(TestCase):
         assert 'Content-Encoding' not in response
 
         response_gzipped = self.client.get(
-            url, HTTP_ACCEPT_ENCODING='gzip',
+            url,
+            HTTP_ACCEPT_ENCODING='gzip',
             # Pretend that this happened over https, to test that this is still
             # enabled even for https.
-            **{'wsgi.url_scheme': 'https'})
+            **{'wsgi.url_scheme': 'https'}
+        )
         assert response_gzipped.status_code == 200
         assert response_gzipped.content
         assert response_gzipped['Content-Encoding'] == 'gzip'
 
         assert len(response_gzipped.content) < len(response.content)
         ungzipped_content = GzipFile(
-            '', 'r', 0, StringIO(response_gzipped.content)).read()
+            '', 'r', 0, StringIO(response_gzipped.content)
+        ).read()
         assert ungzipped_content == response.content

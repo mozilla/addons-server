@@ -41,13 +41,13 @@ class AddonFeedMixin(object):
 
     def item_guid(self, addon):
         """Guid for a particuar version (<item><guid>)"""
-        url_ = reverse('addons.versions',
-                       args=[addon.slug, addon.current_version])
+        url_ = reverse(
+            'addons.versions', args=[addon.slug, addon.current_version]
+        )
         return absolutify(url_)
 
 
 class CategoriesRss(AddonFeedMixin, NonAtomicFeed):
-
     def get_object(self, request, category_name=None):
         """
         Get the Category for which we are about to output
@@ -134,9 +134,13 @@ class FeaturedRss(AddonFeedMixin, NonAtomicFeed):
     def description(self):
         """Description for the feed"""
         # L10n: %s is an app name.
-        return ugettext(
-            'Here\'s a few of our favorite add-ons to help you get'
-            ' started customizing %s.') % self.appname
+        return (
+            ugettext(
+                'Here\'s a few of our favorite add-ons to help you get'
+                ' started customizing %s.'
+            )
+            % self.appname
+        )
 
     def items(self):
         """Return the Addons to be output as RSS <item>'s"""
@@ -153,8 +157,9 @@ class SearchToolsRss(AddonFeedMixin, NonAtomicFeed):
         """Description of this feed."""
         if self.category:
             # L10n: %s is a category name.
-            return ugettext(
-                u'Search tools relating to %s') % self.category.name
+            return (
+                ugettext(u'Search tools relating to %s') % self.category.name
+            )
         elif self.show_featured:
             return ugettext('Search tools and search-related extensions')
         else:
@@ -164,8 +169,9 @@ class SearchToolsRss(AddonFeedMixin, NonAtomicFeed):
         if category:
             # Note that we don't need to include extensions
             # when looking up a category
-            qs = Category.objects.filter(application=request.APP.id,
-                                         type=amo.ADDON_SEARCH)
+            qs = Category.objects.filter(
+                application=request.APP.id, type=amo.ADDON_SEARCH
+            )
             self.category = get_object_or_404(qs, slug=category)
         else:
             self.category = None
@@ -188,8 +194,9 @@ class SearchToolsRss(AddonFeedMixin, NonAtomicFeed):
         - when viewing categories or any other sorting, do not
           include extensions.
         """
-        addons, filter = addon_listing(self.request, self.TYPES,
-                                       SearchToolsFilter, default='popular')
+        addons, filter = addon_listing(
+            self.request, self.TYPES, SearchToolsFilter, default='popular'
+        )
         if self.category:
             addons = addons.filter(categories__id=self.category.id)
         return addons[:30]

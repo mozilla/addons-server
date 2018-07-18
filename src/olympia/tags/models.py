@@ -7,7 +7,6 @@ from olympia.amo.urlresolvers import reverse
 
 
 class TagManager(ManagerBase):
-
     def not_denied(self):
         """Get allowed tags only"""
         return self.filter(denied=False)
@@ -17,8 +16,9 @@ class Tag(ModelBase):
     tag_text = models.CharField(max_length=128)
     denied = models.BooleanField(default=False)
     restricted = models.BooleanField(default=False)
-    addons = models.ManyToManyField('addons.Addon', through='AddonTag',
-                                    related_name='tags')
+    addons = models.ManyToManyField(
+        'addons.Addon', through='AddonTag', related_name='tags'
+    )
     num_addons = models.IntegerField(default=0)
 
     objects = TagManager()
@@ -73,6 +73,7 @@ class AddonTag(ModelBase):
 
 def update_tag_stat_signal(sender, instance, **kw):
     from .tasks import update_tag_stat
+
     if not kw.get('raw'):
         try:
             update_tag_stat.delay(instance.tag.pk)
@@ -80,7 +81,9 @@ def update_tag_stat_signal(sender, instance, **kw):
             pass
 
 
-models.signals.post_save.connect(update_tag_stat_signal, sender=AddonTag,
-                                 dispatch_uid='update_tag_stat')
-models.signals.post_delete.connect(update_tag_stat_signal, sender=AddonTag,
-                                   dispatch_uid='delete_tag_stat')
+models.signals.post_save.connect(
+    update_tag_stat_signal, sender=AddonTag, dispatch_uid='update_tag_stat'
+)
+models.signals.post_delete.connect(
+    update_tag_stat_signal, sender=AddonTag, dispatch_uid='delete_tag_stat'
+)

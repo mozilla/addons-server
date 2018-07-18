@@ -41,6 +41,7 @@ class CollectionCount(StatsSearchMixin, models.Model):
 
 class CollectionStats(models.Model):
     """In the running for worst-named model ever."""
+
     collection = models.ForeignKey('bandwagon.Collection')
     name = models.CharField(max_length=255, null=True)
     count = models.PositiveIntegerField()
@@ -93,7 +94,6 @@ class UpdateCount(StatsSearchMixin, models.Model):
 
 
 class ThemeUpdateCountManager(models.Manager):
-
     def get_range_days_avg(self, start, end, *extra_fields):
         """Return a a ValuesListQuerySet containing the addon_id and popularity
         for each theme where popularity is the average number of users (count)
@@ -101,13 +101,16 @@ class ThemeUpdateCountManager(models.Manager):
 
         If extra_fields are passed, then the list of fields is returned in the
         queryset, inserted after addon_id but before popularity."""
-        return (self.values_list('addon_id', *extra_fields)
-                    .filter(date__range=[start, end])
-                    .annotate(avg=models.Avg('count')))
+        return (
+            self.values_list('addon_id', *extra_fields)
+            .filter(date__range=[start, end])
+            .annotate(avg=models.Avg('count'))
+        )
 
 
 class ThemeUpdateCount(StatsSearchMixin, models.Model):
     """Daily users taken from the ADI data (coming from Hive)."""
+
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     date = models.DateField()
@@ -126,6 +129,7 @@ class ThemeUpdateCountBulk(models.Model):
     per Persona).
 
     """
+
     persona_id = models.PositiveIntegerField()
     popularity = models.PositiveIntegerField()
     movers = models.FloatField()
@@ -152,6 +156,7 @@ class ThemeUserCount(StatsSearchMixin, models.Model):
     (Persona).
 
     """
+
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     date = models.DateField()

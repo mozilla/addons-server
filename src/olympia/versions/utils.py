@@ -26,8 +26,9 @@ def write_svg_to_png(svg_content, out):
                 os.makedirs(out)
             command = [
                 settings.RSVG_CONVERT_BIN,
-                '-o', out,
-                temporary_svg.name
+                '-o',
+                out,
+                temporary_svg.name,
             ]
             subprocess.check_call(command)
         except IOError as io_error:
@@ -46,7 +47,9 @@ def encode_header_image(path):
             with Image.open(StringIO.StringIO(header_blob)) as header_image:
                 (width, height) = header_image.size
             src = 'data:image/%s;base64,%s' % (
-                header_image.format.lower(), b64encode(header_blob))
+                header_image.format.lower(),
+                b64encode(header_blob),
+            )
     except IOError as io_error:
         log.debug(io_error)
         return (None, 0, 0)
@@ -54,7 +57,6 @@ def encode_header_image(path):
 
 
 class AdditionalBackground(object):
-
     @classmethod
     def split_alignment(cls, alignment):
         alignments = alignment.split()
@@ -77,11 +79,14 @@ class AdditionalBackground(object):
         self.alignment = (alignment or 'left top').lower()
         tiling = (tiling or 'no-repeat').lower()
         self.src, self.width, self.height = encode_header_image(
-            os.path.join(header_root, path))
-        self.pattern_width = (self.width if tiling in ['repeat', 'repeat-x']
-                              else '100%')
-        self.pattern_height = (self.height if tiling in ['repeat', 'repeat-y']
-                               else '100%')
+            os.path.join(header_root, path)
+        )
+        self.pattern_width = (
+            self.width if tiling in ['repeat', 'repeat-x'] else '100%'
+        )
+        self.pattern_height = (
+            self.height if tiling in ['repeat', 'repeat-y'] else '100%'
+        )
 
     def calculate_pattern_offsets(self, svg_width, svg_height):
         align_x, align_y = self.split_alignment(self.alignment)

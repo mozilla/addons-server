@@ -44,11 +44,17 @@ def _personas(request):
         'created': '-created',
         'name': 'name.raw',
         'updated': '-last_updated',
-        'hotness': '-hotness'}
-    results = _filter_search(request, qs, form.cleaned_data, filters,
-                             sorting=mapping,
-                             sorting_default='-average_daily_users',
-                             types=[amo.ADDON_PERSONA])
+        'hotness': '-hotness',
+    }
+    results = _filter_search(
+        request,
+        qs,
+        form.cleaned_data,
+        filters,
+        sorting=mapping,
+        sorting_default='-average_daily_users',
+        types=[amo.ADDON_PERSONA],
+    )
 
     form_data = form.cleaned_data.get('q', '')
 
@@ -65,7 +71,8 @@ def _personas(request):
         'categories': categories,
         'query': form_data,
         'filter': filter,
-        'search_placeholder': 'themes'}
+        'search_placeholder': 'themes',
+    }
     return render(request, 'search/personas.html', context)
 
 
@@ -103,10 +110,7 @@ class BaseAjaxSearch(object):
             'id': 'id',
             'name': 'name',
             'url': 'get_url_path',
-            'icons': {
-                '32': ('get_icon_url', 32),
-                '64': ('get_icon_url', 64)
-            }
+            'icons': {'32': ('get_icon_url', 32), '64': ('get_icon_url', 64)},
         }
         self.fields = getattr(self, 'fields', default_fields)
         if self.ratings:
@@ -149,7 +153,7 @@ class BaseAjaxSearch(object):
     def build_list(self):
         """Populate a list of dictionaries based on label => property."""
         results = []
-        for item in self.queryset()[:self.limit]:
+        for item in self.queryset()[: self.limit]:
             if item.id in self.excluded_ids:
                 continue
             d = self._build_fields(item, self.fields)
@@ -169,8 +173,13 @@ class SearchSuggestionsAjax(BaseAjaxSearch):
 
 class AddonSuggestionsAjax(SearchSuggestionsAjax):
     # No personas.
-    types = [amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
-             amo.ADDON_SEARCH, amo.ADDON_LPAPP]
+    types = [
+        amo.ADDON_EXTENSION,
+        amo.ADDON_THEME,
+        amo.ADDON_DICT,
+        amo.ADDON_SEARCH,
+        amo.ADDON_LPAPP,
+    ]
 
 
 class PersonaSuggestionsAjax(SearchSuggestionsAjax):
@@ -199,10 +208,7 @@ def ajax_search_suggestions(request):
         'themes': PersonaSuggestionsAjax,
     }.get(cat, AddonSuggestionsAjax)
     suggester = suggesterClass(request, ratings=False)
-    return _build_suggestions(
-        request,
-        cat,
-        suggester)
+    return _build_suggestions(request, cat, suggester)
 
 
 def _build_suggestions(request, cat, suggester):
@@ -217,17 +223,20 @@ def _build_suggestions(request, cat, suggester):
                 name_ = unicode(a.pretty).lower()
                 word_matches = [w for w in q_.split() if name_ in w]
                 if q_ in name_ or word_matches:
-                    results.append({
-                        'id': a.id,
-                        'name': ugettext(u'{0} Add-ons').format(a.pretty),
-                        'url': locale_url(a.short),
-                        'cls': 'app ' + a.short
-                    })
+                    results.append(
+                        {
+                            'id': a.id,
+                            'name': ugettext(u'{0} Add-ons').format(a.pretty),
+                            'url': locale_url(a.short),
+                            'cls': 'app ' + a.short,
+                        }
+                    )
 
         # Categories.
         cats = Category.objects
-        cats = cats.filter(Q(application=request.APP.id) |
-                           Q(type=amo.ADDON_SEARCH))
+        cats = cats.filter(
+            Q(application=request.APP.id) | Q(type=amo.ADDON_SEARCH)
+        )
         if cat == 'themes':
             cats = cats.filter(type=amo.ADDON_PERSONA)
         else:
@@ -239,20 +248,29 @@ def _build_suggestions(request, cat, suggester):
             name_ = unicode(c.name).lower()
             word_matches = [w for w in q_.split() if name_ in w]
             if q_ in name_ or word_matches:
-                results.append({
-                    'id': c.id,
-                    'name': unicode(c.name),
-                    'url': c.get_url_path(),
-                    'cls': 'cat'
-                })
+                results.append(
+                    {
+                        'id': c.id,
+                        'name': unicode(c.name),
+                        'url': c.get_url_path(),
+                        'cls': 'cat',
+                    }
+                )
 
         results += suggester.items
 
     return results
 
 
-def _filter_search(request, qs, query, filters, sorting,
-                   sorting_default='-weekly_downloads', types=None):
+def _filter_search(
+    request,
+    qs,
+    query,
+    filters,
+    sorting,
+    sorting_default='-weekly_downloads',
+    types=None,
+):
     """Filter an ES queryset based on a list of filters."""
     if types is None:
         types = []
@@ -274,17 +292,20 @@ def _filter_search(request, qs, query, filters, sorting,
         high = version_int(query['appver'] + 'a')
         # Note: when strict compatibility is not enabled on add-ons, we
         # fake the max version we index in compatible_apps.
-        qs = qs.filter(**{
-            'current_version.compatible_apps.%s.max__gte' % APP.id: high,
-            'current_version.compatible_apps.%s.min__lte' % APP.id: low
-        })
+        qs = qs.filter(
+            **{
+                'current_version.compatible_apps.%s.max__gte' % APP.id: high,
+                'current_version.compatible_apps.%s.min__lte' % APP.id: low,
+            }
+        )
     if 'atype' in show and query['atype'] in amo.ADDON_TYPES:
         qs = qs.filter(type=query['atype'])
     else:
         qs = qs.filter(type__in=types)
     if 'cat' in show:
-        cat = (Category.objects.filter(id=query['cat'])
-               .filter(Q(application=APP.id) | Q(type=amo.ADDON_SEARCH)))
+        cat = Category.objects.filter(id=query['cat']).filter(
+            Q(application=APP.id) | Q(type=amo.ADDON_SEARCH)
+        )
         if not cat.exists():
             show.remove('cat')
         if 'cat' in show:
@@ -304,8 +325,13 @@ def _filter_search(request, qs, query, filters, sorting,
 @non_atomic_requests
 def search(request, tag_name=None):
     APP = request.APP
-    types = (amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
-             amo.ADDON_SEARCH, amo.ADDON_LPAPP)
+    types = (
+        amo.ADDON_EXTENSION,
+        amo.ADDON_THEME,
+        amo.ADDON_DICT,
+        amo.ADDON_SEARCH,
+        amo.ADDON_LPAPP,
+    )
 
     category = request.GET.get('cat')
 
@@ -322,7 +348,8 @@ def search(request, tag_name=None):
         # new frontend. https://github.com/mozilla/addons-server/issues/6846
         status = 302 if 'type' in request.GET else 301
         return http.HttpResponseRedirect(
-            urlparams(request.path, **fixed), status=status)
+            urlparams(request.path, **fixed), status=status
+        )
 
     facets = request.GET.copy()
 
@@ -354,20 +381,26 @@ def search(request, tag_name=None):
     # from our constants directly, using the current application for this
     # request (request.APP).
     appversion_field = 'current_version.compatible_apps.%s.max' % APP.id
-    qs = (Addon.search_public().filter(app=APP.id)
-          .aggregate(tags={'terms': {'field': 'tags'}},
-                     appversions={'terms': {'field': appversion_field}},
-                     categories={'terms': {'field': 'category', 'size': 200}})
-          )
+    qs = (
+        Addon.search_public()
+        .filter(app=APP.id)
+        .aggregate(
+            tags={'terms': {'field': 'tags'}},
+            appversions={'terms': {'field': appversion_field}},
+            categories={'terms': {'field': 'category', 'size': 200}},
+        )
+    )
 
     filters = ['atype', 'appver', 'cat', 'sort', 'tag', 'platform']
-    mapping = {'users': '-average_daily_users',
-               'rating': '-bayesian_rating',
-               'created': '-created',
-               'name': 'name.raw',
-               'downloads': '-weekly_downloads',
-               'updated': '-last_updated',
-               'hotness': '-hotness'}
+    mapping = {
+        'users': '-average_daily_users',
+        'rating': '-bayesian_rating',
+        'created': '-created',
+        'name': 'name.raw',
+        'downloads': '-weekly_downloads',
+        'updated': '-last_updated',
+        'hotness': '-hotness',
+    }
     qs = _filter_search(request, qs, form_data, filters, mapping, types=types)
 
     pager = amo.utils.paginate(request, qs)
@@ -384,18 +417,21 @@ def search(request, tag_name=None):
     }
     if not ctx['is_pjax']:
         aggregations = pager.object_list.aggregations
-        ctx.update({
-            'tag': tag_name,
-            'categories': category_sidebar(request, form_data, aggregations),
-            'platforms': platform_sidebar(request, form_data),
-            'versions': version_sidebar(request, form_data, aggregations),
-            'tags': tag_sidebar(request, form_data, aggregations),
-        })
+        ctx.update(
+            {
+                'tag': tag_name,
+                'categories': category_sidebar(
+                    request, form_data, aggregations
+                ),
+                'platforms': platform_sidebar(request, form_data),
+                'versions': version_sidebar(request, form_data, aggregations),
+                'tags': tag_sidebar(request, form_data, aggregations),
+            }
+        )
     return render(request, 'search/results.html', ctx)
 
 
 class FacetLink(object):
-
     def __init__(self, text, urlparams, selected=False, children=None):
         self.text = text
         self.urlparams = urlparams
@@ -405,8 +441,10 @@ class FacetLink(object):
 
 def sort_sidebar(request, form_data, form):
     sort = form_data.get('sort')
-    return [FacetLink(text, {'sort': key}, key == sort)
-            for key, text in form.sort_choices]
+    return [
+        FacetLink(text, {'sort': key}, key == sort)
+        for key, text in form.sort_choices
+    ]
 
 
 def category_sidebar(request, form_data, aggregations):
@@ -417,8 +455,9 @@ def category_sidebar(request, form_data, aggregations):
     if qatype in amo.ADDON_TYPES:
         categories = categories.filter(type=qatype)
     # Search categories don't have an application.
-    categories = categories.filter(Q(application=APP.id) |
-                                   Q(type=amo.ADDON_SEARCH))
+    categories = categories.filter(
+        Q(application=APP.id) | Q(type=amo.ADDON_SEARCH)
+    )
 
     # If category is listed as a facet but type is not, then show All.
     if qcat in cats and not qatype:
@@ -429,8 +468,10 @@ def category_sidebar(request, form_data, aggregations):
     if qcat not in categories.values_list('id', flat=True):
         qatype = qcat = None
 
-    categories = [(_atype, sorted(_cats, key=lambda x: x.name))
-                  for _atype, _cats in sorted_groupby(categories, 'type')]
+    categories = [
+        (_atype, sorted(_cats, key=lambda x: x.name))
+        for _atype, _cats in sorted_groupby(categories, 'type')
+    ]
 
     rv = []
     cat_params = {'cat': None}
@@ -445,11 +486,11 @@ def category_sidebar(request, form_data, aggregations):
         cat_params = cat_params.copy()
         cat_params.update(atype=addon_type)
 
-        link = FacetLink(amo.ADDON_TYPES[addon_type],
-                         cat_params, selected)
+        link = FacetLink(amo.ADDON_TYPES[addon_type], cat_params, selected)
         link.children = [
             FacetLink(c.name, dict(cat_params, cat=c.id), c.id == qcat)
-            for c in cats]
+            for c in cats
+        ]
         rv.append(link)
     return rv
 
@@ -464,8 +505,11 @@ def version_sidebar(request, form_data, aggregations):
     exclude_versions = getattr(request.APP, 'exclude_versions', [])
     # L10n: {0} is an application, such as Firefox. This means "any version of
     # Firefox."
-    rv = [FacetLink(
-        ugettext(u'Any {0}').format(app), {'appver': 'any'}, not appver)]
+    rv = [
+        FacetLink(
+            ugettext(u'Any {0}').format(app), {'appver': 'any'}, not appver
+        )
+    ]
     vs = [dict_from_int(f['key']) for f in aggregations['appversions']]
 
     # Insert the filtered app version even if it's not a facet.
@@ -475,15 +519,24 @@ def version_sidebar(request, form_data, aggregations):
         vs.append(av_dict)
 
     # Valid versions must be in the form of `major.minor`.
-    vs = set((v['major'], v['minor1'] if v['minor1'] not in (None, 99) else 0)
-             for v in vs)
+    vs = set(
+        (v['major'], v['minor1'] if v['minor1'] not in (None, 99) else 0)
+        for v in vs
+    )
     versions = ['%s.%s' % v for v in sorted(vs, reverse=True)]
 
     for version, floated in zip(versions, map(float, versions)):
-        if (floated not in exclude_versions and
-                floated > request.APP.min_display_version):
-            rv.append(FacetLink('%s %s' % (app, version), {'appver': version},
-                                appver == version))
+        if (
+            floated not in exclude_versions
+            and floated > request.APP.min_display_version
+        ):
+            rv.append(
+                FacetLink(
+                    '%s %s' % (app, version),
+                    {'appver': version},
+                    appver == version,
+                )
+            )
     return rv
 
 
@@ -500,11 +553,21 @@ def platform_sidebar(request, form_data):
         app_platforms.append(selected)
 
     # L10n: "All Systems" means show everything regardless of platform.
-    rv = [FacetLink(ugettext(u'All Systems'), {'platform': ALL.shortname},
-                    selected == ALL)]
+    rv = [
+        FacetLink(
+            ugettext(u'All Systems'),
+            {'platform': ALL.shortname},
+            selected == ALL,
+        )
+    ]
     for platform in app_platforms:
-        rv.append(FacetLink(platform.name, {'platform': platform.shortname},
-                            platform == selected))
+        rv.append(
+            FacetLink(
+                platform.name,
+                {'platform': platform.shortname},
+                platform == selected,
+            )
+        )
     return rv
 
 
@@ -523,11 +586,7 @@ def fix_search_query(query, extra_params=None):
     rv = {force_bytes(k): v for k, v in query.items()}
     changed = False
     # Change old keys to new names.
-    keys = {
-        'lver': 'appver',
-        'pid': 'platform',
-        'type': 'atype',
-    }
+    keys = {'lver': 'appver', 'pid': 'platform', 'type': 'atype'}
     for old, new in keys.items():
         if old in query:
             rv[new] = rv.pop(old)
@@ -542,10 +601,7 @@ def fix_search_query(query, extra_params=None):
             'averagerating': 'rating',
             'sortby': 'sort',
         },
-        'platform': {
-            str(p.id): p.shortname
-            for p in amo.PLATFORMS.values()
-        },
+        'platform': {str(p.id): p.shortname for p in amo.PLATFORMS.values()},
         'atype': {k: str(v) for k, v in amo.ADDON_SEARCH_SLUGS.items()},
     }
     if extra_params:
@@ -559,8 +615,7 @@ def fix_search_query(query, extra_params=None):
 
 def split_choices(choices, split):
     """Split a list of [(key, title)] pairs after key == split."""
-    index = [idx for idx, (key, title) in enumerate(choices)
-             if key == split]
+    index = [idx for idx, (key, title) in enumerate(choices) if key == split]
     if index:
         index = index[0] + 1
         return choices[:index], choices[index:]

@@ -7,7 +7,7 @@ from olympia.users.models import UserProfile
 
 
 class Command(BaseCommand):
-    help = ('Remove a user from a group.')
+    help = 'Remove a user from a group.'
 
     log = olympia.core.logger.getLogger('z.users')
 
@@ -19,7 +19,8 @@ class Command(BaseCommand):
         do_removeuser(options['user'], options['group_id'])
 
         msg = 'Removing {user} from {group}\n'.format(
-            user=options['user'], group=options['group_id'])
+            user=options['user'], group=options['group_id']
+        )
         self.log.info(msg)
         self.stdout.write(msg)
 
@@ -40,5 +41,6 @@ def do_removeuser(user, group):
     except UserProfile.DoesNotExist:
         raise CommandError('User ({user}) does not exist.'.format(user=user))
     except Group.DoesNotExist:
-        raise CommandError('Group ({group}) does not exist.'
-                           .format(group=group))
+        raise CommandError(
+            'Group ({group}) does not exist.'.format(group=group)
+        )

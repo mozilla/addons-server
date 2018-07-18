@@ -71,14 +71,16 @@ def get_js_urls(bundle, debug=None):
 
     if debug:
         # Add timestamp to avoid caching.
-        return [_get_item_path('%s?build=%s' % (item, _get_mtime(item))) for
-                item in settings.MINIFY_BUNDLES['js'][bundle]]
+        return [
+            _get_item_path('%s?build=%s' % (item, _get_mtime(item)))
+            for item in settings.MINIFY_BUNDLES['js'][bundle]
+        ]
     else:
         build_id = BUILD_ID_JS
         bundle_full = 'js:%s' % bundle
         if bundle_full in BUNDLE_HASHES:
             build_id = BUNDLE_HASHES[bundle_full]
-        return (_get_item_path('js/%s-min.js?build=%s' % (bundle, build_id,)),)
+        return (_get_item_path('js/%s-min.js?build=%s' % (bundle, build_id)),)
 
 
 def get_css_urls(bundle, debug=None):
@@ -98,9 +100,9 @@ def get_css_urls(bundle, debug=None):
     if debug:
         items = []
         for item in settings.MINIFY_BUNDLES['css'][bundle]:
-            should_compile = (
-                item.endswith('.less') and
-                getattr(settings, 'LESS_PREPROCESS', False))
+            should_compile = item.endswith('.less') and getattr(
+                settings, 'LESS_PREPROCESS', False
+            )
 
             if should_compile:
                 compile_css(item)
@@ -108,21 +110,23 @@ def get_css_urls(bundle, debug=None):
             else:
                 items.append(item)
         # Add timestamp to avoid caching.
-        return [_get_item_path('%s?build=%s' % (item, _get_mtime(item))) for
-                item in items]
+        return [
+            _get_item_path('%s?build=%s' % (item, _get_mtime(item)))
+            for item in items
+        ]
     else:
         build_id = BUILD_ID_CSS
         bundle_full = 'css:%s' % bundle
         if bundle_full in BUNDLE_HASHES:
             build_id = BUNDLE_HASHES[bundle_full]
-        return (_get_item_path('css/%s-min.css?build=%s' %
-                               (bundle, build_id)),)
+        return (
+            _get_item_path('css/%s-min.css?build=%s' % (bundle, build_id)),
+        )
 
 
 def compile_css(item):
     path_src = find_static_path(item)
-    path_dst = os.path.join(
-        settings.ROOT, 'static', '%s.css' % item)
+    path_dst = os.path.join(settings.ROOT, 'static', '%s.css' % item)
 
     updated_src = os.path.getmtime(find_static_path(item))
     updated_dst = 0  # If the file doesn't exist, force a refresh.
@@ -139,5 +143,8 @@ def compile_css(item):
 
 def build_ids(request):
     """A context processor for injecting the css/js build ids."""
-    return {'BUILD_ID_CSS': BUILD_ID_CSS, 'BUILD_ID_JS': BUILD_ID_JS,
-            'BUILD_ID_IMG': BUILD_ID_IMG}
+    return {
+        'BUILD_ID_CSS': BUILD_ID_CSS,
+        'BUILD_ID_JS': BUILD_ID_JS,
+        'BUILD_ID_IMG': BUILD_ID_IMG,
+    }

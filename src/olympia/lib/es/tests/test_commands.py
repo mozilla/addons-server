@@ -65,17 +65,20 @@ class TestIndexCommand(ESTestCase):
         pager = response.context['pager']
         results = []
         for page_num in range(pager.paginator.num_pages):
-            results.extend([item.pk for item
-                            in pager.paginator.page(page_num + 1)])
+            results.extend(
+                [item.pk for item in pager.paginator.page(page_num + 1)]
+            )
         return results
 
     @classmethod
     def get_indices_aliases(cls):
         """Return the test indices with an alias."""
         indices = cls.es.indices.get_alias()
-        items = [(index, aliases['aliases'].keys()[0])
-                 for index, aliases in indices.items()
-                 if len(aliases['aliases']) > 0 and index.startswith('test_')]
+        items = [
+            (index, aliases['aliases'].keys()[0])
+            for index, aliases in indices.items()
+            if len(aliases['aliases']) > 0 and index.startswith('test_')
+        ]
         items.sort()
         return items
 
@@ -103,6 +106,7 @@ class TestIndexCommand(ESTestCase):
                 # alias in setUpClass.
                 time.sleep(1)
                 management.call_command('reindex', stdout=self.stdout)
+
         t = ReindexThread()
         t.start()
 
@@ -125,8 +129,10 @@ class TestIndexCommand(ESTestCase):
             self.check_results(wanted)
 
         if len(wanted) == old_addons_count:
-            raise AssertionError('Could not index objects in foreground while '
-                                 'reindexing in the background.')
+            raise AssertionError(
+                'Could not index objects in foreground while '
+                'reindexing in the background.'
+            )
 
         t.join()  # Wait for the thread to finish.
         t.stdout.seek(0)

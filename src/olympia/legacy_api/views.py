@@ -35,12 +35,14 @@ from olympia.versions.compare import version_int
 ERROR = 'error'
 OUT_OF_DATE = _(
     u'The API version, {0:.1f}, you are using is not valid. '
-    u'Please upgrade to the current version {1:.1f} API.')
+    u'Please upgrade to the current version {1:.1f} API.'
+)
 
 xml_env = engines['jinja2'].env.overlay()
 old_finalize = xml_env.finalize
 xml_env.finalize = lambda x: amo.templatetags.jinja_helpers.strip_controls(
-    old_finalize(x))
+    old_finalize(x)
+)
 
 
 # Hard limit of 30.  The buffer is to try for locale-specific add-ons.
@@ -114,8 +116,16 @@ def validate_api_version(version):
     return True
 
 
-def addon_filter(addons, addon_type, limit, app, platform, version,
-                 compat_mode='strict', shuffle=True):
+def addon_filter(
+    addons,
+    addon_type,
+    limit,
+    app,
+    platform,
+    version,
+    compat_mode='strict',
+    shuffle=True,
+):
     """
     Filter addons by type, application, app version, and platform.
 
@@ -138,18 +148,19 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
             pass
 
     # Take out personas since they don't have versions.
-    groups = dict(partition(addons,
-                            lambda x: x.type == amo.ADDON_PERSONA))
+    groups = dict(partition(addons, lambda x: x.type == amo.ADDON_PERSONA))
     personas, addons = groups.get(True, []), groups.get(False, [])
 
     platform = platform.lower()
     if platform != 'all' and platform in amo.PLATFORM_DICT:
+
         def f(ps):
             return pid in ps or amo.PLATFORM_ALL in ps
 
         pid = amo.PLATFORM_DICT[platform]
-        addons = [a for a in addons
-                  if f(a.current_version.supported_platforms)]
+        addons = [
+            a for a in addons if f(a.current_version.supported_platforms)
+        ]
 
     if version is not None:
         vint = version_int(version)
@@ -175,8 +186,9 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
             elif compat_mode == 'normal':
                 # This does a db hit but it's cached. This handles the cases
                 # for strict opt-in, binary components, and compat overrides.
-                v = find_compatible_version(addon, APP.id, version, platform,
-                                            compat_mode)
+                v = find_compatible_version(
+                    addon, APP.id, version, platform, compat_mode
+                )
                 if v:  # There's a compatible version.
                     addons.append(addon)
 
@@ -200,7 +212,7 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
     # Otherwise pad `good` if less than the limit and return the limit.
     if limit > 0:
         if len(good) < limit:
-            good.extend(others[:limit - len(good)])
+            good.extend(others[: limit - len(good)])
         return good[:limit]
     else:
         good.extend(others)
@@ -217,13 +229,15 @@ class APIView(object):
 
         self.version = float(api_version)
         self.format = request.GET.get('format', 'xml')
-        self.content_type = ('text/xml' if self.format == 'xml'
-                             else 'application/json')
+        self.content_type = (
+            'text/xml' if self.format == 'xml' else 'application/json'
+        )
         self.request = request
         if not validate_api_version(api_version):
             msg = OUT_OF_DATE.format(self.version, legacy_api.CURRENT_VERSION)
-            return self.render_msg(msg, ERROR, status=403,
-                                   content_type=self.content_type)
+            return self.render_msg(
+                msg, ERROR, status=403, content_type=self.content_type
+            )
 
         return self.process_request(*args, **kwargs)
 
@@ -234,8 +248,12 @@ class APIView(object):
 
         if self.format == 'xml':
             return render_xml(
-                self.request, 'legacy_api/message.xml',
-                {'error_level': error_level, 'msg': msg}, *args, **kwargs)
+                self.request,
+                'legacy_api/message.xml',
+                {'error_level': error_level, 'msg': msg},
+                *args,
+                **kwargs
+            )
         else:
             return HttpResponse(json.dumps({'msg': _(msg)}), *args, **kwargs)
 
@@ -244,18 +262,19 @@ class APIView(object):
         context['api'] = legacy_api
 
         if self.format == 'xml':
-            return render_xml(self.request, template, context,
-                              content_type=self.content_type)
+            return render_xml(
+                self.request, template, context, content_type=self.content_type
+            )
         else:
-            return HttpResponse(self.render_json(context),
-                                content_type=self.content_type)
+            return HttpResponse(
+                self.render_json(context), content_type=self.content_type
+            )
 
     def render_json(self, context):
         return json.dumps({'msg': ugettext('Not implemented yet.')})
 
 
 class AddonDetailView(APIView):
-
     @allow_cross_site_request
     def process_request(self, addon_id):
         try:
@@ -265,8 +284,10 @@ class AddonDetailView(APIView):
         except Addon.DoesNotExist:
             # Add-on is either inexistent or not public/nominated.
             return self.render_msg(
-                'Add-on not found!', ERROR, status=404,
-                content_type=self.content_type
+                'Add-on not found!',
+                ERROR,
+                status=404,
+                content_type=self.content_type,
             )
         return self.render_addon(addon)
 
@@ -289,7 +310,8 @@ def guid_search(request, api_version, guids):
     guids = [guid.strip() for guid in guids.split(',')] if guids else []
 
     addons_xml = cache.get_many(
-        [guid_search_cache_key(guid) for guid in guids])
+        [guid_search_cache_key(guid) for guid in guids]
+    )
     dirty_keys = set()
 
     for guid in guids:
@@ -304,33 +326,49 @@ def guid_search(request, api_version, guids):
 
             else:
                 addon_xml = render_xml_to_string(
-                    request, 'legacy_api/includes/addon.xml', {
+                    request,
+                    'legacy_api/includes/addon.xml',
+                    {
                         'addon': addon,
                         'api_version': api_version,
-                        'api': legacy_api
-                    })
+                        'api': legacy_api,
+                    },
+                )
                 addons_xml[key] = addon_xml
 
     if dirty_keys:
-        cache.set_many(dict((k, v) for k, v in addons_xml.iteritems()
-                            if k in dirty_keys))
+        cache.set_many(
+            dict((k, v) for k, v in addons_xml.iteritems() if k in dirty_keys)
+        )
 
-    compat = (CompatOverride.objects.filter(guid__in=guids)
-              .transform(CompatOverride.transformer))
+    compat = CompatOverride.objects.filter(guid__in=guids).transform(
+        CompatOverride.transformer
+    )
 
     addons_xml = [v for v in addons_xml.values() if v]
-    return render_xml(request, 'legacy_api/search.xml', {
-        'addons_xml': addons_xml,
-        'total': len(addons_xml),
-        'compat': compat,
-        'api_version': api_version, 'api': legacy_api
-    })
+    return render_xml(
+        request,
+        'legacy_api/search.xml',
+        {
+            'addons_xml': addons_xml,
+            'total': len(addons_xml),
+            'compat': compat,
+            'api_version': api_version,
+            'api': legacy_api,
+        },
+    )
 
 
 class SearchView(APIView):
-
-    def process_request(self, query, addon_type='ALL', limit=10,
-                        platform='ALL', version=None, compat_mode='strict'):
+    def process_request(
+        self,
+        query,
+        addon_type='ALL',
+        limit=10,
+        platform='ALL',
+        version=None,
+        compat_mode='strict',
+    ):
         """
         Query the search backend and serve up the XML.
         """
@@ -380,10 +418,8 @@ class SearchView(APIView):
                 pass
 
         qs = (
-            Addon.search()
-            .filter(**filters)
-            .filter_query_string(query)
-            [:limit])
+            Addon.search().filter(**filters).filter_query_string(query)[:limit]
+        )
 
         results = []
 
@@ -391,8 +427,12 @@ class SearchView(APIView):
 
         for addon in qs:
             compat_version = find_compatible_version(
-                addon, app_id, params['version'], params['platform'],
-                compat_mode)
+                addon,
+                app_id,
+                params['version'],
+                params['platform'],
+                compat_mode,
+            )
             # Specific case for Personas (bug 990768): if we search
             # providing the Persona addon type (9), then don't look for a
             # compatible version.
@@ -406,13 +446,16 @@ class SearchView(APIView):
                 # compatible versions. Decrement the total.
                 total -= 1
 
-        return self.render('legacy_api/search.xml', {
-            'results': results,
-            'total': total,
-            # For caching
-            'version': version,
-            'compat_mode': compat_mode,
-        })
+        return self.render(
+            'legacy_api/search.xml',
+            {
+                'results': results,
+                'total': total,
+                # For caching
+                'version': version,
+                'compat_mode': compat_mode,
+            },
+        )
 
 
 @json_view
@@ -432,10 +475,15 @@ def search_suggestions(request):
 
 
 class ListView(APIView):
-
-    def process_request(self, list_type='recommended', addon_type='ALL',
-                        limit=10, platform='ALL', version=None,
-                        compat_mode='strict'):
+    def process_request(
+        self,
+        list_type='recommended',
+        addon_type='ALL',
+        limit=10,
+        platform='ALL',
+        version=None,
+        compat_mode='strict',
+    ):
         """
         Find a list of new or featured add-ons. Filtering is done in Python
         to avoid heavy queries.
@@ -450,42 +498,56 @@ class ListView(APIView):
 
         if list_type == 'newest':
             new = date.today() - timedelta(days=NEW_DAYS)
-            addons = (qs.filter(created__gte=new)
-                      .order_by('-created'))[:limit + BUFFER]
+            addons = (qs.filter(created__gte=new).order_by('-created'))[
+                : limit + BUFFER
+            ]
         elif list_type == 'by_adu':
-            addons = qs.order_by('-average_daily_users')[:limit + BUFFER]
+            addons = qs.order_by('-average_daily_users')[: limit + BUFFER]
             shuffle = False  # By_adu is an ordered list.
         elif list_type == 'hotness':
             # Filter to type=1 so we hit visible_idx. Only extensions have a
             # hotness index right now so this is not incorrect.
-            addons = (qs.filter(type=amo.ADDON_EXTENSION)
-                      .order_by('-hotness'))[:limit + BUFFER]
+            addons = (
+                qs.filter(type=amo.ADDON_EXTENSION).order_by('-hotness')
+            )[: limit + BUFFER]
             shuffle = False
         else:
             ids = Addon.featured_random(APP, self.request.LANG)
-            addons = manual_order(qs, ids[:limit + BUFFER], 'addons.id')
+            addons = manual_order(qs, ids[: limit + BUFFER], 'addons.id')
             shuffle = False
 
-        args = (addon_type, limit, APP, platform, version, compat_mode,
-                shuffle)
+        args = (
+            addon_type,
+            limit,
+            APP,
+            platform,
+            version,
+            compat_mode,
+            shuffle,
+        )
 
-        return self.render('legacy_api/list.xml',
-                           {'addons': addon_filter(addons.all(), *args)})
+        return self.render(
+            'legacy_api/list.xml',
+            {'addons': addon_filter(addons.all(), *args)},
+        )
 
     def render_json(self, context):
-        return json.dumps([addon_to_dict(a) for a in context['addons']],
-                          cls=AMOJSONEncoder)
+        return json.dumps(
+            [addon_to_dict(a) for a in context['addons']], cls=AMOJSONEncoder
+        )
 
 
 class LanguageView(APIView):
-
     def process_request(self):
-        addons = (Addon.objects.public()
-                               .filter(type=amo.ADDON_LPAPP,
-                                       appsupport__app=self.request.APP.id)
-                               .order_by('pk'))
-        return self.render('legacy_api/list.xml', {'addons': addons,
-                                                   'show_localepicker': True})
+        addons = (
+            Addon.objects.public()
+            .filter(type=amo.ADDON_LPAPP, appsupport__app=self.request.APP.id)
+            .order_by('pk')
+        )
+        return self.render(
+            'legacy_api/list.xml',
+            {'addons': addons, 'show_localepicker': True},
+        )
 
 
 # pylint: disable-msg=W0613
@@ -494,8 +556,10 @@ def redirect_view(request, url):
     """
     Redirect all requests that come here to an API call with a view parameter.
     """
-    dest = '/api/%.1f/%s' % (legacy_api.CURRENT_VERSION,
-                             urllib.quote(url.encode('utf-8')))
+    dest = '/api/%.1f/%s' % (
+        legacy_api.CURRENT_VERSION,
+        urllib.quote(url.encode('utf-8')),
+    )
     dest = get_url_prefix().fix(dest)
 
     return HttpResponsePermanentRedirect(dest)

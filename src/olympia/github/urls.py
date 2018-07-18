@@ -4,5 +4,5 @@ from olympia.github.views import GithubView
 
 
 urlpatterns = [
-    url(r'^validate/$', GithubView.as_view(), name='github.validate'),
+    url(r'^validate/$', GithubView.as_view(), name='github.validate')
 ]

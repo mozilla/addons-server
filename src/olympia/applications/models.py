@@ -6,8 +6,9 @@ from olympia.versions import compare
 
 
 class AppVersion(ModelBase):
-    application = models.PositiveIntegerField(choices=APPS_CHOICES,
-                                              db_column='application_id')
+    application = models.PositiveIntegerField(
+        choices=APPS_CHOICES, db_column='application_id'
+    )
     version = models.CharField(max_length=255, default='')
     version_int = models.BigIntegerField(editable=False)
 

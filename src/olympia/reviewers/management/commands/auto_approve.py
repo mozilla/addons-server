@@ -12,8 +12,12 @@ import olympia.core.logger
 from olympia import amo
 from olympia.files.utils import atomic_lock
 from olympia.reviewers.models import (
-    AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
-    AutoApprovalSummary, clear_reviewing_cache, set_reviewing_cache)
+    AutoApprovalNotEnoughFilesError,
+    AutoApprovalNoValidationResultError,
+    AutoApprovalSummary,
+    clear_reviewing_cache,
+    set_reviewing_cache,
+)
 from olympia.reviewers.utils import ReviewHelper
 from olympia.versions.models import Version
 
@@ -33,26 +37,33 @@ class Command(BaseCommand):
             action='store_true',
             dest='dry_run',
             default=False,
-            help='Do everything except actually approving add-ons.')
+            help='Do everything except actually approving add-ons.',
+        )
 
     def fetch_candidates(self):
         """Return a queryset with the Version instances that should be
         considered for auto approval."""
-        return (Version.objects.filter(
-            addon__type__in=(amo.ADDON_EXTENSION, amo.ADDON_LPAPP),
-            addon__disabled_by_user=False,
-            addon__status__in=(amo.STATUS_PUBLIC, amo.STATUS_NOMINATED),
-            files__status=amo.STATUS_AWAITING_REVIEW,
-            files__is_webextension=True)
-            .order_by('nomination', 'created').distinct())
+        return (
+            Version.objects.filter(
+                addon__type__in=(amo.ADDON_EXTENSION, amo.ADDON_LPAPP),
+                addon__disabled_by_user=False,
+                addon__status__in=(amo.STATUS_PUBLIC, amo.STATUS_NOMINATED),
+                files__status=amo.STATUS_AWAITING_REVIEW,
+                files__is_webextension=True,
+            )
+            .order_by('nomination', 'created')
+            .distinct()
+        )
 
     def handle(self, *args, **options):
         """Command entry point."""
         self.dry_run = options.get('dry_run', False)
 
         self.successful_verdict = (
-            amo.WOULD_HAVE_BEEN_AUTO_APPROVED if self.dry_run
-            else amo.AUTO_APPROVED)
+            amo.WOULD_HAVE_BEEN_AUTO_APPROVED
+            if self.dry_run
+            else amo.AUTO_APPROVED
+        )
 
         self.stats = Counter()
 
@@ -85,25 +96,35 @@ class Command(BaseCommand):
             # our own.
             set_reviewing_cache(version.addon.pk, settings.TASK_USER_ID)
         try:
-            log.info('Processing %s version %s...',
-                     unicode(version.addon.name), unicode(version.version))
+            log.info(
+                'Processing %s version %s...',
+                unicode(version.addon.name),
+                unicode(version.version),
+            )
             summary, info = AutoApprovalSummary.create_summary_for_version(
-                version, dry_run=self.dry_run)
-            log.info('Auto Approval for %s version %s: %s',
-                     unicode(version.addon.name),
-                     unicode(version.version),
-                     summary.get_verdict_display())
+                version, dry_run=self.dry_run
+            )
+            log.info(
+                'Auto Approval for %s version %s: %s',
+                unicode(version.addon.name),
+                unicode(version.version),
+                summary.get_verdict_display(),
+            )
             self.stats.update({k: int(v) for k, v in info.items()})
             if summary.verdict == self.successful_verdict:
                 self.stats['auto_approved'] += 1
                 if summary.verdict == amo.AUTO_APPROVED:
                     self.approve(version)
 
-        except (AutoApprovalNotEnoughFilesError,
-                AutoApprovalNoValidationResultError):
+        except (
+            AutoApprovalNotEnoughFilesError,
+            AutoApprovalNoValidationResultError,
+        ):
             log.info(
                 'Version %s was skipped either because it had no '
-                'file or because it had no validation attached.', version)
+                'file or because it had no validation attached.',
+                version,
+            )
             self.stats['error'] += 1
         finally:
             # Always clear our own lock no matter what happens (but only ours).
@@ -119,26 +140,31 @@ class Command(BaseCommand):
             # The comment is not translated on purpose, to behave like regular
             # human approval does.
             'comments': u'This version has been screened and approved for the '
-                        u'public. Keep in mind that other reviewers may look '
-                        u'into this version in the future and determine that '
-                        u'it requires changes or should be taken down. In '
-                        u'that case, you will be notified again with details '
-                        u'and next steps.'
-                        u'\r\n\r\nThank you!'
+            u'public. Keep in mind that other reviewers may look '
+            u'into this version in the future and determine that '
+            u'it requires changes or should be taken down. In '
+            u'that case, you will be notified again with details '
+            u'and next steps.'
+            u'\r\n\r\nThank you!'
         }
         helper.handler.process_public()
         statsd.incr('reviewers.auto_approve.approve')
 
     def log_final_summary(self, stats):
         """Log a summary of what happened."""
-        log.info('There were %d webextensions add-ons in the queue.',
-                 stats['total'])
+        log.info(
+            'There were %d webextensions add-ons in the queue.', stats['total']
+        )
         if stats['error']:
             log.info(
                 '%d versions were skipped because they had no files or had '
-                'no validation attached to their files.', stats['error'])
+                'no validation attached to their files.',
+                stats['error'],
+            )
         if self.dry_run:
-            log.info('%d versions were marked as would have been approved.',
-                     stats['auto_approved'])
+            log.info(
+                '%d versions were marked as would have been approved.',
+                stats['auto_approved'],
+            )
         else:
             log.info('%d versions were approved.', stats['auto_approved'])

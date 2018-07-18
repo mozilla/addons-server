@@ -12,9 +12,7 @@ CSP_BASE_URI += (
 CDN_HOST = 'https://addons-dev-cdn.allizom.org'
 CSP_FONT_SRC += (CDN_HOST,)
 CSP_IMG_SRC += (CDN_HOST,)
-CSP_SCRIPT_SRC += (
-    CDN_HOST,
-)
+CSP_SCRIPT_SRC += (CDN_HOST,)
 CSP_STYLE_SRC += (CDN_HOST,)
 
 ENGAGE_ROBOTS = False
@@ -34,16 +32,18 @@ API_THROTTLE = False
 DOMAIN = env('DOMAIN', default='addons-dev.allizom.org')
 SERVER_EMAIL = 'zdev@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
-SERVICES_URL = env('SERVICES_URL',
-                   default='https://services.addons-dev.allizom.org')
+SERVICES_URL = env(
+    'SERVICES_URL', default='https://services.addons-dev.allizom.org'
+)
 STATIC_URL = '%s/static/' % CDN_HOST
 MEDIA_URL = '%s/user-media/' % CDN_HOST
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 # Domain emails should be sent to.
-INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
-                           default='addons-dev.allizom.org')
+INBOUND_EMAIL_DOMAIN = env(
+    'INBOUND_EMAIL_DOMAIN', default='addons-dev.allizom.org'
+)
 
 NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
 NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
@@ -87,21 +87,25 @@ CACHES = {
 }
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
-CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
+CACHES['default'][
+    'BACKEND'
+] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
 # Celery
 CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 
-LOGGING['loggers'].update({
-    'amqp': {'level': logging.WARNING},
-    'raven': {'level': logging.WARNING},
-    'requests': {'level': logging.WARNING},
-    'z.addons': {'level': logging.DEBUG},
-    'z.task': {'level': logging.DEBUG},
-    'z.redis': {'level': logging.DEBUG},
-    'z.pool': {'level': logging.ERROR},
-})
+LOGGING['loggers'].update(
+    {
+        'amqp': {'level': logging.WARNING},
+        'raven': {'level': logging.WARNING},
+        'requests': {'level': logging.WARNING},
+        'z.addons': {'level': logging.DEBUG},
+        'z.task': {'level': logging.DEBUG},
+        'z.redis': {'level': logging.DEBUG},
+        'z.pool': {'level': logging.ERROR},
+    }
+)
 
 # Update the logger name used for mozlog
 LOGGING['formatters']['json']['logger_name'] = 'http_app_addons_dev'
@@ -113,7 +117,7 @@ REDIS_BACKENDS = {
     'cache': get_redis_settings(env('REDIS_BACKENDS_CACHE')),
     'cache_slave': get_redis_settings(env('REDIS_BACKENDS_CACHE_SLAVE')),
     'master': get_redis_settings(env('REDIS_BACKENDS_MASTER')),
-    'slave': get_redis_settings(env('REDIS_BACKENDS_SLAVE'))
+    'slave': get_redis_settings(env('REDIS_BACKENDS_SLAVE')),
 }
 
 csp = 'csp.middleware.CSPMiddleware'
@@ -155,8 +159,7 @@ FXA_CONFIG = {
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-        'redirect_url':
-            'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
+        'redirect_url': 'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
         'scope': 'profile',
     },
     'amo': {
@@ -186,11 +189,13 @@ CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
 )
 
 RAVEN_JS_DSN = (
-    'https://5686e2a8f14446a3940c651c6a14dc73@sentry.prod.mozaws.net/75')
+    'https://5686e2a8f14446a3940c651c6a14dc73@sentry.prod.mozaws.net/75'
+)
 RAVEN_JS_ALLOW_LIST = ['addons-dev.allizom.org', 'addons-dev-cdn.allizom.org']
 
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-east-1.amazonaws.com/927034868273/'
-    'amo-account-change-dev')
+    'amo-account-change-dev'
+)
 
 VAMO_URL = 'https://versioncheck-dev.allizom.org'

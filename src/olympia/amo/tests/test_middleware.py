@@ -8,8 +8,10 @@ from mock import patch
 from pyquery import PyQuery as pq
 
 from olympia.amo.middleware import (
-    AuthenticationMiddlewareWithoutAPI, ScrubRequestOnException,
-    RequestIdMiddleware)
+    AuthenticationMiddlewareWithoutAPI,
+    ScrubRequestOnException,
+    RequestIdMiddleware,
+)
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.zadmin.models import Config
@@ -19,7 +21,6 @@ pytestmark = pytest.mark.django_db
 
 
 class TestMiddleware(TestCase):
-
     def test_no_vary_cookie(self):
         # Requesting / forces a Vary on Accept-Language on User-Agent, since
         # we redirect to /<lang>/<app>/.
@@ -31,22 +32,28 @@ class TestMiddleware(TestCase):
         response = test.Client().get('/', follow=True)
         assert 'Vary' not in response
 
-    @patch('django.contrib.auth.middleware.'
-           'AuthenticationMiddleware.process_request')
+    @patch(
+        'django.contrib.auth.middleware.'
+        'AuthenticationMiddleware.process_request'
+    )
     def test_authentication_used_outside_the_api(self, process_request):
         req = RequestFactory().get('/')
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert process_request.called
 
-    @patch('django.contrib.sessions.middleware.'
-           'SessionMiddleware.process_request')
+    @patch(
+        'django.contrib.sessions.middleware.'
+        'SessionMiddleware.process_request'
+    )
     def test_authentication_not_used_with_the_api(self, process_request):
         req = RequestFactory().get('/api/lol')
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert not process_request.called
 
-    @patch('django.contrib.auth.middleware.'
-           'AuthenticationMiddleware.process_request')
+    @patch(
+        'django.contrib.auth.middleware.'
+        'AuthenticationMiddleware.process_request'
+    )
     def test_authentication_is_used_with_accounts_auth(self, process_request):
         req = RequestFactory().get('/api/v3/accounts/authenticate/')
         AuthenticationMiddlewareWithoutAPI().process_request(req)
@@ -62,15 +69,18 @@ def test_redirect_with_unicode_get():
         '/da/firefox/addon/5457?from=/da/firefox/'
         'addon/5457%3Fadvancedsearch%3D1&lang=ja&utm_source=Google+%E3'
         '%83%90%E3%82%BA&utm_medium=twitter&utm_term=Google+%E3%83%90%'
-        'E3%82%BA')
+        'E3%82%BA'
+    )
     assert response.status_code == 301
     assert 'utm_term=Google+%E3%83%90%E3%82%BA' in response['Location']
 
 
 def test_source_with_wrong_unicode_get():
     # The following url is a string (bytes), not unicode.
-    response = test.Client().get('/firefox/collections/mozmj/autumn/'
-                                 '?source=firefoxsocialmedia\x14\x85')
+    response = test.Client().get(
+        '/firefox/collections/mozmj/autumn/'
+        '?source=firefoxsocialmedia\x14\x85'
+    )
     assert response.status_code == 301
     assert response['Location'].endswith('?source=firefoxsocialmedia%14')
 
@@ -82,7 +92,6 @@ def test_trailing_slash_middleware():
 
 
 class AdminMessageTest(TestCase):
-
     def test_message(self):
         c = Config.objects.create(key='site_notice', value='ET Sighted.')
 

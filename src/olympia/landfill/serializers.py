@@ -18,7 +18,7 @@ from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
     ADDON_EXTENSION,
     ADDON_PERSONA,
-    STATUS_PUBLIC
+    STATUS_PUBLIC,
 )
 from olympia.landfill.collection import generate_collection
 from olympia.landfill.generators import generate_themes
@@ -41,7 +41,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
         """
         for _ in range(10):
             AddonUser.objects.create(
-                user=user_factory(), addon=addon_factory())
+                user=user_factory(), addon=addon_factory()
+            )
 
     def create_named_addon_with_author(self, name, author=None):
         """Create a generic addon and a user.
@@ -103,8 +104,13 @@ class GenerateAddonsSerializer(serializers.Serializer):
             public_stats=True,
             slug='ui-test-2',
             summary=u'My Addon summary',
-            tags=['some_tag', 'another_tag', 'ui-testing',
-                  'selenium', 'python'],
+            tags=[
+                'some_tag',
+                'another_tag',
+                'ui-testing',
+                'selenium',
+                'python',
+            ],
             total_ratings=500,
             weekly_downloads=9999999,
             developer_comments='This is a testing addon.',
@@ -118,13 +124,12 @@ class GenerateAddonsSerializer(serializers.Serializer):
         Rating.objects.create(addon=addon, rating=5, user=user_factory())
         Rating.objects.create(addon=addon, rating=5, user=user_factory())
         Rating.objects.create(addon=addon, rating=5, user=user_factory())
-        AddonUser.objects.create(user=user_factory(username='ui-tester2'),
-                                 addon=addon, listed=True)
+        AddonUser.objects.create(
+            user=user_factory(username='ui-tester2'), addon=addon, listed=True
+        )
         addon.save()
         generate_collection(addon, app=FIREFOX)
-        print(
-            'Created addon {0} for testing successfully'
-            .format(addon.name))
+        print('Created addon {0} for testing successfully'.format(addon.name))
 
     def create_featured_addon_with_version_for_install(self):
         """Creates a custom addon named 'Ui-Addon'.
@@ -154,16 +159,21 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 public_stats=True,
                 slug='ui-test-install',
                 summary=u'My Addon summary',
-                tags=['some_tag', 'another_tag', 'ui-testing',
-                      'selenium', 'python'],
+                tags=[
+                    'some_tag',
+                    'another_tag',
+                    'ui-testing',
+                    'selenium',
+                    'python',
+                ],
                 weekly_downloads=9999999,
                 developer_comments='This is a testing addon.',
             )
             addon.save()
             generate_collection(addon, app=FIREFOX)
             print(
-                'Created addon {0} for testing successfully'
-                .format(addon.name))
+                'Created addon {0} for testing successfully'.format(addon.name)
+            )
         return addon
 
     def create_featured_theme(self):
@@ -194,17 +204,19 @@ class GenerateAddonsSerializer(serializers.Serializer):
             summary=u'My UI theme summary',
             support_email=u'support@example.org',
             support_url=u'https://support.example.org/support/ui-theme-addon/',
-            tags=['some_tag', 'another_tag', 'ui-testing',
-                    'selenium', 'python'],
+            tags=[
+                'some_tag',
+                'another_tag',
+                'ui-testing',
+                'selenium',
+                'python',
+            ],
             total_ratings=777,
             weekly_downloads=123456,
             developer_comments='This is a testing theme, used within pytest.',
         )
         addon.save()
-        generate_collection(
-            addon,
-            app=FIREFOX,
-            type=amo.COLLECTION_FEATURED)
+        generate_collection(addon, app=FIREFOX, type=amo.COLLECTION_FEATURED)
         print('Created Theme {0} for testing successfully'.format(addon.name))
 
     def create_featured_collections(self):
@@ -216,7 +228,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
         for _ in range(4):
             addon = addon_factory(type=amo.ADDON_EXTENSION)
             generate_collection(
-                addon, APPS['firefox'], type=amo.COLLECTION_FEATURED)
+                addon, APPS['firefox'], type=amo.COLLECTION_FEATURED
+            )
 
     def create_featured_themes(self):
         """Creates exactly 6 themes that will be not featured.
@@ -239,7 +252,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             app=FIREFOX,
             author=UserProfile.objects.get(username=author),
             type=amo.COLLECTION_FEATURED,
-            name=name
+            name=name,
         )
 
     def create_installable_addon(self):
@@ -254,7 +267,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
 
         user, _ = UserProfile.objects.get_or_create(
             pk=settings.TASK_USER_ID,
-            defaults={'email': 'admin@mozilla.com', 'username': 'admin'})
+            defaults={'email': 'admin@mozilla.com', 'username': 'admin'},
+        )
 
         # generate a proper uploaded file that simulates what django requires
         # as request.POST
@@ -269,7 +283,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
             filedata = SimpleUploadedFile(
                 file_to_upload,
                 data,
-                content_type=mimetypes.guess_type(file_to_upload)[0])
+                content_type=mimetypes.guess_type(file_to_upload)[0],
+            )
 
             # now, lets upload the file into the system
             from olympia.devhub.views import handle_upload
@@ -286,7 +301,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
 
             # And let's create a new version for that upload.
             create_version_for_upload(
-                upload.addon, upload, amo.RELEASE_CHANNEL_LISTED)
+                upload.addon, upload, amo.RELEASE_CHANNEL_LISTED
+            )
 
             # Change status to public
             addon.update(status=amo.STATUS_PUBLIC)

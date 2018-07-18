@@ -16,8 +16,15 @@ class ActivityLogSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ActivityLog
-        fields = ('id', 'action', 'action_label', 'comments', 'user', 'date',
-                  'highlight')
+        fields = (
+            'id',
+            'action',
+            'action_label',
+            'comments',
+            'user',
+            'date',
+            'highlight',
+        )
 
     def __init__(self, *args, **kwargs):
         super(ActivityLogSerializer, self).__init__(*args, **kwargs)

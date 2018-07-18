@@ -13,10 +13,18 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonUser, Category, Persona)
+    Addon,
+    AddonCategory,
+    AddonUser,
+    Category,
+    Persona,
+)
 from olympia.amo.templatetags.jinja_helpers import locale_url, urlparams
 from olympia.amo.tests import (
-    ESTestCaseWithAddons, addon_factory, create_switch)
+    ESTestCaseWithAddons,
+    addon_factory,
+    create_switch,
+)
 from olympia.amo.urlresolvers import reverse
 from olympia.search import views
 from olympia.search.utils import floor_version
@@ -24,14 +32,16 @@ from olympia.search.views import version_sidebar
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 from olympia.versions.compare import (
-    MAXVERSION, num as vnum, version_int as vint)
+    MAXVERSION,
+    num as vnum,
+    version_int as vint,
+)
 
 
 pytestmark = pytest.mark.django_db
 
 
 class TestSearchboxTarget(ESTestCaseWithAddons):
-
     def check(self, url, placeholder, cat=None, action=None, q=None):
         # Checks that we search within addons & personas.
         form = pq(self.client.get(url).content)('.header-search form')
@@ -47,23 +57,27 @@ class TestSearchboxTarget(ESTestCaseWithAddons):
         self.check(reverse('home'), 'search for add-ons')
 
     def test_themes(self):
-        self.check(reverse('browse.themes'), 'search for add-ons',
-                   '%s,0' % amo.ADDON_THEME)
+        self.check(
+            reverse('browse.themes'),
+            'search for add-ons',
+            '%s,0' % amo.ADDON_THEME,
+        )
 
     def test_personas(self):
-        self.check(reverse('browse.personas'), 'search for themes',
-                   'themes')
+        self.check(reverse('browse.personas'), 'search for themes', 'themes')
 
     def test_addons_search(self):
         self.check(reverse('search.search'), 'search for add-ons')
 
     def test_addons_search_term(self):
-        self.check(reverse('search.search') + '?q=ballin',
-                   'search for add-ons', q='ballin')
+        self.check(
+            reverse('search.search') + '?q=ballin',
+            'search for add-ons',
+            q='ballin',
+        )
 
 
 class SearchBase(ESTestCaseWithAddons):
-
     def get_results(self, r, sort=True):
         """Return pks of add-ons shown on search results page."""
         results = [a.id for a in r.context['pager'].object_list]
@@ -71,8 +85,9 @@ class SearchBase(ESTestCaseWithAddons):
             results = sorted(results)
         return results
 
-    def check_sort_links(self, key, title=None, sort_by=None, reverse=True,
-                         params=None):
+    def check_sort_links(
+        self, key, title=None, sort_by=None, reverse=True, params=None
+    ):
         if params is None:
             params = {}
         response = self.client.get(urlparams(self.url, sort=key, **params))
@@ -85,8 +100,9 @@ class SearchBase(ESTestCaseWithAddons):
             if sort_by == 'name':
                 expected = sorted(results, key=lambda x: unicode(x.name))
             else:
-                expected = sorted(results, key=lambda x: getattr(x, sort_by),
-                                  reverse=reverse)
+                expected = sorted(
+                    results, key=lambda x: getattr(x, sort_by), reverse=reverse
+                )
             assert list(results) == expected
 
     def check_name_results(self, params, expected):
@@ -123,8 +139,9 @@ class TestESSearch(SearchBase):
     def setUp(self):
         super(TestESSearch, self).setUp()
         self.url = reverse('search.search')
-        self.addons = Addon.objects.filter(status=amo.STATUS_PUBLIC,
-                                           disabled_by_user=False)
+        self.addons = Addon.objects.filter(
+            status=amo.STATUS_PUBLIC, disabled_by_user=False
+        )
         for addon in self.addons:
             AddonCategory.objects.create(addon=addon, category_id=1)
             addon.save()
@@ -138,16 +155,16 @@ class TestESSearch(SearchBase):
 
     def test_es_queries_made_get_with_results(self):
         with mock.patch.object(
-                Elasticsearch, 'search',
-                wraps=amo.search.get_es().search) as search_mock:
+            Elasticsearch, 'search', wraps=amo.search.get_es().search
+        ) as search_mock:
             response = self.client.get(self.url)
             assert response.status_code == 200
             assert search_mock.call_count == 1
 
     def test_es_queries_made_get_without_results(self):
         with mock.patch.object(
-                Elasticsearch, 'search',
-                wraps=amo.search.get_es().search) as search_mock:
+            Elasticsearch, 'search', wraps=amo.search.get_es().search
+        ) as search_mock:
             response = self.client.get(self.url, {'q': 'foo'})
             assert response.status_code == 200
             assert search_mock.call_count == 1
@@ -158,12 +175,14 @@ class TestESSearch(SearchBase):
 
     def test_search_tools_omit_users(self):
         response = self.client.get(
-            self.url, {'cat': '%s,5' % amo.ADDON_SEARCH})
+            self.url, {'cat': '%s,5' % amo.ADDON_SEARCH}
+        )
         assert response.status_code == 200
         sorter = pq(response.content)('#sorter')
         assert sorter.length == 1
-        assert 'sort=users' not in sorter.text(), (
-            'Sort by "Most Users" should not appear for search tools.')
+        assert (
+            'sort=users' not in sorter.text()
+        ), 'Sort by "Most Users" should not appear for search tools.'
 
     def test_results_sort_default(self):
         self.check_sort_links(None, 'Relevance', 'weekly_downloads')
@@ -184,8 +203,9 @@ class TestESSearch(SearchBase):
         self.check_sort_links('updated', 'Recently Updated')
 
     def test_results_sort_downloads(self):
-        self.check_sort_links('downloads', 'Weekly Downloads',
-                              'weekly_downloads')
+        self.check_sort_links(
+            'downloads', 'Weekly Downloads', 'weekly_downloads'
+        )
 
     def test_results_sort_name(self):
         self.check_sort_links('name', 'Name', 'name', reverse=False)
@@ -209,10 +229,14 @@ class TestESSearch(SearchBase):
     def test_legacy_redirects_to_non_ascii(self):
         # see http://sentry.dmz.phx1.mozilla.com/addons/group/2186/
         url = '/ga-IE/seamonkey/tag/%E5%95%86%E5%93%81%E6%90%9C%E7%B4%A2'
-        from_ = ('?sort=updated&lver=1.0&advancedsearch=1'
-                 '&tag=dearbhair&cat=4%2C84')
-        to = ('?sort=updated&advancedsearch=1&appver=1.0'
-              '&tag=dearbhair&cat=4%2C84')
+        from_ = (
+            '?sort=updated&lver=1.0&advancedsearch=1'
+            '&tag=dearbhair&cat=4%2C84'
+        )
+        to = (
+            '?sort=updated&advancedsearch=1&appver=1.0'
+            '&tag=dearbhair&cat=4%2C84'
+        )
         r = self.client.get(url + from_)
         assert r.status_code == 301
         redirected = r.url
@@ -222,8 +246,9 @@ class TestESSearch(SearchBase):
         assert urlparse.parse_qs(params) == urlparse.parse_qs(to[1:])
 
     def check_platform_filters(self, platform, expected=None):
-        r = self.client.get('%s?platform=%s' % (self.url, platform),
-                            follow=True)
+        r = self.client.get(
+            '%s?platform=%s' % (self.url, platform), follow=True
+        )
         plats = r.context['platforms']
         for idx, plat in enumerate(plats):
             name, selected = expected[idx]
@@ -300,11 +325,12 @@ class TestESSearch(SearchBase):
             u'platforms': [{u'doc_count': 58, u'key': 1}],
             u'appversions': [{u'doc_count': 58, u'key': 5000000200100}],
             u'categories': [{u'doc_count': 55, u'key': 1}],
-            u'tags': []
+            u'tags': [],
         }
 
-        versions = version_sidebar(request,
-                                   {'appver': floor_version(appver)}, facets)
+        versions = version_sidebar(
+            request, {'appver': floor_version(appver)}, facets
+        )
 
         all_ = versions.pop(0)
         assert all_.text == 'Any %s' % unicode(request.APP.pretty)
@@ -314,55 +340,87 @@ class TestESSearch(SearchBase):
 
     def test_appver_default(self):
         assert self.check_appver_filters('', '') == (
-            [{'text': u'Firefox 5.0',
-              'selected': False,
-              'urlparams': {'appver': '5.0'},
-              'children': []}])
+            [
+                {
+                    'text': u'Firefox 5.0',
+                    'selected': False,
+                    'urlparams': {'appver': '5.0'},
+                    'children': [],
+                }
+            ]
+        )
 
     def test_appver_known(self):
         assert self.check_appver_filters('5.0', '5.0') == (
-            [{'text': u'Firefox 5.0',
-              'selected': True,
-              'urlparams': {'appver': '5.0'},
-              'children': []}])
+            [
+                {
+                    'text': u'Firefox 5.0',
+                    'selected': True,
+                    'urlparams': {'appver': '5.0'},
+                    'children': [],
+                }
+            ]
+        )
 
     def test_appver_oddballs(self):
         assert self.check_appver_filters('3.6.22', '3.6') == (
-            [{'text': u'Firefox 5.0',
-              'selected': False,
-              'urlparams': {'appver': '5.0'},
-              'children': []},
-             {'text': u'Firefox 3.6',
-              'selected': True,
-              'urlparams': {'appver': '3.6'},
-              'children': []}])
+            [
+                {
+                    'text': u'Firefox 5.0',
+                    'selected': False,
+                    'urlparams': {'appver': '5.0'},
+                    'children': [],
+                },
+                {
+                    'text': u'Firefox 3.6',
+                    'selected': True,
+                    'urlparams': {'appver': '3.6'},
+                    'children': [],
+                },
+            ]
+        )
 
     def test_appver_long(self):
         too_big = vnum(vint(MAXVERSION + 1))
         just_right = vnum(vint(MAXVERSION))
 
-        assert self.check_appver_filters(too_big, floor_version(just_right)), (
-            'All I ask is do not crash')
+        assert self.check_appver_filters(
+            too_big, floor_version(just_right)
+        ), 'All I ask is do not crash'
 
         assert self.check_appver_filters('9999999', '9999999.0') == (
-            [{'text': u'Firefox 9999999.0',
-              'selected': True,
-              'urlparams': {'appver': '9999999.0'},
-              'children': []},
-             {'text': u'Firefox 5.0',
-              'selected': False,
-              'urlparams': {'appver': '5.0'},
-              'children': []}])
+            [
+                {
+                    'text': u'Firefox 9999999.0',
+                    'selected': True,
+                    'urlparams': {'appver': '9999999.0'},
+                    'children': [],
+                },
+                {
+                    'text': u'Firefox 5.0',
+                    'selected': False,
+                    'urlparams': {'appver': '5.0'},
+                    'children': [],
+                },
+            ]
+        )
 
         assert self.check_appver_filters('99999999', '99999999.0') == (
-            [{'text': u'Firefox 99999999.0',
-              'selected': True,
-              'urlparams': {'appver': '99999999.0'},
-              'children': []},
-             {'text': u'Firefox 5.0',
-              'selected': False,
-              'urlparams': {'appver': '5.0'},
-              'children': []}])
+            [
+                {
+                    'text': u'Firefox 99999999.0',
+                    'selected': True,
+                    'urlparams': {'appver': '99999999.0'},
+                    'children': [],
+                },
+                {
+                    'text': u'Firefox 5.0',
+                    'selected': False,
+                    'urlparams': {'appver': '5.0'},
+                    'children': [],
+                },
+            ]
+        )
 
     def test_appver_bad(self):
         assert self.check_appver_filters('.', '.')
@@ -400,13 +458,19 @@ class TestESSearch(SearchBase):
         r = self.client.get(self.url)
         a = pq(r.content)('#search-facets a[data-params]:first')
         assert json.loads(a.attr('data-params')) == {
-            'atype': None, 'cat': None, 'page': None}
+            'atype': None,
+            'cat': None,
+            'page': None,
+        }
 
     def test_facet_data_params_filtered(self):
         r = self.client.get(self.url + '?appver=3.6&platform=mac&page=3')
         a = pq(r.content)('#search-facets a[data-params]:first')
         assert json.loads(a.attr('data-params')) == {
-            'atype': None, 'cat': None, 'page': None}
+            'atype': None,
+            'cat': None,
+            'page': None,
+        }
 
     def check_cat_filters(self, params=None, selected='All Add-ons'):
         if not params:
@@ -414,15 +478,18 @@ class TestESSearch(SearchBase):
 
         r = self.client.get(urlparams(self.url, **params))
         assert sorted(a.id for a in self.addons) == (
-            sorted(a.id for a in r.context['pager'].object_list))
+            sorted(a.id for a in r.context['pager'].object_list)
+        )
 
         cat = self.addons[0].all_categories[0]
         links = pq(r.content)('#category-facets li a')
         expected = [
             ('All Add-ons', self.url),
             ('Extensions', urlparams(self.url, atype=amo.ADDON_EXTENSION)),
-            (unicode(cat.name), urlparams(self.url, atype=amo.ADDON_EXTENSION,
-                                          cat=cat.id)),
+            (
+                unicode(cat.name),
+                urlparams(self.url, atype=amo.ADDON_EXTENSION, cat=cat.id),
+            ),
         ]
         amo.tests.check_links(expected, links, selected, verify=False)
 
@@ -436,15 +503,17 @@ class TestESSearch(SearchBase):
         self.check_cat_filters({'cat': 999})
 
     def test_defaults_atype_foreign_cat(self):
-        cat = Category.objects.create(application=amo.THUNDERBIRD.id,
-                                      type=amo.ADDON_EXTENSION)
+        cat = Category.objects.create(
+            application=amo.THUNDERBIRD.id, type=amo.ADDON_EXTENSION
+        )
         self.check_cat_filters({'atype': amo.ADDON_EXTENSION, 'cat': cat.id})
 
     def test_listed_cat(self):
         cat = self.addons[0].all_categories[0]
         self.check_cat_filters(
             {'atype': amo.ADDON_EXTENSION, 'cat': cat.id},
-            selected=unicode(cat.name))
+            selected=unicode(cat.name),
+        )
 
     def test_cat_facet_stale(self):
         AddonCategory.objects.all().delete()
@@ -454,8 +523,9 @@ class TestESSearch(SearchBase):
             ('All Add-ons', self.url),
             ('Extensions', urlparams(self.url, atype=amo.ADDON_EXTENSION)),
         ]
-        amo.tests.check_links(expected, pq(r.content)('#category-facets li a'),
-                              verify=False)
+        amo.tests.check_links(
+            expected, pq(r.content)('#category-facets li a'), verify=False
+        )
 
     def test_cat_facet_fresh(self):
         AddonCategory.objects.all().delete()
@@ -463,9 +533,11 @@ class TestESSearch(SearchBase):
         self.reindex(Addon)
 
         r = self.client.get(self.url)
-        amo.tests.check_links([('All Add-ons', self.url)],
-                              pq(r.content)('#category-facets li a'),
-                              verify=False)
+        amo.tests.check_links(
+            [('All Add-ons', self.url)],
+            pq(r.content)('#category-facets li a'),
+            verify=False,
+        )
 
     def test_unknown_tag_filter(self):
         r = self.client.get(urlparams(self.url, tag='xxx'))
@@ -494,7 +566,8 @@ class TestESSearch(SearchBase):
         # First link should be "All Tags".
         assert tags_links[0].attrib['href'] == self.url
         assert json.loads(tags_links[0].attrib['data-params']) == {
-            'tag': None, 'page': None
+            'tag': None,
+            'page': None,
         }
 
         # Then we should have the tags.
@@ -503,13 +576,15 @@ class TestESSearch(SearchBase):
             tag_text = expected_tags[index]
             assert link.attrib['href'] == urlparams(self.url, tag=tag_text)
             assert json.loads(link.attrib['data-params']) == {
-                'tag': tag_text, 'page': None
+                'tag': tag_text,
+                'page': None,
             }
 
         # Selected tag should be the one we passed in the URL: 'sky'.
         link = pq(response.content)('#tag-facets li.selected a[data-params]')
         assert json.loads(link.attr('data-params')) == {
-            'tag': 'sky', 'page': None
+            'tag': 'sky',
+            'page': None,
         }
 
     def test_no_tag_filters_on_tags_page(self):
@@ -531,12 +606,18 @@ class TestESSearch(SearchBase):
         theme.save()
         self.reindex(Addon)
 
-        themes = sorted(self.addons.filter(type=amo.ADDON_THEME)
-                        .values_list('id', flat=True))
+        themes = sorted(
+            self.addons.filter(type=amo.ADDON_THEME).values_list(
+                'id', flat=True
+            )
+        )
         assert themes == [theme.id]
 
-        extensions = sorted(self.addons.filter(type=amo.ADDON_EXTENSION)
-                            .values_list('id', flat=True))
+        extensions = sorted(
+            self.addons.filter(type=amo.ADDON_EXTENSION).values_list(
+                'id', flat=True
+            )
+        )
         assert extensions == sorted(a.id for a in self.addons[1:])
 
         # Extensions should show only extensions.
@@ -570,14 +651,16 @@ class TestESSearch(SearchBase):
         self.refresh()
         response = self.client.get(self.url, {'appver': '10.0'})
         expected_addons_pks = sorted(
-            self.addons.exclude(pk=addon.pk).values_list('id', flat=True))
+            self.addons.exclude(pk=addon.pk).values_list('id', flat=True)
+        )
         assert self.get_results(response) == expected_addons_pks
 
     def test_results_platform_filter_all(self):
         for platform in ('', 'all'):
             r = self.client.get(self.url, {'platform': platform})
             assert self.get_results(r) == (
-                sorted(self.addons.values_list('id', flat=True)))
+                sorted(self.addons.values_list('id', flat=True))
+            )
 
     def test_slug_indexed_but_not_searched(self):
         a = self.addons[0]
@@ -597,9 +680,11 @@ class TestESSearch(SearchBase):
         assert self.get_results(r) == []
 
         AddonUser.objects.create(
-            addon=a, user=UserProfile.objects.create(username='boop'))
+            addon=a, user=UserProfile.objects.create(username='boop')
+        )
         AddonUser.objects.create(
-            addon=a, user=UserProfile.objects.create(username='ponypet'))
+            addon=a, user=UserProfile.objects.create(username='ponypet')
+        )
         a.save()
         self.refresh()
         r = self.client.get(self.url, {'q': 'garbage'})
@@ -617,7 +702,8 @@ class TestESSearch(SearchBase):
         assert self.get_results(r) == []
 
         AddonTag.objects.create(
-            addon=a, tag=Tag.objects.create(tag_text=tag_name))
+            addon=a, tag=Tag.objects.create(tag_text=tag_name)
+        )
 
         a.save()
         self.refresh()
@@ -628,7 +714,8 @@ class TestESSearch(SearchBase):
         # Multiple tags.
         tag_name_2 = 'bagemtagem'
         AddonTag.objects.create(
-            addon=a, tag=Tag.objects.create(tag_text=tag_name_2))
+            addon=a, tag=Tag.objects.create(tag_text=tag_name_2)
+        )
         a.save()
         self.refresh()
         r = self.client.get(self.url, {'q': '%s %s' % (tag_name, tag_name_2)})
@@ -646,8 +733,9 @@ class TestESSearch(SearchBase):
         assert addon.pk not in self.get_results(response)
 
     def test_webextension_boost(self):
-        web_extension = list(sorted(
-            self.addons, key=lambda x: x.name, reverse=True))[0]
+        web_extension = list(
+            sorted(self.addons, key=lambda x: x.name, reverse=True)
+        )[0]
         web_extension.current_version.files.update(is_webextension=True)
         web_extension.save()
         self.refresh()
@@ -675,12 +763,14 @@ class TestESSearch(SearchBase):
 
             addon.name = {'es': u'Banana Bonkers espanole'}
             addon.description = {
-                'es': u'Deje que su navegador coma sus plátanos'}
+                'es': u'Deje que su navegador coma sus plátanos'
+            }
             addon.summary = {'es': u'resumen banana'}
             addon.save()
 
         addon_en = addon_factory(
-            slug='English Addon', name=u'My English Addôn')
+            slug='English Addon', name=u'My English Addôn'
+        )
 
         self.refresh()
 
@@ -708,7 +798,6 @@ class TestESSearch(SearchBase):
 
 
 class TestPersonaSearch(SearchBase):
-
     def setUp(self):
         super(TestPersonaSearch, self).setUp()
         self.url = urlparams(reverse('search.search'), atype=amo.ADDON_PERSONA)
@@ -717,19 +806,24 @@ class TestPersonaSearch(SearchBase):
         # Add some public personas.
         self.personas = []
         for status in [amo.STATUS_PUBLIC] * 3:
-            addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA,
-                                            status=status)
+            addon = amo.tests.addon_factory(
+                type=amo.ADDON_PERSONA, status=status
+            )
             self.personas.append(addon)
             self._addons.append(addon)
 
         # Add some unreviewed personas.
         for status in set(Addon.STATUS_CHOICES) - set(amo.REVIEWED_STATUSES):
-            self._addons.append(amo.tests.addon_factory(type=amo.ADDON_PERSONA,
-                                                        status=status))
+            self._addons.append(
+                amo.tests.addon_factory(type=amo.ADDON_PERSONA, status=status)
+            )
 
         # Add a disabled persona.
-        self._addons.append(amo.tests.addon_factory(type=amo.ADDON_PERSONA,
-                                                    disabled_by_user=True))
+        self._addons.append(
+            amo.tests.addon_factory(
+                type=amo.ADDON_PERSONA, disabled_by_user=True
+            )
+        )
 
         # NOTE: There are also some add-ons in the setUpClass for good measure.
 
@@ -807,30 +901,38 @@ class TestPersonaSearch(SearchBase):
             ('The Japanese Tattooed Girl', 242),
         ]
         for name, popularity in personas:
-            self._addons.append(amo.tests.addon_factory(name=name,
-                                                        type=amo.ADDON_PERSONA,
-                                                        popularity=popularity))
+            self._addons.append(
+                amo.tests.addon_factory(
+                    name=name, type=amo.ADDON_PERSONA, popularity=popularity
+                )
+            )
         self.refresh()
 
         # Japanese Tattoo should be the #1 most relevant result. Obviously.
         expected_name, expected_popularity = personas[2]
         for sort in ('downloads', 'popularity', 'users'):
-            r = self.client.get(urlparams(self.url, q='japanese tattoo',
-                                          sort=sort), follow=True)
+            r = self.client.get(
+                urlparams(self.url, q='japanese tattoo', sort=sort),
+                follow=True,
+            )
             assert r.status_code == 200
             results = list(r.context['pager'].object_list)
             first = results[0]
             assert unicode(first.name) == expected_name, (
-                'Was not first result for %r. Results: %s' % (sort, results))
+                'Was not first result for %r. Results: %s' % (sort, results)
+            )
             assert first.persona.popularity == expected_popularity, (
-                'Incorrect popularity for %r. Got %r. Expected %r.' % (
-                    sort, first.persona.popularity, results))
+                'Incorrect popularity for %r. Got %r. Expected %r.'
+                % (sort, first.persona.popularity, results)
+            )
             assert first.average_daily_users == expected_popularity, (
-                'Incorrect users for %r. Got %r. Expected %r.' % (
-                    sort, first.average_daily_users, results))
+                'Incorrect users for %r. Got %r. Expected %r.'
+                % (sort, first.average_daily_users, results)
+            )
             assert first.weekly_downloads == expected_popularity, (
-                'Incorrect weekly_downloads for %r. Got %r. Expected %r.' % (
-                    sort, first.weekly_downloads, results))
+                'Incorrect weekly_downloads for %r. Got %r. Expected %r.'
+                % (sort, first.weekly_downloads, results)
+            )
 
     def test_results_appver_platform(self):
         self._generate_personas()
@@ -858,41 +960,50 @@ class TestPersonaSearch(SearchBase):
         assert pq(r.content)('.personas-grid li').length == 1
 
 
-@pytest.mark.parametrize("test_input,expected", [
-    ('q=yeah&sort=newest', 'q=yeah&sort=updated'),
-    ('sort=weeklydownloads', 'sort=users'),
-    ('sort=averagerating', 'sort=rating'),
-    ('lver=5.*', 'appver=5.*'),
-    ('q=woo&sort=averagerating&lver=6.0', 'q=woo&sort=rating&appver=6.0'),
-    ('pid=2', 'platform=linux'),
-    ('q=woo&lver=6.0&sort=users&pid=5',
-     'q=woo&appver=6.0&sort=users&platform=windows'),
-    ('type=extension', 'atype=1'),
-    ('type=dictionary', 'atype=3'),
-    ('type=search', 'atype=4'),
-    ('type=language', 'atype=5'),
-])
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        ('q=yeah&sort=newest', 'q=yeah&sort=updated'),
+        ('sort=weeklydownloads', 'sort=users'),
+        ('sort=averagerating', 'sort=rating'),
+        ('lver=5.*', 'appver=5.*'),
+        ('q=woo&sort=averagerating&lver=6.0', 'q=woo&sort=rating&appver=6.0'),
+        ('pid=2', 'platform=linux'),
+        (
+            'q=woo&lver=6.0&sort=users&pid=5',
+            'q=woo&appver=6.0&sort=users&platform=windows',
+        ),
+        ('type=extension', 'atype=1'),
+        ('type=dictionary', 'atype=3'),
+        ('type=search', 'atype=4'),
+        ('type=language', 'atype=5'),
+    ],
+)
 def test_search_redirects(test_input, expected):
     assert views.fix_search_query(QueryDict(test_input)) == (
-        dict(urlparse.parse_qsl(expected)))
+        dict(urlparse.parse_qsl(expected))
+    )
 
 
-@pytest.mark.parametrize("test_input", [
-    'q=yeah',
-    'q=yeah&sort=users',
-    'sort=users',
-    'q=yeah&appver=6.0',
-    'q=yeah&appver=6.0&platform=mac',
-])
+@pytest.mark.parametrize(
+    "test_input",
+    [
+        'q=yeah',
+        'q=yeah&sort=users',
+        'sort=users',
+        'q=yeah&appver=6.0',
+        'q=yeah&appver=6.0&platform=mac',
+    ],
+)
 def test_search_redirects2(test_input):
     q = QueryDict(test_input)
     assert views.fix_search_query(q) is q
 
 
 class TestAjaxSearch(ESTestCaseWithAddons):
-
-    def search_addons(self, url, params, addons=None, types=amo.ADDON_TYPES,
-                      src=None):
+    def search_addons(
+        self, url, params, addons=None, types=amo.ADDON_TYPES, src=None
+    ):
         if addons is None:
             addons = []
         response = self.client.get(url + '?' + params)
@@ -901,8 +1012,9 @@ class TestAjaxSearch(ESTestCaseWithAddons):
 
         assert len(data) == len(addons)
         for got, expected in zip(
-                sorted(data, key=lambda x: x['id']),
-                sorted(addons, key=lambda x: x.id)):
+            sorted(data, key=lambda x: x['id']),
+            sorted(addons, key=lambda x: x.id),
+        ):
             expected.reload()
             assert int(got['id']) == expected.id
             assert got['name'] == unicode(expected.name)
@@ -910,26 +1022,30 @@ class TestAjaxSearch(ESTestCaseWithAddons):
             if src:
                 expected_url += '?src=ss'
             assert got['url'] == expected_url
-            assert got['icons'] == {'32': expected.get_icon_url(32),
-                                    '64': expected.get_icon_url(64)}
+            assert got['icons'] == {
+                '32': expected.get_icon_url(32),
+                '64': expected.get_icon_url(64),
+            }
 
-            assert expected.status in amo.REVIEWED_STATUSES, (
-                'Unreviewed add-ons should not appear in search results.')
+            assert (
+                expected.status in amo.REVIEWED_STATUSES
+            ), 'Unreviewed add-ons should not appear in search results.'
             assert not expected.is_disabled
             assert expected.type in types, (
-                'Add-on type %s should not be searchable.' % expected.type)
+                'Add-on type %s should not be searchable.' % expected.type
+            )
         return data
 
 
 class TestGenericAjaxSearch(TestAjaxSearch):
-
     def search_addons(self, params, addons=None):
         if addons is None:
             addons = []
         [a.save() for a in Addon.objects.all()]
         self.refresh()
         return super(TestGenericAjaxSearch, self).search_addons(
-            reverse('search.ajax'), params, addons)
+            reverse('search.ajax'), params, addons
+        )
 
     def test_ajax_search_by_id(self):
         addon = Addon.objects.public().all()[0]
@@ -998,24 +1114,28 @@ class TestGenericAjaxSearch(TestAjaxSearch):
 
 
 class TestSearchSuggestions(TestAjaxSearch):
-
     def setUp(self):
         super(TestSearchSuggestions, self).setUp()
         self.url = reverse('search.suggestions')
         self._addons += [
-            amo.tests.addon_factory(name='addon persona',
-                                    type=amo.ADDON_PERSONA),
-            amo.tests.addon_factory(name='addon persona',
-                                    type=amo.ADDON_PERSONA,
-                                    disabled_by_user=True,
-                                    status=amo.STATUS_NULL),
+            amo.tests.addon_factory(
+                name='addon persona', type=amo.ADDON_PERSONA
+            ),
+            amo.tests.addon_factory(
+                name='addon persona',
+                type=amo.ADDON_PERSONA,
+                disabled_by_user=True,
+                status=amo.STATUS_NULL,
+            ),
         ]
         self.refresh()
 
-    def search_addons(self, params, addons=None,
-                      types=views.AddonSuggestionsAjax.types):
+    def search_addons(
+        self, params, addons=None, types=views.AddonSuggestionsAjax.types
+    ):
         return super(TestSearchSuggestions, self).search_addons(
-            self.url, params, addons, types, src='ss')
+            self.url, params, addons, types, src='ss'
+        )
 
     def search_applications(self, params, apps=None):
         if apps is None:
@@ -1039,9 +1159,9 @@ class TestSearchSuggestions(TestAjaxSearch):
         assert r.status_code == 200
 
     def test_addons(self):
-        addons = (Addon.objects.public()
-                  .filter(disabled_by_user=False,
-                          type__in=views.AddonSuggestionsAjax.types))
+        addons = Addon.objects.public().filter(
+            disabled_by_user=False, type__in=views.AddonSuggestionsAjax.types
+        )
         self.search_addons('q=add', list(addons))
         self.search_addons('q=add&cat=all', list(addons))
 
@@ -1049,8 +1169,9 @@ class TestSearchSuggestions(TestAjaxSearch):
         self.search_addons('q=%C2%B2%C2%B2', [])
 
     def test_personas(self):
-        personas = (Addon.objects.public()
-                    .filter(type=amo.ADDON_PERSONA, disabled_by_user=False))
+        personas = Addon.objects.public().filter(
+            type=amo.ADDON_PERSONA, disabled_by_user=False
+        )
         personas, types = list(personas), [amo.ADDON_PERSONA]
         self.search_addons('q=add&cat=themes', personas, types)
         self.search_addons('q=persona&cat=themes', personas, types)

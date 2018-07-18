@@ -14,7 +14,8 @@ class TestUserBackend(object):
             raise TypeError('password is not allowed')
         try:
             return UserProfile.objects.get(
-                Q(email=email) | Q(username=username))
+                Q(email=email) | Q(username=username)
+            )
         except UserProfile.DoesNotExist:
             return None
 
@@ -27,6 +28,7 @@ class TestUserBackend(object):
 
 class NoAuthForYou(object):
     """An authentication backend for read-only mode."""
+
     supports_anonymous_user = False
     supports_inactive_user = False
     supports_object_permissions = False

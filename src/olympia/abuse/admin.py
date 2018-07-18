@@ -20,10 +20,7 @@ class AbuseReportTypeFilter(admin.SimpleListFilter):
         human-readable name for the option that will appear
         in the right sidebar.
         """
-        return (
-            ('user', 'Users'),
-            ('addon', 'Addons'),
-        )
+        return (('user', 'Users'), ('addon', 'Addons'))
 
     def queryset(self, request, queryset):
         """
@@ -34,18 +31,32 @@ class AbuseReportTypeFilter(admin.SimpleListFilter):
         if self.value() == 'user':
             return queryset.filter(user__isnull=False)
         elif self.value() == 'addon':
-            return queryset.filter(Q(addon__isnull=False) |
-                                   Q(guid__isnull=False))
+            return queryset.filter(
+                Q(addon__isnull=False) | Q(guid__isnull=False)
+            )
         return queryset
 
 
 class AbuseReportAdmin(admin.ModelAdmin):
     raw_id_fields = ('addon', 'user', 'reporter')
-    readonly_fields = ('ip_address', 'message', 'created', 'addon', 'user',
-                       'guid', 'reporter')
-    list_display = ('reporter', 'ip_address', 'type', 'target', 'message',
-                    'created')
-    list_filter = (AbuseReportTypeFilter, )
+    readonly_fields = (
+        'ip_address',
+        'message',
+        'created',
+        'addon',
+        'user',
+        'guid',
+        'reporter',
+    )
+    list_display = (
+        'reporter',
+        'ip_address',
+        'type',
+        'target',
+        'message',
+        'created',
+    )
+    list_filter = (AbuseReportTypeFilter,)
     actions = ('delete_selected',)
 
 

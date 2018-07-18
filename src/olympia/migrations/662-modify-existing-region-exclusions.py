@@ -33,11 +33,13 @@ def run():
             print('SKIP: %s New Mexico -> Old Mexico' % far.id)
 
     # New regions were added.
-    exclude_new_region([
-        mkt.regions.MX,
-        mkt.regions.HU,
-        mkt.regions.DE,
-        mkt.regions.ME,
-        mkt.regions.RS,
-        mkt.regions.GR,
-    ])
+    exclude_new_region(
+        [
+            mkt.regions.MX,
+            mkt.regions.HU,
+            mkt.regions.DE,
+            mkt.regions.ME,
+            mkt.regions.RS,
+            mkt.regions.GR,
+        ]
+    )

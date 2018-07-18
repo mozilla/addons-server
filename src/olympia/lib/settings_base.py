@@ -39,6 +39,7 @@ try:
     # CACHE_PREFIX.  This will let us not have to flush memcache during updates
     # and it will let us preload data into it before a production push.
     from build import BUILD_ID_CSS, BUILD_ID_JS
+
     build_id = "%s%s" % (BUILD_ID_CSS[:2], BUILD_ID_JS[:2])
 except ImportError:
     build_id = ""
@@ -99,23 +100,24 @@ CORS_URLS_REGEX = DRF_API_REGEX
 # https://pypi.python.org/pypi/django-cors-headers-multi/1.2.0
 def cors_endpoint_overrides(whitelist_endpoints):
     return [
-        ('%saccounts/login/?$' % DRF_API_REGEX, {
-            'CORS_ORIGIN_ALLOW_ALL': False,
-            'CORS_ORIGIN_WHITELIST': whitelist_endpoints,
-            'CORS_ALLOW_CREDENTIALS': True,
-        }),
+        (
+            '%saccounts/login/?$' % DRF_API_REGEX,
+            {
+                'CORS_ORIGIN_ALLOW_ALL': False,
+                'CORS_ORIGIN_WHITELIST': whitelist_endpoints,
+                'CORS_ALLOW_CREDENTIALS': True,
+            },
+        )
     ]
 
 
 CORS_ENDPOINT_OVERRIDES = []
 
-DATABASES = {
-    'default': env.db(default='mysql://root:@localhost/olympia')
-}
+DATABASES = {'default': env.db(default='mysql://root:@localhost/olympia')}
 DATABASES['default']['OPTIONS'] = {'sql_mode': 'STRICT_ALL_TABLES'}
 DATABASES['default']['TEST'] = {
     'CHARSET': 'utf8',
-    'COLLATION': 'utf8_general_ci'
+    'COLLATION': 'utf8_general_ci',
 }
 # Run all views in a transaction unless they are decorated not to.
 DATABASES['default']['ATOMIC_REQUESTS'] = True
@@ -216,7 +218,11 @@ LANGUAGES_BIDI = ('ar', 'fa', 'he', 'dbr', 'ur')
 
 # Explicit conversion of a shorter language code into a more specific one.
 SHORTER_LANGUAGES = {
-    'en': 'en-US', 'ga': 'ga-IE', 'pt': 'pt-PT', 'sv': 'sv-SE', 'zh': 'zh-CN'
+    'en': 'en-US',
+    'ga': 'ga-IE',
+    'pt': 'pt-PT',
+    'sv': 'sv-SE',
+    'zh': 'zh-CN',
 }
 
 
@@ -225,6 +231,7 @@ DEBUG_LANGUAGES = ('dbr', 'dbl')
 
 def lazy_langs(languages):
     from product_details import product_details
+
     if not product_details.languages:
         return {}
 
@@ -245,16 +252,16 @@ def lazy_langs(languages):
 
 # Where product details are stored see django-mozilla-product-details
 PROD_DETAILS_DIR = path('src', 'olympia', 'lib', 'product_json')
-PROD_DETAILS_STORAGE = 'olympia.lib.product_details_backend.NoCachePDFileStorage'  # noqa
+PROD_DETAILS_STORAGE = (
+    'olympia.lib.product_details_backend.NoCachePDFileStorage'
+)  # noqa
 
 # Override Django's built-in with our native names
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
-LOCALE_PATHS = (
-    path('locale'),
-)
+LOCALE_PATHS = (path('locale'),)
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -316,11 +323,24 @@ SUPPORTED_NONAPPS_NONLOCALES_REGEX = DRF_API_REGEX
 # validClientAppUrlExceptions
 # https://github.com/mozilla/addons-frontend/blob/master/config/default-amo.js
 SUPPORTED_NONAPPS = (
-    'about', 'admin', 'apps', 'contribute.json',
-    'developer_agreement', 'developers', 'editors',
-    'jsi18n', 'review_guide', 'google1f3e37b7351799a5.html',
-    'google231a41e803e464e9.html', 'reviewers', 'robots.txt', 'statistics',
-    'services', 'static', 'user-media', '__version__',
+    'about',
+    'admin',
+    'apps',
+    'contribute.json',
+    'developer_agreement',
+    'developers',
+    'editors',
+    'jsi18n',
+    'review_guide',
+    'google1f3e37b7351799a5.html',
+    'google231a41e803e464e9.html',
+    'reviewers',
+    'robots.txt',
+    'statistics',
+    'services',
+    'static',
+    'user-media',
+    '__version__',
 )
 DEFAULT_APP = 'firefox'
 
@@ -328,15 +348,22 @@ DEFAULT_APP = 'firefox'
 # This needs to be kept in sync with addons-frontend's validLocaleUrlExceptions
 # https://github.com/mozilla/addons-frontend/blob/master/config/default-amo.js
 SUPPORTED_NONLOCALES = (
-    'contribute.json', 'google1f3e37b7351799a5.html',
-    'google231a41e803e464e9.html', 'robots.txt', 'services', 'downloads',
-    'static', 'user-media', '__version__',
+    'contribute.json',
+    'google1f3e37b7351799a5.html',
+    'google231a41e803e464e9.html',
+    'robots.txt',
+    'services',
+    'downloads',
+    'static',
+    'user-media',
+    '__version__',
 )
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = env(
     'SECRET_KEY',
-    default='this-is-a-dummy-key-and-its-overridden-for-prod-servers')
+    default='this-is-a-dummy-key-and-its-overridden-for-prod-servers',
+)
 
 # Templates
 JINJA_EXCLUDE_TEMPLATE_PATHS = (
@@ -348,7 +375,6 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'^devhub\/email\/revoked-key-email.ltxt',
     r'^devhub\/email\/new-key-email.ltxt',
     r'^devhub\/email\/submission_api_key_revocation.txt',
-
     # Django specific templates
     r'^registration\/',
 )
@@ -358,10 +384,7 @@ TEMPLATES = [
         'BACKEND': 'django_jinja.backend.Jinja2',
         'NAME': 'jinja2',
         'APP_DIRS': True,
-        'DIRS': (
-            path('media', 'docs'),
-            path('src/olympia/templates'),
-        ),
+        'DIRS': (path('media', 'docs'), path('src/olympia/templates')),
         'OPTIONS': {
             # http://jinja.pocoo.org/docs/dev/extensions/#newstyle-gettext
             'newstyle_gettext': True,
@@ -369,15 +392,14 @@ TEMPLATES = [
             # for the admin and a handful of other paths
             'match_extension': None,
             'match_regex': r'^(?!({paths})).*'.format(
-                paths='|'.join(JINJA_EXCLUDE_TEMPLATE_PATHS)),
+                paths='|'.join(JINJA_EXCLUDE_TEMPLATE_PATHS)
+            ),
             'context_processors': (
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.media',
                 'django.template.context_processors.request',
-
                 'django.contrib.messages.context_processors.messages',
-
                 'olympia.amo.context_processors.app',
                 'olympia.amo.context_processors.i18n',
                 'olympia.amo.context_processors.global_settings',
@@ -401,7 +423,7 @@ TEMPLATES = [
             'translation_engine': 'django.utils.translation',
             'autoescape': True,
             'trim_blocks': True,
-        }
+        },
     },
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -413,10 +435,9 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.media',
                 'django.template.context_processors.request',
-
                 'django.contrib.messages.context_processors.messages',
-            ),
-        }
+            )
+        },
     },
 ]
 
@@ -449,49 +470,38 @@ MIDDLEWARE_CLASSES = (
     # Gzip (for API only) middleware needs to be executed after every
     # modification to the response, so it's placed at the top of the list.
     'olympia.api.middleware.GZipMiddlewareForAPIOnly',
-
     # Statsd and logging come first to get timings etc. Munging REMOTE_ADDR
     # must come before middlewares potentially using REMOTE_ADDR, so it's
     # also up there.
     'django_statsd.middleware.GraphiteRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
     'olympia.amo.middleware.SetRemoteAddrFromForwardedFor',
-
     # AMO URL middleware is as high as possible to get locale/app aware URLs.
     'olympia.amo.middleware.LocaleAndAppURLMiddleware',
-
     'olympia.amo.middleware.RemoveSlashMiddleware',
-
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
     'multidb.middleware.PinningRouterMiddleware',
     'waffle.middleware.WaffleMiddleware',
-
     # CSP and CORS need to come before CommonMiddleware because they might
     # need to add headers to 304 responses returned by CommonMiddleware.
     'csp.middleware.CSPMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-
     # This middleware does nothing, it's there for backwards-compatibility.
     # Django < 1.10 checks for its presence to make session key rotation work.
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-
     # Enable conditional processing, e.g ETags.
     'django.middleware.http.ConditionalGetMiddleware',
-
     'olympia.amo.middleware.CommonMiddleware',
     'olympia.amo.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',
     'olympia.search.middleware.ElasticsearchExceptionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-
     # This should come after AuthenticationMiddlewareWithoutAPI (to get the
     # current user) and after SetRemoteAddrFromForwardedFor (to get the correct
     # IP).
     'olympia.access.middleware.UserAndAddrMiddleware',
-
     'olympia.amo.middleware.ScrubRequestOnException',
     'olympia.amo.middleware.RequestIdMiddleware',
 )
@@ -515,7 +525,6 @@ INSTALLED_APPS = (
     # created first though, otherwise you'll run into
     # `ERROR 1215 (HY000): Cannot add foreign key constraint` errors.
     'olympia.translations',
-
     'olympia.core',
     'olympia.amo',  # amo comes first so it always takes precedence.
     'olympia.abuse',
@@ -544,7 +553,6 @@ INSTALLED_APPS = (
     'olympia.users',
     'olympia.versions',
     'olympia.zadmin',
-
     # Third party apps
     'product_details',
     'csp',
@@ -555,7 +563,6 @@ INSTALLED_APPS = (
     'waffle',
     'django_jinja',
     'puente',
-
     # Django contrib apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -563,7 +570,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
-
     # Has to load after auth
     'django_statsd',
 )
@@ -572,7 +578,8 @@ INSTALLED_APPS = (
 # change it locally to test the extraction process, but be careful not to
 # accidentally nuke translations when doing that!
 DISCOVERY_EDITORIAL_CONTENT_API = (
-    'https://addons.mozilla.org/api/v4/discovery/editorial/')
+    'https://addons.mozilla.org/api/v4/discovery/editorial/'
+)
 
 # Filename where the strings will be stored. Used in puente config below.
 DISCOVERY_EDITORIAL_CONTENT_FILENAME = 'src/olympia/discovery/strings.jinja2'
@@ -586,20 +593,17 @@ PUENTE = {
     'DOMAIN_METHODS': {
         'django': [
             ('src/olympia/**.py', 'python'),
-
             # Extract the generated file containing editorial content for all
             # disco pane recommendations using jinja2 parser. It's not a real
             # template, but it uses jinja2 syntax for convenience, hence why
             # it's not in templates/ with a .html extension.
             (DISCOVERY_EDITORIAL_CONTENT_FILENAME, 'jinja2'),
-
             # Make sure we're parsing django-admin templates with the django
             # template extractor
             (
                 '**/templates/admin/**.html',
-                'django_babel.extract.extract_django'
+                'django_babel.extract.extract_django',
             ),
-
             ('src/olympia/**/templates/**.html', 'jinja2'),
             ('**/templates/**.lhtml', 'jinja2'),
         ],
@@ -623,21 +627,12 @@ PUENTE = {
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
     'css': {
-        'restyle/css': (
-            'css/restyle/restyle.less',
-        ),
-
+        'restyle/css': ('css/restyle/restyle.less',),
         # CSS files our DevHub (currently only required for the
         # new landing page)
-        'devhub/new-landing/css': (
-            'css/devhub/new-landing/base.less',
-        ),
-
+        'devhub/new-landing/css': ('css/devhub/new-landing/base.less',),
         # Responsive error page styling.
-        'errors/css': (
-            'css/errors/base.less',
-        ),
-
+        'errors/css': ('css/errors/base.less',),
         # CSS files common to the entire site.
         'zamboni/css': (
             'css/legacy/main.css',
@@ -696,9 +691,7 @@ MINIFY_BUNDLES = {
             'css/impala/tables.less',
             'css/impala/compat.less',
         ),
-        'zamboni/stats': (
-            'css/impala/stats.less',
-        ),
+        'zamboni/stats': ('css/impala/stats.less',),
         'zamboni/discovery-pane': (
             'css/zamboni/discovery-pane.css',
             'css/impala/promos.less',
@@ -772,7 +765,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/buttons.js',
             'js/zamboni/tabs.js',
             'js/common/keys.js',
-
             # jQuery UI
             'js/node_lib/ui/version.js',
             'js/node_lib/ui/data.js',
@@ -796,7 +788,6 @@ MINIFY_BUNDLES = {
             'js/node_lib/ui/autocomplete.js',
             'js/node_lib/ui/datepicker.js',
             'js/node_lib/ui/sortable.js',
-
             'js/zamboni/helpers.js',
             'js/common/banners.js',
             'js/zamboni/global.js',
@@ -805,39 +796,31 @@ MINIFY_BUNDLES = {
             'js/node_lib/jqModal.js',
             'js/zamboni/l10n.js',
             'js/zamboni/debouncer.js',
-
             # Homepage
             'js/impala/promos.js',
             'js/zamboni/homepage.js',
-
             # Add-ons details page
             'js/lib/ui.lightbox.js',
             'js/zamboni/addon_details.js',
             'js/impala/abuse.js',
             'js/zamboni/ratings.js',
-
             # Personas
             'js/lib/jquery.hoverIntent.js',
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
-
             # Unicode: needs to be loaded after collections.js which listens to
             # an event fired in this file.
             'js/zamboni/unicode.js',
-
             # Collections
             'js/zamboni/collections.js',
-
             # Users
             'js/zamboni/users.js',
-
             # Search suggestions
             'js/impala/forms.js',
             'js/impala/ajaxcache.js',
             'js/impala/suggestions.js',
             'js/impala/site_suggestions.js',
         ),
-
         # Impala and Legacy: Things to be loaded at the top of the page
         'preload': (
             'js/node_lib/jquery.js',
@@ -866,7 +849,6 @@ MINIFY_BUNDLES = {
             'js/lib/semicolon.js',  # It's just a semicolon!
             'js/impala/footer.js',
             'js/common/keys.js',
-
             # jQuery UI
             'js/node_lib/ui/version.js',
             'js/node_lib/ui/data.js',
@@ -890,7 +872,6 @@ MINIFY_BUNDLES = {
             'js/node_lib/ui/autocomplete.js',
             'js/node_lib/ui/datepicker.js',
             'js/node_lib/ui/sortable.js',
-
             'js/lib/truncate.js',
             'js/zamboni/truncation.js',
             'js/impala/ajaxcache.js',
@@ -902,48 +883,38 @@ MINIFY_BUNDLES = {
             'js/node_lib/jqModal.js',
             'js/zamboni/l10n.js',
             'js/impala/forms.js',
-
             # Homepage
             'js/impala/promos.js',
             'js/impala/homepage.js',
-
             # Add-ons details page
             'js/lib/ui.lightbox.js',
             'js/impala/addon_details.js',
             'js/impala/abuse.js',
             'js/impala/ratings.js',
-
             # Browse listing pages
             'js/impala/listing.js',
-
             # Personas
             'js/lib/jquery.hoverIntent.js',
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
-
             # Persona creation
             'js/common/upload-image.js',
             'js/node_lib/jquery.minicolors.js',
             'js/impala/persona_creation.js',
-
             # Unicode: needs to be loaded after collections.js which listens to
             # an event fired in this file.
             'js/zamboni/unicode.js',
-
             # Collections
             'js/zamboni/collections.js',
             'js/impala/collections.js',
-
             # Users
             'js/zamboni/users.js',
             'js/impala/users.js',
-
             # Search
             'js/impala/serializers.js',
             'js/impala/search.js',
             'js/impala/suggestions.js',
             'js/impala/site_suggestions.js',
-
             # Login
             'js/impala/login.js',
         ),
@@ -957,22 +928,18 @@ MINIFY_BUNDLES = {
             'js/lib/format.js',
             'js/impala/carousel.js',
             'js/zamboni/analytics.js',
-
             # Add-ons details
             'js/node_lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
             'js/lib/ui.lightbox.js',
-
             # Personas
             'js/lib/jquery.hoverIntent.js',
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
-
             'js/zamboni/debouncer.js',
             'js/lib/truncate.js',
             'js/zamboni/truncation.js',
-
             'js/impala/promos.js',
             'js/zamboni/discovery_addons.js',
             'js/zamboni/discovery_pane.js',
@@ -1040,7 +1007,7 @@ MINIFY_BUNDLES = {
             'js/node_lib/less.js',
             'js/debug/less_live.js',
         ),
-    }
+    },
 }
 
 # Prefix for cache keys (will prevent collisions when running parallel copies)
@@ -1108,22 +1075,28 @@ EMAIL_QA_ALLOW_LIST = env.list('EMAIL_QA_ALLOW_LIST', default=())
 EMAIL_DENY_LIST = env.list('EMAIL_DENY_LIST', default=('nobody@mozilla.org',))
 
 # URL for Add-on Validation FAQ.
-VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/Add-ons/Reviewers/Guide/'
-                      'AddonReviews#Step_2:_Automatic_validation')
+VALIDATION_FAQ_URL = (
+    'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/'
+    'AddonReviews#Step_2:_Automatic_validation'
+)
 
 
 # Celery
 CELERY_BROKER_URL = env(
     'CELERY_BROKER_URL',
     default=os.environ.get(
-        'CELERY_BROKER_URL', 'amqp://olympia:olympia@localhost:5672/olympia'))
+        'CELERY_BROKER_URL', 'amqp://olympia:olympia@localhost:5672/olympia'
+    ),
+)
 CELERY_BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_BROKER_HEARTBEAT = 60 * 15
 CELERY_TASK_DEFAULT_QUEUE = 'default'
 CELERY_RESULT_BACKEND = env(
     'CELERY_RESULT_BACKEND',
     default=os.environ.get(
-        'CELERY_RESULT_BACKEND', 'redis://localhost:6379/1'))
+        'CELERY_RESULT_BACKEND', 'redis://localhost:6379/1'
+    ),
+)
 
 CELERY_TASK_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
@@ -1175,59 +1148,52 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.save_theme': {'queue': 'priority'},
     'olympia.addons.tasks.save_theme_reupload': {'queue': 'priority'},
     'olympia.versions.tasks.generate_static_theme_preview': {
-        'queue': 'priority'},
-
+        'queue': 'priority'
+    },
     # Other queues we prioritize below.
-
     # AMO Devhub.
     'olympia.devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {
-        'queue': 'devhub'},
+        'queue': 'devhub'
+    },
     'olympia.devhub.tasks.revoke_and_regenerate_api_key': {'queue': 'devhub'},
     'olympia.devhub.tasks.send_welcome_email': {'queue': 'devhub'},
     'olympia.devhub.tasks.submit_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file_path': {'queue': 'devhub'},
-
     # Activity (goes to devhub queue).
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},
-
     # This is currently used only by validation tasks.
     # This puts the chord_unlock task on the devhub queue. Which means anything
     # that uses chord() or group() must also be running in this queue or must
     # be on a worker that listens to the same queue.
     'celery.chord_unlock': {'queue': 'devhub'},
     'olympia.devhub.tasks.compatibility_check': {'queue': 'devhub'},
-
     # Images.
     'olympia.bandwagon.tasks.resize_icon': {'queue': 'images'},
     'olympia.users.tasks.resize_photo': {'queue': 'images'},
     'olympia.devhub.tasks.resize_icon': {'queue': 'images'},
     'olympia.devhub.tasks.resize_preview': {'queue': 'images'},
-
     # AMO validator.
     'olympia.zadmin.tasks.bulk_validate_file': {'queue': 'limited'},
-
     # AMO
     'olympia.amo.tasks.delete_anonymous_collections': {'queue': 'amo'},
     'olympia.amo.tasks.delete_logs': {'queue': 'amo'},
     'olympia.amo.tasks.send_email': {'queue': 'amo'},
     'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},
-
     # Addons
     'olympia.addons.tasks.calc_checksum': {'queue': 'addons'},
     'olympia.addons.tasks.delete_persona_image': {'queue': 'addons'},
     'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.addons.tasks.update_incompatible_appversions': {
-        'queue': 'addons'},
+        'queue': 'addons'
+    },
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
-
     # API
     'olympia.api.tasks.process_results': {'queue': 'api'},
     'olympia.api.tasks.process_webhook': {'queue': 'api'},
-
     # Crons
     'olympia.addons.cron._update_addon_average_daily_users': {'queue': 'cron'},
     'olympia.addons.cron._update_addon_download_totals': {'queue': 'cron'},
@@ -1236,76 +1202,72 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.cron._update_daily_theme_user_counts': {'queue': 'cron'},
     'olympia.bandwagon.cron._drop_collection_recs': {'queue': 'cron'},
     'olympia.bandwagon.cron._update_collections_subscribers': {
-        'queue': 'cron'},
+        'queue': 'cron'
+    },
     'olympia.bandwagon.cron._update_collections_votes': {'queue': 'cron'},
-
     # Bandwagon
     'olympia.bandwagon.tasks.collection_meta': {'queue': 'bandwagon'},
     'olympia.bandwagon.tasks.collection_votes': {'queue': 'bandwagon'},
     'olympia.bandwagon.tasks.collection_watchers': {'queue': 'bandwagon'},
     'olympia.bandwagon.tasks.delete_icon': {'queue': 'bandwagon'},
-
     # Reviewers
     'olympia.reviewers.tasks.add_commentlog': {'queue': 'reviewers'},
     'olympia.reviewers.tasks.add_versionlog': {'queue': 'reviewers'},
     'olympia.reviewers.tasks.approve_rereview': {'queue': 'reviewers'},
     'olympia.reviewers.tasks.reject_rereview': {'queue': 'reviewers'},
     'olympia.reviewers.tasks.send_mail': {'queue': 'reviewers'},
-
     # Crypto
     'olympia.lib.crypto.tasks.sign_addons': {'queue': 'crypto'},
-
     # Search
     'olympia.lib.es.management.commands.reindex.create_new_index': {
-        'queue': 'search'},
+        'queue': 'search'
+    },
     'olympia.lib.es.management.commands.reindex.delete_indexes': {
-        'queue': 'search'},
+        'queue': 'search'
+    },
     'olympia.lib.es.management.commands.reindex.flag_database': {
-        'queue': 'search'},
+        'queue': 'search'
+    },
     'olympia.lib.es.management.commands.reindex.index_data': {
-        'queue': 'search'},
+        'queue': 'search'
+    },
     'olympia.lib.es.management.commands.reindex.unflag_database': {
-        'queue': 'search'},
+        'queue': 'search'
+    },
     'olympia.lib.es.management.commands.reindex.update_aliases': {
-        'queue': 'search'},
-
+        'queue': 'search'
+    },
     # Ratings
     'olympia.ratings.tasks.addon_bayesian_rating': {'queue': 'ratings'},
     'olympia.ratings.tasks.addon_grouped_rating': {'queue': 'ratings'},
     'olympia.ratings.tasks.addon_rating_aggregates': {'queue': 'ratings'},
     'olympia.ratings.tasks.update_denorm': {'queue': 'ratings'},
-
-
     # Stats
     'olympia.stats.tasks.index_collection_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_download_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_theme_user_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_update_counts': {'queue': 'stats'},
     'olympia.stats.tasks.update_addons_collections_downloads': {
-        'queue': 'stats'},
+        'queue': 'stats'
+    },
     'olympia.stats.tasks.update_collections_total': {'queue': 'stats'},
     'olympia.stats.tasks.update_global_totals': {'queue': 'stats'},
-
     # Tags
     'olympia.tags.tasks.update_all_tag_stats': {'queue': 'tags'},
     'olympia.tags.tasks.update_tag_stat': {'queue': 'tags'},
-
     # Users
     'olympia.users.tasks.delete_photo': {'queue': 'users'},
     'olympia.users.tasks.update_user_ratings_task': {'queue': 'users'},
     'olympia.users.tasks.generate_secret_for_users': {'queue': 'users'},
-
     # Zadmin
     'olympia.zadmin.tasks.admin_email': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.notify_compatibility': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.notify_compatibility_chunk': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.update_maxversions': {'queue': 'zadmin'},
-
     # Github API
     'olympia.github.tasks.process_results': {'queue': 'devhub'},
     'olympia.github.tasks.process_webhook': {'queue': 'devhub'},
-
     # Temporary tasks to crush existing images.
     # Go in the addons queue to leave the 'devhub' queue free to process
     # validations etc.
@@ -1322,7 +1284,9 @@ CELERY_TASK_ROUTES = {
 CELERY_TIME_LIMITS = {
     # The reindex management command can take up to 3 hours to run.
     'olympia.lib.es.management.commands.reindex': {
-        'soft': 10800, 'hard': 14400},
+        'soft': 10800,
+        'hard': 14400,
+    }
 }
 
 # When testing, we always want tasks to raise exceptions. Good for sanity.
@@ -1340,18 +1304,16 @@ LOGGING = {
     'formatters': {
         'json': {
             '()': olympia.core.logger.JsonFormatter,
-            'logger_name': 'http_app_addons'
-        },
+            'logger_name': 'http_app_addons',
+        }
     },
     'handlers': {
         'mozlog': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
-            'formatter': 'json'
+            'formatter': 'json',
         },
-        'null': {
-            'class': 'logging.NullHandler',
-        },
+        'null': {'class': 'logging.NullHandler'},
         'statsd': {
             'level': 'ERROR',
             'class': 'django_statsd.loggers.errors.StatsdHandler',
@@ -1362,7 +1324,7 @@ LOGGING = {
         'amo': {
             'handlers': ['mozlog'],
             'level': logging.DEBUG,
-            'propagate': False
+            'propagate': False,
         },
         'amo.validator': {
             'handlers': ['mozlog'],
@@ -1372,17 +1334,17 @@ LOGGING = {
         'amqplib': {
             'handlers': ['null'],
             'level': logging.DEBUG,
-            'propagate': False
+            'propagate': False,
         },
         'caching': {
             'handlers': ['mozlog'],
             'level': logging.ERROR,
-            'propagate': False
+            'propagate': False,
         },
         'caching.invalidation': {
             'handlers': ['null'],
             'level': logging.DEBUG,
-            'propagate': False
+            'propagate': False,
         },
         'django': {
             'handlers': ['statsd'],
@@ -1393,7 +1355,7 @@ LOGGING = {
         'django.security.csrf': {
             'handlers': ['mozlog'],
             'level': logging.WARNING,
-            'propagate': True
+            'propagate': True,
         },
         'elasticsearch': {
             'handlers': ['null'],
@@ -1419,17 +1381,17 @@ LOGGING = {
         'request.summary': {
             'handlers': ['mozlog'],
             'level': logging.DEBUG,
-            'propagate': False
+            'propagate': False,
         },
         's.client': {
             'handlers': ['mozlog'],
             'level': logging.INFO,
-            'propagate': False
+            'propagate': False,
         },
         'z': {
             'handlers': ['mozlog'],
             'level': logging.DEBUG,
-            'propagate': False
+            'propagate': False,
         },
         'z.celery': {
             'handlers': ['statsd'],
@@ -1439,23 +1401,23 @@ LOGGING = {
         'z.es': {
             'handlers': ['mozlog'],
             'level': logging.INFO,
-            'propagate': False
+            'propagate': False,
         },
         'z.pool': {
             'handlers': ['mozlog'],
             'level': logging.ERROR,
-            'propagate': False
+            'propagate': False,
         },
         'z.redis': {
             'handlers': ['mozlog'],
             'level': logging.DEBUG,
-            'propagate': False
+            'propagate': False,
         },
         'z.task': {
             'handlers': ['mozlog'],
             'level': logging.DEBUG,
-            'propagate': False
-        }
+            'propagate': False,
+        },
     },
 }
 
@@ -1470,30 +1432,16 @@ CSP_EXCLUDE_URL_PREFIXES = ()
 
 # NOTE: CSP_DEFAULT_SRC MUST be set otherwise things not set
 # will default to being open to anything.
-CSP_DEFAULT_SRC = (
-    "'self'",
-)
+CSP_DEFAULT_SRC = ("'self'",)
 CSP_BASE_URI = (
     "'self'",
     # Required for the legacy discovery pane.
     'https://addons.mozilla.org',
 )
-CSP_CONNECT_SRC = (
-    "'self'",
-    'https://sentry.prod.mozaws.net',
-)
-CSP_FORM_ACTION = (
-    "'self'",
-    'https://developer.mozilla.org',
-)
-CSP_FONT_SRC = (
-    "'self'",
-    PROD_CDN_HOST,
-)
-CSP_CHILD_SRC = (
-    "'self'",
-    'https://www.google.com/recaptcha/',
-)
+CSP_CONNECT_SRC = ("'self'", 'https://sentry.prod.mozaws.net')
+CSP_FORM_ACTION = ("'self'", 'https://developer.mozilla.org')
+CSP_FONT_SRC = ("'self'", PROD_CDN_HOST)
+CSP_CHILD_SRC = ("'self'", 'https://www.google.com/recaptcha/')
 CSP_FRAME_SRC = CSP_CHILD_SRC
 CSP_IMG_SRC = (
     "'self'",
@@ -1504,9 +1452,7 @@ CSP_IMG_SRC = (
     'https://static.addons.mozilla.net',  # CDN origin server.
     'https://sentry.prod.mozaws.net',
 )
-CSP_MEDIA_SRC = (
-    'https://videos.cdn.mozilla.net',
-)
+CSP_MEDIA_SRC = ('https://videos.cdn.mozilla.net',)
 CSP_OBJECT_SRC = ("'none'",)
 
 CSP_SCRIPT_SRC = (
@@ -1515,11 +1461,7 @@ CSP_SCRIPT_SRC = (
     'https://www.gstatic.com/recaptcha/',
     PROD_CDN_HOST,
 )
-CSP_STYLE_SRC = (
-    "'self'",
-    "'unsafe-inline'",
-    PROD_CDN_HOST,
-)
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", PROD_CDN_HOST)
 
 # Should robots.txt deny everything or disallow a calculated list of URLs we
 # don't want to be crawled?  Default is true, allow everything, toggled to
@@ -1578,12 +1520,13 @@ ASYNC_SIGNALS = True
 PERSONA_DEFAULT_PAGES = 10
 
 REDIS_LOCATION = os.environ.get(
-    'REDIS_LOCATION',
-    'redis://localhost:6379/0?socket_timeout=0.5')
+    'REDIS_LOCATION', 'redis://localhost:6379/0?socket_timeout=0.5'
+)
 
 
 def get_redis_settings(uri):
     import urlparse
+
     urlparse.uses_netloc.append('redis')
 
     result = urlparse.urlparse(uri)
@@ -1598,16 +1541,14 @@ def get_redis_settings(uri):
         'PORT': result.port,
         'PASSWORD': result.password,
         'DB': int((result.path or '0').lstrip('/')),
-        'OPTIONS': options
+        'OPTIONS': options,
     }
 
 
 # This is used for `django-cache-machine`
 REDIS_BACKEND = REDIS_LOCATION
 
-REDIS_BACKENDS = {
-    'master': get_redis_settings(REDIS_LOCATION)
-}
+REDIS_BACKENDS = {'master': get_redis_settings(REDIS_LOCATION)}
 
 # Number of seconds before celery tasks will abort addon validation:
 VALIDATOR_TIMEOUT = 110
@@ -1647,10 +1588,7 @@ VALID_LOGIN_REDIRECTS = {
 # Elasticsearch
 ES_HOSTS = [os.environ.get('ELASTICSEARCH_LOCATION', '127.0.0.1:9200')]
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
-ES_INDEXES = {
-    'default': 'addons',
-    'stats': 'addons_stats',
-}
+ES_INDEXES = {'default': 'addons', 'stats': 'addons_stats'}
 
 ES_TIMEOUT = 30
 ES_DEFAULT_NUM_REPLICAS = 2
@@ -1706,22 +1644,17 @@ DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 SIGNING_SERVER_MONITORING_TIMEOUT = 10
 
 AUTOGRAPH_CONFIG = {
-    'server_url': env(
-        'AUTOGRAPH_SERVER_URL',
-        default='http://autograph:8000'),
-    'user_id': env(
-        'AUTOGRAPH_HAWK_USER_ID',
-        default='alice'),
+    'server_url': env('AUTOGRAPH_SERVER_URL', default='http://autograph:8000'),
+    'user_id': env('AUTOGRAPH_HAWK_USER_ID', default='alice'),
     'key': env(
         'AUTOGRAPH_HAWK_KEY',
-        default='fs5wgcer9qj819kfptdlp8gm227ewxnzvsuj9ztycsx08hfhzu'),
+        default='fs5wgcer9qj819kfptdlp8gm227ewxnzvsuj9ztycsx08hfhzu',
+    ),
     # This is configurable but we don't expect it to be set to anything else
     # but `webextensions-rsa` at this moment because AMO only accepts
     # regular add-ons, no system add-ons or extensions for example. These
     # are already signed when submitted to AMO.
-    'signer': env(
-        'AUTOGRAPH_SIGNER_ID',
-        default='webextensions-rsa')
+    'signer': env('AUTOGRAPH_SIGNER_ID', default='webextensions-rsa'),
 }
 
 # Enable addon signing. Autograph is configured to something reasonable
@@ -1766,9 +1699,7 @@ CDN_HOST = ''
 STATIC_ROOT = path('site-static')
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    path('static'),
-)
+STATICFILES_DIRS = (path('static'),)
 
 NETAPP_STORAGE = TMP_PATH
 GUARDED_ADDONS_PATH = ROOT + '/guarded-addons'
@@ -1790,11 +1721,9 @@ JWT_AUTH = {
     # want to make sure it does not change behind our backs.
     # See https://github.com/jpadilla/pyjwt/blob/master/docs/algorithms.rst
     'JWT_ALGORITHM': 'HS256',
-
     # This adds some padding to timestamp validation in case client/server
     # clocks are off.
     'JWT_LEEWAY': 5,
-
     # We don't allow refreshes.
     'JWT_ALLOW_REFRESH': False,
 }
@@ -1805,17 +1734,14 @@ DRF_API_GATES = {
         'ratings-title-shim',
         'l10n_flat_input_output',
     ),
-    'v4': (
-    ),
+    'v4': (),
 }
 
 REST_FRAMEWORK = {
     # Set this because the default is to also include:
     #   'rest_framework.renderers.BrowsableAPIRenderer'
     # Which it will try to use if the client accepts text/html.
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-    ),
+    'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'olympia.api.authentication.WebTokenAuthentication',
     ),
@@ -1826,30 +1752,26 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.FormParser',
         'olympia.api.parsers.MultiPartParser',
     ),
-
     'ALLOWED_VERSIONS': DRF_API_VERSIONS,
     'DEFAULT_VERSION': 'v4',
     'DEFAULT_VERSIONING_CLASS': (
-        'rest_framework.versioning.NamespaceVersioning'),
-
+        'rest_framework.versioning.NamespaceVersioning'
+    ),
     # Add our custom exception handler, that wraps all exceptions into
     # Responses and not just the ones that are api-related.
     'EXCEPTION_HANDLER': 'olympia.api.exceptions.custom_exception_handler',
-
     # Enable pagination
     'PAGE_SIZE': 25,
     # Use our pagination class by default, which allows clients to request a
     # different page size.
     'DEFAULT_PAGINATION_CLASS': (
-        'olympia.api.pagination.CustomPageNumberPagination'),
-
+        'olympia.api.pagination.CustomPageNumberPagination'
+    ),
     # Use json by default when using APIClient.
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
-
     # Use http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15
     # We can't use the default because we don't use django timezone support.
     'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%SZ',
-
     # Set our default ordering parameter
     'ORDERING_PARAM': 'sort',
 }
@@ -1885,19 +1807,19 @@ RAVEN_CONFIG = {
 }
 
 # Automatically do 'from olympia import amo' when running shell_plus.
-SHELL_PLUS_POST_IMPORTS = (
-    ('olympia', 'amo'),
-)
+SHELL_PLUS_POST_IMPORTS = (('olympia', 'amo'),)
 
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default']
 
 WEBEXT_PERM_DESCRIPTIONS_URL = (
     'https://hg.mozilla.org/mozilla-central/raw-file/tip/'
-    'browser/locales/en-US/chrome/browser/browser.properties')
+    'browser/locales/en-US/chrome/browser/browser.properties'
+)
 WEBEXT_PERM_DESCRIPTIONS_LOCALISED_URL = (
     'https://hg.mozilla.org/l10n-central/{locale}/raw-file/tip/'
-    'browser/chrome/browser/browser.properties')
+    'browser/chrome/browser/browser.properties'
+)
 
 # List all jobs that should be callable with cron here.
 # syntax is: job_and_method_name: full.package.path
@@ -1912,47 +1834,45 @@ CRON_JOBS = {
     'deliver_hotness': 'olympia.addons.cron',
     'reindex_addons': 'olympia.addons.cron',
     'cleanup_image_files': 'olympia.addons.cron',
-
     'gc': 'olympia.amo.cron',
     'category_totals': 'olympia.amo.cron',
     'collection_subscribers': 'olympia.amo.cron',
     'weekly_downloads': 'olympia.amo.cron',
-
     'update_collections_subscribers': 'olympia.bandwagon.cron',
     'update_collections_votes': 'olympia.bandwagon.cron',
     'reindex_collections': 'olympia.bandwagon.cron',
-
     'compatibility_report': 'olympia.compat.cron',
-
     'update_blog_posts': 'olympia.devhub.cron',
-
     'cleanup_extracted_file': 'olympia.files.cron',
     'cleanup_validation_results': 'olympia.files.cron',
-
     'update_addons_collections_downloads': 'olympia.stats.cron',
     'update_collections_total': 'olympia.stats.cron',
     'update_global_totals': 'olympia.stats.cron',
     'index_latest_stats': 'olympia.stats.cron',
-
     'update_user_ratings': 'olympia.users.cron',
 }
 
 RECOMMENDATION_ENGINE_URL = env(
     'RECOMMENDATION_ENGINE_URL',
-    default='https://taar.dev.mozaws.net/api/recommendations/')
+    default='https://taar.dev.mozaws.net/api/recommendations/',
+)
 TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
     'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
-    default=('https://taar.dev.mozaws.net/taarlite/api/v1/'
-             'addon_recommendations/'))
+    default=(
+        'https://taar.dev.mozaws.net/taarlite/api/v1/' 'addon_recommendations/'
+    ),
+)
 RECOMMENDATION_ENGINE_TIMEOUT = env.float(
-    'RECOMMENDATION_ENGINE_TIMEOUT', default=1)
+    'RECOMMENDATION_ENGINE_TIMEOUT', default=1
+)
 
 # This is the queue used for addons-dev, so it'll consume events (i.e. process
 # then delete) before you can locally.  If you really need to test get ops to
 # stop the 'monitor_fxa_sqs` command.
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-east-1.amazonaws.com/927034868273/'
-    'amo-account-change-dev')
+    'amo-account-change-dev'
+)
 FXA_SQS_AWS_WAIT_TIME = 20  # Seconds.
 
 AWS_STATS_S3_BUCKET = env('AWS_STATS_S3_BUCKET', default=None)

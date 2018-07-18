@@ -7,7 +7,6 @@ from olympia.accounts import verify
 
 
 class TestProfile(TestCase):
-
     def setUp(self):
         patcher = mock.patch('olympia.accounts.verify.requests.get')
         self.get = patcher.start()
@@ -17,41 +16,43 @@ class TestProfile(TestCase):
         profile_data = {'email': 'yo@oy.com'}
         self.get.return_value.status_code = 200
         self.get.return_value.json.return_value = profile_data
-        profile = verify.get_fxa_profile('profile-plz', {
-            'profile_host': 'https://app.fxa/v1',
-        })
+        profile = verify.get_fxa_profile(
+            'profile-plz', {'profile_host': 'https://app.fxa/v1'}
+        )
         assert profile == profile_data
-        self.get.assert_called_with('https://app.fxa/v1/profile', headers={
-            'Authorization': 'Bearer profile-plz',
-        })
+        self.get.assert_called_with(
+            'https://app.fxa/v1/profile',
+            headers={'Authorization': 'Bearer profile-plz'},
+        )
 
     def test_success_no_email(self):
         profile_data = {'email': ''}
         self.get.return_value.status_code = 200
         self.get.return_value.json.return_value = profile_data
         with pytest.raises(verify.IdentificationError):
-            verify.get_fxa_profile('profile-plz', {
-                'profile_host': 'https://app.fxa/v1',
-            })
-        self.get.assert_called_with('https://app.fxa/v1/profile', headers={
-            'Authorization': 'Bearer profile-plz',
-        })
+            verify.get_fxa_profile(
+                'profile-plz', {'profile_host': 'https://app.fxa/v1'}
+            )
+        self.get.assert_called_with(
+            'https://app.fxa/v1/profile',
+            headers={'Authorization': 'Bearer profile-plz'},
+        )
 
     def test_failure(self):
         profile_data = {'error': 'some error'}
         self.get.return_value.status_code = 400
         self.get.json.return_value = profile_data
         with pytest.raises(verify.IdentificationError):
-            verify.get_fxa_profile('profile-plz', {
-                'profile_host': 'https://app.fxa/v1',
-            })
-        self.get.assert_called_with('https://app.fxa/v1/profile', headers={
-            'Authorization': 'Bearer profile-plz',
-        })
+            verify.get_fxa_profile(
+                'profile-plz', {'profile_host': 'https://app.fxa/v1'}
+            )
+        self.get.assert_called_with(
+            'https://app.fxa/v1/profile',
+            headers={'Authorization': 'Bearer profile-plz'},
+        )
 
 
 class TestToken(TestCase):
-
     def setUp(self):
         patcher = mock.patch('olympia.accounts.verify.requests.post')
         self.post = patcher.start()
@@ -61,49 +62,67 @@ class TestToken(TestCase):
         token_data = {'access_token': 'c0de'}
         self.post.return_value.status_code = 200
         self.post.return_value.json.return_value = token_data
-        token = verify.get_fxa_token('token-plz', {
-            'client_id': 'test-client-id',
-            'client_secret': "don't look",
-            'oauth_host': 'https://app.fxa/oauth/v1',
-        })
+        token = verify.get_fxa_token(
+            'token-plz',
+            {
+                'client_id': 'test-client-id',
+                'client_secret': "don't look",
+                'oauth_host': 'https://app.fxa/oauth/v1',
+            },
+        )
         assert token == token_data
-        self.post.assert_called_with('https://app.fxa/oauth/v1/token', data={
-            'code': 'token-plz',
-            'client_id': 'test-client-id',
-            'client_secret': "don't look",
-        })
+        self.post.assert_called_with(
+            'https://app.fxa/oauth/v1/token',
+            data={
+                'code': 'token-plz',
+                'client_id': 'test-client-id',
+                'client_secret': "don't look",
+            },
+        )
 
     def test_no_token(self):
         token_data = {'access_token': ''}
         self.post.return_value.status_code = 200
         self.post.return_value.json.return_value = token_data
         with pytest.raises(verify.IdentificationError):
-            verify.get_fxa_token('token-plz', {
+            verify.get_fxa_token(
+                'token-plz',
+                {
+                    'client_id': 'test-client-id',
+                    'client_secret': "don't look",
+                    'oauth_host': 'https://app.fxa/oauth/v1',
+                },
+            )
+        self.post.assert_called_with(
+            'https://app.fxa/oauth/v1/token',
+            data={
+                'code': 'token-plz',
                 'client_id': 'test-client-id',
                 'client_secret': "don't look",
-                'oauth_host': 'https://app.fxa/oauth/v1',
-            })
-        self.post.assert_called_with('https://app.fxa/oauth/v1/token', data={
-            'code': 'token-plz',
-            'client_id': 'test-client-id',
-            'client_secret': "don't look",
-        })
+            },
+        )
 
     def test_failure(self):
         token_data = {'error': 'some error'}
         self.post.return_value.status_code = 400
         self.post.json.return_value = token_data
         with pytest.raises(verify.IdentificationError):
-            verify.get_fxa_token('token-plz', {
+            verify.get_fxa_token(
+                'token-plz',
+                {
+                    'client_id': 'test-client-id',
+                    'client_secret': "don't look",
+                    'oauth_host': 'https://app.fxa/oauth/v1',
+                },
+            )
+        self.post.assert_called_with(
+            'https://app.fxa/oauth/v1/token',
+            data={
+                'code': 'token-plz',
                 'client_id': 'test-client-id',
                 'client_secret': "don't look",
-                'oauth_host': 'https://app.fxa/oauth/v1',
-            })
-        self.post.assert_called_with('https://app.fxa/oauth/v1/token', data={
-            'code': 'token-plz',
-            'client_id': 'test-client-id',
-            'client_secret': "don't look",
-        })
+            },
+        )
 
 
 class TestIdentify(TestCase):

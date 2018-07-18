@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 # Built-in Licenses
 class _LicenseBase(object):
     """Base class for built-in licenses."""
+
     icons = ''  # CSS classes. See zamboni.css for a list.
     some_rights = True
     on_form = True
@@ -77,9 +78,15 @@ class LICENSE_COPYRIGHT_AR(_LicenseBase):
     builtin = 18
 
 
-PERSONA_LICENSES = (LICENSE_COPYRIGHT, LICENSE_CC_BY, LICENSE_CC_BY_NC,
-                    LICENSE_CC_BY_NC_ND, LICENSE_CC_BY_NC_SA, LICENSE_CC_BY_ND,
-                    LICENSE_CC_BY_SA)
+PERSONA_LICENSES = (
+    LICENSE_COPYRIGHT,
+    LICENSE_CC_BY,
+    LICENSE_CC_BY_NC,
+    LICENSE_CC_BY_NC_ND,
+    LICENSE_CC_BY_NC_SA,
+    LICENSE_CC_BY_ND,
+    LICENSE_CC_BY_SA,
+)
 ALL_LICENSES = PERSONA_LICENSES + tuple([LICENSE_COPYRIGHT_AR])
 PERSONA_LICENSES_CHOICES = [(l.id, l) for l in PERSONA_LICENSES]
 PERSONA_LICENSES_IDS = dict(PERSONA_LICENSES_CHOICES)

@@ -28,15 +28,17 @@ def stars(num, large=False):
 @library.global_function
 def reviews_link(addon, collection_uuid=None):
     t = get_template('ratings/reviews_link.html')
-    return jinja2.Markup(t.render({'addon': addon,
-                                   'collection_uuid': collection_uuid}))
+    return jinja2.Markup(
+        t.render({'addon': addon, 'collection_uuid': collection_uuid})
+    )
 
 
 @library.global_function
 def impala_reviews_link(addon, collection_uuid=None):
     t = get_template('ratings/impala/reviews_link.html')
-    return jinja2.Markup(t.render({'addon': addon,
-                                   'collection_uuid': collection_uuid}))
+    return jinja2.Markup(
+        t.render({'addon': addon, 'collection_uuid': collection_uuid})
+    )
 
 
 @library.global_function
@@ -70,17 +72,15 @@ def user_can_delete_review(request, review):
     is_rating_author = review.user_id == request.user.id
     is_addon_author = review.addon.has_author(request.user)
     is_moderator = (
-        acl.action_allowed(request, amo.permissions.RATINGS_MODERATE) and
-        review.editorreview
+        acl.action_allowed(request, amo.permissions.RATINGS_MODERATE)
+        and review.editorreview
     )
-    can_edit_users_or_addons = (
-        acl.action_allowed(request, amo.permissions.USERS_EDIT) or
-        acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
-    )
+    can_edit_users_or_addons = acl.action_allowed(
+        request, amo.permissions.USERS_EDIT
+    ) or acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
 
-    return (
-        is_rating_author or
-        (not is_addon_author and (is_moderator or can_edit_users_or_addons))
+    return is_rating_author or (
+        not is_addon_author and (is_moderator or can_edit_users_or_addons)
     )
 
 

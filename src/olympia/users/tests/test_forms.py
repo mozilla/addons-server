@@ -25,7 +25,6 @@ class UserFormBase(TestCase):
 
 
 class TestUserDeleteForm(UserFormBase):
-
     def test_bad_email(self):
         self.client.login(email='jbalogh@mozilla.com')
         data = {'email': 'wrong@example.com', 'confirm': True}
@@ -60,7 +59,6 @@ class TestUserDeleteForm(UserFormBase):
 
 
 class TestUserEditForm(UserFormBase):
-
     def setUp(self):
         super(TestUserEditForm, self).setUp()
         self.client.login(email='jbalogh@mozilla.com')
@@ -68,25 +66,25 @@ class TestUserEditForm(UserFormBase):
 
     def test_no_username_or_display_name(self):
         assert not self.user.has_anonymous_username
-        data = {'username': '',
-                'email': 'jbalogh@mozilla.com'}
+        data = {'username': '', 'email': 'jbalogh@mozilla.com'}
         response = self.client.post(self.url, data)
         self.assertNoFormErrors(response)
         assert self.user.reload().has_anonymous_username
 
     def test_change_username(self):
         assert self.user.username != 'new-username'
-        data = {'username': 'new-username',
-                'email': 'jbalogh@mozilla.com'}
+        data = {'username': 'new-username', 'email': 'jbalogh@mozilla.com'}
         response = self.client.post(self.url, data)
         self.assertNoFormErrors(response)
         assert self.user.reload().username == 'new-username'
 
     def test_cannot_change_display_name_to_denied_ones(self):
         assert self.user.display_name != 'Mozilla'
-        data = {'username': 'new-username',
-                'display_name': 'IE6Fan',
-                'email': 'jbalogh@mozilla.com'}
+        data = {
+            'username': 'new-username',
+            'display_name': 'IE6Fan',
+            'email': 'jbalogh@mozilla.com',
+        }
         response = self.client.post(self.url, data)
         msg = "This display name cannot be used."
         self.assertFormError(response, 'form', 'display_name', msg)
@@ -97,32 +95,35 @@ class TestUserEditForm(UserFormBase):
         the auto-generated value does not change."""
         username = self.user.anonymize_username()
         self.user.save()
-        data = {'username': '',
-                'email': 'jbalogh@mozilla.com'}
+        data = {'username': '', 'email': 'jbalogh@mozilla.com'}
         response = self.client.post(self.url, data)
         self.assertNoFormErrors(response)
         assert self.user.reload().username == username
 
     def test_fxa_id_cannot_be_set(self):
         self.user.update(fxa_id=None)
-        data = {'username': 'blah',
-                'email': 'jbalogh@mozilla.com',
-                'fxa_id': 'yo'}
+        data = {
+            'username': 'blah',
+            'email': 'jbalogh@mozilla.com',
+            'fxa_id': 'yo',
+        }
         response = self.client.post(self.url, data)
         self.assertNoFormErrors(response)
         assert self.user.reload().fxa_id is None
 
     def test_no_real_name(self):
-        data = {'username': 'blah',
-                'email': 'jbalogh@mozilla.com'}
+        data = {'username': 'blah', 'email': 'jbalogh@mozilla.com'}
         r = self.client.post(self.url, data, follow=True)
         self.assertContains(r, 'Profile Updated')
 
     def test_long_data(self):
-        data = {'username': 'jbalogh',
-                'email': 'jbalogh@mozilla.com'}
-        for field, length in (('username', 50), ('display_name', 50),
-                              ('location', 100), ('occupation', 100)):
+        data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com'}
+        for field, length in (
+            ('username', 50),
+            ('display_name', 50),
+            ('location', 100),
+            ('occupation', 100),
+        ):
             data[field] = 'x' * (length + 1)
             r = self.client.post(self.url, data, follow=True)
             err = u'Ensure this value has at most %s characters (it has %s).'
@@ -132,11 +133,14 @@ class TestUserEditForm(UserFormBase):
     def test_photo_modified(self, update_mock):
         request = Mock()
         request.user = self.user
-        data = {'username': self.user_profile.username,
-                'email': self.user_profile.email}
+        data = {
+            'username': self.user_profile.username,
+            'email': self.user_profile.email,
+        }
         files = {'photo': get_uploaded_file('transparent.png')}
-        form = UserEditForm(data, files=files, instance=self.user_profile,
-                            request=request)
+        form = UserEditForm(
+            data, files=files, instance=self.user_profile, request=request
+        )
         assert form.is_valid()
         form.save()
         assert update_mock.called
@@ -144,11 +148,14 @@ class TestUserEditForm(UserFormBase):
     def test_photo_invalid_though_content_type_is_correct(self):
         request = Mock()
         request.user = self.user
-        data = {'username': self.user_profile.username,
-                'email': self.user_profile.email}
+        data = {
+            'username': self.user_profile.username,
+            'email': self.user_profile.email,
+        }
         files = {'photo': get_uploaded_file('non-image.png')}
-        form = UserEditForm(data, files=files, instance=self.user_profile,
-                            request=request)
+        form = UserEditForm(
+            data, files=files, instance=self.user_profile, request=request
+        )
 
         assert not form.is_valid()
         assert form.errors == {'photo': [u'Images must be either PNG or JPG.']}
@@ -156,11 +163,14 @@ class TestUserEditForm(UserFormBase):
     def test_photo_invalid_gif(self):
         request = Mock()
         request.user = self.user
-        data = {'username': self.user_profile.username,
-                'email': self.user_profile.email}
+        data = {
+            'username': self.user_profile.username,
+            'email': self.user_profile.email,
+        }
         files = {'photo': get_uploaded_file('animated.gif')}
-        form = UserEditForm(data, files=files, instance=self.user_profile,
-                            request=request)
+        form = UserEditForm(
+            data, files=files, instance=self.user_profile, request=request
+        )
 
         assert not form.is_valid()
         assert form.errors == {'photo': [u'Images must be either PNG or JPG.']}
@@ -168,11 +178,14 @@ class TestUserEditForm(UserFormBase):
     def test_photo_invalid_animated(self):
         request = Mock()
         request.user = self.user
-        data = {'username': self.user_profile.username,
-                'email': self.user_profile.email}
+        data = {
+            'username': self.user_profile.username,
+            'email': self.user_profile.email,
+        }
         files = {'photo': get_uploaded_file('animated.png')}
-        form = UserEditForm(data, files=files, instance=self.user_profile,
-                            request=request)
+        form = UserEditForm(
+            data, files=files, instance=self.user_profile, request=request
+        )
 
         assert not form.is_valid()
         assert form.errors == {'photo': [u'Images cannot be animated.']}
@@ -187,11 +200,14 @@ class TestUserEditForm(UserFormBase):
 
         request = Mock()
         request.user = self.user
-        data = {'username': self.user_profile.username,
-                'email': self.user_profile.email}
+        data = {
+            'username': self.user_profile.username,
+            'email': self.user_profile.email,
+        }
         files = {'photo': get_uploaded_file('transparent.png')}
-        form = UserEditForm(data, files=files, instance=self.user_profile,
-                            request=request)
+        form = UserEditForm(
+            data, files=files, instance=self.user_profile, request=request
+        )
 
         # Creating the mock object instead of the uploaded file,
         # with a specific size over the limit
@@ -212,8 +228,7 @@ class TestUserEditForm(UserFormBase):
 
     def test_cannot_change_email(self):
         self.user.update(fxa_id='1a2b3c', email='me@example.com')
-        form = UserEditForm(
-            {'email': 'noway@example.com'}, instance=self.user)
+        form = UserEditForm({'email': 'noway@example.com'}, instance=self.user)
         assert form.is_valid()
         form.save()
         assert self.user.reload().email == 'me@example.com'
@@ -223,14 +238,19 @@ class TestUserEditForm(UserFormBase):
 
         with patch('basket.base.request', autospec=True) as request_call:
             request_call.return_value = {
-                'status': 'ok', 'token': '123', 'newsletters': []}
+                'status': 'ok',
+                'token': '123',
+                'newsletters': [],
+            }
 
             form = UserEditForm({}, instance=self.user)
 
         request_call.assert_called_with(
-            'get', 'lookup-user',
+            'get',
+            'lookup-user',
             headers={'x-api-key': 'testkey'},
-            params={'email': u'jbalogh@mozilla.com'})
+            params={'email': u'jbalogh@mozilla.com'},
+        )
 
         # It needs a developer account to subscribe to a newsletter
         # So the `announcements` notification is not among the valid choices
@@ -249,7 +269,16 @@ class TestUserEditForm(UserFormBase):
         form = UserEditForm({}, instance=self.user)
         assert len(form.fields['notifications'].choices) == 10
         assert [x[0] for x in form.fields['notifications'].choices] == [
-            3, 4, 5, 6, 7, 9, 10, 11, 12, 8
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11,
+            12,
+            8,
         ]
 
     def test_basket_unsubscribe_newsletter(self):
@@ -257,31 +286,42 @@ class TestUserEditForm(UserFormBase):
 
         with patch('basket.base.request', autospec=True) as request_call:
             request_call.return_value = {
-                'status': 'ok', 'token': '123',
-                'newsletters': ['announcements']}
+                'status': 'ok',
+                'token': '123',
+                'newsletters': ['announcements'],
+            }
 
             form = UserEditForm(
-                {}, instance=self.user,
-                request=RequestFactory().get('/users/edit/'))
+                {},
+                instance=self.user,
+                request=RequestFactory().get('/users/edit/'),
+            )
 
         request_call.assert_called_with(
-            'get', 'lookup-user',
+            'get',
+            'lookup-user',
             headers={'x-api-key': 'testkey'},
-            params={'email': u'jbalogh@mozilla.com'})
+            params={'email': u'jbalogh@mozilla.com'},
+        )
 
         with patch('basket.base.request', autospec=True) as request_call:
             request_call.return_value = {
-                'status': 'ok', 'token': '123',
-                'newsletters': []}
+                'status': 'ok',
+                'token': '123',
+                'newsletters': [],
+            }
             assert form.is_valid()
             form.save()
 
         request_call.assert_called_with(
-            'post', 'unsubscribe',
+            'post',
+            'unsubscribe',
             data={
                 'newsletters': 'about-addons',
-                'email': u'jbalogh@mozilla.com'},
-            token='123')
+                'email': u'jbalogh@mozilla.com',
+            },
+            token='123',
+        )
 
     def test_basket_data_is_used_for_initial_checkbox_state_subscribed(self):
         # When using basket, what's in the database is ignored for the
@@ -293,21 +333,28 @@ class TestUserEditForm(UserFormBase):
         # Add some old obsolete data in the database for a notification that
         # is handled by basket: it should be ignored.
         UserNotification.objects.create(
-            user=self.user, notification_id=notification_id, enabled=False)
+            user=self.user, notification_id=notification_id, enabled=False
+        )
 
         with patch('basket.base.request', autospec=True) as request_call:
             request_call.return_value = {
-                'status': 'ok', 'token': '123',
-                'newsletters': ['about-addons']}
+                'status': 'ok',
+                'token': '123',
+                'newsletters': ['about-addons'],
+            }
 
             form = UserEditForm(
-                {}, instance=self.user,
-                request=RequestFactory().get('/users/edit/'))
+                {},
+                instance=self.user,
+                request=RequestFactory().get('/users/edit/'),
+            )
 
         request_call.assert_called_with(
-            'get', 'lookup-user',
+            'get',
+            'lookup-user',
             headers={'x-api-key': 'testkey'},
-            params={'email': u'jbalogh@mozilla.com'})
+            params={'email': u'jbalogh@mozilla.com'},
+        )
 
         assert notification_id in form.fields['notifications'].initial
 
@@ -321,21 +368,28 @@ class TestUserEditForm(UserFormBase):
         # Add some old obsolete data in the database for a notification that
         # is handled by basket: it should be ignored.
         UserNotification.objects.create(
-            user=self.user, notification_id=notification_id, enabled=True)
+            user=self.user, notification_id=notification_id, enabled=True
+        )
 
         with patch('basket.base.request', autospec=True) as request_call:
             request_call.return_value = {
-                'status': 'ok', 'token': '123',
-                'newsletters': []}
+                'status': 'ok',
+                'token': '123',
+                'newsletters': [],
+            }
 
             form = UserEditForm(
-                {}, instance=self.user,
-                request=RequestFactory().get('/users/edit/'))
+                {},
+                instance=self.user,
+                request=RequestFactory().get('/users/edit/'),
+            )
 
         request_call.assert_called_with(
-            'get', 'lookup-user',
+            'get',
+            'lookup-user',
             headers={'x-api-key': 'testkey'},
-            params={'email': u'jbalogh@mozilla.com'})
+            params={'email': u'jbalogh@mozilla.com'},
+        )
 
         assert notification_id not in form.fields['notifications'].initial
 
@@ -347,17 +401,23 @@ class TestUserEditForm(UserFormBase):
 
         with patch('basket.base.request', autospec=True) as request_call:
             request_call.side_effect = basket.base.BasketException(
-                'description', status_code=401,
-                code=basket.errors.BASKET_UNKNOWN_EMAIL)
+                'description',
+                status_code=401,
+                code=basket.errors.BASKET_UNKNOWN_EMAIL,
+            )
 
             UserEditForm(
-                {}, instance=self.user,
-                request=RequestFactory().get('/users/edit/'))
+                {},
+                instance=self.user,
+                request=RequestFactory().get('/users/edit/'),
+            )
 
         request_call.assert_called_with(
-            'get', 'lookup-user',
+            'get',
+            'lookup-user',
             headers={'x-api-key': 'testkey'},
-            params={'email': u'jbalogh@mozilla.com'})
+            params={'email': u'jbalogh@mozilla.com'},
+        )
 
     def test_basket_subscribe_newsletter(self):
         create_switch('activate-basket-sync')
@@ -366,42 +426,56 @@ class TestUserEditForm(UserFormBase):
 
         with patch('basket.base.request', autospec=True) as request_call:
             request_call.return_value = {
-                'status': 'ok', 'token': '123',
-                'newsletters': []}
+                'status': 'ok',
+                'token': '123',
+                'newsletters': [],
+            }
 
             # 8 is the `announcements` notification, or about-addons newsletter
             form = UserEditForm(
                 {'notifications': [3, 4, 8]},
                 instance=self.user,
-                request=RequestFactory().get('/users/edit/'))
+                request=RequestFactory().get('/users/edit/'),
+            )
 
         request_call.assert_called_with(
-            'get', 'lookup-user',
+            'get',
+            'lookup-user',
             headers={'x-api-key': 'testkey'},
-            params={'email': u'jbalogh@mozilla.com'})
+            params={'email': u'jbalogh@mozilla.com'},
+        )
 
         with patch('basket.base.request', autospec=True) as request_call:
             request_call.return_value = {
-                'status': 'ok', 'token': '123',
-                'newsletters': ['about-addons']}
+                'status': 'ok',
+                'token': '123',
+                'newsletters': ['about-addons'],
+            }
 
             assert form.is_valid()
             form.save()
 
         request_call.assert_called_with(
-            'post', 'subscribe',
+            'post',
+            'subscribe',
             headers={'x-api-key': 'testkey'},
             data={
-                'newsletters': 'about-addons', 'sync': 'Y',
-                'optin': 'Y', 'source_url': 'http://testserver/users/edit/',
-                'email': u'jbalogh@mozilla.com'})
+                'newsletters': 'about-addons',
+                'sync': 'Y',
+                'optin': 'Y',
+                'source_url': 'http://testserver/users/edit/',
+                'email': u'jbalogh@mozilla.com',
+            },
+        )
 
     def test_basket_sync_behind_flag(self):
 
         with patch('basket.base.request', autospec=True) as request_call:
             request_call.return_value = {
-                'status': 'ok', 'token': '123',
-                'newsletters': ['announcements']}
+                'status': 'ok',
+                'token': '123',
+                'newsletters': ['announcements'],
+            }
 
             UserEditForm({}, instance=self.user)
 
@@ -420,14 +494,15 @@ class TestAdminUserEditForm(UserFormBase):
         r = self.client.get(self.url)
         assert r.status_code == 200
         assert pq(r.content)('a.delete').attr('href') == (
-            reverse('admin:users_userprofile_delete', args=[self.user.id]))
+            reverse('admin:users_userprofile_delete', args=[self.user.id])
+        )
 
     def test_can_change_email(self):
         assert self.user.email != 'nobody@mozilla.org'
-        form = AdminUserEditForm({
-            'email': 'nobody@mozilla.org',
-            'admin_log': 'Change email',
-        }, instance=self.user)
+        form = AdminUserEditForm(
+            {'email': 'nobody@mozilla.org', 'admin_log': 'Change email'},
+            instance=self.user,
+        )
         assert form.is_valid(), form.errors
         form.save()
         self.user.reload()
@@ -435,18 +510,17 @@ class TestAdminUserEditForm(UserFormBase):
 
 
 class TestDeniedNameAdminAddForm(UserFormBase):
-
     def test_no_usernames(self):
         self.client.login(email='testo@example.com')
         url = reverse('admin:users_deniedname_add')
-        data = {'names': "\n\n", }
+        data = {'names': "\n\n"}
         r = self.client.post(url, data)
         self.assertFormError(r, 'form', 'names', u'This field is required.')
 
     def test_add(self):
         self.client.login(email='testo@example.com')
         url = reverse('admin:users_deniedname_add')
-        data = {'names': "IE6Fan\nfubar\n\n", }
+        data = {'names': "IE6Fan\nfubar\n\n"}
         r = self.client.post(url, data)
         msg = '1 new values added to the deny list. '
         msg += '1 duplicates were ignored.'

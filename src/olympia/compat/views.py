@@ -28,8 +28,9 @@ def incoming(request):
         return re.sub('[A-Z]+', '_\g<0>', s).lower()
 
     try:
-        data = [(snake_case(k), v)
-                for k, v in json.loads(request.body).items()]
+        data = [
+            (snake_case(k), v) for k, v in json.loads(request.body).items()
+        ]
     except Exception:
         return http.HttpResponseBadRequest()
 
@@ -62,13 +63,18 @@ def reporter(request):
         if qs:
             guid = qs[0].guid
             addon = Addon.objects.get(guid=guid)
-            if (addon.has_listed_versions() or
-                    owner_or_unlisted_reviewer(request, addon)):
+            if addon.has_listed_versions() or owner_or_unlisted_reviewer(
+                request, addon
+            ):
                 return redirect('compat.reporter_detail', guid)
-    addons = (Addon.objects.filter(authors=request.user)
-              if request.user.is_authenticated() else [])
-    return render(request, 'compat/reporter.html',
-                  dict(query=query, addons=addons))
+    addons = (
+        Addon.objects.filter(authors=request.user)
+        if request.user.is_authenticated()
+        else []
+    )
+    return render(
+        request, 'compat/reporter.html', dict(query=query, addons=addons)
+    )
 
 
 @non_atomic_requests
@@ -81,14 +87,14 @@ def reporter_detail(request, guid):
     qs = CompatReport.objects.filter(guid=guid)
     show_listed_only = addon and not owner_or_unlisted_reviewer(request, addon)
 
-    if (addon and not addon.has_listed_versions() and show_listed_only):
+    if addon and not addon.has_listed_versions() and show_listed_only:
         # Not authorized? Let's pretend this addon simply doesn't exist.
         name = guid
         qs = CompatReport.objects.none()
     elif show_listed_only:
         unlisted_versions = addon.versions.filter(
-            channel=amo.RELEASE_CHANNEL_UNLISTED).values_list(
-            'version', flat=True)
+            channel=amo.RELEASE_CHANNEL_UNLISTED
+        ).values_list('version', flat=True)
         qs = qs.exclude(version__in=unlisted_versions)
 
     form = AppVerForm(request.GET)
@@ -99,8 +105,9 @@ def reporter_detail(request, guid):
 
         # Ideally we'd have a `version_int` column to do strict version
         # comparing, but that's overkill for basic version filtering here.
-        qs = qs.filter(app_guid=amo.FIREFOX.guid,
-                       app_version__startswith=str(ver) + '.')
+        qs = qs.filter(
+            app_guid=amo.FIREFOX.guid, app_version__startswith=str(ver) + '.'
+        )
 
     works_ = dict(qs.values_list('works_properly').annotate(Count('id')))
     works = {'success': works_.get(True, 0), 'failure': works_.get(False, 0)}
@@ -110,7 +117,15 @@ def reporter_detail(request, guid):
         qs = qs.filter(works_properly=works_properly)
     reports = paginate(request, qs.order_by('-created'), 100)
 
-    return render(request, 'compat/reporter_detail.html',
-                  dict(reports=reports, works=works,
-                       works_properly=works_properly,
-                       name=name, guid=guid, form=form))
+    return render(
+        request,
+        'compat/reporter_detail.html',
+        dict(
+            reports=reports,
+            works=works,
+            works_properly=works_properly,
+            name=name,
+            guid=guid,
+            form=form,
+        ),
+    )

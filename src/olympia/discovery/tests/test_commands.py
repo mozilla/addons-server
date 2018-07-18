@@ -11,16 +11,21 @@ import responses
 from olympia.amo.tests import TestCase
 
 fake_data = {
-    u'results': [{
-        u'custom_heading': u'sïïïck custom heading',
-        u'custom_description': u'greât custom description'
-    }, {
-        u'custom_heading': None,
-        u'custom_description': u'custom description is custom '
-    }, {
-        u'custom_heading': u'{start_sub_heading}{addon_name}{end_sub_heading}',
-        u'custom_description': ''
-    }]}
+    u'results': [
+        {
+            u'custom_heading': u'sïïïck custom heading',
+            u'custom_description': u'greât custom description',
+        },
+        {
+            u'custom_heading': None,
+            u'custom_description': u'custom description is custom ',
+        },
+        {
+            u'custom_heading': u'{start_sub_heading}{addon_name}{end_sub_heading}',
+            u'custom_description': '',
+        },
+    ]
+}
 
 expected_content = """{# L10n: editorial content for the discovery pane. #}
 {% trans %}sïïïck custom heading{% endtrans %}
@@ -38,18 +43,22 @@ expected_content = """{# L10n: editorial content for the discovery pane. #}
 class TestExtractDiscoStringsCommand(TestCase):
     def test_settings(self):
         assert (
-            (settings.DISCOVERY_EDITORIAL_CONTENT_FILENAME, 'jinja2')
-            in settings.PUENTE['DOMAIN_METHODS']['django'])
+            settings.DISCOVERY_EDITORIAL_CONTENT_FILENAME,
+            'jinja2',
+        ) in settings.PUENTE['DOMAIN_METHODS']['django']
 
     @responses.activate
     def test_basic(self):
         responses.add(
-            responses.GET, settings.DISCOVERY_EDITORIAL_CONTENT_API,
+            responses.GET,
+            settings.DISCOVERY_EDITORIAL_CONTENT_API,
             content_type='application/json',
-            body=json.dumps(fake_data))
+            body=json.dumps(fake_data),
+        )
 
         with tempfile.NamedTemporaryFile() as file_, override_settings(
-                DISCOVERY_EDITORIAL_CONTENT_FILENAME=file_.name):
+            DISCOVERY_EDITORIAL_CONTENT_FILENAME=file_.name
+        ):
             call_command('extract_disco_strings')
 
             file_.seek(0)

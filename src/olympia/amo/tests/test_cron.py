@@ -20,7 +20,6 @@ def fake_task(**kw):
 
 
 class TestTaskTiming(TestCase):
-
     def setUp(self):
         patch = mock.patch('olympia.amo.celery.cache')
         self.cache = patch.start()
@@ -42,13 +41,16 @@ class TestTaskTiming(TestCase):
         fake_task.delay()
 
         approx_run_time = utc_millesecs_from_epoch() - task_start
-        assert (self.statsd.timing.call_args[0][0] ==
-                'tasks.olympia.amo.tests.test_cron.fake_task')
+        assert (
+            self.statsd.timing.call_args[0][0]
+            == 'tasks.olympia.amo.tests.test_cron.fake_task'
+        )
         actual_run_time = self.statsd.timing.call_args[0][1]
 
         fuzz = 2000  # 2 seconds
-        assert (actual_run_time >= (approx_run_time - fuzz) and
-                actual_run_time <= (approx_run_time + fuzz))
+        assert actual_run_time >= (
+            approx_run_time - fuzz
+        ) and actual_run_time <= (approx_run_time + fuzz)
 
         assert self.cache.get.call_args[0][0].startswith('task_start_time')
         assert self.cache.delete.call_args[0][0].startswith('task_start_time')

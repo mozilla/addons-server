@@ -23,9 +23,9 @@ class TestVersion(TestCase):
     def _extra_version_and_file(self, status):
         version = Version.objects.get(pk=81551)
 
-        version_two = Version(addon=self.addon,
-                              license=version.license,
-                              version='1.2.3')
+        version_two = Version(
+            addon=self.addon, license=version.license, version='1.2.3'
+        )
         version_two.save()
 
         file_two = File(status=status, version=version_two)
@@ -54,7 +54,6 @@ class TestVersion(TestCase):
 
 
 class TestBlogPosts(TestCase):
-
     def test_blog_posts(self):
         BlogPost.objects.create(title='hi')
         bp = BlogPost.objects.all()

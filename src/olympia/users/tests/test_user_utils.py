@@ -7,7 +7,10 @@ import pytest
 from olympia.amo.tests import TestCase, user_factory
 from olympia.users.models import DeniedName, UserProfile
 from olympia.users.utils import (
-    UnsubscribeCode, autocreate_username, system_addon_submission_allowed)
+    UnsubscribeCode,
+    autocreate_username,
+    system_addon_submission_allowed,
+)
 
 
 def test_email_unsubscribe_code_parse():
@@ -25,10 +28,8 @@ def test_email_unsubscribe_code_parse():
 
 
 class TestAutoCreateUsername(TestCase):
-
     def test_invalid_characters(self):
-        assert autocreate_username('testaccount+slug') == (
-            'testaccountslug')
+        assert autocreate_username('testaccount+slug') == ('testaccountslug')
 
     def test_empty_username_is_a_random_hash(self):
         un = autocreate_username('.+')  # this shouldn't happen but it could!
@@ -56,8 +57,10 @@ class TestAutoCreateUsername(TestCase):
         assert autocreate_username('existingname') == 'existingname3'
 
 
-system_guids = pytest.mark.parametrize('guid', [
-    'foo@mozilla.org', 'baa@shield.mozilla.org', 'moo@pioneer.mozilla.org'])
+system_guids = pytest.mark.parametrize(
+    'guid',
+    ['foo@mozilla.org', 'baa@shield.mozilla.org', 'moo@pioneer.mozilla.org'],
+)
 
 
 @system_guids

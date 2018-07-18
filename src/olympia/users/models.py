@@ -69,7 +69,6 @@ class UserForeignKey(models.ForeignKey):
 
 
 class UserEmailField(forms.EmailField):
-
     def clean(self, value):
         if value in validators.EMPTY_VALUES:
             raise forms.ValidationError(self.error_messages['required'])
@@ -80,23 +79,27 @@ class UserEmailField(forms.EmailField):
 
     def widget_attrs(self, widget):
         lazy_reverse = lazy(reverse, str)
-        return {'class': 'email-autocomplete',
-                'data-src': lazy_reverse('users.ajax')}
+        return {
+            'class': 'email-autocomplete',
+            'data-src': lazy_reverse('users.ajax'),
+        }
 
 
 class UserManager(BaseUserManager, ManagerBase):
-
     def create_user(self, username, email, fxa_id=None):
         # We'll send username=None when registering through FxA to generate
         # an anonymous username.
         now = timezone.now()
         user = self.model(
-            username=username, email=email, fxa_id=fxa_id,
-            last_login=now)
+            username=username, email=email, fxa_id=fxa_id, last_login=now
+        )
         if username is None:
             user.anonymize_username()
-        log.debug('Creating user with email {} and username {}'.format(
-            email, username))
+        log.debug(
+            'Creating user with email {} and username {}'.format(
+                email, username
+            )
+        )
         user.save(using=self._db)
         return user
 
@@ -115,8 +118,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
     username = models.CharField(max_length=255, default='', unique=True)
-    display_name = models.CharField(max_length=255, default='', null=True,
-                                    blank=True)
+    display_name = models.CharField(
+        max_length=255, default='', null=True, blank=True
+    )
 
     email = models.EmailField(unique=True, null=True, max_length=75)
 
@@ -132,16 +136,19 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     notes = models.TextField(blank=True, null=True)
     occupation = models.CharField(max_length=255, default='', blank=True)
     # This is essentially a "has_picture" flag right now
-    picture_type = models.CharField(max_length=75, default=None, null=True,
-                                    blank=True)
+    picture_type = models.CharField(
+        max_length=75, default=None, null=True, blank=True
+    )
     read_dev_agreement = models.DateTimeField(null=True, blank=True)
 
     last_login_ip = models.CharField(default='', max_length=45, editable=False)
     last_login_attempt = models.DateTimeField(null=True, editable=False)
-    last_login_attempt_ip = models.CharField(default='', max_length=45,
-                                             editable=False)
-    failed_login_attempts = models.PositiveIntegerField(default=0,
-                                                        editable=False)
+    last_login_attempt_ip = models.CharField(
+        default='', max_length=45, editable=False
+    )
+    failed_login_attempts = models.PositiveIntegerField(
+        default=0, editable=False
+    )
     email_changed = models.DateTimeField(null=True, editable=False)
 
     # Is the profile page for this account publicly viewable?
@@ -185,6 +192,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         be able to do anything, as each module can have its own permission
         checks. (see has_module_perms() and has_perm())"""
         from olympia.access import acl
+
         return acl.action_allowed_user(self, amo.permissions.ANY_ADMIN)
 
     def has_perm(self, perm, obj=None):
@@ -193,8 +201,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         perm is in the form "<app>.<action>_<model>".
         """
         from olympia.access import acl
+
         return acl.action_allowed_user(
-            self, amo.permissions.DJANGO_PERMISSIONS_MAPPING[perm])
+            self, amo.permissions.DJANGO_PERMISSIONS_MAPPING[perm]
+        )
 
     def has_module_perms(self, app_label):
         """Determine whether the user can see a particular app in the django
@@ -204,10 +214,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # admin. The is_superuser check is needed to allow superuser to access
         # modules that are not in the mapping at all (i.e. things only they
         # can access).
-        return (self.is_superuser or
-                any(self.has_perm(key)
-                    for key in amo.permissions.DJANGO_PERMISSIONS_MAPPING
-                    if key.startswith('%s.' % app_label)))
+        return self.is_superuser or any(
+            self.has_perm(key)
+            for key in amo.permissions.DJANGO_PERMISSIONS_MAPPING
+            if key.startswith('%s.' % app_label)
+        )
 
     def has_read_developer_agreement(self):
         from olympia.zadmin.models import get_config
@@ -220,9 +231,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             return False
         try:
             last_agreement_change_config = get_config(
-                'last_dev_agreement_change_date')
+                'last_dev_agreement_change_date'
+            )
             change_config_date = datetime.strptime(
-                last_agreement_change_config, '%Y-%m-%d %H:%M')
+                last_agreement_change_config, '%Y-%m-%d %H:%M'
+            )
 
             # If the config date is in the future, instead check against the
             # fallback date
@@ -231,9 +244,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
             return self.read_dev_agreement > change_config_date
         except (ValueError, TypeError):
-            log.exception('last_developer_agreement_change misconfigured, '
-                          '"%s" is not a '
-                          'datetime' % last_agreement_change_config)
+            log.exception(
+                'last_developer_agreement_change misconfigured, '
+                '"%s" is not a '
+                'datetime' % last_agreement_change_config
+            )
             return self.read_dev_agreement > dev_agreement_change_fallback
 
     backend = 'django.contrib.auth.backends.ModelBackend'
@@ -253,13 +268,15 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return salted_hmac(key_salt, str(self.auth_id)).hexdigest()
 
     @staticmethod
-    def create_user_url(id_, username=None, url_name='profile', src=None,
-                        args=None):
+    def create_user_url(
+        id_, username=None, url_name='profile', src=None, args=None
+    ):
         """
         We use <username> as the slug, unless it contains gross
         characters - in which case use <id> as the slug.
         """
         from olympia.amo.utils import urlparams
+
         chars = '/<>"\''
         if not username or any(x in chars for x in username):
             username = id_
@@ -268,8 +285,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return urlparams(url, src=src)
 
     def get_themes_url_path(self, src=None, args=None):
-        return self.create_user_url(self.id, self.username, 'themes', src=src,
-                                    args=args)
+        return self.create_user_url(
+            self.id, self.username, 'themes', src=src, args=args
+        )
 
     def get_url_path(self, src=None):
         return self.create_user_url(self.id, self.username, 'profile', src=src)
@@ -283,7 +301,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         """Return queryset of public add-ons thi user is listed as author of.
         """
         return self.addons.public().filter(
-            addonuser__user=self, addonuser__listed=True)
+            addonuser__user=self, addonuser__listed=True
+        )
 
     @property
     def num_addons_listed(self):
@@ -298,10 +317,13 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @property
     def picture_dir(self):
         from olympia.amo.templatetags.jinja_helpers import user_media_path
+
         split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
-        return os.path.join(user_media_path('userpics'),
-                            split_id.group(2) or '0',
-                            split_id.group(1) or '0')
+        return os.path.join(
+            user_media_path('userpics'),
+            split_id.group(2) or '0',
+            split_id.group(1) or '0',
+        )
 
     @property
     def picture_path(self):
@@ -314,30 +336,34 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @property
     def picture_url(self):
         from olympia.amo.templatetags.jinja_helpers import user_media_url
+
         if not self.picture_type:
             return settings.STATIC_URL + '/img/zamboni/anon_user.png'
         else:
             split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
             modified = int(time.mktime(self.modified.timetuple()))
-            path = "/".join([
-                split_id.group(2) or '0',
-                split_id.group(1) or '0',
-                "%s.png?modified=%s" % (self.id, modified)
-            ])
+            path = "/".join(
+                [
+                    split_id.group(2) or '0',
+                    split_id.group(1) or '0',
+                    "%s.png?modified=%s" % (self.id, modified),
+                ]
+            )
             return user_media_url('userpics') + path
 
     @cached_property
     def cached_developer_status(self):
         addon_types = list(
-            self.addonuser_set
-            .exclude(addon__status=amo.STATUS_DELETED)
-            .values_list('addon__type', flat=True))
+            self.addonuser_set.exclude(
+                addon__status=amo.STATUS_DELETED
+            ).values_list('addon__type', flat=True)
+        )
 
         all_themes = [t for t in addon_types if t in amo.GROUP_TYPE_THEME]
         return {
             'is_developer': bool(addon_types),
             'is_extension_developer': len(all_themes) != len(addon_types),
-            'is_theme_developer': bool(all_themes)
+            'is_theme_developer': bool(all_themes),
         }
 
     @property
@@ -356,14 +382,16 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @use_primary_db
     def update_is_public(self):
         pre = self.is_public
-        is_public = (
-            self.addonuser_set.filter(
-                role__in=[amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV],
-                listed=True,
-                addon__status=amo.STATUS_PUBLIC).exists())
+        is_public = self.addonuser_set.filter(
+            role__in=[amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV],
+            listed=True,
+            addon__status=amo.STATUS_PUBLIC,
+        ).exists()
         if is_public != pre:
-            log.info('Updating %s.is_public from %s to %s' % (
-                self.pk, pre, is_public))
+            log.info(
+                'Updating %s.is_public from %s to %s'
+                % (self.pk, pre, is_public)
+            )
             self.update(is_public=is_public)
         else:
             log.info('Not changing %s.is_public from %s' % (self.pk, pre))
@@ -376,7 +404,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             # L10n: {id} will be something like "13ad6a", just a random number
             # to differentiate this user from other anonymous users.
             return ugettext('Anonymous user {id}').format(
-                id=self._anonymous_username_id())
+                id=self._anonymous_username_id()
+            )
         else:
             return force_text(self.username)
 
@@ -468,11 +497,15 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             super(UserProfile, self).delete()
         else:
             if keep_fxa_id_and_email:
-                log.info(u'User (%s: <%s>) is being partially anonymized.' % (
-                    self, self.email))
+                log.info(
+                    u'User (%s: <%s>) is being partially anonymized.'
+                    % (self, self.email)
+                )
             else:
-                log.info(u'User (%s: <%s>) is being anonymized.' % (
-                    self, self.email))
+                log.info(
+                    u'User (%s: <%s>) is being anonymized.'
+                    % (self, self.email)
+                )
                 self.email = None
                 self.fxa_id = None
             self.biography = ''
@@ -488,8 +521,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.anonymize_username()
             self.save()
 
-        self.delete_picture(picture_path=picture_path,
-                            original_picture_path=original_picture_path)
+        self.delete_picture(
+            picture_path=picture_path,
+            original_picture_path=original_picture_path,
+        )
 
     def set_unusable_password(self):
         raise NotImplementedError('cannot set unusable password')
@@ -514,26 +549,41 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             if self.failed_login_attempts < 16777216:
                 self.failed_login_attempts += 1
 
-        self.save(update_fields=['last_login_ip', 'last_login_attempt',
-                                 'last_login_attempt_ip',
-                                 'failed_login_attempts'])
+        self.save(
+            update_fields=[
+                'last_login_ip',
+                'last_login_attempt',
+                'last_login_attempt_ip',
+                'failed_login_attempts',
+            ]
+        )
 
     def mobile_collection(self):
         return self.special_collection(
             amo.COLLECTION_MOBILE,
-            defaults={'slug': 'mobile', 'listed': False,
-                      'name': ugettext('My Mobile Add-ons')})
+            defaults={
+                'slug': 'mobile',
+                'listed': False,
+                'name': ugettext('My Mobile Add-ons'),
+            },
+        )
 
     def favorites_collection(self):
         return self.special_collection(
             amo.COLLECTION_FAVORITES,
-            defaults={'slug': 'favorites', 'listed': False,
-                      'name': ugettext('My Favorite Add-ons')})
+            defaults={
+                'slug': 'favorites',
+                'listed': False,
+                'name': ugettext('My Favorite Add-ons'),
+            },
+        )
 
     def special_collection(self, type_, defaults):
         from olympia.bandwagon.models import Collection
+
         c, new = Collection.objects.get_or_create(
-            author=self, type=type_, defaults=defaults)
+            author=self, type=type_, defaults=defaults
+        )
         if new:
             # Do an extra query to make sure this gets transformed.
             c = Collection.objects.using('default').get(id=c.id)
@@ -542,8 +592,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def addons_for_collection_type(self, type_):
         """Return the addons for the given special collection type."""
         from olympia.bandwagon.models import CollectionAddon
+
         qs = CollectionAddon.objects.filter(
-            collection__author=self, collection__type=type_)
+            collection__author=self, collection__type=type_
+        )
         return qs.values_list('addon', flat=True)
 
     @cached_property
@@ -572,16 +624,16 @@ class UserNotification(ModelBase):
         return NOTIFICATIONS_BY_ID.get(self.notification_id)
 
     def __str__(self):
-        return (
-            u'{user}, {notification}, enabled={enabled}'
-            .format(
-                user=self.user.display_name or self.user.email,
-                notification=self.notification.short,
-                enabled=self.enabled))
+        return u'{user}, {notification}, enabled={enabled}'.format(
+            user=self.user.display_name or self.user.email,
+            notification=self.notification.short,
+            enabled=self.enabled,
+        )
 
 
 class DeniedName(ModelBase):
     """Denied User usernames and display_names + Collections' names."""
+
     name = models.CharField(max_length=255, unique=True, default='')
 
     class Meta:
@@ -617,8 +669,9 @@ class UserHistory(ModelBase):
 
 
 @UserProfile.on_change
-def watch_changes(old_attr=None, new_attr=None, instance=None,
-                  sender=None, **kw):
+def watch_changes(
+    old_attr=None, new_attr=None, instance=None, sender=None, **kw
+):
     if old_attr is None:
         old_attr = {}
     if new_attr is None:
@@ -630,9 +683,11 @@ def watch_changes(old_attr=None, new_attr=None, instance=None,
         UserHistory.objects.create(email=old_email, user_id=instance.pk)
     # If username or display_name changes, reindex the user add-ons, if there
     # are any.
-    if (new_attr.get('username') != old_attr.get('username') or
-            new_attr.get('display_name') != old_attr.get('display_name')):
+    if new_attr.get('username') != old_attr.get('username') or new_attr.get(
+        'display_name'
+    ) != old_attr.get('display_name'):
         from olympia.addons.tasks import index_addons
+
         ids = [addon.pk for addon in instance.get_addons_listed()]
         if ids:
             index_addons.delay(ids)

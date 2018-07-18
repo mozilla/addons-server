@@ -17,8 +17,12 @@ from pyquery import PyQuery
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
-    Addon, AddonFeatureCompatibility, AddonReviewerFlags, CompatOverride,
-    CompatOverrideRange)
+    Addon,
+    AddonFeatureCompatibility,
+    AddonReviewerFlags,
+    CompatOverride,
+    CompatOverrideRange,
+)
 from olympia.amo.templatetags.jinja_helpers import user_media_url
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.tests.test_models import BasePreviewMixin
@@ -29,10 +33,17 @@ from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
 from olympia.reviewers.models import (
-    AutoApprovalSummary, ViewFullReviewQueue, ViewPendingQueue)
+    AutoApprovalSummary,
+    ViewFullReviewQueue,
+    ViewPendingQueue,
+)
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
-    ApplicationsVersions, source_upload_path, Version, VersionPreview)
+    ApplicationsVersions,
+    source_upload_path,
+    Version,
+    VersionPreview,
+)
 
 
 pytestmark = pytest.mark.django_db
@@ -51,9 +62,9 @@ class TestVersion(TestCase):
     def target_mobile(self):
         app = amo.ANDROID.id
         app_vr = AppVersion.objects.create(application=app, version='1.0')
-        ApplicationsVersions.objects.create(version=self.version,
-                                            application=app,
-                                            min=app_vr, max=app_vr)
+        ApplicationsVersions.objects.create(
+            version=self.version, application=app, min=app_vr, max=app_vr
+        )
 
     def test_compatible_apps(self):
         v = Version.objects.get(pk=81551)
@@ -67,17 +78,20 @@ class TestVersion(TestCase):
     def test_mobile_version_supports_only_mobile_platforms(self):
         self.version.apps.all().delete()
         self.target_mobile()
-        assert (sorted(self.named_plat(self.version.compatible_platforms())) ==
-                [u'android'])
+        assert sorted(
+            self.named_plat(self.version.compatible_platforms())
+        ) == [u'android']
 
     def test_mixed_version_supports_all_platforms(self):
         self.target_mobile()
-        assert (sorted(self.named_plat(self.version.compatible_platforms())) ==
-                ['all', 'android', 'linux', 'mac', 'windows'])
+        assert sorted(
+            self.named_plat(self.version.compatible_platforms())
+        ) == ['all', 'android', 'linux', 'mac', 'windows']
 
     def test_non_mobile_version_supports_non_mobile_platforms(self):
-        assert (sorted(self.named_plat(self.version.compatible_platforms())) ==
-                ['all', 'linux', 'mac', 'windows'])
+        assert sorted(
+            self.named_plat(self.version.compatible_platforms())
+        ) == ['all', 'linux', 'mac', 'windows']
 
     def test_major_minor(self):
         """Check that major/minor/alpha is getting set."""
@@ -154,7 +168,8 @@ class TestVersion(TestCase):
         assert Version.unfiltered.filter(addon=addon).exists()
         assert version.files.count() == 1
         delete_preview_files_mock.assert_called_with(
-            sender=None, instance=version_preview)
+            sender=None, instance=version_preview
+        )
 
     def test_version_hard_delete(self):
         version = Version.objects.get(pk=81551)
@@ -216,9 +231,11 @@ class TestVersion(TestCase):
     def test_version_is_not_allowed_upload(self):
         version = Version.objects.get(pk=81551)
         version.files.all().delete()
-        for platform in [amo.PLATFORM_LINUX.id,
-                         amo.PLATFORM_WIN.id,
-                         amo.PLATFORM_BSD.id]:
+        for platform in [
+            amo.PLATFORM_LINUX.id,
+            amo.PLATFORM_WIN.id,
+            amo.PLATFORM_BSD.id,
+        ]:
             file = File(platform=platform, version=version)
             file.save()
         version = Version.objects.get(pk=81551)
@@ -232,9 +249,11 @@ class TestVersion(TestCase):
     def test_version_is_not_allowed_upload_full(self):
         version = Version.objects.get(pk=81551)
         version.files.all().delete()
-        for platform in [amo.PLATFORM_LINUX.id,
-                         amo.PLATFORM_WIN.id,
-                         amo.PLATFORM_MAC.id]:
+        for platform in [
+            amo.PLATFORM_LINUX.id,
+            amo.PLATFORM_WIN.id,
+            amo.PLATFORM_MAC.id,
+        ]:
             file = File(platform=platform, version=version)
             file.save()
         # The transform don't know bout my new files.
@@ -263,9 +282,11 @@ class TestVersion(TestCase):
     def test_version_is_not_allowed_upload_after_review(self):
         version = Version.objects.get(pk=81551)
         version.files.all().delete()
-        for platform in [amo.PLATFORM_LINUX.id,
-                         amo.PLATFORM_WIN.id,
-                         amo.PLATFORM_BSD.id]:
+        for platform in [
+            amo.PLATFORM_LINUX.id,
+            amo.PLATFORM_WIN.id,
+            amo.PLATFORM_BSD.id,
+        ]:
             file = File(platform=platform, version=version)
             file.save()
         version = Version.objects.get(pk=81551)
@@ -294,13 +315,15 @@ class TestVersion(TestCase):
 
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_new_version_unlisted_dont_disable_old_unreviewed(
-            self, hide_disabled_file_mock):
+        self, hide_disabled_file_mock
+    ):
         addon = Addon.objects.get(id=3615)
         old_version = addon.current_version
         old_version.files.all().update(status=amo.STATUS_AWAITING_REVIEW)
 
         version = version_factory(
-            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
         version.disable_old_files()
 
         old_version.reload()
@@ -323,8 +346,11 @@ class TestVersion(TestCase):
     def test_version_update_info(self):
         addon = Addon.objects.get(pk=3615)
         response = self.client.get(
-            reverse('addons.versions.update_info',
-                    args=(addon.slug, self.version.version)))
+            reverse(
+                'addons.versions.update_info',
+                args=(addon.slug, self.version.version),
+            )
+        )
         assert response.status_code == 200
         assert response['Content-Type'] == 'application/xhtml+xml'
         # pyquery is annoying to use with XML and namespaces. Use the HTML
@@ -337,35 +363,48 @@ class TestVersion(TestCase):
         # Test update info in another language.
         with self.activate(locale='fr'):
             response = self.client.get(
-                reverse('addons.versions.update_info',
-                        args=(addon.slug, self.version.version)))
+                reverse(
+                    'addons.versions.update_info',
+                    args=(addon.slug, self.version.version),
+                )
+            )
             assert response.status_code == 200
             assert response['Content-Type'] == 'application/xhtml+xml'
-            assert '<br/>' in response.content, (
-                'Should be using XHTML self-closing tags!')
+            assert (
+                '<br/>' in response.content
+            ), 'Should be using XHTML self-closing tags!'
             doc = PyQuery(response.content, parser='html')
             assert doc('html').attr('xmlns') == 'http://www.w3.org/1999/xhtml'
             assert doc('p').html() == (
-                u"Quelque chose en français.<br/><br/>Quelque chose d'autre.")
+                u"Quelque chose en français.<br/><br/>Quelque chose d'autre."
+            )
 
     def test_version_update_info_legacy_redirect(self):
-        r = self.client.get('/versions/updateInfo/%s' % self.version.id,
-                            follow=True)
-        url = reverse('addons.versions.update_info',
-                      args=(self.version.addon.slug, self.version.version))
+        r = self.client.get(
+            '/versions/updateInfo/%s' % self.version.id, follow=True
+        )
+        url = reverse(
+            'addons.versions.update_info',
+            args=(self.version.addon.slug, self.version.version),
+        )
         self.assert3xx(r, url, 301)
 
     def test_version_update_info_legacy_redirect_deleted(self):
         self.version.delete()
         response = self.client.get(
-            '/en-US/firefox/versions/updateInfo/%s' % self.version.id)
+            '/en-US/firefox/versions/updateInfo/%s' % self.version.id
+        )
         assert response.status_code == 404
 
     def test_version_update_info_no_unlisted(self):
         addon = Addon.objects.get(pk=3615)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        r = self.client.get(reverse('addons.versions.update_info',
-                                    args=(addon.slug, self.version.version)))
+        r = self.client.get(
+            reverse(
+                'addons.versions.update_info',
+                args=(addon.slug, self.version.version),
+            )
+        )
         assert r.status_code == 404
 
     def _reset_version(self, version):
@@ -446,20 +485,28 @@ class TestVersion(TestCase):
         addon = Addon.objects.get(id=3615)
         version = version_factory(addon=addon)
         co = CompatOverride.objects.create(addon=addon)
-        CompatOverrideRange.objects.create(compat=co, app=1, min_version='0',
-                                           max_version=version.version,
-                                           min_app_version='10.0a1',
-                                           max_app_version='10.*')
+        CompatOverrideRange.objects.create(
+            compat=co,
+            app=1,
+            min_version='0',
+            max_version=version.version,
+            min_app_version='10.0a1',
+            max_app_version='10.*',
+        )
         assert version.compat_override_app_versions() == [('10.0a1', '10.*')]
 
     def test_compat_override_app_versions_wildcard(self):
         addon = Addon.objects.get(id=3615)
         version = version_factory(addon=addon)
         co = CompatOverride.objects.create(addon=addon)
-        CompatOverrideRange.objects.create(compat=co, app=1, min_version='0',
-                                           max_version='*',
-                                           min_app_version='10.0a1',
-                                           max_app_version='10.*')
+        CompatOverrideRange.objects.create(
+            compat=co,
+            app=1,
+            min_version='0',
+            max_version='*',
+            min_app_version='10.0a1',
+            max_app_version='10.*',
+        )
         assert version.compat_override_app_versions() == [('10.0a1', '10.*')]
 
     @mock.patch('olympia.addons.models.Addon.invalidate_d2c_versions')
@@ -477,7 +524,7 @@ class TestVersion(TestCase):
     def test_current_queue(self):
         queue_to_status = {
             ViewFullReviewQueue: amo.STATUS_NOMINATED,
-            ViewPendingQueue: amo.STATUS_PUBLIC
+            ViewPendingQueue: amo.STATUS_PUBLIC,
         }
 
         for queue, status in queue_to_status.iteritems():  # Listed queues.
@@ -490,18 +537,20 @@ class TestVersion(TestCase):
 
     def test_get_url_path(self):
         assert self.version.get_url_path() == (
-            '/en-US/firefox/addon/a3615/versions/2.1.072')
+            '/en-US/firefox/addon/a3615/versions/2.1.072'
+        )
 
     def test_valid_versions(self):
         addon = Addon.objects.get(id=3615)
-        additional_version = version_factory(
-            addon=addon, version='0.1')
+        additional_version = version_factory(addon=addon, version='0.1')
         amo.tests.file_factory(version=additional_version)
         version_factory(
-            addon=addon, version='0.2',
-            file_kw={'status': amo.STATUS_DISABLED})
-        assert list(
-            Version.objects.valid()) == [additional_version, self.version]
+            addon=addon, version='0.2', file_kw={'status': amo.STATUS_DISABLED}
+        )
+        assert list(Version.objects.valid()) == [
+            additional_version,
+            self.version,
+        ]
 
     def test_unlisted_addon_get_url_path(self):
         self.make_addon_unlisted(self.version.addon)
@@ -525,7 +574,8 @@ class TestVersion(TestCase):
         version = Addon.objects.get(id=3615).current_version
         # When status is a valid one, one of STATUS_CHOICES_FILE return label.
         assert version.status == [
-            amo.STATUS_CHOICES_FILE[version.all_files[0].status]]
+            amo.STATUS_CHOICES_FILE[version.all_files[0].status]
+        ]
 
         version.all_files[0].update(status=99)  # 99 isn't a valid status.
         # otherwise return the status code for reference.
@@ -537,11 +587,13 @@ class TestVersion(TestCase):
         assert not version.is_ready_for_auto_approval
 
         version.all_files = [
-            File(status=amo.STATUS_AWAITING_REVIEW, is_webextension=False)]
+            File(status=amo.STATUS_AWAITING_REVIEW, is_webextension=False)
+        ]
         assert not version.is_ready_for_auto_approval
 
         version.all_files = [
-            File(status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)]
+            File(status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)
+        ]
         version.channel = amo.RELEASE_CHANNEL_UNLISTED
         assert not version.is_ready_for_auto_approval
 
@@ -551,7 +603,8 @@ class TestVersion(TestCase):
         # With the auto-approval disabled flag set, it's still considered
         # "ready", even though the auto_approve code won't approve it.
         AddonReviewerFlags.objects.create(
-            addon=addon, auto_approval_disabled=False)
+            addon=addon, auto_approval_disabled=False
+        )
 
         addon.type = amo.ADDON_THEME
         assert not version.is_ready_for_auto_approval
@@ -564,7 +617,8 @@ class TestVersion(TestCase):
         addon.status = amo.STATUS_NOMINATED
         version = addon.current_version
         version.all_files = [
-            File(status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)]
+            File(status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)
+        ]
         assert version.is_ready_for_auto_approval
 
         addon.status = amo.STATUS_DISABLED
@@ -576,7 +630,8 @@ class TestVersion(TestCase):
         assert not version.was_auto_approved
 
         AutoApprovalSummary.objects.create(
-            version=version, verdict=amo.AUTO_APPROVED)
+            version=version, verdict=amo.AUTO_APPROVED
+        )
         assert version.was_auto_approved
 
         version.files.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -584,15 +639,19 @@ class TestVersion(TestCase):
         assert not version.was_auto_approved
 
 
-@pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [
-    (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, True),
-    (amo.STATUS_NOMINATED, amo.STATUS_NOMINATED, True),
-    (amo.STATUS_NOMINATED, amo.STATUS_PUBLIC, False),
-    (amo.STATUS_NOMINATED, amo.STATUS_DISABLED, False),
-    (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW, True),
-    (amo.STATUS_PUBLIC, amo.STATUS_NOMINATED, True),
-    (amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, False),
-    (amo.STATUS_PUBLIC, amo.STATUS_DISABLED, False)])
+@pytest.mark.parametrize(
+    "addon_status,file_status,is_unreviewed",
+    [
+        (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, True),
+        (amo.STATUS_NOMINATED, amo.STATUS_NOMINATED, True),
+        (amo.STATUS_NOMINATED, amo.STATUS_PUBLIC, False),
+        (amo.STATUS_NOMINATED, amo.STATUS_DISABLED, False),
+        (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW, True),
+        (amo.STATUS_PUBLIC, amo.STATUS_NOMINATED, True),
+        (amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, False),
+        (amo.STATUS_PUBLIC, amo.STATUS_DISABLED, False),
+    ],
+)
 def test_unreviewed_files(db, addon_status, file_status, is_unreviewed):
     """Files that need to be reviewed are returned by version.unreviewed_files.
 
@@ -620,7 +679,8 @@ class TestVersionFromUpload(UploadTest, TestCase):
         self.platform = amo.PLATFORM_MAC.id
         for version in ('3.0', '3.6.*'):
             AppVersion.objects.create(
-                application=amo.FIREFOX.id, version=version)
+                application=amo.FIREFOX.id, version=version
+            )
         self.dummy_parsed_data = {'version': '0.1'}
 
 
@@ -628,23 +688,35 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     filename = 'extension.xpi'
 
     def test_carry_over_old_license(self):
-        version = Version.from_upload(self.upload, self.addon, [self.platform],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=self.dummy_parsed_data)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.platform],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.dummy_parsed_data,
+        )
         assert version.license_id == self.addon.current_version.license_id
 
     def test_carry_over_license_no_version(self):
         self.addon.versions.all().delete()
-        version = Version.from_upload(self.upload, self.addon, [self.platform],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=self.dummy_parsed_data)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.platform],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.dummy_parsed_data,
+        )
         assert version.license_id is None
 
     def test_app_versions(self):
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(self.upload, self.addon, [self.platform],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=parsed_data)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.platform],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         assert amo.FIREFOX in version.compatible_apps
         app = version.compatible_apps[amo.FIREFOX]
         assert app.min.version == '3.0'
@@ -659,8 +731,12 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self.upload = self.get_upload(self.filename)
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
         version = Version.from_upload(
-            self.upload, self.addon, [self.platform],
-            amo.RELEASE_CHANNEL_LISTED, parsed_data=parsed_data)
+            self.upload,
+            self.addon,
+            [self.platform],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         compatible_apps = version.compatible_apps
         assert len(compatible_apps) == 1
         assert amo.FIREFOX in version.compatible_apps
@@ -674,19 +750,27 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # version.compatible_apps early - we want to test that the cache has
         # been generated regardless.
         with mock.patch('olympia.files.models.File.from_upload'):
-            version = Version.from_upload(self.upload, self.addon,
-                                          [self.platform],
-                                          amo.RELEASE_CHANNEL_LISTED,
-                                          parsed_data=parsed_data)
+            version = Version.from_upload(
+                self.upload,
+                self.addon,
+                [self.platform],
+                amo.RELEASE_CHANNEL_LISTED,
+                parsed_data=parsed_data,
+            )
         # Add an extra ApplicationsVersions. It should *not* appear in
         # version.compatible_apps, because that's a cached_property.
         new_app_vr_min = AppVersion.objects.create(
-            application=amo.THUNDERBIRD.id, version='1.0')
+            application=amo.THUNDERBIRD.id, version='1.0'
+        )
         new_app_vr_max = AppVersion.objects.create(
-            application=amo.THUNDERBIRD.id, version='2.0')
+            application=amo.THUNDERBIRD.id, version='2.0'
+        )
         ApplicationsVersions.objects.create(
-            version=version, application=amo.THUNDERBIRD.id,
-            min=new_app_vr_min, max=new_app_vr_max)
+            version=version,
+            application=amo.THUNDERBIRD.id,
+            min=new_app_vr_min,
+            max=new_app_vr_max,
+        )
         assert amo.THUNDERBIRD not in version.compatible_apps
         assert amo.FIREFOX in version.compatible_apps
         app = version.compatible_apps[amo.FIREFOX]
@@ -695,46 +779,65 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     def test_version_number(self):
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(self.upload, self.addon, [self.platform],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=parsed_data)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.platform],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         assert version.version == '0.1'
 
     def test_file_platform(self):
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(self.upload, self.addon, [self.platform],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=parsed_data)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.platform],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         files = version.all_files
         assert len(files) == 1
         assert files[0].platform == self.platform
 
     def test_file_name(self):
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(self.upload, self.addon, [self.platform],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=parsed_data)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.platform],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         files = version.all_files
         assert files[0].filename == u'delicious_bookmarks-0.1-fx-mac.xpi'
 
     def test_file_name_platform_all(self):
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(self.upload, self.addon,
-                                      [amo.PLATFORM_ALL.id],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=parsed_data)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [amo.PLATFORM_ALL.id],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         files = version.all_files
         assert files[0].filename == u'delicious_bookmarks-0.1-fx.xpi'
 
     def test_android_creates_platform_files(self):
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(self.upload, self.addon,
-                                      [amo.PLATFORM_ANDROID.id],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=parsed_data)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [amo.PLATFORM_ANDROID.id],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         files = version.all_files
         assert sorted(amo.PLATFORMS[f.platform].shortname for f in files) == (
-            ['android'])
+            ['android']
+        )
 
     def test_desktop_all_android_creates_all(self):
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
@@ -747,7 +850,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         files = version.all_files
         assert sorted(amo.PLATFORMS[f.platform].shortname for f in files) == (
-            ['all', 'android'])
+            ['all', 'android']
+        )
 
     def test_android_with_mixed_desktop_creates_platform_files(self):
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
@@ -760,7 +864,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         files = version.all_files
         assert sorted(amo.PLATFORMS[f.platform].shortname for f in files) == (
-            ['android', 'linux'])
+            ['android', 'linux']
+        )
 
     def test_multiple_platforms(self):
         platforms = [amo.PLATFORM_LINUX.id, amo.PLATFORM_MAC.id]
@@ -768,20 +873,27 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         with storage.open(self.upload.path) as file_:
             uploaded_hash = hashlib.sha256(file_.read()).hexdigest()
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(self.upload, self.addon, platforms,
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=parsed_data)
-        assert not storage.exists(self.upload.path), (
-            "Expected original upload to move but it still exists.")
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            platforms,
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
+        assert not storage.exists(
+            self.upload.path
+        ), "Expected original upload to move but it still exists."
         files = version.all_files
         assert len(files) == 2
-        assert sorted([f.platform for f in files]) == (
-            sorted(platforms))
+        assert sorted([f.platform for f in files]) == (sorted(platforms))
         assert sorted([f.filename for f in files]) == (
-            [u'delicious_bookmarks-0.1-fx-%s.xpi' % (
-                amo.PLATFORM_LINUX.shortname),
-             u'delicious_bookmarks-0.1-fx-%s.xpi' % (
-                 amo.PLATFORM_MAC.shortname)])
+            [
+                u'delicious_bookmarks-0.1-fx-%s.xpi'
+                % (amo.PLATFORM_LINUX.shortname),
+                u'delicious_bookmarks-0.1-fx-%s.xpi'
+                % (amo.PLATFORM_MAC.shortname),
+            ]
+        )
         for file_ in files:
             with storage.open(file_.file_path) as f:
                 assert uploaded_hash == hashlib.sha256(f.read()).hexdigest()
@@ -789,17 +901,25 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_file_multi_package(self):
         self.upload = self.get_upload('multi-package.xpi')
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(self.upload, self.addon, [self.platform],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=parsed_data)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.platform],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         files = version.all_files
         assert files[0].is_multi_package
 
     def test_file_not_multi_package(self):
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(self.upload, self.addon, [self.platform],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=parsed_data)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.platform],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         files = version.all_files
         assert not files[0].is_multi_package
 
@@ -810,9 +930,13 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
         mock_timing_path = 'olympia.versions.models.statsd.timing'
         with mock.patch(mock_timing_path) as mock_timing:
-            Version.from_upload(self.upload, self.addon, [self.platform],
-                                amo.RELEASE_CHANNEL_LISTED,
-                                parsed_data=self.dummy_parsed_data)
+            Version.from_upload(
+                self.upload,
+                self.addon,
+                [self.platform],
+                amo.RELEASE_CHANNEL_LISTED,
+                parsed_data=self.dummy_parsed_data,
+            )
 
             upload_start = utc_millesecs_from_epoch(self.upload.created)
             now = utc_millesecs_from_epoch()
@@ -820,16 +944,21 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             actual_delta = mock_timing.call_args[0][1]
 
             fuzz = 2000  # 2 seconds
-            assert (actual_delta >= (rough_delta - fuzz) and
-                    actual_delta <= (rough_delta + fuzz))
+            assert actual_delta >= (rough_delta - fuzz) and actual_delta <= (
+                rough_delta + fuzz
+            )
 
     def test_new_version_is_10s_compatible_no_feature_compat_previously(self):
         assert not self.addon.feature_compatibility.pk
         self.upload = self.get_upload('multiprocess_compatible_extension.xpi')
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(self.upload, self.addon, [self.platform],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=parsed_data)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.platform],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         assert version.pk
         assert self.addon.feature_compatibility.pk
         assert self.addon.feature_compatibility.e10s == amo.E10S_COMPATIBLE
@@ -839,9 +968,13 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert self.addon.feature_compatibility.e10s == amo.E10S_UNKNOWN
         self.upload = self.get_upload('multiprocess_compatible_extension.xpi')
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(self.upload, self.addon, [self.platform],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=parsed_data)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.platform],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         assert version.pk
         assert self.addon.feature_compatibility.pk
         self.addon.feature_compatibility.reload()
@@ -853,25 +986,37 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert self.addon.feature_compatibility.e10s == amo.E10S_UNKNOWN
         self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(self.upload, self.addon, [self.platform],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=parsed_data)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.platform],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         assert version.pk
         assert self.addon.feature_compatibility.pk
         self.addon.feature_compatibility.reload()
         assert self.addon.feature_compatibility.e10s == (
-            amo.E10S_COMPATIBLE_WEBEXTENSION)
+            amo.E10S_COMPATIBLE_WEBEXTENSION
+        )
 
     def test_nomination_inherited_for_updates(self):
         assert self.addon.status == amo.STATUS_PUBLIC
         self.addon.current_version.update(nomination=self.days_ago(2))
         pending_version = version_factory(
-            addon=self.addon, nomination=self.days_ago(1), version='9.9',
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+            addon=self.addon,
+            nomination=self.days_ago(1),
+            version='9.9',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
         assert pending_version.nomination
         upload_version = Version.from_upload(
-            self.upload, self.addon, [self.platform],
-            amo.RELEASE_CHANNEL_LISTED, parsed_data=self.dummy_parsed_data)
+            self.upload,
+            self.addon,
+            [self.platform],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.dummy_parsed_data,
+        )
         assert upload_version.nomination == pending_version.nomination
 
 
@@ -886,25 +1031,36 @@ class TestSearchVersionFromUpload(TestVersionFromUpload):
 
     def test_version_number(self):
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(self.upload, self.addon, [self.platform],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=parsed_data)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.platform],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         assert version.version == self.now
 
     def test_file_name(self):
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(self.upload, self.addon, [self.platform],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=parsed_data)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.platform],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         files = version.all_files
-        assert files[0].filename == (
-            u'delicious_bookmarks-%s.xml' % self.now)
+        assert files[0].filename == (u'delicious_bookmarks-%s.xml' % self.now)
 
     def test_file_platform_is_always_all(self):
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(self.upload, self.addon, [self.platform],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=parsed_data)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.platform],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         files = version.all_files
         assert len(files) == 1
         assert files[0].platform == amo.PLATFORM_ALL.id
@@ -919,72 +1075,104 @@ class TestStatusFromUpload(TestVersionFromUpload):
 
     def test_status(self):
         self.current.files.all().update(status=amo.STATUS_AWAITING_REVIEW)
-        Version.from_upload(self.upload, self.addon, [self.platform],
-                            amo.RELEASE_CHANNEL_LISTED,
-                            parsed_data=self.dummy_parsed_data)
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            [self.platform],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.dummy_parsed_data,
+        )
         assert File.objects.filter(version=self.current)[0].status == (
-            amo.STATUS_DISABLED)
+            amo.STATUS_DISABLED
+        )
 
 
 @override_switch('allow-static-theme-uploads', active=True)
 class TestStaticThemeFromUpload(UploadTest):
-
     def setUp(self):
         path = 'src/olympia/devhub/tests/addons/static_theme.zip'
         self.upload = self.get_upload(
-            abspath=os.path.join(settings.ROOT, path))
+            abspath=os.path.join(settings.ROOT, path)
+        )
 
     @mock.patch('olympia.versions.models.generate_static_theme_preview')
     def test_new_version_while_nominated(
-            self, generate_static_theme_preview_mock):
+        self, generate_static_theme_preview_mock
+    ):
         self.addon = addon_factory(
             type=amo.ADDON_STATICTHEME,
             status=amo.STATUS_NOMINATED,
-            file_kw={
-                'status': amo.STATUS_AWAITING_REVIEW
-            }
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
         version = Version.from_upload(
-            self.upload, self.addon, [], amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data)
+            self.upload,
+            self.addon,
+            [],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         assert len(version.all_files) == 1
         assert generate_static_theme_preview_mock.call_count == 1
         assert version.get_background_image_urls() == [
-            '%s/%s/%s/%s' % (user_media_url('addons'), str(self.addon.id),
-                             unicode(version.id), 'weta.png')
+            '%s/%s/%s/%s'
+            % (
+                user_media_url('addons'),
+                str(self.addon.id),
+                unicode(version.id),
+                'weta.png',
+            )
         ]
 
     @mock.patch('olympia.versions.models.generate_static_theme_preview')
     def test_new_version_while_public(
-            self, generate_static_theme_preview_mock):
+        self, generate_static_theme_preview_mock
+    ):
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
         version = Version.from_upload(
-            self.upload, self.addon, [], amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data)
+            self.upload,
+            self.addon,
+            [],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         assert len(version.all_files) == 1
         assert generate_static_theme_preview_mock.call_count == 1
         assert version.get_background_image_urls() == [
-            '%s/%s/%s/%s' % (user_media_url('addons'), str(self.addon.id),
-                             unicode(version.id), 'weta.png')
+            '%s/%s/%s/%s'
+            % (
+                user_media_url('addons'),
+                str(self.addon.id),
+                unicode(version.id),
+                'weta.png',
+            )
         ]
 
     @mock.patch('olympia.versions.models.generate_static_theme_preview')
     def test_new_version_with_additional_backgrounds(
-            self, generate_static_theme_preview_mock):
+        self, generate_static_theme_preview_mock
+    ):
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
         path = 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
         self.upload = self.get_upload(
-            abspath=os.path.join(settings.ROOT, path))
+            abspath=os.path.join(settings.ROOT, path)
+        )
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
         version = Version.from_upload(
-            self.upload, self.addon, [], amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data)
+            self.upload,
+            self.addon,
+            [],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data,
+        )
         assert len(version.all_files) == 1
         assert generate_static_theme_preview_mock.call_count == 1
         image_url_folder = u'%s/%s/%s/' % (
-            user_media_url('addons'), self.addon.id, version.id)
+            user_media_url('addons'),
+            self.addon.id,
+            version.id,
+        )
 
         assert sorted(version.get_background_image_urls()) == [
             image_url_folder + 'empty.png',
@@ -994,7 +1182,6 @@ class TestStaticThemeFromUpload(UploadTest):
 
 
 class TestApplicationsVersions(TestCase):
-
     def setUp(self):
         super(TestApplicationsVersions, self).setUp()
         self.version_kw = dict(min_app_version='5.0', max_app_version='6.*')
@@ -1005,14 +1192,16 @@ class TestApplicationsVersions(TestCase):
         assert version.apps.all()[0].__unicode__() == 'Firefox 5.0 and later'
 
     def test_repr_when_strict(self):
-        addon = addon_factory(version_kw=self.version_kw,
-                              file_kw=dict(strict_compatibility=True))
+        addon = addon_factory(
+            version_kw=self.version_kw, file_kw=dict(strict_compatibility=True)
+        )
         version = addon.current_version
         assert version.apps.all()[0].__unicode__() == 'Firefox 5.0 - 6.*'
 
     def test_repr_when_binary(self):
-        addon = addon_factory(version_kw=self.version_kw,
-                              file_kw=dict(binary_components=True))
+        addon = addon_factory(
+            version_kw=self.version_kw, file_kw=dict(binary_components=True)
+        )
         version = addon.current_version
         assert version.apps.all()[0].__unicode__() == 'Firefox 5.0 - 6.*'
 
@@ -1026,14 +1215,16 @@ class TestApplicationsVersions(TestCase):
         assert version.apps.all()[0].__unicode__() == 'Firefox 5.0 and later'
 
     def test_repr_when_low_app_support(self):
-        addon = addon_factory(version_kw=dict(min_app_version='3.0',
-                                              max_app_version='3.5'))
+        addon = addon_factory(
+            version_kw=dict(min_app_version='3.0', max_app_version='3.5')
+        )
         version = addon.current_version
         assert version.apps.all()[0].__unicode__() == 'Firefox 3.0 - 3.5'
 
     def test_repr_when_unicode(self):
-        addon = addon_factory(version_kw=dict(min_app_version=u'ك',
-                                              max_app_version=u'ك'))
+        addon = addon_factory(
+            version_kw=dict(min_app_version=u'ك', max_app_version=u'ك')
+        )
         version = addon.current_version
         assert unicode(version.apps.all()[0]) == u'Firefox ك - ك'
 
@@ -1041,5 +1232,6 @@ class TestApplicationsVersions(TestCase):
 class TestVersionPreview(BasePreviewMixin, TestCase):
     def get_object(self):
         version_preview = VersionPreview.objects.create(
-            version=addon_factory().current_version)
+            version=addon_factory().current_version
+        )
         return version_preview

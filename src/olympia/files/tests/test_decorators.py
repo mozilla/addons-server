@@ -13,7 +13,6 @@ from olympia.files.decorators import allowed
 
 
 class AllowedTest(TestCase):
-
     def setUp(self):
         super(AllowedTest, self).setUp()
 
@@ -22,7 +21,8 @@ class AllowedTest(TestCase):
         self.request.user = amo.tests.user_factory()
 
         self.addon = amo.tests.addon_factory(
-            version_kw={'channel': amo.RELEASE_CHANNEL_LISTED})
+            version_kw={'channel': amo.RELEASE_CHANNEL_LISTED}
+        )
         self.file = self.addon.versions.get().files.get()
 
     @patch.object(acl, 'is_reviewer', lambda request, addon: False)
@@ -54,7 +54,8 @@ class AllowedTest(TestCase):
 
     def get_unlisted_addon_file(self):
         addon = amo.tests.addon_factory(
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED}
+        )
         return addon, addon.versions.get().files.get()
 
     @patch.object(acl, 'is_reviewer', lambda request, addon: False)

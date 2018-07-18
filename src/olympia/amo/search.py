@@ -20,8 +20,11 @@ def get_es(hosts=None, timeout=None, **settings):
     """Create an ES object and return it."""
     # Cheap way of de-None-ifying things
     hosts = hosts or getattr(dj_settings, 'ES_HOSTS', DEFAULT_HOSTS)
-    timeout = (timeout if timeout is not None else
-               getattr(dj_settings, 'ES_TIMEOUT', DEFAULT_TIMEOUT))
+    timeout = (
+        timeout
+        if timeout is not None
+        else getattr(dj_settings, 'ES_TIMEOUT', DEFAULT_TIMEOUT)
+    )
 
     if os.environ.get('RUNNING_IN_CI'):
         settings['http_auth'] = ('elastic', 'changeme')
@@ -30,7 +33,6 @@ def get_es(hosts=None, timeout=None, **settings):
 
 
 class ES(object):
-
     def __init__(self, type_, index):
         self.type = type_
         self.index = index
@@ -152,7 +154,8 @@ class ES(object):
 
         if query_string:
             search = SearchQueryFilter().apply_search_query(
-                query_string, search)
+                query_string, search
+            )
 
         if sort:
             search = search.sort(*sort)
@@ -191,7 +194,8 @@ class ES(object):
             elif field_action == 'exists':
                 if val is not True:
                     raise NotImplementedError(
-                        '<field>__exists only works with a "True" value.')
+                        '<field>__exists only works with a "True" value.'
+                    )
                 filters.append(Q('exists', **{'field': key}))
             elif field_action == 'in':
                 filters.append(Q('terms', **{key: val}))
@@ -269,7 +273,6 @@ class ES(object):
 
 
 class SearchResults(object):
-
     def __init__(self, type, results, source):
         self.type = type
         self.took = results['took']
@@ -289,7 +292,6 @@ class SearchResults(object):
 
 
 class DictSearchResults(SearchResults):
-
     def set_objects(self, hits):
         self.objects = [r['_source'] for r in hits]
 
@@ -297,7 +299,6 @@ class DictSearchResults(SearchResults):
 
 
 class ListSearchResults(SearchResults):
-
     def set_objects(self, hits):
         # When fields are specified in `values(...)` we return the fields.
         objs = []
@@ -308,7 +309,6 @@ class ListSearchResults(SearchResults):
 
 
 class ObjectSearchResults(SearchResults):
-
     def set_objects(self, hits):
         self.ids = [int(r['_id']) for r in hits]
         self.objects = self.type.objects.filter(id__in=self.ids)

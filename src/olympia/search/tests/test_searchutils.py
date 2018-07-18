@@ -8,7 +8,6 @@ pytestmark = pytest.mark.django_db
 
 
 def test_floor_version():
-
     def c(x, y):
         assert floor_version(x) == y
 

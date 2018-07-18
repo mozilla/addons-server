@@ -14,8 +14,12 @@ def render(s, context=None):
 
 
 class TestHelpers(amo.tests.BaseTestCase):
-    fixtures = ('base/addon_3615', 'base/user_2519', 'base/user_4043307',
-                'tags/tags')
+    fixtures = (
+        'base/addon_3615',
+        'base/user_2519',
+        'base/user_4043307',
+        'tags/tags',
+    )
 
     def test_tag_list(self):
         addon = Addon.objects.get(id=3615)
@@ -30,7 +34,8 @@ class TestHelpers(amo.tests.BaseTestCase):
             'LANG': 'en-us',
             'request': request,
             'addon': addon,
-            'tags': tags}
+            'tags': tags,
+        }
 
         # no tags, no list
         s = render('{{ tag_list(addon) }}', ctx)

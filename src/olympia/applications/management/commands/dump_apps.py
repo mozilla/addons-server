@@ -26,10 +26,12 @@ class Command(BaseCommand):
     def handle(self, *args, **kw):
         apps = {}
         for id, app in amo.APP_IDS.iteritems():
-            apps[id] = dict(guid=app.guid, versions=[],
-                            name=amo.APPS_ALL[id].short)
-        versions = (AppVersion.objects.values_list('application', 'version')
-                    .order_by('version_int'))
+            apps[id] = dict(
+                guid=app.guid, versions=[], name=amo.APPS_ALL[id].short
+            )
+        versions = AppVersion.objects.values_list(
+            'application', 'version'
+        ).order_by('version_int')
         for app, version in versions:
             try:
                 apps[app]['versions'].append(version)

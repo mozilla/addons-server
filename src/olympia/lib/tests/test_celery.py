@@ -11,5 +11,6 @@ def test_celery_routes_in_queues():
     queues_in_queues.remove(settings.CELERY_TASK_DEFAULT_QUEUE)
 
     queues_in_routes = set(
-        [c['queue'] for c in settings.CELERY_TASK_ROUTES.values()])
+        [c['queue'] for c in settings.CELERY_TASK_ROUTES.values()]
+    )
     assert queues_in_queues == queues_in_routes

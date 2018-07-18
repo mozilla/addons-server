@@ -27,12 +27,12 @@ class FeedTest(TestCase):
         self.rating.user = self.user
 
     def test_title(self):
-        assert self.feed.title(self.addon) == (
-            u'Reviews for %s' % self.u)
+        assert self.feed.title(self.addon) == (u'Reviews for %s' % self.u)
 
     def test_item_title(self):
         assert self.feed.item_title(self.rating) == (
-            'Rated %s out of 5 stars' % self.rating.rating)
+            'Rated %s out of 5 stars' % self.rating.rating
+        )
 
         self.rating.rating = None
         assert self.feed.item_title(self.rating) == ''

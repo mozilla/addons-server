@@ -29,8 +29,11 @@ def addon_with_files(db):
     """
     addon = Addon.objects.create(name='My Addon', slug='my-addon')
     version = Version.objects.create(addon=addon)
-    for status in [amo.STATUS_DISABLED,
-                   amo.STATUS_AWAITING_REVIEW, amo.STATUS_AWAITING_REVIEW]:
+    for status in [
+        amo.STATUS_DISABLED,
+        amo.STATUS_AWAITING_REVIEW,
+        amo.STATUS_AWAITING_REVIEW,
+    ]:
         File.objects.create(version=version, status=status)
     return addon
 
@@ -41,33 +44,66 @@ def addon_with_files(db):
     [
         # New addon request full.
         # scenario0: should succeed, files approved.
-        ('process_public', amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
-         ReviewAddon, 'nominated', amo.STATUS_PUBLIC,
-         amo.STATUS_PUBLIC),
+        (
+            'process_public',
+            amo.STATUS_NOMINATED,
+            amo.STATUS_AWAITING_REVIEW,
+            ReviewAddon,
+            'nominated',
+            amo.STATUS_PUBLIC,
+            amo.STATUS_PUBLIC,
+        ),
         # scenario1: should succeed, files rejected.
-        ('process_sandbox', amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
-         ReviewAddon, 'nominated', amo.STATUS_NULL,
-         amo.STATUS_DISABLED),
-
+        (
+            'process_sandbox',
+            amo.STATUS_NOMINATED,
+            amo.STATUS_AWAITING_REVIEW,
+            ReviewAddon,
+            'nominated',
+            amo.STATUS_NULL,
+            amo.STATUS_DISABLED,
+        ),
         # Approved addon with a new file.
         # scenario2: should succeed, files approved.
-        ('process_public', amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
-         ReviewFiles, 'pending', amo.STATUS_PUBLIC,
-         amo.STATUS_PUBLIC),
+        (
+            'process_public',
+            amo.STATUS_PUBLIC,
+            amo.STATUS_AWAITING_REVIEW,
+            ReviewFiles,
+            'pending',
+            amo.STATUS_PUBLIC,
+            amo.STATUS_PUBLIC,
+        ),
         # scenario3: should succeed, files rejected.
-        ('process_sandbox', amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
-         ReviewFiles, 'pending', amo.STATUS_NULL,
-         amo.STATUS_DISABLED),
-    ])
-def test_review_scenario(mock_request, addon_with_files, review_action,
-                         addon_status, file_status, review_class, review_type,
-                         final_addon_status, final_file_status):
+        (
+            'process_sandbox',
+            amo.STATUS_PUBLIC,
+            amo.STATUS_AWAITING_REVIEW,
+            ReviewFiles,
+            'pending',
+            amo.STATUS_NULL,
+            amo.STATUS_DISABLED,
+        ),
+    ],
+)
+def test_review_scenario(
+    mock_request,
+    addon_with_files,
+    review_action,
+    addon_status,
+    file_status,
+    review_class,
+    review_type,
+    final_addon_status,
+    final_file_status,
+):
     # Setup the addon and files.
     addon = addon_with_files
     addon.update(status=addon_status)
     version = addon.versions.get()
-    version.files.filter(
-        status=amo.STATUS_AWAITING_REVIEW).update(status=file_status)
+    version.files.filter(status=amo.STATUS_AWAITING_REVIEW).update(
+        status=file_status
+    )
     # Get the review helper.
     helper = ReviewHelper(mock_request, addon, version)
     assert isinstance(helper.handler, review_class)
@@ -85,4 +121,5 @@ def test_review_scenario(mock_request, addon_with_files, review_action,
     # Check the final statuses.
     assert addon.reload().status == final_addon_status
     assert list(version.files.values_list('status', flat=True)) == (
-        [amo.STATUS_DISABLED, final_file_status, final_file_status])
+        [amo.STATUS_DISABLED, final_file_status, final_file_status]
+    )

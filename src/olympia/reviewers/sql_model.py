@@ -12,7 +12,8 @@ ORDER_PATTERN = re.compile(r'^[-+]?[a-zA-Z0-9_]+$')
 FIELD_PATTERN = re.compile(r'^[a-zA-Z0-9_\.]+$')
 RAW_FILTER_PATTERN = re.compile(
     r'^(?P<field>[a-zA-Z0-9_\.]+)\s*(?P<op>=|>|<|>=|<=|!=|IN|LIKE|ILIKE)\s*$',
-    re.I)
+    re.I,
+)
 
 
 class LazyRawSQLManager(object):
@@ -103,11 +104,13 @@ class RawSQLManager(object):
         cnt = clone.count()
         if cnt > 1:
             raise clone.sql_model.MultipleObjectsReturned(
-                'get() returned more than one row -- it returned %s!' % cnt)
+                'get() returned more than one row -- it returned %s!' % cnt
+            )
         elif cnt == 0:
             raise clone.sql_model.DoesNotExist(
-                '%s matching query does not exist.' %
-                self.sql_model.__class__.__name__)
+                '%s matching query does not exist.'
+                % self.sql_model.__class__.__name__
+            )
         else:
             return clone[0:1][0]
 
@@ -127,13 +130,16 @@ class RawSQLManager(object):
         for arg in args:
             if isinstance(arg, Q):
                 clone.base_query['where'].append(
-                    '(%s)' % (clone._flatten_q(arg, clone._kw_clause_from_q)))
+                    '(%s)' % (clone._flatten_q(arg, clone._kw_clause_from_q))
+                )
             else:
                 raise TypeError(
-                    'non keyword args should be Q objects, got %r' % arg)
+                    'non keyword args should be Q objects, got %r' % arg
+                )
         for field, val in kw.items():
-            clone.base_query['where'].append(clone._kw_filter_to_clause(field,
-                                                                        val))
+            clone.base_query['where'].append(
+                clone._kw_filter_to_clause(field, val)
+            )
         return clone
 
     def filter_raw(self, *args):
@@ -155,7 +161,8 @@ class RawSQLManager(object):
         for arg in args:
             if isinstance(arg, Q):
                 clone.base_query['where'].append(
-                    '(%s)' % (clone._flatten_q(arg, clone._filter_to_clause)))
+                    '(%s)' % (clone._flatten_q(arg, clone._filter_to_clause))
+                )
             else:
                 specs.append(arg)
         if len(specs):
@@ -185,8 +192,9 @@ class RawSQLManager(object):
         clone.order_by('-%s' % column)
         if clone.count() == 0:
             raise clone.sql_model.DoesNotExist(
-                '%s matching query does not exist.' %
-                self.sql_model.__class__.__name__)
+                '%s matching query does not exist.'
+                % self.sql_model.__class__.__name__
+            )
         return clone[0]
 
     def order_by(self, spec):
@@ -200,8 +208,9 @@ class RawSQLManager(object):
             dir = 'ASC'
             field = spec
         clone = self._clone()
-        clone.base_query['order_by'].append('%s %s' %
-                                            (clone._resolve_alias(field), dir))
+        clone.base_query['order_by'].append(
+            '%s %s' % (clone._resolve_alias(field), dir)
+        )
         return clone
 
     def as_sql(self):
@@ -209,8 +218,9 @@ class RawSQLManager(object):
         return stmt
 
     def _clone(self):
-        return self.__class__(self.sql_model,
-                              base_query=copy.deepcopy(self.base_query))
+        return self.__class__(
+            self.sql_model, base_query=copy.deepcopy(self.base_query)
+        )
 
     def _flatten_q(self, q_object, join_specs, stack=None):
         """Makes a WHERE clause out of a Q object (supports nested Q objects).
@@ -261,7 +271,7 @@ class RawSQLManager(object):
             raise ValueError('Not a valid field for where clause: %r' % field)
         field = self._resolve_alias(field)
         if val is None:
-            return u'%s IS NULL' % (field, )
+            return u'%s IS NULL' % (field,)
         else:
             param_k = self._param(val)
             return u'%s = %%(%s)s' % (field, param_k)
@@ -272,15 +282,17 @@ class RawSQLManager(object):
         specs = list(specs)
         if (len(specs) % 2) != 0:
             raise TypeError(
-                "Expected pairs of 'spec =', 'val'. Got: %r" % specs)
+                "Expected pairs of 'spec =', 'val'. Got: %r" % specs
+            )
         full_clause = []
         while len(specs):
             spec, val = specs.pop(0), specs.pop(0)
             clause = RAW_FILTER_PATTERN.match(spec)
             if not clause:
                 raise ValueError(
-                    'This is not a valid clause: %r; must match: %s' % (
-                        spec, RAW_FILTER_PATTERN.pattern))
+                    'This is not a valid clause: %r; must match: %s'
+                    % (spec, RAW_FILTER_PATTERN.pattern)
+                )
             field = clause.group('field')
             field = self._resolve_alias(field)
             if clause.group('op').lower() == 'in':
@@ -308,8 +320,10 @@ class RawSQLManager(object):
         sep = u",\n"
         and_ = u' %s\n' % AND
         select = [u'%s AS `%s`' % (v, k) for k, v in parts['select'].items()]
-        stmt = u"SELECT\n%s\nFROM\n%s" % (sep.join(select),
-                                          u"\n".join(parts['from']))
+        stmt = u"SELECT\n%s\nFROM\n%s" % (
+            sep.join(select),
+            u"\n".join(parts['from']),
+        )
         if parts.get('where'):
             stmt = u"%s\nWHERE\n%s" % (stmt, and_.join(parts['where']))
         if parts.get('group_by'):
@@ -319,8 +333,10 @@ class RawSQLManager(object):
         if parts.get('order_by'):
             stmt = u"%s\nORDER BY\n%s" % (stmt, sep.join(parts['order_by']))
         if len(parts['limit']):
-            stmt = u"%s\nLIMIT %s" % (stmt, ', '.join([str(i) for i in
-                                                       parts['limit']]))
+            stmt = u"%s\nLIMIT %s" % (
+                stmt,
+                ', '.join([str(i) for i in parts['limit']]),
+            )
         return stmt
 
     def _execute(self, sql):
@@ -361,7 +377,6 @@ class RawSQLManager(object):
 
 
 class RawSQLModelMeta(type):
-
     def __new__(cls, name, bases, attrs):
         super_new = super(RawSQLModelMeta, cls).__new__
         cls = super_new(cls, name, bases, attrs)
@@ -378,6 +393,7 @@ class RawSQLModel(object):
     This is for rare cases when you need the speed and optimization of
     building a query with many different types of where clauses.
     """
+
     __metaclass__ = RawSQLModelMeta
 
     # django-tables2 looks for this to decide what Columns to add.
@@ -395,7 +411,8 @@ class RawSQLModel(object):
             if field is None:
                 raise TypeError(
                     'Field %r returned from raw SQL query does not have '
-                    'a column defined in the model' % key)
+                    'a column defined in the model' % key
+                )
             setattr(self, field.get_attname() or key, field.to_python(val))
 
     def base_query(self):

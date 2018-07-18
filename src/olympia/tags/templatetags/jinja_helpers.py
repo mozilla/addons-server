@@ -12,6 +12,5 @@ def tag_list(context, addon, tags=None):
         tags = []
 
     c = dict(context.items())
-    c.update({'addon': addon,
-              'tags': tags})
+    c.update({'addon': addon, 'tags': tags})
     return c

@@ -11,8 +11,12 @@ from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.api.fields import (
-    ESTranslationSerializerField, ReverseChoiceField,
-    SlugOrPrimaryKeyRelatedField, SplitField, TranslationSerializerField)
+    ESTranslationSerializerField,
+    ReverseChoiceField,
+    SlugOrPrimaryKeyRelatedField,
+    SplitField,
+    TranslationSerializerField,
+)
 from olympia.translations.models import Translation
 
 
@@ -47,23 +51,29 @@ class TestTranslationSerializerField(TestCase):
     (MySQL) and ESTranslationSerializerField (ElasticSearch) since everything
     should work transparently regardless of where the data is coming from.
     """
+
     field_class = TranslationSerializerField
 
     def setUp(self):
         super(TestTranslationSerializerField, self).setUp()
         self.factory = APIRequestFactory()
         self.addon = addon_factory(description=u'Descrîption...')
-        Translation.objects.create(id=self.addon.name.id, locale='es',
-                                   localized_string=u'Name in Español')
+        Translation.objects.create(
+            id=self.addon.name.id,
+            locale='es',
+            localized_string=u'Name in Español',
+        )
 
     def _test_expected_dict(self, field, serializer=None):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
         expected = {
-            'en-US': unicode(Translation.objects.get(id=self.addon.name.id,
-                                                     locale='en-US')),
-            'es': unicode(Translation.objects.get(id=self.addon.name.id,
-                                                  locale='es')),
+            'en-US': unicode(
+                Translation.objects.get(id=self.addon.name.id, locale='en-US')
+            ),
+            'es': unicode(
+                Translation.objects.get(id=self.addon.name.id, locale='es')
+            ),
         }
         assert result == expected
 
@@ -72,24 +82,21 @@ class TestTranslationSerializerField(TestCase):
         result = field.to_representation(field.get_attribute(self.addon))
         expected = {
             'en-US': Translation.objects.get(
-                id=self.addon.description.id, locale='en-US'),
+                id=self.addon.description.id, locale='en-US'
+            )
         }
         assert result == expected
 
     def _test_expected_single_locale(self, field, serializer=None):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
-        expected = {
-            'en-US': unicode(self.addon.name),
-        }
+        expected = {'en-US': unicode(self.addon.name)}
         assert result == expected
 
         field.source = None
         field.bind('description', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
-        expected = {
-            'en-US': unicode(self.addon.description),
-        }
+        expected = {'en-US': unicode(self.addon.description)}
         assert result == expected
 
     def test_to_representation(self):
@@ -99,19 +106,13 @@ class TestTranslationSerializerField(TestCase):
         assert result == data
 
     def test_to_representation_dict(self):
-        data = {
-            'fr': u'Non mais Allô quoi !',
-            'en-US': u'No But Hello what!'
-        }
+        data = {'fr': u'Non mais Allô quoi !', 'en-US': u'No But Hello what!'}
         field = self.field_class()
         result = field.to_representation(data)
         assert result == data
 
     def test_to_internal_value(self):
-        data = {
-            'fr': u'Non mais Allô quoi !',
-            'en-US': u'No But Hello what!'
-        }
+        data = {'fr': u'Non mais Allô quoi !', 'en-US': u'No But Hello what!'}
         field = self.field_class()
         # Multiple translations
         result = field.to_internal_value(data)
@@ -125,33 +126,28 @@ class TestTranslationSerializerField(TestCase):
         with self.assertRaises(ValidationError) as exc:
             field.to_internal_value(data['fr'])
         assert exc.exception.message == (
-            u'You must provide an object of {lang-code:value}.')
+            u'You must provide an object of {lang-code:value}.'
+        )
 
     def test_to_internal_value_strip(self):
-        data = {
-            'fr': u'  Non mais Allô quoi ! ',
-            'en-US': u''
-        }
+        data = {'fr': u'  Non mais Allô quoi ! ', 'en-US': u''}
         field = self.field_class()
         result = field.to_internal_value(data)
         assert result == {'fr': u'Non mais Allô quoi !', 'en-US': u''}
 
     def test_wrong_locale_code(self):
-        data = {
-            'unknown-locale': 'some name',
-        }
+        data = {'unknown-locale': 'some name'}
         field = self.field_class()
         with self.assertRaises(ValidationError) as exc:
             field.to_internal_value(data)
         assert exc.exception.message == (
-            u"The language code 'unknown-locale' is invalid.")
+            u"The language code 'unknown-locale' is invalid."
+        )
 
     def test_none_type_locale_is_allowed(self):
         # None values are valid because they are used to nullify existing
         # translations in something like a PATCH.
-        data = {
-            'en-US': None,
-        }
+        data = {'en-US': None}
         field = self.field_class()
         result = field.to_internal_value(data)
         field.validate(result)
@@ -167,10 +163,12 @@ class TestTranslationSerializerField(TestCase):
         field = self.field_class(source='mymock.mymocked_field')
         result = field.to_internal_value(field.get_attribute(self.addon))
         expected = {
-            'en-US': unicode(Translation.objects.get(id=self.addon.name.id,
-                                                     locale='en-US')),
-            'es': unicode(Translation.objects.get(id=self.addon.name.id,
-                                                  locale='es')),
+            'en-US': unicode(
+                Translation.objects.get(id=self.addon.name.id, locale='en-US')
+            ),
+            'es': unicode(
+                Translation.objects.get(id=self.addon.name.id, locale='es')
+            ),
         }
         assert result == expected
 
@@ -237,7 +235,6 @@ class TestTranslationSerializerField(TestCase):
 
 @override_settings(DRF_API_GATES={None: ('l10n_flat_input_output',)})
 class TestTranslationSerializerFieldFlat(TestTranslationSerializerField):
-
     def _test_expected_single_locale(self, field, serializer=None):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
@@ -251,10 +248,7 @@ class TestTranslationSerializerFieldFlat(TestTranslationSerializerField):
         assert result == expected
 
     def test_to_internal_value(self):
-        data = {
-            'fr': u'Non mais Allô quoi !',
-            'en-US': u'No But Hello what!'
-        }
+        data = {'fr': u'Non mais Allô quoi !', 'en-US': u'No But Hello what!'}
         field = self.field_class()
         # Multiple translations
         result = field.to_internal_value(data)
@@ -273,51 +267,48 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         self.addon.default_locale = 'en-US'
         self.addon.name_translations = {
             'en-US': u'English Name',
-            'es': u'Spànish Name'
+            'es': u'Spànish Name',
         }
         self.addon.description_translations = {
             'en-US': u'English Description',
-            'fr': u'Frençh Description'
+            'fr': u'Frençh Description',
         }
 
     def test_attach_translations(self):
         data = {
-            'foo_translations': [{
-                'lang': 'en-US',
-                'string': 'teststring'
-            }, {
-                'lang': 'es',
-                'string': 'teststring-es'
-            }]
+            'foo_translations': [
+                {'lang': 'en-US', 'string': 'teststring'},
+                {'lang': 'es', 'string': 'teststring-es'},
+            ]
         }
         self.addon = Addon()
         self.field_class().attach_translations(self.addon, data, 'foo')
         assert self.addon.foo_translations == {
-            'en-US': 'teststring', 'es': 'teststring-es'}
+            'en-US': 'teststring',
+            'es': 'teststring-es',
+        }
 
     def test_attach_translations_target_name(self):
         data = {
-            'foo_translations': [{
-                'lang': 'en-US',
-                'string': 'teststring'
-            }, {
-                'lang': 'es',
-                'string': 'teststring-es'
-            }]
+            'foo_translations': [
+                {'lang': 'en-US', 'string': 'teststring'},
+                {'lang': 'es', 'string': 'teststring-es'},
+            ]
         }
 
         self.addon = Addon()
         with self.activate('es'):
             self.field_class().attach_translations(
-                self.addon, data, 'foo', target_name='bar')
+                self.addon, data, 'foo', target_name='bar'
+            )
         assert self.addon.bar_translations, {
-            'en-US': 'teststring', 'es': 'teststring-es'}
+            'en-US': 'teststring',
+            'es': 'teststring-es',
+        }
         assert self.addon.bar.localized_string == 'teststring-es'
 
     def test_attach_translations_missing_key(self):
-        data = {
-            'foo_translations': None
-        }
+        data = {'foo_translations': None}
         self.addon = Addon()
         self.field_class().attach_translations(self.addon, data, 'foo')
         assert self.addon.foo_translations == {}
@@ -337,9 +328,7 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
     def _test_expected_single_locale(self, field, serializer=None):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
-        expected = {
-            'en-US': unicode(self.addon.name_translations['en-US'])
-        }
+        expected = {'en-US': unicode(self.addon.name_translations['en-US'])}
         assert result == expected
 
         field.source = None
@@ -375,18 +364,16 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         mock_serializer = serializers.Serializer(context={'request': request})
 
         field = self.field_class()
-        self.addon.description_translations = {
-            'en-US': None
-        }
+        self.addon.description_translations = {'en-US': None}
         field.bind('description', mock_serializer)
         result = field.to_representation(field.get_attribute(self.addon))
         assert result is None
 
 
 @override_settings(DRF_API_GATES={None: ('l10n_flat_input_output',)})
-class TestESTranslationSerializerFieldFlat(TestTranslationSerializerFieldFlat,
-                                           TestESTranslationSerializerField):
-
+class TestESTranslationSerializerFieldFlat(
+    TestTranslationSerializerFieldFlat, TestESTranslationSerializerField
+):
     def _test_expected_single_locale(self, field, serializer=None):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
@@ -401,7 +388,6 @@ class TestESTranslationSerializerFieldFlat(TestTranslationSerializerFieldFlat,
 
 
 class TestSlugOrPrimaryKeyRelatedField(TestCase):
-
     def setUp(self):
         self.addon = addon_factory()
 
@@ -411,8 +397,9 @@ class TestSlugOrPrimaryKeyRelatedField(TestCase):
 
         field = SlugOrPrimaryKeyRelatedField(read_only=True)
         field.bind('attached', None)
-        assert (field.to_representation(field.get_attribute(obj)) ==
-                self.addon.pk)
+        assert (
+            field.to_representation(field.get_attribute(obj)) == self.addon.pk
+        )
 
     def test_render_as_pks_many(self):
         obj = Mock()
@@ -420,28 +407,32 @@ class TestSlugOrPrimaryKeyRelatedField(TestCase):
 
         field = SlugOrPrimaryKeyRelatedField(many=True, read_only=True)
         field.bind('attached', None)
-        assert (field.to_representation(field.get_attribute(obj)) ==
-                [self.addon.pk])
+        assert field.to_representation(field.get_attribute(obj)) == [
+            self.addon.pk
+        ]
 
     def test_render_as_slug(self):
         obj = Mock()
         obj.attached = self.addon
 
-        field = SlugOrPrimaryKeyRelatedField(render_as='slug',
-                                             read_only=True)
+        field = SlugOrPrimaryKeyRelatedField(render_as='slug', read_only=True)
         field.bind('attached', None)
-        assert (field.to_representation(field.get_attribute(obj)) ==
-                self.addon.slug)
+        assert (
+            field.to_representation(field.get_attribute(obj))
+            == self.addon.slug
+        )
 
     def test_render_as_slugs_many(self):
         obj = Mock()
         obj.attached = [self.addon]
 
-        field = SlugOrPrimaryKeyRelatedField(render_as='slug',
-                                             many=True, read_only=True)
+        field = SlugOrPrimaryKeyRelatedField(
+            render_as='slug', many=True, read_only=True
+        )
         field.bind('attached', None)
-        assert (field.to_representation(field.get_attribute(obj)) ==
-                [self.addon.slug])
+        assert field.to_representation(field.get_attribute(obj)) == [
+            self.addon.slug
+        ]
 
     def test_parse_as_pk(self):
         field = SlugOrPrimaryKeyRelatedField(queryset=Addon.objects.all())
@@ -449,10 +440,13 @@ class TestSlugOrPrimaryKeyRelatedField(TestCase):
 
     def test_parse_as_pks_many(self):
         addon2 = addon_factory()
-        field = SlugOrPrimaryKeyRelatedField(queryset=Addon.objects.all(),
-                                             many=True)
-        assert (field.to_internal_value([self.addon.pk, addon2.pk]) ==
-                [self.addon, addon2])
+        field = SlugOrPrimaryKeyRelatedField(
+            queryset=Addon.objects.all(), many=True
+        )
+        assert field.to_internal_value([self.addon.pk, addon2.pk]) == [
+            self.addon,
+            addon2,
+        ]
 
     def test_parse_as_slug(self):
         field = SlugOrPrimaryKeyRelatedField(queryset=Addon.objects.all())
@@ -460,20 +454,23 @@ class TestSlugOrPrimaryKeyRelatedField(TestCase):
 
     def test_parse_as_slugs_many(self):
         addon2 = addon_factory()
-        field = SlugOrPrimaryKeyRelatedField(queryset=Addon.objects.all(),
-                                             many=True)
-        assert (field.to_internal_value([self.addon.slug, addon2.slug]) ==
-                [self.addon, addon2])
+        field = SlugOrPrimaryKeyRelatedField(
+            queryset=Addon.objects.all(), many=True
+        )
+        assert field.to_internal_value([self.addon.slug, addon2.slug]) == [
+            self.addon,
+            addon2,
+        ]
 
 
 class SampleSerializer(serializers.Serializer):
     addon = SplitField(
         serializers.PrimaryKeyRelatedField(queryset=Addon.objects),
-        AddonSerializer())
+        AddonSerializer(),
+    )
 
 
 class TestSplitField(TestCase):
-
     def setUp(self):
         self.addon = addon_factory()
 

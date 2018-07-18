@@ -11,9 +11,7 @@ CSP_BASE_URI += (
 CDN_HOST = 'https://addons-stage-cdn.allizom.org'
 CSP_FONT_SRC += (CDN_HOST,)
 CSP_IMG_SRC += (CDN_HOST,)
-CSP_SCRIPT_SRC += (
-    CDN_HOST,
-)
+CSP_SCRIPT_SRC += (CDN_HOST,)
 CSP_STYLE_SRC += (CDN_HOST,)
 
 ENGAGE_ROBOTS = False
@@ -32,16 +30,18 @@ API_THROTTLE = False
 DOMAIN = env('DOMAIN', default='addons.allizom.org')
 SERVER_EMAIL = 'zstage@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
-SERVICES_URL = env('SERVICES_URL',
-                   default='https://services.addons.allizom.org')
+SERVICES_URL = env(
+    'SERVICES_URL', default='https://services.addons.allizom.org'
+)
 STATIC_URL = '%s/static/' % CDN_HOST
 MEDIA_URL = '%s/user-media/' % CDN_HOST
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 # Domain emails should be sent to.
-INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
-                           default='addons.allizom.org')
+INBOUND_EMAIL_DOMAIN = env(
+    'INBOUND_EMAIL_DOMAIN', default='addons.allizom.org'
+)
 
 NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
 NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
@@ -86,17 +86,21 @@ CACHES = {
 }
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
-CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
+CACHES['default'][
+    'BACKEND'
+] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
 CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
 
 # Celery
 CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 
-LOGGING['loggers'].update({
-    'z.task': {'level': logging.DEBUG},
-    'z.redis': {'level': logging.DEBUG},
-    'z.pool': {'level': logging.ERROR},
-})
+LOGGING['loggers'].update(
+    {
+        'z.task': {'level': logging.DEBUG},
+        'z.redis': {'level': logging.DEBUG},
+        'z.pool': {'level': logging.ERROR},
+    }
+)
 
 # Update the logger name used for mozlog
 LOGGING['formatters']['json']['logger_name'] = 'http_app_addons_stage'
@@ -109,7 +113,7 @@ REDIS_BACKENDS = {
     'cache': get_redis_settings(env('REDIS_BACKENDS_CACHE')),
     'cache_slave': get_redis_settings(env('REDIS_BACKENDS_CACHE_SLAVE')),
     'master': get_redis_settings(env('REDIS_BACKENDS_MASTER')),
-    'slave': get_redis_settings(env('REDIS_BACKENDS_SLAVE'))
+    'slave': get_redis_settings(env('REDIS_BACKENDS_SLAVE')),
 }
 
 csp = 'csp.middleware.CSPMiddleware'
@@ -151,8 +155,7 @@ FXA_CONFIG = {
         'content_host': 'https://accounts.firefox.com',
         'oauth_host': 'https://oauth.accounts.firefox.com/v1',
         'profile_host': 'https://profile.accounts.firefox.com/v1',
-        'redirect_url':
-            'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
+        'redirect_url': 'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
         'scope': 'profile',
     },
     'amo': {
@@ -161,8 +164,7 @@ FXA_CONFIG = {
         'content_host': 'https://accounts.firefox.com',
         'oauth_host': 'https://oauth.accounts.firefox.com/v1',
         'profile_host': 'https://profile.accounts.firefox.com/v1',
-        'redirect_url':
-            'https://addons.allizom.org/api/v3/accounts/authenticate/',
+        'redirect_url': 'https://addons.allizom.org/api/v3/accounts/authenticate/',
         'scope': 'profile',
         'skip_register_redirect': True,
     },
@@ -180,16 +182,21 @@ DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
 RAVEN_JS_DSN = (
-    'https://e35602be5252460d97587478bcc642df@sentry.prod.mozaws.net/77')
+    'https://e35602be5252460d97587478bcc642df@sentry.prod.mozaws.net/77'
+)
 RAVEN_JS_ALLOW_LIST = ['addons.allizom.org', 'addons-cdn.allizom.org']
 
 TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
     'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
-    default=('https://taarlite.prod.mozaws.net/taarlite/api/v1/'
-             'addon_recommendations/'))
+    default=(
+        'https://taarlite.prod.mozaws.net/taarlite/api/v1/'
+        'addon_recommendations/'
+    ),
+)
 
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-west-2.amazonaws.com/361527076523/'
-    'amo-account-change-stage')
+    'amo-account-change-stage'
+)
 
 VAMO_URL = 'https://versioncheck.allizom.org'

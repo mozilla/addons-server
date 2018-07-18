@@ -9,7 +9,6 @@ log = olympia.core.logger.getLogger('z.es')
 
 
 class ElasticsearchExceptionMiddleware(object):
-
     def process_exception(self, request, exception):
         if issubclass(exception.__class__, TransportError):
             log.exception(u'Elasticsearch error')

@@ -12,7 +12,6 @@ from olympia.applications.models import AppVersion
 
 
 class TestAppVersion(TestCase):
-
     def test_major_minor(self):
         """Check that major/minor/alpha is getting set."""
         v = AppVersion(version='3.0.12b2')
@@ -60,36 +59,58 @@ class TestCommands(TestCase):
 
     def test_dump_apps(self):
         from olympia.applications.management.commands import dump_apps
+
         call_command('dump_apps')
         with open(dump_apps.Command.get_json_path(), 'r') as f:
             apps = json.load(f)
         for idx, app in amo.APP_IDS.iteritems():
             data = apps[str(app.id)]
-            versions = sorted([a.version for a in
-                               AppVersion.objects.filter(
-                                   application=app.id)])
+            versions = sorted(
+                [
+                    a.version
+                    for a in AppVersion.objects.filter(application=app.id)
+                ]
+            )
             assert "%s: %r" % (app.short, sorted(data['versions'])) == (
-                "%s: %r" % (app.short, versions))
+                "%s: %r" % (app.short, versions)
+            )
             assert data['name'] == app.short
             assert data['guid'] == app.guid
 
     def test_addnewversion(self):
         new_version = '123.456'
-        assert len(AppVersion.objects.filter(
-            application=amo.FIREFOX.id, version=new_version)) == 0
+        assert (
+            len(
+                AppVersion.objects.filter(
+                    application=amo.FIREFOX.id, version=new_version
+                )
+            )
+            == 0
+        )
 
         call_command('addnewversion', 'firefox', new_version)
 
-        assert len(AppVersion.objects.filter(
-            application=amo.FIREFOX.id, version=new_version)) == 1
+        assert (
+            len(
+                AppVersion.objects.filter(
+                    application=amo.FIREFOX.id, version=new_version
+                )
+            )
+            == 1
+        )
 
-    @mock.patch('olympia.applications.management.commands.import_prod_versions'
-                '.PyQuery', spec=True)
+    @mock.patch(
+        'olympia.applications.management.commands.import_prod_versions'
+        '.PyQuery',
+        spec=True,
+    )
     def test_import_prod_versions(self, pyquery_mock):
         assert not AppVersion.objects.filter(
-            application=amo.FIREFOX.id, version='53.0').exists()
+            application=amo.FIREFOX.id, version='53.0'
+        ).exists()
         assert not AppVersion.objects.filter(
-            application=amo.FIREFOX.id, version='53.*').exists()
+            application=amo.FIREFOX.id, version='53.*'
+        ).exists()
 
         # Result of PyQuery()
         MockedDoc = mock.Mock()
@@ -108,6 +129,8 @@ class TestCommands(TestCase):
         call_command('import_prod_versions')
 
         assert AppVersion.objects.filter(
-            application=amo.FIREFOX.id, version='53.0').exists()
+            application=amo.FIREFOX.id, version='53.0'
+        ).exists()
         assert AppVersion.objects.filter(
-            application=amo.FIREFOX.id, version='53.*').exists()
+            application=amo.FIREFOX.id, version='53.*'
+        ).exists()

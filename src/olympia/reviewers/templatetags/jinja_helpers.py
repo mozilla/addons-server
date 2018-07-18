@@ -41,7 +41,8 @@ def file_review_status(addon, file):
         else:
             return ugettext(u'Rejected or Unreviewed')
     return file.STATUS_CHOICES.get(
-        file.status, ugettext('[status:%s]') % file.status)
+        file.status, ugettext('[status:%s]') % file.status
+    )
 
 
 @library.global_function
@@ -77,54 +78,90 @@ def queue_tabnav(context):
     if listed:
         tabnav = []
         got_extension_review = acl.action_allowed(
-            request, amo.permissions.ADDONS_REVIEW)
+            request, amo.permissions.ADDONS_REVIEW
+        )
         got_theme_review = acl.action_allowed(
-            request, amo.permissions.STATIC_THEMES_REVIEW)
+            request, amo.permissions.STATIC_THEMES_REVIEW
+        )
         if got_extension_review or got_theme_review:
-            tabnav.extend((
-                ('nominated', 'queue_nominated',
-                 (ugettext('New ({0})')
-                  .format(counts['nominated']))),
-                ('pending', 'queue_pending',
-                 (ungettext('Update ({0})',
-                            'Updates ({0})',
-                            counts['pending'])
-                  .format(counts['pending']))),
-            ))
+            tabnav.extend(
+                (
+                    (
+                        'nominated',
+                        'queue_nominated',
+                        (ugettext('New ({0})').format(counts['nominated'])),
+                    ),
+                    (
+                        'pending',
+                        'queue_pending',
+                        (
+                            ungettext(
+                                'Update ({0})',
+                                'Updates ({0})',
+                                counts['pending'],
+                            ).format(counts['pending'])
+                        ),
+                    ),
+                )
+            )
         if acl.action_allowed(request, amo.permissions.RATINGS_MODERATE):
             tabnav.append(
-                ('moderated', 'queue_moderated',
-                 (ungettext('Rating Review ({0})',
+                (
+                    'moderated',
+                    'queue_moderated',
+                    (
+                        ungettext(
+                            'Rating Review ({0})',
                             'Rating Reviews ({0})',
-                            counts['moderated'])
-                  .format(counts['moderated']))),
+                            counts['moderated'],
+                        ).format(counts['moderated'])
+                    ),
+                )
             )
 
         if acl.action_allowed(request, amo.permissions.ADDONS_POST_REVIEW):
             tabnav.append(
-                ('auto_approved', 'queue_auto_approved',
-                 (ungettext('Auto Approved ({0})',
+                (
+                    'auto_approved',
+                    'queue_auto_approved',
+                    (
+                        ungettext(
                             'Auto Approved ({0})',
-                            counts['auto_approved'])
-                  .format(counts['auto_approved']))),
+                            'Auto Approved ({0})',
+                            counts['auto_approved'],
+                        ).format(counts['auto_approved'])
+                    ),
+                )
             )
 
         if acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW):
             tabnav.append(
-                ('content_review', 'queue_content_review',
-                 (ungettext('Content Review ({0})',
+                (
+                    'content_review',
+                    'queue_content_review',
+                    (
+                        ungettext(
                             'Content Review ({0})',
-                            counts['content_review'])
-                  .format(counts['content_review']))),
+                            'Content Review ({0})',
+                            counts['content_review'],
+                        ).format(counts['content_review'])
+                    ),
+                )
             )
 
         if acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN):
             tabnav.append(
-                ('expired_info_requests', 'queue_expired_info_requests',
-                 (ungettext('Expired Info Request ({0})',
+                (
+                    'expired_info_requests',
+                    'queue_expired_info_requests',
+                    (
+                        ungettext(
+                            'Expired Info Request ({0})',
                             'Expired Info Requests ({0})',
-                            counts['expired_info_requests'])
-                  .format(counts['expired_info_requests']))),
+                            counts['expired_info_requests'],
+                        ).format(counts['expired_info_requests'])
+                    ),
+                )
             )
     else:
         tabnav = [
@@ -140,13 +177,18 @@ def queue_tabnav(context):
 def reviewers_score_bar(context, types=None, addon_type=None):
     user = context.get('user')
 
-    return new_context(dict(
-        request=context.get('request'),
-        amo=amo, settings=settings,
-        points=ReviewerScore.get_recent(user, addon_type=addon_type),
-        total=ReviewerScore.get_total(user),
-        **ReviewerScore.get_leaderboards(user, types=types,
-                                         addon_type=addon_type)))
+    return new_context(
+        dict(
+            request=context.get('request'),
+            amo=amo,
+            settings=settings,
+            points=ReviewerScore.get_recent(user, addon_type=addon_type),
+            total=ReviewerScore.get_total(user),
+            **ReviewerScore.get_leaderboards(
+                user, types=types, addon_type=addon_type
+            )
+        )
+    )
 
 
 @library.global_function
@@ -164,22 +206,29 @@ def all_distinct_files(context, version):
             hashes_to_file[file_.original_hash][1] += ' / ' + display_name
         else:
             hashes_to_file[file_.original_hash] = [file_, display_name]
-    return new_context(dict(
-        # We don't need the hashes in the template.
-        distinct_files=hashes_to_file.values(),
-        amo=context.get('amo'),
-        addon=context.get('addon'),
-        show_diff=context.get('show_diff'),
-        version=version))
+    return new_context(
+        dict(
+            # We don't need the hashes in the template.
+            distinct_files=hashes_to_file.values(),
+            amo=context.get('amo'),
+            addon=context.get('addon'),
+            show_diff=context.get('show_diff'),
+            version=version,
+        )
+    )
 
 
 @library.global_function
 def get_position(addon):
     if addon.is_persona() and addon.is_pending():
-        qs = (Addon.objects.filter(status=amo.STATUS_PENDING,
-                                   type=amo.ADDON_PERSONA)
-              .no_transforms().order_by('created')
-              .values_list('id', flat=True))
+        qs = (
+            Addon.objects.filter(
+                status=amo.STATUS_PENDING, type=amo.ADDON_PERSONA
+            )
+            .no_transforms()
+            .order_by('created')
+            .values_list('id', flat=True)
+        )
         id_ = addon.id
         position = 0
         for idx, addon_id in enumerate(qs, start=1):
@@ -190,15 +239,21 @@ def get_position(addon):
         return {'pos': position, 'total': total}
     elif addon.status in amo.VALID_ADDON_STATUSES:
         # Look at all add-on versions which have files awaiting review.
-        qs = Version.objects.filter(addon__disabled_by_user=False,
-                                    files__status=amo.STATUS_AWAITING_REVIEW,
-                                    addon__status=addon.status)
+        qs = Version.objects.filter(
+            addon__disabled_by_user=False,
+            files__status=amo.STATUS_AWAITING_REVIEW,
+            addon__status=addon.status,
+        )
         if addon.type == amo.ADDON_STATICTHEME:
             qs = qs.filter(addon__type=amo.ADDON_STATICTHEME)
         else:
             qs = qs.exclude(addon__type=amo.ADDON_STATICTHEME)
-        qs = (qs.order_by('nomination', 'created').distinct()
-              .no_transforms().values_list('addon_id', flat=True))
+        qs = (
+            qs.order_by('nomination', 'created')
+            .distinct()
+            .no_transforms()
+            .values_list('addon_id', flat=True)
+        )
         position = 0
         for idx, addon_id in enumerate(qs, start=1):
             if addon_id == addon.id:
@@ -231,12 +286,17 @@ def queue_tabnav_themes(context):
     """Similar to queue_tabnav, but for themes."""
     if acl.action_allowed(context['request'], amo.permissions.THEMES_REVIEW):
         tabs = (
-            ('reviewers.themes.list', 'pending_themes',
-                ugettext('Pending')),
-            ('reviewers.themes.list_flagged', 'flagged_themes',
-                ugettext('Flagged')),
-            ('reviewers.themes.list_rereview', 'rereview_themes',
-                ugettext('Updates')),
+            ('reviewers.themes.list', 'pending_themes', ugettext('Pending')),
+            (
+                'reviewers.themes.list_flagged',
+                'flagged_themes',
+                ugettext('Flagged'),
+            ),
+            (
+                'reviewers.themes.list_rereview',
+                'rereview_themes',
+                ugettext('Updates'),
+            ),
         )
     else:
         tabs = ()
@@ -249,12 +309,13 @@ def queue_tabnav_themes_interactive(context):
     """Tabnav for the interactive shiny theme queues."""
     if acl.action_allowed(context['request'], amo.permissions.THEMES_REVIEW):
         tabs = (
-            ('reviewers.themes.queue_themes', 'pending',
-                ugettext('Pending')),
-            ('reviewers.themes.queue_flagged', 'flagged',
-                ugettext('Flagged')),
-            ('reviewers.themes.queue_rereview', 'rereview',
-                ugettext('Updates')),
+            ('reviewers.themes.queue_themes', 'pending', ugettext('Pending')),
+            ('reviewers.themes.queue_flagged', 'flagged', ugettext('Flagged')),
+            (
+                'reviewers.themes.queue_rereview',
+                'rereview',
+                ugettext('Updates'),
+            ),
         )
     else:
         tabs = ()

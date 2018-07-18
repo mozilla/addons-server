@@ -24,21 +24,28 @@ def monitor(request):
     status_summary = {}
     results = {}
 
-    checks = ['memcache', 'libraries', 'elastic', 'path',
-              'rabbitmq', 'redis', 'signer']
+    checks = [
+        'memcache',
+        'libraries',
+        'elastic',
+        'path',
+        'rabbitmq',
+        'redis',
+        'signer',
+    ]
 
     for check in checks:
         with statsd.timer('monitor.%s' % check) as timer:
             status, result = getattr(monitors, check)()
         # state is a string. If it is empty, that means everything is fine.
-        status_summary[check] = {'state': not status,
-                                 'status': status}
+        status_summary[check] = {'state': not status, 'status': status}
         results['%s_results' % check] = result
         results['%s_timer' % check] = timer.ms
 
     # If anything broke, send HTTP 500.
-    status_code = 200 if all(a['state']
-                             for a in status_summary.values()) else 500
+    status_code = (
+        200 if all(a['state'] for a in status_summary.values()) else 500
+    )
 
     return http.HttpResponse(json.dumps(status_summary), status=status_code)
 
@@ -46,7 +53,7 @@ def monitor(request):
 @non_atomic_requests
 def robots(request):
     """Generate a robots.txt"""
-    _service = (request.META['SERVER_NAME'] == settings.SERVICES_DOMAIN)
+    _service = request.META['SERVER_NAME'] == settings.SERVICES_DOMAIN
     if _service or not settings.ENGAGE_ROBOTS:
         template = "User-agent: *\nDisallow: /"
     else:
@@ -74,7 +81,8 @@ def handler403(request):
 def handler404(request):
     if re.match(settings.DRF_API_REGEX, request.path_info):
         return JsonResponse(
-            {'detail': unicode(NotFound.default_detail)}, status=404)
+            {'detail': unicode(NotFound.default_detail)}, status=404
+        )
     elif request.path_info.startswith('/api/'):
         # Pass over to handler404 view in api if api was targeted.
         return legacy_api.views.handler404(request)
@@ -98,6 +106,7 @@ def handler500(request):
 @non_atomic_requests
 def csrf_failure(request, reason=''):
     from django.middleware.csrf import REASON_NO_REFERER, REASON_NO_CSRF_COOKIE
+
     ctx = {
         'reason': reason,
         'no_referer': reason == REASON_NO_REFERER,
@@ -108,8 +117,9 @@ def csrf_failure(request, reason=''):
 
 @non_atomic_requests
 def loaded(request):
-    return http.HttpResponse('%s' % request.META['wsgi.loaded'],
-                             content_type='text/plain')
+    return http.HttpResponse(
+        '%s' % request.META['wsgi.loaded'], content_type='text/plain'
+    )
 
 
 @non_atomic_requests

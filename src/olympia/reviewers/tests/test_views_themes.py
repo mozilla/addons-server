@@ -17,7 +17,10 @@ from olympia.addons.models import Persona
 from olympia.amo.tests import TestCase, addon_factory, days_ago
 from olympia.amo.urlresolvers import reverse
 from olympia.reviewers.models import (
-    RereviewQueueTheme, ReviewerScore, ThemeLock)
+    RereviewQueueTheme,
+    ReviewerScore,
+    ThemeLock,
+)
 from olympia.reviewers.views_themes import _get_themes, themes_search
 from olympia.users.models import UserProfile
 
@@ -36,8 +39,7 @@ class ThemeReviewTestMixin(object):
         """Login as new reviewer with unique username."""
         username = 'reviewer%s' % self.reviewer_count
         email = username + '@mozilla.com'
-        user = UserProfile.objects.create(email=email,
-                                          username=username)
+        user = UserProfile.objects.create(email=email, username=username)
         user.save()
         group = Group.objects.get(name='Reviewers: Themes')
         GroupUser.objects.create(group=group, user=user)
@@ -51,7 +53,8 @@ class ThemeReviewTestMixin(object):
         addon = addon_factory(type=amo.ADDON_PERSONA, status=status)
         if self.rereview:
             RereviewQueueTheme.objects.create(
-                theme=addon.persona, header='pending_header')
+                theme=addon.persona, header='pending_header'
+            )
         persona = addon.persona
         persona.persona_id = 0
         persona.header = 'header'
@@ -59,8 +62,9 @@ class ThemeReviewTestMixin(object):
         return addon
 
     def get_themes(self, reviewer):
-        return _get_themes(mock.Mock(), reviewer, flagged=self.flagged,
-                           rereview=self.rereview)
+        return _get_themes(
+            mock.Mock(), reviewer, flagged=self.flagged, rereview=self.rereview
+        )
 
     @mock.patch.object(amo, 'THEME_INITIAL_LOCKS', 2)
     def test_basic_queue(self):
@@ -74,24 +78,17 @@ class ThemeReviewTestMixin(object):
         expected_themes = []
         if self.rereview:
             rrq = RereviewQueueTheme.objects.all()
-            expected_themes = [
-                [rrq[0], rrq[1]],
-                [rrq[2]],
-                []
-            ]
+            expected_themes = [[rrq[0], rrq[1]], [rrq[2]], []]
         else:
             themes = Persona.objects.all()
-            expected_themes = [
-                [themes[0], themes[1]],
-                [themes[2]],
-                []
-            ]
+            expected_themes = [[themes[0], themes[1]], [themes[2]], []]
 
         for expected in expected_themes:
             reviewer = self.create_and_become_reviewer()
             self.assertSetEqual(set(self.get_themes(reviewer)), set(expected))
             assert ThemeLock.objects.filter(reviewer=reviewer).count() == (
-                len(expected))
+                len(expected)
+            )
 
     @pytest.mark.needs_locales_compilation
     @mock.patch('olympia.amo.messages.success')
@@ -100,9 +97,15 @@ class ThemeReviewTestMixin(object):
     @mock.patch('olympia.reviewers.tasks.send_mail_jinja')
     @mock.patch('olympia.reviewers.tasks.create_persona_preview_images')
     @mock.patch('olympia.amo.storage_utils.copy_stored_file')
-    def test_commit(self, copy_mock, create_preview_mock,
-                    send_mail_jinja_mock, version_changed_mock,
-                    theme_checksum_mock, message_mock):
+    def test_commit(
+        self,
+        copy_mock,
+        create_preview_mock,
+        send_mail_jinja_mock,
+        version_changed_mock,
+        theme_checksum_mock,
+        message_mock,
+    ):
         if self.flagged:
             # Feels redundant to test this for flagged queue.
             return
@@ -116,9 +119,11 @@ class ThemeReviewTestMixin(object):
         reviewer = self.create_and_become_reviewer()
         for index, theme in enumerate(themes):
             ThemeLock.objects.create(
-                theme=theme, reviewer=reviewer,
-                expiry=datetime.datetime.now() +
-                datetime.timedelta(minutes=amo.THEME_LOCK_EXPIRY))
+                theme=theme,
+                reviewer=reviewer,
+                expiry=datetime.datetime.now()
+                + datetime.timedelta(minutes=amo.THEME_LOCK_EXPIRY),
+            )
             form_data['form-%s-theme' % index] = str(theme.id)
 
         # Build formset.
@@ -146,7 +151,8 @@ class ThemeReviewTestMixin(object):
         # authors are NOT translated, but the message to the review IS.
         with self.activate(locale='fr'):
             response = self.client.post(
-                reverse('reviewers.themes.commit'), form_data)
+                reverse('reviewers.themes.commit'), form_data
+            )
             self.assert3xx(response, reverse('reviewers.themes.queue_themes'))
 
         if self.rereview:
@@ -172,7 +178,8 @@ class ThemeReviewTestMixin(object):
 
             # Test version incremented.
             assert themes[4].addon.reload().current_version.version == (
-                str(float(old_version) + 1))
+                str(float(old_version) + 1)
+            )
 
             # Checksum was recalculated for that theme.
             assert theme_checksum_mock.call_count == 1
@@ -191,54 +198,69 @@ class ThemeReviewTestMixin(object):
             mock.call(
                 'A question about your Theme submission',
                 'reviewers/themes/emails/moreinfo.html',
-                {'reason': None,
-                 'comment': u'moreinfo',
-                 'theme': themes[0],
-                 'reviewer_email': u'reviewer0@mozilla.com',
-                 'base_url': 'http://testserver'},
+                {
+                    'reason': None,
+                    'comment': u'moreinfo',
+                    'theme': themes[0],
+                    'reviewer_email': u'reviewer0@mozilla.com',
+                    'base_url': 'http://testserver',
+                },
                 headers={'Reply-To': settings.THEMES_EMAIL},
                 from_email=settings.ADDONS_EMAIL,
-                recipient_list=set([])),
+                recipient_list=set([]),
+            ),
             mock.call(
                 'Theme submission flagged for review',
                 'reviewers/themes/emails/flag_reviewer.html',
-                {'reason': None,
-                 'comment': u'flag',
-                 'theme': themes[1],
-                 'base_url': 'http://testserver'},
+                {
+                    'reason': None,
+                    'comment': u'flag',
+                    'theme': themes[1],
+                    'base_url': 'http://testserver',
+                },
                 headers={'Reply-To': settings.THEMES_EMAIL},
                 from_email=settings.ADDONS_EMAIL,
-                recipient_list=[settings.THEMES_EMAIL]),
+                recipient_list=[settings.THEMES_EMAIL],
+            ),
             mock.call(
                 'A problem with your Theme submission',
                 'reviewers/themes/emails/reject.html',
-                {'reason': u'Duplicate Submission',
-                 'comment': u'duplicate',
-                 'theme': themes[2],
-                 'base_url': 'http://testserver'},
+                {
+                    'reason': u'Duplicate Submission',
+                    'comment': u'duplicate',
+                    'theme': themes[2],
+                    'base_url': 'http://testserver',
+                },
                 headers={'Reply-To': settings.THEMES_EMAIL},
                 from_email=settings.ADDONS_EMAIL,
-                recipient_list=set([])),
+                recipient_list=set([]),
+            ),
             mock.call(
                 'A problem with your Theme submission',
                 'reviewers/themes/emails/reject.html',
-                {'reason': u'Sexual or pornographic content',
-                 'comment': u'reject',
-                 'theme': themes[3],
-                 'base_url': 'http://testserver'},
+                {
+                    'reason': u'Sexual or pornographic content',
+                    'comment': u'reject',
+                    'theme': themes[3],
+                    'base_url': 'http://testserver',
+                },
                 headers={'Reply-To': settings.THEMES_EMAIL},
                 from_email=settings.ADDONS_EMAIL,
-                recipient_list=set([])),
+                recipient_list=set([]),
+            ),
             mock.call(
                 'Thanks for submitting your Theme',
                 'reviewers/themes/emails/approve.html',
-                {'reason': None,
-                 'comment': u'',
-                 'theme': themes[4],
-                 'base_url': 'http://testserver'},
+                {
+                    'reason': None,
+                    'comment': u'',
+                    'theme': themes[4],
+                    'base_url': 'http://testserver',
+                },
                 headers={'Reply-To': settings.THEMES_EMAIL},
                 from_email=settings.ADDONS_EMAIL,
-                recipient_list=set([]))
+                recipient_list=set([]),
+            ),
         ]
         if self.rereview:
             assert send_mail_jinja_mock.call_count == 4
@@ -256,7 +278,8 @@ class ThemeReviewTestMixin(object):
 
             assert message_mock.call_args_list[0][0][1] == (
                 u'5 validations de thèmes réalisées avec succès '
-                u'(+15 points, 15 au total).')
+                u'(+15 points, 15 au total).'
+            )
 
         # Reviewer points accrual.
         assert ReviewerScore.objects.all()[0].score > 0
@@ -264,35 +287,41 @@ class ThemeReviewTestMixin(object):
     def test_single_basic(self):
         with self.settings(ALLOW_SELF_REVIEWS=True):
             user = UserProfile.objects.get(
-                email='persona_reviewer@mozilla.com')
+                email='persona_reviewer@mozilla.com'
+            )
             self.login(user)
             addon = self.theme_factory()
 
-            res = self.client.get(reverse('reviewers.themes.single',
-                                          args=[addon.slug]))
+            res = self.client.get(
+                reverse('reviewers.themes.single', args=[addon.slug])
+            )
             assert res.status_code == 200
             assert res.context['theme'].id == (
                 addon.persona.rereviewqueuetheme_set.all()[0].id
-                if self.rereview else addon.persona.id)
+                if self.rereview
+                else addon.persona.id
+            )
             assert res.context['reviewable'] == (not self.flagged)
 
 
 class TestThemeQueue(ThemeReviewTestMixin, TestCase):
-
     def setUp(self):
         super(TestThemeQueue, self).setUp()
         self.queue_url = reverse('reviewers.themes.queue_themes')
 
     def check_permissions(self, slug, status_code):
-        for url in [reverse('reviewers.themes.queue_themes'),
-                    reverse('reviewers.themes.single', args=[slug])]:
+        for url in [
+            reverse('reviewers.themes.queue_themes'),
+            reverse('reviewers.themes.single', args=[slug]),
+        ]:
             assert self.client.get(url).status_code == status_code
 
     def test_permissions_reviewer(self):
         slug = self.theme_factory().slug
 
-        self.assertLoginRedirects(self.client.get(self.queue_url),
-                                  self.queue_url)
+        self.assertLoginRedirects(
+            self.client.get(self.queue_url), self.queue_url
+        )
 
         self.login('regular@mozilla.com')
         self.check_permissions(slug, 403)
@@ -303,7 +332,8 @@ class TestThemeQueue(ThemeReviewTestMixin, TestCase):
     def test_can_review_your_app(self):
         with self.settings(ALLOW_SELF_REVIEWS=False):
             user = UserProfile.objects.get(
-                email='persona_reviewer@mozilla.com')
+                email='persona_reviewer@mozilla.com'
+            )
             self.login(user)
             addon = self.theme_factory()
 
@@ -315,7 +345,8 @@ class TestThemeQueue(ThemeReviewTestMixin, TestCase):
     def test_cannot_review_my_app(self):
         with self.settings(ALLOW_SELF_REVIEWS=False):
             user = UserProfile.objects.get(
-                email='persona_reviewer@mozilla.com')
+                email='persona_reviewer@mozilla.com'
+            )
             self.login(user)
             addon = self.theme_factory()
             addon.addonuser_set.create(user=user)
@@ -370,7 +401,8 @@ class TestThemeQueue(ThemeReviewTestMixin, TestCase):
 
         # Check reviewer checked out the themes.
         assert ThemeLock.objects.filter(reviewer=reviewer).count() == (
-            amo.THEME_INITIAL_LOCKS)
+            amo.THEME_INITIAL_LOCKS
+        )
 
     @mock.patch.object(amo, 'THEME_INITIAL_LOCKS', 2)
     def test_expiry(self):
@@ -404,8 +436,9 @@ class TestThemeQueue(ThemeReviewTestMixin, TestCase):
         ThemeLock.objects.filter(reviewer=reviewer).update(expiry=days_ago(1))
         _get_themes(mock.Mock(), reviewer, flagged=self.flagged)
         self.get_themes(reviewer)
-        assert ThemeLock.objects.filter(
-            reviewer=reviewer)[0].expiry > days_ago(1)
+        assert ThemeLock.objects.filter(reviewer=reviewer)[
+            0
+        ].expiry > days_ago(1)
 
     def test_user_review_history(self):
         self.theme_factory()
@@ -420,9 +453,15 @@ class TestThemeQueue(ThemeReviewTestMixin, TestCase):
         theme = Persona.objects.all()[0]
         for x in range(3):
             ActivityLog.create(
-                amo.LOG.THEME_REVIEW, theme.addon, user=reviewer,
-                details={'action': amo.ACTION_APPROVE,
-                         'comment': '', 'reject_reason': ''})
+                amo.LOG.THEME_REVIEW,
+                theme.addon,
+                user=reviewer,
+                details={
+                    'action': amo.ACTION_APPROVE,
+                    'comment': '',
+                    'reject_reason': '',
+                },
+            )
 
         res = self.client.get(reverse('reviewers.themes.history'))
         assert res.status_code == 200
@@ -437,17 +476,21 @@ class TestThemeQueue(ThemeReviewTestMixin, TestCase):
     def test_single_cannot_review_own_theme(self):
         with self.settings(ALLOW_SELF_REVIEWS=False):
             user = UserProfile.objects.get(
-                email='persona_reviewer@mozilla.com')
+                email='persona_reviewer@mozilla.com'
+            )
             self.login(user)
             addon = self.theme_factory()
             addon.addonuser_set.create(user=user)
 
-            res = self.client.get(reverse('reviewers.themes.single',
-                                          args=[addon.slug]))
+            res = self.client.get(
+                reverse('reviewers.themes.single', args=[addon.slug])
+            )
             assert res.status_code == 200
             assert res.context['theme'].id == (
                 addon.persona.rereviewqueuetheme_set.all()[0].id
-                if self.rereview else addon.persona.id)
+                if self.rereview
+                else addon.persona.id
+            )
             assert not res.context['reviewable']
 
     @mock.patch.object(amo, 'THEME_INITIAL_LOCKS', 2)
@@ -458,13 +501,16 @@ class TestThemeQueue(ThemeReviewTestMixin, TestCase):
             for x in range(amo.THEME_INITIAL_LOCKS + 1):
                 addon = self.theme_factory()
                 addon.addonuser_set.create(user=reviewer)
-            assert _get_themes(
-                amo.tests.req_factory_factory('', reviewer), reviewer) == []
+            assert (
+                _get_themes(
+                    amo.tests.req_factory_factory('', reviewer), reviewer
+                )
+                == []
+            )
             assert ThemeLock.objects.filter(reviewer=reviewer).count() == 0
 
 
 class TestThemeQueueFlagged(ThemeReviewTestMixin, TestCase):
-
     def setUp(self):
         super(TestThemeQueueFlagged, self).setUp()
         self.status = amo.STATUS_REVIEW_PENDING
@@ -477,7 +523,6 @@ class TestThemeQueueFlagged(ThemeReviewTestMixin, TestCase):
 
 
 class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
-
     def setUp(self):
         super(TestThemeQueueRereview, self).setUp()
         self.status = amo.STATUS_PUBLIC
@@ -522,15 +567,22 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
         """Test rejected addons in locks are not displayed in review lists."""
         reviewer = UserProfile.objects.create(
             email='other_persona_reviewer@mozilla.com',
-            username='other_persona_reviewer')
+            username='other_persona_reviewer',
+        )
         self.grant_permission(reviewer, 'Personas:Review')
         # Either public or rejected locked themes should not showing up.
         public_theme = self.theme_factory(status=amo.STATUS_PUBLIC)
-        ThemeLock.objects.create(reviewer=reviewer, expiry=self.days_ago(-1),
-                                 theme=public_theme.persona)
+        ThemeLock.objects.create(
+            reviewer=reviewer,
+            expiry=self.days_ago(-1),
+            theme=public_theme.persona,
+        )
         rejected_theme = self.theme_factory(status=amo.STATUS_REJECTED)
-        ThemeLock.objects.create(reviewer=reviewer, expiry=self.days_ago(-1),
-                                 theme=rejected_theme.persona)
+        ThemeLock.objects.create(
+            reviewer=reviewer,
+            expiry=self.days_ago(-1),
+            theme=rejected_theme.persona,
+        )
         self.login('persona_reviewer@mozilla.com')
         response = self.client.get(self.queue_url)
         assert response.status_code == 200
@@ -542,12 +594,13 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
     @mock.patch('olympia.reviewers.tasks.create_persona_preview_images')
     @mock.patch('olympia.amo.storage_utils.copy_stored_file')
     def test_update_legacy_theme(
-            self,
-            amo_copy_stored_file_mock,
-            create_persona_preview_mock,
-            copy_stored_filed_mock,
-            theme_checksum_mock,
-            send_mail_jinja_mock):
+        self,
+        amo_copy_stored_file_mock,
+        create_persona_preview_mock,
+        copy_stored_filed_mock,
+        theme_checksum_mock,
+        send_mail_jinja_mock,
+    ):
         """
         Test updating themes that were submitted from GetPersonas.
         STR the bug this test fixes:
@@ -566,12 +619,14 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
         form_data = amo.tests.formset(initial_count=5, total_count=6)
 
         RereviewQueueTheme.objects.create(
-            theme=theme, header='pending_header.png')
+            theme=theme, header='pending_header.png'
+        )
 
         # Create lock.
         reviewer = self.create_and_become_reviewer()
         ThemeLock.objects.create(
-            theme=theme, reviewer=reviewer, expiry=self.days_ago(-1))
+            theme=theme, reviewer=reviewer, expiry=self.days_ago(-1)
+        )
         form_data['form-0-theme'] = str(theme.id)
 
         # Build formset.
@@ -587,21 +642,27 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
         theme.preview_path.endswith('preview_large.jpg')
 
         # Test calling create_persona_preview_images.
-        assert (create_persona_preview_mock.call_args_list[0][1]['full_dst'][0]
-                .endswith('preview.jpg'))
-        assert (create_persona_preview_mock.call_args_list[0][1]['full_dst'][1]
-                .endswith('preview_small.jpg'))
+        assert create_persona_preview_mock.call_args_list[0][1]['full_dst'][
+            0
+        ].endswith('preview.jpg')
+        assert create_persona_preview_mock.call_args_list[0][1]['full_dst'][
+            1
+        ].endswith('preview_small.jpg')
 
         # pending_header should be mv'ed to Legacy-header3H.png.
-        assert (amo_copy_stored_file_mock.call_args_list[0][0][0]
-                .endswith('pending_header'))
-        assert (amo_copy_stored_file_mock.call_args_list[0][0][1]
-                .endswith('Legacy-header3H.png'))
+        assert amo_copy_stored_file_mock.call_args_list[0][0][0].endswith(
+            'pending_header'
+        )
+        assert amo_copy_stored_file_mock.call_args_list[0][0][1].endswith(
+            'Legacy-header3H.png'
+        )
 
-        assert (copy_stored_filed_mock.call_args_list[0][0][0]
-                .endswith('preview.jpg'))
-        assert (copy_stored_filed_mock.call_args_list[0][0][1]
-                .endswith('preview_large.jpg'))
+        assert copy_stored_filed_mock.call_args_list[0][0][0].endswith(
+            'preview.jpg'
+        )
+        assert copy_stored_filed_mock.call_args_list[0][0][1].endswith(
+            'preview_large.jpg'
+        )
 
         # We re-calculated the theme checksum from the newest data.
         assert theme_checksum_mock.call_count == 1
@@ -613,17 +674,22 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
         self.login(user)
         addon = self.theme_factory(status=amo.STATUS_REJECTED)
         RereviewQueueTheme.objects.create(
-            theme=addon.persona, header='pending_header.png')
+            theme=addon.persona, header='pending_header.png'
+        )
         AddonLog.objects.create(
             addon=addon,
             activity_log=ActivityLog.objects.create(
-                user=user, action=amo.LOG.THEME_REVIEW.id,
+                user=user,
+                action=amo.LOG.THEME_REVIEW.id,
                 _arguments=str(addon.pk),
-                details={'action': 4, 'reject_reason': 9}))
+                details={'action': 4, 'reject_reason': 9},
+            ),
+        )
 
         with self.settings(ALLOW_SELF_REVIEWS=True):
-            res = self.client.get(reverse('reviewers.themes.single',
-                                          args=[addon.slug]))
+            res = self.client.get(
+                reverse('reviewers.themes.single', args=[addon.slug])
+            )
         assert res.status_code == 200
 
 
@@ -639,8 +705,9 @@ class TestDeletedThemeLookup(TestCase):
         self.login('persona_reviewer@mozilla.com')
         response = self.client.get(reverse('reviewers.themes.deleted'))
         assert response.status_code == 200
-        assert (self.deleted.name.localized_string in
-                smart_text(response.content))
+        assert self.deleted.name.localized_string in smart_text(
+            response.content
+        )
 
     def test_perm(self):
         # Personas:Review allow access to deleted themes as well.
@@ -654,17 +721,23 @@ class TestThemeSearch(amo.tests.ESTestCase):
 
     def setUp(self):
         super(TestThemeSearch, self).setUp()
-        self.addon = addon_factory(type=amo.ADDON_PERSONA, name='themeteam',
-                                   status=amo.STATUS_PENDING)
+        self.addon = addon_factory(
+            type=amo.ADDON_PERSONA, name='themeteam', status=amo.STATUS_PENDING
+        )
         self.refresh('default')
 
     def search(self, q, flagged=False, rereview=False):
-        get_query = {'q': q, 'queue_type': ('rereview' if rereview else
-                                            'flagged' if flagged else '')}
+        get_query = {
+            'q': q,
+            'queue_type': (
+                'rereview' if rereview else 'flagged' if flagged else ''
+            ),
+        }
 
         request = amo.tests.req_factory_factory(
             reverse('reviewers.themes.search'),
-            user=UserProfile.objects.get(username='persona_reviewer'))
+            user=UserProfile.objects.get(username='persona_reviewer'),
+        )
         request.GET = get_query
         return json.loads(themes_search(request).content)['objects']
 
@@ -687,16 +760,18 @@ class TestOldDashboard(TestCase):
     def test_redirect_to_new_dashboard(self):
         response = self.client.get('/en-US/reviewers/themes')
         self.assert3xx(
-            response, reverse('reviewers.dashboard'), status_code=301)
+            response, reverse('reviewers.dashboard'), status_code=301
+        )
 
 
 class TestXssOnThemeName(amo.tests.TestXss):
-
     def setUp(self):
         super(TestXssOnThemeName, self).setUp()
-        self.theme = addon_factory(type=amo.ADDON_PERSONA,
-                                   status=amo.STATUS_PENDING,
-                                   name=unicode(self.name, 'utf-8'))
+        self.theme = addon_factory(
+            type=amo.ADDON_PERSONA,
+            status=amo.STATUS_PENDING,
+            name=unicode(self.name, 'utf-8'),
+        )
         persona = self.theme.persona
         persona.persona_id = 0
         persona.header = 'header'

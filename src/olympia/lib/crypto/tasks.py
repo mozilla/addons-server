@@ -42,8 +42,7 @@ You're receiving this email because you have an add-on hosted on
 https://addons.mozilla.org
 """
 
-MAIL_EXPIRY_SUBJECT = (
-    u'Mozilla Add-ons: {addon} has been resigned on AMO')
+MAIL_EXPIRY_SUBJECT = u'Mozilla Add-ons: {addon} has been resigned on AMO'
 MAIL_EXPIRY_MESSAGE = u"""
 Your add-on, {addon}, has been automatically signed.
 
@@ -72,7 +71,8 @@ on https://addons.mozilla.org
 """
 
 version_regex = re.compile(
-    '^(?P<prefix>.*)(?P<version>\.1\-signed)(|\-(?P<number>\d+))$')
+    '^(?P<prefix>.*)(?P<version>\.1\-signed)(|\-(?P<number>\d+))$'
+)
 
 
 def get_new_version_number(version):
@@ -82,9 +82,8 @@ def get_new_version_number(version):
     else:
         num = int(match.groupdict()['number'] or 1)
         return u'{}{}-{}'.format(
-            match.groupdict()['prefix'],
-            match.groupdict()['version'],
-            num + 1)
+            match.groupdict()['prefix'], match.groupdict()['version'], num + 1
+        )
 
 
 @task
@@ -102,29 +101,34 @@ def sign_addons(addon_ids, force=False, **kw):
 
     reasons = {
         'default': [MAIL_SUBJECT, MAIL_MESSAGE],
-        'expiry': [MAIL_EXPIRY_SUBJECT, MAIL_EXPIRY_MESSAGE]
+        'expiry': [MAIL_EXPIRY_SUBJECT, MAIL_EXPIRY_MESSAGE],
     }
     mail_subject, mail_message = reasons[kw.get('reason', 'default')]
 
     addons_emailed = set()
     # We only care about extensions.
-    for version in Version.objects.filter(addon_id__in=addon_ids,
-                                          addon__type=amo.ADDON_EXTENSION):
+    for version in Version.objects.filter(
+        addon_id__in=addon_ids, addon__type=amo.ADDON_EXTENSION
+    ):
         # We only sign files that have been reviewed and are compatible with
         # versions of Firefox that are recent enough.
         to_sign = version.files.filter(
             version__apps__max__application__in=SIGN_FOR_APPS,
-            status__in=amo.REVIEWED_STATUSES)
+            status__in=amo.REVIEWED_STATUSES,
+        )
 
         if force:
             to_sign = to_sign.all()
         else:
             to_sign = to_sign.filter(is_signed=False)
         if not to_sign:
-            log.info(u'Not signing addon {0}, version {1} (no files or already'
-                     u' signed)'.format(version.addon, version))
-        log.info(u'Signing addon {0}, version {1}'.format(version.addon,
-                                                          version))
+            log.info(
+                u'Not signing addon {0}, version {1} (no files or already'
+                u' signed)'.format(version.addon, version)
+            )
+        log.info(
+            u'Signing addon {0}, version {1}'.format(version.addon, version)
+        )
         bumped_version_number = get_new_version_number(version.version)
         signed_at_least_a_file = False  # Did we sign at least one file?
         for file_obj in to_sign:
@@ -144,28 +148,37 @@ def sign_addons(addon_ids, force=False, **kw):
                 else:  # We didn't sign, so revert the version bump.
                     shutil.move(backup_path, file_obj.file_path)
             except Exception:
-                log.error(u'Failed signing file {0}'.format(file_obj.pk),
-                          exc_info=True)
+                log.error(
+                    u'Failed signing file {0}'.format(file_obj.pk),
+                    exc_info=True,
+                )
                 # Revert the version bump, restore the backup.
                 shutil.move(backup_path, file_obj.file_path)
         # Now update the Version model, if we signed at least one file.
         if signed_at_least_a_file:
-            version.update(version=bumped_version_number,
-                           version_int=version_int(bumped_version_number))
+            version.update(
+                version=bumped_version_number,
+                version_int=version_int(bumped_version_number),
+            )
             addon = version.addon
             if addon.pk not in addons_emailed:
                 # Send a mail to the owners/devs warning them we've
                 # automatically signed their addon.
-                qs = (AddonUser.objects
-                      .filter(role=amo.AUTHOR_ROLE_OWNER, addon=addon)
-                      .exclude(user__email__isnull=True))
+                qs = AddonUser.objects.filter(
+                    role=amo.AUTHOR_ROLE_OWNER, addon=addon
+                ).exclude(user__email__isnull=True)
                 emails = qs.values_list('user__email', flat=True)
                 subject = mail_subject.format(addon=addon.name)
                 message = mail_message.format(
                     addon=addon.name,
                     addon_url=amo.templatetags.jinja_helpers.absolutify(
-                        addon.get_dev_url(action='versions')))
+                        addon.get_dev_url(action='versions')
+                    ),
+                )
                 amo.utils.send_mail(
-                    subject, message, recipient_list=emails,
-                    headers={'Reply-To': 'amo-admins@mozilla.org'})
+                    subject,
+                    message,
+                    recipient_list=emails,
+                    headers={'Reply-To': 'amo-admins@mozilla.org'},
+                )
                 addons_emailed.add(addon.pk)

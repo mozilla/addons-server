@@ -9,7 +9,9 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.decorators import (
-    addon_view_factory, owner_or_unlisted_reviewer)
+    addon_view_factory,
+    owner_or_unlisted_reviewer,
+)
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, render, urlparams
@@ -32,9 +34,12 @@ def _version_list_qs(addon):
         status = amo.STATUS_AWAITING_REVIEW
     else:
         status = amo.STATUS_PUBLIC
-    return (addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
-                          .filter(files__status=status)
-                          .distinct().order_by('-created'))
+    return (
+        addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
+        .filter(files__status=status)
+        .distinct()
+        .order_by('-created')
+    )
 
 
 @addon_view
@@ -44,8 +49,11 @@ def version_list(request, addon):
     versions = amo.utils.paginate(request, qs, PER_PAGE)
     versions.object_list = list(versions.object_list)
     Version.transformer(versions.object_list)
-    return render(request, 'versions/version_list.html', {
-        'addon': addon, 'versions': versions})
+    return render(
+        request,
+        'versions/version_list.html',
+        {'addon': addon, 'versions': versions},
+    )
 
 
 @addon_view
@@ -59,8 +67,8 @@ def version_detail(request, addon, version_num):
         return list(qs.values_list('version', flat=True))
 
     cache_key = make_key(
-        u'version-detail:{}:{}'.format(addon.id, version_num),
-        normalize=True)
+        u'version-detail:{}:{}'.format(addon.id, version_num), normalize=True
+    )
 
     ids = cache_get_or_set(cache_key, _fetch)
 
@@ -76,71 +84,94 @@ def version_detail(request, addon, version_num):
 @addon_view
 @non_atomic_requests
 def update_info(request, addon, version_num):
-    qs = addon.versions.filter(version=version_num,
-                               files__status__in=amo.VALID_FILE_STATUSES,
-                               channel=amo.RELEASE_CHANNEL_LISTED)
+    qs = addon.versions.filter(
+        version=version_num,
+        files__status__in=amo.VALID_FILE_STATUSES,
+        channel=amo.RELEASE_CHANNEL_LISTED,
+    )
     if not qs:
         raise http.Http404()
-    return render(request, 'versions/update_info.html',
-                  {'version': qs[0]},
-                  content_type='application/xhtml+xml')
+    return render(
+        request,
+        'versions/update_info.html',
+        {'version': qs[0]},
+        content_type='application/xhtml+xml',
+    )
 
 
 @non_atomic_requests
 def update_info_redirect(request, version_id):
     version = get_object_or_404(Version.objects, pk=version_id)
-    return redirect(reverse('addons.versions.update_info',
-                            args=(version.addon.id, version.version)),
-                    permanent=True)
+    return redirect(
+        reverse(
+            'addons.versions.update_info',
+            args=(version.addon.id, version.version),
+        ),
+        permanent=True,
+    )
 
 
 # Should accept junk at the end for filename goodness.
 @non_atomic_requests
 def download_file(request, file_id, type=None, file_=None, addon=None):
     def is_appropriate_reviewer(addon, channel):
-        return (acl.is_reviewer(request, addon)
-                if channel == amo.RELEASE_CHANNEL_LISTED
-                else acl.check_unlisted_addons_reviewer(request))
+        return (
+            acl.is_reviewer(request, addon)
+            if channel == amo.RELEASE_CHANNEL_LISTED
+            else acl.check_unlisted_addons_reviewer(request)
+        )
 
     if not file_:
         file_ = get_object_or_404(File.objects, pk=file_id)
     if not addon:
-        addon = get_object_or_404(Addon.objects,
-                                  pk=file_.version.addon_id)
+        addon = get_object_or_404(Addon.objects, pk=file_.version.addon_id)
     channel = file_.version.channel
 
     if addon.is_disabled or file_.status == amo.STATUS_DISABLED:
-        if (is_appropriate_reviewer(addon, channel) or
-                acl.check_addon_ownership(
-                    request, addon, dev=True, ignore_disabled=True)):
+        if is_appropriate_reviewer(
+            addon, channel
+        ) or acl.check_addon_ownership(
+            request, addon, dev=True, ignore_disabled=True
+        ):
             return HttpResponseSendFile(
-                request, file_.guarded_file_path,
-                content_type='application/x-xpinstall')
+                request,
+                file_.guarded_file_path,
+                content_type='application/x-xpinstall',
+            )
         else:
             log.info(
                 u'download file {file_id}: addon/file disabled and '
                 u'user {user_id} is not an owner or reviewer.'.format(
-                    file_id=file_id, user_id=request.user.pk))
+                    file_id=file_id, user_id=request.user.pk
+                )
+            )
             raise http.Http404()  # Not owner or admin.
 
     if channel == amo.RELEASE_CHANNEL_UNLISTED:
-        if (acl.check_unlisted_addons_reviewer(request) or
-                acl.check_addon_ownership(
-                    request, addon, dev=True, ignore_disabled=True)):
+        if acl.check_unlisted_addons_reviewer(
+            request
+        ) or acl.check_addon_ownership(
+            request, addon, dev=True, ignore_disabled=True
+        ):
             return HttpResponseSendFile(
-                request, file_.file_path,
-                content_type='application/x-xpinstall')
+                request,
+                file_.file_path,
+                content_type='application/x-xpinstall',
+            )
         else:
             log.info(
                 u'download file {file_id}: version is unlisted and '
                 u'user {user_id} is not an owner or reviewer.'.format(
-                    file_id=file_id, user_id=request.user.pk))
+                    file_id=file_id, user_id=request.user.pk
+                )
+            )
             raise http.Http404()  # Not owner or admin.
 
-    attachment = (type == 'attachment' or not request.APP.browser)
+    attachment = type == 'attachment' or not request.APP.browser
 
-    loc = urlparams(file_.get_file_cdn_url(attachment=attachment),
-                    filehash=file_.hash)
+    loc = urlparams(
+        file_.get_file_cdn_url(attachment=attachment), filehash=file_.hash
+    )
     response = http.HttpResponseRedirect(loc)
     response['X-Target-Digest'] = file_.hash
     return response
@@ -157,15 +188,15 @@ def download_latest(request, addon, type='xpi', platform=None):
     if platform is not None and int(platform) in amo.PLATFORMS:
         platforms.append(int(platform))
     version = addon._current_version_id
-    files = File.objects.filter(platform__in=platforms,
-                                version=version)
+    files = File.objects.filter(platform__in=platforms, version=version)
     try:
         # If there's a file matching our platform, it'll float to the end.
         file_ = sorted(files, key=lambda f: f.platform == platforms[-1])[-1]
     except IndexError:
         raise http.Http404()
-    return download_file(request, file_.id, type=type, file_=file_,
-                         addon=addon)
+    return download_file(
+        request, file_.id, type=type, file_=file_, addon=addon
+    )
 
 
 @non_atomic_requests
@@ -174,9 +205,14 @@ def download_source(request, version_id):
 
     # General case: version is listed.
     if version.channel == amo.RELEASE_CHANNEL_LISTED:
-        if not (version.source and
-                (acl.check_addon_ownership(
-                    request, version.addon, dev=True, ignore_disabled=True))):
+        if not (
+            version.source
+            and (
+                acl.check_addon_ownership(
+                    request, version.addon, dev=True, ignore_disabled=True
+                )
+            )
+        ):
             raise http.Http404()
     else:
         if not owner_or_unlisted_reviewer(request, version.addon):

@@ -6,7 +6,11 @@ from olympia import amo
 from olympia.applications.models import AppVersion
 from olympia.lib.es.utils import create_index
 from olympia.stats.models import (
-    CollectionCount, DownloadCount, StatsSearchMixin, UpdateCount)
+    CollectionCount,
+    DownloadCount,
+    StatsSearchMixin,
+    UpdateCount,
+)
 
 
 # Number of elements to index at once in ES. The size of a dict to send to ES
@@ -41,16 +45,18 @@ def es_dict(items):
 
 
 def extract_update_count(update, all_apps=None):
-    doc = {'addon': update.addon_id,
-           'date': update.date,
-           'count': update.count,
-           'id': update.id,
-           '_id': '{0}-{1}'.format(update.addon_id, update.date),
-           'versions': es_dict(update.versions),
-           'os': [],
-           'locales': [],
-           'apps': [],
-           'status': []}
+    doc = {
+        'addon': update.addon_id,
+        'date': update.date,
+        'count': update.count,
+        'id': update.id,
+        '_id': '{0}-{1}'.format(update.addon_id, update.date),
+        'versions': es_dict(update.versions),
+        'os': [],
+        'locales': [],
+        'apps': [],
+        'status': [],
+    }
 
     # Only count platforms we know about.
     if update.oses:
@@ -92,43 +98,54 @@ def extract_update_count(update, all_apps=None):
         doc['apps'] = dict((app, es_dict(vals)) for app, vals in apps.items())
 
     if update.statuses:
-        doc['status'] = es_dict((k, v) for k, v in update.statuses.items()
-                                if k != 'null')
+        doc['status'] = es_dict(
+            (k, v) for k, v in update.statuses.items() if k != 'null'
+        )
     return doc
 
 
 def extract_download_count(dl):
-    return {'addon': dl.addon_id,
-            'date': dl.date,
-            'count': dl.count,
-            'sources': es_dict(dl.sources) if dl.sources else {},
-            'id': dl.id,
-            '_id': '{0}-{1}'.format(dl.addon_id, dl.date)}
+    return {
+        'addon': dl.addon_id,
+        'date': dl.date,
+        'count': dl.count,
+        'sources': es_dict(dl.sources) if dl.sources else {},
+        'id': dl.id,
+        '_id': '{0}-{1}'.format(dl.addon_id, dl.date),
+    }
 
 
-def extract_addon_collection(collection_count, addon_collections,
-                             collection_stats):
+def extract_addon_collection(
+    collection_count, addon_collections, collection_stats
+):
     addon_collection_count = sum([c.count for c in addon_collections])
     collection_stats = dict([[c.name, c.count] for c in collection_stats])
-    return {'date': collection_count.date,
-            'id': collection_count.collection_id,
-            '_id': '{0}-{1}'.format(collection_count.collection_id,
-                                    collection_count.date),
-            'count': collection_count.count,
-            'data': es_dict({
+    return {
+        'date': collection_count.date,
+        'id': collection_count.collection_id,
+        '_id': '{0}-{1}'.format(
+            collection_count.collection_id, collection_count.date
+        ),
+        'count': collection_count.count,
+        'data': es_dict(
+            {
                 'downloads': addon_collection_count,
                 'votes_up': collection_stats.get('new_votes_up', 0),
                 'votes_down': collection_stats.get('new_votes_down', 0),
                 'subscribers': collection_stats.get('new_subscribers', 0),
-            })}
+            }
+        ),
+    }
 
 
 def extract_theme_user_count(user_count):
-    return {'addon': user_count.addon_id,
-            'date': user_count.date,
-            'count': user_count.count,
-            'id': user_count.id,
-            '_id': '{0}-{1}'.format(user_count.addon_id, user_count.date)}
+    return {
+        'addon': user_count.addon_id,
+        'date': user_count.date,
+        'count': user_count.count,
+        'id': user_count.id,
+        '_id': '{0}-{1}'.format(user_count.addon_id, user_count.date),
+    }
 
 
 def get_all_app_versions():
@@ -146,14 +163,13 @@ def get_alias():
 def create_new_index(index_name=None):
     if index_name is None:
         index_name = get_alias()
-    config = {
-        'mappings': get_mappings(),
-    }
+    config = {'mappings': get_mappings()}
     create_index(index_name, config)
 
 
 def reindex(index_name):
     from olympia.stats.management.commands.index_stats import index_stats
+
     index_stats(index_name)
 
 
@@ -167,13 +183,10 @@ def get_mappings():
                 'dynamic': 'true',
                 'properties': {
                     'v': {'type': 'long'},
-                    'k': {'type': 'keyword'}
-                }
+                    'k': {'type': 'keyword'},
+                },
             },
-            'date': {
-                'format': 'dateOptionalTime',
-                'type': 'date'
-            }
+            'date': {'format': 'dateOptionalTime', 'type': 'date'},
         }
     }
 

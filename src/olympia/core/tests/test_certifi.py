@@ -9,7 +9,6 @@ from olympia.amo.tests import TestCase
 
 @pytest.mark.withoutresponses
 class TestCertifi(TestCase):
-
     def test_openssl_version(self):
         # At the time of writing cryptography is statically compiled
         # against OpenSSL 1.1.0f  25 May 2017 (27-09-2017)

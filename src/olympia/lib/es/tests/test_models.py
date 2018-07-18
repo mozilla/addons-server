@@ -5,7 +5,6 @@ from olympia.lib.es.models import Reindexing
 
 
 class TestReindexManager(TestCase):
-
     def test_flag_reindexing(self):
         assert Reindexing.objects.filter(site='foo').count() == 0
 
@@ -25,8 +24,9 @@ class TestReindexManager(TestCase):
     @mock.patch('olympia.lib.es.models.ReindexingManager._flag_reindexing')
     def test_flag_reindexing_amo(self, flag_reindexing_mock):
         Reindexing.objects.flag_reindexing_amo('bar', 'baz', 'quux')
-        assert flag_reindexing_mock.called_with([
-            ('amo', 'bar', 'baz', 'quux')])
+        assert flag_reindexing_mock.called_with(
+            [('amo', 'bar', 'baz', 'quux')]
+        )
 
     def test_unflag_reindexing(self):
         assert Reindexing.objects.filter(site='foo').count() == 0
@@ -36,16 +36,18 @@ class TestReindexManager(TestCase):
         assert Reindexing.objects.filter(site='foo').count() == 0
 
         # Flag, then unflag.
-        Reindexing.objects.create(site='foo', new_index='bar', old_index='baz',
-                                  alias='quux')
+        Reindexing.objects.create(
+            site='foo', new_index='bar', old_index='baz', alias='quux'
+        )
         assert Reindexing.objects.filter(site='foo').count() == 1
 
         Reindexing.objects._unflag_reindexing('foo')
         assert Reindexing.objects.filter(site='foo').count() == 0
 
         # Unflagging another site doesn't clash.
-        Reindexing.objects.create(site='bar', new_index='bar', old_index='baz',
-                                  alias='quux')
+        Reindexing.objects.create(
+            site='bar', new_index='bar', old_index='baz', alias='quux'
+        )
         Reindexing.objects._unflag_reindexing('foo')
         assert Reindexing.objects.filter(site='bar').count() == 1
 
@@ -58,8 +60,9 @@ class TestReindexManager(TestCase):
         assert Reindexing.objects.filter(site='foo').count() == 0
         assert not Reindexing.objects._is_reindexing('foo')
 
-        Reindexing.objects.create(site='foo', new_index='bar', old_index='baz',
-                                  alias='quux')
+        Reindexing.objects.create(
+            site='foo', new_index='bar', old_index='baz', alias='quux'
+        )
         assert Reindexing.objects._is_reindexing('foo')
 
         # Reindexing on another site doesn't clash.
@@ -76,8 +79,9 @@ class TestReindexManager(TestCase):
         assert Reindexing.objects.get_indices('foo') == ['foo']
 
         # Reindexing on 'foo'.
-        Reindexing.objects.create(site='foo', new_index='bar', old_index='baz',
-                                  alias='quux')
+        Reindexing.objects.create(
+            site='foo', new_index='bar', old_index='baz', alias='quux'
+        )
         assert Reindexing.objects.get_indices('quux') == ['bar', 'baz']
 
         # Doesn't clash on other sites.

@@ -12,7 +12,10 @@ from olympia import amo
 from olympia.amo.tests import addon_factory
 from olympia.discovery.data import DiscoItem
 from olympia.discovery.utils import (
-    call_recommendation_server, get_recommendations, replace_extensions)
+    call_recommendation_server,
+    get_recommendations,
+    replace_extensions,
+)
 
 
 @pytest.mark.django_db
@@ -21,8 +24,12 @@ from olympia.discovery.utils import (
 def test_call_recommendation_server_fails_nice(requests_get, statsd_incr):
     requests_get.side_effect = requests.exceptions.RequestException()
     # Check the exception in requests.get is handled okay.
-    assert call_recommendation_server(
-        '123456', {}, settings.RECOMMENDATION_ENGINE_URL) is None
+    assert (
+        call_recommendation_server(
+            '123456', {}, settings.RECOMMENDATION_ENGINE_URL
+        )
+        is None
+    )
     statsd_incr.assert_called_with('services.recommendations.fail')
 
 
@@ -31,9 +38,11 @@ def test_call_recommendation_server_fails_nice(requests_get, statsd_incr):
 @mock.patch('olympia.discovery.utils.requests.get')
 def test_call_recommendation_server_succeeds(requests_get, statsd_incr):
     requests_get.return_value = HttpResponse(
-        json.dumps({'results': ['@lolwut']}))
+        json.dumps({'results': ['@lolwut']})
+    )
     assert call_recommendation_server(
-        '123456', {}, settings.RECOMMENDATION_ENGINE_URL) == ['@lolwut']
+        '123456', {}, settings.RECOMMENDATION_ENGINE_URL
+    ) == ['@lolwut']
     statsd_incr.assert_called_with('services.recommendations.success')
 
 
@@ -42,32 +51,43 @@ def test_call_recommendation_server_parameters(requests_get):
     taar_url = settings.RECOMMENDATION_ENGINE_URL
     taar_timeout = settings.RECOMMENDATION_ENGINE_TIMEOUT
     requests_get.return_value = HttpResponse(
-        json.dumps({'results': ['@lolwut']}))
+        json.dumps({'results': ['@lolwut']})
+    )
     # No locale or platform
     call_recommendation_server('123456', {}, taar_url)
     requests_get.assert_called_with(taar_url + '123456/', timeout=taar_timeout)
     # locale no platform
     call_recommendation_server('123456', {'locale': 'en-US'}, taar_url)
     requests_get.assert_called_with(
-        taar_url + '123456/?locale=en-US', timeout=taar_timeout)
+        taar_url + '123456/?locale=en-US', timeout=taar_timeout
+    )
     # platform no locale
     call_recommendation_server('123456', {'platform': 'WINNT'}, taar_url)
     requests_get.assert_called_with(
-        taar_url + '123456/?platform=WINNT', timeout=taar_timeout)
+        taar_url + '123456/?platform=WINNT', timeout=taar_timeout
+    )
     # both locale and platform
     call_recommendation_server(
-        '123456', {'locale': 'en-US', 'platform': 'WINNT'}, taar_url)
+        '123456', {'locale': 'en-US', 'platform': 'WINNT'}, taar_url
+    )
     requests_get.assert_called_with(
-        taar_url + '123456/?locale=en-US&platform=WINNT', timeout=taar_timeout)
+        taar_url + '123456/?locale=en-US&platform=WINNT', timeout=taar_timeout
+    )
     # and some extra parameters
     call_recommendation_server(
         '123456',
-        {'locale': 'en-US', 'platform': 'WINNT', 'study': 'sch',
-         'branch': 'tree'},
-        settings.RECOMMENDATION_ENGINE_URL)
+        {
+            'locale': 'en-US',
+            'platform': 'WINNT',
+            'study': 'sch',
+            'branch': 'tree',
+        },
+        settings.RECOMMENDATION_ENGINE_URL,
+    )
     requests_get.assert_called_with(
         taar_url + '123456/?branch=tree&locale=en-US&platform=WINNT&study=sch',
-        timeout=taar_timeout)
+        timeout=taar_timeout,
+    )
 
 
 @mock.patch('olympia.discovery.utils.call_recommendation_server')
@@ -79,21 +99,29 @@ def test_get_recommendations(call_recommendation_server):
     addon_factory(id=104, guid='104@mozilla')
 
     call_recommendation_server.return_value = [
-        '101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'
+        '101@mozilla',
+        '102@mozilla',
+        '103@mozilla',
+        '104@mozilla',
     ]
     recommendations = get_recommendations(
-        '0', {'locale': 'en-US', 'platform': 'WINNT'})
-    assert ([r.addon_id for r in recommendations] == [101, 102, 103, 104])
+        '0', {'locale': 'en-US', 'platform': 'WINNT'}
+    )
+    assert [r.addon_id for r in recommendations] == [101, 102, 103, 104]
     assert all([r.is_recommendation for r in recommendations])
 
     # only valid, public add-ons should match guids
     a101.update(status=amo.STATUS_NULL)
     call_recommendation_server.return_value = [
-        '101@mozilla', '102@mozilla', '103@mozilla', '104@badguid'
+        '101@mozilla',
+        '102@mozilla',
+        '103@mozilla',
+        '104@badguid',
     ]
     recommendations = get_recommendations(
-        '0', {'locale': 'en-US', 'platform': 'WINNT'})
-    assert ([r.addon_id for r in recommendations] == [102, 103])
+        '0', {'locale': 'en-US', 'platform': 'WINNT'}
+    )
+    assert [r.addon_id for r in recommendations] == [102, 103]
 
 
 def test_replace_extensions():

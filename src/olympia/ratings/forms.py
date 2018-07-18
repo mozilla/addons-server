@@ -16,9 +16,7 @@ class RatingReplyForm(forms.Form):
     form_id = 'review-reply-edit'
 
     body = forms.CharField(
-        widget=forms.Textarea(
-            attrs={'rows': 3, 'id': 'id_review_reply_body', },
-        ),
+        widget=forms.Textarea(attrs={'rows': 3, 'id': 'id_review_reply_body'}),
         label='Review',
     )
 
@@ -34,9 +32,7 @@ class RatingForm(RatingReplyForm):
     form_id = 'review-edit'
 
     body = forms.CharField(
-        widget=forms.Textarea(
-            attrs={'rows': 3, 'id': 'id_review_body', },
-        ),
+        widget=forms.Textarea(attrs={'rows': 3, 'id': 'id_review_body'}),
         label='Review',
     )
     rating = forms.ChoiceField(
@@ -51,7 +47,8 @@ class RatingForm(RatingReplyForm):
         '((://)|'  # Protocols (e.g.: http://)
         '((\d{1,3}\.){3}(\d{1,3}))|'
         '([0-9a-z\-%%]+\.(%s)))' % '|'.join(TLDS),
-        flags)
+        flags,
+    )
 
     def _post_clean(self):
         # Unquote the body in case someone tries 'example%2ecom'.
@@ -64,7 +61,6 @@ class RatingForm(RatingReplyForm):
 
 
 class RatingFlagForm(forms.ModelForm):
-
     class Meta:
         model = RatingFlag
         fields = ('flag', 'note', 'rating', 'user')
@@ -76,6 +72,9 @@ class RatingFlagForm(forms.ModelForm):
         elif data.get('flag') == RatingFlag.OTHER:
             self.add_error(
                 'note',
-                ugettext(u'A short explanation must be provided when '
-                         u'selecting "Other" as a flag reason.'))
+                ugettext(
+                    u'A short explanation must be provided when '
+                    u'selecting "Other" as a flag reason.'
+                ),
+            )
         return data

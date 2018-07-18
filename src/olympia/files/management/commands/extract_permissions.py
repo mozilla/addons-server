@@ -18,7 +18,8 @@ class Command(BaseCommand):
             action='store_true',
             dest='force',
             default=False,
-            help='Extract from Files that already have permissions.')
+            help='Extract from Files that already have permissions.',
+        )
 
     def handle(self, *args, **options):
         files = File.objects.filter(is_webextension=True)
@@ -30,7 +31,8 @@ class Command(BaseCommand):
             grouping = []
             for chunk in chunked(pks, 100):
                 grouping.append(
-                    extract_webext_permissions.subtask(args=[chunk]))
+                    extract_webext_permissions.subtask(args=[chunk])
+                )
 
             ts = group(grouping)
             ts.apply_async()

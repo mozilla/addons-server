@@ -27,21 +27,16 @@ class MiddlewareTest(BaseTestCase):
             '/en-US': '/en-US/firefox/',
             '/firefox': '/en-US/firefox/',
             '/android': '/en-US/android/',
-
             # Make sure we don't mess with trailing slashes.
             '/addon/1/': '/en-US/firefox/addon/1/',
             '/addon/1': '/en-US/firefox/addon/1',
-
             # Check an invalid locale.
             '/sda/firefox/addon/1': '/en-US/firefox/addon/1',
-
             # Check a consolidated language (e.g. es-* -> es).
             '/es-ES/firefox/addon/1': '/es/firefox/addon/1',
             '/es-PE/firefox/addon/1': '/es/firefox/addon/1',
-
             # /developers doesn't get an app.
             '/developers': '/en-US/developers',
-
             # Check basic use-cases with a 'lang' GET parameter:
             '/?lang=fr': '/fr/firefox/',
             '/addon/1/?lang=fr': '/fr/firefox/addon/1/',
@@ -114,16 +109,25 @@ class MiddlewareTest(BaseTestCase):
         check('/en-US/', '/en-US/android/', 'Fennec/11.0')
 
         # And the user agent changed again.
-        check('/en-US/', '/en-US/android/',
-              'Mozilla/5.0 (Android; Mobile; rv:17.0) Gecko/17.0 Firefox/17.0')
+        check(
+            '/en-US/',
+            '/en-US/android/',
+            'Mozilla/5.0 (Android; Mobile; rv:17.0) Gecko/17.0 Firefox/17.0',
+        )
 
         # And the user agent yet changed again.
-        check('/en-US/', '/en-US/android/',
-              'Mozilla/5.0 (Mobile; rv:18.0) Gecko/18.0 Firefox/18.0')
+        check(
+            '/en-US/',
+            '/en-US/android/',
+            'Mozilla/5.0 (Mobile; rv:18.0) Gecko/18.0 Firefox/18.0',
+        )
 
         # And the tablet user agent yet changed again!
-        check('/en-US/', '/en-US/android/',
-              'Mozilla/5.0 (Android; Tablet; rv:18.0) Gecko/18.0 Firefox/18.0')
+        check(
+            '/en-US/',
+            '/en-US/android/',
+            'Mozilla/5.0 (Android; Tablet; rv:18.0) Gecko/18.0 Firefox/18.0',
+        )
 
     def test_get_lang(self):
         def check(url, expected):
@@ -136,20 +140,20 @@ class MiddlewareTest(BaseTestCase):
         check('/en-US/firefox/?lang=fake', '/en-US/firefox/')
         check('/firefox/?lang=fr', '/fr/firefox/')
         check('/firefox/?lang=fake', '/en-US/firefox/')
-        check('/en-US/extensions/?foo=fooval&bar=barval&lang=fr',
-              '/fr/firefox/extensions/?foo=fooval&bar=barval')
+        check(
+            '/en-US/extensions/?foo=fooval&bar=barval&lang=fr',
+            '/fr/firefox/extensions/?foo=fooval&bar=barval',
+        )
         check('/en-US/firefox?lang=es-PE', '/es/firefox/')
 
 
 class TestPrefixer(BaseTestCase):
-
     def tearDown(self):
         urlresolvers.clean_url_prefixes()
         set_script_prefix('/')
         super(TestPrefixer, self).tearDown()
 
     def test_split_path(self):
-
         def split_eq(url, locale, app, path):
             rf = RequestFactory()
             prefixer = urlresolvers.Prefixer(rf.get(url))
@@ -213,7 +217,8 @@ class TestPrefixer(BaseTestCase):
         request = rf.get('/foo', SCRIPT_NAME='/oremj')
         prefixer = urlresolvers.Prefixer(request)
         assert prefixer.fix(prefixer.shortened_path) == (
-            '/oremj/en-US/firefox/foo')
+            '/oremj/en-US/firefox/foo'
+        )
 
         # Now check reverse.
         urlresolvers.set_url_prefix(prefixer)
@@ -221,7 +226,6 @@ class TestPrefixer(BaseTestCase):
 
 
 class TestPrefixerActivate(TestCase):
-
     def test_activate_locale(self):
         with self.activate(locale='fr'):
             assert urlresolvers.reverse('home') == '/fr/firefox/'
@@ -261,7 +265,8 @@ def test_outgoing_url():
         assert s == (
             'http://example.net/bc7d4bb262c9f0b0f6d3412ede7d3252c2e311bb1d55f6'
             '2315f636cb8a70913b/'
-            'http%3A//example.com')
+            'http%3A//example.com'
+        )
 
         # No double-escaping of outgoing URLs.
         s2 = urlresolvers.get_outgoing_url(s)
@@ -281,8 +286,10 @@ def test_outgoing_url():
 
 
 def test_outgoing_url_dirty_unicode():
-    bad = (u'http://chupakabr.ru/\u043f\u0440\u043e\u0435\u043a\u0442\u044b/'
-           u'\u043c\u0443\u0437\u044b\u043a\u0430-vkontakteru/')
+    bad = (
+        u'http://chupakabr.ru/\u043f\u0440\u043e\u0435\u043a\u0442\u044b/'
+        u'\u043c\u0443\u0437\u044b\u043a\u0430-vkontakteru/'
+    )
     urlresolvers.get_outgoing_url(bad)  # bug 564057
 
 
@@ -307,33 +314,36 @@ def test_outgoing_url_javascript_scheme():
     assert fixed == '/'
 
 
-@pytest.mark.parametrize("test_input,expected", [
-    ('ga-ie', 'ga-IE'),
-    # Capitalization is no big deal.
-    ('ga-IE', 'ga-IE'),
-    ('GA-ie', 'ga-IE'),
-    # Go for something less specific.
-    ('fr-FR', 'fr'),
-    # Go for something more specific.
-    ('ga', 'ga-IE'),
-    ('ga-XX', 'ga-IE'),
-    # With multiple zh-XX choices, choose the first alphabetically.
-    ('zh', 'zh-CN'),
-    # Default to en-us.
-    ('xx', 'en-US'),
-    # Check q= sorting.
-    ('fr,en;q=0.8', 'fr'),
-    ('en;q=0.8,fr,ga-IE;q=0.9', 'fr'),
-    # Beware of invalid headers.
-    ('en;q=wtf,fr,ga-IE;q=oops', 'en-US'),
-    # zh is a partial match but it's still preferred.
-    ('zh, fr;q=0.8', 'zh-CN'),
-    # Caps + q= sorting.
-    ('ga-IE,en;q=0.8,fr;q=0.6', 'ga-IE'),
-    ('fr-fr, en;q=0.8, es;q=0.2', 'fr'),
-    # Consolidated languages.
-    ('es-PE', 'es')
-])
+@pytest.mark.parametrize(
+    "test_input,expected",
+    [
+        ('ga-ie', 'ga-IE'),
+        # Capitalization is no big deal.
+        ('ga-IE', 'ga-IE'),
+        ('GA-ie', 'ga-IE'),
+        # Go for something less specific.
+        ('fr-FR', 'fr'),
+        # Go for something more specific.
+        ('ga', 'ga-IE'),
+        ('ga-XX', 'ga-IE'),
+        # With multiple zh-XX choices, choose the first alphabetically.
+        ('zh', 'zh-CN'),
+        # Default to en-us.
+        ('xx', 'en-US'),
+        # Check q= sorting.
+        ('fr,en;q=0.8', 'fr'),
+        ('en;q=0.8,fr,ga-IE;q=0.9', 'fr'),
+        # Beware of invalid headers.
+        ('en;q=wtf,fr,ga-IE;q=oops', 'en-US'),
+        # zh is a partial match but it's still preferred.
+        ('zh, fr;q=0.8', 'zh-CN'),
+        # Caps + q= sorting.
+        ('ga-IE,en;q=0.8,fr;q=0.6', 'ga-IE'),
+        ('fr-fr, en;q=0.8, es;q=0.2', 'fr'),
+        # Consolidated languages.
+        ('es-PE', 'es'),
+    ],
+)
 def test_parse_accept_language(test_input, expected):
     expected_locales = 'ga-IE', 'zh-TW', 'zh-CN', 'en-US', 'fr'
     for lang in expected_locales:
@@ -342,7 +352,6 @@ def test_parse_accept_language(test_input, expected):
 
 
 class TestShorter(TestCase):
-
     def test_no_shorter_language(self):
         urlresolvers.lang_from_accept_header('zh') == 'zh-CN'
         with self.settings(LANGUAGE_URL_MAP={'en-us': 'en-US'}):

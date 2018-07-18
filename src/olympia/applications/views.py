@@ -19,20 +19,26 @@ def get_versions(order=('application', 'version_int')):
         else:
             apps = amo.APP_USAGE
         versions = {app.id: [] for app in apps}
-        qs = list(AppVersion.objects.order_by(*order)
-                  .filter(application__in=versions)
-                  .values_list('application', 'version'))
+        qs = list(
+            AppVersion.objects.order_by(*order)
+            .filter(application__in=versions)
+            .values_list('application', 'version')
+        )
         for app, version in qs:
             versions[app].append(version)
         return apps, versions
+
     return cache_get_or_set('getv' + ':'.join(order), fetch_versions)
 
 
 @non_atomic_requests
 def appversions(request):
     apps, versions = get_versions()
-    return render(request, 'applications/appversions.html',
-                  {'apps': apps, 'versions': versions})
+    return render(
+        request,
+        'applications/appversions.html',
+        {'apps': apps, 'versions': versions},
+    )
 
 
 class AppversionsFeed(NonAtomicFeed):
@@ -50,8 +56,9 @@ class AppversionsFeed(NonAtomicFeed):
 
     def items(self):
         apps, versions = get_versions(order=('application', '-version_int'))
-        return [(app, version) for app in apps
-                for version in versions[app.id][:3]]
+        return [
+            (app, version) for app in apps for version in versions[app.id][:3]
+        ]
         return [(app, versions[app.id][:3]) for app in apps]
 
     def item_title(self, item):

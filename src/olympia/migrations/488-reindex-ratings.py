@@ -20,7 +20,8 @@ def reindex_reviews(addon_id, **kw):
 
 def run():
     """Fix app ratings in ES (bug 787162)."""
-    ids = (Addon.objects.filter(total_ratings__gt=0)
-           .values_list('id', flat=True))
+    ids = Addon.objects.filter(total_ratings__gt=0).values_list(
+        'id', flat=True
+    )
     for chunk in chunked(ids, 50):
         [reindex_reviews.delay(pk) for pk in chunk]

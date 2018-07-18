@@ -27,7 +27,9 @@ def run():
     reject = '"action": %s' % rvw.ACTION_REJECT
     al = ActivityLog.objects.filter(
         Q(_details__contains=approve) | Q(_details__contains=reject),
-        action=amo.LOG.THEME_REVIEW.id, created__lte=start_date)
+        action=amo.LOG.THEME_REVIEW.id,
+        created__lte=start_date,
+    )
 
     for chunk in chunked(al, 50):
         # Review and thou shall receive.

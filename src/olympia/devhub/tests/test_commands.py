@@ -17,9 +17,11 @@ class TestCrushImagesForTopAddons(TestCase):
         crush_images_for_top_addons.Command().crush_addons([addon1])
         assert pngcrush_image_mock.call_count == 2
         assert pngcrush_image_mock.call_args_list[0][0][0] == os.path.join(
-            icon_dir, '%s-64.png' % addon1.pk)
+            icon_dir, '%s-64.png' % addon1.pk
+        )
         assert pngcrush_image_mock.call_args_list[1][0][0] == os.path.join(
-            icon_dir, '%s-32.png' % addon1.pk)
+            icon_dir, '%s-32.png' % addon1.pk
+        )
 
     @mock.patch('olympia.devhub.tasks.pngcrush_image')
     def test_crush_nothing(self, pngcrush_image_mock):
@@ -34,9 +36,11 @@ class TestCrushImagesForTopAddons(TestCase):
         crush_images_for_top_addons.Command().crush_addons([addon1])
         assert pngcrush_image_mock.call_count == 2
         assert pngcrush_image_mock.call_args_list[0][0][0] == (
-            preview1.thumbnail_path)
+            preview1.thumbnail_path
+        )
         assert pngcrush_image_mock.call_args_list[1][0][0] == (
-            preview1.image_path)
+            preview1.image_path
+        )
 
     @mock.patch('olympia.devhub.tasks.pngcrush_image')
     def test_crush_new_but_weird_persona(self, pngcrush_image_mock):
@@ -47,9 +51,11 @@ class TestCrushImagesForTopAddons(TestCase):
         crush_images_for_top_addons.Command().crush_addons([addon1])
         assert pngcrush_image_mock.call_count == 2
         assert pngcrush_image_mock.call_args_list[0][0][0] == (
-            persona.preview_path)
+            persona.preview_path
+        )
         assert pngcrush_image_mock.call_args_list[1][0][0] == (
-            persona.icon_path)
+            persona.icon_path
+        )
 
     @mock.patch('olympia.devhub.tasks.pngcrush_image')
     def test_crush_new_persona_with_headerfooter(self, pngcrush_image_mock):
@@ -62,13 +68,17 @@ class TestCrushImagesForTopAddons(TestCase):
         crush_images_for_top_addons.Command().crush_addons([addon1])
         assert pngcrush_image_mock.call_count == 4
         assert pngcrush_image_mock.call_args_list[0][0][0] == (
-            persona.preview_path)
+            persona.preview_path
+        )
         assert pngcrush_image_mock.call_args_list[1][0][0] == (
-            persona.icon_path)
+            persona.icon_path
+        )
         assert pngcrush_image_mock.call_args_list[2][0][0] == (
-            persona.header_path)
+            persona.header_path
+        )
         assert pngcrush_image_mock.call_args_list[3][0][0] == (
-            persona.footer_path)
+            persona.footer_path
+        )
 
     @mock.patch('olympia.devhub.tasks.pngcrush_image')
     def test_crush_old_persona(self, pngcrush_image_mock):

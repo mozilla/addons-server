@@ -24,22 +24,28 @@ def update_addons_collections_downloads():
     """Update addons+collections download totals."""
     raise_if_reindex_in_progress('amo')
 
-    data = (AddonCollectionCount.objects.values('addon', 'collection')
-                                        .annotate(sum=Sum('count')))
+    data = AddonCollectionCount.objects.values('addon', 'collection').annotate(
+        sum=Sum('count')
+    )
 
-    ts = [tasks.update_addons_collections_downloads.subtask(args=[chunk])
-          for chunk in chunked(data, 100)]
+    ts = [
+        tasks.update_addons_collections_downloads.subtask(args=[chunk])
+        for chunk in chunked(data, 100)
+    ]
     group(ts).apply_async()
 
 
 def update_collections_total():
     """Update collections downloads totals."""
 
-    data = (CollectionCount.objects.values('collection_id')
-                                   .annotate(sum=Sum('count')))
+    data = CollectionCount.objects.values('collection_id').annotate(
+        sum=Sum('count')
+    )
 
-    ts = [tasks.update_collections_total.subtask(args=[chunk])
-          for chunk in chunked(data, 50)]
+    ts = [
+        tasks.update_collections_total.subtask(args=[chunk])
+        for chunk in chunked(data, 50)
+    ]
     group(ts).apply_async()
 
 
@@ -51,15 +57,20 @@ def update_global_totals(date=None):
         date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
     # Assume that we want to populate yesterday's stats by default.
     today = date or datetime.date.today() - datetime.timedelta(days=1)
-    today_jobs = [{'job': job, 'date': today} for job in
-                  tasks._get_daily_jobs(date)]
+    today_jobs = [
+        {'job': job, 'date': today} for job in tasks._get_daily_jobs(date)
+    ]
 
     max_update = date or UpdateCount.objects.aggregate(max=Max('date'))['max']
-    metrics_jobs = [{'job': job, 'date': max_update} for job in
-                    tasks._get_metrics_jobs(date)]
+    metrics_jobs = [
+        {'job': job, 'date': max_update}
+        for job in tasks._get_metrics_jobs(date)
+    ]
 
-    ts = [tasks.update_global_totals.subtask(kwargs=kw)
-          for kw in today_jobs + metrics_jobs]
+    ts = [
+        tasks.update_global_totals.subtask(kwargs=kw)
+        for kw in today_jobs + metrics_jobs
+    ]
     group(ts).apply_async()
 
 

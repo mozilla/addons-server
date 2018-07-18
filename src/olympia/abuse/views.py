@@ -9,7 +9,9 @@ from rest_framework.viewsets import GenericViewSet
 
 from olympia.abuse.models import AbuseReport
 from olympia.abuse.serializers import (
-    AddonAbuseReportSerializer, UserAbuseReportSerializer)
+    AddonAbuseReportSerializer,
+    UserAbuseReportSerializer,
+)
 from olympia.accounts.views import AccountViewSet
 from olympia.addons.views import AddonViewSet
 
@@ -29,12 +31,14 @@ class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
             return self.addon_viewset
 
         if 'addon_pk' not in self.kwargs:
-            self.kwargs['addon_pk'] = (
-                self.request.data.get('addon') or
-                self.request.GET.get('addon'))
+            self.kwargs['addon_pk'] = self.request.data.get(
+                'addon'
+            ) or self.request.GET.get('addon')
         self.addon_viewset = AddonViewSet(
-            request=self.request, permission_classes=[],
-            kwargs={'pk': self.kwargs['addon_pk']})
+            request=self.request,
+            permission_classes=[],
+            kwargs={'pk': self.kwargs['addon_pk']},
+        )
         return self.addon_viewset
 
     def get_addon_object(self):
@@ -46,8 +50,10 @@ class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
 
     def get_guid(self):
         # See if the addon input is guid-like, if so set guid.
-        if self.get_addon_viewset().get_lookup_field(
-                self.kwargs['addon_pk']) == 'guid':
+        if (
+            self.get_addon_viewset().get_lookup_field(self.kwargs['addon_pk'])
+            == 'guid'
+        ):
             guid = self.kwargs['addon_pk']
             try:
                 # But see if it's also in our database.
@@ -73,7 +79,8 @@ class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
             'message': message,
             # get_guid() must be called first or addons not in our DB will 404.
             'guid': self.get_guid(),
-            'addon': self.get_addon_object()}
+            'addon': self.get_addon_object(),
+        }
         if request.user.is_authenticated():
             abuse_kwargs['reporter'] = request.user
 
@@ -94,13 +101,15 @@ class UserAbuseViewSet(CreateModelMixin, GenericViewSet):
             return self.user_object
 
         if 'user_pk' not in self.kwargs:
-            self.kwargs['user_pk'] = (
-                self.request.data.get('user') or
-                self.request.GET.get('user'))
+            self.kwargs['user_pk'] = self.request.data.get(
+                'user'
+            ) or self.request.GET.get('user')
 
         return AccountViewSet(
-            request=self.request, permission_classes=[],
-            kwargs={'pk': self.kwargs['user_pk']}).get_object()
+            request=self.request,
+            permission_classes=[],
+            kwargs={'pk': self.kwargs['user_pk']},
+        ).get_object()
 
     def create(self, request, *args, **kwargs):
         user_id = self.request.data.get('user')
@@ -114,7 +123,8 @@ class UserAbuseViewSet(CreateModelMixin, GenericViewSet):
         abuse_kwargs = {
             'ip_address': request.META.get('REMOTE_ADDR'),
             'message': message,
-            'user': self.get_user_object(user_id)}
+            'user': self.get_user_object(user_id),
+        }
         if request.user.is_authenticated():
             abuse_kwargs['reporter'] = request.user
 

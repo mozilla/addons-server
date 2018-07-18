@@ -30,4 +30,5 @@ class TestCanDeleteRatingPermission(TestCase):
     def test_has_object_permission_false(self, user_can_delete_review_mock):
         user_can_delete_review_mock.return_value = False
         assert not self.perm.has_object_permission(
-            self.request, None, object())
+            self.request, None, object()
+        )

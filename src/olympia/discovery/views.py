@@ -9,7 +9,9 @@ from olympia.addons.models import Addon
 from olympia.discovery.data import discopane_items, statictheme_disco_item
 from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.serializers import (
-    DiscoveryEditorialContentSerializer, DiscoverySerializer)
+    DiscoveryEditorialContentSerializer,
+    DiscoverySerializer,
+)
 from olympia.discovery.utils import get_recommendations, replace_extensions
 
 
@@ -20,8 +22,11 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
     def get_params(self):
         params = dict(self.kwargs)
         params.update(self.request.GET.iteritems())
-        params = {param: value for (param, value) in params.iteritems()
-                  if param in amo.DISCO_API_ALLOWED_PARAMETERS}
+        params = {
+            param: value
+            for (param, value) in params.iteritems()
+            if param in amo.DISCO_API_ALLOWED_PARAMETERS
+        }
         lang = params.pop('lang', None)
         if lang:
             # Need to change key to what taar expects
@@ -33,21 +38,22 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
             params = self.get_params()
             edition = params.pop('edition', 'default')
             self.discopane_items = discopane_items.get(
-                edition, discopane_items['default'])
+                edition, discopane_items['default']
+            )
             if edition == 'china':
                 # No TAAR for China Edition.
                 telemetry_id = None
             else:
                 telemetry_id = params.pop('telemetry-client-id', None)
             if switch_is_active('disco-recommendations') and telemetry_id:
-                recommendations = get_recommendations(
-                    telemetry_id, params)
+                recommendations = get_recommendations(telemetry_id, params)
                 if recommendations:
                     # if we got some recommendations then replace the
                     # extensions in discopane_items with them.
                     # Leave the non-extensions (personas) alone.
                     self.discopane_items = replace_extensions(
-                        self.discopane_items, recommendations)
+                        self.discopane_items, recommendations
+                    )
             if switch_is_active('disco-staticthemes-dev'):
                 # Replace the first discopane item with a static theme to
                 # enable development on frontend.

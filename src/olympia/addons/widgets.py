@@ -10,7 +10,6 @@ from olympia.addons.models import Category
 
 
 class IconTypeSelect(forms.RadioSelect):
-
     def render(self, name, value, attrs=None, renderer=None):
         args = []
 
@@ -18,15 +17,19 @@ class IconTypeSelect(forms.RadioSelect):
             option_value = option['value']
             if option_value.split('/')[0] == 'icon' or option_value == '':
                 icon_name = option['label']
-                args.append((
-                    'active' if option_value == value else '',
-                    settings.STATIC_URL,
-                    icon_name))
+                args.append(
+                    (
+                        'active' if option_value == value else '',
+                        settings.STATIC_URL,
+                        icon_name,
+                    )
+                )
 
         tmpl = (
             '<li><a href="#" class="{}">'
             '<img src="{}img/addon-icons/{}-32.png" alt="">'
-            '</a></li>')
+            '</a></li>'
+        )
 
         return format_html_join('', tmpl, args)
 
@@ -49,7 +52,8 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
         for c in self.choices:
             if c[0] in miscs:
                 msg = ugettext(
-                    'My add-on doesn\'t fit into any of the categories')
+                    'My add-on doesn\'t fit into any of the categories'
+                )
                 other = (c[0], msg)
             else:
                 choices.append(c)
@@ -70,19 +74,23 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
 
             for i, (option_value, option_label) in group:
                 if has_id:
-                    final_attrs = dict(final_attrs,
-                                       id='%s_%s' % (attrs['id'], i))
+                    final_attrs = dict(
+                        final_attrs, id='%s_%s' % (attrs['id'], i)
+                    )
                     label_for = u' for="%s"' % final_attrs['id']
                 else:
                     label_for = ''
 
                 cb = forms.CheckboxInput(
-                    final_attrs, check_test=lambda value: value in str_values)
+                    final_attrs, check_test=lambda value: value in str_values
+                )
                 option_value = force_text(option_value)
                 rendered_cb = cb.render(name, option_value)
                 option_label = conditional_escape(force_text(option_label))
-                output.append(u'<li><label%s>%s %s</label></li>' % (
-                    label_for, rendered_cb, option_label))
+                output.append(
+                    u'<li><label%s>%s %s</label></li>'
+                    % (label_for, rendered_cb, option_label)
+                )
 
             output.append(u'</ul>')
 

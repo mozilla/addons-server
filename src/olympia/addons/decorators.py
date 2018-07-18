@@ -8,11 +8,14 @@ from olympia.addons.models import Addon
 
 
 def owner_or_unlisted_reviewer(request, addon):
-    return (acl.check_unlisted_addons_reviewer(request) or
-            # We don't want "admins" here, because it includes anyone with the
-            # "Addons:Edit" perm, we only want those with
-            # "Addons:ReviewUnlisted" perm (which is checked above).
-            acl.check_addon_ownership(request, addon, admin=False, dev=True))
+    return (
+        acl.check_unlisted_addons_reviewer(request)
+        or
+        # We don't want "admins" here, because it includes anyone with the
+        # "Addons:Edit" perm, we only want those with
+        # "Addons:ReviewUnlisted" perm (which is checked above).
+        acl.check_addon_ownership(request, addon, admin=False, dev=True)
+    )
 
 
 def addon_view(f, qs=Addon.objects.all):
@@ -35,10 +38,13 @@ def addon_view(f, qs=Addon.objects.all):
             addon = get_object_or_404(qs(), slug=addon_id)
         # If the addon is unlisted it needs either an owner/viewer/dev/support,
         # or an unlisted addon reviewer.
-        if not (addon.has_listed_versions() or
-                owner_or_unlisted_reviewer(request, addon)):
+        if not (
+            addon.has_listed_versions()
+            or owner_or_unlisted_reviewer(request, addon)
+        ):
             raise http.Http404
         return f(request, addon, *args, **kw)
+
     return wrapper
 
 

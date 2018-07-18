@@ -17,66 +17,92 @@ detail_patterns = [
     url('^license/(?P<version>[^/]+)?', views.license, name='addons.license'),
     url('^privacy/', views.privacy, name='addons.privacy'),
     url('^abuse/', views.report_abuse, name='addons.abuse'),
-
     url('^reviews/', include('olympia.ratings.urls')),
     url('^statistics/', include(stats_patterns)),
     url('^versions/', include('olympia.versions.urls')),
-
     # Old contribution urls
-    url('^developers$',
-        lambda r, addon_id: redirect('addons.detail',
-                                     addon_id, permanent=True),
-        name='addons.meet'),
-    url('^contribute/roadblock/',
-        lambda r, addon_id: redirect('addons.detail',
-                                     addon_id, permanent=True),
-        name='addons.roadblock'),
-    url('^contribute/installed/',
-        lambda r, addon_id: redirect('addons.detail',
-                                     addon_id, permanent=True),
-        name='addons.installed'),
-    url('^contribute/thanks',
-        lambda r, addon_id: redirect('addons.detail',
-                                     addon_id, permanent=True),
-        name='addons.thanks'),
-    url('^contribute/$',
-        lambda r, addon_id: redirect('addons.detail',
-                                     addon_id, permanent=True),
-        name='addons.contribute'),
-    url('^contribute/(?P<status>cancel|complete)$',
-        lambda r, addon_id, status: redirect('addons.detail',
-                                             addon_id, permanent=True),
-        name='addons.contribute_status'),
-    url('^about$',
-        lambda r, addon_id: redirect('addons.detail',
-                                     addon_id, permanent=True),
-        name='addons.about'),
+    url(
+        '^developers$',
+        lambda r, addon_id: redirect(
+            'addons.detail', addon_id, permanent=True
+        ),
+        name='addons.meet',
+    ),
+    url(
+        '^contribute/roadblock/',
+        lambda r, addon_id: redirect(
+            'addons.detail', addon_id, permanent=True
+        ),
+        name='addons.roadblock',
+    ),
+    url(
+        '^contribute/installed/',
+        lambda r, addon_id: redirect(
+            'addons.detail', addon_id, permanent=True
+        ),
+        name='addons.installed',
+    ),
+    url(
+        '^contribute/thanks',
+        lambda r, addon_id: redirect(
+            'addons.detail', addon_id, permanent=True
+        ),
+        name='addons.thanks',
+    ),
+    url(
+        '^contribute/$',
+        lambda r, addon_id: redirect(
+            'addons.detail', addon_id, permanent=True
+        ),
+        name='addons.contribute',
+    ),
+    url(
+        '^contribute/(?P<status>cancel|complete)$',
+        lambda r, addon_id, status: redirect(
+            'addons.detail', addon_id, permanent=True
+        ),
+        name='addons.contribute_status',
+    ),
+    url(
+        '^about$',
+        lambda r, addon_id: redirect(
+            'addons.detail', addon_id, permanent=True
+        ),
+        name='addons.about',
+    ),
 ]
 
 
 urlpatterns = [
     # Promo modules for the homepage
     url('^i/promos$', views.homepage_promos, name='addons.homepage_promos'),
-
     # See https://github.com/mozilla/addons-server/issues/3130
     # Hardcode because there is no relation from blocklist items and the
     # add-on they block :-(
-    url('^addon/icloud-bookmarks/$', views.icloud_bookmarks_redirect,
-        name='addons.icloudbookmarksredirect'),
-
+    url(
+        '^addon/icloud-bookmarks/$',
+        views.icloud_bookmarks_redirect,
+        name='addons.icloudbookmarksredirect',
+    ),
     # URLs for a single add-on.
     url('^addon/%s/' % ADDON_ID, include(detail_patterns)),
-
     # Remora EULA and Privacy policy URLS
-    url('^addons/policy/0/(?P<addon_id>\d+)/(?P<file_id>\d+)',
+    url(
+        '^addons/policy/0/(?P<addon_id>\d+)/(?P<file_id>\d+)',
         lambda r, addon_id, file_id: redirect(
-            'addons.eula', addon_id, file_id, permanent=True)),
-    url('^addons/policy/0/(?P<addon_id>\d+)/',
+            'addons.eula', addon_id, file_id, permanent=True
+        ),
+    ),
+    url(
+        '^addons/policy/0/(?P<addon_id>\d+)/',
         lambda r, addon_id: redirect(
-            'addons.privacy', addon_id, permanent=True)),
-
+            'addons.privacy', addon_id, permanent=True
+        ),
+    ),
     url('^versions/license/(\d+)$', views.license_redirect),
-
-    url('^find-replacement/$', views.find_replacement_addon,
-        name='addons.find_replacement'),
+    url(
+        '^find-replacement/$',
+        views.find_replacement_addon,
+        name='addons.find_replacement',
+    ),
 ]

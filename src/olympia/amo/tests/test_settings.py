@@ -9,8 +9,9 @@ from django.conf import settings
 from olympia.lib.settings_base import get_raven_release
 
 
-@pytest.mark.parametrize('key', (
-    'NETAPP_STORAGE', 'GUARDED_ADDONS_PATH', 'TMP_PATH', 'MEDIA_ROOT'))
+@pytest.mark.parametrize(
+    'key', ('NETAPP_STORAGE', 'GUARDED_ADDONS_PATH', 'TMP_PATH', 'MEDIA_ROOT')
+)
 def test_base_paths_bytestring(key):
     """Make sure all relevant base paths are bytestrings.
 
@@ -52,9 +53,7 @@ def test_raven_release_config():
 
     # It fetches `version` from the version.json
     with open(version_json, 'wb') as fobj:
-        fobj.write(json.dumps({
-            'version': '2018.07.19'
-        }))
+        fobj.write(json.dumps({'version': '2018.07.19'}))
 
     assert get_raven_release() == '2018.07.19'
 
@@ -62,9 +61,7 @@ def test_raven_release_config():
 
     # Or tries to get the commit from version.json alternatively
     with open(version_json, 'wb') as fobj:
-        fobj.write(json.dumps({
-            'commit': '1111111'
-        }))
+        fobj.write(json.dumps({'commit': '1111111'}))
 
     assert get_raven_release() == '1111111'
 
@@ -74,10 +71,7 @@ def test_raven_release_config():
 
     # Usual state of things, version is empty but commit is set
     with open(version_json, 'wb') as fobj:
-        fobj.write(json.dumps({
-            'version': '',
-            'commit': '1111111'
-        }))
+        fobj.write(json.dumps({'version': '', 'commit': '1111111'}))
 
     assert get_raven_release() == '1111111'
 

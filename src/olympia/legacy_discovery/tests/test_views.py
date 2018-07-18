@@ -9,7 +9,12 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import (
-    Addon, AddonDependency, CompatOverride, CompatOverrideRange, Preview)
+    Addon,
+    AddonDependency,
+    CompatOverride,
+    CompatOverrideRange,
+    Preview,
+)
 from olympia.amo.templatetags.jinja_helpers import format_date
 from olympia.amo.tests import TestCase, addon_factory, collection_factory
 from olympia.amo.urlresolvers import reverse
@@ -22,7 +27,6 @@ from olympia.users.models import UserProfile
 
 
 class TestModuleAdmin(TestCase):
-
     def test_sync_db_and_registry(self):
         def check():
             views._sync_db_and_registry(qs, 1)
@@ -55,15 +59,22 @@ class TestModuleAdmin(TestCase):
 
 
 class TestUrls(TestCase):
-    fixtures = ['base/users', 'base/featured', 'addons/featured',
-                'base/addon_3615']
+    fixtures = [
+        'base/users',
+        'base/featured',
+        'addons/featured',
+        'base/addon_3615',
+    ]
 
     def test_reverse(self):
         assert '/en-US/firefox/discovery/pane/10.0/WINNT' == (
-            reverse('discovery.pane', kwargs=dict(version='10.0',
-                                                  platform='WINNT')))
+            reverse(
+                'discovery.pane', kwargs=dict(version='10.0', platform='WINNT')
+            )
+        )
         assert '/en-US/firefox/discovery/pane/10.0/WINNT/strict' == (
-            reverse('discovery.pane', args=('10.0', 'WINNT', 'strict')))
+            reverse('discovery.pane', args=('10.0', 'WINNT', 'strict'))
+        )
 
     def test_resolve_addon_view(self):
         r = self.client.get('/en-US/firefox/discovery/addon/3615', follow=True)
@@ -77,8 +88,9 @@ class TestUrls(TestCase):
         self.assert3xx(r, url, 302)
 
         # Redirect to default 'ignore' if version >= 10.
-        r = self.client.get('/en-US/firefox/discovery/10.0/Darwin',
-                            follow=True)
+        r = self.client.get(
+            '/en-US/firefox/discovery/10.0/Darwin', follow=True
+        )
         url = reverse('discovery.pane', args=['10.0', 'Darwin', 'ignore'])
         self.assert3xx(r, url, 302)
 
@@ -108,16 +120,21 @@ class TestPromos(TestCase):
         user = UserProfile.objects.create(username='mozilla')
         games_collection = collection_factory(author=user, slug='games')
         games_collection.set_addons(
-            [self.addon1.pk, self.addon2.pk, self.addon3.pk])
+            [self.addon1.pk, self.addon2.pk, self.addon3.pk]
+        )
         DiscoveryModule.objects.create(
-            app=amo.FIREFOX.id, ordering=1, module='Games!')
+            app=amo.FIREFOX.id, ordering=1, module='Games!'
+        )
 
         musthave_collection = collection_factory(
-            author=user, slug='must-have-media')
+            author=user, slug='must-have-media'
+        )
         musthave_collection.set_addons(
-            [self.addon1.pk, self.addon2.pk, self.addon3.pk])
+            [self.addon1.pk, self.addon2.pk, self.addon3.pk]
+        )
         DiscoveryModule.objects.create(
-            app=amo.FIREFOX.id, ordering=2, module='Must-Have Media')
+            app=amo.FIREFOX.id, ordering=2, module='Must-Have Media'
+        )
 
     def get_disco_url(self, platform, version):
         return reverse('discovery.pane.promos', args=[platform, version])
@@ -143,16 +160,21 @@ class TestPromos(TestCase):
         file_ = self.addon1.current_version.all_files[0]
         file_.update(platform=amo.PLATFORM_LINUX.id)
         assert self.addon1.current_version.supported_platforms == [
-            amo.PLATFORM_LINUX]
+            amo.PLATFORM_LINUX
+        ]
 
         response_mac = self.client.get(
-            self.get_home_url(), {'version': '10.0', 'platform': 'mac'})
+            self.get_home_url(), {'version': '10.0', 'platform': 'mac'}
+        )
         response_darwin = self.client.get(
-            self.get_home_url(), {'version': '10.0', 'platform': 'Darwin'})
+            self.get_home_url(), {'version': '10.0', 'platform': 'Darwin'}
+        )
         response_win = self.client.get(
-            self.get_home_url(), {'version': '10.0', 'platform': 'win'})
+            self.get_home_url(), {'version': '10.0', 'platform': 'win'}
+        )
         response_winnt = self.client.get(
-            self.get_home_url(), {'version': '10.0', 'platform': 'WINNT'})
+            self.get_home_url(), {'version': '10.0', 'platform': 'WINNT'}
+        )
 
         assert response_mac.status_code == 200
         assert response_darwin.status_code == 200
@@ -187,7 +209,8 @@ class TestPromos(TestCase):
         file_ = self.addon1.current_version.all_files[0]
         file_.update(platform=amo.PLATFORM_LINUX.id)
         assert self.addon1.current_version.supported_platforms == [
-            amo.PLATFORM_LINUX]
+            amo.PLATFORM_LINUX
+        ]
         response = self.client.get(self.get_disco_url('10.0', 'Darwin'))
         assert response.status_code == 200
         assert response.content
@@ -214,18 +237,21 @@ class TestPromos(TestCase):
         h2_link = doc('h2 a').eq(0)
         expected_url = '%s%s' % (
             reverse('collections.detail', args=['mozilla', 'games']),
-            '?src=discovery-promo')
+            '?src=discovery-promo',
+        )
         assert h2_link.attr('href') == expected_url
 
     def test_games_linkified_home(self):
-        response = self.client.get(self.get_home_url(),
-                                   {'version': '10.0', 'platform': 'mac'})
+        response = self.client.get(
+            self.get_home_url(), {'version': '10.0', 'platform': 'mac'}
+        )
         self._test_response_contains_addons(response)
         doc = pq(response.content)
         h2_link = doc('h2 a').eq(0)
         expected_url = '%s%s' % (
             reverse('collections.detail', args=['mozilla', 'games']),
-            '?src=hp-dl-promo')
+            '?src=hp-dl-promo',
+        )
         assert h2_link.attr('href') == expected_url
 
     def test_musthave_media_linkified(self):
@@ -235,23 +261,27 @@ class TestPromos(TestCase):
         h2_link = doc('h2 a').eq(1)
         expected_url = '%s%s' % (
             reverse('collections.detail', args=['mozilla', 'must-have-media']),
-            '?src=discovery-promo')
+            '?src=discovery-promo',
+        )
         assert h2_link.attr('href') == expected_url
 
     def test_musthave_media_linkified_home(self):
-        response = self.client.get(self.get_home_url(),
-                                   {'version': '10.0', 'platform': 'mac'})
+        response = self.client.get(
+            self.get_home_url(), {'version': '10.0', 'platform': 'mac'}
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         h2_link = doc('h2 a').eq(1)
         expected_url = '%s%s' % (
             reverse('collections.detail', args=['mozilla', 'must-have-media']),
-            '?src=hp-dl-promo')
+            '?src=hp-dl-promo',
+        )
         assert h2_link.attr('href') == expected_url
 
     def test_musthave_media_no_double_escaping(self):
-        response = self.client.get(self.get_home_url(),
-                                   {'version': '10.0', 'platform': 'mac'})
+        response = self.client.get(
+            self.get_home_url(), {'version': '10.0', 'platform': 'mac'}
+        )
         assert response.status_code == 200
 
         doc = pq(response.content)
@@ -260,9 +290,14 @@ class TestPromos(TestCase):
 
 
 class TestPane(TestCase):
-    fixtures = ['addons/featured', 'base/addon_3615', 'base/collections',
-                'base/featured', 'base/users',
-                'bandwagon/featured_collections']
+    fixtures = [
+        'addons/featured',
+        'base/addon_3615',
+        'base/collections',
+        'base/featured',
+        'base/users',
+        'bandwagon/featured_collections',
+    ]
 
     def setUp(self):
         super(TestPane, self).setUp()
@@ -282,12 +317,14 @@ class TestPane(TestCase):
 
         a = s.find('a').eq(1)
         assert a.attr('href') == (
-            reverse('collections.detail', args=['regularuser', 'favorites']))
+            reverse('collections.detail', args=['regularuser', 'favorites'])
+        )
         assert a.text() == 'My Favorites'
 
         a = s.find('a').eq(2)
         assert a.attr('href') == (
-            reverse('collections.user', args=['regularuser']))
+            reverse('collections.user', args=['regularuser'])
+        )
         assert a.text() == 'My Collections'
 
     def test_mission(self):
@@ -297,7 +334,8 @@ class TestPane(TestCase):
     def test_featured_addons_section(self):
         r = self.client.get(self.url)
         assert pq(r.content)('#featured-addons h2').text() == (
-            'Featured Add-ons')
+            'Featured Add-ons'
+        )
 
     def test_featured_addons(self):
         r = self.client.get(self.url)
@@ -307,8 +345,9 @@ class TestPane(TestCase):
         li = p.find('li[data-guid="%s"]' % addon.guid)
         a = li.find('a.addon-title')
         url = reverse('discovery.addons.detail', args=[7661])
-        assert a.attr('href').endswith(url + '?src=discovery-featured'), (
-            'Unexpected add-on details URL')
+        assert a.attr('href').endswith(
+            url + '?src=discovery-featured'
+        ), 'Unexpected add-on details URL'
         assert li.find('h3').text() == unicode(addon.name)
         assert li.find('img').attr('src') == addon.icon_url
 
@@ -317,8 +356,9 @@ class TestPane(TestCase):
         assert li.attr('data-guid') == addon.guid
         a = li.find('a.addon-title')
         url = reverse('discovery.addons.detail', args=[2464])
-        assert a.attr('href').endswith(url + '?src=discovery-featured'), (
-            'Unexpected add-on details URL')
+        assert a.attr('href').endswith(
+            url + '?src=discovery-featured'
+        ), 'Unexpected add-on details URL'
         assert li.find('h3').text() == unicode(addon.name)
         assert li.find('img').attr('src') == addon.icon_url
 
@@ -339,8 +379,7 @@ class TestPane(TestCase):
 
         # Look for all images that are not icon uploads.
         imgs = doc('img:not([src*="/media/"])')
-        imgs_ok = (pq(img).attr('src').startswith('/static/')
-                   for img in imgs)
+        imgs_ok = (pq(img).attr('src').startswith('/static/') for img in imgs)
         assert all(imgs_ok), 'Images must be prefixed with MEDIA_URL!'
 
         featured = doc('#featured-themes')
@@ -348,8 +387,9 @@ class TestPane(TestCase):
 
         a = featured.find('a[data-browsertheme]')
         url = reverse('discovery.addons.detail', args=[15679])
-        assert a.attr('href').endswith(url + '?src=discovery-featured'), (
-            'Unexpected add-on details URL')
+        assert a.attr('href').endswith(
+            url + '?src=discovery-featured'
+        ), 'Unexpected add-on details URL'
         assert a.attr('target') == '_self'
         assert featured.find('.addon-title').text() == unicode(addon.name)
 
@@ -360,10 +400,12 @@ class TestDetails(TestCase):
     def setUp(self):
         super(TestDetails, self).setUp()
         self.addon = self.get_addon()
-        self.detail_url = reverse('discovery.addons.detail',
-                                  args=[self.addon.slug])
-        self.eula_url = reverse('discovery.addons.eula',
-                                args=[self.addon.slug])
+        self.detail_url = reverse(
+            'discovery.addons.detail', args=[self.addon.slug]
+        )
+        self.eula_url = reverse(
+            'discovery.addons.eula', args=[self.addon.slug]
+        )
 
     def get_addon(self):
         return Addon.objects.get(id=3615)
@@ -372,7 +414,8 @@ class TestDetails(TestCase):
         doc = pq(self.client.get(self.detail_url).content)
         assert doc('#install .install-button').text() == 'Download Now'
         assert doc('#install .eula').text() == (
-            'View End-User License Agreement')
+            'View End-User License Agreement'
+        )
         doc = pq(self.client.get(self.eula_url).content)
         assert doc('#install .install-button').text() == 'Download Now'
 
@@ -412,8 +455,9 @@ class TestPersonaDetails(TestCase):
     def test_by(self):
         """Test that the `by ... <authors>` section works."""
         r = self.client.get(self.url)
-        assert pq(r.content)('h2.author').text().startswith(
-            'by persona_author')
+        assert (
+            pq(r.content)('h2.author').text().startswith('by persona_author')
+        )
 
     def test_no_version(self):
         """Don't display a version number for themes."""
@@ -427,24 +471,31 @@ class TestPersonaDetails(TestCase):
         details = doc('.addon-info li')
 
         # There's no "Last Updated" entry.
-        assert not any('Last Updated' in node.text_content()
-                       for node in details)
+        assert not any(
+            'Last Updated' in node.text_content() for node in details
+        )
 
         # But there's a "Created" entry.
         for detail in details:
             if detail.find('h3').text_content() == 'Created':
                 created = detail.find('p').text_content()
                 assert created == (
-                    trim_whitespace(format_date(self.addon.created)))
+                    trim_whitespace(format_date(self.addon.created))
+                )
                 break  # Needed, or we go in the "else" clause.
         else:
             assert False, 'No "Created" entry found.'
 
 
 class TestDownloadSources(TestCase):
-    fixtures = ['base/addon_3615', 'base/users',
-                'base/collections', 'base/featured', 'addons/featured',
-                'legacy_discovery/discoverymodules']
+    fixtures = [
+        'base/addon_3615',
+        'base/users',
+        'base/collections',
+        'base/featured',
+        'addons/featured',
+        'legacy_discovery/discoverymodules',
+    ]
 
     def setUp(self):
         super(TestDownloadSources, self).setUp()
@@ -454,78 +505,118 @@ class TestDownloadSources(TestCase):
         url = reverse('discovery.addons.detail', args=['a3615'])
         r = self.client.get(url)
         doc = pq(r.content)
-        assert doc('#install a.download').attr('href').endswith(
-            '?src=discovery-details')
-        assert doc('#install li a#learn-more').attr('href').endswith(
-            '?src=discovery-learnmore')
-        assert doc('#install li.privacy a').attr('href').endswith(
-            '?src=discovery-learnmore')
+        assert (
+            doc('#install a.download')
+            .attr('href')
+            .endswith('?src=discovery-details')
+        )
+        assert (
+            doc('#install li a#learn-more')
+            .attr('href')
+            .endswith('?src=discovery-learnmore')
+        )
+        assert (
+            doc('#install li.privacy a')
+            .attr('href')
+            .endswith('?src=discovery-learnmore')
+        )
 
     def test_detail_trickle(self):
-        url = (reverse('discovery.addons.detail', args=['a3615']) +
-               '?src=discovery-featured')
+        url = (
+            reverse('discovery.addons.detail', args=['a3615'])
+            + '?src=discovery-featured'
+        )
         r = self.client.get(url)
         doc = pq(r.content)
-        assert doc('#install a.download').attr('href').endswith(
-            '?src=discovery-featured')
+        assert (
+            doc('#install a.download')
+            .attr('href')
+            .endswith('?src=discovery-featured')
+        )
 
     def test_eula(self):
         url = reverse('discovery.addons.eula', args=['a3615'])
         r = self.client.get(url)
         doc = pq(r.content)
-        assert doc('#install a.download').attr('href').endswith(
-            '?src=discovery-details')
-        assert doc('#install li:eq(1)').find('a').attr('href').endswith(
-            '?src=discovery-details')
+        assert (
+            doc('#install a.download')
+            .attr('href')
+            .endswith('?src=discovery-details')
+        )
+        assert (
+            doc('#install li:eq(1)')
+            .find('a')
+            .attr('href')
+            .endswith('?src=discovery-details')
+        )
 
     def test_eula_trickle(self):
-        url = (reverse('discovery.addons.eula', args=['a3615']) +
-               '?src=discovery-upandcoming')
+        url = (
+            reverse('discovery.addons.eula', args=['a3615'])
+            + '?src=discovery-upandcoming'
+        )
         r = self.client.get(url)
         doc = pq(r.content)
-        assert doc('#install a.download').attr('href').endswith(
-            '?src=discovery-upandcoming')
-        assert doc('#install li:eq(1)').find('a').attr('href').endswith(
-            '?src=discovery-upandcoming')
+        assert (
+            doc('#install a.download')
+            .attr('href')
+            .endswith('?src=discovery-upandcoming')
+        )
+        assert (
+            doc('#install li:eq(1)')
+            .find('a')
+            .attr('href')
+            .endswith('?src=discovery-upandcoming')
+        )
 
 
 class TestTestPilot(TestCase):
-    fixtures = ['base/users', 'base/addon_3615',
-                'legacy_discovery/discoverymodules']
+    fixtures = [
+        'base/users',
+        'base/addon_3615',
+        'legacy_discovery/discoverymodules',
+    ]
 
     def setUp(self):
         super(TestTestPilot, self).setUp()
         self.url = reverse('discovery.pane.promos', args=['Darwin', '10.0'])
         self.addon = Addon.objects.get(id=3615)
         DiscoveryModule.objects.create(
-            app=amo.FIREFOX.id, ordering=4,
-            module='Test Pilot')
+            app=amo.FIREFOX.id, ordering=4, module='Test Pilot'
+        )
 
     def test_testpilot(self):
         r = self.client.get(self.url)
         assert pq(r.content)('h2').text() == 'Become a Test Pilot'
-        assert (pq(r.content)('h3').text() ==
-                'Unlock early access to experimental browser features.')
-        assert (pq(r.content)('a').attr('href') ==
-                'https://testpilot.firefox.com/')
+        assert (
+            pq(r.content)('h3').text()
+            == 'Unlock early access to experimental browser features.'
+        )
+        assert (
+            pq(r.content)('a').attr('href') == 'https://testpilot.firefox.com/'
+        )
 
 
 class TestMonthlyPick(TestCase):
-    fixtures = ['base/users', 'base/addon_3615',
-                'legacy_discovery/discoverymodules']
+    fixtures = [
+        'base/users',
+        'base/addon_3615',
+        'legacy_discovery/discoverymodules',
+    ]
 
     def setUp(self):
         super(TestMonthlyPick, self).setUp()
         self.url = reverse('discovery.pane.promos', args=['Darwin', '10.0'])
         self.addon = Addon.objects.get(id=3615)
         DiscoveryModule.objects.create(
-            app=amo.FIREFOX.id, ordering=4,
-            module='Monthly Pick')
+            app=amo.FIREFOX.id, ordering=4, module='Monthly Pick'
+        )
 
     def test_monthlypick(self):
         # First test with locale=None, it should never appear.
-        mp = MonthlyPick.objects.create(addon=self.addon, blurb='BOOP',
-                                        image='http://mozilla.com')
+        mp = MonthlyPick.objects.create(
+            addon=self.addon, blurb='BOOP', image='http://mozilla.com'
+        )
         response = self.client.get(self.url)
         assert response.content == ''
 
@@ -538,20 +629,24 @@ class TestMonthlyPick(TestCase):
         a = pick.find('h3 a')
         url = reverse('discovery.addons.detail', args=['a3615'])
         assert a.attr('href').endswith(url + '?src=discovery-promo'), (
-            'Unexpected add-on details URL: %s' % url)
+            'Unexpected add-on details URL: %s' % url
+        )
         assert a.attr('target') == '_self'
         assert a.text() == unicode(self.addon.name)
         assert pick.find('img').attr('src') == 'http://mozilla.com'
         assert pick.find('.wrap > div > div > p').text() == 'BOOP'
-        assert pick.find('p.install-button a').attr('href').endswith(
-            '?src=discovery-promo')
+        assert (
+            pick.find('p.install-button a')
+            .attr('href')
+            .endswith('?src=discovery-promo')
+        )
 
     def test_monthlypick_disabled_addon(self):
         disabled_addon = addon_factory(disabled_by_user=True)
         MonthlyPick.objects.create(
-            addon=disabled_addon, blurb='foo', locale='en-US')
-        MonthlyPick.objects.create(
-            addon=self.addon, blurb='bar', locale='')
+            addon=disabled_addon, blurb='foo', locale='en-US'
+        )
+        MonthlyPick.objects.create(addon=self.addon, blurb='bar', locale='')
 
         response = self.client.get(self.url)
         pick = pq(response.content)('#monthly')
@@ -559,8 +654,9 @@ class TestMonthlyPick(TestCase):
         assert pick.parents('.panel').attr('data-addonguid') == self.addon.guid
 
     def test_monthlypick_no_image(self):
-        MonthlyPick.objects.create(addon=self.addon, blurb='BOOP', locale='',
-                                   image='')
+        MonthlyPick.objects.create(
+            addon=self.addon, blurb='BOOP', locale='', image=''
+        )
 
         # Tests for no image when screenshot not set.
         r = self.client.get(self.url)
@@ -574,7 +670,8 @@ class TestMonthlyPick(TestCase):
         pick = pq(r.content)('#monthly')
         assert pick.length == 1
         assert pick.find('img').attr('src') == (
-            self.addon.all_previews[0].image_url)
+            self.addon.all_previews[0].image_url
+        )
 
     def test_no_monthlypick(self):
         r = self.client.get(self.url)
@@ -586,16 +683,17 @@ class TestPaneMoreAddons(TestCase):
 
     def setUp(self):
         super(TestPaneMoreAddons, self).setUp()
-        self.addon1 = addon_factory(hotness=99,
-                                    version_kw=dict(max_app_version='5.0'))
-        self.addon2 = addon_factory(hotness=0,
-                                    version_kw=dict(max_app_version='6.0'))
+        self.addon1 = addon_factory(
+            hotness=99, version_kw=dict(max_app_version='5.0')
+        )
+        self.addon2 = addon_factory(
+            hotness=0, version_kw=dict(max_app_version='6.0')
+        )
 
     def _url(self, **kwargs):
         default = dict(
-            section='up-and-coming',
-            version='5.0',
-            platform='Darwin')
+            section='up-and-coming', version='5.0', platform='Darwin'
+        )
         default.update(kwargs)
         return reverse('discovery.pane.more_addons', kwargs=default)
 
@@ -620,8 +718,11 @@ class TestPaneMoreAddons(TestCase):
 
     def test_hotness_normal_strict_opt_in(self):
         # Add a 3rd add-on that should get filtered out b/c of compatibility.
-        addon_factory(hotness=50, version_kw=dict(max_app_version='7.0'),
-                      file_kw=dict(strict_compatibility=True))
+        addon_factory(
+            hotness=50,
+            version_kw=dict(max_app_version='7.0'),
+            file_kw=dict(strict_compatibility=True),
+        )
 
         res = self.client.get(self._url(version='12.0', compat_mode='normal'))
         assert res.status_code == 200
@@ -629,8 +730,11 @@ class TestPaneMoreAddons(TestCase):
 
     def test_hotness_normal_binary_components(self):
         # Add a 3rd add-on that should get filtered out b/c of compatibility.
-        addon_factory(hotness=50, version_kw=dict(max_app_version='7.0'),
-                      file_kw=dict(binary_components=True))
+        addon_factory(
+            hotness=50,
+            version_kw=dict(max_app_version='7.0'),
+            file_kw=dict(binary_components=True),
+        )
 
         res = self.client.get(self._url(version='12.0', compat_mode='normal'))
         assert res.status_code == 200
@@ -638,14 +742,18 @@ class TestPaneMoreAddons(TestCase):
 
     def test_hotness_normal_compat_override(self):
         # Add a 3rd add-on that should get filtered out b/c of compatibility.
-        addon3 = addon_factory(hotness=50,
-                               version_kw=dict(max_app_version='7.0'))
+        addon3 = addon_factory(
+            hotness=50, version_kw=dict(max_app_version='7.0')
+        )
 
         # Add override for this add-on.
         compat = CompatOverride.objects.create(guid='three', addon=addon3)
         CompatOverrideRange.objects.create(
-            compat=compat, app=1,
-            min_version=addon3.current_version.version, max_version='*')
+            compat=compat,
+            app=1,
+            min_version=addon3.current_version.version,
+            max_version='*',
+        )
 
         res = self.client.get(self._url(version='12.0', compat_mode='normal'))
         assert res.status_code == 200

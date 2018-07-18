@@ -18,6 +18,7 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
     """
     Descriptor that handles creating and updating Translations given strings.
     """
+
     def __get__(self, instance, cls=None):
         if instance is None:
             return self
@@ -60,7 +61,7 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
         else:
             try:
                 trans = getattr(instance, self.field.name)
-            except AttributeError, instance.DoesNotExist:
+            except (AttributeError, instance.DoesNotExist):
                 trans = None
             if trans is not None and to_language(trans.locale) == lang.lower():
                 # Replace the translation in the current language.
@@ -71,7 +72,8 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
                 # already exist, because trans_id is set) or are looking to
                 # create one in a different language anyway.
                 translation = self.field.related_model.new(
-                    string, lang, id=trans_id)
+                    string, lang, id=trans_id
+                )
 
         # A new translation has been created and it might need to be saved.
         # This adds the translation to the queue of translation that need
@@ -114,6 +116,7 @@ class TranslatedField(models.ForeignKey):
     we will look for 1) a translation in the current locale and 2) fallback
     with any translation matching the foreign key.
     """
+
     to = 'translations.Translation'
     requires_unique_target = False
     forward_related_accessor_class = TranslationDescriptor
@@ -121,13 +124,15 @@ class TranslatedField(models.ForeignKey):
     def __init__(self, **kwargs):
         # to_field: The field on the related object that the relation is to.
         # Django wants to default to translations.autoid, but we need id.
-        kwargs.update({
-            'null': True,
-            'to_field': 'id',
-            'unique': True,
-            'blank': True,
-            'on_delete': models.SET_NULL
-        })
+        kwargs.update(
+            {
+                'null': True,
+                'to_field': 'id',
+                'unique': True,
+                'blank': True,
+                'on_delete': models.SET_NULL,
+            }
+        )
 
         self.short = kwargs.pop('short', True)
         self.require_locale = kwargs.pop('require_locale', True)
@@ -160,7 +165,8 @@ class TranslatedField(models.ForeignKey):
     def contribute_to_class(self, cls, name, private_only=False, **kwargs):
         """Add this Translation to ``cls._meta.translated_fields``."""
         super(TranslatedField, self).contribute_to_class(
-            cls, name, private_only=private_only, **kwargs)
+            cls, name, private_only=private_only, **kwargs
+        )
 
         # Add self to the list of translated fields.
         if hasattr(cls._meta, 'translated_fields'):
@@ -202,13 +208,12 @@ class NoLinksNoMarkupField(TranslatedField):
 def switch(obj, new_model):
     """Switch between Translation and Purified/Linkified Translations."""
     fields = [
-        (f.name, getattr(obj, f.name, None))
-        for f in new_model._meta.fields]
+        (f.name, getattr(obj, f.name, None)) for f in new_model._meta.fields
+    ]
     return new_model(**dict(fields))
 
 
 class _TransField(object):
-
     def __init__(self, *args, **kwargs):
         self.default_locale = settings.LANGUAGE_CODE
         self.widget = kwargs.pop('widget', TransInput)
@@ -245,11 +250,12 @@ class _TransField(object):
                 if self.default_locale.lower() == locale:
                     super(_TransField, self).validate(val)
                 super(_TransField, self).run_validators(val)
-            except forms.ValidationError, e:
+            except forms.ValidationError as e:
                 for message in e.messages:
                     self.parent_form.add_error(
                         self._field_name,
-                        LocaleErrorMessage(message=message, locale=locale))
+                        LocaleErrorMessage(message=message, locale=locale),
+                    )
         return value
 
     def has_changed(self, initial, data):

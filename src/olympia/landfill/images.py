@@ -35,8 +35,9 @@ def create_theme_images(theme, placement, hash_):
     """
     color = random.choice(ImageColor.colormap.keys())
     image = Image.new('RGB', (3000, 200), color)
-    tmp_path = os.path.join(settings.TMP_PATH,
-                            'persona_{placement}'.format(placement=placement))
+    tmp_path = os.path.join(
+        settings.TMP_PATH, 'persona_{placement}'.format(placement=placement)
+    )
     if not os.path.exists(tmp_path):
         os.makedirs(tmp_path)
     tmp_loc = os.path.join(tmp_path, hash_)

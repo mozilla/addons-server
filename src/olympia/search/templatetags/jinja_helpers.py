@@ -20,8 +20,11 @@ def SimpleSearchForm(request, search_cat):
 def showing(query, pager):
     """Writes a string that tells the user what they are seeing in terms of
     search results."""
-    format_opts = (pager.start_index(), pager.end_index(),
-                   pager.paginator.count)
+    format_opts = (
+        pager.start_index(),
+        pager.end_index(),
+        pager.paginator.count,
+    )
     query = escape(query)
 
     if query:
@@ -29,7 +32,8 @@ def showing(query, pager):
             u'Showing {0} - {1} of {2} results for <strong>{3}</strong>'
         ).format(*(format_opts + (query,)))
     else:
-        showing = ugettext(
-            u'Showing {0} - {1} of {2} results').format(*format_opts)
+        showing = ugettext(u'Showing {0} - {1} of {2} results').format(
+            *format_opts
+        )
 
     return jinja2.Markup(showing)

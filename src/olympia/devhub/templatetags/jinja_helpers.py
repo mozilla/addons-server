@@ -62,11 +62,14 @@ def source_form_field(field):
 @library.render_with('devhub/versions/file_status_message.html')
 def file_status_message(file):
     choices = File.STATUS_CHOICES
-    return {'fileid': file.id, 'platform': file.get_platform_display(),
-            'created': format_date(file.created),
-            'status': choices[file.status],
-            'actions': amo.LOG_REVIEW_EMAIL_USER,
-            'status_date': format_date(file.datestatuschanged)}
+    return {
+        'fileid': file.id,
+        'platform': file.get_platform_display(),
+        'created': format_date(file.created),
+        'status': choices[file.status],
+        'actions': amo.LOG_REVIEW_EMAIL_USER,
+        'status_date': format_date(file.datestatuschanged),
+    }
 
 
 @library.global_function
@@ -78,8 +81,10 @@ def dev_files_status(files):
     for file in files:
         status_count[file.status] += 1
 
-    return [(count, unicode(choices[status])) for
-            (status, count) in status_count.items()]
+    return [
+        (count, unicode(choices[status]))
+        for (status, count) in status_count.items()
+    ]
 
 
 @library.global_function
@@ -111,11 +116,13 @@ def log_action_class(action_id):
 def summarize_validation(validation):
     """Readable summary of add-on validation results."""
     # L10n: first parameter is the number of errors
-    errors = ungettext('{0} error', '{0} errors',
-                       validation.errors).format(validation.errors)
+    errors = ungettext('{0} error', '{0} errors', validation.errors).format(
+        validation.errors
+    )
     # L10n: first parameter is the number of warnings
-    warnings = ungettext('{0} warning', '{0} warnings',
-                         validation.warnings).format(validation.warnings)
+    warnings = ungettext(
+        '{0} warning', '{0} warnings', validation.warnings
+    ).format(validation.warnings)
     return "%s, %s" % (errors, warnings)
 
 
@@ -138,13 +145,15 @@ def get_compat_counts(addon):
 @library.global_function
 def version_disabled(version):
     """Return True if all the files are disabled."""
-    disabled = [status == amo.STATUS_DISABLED
-                for _id, status in version.statuses]
+    disabled = [
+        status == amo.STATUS_DISABLED for _id, status in version.statuses
+    ]
     return all(disabled)
 
 
 @library.global_function
 def pending_activity_log_count_for_developer(version):
     alog = ActivityLog.objects.for_version(version).filter(
-        action__in=amo.LOG_REVIEW_QUEUE_DEVELOPER)
+        action__in=amo.LOG_REVIEW_QUEUE_DEVELOPER
+    )
     return filter_queryset_to_pending_replies(alog).count()

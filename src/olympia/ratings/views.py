@@ -24,8 +24,14 @@ from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.utils import paginate, render
 from olympia.api.pagination import OneOrZeroPageNumberPagination
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowIfPublic, AllowOwner, AllowRelatedObjectPermissions,
-    AnyOf, ByHttpMethod, GroupPermission)
+    AllowAddonAuthor,
+    AllowIfPublic,
+    AllowOwner,
+    AllowRelatedObjectPermissions,
+    AnyOf,
+    ByHttpMethod,
+    GroupPermission,
+)
 from olympia.api.throttling import GranularUserRateThrottle
 
 from . import forms
@@ -42,11 +48,9 @@ addon_view = addon_view_factory(qs=Addon.objects.valid)
 @addon_view
 @non_atomic_requests
 def review_list(request, addon, review_id=None, user_id=None):
-    qs = Rating.without_replies.all().filter(
-        addon=addon).order_by('-created')
+    qs = Rating.without_replies.all().filter(addon=addon).order_by('-created')
 
-    ctx = {'addon': addon,
-           'grouped_ratings': GroupedRating.get(addon.id)}
+    ctx = {'addon': addon, 'grouped_ratings': GroupedRating.get(addon.id)}
 
     ctx['form'] = forms.RatingForm(None)
     is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
@@ -70,8 +74,11 @@ def review_list(request, addon, review_id=None, user_id=None):
         # Don't filter out empty reviews for admins.
         if not is_admin:
             # But otherwise, filter out everyone elses empty reviews.
-            user_filter = (Q(user=request.user.pk)
-                           if request.user.is_authenticated() else Q())
+            user_filter = (
+                Q(user=request.user.pk)
+                if request.user.is_authenticated()
+                else Q()
+            )
             qs = qs.filter(~Q(body=None) | user_filter)
 
     ctx['reviews'] = reviews = paginate(request, qs)
@@ -80,7 +87,8 @@ def review_list(request, addon, review_id=None, user_id=None):
         ctx['review_perms'] = {
             'is_admin': is_admin,
             'is_reviewer': acl.action_allowed(
-                request, amo.permissions.RATINGS_MODERATE),
+                request, amo.permissions.RATINGS_MODERATE
+            ),
             'is_author': acl.check_addon_ownership(request, addon, dev=True),
         }
         ctx['flags'] = get_flags(request, reviews.object_list)
@@ -104,8 +112,12 @@ def flag(request, addon, review_id):
     if review.user_id == request.user.id:
         raise PermissionDenied
     if not review.body:
-        return {'msg': ugettext('This rating can\'t be flagged because it has '
-                                'no review text.')}
+        return {
+            'msg': ugettext(
+                'This rating can\'t be flagged because it has '
+                'no review text.'
+            )
+        }
     data = {'rating': review_id, 'user': request.user.id}
     try:
         instance = RatingFlag.objects.get(**data)
@@ -116,8 +128,12 @@ def flag(request, addon, review_id):
     if form.is_valid():
         form.save()
         Rating.objects.filter(id=review_id).update(editorreview=True)
-        return {'msg': ugettext('Thanks; this review has been flagged '
-                                'for reviewer approval.')}
+        return {
+            'msg': ugettext(
+                'Thanks; this review has been flagged '
+                'for reviewer approval.'
+            )
+        }
     else:
         return json_view.error(form.errors)
 
@@ -139,7 +155,6 @@ def _review_details(request, addon, form, create=True):
         # editing the previous reply if it existed, even if it had been
         # deleted.
         'deleted': False,
-
         # This field is not saved, but it helps the model know that the action
         # should be logged.
         'user_responsible': request.user,
@@ -168,16 +183,13 @@ def reply(request, addon, review_id):
         kwargs = {
             'reply_to': rating,
             'addon': addon,
-            'defaults': _review_details(request, addon, form)
+            'defaults': _review_details(request, addon, form),
         }
         reply, created = Rating.unfiltered.update_or_create(**kwargs)
-        return redirect(jinja_helpers.url(
-            'addons.ratings.detail', addon.slug, review_id))
-    ctx = {
-        'review': rating,
-        'form': form,
-        'addon': addon
-    }
+        return redirect(
+            jinja_helpers.url('addons.ratings.detail', addon.slug, review_id)
+        )
+    ctx = {'review': rating, 'form': form, 'addon': addon}
     return render(request, 'ratings/reply.html', ctx)
 
 
@@ -187,15 +199,20 @@ def add(request, addon):
     if addon.has_author(request.user):
         raise PermissionDenied
     form = forms.RatingForm(request.POST or None)
-    if (request.method == 'POST' and form.is_valid() and
-            not request.POST.get('detailed')):
+    if (
+        request.method == 'POST'
+        and form.is_valid()
+        and not request.POST.get('detailed')
+    ):
         details = _review_details(request, addon, form)
         rating = Rating.objects.create(**details)
         if 'flag' in form.cleaned_data and form.cleaned_data['flag']:
-            rf = RatingFlag(rating=rating,
-                            user_id=request.user.id,
-                            flag=RatingFlag.OTHER,
-                            note='URLs')
+            rf = RatingFlag(
+                rating=rating,
+                user_id=request.user.id,
+                flag=RatingFlag.OTHER,
+                note='URLs',
+            )
             rf.save()
         return redirect(jinja_helpers.url('addons.ratings.list', addon.slug))
     return render(request, 'ratings/add.html', {'addon': addon, 'form': form})
@@ -243,30 +260,31 @@ class RatingReplyThrottle(RatingThrottle):
 class RatingViewSet(AddonChildMixin, ModelViewSet):
     serializer_class = RatingSerializer
     permission_classes = [
-        ByHttpMethod({
-            'get': AllowAny,
-            'head': AllowAny,
-            'options': AllowAny,  # Needed for CORS.
-
-            # Deletion requires a specific permission check.
-            'delete': CanDeleteRatingPermission,
-
-            # To post a rating you just need to be authenticated.
-            'post': IsAuthenticated,
-
-            # To edit a rating you need to be the author or be an admin.
-            'patch': AnyOf(AllowOwner, GroupPermission(
-                amo.permissions.ADDONS_EDIT)),
-
-            # Implementing PUT would be a little incoherent as we don't want to
-            # allow users to change `version` but require it at creation time.
-            # So only PATCH is allowed for editing.
-        }),
+        ByHttpMethod(
+            {
+                'get': AllowAny,
+                'head': AllowAny,
+                'options': AllowAny,  # Needed for CORS.
+                # Deletion requires a specific permission check.
+                'delete': CanDeleteRatingPermission,
+                # To post a rating you just need to be authenticated.
+                'post': IsAuthenticated,
+                # To edit a rating you need to be the author or be an admin.
+                'patch': AnyOf(
+                    AllowOwner, GroupPermission(amo.permissions.ADDONS_EDIT)
+                ),
+                # Implementing PUT would be a little incoherent as we don't want to
+                # allow users to change `version` but require it at creation time.
+                # So only PATCH is allowed for editing.
+            }
+        )
     ]
-    reply_permission_classes = [AnyOf(
-        GroupPermission(amo.permissions.ADDONS_EDIT),
-        AllowRelatedObjectPermissions('addon', [AllowAddonAuthor]),
-    )]
+    reply_permission_classes = [
+        AnyOf(
+            GroupPermission(amo.permissions.ADDONS_EDIT),
+            AllowRelatedObjectPermissions('addon', [AllowAddonAuthor]),
+        )
+    ]
     reply_serializer_class = RatingSerializerReply
     throttle_classes = (RatingThrottle,)
 
@@ -291,9 +309,9 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             return self.addon_object
 
         if 'addon_pk' not in self.kwargs:
-            self.kwargs['addon_pk'] = (
-                self.request.data.get('addon') or
-                self.request.GET.get('addon'))
+            self.kwargs['addon_pk'] = self.request.data.get(
+                'addon'
+            ) or self.request.GET.get('addon')
         if not self.kwargs['addon_pk']:
             # If we don't have an addon object, set it as None on the instance
             # and return immediately, that's fine.
@@ -306,7 +324,8 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         # default from AddonViewSet is too restrictive, we are not modifying
         # the add-on itself so we don't need all the permission checks it does.
         return super(RatingViewSet, self).get_addon_object(
-            permission_classes=[AllowIfPublic])
+            permission_classes=[AllowIfPublic]
+        )
 
     def check_permissions(self, request):
         """Perform permission checks.
@@ -368,32 +387,37 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         response = super(RatingViewSet, self).get_paginated_response(data)
         if 'show_grouped_ratings' in self.request.GET:
             try:
-                show_grouped_ratings = (
-                    serializers.BooleanField().to_internal_value(
-                        self.request.GET['show_grouped_ratings']))
+                show_grouped_ratings = serializers.BooleanField().to_internal_value(
+                    self.request.GET['show_grouped_ratings']
+                )
             except serializers.ValidationError:
                 raise ParseError(
-                    'show_grouped_ratings parameter should be a boolean')
+                    'show_grouped_ratings parameter should be a boolean'
+                )
             if show_grouped_ratings and self.get_addon_object():
-                response.data['grouped_ratings'] = dict(GroupedRating.get(
-                    self.addon_object.id))
+                response.data['grouped_ratings'] = dict(
+                    GroupedRating.get(self.addon_object.id)
+                )
         return response
 
     def get_queryset(self):
         requested = self.request.GET.get('filter', '').split(',')
-        has_addons_edit = acl.action_allowed(self.request,
-                                             amo.permissions.ADDONS_EDIT)
+        has_addons_edit = acl.action_allowed(
+            self.request, amo.permissions.ADDONS_EDIT
+        )
 
         # Add this as a property of the view, because we need to pass down the
         # information to the serializer to show/hide delete replies.
         if not hasattr(self, 'should_access_deleted_ratings'):
             self.should_access_deleted_ratings = (
-                ('with_deleted' in requested or self.action != 'list') and
-                self.request.user.is_authenticated() and
-                has_addons_edit)
+                ('with_deleted' in requested or self.action != 'list')
+                and self.request.user.is_authenticated()
+                and has_addons_edit
+            )
 
         should_access_only_top_level_ratings = (
-            self.action == 'list' and self.get_addon_object())
+            self.action == 'list' and self.get_addon_object()
+        )
 
         if self.should_access_deleted_ratings:
             # For admins or add-on authors replying. When listing, we include
@@ -431,12 +455,15 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         queryset = queryset.select_related('version', 'user')
         replies_qs = Rating.unfiltered.select_related('user')
         return queryset.prefetch_related(
-            Prefetch('reply', queryset=replies_qs))
+            Prefetch('reply', queryset=replies_qs)
+        )
 
     @detail_route(
-        methods=['post'], permission_classes=reply_permission_classes,
+        methods=['post'],
+        permission_classes=reply_permission_classes,
         serializer_class=reply_serializer_class,
-        throttle_classes=[RatingReplyThrottle])
+        throttle_classes=[RatingReplyThrottle],
+    )
     def reply(self, *args, **kwargs):
         # A reply is just like a regular post, except that we set the reply
         # FK to the current rating object and only allow add-on authors/admins.

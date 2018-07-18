@@ -29,8 +29,10 @@ def locale_html(translatedfield):
     else:
         rtl_locales = map(translation.to_locale, settings.LANGUAGES_BIDI)
         textdir = 'rtl' if locale in rtl_locales else 'ltr'
-        return jinja2.Markup(' lang="%s" dir="%s"' % (
-            jinja2.escape(translatedfield.locale), textdir))
+        return jinja2.Markup(
+            ' lang="%s" dir="%s"'
+            % (jinja2.escape(translatedfield.locale), textdir)
+        )
 
 
 @library.filter
@@ -49,7 +51,8 @@ def truncate(s, length=255, killwords=True, end='...'):
         return s.__truncate__(length, killwords, end)
 
     return jinja2.filters.do_truncate(
-        engines['jinja2'].env, force_text(s), length, killwords, end)
+        engines['jinja2'].env, force_text(s), length, killwords, end
+    )
 
 
 @library.global_function
@@ -62,8 +65,13 @@ def l10n_menu(context, default_locale='en-us', remove_locale_url=''):
     c = dict(context.items())
     if 'addon' in c:
         remove_locale_url = c['addon'].get_dev_url('remove-locale')
-    c.update({'languages': languages, 'default_locale': default_locale,
-              'remove_locale_url': remove_locale_url})
+    c.update(
+        {
+            'languages': languages,
+            'default_locale': default_locale,
+            'remove_locale_url': remove_locale_url,
+        }
+    )
     return c
 
 
@@ -72,10 +80,17 @@ def all_locales(addon, field_name, nl2br=False, prettify_empty=False):
     field = getattr(addon, field_name, None)
     if not addon or field is None:
         return
-    trans = field.__class__.objects.filter(id=field.id,
-                                           localized_string__isnull=False)
-    ctx = dict(addon=addon, field=field, field_name=field_name,
-               translations=trans, nl2br=nl2br, prettify_empty=prettify_empty)
+    trans = field.__class__.objects.filter(
+        id=field.id, localized_string__isnull=False
+    )
+    ctx = dict(
+        addon=addon,
+        field=field,
+        field_name=field_name,
+        translations=trans,
+        nl2br=nl2br,
+        prettify_empty=prettify_empty,
+    )
     t = loader.get_template('translations/all-locales.html')
     return jinja2.Markup(t.render(ctx))
 
