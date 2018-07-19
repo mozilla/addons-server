@@ -722,7 +722,7 @@ class TestEditMedia(BaseTestEdit):
         assert labels[0].find('input').get('name') == 'icon_type'
         assert labels[0].find('input').get('value') == ''
 
-        # Second one is a regualr icon
+        # Second one is a regular icon
         assert labels[1].get('for') == 'id_icon_type_3_3'
         assert labels[1].find('input').get('name') == 'icon_type'
         assert labels[1].find('input').get('value') == 'icon/alerts'
