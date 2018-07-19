@@ -445,8 +445,7 @@ function show_slug_edit(e) {
 
 function slugify() {
     var slug = $('#id_slug');
-    url_customized = slug.attr('data-customized') == 0 ||
-                               !slug.attr('data-customized');
+    url_customized = slug.attr('data-customized') == 0;
     if (url_customized || !slug.val()) {
         var s = makeslug($('#id_name').val());
         slug.val(s);

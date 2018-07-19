@@ -85,11 +85,10 @@ def clean_slug(instance, slug_field='slug'):
         translations = Translation.objects.filter(id=instance.name_id)
         if translations.exists():
             slug = translations[0]
-        else:
-            slug = get_random_slug()
 
     max_length = instance._meta.get_field(slug_field).max_length
-    slug = slugify(slug)[:max_length]
+    # We have to account for slug being reduced to '' by slugify
+    slug = slugify(slug or '')[:max_length] or get_random_slug()
 
     if DeniedSlug.blocked(slug):
         slug = slug[:max_length - 1] + '~'
