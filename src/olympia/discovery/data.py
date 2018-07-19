@@ -56,16 +56,15 @@ discopane_items = {
             addon_id=599898, type=amo.ADDON_PERSONA,
             addon_name='Strands of Gold'),
 
-        # uBlock Origin
+        # Privacy Badger
         DiscoItem(
-            addon_id=607454,
-            heading=_(u'Block ads {start_sub_heading}'
+            addon_id=506646,
+            heading=_(u'Stop sneaky trackers {start_sub_heading}'
                       u'with {addon_name}{end_sub_heading}'),
             description=string_concat(
                 '<blockquote>',
-                _(u'A lightweight and effective ad blocker. uBlock Origin '
-                  u'enforces thousands of content filters without chewing up '
-                  u'a lot of memory.'),
+                _(u'Block invisible trackers and spying ads that follow you '
+                  u'around the web.'),
                 '</blockquote>')),
 
         # Emoji Cheatsheet

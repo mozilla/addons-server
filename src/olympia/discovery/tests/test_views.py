@@ -25,7 +25,7 @@ def get_dummy_addons():
         (884014, addon_factory(id=884014, type=amo.ADDON_EXTENSION)),
         (700308, addon_factory(id=700308, type=amo.ADDON_EXTENSION)),
         (599898, addon_factory(id=599898, type=amo.ADDON_PERSONA)),
-        (607454, addon_factory(id=607454, type=amo.ADDON_EXTENSION)),
+        (506646, addon_factory(id=506646, type=amo.ADDON_EXTENSION)),
         (511962, addon_factory(id=511962, type=amo.ADDON_EXTENSION)),
         (297738, addon_factory(id=297738, type=amo.ADDON_PERSONA,
                                description=u'297738')),
