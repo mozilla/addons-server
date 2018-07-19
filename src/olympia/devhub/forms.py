@@ -96,6 +96,18 @@ class DeleteForm(forms.Form):
 
 class LicenseRadioSelect(forms.RadioSelect):
 
+    def get_context(self, name, value, attrs):
+        context = super(LicenseRadioSelect, self).get_context(
+            name, value, attrs)
+
+        # Make sure the `class` is only set on the radio fields and
+        # not on the `ul`. This avoids style issues among other things.
+        # See https://github.com/mozilla/addons-server/issues/8902
+        # and https://github.com/mozilla/addons-server/issues/8920
+        del context['widget']['attrs']['class']
+
+        return context
+
     def create_option(self, name, value, label, selected, index,
                       subindex=None, attrs=None):
         context = super(LicenseRadioSelect, self).create_option(
