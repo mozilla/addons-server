@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-19 12:13+0000\n"
+"PO-Revision-Date: 2018-07-19 12:21+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -928,7 +928,7 @@ msgid "The language code {lang_code} is invalid."
 msgstr "Код мови {lang_code} неправильний."
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "Ви повинні вказати об'єкт для {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -2332,13 +2332,13 @@ msgid "No Reputation"
 msgstr "Немає репутації"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "Добре (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Дуже добре (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "Відмінно (3)"
 
 msgid "Manual Reviewer Points"
 msgstr "Бали за ручну перевірку"
@@ -3420,7 +3420,7 @@ msgid "Describe Add-on"
 msgstr "Опишіть додаток"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Назва на сторінці цього сайту. Може відрізнятися від назви всередині додатка, що показується всередині Firefox"
 
 msgid "Add-on URL:"
 msgstr "URL додатка:"
@@ -3949,13 +3949,15 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Увійдіть, щоб змінювати й оновлювати свій додаток"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "Ресурси для успішного запуску"
 
 #, python-format
 msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
+"Ви створили розширення і готові його оприлюднити. Що далі? Ознайомтеся з нашими порадами про створення привабливої сторінки додатка, долучення до відібраних на "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, знаходження відповідей на питання стосовно розробки, а також щоб бути в курсі новин та подій, що стосуються розробників розширень."
 
 msgid "View Resources for Publishers"
 msgstr "Перегляд ресурсів для тих, хто розміщує розширення"
@@ -3971,7 +3973,7 @@ msgstr "Дізнайтеся як"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "Хочете, щоб ваше розширення потрапило до відібраних на %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Ви можете дізнатись необхідну інформацію з наших правил відбору розширень."
 
 msgid "Learn More"
 msgstr "Дізнатись більше"
@@ -4402,9 +4404,8 @@ msgstr ""
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Вдоскональте роботу з emoji {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—just a click away."
-msgstr "Десятки чудових емоджі на будь-який випадок — завжди на відстані одного натискання."
+msgstr "Десятки чудових emoji на будь-який випадок — на відстані одного натискання."
 
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Завантажуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
@@ -6753,13 +6754,11 @@ msgstr "Відправлено користувачем."
 msgid "new"
 msgstr "нове"
 
-#, fuzzy
 msgid "Ban"
-msgstr "та"
+msgstr "Блокувати"
 
-#, fuzzy
 msgid "Delete picture"
-msgstr "Видалити моє зображення користувача"
+msgstr "Вилучити зображення"
 
 msgid "Delete User Account"
 msgstr "Вилучити обліковий запис користувача"
