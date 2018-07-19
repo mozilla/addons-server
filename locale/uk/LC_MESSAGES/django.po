@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-19 12:21+0000\n"
+"PO-Revision-Date: 2018-07-19 12:27+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4387,19 +4387,19 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Не залишайте цифрового сліду {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Дозвольте Firefox забути локальні дані веб-сайтів, такі як куки й дані сховища, але лише для вибраних доменів."
 
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "Покращуйте відео {start_sub_heading}за допомогою {addon_name} {end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
+msgstr "Насолоджуйтесь новим набором можливостей YouTube, такими як режим кіно, блокування реклами, авто-відтворення та інших."
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Блокуйте рекламу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
-msgstr ""
+msgstr "Легкий та ефективний додаток для блокування реклами. uBlock Origin забезпечує тисячами фільтрів вмісту без суттєвого впливу на споживання пам'яті."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Вдоскональте роботу з emoji {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
@@ -6640,18 +6640,18 @@ msgstr "Видалити локаль"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned.user"
-msgstr ""
+msgstr "Користувача \"%(user)s\" було заблоковано."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
-msgstr ""
+msgstr "Зображення, що належить користувачу \"%(user)s\" було вилучено."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned.users, "
-msgstr ""
+msgstr "Користувачі \"%(users)s\" були заблоковані, "
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "Заблокувати вибраних користувачів"
 
 msgid "Profile Photo"
 msgstr "Світлина профілю"
