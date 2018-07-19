@@ -12,7 +12,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import Collection
@@ -97,6 +97,61 @@ class TestUnlistedAddons(StatsTest):
         self.login_as_visitor()
 
         self._check_it(self.public_views_gen(format='json'), 404)
+
+    def test_stats_available_for_admins(self):
+        """
+        All the views for the stats are available to admins for
+        unlisted addons.
+        """
+        self.login_as_admin()
+        self._check_it(self.public_views_gen(format='json'), 200)
+
+
+class TestListedAddons(StatsTest):
+
+    def setUp(self):
+        super(TestListedAddons, self).setUp()
+        self.addon = Addon.objects.get(pk=4)
+        self.someuser = UserProfile.objects.get(
+            email='nobodyspecial@mozilla.com')
+
+    def test_private_stats_for_listed_addon(self):
+        self.addon.update(public_stats=False)
+        self.login_as_visitor()
+        self._check_it(self.public_views_gen(format='json'), 403)
+
+        AddonUser.objects.create(user=self.someuser, addon=self.addon)
+        self._check_it(self.public_views_gen(format='json'), 200)
+
+    def test_stats_for_mozilla_disabled_addon(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+
+        # Public users should not see stats
+        self.client.logout()
+        self._check_it(self.public_views_gen(format='json'), 404)
+
+        # Developers should not see stats
+        AddonUser.objects.create(user=self.someuser, addon=self.addon)
+        self._check_it(self.public_views_gen(format='json'), 404)
+
+        # Admins should see stats
+        self.login_as_admin()
+        self._check_it(self.public_views_gen(format='json'), 200)
+
+    def test_stats_for_user_disabled_addon(self):
+        self.addon.update(disabled_by_user=True)
+
+        # Public users should not see stats
+        self.client.logout()
+        self._check_it(self.public_views_gen(format='json'), 404)
+
+        # Developers should not see stats
+        AddonUser.objects.create(user=self.someuser, addon=self.addon)
+        self._check_it(self.public_views_gen(format='json'), 404)
+
+        # Admins should see stats
+        self.login_as_admin()
+        self._check_it(self.public_views_gen(format='json'), 200)
 
 
 class ESStatsTest(StatsTest, amo.tests.ESTestCase):
