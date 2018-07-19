@@ -707,6 +707,26 @@ class TestEditMedia(BaseTestEdit):
         for k in data:
             assert unicode(getattr(addon, k)) == data[k]
 
+    def test_edit_media_shows_proper_labels(self):
+        """Regression test for
+
+        https://github.com/mozilla/addons-server/issues/8900"""
+        doc = pq(self.client.get(self.media_edit_url).content)
+
+        labels = doc('#icons_default li label')
+
+        assert labels.length == 18
+
+        # First one is the default icon
+        assert labels[0].get('for') == 'id_icon_type_2_2'
+        assert labels[0].find('input').get('name') == 'icon_type'
+        assert labels[0].find('input').get('value') == ''
+
+        # Second one is a regualr icon
+        assert labels[1].get('for') == 'id_icon_type_3_3'
+        assert labels[1].find('input').get('name') == 'icon_type'
+        assert labels[1].find('input').get('value') == 'icon/alerts'
+
     def test_edit_media_preuploadedicon(self):
         data = {'icon_type': 'icon/appearance'}
         data_formset = self.formset_media(**data)

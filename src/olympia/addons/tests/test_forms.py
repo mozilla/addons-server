@@ -261,8 +261,6 @@ class TestTagsForm(TestCase):
 class TestIconForm(TestCase):
     fixtures = ['base/addon_3615']
 
-    # TODO: AddonFormMedia save() method could do with cleaning up
-    # so this isn't necessary
     def setUp(self):
         super(TestIconForm, self).setUp()
         self.temp_dir = tempfile.mkdtemp(dir=settings.TMP_PATH)
@@ -282,29 +280,6 @@ class TestIconForm(TestCase):
     def get_icon_paths(self):
         path = os.path.join(self.addon.get_icon_dir(), str(self.addon.id))
         return ['%s-%s.png' % (path, size) for size in amo.ADDON_ICON_SIZES]
-
-    @patch('olympia.addons.models.Addon.get_icon_dir')
-    def testIconUpload(self, get_icon_dir):
-        # TODO(gkoberger): clarify this please.
-        # We no longer use AddonFormMedia to upload icons, so
-        # skipping until I can ask andym what the point of this
-        # test is.  Additionally, it's called "TestIconRemoval",
-        # but it doesn't seem to remove icons.
-        return
-        get_icon_dir.return_value = self.temp_dir
-
-        for path in self.get_icon_paths():
-            assert not os.path.exists(path)
-
-        img = get_image_path('non-animated.png')
-        data = {'icon_upload': img, 'icon_type': 'text/png'}
-        self.request.FILES = {'icon_upload': open(img)}
-        form = forms.AddonFormMedia(data=data, request=self.request,
-                                    instance=self.addon)
-        assert form.is_valid()
-        form.save(self.addon)
-        for path in self.get_icon_paths():
-            assert os.path.exists(path)
 
     @patch('olympia.amo.models.ModelBase.update')
     def test_icon_modified(self, update_mock):
