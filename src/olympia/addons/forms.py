@@ -14,9 +14,9 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
+from olympia.addons import tasks as addons_tasks
 from olympia.addons.models import (
     Addon, AddonCategory, Category, DeniedSlug, Persona)
-from olympia.addons.tasks import save_theme, save_theme_reupload, index_addons
 from olympia.addons.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.fields import (
@@ -227,7 +227,7 @@ class CategoryForm(forms.Form):
         del addon.all_categories
 
         # Make sure the add-on is properly re-indexed
-        index_addons.delay([addon.id])
+        addons_tasks.index_addons.delay([addon.id])
 
     def clean_categories(self):
         categories = self.cleaned_data['categories']
@@ -510,7 +510,7 @@ class ThemeForm(ThemeFormBase):
         p.save()
 
         # Save header and preview images.
-        save_theme.delay(data['header_hash'], addon.pk)
+        addons_tasks.save_theme.delay(data['header_hash'], addon.pk)
 
         # Save user info.
         addon.addonuser_set.create(user=user, role=amo.AUTHOR_ROLE_OWNER)
@@ -653,7 +653,8 @@ class EditThemeForm(AddonFormBase):
         # Theme reupload.
         if not addon.is_pending():
             if data['header_hash']:
-                save_theme_reupload.delay(data['header_hash'], addon.pk)
+                addons_tasks.save_theme_reupload.delay(
+                    data['header_hash'], addon.pk)
 
         return data
 
