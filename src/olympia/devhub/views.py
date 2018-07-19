@@ -912,7 +912,6 @@ def addons_section(request, addon_id, addon, section, editable=False):
             if cat_form:
                 if cat_form.is_valid():
                     cat_form.save()
-                    addon.save()
                 else:
                     editable = True
             if dependency_form:

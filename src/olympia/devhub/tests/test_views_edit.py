@@ -196,6 +196,7 @@ class BaseTestEditBasic(BaseTestEdit):
         assert response.status_code == 200
         self.assertFormError(
             response, 'form', 'name', 'This field is required.')
+        assert self.get_addon().name != ''
 
     def test_edit_name_spaces(self):
         data = self.get_dict(name='    ', slug='test_addon')
