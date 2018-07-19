@@ -785,6 +785,22 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         assert category_ids_new == [22]
 
+    def test_ul_class_rendering_regression(self):
+        """Test ul of license widget doesn't render `license` class.
+
+        Regression test for:
+         * https://github.com/mozilla/addons-server/issues/8902
+         * https://github.com/mozilla/addons-server/issues/8920
+        """
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        ul = doc('#id_license-builtin')
+
+        assert ul.attr('class') is None
+
     def test_set_builtin_license_no_log(self):
         self.is_success(self.get_dict(**{'license-builtin': 3}))
         addon = self.get_addon()
