@@ -1453,7 +1453,7 @@ class TestEditTechnical(BaseTestEdit):
         self.check_dep_ids([5299])
 
 
-class TestEditBasicUnlisted(BaseTestEditBasic):
+class TestEditBasicUnlisted(BaseTestEditBasic, L10nTestsMixin):
     listed = False
     __test__ = True
 
