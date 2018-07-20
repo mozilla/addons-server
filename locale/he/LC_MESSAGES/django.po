@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-20 13:11+0000\n"
+"PO-Revision-Date: 2018-07-20 13:31+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4531,7 +4531,7 @@ msgstr "עדכוני מזג אוויר מיידיים {start_sub_heading}עם {a
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
-msgstr ""
+msgstr "קבלת מידע על מזג האוויר העולמי באופן מיידי היישר ב־Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
@@ -4543,11 +4543,11 @@ msgstr "חיפוש תמונות הפוך {start_sub_heading}עם {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "ראית תמונה מעניינת ברשת ורוצה ללמוד עוד עליה? ניתן לנסות את כלי חיפוש התמונות הזה."
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "עובד עם YouTube, ‏Facebook, ‏Vimeo, ‏Twitch, ‏Dailymotion, ‏Periscope ועוד מאות אתרי וידאו אחרים."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4576,7 +4576,7 @@ msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "הנאה ממגוון של תכונות חדשות ב־YouTube כגון מצב קולנוע, חסימת פרסומות, בקרת ניגון אוטומטי ועוד."
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4584,7 +4584,7 @@ msgstr "חיפוש תמונות בקלות {start_sub_heading}עם {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "סימון כל טקסט ולחיצה על כפתור העכבר הימני כדי לבצע חיפוש תמונה."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4602,7 +4602,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "הוספת עובדות מ־Britannica באופן אוטומטי לתוצאות החיפוש שלך."
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4610,7 +4610,7 @@ msgstr "הסרת פרסומות ב־YouTube {start_sub_heading}עם {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "חסימת הערות ופרסומות מציקות המופיעות ב־YouTube."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4619,7 +4619,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "שליחת מאמרים חדשים, סיפורים, הודעות בבלוגים ועוד ל־Kindle שלך."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4644,7 +4644,7 @@ msgstr "בדיקות דקדוק אוטומטיות {start_sub_heading}עם {addo
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "קבלת עזרה בדקדוק בכל מקום בו ברצונך לכתוב ברחבי האינטרנט — רשתות חברתיות, דוא״ל, מסמכים ועוד."
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4669,7 +4669,7 @@ msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
-msgstr ""
+msgstr "הנאה מגישה חופשית ללמעלה מ־10 מיליון כתבי מחקר."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4677,7 +4677,7 @@ msgstr "התאמה אישית של מחוות עכבר {start_sub_heading}עם {
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "דרך חדשה לניווט עם למעלה מ־50 מחוות עכבר שימושיות."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4685,7 +4685,7 @@ msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "החשכת הדף מסביב לנגני וידאו לטובת חווית צפייה ממוקדת."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4717,7 +4717,7 @@ msgstr "הגדלת תמונות {start_sub_heading}עם {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
-msgstr ""
+msgstr "ריחוף על תמונה כדי להגדיל אותה."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4726,7 +4726,7 @@ msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "מחיקת עוגיות באופן אוטומטי לאחר סגירת לשונית."
 
 #. editorial content for the discovery pane.
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4734,7 +4734,7 @@ msgstr "שינוי תצוגת גודל הדף {start_sub_heading}עם {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "דרך פשוטה לשנות את גודל הטקסט בכל דף — או אפילו להגדיל את הדף עצמו."
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4766,7 +4766,7 @@ msgstr "חיפוש הלשוניות שלך {start_sub_heading}עם {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr ""
+msgstr "ניהול הלשוניות הפתוחות שלך בסרגל צד מסודר."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4783,7 +4783,7 @@ msgstr "רענון לשוניות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "טעינת לשוניות מחדש באופן אוטומטי בהתבסס על מרווחי זמן מוגדרים."
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4799,7 +4799,7 @@ msgstr "חסימת רכיבי מעקב {start_sub_heading}עם {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "קבלת שכבה נוספת שלך הגנת מעקב תוך כדי גלישה רשת."
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4807,7 +4807,7 @@ msgstr "קריאת קובצי ePub {start_sub_heading}עם {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "להנות מקובצי ePub היישר ב־Firefox — הגדלת גודל הגופן, ממדי הדף ועוד."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4824,7 +4824,7 @@ msgstr "מעקב אחרי רכיבי מעקב {start_sub_heading}עם {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "קבלת הצצה למי עוקב אחריך בלחיצה אחת."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
