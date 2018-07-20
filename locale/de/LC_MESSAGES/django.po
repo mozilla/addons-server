@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-20 09:55+0000\n"
+"PO-Revision-Date: 2018-07-20 12:51+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -5079,45 +5079,40 @@ msgid "Get in-depth engagement and traffic information for any website."
 msgstr "Informieren Sie sich über die Verbindungen und den Datenverkehr auf jeder Website."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Ändern Sie den Stil von Wikipedia {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh and modern appearance to Wikipedia."
-msgstr ""
+msgstr "Gibt Wikipedia ein neues und modernes Aussehen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Arbeiten Sie schneller {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
-msgstr ""
+msgstr "Machen Sie Ihre Arbeit mit Mausgesten – dann geht es schneller."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbessern Sie Ihr Emoji-Spiel {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgstr "Verbergen Sie die Seite {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Blenden Sie Bereiche der aktuellen Website aus."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Laden Sie Videos herunter {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgstr "Laden Sie Grafiken herunter {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
-msgstr ""
+msgstr "Wählen Sie Grafiken von beliebigen Websites und laden Sie diese herunter."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Passen Sie Tabs an {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgstr "Verbergen Sie Ihren Standort {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
