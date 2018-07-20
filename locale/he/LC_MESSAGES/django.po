@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-20 14:14+0000\n"
+"PO-Revision-Date: 2018-07-20 14:27+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4429,7 +4429,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "חסימת רכיבי מעקב בלתי נראים ופרסומות מרגלות שעוקבים אחריך ברחבי הרשת."
 
 #, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4810,9 +4810,8 @@ msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, 
 msgstr "להנות מקובצי ePub היישר ב־Firefox — הגדלת גודל הגופן, ממדי הדף ועוד."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgstr "שיפור חווית ה־YouTube שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
@@ -4861,9 +4860,8 @@ msgid "Get the best coupons automatically applied to your shopping cart at check
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgstr "תרגומים מהירים {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
@@ -4956,9 +4954,8 @@ msgid "Stop trackers when you click Google and Yandex search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgstr "ניווט דינאמי {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
@@ -4983,9 +4980,8 @@ msgid "Make the web easier on the eyes by darkening its display."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgstr "חסימת חלונות קופצים {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
@@ -5093,9 +5089,8 @@ msgid "Automatically reload tabs based on time intervals."
 msgstr "טעינת לשוניות מחדש באופן אוטומטי בהתבסס על מרווחי זמן."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgstr "תיקון המועדפים שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
@@ -5205,9 +5200,8 @@ msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
 msgstr "שימוש בכתובות דוא״ל זמניות וחכמות כדי להישאר בעילום שם ולהימנע מספאם."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgstr "שינוי הפרטיות שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily customize the built-in privacy settings in Firefox."
@@ -5714,9 +5708,8 @@ msgid "Clip web content like articles, videos, images, and more to save and use 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgstr "לגלוש באופן מאובטח {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
@@ -5745,7 +5738,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "הגנה ע״י ססמה לסימניות האישיות שלך."
 
 #. editorial content for the discovery pane.
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5802,7 +5795,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "האם עוצמת השמע באתר שקטה מידי? חזקה מידי? SoundFixer יכול לעזור."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
