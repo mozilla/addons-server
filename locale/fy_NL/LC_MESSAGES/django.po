@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-20 06:56+0000\n"
+"PO-Revision-Date: 2018-07-20 07:15+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4389,9 +4389,8 @@ msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, aut
 msgstr "Genietsje fan in pakket nije YouTube-funksjes, lykas bioskoopmodus, advertinsjeblokkearring, automatysk ôfspylje en mear."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Stop stikeme trackers {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
@@ -4431,72 +4430,64 @@ msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you 
 msgstr "Mear as mar ien basisark foar skermôfbyldingen: mei Awesome Screenshot Plus kinne jo ôfbyldingen fan oanpaste tekst en grafiken foarsjen, en jo fisuele eleminten bewarje en diele."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas ljepblêden oan {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Pas nije ljepblêden oan {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Set ienfâldich oer {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Sykje ôfbyldingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Advertinsjes blokkearje en privacybeskerming {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Ljepblêden opnij útfûn {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Stop folgjen fan Facebook {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Sykjen ferienfâldigje {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Daliks waarfernijingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
