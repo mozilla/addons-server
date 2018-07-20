@@ -25,14 +25,14 @@ class IconTypeSelect(forms.RadioSelect):
         for option in self.subwidgets(name, value, attrs):
             option_value = option['value']
 
+            option['widget'] = self.create_option(
+                name=name, value=option['value'], label=option['label'],
+                selected=option_value == value,
+                index=option['index'],
+                attrs=option['attrs'])
+
             if option_value.split('/')[0] == 'icon' or option_value == '':
                 icon_name = option['label']
-
-                option['widget'] = self.create_option(
-                    name=name, value=option['value'], label=option['label'],
-                    selected=option_value == value,
-                    index=option['index'],
-                    attrs=option['attrs'])
 
                 output.append(format_html(
                     self.base_html,
@@ -43,6 +43,10 @@ class IconTypeSelect(forms.RadioSelect):
                     original_widget=self._render(
                         self.option_template_name, option)
                 ))
+            else:
+                output.append(format_html(
+                    '<li class="hide">{widget}</li>',
+                    widget=self._render(self.option_template_name, option)))
 
         return mark_safe(u'\n'.join(output))
 
