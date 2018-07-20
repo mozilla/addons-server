@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-20 06:53+0000\n"
+"PO-Revision-Date: 2018-07-20 11:52+0000\n"
 "Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4464,7 +4464,7 @@ msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "Prenašajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
+msgstr "Razširite YouTube z naborom novih funkcij, kot so način kina, zavračanje oglasov, samodejno predvajanje in več."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4515,7 +4515,7 @@ msgstr "Prilagodite si zavihke {start_sub_heading}z {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Čudovita nova stran s prilagodljivimi ozadji, lokalnimi podatki o vremenu in drugimi možnostmi."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4551,7 +4551,7 @@ msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Imate brezštevilno množico odprtih zavihkov? Organizirajte jih v urejeni stranski vrstici."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4560,7 +4560,7 @@ msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Izolirajte svojo osebnost na Facebooku od preostalega spletnega življenja z ločenim \"vsebnikom\", ki Facebooku oteži sledenje vaši dejavnosti po spletu."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4569,7 +4569,7 @@ msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Preprosto označite besedilo na katerikoli spletni strani in iščite z vrsto iskalnikov."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4592,7 +4592,7 @@ msgstr "Prenašajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "Ste na spletu našli zanimivo sliko, o kateri želite izvedeti več? Preskusite to orodje za iskanje slik."
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
@@ -4701,7 +4701,7 @@ msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Pomočnik za slovnico, ki vam je na voljo povsod, kjer pišete na spletu — na družbenih omrežjih, v e-pošti, dokumentih in več."
 
 #. editorial content for the discovery pane.
 #, fuzzy
