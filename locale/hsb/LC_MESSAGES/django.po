@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-20 11:13+0000\n"
+"PO-Revision-Date: 2018-07-20 11:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4477,7 +4477,7 @@ msgstr "Přiměrjenje rajtarkow {start_sub_heading}z {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Wužiwajće rjanu nowu stronu z přiměrujomnymi pozadkami, informacijemi wo lokalnym wjedrje a wjace."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4504,7 +4504,7 @@ msgstr "Blokujće wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Kontrolujće cyle jadnorje wabjenje, kotrež widźiće a kak wam w interneće slěduja."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4513,7 +4513,7 @@ msgstr "Blokujće wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Maće jara wjele wočinjenych rajtarkow? Organizujće je w praktiskej bóčnicy."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4522,7 +4522,7 @@ msgstr "Blokujće wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Izolujće swoju Facebookowu identitu do wotdźěleneho „kontejnera“, kotryž Facebookej poćežuje, wašim pohibam we webje slědować."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4531,7 +4531,7 @@ msgstr "Blokujće wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Wuzběhńće prosće tekst na někajkej webstronje, zo byšće z pytawu wuraz pytał."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4540,7 +4540,7 @@ msgstr "Blokujće wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
-msgstr ""
+msgstr "Wobstarajće sej globalne wjedrowe daty direktnje w swojim Firefox."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4554,11 +4554,11 @@ msgstr "Polěpšće wideja {start_sub_heading}z {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "Chceće sej zajimawy wobraz w interneće wobhladać a wjace wo nim zhonić? Wupruwujće tutón nastroj za pytanje wobrazow."
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Funguje z YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope a stami druhich widejosydłow."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4572,7 +4572,7 @@ msgstr "Blokujće wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Zjednorće a synchronizujće wšě swoje rozdźělne přizjewjenja websydłow přez graty z jednym hesłom."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4600,7 +4600,7 @@ msgstr "Blokujće wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Wuzběhńće tekst a klikńće z prawej tastu, zo byšće spěšne pytanje za wobrazami přewjedł."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4619,7 +4619,7 @@ msgstr "Blokujće wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "Přidajće awtomatisce swojim pytanskim wuslědkam fakty z Britannica."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4628,7 +4628,7 @@ msgstr "Polěpšće wideja {start_sub_heading}z {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Blokujće mylace wabjenje a pokazy na YouTube."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4637,7 +4637,7 @@ msgstr "Blokujće wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Sćelće nowe nastawki, stawizny, blogowe přinoški a wjacaje na swój KIndle."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4646,7 +4646,7 @@ msgstr "Blokujće wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Organizujće swoje rajtarki na zakładźe URL-mustrow a zeskupće je po barbach."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4664,7 +4664,7 @@ msgstr "Blokujće wabjenje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Wobstarajće sej w interneće pomoc wo gramatice . w socialnych medijach, e-mejlkach, dokumentach a wjace."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4682,7 +4682,7 @@ msgstr "Přiměrjenje rajtarkow {start_sub_heading}z {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Wuzběhńće tekst na webstronje - abo wubjerće cyłu stronu -, zo byšće hnydom přełožił."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4691,7 +4691,7 @@ msgstr "Čińće fota wobrazowki {start_sub_heading}z {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
-msgstr ""
+msgstr "Wužiwajće darmotny přistup na přez 10 milionow slědźerskich dźěłow."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4904,7 +4904,7 @@ msgstr "Sćehńće wideja {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "Přełožujće wuzběhnjeny tekst abo cyłu webstronu"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5056,7 +5056,7 @@ msgstr "Čińće fota wobrazowki {start_sub_heading}z {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
+msgstr "Wuzběhńće tekst na stronje, klikńće z prawej tastu a přełožće hnydom."
 
 #. editorial content for the discovery pane.
 #, fuzzy
