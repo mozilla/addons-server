@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-20 13:53+0000\n"
+"PO-Revision-Date: 2018-07-20 13:56+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4612,27 +4612,24 @@ msgid "Enjoy free access to 10+ million research papers."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Εξατομίκευση καρτελών {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Προσαρμογή κινήσεων ποντικιού {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Βελτιστοποίηση βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Αναζήτηση με καθαρή συνείδηση {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, python-format
@@ -4875,7 +4872,7 @@ msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "Ορίστε μια προσαρμοσμένη αρχική σελίδα για τις νέες καρτέλες."
 
 #. editorial content for the discovery pane.
 #, fuzzy
