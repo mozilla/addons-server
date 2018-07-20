@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-20 12:12+0000\n"
+"PO-Revision-Date: 2018-07-20 12:24+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -451,7 +451,7 @@ msgid "Permissions"
 msgstr "అనుమతులు"
 
 msgid "This add-on has been marked as experimental by its developers"
-msgstr ""
+msgstr "ఈ పొడగింతను దాని డెవలపర్లు ప్రయోగాత్మకమైనదిగా గుర్తించారు"
 
 msgid "This add-on requires the following add-ons to work properly:"
 msgstr ""
@@ -1376,7 +1376,7 @@ msgid "Available in your locale"
 msgstr "మీ భాషలో అందుబాటులో ఉన్నవి"
 
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "మీ భాషలో అందుబాటులో ఉన్న భాషా ప్యాకుల, నిఘంటువుల జాబితా."
 
 msgid "Language"
 msgstr "భాష"
@@ -8000,7 +8000,7 @@ msgid "User Login"
 msgstr "వాడుకరి ప్రవేశం"
 
 msgid "Log in with Firefox Accounts"
-msgstr ""
+msgstr "Firefox ఖాతాతో ప్రవేశించండి"
 
 msgid "Password Reset"
 msgstr "సంకేతపదం రీసెట్"
@@ -8079,7 +8079,7 @@ msgid "edit your profile"
 msgstr "మీ ప్రొఫైల్‌ను సవరించండి"
 
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "మేము మీ చందాను తొలగించలేకపోయాము"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
@@ -8133,7 +8133,7 @@ msgid "{app} {min} and later"
 msgstr "{app} {min} మరియు తరువాత"
 
 msgid "Permanent link to this version"
-msgstr ""
+msgstr "ఈ వెర్షనుకు శాశ్వత లంకె"
 
 #. {0} is a timestamp, such as September 28, 2011.
 msgid "Released {0}"
