@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-20 13:32+0000\n"
+"PO-Revision-Date: 2018-07-20 13:50+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -5516,257 +5516,231 @@ msgstr "Katzenliebhaber freuen sich Emoji-Spiel {start_sub_heading}mit {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Treffen Sie in jedem neuen Tab ein süßes Kätzchen. Streicheln Sie es hinterm Ohr und warten Sie, was passiert."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Machen Sie Screenshots {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgstr "Senken Sie die Produktivität {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "Für Momente, in denen Sie Laser aus einer Katze abfeuern müssen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Laden Sie Videos herunter {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgstr "Durchsuchen Sie Firefox {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Greifen Sie einfach auf Ihre offenen Tabs, Lesezeichen und Chronik zu."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Viele offene Tabs? Vergessen Sie den Bildlauf und suchen Sie mit Tastaturkürzeln."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Tauchen Sie unter die Oberfläche {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Uncover the software that supports whatever website you're visiting."
-msgstr ""
+msgstr "Entdecken Sie die Software, die die besuchte Website unterstützt."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Hinterlassen Sie saubere digitale Spuren {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgstr "Verhindern Sie Umleitungen und Aktivitätenverfolgung {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Stoppen Sie Umleitungen, damit Sie die gewünschte Website erreichen – schneller."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Zeigen Sie eingegebene Passwörter an {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Ergänzt Passwortfelder um eine Möglichkeit zum Ein-/Ausblenden."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Passen Sie Tabs an {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgstr "Reduzieren Sie Ablenkung {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Konzentrieren Sie sich aufs Wesentliche, indem Sie alles außer dem Videospieler abdunkeln."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Verwalten sie Lesezeichen {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Ändern Sie Ihre Lesezeichen durch ein einfach erreichbares Feld."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Schützen Sie Passwörter {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Speichern Sie Passwörter sicher und melden Sie sich bei bekannten Websites automatisch an."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Ein einfacher Werbeblocker, der nur die gewünschten Inhalte anzeigt."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Machen Sie Screenshots {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgstr "Verfolgen Sie die Preisverläufe auf Amazon {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make informed decisions by tracking the price of a product listed on Amazon."
-msgstr ""
+msgstr "Treffen Sie informierte Entscheidungen, indem Sie den Preis eines Amazon-Produkts verfolgen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Laden Sie Videos herunter {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgstr "Surfen Sie im Vertrauen {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Eine zusätzliche Kontrolle, die sicherstellt, dass Ihre Einkaufsseite auch zuverlässig ist."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Überwachen Sie Produktivität {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Messen Sie die Zeit, die Sie am Computer oder auf bestimmten Arbeits-Apps wie Trello, JIRA, Basecamp, GitHub und vielen mehr verbringen."
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Sammeln Sie Web-Inhalte wie Artikel, Videos, Grafiken und mehr, um sie für individuelle Projekte oder Teamarbeit in Echtzeit zu speichern und zu nutzen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Sicheres Surfen {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
-msgstr ""
+msgstr "Lassen Sie nur Web-Inhalte von vertrauenswürdigen Seiten ausführen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Laden Sie Videos herunter {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgstr "Verwalten Sie Cookies {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Erhalten Sie volle Kontrolle über die Cookies, die Sie beim Surfen sammeln."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Vergessen Sie die Chronik {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Löschen Sie automatisch die Surf-Chronik für ausgewählte Websites."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Schützen Sie Lesezeichen {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Passwortschutz für Ihre persönlichen Lesezeichen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbessern Sie Videos {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Verhindern Sie Bekanntwerden der IP-Adresse {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "Nutzen Sie ein VPN? Dann könnte Ihre IP-Adresse bekannt werden. Verhindern Sie dies, indem Sie WebRTC deaktivieren."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Schließen Sie störende Einblendungen {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply click a button to close annoying pop-up overlays."
-msgstr ""
+msgstr "Mit einem Klick schließen Sie störende Pop-up-Einblendungen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbessern Sie Videos {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Untersuchen Sie eine Grafik {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "Haben Sie im Internet ein interessantes Bild gefunden? Erforschen Sie mit TinEye seine Herkunft."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Einfacheres Arbeiten {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Ziehen Sie einfach Text, Grafiken oder Links, um Aktionen wie Kopieren, Öffnen, Suchen und mehr auszuführen."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Nutzen Sie die Möglichkeit, Video und/oder Audio in verschiedenen Formaten herunterzuladen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Information über den Standort {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Erfahren Sie, in welchem Land der Server einer Website steht. Seien Sie ein informierter Internet-Reisender."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Beheben Sie störendes Audio {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Ist die Lautstärke einer Website zu leise? Zu laut? SoundFixer kann helfen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Passen Sie Tabs an {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgstr "Erst Bearbeiten, dann Drucken {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
-msgstr ""
+msgstr "Ändern Sie die Option einer Website, die Sie drucken möchten – indem Sie Werbung oder geschmacklose Inhalte entfernen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Machen Sie Screenshots {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgstr "Verfolgen Sie die Preisverläufe auf Amazon {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
-msgstr ""
+msgstr "Treffen Sie informierte Entscheidungen, indem Sie den Preis eines Amazon-Produkts verfolgen und Benachrichtigungen dazu erhalten."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Meistern Sie Audio {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Passen Sie Audio-Einstellungen im Browser ganz genau an."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Passen Sie Tabs an {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgstr "Datenschutz {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Verteidigen Sie sich gegen hinterhältige Verfolger."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Verwischen Sie Ihre Spuren {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
-msgstr ""
+msgstr "Suchen Sie mit mehr Sicherheit durch Blockieren von Trackern, besserer Verschlüsselung, privater Suche und anderen wichtigen Dingen."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
