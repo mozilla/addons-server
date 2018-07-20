@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-20 13:31+0000\n"
+"PO-Revision-Date: 2018-07-20 13:53+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4841,7 +4841,7 @@ msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "שיפור חווית הצפייה שלך ע״י שינוי מהירות הסרטון ועוד."
 
 #. editorial content for the discovery pane.
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4849,7 +4849,7 @@ msgstr "גלישה באופן מאובטח {start_sub_heading}עם {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supprts HTTPS."
-msgstr ""
+msgstr "הוספת אבטחה מוצפנת לכל אתר התומך ב־HTTPS."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4867,7 +4867,7 @@ msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "תרגום טקסט מסומן או דף אינטרנט שלם"
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4875,7 +4875,7 @@ msgstr "שיפור Reddit {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "שינוי אופן הגלישה ב־Reddit ע״י הוספת תגים ועוד."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4917,7 +4917,7 @@ msgstr "הגדרת דף הבית שלך {start_sub_heading}עם {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "הגדרת דף בית מותאם אישית ללשוניות החדשות שלך."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4926,7 +4926,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "המרת כל הלשוניות הפתוחות שלך לרשימה כדי לנהל אותם בקלות ולהאיץ את Firefox."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4944,7 +4944,7 @@ msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "שמירת מידע מהאינטרנט ל־OneNote כדי שיהיה ניתן לערוך, להוסיף הערות ועוד."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4962,7 +4962,7 @@ msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr ""
+msgstr "שימוש במחוות עכבר כדי לסגור לשוניות, לחזור לדף הקודם, לטעון מחדש ועוד."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4989,7 +4989,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "חסימת כל החלונות הקופצים כברירת מחדל, ולאחר מכן בחירה באלו שברצונך לפתוח."
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5005,7 +5005,7 @@ msgstr "התאמה אישית הלשונית החדשה שלך {start_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "עריכת דף הלשונית החדשה כדי שיציג מספר מועדף של אריחים, תמונת רקע ועוד."
 
 #. editorial content for the discovery pane.
 msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5013,7 +5013,7 @@ msgstr "קבלת תרגומים מהירים {start_sub_heading}עם {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
+msgstr "סימון טקסט בכל אתר, לחיצה על כפתור העכבר הימני וקבלת תרגום באופן מיידי."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5021,7 +5021,7 @@ msgstr "ניהול הססמאות שלך {start_sub_heading}עם {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "אחסון ססמאות באופן מאובטח וקבלת גישה אליהם מהתקנים מרובים."
 
 #. editorial content for the discovery pane.
 #, fuzzy
