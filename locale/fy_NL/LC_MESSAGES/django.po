@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-20 07:15+0000\n"
+"PO-Revision-Date: 2018-07-20 07:28+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4494,9 +4494,8 @@ msgid "Get instant global weather information right in Firefox."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Choose the page you see every time you open a new tab."
-msgstr "Stel de side yn dy't jo hieltyd sjogge by it iepenjen fan in nij ljepblêd."
+msgstr "Kies de side yn dy't jo hieltyd sjogge by it iepenjen fan in nij ljepblêd."
 
 #. editorial content for the discovery pane.
 #, fuzzy
