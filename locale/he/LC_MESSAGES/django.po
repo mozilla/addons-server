@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-20 13:53+0000\n"
+"PO-Revision-Date: 2018-07-20 14:14+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5055,7 +5055,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "קבלת גישה ללשוניות שנסגרו לאחרונה ע״י לחיצה על כפתור העכבר הימני על הסנח שבסרגל הכלים שלך."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5072,7 +5072,7 @@ msgstr "צפייה בתמונות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr ""
+msgstr "החזרת הכפתור של ״הצגת תמונה״ בזמן חיפוש ב־Google תמונות."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5090,7 +5090,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "טעינת לשוניות מחדש באופן אוטומטי בהתבסס על מרווחי זמן."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5099,7 +5099,7 @@ msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "איתור ותיקון סימניות שבורות, כפילויות ועוד."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5143,7 +5143,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh and modern appearance to Wikipedia."
-msgstr ""
+msgstr "החלת מראה רענן ומודרני לויקיפדיה."
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5185,7 +5185,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "הגבלת גישה לתוכן לא הולם או לא רצוי באמצעות מסנן."
 
 #. editorial content for the discovery pane.
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5202,7 +5202,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "שימוש בכתובות דוא״ל זמניות וחכמות כדי להישאר בעילום שם ולהימנע מספאם."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5269,7 +5269,7 @@ msgstr "יצירת רשימת חסימה לאתרים {start_sub_heading}עם {a
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
-msgstr ""
+msgstr "הגבלת Firefox מכניסה לאתרים מוגדרים."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5287,7 +5287,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "בדיקת כל הזנות ה־RSS המועדפים שלך בדף אחד."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5296,7 +5296,7 @@ msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "הפעלת מצב לילה לחווית צפייה טובה יותר."
 
 #. editorial content for the discovery pane.
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5382,7 +5382,7 @@ msgstr "הורדת סרטונים מ־YouTube {start_sub_heading}עם {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
-msgstr ""
+msgstr "הורדת סרטונים ו/או קובצי שמע."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5417,7 +5417,7 @@ msgstr "מחיקת נתונים {start_sub_heading}עם {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "ניקוי מטמון הדפדפן שלך בלחיצת כפתור או מקש."
 
 #. editorial content for the discovery pane.
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5425,7 +5425,7 @@ msgstr "לא לשכוח יותר לעולם {start_sub_heading}עם {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
-msgstr ""
+msgstr "יצירה וניהול רשימת מטלות בדפדפן שלך."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5441,7 +5441,7 @@ msgstr "להנות ממוזיקה מרחבי העולם {start_sub_heading}עם 
 
 #. editorial content for the discovery pane.
 msgid "Access 20,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "קבלת גישה ללמעלה מ־20,000 תחנות רדיו מכל רחבי העולם."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5465,7 +5465,7 @@ msgstr "גלישה באופן בטוח {start_sub_heading}עם {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "ניווט לגרסה המאובטחת של אתר, אם קיימת אחת כזאת."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5576,7 +5576,7 @@ msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "אפשרויות רבות של שליטה על לשוניות — סגירת לשוניות כפולות, מיזוג חלונות, העתקת כותרת הלשונית ועוד."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5593,7 +5593,7 @@ msgstr "שינוי הלשונית החדשה שלך {start_sub_heading}עם {add
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "הגדרת דפי לשונית חדשה להציג צבעים ותמונות רקע מותאמים אישית."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5650,7 +5650,7 @@ msgstr "חשיפת ססמאות מוקלדות {start_sub_heading}עם {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "הוספת יכולת ההצגה/הסתרה לכל שדות הססמאות."
 
 #. editorial content for the discovery pane.
 #, fuzzy
