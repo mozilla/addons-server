@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-20 10:57+0000\n"
+"PO-Revision-Date: 2018-07-20 13:11+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4420,7 +4420,7 @@ msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
+msgstr "הנאה ממגוון של תכונות חדשות ב־YouTube כגון מצב קולנוע, חסימת פרסומות, ניגון אוטומטי ועוד."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4480,7 +4480,7 @@ msgstr "תרגום בקלות {start_sub_heading}עם {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "סימון כל טקסט, לחיצה על כפתור העכבר הימני וקבלת תרגום באופן מיידי."
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4488,7 +4488,7 @@ msgstr "חיפוש תמונות {start_sub_heading}עם {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "ביצוע חיפוש תמונות הפוך ממגוון של מנועי חיפוש."
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4496,7 +4496,7 @@ msgstr "חסימת פרסומות והגנת פרטיות {start_sub_heading}ע�
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "הגדרה ראשונית פשוטה מאפשרת לך לקחת שליטה על הפרסומות שמופיעות ועל האופן שבו עוקבים אחריך ברשת."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4505,7 +4505,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "יש לך כמות נכבדת של לשוניות פתוחות? ניתן לארגן אותן בסרגל צד מסודר."
 
 #. editorial content for the discovery pane.
 #, fuzzy
