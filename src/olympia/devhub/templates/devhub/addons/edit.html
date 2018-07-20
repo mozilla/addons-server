@@ -17,9 +17,7 @@
 
 {% block content %}
 <header>
-  {% if show_listed_fields %}
-    {{ l10n_menu(addon.default_locale) }}
-  {% endif %}
+  {{ l10n_menu(addon.default_locale) }}
   <h2>{{ addon.name }}</h2>
 </header>
 
