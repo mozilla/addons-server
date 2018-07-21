@@ -4748,11 +4748,11 @@ msgstr "提高您的 emoji 技巧 {start_sub_heading}就用 {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "网页截图、编辑和分享。"
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "一款优秀的 Windows 专属下载工具。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
