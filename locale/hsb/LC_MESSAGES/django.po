@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-21 18:12+0000\n"
+"PO-Revision-Date: 2018-07-21 18:16+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4900,7 +4900,7 @@ msgstr "Nastajće swoju startowu stronu {start_sub_heading}z {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "Postajće swójsku startowu stronu za swoje nowe rajtarki."
 
 #. editorial content for the discovery pane.
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4908,7 +4908,7 @@ msgstr "Nalistujće swoje rajtarki {start_sub_heading}z {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "Konwertujće wšě waše wočinjene rajtarki do lisćiny, zo byšće je lochko rjadował a Firefox pospěšił."
 
 #. editorial content for the discovery pane.
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4916,7 +4916,7 @@ msgstr "Robustne rjadowanje sćehnjenjow {start_sub_heading}z {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Dohladujće status swojich sćehnjenjow z pomocu statusoweje lajsty, strony sćehnjenskeje historije a wjace."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4924,7 +4924,7 @@ msgstr "Składujće webwobsah {start_sub_heading}z {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Składujće informacije z interneta do OneNote, zo byšće je wobdźěłał, komentował a wjace."
 
 #. editorial content for the discovery pane.
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
