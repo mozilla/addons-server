@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-21 21:01+0000\n"
+"PO-Revision-Date: 2018-07-21 21:22+0000\n"
 "Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4476,7 +4476,7 @@ msgstr "随时随地获取语法上的帮助 — 适用于社交媒体、邮件�
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "查看全球时间 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "查世界时间 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
@@ -4709,15 +4709,15 @@ msgstr "一款优秀的 Windows 专属下载工具。"
 
 #. editorial content for the discovery pane.
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "了解是谁在追踪你 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "看看是谁在网上追踪你 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "找出谁在跟踪您以及他们可能向谁何处披露您的信息。"
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "匿名冲浪 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "匿名网上冲浪 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
@@ -5140,7 +5140,7 @@ msgstr "标签页定制 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "去除不必要的格式，仅复制纯文本。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5149,7 +5149,7 @@ msgstr "标签页定制 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "将整个网页翻译为您想要的语言，一键达成。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5158,7 +5158,7 @@ msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr ""
+msgstr "在新标签页中即时显示网页中的所有链接。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5167,7 +5167,7 @@ msgstr "拍摄截图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
-msgstr ""
+msgstr "使用您首选的 PDF 应用程序打开 PDF。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5176,7 +5176,7 @@ msgstr "拍摄截图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
-msgstr ""
+msgstr "剥除链接重定向和 URL 跟踪参数。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5293,7 +5293,7 @@ msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "指定几天后自动清除浏览器历史记录。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5527,7 +5527,7 @@ msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "为网站购物加一道防线，确保购物网站可以信赖。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5594,7 +5594,7 @@ msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply click a button to close annoying pop-up overlays."
-msgstr "一键关闭烦人的弹出式叠加层。"
+msgstr "一键关闭烦人的悬浮窗。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
