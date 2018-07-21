@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-21 17:30+0000\n"
+"PO-Revision-Date: 2018-07-21 17:36+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4812,7 +4812,7 @@ msgstr "Slědujće přesćěhowakam {start_sub_heading}z {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "Pohladajće z jenož jednom kliknjenjom, štóž was slědujeće."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4820,7 +4820,7 @@ msgstr "Změńće swój proksy-serwer {start_sub_heading}z {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "Přehladujće web ze swójskimi proksy-nastajenjemi."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4828,7 +4828,7 @@ msgstr "Wodźće wothrawanje widejow {start_sub_heading}z {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "Polěpšće swoje widźenske dožiwjenje přez přiměrjenje widejospěšnosće a wjace."
 
 #. editorial content for the discovery pane.
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4836,7 +4836,7 @@ msgstr "Přehladujće wěsće {start_sub_heading}z {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
-msgstr ""
+msgstr "Přidajće sydłu, kotrež HTTPS podpěruje, zaklučowanu wěstotu."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
