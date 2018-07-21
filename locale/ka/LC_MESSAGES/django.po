@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-21 13:13+0000\n"
+"PO-Revision-Date: 2018-07-21 13:19+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4479,49 +4479,43 @@ msgstr "საინტერესო სურათი ნახეთ და
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "მუშაობს ასობით ვიდეო-საიტებთან, მათ შორისაა: YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope და ა.შ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "ასობით სხვადასხვა სახის გამორჩეული სიცილაკი—ყოველთვის თქვენს თითებთან ახლოს."
+msgstr "ათეულობით სხვადასხვა სახის გამორჩეული სიცილაკი — ყოველთვის თქვენს თითებთან ახლოს."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "პაროლების მართვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "მარტივად დაასინქრონეთ სხვადასხვა ვებსაიტის ანგარიშების მონაცემები ყველა თქვენს მოწყობილობაზე, ერთი მთავარი პაროლის გამოყენებით."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "მსუბუქი და მძლავრი რეკლამების შემზღუდავი. uBlock Origin გაფართოებას, შეუძლია ათასობით ფილტრის გამოყენება, მეხსიერების დატვირთვის გარეშე."
+msgstr "მსუბუქი და მძლავრი რეკლამების შემზღუდავი. uBlock Origin გაფართოებას, შეუძლია ათასობით გვერდის გაფილტვრა, მეხსიერების დატვირთვის გარეშე."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გააუმჯობესეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "გააუმჯობესეთ ვიდეოების ჩვენება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "ისარგებლეთ YouTube-ის ახალი შესაძლებლობების კრებულით, რაც მოიცავს კინოთეატრის რეჟიმს, რეკლამების შეზღუდვას, თვითგაშვებას და ა.შ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "მარტივად მონახეთ სურათები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "მონიშნეთ ნებისმიერი ტექსტი და მარჯვენა წკაპით პირდაპირ გადადით სურათის ძიებაზე."
 
 #. editorial content for the discovery pane.
 #, fuzzy
