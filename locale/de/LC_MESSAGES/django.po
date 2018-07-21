@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-20 13:50+0000\n"
+"PO-Revision-Date: 2018-07-21 14:29+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -5512,7 +5512,7 @@ msgstr "Konfigurieren Sie Neuer-Tab-Seiten, sodass eigene Hintergrundfarben und 
 
 #. editorial content for the discovery pane.
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Katzenliebhaber freuen sich Emoji-Spiel {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgstr "Katzenliebhaber freuen sich {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
