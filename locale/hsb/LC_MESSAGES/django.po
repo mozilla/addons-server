@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-21 18:16+0000\n"
+"PO-Revision-Date: 2018-07-21 19:31+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4932,7 +4932,7 @@ msgstr "Slědowanski škit při pytanju {start_sub_heading}z {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Blokujće přesćěhowaki, hdyž na pytanske wuslědki Google a Yandex kliknjeće."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4940,7 +4940,7 @@ msgstr "Dynamiska nawigacija {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr ""
+msgstr "Wužiwajće gesty myški, zo byšće rajtarki začinił, jednu stronu wróćo šoł, znowa začitał a wjace."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4948,7 +4948,7 @@ msgstr "Přidajće pytanskim wuslědkam wobrazy {start_sub_heading}z {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
-msgstr ""
+msgstr "Wužiwajće miniaturki z pytanskimi wuslědkami."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4956,7 +4956,7 @@ msgstr "Šonujće swoje woči {start_sub_heading}z {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Zaćěmńće wozjewjenje, zo byšće web přijomniši za woči činił."
 
 #. editorial content for the discovery pane.
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4964,7 +4964,7 @@ msgstr "Blokujće wuskakowace wokna {start_sub_heading}z {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Blokujće po standardźe wšě wuskakowace wokna a rozsudźće potom, kotre chceće wočinić."
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4972,7 +4972,7 @@ msgstr "Přiměrće swoje najlubše websydła {start_sub_heading}z {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Změńće napohlad websydłow! Změńće barby, pozadki stronow a wjace."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4980,7 +4980,7 @@ msgstr "Přiměrće swój nowy rajtark {start_sub_heading}z {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Wobdźěłajće stronu noweho rajtarka, zo byšće swoju preferowanu ličbu kachličkow, pozadkowy wobraz a wjace zwobraznił."
 
 #. editorial content for the discovery pane.
 msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4996,7 +4996,7 @@ msgstr "Rjadujće swoje hesła {start_sub_heading}z {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Składujće hesła wěsće a mějće přistup na nje přez wjacore graty."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5004,7 +5004,7 @@ msgstr "Zhońće, hdźež we webje dóńdźeće {start_sub_heading}z {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Wobstarajće sej stejnišćo w kraju za websydła, kotrež wopytujeće. Budźće informowany internetny pućowar."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5012,7 +5012,7 @@ msgstr "Polěpšće swoje čitanske dožiwjenje {start_sub_heading}z {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Wotstrońće šmjatk wokoło teksta, kotryž čitaće, zo byšće jón atraktiwniši wuhotował."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5020,7 +5020,7 @@ msgstr "Wočińće wjacore wotkazy {start_sub_heading}z {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
-msgstr ""
+msgstr "Klikńće z prawej tastu a ćehńće kursor po wotkazach, kotrež chceće w nowych rajtarkach wočinić."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
