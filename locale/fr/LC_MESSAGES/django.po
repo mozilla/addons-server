@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-20 05:19+0000\n"
+"POT-Creation-Date: 2018-07-21 16:44+0000\n"
 "PO-Revision-Date: 2018-07-18 14:03+0000\n"
 "Last-Translator: adrian <adrian@mozilla.com>\n"
 "Language-Team: français <>\n"
@@ -4882,7 +4882,7 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Add encrypted security to any site that supprts HTTPS."
+msgid "Add encrypted security to any site that supports HTTPS."
 msgstr ""
 
 #. editorial content for the discovery pane.

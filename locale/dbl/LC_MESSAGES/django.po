@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-20 05:19+0000\n"
+"POT-Creation-Date: 2018-07-21 16:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4756,8 +4756,8 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ɓřǿẇşḗ şḗƈŭřḗŀẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Add encrypted security to any site that supprts HTTPS."
-msgstr "Aḓḓ ḗƞƈřẏƥŧḗḓ şḗƈŭřīŧẏ ŧǿ ȧƞẏ şīŧḗ ŧħȧŧ şŭƥƥřŧş ĦŦŦƤŞ."
+msgid "Add encrypted security to any site that supports HTTPS."
+msgstr "Aḓḓ ḗƞƈřẏƥŧḗḓ şḗƈŭřīŧẏ ŧǿ ȧƞẏ şīŧḗ ŧħȧŧ şŭƥƥǿřŧş ĦŦŦƤŞ."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
