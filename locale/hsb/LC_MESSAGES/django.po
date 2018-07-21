@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-21 17:36+0000\n"
+"PO-Revision-Date: 2018-07-21 18:12+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4844,7 +4844,7 @@ msgstr "Nakupujće a lutujće {start_sub_heading}z {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "Wobstarajće sej najlěpše dobropisy, zo byšće je za swoju nakupowanski wozyčk při płaćenju wužiwał."
 
 #. editorial content for the discovery pane.
 msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4860,7 +4860,7 @@ msgstr "Polěpšće Reddit {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Změńće wašnje, z kotrymž Reddit z pomocu klučowych słowow a wjace přehladujeće."
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4868,11 +4868,11 @@ msgstr "Zapopadńće web {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Čińće fota wobrazowki websydłow, wobdźěłajće a dźělće je."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Wurjadny sćehnjenski nastroj jenož za Windows."
 
 #. editorial content for the discovery pane.
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4880,7 +4880,7 @@ msgstr "Identifikujće swoje přesćěhowaki {start_sub_heading}z {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "Zhońće, štóž wam slěduje, a hdźež so waše daty dale dawaja."
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4888,11 +4888,11 @@ msgstr "Přehladujće anonymnje {start_sub_heading}z {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Přehladujće web ze zakrytej identitu - samo, jeli to z druheho kraja činiće."
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Mějće přistup na swoje najlubše sydła, njedawno začinjene rajtarki a wjace - wšitko z wulkotneho kachličkeho napohlada."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
