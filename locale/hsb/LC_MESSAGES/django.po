@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-21 16:32+0000\n"
+"PO-Revision-Date: 2018-07-21 16:50+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4740,7 +4740,7 @@ msgstr "Składujće tekst na pozdźišo {start_sub_heading}z {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
-msgstr ""
+msgstr "Njepisajće samsne zaso a zaso! Jeli husto samsne frazy w swojim dźěle abo druhich zdźělenjach wužiwaće, składujće je z Clippings a zasadźće je prosće, hdyž je trjebaće."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5388,7 +5388,7 @@ msgstr "Wužiwajće hudźbu z cyłeho swěta {start_sub_heading}z {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Access 20,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Poskajće 20.000 radijowych stacijow z cyłeho swěta."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5396,7 +5396,7 @@ msgstr "Posłuchajće na wideja {start_sub_heading}z {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "Přenošujće jenož awdiowobsah widejow Youtube, zo byšće šěrokosć pasma zalutował."
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5404,7 +5404,7 @@ msgstr "Přetworće tekst do wobrazow {start_sub_heading}z {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Přetworće słowa do rjanych nadpismow a tekstowych zablendowanjow nad wobrazami."
 
 #. editorial content for the discovery pane.
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5412,7 +5412,7 @@ msgstr "Přehladujće wěsće {start_sub_heading}z {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Wopytajće wěstu wersiju websydła, jeli k dispoziciji."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
