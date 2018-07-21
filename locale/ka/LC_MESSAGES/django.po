@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-21 13:19+0000\n"
+"PO-Revision-Date: 2018-07-21 13:51+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4518,59 +4518,52 @@ msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr "მონიშნეთ ნებისმიერი ტექსტი და მარჯვენა წკაპით პირდაპირ გადადით სურათის ძიებაზე."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "ჩანიშნული საიტების გამოსახვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Access your favorite sites from a tile layout."
-msgstr "დაზოგეთ თანხები თქვენს საყვარელ ნივთებზე, პირდაპირ ბრაუზერიდან."
+msgstr "განათავსეთ რჩეული საიტები ფილების სახით."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "ცოდნის გაღრმავება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "„ბრიტანიკის“ მასალების გამოჩენა ძიების შედეგებში."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გააუმჯობესეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "მოაცილეთ YouTube-ის რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "შეზღუდეთ გამაღიზიანებელი რეკლამები და განცხადებები YouTube-ზე."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "წაიკითხეთ სადაც გსურთ {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "გაგზავნეთ ახალი ამბები, სტატიები, ჩანაწერები და ა.შ. თქვენს Kindle-ზე."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "მიანიჭეთ ფერები თქვენს ჩანართებს {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "დაალაგეთ თქვენი ჩანართები ფერების საშუალებით, URL-ს ნიმუშების მიხედვით."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გაამრავალფეროვნეთ თქვენი სიცილაკები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "აირიდეთ კრიპტოვალუტის უნებართვო გამომუშავება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "აუკრძალეთ მავნე ვებსაიტებს თქვენი კომპიუტერის, კრიპტოვალუტის გამომუშავებისთვის გამოყენება."
 
 #. editorial content for the discovery pane.
 #, fuzzy
