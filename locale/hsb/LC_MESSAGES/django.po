@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-20 05:19+0000\n"
-"PO-Revision-Date: 2018-07-21 16:11+0000\n"
+"PO-Revision-Date: 2018-07-21 16:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4671,7 +4671,7 @@ msgstr "Přiměrće gesty myški {start_sub_heading}z {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "Wotkryjće nowu móžnosć, zo byšće z přez 50 wužitnymi gestami myški nawigował."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4679,7 +4679,7 @@ msgstr "Optimujće wideja {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "Zaćěmńće stronu wokoło widejowothrawakow, zo byšće so lěpje na widźenske dožiwjenje koncentrował."
 
 #. editorial content for the discovery pane.
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4688,7 +4688,7 @@ msgstr "Pytajće z dobrym swědomjom {start_sub_heading}z {addon_name}{end_sub_h
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "Ecosia wužiwa 80% jeho pytanskich dochodow, zo by na cyłym swěće programy zalěsnjenje financował. Přewzmiće Ecosia direktnje do pytanja Firefox"
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4696,7 +4696,7 @@ msgstr "Pytajće falowacy webwobsah {start_sub_heading}z {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "Strona, kotruž pytaće, k dispoziciji njeje? Pytajće za archiwowanej/pufrowanej wersiju."
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4708,7 +4708,7 @@ msgstr "Powjetšće wobrazy {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
-msgstr ""
+msgstr "Ćehńće prosće myšku po wobrazu, zo byšće jón powjetšił."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4716,7 +4716,7 @@ msgstr "Dajće so plackam zhubić {start_sub_heading}z {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "Zhašejće placki awtomatisce, po tym zo sće rajtark začinił."
 
 #. editorial content for the discovery pane.
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4724,7 +4724,7 @@ msgstr "Přiměrće wulkosć strony {start_sub_heading}z {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "Jednora móžnosć za přiměrjenje tekstoweje wulkosće strony - abo powjetšće prosće stronu."
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4732,7 +4732,7 @@ msgstr "Blokujće njewidźomne přesćěhowaki {start_sub_heading}z {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "Blokujće přesćěhowaki a zhońće wjace wo nich."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5332,7 +5332,7 @@ msgstr "Sćehńće wideja Youtube {start_sub_heading}z {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
-msgstr ""
+msgstr "Sćehńće widejo a/abo awdio."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5364,7 +5364,7 @@ msgstr "Zhašejće daty {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Wuprózdńće pufrowak swojeho wobhladowaka z kliknjenjom abo stłóčenjom tasty."
 
 #. editorial content for the discovery pane.
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5372,7 +5372,7 @@ msgstr "Njezabywajće ničo {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
-msgstr ""
+msgstr "Wutworće a rjadujće lisćinu nadawkow w swojim wobhladowaku."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
