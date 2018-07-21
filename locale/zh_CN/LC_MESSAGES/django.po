@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-21 18:28+0000\n"
+"PO-Revision-Date: 2018-07-21 18:42+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4416,7 +4416,7 @@ msgstr "轻松搜索图片 {start_sub_heading}就用 {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "选中文本并右击以快速执行一次图像搜索。"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4728,117 +4728,104 @@ msgid "Access your favorite sites, recently closed tabs, and more—all from a g
 msgstr "访问您喜爱的网站、最近关闭的标签页等等——来自一个华丽的磁贴布局。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "提高您的 emoji 技巧 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "设置您的首页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
 msgstr "为您的新标签页指定一个自定义的主页。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "列出您的标签页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
 msgstr "将您打开的所有标签页转化为一个列表，便于轻松管理和加快 Firefox 的速度。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "强大的下载管理 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
 msgstr "通过状态栏、下载历史页面等检查您的下载项状态。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拍摄截图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "网页内容截图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
 msgstr "保存互联网上的信息到 OneNote，便于您编辑、批注等操作。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "标签页定制 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "搜索跟踪的防护 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
 msgstr "拒绝点击 Google 和 Yandex 搜索结果时的跟踪器。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "标签页定制 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "动态导航 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
 msgstr "使用鼠标手势来关闭标签页、返回上一页、重新加载页面等。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拍摄截图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "为搜索结果加入缩略图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
 msgstr "在返回的搜索结果旁欣赏缩略图。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拍摄截图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "缓解视疲劳 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
 msgstr "使网页变暗，眼睛更舒适。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "停止弹窗 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "默认拦截所有弹窗，自行决定是否打开。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "标签页定制 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "定制出您喜欢的网站 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
 msgstr "改变任何网站的外观！调整颜色、更改网页背景等等。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "标签页定制 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "定制您的新标签页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
 msgstr "编辑“新标签页”显示的磁贴数量、背景图像等。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拍摄截图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "快捷翻译 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
 msgstr "选中任何网站上的文本，右击，即刻翻译。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "管理您的密码 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
@@ -4854,108 +4841,96 @@ msgid "Get the country location for websites you visit. Be an informed internet 
 msgstr "了解您所访问网站的地理归属（国家/地区）。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "增强您的 emoji 体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "增强您的阅读体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
 msgstr "消除杂乱的周边内容，着重阅读主要内容。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "改善视频体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "快捷打开多个链接 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
 msgstr "右击并拖拽即可新建标签页打开链接。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "找回标签页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
 msgstr "右键单击工具栏中的图标访问最近关闭的标签页。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "改善视频体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "激发生产力 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
 msgstr "修改新标签页以显示漂亮的背景、设置您的每日关注等。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "查看图片 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
 msgstr "找回在 Google 图像搜索上的“查看图像”菜单。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "改善视频体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "增加生产力 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
 msgstr "屏蔽浪费时间的网站，以便您专注于手头的任务。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "刷新标签页 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
 msgstr "根据时间间隔自动重载标签页。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "提高您的 emoji 技巧 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "修正您的书签 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
 msgstr "找出并解决失效的书签、重复的书签等。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "改善视频体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "降低压力 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
 msgstr "一个待办事项列表，支持跨设备同步。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "智慧购物 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
 msgstr "跟踪历史定价，查找类似商品，了解卖家评级等。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "提高您的 emoji 技巧 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "做自己的 YouTube {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr "在弹出窗口中播放视频，只查看已订阅频道的广告，截取视频的截图等功能。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "提高您的 emoji 技巧 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "探索网站流量 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
@@ -5112,7 +5087,7 @@ msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "以设定的时间间隔工作来管理您的生产力。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5121,7 +5096,7 @@ msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "在单个页面中查阅您收藏的所有 RSS 订阅。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5130,7 +5105,7 @@ msgstr "拍摄截图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "启用夜间模式以获得更好的视觉体验。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
