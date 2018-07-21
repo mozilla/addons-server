@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-21 19:51+0000\n"
+"PO-Revision-Date: 2018-07-21 19:57+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5132,7 +5132,7 @@ msgstr "Sćehńće wobrazy {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
-msgstr ""
+msgstr "Wubjerće wobrazy z websydła a sćehńće je."
 
 #. editorial content for the discovery pane.
 msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5140,7 +5140,7 @@ msgstr "Schowajće swoje stejnišćo {start_sub_heading}z {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr ""
+msgstr "Schowajće swoje stejnišćo, zo byšće přesćěhowaki zamylił a swoju priwatnosć škitał."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5148,7 +5148,7 @@ msgstr "Wužiwajće sebjecensuru {start_sub_heading}z {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Wobmjezujće přistup na njepřihódny abo njewitany wobsah z filtrom."
 
 #. editorial content for the discovery pane.
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5156,7 +5156,7 @@ msgstr "Polěpšće nowe rajtarki {start_sub_heading}z {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "Wočińće nowy rajtark naprawo wot swojeho aktualneho rajtarka, nic na kóncu lajsty."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
