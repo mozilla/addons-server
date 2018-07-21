@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-20 05:19+0000\n"
+"POT-Creation-Date: 2018-07-21 16:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -625,7 +625,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/report_abuse.html:29
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:36
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:211
-#: src/olympia/devhub/templates/devhub/addons/edit/details.html:87
+#: src/olympia/devhub/templates/devhub/addons/edit/details.html:85
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:67
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:167
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:158
@@ -643,7 +643,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/report_abuse.html:29
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:36
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:214
-#: src/olympia/devhub/templates/devhub/addons/edit/details.html:90
+#: src/olympia/devhub/templates/devhub/addons/edit/details.html:88
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:70
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:170
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:161
@@ -1978,7 +1978,7 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/edit.html:55
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:35
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:211
-#: src/olympia/devhub/templates/devhub/addons/edit/details.html:87
+#: src/olympia/devhub/templates/devhub/addons/edit/details.html:85
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:67
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:167
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:158
@@ -4380,17 +4380,17 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/edit.html:30
+#: src/olympia/devhub/templates/devhub/addons/edit.html:28
 #: src/olympia/devhub/templates/devhub/personas/edit.html:276
 #: src/olympia/devhub/templates/devhub/personas/submit.html:96
 msgid "Preview"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/edit.html:33
+#: src/olympia/devhub/templates/devhub/addons/edit.html:31
 msgid "Preview of listed version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/edit.html:34
+#: src/olympia/devhub/templates/devhub/addons/edit.html:32
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:20
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
@@ -4572,25 +4572,25 @@ msgid ""
 " only relevant for listed add-ons."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/edit/details.html:45
+#: src/olympia/devhub/templates/devhub/addons/edit/details.html:44
 #: src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/edit/details.html:46
+#: src/olympia/devhub/templates/devhub/addons/edit/details.html:45
 msgid ""
 "Information about your add-on is displayed in this locale unless you override"
 " it with a locale-specific translation. It is only relevant for listed add-"
 "ons."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/edit/details.html:63
+#: src/olympia/devhub/templates/devhub/addons/edit/details.html:61
 #: src/olympia/users/forms.py:74 src/olympia/users/templates/users/edit.html:85
 #: src/olympia/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/edit/details.html:65
+#: src/olympia/devhub/templates/devhub/addons/edit/details.html:63
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website "
 "is localized into other languages multiple translations of this field can be "
@@ -7158,7 +7158,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:249
-msgid "Add encrypted security to any site that supprts HTTPS."
+msgid "Add encrypted security to any site that supports HTTPS."
 msgstr ""
 
 #. editorial content for the discovery pane.
