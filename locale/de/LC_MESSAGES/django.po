@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-22 17:37+0000\n"
+"PO-Revision-Date: 2018-07-22 19:02+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4916,7 +4916,7 @@ msgstr "Dynamische Navigation {start_sub_heading}mit {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr "Verwenden Sie Mausgesten, um Tabs zu Schließen, zur vorherigen Seite zu gehen, Seiten neu zu laden und mehr."
+msgstr "Verwenden Sie Mausgesten, um Tabs zu schließen, zur vorherigen Seite zu gehen, Seiten neu zu laden und mehr."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
