@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-22 20:50+0000\n"
+"PO-Revision-Date: 2018-07-22 21:08+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5732,7 +5732,7 @@ msgstr "Najprjedy wobdźěłać, potom ćišćeć {start_sub_heading}z {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
-msgstr ""
+msgstr "Wotstrońće wabjenje abo grawoćiwy wobsah, zo byšće napohlad webstrony, kotruž chceće ćišćeć polěpšił."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5740,7 +5740,7 @@ msgstr "Slědujće płaćiznowej historiji Amazon {start_sub_heading}z {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
-msgstr ""
+msgstr "Slědujće płaćiznu produkta na Amazon a dóstańće zdźělenki, zo byšće wěcywustojnje rozsudźił."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
