@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-22 17:18+0000\n"
+"PO-Revision-Date: 2018-07-22 17:21+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5215,7 +5215,7 @@ msgstr "შეზღუდეთ რეკლამები {start_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "შეამოწმეთ თქვენი ყველა რჩეული RSS არხი, ერთ გვერდზე."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5411,13 +5411,12 @@ msgid "Specify a custom number of days to retain browser history before it's aut
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "რეკლამების მოცილება ძიებისას {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "მოაშორეთ რეკლამები ძიების შედეგებიდან."
 
 #. editorial content for the discovery pane.
 #, fuzzy
