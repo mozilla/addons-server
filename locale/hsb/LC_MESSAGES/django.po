@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-22 17:43+0000\n"
+"PO-Revision-Date: 2018-07-22 18:25+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5540,7 +5540,7 @@ msgstr "Přećeljo kóčkow wjesela so {start_sub_heading}z {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Zetkajće so ze słódkej kóčku na kóždym nowym rajtarku. Majkajće ju za wuchom a čakajće, štož so stanje."
 
 #. editorial content for the discovery pane.
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5548,7 +5548,7 @@ msgstr "Pomjeńšće produktiwnosć {start_sub_heading}z {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "Za wokomiki, hdyž dyrbiće lasery z kóčki wutřělić."
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5556,11 +5556,11 @@ msgstr "Přepytujće Firefox {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Mějće lochki přistup na swoje wočinjene rajtarki, zapołožki a historiju."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Wjele wočinjenych rajtarkow? Ignorujće kulenje a pytajće z tastowymi skrótšenkami."
 
 #. editorial content for the discovery pane.
 msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5568,7 +5568,7 @@ msgstr "Wuslědźće, štož je pod powjerchom {start_sub_heading}z {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Uncover the software that supports whatever website you're visiting."
-msgstr ""
+msgstr "Wotkryjće softwaru, kotraž websydko podpěruje, kotrež wopytujeće."
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5576,7 +5576,7 @@ msgstr "Zadźěwajće dalesposrědkowanjam a přesćěhowanju {start_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Blokujće dalesposrědkowanja, zo byšće požadane websydło docpěł - a to spěšnišo."
 
 #. editorial content for the discovery pane.
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5584,7 +5584,7 @@ msgstr "Pokazajće zapodane hesła {start_sub_heading}z {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Přidawa funkciju, kotraž wam zmóžnja, hesłowe pola pokazać abo schować."
 
 #. editorial content for the discovery pane.
 msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
