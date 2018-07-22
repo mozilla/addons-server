@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-22 14:57+0000\n"
+"PO-Revision-Date: 2018-07-22 17:43+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5508,7 +5508,7 @@ msgstr "Ćikotajće {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily broadcast web content to your Twitter following."
-msgstr ""
+msgstr "Pósćelće webwobsah na slědowarjow Twitter."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5516,7 +5516,7 @@ msgstr "Ultimatiwna rajtarkowa kontrola {start_sub_heading}z {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Tak wjele móžnosćow rajtarkoweho wodźenja - dwójne rajtarki začinić, wokna zjednoćić, rajtarkowy titul kopěrować a wjace."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5532,7 +5532,7 @@ msgstr "Změńće swój nowy rajtark {start_sub_heading}z {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Konfigurujće nowe rajtarkowe strony, zo byšće swójske pozadkowe barby a wobrazy zwobraznił."
 
 #. editorial content for the discovery pane.
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
