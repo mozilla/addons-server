@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-12 20:26+0000\n"
+"PO-Revision-Date: 2018-07-22 13:39+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4455,59 +4455,52 @@ msgid "Perform reverse image searches from an array of engines."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Reklámblokkolás és adatvédelem {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "A lapok újragondolása {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Állítsa meg a Facebook követését {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Egyszerűsítse a keresést {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Azonnali időjárásjelentés {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Choose the page you see every time you open a new tab."
-msgstr "Állítsa be az oldalt, amit minden új lapon látni fog."
+msgstr "Válassza ki az oldalt, amit minden új lapon látni fog."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Javítsa a videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Fordított képkeresés {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
@@ -4518,14 +4511,12 @@ msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
 msgstr "Lenyűgöző emodzsik tucatjai minden alkalomra – mindig csak egy kattintásnyira."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Jelszavak kezelése {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
@@ -4536,88 +4527,76 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Egy könnyűsúlyú és hatékony reklámblokkoló. Az uBlock Origin tartalomszűrők ezreit tartatja be, anélkül hogy sok memóriát fogyasztana."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Javítsa a videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Élvezzen egy csokornyi új YouTube funkciót, mint a mozi mód, reklámblokkolás, automatikus lejátszás, és így tovább."
+msgstr "Élvezzen egy csokornyi új YouTube funkciót, mint a mozi mód, reklámblokkolás, automatikus lejátszásvezérlés, és így tovább."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Találjon képeket könnyedén {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Élvezze a vizuális könyvjelzőket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Access your favorite sites from a tile layout."
-msgstr "Takarítson meg pénzt a kedvenc tárgyain, a böngészője kényelméből."
+msgstr "Érje el kedvenc oldalait csempeszerű elrendezésben."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Érje el a tudást {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Javítsa a videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Távolítsa el a YouTube reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Olvasson bárhol {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Színkódolja a lapokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Még több emodzsi {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Akadályozza meg a kriptovaluta bányászatot {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Automatikus nyelvi ellenőrzés {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
@@ -4633,9 +4612,8 @@ msgid "Display current worldwide times in Firefox's status bar."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lap testreszabás {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Könnyű fordítás {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
@@ -4651,27 +4629,24 @@ msgid "Enjoy free access to 10+ million research papers."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lap testreszabás {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Egérgesztusok testreszabása {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Javítsa a videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Optimalizálja a videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Keressen tiszta lelkiismerettel {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, python-format
@@ -4693,18 +4668,16 @@ msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Töltsön le videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Töltsön le videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Nagyítsa ki a képeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Készítsen képernyőképeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Távolítsa el a sütiket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
@@ -4864,9 +4837,8 @@ msgid "Translate highlighted text or the entire webpage"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Javítsa a videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Javítsa a Redditet {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
@@ -5115,9 +5087,8 @@ msgid "Get things done with a helpful to-do list that syncs across devices."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Vásároljon okosabban {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
@@ -5151,9 +5122,8 @@ msgid "Applies a fresh and modern appearance to Wikipedia."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Dolgozzon gyorsabban {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
@@ -5169,18 +5139,16 @@ msgid "Hide portions of the website you're viewing."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Töltsön le videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Töltsön le képeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lap testreszabás {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Rejtse el a helyét {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
@@ -5205,9 +5173,8 @@ msgid "Open a new tab to the right of your current tab, not at the end of the ro
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Győzze le a levélszemetet {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
@@ -5286,18 +5253,16 @@ msgid "Restrict Firefox from accessing websites you define."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Dolgozzon okosabban {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Könnyű olvasás {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
@@ -5313,9 +5278,8 @@ msgid "Enable night mode for a better viewing experience."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Képek keresése {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
@@ -5385,18 +5349,16 @@ msgid "Strip away redirect pages and URL tracking parameters."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Keresési követők leállítása {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Töltsön le videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "YouTube videók letöltése {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
@@ -5421,18 +5383,16 @@ msgid "Create general and website-specific notes to review later."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Készítsen képernyőképeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Telefonszerű görgetés {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Adatok törlése {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
@@ -5448,9 +5408,8 @@ msgid "Create and manage a to-do list in your browser."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Szövegkiemelés {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
@@ -5475,18 +5434,16 @@ msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Készítsen képernyőképeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Alakítsa képpé a szöveget {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Szörföljön biztonságosan {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
@@ -5502,36 +5459,32 @@ msgid "Specify a custom number of days to retain browser history before it's aut
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Távolítsa el a keresési reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Készítsen képernyőképeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Kezelje biztonságosan a jelszavakat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Blokkolja a reklámokat és a követést {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lap testreszabás {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Töltse ki az űrlapokat automatikusan {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
@@ -5556,9 +5509,8 @@ msgid "Don't let clicked links take control of your current tab and load content
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Érje el könnyedén a Wikipédiát {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
@@ -5574,9 +5526,8 @@ msgid "Find what you're looking for within a specific domain."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Töltsön le videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Keressen videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
@@ -5705,9 +5656,8 @@ msgid "Modify your bookmarks through an easily accessible panel."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Tartsa jelszavait biztonságban {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
@@ -5749,27 +5699,24 @@ msgid "Clip web content like articles, videos, images, and more to save and use 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Böngésszen biztonságosan {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Töltsön le videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Kezelje a sütiket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Felejtesse el az előzményeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
