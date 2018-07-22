@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-22 17:16+0000\n"
+"PO-Revision-Date: 2018-07-22 17:37+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4800,7 +4800,7 @@ msgstr "Surfen Sie mit eigenen Proxy-Einstellungen durchs Internet."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Steuern sie die Wiedergabe von Videos {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgstr "Steuern Sie die Wiedergabe von Videos {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
@@ -4828,7 +4828,7 @@ msgstr "Schnelle Übersetzungen {start_sub_heading}mit {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr "Übersetzten Sie markierten Text oder die gesamte Website."
+msgstr "Übersetzen Sie markierten Text oder die gesamte Website."
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
