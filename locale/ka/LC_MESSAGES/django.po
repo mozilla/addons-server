@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-22 03:57+0000\n"
+"PO-Revision-Date: 2018-07-22 08:29+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4574,13 +4574,12 @@ msgid "Get grammar help anywhere you write on the web—social media, email, doc
 msgstr "შეამოწმეთ მართლწერა ტექსტის აკრეფისთანავე ყველგან — სოციალურ ქსელში, ელფოსტაზე, დოკუმენტებში და ა.შ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "იხილეთ მსოფლიო დროები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "მსოფლიო დროების ჩვენება, Firefox-ის მდგომარეობის ზოლზე."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4600,13 +4599,12 @@ msgid "Enjoy free access to 10+ million research papers."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "მოირგეთ ჩანართები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "მოირგეთ თაგვის ჟესტები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "აღმოაჩინეთ გვერდებზე გადაადგილების ახალი შესაძლებლობები 50-ზე მეტი გამოსადეგი ჟესტით, თაგვის გამოყენებით."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4752,31 +4750,28 @@ msgid "Get a glimpse into who's tracking you with just a click."
 msgstr "თვალი შეავლეთ თქვენი მეთვალყურეების მონაცემებს ერთი დაწკაპებით."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გაამრავალფეროვნეთ თქვენ ხელთ არსებული სიცილაკები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "შეცვალეთ პროქსი სერვერი {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "დაუკავშირდით ინტერნეტს პროქსის საკუთარი პარამეტრებით."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ჩამოტვირთეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "მართეთ ვიდეოების ჩვენება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "მოინახულეთ გვერდები უსაფრთხოდ {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
-msgstr ""
+msgstr "დაშიფრული დაცვა საიტებისთვის, რომლებზეც მხარდაჭერილია HTTPS."
 
 #. editorial content for the discovery pane.
 #, fuzzy
