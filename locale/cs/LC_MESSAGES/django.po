@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-05-28 11:53+0000\n"
+"PO-Revision-Date: 2018-07-20 06:09+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -730,13 +730,11 @@ msgstr "Musí se jednat o platnou barvu v hexa formátu, například #000000."
 msgid "Not allowed"
 msgstr "Není povoleno"
 
-#, fuzzy
 msgid "Oops! Not allowed."
-msgstr "Není povoleno"
+msgstr ""
 
-#, fuzzy
 msgid "You tried to do something that you weren't allowed to."
-msgstr "<h1>Jejda! Toto není povoleno.</h1><p> Udělali jste něco, co nemáte povoleno.</p>"
+msgstr ""
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -1871,13 +1869,11 @@ msgstr "Hodnocení {rating} pro doplněk {addon} bylo aktualizováno."
 msgid "{addon} reviewed."
 msgstr "Doplněk {addon} byl zkontrolován."
 
-#, fuzzy
 msgid "User {user} banned."
-msgstr "Uživatel {user} anonymizován."
+msgstr ""
 
-#, fuzzy
 msgid "User {user} picture deleted."
-msgstr "Uživatel {user} byl omezen."
+msgstr ""
 
 msgid "User {0.name} added to {group}."
 msgstr "Uživatel {0.name} byl přidán do skupiny {group}."
@@ -2349,9 +2345,8 @@ msgstr "Statický vzhled"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "No Reputation"
-msgstr "Reputace"
+msgstr ""
 
 msgid "Good (1)"
 msgstr ""
@@ -3963,9 +3958,8 @@ msgid ""
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "View Resources for Publishers"
-msgstr "Zobrazit statistiky uživatele"
+msgstr ""
 
 msgid "Welcome Back"
 msgstr "Vítejte zpátky"
@@ -4416,11 +4410,9 @@ msgstr ""
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr ""
 
-#, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Rozšiřte svou paletu smajlíků {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
+msgstr ""
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—just a click away."
 msgstr "Tisíce úžasných emoji pro každou příležitost vždy po ruce."
 
@@ -4452,9 +4444,8 @@ msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you 
 msgstr "Více než jen snímky obrazovky - Awesome Screenshot Plus vám dovolí přidávat k obrázkům vlastní text a grafiku, ukládat a sdílet vaše soubory."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Přizpůsobte si panely {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
@@ -4534,7 +4525,6 @@ msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
 msgstr "Tisíce úžasných emoji pro každou příležitost vždy po ruce."
 
@@ -4555,9 +4545,8 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stahujte videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
@@ -4660,9 +4649,8 @@ msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stahujte videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
@@ -5314,9 +5302,8 @@ msgid "Prevent search engines from knowing what search results you click on."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stahujte videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
@@ -5379,9 +5366,8 @@ msgid "Access 20,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stahujte videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
@@ -5476,9 +5462,8 @@ msgid "Find what you're looking for within a specific domain."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stahujte videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
@@ -6178,11 +6163,9 @@ msgstr "Recenze doplňků na webu. Vývojáři doplňků rádi vylepšují své 
 msgid "I have a question"
 msgstr "Mám otázku"
 
-#, fuzzy, python-format
+#, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
-"Dobrým místem, kde začít, je <a href=\"%(faq_url)s\"><abbr title=\"Často kladené otázky\">FAQ</abbr></a>. Pokud tam nenaleznete odpověď na svůj dotaz, můžete se <a href=\"%(forum_url)s\"> zeptat v "
-"našem fóru</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -6191,11 +6174,8 @@ msgstr "Pokud skutečně potřebujete kontaktovat někoho z týmu Mozilly, podí
 msgid "Who works on this website?"
 msgstr "Kdo pracuje na tomto webu?"
 
-#, fuzzy
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
 msgstr ""
-"Za uplynulé roky se na tomto webu podílela řada lidí a to jak dobrovolníků z řad komunity, tak placených zaměstnanců. Seznam významných přispěvatelů můžete nalézt na <a href=\"%(url)s\"> stránce s "
-"poděkováním</a>."
 
 msgid "Sections"
 msgstr "Sekce"
@@ -8085,9 +8065,8 @@ msgstr "Reportováno uživatelem."
 msgid "new"
 msgstr "nové"
 
-#, fuzzy
 msgid "Ban"
-msgstr "a"
+msgstr ""
 
 #, fuzzy
 msgid "Delete picture"
