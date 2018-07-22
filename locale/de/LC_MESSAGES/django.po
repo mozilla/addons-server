@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-22 17:01+0000\n"
+"PO-Revision-Date: 2018-07-22 17:16+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4591,7 +4591,7 @@ msgstr "Lesen Sie, wo Sie möchten {start_sub_heading}mit {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr "Senden Sie Nachrichtenartikel, Geschichte, Blogbeiträge und mehr an Ihr Kindle."
+msgstr "Senden Sie Nachrichtenartikel, Geschichten, Blogbeiträge und mehr an Ihr Kindle."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
