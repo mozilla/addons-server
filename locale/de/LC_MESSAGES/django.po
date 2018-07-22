@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-21 17:51+0000\n"
-"Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
+"PO-Revision-Date: 2018-07-22 17:01+0000\n"
+"Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -2625,10 +2625,10 @@ msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users
 msgstr "Sie können ein WebExtensions-Add-on nicht mit einem Alt-Add-on aktualisieren. Ihre Nutzer könnten Ihre neue Version nicht verwenden, weil Firefox diese Art von Update nicht unterstützt."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr "Ihr Entwickler-API-Schlüssel wurde in der übermittelten Datei gefunden. Um Ihr Konto zu schützen wird der Schlüssel widerrufen."
+msgstr "Ihr Entwickler-API-Schlüssel wurde in der übermittelten Datei gefunden. Um Ihr Konto zu schützen, wird der Schlüssel widerrufen."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr "Ihr Entwickler-API-Schlüssel eines Mitautors wurde in der übermittelten Datei gefunden. Um Ihr Add-on zu schützen wird der Schlüssel widerrufen."
+msgstr "Ihr Entwickler-API-Schlüssel eines Mitautors wurde in der übermittelten Datei gefunden. Um Ihr Add-on zu schützen, wird der Schlüssel widerrufen."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -3640,7 +3640,7 @@ msgid "Toolbar area text and icons"
 msgstr "Text und Symbole des Symbolleistenbereichs"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "Die Farbe von Text und Symbolen den Symbolleisten und dem aktiven Tab. Feld im Manifest:  toolbar_text."
+msgstr "Die Farbe von Text und Symbolen in den Symbolleisten und dem aktiven Tab. Feld im Manifest:  toolbar_text."
 
 msgid "Toolbar field area background"
 msgstr "Hintergrund des Feldbereichs der Symbolleisten"
@@ -4017,7 +4017,7 @@ msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
 "%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Mit Add-ons können Millionen von Firefox-Nutzern Ihr Surf-Erlebnis verbessern. Wenn Sie %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s und "
+"Mit Add-ons können Millionen von Firefox-Nutzern ihr Surf-Erlebnis verbessern. Wenn Sie %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s und "
 "%(css_link_open)sCSS%(link_close)s können, haben Sie schon alle Fähigkeiten, die zur Entwicklung eines tollen Add-ons nötig sind."
 
 msgid "Learn How to Make an Add-on"
@@ -4491,7 +4491,7 @@ msgstr "Stoppen Sie Verfolgung durch Facebook {start_sub_heading}mit {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr "Isolieren Sie Ihre Facebook-identität in einem separaten „Container“ der es Facebook erschwert, Ihre Aktivitäten im Internet zu verfolgen."
+msgstr "Isolieren Sie Ihre Facebook-Identität in einem separaten „Container“, der es Facebook erschwert, Ihre Aktivitäten im Internet zu verfolgen."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
