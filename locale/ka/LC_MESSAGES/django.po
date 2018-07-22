@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-22 15:48+0000\n"
+"PO-Revision-Date: 2018-07-22 17:18+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4763,7 +4763,7 @@ msgstr "მართეთ ვიდეოების ჩვენება {st
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "გააუმჯობესეთ ვიდეოს ჩვენება სიჩქარისა და მსგავსი პარამეტრების შერჩევით."
 
 #. editorial content for the discovery pane.
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4840,7 +4840,7 @@ msgstr "დააყენეთ საწყისი გვერდი {start
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "მიუთითეთ სასურველი გვერდი, ახალი ჩანართებისთვის."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4866,7 +4866,7 @@ msgstr "გადაიღეთ ვებშიგთავსის სურ�
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "შეინახეთ ინფორმაცია ინტერნეტიდან პირდაპირ OneNote-ში, შედეგად შეგეძლებათ მისი ჩასწორება, ტექსტის დართვა და ა.შ."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5232,7 +5232,7 @@ msgstr "მოიძიეთ სურათები {start_sub_heading}{addon
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "მოიძიეთ სურათით მსგავსი სურათები, მთელი რიგი საძიებო სისტემების საშუალებით."
 
 #. editorial content for the discovery pane.
 msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5240,7 +5240,7 @@ msgstr "გადაინახეთ სამომავლოდ {start_sub
 
 #. editorial content for the discovery pane.
 msgid "Store web pages to access across devices."
-msgstr ""
+msgstr "შეინახეთ ვებგვერდები, სხვადასხვა მოწყობილობებიდან წვდომისთვის."
 
 #. editorial content for the discovery pane.
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5483,13 +5483,12 @@ msgid "Find what you're looking for within a specific domain."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ჩამოტვირთეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "ვიდეოების მოძიება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "მონიშნეთ ტექსტი ნებისმიერ ვებსაიტზე და მარჯვენა დაწკაპებით მონახეთ მასთან დაკავშირებული ვიდეოები YouTube-ზე."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5605,13 +5604,12 @@ msgid "Focus on what you're watching by dimming everything but the video player.
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "სანიშნების მართვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "ჩაასწორეთ სანიშნები მარტივად ხელმისაწვდომ არედან."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5667,22 +5665,20 @@ msgid "Only allow web content to run from sites you trust."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ჩამოტვირთეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "ფუნთუშების მართვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "სრულად აიღეთ ხელში, გვერდების მონახულებისას დაგროვებული ფუნთუშების მართვის სადავეები."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "დაივიწყეთ ისტორია {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "ბრაუზერის ისტორიის ავტომატური გასუფთავება, შერჩეული ვებსაიტებისთვის."
 
 #. editorial content for the discovery pane.
 #, fuzzy
