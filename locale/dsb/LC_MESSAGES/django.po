@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 16:16+0000\n"
+"PO-Revision-Date: 2018-07-23 19:30+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4718,7 +4718,7 @@ msgstr "Dajśo se cookiejam zgubiś {start_sub_heading}z {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "Wulašujśo cookieje awtomatiski, za tym až sćo zacynił rejtark."
 
 #. editorial content for the discovery pane.
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4726,7 +4726,7 @@ msgstr "Pśiměŕśo wjelikosć boka {start_sub_heading}z {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "Jadnora móžnosć za pśiměrjenje tekstoweje wjelikosći boka - abo pówětšćo jadnorje bok."
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4734,7 +4734,7 @@ msgstr "Blokěrujśo njewidobne pśeslědowaki {start_sub_heading}z {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "Blokěrujśo pśeslědowaki a zgóńśo wěcej wó nich."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
