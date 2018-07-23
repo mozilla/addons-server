@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-22 12:06+0000\n"
+"PO-Revision-Date: 2018-07-23 17:43+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4953,9 +4953,8 @@ msgid "Use mouse gestures to get to things done—quicker."
 msgstr "使用鼠标手势完成任务——更加快捷。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "提高您的 emoji 技巧 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "伪装页面 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
@@ -5061,9 +5060,8 @@ msgid "Get expert German translations between English, French, Spanish, and othe
 msgstr "获得专业的德语翻译，自英语、法语、西班牙语等语言。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "创建网站黑名单 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
@@ -5079,27 +5077,24 @@ msgid "Manage your productivity by working in set time intervals."
 msgstr "以设定的时间间隔工作来管理您的生产力。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "轻松阅读 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
 msgstr "在单个页面中查阅您收藏的所有 RSS 订阅。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拍摄截图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "减轻视疲劳 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
 msgstr "启用夜间模式以获得更好的视觉体验。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "图片搜索 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
@@ -5121,7 +5116,7 @@ msgstr "标签页定制 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "一种更好的保存书签的方法，如果你使用多个书签文件夹。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5310,7 +5305,7 @@ msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
-msgstr ""
+msgstr "通过拦截广告和跟踪器来保护您的隐私（此外，还可以加快页面加载速度）。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5346,7 +5341,7 @@ msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "选中任何网页中的文本，单击右键即可选择在维基百科中搜索。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5373,7 +5368,7 @@ msgstr "提高您的 emoji 技巧 {start_sub_heading}就用 {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "在查看其他网上商店的产品页面时，单击一个按钮即可查看亚马逊上的同款货品（如果有）。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5391,7 +5386,7 @@ msgstr "拍摄截图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "如此多的标签页控制选项——关闭重复标签页、合并窗口、复制标签页标题等等。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5410,7 +5405,7 @@ msgstr "增强您的 emoji 体验 {start_sub_heading}就用 {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "配置新标签页以显示自定义的背景颜色和图像。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5428,7 +5423,7 @@ msgstr "拍摄截图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "请问您今天要来点能发射激光的喵星人吗？"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5502,58 +5497,52 @@ msgid "A simple ad blocker focused on displaying just the content you want."
 msgstr "一个简单的广告拦截器，让您专注于阅读需要的内容。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拍摄截图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "追踪 Amazon 历史价格 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make informed decisions by tracking the price of a product listed on Amazon."
 msgstr "跟踪亚马逊上的商品价格，助您作出更明智的选择。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "放心购物 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
 msgstr "为网站购物加一道防线，确保购物网站可以信赖。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "追踪生产力 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "测算您在计算机或特定工作程序（如 Trello、JIRA、Basecamp、GitHub 等）上花费的时间。"
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "剪辑并保存文章、视频、图像等网页内容，供个人项目或实时团队协作使用。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "安全冲浪 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
 msgstr "仅允许您信任的网站运行 Web 内容。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "管理 Cookie {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
 msgstr "完全控制您在浏览时积累的 Cookie。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "忘记历史记录 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
@@ -5575,21 +5564,19 @@ msgstr "改善视频体验 {start_sub_heading}就用 {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "您在使用 VPN 吗？您的 IP 地址可能会泄露。通过禁用 WebRTC 来避免。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "关闭恼人的覆盖层 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply click a button to close annoying pop-up overlays."
 msgstr "一键关闭烦人的悬浮窗。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "改善视频体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "调查任何图像 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
@@ -5609,40 +5596,36 @@ msgid "Harness the ability to download video and/or audio in multiple formats."
 msgstr "一套工具来下载多种格式的视频和音频。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "位置感知 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "了解网站的服务器在地理上的位置，成为一个有见识的网络旅行者。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "解决恼人的音频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
 msgstr "网站上的音量太小了？或太吵了？SoundFixer 可以帮忙。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "标签页定制 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "打印前编辑 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
-msgstr ""
+msgstr "非凡的视觉变化 — 对您想要打印的任何网页移除广告或令人讨厌的内容。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拍摄截图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "追踪 Amazon 历史价格 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
-msgstr ""
+msgstr "通过跟踪和接收 Amazon 上列出的产品的价格来做出明智的决定。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5654,18 +5637,16 @@ msgid "Adjust browser audio settings with extreme clarity."
 msgstr "极其清晰地调整浏览器的音频设置。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "标签页定制 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "隐私保护 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
 msgstr "保护自己免受鬼祟跟踪器的侵害。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拦截广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "掩盖你的踪迹 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
