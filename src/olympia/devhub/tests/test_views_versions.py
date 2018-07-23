@@ -3,6 +3,7 @@ import datetime
 import re
 
 from django.core.files import temp
+from django.core.files.base import File as DjangoFile
 
 import mock
 
@@ -682,6 +683,22 @@ class TestVersionEditDetails(TestVersionEditBase):
         doc = pq(response.content)
         assert not response.context['compat_form'].extra_forms
         assert doc('p.add-app')[0].attrib['class'] == 'add-app hide'
+
+    def test_existing_source_link(self):
+        tmp_file = temp.NamedTemporaryFile
+        with tmp_file(suffix=".zip", dir=temp.gettempdir()) as source_file:
+            source_file.write('a' * (2 ** 21))
+            source_file.seek(0)
+            self.version.source = DjangoFile(source_file)
+            self.version.save()
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        link = doc('.current-source-link')
+        assert link
+        assert link.text() == 'View current'
+        assert link[0].attrib['href'] == reverse(
+            'downloads.source', args=(self.version.pk, ))
 
     def test_should_accept_zip_source_file(self):
         tdir = temp.gettempdir()
