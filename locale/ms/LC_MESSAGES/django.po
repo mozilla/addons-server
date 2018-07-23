@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 14:28+0000\n"
+"PO-Revision-Date: 2018-07-23 14:37+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5318,7 +5318,7 @@ msgstr "Tinggalkan jejak digital yang bersih {start_sub_heading}dengan{addon_nam
 
 #. editorial content for the discovery pane.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Pembaca unggul yang menggabungkan semua sumber RSS/Atom/RDF."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5327,7 +5327,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "Cipta nota umum dan laman web khusus untuk disemak kemudian."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5336,7 +5336,7 @@ msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
-msgstr ""
+msgstr "Ciri gerak isyarat \"grab-n-drag\" untuk halaman web desktop."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5345,7 +5345,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Buang cache pelayar dengan satu klik atau kekunci."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5354,7 +5354,7 @@ msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
-msgstr ""
+msgstr "Cipta dan uruskan senarai tugasan dalam pelayar web anda."
 
 #. editorial content for the discovery pane.
 #, fuzzy
