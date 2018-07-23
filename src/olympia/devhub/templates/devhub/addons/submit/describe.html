@@ -141,7 +141,12 @@
         <label for="{{ reviewer_form.approvalnotes.auto_id }}">
           {{ _('Notes to Reviewer:') }}
         </label>
-        <p>{{ _('Is there anything our reviewers should bear in mind when reviewing this add-on?') }}</p>
+        <p>{{ _('Is there anything our reviewers should know when reviewing this add-on?') }}</p>
+        <p>{{ _('<span class="vip-message">Remember</span>: If you submitted source code, '
+                'but did not include instructions, you must provide them here. '
+                'Enter step-by-step build instructions to create an exact copy of the add-on code, per '
+                '<a href="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews#Source_Code_Submission" '
+                'target="_blank" rel="noopener noreferrer">policy requirements</a>.') }}</p>
           {{ reviewer_form.approvalnotes }}
         <p>{{ _('These notes will only be visible to you and our reviewers.') }}</p>
       </div>

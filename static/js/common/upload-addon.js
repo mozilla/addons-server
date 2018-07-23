@@ -407,8 +407,42 @@
 
                     $upload_field.val("").prop('disabled', false);
 
-                    /* Allow submitting */
-                    $('.addon-upload-dependant').prop('disabled', false);
+
+                    if (results.addon_type != 10) {
+                        // Enable source code submission section
+                        $('#id_source').click(function() {
+                            $(this).val('');
+                            $('.addon-upload-dependant').prop('disabled', true);
+                        });
+
+                        $('#id_source').change(function() {
+                            if (!$('#id_source').val || $('#id_source').val() == '') {
+                                $('.addon-upload-dependant').prop('disabled', true);
+                            }
+                            else {
+                                $('.addon-upload-dependant').prop('disabled', false);
+                            }
+                        });
+
+                        $('#need_source_code_option_yes').click(function() {
+                            $('#need_source_code_section_no').hide()
+                            $('#need_source_code_section_yes').show()
+                            if (!$('#id_source').val || $('#id_source').val() == '') {
+                                $('.addon-upload-dependant').prop('disabled', true);
+                            }
+                        });
+
+                        $('#need_source_code_option_no').click(function() {
+                            $('#need_source_code_section_yes').hide()
+                            $('#need_source_code_section_no').show()
+                            $('.addon-upload-dependant').prop('disabled', false);
+                        });
+                    }
+                    else {
+                        /* Allow submitting */
+                        $('.addon-upload-dependant').prop('disabled', false);
+                    }
+
                     $('.addon-upload-failure-dependant').prop({'disabled': true,
                                                                'checked': false});
                     $('.addon-create-theme-section').hide();

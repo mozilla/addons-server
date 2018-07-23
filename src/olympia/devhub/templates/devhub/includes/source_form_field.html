@@ -1,13 +1,50 @@
 <div class="binary-source{% if not field.errors %} edit_initially_hidden{% endif %}">
+    <h3>{{ _('Upload Source Code') }}</h3>
   <p>
-    {{ _('If your add-on contains binary or obfuscated code other than known '
-         'libraries, upload its sources for review.') }}<br />
-    {{ _('Please include instructions on how to reproduce the final add-on file, '
-         'either in a README file or the Notes to Reviewer for this version.') }}<br />
-    <a href="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews#Source_Code_Submission"
-      target="_blank" rel="noopener noreferrer">{{
-      _('Read more about the source code review policy.') }}</a>
+    {{ _('You may need to submit source code. If you don’t submit the correct '
+         'source code now, your add-on may be removed from the site!') }}
   </p>
-  {{ field.errors }}
-  <div>{{ field }}</div>
+  <div>
+    {{ _('Please review the <a href="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews#Source_Code_Submission"
+      target="_blank" rel="noopener noreferrer">source code submission policy.</a>') }}
+    <b>{{ _('Do you use any of the following?') }}</b>
+    <ul>
+      <li>{{ _('Code minifiers or obfuscators') }}</li>
+      <li>{{ _('Tools that combine multiple files into a single file, such as webpack') }}</li>
+      <li>{{ _('Web template engines, both for HTML and CSS') }}</li>
+      <li>{{ _('Any other tool that takes code or files, applies processing, '
+               'and generates code or file(s) to include in the add-on') }}</li>
+    </ul>
+
+    <input type="radio" id="need_source_code_option_yes" name="need_source_code">
+    <label for="need_source_code_yes">{{ _('Yes') }}</label>
+    <input type="radio" id="need_source_code_option_no" name="need_source_code">
+    <label for="need_source_code_no">{{ _('No') }}</label>
+  </div>
+  <div id="need_source_code_section_yes" class="edit_initially_hidden">
+
+    <b>{{ _('Your submission requires source code. The source code must meet '
+      '<a href="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews#Source_Code_Submission"
+         target="_blank" rel="noopener noreferrer">policy requirements</a>, which includes:') }}</b>
+    <ul>
+      <li>{{ _('Step-by-step build instructions to create an exact copy of the add-on code.') }}</li>
+      <li>{{ _('A build script that executes all necessary technical steps.') }}</li>
+      <li>{{ _('Source files (aside from open-source third party libraries) '
+               'cannot be transpiled, obfuscated, minified or otherwise machine-generated.') }}</li>
+      <li>{{ _('Operating system and build environment requirements.') }}</li>
+      <li>{{ _('Details (including required version and installation instructions), '
+               'of any programs used in the build process (for example: node and npm version used).') }}</li>
+    </ul>
+
+    <p>{{ _('<b>Include instructions in a README file in the source code</b>, '
+      'or in reviewer notes on the next page (if applicable).') }}</p>
+    {{ field.errors }}
+    <div>{{ field }}</div>
+
+  </div>
+
+  <div id="need_source_code_section_no" class="edit_initially_hidden">
+    <p>{{ _('You do not need to submit source code, and you’re ready for the next step.') }}</p>
+  </div>
+
 </div>
