@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 15:32+0000\n"
+"PO-Revision-Date: 2018-07-23 15:50+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4846,13 +4846,12 @@ msgid "Convert all your open tabs into a list to easily manage them and speed up
 msgstr "წარმოადგინეთ ყველა თქვენი გახსნილი ჩანართი სიის სახით მარტივი გამოყენებისა და Firefox-ის ასწრაფებისთვის."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ჩამოტვირთეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "ჩამოტვირთვების მძლავრი მართვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "იხილეთ ჩამოტვირთვების მიმდინარეობა მდგომარეობის ზოლზე, ჩამოტვირთეთ ისტორიის გვერდი და ა.შ."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4863,40 +4862,36 @@ msgid "Save information from the internet to OneNote so you can edit, annotate, 
 msgstr "შეინახეთ ინფორმაცია ინტერნეტიდან პირდაპირ OneNote-ში, შედეგად შეგეძლებათ მისი ჩასწორება, ტექსტის დართვა და ა.შ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "მოირგეთ ჩანართები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "ძიებისას თვალის დევნებისგან დაცვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "შეზღუდეთ მეთვალყურეები Google და Yandex საძიებოებზე გადასვლისას."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "მოირგეთ ჩანართები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "გვერდებზე მოქნილი გადაადგილება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr ""
+msgstr "თაგვის ჟესტების გამოყენება ჩანართების დასახურად, წინა გვერდზე გადასასვლელად, გვერდის ხელახლა გასახსნელად და ა.შ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გადაიღეთ ეკრანის სურათები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "სურათების დამატება ძიების შედეგებზე {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
-msgstr ""
+msgstr "იხილეთ სურათები, შედეგების გვერდით."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გადაიღეთ ეკრანის სურათები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "თვალის დაძაბვის შემცირება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "შეამცირეთ თვალების დატვირთვა გვერდების მონახულებისას, ეკრანის ჩამუქებით."
 
 #. editorial content for the discovery pane.
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
