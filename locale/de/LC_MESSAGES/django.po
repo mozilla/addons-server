@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-22 20:53+0000\n"
+"PO-Revision-Date: 2018-07-23 14:46+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -5708,7 +5708,7 @@ msgstr "Erst Bearbeiten, dann Drucken {start_sub_heading}mit {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
-msgstr "Ändern Sie die Option einer Website, die Sie drucken möchten – indem Sie Werbung oder geschmacklose Inhalte entfernen."
+msgstr "Ändern Sie die Option einer Webseite, die Sie drucken möchten – indem Sie Werbung oder geschmacklose Inhalte entfernen."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5758,7 +5758,7 @@ msgid "File size is over the limit of {0}."
 msgstr "Dateigröße liegt über der Grenze von {0}."
 
 msgid "Problems decoding {0}."
-msgstr "Probleme beim dekodieren von {0}."
+msgstr "Probleme beim Dekodieren von {0}."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr "Diese Datei lässt sich nicht online betrachten. Bitte laden Sie die Datei herunter, um ihre Inhalte zu sehen."
