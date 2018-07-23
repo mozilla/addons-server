@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-22 14:09+0000\n"
+"PO-Revision-Date: 2018-07-23 00:50+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4422,7 +4422,7 @@ msgstr "Keadaan cuaca semasa {start_sub_heading}dengan {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
-msgstr ""
+msgstr "Dapatkan maklumat segera cuaca global dalam Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
@@ -4434,11 +4434,11 @@ msgstr "Carian imej songsang {start_sub_heading}dengan {addon_name} {end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "Nampak gambar yang menarik dalam web dan mahu mengetahuinya lebih lanjut? Cuba alatan carian imej ini."
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Berfungsi dalam YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, dan ratusan laman video lain."
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
@@ -4450,7 +4450,7 @@ msgstr "Urus kata laluan {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Permudah dan selaraskan pelbagai log masuk ke laman web dalam semua peranti anda dengan satu kata laluan untuk kesemuanya."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4474,7 +4474,7 @@ msgstr "Mudah mencari imej {start_sub_heading}dengan {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Serlahkan teks dan klik-kanan untuk melaksanakan carian imej dengan pantas."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4490,7 +4490,7 @@ msgstr "Akses pengetahuan {start_sub_heading}dengan {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "Secara automatik menambah fakta Britannica untuk hasil carian anda."
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4498,7 +4498,7 @@ msgstr "Buang Iklan YouTube {start_sub_heading}dengan {addon_name} {end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Sekat iklan dan penjelasan yang menjengkelkan daripada muncul di YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4506,7 +4506,7 @@ msgstr "Baca di mana-mana {start_sub_heading} dengan {addon_name} {end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Hantar artikel berita, cerita, hantaran blog anda, dan banyak lagi ke Kindle."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4514,7 +4514,7 @@ msgstr "Kod warna tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Uruskan tab anda mengikut warna kumpulan berdasarkan corak URL."
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4522,7 +4522,7 @@ msgstr "Sekat perlombongan cryptocurrency {start_sub_heading} dengan {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Hentikan laman web jahat daripada menggunakan kuasa komputer anda untuk melombong cryptocurrency."
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4530,7 +4530,7 @@ msgstr "Semakan automatik tatabahasa {start_sub_heading}dengan {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Dapatkan bantuan tatabahasa apabila menulis dalam web—media sosial, e-mel, dokumen dan selainnya."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4539,7 +4539,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Paparkan waktu semasa di seluruh dunia dalam bar status Firefox."
 
 #. editorial content for the discovery pane.
 #, fuzzy
