@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 02:51+0000\n"
+"PO-Revision-Date: 2018-07-23 07:30+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4707,7 +4707,7 @@ msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "Buka fail ePub dalam Firefox—tambah saiz fon, dimensi halaman dan banyak lagi."
 
 #. editorial content for the discovery pane.
 #, fuzzy
