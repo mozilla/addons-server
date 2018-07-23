@@ -4395,9 +4395,8 @@ msgstr ""
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr ""
 
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "Stahujte videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr ""
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
 msgstr ""
