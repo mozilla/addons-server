@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 19:35+0000\n"
+"PO-Revision-Date: 2018-07-23 19:55+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4844,7 +4844,7 @@ msgstr "Nakupujće a lutujće {start_sub_heading}z {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr "Wobstarajće sej najlěpše dobropisy, zo byšće je za swoju nakupowanski wozyčk při płaćenju wužiwał."
+msgstr "Wobstarajće sej najlěpše dobropisy, zo byšće je za swój nakupowanski wozyčk při płaćenju wužiwał."
 
 #. editorial content for the discovery pane.
 msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
