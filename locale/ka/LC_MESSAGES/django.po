@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 15:50+0000\n"
+"PO-Revision-Date: 2018-07-23 16:09+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4934,13 +4934,12 @@ msgid "Store passwords securely and access them across multiple devices."
 msgstr "შეინახეთ პაროლები უსაფრთხოდ და მიიღეთ მათზე წვდომა სხვადასხვა მოწყობილობებიდან."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გაამრავალფეროვნეთ თქვენ ხელთ არსებული სიცილაკები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "იხილეთ, თუ სად მიდიხართ ინტერნეტში {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "მიიღეთ მონაცემები იმ ვებსაიტების ადგილმდებარეობის შესახებ, რომელთაც ნახულობთ. იყავით გათვითცნობიერებული მოგზაური."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4952,45 +4951,40 @@ msgid "Make the text you're reading more appealing by removing the clutter aroun
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გააუმჯობესეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "რამდენიმე ბმულის ერთიანად გახსნა {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
-msgstr ""
+msgstr "სასურველ ბმულებზე მარჯვენა წკაპით ან მაჩვენებლის გადატარებით, გახსენით ახალ ჩანართებში."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "დაიბრუნეთ ჩანართები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "მიიღეთ წვდომა ბოლოს დახურულ ჩანართებზე, ხელსაწყოთა ზოლში არსებულ ხატულაზე მარჯვენა წკაპით."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გააუმჯობესეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "გააუმჯობესეთ შედეგიანობა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "შეცვალეთ ახალი ჩანართის გვერდი და განათავსეთ სასურველი ფონი, მიუთითეთ ყოველდღიურად შესასრულებელი მიზნები და ა.შ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "სურათების ნახვა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr ""
+msgstr "„სურათის ნახვის“ ღილაკის დაბრუნება, Google სურათებში ძიებისას."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გააუმჯობესეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "გაზარდეთ სარგებლიანობა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
