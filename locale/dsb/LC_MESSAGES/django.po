@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 13:32+0000\n"
+"PO-Revision-Date: 2018-07-23 14:21+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -745,14 +745,18 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Wiźiśo toś tu powěsć, dokulaž toś to HTTPS-sedło głowowu smužku ‚Referer‘ trjeba, kótaruž waš wobglědowak musy słaś, ale njejo pósłał. Toś ta głowowa smužka jo trěbna z pśicynow wěstoty, aby "
+"zawěsćiła, až se waš wobglědowak wót tśeśich njekaprujo."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
+"Jolic sćo swój wobglědowak konfigurěrował, aby głowowe smužki ‚Referer‘ znjemóžnił, zmóžniśo je zasej pšosym, nanejmjenjej za toś to sedło abo za HTTPS-zwiski abo za napšašowanja ‚same-origin‘."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
+"Wiźiśo toś tu powěsć, dokulaž toś to sedło CSRF-cookie trjeba, gaž se formulary wótpósćelu. Toś ten cookie jo trěbny z pśicynow wěstoty, aby zawěsćił, až se waš wobglědowak wót tśeśich njekaprujo."
 
 msgid "Page Not Found"
 msgstr "Bok njejo se namakał"
@@ -4431,7 +4435,7 @@ msgstr "Blokěrujśo zakśebjatne pśeslědowaki {start_sub_heading}z {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Blokěrujśo njewidobne pśeslědowaki a wabjenje, kótarež was w interneśe wušpioněrujo."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pólěpšćo swójo emoźijowe graśe {start_sub_heading}z {addon_name}{end_sub_heading}"
