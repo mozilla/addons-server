@@ -24,8 +24,7 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
-from olympia.addons.decorators import addon_view_factory
-from olympia.addons.models import Addon
+from olympia.stats.decorators import addon_view_stats
 from olympia.lib.cache import memoize
 from olympia.amo.decorators import (
     allow_cross_site_request, json_view, login_required)
@@ -53,7 +52,6 @@ GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
                  'users_created', 'my_apps')
 
 
-addon_view = addon_view_factory(qs=Addon.objects.valid)
 storage = get_storage_class()()
 
 
@@ -149,7 +147,7 @@ def extract(dicts):
     return extracted
 
 
-@addon_view
+@addon_view_stats
 @non_atomic_requests
 def overview_series(request, addon, group, start, end, format):
     """Combines downloads_series and updates_series into one payload."""
@@ -195,7 +193,7 @@ def zip_overview(downloads, updates):
                'data': {'downloads': dl_count, 'updates': up_count}}
 
 
-@addon_view
+@addon_view_stats
 @non_atomic_requests
 def downloads_series(request, addon, group, start, end, format):
     """Generate download counts grouped by ``group`` in ``format``."""
@@ -210,7 +208,7 @@ def downloads_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view
+@addon_view_stats
 @non_atomic_requests
 def sources_series(request, addon, group, start, end, format):
     """Generate download source breakdown."""
@@ -228,7 +226,7 @@ def sources_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view
+@addon_view_stats
 @non_atomic_requests
 def usage_series(request, addon, group, start, end, format):
     """Generate ADU counts grouped by ``group`` in ``format``."""
@@ -245,7 +243,7 @@ def usage_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view
+@addon_view_stats
 @non_atomic_requests
 def usage_breakdown_series(request, addon, group,
                            start, end, format, field):
@@ -330,7 +328,7 @@ def check_stats_permission(request, addon):
         raise PermissionDenied
 
 
-@addon_view
+@addon_view_stats
 @non_atomic_requests
 def stats_report(request, addon, report):
     check_stats_permission(request, addon)
