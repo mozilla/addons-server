@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 15:11+0000\n"
+"PO-Revision-Date: 2018-07-23 15:32+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4782,22 +4782,20 @@ msgid "Get the best coupons automatically applied to your shopping cart at check
 msgstr "შეძენისას საუკეთესოდ შერჩეული ფასდაკლების ბარათის ავტომატური გამოყენება."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ჩამოტვირთეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "სწრაფი თარგმნა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "თარგმნეთ მონიშნული ტექსტი ან მთლიანი ვებგვერდი"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გააუმჯობესეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "გააუმჯობესეთ Reddit {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "ისარგებლეთ Reddit საიტით განსხვავებულად, ჭდეებისა და მსგავსი საშუალებების დამატებით."
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4809,29 +4807,27 @@ msgstr "გადაიღეთ სურათები, ჩაასწორ
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "საუკეთესო ჩამოტვირთვების მმართველი Windows სისტემისთვის."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გაამრავალფეროვნეთ თქვენი სიცილაკები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "იხილეთ ინფორმაცია თქვენს მეთვალყურეებზე {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "გამოარკვიეთ ვინ გადევნებთ თვალყურს სად შეიძლება იგზავნებოდეს აღრიცხული ინფორმაცია."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "მოინახულეთ გვერდები ვინაობის გაუმჟღავნებლად {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "ეწვიეთ ვებგვერდებს შენიღბულად — ისე, თითქოს სხვა ქვეყანაში იმყოფებით."
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "მიიღეთ წვდომა თქვენ რჩეულ საიტებზე, ბოლო დახურულ ჩანართებზე და ა.შ. — ყველაფერი ლამაზად დალაგებული ფილების სახით."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4842,13 +4838,12 @@ msgid "Designate a custom home page for your new tabs."
 msgstr "მიუთითეთ სასურველი გვერდი, ახალი ჩანართებისთვის."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "ჩანართების სიის სახით წარმოდგენა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "წარმოადგინეთ ყველა თქვენი გახსნილი ჩანართი სიის სახით მარტივი გამოყენებისა და Firefox-ის ასწრაფებისთვის."
 
 #. editorial content for the discovery pane.
 #, fuzzy
