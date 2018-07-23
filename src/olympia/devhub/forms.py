@@ -133,6 +133,7 @@ class LicenseForm(AMOModelForm):
     # Django 1.10 enabled `required` rendering for required widgets. That
     # wasn't the case before, this should be fixed properly but simplifies
     # the actual Django 1.11 deployment for now.
+    # See https://github.com/mozilla/addons-server/issues/8912 for proper fix.
     use_required_attribute = False
 
     builtin = forms.TypedChoiceField(
