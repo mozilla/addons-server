@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 06:57+0000\n"
+"PO-Revision-Date: 2018-07-23 12:29+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -5281,7 +5281,7 @@ msgstr "{addon_name} {start_sub_heading}下載影片{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
-msgstr ""
+msgstr "下載影音內容。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5496,9 +5496,8 @@ msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "{addon_name} {start_sub_heading}客製化分頁內容{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Load a random Wikipedia article each time you open a new tab."
-msgstr "設定當您每次開啟新分頁時，會看到的頁面。"
+msgstr "當您每次開啟新分頁時，隨機開啟維基百科條目。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
