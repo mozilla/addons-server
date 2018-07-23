@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 17:43+0000\n"
+"PO-Revision-Date: 2018-07-23 20:52+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4833,7 +4833,7 @@ msgstr "安全地存储密码，并可便捷地通过您的其他设备访问。
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "了解您在网上去向何处 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
@@ -4977,7 +4977,7 @@ msgstr "伪装您的位置以摆脱跟踪器，保护您的隐私。"
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "自我审查 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
@@ -4993,7 +4993,7 @@ msgstr "在您的标签页右侧而非所有标签页的右侧打开新标签页
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "克服垃圾邮件 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
@@ -5001,7 +5001,7 @@ msgstr "使用聪明的临时邮箱来保持匿名、防范垃圾邮件。"
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "更改您的隐私设置 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily customize the built-in privacy settings in Firefox."
@@ -5065,7 +5065,7 @@ msgstr "限制 Firefox 访问您设定的网站。"
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "聪明工作 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
@@ -5097,7 +5097,7 @@ msgstr "通过多个强大的搜索引擎反向搜索图片。"
 
 #. editorial content for the discovery pane.
 msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "稍后阅读 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store web pages to access across devices."
@@ -5105,7 +5105,7 @@ msgstr "存储网页供跨设备访问。"
 
 #. editorial content for the discovery pane.
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "轻松选择书签位置 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
@@ -5113,7 +5113,7 @@ msgstr "一种更好的保存书签的方法，如果你使用多个书签文件
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "复制无格式文本 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
@@ -5121,7 +5121,7 @@ msgstr "去除不必要的格式，仅复制纯文本。"
 
 #. editorial content for the discovery pane.
 msgid "Get instant translatations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "即时翻译 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
@@ -5129,7 +5129,7 @@ msgstr "将整个网页翻译为您想要的语言，一键达成。"
 
 #. editorial content for the discovery pane.
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "提取链接 {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
@@ -5137,7 +5137,7 @@ msgstr "在新标签页中即时显示网页中的所有链接。"
 
 #. editorial content for the discovery pane.
 msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "查看文档 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
@@ -5145,7 +5145,7 @@ msgstr "使用您首选的 PDF 应用程序打开 PDF。"
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "跳过重定向和跟踪器 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
@@ -5153,7 +5153,7 @@ msgstr "剥除链接重定向和 URL 跟踪参数。"
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "停止搜索引擎跟踪器 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
@@ -5161,7 +5161,7 @@ msgstr "阻止搜索引擎知道您点开了哪个搜索结果。"
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "下载 YouTube 视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
@@ -5169,7 +5169,7 @@ msgstr "下载视频和/或音频。"
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "RSS 聚合阅读器 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
@@ -5177,7 +5177,7 @@ msgstr "一个高级阅读器，聚合您的所有 RSS/Atom/RDF 订阅。"
 
 #. editorial content for the discovery pane.
 msgid "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "各站点随手笔记 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
@@ -5185,7 +5185,7 @@ msgstr "创建一般和仅限特定网站的注释供以后查看。"
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "仿触摸滚动 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
@@ -5193,7 +5193,7 @@ msgstr "为台式机网页提供“按住拖拽”的滚动功能。"
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "删除数据 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
@@ -5201,7 +5201,7 @@ msgstr "一键（鼠标单击/快捷键）清除您的浏览器缓存。"
 
 #. editorial content for the discovery pane.
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "待办记录 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
@@ -5209,7 +5209,7 @@ msgstr "在您的浏览器中创建和管理一个待办事项列表。"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "突出文本 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
@@ -5217,7 +5217,7 @@ msgstr "享受高度可定制的文字荧光笔，多种颜色和保存选项。
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "享受全球各地音乐 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access 20,000+ radio stations from all over the globe."
@@ -5225,7 +5225,7 @@ msgstr "收听全球各地超过 20000 个广播电台。"
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "收听视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
@@ -5233,15 +5233,15 @@ msgstr "只传输 YouTube 影片的流式音频来节省带宽。"
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "文本转图片 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "将单调文本转化为漂亮的标题与图像上的文本。"
 
 #. editorial content for the discovery pane.
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "安全网上冲浪 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
@@ -5249,7 +5249,7 @@ msgstr "导航到网站的安全版本（如果可用）。"
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "删除你的浏览记录 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
@@ -5257,7 +5257,7 @@ msgstr "指定几天后自动清除浏览器历史记录。"
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "去除搜索结果广告 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
