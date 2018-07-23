@@ -9,10 +9,7 @@ from olympia.addons.decorators import addon_view
 def addon_view_stats(f):
     @functools.wraps(f)
     def wrapper(request, addon_id=None, *args, **kw):
-        """Provides an addon instance to the view given addon_id, which can be
-        an Addon pk or a slug."""
-        assert addon_id, 'Must provide addon id or slug'
-
+        # Admins can see stats for every add-on regardless of its status.
         if acl.action_allowed(request, permissions.STATS_VIEW):
             qs = Addon.objects.all
         else:
