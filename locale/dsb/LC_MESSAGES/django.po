@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 19:51+0000\n"
+"PO-Revision-Date: 2018-07-23 20:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -581,7 +581,7 @@ msgid "close"
 msgstr "zacyniś"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr "Někotare dodanki pšose wó pšawo, aby wěste funkcije wuwjadli (na pśikład: dodank za zastojanje rejtarkow pšosy wó pśistup na rejtarkowy system wašogo wobglědowaka)."
+msgstr "Někotare dodanki pšose wó pšawo, aby wěste funkcije wuwjadli (na pśikład: dodank za zastojanje rejtarkow pšosy wó pśistup k rejtarkowemu systemoju wašogo wobglědowaka)."
 
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
@@ -598,7 +598,7 @@ msgid "Some add-ons ask for permission to perform certain functions. Since you�
 msgstr "Někotare dodanki pšose wó pšawo, aby wěste funkcije wuwjadli. Dokulaž wy kontrolu nad swójim Firefox maśo, lažy na was, lěc toś te napšašowanja pśizwólujośo abo wótpokazujośo."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr "Pšosym źiwajśo na to, až toś ten dodank zestarjonu technologiju wužywa, kótaraž jomu pśistup na wšykne funkcije wobglědowaka a daty dawa, bźez togo, aby wó wašu dowolnosć pšosył."
+msgstr "Pšosym źiwajśo na to, až toś ten dodank zestarjonu technologiju wužywa, kótaraž jomu pśistup k wšyknym funkcijam wobglědowaka a daty dawa, bźez togo, aby wó wašu dowolnosć pšosył."
 
 msgid "This add-on has been removed by its author."
 msgstr "Toś ten dodank jo se wót swójogo awtora wótpórał."
@@ -4593,11 +4593,11 @@ msgstr "Wužywajśo wizuelne cytańske znamjenja {start_sub_heading}z {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites from a tile layout."
-msgstr "Mějśo pśistup na swóje nejlubše sedła z kachlickowego naglěda."
+msgstr "Mějśo pśistup k swójim nejlubšym sedłam z kachlickowego naglěda."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mějśo pśistup na wědu {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Mějśo pśistup k wěźe {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
@@ -4665,7 +4665,7 @@ msgstr "Wužywajśo akademisku wědu {start_sub_heading}z {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
-msgstr "Wužywajśo dermotny pśistup na wěcej ako 10 milionow slěźeńskich źěłow."
+msgstr "Wužywajśo dermotny pśistup k wěcej ako 10 milionow slěźeńskim źěłam."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4846,7 +4846,7 @@ msgstr "Nakupujśo a žaŕśo {start_sub_heading}z {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "Wobstarajśo se nejlěpše bony, aby je za swój nakupowański wózyk pśi płaśenju wužywał."
 
 #. editorial content for the discovery pane.
 msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4854,7 +4854,7 @@ msgstr "Malsne pśełožki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "Pśełožujśo wuzwignjony tekst abo ceły webbok"
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4862,7 +4862,7 @@ msgstr "Pólěpšćo Reddit {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Změńśo wašnju, z kótarejuž Reddit z pomocu klucowych słowow a wěcej pśeglědujośo."
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4870,11 +4870,11 @@ msgstr "Zapópadniśo web {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Gótujśo fota wobrazowki websedłow, wobźěłajśo a źělśo je."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Wurědny ześěgnjeński rěd jano za Windows."
 
 #. editorial content for the discovery pane.
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4882,7 +4882,7 @@ msgstr "Identificěrujśo swóje pśeslědowaki {start_sub_heading}z {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "Zgóńśo, chtož wam slědujo, a źož se waše daty dalej dawaju."
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4890,11 +4890,11 @@ msgstr "Pśeglědujśo anonymnje {start_sub_heading}z {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Pśeglědujśo web ze skryteju identitu - samo gaby to z drugego kraja cynił."
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Mějśo pśistup k swójim nejlubšym sedłam, njedawno zacynjonym rejtarkam a wěcej - wšykno z wjelicnego kachlickego naglěda."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5474,7 +5474,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mějśo lažki pśistup na Wikipediju {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Mějśo lažki pśistup k Wikipediji {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
@@ -5796,7 +5796,7 @@ msgid "Cannot diff a version against itself"
 msgstr "Wersija njedajo se ze sobu pśirownaś"
 
 msgid "Access your data for {name}"
-msgstr "Mějśo pśistup na swóje daty za {name}"
+msgstr "Mějśo pśistup k swójim datam za {name}"
 
 msgid "Access your data on the following websites:"
 msgstr "Na waše daty na slědujucych websedłach pśistup měś:"
