@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 19:30+0000\n"
+"PO-Revision-Date: 2018-07-23 19:51+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4742,7 +4742,7 @@ msgstr "Składujśo tekst na pózdźej {start_sub_heading}z {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
-msgstr ""
+msgstr "Njepišćo to samske pśecej zasej! Jolic cesto te samske fraze w swójom źěle abo drugich zdźělenjach wužywaśo, składujśo je z Clippings a zasajźćo je, gaž je trjebaśo."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4750,7 +4750,7 @@ msgstr "Blokěrujśo e-mailowe wabjenje {start_sub_heading}z {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Wótwónoźćo wabjenje ze swójogo postowego kašćika na zakłaźe weba, aby wěcej ruma na wobrazowce dostał."
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4758,7 +4758,7 @@ msgstr "Namakajśo swóje rejtarki {start_sub_heading}z {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr ""
+msgstr "Zastojśo swóje wócynjone rejtarki w pśeglědnej bocnicy."
 
 #. editorial content for the discovery pane.
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4766,7 +4766,7 @@ msgstr "Wobiniśo se zakśibatnych pśeslědowaki a wobgranicowanjow {start_sub_
 
 #. editorial content for the discovery pane.
 msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr ""
+msgstr "Schowajśo identitu swójogo wobglědowaka a źěłowego systema, aby swóju nawigaciju skšył."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4774,7 +4774,7 @@ msgstr "Aktualizěrujśo rejtarki {start_sub_heading}z {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "Zacytajśo rejtarki awtomatiski pó nastajonych casowych interwalach znowego."
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4782,7 +4782,7 @@ msgstr "Wótźělśo swóje žywjenja online{start_sub_heading}z {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr ""
+msgstr "Rozeznajśo za šćit priwatnosći mjazy swójimi rozdźělnymi identitami online - źěło, priwatne atd. - z pśez barwu koděrowanymi rejtarkami, kótarež wašu digitalnu cookiejowy slěd rozdźěluju."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4790,7 +4790,7 @@ msgstr "Blokěrujśo pśeslědowanje {start_sub_heading}z {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "Wobstarajśo se pśidatnu rowninu pśeslědowańskego šćita, aby web pśeglědował."
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4798,7 +4798,7 @@ msgstr "Cytajśo ePub-dataje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "Wužywajśo ePub-dataje direktnje w Firefox - pówušćo wjelikosć pisma, wótměry boka a wěcej."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4806,7 +4806,7 @@ msgstr "Pólěpšćo swójo dožywjenje Youtube {start_sub_heading}z {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "Wótgrajśo wideo pó standarźe w nejwušej kwaliśe, znjemóžniśo pśipiski a wěcej."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4814,7 +4814,7 @@ msgstr "Slědujśo pśeslědowakam {start_sub_heading}z {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "Póglědajśo z jano jadnym kliknjenim, chtož was pśeslědujośo."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4822,7 +4822,7 @@ msgstr "Změńśo swój proksy-serwer {start_sub_heading}z {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "Pśeglědujśo web ze swójskimi proksy-nastajenjami."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4830,7 +4830,7 @@ msgstr "Wóźćo wótgrawanje wideo {start_sub_heading}z {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "Pólěpšćo swóje wiźeńske dožywjenje pśez pśiměrjenje wideomalsnosći a wěcej."
 
 #. editorial content for the discovery pane.
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4838,7 +4838,7 @@ msgstr "Pśeglědujśo wěsće {start_sub_heading}z {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
-msgstr ""
+msgstr "Pśidajśo sedłoju, kótarež HTTPS pódpěra, skoděrowanu wěstotu."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
