@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 15:51+0000\n"
+"PO-Revision-Date: 2018-07-23 16:02+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5443,7 +5443,7 @@ msgstr "האזנה לסרטונים {start_sub_heading}עם {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "חסכון ברוחב הפס ע״י הזרמת שמע בלבד מסרטוני YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5484,7 +5484,7 @@ msgstr "ניהול ססמאות באופן בטוח {start_sub_heading}עם {add
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "אחסון ססמאות בצורה מאובטחת והתחברות לאתרים ידועים באופן אוטומטי."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5614,7 +5614,7 @@ msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "גישה קלה ללשוניות הפתוחות, סימניות והיסטוריה."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -5670,11 +5670,11 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "אחסון ססמאות בצורה מאובטחת והתחברות אוטומטית לאתרים ידועים."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "חוסם פרסומות פשוט שממוקד על הצגת רק התוכן הרצוי."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5729,7 +5729,7 @@ msgstr "לשכוח מההיסטוריה {start_sub_heading}עם {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "מחיקה אוטומטית של היסטורית הדפדפן עבור אתרים נבחרים."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5764,7 +5764,7 @@ msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "מצאת תמונה מעניינת ברשת? ניתן להשתמש ב־TinEye כדי לחקור את מקורותיה."
 
 #. editorial content for the discovery pane.
 #, fuzzy
