@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 10:28+0000\n"
+"PO-Revision-Date: 2018-07-23 10:52+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4913,7 +4913,7 @@ msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Edit halaman tab baru supaya memaparkan bilangan jubin serta imej latar belakang yang anda mahu dan banyak lagi."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4922,7 +4922,7 @@ msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
+msgstr "Serlahkan teks dalam laman web, klik kanan dan diterjemahkan serta-merta."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4931,7 +4931,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Simpan kata laluan dengan selamat dan mengaksesnya dalam pelbagai peranti."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4940,7 +4940,7 @@ msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Ketahui lokasi negara laman web yang anda lawati. Jadilah pengembara internet yang bermaklumat."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4949,7 +4949,7 @@ msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Jadikan teks yang anda baca lebih menarik dengan membuang gangguan di sekelilingnya."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4958,7 +4958,7 @@ msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name} {end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
-msgstr ""
+msgstr "Klik kanan dan seret pautan yang anda mahu buka dalam tab baru."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4967,7 +4967,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Akses tab terkini ditutup dengan mengklik kanan ikon dalam bar alatan."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4976,7 +4976,7 @@ msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name} {end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Ubah halaman tab baru supaya memaparkan latar belakang yang indah, menetapkan tumpuan harian dan banyak lagi."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4985,7 +4985,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr ""
+msgstr "Kembalikan butang \"Papar imej\" ketika membuat carian di Google Images."
 
 #. editorial content for the discovery pane.
 #, fuzzy
