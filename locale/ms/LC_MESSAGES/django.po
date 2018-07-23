@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 10:11+0000\n"
+"PO-Revision-Date: 2018-07-23 10:28+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4801,7 +4801,7 @@ msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "Ketahui siapa yang menjejaki anda dan di mana maklumat anda dikongsikan."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4810,11 +4810,11 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Layari web dengan identiti samaran—seolah-olah anda melayari web dari negara lain."
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Akses laman kegemaran, tab terkini ditutup dan banyak lagi—semuanya dalam susun atur jubin yang cantik."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4823,7 +4823,7 @@ msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "Tetapkan laman yang disesuaikan untuk tab baru anda."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4832,7 +4832,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "Tukar semua tab terbuka menjadi senarai supaya mudah diuruskan dan memantaskan Firefox."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4841,7 +4841,7 @@ msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Semak perkembangan muat turun melalui bar status, halaman sejarah muat turun dan banyak lagi."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4850,7 +4850,7 @@ msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Simpan maklumat dari internet ke OneNote supaya anda boleh edit, anotasi dan banyak lagi."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4859,7 +4859,7 @@ msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Sekat penjejak apabila anda klik hasil carian Google dan Yandex."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4868,7 +4868,7 @@ msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr ""
+msgstr "Gunakan gerak isyarat tetikus untuk menutup tab, undur satu halaman, muat semula dan banyak lagi."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4877,7 +4877,7 @@ msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
-msgstr ""
+msgstr "Sertakan imej kecil bersama hasil carian anda."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4886,7 +4886,7 @@ msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Jadikan web lebih mudah dibaca dengan paparan yang gelap."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4895,7 +4895,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Sekat semua popup secara piawai, kemudian tentukan yang anda mahu buka."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4904,7 +4904,7 @@ msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Tukar penampilan laman web! Ubah warna, latar belakang halaman dan banyak lagi."
 
 #. editorial content for the discovery pane.
 #, fuzzy
