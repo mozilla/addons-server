@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 12:31+0000\n"
+"PO-Revision-Date: 2018-07-23 12:47+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5174,7 +5174,7 @@ msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "Akses WhatsApp dari dalam panel bar alatan Firefox untuk mendapatkan notifikasi yang belum dibaca."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5183,7 +5183,7 @@ msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "Dapatkan penterjemahan pakar Bahasa Jerman untuk Bahasa Inggeris, Perancis, Sepanyol, dan bahasa lain."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5192,7 +5192,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
-msgstr ""
+msgstr "Hadkan Firefox daripada mengakses laman web yang anda tentukan."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5201,7 +5201,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "Urus produktiviti anda dengan bekerja dalam selang masa yang ditetapkan."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5210,7 +5210,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "Semak suapan RSS kegemaran anda dalam satu halaman."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5219,7 +5219,7 @@ msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "Aktifkan mod malam untuk pengalaman yang lebih baik."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5228,7 +5228,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "Carian imej songsang dengan memanfaatkan kuasa pelbagai penyedia carian."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5237,7 +5237,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store web pages to access across devices."
-msgstr ""
+msgstr "Simpan halaman web untuk diakses dalam semua peranti."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5246,7 +5246,7 @@ msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "Cara menyimpan tandabuku yang lebih baik dengan menggunakan berbilang folder."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5255,7 +5255,7 @@ msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "Buang pemformatan yang tidak perlu dan salin hanya teks biasa."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5264,7 +5264,7 @@ msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Ubah seluruh halaman web ke bahasa pilihan anda—dengan mengklik satu butang."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5273,7 +5273,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr ""
+msgstr "Paparan serta-merta semua pautan halaman web dalam tab baru."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5282,7 +5282,7 @@ msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
-msgstr ""
+msgstr "Akses PDF menggunakan aplikasi PDF yang anda gemari."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5291,7 +5291,7 @@ msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
-msgstr ""
+msgstr "Buang halaman lencongan dan parameter penjejakan URL."
 
 #. editorial content for the discovery pane.
 #, fuzzy
