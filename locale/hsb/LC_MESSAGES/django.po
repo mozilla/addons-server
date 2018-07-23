@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 13:10+0000\n"
+"PO-Revision-Date: 2018-07-23 13:15+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5668,7 +5668,7 @@ msgstr "Zhašejće awtomatisce historiju wobhladowaka za wubrane websydła."
 
 #. editorial content for the discovery pane.
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Škitajce zapołožki {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Škitajće zapołožki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
