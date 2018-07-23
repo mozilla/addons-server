@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 14:21+0000\n"
+"PO-Revision-Date: 2018-07-23 16:08+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4477,7 +4477,7 @@ msgstr "Pśiměŕśo nowe rejtarkowe boki {start_sub_heading}z {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Wužywajśo rědny nowy bok z pśiměrujobnymi slězynami, informacijami wó lokalnem wjedrje a wěcej."
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4485,7 +4485,7 @@ msgstr "Pśełožujśo lažko {start_sub_heading}z {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Wuzwigniśo tekst, klikniśo z pšaweju tastu a pśełožćo ned."
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4493,7 +4493,7 @@ msgstr "Pytajśo wobraze {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Pśewjeźćo slědkpytanja wobrazow z rědom pytnicow."
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4501,7 +4501,7 @@ msgstr "Blokěrowanje wabjenja a šćit priwatnosći {start_sub_heading}z {addon
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Z jadnorym nastajenim kontrolěrujośo wabjenje, kótarež wiźiśo a wašnju, kak wam w interneśe slěduju."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4509,7 +4509,7 @@ msgstr "Pśedstajśo se rejtarki nowo {start_sub_heading}z {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Maśo wjelgin wjele wócynjonych rejtarkow? Organizěrujśo je w praktiskej bocnicy."
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4517,7 +4517,7 @@ msgstr "Zajźujśo pśeslědowanjeju pśez Facebook {start_sub_heading}z {addon_
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Izolěrujśo swóju Facebookowu identitu do wótźělonego „kontejnera“, kótaryž Facebookoju póśěžujo, wašym pógibam we webje slědowaś."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4525,7 +4525,7 @@ msgstr "Zjadnoŕśo pytanje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Wuzwigniśo jadnorje tekst na někakem webboku, aby z pytnicu wuraz pytał."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4533,7 +4533,7 @@ msgstr "Wjedrowe aktualizacije ned {start_sub_heading}z {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
-msgstr ""
+msgstr "Wobstarajśo se globalne wjedrowe daty direktnje w swójom Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
@@ -4545,11 +4545,11 @@ msgstr "Pytanje za wobrazami naslědk {start_sub_heading}z {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "Cośo se zajmawy wobraz w interneśe woglědaś a wěcej wó njom zgóniś? Wopytajśo toś ten rěd za pytanje wobrazow."
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Funkcioněrujo z YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope a stami drugich wideosedłow."
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
@@ -4561,7 +4561,7 @@ msgstr "Zastojśo gronidła {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Zjadnorśo a synchronizěrujśo wše swóje rozdźělne pśizjawjenja websedłow pśez rědy z jadnym gronidłom."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4585,7 +4585,7 @@ msgstr "Pytajśo lažko wobraze {start_sub_heading}z {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Wuzwigniśo tekst a klikniśo z pšaweju tastu, aby malsne pytanje za wobrazami pśewjadł."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4601,7 +4601,7 @@ msgstr "Mějśo pśistup na wědu {start_sub_heading}z {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "Pśidajśo awtomatiski swójim pytańskim wuslědkam fakty z Britannica."
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4609,7 +4609,7 @@ msgstr "Wótwónoźćo wabjenje Youtube {start_sub_heading}z {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Blokěrujśo mólece wabjenje a pokazki na YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4617,7 +4617,7 @@ msgstr "Cytajśo wšuźi {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Sćelśo nowe nastawki, tšojenja, blogowe pśinoski a wěcej na swój KIndle."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4625,7 +4625,7 @@ msgstr "Zabarwśo swóje rejtarki {start_sub_heading}z {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Organizěrujśo swóje rejtarki na zakłaźe URL-mustrow a zrědujśo je pó barwach."
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4633,7 +4633,7 @@ msgstr "Zajźujśo kopanjeju za kryptopjenjezami {start_sub_heading}z {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Zawoborajśo złosnym websydłam wužywanje wugbaśa wašogo licadła za kopanje za kryptopjenjezami."
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4641,7 +4641,7 @@ msgstr "Awtomatiska kontrola gramatiki {start_sub_heading}z {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Wobstarajśo se w interneśe pomoc wó gramatice . w socialnych medijach, mejlkach, dokumentach a wěcej."
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4649,7 +4649,7 @@ msgstr "Woglědajśo se swětowe čase {start_sub_heading}z {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Zwobrazniśo aktualne swětowe case w statusowej rědce Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4657,7 +4657,7 @@ msgstr "Lažke pśełožki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Wuzwigniśo tekst na webboku - abo wubjeŕśo ceły bok -, aby ned pśełožił."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4665,7 +4665,7 @@ msgstr "Wužywajśo akademisku wědu {start_sub_heading}z {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
-msgstr ""
+msgstr "Wužywajśo dermotny pśistup na wěcej ako 10 milionow slěźeńskich źěłow."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4673,7 +4673,7 @@ msgstr "Pśiměŕśo gesty myški {start_sub_heading}z {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "Namakajśo nowu móžnosć, aby z wěcej ako 50 wužytnymi gestami myški nawigěrował."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4681,7 +4681,7 @@ msgstr "Optiměrujśo wideo {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "Wóśamniśo bok wokoło wideowótgrawakow, aby se lěpjej na wiźeńske dožywjenje koncentrěrował."
 
 #. editorial content for the discovery pane.
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
