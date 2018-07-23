@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 07:31+0000\n"
+"PO-Revision-Date: 2018-07-23 10:11+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4725,7 +4725,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "Lihat siapa yang menjejaki anda dengan hanya satu klik."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4734,7 +4734,7 @@ msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "Layari web dengan tetapan proksi anda sendiri."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4743,7 +4743,7 @@ msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "Tingkatkan pengalaman menonton video dengan melaraskan kelajuan dan banyak lagi."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4752,7 +4752,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
-msgstr ""
+msgstr "Tambah keselamatan yang dienkripsi dalam mana-mana laman yang menyokong HTTPS."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4761,7 +4761,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "Dapatkan kupon secara automatik apabila membuat pengesahan membeli-belah."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4770,7 +4770,7 @@ msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "Terjemahkan teks yang diserlahkan atau keseluruhan halaman web"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4779,7 +4779,7 @@ msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name} {end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Ubah cara melayari Reddit dengan menggunakan tag dan banyak lagi."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4788,11 +4788,11 @@ msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Ambil skrinsyot halaman web, edit dan kongsi."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Alatan pemuat turun hanya untuk Windows yang superior."
 
 #. editorial content for the discovery pane.
 #, fuzzy
