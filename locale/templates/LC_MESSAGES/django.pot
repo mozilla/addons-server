@@ -1394,7 +1394,7 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:4
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:3
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:2
-#: src/olympia/users/admin.py:198
+#: src/olympia/users/admin.py:199
 msgid "Collections"
 msgstr ""
 
@@ -10989,7 +10989,7 @@ msgid "Subscribers"
 msgstr ""
 
 #: src/olympia/stats/templates/stats/collection_report_menu.html:12
-#: src/olympia/users/admin.py:207
+#: src/olympia/users/admin.py:208
 msgid "Ratings"
 msgstr ""
 
@@ -11512,33 +11512,33 @@ msgstr ""
 
 #: src/olympia/users/admin.py:131
 #, python-format
-msgid "The user \"%(user)s\" has been banned.user"
+msgid "The user \"%(user)s\" has been banned."
 msgstr ""
 
-#: src/olympia/users/admin.py:150
+#: src/olympia/users/admin.py:149
 #, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
-msgstr ""
-
-#: src/olympia/users/admin.py:161
-#, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr ""
 
 #: src/olympia/users/admin.py:162
+#, python-format
+msgid "The users \"%(users)s\" have been banned."
+msgstr ""
+
+#: src/olympia/users/admin.py:163
 msgid "Ban selected users"
 msgstr ""
 
-#: src/olympia/users/admin.py:166 src/olympia/users/forms.py:81
+#: src/olympia/users/admin.py:167 src/olympia/users/forms.py:81
 #: src/olympia/users/templates/users/edit.html:91
 msgid "Profile Photo"
 msgstr ""
 
-#: src/olympia/users/admin.py:203
+#: src/olympia/users/admin.py:204
 msgid "Addons"
 msgstr ""
 
-#: src/olympia/users/admin.py:211
+#: src/olympia/users/admin.py:212
 msgid "Activity Logs"
 msgstr ""
 
