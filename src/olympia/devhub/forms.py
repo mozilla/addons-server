@@ -297,23 +297,19 @@ class WithSourceMixin(object):
 
 class SourceFileInput(forms.widgets.ClearableFileInput):
     """
-    We need to customize the URL link.
-    1. Remove %(initial)% from template_with_initial
-    2. Prepend the new link (with customized text)
+    Like ClearableFileInput but with custom link URL and text for the initial
+    data. Uses a custom template because django's is not flexible enough for
+    our needs.
     """
+    initial_text = _('View current')
+    template_name = 'devhub/addons/includes/source_file_input.html'
 
-    template_with_initial = '%(clear_template)s<br />%(input_text)s: %(input)s'
-
-    def render(self, name, value, attrs=None):
-        output = super(SourceFileInput, self).render(name, value, attrs)
+    def get_context(self, name, value, attrs):
+        context = super(SourceFileInput, self).get_context(name, value, attrs)
         if value and hasattr(value, 'instance'):
-            url = reverse('downloads.source', args=(value.instance.pk, ))
-            params = {
-                'url': url,
-                'output': output,
-                'label': ugettext('View current')}
-            output = '<a href="%(url)s">%(label)s</a> %(output)s' % params
-        return output
+            context['download_url'] = reverse(
+                'downloads.source', args=(value.instance.pk, ))
+        return context
 
 
 class VersionForm(WithSourceMixin, forms.ModelForm):
