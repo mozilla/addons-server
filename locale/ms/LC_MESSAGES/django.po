@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 11:11+0000\n"
+"PO-Revision-Date: 2018-07-23 12:31+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5156,7 +5156,7 @@ msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
-msgstr ""
+msgstr "Jadi kreatif dan sesuaikan halaman tab baru supaya memaparkan laman kegemaran dan tema pilihan anda."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5165,7 +5165,7 @@ msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name} {end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "Layari terus laman web yang hendak diakses tanpa dilencongkan di antaranya."
 
 #. editorial content for the discovery pane.
 #, fuzzy
