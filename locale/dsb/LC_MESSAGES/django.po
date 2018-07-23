@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 16:08+0000\n"
+"PO-Revision-Date: 2018-07-23 16:16+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4690,7 +4690,7 @@ msgstr "Pytajśo z dobreju wědobnosću {start_sub_heading}z {addon_name}{end_su
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "Ecosia wužywa 80% swójich pytańskich nabrankow, aby na cełem swěśe programy pósajźanja z bomkami financěrował. Pśewzejśo Ecosia direktnje do pytanja Firefox"
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4698,7 +4698,7 @@ msgstr "Pytajśo felujuce webwopśimjeśe {start_sub_heading}z {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "Bok, kótaryž pytaśo, njejo k dispoziciji? Pytajśo za archiwěrowaneju/pufrowaneju wersiju."
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4710,7 +4710,7 @@ msgstr "Pówětšćo wobraze {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
-msgstr ""
+msgstr "Śěgniśo jadnorje myšku pó wobrazu, aby jen pówětšył."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
