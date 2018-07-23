@@ -1011,7 +1011,7 @@ def ajax_upload_image(request, upload_type, addon_id=None):
             if is_icon:
                 errors.append(
                     ugettext('Please use images smaller than %dMB.')
-                    % (max_size / 1024 / 1024 - 1))
+                    % (max_size / 1024 / 1024))
             if is_persona:
                 errors.append(
                     ugettext('Images cannot be larger than %dKB.')
