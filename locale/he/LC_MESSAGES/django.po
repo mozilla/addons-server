@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-21 17:16+0000\n"
+"PO-Revision-Date: 2018-07-23 15:51+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5146,7 +5146,7 @@ msgstr "לעבוד מהר יותר {start_sub_heading}עם {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
-msgstr ""
+msgstr "שימוש במחוות עכבר כדי לבצע דברים — במהירות רבה יותר."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5171,7 +5171,7 @@ msgstr "הסוואת המיקום שלך {start_sub_heading}עם {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr ""
+msgstr "הסוואת המיקום שלך כדי לבלבל רכיבי מעקב ולהגן על הפרטיות שלך."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5213,7 +5213,7 @@ msgstr "שיפור החוויה שלך ב־VK {start_sub_heading}עם {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
-msgstr ""
+msgstr "הסרת פרסומות והורדת שמע מ־VK."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5221,7 +5221,7 @@ msgstr "קבלת תרגומים מידיים {start_sub_heading}עם {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "קבלת תרגום מיידי ע״י סימון טקסט ולחיצה על הכפתור שקופץ."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5307,7 +5307,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Store web pages to access across devices."
-msgstr ""
+msgstr "אחסון דפי אינטרנט כדי לגשת אליהם מהתקנים אחרים."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5316,7 +5316,7 @@ msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "דרך טובה יותר לשמור סימניות אם משתמשים בתיקיות סימניות מרובות."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5333,7 +5333,7 @@ msgstr "קבלת תרגומים מידיים {start_sub_heading}עם {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "המרת דף אינטרנט שלם לשפה המועדפת עליך — בלחיצת כפתור."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5350,7 +5350,7 @@ msgstr "צפייה במסמכים {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
-msgstr ""
+msgstr "הצגת קובצי PDF תוך שימוש ביישום ה־PDF המועדף עליך."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5526,7 +5526,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "ביצוע חיפוש בויקיפדיה ע״י סימון טקסט בכל דף אינטרנט ולחיצה ימנית."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5543,7 +5543,7 @@ msgstr "חיפוש סרטונים {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "סימון טקסט בכל אתר ולחיצה על כפתור העכבר הימני כדי לחפש ב־YouTube אחר מדיה קשורה."
 
 #. editorial content for the discovery pane.
 #, fuzzy
