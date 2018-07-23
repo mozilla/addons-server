@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 07:30+0000\n"
+"PO-Revision-Date: 2018-07-23 07:31+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4716,7 +4716,7 @@ msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "Main video secara piawai dalam kualiti tertinggi, tutup anotasi dan banyak lagi."
 
 #. editorial content for the discovery pane.
 #, fuzzy
