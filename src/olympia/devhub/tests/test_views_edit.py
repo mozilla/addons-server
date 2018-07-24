@@ -728,6 +728,19 @@ class TestEditMedia(BaseTestEdit):
         assert labels[1].find('input').get('name') == 'icon_type'
         assert labels[1].find('input').get('value') == 'icon/alerts'
 
+        # Make sure we're rendering our <input> fields for custom icon
+        # upload correctly.
+        # They're split into two fields which happens in
+        # :func:`addons.forms:icons`
+        inputs = doc('#icons_default li.hide input')
+
+        assert inputs.length == 2
+        assert inputs[0].get('name') == 'icon_type'
+        assert inputs[0].get('value') == 'image/jpeg'
+
+        assert inputs[1].get('name') == 'icon_type'
+        assert inputs[1].get('value') == 'image/png'
+
     def test_edit_media_preuploadedicon(self):
         data = {'icon_type': 'icon/appearance'}
         data_formset = self.formset_media(**data)
