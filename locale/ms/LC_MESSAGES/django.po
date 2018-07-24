@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 02:31+0000\n"
+"PO-Revision-Date: 2018-07-24 02:38+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5620,7 +5620,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Simpan kata laluan secara selamat dan daftar masuk secara automatik ke laman web yang diketahui."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
@@ -5767,7 +5767,7 @@ msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
-msgstr ""
+msgstr "Buat pilihan bermaklumat dengan mengkaji dan menerima makluman harga produk yang disenaraikan di Amazon."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5776,7 +5776,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Ubah tetapan audio pelayar dengan ketelitian jitu."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5785,7 +5785,7 @@ msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Lindungi diri anda daripada penjejak tersembunyi."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5794,7 +5794,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
-msgstr ""
+msgstr "Carian lebih selamat dengan menyekat penjejak, enkripsi yang lebih bijak, carian persendirian dan keperluan lain."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
