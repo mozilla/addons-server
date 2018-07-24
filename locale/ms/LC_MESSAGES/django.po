@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 08:13+0000\n"
+"PO-Revision-Date: 2018-07-24 08:14+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5434,18 +5434,16 @@ msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the e
 msgstr "Temui kucing comel dengan setiap tab baru. Garu di belakang telinga dan lihat apa yang akan berlaku."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Kurangkan produktiviti {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
 msgstr "Untuk detik penting apabila anda perlu tembak laser daripada kucing."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Carian Firefox {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
