@@ -105,19 +105,12 @@ class Collection(ModelBase):
     listed = models.BooleanField(
         default=True, help_text='Collections are either listed or private.')
 
-    subscribers = models.PositiveIntegerField(default=0)
-    downloads = models.PositiveIntegerField(default=0)
-    weekly_subscribers = models.PositiveIntegerField(default=0)
-    monthly_subscribers = models.PositiveIntegerField(default=0)
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                               db_column='application_id',
                                               null=True, db_index=True)
     addon_count = models.PositiveIntegerField(default=0,
                                               db_column='addonCount')
 
-    upvotes = models.PositiveIntegerField(default=0)
-    downvotes = models.PositiveIntegerField(default=0)
-    rating = models.FloatField(default=0)
     all_personas = models.BooleanField(
         default=False,
         help_text='Does this collection only contain Themes?')
@@ -178,20 +171,8 @@ class Collection(ModelBase):
         return os.path.join(user_media_path('collection_icons'),
                             str(self.id / 1000))
 
-    def upvote_url(self):
-        return reverse('collections.vote',
-                       args=[self.author_username, self.slug, 'up'])
-
-    def downvote_url(self):
-        return reverse('collections.vote',
-                       args=[self.author_username, self.slug, 'down'])
-
     def edit_url(self):
         return reverse('collections.edit',
-                       args=[self.author_username, self.slug])
-
-    def watch_url(self):
-        return reverse('collections.watch',
                        args=[self.author_username, self.slug])
 
     def delete_url(self):
@@ -265,12 +246,11 @@ class Collection(ModelBase):
                         activity.log_create(amo.LOG.REMOVE_FROM_COLLECTION,
                                             (Addon, addon), self)
             if add:
-                insert = '(%s, %s, %s, NOW(), NOW(), 0)'
+                insert = '(%s, %s, %s, NOW(), NOW())'
                 values = [insert % (a, self.id, idx) for a, idx in add]
                 cursor.execute("""
                     INSERT INTO addons_collections
-                        (addon_id, collection_id, ordering, created,
-                         modified, downloads)
+                        (addon_id, collection_id, ordering, created, modified)
                     VALUES %s""" % ','.join(values))
                 if self.listed:
                     for addon_id, idx in add:
@@ -291,10 +271,6 @@ class Collection(ModelBase):
                 c.save(force_update=True)
 
         self.save()
-
-    def is_subscribed(self, user):
-        """Determines if the user is subscribed to this collection."""
-        return self.following.filter(user=user).exists()
 
     def add_addon(self, addon):
         "Adds an addon to the collection."
@@ -383,7 +359,6 @@ class CollectionAddon(ModelBase):
     collection = models.ForeignKey(Collection)
     # category (deprecated: for "Fashion Your Firefox")
     comments = LinkifiedField(null=True)
-    downloads = models.PositiveIntegerField(default=0)
     user = models.ForeignKey(UserProfile, null=True)
 
     ordering = models.PositiveIntegerField(
@@ -425,50 +400,6 @@ models.signals.post_save.connect(CollectionAddon.post_save,
 models.signals.post_delete.connect(CollectionAddon.post_delete,
                                    sender=CollectionAddon,
                                    dispatch_uid='coll.post_delete')
-
-
-class CollectionWatcher(ModelBase):
-    collection = models.ForeignKey(Collection, related_name='following')
-    user = models.ForeignKey(UserProfile)
-
-    class Meta(ModelBase.Meta):
-        db_table = 'collection_subscriptions'
-
-    @staticmethod
-    def post_save_or_delete(sender, instance, **kw):
-        from . import tasks
-        tasks.collection_watchers(instance.collection_id)
-
-
-models.signals.post_save.connect(CollectionWatcher.post_save_or_delete,
-                                 sender=CollectionWatcher)
-models.signals.post_delete.connect(CollectionWatcher.post_save_or_delete,
-                                   sender=CollectionWatcher)
-
-
-class CollectionVote(models.Model):
-    collection = models.ForeignKey(Collection, related_name='votes')
-    user = models.ForeignKey(UserProfile, related_name='votes')
-    vote = models.SmallIntegerField(default=0)
-    created = models.DateTimeField(null=True, auto_now_add=True)
-
-    class Meta:
-        db_table = 'collections_votes'
-
-    @staticmethod
-    def post_save_or_delete(sender, instance, **kwargs):
-        # There are some issues with cascade deletes, where the
-        # collection disappears before the votes. Make sure the
-        # collection exists before trying to update it in the task.
-        if Collection.objects.filter(id=instance.collection_id).exists():
-            from . import tasks
-            tasks.collection_votes(instance.collection_id)
-
-
-models.signals.post_save.connect(CollectionVote.post_save_or_delete,
-                                 sender=CollectionVote)
-models.signals.post_delete.connect(CollectionVote.post_save_or_delete,
-                                   sender=CollectionVote)
 
 
 class FeaturedCollection(ModelBase):

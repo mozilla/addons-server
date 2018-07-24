@@ -126,7 +126,7 @@ def extension_detail(request, addon):
         'reviews': Rating.without_replies.all().filter(
             addon=addon, is_latest=True).exclude(body=None),
         'get_replies': Rating.get_replies,
-        'collections': collections.order_by('-subscribers')[:3],
+        'collections': collections[:3],
         'abuse_form': AbuseForm(request=request),
     }
 

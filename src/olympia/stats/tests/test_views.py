@@ -15,10 +15,9 @@ from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
-from olympia.bandwagon.models import Collection
-from olympia.stats import search, tasks, views
+from olympia.stats import tasks, views
 from olympia.stats.models import (
-    CollectionCount, DownloadCount, GlobalStat, ThemeUserCount, UpdateCount)
+    DownloadCount, GlobalStat, ThemeUserCount, UpdateCount)
 from olympia.users.models import UserProfile
 
 
@@ -714,85 +713,6 @@ class TestSite(TestCase):
         assert _site_query.call_args[0][1] == (
             datetime.date.today() - datetime.timedelta(days=365))
         assert _site_query.call_args[0][2] == datetime.date.today()
-
-
-class TestCollections(amo.tests.ESTestCase):
-    fixtures = ['bandwagon/test_models', 'base/users',
-                'base/addon_3615', 'base/addon_5369']
-
-    def setUp(self):
-        super(TestCollections, self).setUp()
-        self.today = datetime.date.today()
-        self.collection = Collection.objects.get(pk=512)
-        self.url = reverse('stats.collection',
-                           args=[self.collection.uuid, 'json'])
-
-        for x in xrange(1, 4):
-            data = {'date': self.today - datetime.timedelta(days=x - 1),
-                    'id': int(self.collection.pk), 'count': x,
-                    'data': search.es_dict({'subscribers': x, 'votes_up': x,
-                                            'votes_down': x, 'downloads': x})}
-            CollectionCount.index(data, id='%s-%s' % (x, self.collection.pk))
-
-        self.refresh('stats')
-
-    def tests_collection_anon(self):
-        res = self.client.get(self.url)
-        assert res.status_code == 403
-
-    def tests_collection_user(self):
-        self.client.login(email='admin@mozilla.com')
-        res = self.client.get(self.url)
-        assert res.status_code == 200
-
-    def tests_collection_admin(self):
-        self.client.login(email='admin@mozilla.com')
-        self.collection.update(author=None)
-        res = self.client.get(self.url)
-        assert res.status_code == 200
-
-    def test_collection_json(self):
-        self.client.login(email='admin@mozilla.com')
-        res = self.client.get(self.url)
-        content = json.loads(res.content)
-        assert len(content) == 3
-        assert content[0]['count'] == 1
-        assert content[0]['data']['votes_down'] == 1
-        assert content[0]['data']['downloads'] == 1
-
-    def test_collection_csv(self):
-        self.client.login(email='admin@mozilla.com')
-        self.url = reverse('stats.collection',
-                           args=[self.collection.uuid, 'csv'])
-        res = self.client.get(self.url)
-        date = (self.today.strftime('%Y-%m-%d'))
-        assert '%s,1,1,1,1,1' % date in res.content
-
-    def get_url(self, start, end):
-        return reverse('collections.stats.subscribers_series',
-                       args=[self.collection.author.username,
-                             self.collection.slug, 'day',
-                             start.strftime('%Y%m%d'),
-                             end.strftime('%Y%m%d'), 'json'])
-
-    def test_collection_one_day(self):
-        self.client.login(email='admin@mozilla.com')
-        url = self.get_url(self.today, self.today)
-        res = self.client.get(url)
-        content = json.loads(res.content)
-        assert len(content) == 1
-        assert content[0]['date'] == self.today.strftime('%Y-%m-%d')
-
-    def test_collection_range(self):
-        self.client.login(email='admin@mozilla.com')
-        yesterday = self.today - datetime.timedelta(days=1)
-        day_before = self.today - datetime.timedelta(days=2)
-        url = self.get_url(day_before, yesterday)
-        res = self.client.get(url)
-        content = json.loads(res.content)
-        assert len(content) == 2
-        assert content[0]['date'] == yesterday.strftime('%Y-%m-%d')
-        assert content[1]['date'] == day_before.strftime('%Y-%m-%d')
 
 
 class TestXss(amo.tests.TestXss):

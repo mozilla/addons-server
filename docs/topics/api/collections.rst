@@ -214,7 +214,6 @@ This endpoint gets details of a single add-on in a collection, together with col
 
     :>json object addon: The :ref:`add-on <addon-detail-object>` for this item.
     :>json string|object|null notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
-    :>json int downloads: The downloads that occured via this collection.
 
 
 -------------------------

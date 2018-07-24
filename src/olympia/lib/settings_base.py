@@ -1234,15 +1234,9 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.cron._update_addons_current_version': {'queue': 'cron'},
     'olympia.addons.cron._update_appsupport': {'queue': 'cron'},
     'olympia.addons.cron._update_daily_theme_user_counts': {'queue': 'cron'},
-    'olympia.bandwagon.cron._drop_collection_recs': {'queue': 'cron'},
-    'olympia.bandwagon.cron._update_collections_subscribers': {
-        'queue': 'cron'},
-    'olympia.bandwagon.cron._update_collections_votes': {'queue': 'cron'},
 
     # Bandwagon
     'olympia.bandwagon.tasks.collection_meta': {'queue': 'bandwagon'},
-    'olympia.bandwagon.tasks.collection_votes': {'queue': 'bandwagon'},
-    'olympia.bandwagon.tasks.collection_watchers': {'queue': 'bandwagon'},
     'olympia.bandwagon.tasks.delete_icon': {'queue': 'bandwagon'},
 
     # Reviewers
@@ -1281,9 +1275,6 @@ CELERY_TASK_ROUTES = {
     'olympia.stats.tasks.index_download_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_theme_user_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_update_counts': {'queue': 'stats'},
-    'olympia.stats.tasks.update_addons_collections_downloads': {
-        'queue': 'stats'},
-    'olympia.stats.tasks.update_collections_total': {'queue': 'stats'},
     'olympia.stats.tasks.update_global_totals': {'queue': 'stats'},
 
     # Tags
@@ -1804,6 +1795,7 @@ DRF_API_GATES = {
         'ratings-rating-shim',
         'ratings-title-shim',
         'l10n_flat_input_output',
+        'collections-downloads-shim'
     ),
     'v4': (
     ),
@@ -1915,12 +1907,7 @@ CRON_JOBS = {
 
     'gc': 'olympia.amo.cron',
     'category_totals': 'olympia.amo.cron',
-    'collection_subscribers': 'olympia.amo.cron',
     'weekly_downloads': 'olympia.amo.cron',
-
-    'update_collections_subscribers': 'olympia.bandwagon.cron',
-    'update_collections_votes': 'olympia.bandwagon.cron',
-    'reindex_collections': 'olympia.bandwagon.cron',
 
     'compatibility_report': 'olympia.compat.cron',
 
@@ -1929,8 +1916,6 @@ CRON_JOBS = {
     'cleanup_extracted_file': 'olympia.files.cron',
     'cleanup_validation_results': 'olympia.files.cron',
 
-    'update_addons_collections_downloads': 'olympia.stats.cron',
-    'update_collections_total': 'olympia.stats.cron',
     'update_global_totals': 'olympia.stats.cron',
     'index_latest_stats': 'olympia.stats.cron',
 
