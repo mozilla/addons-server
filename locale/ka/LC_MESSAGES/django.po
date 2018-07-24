@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 05:33+0000\n"
+"PO-Revision-Date: 2018-07-24 05:37+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5451,7 +5451,7 @@ msgstr "ჩანართების გაუმჯობესებულ�
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "უამრავი დამატებითი შესაძლებლობა ჩანართების მართვისას — ერთნაირი ჩანართების დახურვა, ფანჯრების გაერთიანება, ჩანართის დასახელების დაკოპირება და ა.შ."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5459,18 +5459,16 @@ msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "მოირგეთ ჩანართები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Load a random Wikipedia article each time you open a new tab."
-msgstr "დააყენეთ სასურველი გვერდი, ახალი ჩანართის გახსნისას."
+msgstr "ვიკიპედიიდან შემთხვევით შერჩეული სტატიის გამოტანა ახალი ჩანართის ყოველი გახსნისას."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გაამრავალფეროვნეთ თქვენ ხელთ არსებული სიცილაკები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "შეცვალეთ თქვენი ახალი ჩანართი {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "მიუთითეთ სასურველი ფონის ფერები და სურათები, ახალი ჩანართის გვერდისთვის."
 
 #. editorial content for the discovery pane.
 #, fuzzy
