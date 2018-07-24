@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 09:36+0000\n"
-"Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
+"PO-Revision-Date: 2018-07-24 09:25+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -4549,9 +4549,8 @@ msgid "Choose the page you see every time you open a new tab."
 msgstr "Scegli la pagina che viene mostrata quando si apre una nuova scheda."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Perfeziona la tua esperienza video {start_sub_heading}con {addon_name} {end_sub_heading}"
+msgstr "Sfrutta la ricerca immagini inversa {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
