@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 09:09+0000\n"
+"PO-Revision-Date: 2018-07-24 09:14+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5612,7 +5612,7 @@ msgstr "IP მისამართის გაჟონვის არიდ�
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr "იყენებთ VPN-ს? თქვენი IP მისამართი შეიძლება მაინც გამოჩნდეს. ამის თავიდან ასაცილებლად, გამორთეთ WebRTC."
+msgstr "იყენებთ VPN-ს? თქვენი IP მისამართი შეიძლება მაინც გამოჩნდეს. ამის თავიდან აცილება შესაძლებელია WebRTC-ის შეზღუდვით."
 
 #. editorial content for the discovery pane.
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
