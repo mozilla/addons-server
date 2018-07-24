@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 05:38+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2018-07-24 14:26+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -4478,7 +4478,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pare o rastreamento do Facebook {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Pare a monitorização do Facebook {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
@@ -4792,7 +4792,7 @@ msgstr "Bloqueie anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "Ganhe uma camada adicional de proteção contra monitorização enquanto navega a web."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4819,7 +4819,7 @@ msgstr "Bloqueie anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "Vislumbre quem está a monitorizar-lhe com apenas um clique."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4895,7 +4895,7 @@ msgstr "Melhore o seu jogo de emoji {start_sub_heading}com {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "Descubra quem está a monitorizar-lhe e onde podem estar a partilhar a sua informação."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4947,9 +4947,8 @@ msgid "Save information from the internet to OneNote so you can edit, annotate, 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalização de separadores {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Pesquisa com proteção contra monitorização {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
@@ -5385,7 +5384,7 @@ msgstr "Tire capturas de ecrã {start_sub_heading}com {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
-msgstr ""
+msgstr "Remove páginas de redirecionamento e parâmetros de monitorização de URLs."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5523,9 +5522,8 @@ msgid "Store passwords securely and sign in to known websites automatically."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloqueie anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Bloqueie anúncios e monitorização {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
@@ -5672,9 +5670,8 @@ msgid "Uncover the software that supports whatever website you're visiting."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Deixe um rasto digital limpo {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Impeça redirecionamentos e monitorização {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
@@ -5727,7 +5724,7 @@ msgstr "Tire capturas de ecrã {start_sub_heading}com {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Make informed decisions by tracking the price of a product listed on Amazon."
-msgstr ""
+msgstr "Tome decisões informadas ao monitorizar o preço de um produto listado no Amazon."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5861,7 +5858,7 @@ msgstr "Tire capturas de ecrã {start_sub_heading}com {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
-msgstr ""
+msgstr "Tome decisões informadas ao monitorizar e receber alertas para o preço de um produto listado no Amazon."
 
 #. editorial content for the discovery pane.
 #, fuzzy
