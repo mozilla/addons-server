@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-22 13:39+0000\n"
+"PO-Revision-Date: 2018-07-24 10:57+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -229,10 +229,10 @@ msgid "Add-ons for {0}"
 msgstr "{0}-kiegészítők"
 
 msgid "Featured Extensions"
-msgstr "Kiemelt kiterjesztések"
+msgstr "Kiemelt kiegészítők"
 
 msgid "Popular Extensions"
-msgstr "Népszerű kiterjesztések"
+msgstr "Népszerű kiegészítők"
 
 msgid "Most Popular"
 msgstr "Legnépszerűbb"
@@ -835,7 +835,7 @@ msgstr "Felfedezés"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
-msgstr "Bővítmények"
+msgstr "Kiegészítők"
 
 #. {0} is a category name. Ex: "Sports"
 msgid "Themes"
@@ -1347,7 +1347,7 @@ msgid "Search tools relating to %s"
 msgstr "%s kategóriához kapcsolódó eszközök keresése"
 
 msgid "Search tools and search-related extensions"
-msgstr "Keresőeszközök és kereséssel kapcsolatos bővítmények"
+msgstr "Keresőeszközök és kereséssel kapcsolatos kiegészítők"
 
 msgid "Search tools"
 msgstr "Keresőeszközök"
@@ -1443,7 +1443,7 @@ msgstr[0] "<b>{0}</b> kiegészítő"
 msgstr[1] "<b>{0}</b> kiegészítő"
 
 msgid "Search Extensions"
-msgstr "Keresési kiterjesztések"
+msgstr "Keresési kiegészítők"
 
 msgid "Add search-related functionality to Firefox"
 msgstr "Kereséssel kapcsolatos funkció hozzáadása a Firefox böngészőhöz."
@@ -1469,25 +1469,25 @@ msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
 msgstr "%(amo_mdn_link_open)sKészítse el a saját%(amo_mdn_link_close)s keresőeszközét"
 
 msgid "Most Popular Extensions"
-msgstr "Legnépszerűbb kiterjesztések"
+msgstr "Legnépszerűbb kiegészítők"
 
 msgid "Top-Rated Extensions"
-msgstr "Legjobbra értékelt bővítmények"
+msgstr "Legjobbra értékelt kiegészítők"
 
 msgid "Newest Extensions"
 msgstr "Legújabb kiegészítők"
 
 msgid "Extensions by Name"
-msgstr "Bővítmények név szerint"
+msgstr "Kiegészítők név szerint"
 
 msgid "Extensions by Weekly Downloads"
-msgstr "Bővítmények heti letöltések alapján"
+msgstr "Kiegészítők heti letöltésszám alapján"
 
 msgid "Recently Updated Extensions"
-msgstr "Nemrég frissített bővítmények"
+msgstr "Nemrég frissített kiegészítők"
 
 msgid "Up & Coming Extensions"
-msgstr "Ígéretes bővítmények"
+msgstr "Ígéretes kiegészítők"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -1518,8 +1518,8 @@ msgstr "Ígéretes teljes témák"
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] "Tekintse meg %(cnt)s bővítményt a(z) %(name)s kategóriában &raquo;"
-msgstr[1] "Tekintsen meg %(cnt)s bővítményt a(z) %(name)s kategóriában &raquo;"
+msgstr[0] "Tekintse meg %(cnt)s kiegészítőt a(z) %(name)s kategóriában &raquo;"
+msgstr[1] "Tekintsen meg %(cnt)s kiegészítőt a(z) %(name)s kategóriában &raquo;"
 
 msgid "{0} Themes"
 msgstr "{0} téma"
@@ -2003,7 +2003,7 @@ msgid "Developer"
 msgstr "Fejlesztő"
 
 msgid "Extension"
-msgstr "Bővítmény"
+msgstr "Kiegészítő"
 
 msgid "Complete Theme"
 msgstr "Teljes téma"
@@ -2606,10 +2606,10 @@ msgid "Legacy language packs for Firefox are no longer supported. A WebExtension
 msgstr "Az örökölt Firefox nyelvi csomagok már nem támogatottak. Egy WebExtension telepítési leírófájl szükséges. További részletekért lásd: {mdn_link}."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Engedélyezzük és támogatjuk a frissítést, de a folyamat nem visszafordítható. Ha a felhasználók telepítik a WebExtensiont, akkor nem lesznek képesek telepíteni az örökölt kiegészítőt."
+msgstr "Engedélyezzük és támogatjuk a frissítést, de a folyamat nem fordítható vissza. Ha a felhasználók telepítik a WebExtensiont, akkor többé nem telepíthetik a hagyományos kiegészítőt."
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "Nem frissítheti a WebExtension kiegészítőket örökölt kiegészítőkkel. A felhasználók nem fogják tudni használni az új verzióját, mert a Firefox nem támogatja az ilyen frissítéseket."
+msgstr "Nem frissítheti a WebExtension kiegészítőket hagyományos kiegészítőkkel. A felhasználók nem fogják tudni használni az új verzióját, mert a Firefox nem támogatja az ilyen frissítéseket."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "A fejlesztői API kulcsa megtalálható a beküldött fájlban. A fiókja biztonsága érdekében a kulcs vissza lesz vonva."
@@ -2777,7 +2777,7 @@ msgid "Documentation"
 msgstr "Dokumentáció"
 
 msgid "Extension Development"
-msgstr "Bővítményfejlesztés"
+msgstr "Kiegészítőfejlesztés"
 
 msgid "Lightweight Themes"
 msgstr "Könnyű témák"
@@ -2817,7 +2817,7 @@ msgstr "Használja az alábbi mezőt a kiegészítőcsomag feltöltéséhez."
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr "Ez az eszköz csak örököl kiegészítőkkel működik. A WebExtension API-k részletesen <a href=\"%(webext_doc_url)s\">dokumentáltak itt</a>."
+msgstr "Ez az eszköz csak hagyományos kiegészítőkkel működik. A WebExtension API-k részletesen <a href=\"%(webext_doc_url)s\">dokumentáltak itt</a>."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "A feltöltést követően számos automatikus ellenőrzés fut le a kompatibilitás vizsgálatához az alábbi alkalmazásverzióhoz:"
@@ -3271,7 +3271,7 @@ msgid "Security Tests"
 msgstr "Biztonsági tesztek"
 
 msgid "Extension Tests"
-msgstr "Bővítményteszt"
+msgstr "Kiegészítőtesztek"
 
 msgid "Localization Tests"
 msgstr "Lokalizációs tesztek"
@@ -3878,7 +3878,7 @@ msgid "Site Status"
 msgstr "Oldal állapota"
 
 msgid "Web-Ext: build & test extensions"
-msgstr "Web-Ext: kiterjesztések összeállítása és tesztelése"
+msgstr "Web-Ext: kiegészítők összeállítása és tesztelése"
 
 msgid "Compatibility Checker"
 msgstr "Kompatibilitás-ellenőrző"
@@ -3952,14 +3952,14 @@ msgid "Welcome Back"
 msgstr "Üdvözöljük újra"
 
 msgid "Help users discover your extension by creating an appealing listing."
-msgstr "Segítsen a felhasználóknak felfedezni a kiterjesztését, azáltal hogy tetszetős listázást készít."
+msgstr "Segítsen a felhasználóknak felfedezni a kiegészítőjét, azáltal hogy tetszetős listázást készít."
 
 msgid "Learn How"
 msgstr "Tudja meg hogyan"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "Szeretné kiemelni a kiterjesztését az %(amo_link_open)saddons.mozilla.org%(amo_link_close)s-on? A kiemelt kiegészítők irányelvei tartalmaznak mindent, amit tudnia kell."
+msgstr "Szeretné kiemelni a kiegészítőjét az %(amo_link_open)saddons.mozilla.org%(amo_link_close)s-on? A kiemelt kiegészítők irányelvei tartalmaznak mindent, amit tudnia kell."
 
 msgid "Learn More"
 msgstr "További infó"
@@ -4024,7 +4024,7 @@ msgid "Publish Your Add-on"
 msgstr "Tegye közzé kiegészítőjét"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Már van egy kész kiegészítője? Küldje be a kiterjesztését vagy témáját, és listázza az addons.mozilla.org oldalon, vagy írja alá, és terjessze saját maga."
+msgstr "Már van egy kész kiegészítője? Küldje be a kiegészítőjét vagy témáját, és listázza az addons.mozilla.org oldalon, vagy írja alá, és terjessze saját maga."
 
 msgid "Sign In"
 msgstr "Bejelentkezés"
@@ -4033,7 +4033,7 @@ msgid "Web-Ext"
 msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
-msgstr "Parancssori eszköz kiterjesztések összeállításához, futtatásához és teszteléséhez."
+msgstr "Parancssori eszköz kiegészítők összeállításához, futtatásához és teszteléséhez."
 
 msgid "Automated code tests for your add-on."
 msgstr "Automatizált kódtesztek a kiegészítőjéhez."
@@ -4042,7 +4042,7 @@ msgid "Compatibility Test"
 msgstr "Kompatibilitási teszt"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr "Ellenőrizze, hogy a kiterjesztése kompatibilis a Firefoxszal."
+msgstr "Ellenőrizze, hogy a kiegészítője kompatibilis-e a Firefoxszal."
 
 msgid "Transfer ownership"
 msgstr "Tulajdonjog átadása"
