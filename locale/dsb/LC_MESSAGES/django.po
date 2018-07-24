@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 11:33+0000\n"
+"PO-Revision-Date: 2018-07-24 11:45+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5006,7 +5006,7 @@ msgstr "Zgóńśo, źož we webje dojźośo {start_sub_heading}z {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Wobstarajśo se městno w kraju za websedła, ku kótarymž se woglědujośo. Buźćo informěrowany internetny drogowaŕ."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5014,7 +5014,7 @@ msgstr "Pólěpšćo swójo cytańske dožywjenje {start_sub_heading}z {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Wótwónoźćo cajk wokoło teksta, kótaryž cytaśo, aby jen atraktiwnjejšy wugótował."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5022,7 +5022,7 @@ msgstr "Wócyńśo někotare wótkaze {start_sub_heading}z {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
-msgstr ""
+msgstr "Klikniśo z pšaweju tastu a śěgniśo kursor pó wótkazach, kótarež cośo w nowych rejtarkach wócyniś."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5030,7 +5030,7 @@ msgstr "Wótwołajśo rejtarki {start_sub_heading}z {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Klikniśo z pšaweju tastu na symbol w swójej symbolowej rědce, aby pśistup k njedawno zacynjonym rejtarkam měł."
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5038,7 +5038,7 @@ msgstr "Inspirěrujśo produktiwnosć {start_sub_heading}z {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Změńśo swój bok nowego rejtarka, aby rědnu slězynu zwobraznił, swój fokus za źeń póstajił a wěcej."
 
 #. editorial content for the discovery pane.
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5046,7 +5046,7 @@ msgstr "Woglědajśo se wobraze {start_sub_heading}z {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr ""
+msgstr "Pśinjaso tłocašk „Wobraz pokazaś“ slědk, gaž wobrazowe pytanje Google wužywaśo."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5054,7 +5054,7 @@ msgstr "Pówušćo produktiwnosć {start_sub_heading}z {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "Blokěrujśo cas rubjece sedła, aby mógał se na aktualny nadawk koncentrěrowaś."
 
 #. editorial content for the discovery pane.
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
