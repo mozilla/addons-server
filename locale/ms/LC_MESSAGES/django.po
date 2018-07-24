@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 01:27+0000\n"
+"PO-Revision-Date: 2018-07-24 02:10+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5544,7 +5544,7 @@ msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Temui kucing comel dengan setiap tab baru. Garu di belakang telinga dan lihat apa yang akan berlaku."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5553,7 +5553,7 @@ msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "Untuk detik penting apabila anda perlu tembak laser daripada kucing."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5562,11 +5562,11 @@ msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Mudah mengakses tab terbuka, tandabuku dan sejarah."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Banyak tab terbuka? Abaikan menatal dan cari menggunakan pintasan papan kekunci."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5575,7 +5575,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Uncover the software that supports whatever website you're visiting."
-msgstr ""
+msgstr "Cari perisian yang menyokong mana-mana laman web yang anda lawati."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5584,7 +5584,7 @@ msgstr "Tinggalkan jejak digital yang bersih {start_sub_heading}dengan{addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Hentikan lencongan supaya anda boleh akses laman yang dikehendaki—lebih pantas."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5593,7 +5593,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Tambah keupayaan papar/sorok kesemua medan kata laluan."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5602,7 +5602,7 @@ msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Fokus kepada tontonan dengan menggelapkan semuanya kecuali pemain video."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5611,7 +5611,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Ubah tandabuku melalui panel yang mudah diakses."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5624,7 +5624,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Penyekat iklan yang fokus untuk memaparkan kandungan yang anda mahu."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5633,7 +5633,7 @@ msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make informed decisions by tracking the price of a product listed on Amazon."
-msgstr ""
+msgstr "Buat pilihan bermaklumat dengan mengkaji harga produk yang disenaraikan di Amazon."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5642,7 +5642,7 @@ msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Semakan tambahan bagi memastikan anda membeli-belah dalam laman yang diiktiraf kebolehpercayaannya."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5651,7 +5651,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Kira tempoh masa yang anda luangkan untuk komputer, atau aplikasi kerja tertentu seperti Trello, JIRA, Basecamp, GitHub dan selainnya."
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
