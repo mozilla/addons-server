@@ -76,13 +76,13 @@ def version_detail(request, addon, version_num):
 @addon_view
 @non_atomic_requests
 def update_info(request, addon, version_num):
-    qs = addon.versions.filter(version=version_num,
-                               files__status__in=amo.VALID_FILE_STATUSES,
-                               channel=amo.RELEASE_CHANNEL_LISTED)
-    if not qs:
+    version = Version.objects.filter(addon=addon, version=version_num,
+                                     files__status__in=amo.VALID_FILE_STATUSES,
+                                     channel=amo.RELEASE_CHANNEL_LISTED).last()
+    if not version:
         raise http.Http404()
     return render(request, 'versions/update_info.html',
-                  {'version': qs[0]},
+                  {'version': version},
                   content_type='application/xhtml+xml')
 
 
