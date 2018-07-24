@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 00:53+0000\n"
+"PO-Revision-Date: 2018-07-24 01:06+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5417,7 +5417,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "Hentikan iklan daripada muncul dalam hasil carian."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5426,7 +5426,7 @@ msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "Simpan kata laluan dengan selamat dan daftar masuk ke laman web yang diketahui secara automatik."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5435,7 +5435,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
-msgstr ""
+msgstr "Lindungi privasi anda dengan menyekat iklan dan penjejak (selain memantaskan pemuatan halaman)."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5444,7 +5444,7 @@ msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
-msgstr ""
+msgstr "Hanya simpan sekali data yang dimasukkan dan akan autoisi pada lain kali."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5453,7 +5453,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
-msgstr ""
+msgstr "Terus ke mod pelayaran peribadi dengan satu klik."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5462,7 +5462,7 @@ msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "Jangan biarkan pautan yang diklik mengawal tab semasa dan memuatkan kandungan yang anda tidak mahu."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5471,7 +5471,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Lakukan carian Wikipedia dengan hanya menyerlahkan teks dalam laman web dan mengklik kanan."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5480,7 +5480,7 @@ msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name} {end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "Cari apa yang anda mahu hanya dalam domain tertentu."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5489,7 +5489,7 @@ msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Serlahkan teks dalam laman web dan klik kanan untuk mencari media berkaitan dalam YouTube."
 
 #. editorial content for the discovery pane.
 #, fuzzy
