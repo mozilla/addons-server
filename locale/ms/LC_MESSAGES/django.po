@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 04:22+0000\n"
+"PO-Revision-Date: 2018-07-24 05:47+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4898,90 +4898,80 @@ msgid "Get the country location for websites you visit. Be an informed internet 
 msgstr "Ketahui lokasi negara laman web yang anda lawati. Jadilah pengembara internet yang bermaklumat."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Tingkatkan pengalaman membaca {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
 msgstr "Jadikan teks yang anda baca lebih menarik dengan membuang gangguan di sekelilingnya."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name} {end_sub_heading}"
+msgstr "Buka berbilang tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
 msgstr "Klik kanan dan seret pautan yang anda mahu buka dalam tab baru."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Pulih tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
 msgstr "Akses tab terkini ditutup dengan mengklik kanan ikon dalam bar alatan."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name} {end_sub_heading}"
+msgstr "Aspirasi produktiviti {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
 msgstr "Ubah halaman tab baru supaya memaparkan latar belakang yang indah, menetapkan tumpuan harian dan banyak lagi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Papar imej {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
 msgstr "Kembalikan butang \"Papar imej\" ketika membuat carian di Google Images."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name} {end_sub_heading}"
+msgstr "Tingkatkan produktiviti {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
 msgstr "Sekat laman yang membuang masa supaya anda boleh fokus kepada tugasan."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Muat semula tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
 msgstr "Muatkan tab secara automatik berdasarkan selang masa."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Perbaiki kegemaran anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
 msgstr "Cari dan selesaikan tandabuku yang rosak, duplikasi dan banyak lagi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name} {end_sub_heading}"
+msgstr "Kurangkan stress {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
 msgstr "Selesaikan tugasan mengikut senarai berguna yang diselaraskan dalam semua peranti."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Beli-belah Lebih Bijak {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
