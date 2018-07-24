@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 08:52+0000\n"
+"PO-Revision-Date: 2018-07-24 08:54+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5626,36 +5626,32 @@ msgid "Make extraordinary visual changes—remove ads or unsavory content—to a
 msgstr "Buat perubahan visual yang menakjubkan—buang iklan atau kandungan menjengkelkan—dalam halaman web yang anda mahu cetak."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Ketahui sejarah harga Amazon {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
 msgstr "Buat pilihan bermaklumat dengan mengkaji dan menerima makluman harga produk yang disenaraikan di Amazon."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Master audio {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
 msgstr "Ubah tetapan audio pelayar dengan ketelitian jitu."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Perlindungan privasi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
 msgstr "Lindungi diri anda daripada penjejak tersembunyi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Tutup jejak anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
