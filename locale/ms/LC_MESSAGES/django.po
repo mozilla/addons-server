@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 02:10+0000\n"
+"PO-Revision-Date: 2018-07-24 02:31+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5655,7 +5655,7 @@ msgstr "Kira tempoh masa yang anda luangkan untuk komputer, atau aplikasi kerja 
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Klipkan kandungan web seperti artikel, video, imej dan selainnya untuk disimpan dan digunakan dalam projek individu atau kerjasama pasukan masa nyata."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5664,7 +5664,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
-msgstr ""
+msgstr "Izinkan perlaksanaan kandungan web dari laman yang anda percayai sahaja."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5673,7 +5673,7 @@ msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Ambil kawalan penuh ke atas kuki yang dihimpun semasa pelayaran."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5682,7 +5682,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Buang sejarah pelayaran secara automatik untuk laman web yang dipilih."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5691,7 +5691,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Perlindungan-kata laluan untuk tandabuku peribadi."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5700,7 +5700,7 @@ msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name} {end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "Adakah anda menggunakan VPN? Alamat IP anda mungkin bocor. Hentikannya dengan menyahdayakan WebRTC."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5709,7 +5709,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply click a button to close annoying pop-up overlays."
-msgstr ""
+msgstr "Hanya klik butang untuk menutup tindihan popup yang menjengkelkan."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5718,7 +5718,7 @@ msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name} {end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "Terjumpa imej yang menarik dalam web? Gunakan TinEye untuk mengetahui asalnya."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5727,11 +5727,11 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Hanya seret teks, imej atau pautan untuk melakukan tindakan seperti menyalin, membuka, mencari dan banyak lagi."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Manfaatkan keupayaan untuk memuat turun video dan/atau audio dalam pelbagai format."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5740,7 +5740,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Ketahui lokasi geografi pelayan laman web. Jadilah pengembara web yang bermaklumat."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5749,7 +5749,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Adakah suara dalam laman terlalu perlahan? Terlalu kuat? SoundFixer boleh membantu."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5758,7 +5758,7 @@ msgstr "Penyesuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
-msgstr ""
+msgstr "Buat perubahan visual yang menakjubkan—buang iklan atau kandungan menjengkelkan—dalam halaman web yang anda mahu cetak."
 
 #. editorial content for the discovery pane.
 #, fuzzy
