@@ -1097,9 +1097,17 @@ class TestVersionEditCompat(TestVersionEditBase):
         response = self.client.post(
             self.url, self.formset(data, initial_count=1))
         assert response.status_code == 200
-        assert response.context['compat_form'].non_form_errors() == (
+
+        compat_formset = response.context['compat_form']
+        assert compat_formset.non_form_errors() == (
             ['Need at least one compatible application.'])
         assert self.version.apps.get() == old_av
+
+        # Make sure the user can re-submit again from the page showing the
+        # validation error: we should display all previously present compat
+        # forms, with the DELETE bit off.
+        assert compat_formset.data == compat_formset.forms[0].data
+        assert compat_formset.forms[0]['DELETE'].value() is False
 
     def test_proper_min_max(self):
         form = self.client.get(

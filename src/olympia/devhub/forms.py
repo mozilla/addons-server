@@ -446,6 +446,15 @@ class BaseCompatFormSet(BaseModelFormSet):
                              if not f.cleaned_data.get('DELETE', False)])
 
         if not apps:
+            # At this point, we're raising a global error and re-displaying the
+            # applications that were present before. We don't want to keep the
+            # hidden delete fields in the data attribute, cause that's used to
+            # populate initial data for all forms, and would therefore make
+            # those delete fields active again.
+            self.data = {k: v for k, v in self.data.iteritems()
+                         if not k.endswith('-DELETE')}
+            for form in self.forms:
+                form.data = self.data
             raise forms.ValidationError(
                 ugettext('Need at least one compatible application.'))
 
