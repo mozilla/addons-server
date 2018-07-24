@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 07:24+0000\n"
+"PO-Revision-Date: 2018-07-24 08:51+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4357,7 +4357,7 @@ msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "გააუმჯობესეთ ვიდეოები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr "ისარგებლეთ YouTube-ის ახალი შესაძლებლობების კრებულით, რაც მოიცავს კინოთეატრის რეჟიმს, რეკლამების შეზღუდვას, თვითგაშვებას და ა.შ."
+msgstr "ისარგებლეთ YouTube-ის ახალი შესაძლებლობების კრებულით, რომელიც მოიცავს კინოთეატრის რეჟიმს, რეკლამების შეზღუდვას, ვიდეოების თვითგაშვებას და ა.შ."
 
 #. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4392,7 +4392,7 @@ msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "გაამრავალფეროვნეთ თქვენ ხელთ არსებული სიცილაკები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "ასობით სხვადასხვა სახის გამორჩეული სიცილაკი—ყოველთვის თქვენს თითებთან ახლოს."
+msgstr "ასობით სხვადასხვა სახის გამორჩეული სიცილაკი — ყოველთვის თქვენს თითებთან ახლოს."
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "გადაიღეთ ეკრანის სურათები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
@@ -4479,7 +4479,7 @@ msgstr "საინტერესო სურათი ნახეთ და
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "მუშაობს ასობით ვიდეო-საიტებთან, მათ შორისაა: YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope და ა.შ."
+msgstr "მუშაობს ასობით ვიდეო-საიტთან, მათ შორისაა: YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope და ა.შ."
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
@@ -4507,7 +4507,7 @@ msgstr "გააუმჯობესეთ ვიდეოების ჩვ�
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "ისარგებლეთ YouTube-ის ახალი შესაძლებლობების კრებულით, რაც მოიცავს კინოთეატრის რეჟიმს, რეკლამების შეზღუდვას, თვითგაშვებას და ა.შ."
+msgstr "ისარგებლეთ YouTube-ის ახალი შესაძლებლობების კრებულით, რომელიც მოიცავს კინოთეატრის რეჟიმს, რეკლამების შეზღუდვას, ვიდეოების თვითგაშვებას და ა.შ."
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
