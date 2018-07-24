@@ -76,10 +76,10 @@ idna==2.7 \
 ipaddress==1.0.21 \
     --hash=sha256:c65c59041d771a8f8996e3579015b14bf015bcfdcb7949c315e6e25b89a6e2a2 \
     --hash=sha256:82c964e8a387f3869774c9fd3ed7bf19f0e001de58f0f52fc17257b6bc5f515d
-ndg-httpsclient==0.5.0 \
-    --hash=sha256:683b7a17e8b093e422562e8b089a3ad5d87e00f8f8765aac128791ab9140eef3 \
-    --hash=sha256:8647bb775de60e79fe795eeee602d705de4500a5b1a3d2224247c217dfa200a9 \
-    --hash=sha256:c009f5430790936b3a97eaf9f968516664d97e146ab2bda991f0caadb7cc088b
+ndg-httpsclient==0.5.1 \
+    --hash=sha256:d2c7225f6a1c6cf698af4ebc962da70178a99bcde24ee6d1961c4f3338130d57 \
+    --hash=sha256:dd174c11d971b6244a891f7be2b32ca9853d3797a72edb34fa5d7b07d8fff7d4 \
+    --hash=sha256:d72faed0376ab039736c2ba12e30695e2788c4aa569c9c3e3d72131de2592210
 # packaging is required by setuptools
 packaging==17.1 \
     --hash=sha256:e9215d2d2535d3ae866c3d6efc77d5b24a0192cce0ff20e42896cc0664f889c0 \
