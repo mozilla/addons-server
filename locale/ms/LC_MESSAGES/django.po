@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 23:56+0000\n"
+"PO-Revision-Date: 2018-07-24 00:53+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5381,7 +5381,7 @@ msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "Jimat jalur lebar dengan hanya menstrim audio klip YouTube."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5390,7 +5390,7 @@ msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Ubah perkataan menjadi tajuk berita yang menarik dan teks bertindih imej."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5399,7 +5399,7 @@ msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Navigasi ke laman web versi yang selamat jika ada tersedia."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5408,7 +5408,7 @@ msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Tetapkan bilangan hari untuk menyimpan sejarah pelayar sebelum dibuang secara automatik."
 
 #. editorial content for the discovery pane.
 #, fuzzy
