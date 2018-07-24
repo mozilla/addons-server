@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 06:53+0000\n"
+"PO-Revision-Date: 2018-07-24 07:09+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5428,13 +5428,12 @@ msgid "Highlight text from any website and right-click to search YouTube for rel
 msgstr "მონიშნეთ ტექსტი ნებისმიერ ვებსაიტზე და მარჯვენა დაწკაპებით მონახეთ მასთან დაკავშირებული ვიდეოები YouTube-ზე."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გაამრავალფეროვნეთ თქვენი სიცილაკები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "სწრაფი ძიება Amazon-ში {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "შესაძენი საქონლის სხვა ინტერნეტ-მაღაზიებში თვალიერებისას, თუ იგი Amazon მაღაზიაშიცაა ხელმისაწვდომი, მარტივი დაწკაპებით შეგეძლებათ იხილოთ Amazon-ის ჩამონათვალში."
 
 #. editorial content for the discovery pane.
 msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5497,13 +5496,12 @@ msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
 msgstr "უამრავი ჩანართია გახსნილი? სასურველი მონახეთ კლავიატურის მალსახმობებით, დაუსრულებლად გადაადგილების ნაცვლად."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "გამოიკვლიეთ სიღრმეები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Uncover the software that supports whatever website you're visiting."
-msgstr ""
+msgstr "გაეცანით, თუ რა ტექნოლოგიები, პროგრამები და სისტემებია გამოყენებული ვებსაიტზე, რომელსაც ნახულობთ."
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5634,26 +5632,24 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "საინტერესო სურათი ნახეთ ინტერნეტში? გამოიყენეთ TinEye მისი წარმომავლობის დასადგენად."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "მოქმედებების გამარტივება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "უბრალოდ გადააადგილეთ ტექსტი, სურათები ან ბმულები ისეთი მოქმედებების შესასრულებლად, როგორიცაა დაკოპირება, ახალ გვერდზე გახსნა, მოძიება და ა.შ."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
 msgstr "მარტივი საშუალება ვიდეოებისა და ხმოვანი ფაილების სხვადასხვა ფორმატში ჩამოსატვირთად."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "ადგილმდებარეობის დადგენა {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "იხილეთ ნებისმიერი ვებსაიტის სერვერის გეოგრაფიული მდებარეობა. იყავით გათვითცნობიერებული მოგზაური."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
