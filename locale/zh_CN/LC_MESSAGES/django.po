@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-23 21:04+0000\n"
+"PO-Revision-Date: 2018-07-24 09:12+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -5177,11 +5177,11 @@ msgstr "一个高级阅读器，聚合您的所有 RSS/Atom/RDF 订阅。"
 
 #. editorial content for the discovery pane.
 msgid "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "各站点随手笔记 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "随手笔记 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr "创建一般和仅限特定网站的注释供以后查看。"
+msgstr "创建一般或仅限特定网站的笔记供以后查看。"
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5377,7 +5377,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "提升生产力 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "领一只激光猫 {start_sub_heading}尝试 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
@@ -5533,7 +5533,7 @@ msgstr "在网上发现了一个有趣的图片？用 TinEye 探索它的出处�
 
 #. editorial content for the discovery pane.
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "用拖拽简化操作 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -5577,7 +5577,7 @@ msgstr "通过跟踪和接收 Amazon 上列出的产品的价格来做出明智�
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "主宰音频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
