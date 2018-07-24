@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 03:12+0000\n"
+"PO-Revision-Date: 2018-07-24 03:25+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -4590,185 +4590,164 @@ msgid "Is the page you're looking for unavailable? Search for an archived/cached
 msgstr "Adakah halaman yang anda cari sudah tiada? Cari halaman versi arkib/cache."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Cari kandungan web yang hilang {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Besarkan imej {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
 msgstr "Hanya legar atas imej untuk membesarkannya."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Hilangkan kuki {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
 msgstr "Buang kuki secara automatik selepas anda tutup tab."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name} {end_sub_heading}"
+msgstr "Sesuaikan saiz paparan halaman {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Cara mudah untuk mengubah saiz teks halaman—atau membesarkan halaman itu sendiri."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Sekat penjejak tersembunyi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Sekat penjejak di laluannya dan ketahui lanjut mengenainya."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Simpan teks {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
 msgstr "Berhenti menulis ayat yang sama berulang kali! Jika anda kerap menggunakan frasa yang sama dalam kerja atau komunikasi lain, simpannya dalam Clippings dan tampal sahaja apabila diperlukan."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Sekat iklan e-mel {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
 msgstr "Dapatkan lebih ruang skrin dengan membuang iklan dalam peti masuk berasaskan web."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Cari tab anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
 msgstr "Urus tab terbuka secara rapi dalam bar sisi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Elakkan penjejak dan sekatan tersembunyi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr "Samarkan navigasi dengan menyembunyikan identiti pelayar dan sistem operasi anda."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Muat semula tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
 msgstr "Muatkan tab secara automatik berdasarkan selang masa yang anda tetapkan."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Asingkan kehidupan atas talian anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
 msgstr "Asingkan pelbagai identiti peribadi dalam talian—kerja, peribadi, dll.—melalui tab berkod warna yang mengasingkan jejak kuki digital."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Hentikan penjejak {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "Tambahkan lapisan perlindungan penjejakan apabila anda melayari web."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Baca fail ePub {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr "Buka fail ePub dalam Firefox—tambah saiz fon, dimensi halaman dan banyak lagi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Tingkatkan pengalaman YouTube {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
 msgstr "Main video secara piawai dalam kualiti tertinggi, tutup anotasi dan banyak lagi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Jejaki penjejak {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
 msgstr "Lihat siapa yang menjejaki anda dengan hanya satu klik."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Tukar proksi pelayan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
 msgstr "Layari web dengan tetapan proksi anda sendiri."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Kawal main semula video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
 msgstr "Tingkatkan pengalaman menonton video dengan melaraskan kelajuan dan banyak lagi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Pelayaran selamat {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
 msgstr "Tambah keselamatan yang dienkripsi dalam mana-mana laman yang menyokong HTTPS."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Beli-belah & jimat {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
 msgstr "Dapatkan kupon secara automatik apabila membuat pengesahan membeli-belah."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Penterjemahan lancar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
 msgstr "Terjemahkan teks yang diserlahkan atau keseluruhan halaman web"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name} {end_sub_heading}"
+msgstr "Tingkatkan Reddit {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
