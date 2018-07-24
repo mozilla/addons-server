@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 08:51+0000\n"
+"PO-Revision-Date: 2018-07-24 09:09+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4591,7 +4591,7 @@ msgstr "მონიშნეთ ტექსტი ნებისმიერ 
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გამოიყენეთ სამეცნიერო მასალები {start_sub_heading}mit {addon_name}{end_sub_heading}"
+msgstr "გამოიყენეთ სამეცნიერო მასალები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
@@ -4680,7 +4680,7 @@ msgstr "შეზღუდეთ ელფოსტის რეკლამე�
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr " გამოათავისუფლეთ ადგილი ეკრანზე, თქვენი საფოსტო ყუთიდან რეკლამების მოცილებით."
+msgstr "გამოათავისუფლეთ ადგილი ეკრანზე, თქვენი საფოსტო ყუთიდან რეკლამების მოცილებით."
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4772,7 +4772,7 @@ msgstr "დაშიფრული დაცვა საიტებისთ�
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეიძინეთ და შეინახეთ {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "შეიძინეთ და დაზოგეთ {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
@@ -5328,7 +5328,7 @@ msgstr "მოუსმინეთ ვიდეოებს {start_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr "შეამცირეთ ქსელის დატვირთვა და დაზოგეთ გადაცემული მონაცემების მოცულობა, YouTube ვიდეოდან მხოლოდ ხმის მოსმენით."
+msgstr "შეამცირეთ ქსელის დატვირთვა და დაზოგეთ გადაცემული მონაცემების მოცულობა, YouTube ვიდეოებიდან მხოლოდ ხმის მოსმენით."
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
