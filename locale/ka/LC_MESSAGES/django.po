@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 01:18+0000\n"
+"PO-Revision-Date: 2018-07-24 04:59+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5370,7 +5370,7 @@ msgstr "პაროლების უსაფრთხოდ მართვ�
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr "შეინახეთ პაროლები უსაფრთხოდ  და შედით ანგარიშზე ავტომატურად, დამახსოვრებულ საიტებზე."
+msgstr "შეინახეთ პაროლები უსაფრთხოდ და შედით ანგარიშზე ავტომატურად, დამახსოვრებულ საიტებზე."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5559,7 +5559,7 @@ msgstr "შეინახეთ პაროლები უსაფრთხ�
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr "შეინახეთ პაროლები უსაფრთხოდ  და შედით ანგარიშზე ავტომატურად, დამახსოვრებულ საიტებზე."
+msgstr "შეინახეთ პაროლები უსაფრთხოდ და შედით ანგარიშზე ავტომატურად, დამახსოვრებულ საიტებზე."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
@@ -5583,17 +5583,16 @@ msgid "An extra check to ensure you're shopping on a site that's been vetted for
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "თვალი ადევნეთ შრომის ნაყოფიერებას {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "გაზომეთ კომპიუტერთან გატარებული დრო ან ისეთ ცალკეულ პროგრამებთან მუშაობის დრო, როგორციაა Trello, JIRA, Basecamp, GitHub და ა.შ."
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "შეაგროვეთ და გადაინახეთ სტატიები, ვიდეოები, სურათები და ა.შ სამომავლო გამოყენებისთვის ცალკეული პროექტების შესამუშავებლად ან გუნდური მუშაობის დროს."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5601,7 +5600,7 @@ msgstr "უსაფრთხოდ მოინახულეთ გვერ�
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
-msgstr "მხოლოდ  იმ საიტების შიგთავსის დაშვება, რომელთაც ენდობით."
+msgstr "მხოლოდ იმ საიტების შიგთავსის დაშვება, რომელთაც ენდობით."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5620,9 +5619,8 @@ msgid "Automatically delete browser history for websites you select."
 msgstr "ბრაუზერის ისტორიის ავტომატური გასუფთავება, შერჩეული ვებსაიტებისთვის."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "შეზღუდეთ რეკლამები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "დაიცავით სანიშნები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
