@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 14:51+0000\n"
+"PO-Revision-Date: 2018-07-24 15:05+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5390,7 +5390,7 @@ msgstr "Póžywajśo muziku z cełego swěta {start_sub_heading}z {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Access 20,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Słuchajśo 20.000 radijowych stacijow z cełego swěta."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5398,7 +5398,7 @@ msgstr "Słuchajśo wideo {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "Pśenosujśo jano awdiowopśimjeśe wideo Youtube, aby šyrokosć paska zažarił."
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5406,7 +5406,7 @@ msgstr "Pśetwóŕśo tekst do wobrazow {start_sub_heading}z {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Pśetwoŕśo słowa do rědnych nadpismow a tekstowych zablendowanjow nad wobrazami."
 
 #. editorial content for the discovery pane.
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5414,7 +5414,7 @@ msgstr "Pśeglědujśo wěsće {start_sub_heading}z {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Woglědajśo se k wěstej wersiji websedła, jolic k dispoziciji."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5422,7 +5422,7 @@ msgstr "Wulašujśo swóju nawigacisku historiju {start_sub_heading}z {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Pódajśo wjele dnjow ma se historija wašogo wobglědowaka wobchowaś, nježli až se awtomatiski wulašujo."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5430,7 +5430,7 @@ msgstr "Wótwónoźćo pytańske wabjenje {start_sub_heading}z {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "Zajźujśo, až se wabjenje w pytańskich wuslědkach pokazujo."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5438,7 +5438,7 @@ msgstr "Zastojśo gronidła wěsće {start_sub_heading}z {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "Składujśo gronidła wěsće a pśizjawće se awtomatiski pla znatych websedłach."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5446,7 +5446,7 @@ msgstr "Blokěrujśo wabjenje a pśeslědowanje {start_sub_heading}z {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
-msgstr ""
+msgstr "Blokěrujśo wabjenje a pśeslědowaki, aby swóju priwatnosć šćitał (a aby boki malsnjej zacytał)."
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5454,7 +5454,7 @@ msgstr "Wupołniśo formulary awtomatiski {start_sub_heading}z {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
-msgstr ""
+msgstr "Składujśo zapódane daty jaden raz a budu se pśiducy raz awtomatiski zapisowaś."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
