@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 17:31+0000\n"
+"PO-Revision-Date: 2018-07-24 17:33+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4808,9 +4808,8 @@ msgid "Manage your open tabs in a tidy sidebar."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Evite rastreadores espiões e restrições {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
@@ -4825,9 +4824,8 @@ msgid "Automatically reload tabs based on time intervals you set."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore sua coleção de emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Separe suas vidas on-line {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
