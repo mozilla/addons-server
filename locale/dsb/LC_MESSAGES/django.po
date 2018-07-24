@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 13:54+0000\n"
+"PO-Revision-Date: 2018-07-24 14:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5294,7 +5294,7 @@ msgstr "Wobstarajśo se pśełožki ned {start_sub_heading}z {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Pśełožćo ceły webbok do swójeje póžedaneje rěče - z kliknjenim na tłocašk."
 
 #. editorial content for the discovery pane.
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5302,7 +5302,7 @@ msgstr "Ekstrahěrujśo wótkaze {start_sub_heading}z {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr ""
+msgstr "Pokažćo wšykne wótkaze z webboka direktnje w nowych rejtarkach."
 
 #. editorial content for the discovery pane.
 msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5310,7 +5310,7 @@ msgstr "Woglědajśo se dokumenty {start_sub_heading}z {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
-msgstr ""
+msgstr "Mějśo pśistup k PDF z pomocu swójogo póžedanego PDF-nałoženja."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5318,7 +5318,7 @@ msgstr "Pśeskócćo dalejpósrědnjenja a pśeslědowaki {start_sub_heading}z {
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
-msgstr ""
+msgstr "Wótwónoźćo dalejpósrědnjenja a URL-parametry za přeslědowanje."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5326,7 +5326,7 @@ msgstr "Blokěrujśo pśeslědowaki za pytanje {start_sub_heading}z {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "Zajźujśo, až pytnice zgóniju, na kótare pytańske wuslědki kliknjośo."
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5334,7 +5334,7 @@ msgstr "Ześěgniśo wideo Youtube {start_sub_heading}z {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
-msgstr ""
+msgstr "Ześěgniśo wideo a/abo awdio."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
