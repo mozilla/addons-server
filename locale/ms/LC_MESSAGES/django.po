@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 01:06+0000\n"
+"PO-Revision-Date: 2018-07-24 01:27+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -5498,7 +5498,7 @@ msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "Apabila anda melihat produk yang sama dan boleh didapatkan di Amazon dalam halaman produk kedai atas talian yang lain, anda hanya perlu klik butang untuk menyemaknya dalam senarai Amazon."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5507,7 +5507,7 @@ msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily broadcast web content to your Twitter following."
-msgstr ""
+msgstr "Mudah untuk menyiarkan kandungan web kepada pengikut Twitter anda."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5516,7 +5516,7 @@ msgstr "Ambil skrinsyot {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Pelbagai pilihan kawalan tab—tutup tab duplikasi, menghimpun tetingkap, salin tajuk tab dan banyak lagi."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5535,7 +5535,7 @@ msgstr "Tingkatkan permainan emoji anda {start_sub_heading}dengan {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Konfigurasi halaman tab baru supaya memaparkan penyesuaian warna dan imej latar belakang."
 
 #. editorial content for the discovery pane.
 #, fuzzy
