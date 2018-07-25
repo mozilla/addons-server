@@ -119,8 +119,7 @@ class Command(BaseCommand):
         files_to_addon = dict(File.objects.values_list('id',
                                                        'version__addon_id'))
         slugs_to_addon = dict(
-            Addon.objects.exclude(
-                status__in=(amo.STATUS_NULL, amo.STATUS_DELETED))
+            Addon.objects.exclude(status=amo.STATUS_NULL)
             .values_list('slug', 'id'))
 
         # Only accept valid sources, which are constants. The source must
