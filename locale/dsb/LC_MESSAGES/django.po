@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-25 11:52+0000\n"
+"PO-Revision-Date: 2018-07-25 12:04+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5734,7 +5734,7 @@ msgstr "Nejpjerwjej wobźěłaś, pótom śišćaś {start_sub_heading}z {addon_
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
-msgstr ""
+msgstr "Wótwónoźćo wabjenje abo njerědne wopśimjeśe, aby naglěd webboka pólěpšył, kótaryž cośo śišćaś."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5742,7 +5742,7 @@ msgstr "Slědujśo płaśiznowej historiji Amazon {start_sub_heading}z {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
-msgstr ""
+msgstr "Slědujśo płaśiznje produkta na Amazon a dostańśo powěźeńki, aby z wěcywuznaśim rozsuźił."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5750,7 +5750,7 @@ msgstr "Mejstrujśo awdio {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Pśiměŕśo awdionastajenja wobglědowaka za jasnučki zuk."
 
 #. editorial content for the discovery pane.
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5758,7 +5758,7 @@ msgstr "Šćit priwatnosći {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Zašćitaśo se pśeśiwo zakśebjatnym pśeslědowakam."
 
 #. editorial content for the discovery pane.
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5766,7 +5766,7 @@ msgstr "Zatrějśo swóje slědy {start_sub_heading}z {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
-msgstr ""
+msgstr "Pytajśo z wěcej wěstoty pśez blokěrowanje pśeslědowakow, wěcej inteligentne koděrowanje, priwatne pytanje a druge wažne wěcy."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
