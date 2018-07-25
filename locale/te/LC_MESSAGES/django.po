@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-25 07:41+0000\n"
+"PO-Revision-Date: 2018-07-25 09:09+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2682,7 +2682,7 @@ msgid "New API key created"
 msgstr ""
 
 msgid "API key revoked"
-msgstr ""
+msgstr "API కీ ఉపసంహరించబడింది"
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
@@ -3312,8 +3312,8 @@ msgstr ""
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> క్రియాశీల వాడుకరి"
+msgstr[1] "<strong>{0}</strong> క్రియాశీల వాడుకరులు"
 
 msgid "Submit a New File"
 msgstr "క్రొత్త ఫైల్ను సమర్పించండి"
@@ -3331,7 +3331,7 @@ msgid "Add-on URL:"
 msgstr "పొడిగింత URL:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
+msgstr "దయచేసి మీ URLలో అక్షరాలను, అంకెలను, అండర్‌స్కోర్లను, డాషులను మాత్రమే వాడండి."
 
 msgid "Summary:"
 msgstr "సారాంశం:"
@@ -3370,7 +3370,7 @@ msgid "Is there anything our reviewers should bear in mind when reviewing this a
 msgstr ""
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "ఈ గమనికలు మీకు, మా సమీక్షకులకు మాత్రమే కనిపిస్తాయి."
 
 msgid "Cancel and Disable Version"
 msgstr "రద్దుచేసి వెర్షనును అచేతనించు"
@@ -3388,7 +3388,7 @@ msgid "Let your users know what's new and what's changed in this version."
 msgstr ""
 
 msgid "These notes will appear on the detail page."
-msgstr ""
+msgstr "ఈ గమనికలు వివరాల పేజీలో కనిపిస్తాయి."
 
 msgid "How to Distribute this Version"
 msgstr "ఈ వెర్షనువు ఎలా పంపిణీ చేయాలి"
@@ -3584,7 +3584,7 @@ msgid "Keep your API keys secret and <strong>never share them with anyone</stron
 msgstr ""
 
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT జారీదారు"
 
 msgid "JWT secret"
 msgstr "JWT రహస్యము"
