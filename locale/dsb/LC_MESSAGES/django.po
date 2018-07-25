@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-25 10:31+0000\n"
+"PO-Revision-Date: 2018-07-25 10:52+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5502,7 +5502,7 @@ msgstr "Zawěsććo se lěpšyny na Amazon {start_sub_heading}z {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "Gaž se produktowe boki w drugich wobchodach online woglědujośo a jolic produkt jo teke na Amazon k dispoziciji, trjebaśo jano na tłocašk kliknuś, aby zapisk Amazon wiźeł."
 
 #. editorial content for the discovery pane.
 msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5510,7 +5510,7 @@ msgstr "Šwikocćo {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily broadcast web content to your Twitter following."
-msgstr ""
+msgstr "Pósćelśo webwopśimjeśe na slědowarje Twitter."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5518,7 +5518,7 @@ msgstr "Ultimatiwna rejtarkowa kontrola {start_sub_heading}z {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Tak wjele móžnosćow rejtarkowego wóźenja - dwójne rejtarki zacyniś, wokna zjadnośiś, rejtarkowy titel kopěrowaś a wěcej."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5534,7 +5534,7 @@ msgstr "Změńśo swój nowy rejtark {start_sub_heading}z {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Konfigurěrujśo nowe rejtarkowe boki, aby swójske slězynowe barwy a wobraze zwobraznił."
 
 #. editorial content for the discovery pane.
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5542,7 +5542,7 @@ msgstr "Lubowarje kóckow wjasele se {start_sub_heading}z {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Zmakajśo se z něžneju kóccycku na kuždem nowem rejtarku. Hajckajśo ju za wuchom a cakajśo, co se stawa."
 
 #. editorial content for the discovery pane.
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5550,7 +5550,7 @@ msgstr "Pśepórujśo cas {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "Za wokognuśa, gaž musyśo lasery z kócki wustśěliś."
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5558,11 +5558,11 @@ msgstr "Pśepytujśo Firefox {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Mějśo lažki pśistup k swójim wócynjonym rejtarkam, cytańskim znamjenjam a historiji."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Wjele wócynjonych rejtarkow? Ignorěrujśo kulanje a pytajśo z tastowymi skrotconkami."
 
 #. editorial content for the discovery pane.
 msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5570,7 +5570,7 @@ msgstr "Wuslěźćo, což jo pód pówjerchom {start_sub_heading}z {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Uncover the software that supports whatever website you're visiting."
-msgstr ""
+msgstr "Namakajśo softwaru, kótaraž websedło pódpěra, ku kótaremuž se woglědujośo."
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5578,7 +5578,7 @@ msgstr "Zajźujśo dalejposrědnjenjam a pśeslědowanjeju {start_sub_heading}z 
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Blokěrujśo dalejpósrědnjenja, aby póžedane websedło dostał - a to malsnjej."
 
 #. editorial content for the discovery pane.
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
