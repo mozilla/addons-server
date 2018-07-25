@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-25 10:52+0000\n"
+"PO-Revision-Date: 2018-07-25 11:52+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5586,7 +5586,7 @@ msgstr "Pokažćo zapódane gronidła {start_sub_heading}z {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Pśidawa funkciju, kótaraž wam zmóžnja, gronidłowe póla pokazaś abo schowaś."
 
 #. editorial content for the discovery pane.
 msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5594,7 +5594,7 @@ msgstr "Reducěrujśo rozdrosćenje {start_sub_heading}z {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Wóśamniśo wšykno mimo wideowótgrawaka, aby se na bytostne koncentrěrował."
 
 #. editorial content for the discovery pane.
 msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5602,7 +5602,7 @@ msgstr "Zastojśo cytańske znamjenja {start_sub_heading}z {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Změńśo swóje cytańske znamjenja pśez lažko pśistupne pólo."
 
 #. editorial content for the discovery pane.
 msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5610,11 +5610,11 @@ msgstr "Šćitajśo gronidła {start_sub_heading}z {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Składujśo gronidła wěsće a pśizjawśo se awtomatiski pla znatych websedłow."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Jadnory wabjeński blokěrowak, kótaryž janož póžedane wopśimjeśe pokazujo."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5622,7 +5622,7 @@ msgstr "Slědujśo płaśiznowej historiji Amazon {start_sub_heading}z {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Make informed decisions by tracking the price of a product listed on Amazon."
-msgstr ""
+msgstr "Slědujśo płaśiznje produkta na Amazon, aby informěrowane rozsudy gótował."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5630,7 +5630,7 @@ msgstr "Nakupujśo z dowěru {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Pśidatna kontrola, kótaraž zawěsćujo, až na spušćobnem sedle nakupujośo."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5638,11 +5638,11 @@ msgstr "Wobglědujśo produktiwnosć {start_sub_heading}z {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Měŕśo cas, kótaryž pśi licadle abo z wěstymi źěłowymi nałoženjami ako Trello, JIRA, Basecamp, GitHub a wjele dalšnych pśebywaśo."
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Wurězajśo webwopśimjeśe ako nastawki, wideo, wobraze a wěcej, aby je za indiwiduelne projekty abo teamowe źěło w napšawdnem casu składował a wužywał."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5650,7 +5650,7 @@ msgstr "Pśeglědujśo wěsće {start_sub_heading}z {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
-msgstr ""
+msgstr "Dowólśo jano, až se webwopśimjeśe z dowěry gódnych sedłow wuwjeźo."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5658,7 +5658,7 @@ msgstr "Zastojśo cookieje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Pśewzejśo połnu kontrolu nad cookiejami, kótarež sćo pśi pśeglědowanju nagromaźił."
 
 #. editorial content for the discovery pane.
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5666,7 +5666,7 @@ msgstr "Zabydniśo historiju {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Wulašujśo awtomatiski historiju wobglědowaka za wubrane websedła."
 
 #. editorial content for the discovery pane.
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5674,7 +5674,7 @@ msgstr "Šćitajśo cytańske znamjenja {start_sub_heading}z {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Šćitajśo swóje wósobinske cytańske znamjenja pśez gronidła."
 
 #. editorial content for the discovery pane.
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5682,7 +5682,7 @@ msgstr "Zajźujśo wózjawjanjeju IP-adresow {start_sub_heading}z {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "Wužywajśo VPN? Waša IP-adresa mógła do luźi pśiś. Znjemóžniśo WebRTC, aby tomu zajźował."
 
 #. editorial content for the discovery pane.
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5690,7 +5690,7 @@ msgstr "Zacyńśo mólece zablendowanja {start_sub_heading}z {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Simply click a button to close annoying pop-up overlays."
-msgstr ""
+msgstr "Klikniśo jadnorje na tłocašk, aby mólece wuskokujuce wokna zacynił."
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5698,7 +5698,7 @@ msgstr "Pśeslěźćo wobraz {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "Sćo namakał zajmny wobraz w interneśe? Wužywajśo TinEye, aby wuslěźił, wótkul póchada."
 
 #. editorial content for the discovery pane.
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5706,11 +5706,11 @@ msgstr "Optiměrujśo wěcy {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Šěgniśo jadnorje tekst, wobraze abo wótkaze, aby akcije ako kopěrowaś, wócyniś, pytaś a wěcej wuwjadł."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Wužywajśo móžnosć, wideo a/abo awdio w někotarych formatach ześěgnuś."
 
 #. editorial content for the discovery pane.
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5718,7 +5718,7 @@ msgstr "Informacije wó městnje {start_sub_heading}z {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Zgóńśo geografiske městno serwera websedła. Buźćo informěrowany webdrogowaŕ."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5726,7 +5726,7 @@ msgstr "Pórěźćo mólece awdio {start_sub_heading}z {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Jo głosnosć na websedle pśeśicha? Pśegłosna? SoundFixer móžo pomagaś."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
