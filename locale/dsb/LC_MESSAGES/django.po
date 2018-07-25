@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 15:05+0000\n"
+"PO-Revision-Date: 2018-07-25 10:31+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5462,7 +5462,7 @@ msgstr "Pśeglědujśo priwatnje {start_sub_heading}z {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
-msgstr ""
+msgstr "Pśejźćo z jadnym kliknjenim do priwatnego modusa."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5470,7 +5470,7 @@ msgstr "Zajźujśo kaprowanjeju rejtarkow {start_sub_heading}z {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "Njepśiwdawaj, až kliknjone wótkaze kontrolu nad wašym aktualnym rejtarkom pśewześ a njewitane wopśimjeśe zacytaś."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5478,7 +5478,7 @@ msgstr "Mějśo lažki pśistup k Wikipediji {start_sub_heading}z {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Wuzwigniśo jadnorje tekst na webboku a klikniśo z pšaweju tastu, aby we Wikipediji pytał."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5486,7 +5486,7 @@ msgstr "Namakajśo specifiske wopśimjeśe sedłow {start_sub_heading}z {addon_n
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "Namakajśo, což pytaśo, we wěstej domenje."
 
 #. editorial content for the discovery pane.
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5494,7 +5494,7 @@ msgstr "Namakajśo wideo {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Wuzwigniśo tekst na websedle a klikniśo z pšaweju tastu, aby YouTube za pódobnymi medijami pśepytował."
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
