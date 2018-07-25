@@ -32,7 +32,8 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
         css = {
             'all': ('css/admin/discovery.css',)
         }
-    list_display = ('__unicode__', 'custom_addon_name', 'custom_heading',)
+    list_display = ('__unicode__', 'custom_addon_name', 'custom_heading',
+                    'position', 'position_china')
     raw_id_fields = ('addon',)
     readonly_fields = ('previews',)
     view_on_site = False
