@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-24 15:02+0000\n"
+"PO-Revision-Date: 2018-07-25 10:48+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5568,7 +5568,7 @@ msgstr "Wuslědźće, štož je pod powjerchom {start_sub_heading}z {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Uncover the software that supports whatever website you're visiting."
-msgstr "Wotkryjće softwaru, kotraž websydko podpěruje, kotrež wopytujeće."
+msgstr "Wotkryjće softwaru, kotraž websydło podpěruje, kotrež wopytujeće."
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
