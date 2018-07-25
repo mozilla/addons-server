@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-25 09:09+0000\n"
+"PO-Revision-Date: 2018-07-25 09:30+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1325,7 +1325,7 @@ msgid "Recently Updated"
 msgstr "ఇటీవలి నవీకరణలు"
 
 msgid "Up & Coming"
-msgstr ""
+msgstr "రాబోతున్నవి"
 
 msgid "Recently Added"
 msgstr "ఇటీవల జోడించినవి"
@@ -3469,7 +3469,7 @@ msgid "Where to Host File"
 msgstr ""
 
 msgid "Where to Host Version"
-msgstr ""
+msgstr "వెర్షనును ఎక్కడ హోస్ట్ చేయాలి"
 
 msgid "Upload Version"
 msgstr ""
@@ -3671,7 +3671,7 @@ msgid "This is the newest uploaded unlisted version."
 msgstr ""
 
 msgid "Upload New Version"
-msgstr ""
+msgstr "కొత్త వెర్షనును ఎక్కించండి"
 
 msgid "View All"
 msgstr "అన్నిటినీ వీక్షించు"
@@ -3686,7 +3686,7 @@ msgid "View Statistics Dashboard"
 msgstr "గణాంకాల డాష్‌బోర్డు చూడండి"
 
 msgid "Compatibility Reports"
-msgstr ""
+msgstr "అనుగుణ్యతా నివేదికలు"
 
 msgid "{0} failure reports"
 msgstr "{0} వైఫల్య నివేదికలు"
@@ -3715,7 +3715,7 @@ msgid "Allowed HTML: %(allowed_html)s"
 msgstr "అనుమతించే HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
-msgstr ""
+msgstr "కొంత HTMLకి తోడ్పాటుంది."
 
 msgid "Remove this application"
 msgstr "ఈ అనువర్తనాన్ని తీసివేయండి"
@@ -4247,7 +4247,7 @@ msgid "Canceling your review request will mark your add-on incomplete, and any v
 msgstr ""
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "మీ సమీక్ష అభ్యర్థనను రద్దుచేసుకోవాలని అనుకుంటున్నారా?"
 
 msgid "Add-on Documentation :: Developer Hub"
 msgstr ""
@@ -5808,7 +5808,7 @@ msgid "Not implemented yet."
 msgstr "ఇంకా అమలు చేయలేదు."
 
 msgid "Shopping Made Easy"
-msgstr ""
+msgstr "షాపింగ్ తేలికయ్యింది"
 
 msgid "Save on your favorite items from the comfort of your browser."
 msgstr ""
@@ -5817,7 +5817,7 @@ msgid "Build the perfect website"
 msgstr ""
 
 msgid "First time with Add-ons?"
-msgstr ""
+msgstr "యాడ్-ఆన్స్ వాడటం మొదటిసారా?"
 
 msgid "Not to worry, here are three to get started."
 msgstr ""
@@ -5886,7 +5886,7 @@ msgid "Add more fun to your Firefox. Play dozens of games right from your browse
 msgstr ""
 
 msgid "Must-Have Media"
-msgstr ""
+msgstr "తప్పకుండా ఉండాల్సిన మాధ్యమాలు"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
@@ -6051,7 +6051,7 @@ msgid "Some tips for writing a great review"
 msgstr "గొప్ప సమీక్ష వ్రాయడానికి కొన్ని చిట్కాలు"
 
 msgid "Frequently Asked Questions about Reviews"
-msgstr ""
+msgstr "సమీక్షల గురించి తరచూ అడిగే ప్రశ్నలు"
 
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
@@ -6152,7 +6152,7 @@ msgid "Mozilla wants to figure out the best way to keep our users safe if they c
 msgstr ""
 
 msgid "What will happen next"
-msgstr ""
+msgstr "తదుపరి ఏం జరుగుతుంది"
 
 msgid "<strong>If you agree</strong> to participate:"
 msgstr ""
@@ -6182,7 +6182,7 @@ msgid "Find Plugin Safety in the addons list."
 msgstr ""
 
 msgid "Click the remove button."
-msgstr ""
+msgstr "తొలగించు బొత్తాన్ని నొక్కండి."
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
 msgstr ""
@@ -6231,14 +6231,14 @@ msgid ""
 msgstr ""
 
 msgid "Brought to you by:"
-msgstr ""
+msgstr "మీకు అందిస్తున్నవారు:"
 
 #, python-format
 msgid "Reviews for %s"
-msgstr ""
+msgstr "%s సమీక్షలు"
 
 msgid "Review History for this Addon"
-msgstr ""
+msgstr "ఈ యాడ్-ఆన్‌కి సమీక్షా చరిత్ర"
 
 #. L10n: This describes the number of stars given out of 5
 #, python-format
@@ -6252,16 +6252,16 @@ msgid "Spam or otherwise non-review content"
 msgstr ""
 
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "అనుచిత భాష/సంభాషణ"
 
 msgid "Misplaced bug report or support request"
 msgstr ""
 
 msgid "Other (please specify)"
-msgstr ""
+msgstr "ఇతర (దయచేసి పేర్కొనండి)"
 
 msgid "This field is required."
-msgstr ""
+msgstr "ఈ ఖాళీని తప్పనిసరిగా పూరించాలి."
 
 msgid "You can't change the add-on of a review once it has been created."
 msgstr ""
@@ -6304,7 +6304,7 @@ msgid "Reply to review by {0}"
 msgstr ""
 
 msgid "Write a Reply"
-msgstr ""
+msgstr "ప్రత్యుత్తరం వ్రాయండి"
 
 msgid "Submit"
 msgstr "సమర్పించు"
@@ -6361,7 +6361,7 @@ msgid "{0} :: Reviews"
 msgstr "{0} :: సమీక్షలు"
 
 msgid "Reviews for {0}"
-msgstr ""
+msgstr "{0} కోసం సమీక్షలు"
 
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
@@ -6384,13 +6384,13 @@ msgstr "సమీక్షలు ఏమీ కనబడలేదు."
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>సగటు</strong> (%(total)s)"
 
 msgid "Write a New Review"
 msgstr "కొత్త సమీక్ష వ్రాయండి"
 
 msgid "Be the first to write a review."
-msgstr ""
+msgstr "సమీక్షించే మొదటివారు మీరే అవ్వండి."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -6603,7 +6603,7 @@ msgid "This will reject the selected public versions. The comments will be sent 
 msgstr ""
 
 msgid "Reviewer reply"
-msgstr ""
+msgstr "సమీక్షకుల ప్రత్యుత్తరం"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr ""
@@ -7032,13 +7032,13 @@ msgid "More Information"
 msgstr "మరింత సమాచారం"
 
 msgid "Resolution"
-msgstr ""
+msgstr "పరిష్కారం"
 
 msgid "Reviewer"
 msgstr "సమీక్షకులు"
 
 msgid "Add-on has been deleted."
-msgstr ""
+msgstr "యాడ్ఆన్ తొలగించబడింది."
 
 msgid "Show Comments"
 msgstr "వ్యాఖ్యానాలు చూపు"
