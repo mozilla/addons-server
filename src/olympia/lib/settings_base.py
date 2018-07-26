@@ -1446,11 +1446,6 @@ LOGGING = {
             'level': logging.ERROR,
             'propagate': False
         },
-        'z.redis': {
-            'handlers': ['mozlog'],
-            'level': logging.DEBUG,
-            'propagate': False
-        },
         'z.task': {
             'handlers': ['mozlog'],
             'level': logging.DEBUG,
@@ -1576,38 +1571,6 @@ ASYNC_SIGNALS = True
 # Performance for persona pagination, we hardcode the number of
 # available pages when the filter is up-and-coming.
 PERSONA_DEFAULT_PAGES = 10
-
-REDIS_LOCATION = os.environ.get(
-    'REDIS_LOCATION',
-    'redis://localhost:6379/0?socket_timeout=0.5')
-
-
-def get_redis_settings(uri):
-    import urlparse
-    urlparse.uses_netloc.append('redis')
-
-    result = urlparse.urlparse(uri)
-
-    options = dict(urlparse.parse_qsl(result.query))
-
-    if 'socket_timeout' in options:
-        options['socket_timeout'] = float(options['socket_timeout'])
-
-    return {
-        'HOST': result.hostname,
-        'PORT': result.port,
-        'PASSWORD': result.password,
-        'DB': int((result.path or '0').lstrip('/')),
-        'OPTIONS': options
-    }
-
-
-# This is used for `django-cache-machine`
-REDIS_BACKEND = REDIS_LOCATION
-
-REDIS_BACKENDS = {
-    'master': get_redis_settings(REDIS_LOCATION)
-}
 
 # Number of seconds before celery tasks will abort addon validation:
 VALIDATOR_TIMEOUT = 110
