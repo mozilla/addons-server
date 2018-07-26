@@ -1,4 +1,3 @@
-from django.db.models import Prefetch
 from django.db.transaction import non_atomic_requests
 from django.utils.decorators import classonlymethod
 
@@ -8,7 +7,6 @@ from rest_framework.viewsets import GenericViewSet
 from waffle import switch_is_active
 
 from olympia import amo
-from olympia.addons.models import Addon
 from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.serializers import (
     DiscoveryEditorialContentSerializer, DiscoverySerializer)
