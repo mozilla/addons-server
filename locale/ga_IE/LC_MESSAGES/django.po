@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-21 16:44+0000\n"
+"POT-Creation-Date: 2018-07-26 10:19+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -5416,10 +5416,6 @@ msgid "Strip away unnecessary formatting and copy just the plain text."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get instant translatations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
 msgstr ""
 
@@ -8178,15 +8174,15 @@ msgid "Delete Locale"
 msgstr "Scrios an Teanga"
 
 #, python-format
-msgid "The user \"%(user)s\" has been banned.user"
+msgid "The user \"%(user)s\" has been banned."
 msgstr ""
 
 #, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr ""
 
 #, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
+msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"

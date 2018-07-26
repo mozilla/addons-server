@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-21 16:44+0000\n"
+"POT-Creation-Date: 2018-07-26 10:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5209,10 +5209,6 @@ msgid "Strip away unnecessary formatting and copy just the plain text."
 msgstr ".ʇxǝʇ uıɐʅd ǝɥʇ ʇsnɾ ʎdoɔ puɐ ƃuıʇʇɐɯɹoɟ ʎɹɐssǝɔǝuun ʎɐʍɐ dıɹʇS"
 
 #. editorial content for the discovery pane.
-msgid "Get instant translatations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} suoıʇɐʇɐʅsuɐɹʇ ʇuɐʇsuı ʇǝ⅁"
-
-#. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
 msgstr ".uoʇʇnq ɐ ɟo ʞɔıʅɔ ǝɥʇ ɥʇıʍ—ǝƃɐnƃuɐʅ pǝɹɹǝɟǝɹd ɹnoʎ oʇ ǝƃɐdqǝʍ ǝɹıʇuǝ uɐ ʇɹǝʌuoↃ"
 
@@ -7876,16 +7872,16 @@ msgid "Delete Locale"
 msgstr "ǝʅɐɔo⅂ ǝʇǝʅǝᗡ"
 
 #, python-format
-msgid "The user \"%(user)s\" has been banned.user"
-msgstr "ɹǝsn.pǝuuɐq uǝǝq sɐɥ „%(user)s„ ɹǝsn ǝɥ⊥"
+msgid "The user \"%(user)s\" has been banned."
+msgstr ".pǝuuɐq uǝǝq sɐɥ „%(user)s„ ɹǝsn ǝɥ⊥"
 
 #, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
-msgstr "ɹǝsn.pǝʇǝʅǝp uǝǝq sɐɥ „%(user)s„ ɹǝsn oʇ ƃuıƃuoʅǝq ǝɹnʇɔıd ǝɥ⊥"
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
+msgstr ".pǝʇǝʅǝp uǝǝq sɐɥ „%(user)s„ ɹǝsn oʇ ƃuıƃuoʅǝq ǝɹnʇɔıd ǝɥ⊥"
 
 #, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
-msgstr " ´sɹǝsn.pǝuuɐq uǝǝq ǝʌɐɥ „%(users)s„ sɹǝsn ǝɥ⊥"
+msgid "The users \"%(users)s\" have been banned."
+msgstr ".pǝuuɐq uǝǝq ǝʌɐɥ „%(users)s„ sɹǝsn ǝɥ⊥"
 
 msgid "Ban selected users"
 msgstr "sɹǝsn pǝʇɔǝʅǝs uɐԐ"

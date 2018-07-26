@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-21 16:44+0000\n"
+"POT-Creation-Date: 2018-07-26 10:19+0000\n"
 "PO-Revision-Date: 2018-07-11 19:04+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -5431,11 +5431,6 @@ msgid "Strip away unnecessary formatting and copy just the plain text."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
-msgid "Get instant translatations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personaliza pestañas {start_sub_heading}con {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
 msgstr ""
 
@@ -8183,16 +8178,16 @@ msgstr "¿Estás seguro de que quieres borrar las <b>{0}</b> traducciones? No po
 msgid "Delete Locale"
 msgstr "Eliminar traducción"
 
-#, python-format
-msgid "The user \"%(user)s\" has been banned.user"
+#, fuzzy, python-format
+msgid "The user \"%(user)s\" has been banned."
 msgstr "Se ha expulsado al usuario \"%(user)s\"."
 
-#, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+#, fuzzy, python-format
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr "Se ha eliminado la imagen del usuario \"%(user)s\"."
 
-#, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" have been banned."
 msgstr "Se han expulsado a los usuarios \"%(users)s\"."
 
 msgid "Ban selected users"
