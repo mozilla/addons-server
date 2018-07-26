@@ -236,16 +236,16 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
     def test_recommendations(self):
         author = user_factory()
         recommendations = [
-            addon_factory(id=101, guid='101@mozilla', users=[author]),
-            addon_factory(id=102, guid='102@mozilla', users=[author]),
-            addon_factory(id=103, guid='103@mozilla', users=[author]),
-            addon_factory(id=104, guid='104@mozilla', users=[author]),
+            addon_factory(guid='101@mozilla', users=[author]),
+            addon_factory(guid='102@mozilla', users=[author]),
+            addon_factory(guid='103@mozilla', users=[author]),
+            addon_factory(guid='104@mozilla', users=[author]),
         ]
         replacement_items = [
-            DiscoveryItem(addon_id=101),
-            DiscoveryItem(addon_id=102),
-            DiscoveryItem(addon_id=103),
-            DiscoveryItem(addon_id=104),
+            DiscoveryItem(addon=recommendations[0]),
+            DiscoveryItem(addon=recommendations[1]),
+            DiscoveryItem(addon=recommendations[2]),
+            DiscoveryItem(addon=recommendations[3]),
         ]
         self.addons.extend(recommendations)
         self.get_recommendations.return_value = replacement_items
@@ -257,7 +257,8 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
             '666', {'locale': 'en-US', 'platform': 'WINNT'})
 
         # should still be the same number of results.
-        discopane_items = DiscoveryItem.objects.all().order_by('position')
+        discopane_items = DiscoveryItem.objects.filter(
+            position__gt=0).order_by('position')
         assert response.data['count'] == len(discopane_items)
         assert response.data['results']
 
