@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-21 16:44+0000\n"
+"POT-Creation-Date: 2018-07-26 10:19+0000\n"
 "PO-Revision-Date: 2018-07-14 19:06+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -5416,11 +5416,6 @@ msgid "Strip away unnecessary formatting and copy just the plain text."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
-msgid "Get instant translatations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Настраивайте вкладки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
 msgstr ""
 
@@ -8176,16 +8171,16 @@ msgstr "Вы уверены что вы хотите удалить все <b>{0
 msgid "Delete Locale"
 msgstr "Удалить локаль"
 
-#, python-format
-msgid "The user \"%(user)s\" has been banned.user"
+#, fuzzy, python-format
+msgid "The user \"%(user)s\" has been banned."
 msgstr "Пользователь \"%(user)s\" был заблокирован"
 
-#, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+#, fuzzy, python-format
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr "Картинка, принадлежащая пользователю \"%(user)s\", была удалена."
 
-#, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
+#, fuzzy, python-format
+msgid "The users \"%(users)s\" have been banned."
 msgstr "Пользователи \"%(users)s\" были заблокированы, "
 
 msgid "Ban selected users"
