@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-25 09:30+0000\n"
+"PO-Revision-Date: 2018-07-26 08:55+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -392,7 +392,7 @@ msgstr "మీరు ఏమి అనుకుంటున్నారు?"
 
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr ""
+msgstr "సమీక్షను సమర్పించడానికి దయచేసి <a href=\"%(login)s\"> ప్రవేశించండి</a>"
 
 msgid "Review:"
 msgstr "సమీక్షించు:"
