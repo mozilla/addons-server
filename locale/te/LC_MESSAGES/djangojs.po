@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-05 16:44+0000\n"
+"PO-Revision-Date: 2018-07-26 08:51+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -640,8 +640,8 @@ msgstr[1] ""
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "చెల్లుబాటు విఫలమైన {2} పొడగింత రచయితకు ఈమెయిలు చెయ్యి."
+msgstr[1] "చెల్లుబాటు విఫలమైన {2} పొడగింతల రచయితలకు ఈమెయిలు చెయ్యి."
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
