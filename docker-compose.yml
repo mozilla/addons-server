@@ -50,7 +50,14 @@ services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
     environment:
+      # Disable all xpack related features to avoid unrelated logging
+      # in docker logs. https://github.com/mozilla/addons-server/issues/8887
+      # This also avoids us to require authentication for local development
+      # which simplifies the setup.
       - xpack.security.enabled=false
+      - xpack.monitoring.enabled=false
+      - xpack.graph.enabled=false
+      - xpack.watcher.enabled=false
       - "discovery.type=single-node"
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     mem_limit: 2g
