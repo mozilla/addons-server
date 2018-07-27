@@ -5,6 +5,7 @@ Please note that there should not be any Django/Olympia related imports
 on module-level, they should instead be added to hooks or fixtures directly.
 """
 import os
+import uuid
 
 import responses
 import pytest
@@ -112,7 +113,18 @@ def test_pre_setup(request, tmpdir, settings):
     from olympia import amo, core
     from olympia.translations.hold import clean_translations
 
-    caches['default'].clear()
+    # Clear all cache-instances. They'll be re-initialized by Django
+    # This will make sure that our random `KEY_PREFIX` is applied
+    # appropriately.
+    # This is done by Django too whenever `settings` is changed
+    # directly but because we're using the `settings` fixture
+    # here this is not detected correctly.
+    caches._caches.caches = {}
+
+    # Randomize the cache key prefix to keep
+    # tests isolated from each other.
+    prefix = uuid.uuid4().hex
+    settings.CACHES['default']['KEY_PREFIX'] = 'amo:{0}:'.format(prefix)
 
     translation.trans_real.deactivate()
     # Django fails to clear this cache.

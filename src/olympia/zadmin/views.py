@@ -4,7 +4,6 @@ from django import http
 from django.apps import apps
 from django.conf import settings
 from django.contrib import admin
-from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.shortcuts import get_object_or_404, redirect
@@ -34,8 +33,8 @@ from olympia.zadmin.models import SiteEvent
 from . import tasks
 from .decorators import admin_required
 from .forms import (
-    AddonStatusForm, DevMailerForm, FeaturedCollectionFormSet,
-    FileFormSet, MonthlyPickFormSet, YesImSure)
+    AddonStatusForm, DevMailerForm, FeaturedCollectionFormSet, FileFormSet,
+    MonthlyPickFormSet)
 from .models import EmailPreviewTopic
 
 
@@ -333,21 +332,6 @@ def recalc_hash(request, file_id):
     messages.success(request,
                      'File hash and size recalculated for file %d.' % file.id)
     return {'success': 1}
-
-
-@admin.site.admin_view
-def memcache(request):
-    form = YesImSure(request.POST or None)
-    if form.is_valid() and form.cleaned_data['yes']:
-        cache.clear()
-        form = YesImSure()
-        messages.success(request, 'Cache cleared')
-    if cache._cache and hasattr(cache._cache, 'get_stats'):
-        stats = cache._cache.get_stats()
-    else:
-        stats = []
-    return render(request, 'zadmin/memcache.html',
-                  {'form': form, 'stats': stats})
 
 
 @admin.site.admin_view

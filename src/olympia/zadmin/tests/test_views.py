@@ -7,7 +7,6 @@ from cStringIO import StringIO
 
 from django.conf import settings
 from django.core import mail
-from django.core.cache import cache
 
 import mock
 
@@ -534,28 +533,6 @@ class TestAddonManagement(TestCase):
 
         r = self.client.get(reverse('zadmin.recalc_hash', args=[file.id]))
         assert r.status_code == 405  # GET out of here
-
-
-class TestMemcache(TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
-
-    def setUp(self):
-        super(TestMemcache, self).setUp()
-        self.url = reverse('zadmin.memcache')
-        cache.set('foo', 'bar')
-        self.client.login(email='admin@mozilla.com')
-
-    def test_login(self):
-        self.client.logout()
-        assert self.client.get(self.url).status_code == 302
-
-    def test_can_clear(self):
-        self.client.post(self.url, {'yes': 'True'})
-        assert cache.get('foo') is None
-
-    def test_cant_clear(self):
-        self.client.post(self.url, {'yes': 'False'})
-        assert cache.get('foo') == 'bar'
 
 
 class TestElastic(amo.tests.ESTestCase):

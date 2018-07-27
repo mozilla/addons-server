@@ -31,7 +31,7 @@ from olympia.browse.views import (
     locale_display_name)
 from olympia.translations.models import Translation
 from olympia.versions.models import Version
-
+from olympia.lib.cache import memoize_key
 
 pytestmark = pytest.mark.django_db
 
@@ -78,7 +78,6 @@ class TestListing(TestCase):
 
     def setUp(self):
         super(TestListing, self).setUp()
-        cache.clear()
         self.url = reverse('browse.extensions')
 
     def test_try_new_frontend_banner_presence(self):
@@ -338,7 +337,6 @@ class TestFeeds(TestCase):
 
     def setUp(self):
         super(TestFeeds, self).setUp()
-        cache.clear()
         self.url = reverse('browse.extensions')
         self.rss_url = reverse('browse.extensions.rss')
         self.filter = AddonFilter
@@ -449,10 +447,6 @@ class TestFeaturedLocale(TestCase):
         self.category = Category.objects.get(slug='bookmarks')
         self.url = urlparams(reverse('browse.extensions', args=['bookmarks']),
                              {}, sort='featured')
-        cache.clear()
-
-    def reset(self):
-        cache.clear()
 
     def list_featured(self, content):
         # Not sure we want to get into testing randomness
@@ -527,6 +521,12 @@ class TestFeaturedLocale(TestCase):
         assert addon in res.context['filter'].all()['featured']
 
         self.change_addoncategory(addon, 'es')
+
+        cache.delete(memoize_key(
+            'addons:featured', amo.FIREFOX, u'en-US', amo.ADDON_EXTENSION))
+        cache.delete(memoize_key(
+            'addons:creatured', 'Bookmarks', u'en-US'))
+
         res = self.client.get(reverse('browse.extensions', args=['bookmarks']))
         assert addon not in res.context['filter'].all()['featured']
 
@@ -537,6 +537,8 @@ class TestFeaturedLocale(TestCase):
         assert addon in res.context['featured']
 
         self.change_addon(addon, 'es')
+        cache.delete(memoize_key(
+            'addons:featured', amo.FIREFOX, u'es', amo.ADDON_EXTENSION))
         res = self.client.get(url)
         assert addon not in res.context['featured']
 
@@ -549,12 +551,15 @@ class TestFeaturedLocale(TestCase):
         category.update(type=amo.ADDON_PERSONA)
 
         addon.addoncategory_set.create(category=category, feature=True)
-        self.reset()
         url = reverse('browse.personas', args=[category.slug])
         res = self.client.get(url)
         assert addon in res.context['featured']
 
         self.change_addoncategory(addon, 'es')
+
+        cache.delete(memoize_key(
+            'addons:featured', amo.FIREFOX, u'es', amo.ADDON_EXTENSION))
+
         res = self.client.get(url)
         assert addon not in res.context['featured']
 
@@ -567,6 +572,10 @@ class TestFeaturedLocale(TestCase):
         assert self.extension in res.context['featured']
 
         self.change_addon(self.extension, 'es')
+
+        cache.delete(memoize_key(
+            'addons:featured', amo.FIREFOX, u'en-US', amo.ADDON_EXTENSION))
+
         res = self.client.get(url)
         assert self.extension not in res.context['featured']
 
@@ -611,7 +620,11 @@ class TestFeaturedLocale(TestCase):
         # The order should be random within those boundaries.
         another = Addon.objects.get(id=1003)
         self.change_addon(another, 'en-US')
-        cache.clear()
+
+        cache.delete(memoize_key(
+            'addons:featured', amo.FIREFOX, u'en-US', amo.ADDON_EXTENSION))
+        cache.delete(memoize_key(
+            'addons:featured', amo.FIREFOX, u'en-US', amo.ADDON_PERSONA))
 
         url = reverse('home')
         res = self.client.get(url)
@@ -625,6 +638,9 @@ class TestFeaturedLocale(TestCase):
         assert [2464, 7661] == sorted([i.pk for i in items])
 
         self.change_addon(another, 'es')
+
+        cache.delete(memoize_key(
+            'addons:featured', amo.FIREFOX, u'es', amo.ADDON_EXTENSION))
 
         res = self.client.get(url.replace('en-US', 'es'))
         items = res.context['featured']
@@ -651,7 +667,6 @@ class TestFeaturedLocale(TestCase):
                                            collection=fc.collection)[0]
         c.collection = feature.collection
         c.save()
-        self.reset()
 
     def change_addoncategory(self, addon, locale='es'):
         CollectionAddon.objects.filter(addon=addon).delete()
@@ -662,7 +677,6 @@ class TestFeaturedLocale(TestCase):
             FeaturedCollection.objects.create(
                 locale=locale, application=amo.FIREFOX.id,
                 collection=c.collection)
-        self.reset()
 
 
 class TestListingByStatus(TestCase):
@@ -722,8 +736,6 @@ class BaseSearchToolsTest(TestCase):
         readit.type = amo.ADDON_SEARCH
         readit.status = amo.STATUS_PUBLIC
         readit.save()
-
-        cache.clear()
 
 
 class TestSearchToolsPages(BaseSearchToolsTest):

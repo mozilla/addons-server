@@ -425,7 +425,7 @@ class TestFileViewer(FilesBase, TestCase):
         for name in ['file.txt', 'file.html', 'file.htm']:
             # If you are adding files, you need to clear out the memcache
             # file listing.
-            cache.clear()
+            cache.delete(self.file_viewer._cache_key())
             self.add_file(name, '<script>alert("foo")</script>')
             res = self.client.get(self.file_url(name))
             doc = pq(res.content)
@@ -492,7 +492,7 @@ class TestFileViewer(FilesBase, TestCase):
         url = res['Location']
         res = self.client.get(url)
         assert res.status_code == 200
-        cache.clear()
+        cache.delete(self.file_viewer._cache_key())
         res = self.client.get(url)
         assert res.status_code == 403
 
