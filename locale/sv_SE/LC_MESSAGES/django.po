@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-27 18:14+0000\n"
+"PO-Revision-Date: 2018-07-27 18:24+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4476,16 +4476,15 @@ msgstr "Annonsblockering och sekretessskydd {start_sub_heading}med {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Med en enkel inställning kan du ta kontroll över de annonser du ser och hur du spåras på internet."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Ordna om flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Har du massor av öppna flikar? Organisera dem i en snygg sidopanel."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4494,16 +4493,15 @@ msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Isolera din Facebook-identitet i en separat \"behållare\" som gör det svårare för Facebook att spåra dina rörelser på webben."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Gör sökning enklare {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Markera endast text på vilken webbsida som helst för att söka frasen från en rad olika sökmotorer."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5879,22 +5877,20 @@ msgid "Adjust browser audio settings with extreme clarity."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Anpassa flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Sekretessskydd {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Skydda dig mot lömska trackers."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Dölj dina spår {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
-msgstr ""
+msgstr "Sök med mer säkerhet med spårningsblockering, smartare kryptering, privat sökning och andra viktiga saker."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -8088,18 +8084,18 @@ msgstr "Ta bort språk"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "Användaren \"%(user)s\" har blivit bannlyst."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "Bilden som tillhör användaren \"%(user)s\" har raderats."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "Användarna \"%(users)s\" har blivit bannlysta."
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "Bannlys valda användare"
 
 msgid "Profile Photo"
 msgstr "Profilfoto"
@@ -8202,13 +8198,11 @@ msgstr "Användare rapporterad."
 msgid "new"
 msgstr "ny"
 
-#, fuzzy
 msgid "Ban"
-msgstr "och"
+msgstr "Bannlys"
 
-#, fuzzy
 msgid "Delete picture"
-msgstr "Ta bort mitt användarfoto nu"
+msgstr "Ta bort bild"
 
 msgid "Delete User Account"
 msgstr "Ta bort användarkonto"
