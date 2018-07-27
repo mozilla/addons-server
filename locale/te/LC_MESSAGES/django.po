@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-27 06:51+0000\n"
+"PO-Revision-Date: 2018-07-27 06:57+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -6947,7 +6947,7 @@ msgid "Download files"
 msgstr "ఫైళ్లను దింపుకోళ్ళు చేయండి"
 
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "డెవలపర్ సోర్స్ కోడ్ను అందుబాటులోవుంచాడు."
 
 msgid "Weight:"
 msgstr "బరువు:"
@@ -7022,7 +7022,7 @@ msgid "Admin Page"
 msgstr "నిర్వాహకుని పేజీ"
 
 msgid "Review This Add-on"
-msgstr ""
+msgstr "ఈ పొడిగింతను సమీక్షించండి"
 
 msgid "More Information"
 msgstr "మరింత సమాచారం"
@@ -7050,7 +7050,7 @@ msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
 msgstr ""
 
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "ఈ ప్రకటనను తీసివేయండి"
 
 msgid "Files in this version:"
 msgstr ""
@@ -7125,7 +7125,7 @@ msgid "Theme Review Queue"
 msgstr ""
 
 msgid "Queues"
-msgstr ""
+msgstr "వరుస"
 
 msgid "Review Options"
 msgstr "సమీక్ష ఎంపికలు"
@@ -7161,7 +7161,7 @@ msgid "There are currently no Themes to review."
 msgstr ""
 
 msgid "Clear Search"
-msgstr ""
+msgstr "శోధనను తొలగించు"
 
 msgid "Release My Theme Locks"
 msgstr ""
@@ -7192,16 +7192,16 @@ msgid "Approve Theme"
 msgstr ""
 
 msgid "Field required"
-msgstr ""
+msgstr "అవసరమైన ఫీల్డు"
 
 msgid "Enter the ID or URL of the duplicate"
 msgstr ""
 
 msgid "Select a reason for rejection"
-msgstr ""
+msgstr "తిరస్కరణకు కారణాన్ని ఎంచుకోండి"
 
 msgid "Describe your reason for rejection"
-msgstr ""
+msgstr "తిరస్కరణకు మీ కారణాన్ని వివరించండి"
 
 msgid "Ask a question to the artist"
 msgstr "కళాకారుడిని ప్రశ్న అడగండి"
@@ -7210,7 +7210,7 @@ msgid "Describe your reason for flagging"
 msgstr ""
 
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "తిరస్కరించబడింది లేదా సమీక్షించబడలేదు"
 
 #, python-format
 msgid "[status:%s]"
@@ -7237,7 +7237,7 @@ msgstr[0] "కాలంచెల్లిన సమాచార అభ్యర�
 msgstr[1] "కాలంచెల్లిన సమాచార అభ్యర్థనలు ({0})"
 
 msgid "Flagged"
-msgstr ""
+msgstr "ఫ్లాగ్ చేయబడింది"
 
 msgid "Updates"
 msgstr "తాజాకరణలు"
@@ -7252,7 +7252,7 @@ msgid "search for themes"
 msgstr "అలంకారాల కోసం శోధించండి"
 
 msgid "search for apps"
-msgstr ""
+msgstr "అనువర్తనాల కోసం శోధించండి"
 
 msgid "Relevance"
 msgstr "ఔచిత్యం"
@@ -7261,7 +7261,7 @@ msgid "All Add-ons"
 msgstr "అన్ని పొడిగింతలు"
 
 msgid "Any {0}"
-msgstr ""
+msgstr "ఏదో ఒక {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 msgid "All Systems"
@@ -7275,13 +7275,13 @@ msgid "Collection Search Results for {0}"
 msgstr ""
 
 msgid "Collection Search Results"
-msgstr ""
+msgstr "సేకరణ శోధన ఫలితాలు"
 
 msgid "Search Results"
 msgstr "వెతుకుడు ఫలితాలు"
 
 msgid "Search Unavailable"
-msgstr ""
+msgstr "శోధన అందుబాటులో లేదు"
 
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
 msgstr ""
@@ -7358,7 +7358,7 @@ msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 ch
 msgstr ""
 
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "URL లో చెల్లని GUID"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr ""
@@ -7370,19 +7370,19 @@ msgid "Overview"
 msgstr "అవలోకనం"
 
 msgid "by Source"
-msgstr ""
+msgstr "మూల ద్వారా"
 
 msgid "by Add-on Version"
 msgstr "ద్వారా పొడిగింత వెర్షన్"
 
 msgid "by Application"
-msgstr ""
+msgstr "అనువర్తనం ద్వారా"
 
 msgid "by Language"
-msgstr ""
+msgstr "భాష ద్వారా"
 
 msgid "by Platform"
-msgstr ""
+msgstr "వేదిక ద్వారా"
 
 msgid "by Add-on Status"
 msgstr "ద్వారా పొడిగింత స్థితి"
@@ -7406,31 +7406,31 @@ msgid "Add-ons Downloaded"
 msgstr "పొడిగింతల దింపుకోళ్ళైనది"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "పొడిగింతలు నవీకరించబడ్డాయి"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "సేకరణలు సృష్టించబడ్డాయి"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "సమీక్షలు వ్రాయబడ్డాయి"
 
 msgid "User Signups"
 msgstr "వాడుకరి నమోదులు"
 
 msgid "Archived Data"
-msgstr ""
+msgstr "ఆర్కైవ్ చేసిన డేటా"
 
 msgid "Custom Date Range"
-msgstr ""
+msgstr "అనుకూల తేదీ పరిధి"
 
 msgid "From"
-msgstr ""
+msgstr "నుంచి"
 
 msgid "To"
-msgstr ""
+msgstr "గ్రహీత"
 
 msgid "Update"
-msgstr ""
+msgstr "నవీకరించు"
 
 msgid "Export"
 msgstr "ఎగుమతించు"
