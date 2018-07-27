@@ -952,7 +952,7 @@ class LanguageToolsView(ListAPIView):
               .distinct()
         )
 
-    @method_decorator(cache_page(60 * 60 * 24, cache='filesystem'))
+    @method_decorator(cache_page(60 * 60 * 24))
     def dispatch(self, *args, **kwargs):
         return super(LanguageToolsView, self).dispatch(*args, **kwargs)
 
