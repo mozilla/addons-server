@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-27 09:49+0000\n"
+"PO-Revision-Date: 2018-07-27 10:30+0000\n"
 "Last-Translator: Jakob Kappel <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -1728,9 +1728,8 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr ""
 
-#, fuzzy
 msgid "Commented"
-msgstr "Kommentar"
+msgstr "Kommenterede"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} føjet til {addon}."
@@ -1838,9 +1837,8 @@ msgstr "{rating} af {addon} opdateret."
 msgid "{addon} reviewed."
 msgstr ""
 
-#, fuzzy
 msgid "User {user} banned."
-msgstr "Bruger rapporteret."
+msgstr "Bruger {user} udelukket."
 
 msgid "User {user} picture deleted."
 msgstr ""
@@ -2317,9 +2315,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Indsend tema"
+msgstr "Statisk tema"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2329,13 +2326,13 @@ msgid "No Reputation"
 msgstr "Omdømme"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "God (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Meget god (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "Fortræffelig (3)"
 
 msgid "Manual Reviewer Points"
 msgstr ""
@@ -2805,7 +2802,7 @@ msgid "More Resources"
 msgstr ""
 
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Søg i Developer Docs"
 
 msgid "Search"
 msgstr "Søg"
@@ -2885,7 +2882,7 @@ msgid "Adjusting application information here will allow users to install your a
 msgstr ""
 
 msgid "Supported Versions"
-msgstr ""
+msgstr "Understøttede versioner"
 
 msgid "Add Another Application&hellip;"
 msgstr ""
@@ -2973,9 +2970,8 @@ msgstr "Denne tilføjelse er eksperimentel."
 msgid "This add-on is ready for general use."
 msgstr "Denne tilføjelse er klar til generel brug."
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "Kræver genstart"
+msgstr "Kræver betaling?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr ""
@@ -3296,7 +3292,7 @@ msgid "Resume"
 msgstr ""
 
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Slet denne tilføjelse."
 
 msgid "Delete"
 msgstr "Slet"
@@ -3341,10 +3337,10 @@ msgid "Change the owner of this theme."
 msgstr ""
 
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Overfør ejerskab"
 
 msgid "Delete this theme."
-msgstr ""
+msgstr "Slet dette tema."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
@@ -3360,7 +3356,7 @@ msgstr "Deaktiveret"
 
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Plads i køen:</b> %(pos)s af %(total)s"
 
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
@@ -3398,9 +3394,8 @@ msgstr "Denne tilføjelse er eksperimentel"
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 
-#, fuzzy
 msgid "Select a category for this add-on:"
-msgstr "Anmeldelseshistorik for denne tilføjelse"
+msgstr "Vælg en kategori til denne tilføjelse:"
 
 msgid "Support email:"
 msgstr "Supportmail:"
@@ -3430,12 +3425,11 @@ msgstr ""
 msgid "Cancel and Disable Version"
 msgstr "Annuller installation"
 
-#, fuzzy
 msgid "Submit Version"
-msgstr "Indsend anmeldelse"
+msgstr "Indsend version"
 
 msgid "Describe Version"
-msgstr ""
+msgstr "Beskriv version"
 
 msgid "Release Notes:"
 msgstr ""
@@ -3456,21 +3450,19 @@ msgid "Submission Complete"
 msgstr ""
 
 msgid "You’re done!"
-msgstr ""
+msgstr "Du er færdig!"
 
 msgid "Version Submitted for Review"
 msgstr ""
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Indsendt"
+msgstr "Forhåndsvisning af den indsendte version"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "Indsendt"
+msgstr "Version indsendt"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
@@ -3549,7 +3541,7 @@ msgid "Create a Theme"
 msgstr "Lav et tema"
 
 msgid "Submit File"
-msgstr ""
+msgstr "Indsend fil"
 
 msgid "Sign Add-on"
 msgstr ""
@@ -3558,13 +3550,11 @@ msgstr ""
 msgid "Theme generate"
 msgstr "Tema-licens"
 
-#, fuzzy
 msgid "Theme generator"
-msgstr "Tema-licens"
+msgstr "Tema-generator"
 
-#, fuzzy
 msgid "Theme name"
-msgstr "Tema-licens"
+msgstr "Tema-navn"
 
 #, fuzzy
 msgid "Select a header image for your theme"
@@ -3582,9 +3572,8 @@ msgstr "Justeret øverst til højre"
 msgid "Select a different header image"
 msgstr ""
 
-#, fuzzy
 msgid "Select colors for your theme"
-msgstr "Vælg farver til dit tema."
+msgstr "Vælg farver til dit tema"
 
 msgid "Header area background"
 msgstr ""
@@ -3636,9 +3625,8 @@ msgstr "Tilbage"
 msgid "Uploading Theme"
 msgstr "Uploader tema"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "Temaer i kategorien %s"
+msgstr "Færdiggør tema"
 
 msgid "API Credentials"
 msgstr ""
@@ -4015,10 +4003,10 @@ msgid "Compatibility Test"
 msgstr "Kompatibilitetstest"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "Kontrollér om din udvidelse er kompatibel med Firefox."
 
 msgid "Transfer ownership"
-msgstr ""
+msgstr "Overfør ejerskab"
 
 msgid "Theme Details"
 msgstr "Detaljer om temaet"
@@ -4069,7 +4057,7 @@ msgid "Theme Design"
 msgstr "Tema-design"
 
 msgid "Upload New Design"
-msgstr ""
+msgstr "Upload nyt design"
 
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
 msgstr ""
@@ -4134,7 +4122,7 @@ msgid "Your theme has been submitted to the Review Queue. You'll receive an emai
 msgstr ""
 
 msgid "Next steps:"
-msgstr ""
+msgstr "Næste trin:"
 
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
@@ -4155,7 +4143,7 @@ msgid "3000 &times; 200 pixels"
 msgstr ""
 
 msgid "300 KB max"
-msgstr ""
+msgstr "Maks. 300 KB"
 
 msgid "PNG or JPG"
 msgstr "PNG eller JPG"
@@ -4271,10 +4259,10 @@ msgid "Validation"
 msgstr "Validering"
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "Slet/Deaktiver"
 
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Næste version af denne tilføjelse"
 
 msgid "Other versions"
 msgstr "Andre versioner"
@@ -4283,32 +4271,32 @@ msgid "All versions"
 msgstr "Alle versioner"
 
 msgid "Upload a New Version"
-msgstr ""
+msgstr "Upload en ny version"
 
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "Slet version {version}"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Sletning af denne version vil permanent slette:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
 msgstr ""
 
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Er du sikker på, at du vil slette denne version?"
 
 msgid "Delete Version"
-msgstr ""
+msgstr "Slet version"
 
 msgid "Disable Version"
-msgstr ""
+msgstr "Deaktiver version"
 
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Skjul tilføjelse"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
@@ -4351,9 +4339,8 @@ msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr ""
 
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Forbedr videoer {start_sub_heading}med {addon_name} {end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
 msgstr ""
@@ -4376,17 +4363,15 @@ msgid "Dozens of amazing emojis for every occasion—just a click away."
 msgstr "Massevis af fantastiske emojis — kun et klik borte."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Download videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokér reklamer {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Tilpasning af faneblade {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
 msgstr ""
@@ -4400,9 +4385,8 @@ msgstr "Bliv bedre til emojis {start_sub_heading}med {addon_name}{end_sub_headin
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr "Massevis af fantastiske emojis — kun et klik borte."
 
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Håndtér adgangskoder {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Tag skærmbilleder {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
@@ -4426,18 +4410,16 @@ msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Søg efter billeder med {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Blokering af reklamer & beskyttelse af privatliv {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
@@ -4450,7 +4432,7 @@ msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Har du tonsvis af åbne faneblade? Sortér dem i et sidepanel."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4481,7 +4463,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
-msgstr ""
+msgstr "Vælg den side, du vil se, hver gang du åbner et nyt faneblad."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4494,10 +4476,9 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Virker med YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope og hundredvis af andre video-websteder."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
 msgstr "Massevis af fantastiske emojis — kun et klik borte."
 
@@ -4571,7 +4552,7 @@ msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Send nyheder, historier, blog-indlæg med mere til din Kindle."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5047,18 +5028,16 @@ msgid "Modify your new tab page to display a beautiful background, set your dail
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Se billeder {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Øg produktiviteten {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
@@ -5083,9 +5062,8 @@ msgid "Find and resolve broken bookmarks, duplicates, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Stress mindre {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
@@ -5841,9 +5819,8 @@ msgid "Adjust browser audio settings with extreme clarity."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokér reklamer {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Beskyt dit privatliv {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
@@ -5922,7 +5899,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
 msgid "Invalid archive."
-msgstr ""
+msgstr "Ugyldig arkiv."
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -6282,11 +6259,9 @@ msgstr "Anmeld tilføjelser på webstedet. Forfattere til tilføjelser er mere t
 msgid "I have a question"
 msgstr "Jeg har et spørgsmål"
 
-#, fuzzy, python-format
+#, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr ""
-"Et godt sted at begynde er i vores <a href=\"%(faq_url)s\"><abbr title=\"Ofte stillede spørgsmål\">OSS</abbr></a>. Hvis du ikke kan finde et svar dér, kan du <a href=\"%(forum_url)s\"> spørge i "
-"vores forummer</a>."
+msgstr "Et godt sted at begynde er <a href=\"%(sumo_url)s\">Support</a> Mozilla. Hvis du ikke kan finde et svar dér, kan du <a href=\"%(forum_url)s\"> spørge i vores forummer</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -6295,11 +6270,8 @@ msgstr "Hvis du virkelig har brug for at kontakte nogen fra Mozilla-holdet, så 
 msgid "Who works on this website?"
 msgstr "Hvem arbejder på dette websted?"
 
-#, fuzzy
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
-msgstr ""
-"Gennem årene har mange personer bidraget til dette websted, både frivillige fra fællesskabet og et dedikeret AMO-hold. Du kan se en liste med væsentlige bidragsydere på vores <a "
-"href=\"%(url)s\">websted over bidragsydere</a> ."
+msgstr "Gennem årene har mange personer bidraget til dette websted, både frivillige fra fællesskabet og et dedikeret AMO-hold."
 
 msgid "Sections"
 msgstr "Afsnit"
@@ -6411,7 +6383,7 @@ msgid ""
 msgstr ""
 
 msgid "Start Now"
-msgstr ""
+msgstr "Start nu"
 
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
@@ -6686,7 +6658,7 @@ msgid "View entries between"
 msgstr ""
 
 msgid "and"
-msgstr ""
+msgstr "og"
 
 msgid "Filter by type/action"
 msgstr ""
@@ -6695,7 +6667,7 @@ msgid "containing"
 msgstr ""
 
 msgid "start"
-msgstr ""
+msgstr "start"
 
 msgid "end"
 msgstr ""
@@ -6827,20 +6799,20 @@ msgstr ""
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} minut"
+msgstr[1] "{0} minutter"
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} time"
+msgstr[1] "{0} timer"
 
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} dag"
+msgstr[1] "{0} dage"
 
 msgid "Last Review"
 msgstr ""
@@ -6899,13 +6871,11 @@ msgstr "Godkend indhold"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Forældede tilføjelser"
+msgstr "Statiske temaer og forældede tilføjelser"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "Udvalgte temaer"
+msgstr "Statiske temaer"
 
 msgid "Legacy Add-ons"
 msgstr "Forældede tilføjelser"
@@ -6913,13 +6883,11 @@ msgstr "Forældede tilføjelser"
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "New ({0})"
-msgstr "Nye temaer ({0})"
+msgstr "Ny ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
-msgstr "Opdatering ({0})"
+msgstr "Opdateringer ({0})"
 
 #, fuzzy
 msgid "Review Log"
@@ -7055,9 +7023,8 @@ msgstr "Gennemsnitlige daglige brugere"
 msgid "Abuse Reports"
 msgstr "Rapporter om misbrug"
 
-#, fuzzy
 msgid "Requires Payment"
-msgstr "Kræver genstart"
+msgstr "Kræver betaling"
 
 msgid "EULA"
 msgstr "EULA"
@@ -7071,9 +7038,8 @@ msgstr ""
 msgid "Bad User Ratings ({num})"
 msgstr ""
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Tema-licens"
+msgstr "Tema-billeder"
 
 #, fuzzy
 msgid "Rendered Preview"
