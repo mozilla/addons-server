@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-27 18:24+0000\n"
+"PO-Revision-Date: 2018-07-27 21:30+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4487,9 +4487,8 @@ msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Har du massor av öppna flikar? Organisera dem i en snygg sidopanel."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Stoppa Facebook-spårning {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
@@ -4504,18 +4503,16 @@ msgid "Just highlight text on any web page to search the phrase from an array of
 msgstr "Markera endast text på vilken webbsida som helst för att söka frasen från en rad olika sökmotorer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Snabba väderuppdateringar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
-msgstr ""
+msgstr "Få snabb global väderinformation direkt i Firefox."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Choose the page you see every time you open a new tab."
-msgstr "Ange den sida du vill se varje gång du öppnar en ny flik."
+msgstr "Välj den sida du vill se varje gång du öppnar en ny flik."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4536,13 +4533,12 @@ msgid "Dozens of amazing emojis for every occasion—always just a click away."
 msgstr "Dussintals fantastiska emojis för varje tillfälle—alltid ett klick bort."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Hantera lösenord {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Förenkla och synkronisera alla dina olika webbplatsinloggningar mellan enheter med ett lösenord för att styra dem alla."
 
 #. editorial content for the discovery pane.
 #, fuzzy
