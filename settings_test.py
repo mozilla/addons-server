@@ -27,21 +27,16 @@ SITE_URL = CDN_HOST = 'http://testserver'
 STATIC_URL = '%s/static/' % CDN_HOST
 MEDIA_URL = '%s/user-media/' % CDN_HOST
 
-# We don't want to share cache state between processes. Always use the local
-# memcache backend for tests.
-#
-# Note: Per settings.py, this module can cause deadlocks when running as a web
-# server. It's safe to use in tests, since we don't use threads, and there's
-# no opportunity for contention, but it shouldn't be used in the base settings
-# until we're sure the deadlock issues are fixed.
+# We are setting memcached here to make sure our test setup is as close
+# to our production system as possible.
 CACHES = {
     'default': {
         # `CacheStatTracker` is required for `assert_cache_requests` to work
         # properly
         'BACKEND': 'olympia.lib.cache.CacheStatTracker',
-        'LOCATION': 'olympia',
+        'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),
         'OPTIONS': {
-            'ACTUAL_BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'ACTUAL_BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',  # noqa
         }
     },
 }

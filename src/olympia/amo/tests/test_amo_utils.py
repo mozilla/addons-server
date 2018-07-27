@@ -3,7 +3,6 @@ import os
 import tempfile
 
 from django.conf import settings
-from django.core.cache import cache
 from django.core.validators import ValidationError
 
 import mock
@@ -215,7 +214,6 @@ class TestCacheNamespaces(BaseTestCase):
 
     def setUp(self):
         super(TestCacheNamespaces, self).setUp()
-        cache.clear()
         self.namespace = 'redis-is-dead'
 
     @mock.patch('olympia.amo.utils.epoch')
