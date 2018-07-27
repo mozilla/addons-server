@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-27 16:42+0000\n"
+"PO-Revision-Date: 2018-07-27 20:04+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4949,7 +4949,7 @@ msgstr "Defina sua página inicial {start_sub_heading}com {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "Defina uma página inicial personalizada para as novas abas."
 
 #. editorial content for the discovery pane.
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5025,7 +5025,7 @@ msgstr "Personalização de abas {start_sub_heading}com {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Mude a aparência de qualquer site! Altere cores, fundos de páginas e muito mais."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5133,7 +5133,7 @@ msgstr "Melhore sua coleção de emoji {start_sub_heading}com {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "Encontre e corrija favoritos quebrados, duplicados e mais."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5196,7 +5196,7 @@ msgstr "Melhore sua coleção de emoji {start_sub_heading}com {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Oculte partes do site que você está visualizando."
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5258,7 +5258,7 @@ msgstr "Melhore sua coleção de emoji {start_sub_heading}com {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
-msgstr ""
+msgstr "Remova anúncios e baixe o áudio do VK."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5339,12 +5339,11 @@ msgstr "Faça capturas de tela {start_sub_heading}com {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "Ative o modo noturno para obter uma melhor experiência de visualização."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Encontre imagens {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
@@ -5366,7 +5365,7 @@ msgstr "Personalização de abas {start_sub_heading}com {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "Uma maneira melhor de salvar favoritos se você usa várias pastas de favoritos."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5397,7 +5396,7 @@ msgstr "Faça capturas de tela {start_sub_heading}com {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
-msgstr ""
+msgstr "Acesse PDFs usando seu aplicativo de PDF preferido."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5424,7 +5423,7 @@ msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
-msgstr ""
+msgstr "Faça o download de vídeo e/ou áudio."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5460,7 +5459,7 @@ msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Limpe o cache do navegador com um clique ou através de um atalho de teclado."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5469,7 +5468,7 @@ msgstr "Melhore sua coleção de emoji {start_sub_heading}com {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
-msgstr ""
+msgstr "Crie e gerencie uma lista de tarefas no seu navegador."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5568,7 +5567,7 @@ msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
-msgstr ""
+msgstr "Mude para o modo de navegação privada com um clique."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5677,7 +5676,7 @@ msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Acesse facilmente suas abas abertas, favoritos e histórico."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -5726,7 +5725,7 @@ msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Modifique seus favoritos através de um painel de fácil acesso."
 
 #. editorial content for the discovery pane.
 #, fuzzy
