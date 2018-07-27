@@ -83,19 +83,8 @@ LOGGING['loggers'].update({
     'requests': {'level': logging.WARNING},
     'z.addons': {'level': logging.INFO},
     'z.task': {'level': logging.DEBUG},
-    'z.redis': {'level': logging.DEBUG},
     'z.pool': {'level': logging.ERROR},
 })
-
-# This is used for `django-cache-machine`
-REDIS_BACKEND = env('REDIS_BACKENDS_CACHE')
-
-REDIS_BACKENDS = {
-    'cache': get_redis_settings(env('REDIS_BACKENDS_CACHE')),
-    'cache_slave': get_redis_settings(env('REDIS_BACKENDS_CACHE_SLAVE')),
-    'master': get_redis_settings(env('REDIS_BACKENDS_MASTER')),
-    'slave': get_redis_settings(env('REDIS_BACKENDS_SLAVE'))
-}
 
 ES_TIMEOUT = 60
 ES_HOSTS = env('ES_HOSTS')

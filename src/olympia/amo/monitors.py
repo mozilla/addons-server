@@ -4,9 +4,7 @@ import StringIO
 import traceback
 
 from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
 
-import redis as redislib
 import requests
 
 from kombu import Connection
@@ -149,40 +147,6 @@ def rabbitmq():
             monitor_log.critical(status)
 
     return status, rabbitmq_results
-
-
-def redis():
-    # Check Redis
-    redis_results = [None, 'REDIS_BACKENDS is not set']
-    status = 'REDIS_BACKENDS is not set'
-    if getattr(settings, 'REDIS_BACKENDS', False):
-        status = []
-        redis_results = {}
-
-        for alias, backend in settings.REDIS_BACKENDS.items():
-            if not isinstance(backend, dict):
-                raise ImproperlyConfigured(
-                    'REDIS_BACKENDS is now required to be a dictionary.')
-
-            host = backend.get('HOST')
-            port = backend.get('PORT')
-            db = backend.get('DB', 0)
-            password = backend.get('PASSWORD', None)
-            socket_timeout = backend.get('OPTIONS', {}).get('socket_timeout')
-
-            try:
-                redis_connection = redislib.Redis(
-                    host=host, port=port, db=db, password=password,
-                    socket_timeout=socket_timeout)
-                redis_results[alias] = redis_connection.info()
-            except Exception as e:
-                redis_results[alias] = None
-                status.append('Failed to chat with redis:%s' % alias)
-                monitor_log.critical('Failed to chat with redis: (%s)' % e)
-
-        status = ','.join(status)
-
-    return status, redis_results
 
 
 def signer():

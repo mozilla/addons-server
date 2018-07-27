@@ -92,22 +92,11 @@ LOGGING['loggers'].update({
     'requests': {'level': logging.WARNING},
     'z.addons': {'level': logging.DEBUG},
     'z.task': {'level': logging.DEBUG},
-    'z.redis': {'level': logging.DEBUG},
     'z.pool': {'level': logging.ERROR},
 })
 
 # Update the logger name used for mozlog
 LOGGING['formatters']['json']['logger_name'] = 'http_app_addons_dev'
-
-# This is used for `django-cache-machine`
-REDIS_BACKEND = env('REDIS_BACKENDS_CACHE')
-
-REDIS_BACKENDS = {
-    'cache': get_redis_settings(env('REDIS_BACKENDS_CACHE')),
-    'cache_slave': get_redis_settings(env('REDIS_BACKENDS_CACHE_SLAVE')),
-    'master': get_redis_settings(env('REDIS_BACKENDS_MASTER')),
-    'slave': get_redis_settings(env('REDIS_BACKENDS_SLAVE'))
-}
 
 csp = 'csp.middleware.CSPMiddleware'
 
