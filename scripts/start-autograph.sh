@@ -5,6 +5,7 @@ echo "installing autograph + dependencies"
 curl -sL -o ./gimme https://raw.githubusercontent.com/travis-ci/gimme/v1.5.0/gimme
 chmod +x ./gimme
 eval "$(./gimme stable)"
+unset $GOROOT
 go get go.mozilla.org/autograph
 
 # Start autograph in background
