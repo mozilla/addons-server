@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-27 21:53+0000\n"
+"PO-Revision-Date: 2018-07-27 21:55+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4627,13 +4627,12 @@ msgid "Display current worldwide times in Firefox's status bar."
 msgstr "Visa aktuella världstider i Firefox statusfält."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Anpassa flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Enkla översättningar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Markera text på en webbsida—eller välj hela sidan—för att översätta direkt."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4642,7 +4641,7 @@ msgstr "Ta skärmbilder {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
-msgstr ""
+msgstr "Njut av fri tillgång till över 10 miljoner forskningsrapporter."
 
 #. editorial content for the discovery pane.
 #, fuzzy
