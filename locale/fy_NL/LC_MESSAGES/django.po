@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-27 12:11+0000\n"
+"PO-Revision-Date: 2018-07-27 12:14+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5683,45 +5683,40 @@ msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas ljepblêden oan {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Bewurkje foar it ôfdrukken {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Meitsje skermôfbyldingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Folgje it priisferrin op Amazon {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Behear lûd {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas ljepblêden oan {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Privacybeskerming {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Ferstopje jo spoaren {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
@@ -7933,15 +7928,15 @@ msgstr "Binne jo wis dat jo alle <b>{0}</b> oersettingen fuortsmite wolle? Dit k
 msgid "Delete Locale"
 msgstr "Taal fuortsmite"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr "De brûker ‘%(user)s’ is ferballe."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr "De ôfbylding fan brûker ‘%(user)s’ is fuortsmiten."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" have been banned."
 msgstr "De brûkers ‘%(users)s’ binne ferballe."
 
