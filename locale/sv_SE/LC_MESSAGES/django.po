@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-23 10:36+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2018-07-27 18:14+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -555,8 +555,8 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Vissa tillägg kan be om behörighet att utföra vissa funktioner (exempel: ett flikhanterande tillägg kan be om behörighet för att komma åt din webbläsares fliksystem)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
-"some rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
+" rare cases risk may be involved."
 msgstr ""
 "Eftersom du har kontroll över Firefox, är valet att bevilja eller neka dessa önskemål ditt. Att acceptera behörigheter äventyrar inte webbläsarens prestanda eller säkerhet, men i vissa sällsynta "
 "fall kan det vara en risk."
@@ -702,26 +702,28 @@ msgstr "Detta måste vara en giltig hexadecimal färgkod, till exempel #000000."
 msgid "Not allowed"
 msgstr "Inte tillåtet"
 
-#, fuzzy
 msgid "Oops! Not allowed."
-msgstr "Inte tillåtet"
+msgstr "Hoppsan! Inte tillåtet."
 
-#, fuzzy
 msgid "You tried to do something that you weren't allowed to."
-msgstr "<h1>Hoppsan! Inte tillåtet.</h1> <p>Du försökte göra något som du inte fick.</p>"
+msgstr "Du försökte göra något som du inte fick."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Du ser detta meddelande eftersom den här HTTPS-webbplatsen kräver en \"Referer header\" som ska skickas av din webbläsare, men ingen skickades. Denna header krävs av säkerhetsskäl, för att "
+"säkerställa att din webbläsare inte kapas av tredje part."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr ""
+msgstr "Om du har konfigurerat din webbläsare för att inaktivera \"Referer headers\", aktivera dem, åtminstone för den här webbplatsen eller för HTTPS-anslutningar eller för \"same-origin\" förfrågningar."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
+"Du ser detta meddelande eftersom den här webbplatsen kräver en CSRF-kaka när du skickar in formulär. Denna kaka krävs av säkerhetsskäl, för att säkerställa att din webbläsare inte kapas av tredje "
+"part."
 
 msgid "Page Not Found"
 msgstr "Sidan hittades inte"
@@ -756,16 +758,16 @@ msgstr "Hittades inte"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
-"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
+"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1><h1>Tyvärr, men vi kan inte hitta det du letar efter.</h1> <p> Sidan eller filen du ville nå hittades inte på vår webbplats. Det är möjligt att du klickade på en gammal länk eller skrev in "
-"adressen fel.</p> <ul> <li>Om du skrev in adressen, dubbelkolla stavningen.</li> <li>Om du följde en länk hit, vänligen <a href=\"https://github.com/mozilla/addons-server/issues/new/\">skicka in "
-"ett ärende</a>. Berätta var du kom ifrån och vad du letade efter så ska vi göra vårt bästa för att fixa det (skriv på engelska).</li> </ul> <p>Eller så kan du hoppa över till några av de mest "
-"populära sidorna på webbplats.</p>< ul> <li>Är du intresserad av <a href=\"%(rec)s\">en lista över utvalda tillägg</a>?</li> <li> Vill du <a href=\"%(search)s\">söka efter tillägg</a>? Då kan du gå "
-"till <a href=\"%(search)s\">söksidan</a> eller helt enkelt använda sökfältet ovan.</li> <li> Om du vill börja om behöver du bara gå till <a href=\"%(home)s\">startsidan för tillägg</a>. </li> </ul>"
+"adressen fel.</p> <ul> <li>Om du skrev in adressen, dubbelkolla stavningen.</li> <li>Om du följde en länk hit, vänligen <a href=\"https://github.com/mozilla/addons-server/issues/new/\">skicka in ett"
+" ärende</a>. Berätta var du kom ifrån och vad du letade efter så ska vi göra vårt bästa för att fixa det (skriv på engelska).</li> </ul> <p>Eller så kan du hoppa över till några av de mest populära "
+"sidorna på webbplats.</p>< ul> <li>Är du intresserad av <a href=\"%(rec)s\">en lista över utvalda tillägg</a>?</li> <li> Vill du <a href=\"%(search)s\">söka efter tillägg</a>? Då kan du gå till <a "
+"href=\"%(search)s\">söksidan</a> eller helt enkelt använda sökfältet ovan.</li> <li> Om du vill börja om behöver du bara gå till <a href=\"%(home)s\">startsidan för tillägg</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Hoppsan"
@@ -917,7 +919,7 @@ msgid "The language code {lang_code} is invalid."
 msgstr "Språkkoden {lang_code} är ogiltig."
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "Du måste ge ett objekt med {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -947,11 +949,11 @@ msgstr "Versioner"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"Om din applikation som stöds inte kräver en manifest-fil behöver du fortfarande inkludera en av följande egenskaper enligt specifikationen%(amo_manifests_mdn_link_open)shär"
-"%(amo_manifests_mdn_link_close)s."
+"Om din applikation som stöds inte kräver en manifest-fil behöver du fortfarande inkludera en av följande egenskaper enligt "
+"specifikationen%(amo_manifests_mdn_link_open)shär%(amo_manifests_mdn_link_close)s."
 
 msgid "Only I can view this collection."
 msgstr "Bara jag kan se denna samling."
@@ -1137,8 +1139,8 @@ msgstr ""
 "dölja den från offentligheten, klicka på knappen nedan för att göra den privat."
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
+" be able to see your favorites, click the button below to make it public."
 msgstr ""
 "Tillägg du markerar som favoriter med hjälp av funktionen <b>Lägg till i favoriter</b> syns nedan. Denna samling är för närvarande <b>privat</b>, vilket innebär att enbart du kan se den. Om du vill "
 "att alla ska kunna se dina favoriter, klicka på knappen nedan för att göra den publik."
@@ -1391,11 +1393,11 @@ msgstr "Hämta hem språkpaket"
 
 #, python-format
 msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
-"of the entire application."
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
+" the entire application."
 msgstr ""
-"Om du installerar en ordboks-tillägg lägger du till ett nytt språkalternativ i din %(app_name)s stavningskontroll, som kontrollerar stavningen när du fyller i webbformulär. Språkpaketstillägg "
-"ändrar språket i hela applikationen."
+"Om du installerar en ordboks-tillägg lägger du till ett nytt språkalternativ i din %(app_name)s stavningskontroll, som kontrollerar stavningen när du fyller i webbformulär. Språkpaketstillägg ändrar"
+" språket i hela applikationen."
 
 msgid "Available in your locale"
 msgstr "Tillgänglig på ditt språk"
@@ -1565,8 +1567,8 @@ msgstr "Tillägg kompatibilitetsrapporter"
 
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
+" supporting an upcoming Firefox version. </p>"
 msgstr ""
 "<p> Rapporter som skickas in till oss genom <a href=\"%(url_)s\">Tillägg kompatibilitetsrapporter</a> samlas här för att utvecklare ska se. Dessa rapporter hjälper oss att avgöra vilka tillägg som "
 "kommer att behöva hjälp med stöd för en kommande Firefox-version. </p>"
@@ -1833,13 +1835,11 @@ msgstr "{rating} för {addon} uppdaterad."
 msgid "{addon} reviewed."
 msgstr "{addon} granskad."
 
-#, fuzzy
 msgid "User {user} banned."
-msgstr "Användare {user} anonymiserad."
+msgstr "Användare {user} bannlyst."
 
-#, fuzzy
 msgid "User {user} picture deleted."
-msgstr "Användare {user} begränsad."
+msgstr "Användare {user} bild raderad."
 
 msgid "User {0.name} added to {group}."
 msgstr "Användare {0.name} lades till {group}."
@@ -2308,9 +2308,8 @@ msgstr "Statisk tema"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "No Reputation"
-msgstr "Rykte"
+msgstr "Inget rykte"
 
 msgid "Good (1)"
 msgstr "Bra (1)"
@@ -2319,7 +2318,7 @@ msgid "Very Good (2)"
 msgstr "Väldigt bra (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "Utmärkt (3)"
 
 msgid "Manual Reviewer Points"
 msgstr "Manuella granskningspoäng"
@@ -2569,11 +2568,10 @@ msgstr ""
 "På denna webbplats. <span class=\"helptext\">Ditt bidrag kommer att visas på denna webbplats och Firefox tilläggshanterare för miljontals användare, efter att det har klarat kodgranskning. "
 "Automatiska uppdateringar hanteras av denna webbplats. Detta tillägg kommer också att beaktas för Mozillas kampanjer och tävlingar. Egen distribution av de granskade filerna är också möjlig.</span>"
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
-"På egen hand. <span class=\"helptext\">Denna version kommer att signeras omedelbart för egen distribution. Uppdateringar ska hanteras av dig via en updateURL eller externa programuppdateringar.</"
-"span>"
+"På egen hand. <span class=\"helptext\">Denna version kommer att signeras omedelbart för egen distribution. Uppdateringar ska hanteras av dig via en updateURL eller externa "
+"programuppdateringar.</span>"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategorier kan inte ändras när tillägget är utvalt."
@@ -2720,8 +2718,8 @@ msgid "API key revoked"
 msgstr "API-nyckel återkallad"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 "Innan du börjar, läs och acceptera vårt distributionsavtal för Firefox-tillägg samt våra granskningsprinciper och regler. Distributionsavtalet för Firefox-tillägg länkar också till vår "
 "sekretesspolicy som förklarar hur vi hanterar din information."
@@ -2858,9 +2856,7 @@ msgstr ""
 "version av detta tillägg."
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Uppdatera kompatibilitet</a> <a href=\"%(version_url)s\" class=\"button\">Ladda upp ny version</a> or <a href=\"#\" "
 "class=\"close\">Ignorera</a>"
@@ -2983,8 +2979,7 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "Kategorier är det främsta sättet användare bläddrar igenom tillägg. Välj än som passar ditt tilläggs funktionalitet för att få mest exponering."
 
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Kategorier kan inte ändras medan ditt tillägg är utvald för denna applikation. Skicka ett mejl till <a href=\"mailto:%(email)s\">%(email)s</a> om det finns en anledning till att du behöver ändra "
 "dina kategorier."
@@ -3063,8 +3058,8 @@ msgid "Email"
 msgstr "E-postadress"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 "Om du vill visa en e-postadress för supportfrågor,\n"
 "                          skriv den här. Om du har olika adresser\n"
@@ -3420,7 +3415,7 @@ msgid "Describe Add-on"
 msgstr "Beskriv tillägg"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Namn på listning på denna sida. Kan skilja sig från namnet i tillägget, vilket visas i Firefox"
 
 msgid "Add-on URL:"
 msgstr "URL för tillägg:"
@@ -3688,11 +3683,11 @@ msgstr "JWT-hemlighet"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
-"För att göra API förfrågningar, skicka en <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> som authorization header. Du måste skapa en JWT för varje begäran enligt beskrivningen i <a href="
-"\"%(docs_url)s\">API-dokumentationen</a>."
+"För att göra API förfrågningar, skicka en <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> som authorization header. Du måste skapa en JWT för varje begäran enligt beskrivningen i <a "
+"href=\"%(docs_url)s\">API-dokumentationen</a>."
 
 msgid "You don't have any API credentials."
 msgstr "Du har inte några API-inloggningsuppgifter."
@@ -3839,8 +3834,8 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
-"Användare kommer att behöva acceptera följande licensavtal (EULA) innan installation av ditt tillägg. Förekomsten av en EULA påverkar märkbart antalet nedladdningar ett tillägg har. Observera att "
-"en EULA inte är samma som en kodlicens, till exempel GPL eller MPL. Det är endast relevant för listade tillägg."
+"Användare kommer att behöva acceptera följande licensavtal (EULA) innan installation av ditt tillägg. Förekomsten av en EULA påverkar märkbart antalet nedladdningar ett tillägg har. Observera att en"
+" EULA inte är samma som en kodlicens, till exempel GPL eller MPL. Det är endast relevant för listade tillägg."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
@@ -3953,17 +3948,18 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Logga in för att redigera och uppdatera ditt tillägg"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "Resurser för en framgångsrik lansering"
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
-"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
+"Du har byggt din utökning och är redo att publicera den. Vad kommer härnäst? Kolla in våra tips för att skapa en tilltalande sida för att få din utökning visad "
+"på%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, hitta svar på utvecklingsfrågor och hålla dig uppdaterad med nyheter och händelser som är relevanta för utökningsutvecklare."
 
-#, fuzzy
 msgid "View Resources for Publishers"
-msgstr "Visa statistik för användare"
+msgstr "Visa resurser för utgivare"
 
 msgid "Welcome Back"
 msgstr "Välkommen tillbaka"
@@ -3976,7 +3972,7 @@ msgstr "Lär dig hur"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "Vill du att din utökning ska visas på %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Vår policy för utvalda utökningar kommer att berätta vad du behöver veta."
 
 msgid "Learn More"
 msgstr "Läs mer"
@@ -4018,8 +4014,8 @@ msgstr "Anpassa Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
+"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "Tillägg låter miljontals Firefox-användare förbättra sin webbupplevelse. Om du har kunskap inom %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s och "
 "%(css_link_open)sCSS%(link_close)s, har du redan alla de kunskaper som behövs för att skapa ett bra tillägg."
@@ -4167,11 +4163,11 @@ msgstr "Ge ditt tema ett namn."
 
 #, python-format
 msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
-"Communications and Cookies Privacy Notice%(link_close)s."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
+" and Cookies Privacy Notice%(link_close)s."
 msgstr ""
-"Jag godkänner %(agreement_link_open)sFirefox Add-on distributionsavtal%(link_close)s och min information hanteras enligt beskrivningen i %(privacy_notice_link_open)ssekretesspolicyn för "
-"webbplatser, kommunikation och kakor%(link_close)s."
+"Jag godkänner %(agreement_link_open)sFirefox Add-on distributionsavtal%(link_close)s och min information hanteras enligt beskrivningen i %(privacy_notice_link_open)ssekretesspolicyn för webbplatser,"
+" kommunikation och kakor%(link_close)s."
 
 msgid "Submit Theme"
 msgstr "Skicka in tema"
@@ -4396,35 +4392,30 @@ msgstr[0] "{0} varning"
 msgstr[1] "{0} varningar"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Översätt enkelt {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Lämna få digitala spår {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Gör att Firefox glömmer webbplatsdata som kakor och lokal lagring, men bara för domäner du väljer."
 
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Förbättra videor {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
+msgstr "Njut av en serie av nya YouTube-funktioner, som biografläge, annonsblockering, automatisk spelkontroll och mycket mer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Stoppa lömsk trackers {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Blockera osynliga trackers och spionannonser som följer dig på webben."
 
-#, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Förbättra ditt emoji-spel {start_sub_heading}med {addon_name}{end_sub_heading}"
 
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—just a click away."
 msgstr "Dussintals fantastiska emojis för varje tillfälle—alltid ett klick bort."
 
@@ -4456,36 +4447,32 @@ msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you 
 msgstr "Mer än bara ett grundläggande skärmbildsverktyg, Awesome Screenshot Plus låter dig kommentera bilder med anpassad text och grafik, plus möjligheten att lagra och dela dina bilder."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Anpassa flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Anpassa nya fliksidor {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Njut av en vacker ny sida med anpassningsbar bakgrund, lokal väderinfo och mer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Översätt enkelt {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Markera vilken text som helst, högerklicka och översätt direkt."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Sök efter bilder {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Utför omvänd bildsökning från en rad olika sökmotorer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Annonsblockering och sekretessskydd {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
@@ -6307,12 +6294,10 @@ msgstr "<a href=\"%(url)s\">Göra egna tillägg</a>. Vi tillhandahåller gratis 
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
-msgstr ""
-"Om du har utvecklingserfarenhet av tillägg, <a href=\"%(url)s\"> bli en granskare av tillägg</a>! Våra granskare är fans med teknisk bakgrund som granskar tillägg för kodkvalitet och stabilitet."
+msgstr "Om du har utvecklingserfarenhet av tillägg, <a href=\"%(url)s\"> bli en granskare av tillägg</a>! Våra granskare är fans med teknisk bakgrund som granskar tillägg för kodkvalitet och stabilitet."
 
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Hjälp till att förbättra webbplatsen. Den har öppen källkod och du kan skicka in buggar och korrigeringar. <a href=\"%(url)s\"> GitHub </a> innehåller alla våra nuvarande buggar, äldre buggar kan "
 "fortfarande hittas i Bugzilla."
@@ -6357,8 +6342,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Vanliga frågor om granskning"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 "Ett tilläggs recensioner är ett sätt för dig att dela med dig av dina åsikter om tillägg som du har installerat och använt. Vår moderationsgrupp förbehåller sig rätten att vägra eller ta bort "
 "recension som inte överensstämmer med dessa riktlinjer."
@@ -6612,17 +6597,17 @@ msgstr "Lägg till en recension för {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
+"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
+"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
+"Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Här följer några tips:</h2> <ul> <li> Skriv som du berättar för en vän om dina erfarenheter av ett tillägg. Ge specifika och hjälpsamma detaljer, till exempel vilka funktioner du gillade och/"
-"eller ogillade, hur lätt det var att använda det och om det har några nackdelar. Undvik att ge korta recensioner som \"Bra\" eller \"Dålig\" om du inte kan motivera varför du tycker så. </li> <li> "
-"Skicka inte in felrapporter i recensionen. Vi gör inte din e-postadress tillgänglig för tilläggsutvecklare och de kan inte kontakta dig för att lösa dina problem. Se tilläggets <a href=\"%(support)s"
-"\">hjälpsektionen</a> för att ta reda på om hjälp finns tillgänglig. Du kan också prova att fråga <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">gemenskapen för "
-"tillägget</a> efter hjälp. </li> <li>Försök hålla recensioner rena från ovårdat språk och undvika att lägga upp personlig information. </li> </ul> <p>Läs <a href=\"%(guide)s\">riktlinjer för "
-"recensioner</a> för mer detaljer om användarrecensioner av tillägg.</p>"
+"<h2>Här följer några tips:</h2> <ul> <li> Skriv som du berättar för en vän om dina erfarenheter av ett tillägg. Ge specifika och hjälpsamma detaljer, till exempel vilka funktioner du gillade "
+"och/eller ogillade, hur lätt det var att använda det och om det har några nackdelar. Undvik att ge korta recensioner som \"Bra\" eller \"Dålig\" om du inte kan motivera varför du tycker så. </li> "
+"<li> Skicka inte in felrapporter i recensionen. Vi gör inte din e-postadress tillgänglig för tilläggsutvecklare och de kan inte kontakta dig för att lösa dina problem. Se tilläggets <a "
+"href=\"%(support)s\">hjälpsektionen</a> för att ta reda på om hjälp finns tillgänglig. Du kan också prova att fråga <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
+"support\">gemenskapen för tillägget</a> efter hjälp. </li> <li>Försök hålla recensioner rena från ovårdat språk och undvika att lägga upp personlig information. </li> </ul> <p>Läs <a "
+"href=\"%(guide)s\">riktlinjer för recensioner</a> för mer detaljer om användarrecensioner av tillägg.</p>"
 
 msgid "Reply to review by {0}"
 msgstr "Besvara recension av {0}"
@@ -7912,17 +7897,17 @@ msgstr "Om spåra externa källor..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Spåra externa källor</h2> <p> Om du länkar till ditt tilläggs detaljsida eller direkt till en fil från en extern plats, till exempel din blogg eller hemsida, kan du lägga till en parameter så "
-"att du kan spåras som en ytterligare nedladdningskälla på den här sidan. Exempelvis följande länkar skulle visas som källa för din blogg: <dl> <dt>Tilläggets detaljsida</dt> <dd>https://addons."
-"mozilla.org/addon/%(slug)s?src=<b>external-blogg</b></dd> <dt>Direkt fillänk</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blogg</b></dd> </dl> "
-"<p> Endast src-parametrar som börjar med \"external-\" kommer att spåras, upp till 61 ytterligare tecken. All text efter \"external-\" kan användas att beskriva källan, till exempel \"external-blogg"
-"\", \"external-sidebar\", \"external-campaign225\", etc. Följande URL-säkra tecken är tillåtna: <code>a-z A-Z - . _ ~ %% +</code>"
+"att du kan spåras som en ytterligare nedladdningskälla på den här sidan. Exempelvis följande länkar skulle visas som källa för din blogg: <dl> <dt>Tilläggets detaljsida</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blogg</b></dd> <dt>Direkt fillänk</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blogg</b></dd> </dl> <p> Endast src-parametrar som börjar med \"external-\" kommer att spåras, upp till 61 ytterligare tecken. All text efter \"external-\" kan användas att beskriva källan, till "
+"exempel \"external-blogg\", \"external-sidebar\", \"external-campaign225\", etc. Följande URL-säkra tecken är tillåtna: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Status för tillägg efter datum"
