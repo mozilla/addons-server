@@ -3,8 +3,9 @@ import json
 
 from datetime import timedelta
 
+from django.conf import settings
 from django.core import mail
-from django.core.cache import cache
+from django.test.utils import override_settings
 
 import mock
 from waffle.testutils import override_switch
@@ -24,6 +25,10 @@ from olympia.amo.tests import (
 from olympia.lib.akismet.models import AkismetReport
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.users.models import UserProfile
+
+
+locmem_cache = settings.CACHES.copy()
+locmem_cache['default']['BACKEND'] = 'django.core.cache.backends.locmem.LocMemCache'  # noqa
 
 
 class ReviewTest(TestCase):
@@ -907,7 +912,6 @@ class TestRatingViewSetGet(TestCase):
 
         assert Rating.unfiltered.count() == 3
 
-        cache.clear()
         with self.assertNumQueries(5):
             # 5 queries:
             # - Two for opening and releasing a savepoint. Those only happen in
@@ -959,7 +963,6 @@ class TestRatingViewSetGet(TestCase):
 
         assert Rating.unfiltered.count() == 5
 
-        cache.clear()
         with self.assertNumQueries(5):
             # 5 queries:
             # - Two for opening and releasing a savepoint. Those only happen in
@@ -2383,6 +2386,7 @@ class TestRatingViewSetPost(TestCase):
             u"You can't leave more than one review for the same version of "
             u"an add-on."]
 
+    @override_settings(CACHES=locmem_cache)
     def test_throttle(self):
         with freeze_time('2017-11-01') as frozen_time:
             self.user = user_factory()
@@ -2409,6 +2413,7 @@ class TestRatingViewSetPost(TestCase):
                 'score': 2, 'version': new_version.pk})
             assert response.status_code == 201, response.content
 
+    @override_settings(CACHES=locmem_cache)
     def test_rating_throttle_separated_from_abuse_throttle(self):
         with freeze_time('2017-11-01') as frozen_time:
             self.user = user_factory()
@@ -2802,6 +2807,7 @@ class TestRatingViewSetReply(TestCase):
         assert response.data['non_field_errors'] == [
             u"You can't reply to a review that is already a reply."]
 
+    @override_settings(CACHES=locmem_cache)
     def test_throttle(self):
         self.addon_author = user_factory()
         self.addon.addonuser_set.create(user=self.addon_author)

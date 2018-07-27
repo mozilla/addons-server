@@ -210,7 +210,7 @@ class TestFileViewer(TestCase):
         subdir = os.path.join(dest, 'chrome')
         os.mkdir(subdir)
         open(os.path.join(subdir, 'foo'), 'w')
-        cache.clear()
+        cache.delete(self.viewer._cache_key())
         files = self.viewer.get_files().keys()
         rt = files.index(u'chrome')
         assert files[rt:rt + 3] == [u'chrome', u'chrome/foo', u'dictionaries']
@@ -377,6 +377,10 @@ class TestDiffHelper(TestCase):
         self.helper.cleanup()
         super(TestDiffHelper, self).tearDown()
 
+    def clear_cache(self):
+        cache.delete(self.helper.left._cache_key())
+        cache.delete(self.helper.right._cache_key())
+
     def test_files_not_extracted(self):
         assert not self.helper.is_extracted()
 
@@ -423,7 +427,6 @@ class TestDiffHelper(TestCase):
     def test_diffable_one_binary_diff(self):
         self.helper.extract()
         self.change(self.helper.left.dest, 'asd')
-        cache.clear()
         self.helper.select('install.js')
         self.helper.left.selected['binary'] = True
         assert self.helper.is_binary()
@@ -432,7 +435,7 @@ class TestDiffHelper(TestCase):
         self.helper.extract()
         self.change(self.helper.left.dest, 'asd')
         self.change(self.helper.right.dest, 'asd123')
-        cache.clear()
+        self.clear_cache()
         self.helper.select('install.js')
         self.helper.left.selected['binary'] = True
         self.helper.right.selected['binary'] = True
@@ -449,7 +452,7 @@ class TestDiffHelper(TestCase):
         self.helper.extract()
         self.change(self.helper.left.dest, 'asd',
                     filename='__MACOSX/._dictionaries')
-        cache.clear()
+        self.clear_cache()
         files = self.helper.get_files()
         assert files['__MACOSX/._dictionaries']['diff']
         assert files['__MACOSX']['diff']

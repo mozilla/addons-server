@@ -32,7 +32,6 @@ urlpatterns = [
     url(r'^addon/recalc-hash/(?P<file_id>\d+)/', views.recalc_hash,
         name='zadmin.recalc_hash'),
     url(r'^env$', views.env, name='zadmin.env'),
-    url(r'^memcache$', views.memcache, name='zadmin.memcache'),
     url(r'^settings', views.show_settings, name='zadmin.settings'),
     url(r'^fix-disabled', views.fix_disabled_file, name='zadmin.fix-disabled'),
     url(r'^email_preview/(?P<topic>.*)\.csv$',

@@ -20,9 +20,6 @@ INSTALLED_APPS += (
 
 FILESYSTEM_CACHE_ROOT = os.path.join(TMP_PATH, 'cache')
 
-# Disable cache-machine locally and in tests to prepare for its removal.
-CACHE_MACHINE_ENABLED = False
-
 # We are setting memcached here to make sure our local setup is as close
 # to our production system as possible.
 CACHES = {
