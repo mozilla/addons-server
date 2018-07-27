@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-27 20:04+0000\n"
+"PO-Revision-Date: 2018-07-27 21:13+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5734,11 +5734,11 @@ msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Armazene as senhas com segurança e autentique-se automaticamente em sites conhecidos."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Um bloqueador de anúncios simples focado em mostrar apenas o conteúdo que você deseja."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5796,7 +5796,7 @@ msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Exclua automaticamente o histórico de navegação dos sites selecionados."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5832,7 +5832,7 @@ msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "Encontrou uma imagem interessante na web? Use o TinEye para explorar sua origem."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5863,7 +5863,7 @@ msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "O volume no site está muito baixo? Muito alto? O SoundFixer pode ajudar."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5890,7 +5890,7 @@ msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Ajuste as configurações de áudio do navegador com extrema clareza."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5899,7 +5899,7 @@ msgstr "Personalização de abas {start_sub_heading}com {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Defenda-se contra os rastreadores mais traiçoeiros."
 
 #. editorial content for the discovery pane.
 #, fuzzy
