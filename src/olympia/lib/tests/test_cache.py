@@ -70,8 +70,8 @@ def test_memcached_unicode():
 
     https://github.com/linsomniac/python-memcached/issues/79
     """
-    cache.set('key', u'Iñtërnâtiônàlizætiøn2')
-    assert cache.get('key') == u'Iñtërnâtiônàlizætiøn2'
+    cache.set(u'këy', u'Iñtërnâtiônàlizætiøn2')
+    assert cache.get(u'këy') == u'Iñtërnâtiônàlizætiøn2'
 
 
 class TestToken(TestCase):
