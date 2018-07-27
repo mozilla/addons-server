@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-23 14:03+0000\n"
+"PO-Revision-Date: 2018-07-23 15:32+0000\n"
 "Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -7752,9 +7752,9 @@ msgstr "用户“%(user)s”已被封禁。"
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr "用户\"%(user)s\"所属的照片已被删除。"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr "用户“%(users)s”已被封禁。用户，"
+msgstr "用户“%(users)s”已被封禁。"
 
 msgid "Ban selected users"
 msgstr "封禁所选用户"
