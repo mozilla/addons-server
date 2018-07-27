@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-27 06:51+0000\n"
+"PO-Revision-Date: 2018-07-27 07:44+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4783,54 +4783,48 @@ msgid "Surf the web through self-defined proxy settings."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Behear ôfspyljen fan fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Sneup feilich {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Winkelje en bewarje {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Flugge oersettingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ferbetterje fideo’s {start_sub_heading}mei {addon_name} {end_sub_heading}"
+msgstr "Ferbetterje Reddit {start_sub_heading}mei {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ferbetterje jo emojispultsje {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Lis it web fêst {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
@@ -4841,18 +4835,16 @@ msgid "A superior Windows-only downloader tool."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ferbetterje jo emojispultsje {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Identifisearje jo folgers {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Sneup anonym {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
@@ -4863,72 +4855,64 @@ msgid "Access your favorite sites, recently closed tabs, and more—all from a g
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ferbetterje jo emojispultsje {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Stel jo startside yn {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Toan jo ljepblêden {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Robúst downloadbehear {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Meitsje skermôfbyldingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Lis webynhâld fêst {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas ljepblêden oan {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Sykfolchbeskerming {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas ljepblêden oan {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Dynamyske navigaasje {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Meitsje skermôfbyldingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Foegje ôfbyldingen ta oan sykresultaten {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Meitsje skermôfbyldingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Noflik foar de eagen {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
