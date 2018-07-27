@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-24 09:25+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2018-07-27 19:50+0000\n"
+"Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -4673,90 +4673,80 @@ msgstr "Blocca le pubblicità {start_sub_heading}con {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Mostra l’ora in diversi fusi orari nella barra di stato di Firefox."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalizza le schede {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Traduci in un lampo {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Cattura screenshot {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Attingi alle conoscenze accademiche {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
-msgstr ""
+msgstr "Accedi gratuitamente a più di dieci milioni di articoli di ricerca."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalizza le schede {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Personalizza le azioni del mouse {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "Scopri una nuova esperienza di navigazione con più di 50 pratiche azioni del mouse."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Perfeziona la tua esperienza video {start_sub_heading}con {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "Oscura la pagina intorno alla finestra video per una visione senza distrazioni."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocca le pubblicità {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Più fai ricerche più avrai la coscienza pulita {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "Ecosia investe l’80% dei profitti in programmi per il rimboschimento in diverse parti del mondo. Impostalo come motore di ricerca di Firefox!"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Scarica video {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Scova contenuti web scomparsi {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Scarica video {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Scova contenuti web scomparsi {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Scarica video {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Ingrandisci le immagini {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
-msgstr ""
+msgstr "Passa il mouse sopra un'immagine per ingrandirla."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Cattura screenshot {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Liberati dei cookie {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "Elimina automaticamente i cookie alla chiusura della scheda."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Perfeziona la tua esperienza video {start_sub_heading}con {addon_name} {end_sub_heading}"
+msgstr "Regola le dimensioni della pagina {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
