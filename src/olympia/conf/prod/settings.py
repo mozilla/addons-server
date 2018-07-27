@@ -46,8 +46,6 @@ ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
 
 REVIEWER_ATTACHMENTS_PATH = MEDIA_ROOT + '/reviewer_attachment'
 
-FILESYSTEM_CACHE_ROOT = NETAPP_STORAGE_ROOT + '/cache'
-
 DATABASES = {}
 DATABASES['default'] = env.db('DATABASES_DEFAULT_URL')
 DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
@@ -69,12 +67,7 @@ SLAVE_DATABASES = ['slave']
 
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 
-CACHES = {
-    'filesystem': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': FILESYSTEM_CACHE_ROOT,
-    }
-}
+CACHES = {}
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
 CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
@@ -90,19 +83,8 @@ LOGGING['loggers'].update({
     'requests': {'level': logging.WARNING},
     'z.addons': {'level': logging.INFO},
     'z.task': {'level': logging.DEBUG},
-    'z.redis': {'level': logging.DEBUG},
     'z.pool': {'level': logging.ERROR},
 })
-
-# This is used for `django-cache-machine`
-REDIS_BACKEND = env('REDIS_BACKENDS_CACHE')
-
-REDIS_BACKENDS = {
-    'cache': get_redis_settings(env('REDIS_BACKENDS_CACHE')),
-    'cache_slave': get_redis_settings(env('REDIS_BACKENDS_CACHE_SLAVE')),
-    'master': get_redis_settings(env('REDIS_BACKENDS_MASTER')),
-    'slave': get_redis_settings(env('REDIS_BACKENDS_SLAVE'))
-}
 
 ES_TIMEOUT = 60
 ES_HOSTS = env('ES_HOSTS')
