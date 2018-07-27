@@ -65,6 +65,15 @@ def test_memoize():
     assert add(1, 2) == cache.get(cache_key)
 
 
+def test_memcached_unicode():
+    """Regression test for
+
+    https://github.com/linsomniac/python-memcached/issues/79
+    """
+    cache.set('key', u'Iñtërnâtiônàlizætiøn2')
+    assert cache.get('key') == u'Iñtërnâtiônàlizætiøn2'
+
+
 class TestToken(TestCase):
 
     def setUp(self):

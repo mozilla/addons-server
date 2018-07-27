@@ -41,7 +41,8 @@ CACHES = {
         'BACKEND': 'olympia.lib.cache.CacheStatTracker',
         'LOCATION': 'olympia',
         'OPTIONS': {
-            'ACTUAL_BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'ACTUAL_BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',  # noqa
+            'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),
         }
     },
     'filesystem': {  # In real settings it's a filesystem cache, not here.

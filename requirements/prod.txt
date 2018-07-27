@@ -280,11 +280,9 @@ python-dateutil==2.7.3 \
     --hash=sha256:e27001de32f627c22380a688bcc43ce83504a7bc5da472209b4c70f02829f0b8
 python-gflags==2.0 \
     --hash=sha256:0dff6360423f3ec08cbe3bfaf37b339461a54a21d13be0dd5d9c9999ce531078 # pyup: ==2.0
-# There are known unicode issues with python-memcached beyond 1.53.
-# See https://github.com/mozilla/addons-server/issues/3920 and
-# https://github.com/linsomniac/python-memcached/issues/79
-python-memcached==1.53 \
-    --hash=sha256:bcf71371d997bb46a3168a7b63aae66b56cccacc025af9310db4315681ef8868 # pyup: ==1.5.3
+python-memcached==1.59 \
+    --hash=sha256:4dac64916871bd3550263323fc2ce18e1e439080a2d5670c594cf3118d99b594 \
+    --hash=sha256:a2e28637be13ee0bf1a8b6843e7490f9456fd3f2a4cb60471733c7b5d5557e4f
 # pytz is required by Babel, celery
 pytz==2018.5 \
     --hash=sha256:a061aa0a9e06881eb8b3b2b43f05b9439d6583c206d0a6c340ff72a7b6669053 \
