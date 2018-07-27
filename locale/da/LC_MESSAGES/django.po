@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-27 10:30+0000\n"
+"PO-Revision-Date: 2018-07-27 10:39+0000\n"
 "Last-Translator: Jakob Kappel <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -1663,9 +1663,8 @@ msgid "{addon} enabled."
 msgstr "{addon} aktiveret."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "{addon} udvalgt i {0}."
+msgstr "Status for {addon} ændret til {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} føjet til {addon}."
@@ -2944,7 +2943,7 @@ msgid "Basic Information for {0}"
 msgstr ""
 
 msgid "Add-on URL"
-msgstr ""
+msgstr "Tilføjelsens URL"
 
 msgid "Choose a short, unique URL slug for your add-on."
 msgstr ""
@@ -3377,7 +3376,7 @@ msgid "Name on listing on this site. May be different to the name inside the add
 msgstr ""
 
 msgid "Add-on URL:"
-msgstr ""
+msgstr "Tilføjelsens URL:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
@@ -4498,7 +4497,7 @@ msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "En ad-blocker, der er effektiv uden at bruge for mange ressourcer. uBlock Origin benytter tusindvis indholdsfiltre uden at bruge en forfærdelig masse hukommelse."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -7096,7 +7095,7 @@ msgstr ""
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr ""
@@ -7214,7 +7213,7 @@ msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgstr "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "(Confirmed)"
-msgstr ""
+msgstr "(Bekræftet)"
 
 msgid "Compatibility:"
 msgstr ""
@@ -7223,7 +7222,7 @@ msgid "Additional sources:"
 msgstr ""
 
 msgid "Download files"
-msgstr ""
+msgstr "Hent filer"
 
 msgid "The developer has provided source code."
 msgstr ""
@@ -7264,9 +7263,8 @@ msgstr ""
 msgid "Update whiteboards"
 msgstr ""
 
-#, fuzzy
 msgid "More Actions"
-msgstr "Flere handlinger:"
+msgstr "Flere handlinger"
 
 msgid "Notify me about new listed versions"
 msgstr ""
@@ -7337,10 +7335,10 @@ msgid "Dismiss this announcement"
 msgstr ""
 
 msgid "Files in this version:"
-msgstr ""
+msgstr "Filer i denne version:"
 
 msgid "Contents"
-msgstr ""
+msgstr "Indhold"
 
 msgid "Compare"
 msgstr ""
@@ -7421,13 +7419,13 @@ msgid "Enable keyboard shortcuts"
 msgstr ""
 
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Tastaturgenveje"
 
 msgid "Next Theme"
-msgstr ""
+msgstr "Næste tema"
 
 msgid "Previous Theme"
-msgstr ""
+msgstr "Forrige tema"
 
 msgid "Your Review History"
 msgstr ""
@@ -7473,7 +7471,7 @@ msgid "Flagged: {0}"
 msgstr ""
 
 msgid "Approve Theme"
-msgstr ""
+msgstr "Godkend tema"
 
 msgid "Field required"
 msgstr ""
@@ -8063,7 +8061,7 @@ msgstr "Slet sprog"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "Brugeren \"%(user)s\" er blevet udelukket."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
@@ -8071,20 +8069,19 @@ msgstr ""
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "Brugerne \"%(users)s\" er blevet udelukket."
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "Udeluk valgte brugere"
 
 msgid "Profile Photo"
 msgstr "Profilfoto"
 
 msgid "Addons"
-msgstr ""
+msgstr "Tilføjelser"
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "Aktivitet"
+msgstr "Aktivitets-log"
 
 msgid "Email must be {email}."
 msgstr "Mailadresse skal være {email}."
@@ -8099,7 +8096,7 @@ msgid "Occupation"
 msgstr "Stilling"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "Du kan ændre din mailadresse på din Firefox-konto."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Denne URL har et ugyldigt format. Gyldige URLs ligner http://eksempel.com/min_side."
@@ -8125,28 +8122,28 @@ msgid "new add-ons or Firefox features are available"
 msgstr "nye tilføjelser eller Firefox-funktioner er tilgængelige"
 
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "min tilføjelses kompatibilitet er opgraderet"
 
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "min sdk-baserede tilføjelse er opgraderet"
 
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "nogen skriver en anmeldelse af min tilføjelse"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "min tilføjelses kompatibilitet ikke kan opgraderes"
 
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "min sdk-baserede tilføjelse ikke kan opgraderes"
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr ""
+msgstr "min tilføjelse er gennemgået af en redaktør"
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla skal kontakte mig om min tilføjelse"
 
 msgid "User Notifications"
 msgstr "Brugeradvisering"
@@ -8179,11 +8176,10 @@ msgid "new"
 msgstr "ny"
 
 msgid "Ban"
-msgstr ""
+msgstr "Udeluk"
 
-#, fuzzy
 msgid "Delete picture"
-msgstr "Slet mit brugerbillede nu"
+msgstr "Slet billede"
 
 msgid "Delete User Account"
 msgstr "Slet konto"
