@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-23 18:05+0000\n"
+"PO-Revision-Date: 2018-07-23 16:55+0000\n"
 "Last-Translator: Winfox <openlib@email.it>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4613,7 +4613,7 @@ msgstr "Blocca le pubblicità {start_sub_heading}con {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "Aggiungi automaticamente articoli dall'enciclopedia Britannica ai tuoi risultati di ricerca."
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
