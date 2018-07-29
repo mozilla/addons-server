@@ -7,10 +7,10 @@ pyinotify==0.9.6 \
 # https://github.com/mozilla/addons-server/issues/5380
 ipdb==0.11 \
     --hash=sha256:7081c65ed7bfe7737f83fa4213ca8afd9617b42ff6b3f1daf9a3419839a2a00a
-ipython==5.7.0 \
-    --hash=sha256:707d1bbfc81e41e39ead1012af931bec6f80357b87e520af352e539cf5961dc0 \
-    --hash=sha256:fc0464e68f9c65cd8c453474b4175432cc29ecb6c83775baedf6dbfcee9275ab \
-    --hash=sha256:8db43a7fb7619037c98626613ff08d03dda9d5d12c84814a4504c78c0da8323c # pyup: <6.0
+ipython==5.8.0 \
+    --hash=sha256:37101b8cbe072fe17bff100bc03d096404e4a9a0357097aeb5b61677c042cab1 \
+    --hash=sha256:0371b7e4bd74954a35086eac949beeac5b1c9f5ce231e2e77df2286a293765e3 \
+    --hash=sha256:4bac649857611baaaf76bc82c173aa542f7486446c335fe1a6c05d0d491c8906 # pyup: <6.0
 watchdog==0.8.3 \
     --hash=sha256:7e65882adb7746039b6f3876ee174952f8eaaa34491ba34333ddf1fe35de4162
 
