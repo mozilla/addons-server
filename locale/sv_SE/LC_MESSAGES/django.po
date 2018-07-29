@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-29 09:11+0000\n"
+"PO-Revision-Date: 2018-07-29 09:31+0000\n"
 "Last-Translator: Peter Kihlstedt <peter.kihlstedt@gmail.com>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -5080,18 +5080,16 @@ msgid "Get in-depth engagement and traffic information for any website."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Ändra stil på Wikipedia {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh and modern appearance to Wikipedia."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Jobba snabbare {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
@@ -5107,18 +5105,16 @@ msgid "Hide portions of the website you're viewing."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Ladda ner bilder {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Anpassa flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Dölj din plats {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
@@ -5134,18 +5130,16 @@ msgid "Restrict access to inappropriate or undesired content with a filter."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Förbättra nya flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Bekämpa skräppost {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
@@ -5161,9 +5155,8 @@ msgid "Easily customize the built-in privacy settings in Firefox."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Förbättra ditt emoji-spel {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Förbättra din upplevelse på VK {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
@@ -5179,9 +5172,8 @@ msgid "Access immediate translation by highlighting text and clicking the button
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Anpassa flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Anpassa nya flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
@@ -5197,18 +5189,16 @@ msgid "Go straight to the website you want to access without being redirected in
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Förbättra ditt emoji-spel {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "WhatsApp på webben {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Anpassa flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Översätt till/från tyska {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
@@ -5224,9 +5214,8 @@ msgid "Restrict Firefox from accessing websites you define."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Arbeta smartare {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
@@ -5251,18 +5240,16 @@ msgid "Enable night mode for a better viewing experience."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Sök bilder {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Spara till senare {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store web pages to access across devices."
@@ -5278,9 +5265,8 @@ msgid "A better way to save bookmarks if you use multiple bookmark folders."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Anpassa flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Ingen formatering {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
@@ -5291,18 +5277,16 @@ msgid "Convert an entire webpage to your preferred language—with the click of 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Plocka ut länkar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ta skärmbilder {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Visa dokument {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
