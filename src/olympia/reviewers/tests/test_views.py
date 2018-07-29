@@ -3533,7 +3533,7 @@ class TestReview(ReviewBase):
     def test_viewing_review_unlocks(self):
         reviewing_url = reverse('reviewers.review_viewing')
         self.client.post(reviewing_url, {'addon_id': self.addon.id})
-        key = '%s:review_viewing:%s' % (settings.CACHE_PREFIX, self.addon.id)
+        key = 'review_viewing:{id}'.format(id=self.addon.id)
         assert cache.get(key) == self.reviewer.id
 
         self.client.post(self.url, {'action': 'comment',

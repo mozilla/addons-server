@@ -29,7 +29,7 @@ class TopTags(object):
     """Descriptor to manage a collection's top tags in cache."""
 
     def key(self, obj):
-        return '%s:top-tags:%s' % (settings.CACHE_PREFIX, obj.id)
+        return 'top-tags:{id}'.format(id=obj.id)
 
     def __get__(self, obj, type=None):
         if obj is None:

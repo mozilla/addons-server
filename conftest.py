@@ -97,7 +97,10 @@ def default_prefixer(settings):
 def test_pre_setup(request, tmpdir, settings):
     # Clear all cache-instances. They'll be re-initialized by Django
     # This will make sure that our random `KEY_PREFIX` is applied
-    # appropriately
+    # appropriately.
+    # This is done by Django too whenever `settings` is changed
+    # directly but because we're using the `settings` fixture
+    # here this is not detected correctly.
     caches._caches.caches = {}
 
     # Randomize the cache key prefix to keep

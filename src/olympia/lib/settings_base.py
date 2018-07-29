@@ -36,8 +36,8 @@ ALLOWED_HOSTS = [
 CACHEBUST_IMGS = True
 try:
     # If we have build ids available, we'll grab them here and add them to our
-    # CACHE_PREFIX.  This will let us not have to flush memcache during updates
-    # and it will let us preload data into it before a production push.
+    # CACHE_KEY_PREFIX. This will let us not have to flush memcache during
+    # updates and it will let us preload data into it before a production push.
     from build import BUILD_ID_CSS, BUILD_ID_JS
     build_id = "%s%s" % (BUILD_ID_CSS[:2], BUILD_ID_JS[:2])
 except ImportError:
@@ -1044,8 +1044,10 @@ MINIFY_BUNDLES = {
 }
 
 # Prefix for cache keys (will prevent collisions when running parallel copies)
-CACHE_PREFIX = 'amo:%s:' % build_id
-KEY_PREFIX = CACHE_PREFIX
+# This value is being used by `conf/settings/{dev,stage,prod}.py
+CACHE_KEY_PREFIX = 'amo:%s:' % build_id
+
+CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_KEY_PREFIX
 FETCH_BY_ID = True
 
 # Number of seconds a count() query should be cached.  Keep it short because

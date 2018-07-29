@@ -9,7 +9,6 @@ from olympia.lib.cache import (
     make_key)
 
 
-@override_settings(KEY_PREFIX='amo:test:')
 def test_make_key():
     with translation.override('en-US'):
         assert make_key(u'é@øel') == 'é@øel:en-us'
@@ -50,10 +49,9 @@ def test_cache_get_or_set():
     assert some_function.call_count == 1
 
 
-@override_settings(CACHE_PREFIX='testing')
 def test_memoize_key():
     assert memoize_key('foo', ['a', 'b'], {'c': 'e'}) == (
-        'testing:memoize:foo:9666a2a48c17dc1c308fb327c2a6e3a8')
+        'memoize:foo:9666a2a48c17dc1c308fb327c2a6e3a8')
 
 
 def test_memoize():
@@ -75,9 +73,6 @@ def test_memcached_unicode():
 
 
 class TestToken(TestCase):
-
-    def setUp(self):
-        cache.clear()
 
     def test_token_pop(self):
         new = Token()
@@ -115,9 +110,6 @@ class TestToken(TestCase):
 
 class TestMessage(TestCase):
 
-    def setUp(self):
-        cache.clear()
-
     def test_message_save(self):
         new = Message('abc')
         new.save('123')
@@ -128,7 +120,8 @@ class TestMessage(TestCase):
     def test_message_expires(self):
         new = Message('abc')
         new.save('123')
-        cache.clear()
+
+        cache.delete('message:abc')
 
         new = Message('abc')
         assert new.get() is None

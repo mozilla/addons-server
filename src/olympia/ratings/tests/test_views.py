@@ -811,7 +811,6 @@ class TestRatingViewSetGet(TestCase):
 
         assert Rating.unfiltered.count() == 3
 
-        cache.clear()
         with self.assertNumQueries(5):
             # 6 queries:
             # - One for the ratings count (pagination)
@@ -859,7 +858,6 @@ class TestRatingViewSetGet(TestCase):
 
         assert Rating.unfiltered.count() == 5
 
-        cache.clear()
         with self.assertNumQueries(5):
             # 9 queries:
             # - One for the ratings count
