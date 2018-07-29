@@ -1,17 +1,11 @@
 import json
 
 from django.core import mail
-from django.conf import settings
-from django.test.utils import override_settings
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, reverse_ns, user_factory)
-
-
-locmem_cache = settings.CACHES.copy()
-locmem_cache['default']['BACKEND'] = 'django.core.cache.backends.locmem.LocMemCache'  # noqa
 
 
 class AddonAbuseViewSetTestBase(object):
@@ -127,7 +121,6 @@ class AddonAbuseViewSetTestBase(object):
         assert json.loads(response.content) == {
             'detail': 'Abuse reports need a message'}
 
-    @override_settings(CACHES=locmem_cache)
     def test_throttle(self):
         addon = addon_factory()
         for x in xrange(20):
@@ -226,7 +219,6 @@ class UserAbuseViewSetTestBase(object):
         assert json.loads(response.content) == {
             'detail': 'Abuse reports need a message'}
 
-    @override_settings(CACHES=locmem_cache)
     def test_throttle(self):
         user = user_factory()
         for x in xrange(20):
