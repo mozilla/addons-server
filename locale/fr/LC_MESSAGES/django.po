@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-29 11:46+0000\n"
-"Last-Translator: goofy <goofy@babelzilla.org>\n"
+"PO-Revision-Date: 2018-07-29 12:04+0000\n"
+"Last-Translator: Alpha <adrien.gat@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -4738,7 +4738,7 @@ msgstr "Effectuez des captures d’écran {start_sub_heading}avec {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "Supprimez automatiquement les cookies à la fermeture d’un onglet."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5892,7 +5892,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Ajuster les paramètres audio du navigateur avec une extrême clarté."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5901,7 +5901,7 @@ msgstr "Personnalisez vos onglets {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Défendez-vous contre les traqueurs les plus insidieux."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -8129,7 +8129,7 @@ msgstr "Supprimer la traduction"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "L’utilisateur ou utilisatrice « %(user)s » a été banni⋅e."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
@@ -8137,7 +8137,7 @@ msgstr ""
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "Les personnes qui utilisent le compte « %(users)s » ont été bannies."
 
 msgid "Ban selected users"
 msgstr "Bannir les utilisateurs sélectionnés"
