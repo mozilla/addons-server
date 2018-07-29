@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-29 09:58+0000\n"
-"Last-Translator: Alpha <adrien.gat@gmail.com>\n"
+"PO-Revision-Date: 2018-07-29 11:46+0000\n"
+"Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -200,9 +200,8 @@ msgstr "Afficher la politique de confidentialité"
 msgid "View End-User License Agreement"
 msgstr "Voir les conditions générales d’utilisation"
 
-#, fuzzy
 msgid "This add-on has not been reviewed by Mozilla."
-msgstr "Ce module n’a pas encore été critiqué."
+msgstr "Ce module n’a pas encore été vérifié par Mozilla."
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Ce module a été marqué comme expérimental par ses développeurs."
@@ -719,13 +718,11 @@ msgstr "Ceci doit être un code couleur hexadécimal valide, par exemple #000000
 msgid "Not allowed"
 msgstr "Non autorisé"
 
-#, fuzzy
 msgid "Oops! Not allowed."
-msgstr "Non autorisé"
+msgstr "Oups ! Manœuvre non autorisée."
 
-#, fuzzy
 msgid "You tried to do something that you weren't allowed to."
-msgstr "<h1>Désolé, c’est interdit.</h1> <p>Vous avez tenté d’accéder à une ressource à laquelle vous n’avez pas droit.</p>"
+msgstr "Vous avez essayé de faire une action qui ne vous est pas autorisée."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -4618,7 +4615,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Bloquez les pénibles publicités et annotations parasites qui apparaissent sur YouTube."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4627,7 +4624,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Envoyez les dernières nouvelles, les fils de discussion, les billets de blog et un tas d'autres choses vers votre Kindle."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5792,7 +5789,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Prenez le contrôle total sur les cookies que vous avez accumulés lors de la navigation."
 
 #. editorial content for the discovery pane.
 #, fuzzy
