@@ -6,7 +6,7 @@ from olympia import amo
 from olympia.applications.models import AppVersion
 from olympia.lib.es.utils import create_index
 from olympia.stats.models import (
-    CollectionCount, DownloadCount, StatsSearchMixin, UpdateCount)
+    DownloadCount, StatsSearchMixin, UpdateCount)
 
 
 # Number of elements to index at once in ES. The size of a dict to send to ES
@@ -106,23 +106,6 @@ def extract_download_count(dl):
             '_id': '{0}-{1}'.format(dl.addon_id, dl.date)}
 
 
-def extract_addon_collection(collection_count, addon_collections,
-                             collection_stats):
-    addon_collection_count = sum([c.count for c in addon_collections])
-    collection_stats = dict([[c.name, c.count] for c in collection_stats])
-    return {'date': collection_count.date,
-            'id': collection_count.collection_id,
-            '_id': '{0}-{1}'.format(collection_count.collection_id,
-                                    collection_count.date),
-            'count': collection_count.count,
-            'data': es_dict({
-                'downloads': addon_collection_count,
-                'votes_up': collection_stats.get('new_votes_up', 0),
-                'votes_down': collection_stats.get('new_votes_down', 0),
-                'subscribers': collection_stats.get('new_subscribers', 0),
-            })}
-
-
 def extract_theme_user_count(user_count):
     return {'addon': user_count.addon_id,
             'date': user_count.date,
@@ -177,5 +160,5 @@ def get_mappings():
         }
     }
 
-    models = (CollectionCount, DownloadCount, UpdateCount)
-    return dict((m._meta.db_table, mapping) for m in models)
+    models = (DownloadCount, UpdateCount)
+    return {model._meta.db_table: mapping for model in models}

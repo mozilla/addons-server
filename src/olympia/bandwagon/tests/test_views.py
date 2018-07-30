@@ -25,8 +25,7 @@ from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.amo.utils import urlparams
 from olympia.bandwagon import forms
-from olympia.bandwagon.models import (
-    Collection, CollectionAddon, CollectionVote, CollectionWatcher)
+from olympia.bandwagon.models import Collection, CollectionAddon
 from olympia.users.models import UserProfile
 
 
@@ -106,12 +105,6 @@ class TestViews(TestCase):
         ]
         for test in tests:
             self.check_response(*test)
-
-    def test_collection_directory_redirects_with_login(self):
-        self.client.login(email='jbalogh@mozilla.com')
-
-        self.check_response('/collections/favorites/', 301,
-                            reverse('collections.following'))
 
     def test_unlisted_collection_login_redirect(self):
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')
@@ -266,67 +259,6 @@ class TestPrivacy(TestCase):
             assert response.status_code == 200
 
 
-class TestVotes(TestCase):
-    fixtures = ['users/test_backends']
-
-    def setUp(self):
-        super(TestVotes, self).setUp()
-        self.client.login(email='jbalogh@mozilla.com')
-        args = ['fligtar', 'slug']
-        Collection.objects.create(slug='slug', author_id=9945)
-        self.c_url = reverse('collections.detail', args=args)
-        self.up = reverse('collections.vote', args=args + ['up'])
-        self.down = reverse('collections.vote', args=args + ['down'])
-
-    def test_login_required(self):
-        self.client.logout()
-        self.assertLoginRedirects(self.client.post(self.up), to=self.up)
-
-    def test_post_required(self):
-        r = self.client.get(self.up, follow=True)
-        self.assert3xx(r, self.c_url)
-
-    def check(self, upvotes=0, downvotes=0):
-        c = Collection.objects.get(slug='slug', author=9945)
-        assert c.upvotes == upvotes
-        assert c.downvotes == downvotes
-        assert CollectionVote.objects.filter(
-            user=4043307, vote=1).count() == upvotes
-        assert CollectionVote.objects.filter(
-            user=4043307, vote=-1).count() == downvotes
-        assert CollectionVote.objects.filter(
-            user=4043307).count() == upvotes + downvotes
-
-    def test_upvote(self):
-        self.client.post(self.up)
-        self.check(upvotes=1)
-
-    def test_downvote(self):
-        self.client.post(self.down)
-        self.check(downvotes=1)
-
-    def test_down_then_up(self):
-        self.client.post(self.down)
-        self.check(downvotes=1)
-        self.client.post(self.up)
-        self.check(upvotes=1)
-
-    def test_up_then_up(self):
-        self.client.post(self.up)
-        self.check(upvotes=1)
-        self.client.post(self.up)
-        self.check(upvotes=0)
-
-    def test_normal_response(self):
-        r = self.client.post(self.up, follow=True)
-        self.assert3xx(r, self.c_url)
-
-    def test_ajax_response(self):
-        r = self.client.post_ajax(self.up, follow=True)
-        assert not r.redirect_chain
-        assert r.status_code == 200
-
-
 class TestCRUD(TestCase):
     """Test the collection form."""
     fixtures = ('base/users', 'base/addon_3615', 'base/collections')
@@ -378,29 +310,6 @@ class TestCRUD(TestCase):
             '&quot;&gt;&lt;script&gt;alert(/XSS/);&lt;/script&gt;'
         )
         assert name not in r.content
-
-    def test_listing_xss(self):
-        c = Collection.objects.get(id=80)
-        assert self.client.login(email='clouserw@gmail.com')
-
-        url = reverse('collections.watch', args=[c.author.username, c.slug])
-
-        user = UserProfile.objects.get(id='10482')
-        user.display_name = "<script>alert(1)</script>"
-        user.save()
-
-        r = self.client.post(url, follow=True)
-        assert r.status_code == 200
-
-        qs = CollectionWatcher.objects.filter(user__username='clouserw',
-                                              collection=80)
-        assert qs.count() == 1
-
-        r = self.client.get('/en-US/firefox/collections/following/',
-                            follow=True)
-
-        assert '&lt;script&gt;alert' in r.content
-        assert '<script>alert' not in r.content
 
     def test_add_fail(self):
         """
@@ -889,44 +798,6 @@ class AjaxTest(TestCase):
     def test_ajax_list_bad_addon_id(self):
         url = reverse('collections.ajax_list') + '?addon_id=fff'
         assert self.client.get(url).status_code == 400
-
-
-class TestWatching(TestCase):
-    fixtures = ['base/users', 'base/collection_57181']
-
-    def setUp(self):
-        super(TestWatching, self).setUp()
-        self.collection = c = Collection.objects.get(id=57181)
-        self.url = reverse('collections.watch',
-                           args=[c.author.username, c.slug])
-        assert self.client.login(email='clouserw@gmail.com')
-
-        self.qs = CollectionWatcher.objects.filter(user__username='clouserw',
-                                                   collection=57181)
-        assert self.qs.count() == 0
-
-    def test_watch(self):
-        r = self.client.post(self.url, follow=True)
-        assert r.status_code == 200
-        assert self.qs.count() == 1
-
-    def test_unwatch(self):
-        r = self.client.post(self.url, follow=True)
-        assert r.status_code == 200
-        r = self.client.post(self.url, follow=True)
-        assert r.status_code == 200
-        assert self.qs.count() == 0
-
-    def test_amouser_watching(self):
-        response = self.client.post(self.url, follow=True)
-        assert response.status_code == 200
-        response = self.client.get('/en-US/firefox/')
-        assert tuple(response.context['user'].watching) == (57181,)
-
-    def test_ajax_response(self):
-        r = self.client.post_ajax(self.url, follow=True)
-        assert r.status_code == 200
-        assert json.loads(r.content) == {'watching': True}
 
 
 class TestCollectionForm(TestCase):
@@ -1534,13 +1405,11 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
             'name': {'en-US': u'this'},
             'slug': u'minimal',
             'addon_count': 99,  # In the serializer but read-only.
-            'subscribers': 999,  # Not in the serializer.
         }
         response = self.send(data=data)
         assert response.status_code == 201, response.content
         collection = Collection.objects.get()
         assert collection.addon_count != 99
-        assert collection.subscribers != 999
 
     def test_different_account(self):
         self.client.login_api(self.user)

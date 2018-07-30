@@ -13,7 +13,6 @@ x-env-mapping: &env
     - PYTHONDONTWRITEBYTECODE=1
     - PYTHONUNBUFFERED=1
     - RECURSION_LIMIT=10000
-    - REDIS_LOCATION=redis://redis:6379/0?socket_timeout=0.5
     - TERM=xterm-256color
 
 services:

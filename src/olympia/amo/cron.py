@@ -129,43 +129,6 @@ def category_totals():
             VALID_FILE_STATUSES + VALID_ADDON_STATUSES)
 
 
-def collection_subscribers():
-    """
-    Collection weekly and monthly subscriber counts.
-    """
-    log.debug('Starting collection subscriber update...')
-
-    if not waffle.switch_is_active('local-statistics-processing'):
-        return False
-
-    with connection.cursor() as cursor:
-        cursor.execute("""
-            UPDATE collections
-            SET weekly_subscribers = 0, monthly_subscribers = 0
-        """)
-        cursor.execute("""
-            UPDATE collections AS c
-            INNER JOIN (
-                SELECT
-                    COUNT(collection_id) AS count,
-                    collection_id
-                FROM collection_subscriptions
-                WHERE created >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
-                GROUP BY collection_id
-            ) AS weekly ON (c.id = weekly.collection_id)
-            INNER JOIN (
-                SELECT
-                    COUNT(collection_id) AS count,
-                    collection_id
-                FROM collection_subscriptions
-                WHERE created >= DATE_SUB(CURDATE(), INTERVAL 31 DAY)
-                GROUP BY collection_id
-            ) AS monthly ON (c.id = monthly.collection_id)
-            SET c.weekly_subscribers = weekly.count,
-                c.monthly_subscribers = monthly.count
-        """)
-
-
 def weekly_downloads():
     """
     Update 7-day add-on download counts.
