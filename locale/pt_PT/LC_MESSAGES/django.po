@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-30 02:51+0000\n"
+"PO-Revision-Date: 2018-07-30 03:12+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4462,7 +4462,7 @@ msgstr "Procure imagens {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Faça pesquisas reversas de imagens a partir de um conjunto de motores."
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4470,7 +4470,7 @@ msgstr "Bloqueio de publicidade e proteção da privacidade {start_sub_heading}c
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Uma configuração simples permite-lhe obter controlo sobre os anúncios que vê e como é monitorizado na Internet."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4478,7 +4478,7 @@ msgstr "Re-imagine os separadores {start_sub_heading}com {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Tem uma tonelada de separadores abertos? Organize-os numa barra lateral arrumada."
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4486,7 +4486,7 @@ msgstr "Pare a monitorização do Facebook {start_sub_heading}com {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Isole a sua identidade do Facebook num “contentor” separado que faz mais difícil com que o Facebook monitorize os seus movimentos pela web."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4494,7 +4494,7 @@ msgstr "Simplifique as pesquisas {start_sub_heading}com {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Apenas destaque texto em qualquer página web para pesquisar a frase a partir de um conjunto de motores."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4502,7 +4502,7 @@ msgstr "Atualizações meteorológicas instantâneas {start_sub_heading}com {add
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
-msgstr ""
+msgstr "Obtenha informações meteorológicas globais instantâneas diretamente a partir do Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
@@ -4514,11 +4514,11 @@ msgstr "Pesquisa reversa de imagens {start_sub_heading}com {addon_name} {end_sub
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "Viu uma imagem interessante na web e deseja saber mais acerca da mesma? Experimente esta ferramenta de pesquisa de imagens."
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Funciona com YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, e centenas de outros sites de vídeo."
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
@@ -4530,7 +4530,7 @@ msgstr "Gestão de palavras-passe {start_sub_heading}com {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Simplifique e sincronize todas as suas credenciais de sites entre vários dispositivos com uma palavra-passe para as gerir todas."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4554,7 +4554,7 @@ msgstr "Encontre imagens facilmente {start_sub_heading}com {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Destaque qualquer texto e clique com o lado direito para realizar rapidamente uma pesquisa de imagem."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4570,7 +4570,7 @@ msgstr "Aceda a informações {start_sub_heading}com {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "Adicione fatos da Britannica automaticamente aos seus resultados de pesquisa."
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4578,7 +4578,7 @@ msgstr "Remova a publicidade do YouTube {start_sub_heading}com {addon_name} {end
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Bloqueie a apresentação de publicidade e anotações irritantes no seu YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4586,7 +4586,7 @@ msgstr "Leia em qualquer lado {start_sub_heading}com {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Envie novos artigos, histórias, artigos de blogues, entre outros, para o seu Kindle."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4594,7 +4594,7 @@ msgstr "Dê códigos de cor aos seus separadores com {start_sub_heading}com {add
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Organize os seus separadores por cor, organizando os mesmos com base em padrões de endereço."
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4602,7 +4602,7 @@ msgstr "Impeça a mineração de criptomoedas {start_sub_heading}com {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Impeça que sites maliciosos utilizem o poder do seu computador para minerar criptomoedas."
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4610,7 +4610,7 @@ msgstr "Verificação automática de gramática {start_sub_heading}com {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Obtenha ajuda na gramática em qualquer lugar na web onde escreva—redes sociais, e-mails, documentos, entre outros."
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4618,7 +4618,7 @@ msgstr "Consulte as horas globais {start_sub_heading}com {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Apresentar as horas mundiais atuais na barra de estado do Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4626,7 +4626,7 @@ msgstr "Traduções simples {start_sub_heading}com {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Selecione texto em qualquer página web—ou selecione a página completa— para traduzir de forma instantânea."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
