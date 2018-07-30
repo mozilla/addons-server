@@ -28,14 +28,6 @@
     <div class="featured-inner object-lead">
       <div class="meta">
         <ul>
-          {% if c.listed %}
-            <li>{{ barometer(collection) }}</li>
-            <li class="followers">
-              {% trans p=c.subscribers, num=c.subscribers|numberfmt %}
-                <span>{{ num }}</span> follower {% pluralize %} <span>{{ num }}</span> followers
-              {% endtrans %}
-            </li>
-          {% endif %}
           <li>{{ _('Updated {0}')|format_html(c.modified|date) }}</li>
         </ul>
       </div>

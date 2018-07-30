@@ -81,7 +81,6 @@
         "pk": 4735395,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": 0,
             "display_collections": 0,
             "occupation": "",
             "location": "",

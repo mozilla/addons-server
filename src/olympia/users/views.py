@@ -226,10 +226,6 @@ def profile(request, user):
     if user.display_collections:
         own_coll = (Collection.objects.listed().filter(author=user)
                     .order_by('-created'))[:10]
-    if user.display_collections_fav:
-        fav_coll = (Collection.objects.listed()
-                    .filter(following__user=user)
-                    .order_by('-following__created'))[:10]
 
     edit_any_user = acl.action_allowed(request, amo.permissions.USERS_EDIT)
     own_profile = (request.user.is_authenticated() and

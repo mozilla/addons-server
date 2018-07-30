@@ -4,13 +4,11 @@ import random
 import mock
 
 from olympia import amo, core
-from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory, collection_factory
-from olympia.bandwagon import tasks
 from olympia.bandwagon.models import (
-    Collection, CollectionAddon, CollectionWatcher, FeaturedCollection)
+    Collection, CollectionAddon, FeaturedCollection)
 from olympia.users.models import UserProfile
 
 
@@ -59,11 +57,6 @@ class TestCollections(TestCase):
         c.icontype = None
         c.type = amo.COLLECTION_FAVORITES
         assert c.icon_url.endswith('img/icons/heart.png')
-
-    def test_is_subscribed(self):
-        c = Collection(pk=512)
-        c.following.create(user=self.user)
-        assert c.is_subscribed(self.user)
 
     def test_translation_default(self):
         """Make sure we're getting strings from the default locale."""
@@ -143,35 +136,6 @@ class TestCollections(TestCase):
         assert c.slug == 'boom-1'
         c = Collection.objects.create(author=self.user, slug='boom')
         assert c.slug == 'boom-2'
-
-    def test_watchers(self):
-        def check(num):
-            assert Collection.objects.get(id=512).subscribers == num
-        tasks.collection_watchers(512)
-        check(0)
-        CollectionWatcher.objects.create(collection_id=512, user=self.user)
-        check(1)
-
-    def test_can_view_stats(self):
-        c = Collection.objects.create(author=self.user, slug='boom')
-
-        fake_request = mock.Mock()
-
-        # Owner.
-        fake_request.user = self.user
-        assert c.can_view_stats(fake_request)
-
-        # Bad user.
-        fake_request.user = UserProfile.objects.create(
-            username='scrub', email='ez@dee')
-        assert not c.can_view_stats(fake_request)
-
-        # Member of group with Collections:Edit permission.
-        group = Group.objects.create(name='Collections Agency',
-                                     rules='CollectionStats:View')
-        del fake_request.user.groups_list
-        GroupUser.objects.create(user=fake_request.user, group=group)
-        assert c.can_view_stats(fake_request)
 
 
 class TestCollectionQuerySet(TestCase):

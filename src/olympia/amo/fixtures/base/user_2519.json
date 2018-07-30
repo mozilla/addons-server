@@ -3,7 +3,6 @@
         "pk": 2519,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": false,
             "display_collections": false,
             "occupation": "Software Developer",
             "location": "Minneapolis, MN",
