@@ -77,3 +77,33 @@ class TestCollectionAdmin(TestCase):
         assert response.status_code == 403
         collection.reload()
         assert collection.slug == 'floob'
+
+    def test_can_not_delete_with_collections_edit_permission(self):
+        collection = Collection.objects.create(slug='floob')
+        self.delete_url = reverse(
+            'admin:bandwagon_collection_delete', args=(collection.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Collections:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.delete_url, follow=True)
+        assert response.status_code == 403
+        response = self.client.post(
+            self.delete_url, data={'post': 'yes'}, follow=True)
+        assert response.status_code == 403
+        assert Collection.objects.filter(pk=collection.pk).exists()
+
+    def test_can_delete_with_admin_advanced_permission(self):
+        collection = Collection.objects.create(slug='floob')
+        self.delete_url = reverse(
+            'admin:bandwagon_collection_delete', args=(collection.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Admin:Advanced')
+        self.client.login(email=user.email)
+        response = self.client.post(
+            self.delete_url, data={'post': 'yes'}, follow=True)
+        assert response.status_code == 200
+        assert not Collection.objects.filter(pk=collection.pk).exists()

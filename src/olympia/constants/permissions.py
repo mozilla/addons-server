@@ -51,8 +51,6 @@ COLLECTIONS_CONTRIBUTE = AclPermission('Collections', 'Contribute')
 
 # Can view statistics for all addons, regardless of privacy settings.
 STATS_VIEW = AclPermission('Stats', 'View')
-# Can view collection statistics.
-COLLECTION_STATS_VIEW = AclPermission('CollectionStats', 'View')
 
 # Can submit experiments.
 EXPERIMENTS_SUBMIT = AclPermission('Experiments', 'submit')
@@ -96,7 +94,7 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'addons.delete_replacementaddon': ADMIN_CURATION,
 
     'bandwagon.change_collection': COLLECTIONS_EDIT,
-    'bandwagon.delete_collection': COLLECTIONS_EDIT,
+    'bandwagon.delete_collection': ADMIN_ADVANCED,
 
     'discovery.add_discoveryitem': DISCOVERY_EDIT,
     'discovery.change_discoveryitem': DISCOVERY_EDIT,

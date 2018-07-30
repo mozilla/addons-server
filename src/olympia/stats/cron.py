@@ -1,7 +1,7 @@
 import datetime
 
 from django.core.management import call_command
-from django.db.models import Max, Sum
+from django.db.models import Max
 
 import waffle
 
@@ -9,38 +9,14 @@ from celery import group
 
 import olympia.core.logger
 
-from olympia.amo.utils import chunked
 from olympia.lib.es.utils import raise_if_reindex_in_progress
 
 from . import tasks
-from .models import AddonCollectionCount, CollectionCount, UpdateCount
+from .models import UpdateCount
 
 
 task_log = olympia.core.logger.getLogger('z.task')
 cron_log = olympia.core.logger.getLogger('z.cron')
-
-
-def update_addons_collections_downloads():
-    """Update addons+collections download totals."""
-    raise_if_reindex_in_progress('amo')
-
-    data = (AddonCollectionCount.objects.values('addon', 'collection')
-                                        .annotate(sum=Sum('count')))
-
-    ts = [tasks.update_addons_collections_downloads.subtask(args=[chunk])
-          for chunk in chunked(data, 100)]
-    group(ts).apply_async()
-
-
-def update_collections_total():
-    """Update collections downloads totals."""
-
-    data = (CollectionCount.objects.values('collection_id')
-                                   .annotate(sum=Sum('count')))
-
-    ts = [tasks.update_collections_total.subtask(args=[chunk])
-          for chunk in chunked(data, 50)]
-    group(ts).apply_async()
 
 
 def update_global_totals(date=None):

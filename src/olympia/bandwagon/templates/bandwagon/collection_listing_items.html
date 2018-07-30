@@ -2,34 +2,6 @@
 <div class="item">
   <div class="item-info">
     <ul>
-      <li>{{ barometer(c) }}</li>
-      <li class="followers">
-        {% if field == 'weekly' %}
-          {# L10n: People "follow" collections to get notified of updates.
-                   Like Twitter followers. #}
-          {% trans cnt=c.weekly_subscribers, num=c.weekly_subscribers|numberfmt %}
-            {{ num }} weekly follower
-          {% pluralize %}
-            {{ num }} weekly followers
-          {% endtrans %}
-        {% elif field == 'monthly' %}
-          {# L10n: People "follow" collections to get notified of updates.
-                   Like Twitter followers. #}
-          {% trans cnt=c.monthly_subscribers, num=c.monthly_subscribers|numberfmt %}
-            {{ num }} monthly follower
-          {% pluralize %}
-            {{ num }} monthly followers
-          {% endtrans %}
-        {% else %}
-          {# L10n: People "follow" collections to get notified of updates.
-                   Like Twitter followers. #}
-          {% trans cnt=c.subscribers, num=c.subscribers|numberfmt %}
-            {{ num }} follower
-          {% pluralize %}
-            {{ num }} followers
-          {% endtrans %}
-        {% endif %}
-      </li>
       {% if field in ('created', 'updated') %}
         <li class="modified">
           {% if field == 'created' %}
