@@ -719,12 +719,11 @@ class TestEditMedia(BaseTestEdit):
         assert labels.length == 18
 
         # First one is the default icon
-        assert labels[0].get('for') == 'id_icon_type_2_2'
+        assert labels[0].get('for') == 'id_icon_type_0_0'
         assert labels[0].find('input').get('name') == 'icon_type'
         assert labels[0].find('input').get('value') == ''
 
-        # Second one is a regular icon
-        assert labels[1].get('for') == 'id_icon_type_3_3'
+        assert labels[1].get('for') == 'id_icon_type_1_1'
         assert labels[1].find('input').get('name') == 'icon_type'
         assert labels[1].find('input').get('value') == 'icon/alerts'
 

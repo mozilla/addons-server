@@ -23,7 +23,7 @@ from olympia.addons.models import Addon, AddonUser, Category
 from olympia.amo.templatetags.jinja_helpers import urlparams
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.bandwagon.models import Collection, CollectionWatcher
+from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
 from olympia.ratings.models import Rating
 from olympia.users import notifications as email
@@ -730,28 +730,6 @@ class TestProfileSections(TestCase):
             'This user should have way more than 10 add-ons.')
         r = self.client.get(self.url)
         assert pq(r.content)('#my-addons .paginator').length == 1
-
-    def test_my_collections_followed(self):
-        coll = Collection.objects.all()[0]
-        CollectionWatcher.objects.create(collection=coll, user=self.user)
-        mine = Collection.objects.listed().filter(following__user=self.user)
-        assert list(mine) == [coll]
-
-        r = self.client.get(self.url)
-        self.assertTemplateUsed(r, 'bandwagon/users/collection_list.html')
-        assert list(r.context['fav_coll']) == [coll]
-
-        doc = pq(r.content)
-        assert doc('#reviews.full').length == 0
-        ul = doc('#my-collections #my-favorite')
-        assert ul.length == 1
-
-        li = ul.find('li')
-        assert li.length == 1
-
-        a = li.find('a')
-        assert a.attr('href') == coll.get_url_path()
-        assert a.text() == unicode(coll.name)
 
     def test_my_collections_created(self):
         coll = Collection.objects.listed().get(author=self.user)

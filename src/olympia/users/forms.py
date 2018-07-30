@@ -154,7 +154,7 @@ class UserEditForm(forms.ModelForm):
         fields = (
             'username', 'email', 'display_name', 'location', 'occupation',
             'homepage', 'photo', 'biography', 'display_collections',
-            'display_collections_fav', 'notifications',
+            'notifications',
         )
 
     def clean_username(self):

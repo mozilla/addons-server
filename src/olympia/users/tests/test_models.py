@@ -19,7 +19,7 @@ from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import TestCase, addon_factory, safe_exec, user_factory
-from olympia.bandwagon.models import Collection, CollectionWatcher
+from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 from olympia.users.models import (
     DeniedName, generate_auth_id, UserEmailField, UserForeignKey, UserProfile)
@@ -475,19 +475,6 @@ class TestUserProfile(TestCase):
         other_collection.add_addon(addon2)
         assert user.favorite_addons.count() == 1
         assert user.favorite_addons[0] == addon1.pk
-
-    def test_watching(self):
-        user = UserProfile.objects.get(id='4043307')
-        watched_collection1 = Collection.objects.create(name='watched-1')
-        watched_collection2 = Collection.objects.create(name='watched-2')
-        Collection.objects.create(name='other')
-        CollectionWatcher.objects.create(user=user,
-                                         collection=watched_collection1)
-        CollectionWatcher.objects.create(user=user,
-                                         collection=watched_collection2)
-        assert len(user.watching) == 2
-        assert tuple(user.watching) == (watched_collection1.pk,
-                                        watched_collection2.pk)
 
     def test_cannot_set_password(self):
         user = UserProfile.objects.get(id='4043307')
