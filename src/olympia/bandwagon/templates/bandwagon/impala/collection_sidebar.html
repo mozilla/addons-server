@@ -3,9 +3,6 @@
   <h2><a href="{{ base_url }}">{{ _('Collections') }}</a></h2>
   {% if request.user.is_authenticated() %}
     <ul>
-      <li id="p-following">
-        <a href="{{ url('collections.following') }}">
-          {{ _("Collections I'm Following") }}</a></li>
       <li id="p-mine">
         <a href="{{ url('collections.user', user.username) }}">
           {{ _("Collections I've Made") }}</a></li>

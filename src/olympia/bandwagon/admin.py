@@ -14,7 +14,7 @@ class CollectionAddonInline(admin.TabularInline):
 
 
 class CollectionAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'addon_count', 'downloads')
+    list_display = ('name', 'slug', 'addon_count',)
     list_filter = ('type', 'listed')
     fields = ('name', 'slug', 'uuid', 'listed', 'type', 'application',
               'default_locale', 'author')

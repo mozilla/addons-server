@@ -9,6 +9,7 @@ from olympia.addons.serializers import AddonSerializer
 from olympia.amo.utils import clean_nl, has_links, slug_validator
 from olympia.api.fields import (
     SlugOrPrimaryKeyRelatedField, SplitField, TranslationSerializerField)
+from olympia.api.utils import is_gate_active
 from olympia.bandwagon.models import Collection, CollectionAddon
 from olympia.users.models import DeniedName
 
@@ -92,7 +93,7 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CollectionAddon
-        fields = ('addon', 'downloads', 'notes', 'collection')
+        fields = ('addon', 'notes', 'collection')
         validators = [
             UniqueTogetherValidator(
                 queryset=CollectionAddon.objects.all(),
@@ -111,6 +112,14 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
             # DRF normally ignores updates to read_only fields, so do the same.
             data.pop('addon', None)
         return super(CollectionAddonSerializer, self).validate(data)
+
+    def to_representation(self, instance):
+        request = self.context.get('request')
+        out = super(
+            CollectionAddonSerializer, self).to_representation(instance)
+        if request and is_gate_active(request, 'collections-downloads-shim'):
+            out['downloads'] = 0
+        return out
 
 
 class CollectionWithAddonsSerializer(CollectionSerializer):
