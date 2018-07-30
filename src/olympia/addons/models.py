@@ -1039,16 +1039,19 @@ class Addon(OnChangeMixin, ModelBase):
     @staticmethod
     def attach_previews(addons, addon_dict=None, no_transforms=False):
         if addon_dict is None:
-            addon_dict = dict((a.id, a) for a in addons)
+            addon_dict = {a.id: a for a in addons}
 
         qs = Preview.objects.filter(addon__in=addons,
                                     position__gte=0).order_by()
         if no_transforms:
             qs = qs.no_transforms()
         qs = sorted(qs, key=lambda x: (x.addon_id, x.position, x.created))
-        for addon, previews in itertools.groupby(qs, lambda x: x.addon_id):
-            addon_dict[addon].all_previews = list(previews)
-        # FIXME: set all_previews to empty list on addons without previews.
+        for addon_id, previews in itertools.groupby(qs, lambda x: x.addon_id):
+            addon_dict[addon_id]._all_previews = list(previews)
+            addon_dict[addon_id] = None
+        # set _all_previews to empty list on addons without previews.
+        [setattr(addon, '_all_previews', []) for addon in addon_dict.values()
+         if addon is not None]
 
     @staticmethod
     def attach_static_categories(addons, addon_dict=None):
@@ -1135,7 +1138,7 @@ class Addon(OnChangeMixin, ModelBase):
         Returns the addon's thumbnail url or a default.
         """
         try:
-            preview = self.all_previews[0]
+            preview = self._all_previews[0]
             return preview.thumbnail_url
         except IndexError:
             return settings.STATIC_URL + '/img/icons/no-preview.png'
@@ -1334,10 +1337,10 @@ class Addon(OnChangeMixin, ModelBase):
                 return self.current_version.previews.all()
             return []
         else:
-            return self.all_previews
+            return self._all_previews
 
     @cached_property
-    def all_previews(self):
+    def _all_previews(self):
         """Exclude promo graphics."""
         return list(self.previews.exclude(position=-1))
 
