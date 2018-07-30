@@ -80,8 +80,6 @@
 <aside class="secondary" id="my-collections">
   <div class="island">
     <h2>{{ _('My Collections') }}</h2>
-    {{ user_collection_list(heading=_('Followed by Me'), collections=fav_coll,
-                            link=url('collections.following'), id='my-favorite') }}
     {{ user_collection_list(heading=_('Created by Me'), collections=own_coll,
                             id='my-created',
                             link=url('collections.user', profile.username)) }}

@@ -51,8 +51,6 @@ COLLECTIONS_CONTRIBUTE = AclPermission('Collections', 'Contribute')
 
 # Can view statistics for all addons, regardless of privacy settings.
 STATS_VIEW = AclPermission('Stats', 'View')
-# Can view collection statistics.
-COLLECTION_STATS_VIEW = AclPermission('CollectionStats', 'View')
 
 # Can submit experiments.
 EXPERIMENTS_SUBMIT = AclPermission('Experiments', 'submit')

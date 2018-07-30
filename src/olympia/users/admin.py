@@ -50,8 +50,7 @@ class UserAdmin(admin.ModelAdmin):
                        'picture_img'),
         }),
         ('Flags', {
-            'fields': ('display_collections', 'display_collections_fav',
-                       'deleted', 'is_public'),
+            'fields': ('display_collections', 'deleted', 'is_public'),
         }),
         ('Content', {
             'fields': ('addons_created', 'collections_created',

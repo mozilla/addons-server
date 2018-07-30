@@ -1,7 +1,6 @@
 [
     {
         "fields": {
-            "display_collections_fav": 1,
             "display_collections": 1,
             "occupation": "",
             "location": "",
@@ -26,7 +25,6 @@
         "pk": 10482,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": 1,
             "display_collections": 1,
             "averagerating": 3.39,
             "picture_type": "image/jpeg",
@@ -47,7 +45,6 @@
     },
     {
         "fields": {
-            "display_collections_fav": 1,
             "display_collections": 1,
             "occupation": "",
             "location": "",
@@ -70,7 +67,6 @@
     },
     {
         "fields": {
-            "display_collections_fav": 1,
             "display_collections": 1,
             "occupation": "",
             "location": "",
@@ -94,7 +90,6 @@
         "pk": 5497308,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": false,
             "display_collections": false,
             "email": "reviewer@mozilla.com",
             "username": "reviewer",
@@ -113,7 +108,6 @@
         "pk": 5497311,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": false,
             "display_collections": false,
             "email": "persona_reviewer@mozilla.com",
             "username": "Persona Reviewer",
@@ -132,7 +126,6 @@
         "pk": 20,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": false,
             "display_collections": false,
             "occupation": "",
             "display_name": "",
