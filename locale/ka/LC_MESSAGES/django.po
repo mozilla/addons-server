@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-26 17:34+0000\n"
+"PO-Revision-Date: 2018-07-30 14:50+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3166,7 +3166,7 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"ატვირთეთ ხატულა თქვენი დამატებისთვის, ან აირჩიეთ შემოთავაზებულებიდან. ხატულა გამოჩნდება თითქმის ყველგან, თქვენს დამატებაზე. ატვირთული სურათები უნდა იყოს შემდეგი გაფართოების: .png, .jpg. ეს ეხება, "
+"ატვირთეთ ხატულა თქვენი დამატებისთვის ან აირჩიეთ შემოთავაზებულებიდან. ხატულა გამოჩნდება თითქმის ყველგან, თქვენს დამატებაზე. ატვირთული სურათები უნდა იყოს შემდეგი გაფართოების: .png, .jpg. ეს ეხება, "
 "მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "Select an icon for your add-on:"
@@ -3400,7 +3400,7 @@ msgid "This add-on is experimental"
 msgstr "ეს დამატება საცდელია"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
-msgstr "მონიშნეთ, თუ თქვენი დამატება საცდელია, ან არაა მზად საბოლოო მოხმარებისთვის.  დამატება გამოქვეყნდება, მაგრამ იქნება ნაკლებად შესამჩნევი.   ამ პარამეტრის შეცვლა, მომავალშიც შეგეძლებათ."
+msgstr "მონიშნეთ, თუ თქვენი დამატება საცდელია ან არაა მზად საბოლოო მოხმარებისთვის.  დამატება გამოქვეყნდება, მაგრამ იქნება ნაკლებად შესამჩნევი.   ამ პარამეტრის შეცვლა, მომავალშიც შეგეძლებათ."
 
 msgid "Select a category for this add-on:"
 msgstr "მიუთითეთ კატეგორია, დამატებისთვის:"
@@ -6199,7 +6199,7 @@ msgid "Write reviews for add-ons which you have not personally used."
 msgstr "იმ დამატებებზე მიმოხილვის გაკეთება, რომელიც თავად არ გამოგიყენებიათ."
 
 msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "უპატივცემულო, უხამსი ფორმით მიმართვა, ან სიძულვილის ენის გამოყენება."
+msgstr "უპატივცემულო, უხამსი ფორმით მიმართვა ან სიძულვილის ენის გამოყენება."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
 msgstr "HTML კოდების, ბმულების, სკრიპტების დართვა. მიმოხილვები უნდა შედგებოდეს მხოლოდ ტექსტისგან."
@@ -6208,10 +6208,10 @@ msgid "Make false statements, disparage add-on authors or personally insult them
 msgstr "მცდარი მოსაზრებების წარმოდგენა, დამატების ავტორების დამცირება, ან მათთვის პირადი შეურაცხყოფის მიყენება."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "თქვენი საკუთარი ან სხვისი ელფოსტის მისამართის, ტელეფონის ნომრის, ან სხვა პირადი მონაცემის მითითება."
+msgstr "თქვენი საკუთარი ან სხვისი ელფოსტის მისამართის, ტელეფონის ნომრის ან სხვა პირადი მონაცემის მითითება."
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "მიმოხილვებში საკუთარი თავის, ან ორგანიზაციის წარდგენა."
+msgstr "მიმოხილვებში საკუთარი თავის ან ორგანიზაციის წარდგენა."
 
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
