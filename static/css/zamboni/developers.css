@@ -399,6 +399,11 @@ form .char-count b {
     margin-bottom: 1em;
 }
 
+.addon-submission-process form div.addon-submission-field span.vip-message{
+    font-weight: bold;
+    color: red;
+}
+
 .clear-info-request label {
     font-weight: normal;
 }
@@ -808,10 +813,6 @@ pre.email_comment {
     margin: 0;
 }
 
-#upload-file h3 {
-    margin-top: 0;
-}
-
 #upload-file > div, .modal-actions {
     margin-top: 1em;
 }
@@ -850,6 +851,23 @@ pre.email_comment {
 
 #upload-file .admin-settings {
     margin-top: 1em;
+}
+
+#upload-file .binary-source div {
+    margin-bottom: 1em;
+}
+
+#upload-file .binary-source ul {
+    list-style: disc inside;
+}
+
+#upload-file .binary-source ul li {
+    float: none;
+    margin: 0 0 0 2em;
+}
+
+#upload-file .binary-source label {
+    display: inline;
 }
 
 #upload-status-bar {
