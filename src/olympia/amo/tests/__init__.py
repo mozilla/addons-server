@@ -1028,14 +1028,10 @@ def prefix_indexes(config):
     # allow xdist to transparently group all ES tests into a single process.
     # Unfurtunately, it's surprisingly difficult to achieve with our current
     # unittest-based setup.
-
     for key, index in settings.ES_INDEXES.items():
         if not index.startswith(prefix):
             settings.ES_INDEXES[key] = '{prefix}_amo_{index}'.format(
                 prefix=prefix, index=index)
-
-    settings.CACHE_PREFIX = 'amo:{0}:'.format(prefix)
-    settings.KEY_PREFIX = settings.CACHE_PREFIX
 
 
 def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):

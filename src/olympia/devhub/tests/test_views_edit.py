@@ -47,7 +47,6 @@ class BaseTestEdit(TestCase):
             ac.save()
             AddonCategory.objects.filter(addon=addon,
                                          category__id__in=[1, 71]).delete()
-            cache.clear()
 
             self.tags = ['tag3', 'tag2', 'tag1']
             for t in self.tags:
@@ -275,7 +274,6 @@ class BaseTestEditBasic(BaseTestEdit):
             addon_id=addon_id, collection=Collection.objects.create())
         FeaturedCollection.objects.create(collection=c_addon.collection,
                                           application=amo.FIREFOX.id)
-        cache.clear()
 
 
 class TagTestsMixin(object):
@@ -1507,7 +1505,6 @@ class StaticMixin(object):
         addon.update(type=amo.ADDON_STATICTHEME)
         if self.listed:
             AddonCategory.objects.filter(addon=addon).delete()
-            cache.clear()
             Category.from_static_category(CATEGORIES_BY_ID[300], save=True)
             Category.from_static_category(CATEGORIES_BY_ID[308], save=True)
             VersionPreview.objects.create(version=addon.current_version)

@@ -967,7 +967,7 @@ def review_viewing(request):
     current_name = ''
     is_user = 0
     key = get_reviewing_cache_key(addon_id)
-    user_key = '%s:review_viewing_user:%s' % (settings.CACHE_PREFIX, user_id)
+    user_key = 'review_viewing_user:{user_id}'.format(user_id=user_id)
     interval = amo.REVIEWER_VIEWING_INTERVAL
 
     # Check who is viewing.

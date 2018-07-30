@@ -62,9 +62,9 @@ def memoize_key(prefix, *args, **kwargs):
     """
     key = hashlib.md5()
     for arg in itertools.chain(args, sorted(kwargs.items())):
+        print('UPDATE KEY', str(arg))
         key.update(str(arg))
-    return '%s:memoize:%s:%s' % (settings.CACHE_PREFIX,
-                                 prefix, key.hexdigest())
+    return 'memoize:{prefix}:{key}'.format(prefix=prefix, key=key.hexdigest())
 
 
 def memoize(prefix, timeout=60):
@@ -84,6 +84,7 @@ def memoize(prefix, timeout=60):
             def wrapped_func():
                 return func(*args, **kwargs)
             key = memoize_key(prefix, *args, **kwargs)
+            print('XXXXXXXXXX', prefix, args, kwargs)
             return cache_get_or_set(key, wrapped_func, timeout=timeout)
         return wrapper
     return decorator
@@ -94,7 +95,7 @@ class Message(object):
     A simple class to store an item in memcache, given a key.
     """
     def __init__(self, key):
-        self.key = '%s:message:%s' % (settings.CACHE_PREFIX, key)
+        self.key = 'message:{key}'.format(key=key)
 
     def delete(self):
         cache.delete(self.key)
@@ -123,7 +124,7 @@ class Token(object):
 
     def cache_key(self):
         assert self.token, 'No token value set.'
-        return '%s:token:%s' % (settings.CACHE_PREFIX, self.token)
+        return 'token:{token}'.format(token=self.token)
 
     def save(self, time=60):
         cache.set(self.cache_key(), self.data, time)
@@ -161,11 +162,17 @@ class CacheStatTracker(BaseCache):
     requests_limit = 5000
 
     def __init__(self, location, params):
-        # Do a .copy() dance to avoid modifying `OPTIONS` in the actual
-        # settings object.
-        options = params['OPTIONS'].copy()
-        actual_backend = options.pop('ACTUAL_BACKEND')
-        self._real_cache = _create_cache(actual_backend, **options)
+        custom_params = params.copy()
+        options = custom_params['OPTIONS'].copy()
+
+        custom_params['BACKEND'] = options.pop('ACTUAL_BACKEND')
+        custom_params['OPTIONS'] = options
+
+        # Patch back in the `location` for memcached backend to pick up.
+        custom_params['LOCATION'] = location
+
+        self._real_cache = _create_cache(
+            custom_params['BACKEND'], **custom_params)
 
         self.requests_log = []
         self._setup_proxies()

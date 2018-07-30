@@ -215,7 +215,6 @@ class TestCacheNamespaces(BaseTestCase):
 
     def setUp(self):
         super(TestCacheNamespaces, self).setUp()
-        cache.clear()
         self.namespace = 'redis-is-dead'
 
     @mock.patch('olympia.amo.utils.epoch')

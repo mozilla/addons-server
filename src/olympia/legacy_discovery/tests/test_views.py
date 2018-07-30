@@ -389,7 +389,6 @@ class TestDetails(TestCase):
         req = Addon.objects.get(id=592)
         AddonDependency.objects.create(addon=self.addon, dependent_addon=req)
         assert self.addon.all_dependencies == [req]
-        cache.clear()
         d = pq(self.client.get(self.detail_url).content)('.dependencies')
         assert d.length == 1
         a = d.find('ul a')

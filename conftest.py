@@ -1,6 +1,8 @@
+import uuid
+
 from django import http, test
-from django.core.cache import caches
 from django.utils import translation
+from django.core.cache import caches
 
 import responses
 import pytest
@@ -93,7 +95,18 @@ def default_prefixer(settings):
 
 @pytest.yield_fixture(autouse=True)
 def test_pre_setup(request, tmpdir, settings):
-    caches['default'].clear()
+    # Clear all cache-instances. They'll be re-initialized by Django
+    # This will make sure that our random `KEY_PREFIX` is applied
+    # appropriately.
+    # This is done by Django too whenever `settings` is changed
+    # directly but because we're using the `settings` fixture
+    # here this is not detected correctly.
+    caches._caches.caches = {}
+
+    # Randomize the cache key prefix to keep
+    # tests isolated from each other.
+    prefix = uuid.uuid4().hex
+    settings.CACHES['default']['KEY_PREFIX'] = 'amo:{0}:'.format(prefix)
 
     translation.trans_real.deactivate()
     # Django fails to clear this cache.

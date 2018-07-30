@@ -50,7 +50,7 @@ VIEW_QUEUE_FLAGS = (
 
 
 def get_reviewing_cache_key(addon_id):
-    return '%s:review_viewing:%s' % (settings.CACHE_PREFIX, addon_id)
+    return 'review_viewing:{id}'.format(id=addon_id)
 
 
 def clear_reviewing_cache(addon_id):

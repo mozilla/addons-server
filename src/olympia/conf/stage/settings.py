@@ -74,13 +74,11 @@ SERVICES_DATABASE = env.db('SERVICES_DATABASE_URL')
 
 SLAVE_DATABASES = ['slave']
 
-CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
-
 CACHES = {}
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
 CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
-CACHES['default']['KEY_PREFIX'] = CACHE_PREFIX
+CACHES['default']['KEY_PREFIX'] = CACHE_KEY_PREFIX
 
 # Celery
 CELERY_WORKER_PREFETCH_MULTIPLIER = 1
