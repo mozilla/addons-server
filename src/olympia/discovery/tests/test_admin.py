@@ -34,6 +34,63 @@ class TestDiscoveryAdmin(TestCase):
         assert response.status_code == 200
         assert u'FooBâr' in response.content.decode('utf-8')
 
+    def test_list_filtering_position_yes(self):
+        DiscoveryItem.objects.create(
+            addon=addon_factory(name=u'FooBâr'), position=1)
+        DiscoveryItem.objects.create(addon=addon_factory(name=u'Âbsent'))
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(
+            self.list_url + '?position=yes', follow=True)
+        assert response.status_code == 200
+        assert u'FooBâr' in response.content.decode('utf-8')
+        assert u'Âbsent' not in response.content.decode('utf-8')
+
+    def test_list_filtering_position_no(self):
+        DiscoveryItem.objects.create(
+            addon=addon_factory(name=u'FooBâr'), position_china=42)
+        DiscoveryItem.objects.create(
+            addon=addon_factory(name=u'Âbsent'), position=1)
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.list_url + '?position=no', follow=True)
+        assert response.status_code == 200
+        assert u'FooBâr' in response.content.decode('utf-8')
+        assert u'Âbsent' not in response.content.decode('utf-8')
+
+    def test_list_filtering_position_yes_china(self):
+        DiscoveryItem.objects.create(
+            addon=addon_factory(name=u'FooBâr'), position_china=1)
+        DiscoveryItem.objects.create(addon=addon_factory(name=u'Âbsent'))
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(
+            self.list_url + '?position_china=yes', follow=True)
+        assert response.status_code == 200
+        assert u'FooBâr' in response.content.decode('utf-8')
+        assert u'Âbsent' not in response.content.decode('utf-8')
+
+    def test_list_filtering_position_no_china(self):
+        DiscoveryItem.objects.create(
+            addon=addon_factory(name=u'FooBâr'), position=42)
+        DiscoveryItem.objects.create(
+            addon=addon_factory(name=u'Âbsent'), position_china=1)
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(
+            self.list_url + '?position_china=no', follow=True)
+        assert response.status_code == 200
+        assert u'FooBâr' in response.content.decode('utf-8')
+        assert u'Âbsent' not in response.content.decode('utf-8')
+
     def test_can_edit_with_discovery_edit_permission(self):
         addon = addon_factory(name=u'BarFöo')
         item = DiscoveryItem.objects.create(addon=addon)
