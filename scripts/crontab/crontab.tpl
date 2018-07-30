@@ -18,12 +18,8 @@ HOME=/tmp
 50 * * * * %(z_cron)s cleanup_extracted_file
 55 * * * * %(z_cron)s unhide_disabled_files
 
-
 #every 3 hours
 20 */3 * * * %(z_cron)s compatibility_report
-
-#every 4 hours
-40 */4 * * * %(django)s clean_redis
 
 #twice per day
 25 16,4 * * * %(z_cron)s update_collections_total
