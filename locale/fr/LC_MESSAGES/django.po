@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-29 13:08+0000\n"
-"Last-Translator: Alpha <adrien.gat@gmail.com>\n"
+"PO-Revision-Date: 2018-07-30 22:28+0000\n"
+"Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -2613,7 +2613,7 @@ msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVer
 msgstr "Les modules considérées comme obsolètes ne sont pas compatibles avec Firefox 57 ou supérieur. Utilisez une maxVersion 56.* ou inférieure."
 
 msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr ""
+msgstr "Les packs de langue obsolètes pour Firefox ne sont plus pris en charge. Un manifeste d'installation WebExtensions est requis. Consultez {mdn_link} pour plus d'informations."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -2626,10 +2626,10 @@ msgstr ""
 "de mise à jour."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr ""
+msgstr "Votre clé d'API de développement a été trouvée dans le fichier envoyé. Pour protéger votre compte, cette clé va être révoquée."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
+msgstr "La clé d'API de développement d'un co-auteur a été trouvée dans le fichier envoyé. Pour protéger votre module, la clé va être révoquée."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -3252,6 +3252,8 @@ msgid ""
 "PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
 "page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
+"Les formats PNG et JPG sont acceptés. La taille maximale et recommandée pour les captures d'écran est de 1280x800 pixels. 640x400 est une bonne alternative si vous n'avez que des images plus "
+"petites. La présence de captures d'écran sur la page de présentation de votre module augmente fortement ses chances d'être installé et de figurer sur la page principale."
 
 msgid "Continue"
 msgstr "Continuer"
