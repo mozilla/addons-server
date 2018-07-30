@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-30 02:32+0000\n"
+"PO-Revision-Date: 2018-07-30 02:51+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -719,14 +719,18 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Está a ver esta mensagem porque este site HTTPS necessita que um 'Referer header' seja enviado pelo seu navegador Web, mas nenhum foi enviado. Este cabeçalho é necessário por questões de segurança, "
+"para garantir que o seu navegador não está a ser raptado por terceiros."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr ""
+msgstr "Se configurou o seu navegador para desativar os cabeçalhos 'Referer', por favor, reative os mesmo, pelo menos para este site, para ligações HTTPS ou para pedidos 'same-origin'."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
+"Está a ver esta mensagem porque este site requer uma cookie CSRF ao submeter formulários. Esta cookie é necessária por questões segurança, para garantir que o seu navegador não está a ser raptado "
+"por terceiros."
 
 msgid "Page Not Found"
 msgstr "Página não encontrada"
@@ -4399,7 +4403,7 @@ msgstr "Pare os rastreadores sorrateiros {start_sub_heading}com {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Bloqueie ferramentas de monitorização invisíveis e publicidades que o espiam e o seguem pela web."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Melhore o seu jogo de emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
@@ -4442,7 +4446,7 @@ msgstr "Personalize as páginas de novo separador {start_sub_heading}com {addon_
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Desfrute de uma bonita nova página com fundos personalizáveis, informações sobre meteorologia local, entre outros."
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4450,7 +4454,7 @@ msgstr "Traduza facilmente {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Marque qualquer texto, clique com o botão do lado direito e traduza-o de forma instantânea."
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5698,36 +5702,32 @@ msgid "Make extraordinary visual changes—remove ads or unsavory content—to a
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tire capturas de ecrã {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Acompanhe o histórico de preços da Amazon {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
 msgstr "Tome decisões informadas ao monitorizar e receber alertas para o preço de um produto listado no Amazon."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloqueie anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Domine o áudio {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalização de separadores {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Proteção da privacidade {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloqueie anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Esconda o seu rasto {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
@@ -7949,17 +7949,17 @@ msgstr "Tem a certeza que deseja remover todas as <b>{0}</b> traduções? Isto n
 msgid "Delete Locale"
 msgstr "Eliminar idioma"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr "O utilizador \"%(user)s\" foi banido."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr "A imagem que pertencia ao utilizador \"%(user)s\" foi eliminada."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr "Os utilizadores \"%(users)s\" foram banidos, "
+msgstr "Os utilizadores \"%(users)s\" foram banidos."
 
 msgid "Ban selected users"
 msgstr "Banir utilizadores selecionados"
