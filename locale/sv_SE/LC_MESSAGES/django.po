@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-30 13:52+0000\n"
+"PO-Revision-Date: 2018-07-30 14:12+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -5468,13 +5468,12 @@ msgid "Highlight text from any website and right-click to search YouTube for rel
 msgstr "Markera text från vilken webbplats som helst och högerklicka för att söka på YouTube."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Förbättra ditt emoji-spel {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Få en Amazon-kant {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "När du tittar på produktsidor på andra nätbutiker, om det också finns tillgängligt på Amazon kan du helt enkelt klicka på en knapp för att kontrollera dess Amazon-lista."
 
 #. editorial content for the discovery pane.
 msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5482,44 +5481,39 @@ msgstr "Twittra {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily broadcast web content to your Twitter following."
-msgstr ""
+msgstr "Dela enkelt webbinnehåll med dina Twitter-följare."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ta skärmbilder {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Total flikkontroll {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Så många inställningar för flikkontroll—stäng dubbla flikar, slå samman fönster, kopiera fliktiteln med mera."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Anpassa flikar {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Njut av en konstig utbildning {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Load a random Wikipedia article each time you open a new tab."
-msgstr "Ange den sida du vill se varje gång du öppnar en ny flik."
+msgstr "Ladda en slumpmässig Wikipedia-artikel varje gång du öppnar en ny flik."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Förbättra ditt emoji-spel {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Ändra din nya flik {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Konfigurera nya fliksidor för att visa egna bakgrundsfärger och bilder."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Förbättra ditt emoji-spel {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Glädje för kattälskare {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Möt en förtjusande kattunge med varje ny flik. Klia den bakom örat och se vad som händer."
 
 #. editorial content for the discovery pane.
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5527,38 +5521,35 @@ msgstr "Minska produktiviteten {start_sub_heading}med {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "För ögonblick när du behöver skjuta lasrar från en katt."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Sök i Firefox {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Enkel åtkomst till dina öppna flikar, bokmärken och historik."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Massor av öppna flikar? Hoppa över rullning och sök via tangentbordsgenvägar."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Utforska vad som är under {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Uncover the software that supports whatever website you're visiting."
-msgstr ""
+msgstr "Upptäck mjukvaran som stöder den webbplats du besöker."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Översätt enkelt {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Förhindra omdirigeringar och trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Förhindra omdirigeringar så att du kan komma åt den webbplats du vill ha, snabbare."
 
 #. editorial content for the discovery pane.
 #, fuzzy
