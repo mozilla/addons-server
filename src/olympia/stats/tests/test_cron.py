@@ -7,11 +7,9 @@ from freezegun import freeze_time
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, version_factory
-from olympia.bandwagon.models import Collection, CollectionAddon
 from olympia.stats import cron, tasks
 from olympia.stats.models import (
-    AddonCollectionCount, DownloadCount, GlobalStat, ThemeUserCount,
-    UpdateCount)
+    DownloadCount, GlobalStat, ThemeUserCount, UpdateCount)
 
 
 class TestGlobalStats(TestCase):
@@ -115,7 +113,7 @@ class TestIndexStats(TestCase):
 
     def test_called_three(self, tasks_mock):
         call_command('index_stats', addons=None, date='2009-06-01')
-        assert tasks_mock.call_count == 4
+        assert tasks_mock.call_count == 3
 
     def test_called_two(self, tasks_mock):
         call_command('index_stats', addons='5', date='2009-06-01')
@@ -183,24 +181,3 @@ class TestIndexLatest(amo.tests.ESTestCase):
             cron.index_latest_stats()
             call.assert_called_with('index_stats', addons=None,
                                     date='%s:%s' % (start, finish))
-
-
-class TestUpdateDownloads(TestCase):
-    fixtures = ['base/users', 'base/collections', 'base/addon_3615']
-
-    def test_addons_collections(self):
-        collection2 = Collection.objects.create(name="collection2")
-        CollectionAddon.objects.create(addon_id=3615, collection=collection2)
-        vals = [(3, datetime.date(2013, 1, 1)),
-                (5, datetime.date(2013, 1, 2)),
-                (7, datetime.date(2013, 1, 3))]
-        for col_id in (80, collection2.pk):
-            for dls, dt in vals:
-                AddonCollectionCount.objects.create(
-                    addon_id=3615, collection_id=col_id,
-                    count=dls, date=dt)
-
-        with self.assertNumQueries(3):
-            cron.update_addons_collections_downloads()
-        assert CollectionAddon.objects.get(
-            addon_id=3615, collection_id=80).downloads == 15

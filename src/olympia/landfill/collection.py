@@ -1,4 +1,3 @@
-import math
 import random
 
 from datetime import datetime
@@ -18,17 +17,11 @@ def create_collection(application, **kwargs):
         'application': application,
         'name': 'Collection %s' % abs(hash(datetime.now())),
         'addon_count': random.randint(200, 2000),
-        'subscribers': random.randint(1000, 5000),
-        'monthly_subscribers': random.randint(100, 500),
-        'weekly_subscribers': random.randint(10, 50),
-        'upvotes': random.randint(100, 500),
-        'downvotes': random.randint(100, 500),
         'listed': True,
     }
     data.update(kwargs)
     c = Collection(**data)
     c.slug = slugify(data['name'])
-    c.rating = (c.upvotes - c.downvotes) * math.log(c.upvotes + c.downvotes)
     c.created = c.modified = datetime(2014, 10, 27, random.randint(0, 23),
                                       random.randint(0, 59))
     c.save()

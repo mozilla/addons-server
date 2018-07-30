@@ -310,7 +310,7 @@ def icons():
         if '32' in fname and 'default' not in fname:
             icon_name = fname.split('-')[0]
             icons.append(('icon/%s' % icon_name, icon_name))
-    return icons
+    return sorted(icons)
 
 
 class AddonFormMedia(AddonFormBase):

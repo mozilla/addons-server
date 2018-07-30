@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-05-28 11:47+0000\n"
-"Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
+"PO-Revision-Date: 2017-01-29 19:47+0000\n"
+"Last-Translator: Lovegaming <contact@lovegaming.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -112,7 +112,7 @@ msgid "Porting a legacy Firefox add-on on MDN"
 msgstr ""
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Include notițe de versiune detaliate (acest lucru se poate face în următorul pas)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
@@ -135,19 +135,19 @@ msgid "Sorry, no supported platform has been found."
 msgstr ""
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Tipul de fișier pe care l-ai încărcat nu e recunoscut."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Fișierul tău depășește dimensiunea maximă de {0}."
 
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Ai anulat încărcarea."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Imaginile trebuie să fie PNG sau JPG."
 
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Videoclipurile trebuie să fie WebM."
 
 msgid "Follow this Collection"
 msgstr "Urmărește această colecție"
@@ -156,7 +156,7 @@ msgid "Stop Following"
 msgstr "Oprește urmărirea"
 
 msgid "Following"
-msgstr ""
+msgstr "Abonează"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -187,7 +187,7 @@ msgid "Your Theme's Name"
 msgstr "Numele temei tale"
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "Semnalat pentru revizuire"
 
 msgid "Your input is required"
 msgstr ""
@@ -202,19 +202,19 @@ msgid "Category"
 msgstr "Categorie"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "Caută teme după <b>{0}</b>"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "Caută aplicații după <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Caută suplimente pentru <b>{0}</b>"
 
 msgid "Use original"
-msgstr ""
+msgstr "Folosește originalul"
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "Săptămâna a {0}"
 
 msgid " downloads"
 msgstr " descărcări"
@@ -247,10 +247,10 @@ msgid "Daily Users"
 msgstr "Utilizatori zilnici"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Suma în USD"
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Numărul de contribuții"
 
 msgid "More Info..."
 msgstr "Mai multe informații..."
@@ -275,7 +275,7 @@ msgid "Add-ons Updated"
 msgstr "Suplimente actualizate"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "Recenzii scrise"
 
 msgid "User Signups"
 msgstr ""
@@ -287,13 +287,13 @@ msgid "Ratings"
 msgstr "Evaluări"
 
 msgid "Sales"
-msgstr ""
+msgstr "Vânzări"
 
 msgid "Installs"
 msgstr "Instalări"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Necunoscut"
 
 msgid "Add-ons Manager"
 msgstr "Manage de suplimente"
@@ -356,7 +356,7 @@ msgid "Version History"
 msgstr "Istoricul versiunilor"
 
 msgid "Sharing"
-msgstr ""
+msgstr "Distribuire"
 
 msgid "Category Pages"
 msgstr ""
@@ -407,7 +407,7 @@ msgid "Average Contribution"
 msgstr ""
 
 msgid "Usage"
-msgstr ""
+msgstr "Utilizare"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -684,7 +684,7 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Numai cu Firefox — Obține Firefox acum!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
+msgstr "Ne pare rău, dar ai nevoie de un browser bazat pe Mozilla (cum ar fi Firefox) pentru a instala un plugin de căutare."
 
 msgid "Adding to Favorites&hellip;"
 msgstr "Se adaugă la favorite&hellip;"
@@ -717,7 +717,7 @@ msgid "Add to favorites"
 msgstr "Adaugă la favorite"
 
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Şterge din favorite"
 
 msgid "Stop following"
 msgstr ""
@@ -726,19 +726,19 @@ msgid "Your browser does not support the video tag"
 msgstr ""
 
 msgid "Changes Saved"
-msgstr ""
+msgstr "Modificările au fost salvate"
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Introdu adresa de email pentru un nou autor"
 
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "A apărut o eroare la încărcarea fișierului tău."
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{files} fișier"
+msgstr[1] "{files} fișiere"
+msgstr[2] "{files} de fișiere"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
@@ -747,10 +747,10 @@ msgstr[1] "{reviews} recenzii ale utilizatorilor"
 msgstr[2] "{reviews} de recenzii ale utilizatorilor"
 
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Se procesează schimbările imaginii"
 
 msgid "No results found."
-msgstr ""
+msgstr "Nu s-au găsit rezultate."
 
 msgid "Loading..."
 msgstr "Se încarcă..."
@@ -763,7 +763,7 @@ msgstr[1] "<b>{0}</b> caractere rămase."
 msgstr[2] "<b>{0}</b> de caractere rămase."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
+msgstr "Această funcție este dezactivată temporar în timp ce site-ul este în mentenanță. Revino puțin mai târziu."
 
 msgid "Remove this localization"
 msgstr ""
@@ -781,7 +781,7 @@ msgid "{name} was viewing this add-on first."
 msgstr ""
 
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Se încarcă&hellip;"
 
 msgid "Version Notes"
 msgstr ""
@@ -805,46 +805,46 @@ msgid "Number of Reviews"
 msgstr "Numărul de recenzii"
 
 msgid "Requested Info"
-msgstr ""
+msgstr "Informații solicitate"
 
 msgid "Flagged"
 msgstr "Semnalat"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplichează"
 
 msgid "Rejected"
-msgstr ""
+msgstr "Respins"
 
 msgid "Approved"
 msgstr "Aprobat"
 
 msgid "No results found"
-msgstr ""
+msgstr "Nu s-au găsit rezultate"
 
 msgid "Theme"
-msgstr ""
+msgstr "Temă"
 
 msgid "Reviewer"
 msgstr ""
 
 msgid "Status"
-msgstr ""
+msgstr "Stare"
 
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Toate testele au fost trecute cu succes."
 
 msgid "These tests were not run."
-msgstr ""
+msgstr "Aceste teste nu au fost efectuate."
 
 msgid "Tests"
-msgstr ""
+msgstr "Teste"
 
 msgid "Error"
-msgstr ""
+msgstr "Eroare"
 
 msgid "Warning"
-msgstr ""
+msgstr "Avertisment"
 
 msgid "{0} line {1} column {2}"
 msgstr "{0} rândul {1} coloana {2}"
@@ -853,7 +853,7 @@ msgid "{0} line {1}"
 msgstr "{0} rândul {1}"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Teste de Compatibilitate"
 
 msgid "Add-on failed validation."
 msgstr "Validarea suplimentului a eșuat."
@@ -863,15 +863,15 @@ msgstr ""
 
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} eroare"
+msgstr[1] "{0} erori"
+msgstr[2] "{0} de erori"
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} avertisment"
+msgstr[1] "{0} avertismente"
+msgstr[2] "{0} de avertismente"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"

@@ -94,7 +94,6 @@
         "pk": 9250,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": false,
             "display_collections": false,
             "averagerating": 4.24,
             "display_name": null,
