@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-31 16:32+0000\n"
+"PO-Revision-Date: 2018-07-31 16:43+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4889,27 +4889,24 @@ msgid "Save information from the internet to OneNote so you can edit, annotate, 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lap testreszabás {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Keresés közbeni követésvédelem {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lap testreszabás {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Dinamikus navigáció {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Készítsen képernyőképeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Képek hozzáadása a keresési eredményekhez {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
