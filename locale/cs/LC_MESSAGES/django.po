@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-31 16:25+0000\n"
+"PO-Revision-Date: 2018-07-20 06:09+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4513,7 +4513,6 @@ msgid "Get instant global weather information right in Firefox."
 msgstr "Informace o počasí kdekoliv na světě přímo ve Firefoxu."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Choose the page you see every time you open a new tab."
 msgstr "Nastavte si stránku otevíranou v nové panelu."
 
@@ -8069,7 +8068,6 @@ msgstr "nové"
 msgid "Ban"
 msgstr "Ban"
 
-#, fuzzy
 msgid "Delete picture"
 msgstr "Smazat obrázek"
 
