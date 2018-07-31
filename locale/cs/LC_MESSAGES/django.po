@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-31 10:44+0000\n"
+"PO-Revision-Date: 2018-07-31 16:25+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -64,7 +64,7 @@ msgid "Need help?"
 msgstr "Potřebujete pomoci?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr "Vývojáři doplňků a motivů nemohou smazat svůj účet. Musíte smazat všechny doplňky a vzhledy spojené s tímto účtem, nebo je převést na jiné uživatele."
+msgstr "Vývojáři doplňků a motivů vzhledu nemohou smazat svůj účet. Musíte smazat všechny doplňky a vzhledy spojené s tímto účtem, nebo je převést na jiné uživatele."
 
 msgid "Review"
 msgstr "Recenze"
@@ -166,10 +166,10 @@ msgid "A license must be selected."
 msgstr "Musí být zvolena licence."
 
 msgid "Give Your Theme a Name."
-msgstr "Napište název motivu."
+msgstr "Napište název vzhledu."
 
 msgid "Describe your Theme."
-msgstr "Popište svůj motiv."
+msgstr "Popište svůj motiv vzhledu."
 
 msgid "Enter a new author's email address"
 msgstr "Vložte novou e-mailovou adresu autora"
@@ -308,17 +308,17 @@ msgstr "od"
 
 #. {0} is a category name, such as Nature
 msgid "More {0} Themes"
-msgstr "Zobrazit dalších {0} motivů"
+msgstr "Zobrazit dalších {0} vzhledů"
 
 #. {0} is a category name, such as Nature
 msgid "See all {0} Themes"
-msgstr "Zobrazit všechny motivy z kategorie {0}"
+msgstr "Zobrazit všechny motivy vzhledu z kategorie {0}"
 
 msgid "More by this Artist"
 msgstr "Více od tohoto autora"
 
 msgid "See all Themes by this Artist"
-msgstr "Zobrazit všechny motivy od tohoto tvůrce"
+msgstr "Zobrazit všechny motivy vzhledu od tohoto tvůrce"
 
 msgid "Categories"
 msgstr "Kategorie"
@@ -652,7 +652,7 @@ msgid "Add-on Information for {0}"
 msgstr "Informace o doplňku {0}"
 
 msgid "Edit Theme"
-msgstr "Úprava motivu"
+msgstr "Úprava vzhledu"
 
 msgid "Approve / Reject"
 msgstr "Schválit / Zamítnout"
@@ -704,7 +704,7 @@ msgid "Submit a New Add-on"
 msgstr "Přidání nového doplňku"
 
 msgid "Submit a New Theme"
-msgstr "Přidání nového motivu"
+msgstr "Přidání nového vzhledu"
 
 msgid "Developer Hub"
 msgstr "Pro vývojáře"
@@ -767,7 +767,7 @@ msgid "Browse all extensions"
 msgstr "Procházet všechna rozšíření"
 
 msgid "Browse all themes"
-msgstr "Procházet všechny motivy"
+msgstr "Procházet všechny vzhledy"
 
 msgid "Add-ons Home Page"
 msgstr "Doplňky pro Firefox"
@@ -859,7 +859,7 @@ msgid "Themes"
 msgstr "Motivy vzhledu"
 
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr "Chcete větší přizpůsobení? Vyzkoušejte <b>plné motivy</b>"
+msgstr "Chcete větší přizpůsobení? Vyzkoušejte <b>plné motivy vzhledu</b>"
 
 msgid "Collections"
 msgstr "Sbírky"
@@ -1133,9 +1133,9 @@ msgstr "Smazat sbírku"
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] "%(num)s motiv v této sbírce"
-msgstr[1] "%(num)s motivy v této sbírce"
-msgstr[2] "%(num)s motivů v této sbírce"
+msgstr[0] "%(num)s vzhled v této sbírce"
+msgstr[1] "%(num)s vzhledy v této sbírce"
+msgstr[2] "%(num)s vzhledů v této sbírce"
 
 #, python-format
 msgid "%(num)s Add-on in this Collection"
@@ -1514,25 +1514,25 @@ msgstr "Úspěšná rozšíření"
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
 msgid "Featured Complete Themes"
-msgstr "Propagované plné motivy"
+msgstr "Propagované plné motivy vzhledu"
 
 msgid "Most Popular Complete Themes"
-msgstr "Nejpopulárnější plné motivy"
+msgstr "Nejpopulárnější plné motivy vzhledu"
 
 msgid "Top-Rated Complete Themes"
-msgstr "Nejlépe hodnocené plné motivy"
+msgstr "Nejlépe hodnocené plné motivy vzhledu"
 
 msgid "Newest Complete Themes"
-msgstr "Nejnovější plné motivy"
+msgstr "Nejnovější plné motivy vzhledu"
 
 msgid "Complete Themes by Name"
-msgstr "Plné motivy dle jména"
+msgstr "Plné motivy vzhledu dle jména"
 
 msgid "Complete Themes by Weekly Downloads"
-msgstr "Plné motivy dle týdenních stažení"
+msgstr "Plné motivy vzhledu dle týdenních stažení"
 
 msgid "Recently Updated Complete Themes"
-msgstr "Naposledy aktualizované plné motivy"
+msgstr "Naposledy aktualizované plné motivy vzhledu"
 
 msgid "Up & Coming Complete Themes"
 msgstr "Žádané kompletní vzhledy"
@@ -1555,7 +1555,7 @@ msgid "View Profile"
 msgstr "Zobrazení profilu"
 
 msgid "Create Your Own Theme"
-msgstr "Vytvoření svého vlastního motivu"
+msgstr "Vytvoření svého vlastního vzhledu"
 
 msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr "Váš prohlížeč, váš styl! Oblečte si svůj prohlížeč podle svého!"
@@ -2030,7 +2030,7 @@ msgid "Extension"
 msgstr "Rozšíření"
 
 msgid "Complete Theme"
-msgstr "Plný motiv"
+msgstr "Plný motiv vzhledu"
 
 msgid "Search Engine"
 msgstr "Vyhledávací modul"
@@ -2051,7 +2051,7 @@ msgid "Theme (Static)"
 msgstr "Vzhled (statický)"
 
 msgid "Complete Themes"
-msgstr "Plné motivy"
+msgstr "Plné motivy vzhledu"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -2390,7 +2390,7 @@ msgid "Updated Language Pack Review"
 msgstr "Kontroly aktualizovaných jazykových balíčků"
 
 msgid "Theme Review"
-msgstr "Kontrola motivu"
+msgstr "Kontrola motivu vzhledu"
 
 msgid "Theme (Static) Review"
 msgstr "Kontrola statického vzhledu"
@@ -2405,13 +2405,13 @@ msgid "Updated Search Provider Review"
 msgstr "Kontroly aktualizovaných vyhledávacích modulů"
 
 msgid "New Complete Theme Review"
-msgstr "Nová kontrola plného motivu"
+msgstr "Nová kontrola plného motivu vzhledu"
 
 msgid "Preliminary Complete Theme Review"
-msgstr "Předběžná kontrola plných motivů"
+msgstr "Předběžná kontrola plných motivů vzhledu"
 
 msgid "Updated Complete Theme Review"
-msgstr "Kontrola aktualizovaných plných motivů"
+msgstr "Kontrola aktualizovaných plných motivů vzhledu"
 
 msgid "Moderated Add-on Review"
 msgstr "Moderovaná recenze doplňku"
@@ -2690,13 +2690,13 @@ msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Doplněk nemůže být smazán. Na místo toho jej zakažte."
 
 msgid "Theme deleted."
-msgstr "Motiv byl smazán."
+msgstr "Vzhled byl smazán."
 
 msgid "Add-on deleted."
 msgstr "Doplněk smazán."
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr "Nesprávný název URL. Motiv nebyl smazán."
+msgstr "Nesprávný název URL. Vzhled nebyl smazán."
 
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "Nesprávný název URL. Doplněk nebyl smazán."
@@ -2938,9 +2938,9 @@ msgstr "Starší aktivity pro mé doplňky"
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] "<b>{0}</b> motiv"
-msgstr[1] "<b>{0}</b> motivy"
-msgstr[2] "<b>{0}</b> motivů"
+msgstr[0] "<b>{0}</b> motiv vzhledu"
+msgstr[1] "<b>{0}</b> motivy vzhledu"
+msgstr[2] "<b>{0}</b> motivů vzhledu"
 
 msgid "Edit Information"
 msgstr "Upravit informace"
@@ -3278,7 +3278,7 @@ msgid "The licensor permits others to distribute derivativeworks only under the 
 msgstr "Licence umožňuje ostatním distribuovat odvozenou práci pouze pod stejnou licencí či jinou, která je slučitelná s licencí původního díla."
 
 msgid "Your Add-on will be released under the following license:"
-msgstr "Váš motiv bude k dispozici pod následující licencí:"
+msgstr "Váš motiv vzhledu bude k dispozici pod následující licencí:"
 
 msgid "Select a different license."
 msgstr "Volba odlišné licence."
@@ -3314,13 +3314,13 @@ msgid "Top"
 msgstr "Nahoru"
 
 msgid "Delete Theme"
-msgstr "Smazání motivu"
+msgstr "Smazání vzhledu"
 
 msgid "Delete Add-on"
 msgstr "Smazat doplněk"
 
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr "Smazáním svého motivu jej trvale odstraníte z tohoto webu."
+msgstr "Smazáním svého motivu vzhledu jej trvale odstraníte z tohoto webu."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -3333,7 +3333,7 @@ msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Pro potvrzení svého rozhodnutí zadejte následující text: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
-msgstr "Řekněte nám prosím, proč mažete svůj motiv:"
+msgstr "Řekněte nám prosím, proč mažete svůj motiv vzhledu:"
 
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "Řekněte nám prosím, proč mažete svůj doplněk:"
@@ -3378,25 +3378,25 @@ msgid "View Recent Changes"
 msgstr "Zobrazit poslední změny"
 
 msgid "Edit details about this theme's listing."
-msgstr "Úprava detailů o stránce tohoto motivu."
+msgstr "Úprava detailů o stránce tohoto motivu vzhledu."
 
 msgid "Edit Listing"
 msgstr "Úprava stránky"
 
 msgid "View the popularity of this theme over time."
-msgstr "Zobrazit popularitu tohoto motivu v čase."
+msgstr "Zobrazit popularitu tohoto motivu vzhledu v čase."
 
 msgid "View Statistics"
 msgstr "Zobrazit statistiky"
 
 msgid "Change the owner of this theme."
-msgstr "Změna vlastníka tohoto motivu."
+msgstr "Změna vlastníka tohoto motivu vzhledu."
 
 msgid "Transfer Ownership"
 msgstr "Přesun vlastnictví"
 
 msgid "Delete this theme."
-msgstr "Smazání tohoto motivu."
+msgstr "Smazání tohoto motivu vzhledu."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "Tomuto doplňku chybí některé požadované informace, aby mohl být odeslán k publikaci."
@@ -3591,10 +3591,10 @@ msgid "Administrative overrides"
 msgstr "Změny při administraci"
 
 msgid "Create a Theme Version"
-msgstr "Vytvořit verzi motivu"
+msgstr "Vytvořit verzi motivu vzhledu"
 
 msgid "Create a Theme"
-msgstr "Vytvořit nový motiv"
+msgstr "Vytvořit nový motiv vzhledu"
 
 msgid "Submit File"
 msgstr "Odeslat soubor"
@@ -3603,16 +3603,16 @@ msgid "Sign Add-on"
 msgstr "Podepsat doplněk"
 
 msgid "Theme generate"
-msgstr "Vygenerovat motiv"
+msgstr "Vygenerovat motiv vzhledu"
 
 msgid "Theme generator"
-msgstr "Generátor motivů"
+msgstr "Generátor motivů vzhledu"
 
 msgid "Theme name"
-msgstr "Název motivu"
+msgstr "Název motivu vzhledu"
 
 msgid "Select a header image for your theme"
-msgstr "Vyberte obrázek záhlaví pro váš motiv"
+msgstr "Vyberte obrázek záhlaví pro váš motiv vzhledu"
 
 msgid "Image height should be 200 pixels"
 msgstr "Výška obrázku by měla být 200 pixelů"
@@ -3627,7 +3627,7 @@ msgid "Select a different header image"
 msgstr "Vybrat jiný obrázek hlavičky"
 
 msgid "Select colors for your theme"
-msgstr "Vyberte barvy pro váš motiv"
+msgstr "Vyberte barvy pro váš motiv vzhledu"
 
 msgid "Header area background"
 msgstr "Pozadí záhlaví"
@@ -3675,10 +3675,10 @@ msgid "Back"
 msgstr "Zpět"
 
 msgid "Uploading Theme"
-msgstr "Nahrávání motivu"
+msgstr "Nahrávání motivu vzhledu"
 
 msgid "Finish Theme"
-msgstr "Dokončit motiv"
+msgstr "Dokončit motiv vzhledu"
 
 msgid "API Credentials"
 msgstr "Přihlašovací údaje k API"
@@ -3988,13 +3988,13 @@ msgid "View All Submissions"
 msgstr "Zobrazit všechny příspěvky"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr "Toto je místo, kde se zobrazují a odkud můžete spravovat vaše rozšíření a motivy. Pro publikaci prvního doplňku klepněte na \"Přidejte svůj první doplněk\" nebo \"Přidejte svůj první motiv\"."
+msgstr "Toto je místo, kde se zobrazují a odkud můžete spravovat vaše rozšíření a motivy vzhledu. Pro publikaci prvního doplňku klepněte na \"Přidejte svůj první doplněk\" nebo \"Přidejte svůj první motiv\"."
 
 msgid "Submit Your First Add-on"
 msgstr "Přidejte svůj první doplněk"
 
 msgid "Submit Your First Theme"
-msgstr "Přidejte svůj první motiv"
+msgstr "Přidejte svůj první motiv vzhledu"
 
 # The title for a user if they are a developer
 msgid "Add-on Developer Hub"
@@ -4041,7 +4041,7 @@ msgid "Publish Your Add-on"
 msgstr "Publikujte svůj doplněk"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Je váš doplněk hotový? Odešlete své rozšíření nebo motiv ke zveřejnění na addons.mozilla.org nebo jej nechte podepsat a distribuujte si jej sami."
+msgstr "Je váš doplněk hotový? Odešlete své rozšíření nebo motiv vzhledu ke zveřejnění na addons.mozilla.org nebo jej nechte podepsat a distribuujte si jej sami."
 
 msgid "Sign In"
 msgstr "Přihlásit se"
@@ -4065,25 +4065,25 @@ msgid "Transfer ownership"
 msgstr "Přesun vlastnictví"
 
 msgid "Theme Details"
-msgstr "Detaily o motivu"
+msgstr "Detaily o motivu vzhledu"
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Nastavte si hezkou URL pro stránku detailu."
 
 msgid "Select the category that best describes your Theme."
-msgstr "Zvolte kategorii, která nejlépe popisuje váš motiv."
+msgstr "Zvolte kategorii, která nejlépe popisuje váš motiv vzhledu."
 
 msgid "Add some tags to describe your Theme."
-msgstr "Přidejte štítky, které popisují váš motiv."
+msgstr "Přidejte štítky, které popisují váš motiv vzhledu."
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "Krátký popis vašeho motivu, který je zobrazen ve vyhledávání, přehledu v kategorii či přímo na stránce detailu motivu."
+msgstr "Krátký popis vašeho motivu vzhledu, který je zobrazen ve vyhledávání, přehledu v kategorii či přímo na stránce detailu motivu."
 
 msgid "Theme License"
-msgstr "Licence motivu"
+msgstr "Licence motivu vzhledu"
 
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Mohou ostatní sdílet váš motiv za předpokladu, že vás uvedou jako autora?"
+msgstr "Mohou ostatní sdílet váš motiv vzhledu za předpokladu, že vás uvedou jako autora?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr "Autor dává ostatním právo kopírovat, distribuovat, zobrazovat a upravovat. A to včetně komerčního použití."
@@ -4092,10 +4092,10 @@ msgid "The licensor permits others to copy, distribute, display, and perform the
 msgstr "Autor dává ostatním právo kopírovat, distribuovat, zobrazovat a upravovat. Bez možnosti komerčního použití."
 
 msgid "Can others make commercial use of your Theme?"
-msgstr "Mohou ostatní komerčně využívat váš motiv?"
+msgstr "Mohou ostatní komerčně využívat váš motiv vzhledu?"
 
 msgid "Can others create derivative works from your Theme?"
-msgstr "Mohou ostatní vytvářet odvozená díla z vašeho motivu?"
+msgstr "Mohou ostatní vytvářet odvozená díla z vašeho motivu vzhledu?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 msgstr "Autor dává ostatním právo kopírovat, distribuovat, zobrazovat a upravovat. Dává též svolení na vytváření odvozených děl."
@@ -4104,13 +4104,13 @@ msgid "The licensor permits others to copy, distribute and transmit only unalter
 msgstr "Licence umožňuje ostatním kopírovat, distribuovat a přenášet dílo pouze v nezměněné podobě — odvozená díla nejsou povolena."
 
 msgid "Your Theme will be released under the following license:"
-msgstr "Váš motiv bude k dispozici pod následující licencí:"
+msgstr "Váš motiv vzhledu bude k dispozici pod následující licencí:"
 
 msgid "Select a license for your Theme."
-msgstr "Zvolte licenci vašeho motivu."
+msgstr "Zvolte licenci vašeho motivu vzhledu."
 
 msgid "Theme Design"
-msgstr "Vzhled motivu"
+msgstr "Návrh vzhledu"
 
 msgid "Upload New Design"
 msgstr "Nahrát nový návrh"
@@ -4125,13 +4125,13 @@ msgid "Pending Header"
 msgstr "Čekající hlavička"
 
 msgid "You may update your theme design here once it has been approved."
-msgstr "Svůj návrh motivu budete moci aktualizovat až bude schválen."
+msgstr "Svůj návrh motivu vzhledu budete moci aktualizovat až bude schválen."
 
 msgid "Header"
 msgstr "Hlavička"
 
 msgid "Select colors for your Theme."
-msgstr "Zvolte barvy pro váš motiv."
+msgstr "Zvolte barvy pro váš vzhledu."
 
 msgid "Foreground Text"
 msgstr "Text na popředí"
@@ -4146,21 +4146,21 @@ msgid "This is the color of the tabs."
 msgstr "Jedná se o barvu panelů."
 
 msgid "Your Theme's Name"
-msgstr "Jméno vašeho motivu"
+msgstr "Jméno vašeho vzhledu"
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
 msgstr "od <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
-msgstr "Vytvoření nového motivu"
+msgstr "Vytvoření nového vzhledu"
 
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
 msgstr "Motivy vám dávají možnost si snadno přizpůsobit vzhled svého Firefoxu. Přidejte svůj vlastní motiv níže nebo <a href=\"%(submit_url)s\">si přečtěte, jak vytvořit nový</a>!"
 
 msgid "Give your Theme a name."
-msgstr "Dejte vašemu motivu jméno."
+msgstr "Dejte vašemu vzhledu jméno."
 
 #, python-format
 msgid ""
@@ -4171,20 +4171,20 @@ msgstr ""
 "webové stránky, sdělení a soubory cookies%(link_close)s."
 
 msgid "Submit Theme"
-msgstr "Přidat motiv"
+msgstr "Přidat motiv vzhledu"
 
 msgid "You're done!"
 msgstr "Jste hotovi!"
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr "Váš motiv byl odeslán do fronty ke schválení. Jakmile bude zkontrolován, obdržíte o tom e-mail. Obvykle se tak stává do 24 hodin."
+msgstr "Váš motiv vzhledu byl odeslán do fronty ke schválení. Jakmile bude zkontrolován, obdržíte o tom e-mail. Obvykle se tak stává do 24 hodin."
 
 msgid "Next steps:"
 msgstr "Další kroky:"
 
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr "Poskytněte více informací o svém motivu <a href=\"%(edit_url)s\">úpravou stránky</a>."
+msgstr "Poskytněte více informací o svém motivu vzhledu <a href=\"%(edit_url)s\">úpravou stránky</a>."
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
@@ -4195,7 +4195,7 @@ msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Připojte se do konverzace v našich <a href=\"%(forum_url)s\">fórech</a>."
 
 msgid "Select a header image for your Theme."
-msgstr "Zvolte obrázek hlavičky pro váš motiv."
+msgstr "Zvolte obrázek hlavičky pro váš motiv vzhledu."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pixelů"
@@ -5958,7 +5958,7 @@ msgid "A quick view to compare prices when you shop online or search for flights
 msgstr "Rychlé porovnání cen, když jste v obchodě či hledáte let."
 
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr "Motivy ke dni Sv. Patrika"
+msgstr "Vzhledy ke dni Sv. Patrika"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Ozdobte svůj prohlížeč na oslavu dne Sv. Patrika."
@@ -6042,7 +6042,7 @@ msgid "Browse all add-ons"
 msgstr "Procházet všechny doplňky"
 
 msgid "See all complete themes"
-msgstr "Zobrazit všechny plné motivy"
+msgstr "Zobrazit všechny plné motivy vzhledu"
 
 msgid "Close Video"
 msgstr "Zavřít video"
@@ -6626,10 +6626,10 @@ msgstr "Volba předpřipravené odpovědi..."
 
 #. L10n: Description of what can be searched for.
 msgid "theme name"
-msgstr "jméno motivu"
+msgstr "název vzhledu"
 
 msgid "Someone else is reviewing this theme."
-msgstr "Někdo jiný aktuálně kontroluje tento motiv."
+msgstr "Někdo jiný aktuálně kontroluje tento motiv vzhledu."
 
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
@@ -6678,16 +6678,16 @@ msgid "Duplicate Submission"
 msgstr "Duplicitní odeslání"
 
 msgid "Thanks for submitting your Theme"
-msgstr "Děkujeme za přidání vašeho motivu"
+msgstr "Děkujeme za přidání vašeho motivu vzhledu"
 
 msgid "A problem with your Theme submission"
-msgstr "Při přidávání vašeho motivu nastal problém"
+msgstr "Při přidávání vašeho motivu vzhledu nastal problém"
 
 msgid "Theme submission flagged for review"
-msgstr "Odeslání motivu označeno pro kontrolu"
+msgstr "Odeslání motivu vzhledu označeno pro kontrolu"
 
 msgid "A question about your Theme submission"
-msgstr "Otázka k vašemu odeslání motivu"
+msgstr "Otázka k vašemu odeslání motivu vzhledu"
 
 msgid "Type"
 msgstr "Typ"
@@ -6837,7 +6837,7 @@ msgid "Lightweight Themes Review Log"
 msgstr "Záznam kontrol lehkých vzhledů"
 
 msgid "Deleted Themes Log"
-msgstr "Záznam smazaných motivů"
+msgstr "Záznam smazaných motivů vzhledu"
 
 msgid "User Ratings Moderation"
 msgstr "Moderování uživatelských hodnocení"
@@ -6880,12 +6880,12 @@ msgstr "Dosažen limit recenzí"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} motiv úspěšně zpracován (+{1} bodů, {2} celkem)."
-msgstr[1] "{0} motivy úspěšně zpracovány (+{1} bodů, {2} celkem)."
-msgstr[2] "{0} motivů úspěšně zpracováno (+{1} bodů, {2} celkem)."
+msgstr[0] "{0} motiv vzhledu úspěšně zpracován (+{1} bodů, {2} celkem)."
+msgstr[1] "{0} motivy vzhledu úspěšně zpracovány (+{1} bodů, {2} celkem)."
+msgstr[2] "{0} motivů vzhledu úspěšně zpracováno (+{1} bodů, {2} celkem)."
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr "Vaše zámky u motivů byly úspěšně odstraněny. Jiní redaktoři nyní mohou tyto doplňky kontrolovat. Můžete nyní chtít obnovit stránku a vidět změny níže v tabulce."
+msgstr "Vaše zámky u motivů vzhledu byly úspěšně odstraněny. Jiní redaktoři nyní mohou tyto doplňky kontrolovat. Můžete nyní chtít obnovit stránku a vidět změny níže v tabulce."
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Nahlášená zneužití"
@@ -7265,10 +7265,10 @@ msgid "Date Deleted"
 msgstr "Datum smazáno"
 
 msgid "No deleted themes found for this period."
-msgstr "V tomto období nebyly nalezeny žádné smazané motivy."
+msgstr "V tomto období nebyly nalezeny žádné smazané motivy vzhledu."
 
 msgid "Theme Review History for {0}"
-msgstr "Historie kontrol motivů pro {0}"
+msgstr "Historie kontrol motivů vzhledu pro {0}"
 
 msgid "Review Date"
 msgstr "Datum kontroly"
@@ -7283,10 +7283,10 @@ msgid "There are currently no reviews."
 msgstr "Aktuálně nejsou dostupné žádné kontroly."
 
 msgid "Flagged Themes"
-msgstr "Označené motivy"
+msgstr "Označené motivy vzhledu"
 
 msgid "Theme Review Queue"
-msgstr "Fronta pro schválení motivů"
+msgstr "Fronta pro schválení motivů vzhledu"
 
 msgid "Queues"
 msgstr "Fronty"
@@ -7304,10 +7304,10 @@ msgid "Keyboard Shortcuts"
 msgstr "Klávesové zkratky"
 
 msgid "Next Theme"
-msgstr "Další motiv"
+msgstr "Další vzhled"
 
 msgid "Previous Theme"
-msgstr "Předchozí motiv"
+msgstr "Předchozí vzhled"
 
 msgid "Your Review History"
 msgstr "Vaše historie kontrol"
@@ -7322,22 +7322,22 @@ msgid "{0} out of {1} reviewed"
 msgstr "Zkontrolováno {0} z {1}"
 
 msgid "There are currently no Themes to review."
-msgstr "Aktuálně nejsou dostupné žádné motivy na kontrolu."
+msgstr "Aktuálně nejsou dostupné žádné motivy vzhledu na kontrolu."
 
 msgid "Clear Search"
 msgstr "Zrušit hledání"
 
 msgid "Release My Theme Locks"
-msgstr "Uvolnit mé zámky u motivů"
+msgstr "Uvolnit mé zámky u motivů vzhledu"
 
 msgid "Interactive Theme Queue"
-msgstr "Interaktivní fronta s motivy"
+msgstr "Interaktivní fronta s motivy vzhledu"
 
 msgid "Reviewers' Guide"
 msgstr "Příručka redaktora"
 
 msgid "Theme Review for {0}"
-msgstr "Kontroly motivu {0}"
+msgstr "Kontroly vzhledu {0}"
 
 msgid "(Probable Duplicate Submission)"
 msgstr "(Pravděpodobně duplicitní odeslání)"
@@ -7353,7 +7353,7 @@ msgid "Flagged: {0}"
 msgstr "Označeno: {0}"
 
 msgid "Approve Theme"
-msgstr "Schválit motiv"
+msgstr "Schválit vzhled"
 
 msgid "Field required"
 msgstr "Pole je vyžadováno"
@@ -7417,7 +7417,7 @@ msgid "search for add-ons"
 msgstr "hledat doplňky"
 
 msgid "search for themes"
-msgstr "vyhledání motivů"
+msgstr "vyhledání motivů vzhledu"
 
 msgid "search for apps"
 msgstr "hledat aplikace"
@@ -7456,10 +7456,10 @@ msgstr "Vyhledávání je dočasně nedostupné. Zkuste to prosím znovu za něk
 
 #. {0} is the string the user was searching for
 msgid "Themes Search Results for {0}"
-msgstr "Výsledky vyhledávání motivů dle {0}"
+msgstr "Výsledky vyhledávání motivů vzhledu podle {0}"
 
 msgid "Themes Search Results"
-msgstr "Výsledky vyhledávání motivů"
+msgstr "Výsledky vyhledávání motivů vzhledu"
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
@@ -7788,8 +7788,8 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
-"<h2>Co jsou denní uživatelé?</h2> <p> Motivy nainstalované z této stránky jednou denně kontrolují, zda pro ně není k dispozici aktualizace. Celkový počet těchto dotazů udává počet aktivních denních "
-"uživatelů či celkový počet lidí, kteří motiv v konkrétní den použili. </p>"
+"<h2>Kdo jsou denní uživatelé?</h2> <p> Motivy vzhledu nainstalované z této stránky jednou denně kontrolují, zda pro ně není k dispozici aktualizace. Celkový počet těchto dotazů udává počet aktivních"
+" denních uživatelů či celkový počet lidí, kteří motiv v konkrétní den použili. </p>"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
@@ -8211,7 +8211,7 @@ msgid "Add-ons Developer"
 msgstr "Vývojář doplňků"
 
 msgid "Themes Artist"
-msgstr "Autor motivů"
+msgstr "Autor motivů vzhledu"
 
 msgid "About me"
 msgstr "O mně"
@@ -8223,10 +8223,10 @@ msgid "Add-ons I've created"
 msgstr "Doplňky, které jsem vytvořil"
 
 msgid "My Most Popular Themes"
-msgstr "Mé nejpopulárnější motivy"
+msgstr "Mé nejpopulárnější vzhledy"
 
 msgid "Themes I've created"
-msgstr "Motivy, které jsem vytvořili"
+msgstr "Vzhledy, které jsem vytvořili"
 
 msgid "Followed by Me"
 msgstr "Sledované mnou"
@@ -8298,9 +8298,9 @@ msgstr "{0} doplňků"
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] "%(num)s motiv"
-msgstr[1] "%(num)s motivy"
-msgstr[2] "%(num)s motivů"
+msgstr[0] "%(num)s vzhled"
+msgstr[1] "%(num)s vzhledy"
+msgstr[2] "%(num)s vzhledů"
 
 #, python-format
 msgid "%(num)s add-on"
