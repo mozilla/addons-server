@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-23 16:55+0000\n"
-"Last-Translator: Winfox <openlib@email.it>\n"
+"PO-Revision-Date: 2018-07-31 10:11+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -4558,7 +4558,7 @@ msgstr "Hai trovato un’immagine interessante sul Web e vuoi avere maggiori inf
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Funziona con YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope e centinaia di altri siti di video."
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
@@ -4597,19 +4597,16 @@ msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr "Evidenzia qualunque testo e utilizza il tasto destro per effettuare facilmente una ricerca di immagini."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocca le pubblicità {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Mostra i segnalibri come riquadri {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Access your favorite sites from a tile layout."
-msgstr "Risparmia sull’acquisto dei tuoi articoli preferiti comodamente dal tuo browser."
+msgstr "Accedi ai tuoi siti preferiti attraverso comodi riquadri."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocca le pubblicità {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Accedi alle conoscenze enciclopediche {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
@@ -4621,7 +4618,7 @@ msgstr "Blocca gli avvisi pubblicitari da YouTube{start_sub_heading}con {addon_n
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Blocca le fastidiose pubblicità e annotazioni che appaiono su YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4640,13 +4637,12 @@ msgid "Organize your tabs by color grouping them based on URL patterns."
 msgstr "Organizza le tue schede per colore raggruppandole in base all'URL."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Arricchisci i tuoi testi con le emoji {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Impedisci il mining di criptovalute {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Stop ai siti web malevoli che usano, a tua insaputa, le risorse del tuo computer per generare criptovalute."
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4657,9 +4653,8 @@ msgid "Get grammar help anywhere you write on the web—social media, email, doc
 msgstr "Un aiuto grammaticale sempre a disposizione per quando scrivi sul Web: social media, email, documenti e altro ancora."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocca le pubblicità {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Controlla che ore sono nelle diverse parti del mondo {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
@@ -4671,7 +4666,7 @@ msgstr "Traduci in un lampo {start_sub_heading}con {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Evidenzia un frammento di testo su qualsiasi sito web, o seleziona l'intera pagina, per ottenere una traduzione istantanea."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4712,7 +4707,7 @@ msgstr "Scova contenuti web scomparsi {start_sub_heading}con {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "La pagina che stavi cercando non è più disponibile? Recuperane una versione precedente dall’archivio o dalla cache."
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4752,7 +4747,7 @@ msgstr "Blocca gli elementi traccianti mentre seguono la tua pista e scopri di p
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Salva frammenti di testo per il copia-incolla {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
