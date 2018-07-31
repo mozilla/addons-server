@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-28 11:35+0000\n"
-"Last-Translator: Uccen Marzuq <merzouk.ouchene@laposte.net>\n"
+"PO-Revision-Date: 2018-07-31 15:42+0000\n"
+"Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -706,9 +706,8 @@ msgstr "Ur yettusireg ara"
 msgid "Oops! Not allowed."
 msgstr "Hups! Ur yettusireg ara"
 
-#, fuzzy
 msgid "You tried to do something that you weren't allowed to."
-msgstr "<h1>Suref-aɣ! Ayagi yegdel.</h1> <p>Tɣeṛḍeḍ ad tkecmeḍ ar teɣbalut anida ur ɣur-k ara izerfan.</p>"
+msgstr "Tɛeṛḍeḍ ad tkecmeḍ ar teɣbalut anida ur ɣur-k ara izerfan."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -1830,13 +1829,11 @@ msgstr "{rating} i {addon} yettusnifel."
 msgid "{addon} reviewed."
 msgstr "{addon} yettacegger."
 
-#, fuzzy
 msgid "User {user} banned."
-msgstr "Aseqdac {user} yettwasedreg."
+msgstr "Aseqdac {user} yettwaḥwi."
 
-#, fuzzy
 msgid "User {user} picture deleted."
-msgstr "Aseqdac {user} yettuẓẓeyeṛ."
+msgstr "Tawlaft n useqdac {user} tettwakkes."
 
 msgid "User {0.name} added to {group}."
 msgstr "Aseqdac {0.name} yettwarna ɣer {group}."
@@ -2305,9 +2302,8 @@ msgstr "Asentel usbiḍ"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "No Reputation"
-msgstr "Tisellet"
+msgstr "Ulac tisellet"
 
 msgid "Good (1)"
 msgstr ""
