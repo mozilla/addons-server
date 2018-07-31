@@ -296,7 +296,7 @@ def handle_file_validation_result(results, file_id, *args):
         results=results, file_=file_, addon=file_.version.addon,
         version_string=file_.version.version, channel=file_.version.channel)
 
-    return FileValidation.from_json(file_, results)
+    return FileValidation.from_json(file_, results).pk
 
 
 def insert_validation_message(results, type_='error', message='', msg_id='',
