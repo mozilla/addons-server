@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-26 10:19+0000\n"
+"POT-Creation-Date: 2018-08-01 20:09+0000\n"
 "PO-Revision-Date: 2018-05-12 09:36+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -850,9 +850,6 @@ msgstr "Koleksione"
 msgid "Collections I've Made"
 msgstr "Koleksionet që Kam Krijuar"
 
-msgid "Collections I'm Following"
-msgstr "Koleksionet që Ndjek"
-
 msgid "My Favorite Add-ons"
 msgstr "Shtesat e Mia të Parapëlqyera"
 
@@ -1072,28 +1069,11 @@ msgstr "(opsional)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "ose <a id=\"collections-new-cancel\" href=\"#\">Anulojeni</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "Që të jepni vlerësim për këtë shtesë, duhet të keni një llogari shtesash."
-
-msgid "Create an Add-ons Account"
-msgstr "Krijoni një Llogari Shtesash"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "ose <a href=\"%(login)s\">hyni te llogaria juaj e tanishme</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: Koleksione"
 
 msgid "private"
 msgstr "vetjake"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> ndjekës"
-msgstr[1] "<span>%(num)s</span> ndjekës"
 
 msgid "About this Collection"
 msgstr "Rreth këtij Koleksioni"
@@ -1166,48 +1146,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> shtesë"
 msgstr[1] "<span>%(addons)s</span> shtesa"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> ndjekës"
-msgstr[1] "<span>%(followers)s</span> ndjekës"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s ndjekës javor"
-msgstr[1] "%(num)s ndjekës javorë"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s ndjekës mujor"
-msgstr[1] "%(num)s ndjekës mujorë"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s ndjekës"
-msgstr[1] "%(num)s ndjekës"
-
 msgid "by {0}"
 msgstr "nga {0}"
-
-msgid "Stop Following"
-msgstr "Ndale Ndjekjen"
-
-msgid "Follow this Collection"
-msgstr "Ndiqe këtë Koleksion"
 
 msgid "Edit this Collection"
 msgstr "Përpunojeni këtë Koleksion"
@@ -1258,9 +1198,6 @@ msgstr ""
 msgid "by %(author_link)s"
 msgstr "nga %(author_link)s"
 
-msgid "Following"
-msgstr "Ndjekur Prej Jush"
-
 msgid "Create a Collection"
 msgstr "Krijoni një Koleksion"
 
@@ -1308,18 +1245,6 @@ msgstr "Shtoni një koment"
 
 msgid "Remove this add-on from the collection"
 msgstr "Hiqe këtë shtesë prej koleksionit"
-
-msgid "Add a positive vote for this collection"
-msgstr "Shtoni një votë pozitive për këtë koleksion"
-
-msgid "Add a negative vote for this collection"
-msgstr "Shtoni një votë negative për këtë koleksion"
-
-msgid "Remove my vote for this collection"
-msgstr "Hiqe votën time nga kjo përmbledhje"
-
-msgid "Log in to vote for this collection"
-msgstr "Hyni, që të votoni për këtë koleksion"
 
 # A heading
 msgid "Favorite"
@@ -7728,12 +7653,6 @@ msgstr "sipas Platformash"
 msgid "by Add-on Status"
 msgstr "sipas Gjendjes së Shtesës"
 
-msgid "Subscribers"
-msgstr "Pajtimtarë"
-
-msgid "Ratings"
-msgstr "Vlerësime"
-
 msgid "Add-on Statistics"
 msgstr "Statistika Shtese"
 
@@ -7987,6 +7906,13 @@ msgstr "Vizitoni sajtin e ri"
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Që të krijoni koleksionet tuaja, duhet të keni një llogari te Shtesat Mozilla."
 
+msgid "Create an Add-ons Account"
+msgstr "Krijoni një Llogari Shtesash"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "ose <a href=\"%(login)s\">hyni te llogaria juaj e tanishme</a>"
+
 msgid "Footer logo"
 msgstr "Logo fundfaqeje"
 
@@ -8136,6 +8062,9 @@ msgstr "Foto Profili"
 
 msgid "Addons"
 msgstr ""
+
+msgid "Ratings"
+msgstr "Vlerësime"
 
 #, fuzzy
 msgid "Activity Logs"
@@ -8323,9 +8252,6 @@ msgstr "Vendosni cilat koleksione do të duhej të shfaqeshin te profili juaj."
 msgid "Display the collections I have created"
 msgstr "Shfaq koleksionet që kam krijuar"
 
-msgid "Display collections I'm following"
-msgstr "Shfaq koleksionet që ndjek unë"
-
 msgid "Notifications"
 msgstr "Njoftime"
 
@@ -8395,9 +8321,6 @@ msgstr "Temat e Mia Më Popullore"
 
 msgid "Themes I've created"
 msgstr "Temat që kam krijuar"
-
-msgid "Followed by Me"
-msgstr "Ndjekur prej Meje"
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"

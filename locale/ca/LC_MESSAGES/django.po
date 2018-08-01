@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-26 10:19+0000\n"
+"POT-Creation-Date: 2018-08-01 20:09+0000\n"
 "PO-Revision-Date: 2018-06-20 17:05+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -880,9 +880,6 @@ msgstr "Col·leccions"
 msgid "Collections I've Made"
 msgstr "Les meves col·leccions"
 
-msgid "Collections I'm Following"
-msgstr "Les col·leccions que segueixo"
-
 msgid "My Favorite Add-ons"
 msgstr "Els meus complements preferits"
 
@@ -1105,28 +1102,11 @@ msgstr "(opcional)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "o <a id=\"collections-new-cancel\" href=\"#\">Cancel·la</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "Per valorar les col·leccions, heu de tenir un compte."
-
-msgid "Create an Add-ons Account"
-msgstr "Crea un compte de complements"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "o <a href=\"%(login)s\">inicieu una sessió amb el vostre compte</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: Col·leccions"
 
 msgid "private"
 msgstr "privat"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> seguidor"
-msgstr[1] "<span>%(num)s</span> seguidors"
 
 msgid "About this Collection"
 msgstr "Quant a aquesta col·lecció"
@@ -1198,48 +1178,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> complement"
 msgstr[1] "<span>%(addons)s</span> complements"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> seguidor"
-msgstr[1] "<span>%(followers)s</span> seguidors"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s seguidor setmanal"
-msgstr[1] "%(num)s seguidors setmanals"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s seguidor al mes"
-msgstr[1] "%(num)s seguidors al mes"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s seguidor"
-msgstr[1] "%(num)s seguidors"
-
 msgid "by {0}"
 msgstr "per {0}"
-
-msgid "Stop Following"
-msgstr "Stop Following"
-
-msgid "Follow this Collection"
-msgstr "Segueix aquesta col·lecció"
 
 msgid "Edit this Collection"
 msgstr "Edita aquesta col·lecció"
@@ -1291,9 +1231,6 @@ msgstr "Les col·leccions són agrupacions de complements que qualsevol persona 
 msgid "by %(author_link)s"
 msgstr "per %(users)s"
 
-msgid "Following"
-msgstr "Seguint"
-
 msgid "Create a Collection"
 msgstr "Crea una col·lecció"
 
@@ -1341,18 +1278,6 @@ msgstr "Afegeix un comentari"
 
 msgid "Remove this add-on from the collection"
 msgstr "Elimina aquest complement de la col·lecció"
-
-msgid "Add a positive vote for this collection"
-msgstr "Dóna un vot positiu a aquesta col·lecció"
-
-msgid "Add a negative vote for this collection"
-msgstr "Dóna un vot negatiu a aquesta col·lecció"
-
-msgid "Remove my vote for this collection"
-msgstr "Suprimeix el meu vot per a aquesta col·lecció"
-
-msgid "Log in to vote for this collection"
-msgstr "Inicieu una sessió per a votar aquesta col·lecció"
 
 msgid "Favorite"
 msgstr "Preferides"
@@ -7754,12 +7679,6 @@ msgstr "per plataforma"
 msgid "by Add-on Status"
 msgstr "per l'estat del complement"
 
-msgid "Subscribers"
-msgstr ""
-
-msgid "Ratings"
-msgstr ""
-
 msgid "Add-on Statistics"
 msgstr ""
 
@@ -8002,6 +7921,13 @@ msgstr ""
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Per crear les vostres pròpies col·leccions, heu de tenir un compte al Mozilla Add-ons."
 
+msgid "Create an Add-ons Account"
+msgstr "Crea un compte de complements"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "o <a href=\"%(login)s\">inicieu una sessió amb el vostre compte</a>"
+
 msgid "Footer logo"
 msgstr ""
 
@@ -8155,6 +8081,9 @@ msgid "Profile Photo"
 msgstr "Perfil de la foto"
 
 msgid "Addons"
+msgstr ""
+
+msgid "Ratings"
 msgstr ""
 
 #, fuzzy
@@ -8344,9 +8273,6 @@ msgstr "Decidiu quines col·leccions s'haurien de mostrar al vostre perfil."
 msgid "Display the collections I have created"
 msgstr "Mostra les col·leccions que he creat"
 
-msgid "Display collections I'm following"
-msgstr "Mostra les col·leccions que estic seguint"
-
 msgid "Notifications"
 msgstr "Notificacions"
 
@@ -8416,9 +8342,6 @@ msgstr ""
 
 msgid "Themes I've created"
 msgstr ""
-
-msgid "Followed by Me"
-msgstr "Followed by Me"
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"

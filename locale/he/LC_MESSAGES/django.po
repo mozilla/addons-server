@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-26 10:19+0000\n"
+"POT-Creation-Date: 2018-08-01 20:09+0000\n"
 "PO-Revision-Date: 2018-07-25 13:03+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -855,9 +855,6 @@ msgstr "אוספים"
 msgid "Collections I've Made"
 msgstr "האוספים שיצרתי"
 
-msgid "Collections I'm Following"
-msgstr "אוספים במעקב"
-
 msgid "My Favorite Add-ons"
 msgstr "התוספות המועדפות עליי"
 
@@ -1088,28 +1085,11 @@ msgstr "(אופציונלי)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "או <a id=\"collections-new-cancel\" href=\"#\">ביטול</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "על מנת לדרג אוספים, יש צורך בחשבון Add-ons."
-
-msgid "Create an Add-ons Account"
-msgstr "יצירת חשבון Add-ons"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "או <a href=\"%(login)s\">התחברות לחשבון הנוכחי שלך</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: אוספים"
 
 msgid "private"
 msgstr "פרטי"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "עוקב <span>אחד</span>"
-msgstr[1] "<span>%(num)s</span> עוקבים"
 
 # 76%
 # 100%
@@ -1189,48 +1169,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "תוספת <span>אחת</span>"
 msgstr[1] "<span>%(addons)s</span> תוספות"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "עוקב <span>אחד</span>"
-msgstr[1] "<span>%(followers)s</span> עוקבים"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "עוקב אחד בשבוע"
-msgstr[1] "%(num)s עוקבים בשבוע"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "עוקב אחד בחודש"
-msgstr[1] "%(num)s עוקבים בחודש"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "עוקב אחד"
-msgstr[1] "%(num)s עוקבים"
-
 msgid "by {0}"
 msgstr "מאת {0}"
-
-msgid "Stop Following"
-msgstr "הפסקת מעקב"
-
-msgid "Follow this Collection"
-msgstr "מעקב אחרי אוסף זה"
 
 # 76%
 # 100%
@@ -1285,9 +1225,6 @@ msgstr "אוספים הם קבוצות של תוספות הקשורות זו ל�
 msgid "by %(author_link)s"
 msgstr "מאת %(author_link)s"
 
-msgid "Following"
-msgstr "במעקב"
-
 # 89%
 # 100%
 msgid "Create a Collection"
@@ -1337,18 +1274,6 @@ msgstr "הוספת תגובה"
 
 msgid "Remove this add-on from the collection"
 msgstr "הסרת תוספת זו מהאוסף"
-
-msgid "Add a positive vote for this collection"
-msgstr "הוספת הצבעה חיובית לאוסף זה"
-
-msgid "Add a negative vote for this collection"
-msgstr "הוספת הצבעה שלילית לאוסף זה"
-
-msgid "Remove my vote for this collection"
-msgstr "הסרת ההצבעה שלי מאוסף זה"
-
-msgid "Log in to vote for this collection"
-msgstr "יש להתחבר כדי להצביע לאוסף זה"
 
 msgid "Favorite"
 msgstr "מועדף"
@@ -7671,12 +7596,6 @@ msgstr "לפי פלטפורמה"
 msgid "by Add-on Status"
 msgstr "לפי מצב תוספת"
 
-msgid "Subscribers"
-msgstr "מנויים"
-
-msgid "Ratings"
-msgstr "דירוגים"
-
 msgid "Add-on Statistics"
 msgstr "סטטיסטיקת תוספת"
 
@@ -7925,6 +7844,13 @@ msgstr "ביקור באתר החדש"
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "על מנת ליצור אוספים משלך, יש צורך בחשבון Mozilla Add-ons."
 
+msgid "Create an Add-ons Account"
+msgstr "יצירת חשבון Add-ons"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "או <a href=\"%(login)s\">התחברות לחשבון הנוכחי שלך</a>"
+
 msgid "Footer logo"
 msgstr "לוגו תחתון"
 
@@ -8073,6 +7999,9 @@ msgstr "תמונת פרופיל"
 
 msgid "Addons"
 msgstr "תוספות"
+
+msgid "Ratings"
+msgstr "דירוגים"
 
 msgid "Activity Logs"
 msgstr "יומני פעילות"
@@ -8265,9 +8194,6 @@ msgstr "החליטו אילו אוספים צריכים להיות מוצגים 
 msgid "Display the collections I have created"
 msgstr "הצגת האוספים שיצרתי"
 
-msgid "Display collections I'm following"
-msgstr "הצגת האוספים שבמעקב"
-
 msgid "Notifications"
 msgstr "הודעות"
 
@@ -8337,9 +8263,6 @@ msgstr "ערכות הנושא הפופולריות ביותר שלי"
 
 msgid "Themes I've created"
 msgstr "ערכות נושא שיצרתי"
-
-msgid "Followed by Me"
-msgstr "ברשימת המעקב שלי"
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"

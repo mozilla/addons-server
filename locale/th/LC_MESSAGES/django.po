@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-26 10:19+0000\n"
+"POT-Creation-Date: 2018-08-01 20:09+0000\n"
 "PO-Revision-Date: 2018-05-26 06:45+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
@@ -824,9 +824,6 @@ msgstr "ชุดสะสม"
 msgid "Collections I've Made"
 msgstr "ชุดสะสมที่ฉันสร้าง"
 
-msgid "Collections I'm Following"
-msgstr "ชุดสะสมที่ฉันติดตาม"
-
 msgid "My Favorite Add-ons"
 msgstr "ส่วนเสริมโปรดของฉัน"
 
@@ -1045,27 +1042,11 @@ msgstr "(ไม่บังคับ)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "หรือ <a id=\"collections-new-cancel\" href=\"#\">ยกเลิก</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr ""
-
-msgid "Create an Add-ons Account"
-msgstr "สร้างบัญชีส่วนเสริม"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "หรือ <a href=\"%(login)s\">เข้าสู่ระบบด้วยบัญชีปัจจุบันของคุณ</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: ชุดสะสม"
 
 msgid "private"
 msgstr "ส่วนตัว"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> ผู้ติดตาม"
 
 msgid "About this Collection"
 msgstr "เกี่ยวกับชุดสะสมนี้"
@@ -1136,44 +1117,8 @@ msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> ส่วนเสริม"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> ผู้ติดตาม"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s ผู้ติดตามรายสัปดาห์"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s ผู้ติดตามรายเดือน"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s ผู้ติดตาม"
-
 msgid "by {0}"
 msgstr "โดย {0}"
-
-msgid "Stop Following"
-msgstr "หยุดการติดตาม"
-
-msgid "Follow this Collection"
-msgstr "ติดตามชุดสะสมนี้"
 
 msgid "Edit this Collection"
 msgstr "แก้ไขชุดสะสมนี้"
@@ -1222,9 +1167,6 @@ msgstr ""
 msgid "by %(author_link)s"
 msgstr "โดย %(author_link)s"
 
-msgid "Following"
-msgstr "กำลังติดตาม"
-
 msgid "Create a Collection"
 msgstr "สร้างชุดสะสม"
 
@@ -1272,18 +1214,6 @@ msgstr "เพิ่มความเห็น"
 
 msgid "Remove this add-on from the collection"
 msgstr "เอาส่วนเสริมนี้ออกจากชุดสะสม"
-
-msgid "Add a positive vote for this collection"
-msgstr "เพิ่มคะแนนบวกสำหรับชุดสะสมนี้"
-
-msgid "Add a negative vote for this collection"
-msgstr "ลบคะแนนสำหรับชุดสะสมนี้"
-
-msgid "Remove my vote for this collection"
-msgstr "ลบการลงคะแนนของฉันสำหรับชุดสะสมนี้"
-
-msgid "Log in to vote for this collection"
-msgstr "เข้าสู่ระบบเพื่อลงคะแนนสำหรับชุดสะสมนี้"
 
 msgid "Favorite"
 msgstr "รายการโปรด"
@@ -7514,12 +7444,6 @@ msgstr ""
 msgid "by Add-on Status"
 msgstr ""
 
-msgid "Subscribers"
-msgstr ""
-
-msgid "Ratings"
-msgstr ""
-
 msgid "Add-on Statistics"
 msgstr ""
 
@@ -7762,6 +7686,13 @@ msgstr ""
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr ""
 
+msgid "Create an Add-ons Account"
+msgstr "สร้างบัญชีส่วนเสริม"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "หรือ <a href=\"%(login)s\">เข้าสู่ระบบด้วยบัญชีปัจจุบันของคุณ</a>"
+
 msgid "Footer logo"
 msgstr ""
 
@@ -7906,6 +7837,9 @@ msgid "Profile Photo"
 msgstr "รูปโปรไฟล์"
 
 msgid "Addons"
+msgstr ""
+
+msgid "Ratings"
 msgstr ""
 
 #, fuzzy
@@ -8091,9 +8025,6 @@ msgstr ""
 msgid "Display the collections I have created"
 msgstr ""
 
-msgid "Display collections I'm following"
-msgstr ""
-
 msgid "Notifications"
 msgstr "การแจ้งเตือน"
 
@@ -8161,9 +8092,6 @@ msgid "My Most Popular Themes"
 msgstr ""
 
 msgid "Themes I've created"
-msgstr ""
-
-msgid "Followed by Me"
 msgstr ""
 
 msgid "Created by Me"

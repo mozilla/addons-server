@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-26 10:19+0000\n"
+"POT-Creation-Date: 2018-08-01 20:09+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -854,9 +854,6 @@ msgstr "Bildumak"
 msgid "Collections I've Made"
 msgstr "Egin ditudan bildumak"
 
-msgid "Collections I'm Following"
-msgstr "Jarraitzen ditudan bildumak"
-
 msgid "My Favorite Add-ons"
 msgstr "Nire gehigarri gogokoenak"
 
@@ -1076,28 +1073,11 @@ msgstr ""
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "edo <a id=\"collections-new-cancel\" href=\"#\">Utzi</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "Bildumak puntuatzeko kontua izan behar duzu."
-
-msgid "Create an Add-ons Account"
-msgstr "Sortu kontua"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "edo <a href=\"%(login)s\">hasi saioa zure kontuarekin</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: Bildumak"
 
 msgid "private"
 msgstr "pribatua"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "Jarraitzaile <span>bat</span>"
-msgstr[1] "<span>%(num)s</span> jarraitzaile"
 
 msgid "About this Collection"
 msgstr "Bilduma honi buruz"
@@ -1166,48 +1146,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] ""
 msgstr[1] ""
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] ""
-msgstr[1] ""
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] ""
-msgstr[1] ""
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] ""
-msgstr[1] ""
-
 msgid "by {0}"
 msgstr "Egilea: {0}"
-
-msgid "Stop Following"
-msgstr ""
-
-msgid "Follow this Collection"
-msgstr ""
 
 msgid "Edit this Collection"
 msgstr "Editatu bilduma"
@@ -1256,9 +1196,6 @@ msgstr ""
 msgid "by %(author_link)s"
 msgstr "egilea: %(users)s"
 
-msgid "Following"
-msgstr ""
-
 msgid "Create a Collection"
 msgstr "Sortu bilduma"
 
@@ -1306,18 +1243,6 @@ msgstr "Gehitu iruzkina"
 
 msgid "Remove this add-on from the collection"
 msgstr "Kendu gehigarri hau bildumatik"
-
-msgid "Add a positive vote for this collection"
-msgstr "Gehitu bozka positiboa bilduma honentzat"
-
-msgid "Add a negative vote for this collection"
-msgstr "Gehitu bozka negatiboa bilduma honentzat"
-
-msgid "Remove my vote for this collection"
-msgstr "Kendu bilduma honi nik emandako bozka"
-
-msgid "Log in to vote for this collection"
-msgstr "Hasi saioa bilduma bozkatzeko."
 
 msgid "Favorite"
 msgstr "Gogokoa"
@@ -7711,12 +7636,6 @@ msgstr ""
 msgid "by Add-on Status"
 msgstr ""
 
-msgid "Subscribers"
-msgstr ""
-
-msgid "Ratings"
-msgstr ""
-
 msgid "Add-on Statistics"
 msgstr ""
 
@@ -7959,6 +7878,13 @@ msgstr ""
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Bilduma propioak sortzeko kontua izan behar duzu."
 
+msgid "Create an Add-ons Account"
+msgstr "Sortu kontua"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "edo <a href=\"%(login)s\">hasi saioa zure kontuarekin</a>"
+
 msgid "Footer logo"
 msgstr ""
 
@@ -8107,6 +8033,9 @@ msgid "Profile Photo"
 msgstr "Profilaren argazkia"
 
 msgid "Addons"
+msgstr ""
+
+msgid "Ratings"
 msgstr ""
 
 #, fuzzy
@@ -8292,9 +8221,6 @@ msgstr ""
 msgid "Display the collections I have created"
 msgstr "Bistaratu sortu ditudan bildumak"
 
-msgid "Display collections I'm following"
-msgstr "Bistaratu jarraitzen ditudan bildumak"
-
 msgid "Notifications"
 msgstr "Jakinarazpenak"
 
@@ -8364,9 +8290,6 @@ msgstr ""
 
 msgid "Themes I've created"
 msgstr ""
-
-msgid "Followed by Me"
-msgstr "Jarraitzen ditudanak"
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"
