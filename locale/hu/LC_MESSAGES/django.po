@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-08-01 14:52+0000\n"
+"PO-Revision-Date: 2018-08-01 15:11+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4624,7 +4624,7 @@ msgstr "Hasznosítsa a tudományos ismereteket {start_sub_heading}a(z) {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
-msgstr ""
+msgstr "Élvezze a szabad hozzáférést a több mint 10 millió tudományos cikkhez."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4632,7 +4632,7 @@ msgstr "Egérgesztusok testreszabása {start_sub_heading}a(z) {addon_name} kieg�
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "Fedezze fel a navigáció új módját több mint 50 hasznos egérgesztussal."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4640,7 +4640,7 @@ msgstr "Optimalizálja a videókat {start_sub_heading}a(z) {addon_name} kiegész
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "Sötétítse el a videolejátszók körüli oldalt a fókuszált megtekintési élményért."
 
 #. editorial content for the discovery pane.
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4649,7 +4649,7 @@ msgstr "Keressen tiszta lelkiismerettel {start_sub_heading}a(z) {addon_name} kie
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "Az Ecosia a keresési profitjának 80%-át faültetési programok finanszírozására költi világszerte. Tegye az Ecosiát közvetlenül a Firefox keresősávjába."
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4657,7 +4657,7 @@ msgstr "Találja meg a hiányzó webes tartalmakat {start_sub_heading}a(z) {addo
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "Az oldal, amit keres nem érhető el? Keresse az archivált/gyorsítótárazott verzióját."
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4669,7 +4669,7 @@ msgstr "Nagyítsa ki a képeket {start_sub_heading}a(z) {addon_name} kiegészít
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
-msgstr ""
+msgstr "Egyszerűen vigye az egeret a kép fölé a nagyításhoz."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4677,7 +4677,7 @@ msgstr "Távolítsa el a sütiket {start_sub_heading}a(z) {addon_name} kiegész�
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "Automatikusan törölje a sütiket a lapok bezárása után."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4686,7 +4686,7 @@ msgstr "Javítsa a videókat {start_sub_heading}a(z) {addon_name} kiegészítőv
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "Egy egyszerű mód tetszőleges oldalak szövegméretének módosítására – vagy akár a teljes lap nagyítására."
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4694,7 +4694,7 @@ msgstr "Blokkolja a láthatatlan követőket {start_sub_heading}a(z) {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "Állítsa meg menet közben a követőket, és tudjon meg többet róluk."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4703,6 +4703,8 @@ msgstr "Mentsen el szövegeket későbbre {start_sub_heading}a(z) {addon_name} k
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
 msgstr ""
+"Ne írja le ugyanazt újra és újra! Ha gyakran használja ugyanazokat a kifejezéseket a munkája, vagy más kommunikációja során, mentse el őket a Clippingsbe, és illessze be őket egyszerűen, ha "
+"kellenek."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4710,7 +4712,7 @@ msgstr "Blokkolja az e-mailekben lévő reklámokat {start_sub_heading}a(z) {add
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Szerezzen nagyon képernyőterületet a reklámok eltávolításával a webes postaládájából."
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4718,7 +4720,7 @@ msgstr "Találja meg a lapjait {start_sub_heading}a(z) {addon_name} kiegészít�
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr ""
+msgstr "Kezelje a nyitott lapjait egy rendezett oldalsávon."
 
 #. editorial content for the discovery pane.
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4726,7 +4728,7 @@ msgstr "Blokkolja az alattomos követőket és korlátozásokat {start_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr ""
+msgstr "Álcázza a navigációját a böngészője és operációs rendszere személyazonosságának elrejtésével."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4734,7 +4736,7 @@ msgstr "Frissítse a lapokat {start_sub_heading}a(z) {addon_name} kiegészítőv
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "Automatikusan töltse újra a lapjait a megadott intervallumokkal."
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4750,7 +4752,7 @@ msgstr "Állítsa meg a követőket {start_sub_heading}a(z) {addon_name} kiegés
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "Szerezzen még egy réteg követésvédelmet a web böngészésekor."
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4758,7 +4760,7 @@ msgstr "Olvasson ePub fájlokat {start_sub_heading}a(z) {addon_name} kiegészít
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "Élvezze az ePub fájlokat közvetlenül a Firefoxban – növelje a betűméretet, lapméretet és másokat."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
