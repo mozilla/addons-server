@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-23 12:29+0000\n"
+"PO-Revision-Date: 2018-08-01 10:32+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -404,9 +404,7 @@ msgstr "請勿在此回報程式錯誤。因為我們並不會將您的電子郵
 msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
-msgstr ""
-"請參考此附加元件的 <a href=\"%(support)s\">技術支援</a> 段落，看看是否可提供協助。您也可以到 <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">附加元件討論區</a> 尋求幫"
-"助。"
+msgstr "請參考此附加元件的 <a href=\"%(support)s\">技術支援</a> 段落，看看是否可提供協助。您也可以到 <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">附加元件討論區</a> 尋求幫助。"
 
 msgid "Review Guidelines"
 msgstr "評論撰寫指南"
@@ -545,8 +543,8 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "某些附加元件會向您詢問是否要授權進行某些行為（例如: 分頁管理附加元件，會請您授權存取瀏覽器的分頁系統）。"
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
-"some rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
+" rare cases risk may be involved."
 msgstr "由於您對 Firefox 有完整的控制權，您可以自行決定是否要允許這些請求。同意這些權限不一定會降低您瀏覽器的效能或安全性，但在少數情況下，可能會有所關聯。"
 
 #. This is a header of a list of things the add-on can do.
@@ -738,15 +736,14 @@ msgstr "找不到頁面"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
-"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
+"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>真是非常抱歉，我們找不到您想找的東西。</h1> <p>您請求的頁面或檔案不在網站上，可能是您點了過期的連結或輸入了錯誤的網址。</p> <ul> <li>如果您手動輸入了網址，請再次確認有無拼字錯誤。</li> <li>如果"
-"您是從其他地方連過來，請到 <a href=\"https://github.com/mozilla/addons-server/issues/new/\">回報</a>。告訴我們您從哪裡連過來和想搜尋什麼，我們會儘速修復。</li> </ul> <p>不然乾脆跳到網站其他地方逛逛"
-"吧。</p> <ul> <li>您對我們的 <a href=\"%(rec)s\">精選附加元件</a> 有興趣嗎？</li> <li>您想 <a href=\"%(search)s\">搜尋附加元件</a> 嗎？請到 <a href=\"%(search)s\">搜尋頁面</a> 找找或直接利用下面的搜"
-"尋欄行搜尋。</li> <li>如果您想要從頭開始，也可以回到 <a href=\"%(home)s\">附加元件首頁</a>。</li> </ul>"
+"<h1>真是非常抱歉，我們找不到您想找的東西。</h1> <p>您請求的頁面或檔案不在網站上，可能是您點了過期的連結或輸入了錯誤的網址。</p> <ul> <li>如果您手動輸入了網址，請再次確認有無拼字錯誤。</li> <li>如果您是從其他地方連過來，請到 <a href=\"https://github.com/mozilla/addons-"
+"server/issues/new/\">回報</a>。告訴我們您從哪裡連過來和想搜尋什麼，我們會儘速修復。</li> </ul> <p>不然乾脆跳到網站其他地方逛逛吧。</p> <ul> <li>您對我們的 <a href=\"%(rec)s\">精選附加元件</a> 有興趣嗎？</li> <li>您想 <a href=\"%(search)s\">搜尋附加元件</a> 嗎？請到 <a "
+"href=\"%(search)s\">搜尋頁面</a> 找找或直接利用下面的搜尋欄行搜尋。</li> <li>如果您想要從頭開始，也可以回到 <a href=\"%(home)s\">附加元件首頁</a>。</li> </ul>"
 
 msgid "Oops"
 msgstr "糟糕"
@@ -790,9 +787,7 @@ msgstr "這是什麼？"
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p>請輸入下方的<strong>所有文字</strong>，<strong>需要的話用空白隔開</strong>。</p><p>如果看不懂或很難閱讀，您可以<a href=\"#\" id=\"recaptcha_different\">換一組文字</a>或<a href=\"#\" id="
-"\"recaptcha_audio\">改用不同方式驗證</a>。</p>"
+msgstr "<p>請輸入下方的<strong>所有文字</strong>，<strong>需要的話用空白隔開</strong>。</p><p>如果看不懂或很難閱讀，您可以<a href=\"#\" id=\"recaptcha_different\">換一組文字</a>或<a href=\"#\" id=\"recaptcha_audio\">改用不同方式驗證</a>。</p>"
 
 msgid "Top Rated"
 msgstr "評分最高"
@@ -929,8 +924,8 @@ msgstr "版本"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr "就算您支援的應用程式不需要安裝資訊檔，您還是要依照%(amo_manifests_mdn_link_open)s此處%(amo_manifests_mdn_link_close)s描述的內容，加入包含所有必要屬性的安裝資訊檔。"
 
 msgid "Only I can view this collection."
@@ -1113,8 +1108,8 @@ msgid ""
 msgstr "以下這些附加元件已被您使用 <b>加入至我的最愛</b> 功能標示為您的最愛。目前此收藏集為 <b>公開的</b>，每個人都可以看到它。如果您不想讓別人看到這些收藏，請按下底下的按鈕隱藏您的收藏集。"
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
+" be able to see your favorites, click the button below to make it public."
 msgstr "您使用 <b>加入至最愛清單</b> 功能標示為最愛的附加元件將顯示在下方。此收藏集目前是 <b>私人</b> 的，只有您看的到。若您想讓其他人也能看到最愛的收藏集，請點擊下方的按鈕將其公開。"
 
 msgid "My favorite add-ons"
@@ -1361,8 +1356,8 @@ msgstr "下載語言套件"
 
 #, python-format
 msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
-"of the entire application."
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
+" the entire application."
 msgstr "安裝字典附加元件後，將會在您的 %(app_name)s 拼字檢查工具新增語言選項，當您填寫網頁表單時就會幫您檢查拼字。語言套件附加元件則是可切換整套應用程式的介面語言。"
 
 msgid "Available in your locale"
@@ -1531,8 +1526,8 @@ msgstr "附加元件相容性報告"
 
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
+" supporting an upcoming Firefox version. </p>"
 msgstr "<p>透過 <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> 傳送給我們的報告都放在這裡給開發者檢視。這些報告可以幫助我們判斷哪些附加元件在未來的 Firefox 版本當中需要支援幫助。</p>"
 
 msgid "Reports for your Add-ons"
@@ -2539,12 +2534,9 @@ msgstr "不能超過三套必須先安裝的附加元件。"
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
-msgstr ""
-"在本站。<span class=\"helptext\">您送出的元件通過審查後將公開上架到這個網站，以及 Firefox 附加元件管理員讓數以百萬計的使用者使用。本網站將處理元件的自動更新。此附加元件可參與 Mozilla 的行銷與競賽活"
-"動，您仍可自行散佈已通過審核的安裝檔案。</span>"
+msgstr "在本站。<span class=\"helptext\">您送出的元件通過審查後將公開上架到這個網站，以及 Firefox 附加元件管理員讓數以百萬計的使用者使用。本網站將處理元件的自動更新。此附加元件可參與 Mozilla 的行銷與競賽活動，您仍可自行散佈已通過審核的安裝檔案。</span>"
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "您自行處理。<span class=\"helptext\">將立即簽署此版本讓您可自行發布，您需透過 updateURL 或更新外部應用程式來提供此附加元件的更新。</span>"
 
 msgid "Categories cannot be changed while your add-on is featured."
@@ -2692,8 +2684,8 @@ msgid "API key revoked"
 msgstr "已撤銷 API 金鑰"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr "開始前，請先閱讀並接受我們的 Firefox 附加元件發行同意書，以及我們的審核規則與政策。Firefox 附加元件發行同意書當中亦包含我們的隱私權公告，解釋我們會如何處理您的資訊。"
 
 msgid "Firefox Add-on Distribution Agreement"
@@ -2826,11 +2818,8 @@ msgid ""
 msgstr "此附加元件與 <b>%(app_name)s %(app_version)s</b>，最新的 %(app_name)s 正式版並不相容。請考慮更新您的附加元件相容性資訊，或上傳此附加元件較新的版本。"
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">相容性更新</a> <a href=\"%(version_url)s\" class=\"button\">上傳新版本</a> or <a href=\"#\" class=\"close\">略過</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">相容性更新</a> <a href=\"%(version_url)s\" class=\"button\">上傳新版本</a> or <a href=\"#\" class=\"close\">略過</a>"
 
 msgid "View and update application compatibility ranges."
 msgstr "檢視並更新應用程式相容性範圍。"
@@ -2895,9 +2884,7 @@ msgstr "關於作者"
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
-msgstr ""
-"<p>附加元件可以有許多作者，每位作者可擔當下列任一種角色:</p><ul><li><b>擁有者:</b>能夠管理附加元件各項上架資訊，包含新增或移除其他作者</li><li><b>開發者:</b>能夠管理附加元件各項上架資訊，但不能新增"
-"或移除其他作者。</li></ul>"
+msgstr "<p>附加元件可以有許多作者，每位作者可擔當下列任一種角色:</p><ul><li><b>擁有者:</b>能夠管理附加元件各項上架資訊，包含新增或移除其他作者</li><li><b>開發者:</b>能夠管理附加元件各項上架資訊，但不能新增或移除其他作者。</li></ul>"
 
 msgid "Basic Information"
 msgstr "基本資訊"
@@ -2949,8 +2936,7 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "使用者主要會透過分類的方式來瀏覽附加元件。請選擇符合您附加元件功能的分類以獲得最大的曝光程度。"
 
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr "當您的附加元件成為該應用程式的精選時，您無法更變它的隸屬類別。如有特殊理由需要更動類別，請 email 到 <a href=\"mailto:%(email)s\">%(email)s</a>。"
 
 #, python-format
@@ -3014,8 +3000,8 @@ msgid "Email"
 msgstr "電子郵件"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr "若您想要顯示一組提供技術支援的電子郵件地址，請在此輸入。若您對不同語言提供不同的地址，亦可新增多個欄位。此欄位僅與公開上架的附加元件有關。"
 
 msgid "Website"
@@ -3609,8 +3595,8 @@ msgstr "JWT 密語"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr "若要送出 API 請求，請傳送 <a href=\"%(jwt_url)s\">JSON Web Token（JWT）</a> 作為授權檔頭。您將需要在送出 <a href=\"%(docs_url)s\">API 文件</a> 中列出的每個請求時產生 JWT。"
 
 msgid "You don't have any API credentials."
@@ -3747,9 +3733,7 @@ msgstr[0] "為此附加元件選擇<b>最多 {0} 個</b> {1} 分類："
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
-msgstr ""
-"使用者將需要先接受下列終端使用者授權合約（EULA）才能安裝您的附加元件。要求同意授權合約將大幅影響附加元件的下載數量。請注意 EULA 與 GPL 或 MPL 等程式碼的授權條款不同。此欄位僅與公開上架的附加元件有"
-"關。"
+msgstr "使用者將需要先接受下列終端使用者授權合約（EULA）才能安裝您的附加元件。要求同意授權合約將大幅影響附加元件的下載數量。請注意 EULA 與 GPL 或 MPL 等程式碼的授權條款不同。此欄位僅與公開上架的附加元件有關。"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr "若您的附加元件會從使用者電腦傳出任何資料，將需要提供隱私權保護政策，當中需解釋會傳出哪些資料、這些資料會被如何使用。此欄位僅與公開上架的附加元件有關。"
@@ -3867,11 +3851,9 @@ msgstr "成功上架的相關資源"
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
-"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
-msgstr ""
-"您已經打造好擴充套件，準備發布了嗎？接下來還要作什麼？請參考我們提供，如何建立吸引人的上架頁面、讓擴充套件能在 %(amo_link_open)saddons.mozilla.org%(amo_link_close)s 成為精選套件、尋找開發問題相關解"
-"答，以及隨時取得擴充套件開發相關訊息與活動的資訊與解答。"
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+msgstr "您已經打造好擴充套件，準備發布了嗎？接下來還要作什麼？請參考我們提供，如何建立吸引人的上架頁面、讓擴充套件能在 %(amo_link_open)saddons.mozilla.org%(amo_link_close)s 成為精選套件、尋找開發問題相關解答，以及隨時取得擴充套件開發相關訊息與活動的資訊與解答。"
 
 msgid "View Resources for Publishers"
 msgstr "檢視發布者的資源"
@@ -3930,11 +3912,9 @@ msgstr "自訂 Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
-msgstr ""
-"附加元件可讓數以百萬的 Firefox 使用者增強上網體驗。若您是熟悉 %(html_link_open)sHTML%(link_close)s、%(js_link_open)sJavaScript%(link_close)s 與 %(css_link_open)sCSS%(link_close)s 的 Web 開發者，就已"
-"經具備了開發附加元件的必需能力。"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
+"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+msgstr "附加元件可讓數以百萬的 Firefox 使用者增強上網體驗。若您是熟悉 %(html_link_open)sHTML%(link_close)s、%(js_link_open)sJavaScript%(link_close)s 與 %(css_link_open)sCSS%(link_close)s 的 Web 開發者，就已經具備了開發附加元件的必需能力。"
 
 msgid "Learn How to Make an Add-on"
 msgstr "了解如何打造附加元件"
@@ -4078,8 +4058,8 @@ msgstr "主題的名稱為"
 
 #, python-format
 msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
-"Communications and Cookies Privacy Notice%(link_close)s."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
+" and Cookies Privacy Notice%(link_close)s."
 msgstr "我同意 %(agreement_link_open)sFirefox 附加元件發行協議%(link_close)s，並可依照 %(privacy_notice_link_open)s網站、通訊及 Cookie 隱私權公告%(link_close)s 當中描述的方式處理我的資訊。"
 
 msgid "Submit Theme"
@@ -4122,8 +4102,8 @@ msgstr "PNG 或 JPG 檔案格式"
 msgid "Manage Version {0}"
 msgstr "管理版本 {0}"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
+# {0} is the name of the collection
 msgid "Manage {0}"
 msgstr "管理 {0}"
 
@@ -4287,14 +4267,14 @@ msgstr "您是否確定要取消審核要求？"
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "附加元件文件集 :: 開發者交流中心"
 
-# {0} is a number
 #. L10n: first parameter is the number of errors
+# {0} is a number
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} 個錯誤"
 
-# {0} is a number
 #. L10n: first parameter is the number of warnings
+# {0} is a number
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個警告"
@@ -4319,7 +4299,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖追蹤器{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "封鎖隱藏在黑暗中，同時跟蹤您上網的追蹤器。"
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}加強表情符號內容{end_sub_heading}"
@@ -4360,7 +4340,7 @@ msgstr "{addon_name} {start_sub_heading}自訂新分頁頁面{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "享用美麗的新分頁頁面，還可讓您可自訂背景、本地天氣資訊等等。"
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4368,7 +4348,7 @@ msgstr "{addon_name} {start_sub_heading}簡單進行翻譯{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "反白任何文字，按右鍵便可即時翻譯。"
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4376,7 +4356,7 @@ msgstr "{addon_name} {start_sub_heading}搜尋圖片{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "使用多組搜尋引擎以圖找圖。"
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4384,7 +4364,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告並保護隱私{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "簡單安裝後，就能讓您控制要看到的廣告內容，以及您是在網路上如何被追蹤的。"
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4392,7 +4372,7 @@ msgstr "{addon_name} {start_sub_heading}重新發想分頁功能{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "您還開著一大票分頁標籤嗎？用簡潔的側邊欄好好管理。"
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4400,7 +4380,7 @@ msgstr "{addon_name} {start_sub_heading}停止 Facebook 追蹤{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "將您的 Facebook 身分隔離於「容器」分頁中，讓 Facebook 更難追蹤您在網路上的一舉一動。"
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4408,7 +4388,7 @@ msgstr "{addon_name} {start_sub_heading}簡化搜尋功能{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "只要反白網頁上的任何文字，即可快速於不同搜尋引擎，進行搜尋。"
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4416,7 +4396,7 @@ msgstr "{addon_name} {start_sub_heading}即時天氣報告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
-msgstr ""
+msgstr "直接在 Firefox 取得全球天氣資訊。"
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
@@ -4428,11 +4408,11 @@ msgstr "{addon_name} {start_sub_heading}以圖找圖功能{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "在網路上看到有趣的圖片，想了解更多資訊嗎？試試這套圖片搜尋工具。"
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "可用於 YouTube、Facebook、Vimeo、Twitch、Dailymotion、Periscope 等數以百計的影片網站。"
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
@@ -4444,7 +4424,7 @@ msgstr "{addon_name} {start_sub_heading}管理密碼{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "簡化並在不同裝置間同步您所有網站的登入資訊，只要使用一組密碼即可管理。"
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4468,7 +4448,7 @@ msgstr "{addon_name} {start_sub_heading}找圖更加簡單{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "反白任何文字，點右鍵即可快速找圖。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4486,7 +4466,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "自動將大英百科全書當中的事實加入到搜尋結果中。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4495,7 +4475,7 @@ msgstr "{addon_name} {start_sub_heading}改善影片播放功能{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "封鎖 YouTube 當中討人厭的廣告與註解。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4504,7 +4484,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "傳送新聞、文章、部落格貼文等內容到您的 Kindle。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4513,7 +4493,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "根據 URL 格式，用顏色對分頁標籤進行分組。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4522,7 +4502,7 @@ msgstr "{addon_name} {start_sub_heading}加強表情符號內容{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "阻止惡意網站使用您的電腦算力挖礦。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4531,7 +4511,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "不論在社交網路、寄信或寫文件時，協助您檢查文法是否正確。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4540,7 +4520,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "在 Firefox 狀態列中顯示目前世界各地的時間。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4608,7 +4588,7 @@ msgstr "{addon_name} {start_sub_heading}下載影片{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
-msgstr ""
+msgstr "將游標停留在圖片上即可放大。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4617,7 +4597,7 @@ msgstr "{addon_name} {start_sub_heading}拍攝畫面擷圖{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "關閉分頁後自動清除 Cookie。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4659,7 +4639,7 @@ msgstr "{addon_name} {start_sub_heading}尋找分頁{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr ""
+msgstr "在整潔的側邊欄中管理開啟的分頁標籤。"
 
 #. editorial content for the discovery pane.
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4675,7 +4655,7 @@ msgstr "{addon_name} {start_sub_heading}重新整理分頁{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "根據設定的時間，自動重新載入分頁。"
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4726,7 +4706,7 @@ msgstr "{addon_name} {start_sub_heading}加強您的表情符號內容{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "透過自訂 Proxy 設定上網。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4762,7 +4742,7 @@ msgstr "{addon_name} {start_sub_heading}下載影片{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "翻譯反白的文字或整張網頁"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4784,7 +4764,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Windows 平台的強大下載工具。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4995,7 +4975,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "根據設定的時間，自動重新載入分頁。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5121,7 +5101,7 @@ msgstr "{addon_name} {start_sub_heading}加強表情符號內容{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Easily customize the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "輕鬆自訂 Firefox 內建的隱私保護設定。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5130,7 +5110,7 @@ msgstr "{addon_name} {start_sub_heading}加強您的表情符號內容{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
-msgstr ""
+msgstr "移除廣告並從 VK 下載音樂。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5202,7 +5182,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "在單一頁面中查看您最愛的 RSS 資訊來源摘要。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5211,7 +5191,7 @@ msgstr "{addon_name} {start_sub_heading}拍攝畫面擷圖{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "進入夜間模式，讓您有更好的看片體驗。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5269,7 +5249,7 @@ msgstr "{addon_name} {start_sub_heading}拍攝畫面擷圖{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
-msgstr ""
+msgstr "使用您偏好的 PDF 閱讀軟體開啟 PDF。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5341,7 +5321,7 @@ msgstr "{addon_name} {start_sub_heading}加強表情符號內容{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
-msgstr ""
+msgstr "在您的瀏覽器中建立並管理待辦清單。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5440,7 +5420,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
-msgstr ""
+msgstr "滑鼠輕鬆一點，即可進入隱私瀏覽模式。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5579,7 +5559,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "為所有密碼欄位新增顯示/隱藏功能。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5650,7 +5630,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
-msgstr ""
+msgstr "只允許您信任的網站執行 Web 內容。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5677,7 +5657,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "使用密碼保護您的個人書籤。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5686,7 +5666,7 @@ msgstr "{addon_name} {start_sub_heading}改善影片播放功能{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "使用 VPN 嗎？您的 IP 地址可能會被洩漏，停用 WebRTC 即可防止洩漏。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5771,7 +5751,7 @@ msgstr "{addon_name} {start_sub_heading}客製化分頁內容{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "保護自己，免受最狡猾的追蹤器的追蹤。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -6135,9 +6115,7 @@ msgstr "這是什麼網站？"
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
-msgstr ""
-"addons.mozilla.org，通常稱為「AMO」，是 Mozilla 產品，例如 Firefox、Thunderbird、SeaMonkey 等等的官方附加元件網站。附加元件可讓您新增功能或修改瀏覽器與應用程式的運作方式。歡迎隨處看看，探索數以千計"
-"的不同上網方式。"
+msgstr "addons.mozilla.org，通常稱為「AMO」，是 Mozilla 產品，例如 Firefox、Thunderbird、SeaMonkey 等等的官方附加元件網站。附加元件可讓您新增功能或修改瀏覽器與應用程式的運作方式。歡迎隨處看看，探索數以千計的不同上網方式。"
 
 msgid "Who creates these add-ons?"
 msgstr "誰創造了這些附加元件？"
@@ -6145,8 +6123,7 @@ msgstr "誰創造了這些附加元件？"
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
-msgstr ""
-"在本站上架的附加元件由社群數以千計的開發者打造，這些人可能是單純有興趣的個人，或是大企業。所有公開的附加元件在上架前已由審核團隊進行審核。但標示為「實驗中」的附加元件尚未經過審核，安裝前請小心。"
+msgstr "在本站上架的附加元件由社群數以千計的開發者打造，這些人可能是單純有興趣的個人，或是大企業。所有公開的附加元件在上架前已由審核團隊進行審核。但標示為「實驗中」的附加元件尚未經過審核，安裝前請小心。"
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "我該如何跟上在 AMO 所發生的事情？"
@@ -6183,8 +6160,7 @@ msgid ""
 msgstr "如果您已有附加元件的開發經驗，<a href=\"%(url)s\">快來成為附加元件審核者</a>！我們的審核者是具有技術背景的附加元件粉絲，負責審核附加元件原始碼的品質和穩定性。"
 
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr "請幫助我們改善此網站。本站的原始碼對外公開，您可以回報 bug 問題或送出 patch。<a href=\"%(url)s\">GitHub</a> 當中有本站所有未解的 Bug，Bugzilla 中也有一些較舊的 bug。"
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
@@ -6227,8 +6203,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "關於評論的常見問題"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr "附加元件評論是一個能讓您對已安裝使用過的附加元件表達意見的方式。我們的評論審查團隊保留拒絕或移除任何不符合以下標準的評論內容。"
 
 msgid "Do:"
@@ -6467,15 +6443,13 @@ msgstr "新增對 {0} 的意見"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
+"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
+"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
+"Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>請記得:</h2><ul><li> 以像是您在跟其他朋友解釋您使用此附加元件時的體驗的方式來撰寫。提供明確、有用的詳細資訊，像是您喜歡哪些功能、不喜歡哪些功能、有多簡單就能使用、有哪些缺點。除非您能提供明確的"
-"原因，不然請避免使用太廣泛的語言，像是只說「棒」、「爛」。</li><li>請不要在評論中張貼錯誤回報，我們不會將您的電子郵件地址提供給開發者，他們無法幫您解決問題。請參考 <a href=\"%(support)s\">技術支援段"
-"落</a>找到您可以在哪裡取得此附加元件的幫助。</li><li>請保持評論簡潔，避免使用不適當的語言，也不要張貼任何個人資訊。</li></ul><p>請閱讀<a href=\"%(guide)s\">評論指南</a>，以了解使用者對附加元件評論的"
-"更多資訊。</p>"
+"<h2>請記得:</h2><ul><li> 以像是您在跟其他朋友解釋您使用此附加元件時的體驗的方式來撰寫。提供明確、有用的詳細資訊，像是您喜歡哪些功能、不喜歡哪些功能、有多簡單就能使用、有哪些缺點。除非您能提供明確的原因，不然請避免使用太廣泛的語言，像是只說「棒」、「爛」。</li><li>請不要在評論中張貼錯誤回報，我們不會將您的電子郵件地址提供給開發者，他們無法幫您解決問題。請參考 <a "
+"href=\"%(support)s\">技術支援段落</a>找到您可以在哪裡取得此附加元件的幫助。</li><li>請保持評論簡潔，避免使用不適當的語言，也不要張貼任何個人資訊。</li></ul><p>請閱讀<a href=\"%(guide)s\">評論指南</a>，以了解使用者對附加元件評論的更多資訊。</p>"
 
 msgid "Reply to review by {0}"
 msgstr "回覆 {0} 的評論"
@@ -7621,8 +7595,8 @@ msgstr "{0} :: 統計資訊儀表板"
 msgid "Statistics Dashboard :: Add-ons for {0}"
 msgstr "統計資訊儀表板 :: {0} 的附加元件"
 
-# %1 is the name of a collection
 #. {0} is an add-on name
+# %1 is the name of a collection
 msgid "Statistics for {0}"
 msgstr "{0} 的統計資訊"
 
@@ -7759,16 +7733,15 @@ msgstr "關於追蹤外部來源..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>追蹤外部來源</h2><p>如果您從外部網站(像是部落格或網站)連結至您的附加元件詳細資訊頁面，或是直接連結至該附加元件的檔案，您可以附加一個參數以便追蹤這個頁面的額外下載來源。舉例來說，以下連結的來源顯"
-"示為來自於您的部落格:<dl><dt>附加元件詳細資訊頁面</dt><dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd><dt>直接檔案連結</dt><dd>https://addons.mozilla.org/downloads/latest/"
-"%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd></dl><p>只有始於 external 的 src 參數才會被追蹤，最多可以使用61個額外的字元。任何殿後於 \"external-\"的文字可以用來敘述來源，像是 "
-"\"external-blog\"，\"external-sidebar\"，\"external-campaign225\"，等等。您可以使用以下合法的 URL 字元:<code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>追蹤外部來源</h2><p>如果您從外部網站(像是部落格或網站)連結至您的附加元件詳細資訊頁面，或是直接連結至該附加元件的檔案，您可以附加一個參數以便追蹤這個頁面的額外下載來源。舉例來說，以下連結的來源顯示為來自於您的部落格:<dl><dt>附加元件詳細資訊頁面</dt><dd>https://addons.mozilla.org/addon/%(slug)s?src=<b"
+">external-blog</b></dd><dt>直接檔案連結</dt><dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd></dl><p>只有始於 external 的 src "
+"參數才會被追蹤，最多可以使用61個額外的字元。任何殿後於 \"external-\"的文字可以用來敘述來源，像是 \"external-blog\"，\"external-sidebar\"，\"external-campaign225\"，等等。您可以使用以下合法的 URL 字元:<code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "依日期顯示元件狀態"
@@ -7790,8 +7763,7 @@ msgstr "<h2>每日使用者數是什麼？</h2><p>從這個網站下載並安裝
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>每日使用者數是什麼？</h2><p>從這個網站下載的附加元件每日檢查更新。這些更新偵測的總次數稱為活躍的每日使用者數。每日使用者數可以劃分為附加元件版本、作業系統、附加元件狀態、應用程式與地區。</p>"
+msgstr "<h2>每日使用者數是什麼？</h2><p>從這個網站下載的附加元件每日檢查更新。這些更新偵測的總次數稱為活躍的每日使用者數。每日使用者數可以劃分為附加元件版本、作業系統、附加元件狀態、應用程式與地區。</p>"
 
 msgid "User Signups by Date"
 msgstr "依日期顯示新註冊的使用者"
@@ -7835,9 +7807,7 @@ msgstr "回報 Bug"
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
-msgstr ""
-"除非另有<a href=\"https://www.mozilla.org/about/legal/\">提及</a>，此網站的內容依照<br /><a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">創用 CC 姓名標示-相同方式分享 3.0</a> 或任何更新"
-"版本授權使用。"
+msgstr "除非另有<a href=\"https://www.mozilla.org/about/legal/\">提及</a>，此網站的內容依照<br /><a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">創用 CC 姓名標示-相同方式分享 3.0</a> 或任何更新版本授權使用。"
 
 msgid "get to know <b>add-ons</b>"
 msgstr "了解<b>附加元件</b>"
@@ -8325,8 +8295,8 @@ msgstr "發行於 {0}"
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "原始碼以 <a href=\"%(url)s\">%(name)s</a> 的授權條款釋出"
 
-# {0} is the add-on name
 #. {0} is an add-on name.
+# {0} is the add-on name
 msgid "{0} Version History"
 msgstr "{0} 版本記錄"
 
