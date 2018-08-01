@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-07-30 22:28+0000\n"
-"Last-Translator: goofy <goofy@babelzilla.org>\n"
+"PO-Revision-Date: 2018-07-29 16:11+0000\n"
+"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -2333,9 +2333,8 @@ msgstr "Thème statique"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "No Reputation"
-msgstr "Réputation"
+msgstr "Aucune évaluation"
 
 msgid "Good (1)"
 msgstr "Bien (1)"
@@ -2605,6 +2604,7 @@ msgstr "Les catégories ne peuvent pas être changées lorsque votre module est 
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
+"Les modules pour Thunderbird et SeaMonkey sont maintenant répertoriés et maintenus sur addons.thunderbird.net. Vous pouvez utiliser le même compte pour mettre à jour vos modules sur ce nouveau site."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "À partir de la version 53 de Firefox, les nouveaux modules de ce site ne peuvent être que des WebExtensions."
@@ -3956,7 +3956,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Connectez-vous pour modifier et mettre à jour votre module"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "Ressources pour un lancement réussi"
 
 #, python-format
 msgid ""
