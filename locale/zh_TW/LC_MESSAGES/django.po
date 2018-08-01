@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-08-01 10:32+0000\n"
+"PO-Revision-Date: 2018-08-01 10:38+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4529,7 +4529,7 @@ msgstr "{addon_name} {start_sub_heading}客製化分頁內容{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "反白網頁上的任何文字，或選擇整張網頁，即可即時翻譯。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4679,7 +4679,7 @@ msgstr "{addon_name} {start_sub_heading}讀取 ePub 電子書{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "在 Firefox 中直接開啟 ePub 檔案—有放大文字、頁面大小等功能。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4795,7 +4795,7 @@ msgstr "{addon_name} {start_sub_heading}加強表情符號內容{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "為新分頁標籤指定自訂首頁。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4831,7 +4831,7 @@ msgstr "{addon_name} {start_sub_heading}客製化分頁內容{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "防止在點擊 Google 和 Yandex 搜尋結果時的追蹤。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4858,7 +4858,7 @@ msgstr "{addon_name} {start_sub_heading}拍攝畫面擷圖{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "讓網頁顏色變暗，讓上網時眼睛更舒服。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4903,7 +4903,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "安全地儲存密碼，並在不同裝置間同步使用。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5047,7 +5047,7 @@ msgstr "{addon_name} {start_sub_heading}加強表情符號內容{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "隱藏您正在查看的網站的部分內容。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5164,7 +5164,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
-msgstr ""
+msgstr "限制 Firefox 只能開啟您指定的網站。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5258,7 +5258,7 @@ msgstr "{addon_name} {start_sub_heading}拍攝畫面擷圖{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
-msgstr ""
+msgstr "去除重導頁面和網址中的追蹤參數。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5285,7 +5285,7 @@ msgstr "{addon_name} {start_sub_heading}清除數位足跡{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "能夠整合您所有的 RSS/Atom/RDF 資訊來源的進階閱讀器。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5384,7 +5384,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "防止搜尋結果中出現廣告。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5648,7 +5648,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "自動刪除您選擇的網站的上網記錄。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
