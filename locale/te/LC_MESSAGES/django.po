@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-08-01 11:49+0000\n"
+"PO-Revision-Date: 2018-08-01 11:54+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -7563,10 +7563,10 @@ msgid "See more languages&hellip;"
 msgstr "మరిన్ని భాషలను చూడండి&hellip;"
 
 msgid "Top Platforms"
-msgstr ""
+msgstr "మేటి ప్లాట్‌ఫారాలు"
 
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "మరిన్ని ప్లాట్‌ఫారాలను చూడండి&hellip;"
 
 msgid "Ratings by Date"
 msgstr ""
@@ -7645,7 +7645,7 @@ msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
 msgid "View the new site"
-msgstr ""
+msgstr "కొత్త సైటును చూడండి"
 
 msgid "Report a bug"
 msgstr ""
@@ -7908,13 +7908,13 @@ msgid "I understand this step cannot be undone."
 msgstr ""
 
 msgid "Delete my user account now"
-msgstr ""
+msgstr "నా వాడుకరి ఖాతాను ఇప్పుడు తొలగించు"
 
 msgid "Delete User Photo"
 msgstr "వాడుకరి ఫోటోను తొలగించండి"
 
 msgid "Delete my user picture now"
-msgstr ""
+msgstr "నా వాడుకరి చిత్రాన్ని ఇప్పుడు తొలగించు"
 
 msgid "Please set your display name"
 msgstr "దయచేసి మీ ప్రదర్శన పేరుని సెట్ చేయండి"
@@ -7932,7 +7932,7 @@ msgid "Email Address"
 msgstr "ఈమెయిల్ చిరునామా"
 
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Firefox ఖాతాను నిర్వహించండి..."
 
 msgid "Profile"
 msgstr "ప్రొఫైల్"
@@ -8029,7 +8029,7 @@ msgid "Add-ons I've created"
 msgstr "నేను సృష్టించిన పొడిగింతలు"
 
 msgid "My Most Popular Themes"
-msgstr ""
+msgstr "అత్యంత ప్రాచుర్యమైన నా అలంకారాలు"
 
 msgid "Themes I've created"
 msgstr "నేను సృష్టించిన అలంకారాలు"
@@ -8044,7 +8044,7 @@ msgid "My Reviews"
 msgstr "నా సమీక్షలు"
 
 msgid "No add-on reviews yet."
-msgstr ""
+msgstr "ఇంకా పొడగింతల సమీక్షలు లేవు."
 
 msgid "Report User"
 msgstr "వాడుకరిని నివేదించు"
