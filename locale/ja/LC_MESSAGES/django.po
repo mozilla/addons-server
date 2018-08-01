@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-26 10:19+0000\n"
+"POT-Creation-Date: 2018-08-01 20:09+0000\n"
 "PO-Revision-Date: 2018-07-12 04:04+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -834,9 +834,6 @@ msgstr "コレクション"
 msgid "Collections I've Made"
 msgstr "自分が作成したコレクション"
 
-msgid "Collections I'm Following"
-msgstr "フォローしているコレクション"
-
 msgid "My Favorite Add-ons"
 msgstr "お気に入りのアドオン"
 
@@ -1056,27 +1053,11 @@ msgstr "(任意)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "または <a id=\"collections-new-cancel\" href=\"#\">キャンセル</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "コレクションを評価するには、当サイトのアカウントが必要です。"
-
-msgid "Create an Add-ons Account"
-msgstr "当サイトのアカウントを作成"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "あるいは <a href=\"%(login)s\">既存のアカウントへログイン</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: コレクション"
 
 msgid "private"
 msgstr "非公開"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> 人のフォロワー"
 
 msgid "About this Collection"
 msgstr "このコレクションについて"
@@ -1146,44 +1127,8 @@ msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> 個のアドオン"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> 人のフォロワー"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s 人の週間フォロワー"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s 人の月間フォロワー"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s 人のフォロワー"
-
 msgid "by {0}"
 msgstr "作者: {0}"
-
-msgid "Stop Following"
-msgstr "フォローをやめる"
-
-msgid "Follow this Collection"
-msgstr "このコレクションをフォロー"
 
 msgid "Edit this Collection"
 msgstr "このコレクションを編集"
@@ -1233,9 +1178,6 @@ msgstr ""
 msgid "by %(author_link)s"
 msgstr "作者: %(author_link)s"
 
-msgid "Following"
-msgstr "フォロー中"
-
 msgid "Create a Collection"
 msgstr "コレクションを作成"
 
@@ -1283,18 +1225,6 @@ msgstr "コメントを追加"
 
 msgid "Remove this add-on from the collection"
 msgstr "このアドオンをコレクションから削除"
-
-msgid "Add a positive vote for this collection"
-msgstr "コレクションへ肯定的な投票を追加"
-
-msgid "Add a negative vote for this collection"
-msgstr "コレクションへ否定的な投票を追加"
-
-msgid "Remove my vote for this collection"
-msgstr "このコレクションに対する自分の投票を削除"
-
-msgid "Log in to vote for this collection"
-msgstr "このコレクションに投票するにはログインしてください"
 
 msgid "Favorite"
 msgstr "お気に入り"
@@ -7612,12 +7542,6 @@ msgstr "OS 別"
 msgid "by Add-on Status"
 msgstr "アドオンのステータス別"
 
-msgid "Subscribers"
-msgstr "購読者"
-
-msgid "Ratings"
-msgstr "レーティング"
-
 msgid "Add-on Statistics"
 msgstr "アドオンの統計情報"
 
@@ -7860,6 +7784,13 @@ msgstr "新しいサイトを見る"
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "自分のコレクションを作成するには Mozilla アドオンサイトのアカウントが必要です。"
 
+msgid "Create an Add-ons Account"
+msgstr "当サイトのアカウントを作成"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "あるいは <a href=\"%(login)s\">既存のアカウントへログイン</a>"
+
 msgid "Footer logo"
 msgstr "フッターロゴ"
 
@@ -8007,6 +7938,9 @@ msgstr "プロファイル写真"
 
 msgid "Addons"
 msgstr ""
+
+msgid "Ratings"
+msgstr "レーティング"
 
 msgid "Activity Logs"
 msgstr "アクティビティログ"
@@ -8191,9 +8125,6 @@ msgstr "あなたのプロファイルに表示されるコレクションを選
 msgid "Display the collections I have created"
 msgstr "自分が作成したコレクションを表示"
 
-msgid "Display collections I'm following"
-msgstr "フォローしているコレクションを表示"
-
 msgid "Notifications"
 msgstr "通知"
 
@@ -8263,9 +8194,6 @@ msgstr "自分のお気に入りのテーマ"
 
 msgid "Themes I've created"
 msgstr "自分が作ったテーマ"
-
-msgid "Followed by Me"
-msgstr "フォローしているコレクション"
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"

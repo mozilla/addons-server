@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-26 10:19+0000\n"
+"POT-Creation-Date: 2018-08-01 20:09+0000\n"
 "PO-Revision-Date: 2018-06-04 08:25+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -851,9 +851,6 @@ msgstr "Samlinger"
 msgid "Collections I've Made"
 msgstr "Samlinger jeg har laget"
 
-msgid "Collections I'm Following"
-msgstr "Samlinger jeg følger"
-
 msgid "My Favorite Add-ons"
 msgstr "Mine favorittutvidelser"
 
@@ -1072,28 +1069,11 @@ msgstr "(valgfritt)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "eller <a id=\"collections-new-cancel\" href=\"#\">Avbryt</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "For å rangere samlinger må du først ha en utvidelseskonto."
-
-msgid "Create an Add-ons Account"
-msgstr "Opprett en utvidelseskonto"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "eller <a href=\"%(login)s\">logg inn på en eksisterende konto</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: Samlinger"
 
 msgid "private"
 msgstr "privat"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> følger"
-msgstr[1] "<span>%(num)s</span> følgere"
 
 msgid "About this Collection"
 msgstr "Om denne samlingen"
@@ -1167,48 +1147,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> utvidelse"
 msgstr[1] "<span>%(addons)s</span> utvidelser"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> følger"
-msgstr[1] "<span>%(followers)s</span> følgere"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s ukentlig følger"
-msgstr[1] "%(num)s ukentlige følgere"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s månedlig følger"
-msgstr[1] "%(num)s månedlige følgere"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s følger"
-msgstr[1] "%(num)s følgere"
-
 msgid "by {0}"
 msgstr "av {0}"
-
-msgid "Stop Following"
-msgstr "Stopp følging"
-
-msgid "Follow this Collection"
-msgstr "Følg denne samlingen"
 
 msgid "Edit this Collection"
 msgstr "Rediger denne samlingen"
@@ -1257,9 +1197,6 @@ msgstr "Samlinger er grupper av relaterte utvidelser som hvem som helst kan lage
 msgid "by %(author_link)s"
 msgstr "av %(users)s"
 
-msgid "Following"
-msgstr "Følger"
-
 msgid "Create a Collection"
 msgstr "Lag en samling"
 
@@ -1307,18 +1244,6 @@ msgstr "Legg til kommentar"
 
 msgid "Remove this add-on from the collection"
 msgstr "Fjern denne utvidelsen fra denne samlingen"
-
-msgid "Add a positive vote for this collection"
-msgstr "Legg til en positiv stemme på denne samlingen"
-
-msgid "Add a negative vote for this collection"
-msgstr "Legg til en negativ stemme på denne samlingen"
-
-msgid "Remove my vote for this collection"
-msgstr "Fjern stemmen min fra denne samlingen"
-
-msgid "Log in to vote for this collection"
-msgstr "Logg inn for å stemme på denne samlingen"
 
 msgid "Favorite"
 msgstr "Favoritt"
@@ -7625,12 +7550,6 @@ msgstr ""
 msgid "by Add-on Status"
 msgstr ""
 
-msgid "Subscribers"
-msgstr ""
-
-msgid "Ratings"
-msgstr ""
-
 msgid "Add-on Statistics"
 msgstr ""
 
@@ -7873,6 +7792,13 @@ msgstr ""
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr ""
 
+msgid "Create an Add-ons Account"
+msgstr "Opprett en utvidelseskonto"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "eller <a href=\"%(login)s\">logg inn på en eksisterende konto</a>"
+
 msgid "Footer logo"
 msgstr ""
 
@@ -8020,6 +7946,9 @@ msgid "Profile Photo"
 msgstr ""
 
 msgid "Addons"
+msgstr ""
+
+msgid "Ratings"
 msgstr ""
 
 msgid "Activity Logs"
@@ -8204,9 +8133,6 @@ msgstr ""
 msgid "Display the collections I have created"
 msgstr ""
 
-msgid "Display collections I'm following"
-msgstr ""
-
 msgid "Notifications"
 msgstr ""
 
@@ -8274,9 +8200,6 @@ msgid "My Most Popular Themes"
 msgstr ""
 
 msgid "Themes I've created"
-msgstr ""
-
-msgid "Followed by Me"
 msgstr ""
 
 msgid "Created by Me"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-26 10:19+0000\n"
+"POT-Creation-Date: 2018-08-01 20:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -837,9 +837,6 @@ msgstr "Ƈǿŀŀḗƈŧīǿƞş"
 msgid "Collections I've Made"
 msgstr "Ƈǿŀŀḗƈŧīǿƞş Ī'ṽḗ Ḿȧḓḗ"
 
-msgid "Collections I'm Following"
-msgstr "Ƈǿŀŀḗƈŧīǿƞş Ī'ḿ Ƒǿŀŀǿẇīƞɠ"
-
 msgid "My Favorite Add-ons"
 msgstr "Ḿẏ Ƒȧṽǿřīŧḗ Aḓḓ-ǿƞş"
 
@@ -1057,28 +1054,11 @@ msgstr "(ǿƥŧīǿƞȧŀ)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "ǿř <a id=\"collections-new-cancel\" href=\"#\">Ƈȧƞƈḗŀ</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "Ŧǿ řȧŧḗ ƈǿŀŀḗƈŧīǿƞş, ẏǿŭ ḿŭşŧ ħȧṽḗ ȧƞ ȧḓḓ-ǿƞş ȧƈƈǿŭƞŧ."
-
-msgid "Create an Add-ons Account"
-msgstr "Ƈřḗȧŧḗ ȧƞ Aḓḓ-ǿƞş Aƈƈǿŭƞŧ"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "ǿř <a href=\"%(login)s\">ŀǿɠ īƞ ŧǿ ẏǿŭř ƈŭřřḗƞŧ ȧƈƈǿŭƞŧ</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: Ƈǿŀŀḗƈŧīǿƞş"
 
 msgid "private"
 msgstr "ƥřīṽȧŧḗ"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> ƒǿŀŀǿẇḗř"
-msgstr[1] "<span>%(num)s</span> ƒǿŀŀǿẇḗřş"
 
 msgid "About this Collection"
 msgstr "Aƀǿŭŧ ŧħīş Ƈǿŀŀḗƈŧīǿƞ"
@@ -1151,48 +1131,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> ȧḓḓ-ǿƞ"
 msgstr[1] "<span>%(addons)s</span> ȧḓḓ-ǿƞş"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> ƒǿŀŀǿẇḗř"
-msgstr[1] "<span>%(followers)s</span> ƒǿŀŀǿẇḗřş"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s ẇḗḗķŀẏ ƒǿŀŀǿẇḗř"
-msgstr[1] "%(num)s ẇḗḗķŀẏ ƒǿŀŀǿẇḗřş"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s ḿǿƞŧħŀẏ ƒǿŀŀǿẇḗř"
-msgstr[1] "%(num)s ḿǿƞŧħŀẏ ƒǿŀŀǿẇḗřş"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s ƒǿŀŀǿẇḗř"
-msgstr[1] "%(num)s ƒǿŀŀǿẇḗřş"
-
 msgid "by {0}"
 msgstr "ƀẏ {0}"
-
-msgid "Stop Following"
-msgstr "Şŧǿƥ Ƒǿŀŀǿẇīƞɠ"
-
-msgid "Follow this Collection"
-msgstr "Ƒǿŀŀǿẇ ŧħīş Ƈǿŀŀḗƈŧīǿƞ"
 
 msgid "Edit this Collection"
 msgstr "Ḗḓīŧ ŧħīş Ƈǿŀŀḗƈŧīǿƞ"
@@ -1241,9 +1181,6 @@ msgstr "Ƈǿŀŀḗƈŧīǿƞş ȧřḗ ɠřǿŭƥş ǿƒ řḗŀȧŧḗḓ ȧ�
 msgid "by %(author_link)s"
 msgstr "ƀẏ %(author_link)s"
 
-msgid "Following"
-msgstr "Ƒǿŀŀǿẇīƞɠ"
-
 msgid "Create a Collection"
 msgstr "Ƈřḗȧŧḗ ȧ Ƈǿŀŀḗƈŧīǿƞ"
 
@@ -1291,18 +1228,6 @@ msgstr "Aḓḓ ȧ ƈǿḿḿḗƞŧ"
 
 msgid "Remove this add-on from the collection"
 msgstr "Řḗḿǿṽḗ ŧħīş ȧḓḓ-ǿƞ ƒřǿḿ ŧħḗ ƈǿŀŀḗƈŧīǿƞ"
-
-msgid "Add a positive vote for this collection"
-msgstr "Aḓḓ ȧ ƥǿşīŧīṽḗ ṽǿŧḗ ƒǿř ŧħīş ƈǿŀŀḗƈŧīǿƞ"
-
-msgid "Add a negative vote for this collection"
-msgstr "Aḓḓ ȧ ƞḗɠȧŧīṽḗ ṽǿŧḗ ƒǿř ŧħīş ƈǿŀŀḗƈŧīǿƞ"
-
-msgid "Remove my vote for this collection"
-msgstr "Řḗḿǿṽḗ ḿẏ ṽǿŧḗ ƒǿř ŧħīş ƈǿŀŀḗƈŧīǿƞ"
-
-msgid "Log in to vote for this collection"
-msgstr "Ŀǿɠ īƞ ŧǿ ṽǿŧḗ ƒǿř ŧħīş ƈǿŀŀḗƈŧīǿƞ"
 
 msgid "Favorite"
 msgstr "Ƒȧṽǿřīŧḗ"
@@ -7484,12 +7409,6 @@ msgstr "ƀẏ Ƥŀȧŧƒǿřḿ"
 msgid "by Add-on Status"
 msgstr "ƀẏ Aḓḓ-ǿƞ Şŧȧŧŭş"
 
-msgid "Subscribers"
-msgstr "Şŭƀşƈřīƀḗřş"
-
-msgid "Ratings"
-msgstr "Řȧŧīƞɠş"
-
 msgid "Add-on Statistics"
 msgstr "Aḓḓ-ǿƞ Şŧȧŧīşŧīƈş"
 
@@ -7743,6 +7662,13 @@ msgstr "Ṽīşīŧ ŧħḗ ƞḗẇ şīŧḗ"
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Ŧǿ ƈřḗȧŧḗ ẏǿŭř ǿẇƞ ƈǿŀŀḗƈŧīǿƞş, ẏǿŭ ḿŭşŧ ħȧṽḗ ȧ Ḿǿẑīŀŀȧ Aḓḓ-ǿƞş ȧƈƈǿŭƞŧ."
 
+msgid "Create an Add-ons Account"
+msgstr "Ƈřḗȧŧḗ ȧƞ Aḓḓ-ǿƞş Aƈƈǿŭƞŧ"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "ǿř <a href=\"%(login)s\">ŀǿɠ īƞ ŧǿ ẏǿŭř ƈŭřřḗƞŧ ȧƈƈǿŭƞŧ</a>"
+
 msgid "Footer logo"
 msgstr "Ƒǿǿŧḗř ŀǿɠǿ"
 
@@ -7890,6 +7816,9 @@ msgstr "Ƥřǿƒīŀḗ Ƥħǿŧǿ"
 
 msgid "Addons"
 msgstr "Aḓḓǿƞş"
+
+msgid "Ratings"
+msgstr "Řȧŧīƞɠş"
 
 msgid "Activity Logs"
 msgstr "Aƈŧīṽīŧẏ Ŀǿɠş"
@@ -8074,9 +8003,6 @@ msgstr "Ḓḗƈīḓḗ ẇħȧŧ ƈǿŀŀḗƈŧīǿƞş şħǿŭŀḓ ƀḗ �
 msgid "Display the collections I have created"
 msgstr "Ḓīşƥŀȧẏ ŧħḗ ƈǿŀŀḗƈŧīǿƞş Ī ħȧṽḗ ƈřḗȧŧḗḓ"
 
-msgid "Display collections I'm following"
-msgstr "Ḓīşƥŀȧẏ ƈǿŀŀḗƈŧīǿƞş Ī'ḿ ƒǿŀŀǿẇīƞɠ"
-
 msgid "Notifications"
 msgstr "Ƞǿŧīƒīƈȧŧīǿƞş"
 
@@ -8145,9 +8071,6 @@ msgstr "Ḿẏ Ḿǿşŧ Ƥǿƥŭŀȧř Ŧħḗḿḗş"
 
 msgid "Themes I've created"
 msgstr "Ŧħḗḿḗş Ī'ṽḗ ƈřḗȧŧḗḓ"
-
-msgid "Followed by Me"
-msgstr "Ƒǿŀŀǿẇḗḓ ƀẏ Ḿḗ"
 
 msgid "Created by Me"
 msgstr "Ƈřḗȧŧḗḓ ƀẏ Ḿḗ"

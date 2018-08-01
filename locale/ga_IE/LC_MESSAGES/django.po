@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-26 10:19+0000\n"
+"POT-Creation-Date: 2018-08-01 20:09+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -903,9 +903,6 @@ msgstr "Bailiúcháin"
 msgid "Collections I've Made"
 msgstr "Bailiúcháin a Chruthaigh Mé"
 
-msgid "Collections I'm Following"
-msgstr "Bailiúcháin a Leanaim"
-
 msgid "My Favorite Add-ons"
 msgstr "Na Breiseáin Is Ansa Liom"
 
@@ -1125,31 +1122,11 @@ msgstr "(roghnach)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "nó <a id=\"collections-new-cancel\" href=\"#\">Cealaigh</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "Chun bailiúchán a rátáil, ní mór cuntas breiseán a bheith agat."
-
-msgid "Create an Add-ons Account"
-msgstr "Cruthaigh Cuntas Breiseán"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "nó <a href=\"%(login)s\">logáil isteach má tá cuntas agat cheana</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: Bailiúcháin"
 
 msgid "private"
 msgstr "príobháideach"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> leantóir"
-msgstr[1] "<span>%(num)s</span> leantóir"
-msgstr[2] "<span>%(num)s</span> leantóir"
-msgstr[3] "<span>%(num)s</span> leantóir"
-msgstr[4] "<span>%(num)s</span> leantóir"
 
 msgid "About this Collection"
 msgstr "Maidir leis an mBailiúchán seo"
@@ -1227,60 +1204,8 @@ msgstr[2] "<span>%(addons)s</span> bhreiseán"
 msgstr[3] "<span>%(addons)s</span> mbreiseán"
 msgstr[4] "<span>%(addons)s</span> breiseán"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> leantóir"
-msgstr[1] "<span>%(followers)s</span> leantóir"
-msgstr[2] "<span>%(followers)s</span> leantóir"
-msgstr[3] "<span>%(followers)s</span> leantóir"
-msgstr[4] "<span>%(followers)s</span> leantóir"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s leantóir seachtainiúla"
-msgstr[1] "%(num)s leantóir seachtainiúil"
-msgstr[2] "%(num)s leantóir seachtainiúil"
-msgstr[3] "%(num)s leantóir seachtainiúil"
-msgstr[4] "%(num)s leantóir seachtainiúil"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s leantóir míosúil"
-msgstr[1] "%(num)s leantóir míosúla"
-msgstr[2] "%(num)s leantóir míosúil"
-msgstr[3] "%(num)s leantóir míosúil"
-msgstr[4] "%(num)s leantóir míosúil"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s leantóir"
-msgstr[1] "%(num)s leantóir"
-msgstr[2] "%(num)s leantóir"
-msgstr[3] "%(num)s leantóir"
-msgstr[4] "%(num)s leantóir"
-
 msgid "by {0}"
 msgstr "le {0}"
-
-msgid "Stop Following"
-msgstr "Ná lean a thuilleadh"
-
-msgid "Follow this Collection"
-msgstr "Lean an Bailiúchán seo"
 
 msgid "Edit this Collection"
 msgstr "Cuir an Bailiúchán seo in eagar"
@@ -1329,9 +1254,6 @@ msgstr ""
 msgid "by %(author_link)s"
 msgstr "le %(users)s"
 
-msgid "Following"
-msgstr "Á Leanúint"
-
 msgid "Create a Collection"
 msgstr "Cruthaigh Bailiúchán"
 
@@ -1379,18 +1301,6 @@ msgstr "Cuir nóta tráchta leis"
 
 msgid "Remove this add-on from the collection"
 msgstr "Bain an breiseán seo ón bhailiúchán"
-
-msgid "Add a positive vote for this collection"
-msgstr "Tabhair vóta deimhneach don bhailiúchán seo"
-
-msgid "Add a negative vote for this collection"
-msgstr "Tabhair vóta diúltach don bhailiúchán seo"
-
-msgid "Remove my vote for this collection"
-msgstr "Bain mo vóta ón bhailiúchán seo"
-
-msgid "Log in to vote for this collection"
-msgstr "Logáil isteach chun vóta a thabhairt don bhailiúchán seo"
 
 msgid "Favorite"
 msgstr "Ceanán"
@@ -7791,12 +7701,6 @@ msgstr "de réir Ardáin"
 msgid "by Add-on Status"
 msgstr "de réir Stádas an Bhreiseáin"
 
-msgid "Subscribers"
-msgstr ""
-
-msgid "Ratings"
-msgstr "Rátálacha"
-
 msgid "Add-on Statistics"
 msgstr ""
 
@@ -8040,6 +7944,13 @@ msgstr ""
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Chun do bhailiúcháin féin a chruthú, ní mór cuntas Breiseáin Mozilla a bheith agat."
 
+msgid "Create an Add-ons Account"
+msgstr "Cruthaigh Cuntas Breiseán"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "nó <a href=\"%(login)s\">logáil isteach má tá cuntas agat cheana</a>"
+
 msgid "Footer logo"
 msgstr ""
 
@@ -8193,6 +8104,9 @@ msgstr "Grianghraf na Próifíle"
 
 msgid "Addons"
 msgstr ""
+
+msgid "Ratings"
+msgstr "Rátálacha"
 
 #, fuzzy
 msgid "Activity Logs"
@@ -8378,9 +8292,6 @@ msgstr ""
 msgid "Display the collections I have created"
 msgstr "Taispeáin na bailiúcháin a chruthaigh mé"
 
-msgid "Display collections I'm following"
-msgstr "Taispeáin na bailiúcháin a leanann mé"
-
 msgid "Notifications"
 msgstr "Fógraí"
 
@@ -8450,9 +8361,6 @@ msgstr ""
 
 msgid "Themes I've created"
 msgstr ""
-
-msgid "Followed by Me"
-msgstr "Leanaim"
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"

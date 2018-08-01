@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-26 10:19+0000\n"
+"POT-Creation-Date: 2018-08-01 20:09+0000\n"
 "PO-Revision-Date: 2018-07-10 14:14+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -865,9 +865,6 @@ msgstr "Koleksiyonlar"
 msgid "Collections I've Made"
 msgstr "Oluşturduğum Koleksiyonlar"
 
-msgid "Collections I'm Following"
-msgstr "İzlediğim Koleksiyonlar"
-
 msgid "My Favorite Add-ons"
 msgstr "Favori Eklentilerim"
 
@@ -1097,28 +1094,11 @@ msgstr "(tercihe bağlı)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "veya <a id=\"collections-new-cancel\" href=\"#\">iptal et</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "Koleksiyonları puanlamak için eklentiler hesabınız olmalı."
-
-msgid "Create an Add-ons Account"
-msgstr "Eklentiler hesabı oluştur"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "veya <a href=\"%(login)s\">hesabınıza giriş yapın</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: Koleksiyonlar"
 
 msgid "private"
 msgstr "özel"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> takipçi"
-msgstr[1] "<span>%(num)s</span> takipçi"
 
 # 76%
 # 100%
@@ -1194,48 +1174,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> eklenti"
 msgstr[1] "<span>%(addons)s</span> eklenti"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> takipçi"
-msgstr[1] "<span>%(followers)s</span> takipçi"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s haftalık takipçi"
-msgstr[1] "%(num)s haftalık takipçi"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "Aylık %(num)s takipçi"
-msgstr[1] "Aylık %(num)s takipçi"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s takipçi"
-msgstr[1] "%(num)s takipçi"
-
 msgid "by {0}"
 msgstr "geliştiren: {0}"
-
-msgid "Stop Following"
-msgstr "İzlemeyi Bırak"
-
-msgid "Follow this Collection"
-msgstr "Bu Koleksiyonu İzle"
 
 # 76%
 # 100%
@@ -1290,9 +1230,6 @@ msgstr ""
 msgid "by %(author_link)s"
 msgstr "%(author_link)s tarafından"
 
-msgid "Following"
-msgstr "Takip Ediliyor"
-
 # 89%
 # 100%
 msgid "Create a Collection"
@@ -1344,18 +1281,6 @@ msgstr "Yorum ekleyin"
 
 msgid "Remove this add-on from the collection"
 msgstr "Koleksiyondan eklentiyi kaldır"
-
-msgid "Add a positive vote for this collection"
-msgstr "Bu koleksiyona olumlu oy ver"
-
-msgid "Add a negative vote for this collection"
-msgstr "Bu koleksiyona olumsuz oy ver"
-
-msgid "Remove my vote for this collection"
-msgstr "Bu koleksiyondaki oyumu kaldır"
-
-msgid "Log in to vote for this collection"
-msgstr "Bu koleksiyona oy vermek için oturum açın"
 
 msgid "Favorite"
 msgstr "Favori"
@@ -7696,14 +7621,6 @@ msgstr "Platforma göre"
 msgid "by Add-on Status"
 msgstr "Eklenti durumuna göre"
 
-# 100%
-msgid "Subscribers"
-msgstr "Abone"
-
-# 100%
-msgid "Ratings"
-msgstr "Puanlama"
-
 msgid "Add-on Statistics"
 msgstr "Eklenti istatistikleri"
 
@@ -7971,6 +7888,13 @@ msgstr "Yeni siteye git"
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Koleksiyonları puanlamak için eklentiler hesabınız olmalı."
 
+msgid "Create an Add-ons Account"
+msgstr "Eklentiler hesabı oluştur"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "veya <a href=\"%(login)s\">hesabınıza giriş yapın</a>"
+
 msgid "Footer logo"
 msgstr "Altbilgi logosu"
 
@@ -8120,6 +8044,10 @@ msgstr "Profil Resmi"
 
 msgid "Addons"
 msgstr "Eklentiler"
+
+# 100%
+msgid "Ratings"
+msgstr "Puanlama"
 
 #, fuzzy
 msgid "Activity Logs"
@@ -8312,9 +8240,6 @@ msgstr ""
 msgid "Display the collections I have created"
 msgstr "Oluşturduğum koleksiyonları göster"
 
-msgid "Display collections I'm following"
-msgstr "Takip ettiğim koleksiyonları göster"
-
 msgid "Notifications"
 msgstr "Bildirimler"
 
@@ -8385,9 +8310,6 @@ msgstr "En Popüler Temalarım"
 
 msgid "Themes I've created"
 msgstr "Oluşturduğum temalar"
-
-msgid "Followed by Me"
-msgstr "Takip ettiklerim"
 
 #, fuzzy
 msgid "Created by Me"
