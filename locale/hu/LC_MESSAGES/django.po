@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-07-26 10:19+0000\n"
-"PO-Revision-Date: 2018-08-01 15:11+0000\n"
+"PO-Revision-Date: 2018-08-01 15:19+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4768,7 +4768,7 @@ msgstr "Emelje új szintre YouTube élményét {start_sub_heading}a(z) {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "Játssza le a videókat alapértelmezetten a legmagasabb minőségben, kikapcsolt megjegyzésekkel, és egyebekkel."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4776,7 +4776,7 @@ msgstr "Kövesse a követőket {start_sub_heading}a(z) {addon_name} kiegészít�
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "Kapjon betekintést abba, hogy kik követik, egyetlen kattintással."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4784,7 +4784,7 @@ msgstr "Cserélje le a proxy kiszolgálóját {start_sub_heading}a(z) {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "Böngéssze a webet a megadott proxy beálltásokkal."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
