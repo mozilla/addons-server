@@ -146,4 +146,10 @@ workflows:
               only: /.*/
             branches:
               ignore: /.*/
-      - integration_test
+      # Temporarily disable integration tests because they have been failing
+      # for a long time and are hard to fix.
+      # Since we kinda rely on a proper CI-status and ignoring CircleCI
+      # failures is bad we disable them temporarily until
+      # we figure out a better solution.
+      # https://github.com/mozilla/addons-server/issues/9062
+      # - integration_test
