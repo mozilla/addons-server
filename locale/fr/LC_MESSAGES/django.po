@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-02 11:33+0000\n"
+"PO-Revision-Date: 2018-08-02 11:53+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4606,7 +4606,7 @@ msgstr "Personnalisez vos onglets {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "Sélectionnez du texte dans une page Web (ou la page entière) et découvrez sa traduction instantanément."
+msgstr "Sélectionnez du texte dans une page Web (ou la page entière) et obtenez sa traduction instantanément."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4731,7 +4731,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr "Protégez vos activités de navigation en masquant l'identité de votre navigateur et de votre système d'exploitation."
+msgstr "Protégez vos activités de navigation en masquant l’identité de votre navigateur et de votre système d’exploitation."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4749,7 +4749,7 @@ msgstr "Diversifiez les émoticônes que vous utilisez {start_sub_heading}avec {
 
 #. editorial content for the discovery pane.
 msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "Différenciez vos identités en ligne (professionnel, personnel, loisirs, etc.) en utilisant des onglets de couleur qui ont pour effet de brouiller votre piste de cookies."
+msgstr "Différenciez vos identités en ligne (professionnel, personnel, loisirs, etc.) en utilisant des onglets de couleur qui ont pour effet de brouiller les pistes en séparant vos cookies."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4758,7 +4758,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr "Bénéficiez d'une couche supplémentaire de protection contre le suivi/tracking lorsque vous naviguez sur le Web."
+msgstr "Bénéficiez d’une couche supplémentaire de protection contre le pistage lorsque vous naviguez sur le Web."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4767,7 +4767,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "Affichez les fichiers ePub directement dans Firefox et adaptez-les à vos préférences : augmentez la taille de la police, les dimensions de la page, etc."
+msgstr "Affichez les fichiers ePub directement dans Firefox et adaptez-les à vos préférences : augmentez la taille de la police, les dimensions de la page, etc."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4776,7 +4776,7 @@ msgstr "Diversifiez les émoticônes que vous utilisez {start_sub_heading}avec {
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
-msgstr "Lisez toujours les vidéos dans les meilleures conditions : qualité la plus élevée, annotations désactivées, etc."
+msgstr "Lisez toujours les vidéos dans les meilleures conditions : qualité la plus élevée, annotations désactivées, etc."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4785,7 +4785,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
-msgstr "D'un simple clic affichez des informations sur les trackers qui vous \"espionnent\"."
+msgstr "D’un simple clic, affichez des informations sur les traqueurs qui vous espionnent."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4803,7 +4803,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr "Améliorez votre expérience de visionnage en ajustant la vitesse de lecture des vidéos et d'autres paramètres."
+msgstr "Améliorez votre expérience de visionnage en ajustant la vitesse de lecture des vidéos et d’autres paramètres."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4812,7 +4812,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
-msgstr "Ajoutez une couche de sécurité cryptée aux sites qui supportent le protocole HTTPS."
+msgstr "Ajoutez une couche de sécurité chiffrée aux sites qui prennent en charge le protocole HTTPS."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4821,7 +4821,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr "Bénéficiez des coupons les plus avantageux : ils seront automatiquement pris en compte lors du règlement de votre panier d'achat."
+msgstr "Bénéficiez des coupons les plus avantageux : ils seront automatiquement pris en compte lors du règlement de votre panier d’achat."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4830,7 +4830,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr "Contrastez du texte sur une page Web (ou sélectionnez la page entière) pour obtenir sa traduction instantanée. "
+msgstr "Sélectionnez du texte dans une page Web (ou la page entière) et obtenez sa traduction instantanément."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4839,7 +4839,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr "Changez vos habitudes de surf sur Reddit en utilisant des tags/balises et d'autres aides."
+msgstr "Changez vos habitudes de navigation sur Reddit en utilisant des tags et bien d’autres choses."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4848,7 +4848,7 @@ msgstr "Diversifiez les émoticônes que vous utilisez {start_sub_heading}avec {
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr "Faites des captures d'écran des pages Web de votre choix puis modifiez-les ou partagez-les."
+msgstr "Effectuez des captures d’écran des pages web de votre choix puis modifiez-les ou partagez-les."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
