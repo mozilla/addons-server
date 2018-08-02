@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-02 13:12+0000\n"
+"PO-Revision-Date: 2018-08-02 13:15+0000\n"
 "Last-Translator: Wolfgang Marcos <wolfgang@alcateia.eti.br>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4449,7 +4449,7 @@ msgstr "Personalize páginas de nova aba {start_sub_heading}com {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Desfrute de uma bonita nova página com planos de fundo personalizáveis, informações sobre meteorologia local e mais."
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4645,7 +4645,7 @@ msgstr "Personalize gestos do mouse {start_sub_heading}com {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "Descubra uma nova maneira de navegar com mais de 50 gestos de mouse úteis."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4653,7 +4653,7 @@ msgstr "Otimize vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "Escureça a página ao redor dos reprodutores de vídeo para uma experiência de visualização mais focada."
 
 #. editorial content for the discovery pane.
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4663,6 +4663,8 @@ msgstr "Faça pesquisas com consciência {start_sub_heading}com {addon_name}{end
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
 msgstr ""
+"O mecanismo de pesquisa Ecosia utiliza 80% dos lucros das pesquisas feitas em seu site para financiar programas de plantação de árvores ao redor do mundo. Adicione o Ecosia como uma opções de "
+"pesquisa do Firefox"
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4670,7 +4672,7 @@ msgstr "Encontre conteúdos perdidos {start_sub_heading}com {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "A página que procura não está disponível? Procure por uma versão arquivada em cache."
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4698,7 +4700,7 @@ msgstr "Ajuste o tamanho de visualização de páginas {start_sub_heading}com {a
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "Uma forma simples de ajustar o tamanho do texto de qualquer página — ou mesmo de aumentar a própria página."
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4706,7 +4708,7 @@ msgstr "Bloqueie rastreadores invisíveis {start_sub_heading}com {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "Impeça a ação de rastreadores e saiba mais sobre eles."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4715,6 +4717,7 @@ msgstr "Salve texto para ler mais tarde {start_sub_heading}com {addon_name}{end_
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
 msgstr ""
+"Pare de escrever a mesma coisa várias vezes! Caso você usa com frequência as mesmas frases no seu trabalho ou outras comunicações, salve as frases no Clippings e as cole facilmente quando preciso."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
