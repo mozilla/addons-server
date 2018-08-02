@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-02 12:51+0000\n"
+"PO-Revision-Date: 2018-08-02 12:58+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -5712,7 +5712,7 @@ msgstr "Mesurez le temps que vous passez sur l’ordinateur (ou dans certaines a
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Copiez des contenus Web (articles, vidéos, photos, etc.) pour les enregistrer et les utiliser dans des projets personnels ou pour une collaboration en équipe et en temps réel."
+msgstr "Copiez des contenus web (articles, vidéos, photos, etc.) pour les enregistrer et les utiliser dans des projets personnels ou pour une collaboration en équipe et en temps réel."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5721,7 +5721,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
-msgstr "Autorisez l'affichage de contenus Web seulement à partir des sites auxquels vous faites confiance."
+msgstr "Autorisez l’affichage de contenus web seulement à partir des sites auxquels vous faites confiance."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5739,7 +5739,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr "Supprimez automatiquement l'historique du navigateur pour les sites Web que vous sélectionnez."
+msgstr "Supprimez automatiquement l’historique du navigateur pour les sites web que vous sélectionnez."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5748,7 +5748,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr "Protégez vos signets personnels à l'aide d'un mot de passe."
+msgstr "Protégez vos marque-pages personnels à l’aide d’un mot de passe."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5757,7 +5757,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr "Si vous utilisez un VPN, votre adresse IP risque de subir des \"fuites\". Évitez cette situation en désactivant WebRTC."
+msgstr "Si vous utilisez un VPN, votre adresse IP risque d’être révélée. Évitez cette situation en désactivant WebRTC."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5775,7 +5775,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr "Vous avez déniché une photo sympa sur le Web ? Utilisez TinEye pour déterminer son origine, son auteur, sa date de publication en ligne, etc."
+msgstr "Vous avez déniché une photo sympa sur le Web ? Utilisez TinEye pour déterminer son origine, son auteur, sa date de publication en ligne, etc."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5797,7 +5797,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr "Soyez un internaute informé : déterminez l'emplacement géographique des serveurs des sites Web que vous visitez. "
+msgstr "Soyez un internaute informé : déterminez l’emplacement géographique des serveurs des sites web que vous visitez. "
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5806,7 +5806,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr "Le volume de cet objet Web trop faible ? Trop fort ? SoundFixer est prêt à vous aider."
+msgstr "Le volume sonore sur cette page web est trop faible ? Trop élevé ? SoundFixer est prêt à vous aider."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5815,7 +5815,7 @@ msgstr "Personnalisez vos onglets {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
-msgstr "Modifiez radicalement une page Web avant de l'imprimer : supprimez les publicités, les contenus peu recommandables; etc. "
+msgstr "Modifiez radicalement une page web avant de l’imprimer : supprimez les publicités, les contenus peu recommandables, etc. "
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5824,7 +5824,7 @@ msgstr "Effectuez des captures d’écran {start_sub_heading}avec {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
-msgstr "Prenez des décisions avisées en suivant le prix d'un produit proposé sur Amazon et en recevant des alertes sur ce prix."
+msgstr "Prenez des décisions avisées en suivant le prix d’un produit proposé sur Amazon et en recevant des alertes sur ce prix."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5842,7 +5842,7 @@ msgstr "Personnalisez vos onglets {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr "Défendez-vous contre les trackers les plus sournois."
+msgstr "Défendez-vous contre les traqueurs les plus sournois."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -8110,7 +8110,7 @@ msgid "Occupation"
 msgstr "Profession"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "Vous pouvez changer votre adresse électronique depuis votre compte Firefox."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Cette URL a un format non valide. Une URL valide ressemble à ceci : http://exemple.com/ma_page."
