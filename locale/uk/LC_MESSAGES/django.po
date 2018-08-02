@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-02 08:31+0000\n"
+"PO-Revision-Date: 2018-08-02 08:46+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4519,7 +4519,7 @@ msgstr "Читайте всюди {start_sub_heading}за допомогою {ad
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Надсилайте статті, історії, стрічки блогів та інші матеріали на свій Kindle."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4527,7 +4527,7 @@ msgstr "Позначайте кольором вкладки {start_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Впорядковуйте вкладки в групи за кольором на основі URL-шаблонів."
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4535,7 +4535,7 @@ msgstr "Не дозволяйте майнинг криптовалют {start_s
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Не дозволяйте зловмисним веб-сайтам використовувати ваш комп'ютер для майнингу криптовалют."
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4551,7 +4551,7 @@ msgstr "Перевіряйте всесвітній час {start_sub_heading}з
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Відображення світового часу в панелі стану Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
