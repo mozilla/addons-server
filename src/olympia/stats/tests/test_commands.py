@@ -186,10 +186,11 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
     def test_download_counts_from_file_includes_disabled_addons(self):
         # We only exclude STATUS_NULL add-ons
         addon_factory(slug='disabled-addon', status=amo.STATUS_DISABLED)
-        addon_factory(slug='deleted-addon', status=amo.STATUS_NULL)
+        addon_factory(slug='incomplete-addon', status=amo.STATUS_NULL)
 
         management.call_command('download_counts_from_file', hive_folder,
                                 date=self.date, stats_source=self.stats_source)
+
         assert DownloadCount.objects.all().count() == 3
         download_count = DownloadCount.objects.get(addon_id=3615)
         assert download_count.count == 3
@@ -201,6 +202,10 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         assert download_count.count == 1
         assert download_count.date == date(2014, 7, 10)
         assert download_count.sources == {u'search': 1}
+
+        # Make sure we didn't generate any stats for incomplete add-ons
+        assert not DownloadCount.objects.filter(
+            addon__slug='incomplete-addon').exists()
 
     @mock.patch(
         'olympia.stats.management.commands.download_counts_from_file.'
