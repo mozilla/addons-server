@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-02 10:53+0000\n"
+"PO-Revision-Date: 2018-08-02 11:12+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3359,7 +3359,7 @@ msgid "Describe Add-on"
 msgstr "Décrivez votre module :"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr "Nom qui apparaîtra dans la page de ce site. Peut être différent du nom interne du module (qui est stocké dans Firefox)."
+msgstr "Nom d’affichage sur ce site. Celui-ci peut être différent du nom interne du module, qui sera affiché dans Firefox."
 
 msgid "Add-on URL:"
 msgstr "Adresse URL du module :"
@@ -3896,9 +3896,9 @@ msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
-"Vous avez développé une extension et vous êtes prêt à la publier. Comment faire ? Consultez nos conseils pour créer une page de présentation séduisante, publier votre extension sur "
-"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, trouver des réponses à vos questions de développement et vous tenir informé des nouvelles et des événements utiles pour les développeurs "
-"d'extension."
+"Vous avez développé une extension et vous êtes prêt à la publier. Comment faire ? Consultez nos conseils pour créer une page de présentation séduisante, publier votre extension sur "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, trouver des réponses à vos questions de développement et vous tenir informé des nouvelles et des évènements utiles pour les développeurs "
+"d’extension."
 
 #, fuzzy
 msgid "View Resources for Publishers"
@@ -3915,7 +3915,7 @@ msgstr "Découvrez comment"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr "Vous voulez que votre extension figure sur %(amo_link_open)saddons.mozilla.org%(amo_link_close)s ? Nos politiques applicables aux extension vous disent ce que vous devez savoir."
+msgstr "Vous voulez que votre extension figure sur %(amo_link_open)saddons.mozilla.org%(amo_link_close)s ? Nos politiques applicables aux extensions vous disent ce que vous devez savoir."
 
 msgid "Learn More"
 msgstr "En savoir plus"
@@ -4340,14 +4340,14 @@ msgstr "Traduisez facilement {start_sub_heading}avec {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Demandez à Firefox de ne pas mémoriser les données des sites Web à l'aide de cookies ou du stockage en local, mais seulement pour les domaines que vous sélectionnez."
+msgstr "Demandez à Firefox de ne pas mémoriser les données des sites web à l’aide de cookies ou du stockage local, mais seulement pour les domaines que vous sélectionnez."
 
 #, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr "Profitez des nouvelles fonctionnalités YouTube : mode Cinéma, blocage des publicités, lecture automatique, etc."
+msgstr "Profitez des nouvelles fonctionnalités YouTube : mode Cinéma, blocage des publicités, lecture automatique, etc."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4356,7 +4356,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr "Bloquez les trackers invisibles et les publicités d'espionnage mis en place pour vous suivre sur le Web."
+msgstr "Bloquez les traqueurs invisibles et les publicités espionnes qui vous suivent sur le Web."
 
 #, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4411,7 +4411,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr "Contrastez du texte et cliquez dessus avec le bouton droit pour en obtenir la traduction immédiate."
+msgstr "Sélectionnez n’importe quel texte, puis effectuez un clic droit pour en obtenir la traduction immédiatement."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4420,7 +4420,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr "Effectuez des recherches sur différents moteurs à partir d'une photo-exemple."
+msgstr "Effectuez des recherches inversées d’images depuis un ensemble de moteurs de recherche."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4429,7 +4429,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Prenez le contrôle sur les publicités qui s'affichent dans les pages visitées et sur votre suivi Web."
+msgstr "Contrôlez facilement les publicités qui vous sont affichées et quelles traces vous laissez au cours de votre navigation."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4438,7 +4438,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr "Vous avez ouvert un grand nombre d'onglets ? Organisez-les dans une barre latérale."
+msgstr "Vous avez ouvert un grand nombre d’onglets ? Organisez-les dans une barre latérale."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4447,7 +4447,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr "Isolez votre identité Facebook dans un \"conteneur\" séparé qui empêche Facebook de suivre vos actions sur le Web."
+msgstr "Isolez votre identité Facebook dans un onglet contextuel distinct qui complique le pistage par Facebook de votre navigation sur le Web."
 
 #. editorial content for the discovery pane.
 #, fuzzy
