@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-02 02:00+0000\n"
+"PO-Revision-Date: 2018-08-02 03:03+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -3327,9 +3327,8 @@ msgstr ""
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
 
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "심사원 주의 사항"
+msgstr "심사자 주의 사항:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "저희 심사원들이 이 add-on을 평가할 때 고려해야 할 점이 있습니까?"
@@ -4156,9 +4155,8 @@ msgstr "승인 상태"
 msgid "Notes for Reviewers"
 msgstr "심사원 주의 사항"
 
-#, fuzzy
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr "추가로, 이 부가 기능을 심사할 편집자에게 도움이 될만한 정보(테스트용 계정 정보 같은)를 입력해 주세요."
+msgstr "선택적으로, 이 부가 기능을 심사할 심사자에게 도움이 될 테스트용 계정 정보 같은 정보를 입력해 주세요."
 
 msgid "Source code"
 msgstr "소스 코드"
@@ -5789,13 +5787,11 @@ msgstr "부가 기능으로 돌아가기"
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
 msgstr "버전: %(version)s &bull; 크기: %(size)s &bull; MD5 해쉬값: %(md5)s &bull; Mimetype: %(mimetype)s"
 
-#, fuzzy
 msgid "File Compare :: Reviewer tools"
-msgstr "파일 비교 :: 편집자 도구"
+msgstr "파일 비교 :: 심사자 도구"
 
-#, fuzzy
 msgid "File Viewer :: Reviewer tools"
-msgstr "파일 뷰어 :: 편집자 도구"
+msgstr "파일 뷰어 :: 심사자 도구"
 
 msgid "Validation failed:"
 msgstr "검사 실패:"
@@ -6036,11 +6032,10 @@ msgstr ""
 msgid "Who creates these add-ons?"
 msgstr "누가 이런 부가 기능들을 만들고 있나요?"
 
-#, fuzzy
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
-msgstr "이곳에 등재된 부가 기능들은 저희 커뮤니티에 있는 수천명의 개발자가 제작한 것들로써, 개인적인 취미 활동부터 거대 기업들까지 그 영역은 광범위합니다. 모든 공개 부가 기능은 출시에 앞서 편집자 팀에 의해 심사를 받습니다. 시험용으로 표시된 부가 기능은 심사를 받지 않았으므로 설치시 주의해야 합니다."
+msgstr "이곳에 등록된 부가 기능은 커뮤니티의 수천명의 개발자가 제작한 것으로써, 개인의 취미 활동부터 큰 기업까지 범위가 넓습니다. 모든 공개 부가 기능은 출시에 앞서 심사자 팀에 의해 심사를 받습니다. 실험적으로 표시된 부가 기능은 심사를 받지 않았으므로 설치시 주의해야 합니다."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "AMO에 대한 소식을 계속 받아볼 수 있을까요?"
@@ -6070,11 +6065,11 @@ msgstr "참여할 수 있는 매우 다양한 방법들이 있습니다. 기술�
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
 msgstr "<a href=\"%(url)s\">나만의 부가 기능을 만들어 보세요</a>. 무료 호스팅과 업데이트 서비스를 제공하고 있으며 사용자에게 쉽게 다가갈 수 있도록 도와드리겠습니다."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
-msgstr "부가 기능 개발 경험이 있다면 <a href=\"%(url)s\">편집자가 되어보세요</a>! 저희 편집자들은 기술적 배경 지식은 가진 부가 기능 팬 집단으로 부가 기능의 코드 품질과 안정성을 심사합니다."
+msgstr "부가 기능 개발 경험이 있다면 <a href=\"%(url)s\">심사자가 되어보세요</a>! 심사자들은 기술적 배경 지식을 가진 부가 기능 팬 집단으로 부가 기능의 코드 품질과 안정성을 심사합니다."
 
 #, python-format
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
@@ -6357,9 +6352,8 @@ msgstr "이 버전엔 이이상 많은 파일을 업로드 할 수 없습니다.
 msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
-#, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "감사합니다. 평가가 편집자에게 전달되었습니다."
+msgstr "감사합니다. 심사가 심사자에게 전달되었습니다."
 
 msgid "Add a review for {0}"
 msgstr "{0}에 대한 평가 작성"
@@ -6499,9 +6493,8 @@ msgid "end"
 msgstr "종료"
 
 #. L10n: Description of what can be searched for
-#, fuzzy
 msgid "add-on, reviewer or comment"
-msgstr "부가 기능, 편집자 내지는 코멘트"
+msgstr "부가 기능, 심사자나 의견"
 
 msgid "Search by add-on name / author email"
 msgstr "검색 (부가 기능 이름 / 제작자 이메일)"
@@ -6554,9 +6547,8 @@ msgid "Someone else is reviewing this theme."
 msgstr "다른 사람이 이 테마를 심사중입니다."
 
 #. L10n: Description of what can be searched for.
-#, fuzzy
 msgid "theme, reviewer, or comment"
-msgstr "앱, 심사원, 코멘트"
+msgstr "테마, 심사자, 의견"
 
 #, fuzzy
 msgid "Private Whiteboard"
@@ -6586,9 +6578,8 @@ msgstr "추가 정보 필요"
 msgid "Expired Information Request"
 msgstr "추가 정보 필요"
 
-#, fuzzy
 msgid "Contains Reviewer Comment"
-msgstr "편집자 코멘트 있음"
+msgstr "심사자 의견 있음"
 
 msgid "Sources provided"
 msgstr "원본 제공됨"
@@ -6596,9 +6587,8 @@ msgstr "원본 제공됨"
 msgid "WebExtension"
 msgstr "WebExtension"
 
-#, fuzzy
 msgid "Is locked by a reviewer."
-msgstr "부가 기능이 편집자의 심사를 거쳤습니다"
+msgstr "심사자에 의해 잠겼습니다."
 
 msgid "Has auto-approval disabled flag set."
 msgstr ""
@@ -6687,9 +6677,8 @@ msgstr "인쇄용 버전"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "부가 기능 심사를 거부하며 심사 대기열에서 삭제합니다."
 
-#, fuzzy
 msgid "Reviewer reply"
-msgstr "검토자 코멘트"
+msgstr "심사자 답변"
 
 #, fuzzy
 msgid "This will send a message to the developer. You will be notified when they reply."
