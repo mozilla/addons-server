@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-02 03:03+0000\n"
+"PO-Revision-Date: 2018-08-02 04:12+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -1814,9 +1814,8 @@ msgstr "{addon} {version}에 개발자의 코멘트가 달렸습니다."
 msgid "Information request removed"
 msgstr "추가 정보 필요"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version}의 심사가 요청되었습니다."
+msgstr "{addon} {version}의 관리자 심사가 요청되었습니다."
 
 #, fuzzy
 msgid "Admin add-on-review requested"
@@ -6687,9 +6686,8 @@ msgstr "제작자에게 추가 정보를 요청하려면 다음의 양식을 기
 msgid "Request super-review"
 msgstr "상급 심사 요구"
 
-#, fuzzy
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "이 부가 기능이 보안, 저작권 등 관리자가 검토해야 한다고 생각되시면 아래에 코멘트를 입력해 주세요. 이 코멘트는 제작자가 아닌, 관리자에게만 전송될 것입니다."
+msgstr "이 부가 기능을 심사자가 봐야 한다고 생각되시면 아래에 의견을 입력해 주세요. 이 의견은 개발자에게는 보내지지 않습니다."
 
 #, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
@@ -6894,9 +6892,8 @@ msgstr "이미지 갤러리"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "내용이 없습니다!  이 개발자는 세부 정보를 올려놓지 않았습니다."
 
-#, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "편집자 도구 대문으로 돌아가기"
+msgstr "심사자 도구 대시보드로 돌아가기"
 
 msgid "Reviewer Leaderboard"
 msgstr "심사원 현황판"
@@ -6953,9 +6950,8 @@ msgstr "삭제 취소"
 msgid "Save"
 msgstr "저장"
 
-#, fuzzy
 msgid "Add-on Reviewer Performance"
-msgstr "부가 기능 심사 과정"
+msgstr "부가 기능 심사자 성능"
 
 msgid "View statistics for user"
 msgstr "사용자 통계 보기"
@@ -7034,9 +7030,8 @@ msgstr "도움이 될만한 링크:"
 msgid "Add-on Policy"
 msgstr "부가 기능 정책"
 
-#, fuzzy
 msgid "Reviewer's Guide"
-msgstr "심사원 지침사항"
+msgstr "심사자 가이드"
 
 #. "Content Review [add-on name]"
 #, fuzzy
@@ -8002,9 +7997,8 @@ msgstr "부가 기능 호환성을 업그레이드 할 수 없습니다"
 msgid "my sdk-based add-on cannot be upgraded"
 msgstr "sdk 기반 부가 기능을 업그레이드 할 수 없습니다"
 
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
-msgstr "부가 기능이 편집자의 심사를 거쳤습니다"
+msgstr "심사자의 심사를 거침"
 
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr "Mozilla에서 개인적으로 사용중인 부가 기능에 관해 대화를 하길 원합니다"
