@@ -902,7 +902,7 @@ msgid "The language code {lang_code} is invalid."
 msgstr "言語コード {lang_code} が正しくありません。"
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr "{Lang-code:value} のオブジェクトを提供してください。"
+msgstr "{lang-code:value} のオブジェクトを提供してください。"
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
