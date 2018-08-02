@@ -397,8 +397,9 @@ class ManifestJSONExtractor(object):
     @property
     def type(self):
         return (
-            amo.ADDON_LPAPP if self.get('langpack_id')
+            amo.ADDON_LPAPP if 'langpack_id' in self.data
             else amo.ADDON_STATICTHEME if 'theme' in self.data
+            else amo.ADDON_DICT if 'dictionaries' in self.data
             else amo.ADDON_EXTENSION
         )
 
@@ -425,6 +426,11 @@ class ManifestJSONExtractor(object):
             # Static themes are only compatible with Firefox desktop >= 53.
             apps = (
                 (amo.FIREFOX, amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX),
+            )
+        elif type_ == amo.ADDON_DICT:
+            # WebExt dicts are only compatible with Firefox desktop >= 61.
+            apps = (
+                (amo.FIREFOX, amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX),
             )
         else:
             apps = (

@@ -11,43 +11,9 @@ def update_inc(initial, key, count):
     return initial
 
 
-class AddonCollectionCount(models.Model):
-    addon = models.ForeignKey('addons.Addon')
-    collection = models.ForeignKey('bandwagon.Collection')
-    count = models.PositiveIntegerField()
-    date = models.DateField()
-
-    class Meta:
-        db_table = 'stats_addons_collections_counts'
-
-
 class StatsSearchMixin(SearchMixin):
 
     ES_ALIAS_KEY = 'stats'
-
-
-class CollectionCount(StatsSearchMixin, models.Model):
-    collection = models.ForeignKey('bandwagon.Collection')
-
-    # index name in our dev/stage/prod database: `count`
-    count = models.PositiveIntegerField(db_index=True)
-
-    # index name in our dev/stage/prod database: `date`
-    date = models.DateField(db_index=True)
-
-    class Meta:
-        db_table = 'stats_collections_counts'
-
-
-class CollectionStats(models.Model):
-    """In the running for worst-named model ever."""
-    collection = models.ForeignKey('bandwagon.Collection')
-    name = models.CharField(max_length=255, null=True)
-    count = models.PositiveIntegerField()
-    date = models.DateField()
-
-    class Meta:
-        db_table = 'stats_collections'
 
 
 class DownloadCount(StatsSearchMixin, models.Model):

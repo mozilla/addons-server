@@ -693,7 +693,8 @@ def json_file_validation(request, addon_id, addon, file_id):
 
         # This API is, unfortunately, synchronous, so wait for the
         # task to complete and return the result directly.
-        result = tasks.validate(file, synchronous=True).get()
+        pk = tasks.validate(file, synchronous=True).get()
+        result = FileValidation.objects.get(pk=pk)
 
     return {'validation': result.processed_validation, 'error': None}
 

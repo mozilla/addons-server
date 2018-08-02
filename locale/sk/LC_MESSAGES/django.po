@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-21 16:44+0000\n"
+"POT-Creation-Date: 2018-08-02 01:13+0000\n"
 "PO-Revision-Date: 2018-06-25 16:18+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -866,9 +866,6 @@ msgstr "Kolekcie"
 msgid "Collections I've Made"
 msgstr "Kolekcie, ktoré som vytvoril"
 
-msgid "Collections I'm Following"
-msgstr "Kolekcie, ktoré odberám"
-
 msgid "My Favorite Add-ons"
 msgstr "Moje obľúbené doplnky"
 
@@ -1086,29 +1083,11 @@ msgstr "(voliteľné)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "alebo <a id=\"collections-new-cancel\" href=\"#\">Zrušiť</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "Ak chcete hodnotiť kolekcie, musíte ma účet na AMO."
-
-msgid "Create an Add-ons Account"
-msgstr "Vytvorte si účet na AMO"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "alebo sa <a href=\"%(login)s\">prihláste k existujúcemu účtu</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: Kolekcie"
 
 msgid "private"
 msgstr "súkromná"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> odberateľ"
-msgstr[1] "<span>%(num)s</span> odberatelia"
-msgstr[2] "<span>%(num)s</span> odberateľov"
 
 msgid "About this Collection"
 msgstr "O tejto kolekcii"
@@ -1184,52 +1163,8 @@ msgstr[0] "<span>%(addons)s</span> doplnok"
 msgstr[1] "<span>%(addons)s</span> doplnky"
 msgstr[2] "<span>%(addons)s</span> doplnkov"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> odberateľ"
-msgstr[1] "<span>%(followers)s</span> odberatelia"
-msgstr[2] "<span>%(followers)s</span> odberateľov"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s týždenný odberateľ"
-msgstr[1] "%(num)s týždenní odberatelia"
-msgstr[2] "%(num)s týždenných odberateľov"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s mesačný odberateľ"
-msgstr[1] "%(num)s mesační odberatelia"
-msgstr[2] "%(num)s mesačných odberateľov"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s odberateľ"
-msgstr[1] "%(num)s odberatelia"
-msgstr[2] "%(num)s odberateľov"
-
 msgid "by {0}"
 msgstr "autor {0}"
-
-msgid "Stop Following"
-msgstr "Už nesledovať"
-
-msgid "Follow this Collection"
-msgstr "Sledovať túto kolekciu"
 
 msgid "Edit this Collection"
 msgstr "Upraviť túto kolekciu"
@@ -1278,9 +1213,6 @@ msgstr "Kolekcie sú skupiny podobných doplnkov, ktoré môže vytvárať a zdi
 msgid "by %(author_link)s"
 msgstr "autor: %(author_link)s"
 
-msgid "Following"
-msgstr "Odberateľ"
-
 msgid "Create a Collection"
 msgstr "Vytvoriť kolekciu"
 
@@ -1328,18 +1260,6 @@ msgstr "Pridať komentár"
 
 msgid "Remove this add-on from the collection"
 msgstr "Odstrániť tento doplnok z kolekcie"
-
-msgid "Add a positive vote for this collection"
-msgstr "Pridať pozitívny hlas pre túto kolekciu"
-
-msgid "Add a negative vote for this collection"
-msgstr "Pridať negatívny hlas pre túto kolekciu"
-
-msgid "Remove my vote for this collection"
-msgstr "Odstrániť môj hlas pre túto kolekciu"
-
-msgid "Log in to vote for this collection"
-msgstr "Na pridanie hlasu sa musíte prihlásiť"
 
 msgid "Favorite"
 msgstr "Obľúbené"
@@ -5458,11 +5378,6 @@ msgid "Strip away unnecessary formatting and copy just the plain text."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
-msgid "Get instant translatations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Prispôsobte si svoje karty {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
 msgstr ""
 
@@ -7892,12 +7807,6 @@ msgstr "podľa platformy"
 msgid "by Add-on Status"
 msgstr "podľa stavu doplnku"
 
-msgid "Subscribers"
-msgstr "Odberatelia"
-
-msgid "Ratings"
-msgstr "Hodnotenia"
-
 msgid "Add-on Statistics"
 msgstr "Štatistiky doplnku"
 
@@ -8147,6 +8056,13 @@ msgstr "Navštívte novú stránku"
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Ak chcete vytvárať svoje vlastné kolekcie, musíte mať zriadený účet Mozilla Add-ons."
 
+msgid "Create an Add-ons Account"
+msgstr "Vytvorte si účet na AMO"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "alebo sa <a href=\"%(login)s\">prihláste k existujúcemu účtu</a>"
+
 msgid "Footer logo"
 msgstr "Logo v päte"
 
@@ -8276,15 +8192,15 @@ msgid "Delete Locale"
 msgstr "Odstrániť jazyk"
 
 #, python-format
-msgid "The user \"%(user)s\" has been banned.user"
+msgid "The user \"%(user)s\" has been banned."
 msgstr ""
 
 #, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr ""
 
 #, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
+msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
@@ -8295,6 +8211,9 @@ msgstr "Fotografia profilu"
 
 msgid "Addons"
 msgstr ""
+
+msgid "Ratings"
+msgstr "Hodnotenia"
 
 #, fuzzy
 msgid "Activity Logs"
@@ -8484,9 +8403,6 @@ msgstr "Rozhodnite sa, ktoré kolekcie budú zobrazené vo vašom profile."
 msgid "Display the collections I have created"
 msgstr "Zobraziť kolekcie, ktoré som vytvoril"
 
-msgid "Display collections I'm following"
-msgstr "Zobraziť kolekcie, ktoré sledujem"
-
 msgid "Notifications"
 msgstr "Upozornenia"
 
@@ -8556,9 +8472,6 @@ msgstr "Moje najviac populárne témy"
 
 msgid "Themes I've created"
 msgstr "Témy, ktoré som vytvoril(a)"
-
-msgid "Followed by Me"
-msgstr "Sledované mnou"
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"

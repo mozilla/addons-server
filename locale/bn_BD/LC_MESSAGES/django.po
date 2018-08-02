@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-21 16:44+0000\n"
+"POT-Creation-Date: 2018-08-02 01:13+0000\n"
 "PO-Revision-Date: 2018-03-04 16:16+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -829,9 +829,6 @@ msgstr "সংগ্রহ"
 msgid "Collections I've Made"
 msgstr "আমার তৈরি সংগ্রহসমূহ"
 
-msgid "Collections I'm Following"
-msgstr "আমার অনুসারিত সংগ্রহসমূহ"
-
 msgid "My Favorite Add-ons"
 msgstr "আমার পছন্দের অ্যাড-অনসমূহ"
 
@@ -1050,28 +1047,11 @@ msgstr "(ঐচ্ছিক)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "অথবা <a id=\"collections-new-cancel\" href=\"#\">বাতিল</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "সংগ্রহসূমহ রেট করার জন্য, অবশ্যই আপনার একটি এড-অন একাউন্ট থাকতে হবে।"
-
-msgid "Create an Add-ons Account"
-msgstr "অ্যাড-অন অ্যাকাউন্ট তৈরি করুন"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "অথবা <a href=\"%(login)s\">অপনার বর্তমান অ্যাকাউন্টে লগ ইন করুন</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: সংগ্রহ"
 
 msgid "private"
 msgstr "ব্যক্তিগত"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> অনুসরণকারী"
-msgstr[1] "<span>%(num)s</span> অনুসরণকারী"
 
 msgid "About this Collection"
 msgstr "এই সংগ্রহ সম্বন্ধে"
@@ -1140,48 +1120,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> এড-অন"
 msgstr[1] "<span>%(addons)s</span> এড-অন সূমহ"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> অনুসরণকারী"
-msgstr[1] "<span>%(followers)s</span> অনুসরণকারীরা"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s সাপ্তাহিক অনুসরণকারী"
-msgstr[1] "%(num)s সাপ্তাহিক অনুসরণকারী"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s মাসিক অনুসরণকারী"
-msgstr[1] "%(num)s মাসিক অনুসরণকারী"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s অনুসরণকারী"
-msgstr[1] "%(num)s অনুসরণকারী"
-
 msgid "by {0}"
 msgstr "{0} দ্বারা"
-
-msgid "Stop Following"
-msgstr "অনুসরণ করা বন্ধ করুন"
-
-msgid "Follow this Collection"
-msgstr "সংগ্রহটি অনুসরণ করুন"
 
 msgid "Edit this Collection"
 msgstr "সংগ্রহটি সম্পাদনা করুন"
@@ -1230,9 +1170,6 @@ msgstr ""
 msgid "by %(author_link)s"
 msgstr "%(author_link)s দ্বারা"
 
-msgid "Following"
-msgstr "অনুসরণ করছেন"
-
 msgid "Create a Collection"
 msgstr "সংগ্রহ তৈরি করুন"
 
@@ -1280,18 +1217,6 @@ msgstr "মন্তব্য করুন"
 
 msgid "Remove this add-on from the collection"
 msgstr "সংগ্রহ হতে অ্যাড-অনটি অপসারণ করুন"
-
-msgid "Add a positive vote for this collection"
-msgstr "এই সংগ্রহের জন্য একটি ইতিবাচক ভোট যোগ করুন"
-
-msgid "Add a negative vote for this collection"
-msgstr "এই সংগ্রহের জন্য একটি নেতিবাচক ভোট যোগ করুন"
-
-msgid "Remove my vote for this collection"
-msgstr "এই সংগ্রহের জন্য আমার ভোট অপসারণ করুন"
-
-msgid "Log in to vote for this collection"
-msgstr "এই সংগ্রহের জন্য ভোট দিতে লগ ইন করুন"
 
 msgid "Favorite"
 msgstr "পছন্দ"
@@ -5243,10 +5168,6 @@ msgid "Strip away unnecessary formatting and copy just the plain text."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get instant translatations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
 msgstr ""
 
@@ -7559,12 +7480,6 @@ msgstr ""
 msgid "by Add-on Status"
 msgstr "এড-অন স্ট্যাটাস দ্বারা"
 
-msgid "Subscribers"
-msgstr ""
-
-msgid "Ratings"
-msgstr "রেটিংসমূহ"
-
 msgid "Add-on Statistics"
 msgstr ""
 
@@ -7807,6 +7722,13 @@ msgstr ""
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "নিজের সংগ্রহ তৈরির জন্য, আপনার অবশ্যই একটি অ্যাড-অন অ্যাকাউন্ট থাকতে হবে।"
 
+msgid "Create an Add-ons Account"
+msgstr "অ্যাড-অন অ্যাকাউন্ট তৈরি করুন"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "অথবা <a href=\"%(login)s\">অপনার বর্তমান অ্যাকাউন্টে লগ ইন করুন</a>"
+
 msgid "Footer logo"
 msgstr "ফুটার লগো"
 
@@ -7936,15 +7858,15 @@ msgid "Delete Locale"
 msgstr ""
 
 #, python-format
-msgid "The user \"%(user)s\" has been banned.user"
+msgid "The user \"%(user)s\" has been banned."
 msgstr ""
 
 #, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr ""
 
 #, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
+msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
@@ -7955,6 +7877,9 @@ msgstr "প্রোফাইল ছবি"
 
 msgid "Addons"
 msgstr ""
+
+msgid "Ratings"
+msgstr "রেটিংসমূহ"
 
 #, fuzzy
 msgid "Activity Logs"
@@ -8140,9 +8065,6 @@ msgstr ""
 msgid "Display the collections I have created"
 msgstr ""
 
-msgid "Display collections I'm following"
-msgstr ""
-
 msgid "Notifications"
 msgstr "নোটিফিকেশনসমূহ"
 
@@ -8210,9 +8132,6 @@ msgid "My Most Popular Themes"
 msgstr ""
 
 msgid "Themes I've created"
-msgstr ""
-
-msgid "Followed by Me"
 msgstr ""
 
 msgid "Created by Me"

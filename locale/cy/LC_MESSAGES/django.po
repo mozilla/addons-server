@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-21 16:44+0000\n"
+"POT-Creation-Date: 2018-08-02 01:13+0000\n"
 "PO-Revision-Date: 2018-06-29 16:27+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -909,9 +909,6 @@ msgstr "Collections"
 msgid "Collections I've Made"
 msgstr ""
 
-msgid "Collections I'm Following"
-msgstr ""
-
 msgid "My Favorite Add-ons"
 msgstr ""
 
@@ -1127,32 +1124,11 @@ msgstr ""
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr ""
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr ""
-
-msgid "Create an Add-ons Account"
-msgstr ""
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr ""
-
 msgid "{0} :: Collections"
 msgstr ""
 
 msgid "private"
 msgstr ""
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 msgid "About this Collection"
 msgstr ""
@@ -1233,63 +1209,7 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
-
 msgid "by {0}"
-msgstr ""
-
-msgid "Stop Following"
-msgstr ""
-
-msgid "Follow this Collection"
 msgstr ""
 
 msgid "Edit this Collection"
@@ -1339,9 +1259,6 @@ msgstr ""
 msgid "by %(author_link)s"
 msgstr ""
 
-msgid "Following"
-msgstr ""
-
 msgid "Create a Collection"
 msgstr ""
 
@@ -1389,18 +1306,6 @@ msgstr ""
 
 msgid "Remove this add-on from the collection"
 msgstr ""
-
-msgid "Add a positive vote for this collection"
-msgstr "Add to a collection:"
-
-msgid "Add a negative vote for this collection"
-msgstr "Add to a collection:"
-
-msgid "Remove my vote for this collection"
-msgstr "Dim adolygiadau wedi eu canfod ar gyfer y cyfnod yma"
-
-msgid "Log in to vote for this collection"
-msgstr "Dim adolygiadau wedi eu canfod ar gyfer y cyfnod yma"
 
 msgid "Favorite"
 msgstr ""
@@ -5384,10 +5289,6 @@ msgid "Strip away unnecessary formatting and copy just the plain text."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get instant translatations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
 msgstr ""
 
@@ -7757,12 +7658,6 @@ msgstr ""
 msgid "by Add-on Status"
 msgstr ""
 
-msgid "Subscribers"
-msgstr ""
-
-msgid "Ratings"
-msgstr ""
-
 msgid "Add-on Statistics"
 msgstr ""
 
@@ -8005,6 +7900,13 @@ msgstr ""
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr ""
 
+msgid "Create an Add-ons Account"
+msgstr ""
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr ""
+
 msgid "Footer logo"
 msgstr ""
 
@@ -8133,15 +8035,15 @@ msgid "Delete Locale"
 msgstr ""
 
 #, python-format
-msgid "The user \"%(user)s\" has been banned.user"
+msgid "The user \"%(user)s\" has been banned."
 msgstr ""
 
 #, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr ""
 
 #, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
+msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
@@ -8151,6 +8053,9 @@ msgid "Profile Photo"
 msgstr ""
 
 msgid "Addons"
+msgstr ""
+
+msgid "Ratings"
 msgstr ""
 
 msgid "Activity Logs"
@@ -8335,9 +8240,6 @@ msgstr ""
 msgid "Display the collections I have created"
 msgstr ""
 
-msgid "Display collections I'm following"
-msgstr ""
-
 msgid "Notifications"
 msgstr "Notifications"
 
@@ -8406,9 +8308,6 @@ msgid "My Most Popular Themes"
 msgstr ""
 
 msgid "Themes I've created"
-msgstr ""
-
-msgid "Followed by Me"
 msgstr ""
 
 # "Me" in this context is the user shown on the User Info page

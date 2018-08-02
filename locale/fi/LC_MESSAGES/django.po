@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-06-12 18:02+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"POT-Creation-Date: 2018-08-02 01:13+0000\n"
+"PO-Revision-Date: 2018-07-28 09:14+0000\n"
+"Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -848,9 +848,6 @@ msgstr "Kokoelmat"
 msgid "Collections I've Made"
 msgstr "Tekemäni kokoelmat"
 
-msgid "Collections I'm Following"
-msgstr "Seuraamani kokoelmat"
-
 msgid "My Favorite Add-ons"
 msgstr "Suosikkilisäosani"
 
@@ -1039,7 +1036,7 @@ msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "Näe muutokset <a href=\"%(url)s\">katsomalla kokoelmaasi</a>."
 
 msgid "Icon Deleted"
-msgstr ""
+msgstr "Kuvake poistettu"
 
 # 89%
 # 82%
@@ -1085,29 +1082,12 @@ msgstr "(valinnainen)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr ""
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "Jotta voisit arvioida kokoelmia, sinulla pitää olla käyttäjätili Lisäosat-palvelussa."
-
-msgid "Create an Add-ons Account"
-msgstr "Luo tili Lisäosat-palveluun"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "tai <a href=\"%(login)s\">kirjaudu sisään käyttäjätilillesi</a>"
-
 # ikkunan otsikko
 msgid "{0} :: Collections"
 msgstr "{0} :: Kokoelmat"
 
 msgid "private"
 msgstr "yksityinen"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> seuraaja"
-msgstr[1] "<span>%(num)s</span> seuraajaa"
 
 # 76%
 # 100%
@@ -1185,49 +1165,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] ""
 msgstr[1] ""
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s viikoittainen seuraaja"
-msgstr[1] "%(num)s viikoittaista seuraajaa"
-
-# 79%
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s kuukausittainen seuraaja"
-msgstr[1] "%(num)s kuukausittaista seuraajaa"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s seuraaja"
-msgstr[1] "%(num)s seuraajaa"
-
 msgid "by {0}"
 msgstr "tekijänä {0}"
-
-msgid "Stop Following"
-msgstr "Lopeta seuraaminen"
-
-msgid "Follow this Collection"
-msgstr "Seuraa tätä kokoelmaa"
 
 # 76%
 # 100%
@@ -1282,9 +1221,6 @@ msgstr "Kokoelmat ovat toisiinsa liittyvien lisäosien ryhmiä, joita kuka tahan
 msgid "by %(author_link)s"
 msgstr "tekijänä %(users)s"
 
-msgid "Following"
-msgstr "Seurataan"
-
 # 89%
 # 100%
 msgid "Create a Collection"
@@ -1338,18 +1274,6 @@ msgstr "Lisää kommentti"
 
 msgid "Remove this add-on from the collection"
 msgstr "Poista lisäosa kokoelmasta"
-
-msgid "Add a positive vote for this collection"
-msgstr "Lisää Suosittelen -ääni tälle kokoelmalle"
-
-msgid "Add a negative vote for this collection"
-msgstr "Lisää En suosittele -ääni tälle kokoelmalle"
-
-msgid "Remove my vote for this collection"
-msgstr "Poista ääneni tältä kokoelmalta"
-
-msgid "Log in to vote for this collection"
-msgstr "Kirjaudu sisään antaaksesi äänesi tälle kokoelmalle"
 
 msgid "Favorite"
 msgstr "Suosikki"
@@ -1814,7 +1738,7 @@ msgstr ""
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} lisätty."
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
@@ -2403,13 +2327,13 @@ msgid "No Reputation"
 msgstr "Dokumentaatio"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "Hyvä (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Erittäin hyvä (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "Erinomainen (3)"
 
 msgid "Manual Reviewer Points"
 msgstr ""
@@ -2589,7 +2513,7 @@ msgid "Details"
 msgstr "Lisätiedot"
 
 msgid "What is your license's name?"
-msgstr ""
+msgstr "Mikä on lisenssisi nimi?"
 
 msgid "Provide the text of your license."
 msgstr ""
@@ -2657,7 +2581,7 @@ msgid "Application"
 msgstr "Sovellus"
 
 msgid "Select an application first"
-msgstr ""
+msgstr "Valitse sovellus ensin"
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr ""
@@ -2967,7 +2891,7 @@ msgid "View and update application compatibility ranges."
 msgstr ""
 
 msgid "Compatibility"
-msgstr ""
+msgstr "Yhteensopivuus"
 
 msgid "Update Compatibility"
 msgstr ""
@@ -3261,13 +3185,13 @@ msgid "Remove this dependent add-on"
 msgstr ""
 
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "Anna lisäosan nimi"
 
 msgid "Add-on Media for {0}"
 msgstr ""
 
 msgid "Add-on icon"
-msgstr ""
+msgstr "Lisäosan kuvake"
 
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
@@ -3514,13 +3438,11 @@ msgstr ""
 msgid "Select a category for this add-on:"
 msgstr "Näytä tämän lisäosan kaikki arviot"
 
-#, fuzzy
 msgid "Support email:"
-msgstr "Sähköpostituki"
+msgstr "Sähköpostituki:"
 
-#, fuzzy
 msgid "Support website:"
-msgstr "Tukisivusto"
+msgstr "Tukisivusto:"
 
 msgid "License:"
 msgstr "Lisenssi:"
@@ -3553,9 +3475,8 @@ msgstr "Lisää uusi lisäosa"
 msgid "Describe Version"
 msgstr "Löydä lisäosia"
 
-#, fuzzy
 msgid "Release Notes:"
-msgstr "Julkaistu {0}"
+msgstr "Julkaisutiedot:"
 
 msgid "Let your users know what's new and what's changed in this version."
 msgstr ""
@@ -3702,7 +3623,7 @@ msgid "Image height should be 200 pixels"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG tai GIF (ei animoitu)"
 
 msgid "Aligned to top-right"
 msgstr ""
@@ -3913,7 +3834,7 @@ msgstr ""
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "Sallittu HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr ""
@@ -3949,7 +3870,7 @@ msgid "Latest News"
 msgstr "Viimeisimmät uutiset"
 
 msgid "Read more in our Blog"
-msgstr ""
+msgstr "Lue lisää blogistamme"
 
 msgid "Resources"
 msgstr "Resurssit"
@@ -4071,9 +3992,8 @@ msgstr ""
 msgid "View Resources for Publishers"
 msgstr ""
 
-#, fuzzy
 msgid "Welcome Back"
-msgstr "Tervetuloa, {0}"
+msgstr "Tervetuloa takaisin"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
@@ -4138,9 +4058,8 @@ msgstr ""
 "\">HTML:n</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScriptin</a> ja <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS:n</a>, on sinulla jo kaikki tarvittavat "
 "taidot mahtavan lisäosan luomiseen."
 
-#, fuzzy
 msgid "Learn How to Make an Add-on"
-msgstr "Opi kaikki lisäosista"
+msgstr "Opi kuinka tehdä lisäosa"
 
 # 78%
 #, fuzzy
@@ -4171,9 +4090,8 @@ msgid "Automated code tests for your add-on."
 msgstr ""
 
 # 79%
-#, fuzzy
 msgid "Compatibility Test"
-msgstr "Lisäosan yhteensopivuuden tarkistus"
+msgstr "Yhteensopivuustesti"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr ""
@@ -4322,7 +4240,7 @@ msgid "PNG or JPG"
 msgstr "PNG tai JPG"
 
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "Hallitse versiota {0}"
 
 # {0} is the name of the collection
 #. {0} is an add-on name.
@@ -4335,7 +4253,7 @@ msgid "Files"
 msgstr "Tiedostot"
 
 msgid "Upload Another File"
-msgstr ""
+msgstr "Lähetä toinen tiedosto"
 
 msgid "Version Notes"
 msgstr "Versiokommentit"
@@ -4500,15 +4418,15 @@ msgstr ""
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} virhe"
+msgstr[1] "{0} virhettä"
 
 # {0} is a number
 #. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} varoitus"
+msgstr[1] "{0} varoitusta"
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5383,10 +5301,6 @@ msgid "Strip away unnecessary formatting and copy just the plain text."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get instant translatations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
 msgstr ""
 
@@ -6213,7 +6127,7 @@ msgid "About Mozilla Add-ons"
 msgstr ""
 
 msgid "What is this website?"
-msgstr ""
+msgstr "Mikä tämä sivusto on?"
 
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
@@ -6221,7 +6135,7 @@ msgid ""
 msgstr ""
 
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Kuka luo näitä lisäosia?"
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
@@ -6229,7 +6143,7 @@ msgid ""
 msgstr ""
 
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Kuinka pysyn ajan tasalla sen suhteen, mitä AMO:ssa tapahtuu?"
 
 msgid "There are several ways to find out the latest news from the world of add-ons:"
 msgstr ""
@@ -6247,7 +6161,7 @@ msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the 
 msgstr ""
 
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Kuulostaa hyvältä! Kuinka voin ottaa osaa?"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
 msgstr ""
@@ -6719,7 +6633,7 @@ msgid "Comments:"
 msgstr "Kommentit:"
 
 msgid "Operating systems:"
-msgstr ""
+msgstr "Käyttöjärjestelmät:"
 
 msgid "Applications:"
 msgstr "Ohjelmat:"
@@ -6781,7 +6695,7 @@ msgid "Sources provided"
 msgstr ""
 
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
 msgstr ""
@@ -7524,10 +7438,10 @@ msgid "Flagged: {0}"
 msgstr ""
 
 msgid "Approve Theme"
-msgstr ""
+msgstr "Hyväksy teema"
 
 msgid "Field required"
-msgstr ""
+msgstr "Pakollinen kenttä"
 
 msgid "Enter the ID or URL of the duplicate"
 msgstr ""
@@ -7549,7 +7463,7 @@ msgstr ""
 
 #, python-format
 msgid "[status:%s]"
-msgstr ""
+msgstr "[tila:%s]"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
@@ -7623,7 +7537,7 @@ msgid "Collection Search Results"
 msgstr "Kokoelmien hakutulokset"
 
 msgid "Search Results"
-msgstr ""
+msgstr "Hakutulokset"
 
 msgid "Search Unavailable"
 msgstr ""
@@ -7743,15 +7657,6 @@ msgstr ""
 
 msgid "by Add-on Status"
 msgstr ""
-
-# 100%
-# 81%
-msgid "Subscribers"
-msgstr "Tilaajat"
-
-# 85%
-msgid "Ratings"
-msgstr "Arvostelut"
 
 msgid "Add-on Statistics"
 msgstr ""
@@ -7897,7 +7802,7 @@ msgid "Downloaded by Date"
 msgstr ""
 
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "Kuinka lataukset lasketaan?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
@@ -8004,6 +7909,13 @@ msgstr ""
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Jotta voisit luoda omia kokoelmia, sinulla pitää olla käyttäjätili Mozilla Lisäosat -palvelussa."
 
+msgid "Create an Add-ons Account"
+msgstr "Luo tili Lisäosat-palveluun"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "tai <a href=\"%(login)s\">kirjaudu sisään käyttäjätilillesi</a>"
+
 msgid "Footer logo"
 msgstr ""
 
@@ -8038,13 +7950,13 @@ msgid "Android Browser"
 msgstr "Android-selain"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "iOS-selain"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Focus-selain"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "Työpöytäselain"
 
 msgid "Beta, Nightly, Developer Edition"
 msgstr ""
@@ -8135,25 +8047,29 @@ msgid "Delete Locale"
 msgstr ""
 
 #, python-format
-msgid "The user \"%(user)s\" has been banned.user"
+msgid "The user \"%(user)s\" has been banned."
 msgstr ""
 
 #, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr ""
 
 #, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
+msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
 msgstr ""
 
 msgid "Profile Photo"
-msgstr ""
+msgstr "Profiilikuva"
 
 msgid "Addons"
 msgstr "Lisäosat"
+
+# 85%
+msgid "Ratings"
+msgstr "Arvostelut"
 
 # 75%
 #, fuzzy
@@ -8260,9 +8176,8 @@ msgstr "ja"
 
 # 80%
 # 100%
-#, fuzzy
 msgid "Delete picture"
-msgstr "Poista käyttäjäkuvani nyt"
+msgstr "Poista kuva"
 
 msgid "Delete User Account"
 msgstr "Poista käyttäjätili"
@@ -8347,9 +8262,6 @@ msgstr "Päätä, mitkä kokoelmat näytetään profiilissasi."
 msgid "Display the collections I have created"
 msgstr "Näytä luomani kokoelmat"
 
-msgid "Display collections I'm following"
-msgstr "Näytä seuraamani kokelmat"
-
 msgid "Notifications"
 msgstr "Ilmoitukset"
 
@@ -8422,9 +8334,6 @@ msgstr ""
 
 msgid "Themes I've created"
 msgstr ""
-
-msgid "Followed by Me"
-msgstr "Seuraamani"
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"

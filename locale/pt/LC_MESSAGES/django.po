@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-21 16:44+0000\n"
+"POT-Creation-Date: 2018-08-02 01:13+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -852,9 +852,6 @@ msgstr "Coleções"
 msgid "Collections I've Made"
 msgstr "Coleções que fiz"
 
-msgid "Collections I'm Following"
-msgstr "Coleções que acompanho"
-
 msgid "My Favorite Add-ons"
 msgstr "Os meus extras favoritos"
 
@@ -1075,28 +1072,11 @@ msgstr "(opcional)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "ou <a id=\"collections-new-cancel\" href=\"#\">Cancele</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "Para avaliar extras, tem de ter uma conta nos extras."
-
-msgid "Create an Add-ons Account"
-msgstr "Criar uma conta nos extras"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "ou <a href=\"%(login)s\">inicie sessão na sua conta atual</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: Coleções"
 
 msgid "private"
 msgstr "privado"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> seguidor"
-msgstr[1] "<span>%(num)s</span> seguidores"
 
 msgid "About this Collection"
 msgstr "Sobre esta coleção"
@@ -1170,48 +1150,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> extra"
 msgstr[1] "<span>%(addons)s</span> extras"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> seguidor"
-msgstr[1] "<span>%(followers)s</span> seguidores"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s seguidor semanal"
-msgstr[1] "%(num)s seguidores semanais"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s seguidor mensal"
-msgstr[1] "%(num)s seguidores mensais"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s seguidor"
-msgstr[1] "%(num)s seguidores"
-
 msgid "by {0}"
 msgstr "por {0}"
-
-msgid "Stop Following"
-msgstr "Parar de seguir"
-
-msgid "Follow this Collection"
-msgstr "Seguir esta coleção"
 
 msgid "Edit this Collection"
 msgstr "Editar esta coleção"
@@ -1259,9 +1199,6 @@ msgstr "As coleções são grupos de extras relacionados que qualquer um pode cr
 #, fuzzy, python-format
 msgid "by %(author_link)s"
 msgstr "por %(users)s"
-
-msgid "Following"
-msgstr "A seguir"
 
 msgid "Create a Collection"
 msgstr "Criar uma coleção"
@@ -1312,18 +1249,6 @@ msgstr "Adicionar um comentário"
 
 msgid "Remove this add-on from the collection"
 msgstr "Remover este extra da coleção"
-
-msgid "Add a positive vote for this collection"
-msgstr "Adicionar um voto positivo a esta coleção"
-
-msgid "Add a negative vote for this collection"
-msgstr "Adicionar um voto negativo a esta coleção"
-
-msgid "Remove my vote for this collection"
-msgstr "Remover o meu voto para esta coleção"
-
-msgid "Log in to vote for this collection"
-msgstr "Inicie sessão para votar nesta coleção"
 
 msgid "Favorite"
 msgstr "Favorito"
@@ -5435,10 +5360,6 @@ msgid "Strip away unnecessary formatting and copy just the plain text."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get instant translatations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
 msgstr ""
 
@@ -7803,12 +7724,6 @@ msgstr "por Plataforma"
 msgid "by Add-on Status"
 msgstr "por Estado do extra"
 
-msgid "Subscribers"
-msgstr "Subscritores"
-
-msgid "Ratings"
-msgstr "Classificações"
-
 msgid "Add-on Statistics"
 msgstr "Estatísticas do extra"
 
@@ -8063,6 +7978,13 @@ msgstr ""
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Para criar as suas próprias coleções, tem de ter uma conta nos extras da Mozilla."
 
+msgid "Create an Add-ons Account"
+msgstr "Criar uma conta nos extras"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "ou <a href=\"%(login)s\">inicie sessão na sua conta atual</a>"
+
 msgid "Footer logo"
 msgstr "Logótipo do rodapé"
 
@@ -8196,15 +8118,15 @@ msgid "Delete Locale"
 msgstr "Eliminar idioma"
 
 #, python-format
-msgid "The user \"%(user)s\" has been banned.user"
+msgid "The user \"%(user)s\" has been banned."
 msgstr ""
 
 #, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr ""
 
 #, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
+msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
@@ -8215,6 +8137,9 @@ msgstr "Fotografia do perfil"
 
 msgid "Addons"
 msgstr ""
+
+msgid "Ratings"
+msgstr "Classificações"
 
 #, fuzzy
 msgid "Activity Logs"
@@ -8404,9 +8329,6 @@ msgstr "Decida que coleções são apresentadas no seu perfil."
 msgid "Display the collections I have created"
 msgstr "Apresentar as coleções que criei"
 
-msgid "Display collections I'm following"
-msgstr "Apresentar as coleções que sigo"
-
 msgid "Notifications"
 msgstr "Notificações"
 
@@ -8475,9 +8397,6 @@ msgstr "Os meus temas mais populares"
 
 msgid "Themes I've created"
 msgstr "Temas que criei"
-
-msgid "Followed by Me"
-msgstr "Acompanhado por mim"
 
 msgid "Created by Me"
 msgstr "Criado por mim."

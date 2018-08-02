@@ -1234,15 +1234,9 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.cron._update_addons_current_version': {'queue': 'cron'},
     'olympia.addons.cron._update_appsupport': {'queue': 'cron'},
     'olympia.addons.cron._update_daily_theme_user_counts': {'queue': 'cron'},
-    'olympia.bandwagon.cron._drop_collection_recs': {'queue': 'cron'},
-    'olympia.bandwagon.cron._update_collections_subscribers': {
-        'queue': 'cron'},
-    'olympia.bandwagon.cron._update_collections_votes': {'queue': 'cron'},
 
     # Bandwagon
     'olympia.bandwagon.tasks.collection_meta': {'queue': 'bandwagon'},
-    'olympia.bandwagon.tasks.collection_votes': {'queue': 'bandwagon'},
-    'olympia.bandwagon.tasks.collection_watchers': {'queue': 'bandwagon'},
     'olympia.bandwagon.tasks.delete_icon': {'queue': 'bandwagon'},
 
     # Reviewers
@@ -1281,9 +1275,6 @@ CELERY_TASK_ROUTES = {
     'olympia.stats.tasks.index_download_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_theme_user_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_update_counts': {'queue': 'stats'},
-    'olympia.stats.tasks.update_addons_collections_downloads': {
-        'queue': 'stats'},
-    'olympia.stats.tasks.update_collections_total': {'queue': 'stats'},
     'olympia.stats.tasks.update_global_totals': {'queue': 'stats'},
 
     # Tags
@@ -1446,11 +1437,6 @@ LOGGING = {
             'level': logging.ERROR,
             'propagate': False
         },
-        'z.redis': {
-            'handlers': ['mozlog'],
-            'level': logging.DEBUG,
-            'propagate': False
-        },
         'z.task': {
             'handlers': ['mozlog'],
             'level': logging.DEBUG,
@@ -1561,6 +1547,10 @@ MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
 MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
 
+# File uploads should have -rw-r--r-- permissions in order to be served by
+# nginx later one. The 0o prefix is intentional, this is an octal value.
+FILE_UPLOAD_PERMISSIONS = 0o644
+
 # RECAPTCHA: overload the following key settings in local_settings.py
 # with your keys.
 # Old recaptcha V1
@@ -1576,38 +1566,6 @@ ASYNC_SIGNALS = True
 # Performance for persona pagination, we hardcode the number of
 # available pages when the filter is up-and-coming.
 PERSONA_DEFAULT_PAGES = 10
-
-REDIS_LOCATION = os.environ.get(
-    'REDIS_LOCATION',
-    'redis://localhost:6379/0?socket_timeout=0.5')
-
-
-def get_redis_settings(uri):
-    import urlparse
-    urlparse.uses_netloc.append('redis')
-
-    result = urlparse.urlparse(uri)
-
-    options = dict(urlparse.parse_qsl(result.query))
-
-    if 'socket_timeout' in options:
-        options['socket_timeout'] = float(options['socket_timeout'])
-
-    return {
-        'HOST': result.hostname,
-        'PORT': result.port,
-        'PASSWORD': result.password,
-        'DB': int((result.path or '0').lstrip('/')),
-        'OPTIONS': options
-    }
-
-
-# This is used for `django-cache-machine`
-REDIS_BACKEND = REDIS_LOCATION
-
-REDIS_BACKENDS = {
-    'master': get_redis_settings(REDIS_LOCATION)
-}
 
 # Number of seconds before celery tasks will abort addon validation:
 VALIDATOR_TIMEOUT = 110
@@ -1804,6 +1762,7 @@ DRF_API_GATES = {
         'ratings-rating-shim',
         'ratings-title-shim',
         'l10n_flat_input_output',
+        'collections-downloads-shim'
     ),
     'v4': (
     ),
@@ -1915,12 +1874,7 @@ CRON_JOBS = {
 
     'gc': 'olympia.amo.cron',
     'category_totals': 'olympia.amo.cron',
-    'collection_subscribers': 'olympia.amo.cron',
     'weekly_downloads': 'olympia.amo.cron',
-
-    'update_collections_subscribers': 'olympia.bandwagon.cron',
-    'update_collections_votes': 'olympia.bandwagon.cron',
-    'reindex_collections': 'olympia.bandwagon.cron',
 
     'compatibility_report': 'olympia.compat.cron',
 
@@ -1929,8 +1883,6 @@ CRON_JOBS = {
     'cleanup_extracted_file': 'olympia.files.cron',
     'cleanup_validation_results': 'olympia.files.cron',
 
-    'update_addons_collections_downloads': 'olympia.stats.cron',
-    'update_collections_total': 'olympia.stats.cron',
     'update_global_totals': 'olympia.stats.cron',
     'index_latest_stats': 'olympia.stats.cron',
 

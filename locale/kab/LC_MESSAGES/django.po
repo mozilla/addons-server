@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-14 22:14+0000\n"
-"Last-Translator: Uccen Marzuq <merzouk.ouchene@laposte.net>\n"
+"POT-Creation-Date: 2018-08-02 01:13+0000\n"
+"PO-Revision-Date: 2018-07-31 15:42+0000\n"
+"Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -703,13 +703,11 @@ msgstr "Yessef k ad yili n tangalt n yini asedamrawan, am #000000."
 msgid "Not allowed"
 msgstr "Ur yettusireg ara"
 
-#, fuzzy
 msgid "Oops! Not allowed."
-msgstr "Ur yettusireg ara"
+msgstr "Hups! Ur yettusireg ara"
 
-#, fuzzy
 msgid "You tried to do something that you weren't allowed to."
-msgstr "<h1>Suref-aɣ! Ayagi yegdel.</h1> <p>Tɣeṛḍeḍ ad tkecmeḍ ar teɣbalut anida ur ɣur-k ara izerfan.</p>"
+msgstr "Tɛeṛḍeḍ ad tkecmeḍ ar teɣbalut anida ur ɣur-k ara izerfan."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -837,9 +835,6 @@ msgstr "Tigrummiwin"
 
 msgid "Collections I've Made"
 msgstr "Tigrimmiwin i xedmeɣ"
-
-msgid "Collections I'm Following"
-msgstr "Tigrummiwin i ṭafareɣ"
 
 msgid "My Favorite Add-ons"
 msgstr "Izegrar inu inurifen"
@@ -1058,28 +1053,11 @@ msgstr "(afrayan)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "neɣ <a id=\"collections-new-cancel\" href=\"#\">Sefsex</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "Akken ad ternud tazmilt i tegrummiwin, yessefk ad yili ɣur-k umiḍan."
-
-msgid "Create an Add-ons Account"
-msgstr "Rnu amiḍan n izigrar"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "neɣ <a href=\"%(login)s\">kcem s umiḍan inek amiran</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: Tigrummiwin"
 
 msgid "private"
 msgstr "uslig"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> aneḍfaṛ"
-msgstr[1] "<span>%(num)s</span> ineḍfaṛen"
 
 msgid "About this Collection"
 msgstr "Γef tagrumma-agi"
@@ -1152,48 +1130,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> azegrir"
 msgstr[1] "<span>%(addons)s</span> izegrar"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> aneḍfaṛ"
-msgstr[1] "<span>%(followers)s</span> ineḍfaṛen"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s ameltaɣ n dduṛt"
-msgstr[1] "%(num)s ameltaɣ n dduṛt"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s ameltaɣ deg aggur"
-msgstr[1] "%(num)s ameltaɣ deg aggur"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s n umetleɣ"
-msgstr[1] "%(num)s imeltaɣen"
-
 msgid "by {0}"
 msgstr "sɣur {0}"
-
-msgid "Stop Following"
-msgstr "Seḥbes aḍfaṛ"
-
-msgid "Follow this Collection"
-msgstr "Ḍfeṛ tagrumma agi"
 
 msgid "Edit this Collection"
 msgstr "Ẓreg tagrumma agi"
@@ -1242,9 +1180,6 @@ msgstr "Tigrummiwin d igrawen n izegrar yemcudden gar-asen i yezmer yal yiwen ad
 msgid "by %(author_link)s"
 msgstr "sγur %(author_link)s"
 
-msgid "Following"
-msgstr "Aḍfaṛ"
-
 msgid "Create a Collection"
 msgstr "Rnu tagrumma"
 
@@ -1292,18 +1227,6 @@ msgstr "Rnu awennit"
 
 msgid "Remove this add-on from the collection"
 msgstr "Kkes azegrir-agi si tagrumma"
-
-msgid "Add a positive vote for this collection"
-msgstr "Rnu tafrant yufraren i tegrumma-agi"
-
-msgid "Add a negative vote for this collection"
-msgstr "Rnu tafrant tibawt i tegrumma-agi"
-
-msgid "Remove my vote for this collection"
-msgstr "Kkes tafrant-inu si tegrumma-agi"
-
-msgid "Log in to vote for this collection"
-msgstr "Qqen akken ad ternud tafrant i tegrumma-agi"
 
 msgid "Favorite"
 msgstr "Anurif"
@@ -1831,13 +1754,11 @@ msgstr "{rating} i {addon} yettusnifel."
 msgid "{addon} reviewed."
 msgstr "{addon} yettacegger."
 
-#, fuzzy
 msgid "User {user} banned."
-msgstr "Aseqdac {user} yettwasedreg."
+msgstr "Aseqdac {user} yettwaḥwi."
 
-#, fuzzy
 msgid "User {user} picture deleted."
-msgstr "Aseqdac {user} yettuẓẓeyeṛ."
+msgstr "Tawlaft n useqdac {user} tettwakkes."
 
 msgid "User {0.name} added to {group}."
 msgstr "Aseqdac {0.name} yettwarna ɣer {group}."
@@ -2306,9 +2227,8 @@ msgstr "Asentel usbiḍ"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "No Reputation"
-msgstr "Tisellet"
+msgstr "Ulac tisellet"
 
 msgid "Good (1)"
 msgstr ""
@@ -5316,11 +5236,6 @@ msgid "Strip away unnecessary formatting and copy just the plain text."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
-msgid "Get instant translatations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
-
-#. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
 msgstr ""
 
@@ -7638,12 +7553,6 @@ msgstr "s Twennaṭ"
 msgid "by Add-on Status"
 msgstr "s waddad n uzegrir"
 
-msgid "Subscribers"
-msgstr "Imeltaɣen"
-
-msgid "Ratings"
-msgstr "Tizmilin"
-
 msgid "Add-on Statistics"
 msgstr "Tiddadanin n uzegrir"
 
@@ -7886,6 +7795,13 @@ msgstr "Rzu ar usmel amaynut"
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Akken ad ternuḍ tigrummiwin inek, yessefk ad yili ɣur-k umiḍan n izegrar Mozilla."
 
+msgid "Create an Add-ons Account"
+msgstr "Rnu amiḍan n izigrar"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "neɣ <a href=\"%(login)s\">kcem s umiḍan inek amiran</a>"
+
 msgid "Footer logo"
 msgstr "Alugu n uḍaṛ"
 
@@ -8014,15 +7930,15 @@ msgid "Delete Locale"
 msgstr "Kkes tutlayt"
 
 #, python-format
-msgid "The user \"%(user)s\" has been banned.user"
+msgid "The user \"%(user)s\" has been banned."
 msgstr ""
 
 #, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr ""
 
 #, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
+msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
@@ -8033,6 +7949,9 @@ msgstr "Tawlaft n umaɣnu"
 
 msgid "Addons"
 msgstr "Izegrar"
+
+msgid "Ratings"
+msgstr "Tizmilin"
 
 msgid "Activity Logs"
 msgstr "Iɣmisen n urmud"
@@ -8217,9 +8136,6 @@ msgstr "Ini-d anta tigrummiwin i tebɣiḍ ad d-banent deg umaɣnu inek."
 msgid "Display the collections I have created"
 msgstr "Sken tigrummiwin i rniɣ"
 
-msgid "Display collections I'm following"
-msgstr "Sken tigrummiwin i ṭafareɣ"
-
 msgid "Notifications"
 msgstr "Alɣu"
 
@@ -8288,9 +8204,6 @@ msgstr "Isental-iw yettwasnen aṭas"
 
 msgid "Themes I've created"
 msgstr "Isental i rniɣ"
-
-msgid "Followed by Me"
-msgstr "Ṭafareɣ-ten"
 
 msgid "Created by Me"
 msgstr "Rniɣ-ten"

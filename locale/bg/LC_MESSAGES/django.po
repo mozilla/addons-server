@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-21 16:44+0000\n"
+"POT-Creation-Date: 2018-08-02 01:13+0000\n"
 "PO-Revision-Date: 2018-07-13 10:50+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -840,9 +840,6 @@ msgstr "Списъци"
 msgid "Collections I've Made"
 msgstr "Списъци, които съм създал"
 
-msgid "Collections I'm Following"
-msgstr "Списъци, които следвам"
-
 msgid "My Favorite Add-ons"
 msgstr "Моите любими добавки"
 
@@ -1061,28 +1058,11 @@ msgstr "(незадължително)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "или <a id=\"collections-new-cancel\" href=\"#\">Отказване</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "За да оценявате списъци, трябва да имате сметка."
-
-msgid "Create an Add-ons Account"
-msgstr "Създаване на сметка за Добавки"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "или <a href=\"%(login)s\">влезте в текущата сметка</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: Списъци"
 
 msgid "private"
 msgstr "лична"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> последовател"
-msgstr[1] "<span>%(num)s</span> последователи"
 
 msgid "About this Collection"
 msgstr "Относно списъка"
@@ -1151,48 +1131,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> добавка"
 msgstr[1] "<span>%(addons)s</span> добавки"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> последовател"
-msgstr[1] "<span>%(followers)s</span> последователи"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s последовател за седмица"
-msgstr[1] "%(num)s седмични последователи"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s последовател месечно"
-msgstr[1] "%(num)s последователя месечно"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s последовател"
-msgstr[1] "%(num)s последователи"
-
 msgid "by {0}"
 msgstr "от {0}"
-
-msgid "Stop Following"
-msgstr "Отказ от следване"
-
-msgid "Follow this Collection"
-msgstr "Следване на списъка"
 
 msgid "Edit this Collection"
 msgstr "Промяна на списъка"
@@ -1241,9 +1181,6 @@ msgstr "Списъкът е набор от сродни добавки, кой�
 msgid "by %(author_link)s"
 msgstr "от %(author_link)s"
 
-msgid "Following"
-msgstr "Следва"
-
 msgid "Create a Collection"
 msgstr "Създаване на списък"
 
@@ -1291,18 +1228,6 @@ msgstr "Добави коментар"
 
 msgid "Remove this add-on from the collection"
 msgstr "Премахване на добавката от списъка"
-
-msgid "Add a positive vote for this collection"
-msgstr "Даване на положителен глас за списъка"
-
-msgid "Add a negative vote for this collection"
-msgstr "Даване на отрицателен глас за списъка"
-
-msgid "Remove my vote for this collection"
-msgstr "Премахване на гласа ми за списъка"
-
-msgid "Log in to vote for this collection"
-msgstr "Влезте, за да гласувате за този списък"
 
 msgid "Favorite"
 msgstr "Любим"
@@ -5259,10 +5184,6 @@ msgid "Strip away unnecessary formatting and copy just the plain text."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get instant translatations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
 msgstr ""
 
@@ -7582,12 +7503,6 @@ msgstr "по платформа"
 msgid "by Add-on Status"
 msgstr "по състояние"
 
-msgid "Subscribers"
-msgstr "Абонати"
-
-msgid "Ratings"
-msgstr "Оценки"
-
 msgid "Add-on Statistics"
 msgstr ""
 
@@ -7830,6 +7745,13 @@ msgstr ""
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "За да създадете собствен списък, трябва да имате сметка в Mozilla Добавки."
 
+msgid "Create an Add-ons Account"
+msgstr "Създаване на сметка за Добавки"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "или <a href=\"%(login)s\">влезте в текущата сметка</a>"
+
 msgid "Footer logo"
 msgstr ""
 
@@ -7961,15 +7883,15 @@ msgid "Delete Locale"
 msgstr ""
 
 #, python-format
-msgid "The user \"%(user)s\" has been banned.user"
+msgid "The user \"%(user)s\" has been banned."
 msgstr ""
 
 #, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr ""
 
 #, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
+msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
@@ -7980,6 +7902,9 @@ msgstr "Профилна снимка"
 
 msgid "Addons"
 msgstr ""
+
+msgid "Ratings"
+msgstr "Оценки"
 
 msgid "Activity Logs"
 msgstr "Журнал на действията"
@@ -8165,9 +8090,6 @@ msgstr ""
 msgid "Display the collections I have created"
 msgstr ""
 
-msgid "Display collections I'm following"
-msgstr ""
-
 msgid "Notifications"
 msgstr "Известия"
 
@@ -8236,9 +8158,6 @@ msgstr "Моите най-популярни теми"
 
 msgid "Themes I've created"
 msgstr "Теми, които съм създал"
-
-msgid "Followed by Me"
-msgstr "Следвани от мен"
 
 msgid "Created by Me"
 msgstr "Създадени от мен"

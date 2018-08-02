@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-15 11:02+0000\n"
+"POT-Creation-Date: 2018-08-02 01:13+0000\n"
+"PO-Revision-Date: 2018-07-31 11:55+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -712,26 +712,30 @@ msgstr "Dit dient een geldige hex-kleurcode te zijn, zoals #000000."
 msgid "Not allowed"
 msgstr "Niet toegestaan"
 
-#, fuzzy
 msgid "Oops! Not allowed."
-msgstr "Niet toegestaan"
+msgstr "Oeps! Niet toegestaan."
 
-#, fuzzy
 msgid "You tried to do something that you weren't allowed to."
-msgstr "<h1>Oeps! Niet toegestaan.</h1> <p>U hebt geprobeerd iets te doen wat niet is toegestaan.</p>"
+msgstr "U hebt geprobeerd iets te doen wat niet is toegestaan."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"U ziet dit bericht omdat deze HTTPS-website het verzenden van een ‘Referer header’ door uw webbrowser vereist, maar deze niet is verzonden. Deze header is om beveiligingsredenen vereist om te "
+"verzekeren dat uw browser niet door derden wordt gehackt."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
+"Als u uw browser zo hebt geconfigureerd dat ‘Referer’-headers zijn uitgeschakeld, schakel deze dan weer in, op zijn minst voor deze website, of voor HTTPS-verbindingen, of voor ‘same-origin’-"
+"aanvragen."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
+"U ziet dit bericht omdat deze website een CSRF-cookie vereist bij het verzenden van formulieren. Dit cookie is om beveiligingsredenen vereist om te verzekeren dat uw browser niet door derden wordt "
+"gehackt."
 
 msgid "Page Not Found"
 msgstr "Pagina niet gevonden"
@@ -850,9 +854,6 @@ msgstr "Collecties"
 
 msgid "Collections I've Made"
 msgstr "Mijn collecties"
-
-msgid "Collections I'm Following"
-msgstr "Door mij gevolgde collecties"
 
 msgid "My Favorite Add-ons"
 msgstr "Mijn favoriete add-ons"
@@ -1073,28 +1074,11 @@ msgstr "(optioneel)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "of <a id=\"collections-new-cancel\" href=\"#\">Annuleer</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "Om collecties te waarderen, moet u een add-ons-account hebben."
-
-msgid "Create an Add-ons Account"
-msgstr "Add-ons-account aanmaken"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "of <a href=\"%(login)s\">meld u aan bij uw account</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: Collecties"
 
 msgid "private"
 msgstr "privé"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> volger"
-msgstr[1] "<span>%(num)s</span> volgers"
 
 msgid "About this Collection"
 msgstr "Over deze collectie"
@@ -1167,48 +1151,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> add-on"
 msgstr[1] "<span>%(addons)s</span> add-ons"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> volger"
-msgstr[1] "<span>%(followers)s</span> volgers"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s wekelijkse volger"
-msgstr[1] "%(num)s wekelijkse volgers"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s maandelijkse volger"
-msgstr[1] "%(num)s maandelijkse volgers"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s volger"
-msgstr[1] "%(num)s volgers"
-
 msgid "by {0}"
 msgstr "door {0}"
-
-msgid "Stop Following"
-msgstr "Volgen stoppen"
-
-msgid "Follow this Collection"
-msgstr "Deze collectie volgen"
 
 msgid "Edit this Collection"
 msgstr "Deze collectie bewerken"
@@ -1257,9 +1201,6 @@ msgstr "Collecties zijn groepen gerelateerde add-ons die iedereen kan maken en d
 msgid "by %(author_link)s"
 msgstr "door %(author_link)s"
 
-msgid "Following"
-msgstr "Wordt gevolgd"
-
 msgid "Create a Collection"
 msgstr "Een collectie maken"
 
@@ -1307,18 +1248,6 @@ msgstr "Opmerking toevoegen"
 
 msgid "Remove this add-on from the collection"
 msgstr "Deze add-on uit de collectie verwijderen"
-
-msgid "Add a positive vote for this collection"
-msgstr "Een positieve stem aan deze collectie geven"
-
-msgid "Add a negative vote for this collection"
-msgstr "Een negatieve stem aan deze collectie geven"
-
-msgid "Remove my vote for this collection"
-msgstr "Mijn stem voor deze collectie verwijderen"
-
-msgid "Log in to vote for this collection"
-msgstr "Meld u aan om op deze collectie te stemmen"
 
 msgid "Favorite"
 msgstr "Favoriet"
@@ -4399,13 +4328,12 @@ msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, aut
 msgstr "Geniet van een pakket nieuwe YouTube-functies, zoals bioscoopmodus, advertentieblokkering, automatisch afspelen en meer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Stop stiekeme trackers {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Blokkeer onzichtbare trackers en spionerende advertenties die u op het web volgen."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
@@ -4442,1464 +4370,1299 @@ msgstr ""
 "Meer dan slechts een basishulpmiddel voor schermafbeeldingen: met Awesome Screenshot Plus kunt u afbeeldingen van aangepaste tekst en grafieken voorzien, en uw visuele elementen bewaren en delen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Pas nieuw-tabbladpagina’s aan {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Geniet van een mooie nieuwe pagina met aanpasbare achtergronden, lokale weerinfo en meer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vertaal eenvoudig {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Markeer tekst, klik met de rechtermuisknop, en vertaal direct."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Zoek afbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Omgekeerd afbeeldingen zoeken met een aantal zoekmachines."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Advertentieblokkering & privacybescherming {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Met enkele eenvoudige instellingen beheert u de advertenties die u ziet en hoe u op het internet wordt gevolgd."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Tabbladen opnieuw uitgevonden {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Hebt u een enorm aantal openstaande tabbladen? Organiseer ze in een kleine zijbalk."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Stop volgen door Facebook {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Isoleer uw Facebook-identiteit in een aparte ‘container’ die het voor Facebook moeilijker maakt om uw websitebezoeken te volgen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vereenvoudig zoeken {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Markeer eenvoudigweg tekst op een webpagina om met een aantal zoekmachines naar de woordgroep te zoeken."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Directe weerupdates {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
-msgstr ""
+msgstr "Ontvang wereldwijde weerinformatie direct in Firefox."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Choose the page you see every time you open a new tab."
-msgstr "Stel de pagina in die u telkens ziet bij het openen van een nieuw tabblad."
+msgstr "Kies de pagina die u telkens ziet bij het openen van een nieuw tabblad."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter video’s {start_sub_heading}met {addon_name} {end_sub_heading}"
+msgstr "Omgekeerd afbeeldingen zoeken {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "Ziet u een interessante afbeelding op het web en wilt u hier meer over weten? Probeer dit zoekhulpmiddel voor afbeeldingen."
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Werkt met YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope en honderden andere videowebsites."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "Tientallen geweldige emoji’s voor elke gelegenheid – altijd via één muisklik."
+msgstr "Tientallen geweldige emoji’s voor elke gelegenheid – altijd via een muisklik."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Beheer wachtwoorden {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Vereenvoudig en synchroniseer al uw aanmeldgegevens voor websites tussen diverse apparaten met één gemeenschappelijk wachtwoord."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Een lichtgewicht en effectieve adblocker. uBlock Origin hanteert duizenden inhoudsfilters zonder veel geheugen te gebruiken."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter video’s {start_sub_heading}met {addon_name} {end_sub_heading}"
+msgstr "Verbeter video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Geniet van een pakket nieuwe YouTube-functies, zoals bioscoopmodus, advertentieblokkering, automatisch afspelen en meer."
+msgstr "Geniet van een pakket nieuwe YouTube-functies, zoals bioscoopmodus, advertentieblokkering, beheer voor automatisch afspelen en meer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vind makkelijk afbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Markeer willekeurige tekst en klik met de rechtermuisknop om snel een afbeelding te zoeken."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Geniet van visuele bladwijzers {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Access your favorite sites from a tile layout."
-msgstr "Bespaar op uw favoriete producten vanuit de leunstoel van uw browser."
+msgstr "Benader uw favoriete websites vanuit een tegelindeling."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vergaar kennis {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "Voeg automatisch feiten van Britannica toe aan uw zoekresultaten."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter video’s {start_sub_heading}met {addon_name} {end_sub_heading}"
+msgstr "Verwijder YouTube-advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Blokkeer vervelende advertenties en aantekeningen die op YouTube verschijnen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Lees waar u wilt {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Verzend nieuwsartikelen, verhalen, blogberichten en meer naar uw Kindle."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Geef kleurcodes aan uw tabbladen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Orden uw tabbladen door ze op basis van URL-patronen op kleur te groeperen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Voorkom mining van cryptovaluta {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Stop het gebruik van uw computer voor mining van cryptovaluta door kwaadwillende websites."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Automatische grammaticacontroles {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Verkrijg hulp met grammatica, overal waar u op het web schrijft – sociale media, e-mail, documenten en meer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Controleer wereldtijden {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Laat huidige wereldtijden weergeven in de statusbalk van Firefox."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Makkelijke vertalingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Markeer tekst op pagina’s – of selecteer een hele pagina – om direct te vertalen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Profiteer van academische wijsheid {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
-msgstr ""
+msgstr "Geniet van gratis toegang tot meer dan 10 miljoen onderzoeksdocumenten."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Pas muisbewegingen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "Ontdek een nieuwe manier van navigeren met meer dan 50 nuttige muisbewegingen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter video’s {start_sub_heading}met {addon_name} {end_sub_heading}"
+msgstr "Optimaliseer video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "Maak de pagina rond videospelers donkerder voor een geconcentreerde kijkervaring."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Zoek met een goed geweten {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "Ecosia gebruikt 80% van de zoekopbrengsten voor het financieren van wereldwijde boomplantprogramma’s. Neem Ecosia op in zoekopdrachten van Firefox."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vind ontbrekende webinhoud {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "Is de pagina die u zoekt niet beschikbaar? Zoek naar een gearchiveerde/gebufferde versie."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vind ontbrekende webinhoud {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vergroot afbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
-msgstr ""
+msgstr "Houd de muisaanwijzer gewoon boven een afbeelding om deze te vergroten."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Laat cookies verdwijnen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "Wis automatisch cookies nadat u een tabblad sluit."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter video’s {start_sub_heading}met {addon_name} {end_sub_heading}"
+msgstr "Pas de paginagrootte aan {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "Een eenvoudige manier om de tekstgrootte van pagina’s te wijzigen – of zelfs de pagina zelf te vergroten."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Blokkeer onzichtbare trackers {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "Stop trackers en leer er meer over."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Sla tekst op voor later {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
 msgstr ""
+"Stop met telkens opnieuw schrijven van hetzelfde! Als u regelmatig opnieuw dezelfde woordgroepen in uw werk of andere communicatie gebruikt, sla ze dan eenvoudig op in Clippings en plak ze wanneer "
+"nodig."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Blokkeer e-mailadvertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Maak meer schermruimte vrij door advertenties uit uw webgebaseerde postvak te verwijderen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vind uw tabbladen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr ""
+msgstr "Beheer uw open tabbladen in een kleine zijbalk."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vermijd stiekeme trackers en beperkingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr ""
+msgstr "Maskeer uw navigatie door de identiteit van uw browser en besturingssysteem te verhullen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vernieuw tabbladen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "Laad automatisch tabbladen opnieuw op basis van tijdsintervallen die u instelt."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Scheid uw onlinelevens {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr ""
+msgstr "Onderscheid uw diverse online-identiteiten – werk, persoonlijk etc. – via kleurgecodeerde tabbladen die uw digitale cookiespoor splitsen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Stop trackers {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "Voeg een extra laag aan bescherming tegen tracking toe terwijl u op het web surft."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Lees ePub-bestanden {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "Geniet van ePub-bestanden binnen Firefox – verhoog lettergrootte, pagina-afmetingen en meer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Verbeter uw YouTube-ervaring {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "Speel video’s standaard af in de hoogste kwaliteit, zet aantekeningen uit, en meer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Volg de volgers {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "Krijg een glimp van wie u volgt met een simpele klik."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Wijzig uw proxyserver {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "Surf op het web via door uzelf gedefinieerde proxyinstellingen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Beheers het afspelen van video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "Verbeter uw kijkervaring door videosnelheid en meer aan te passen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Surf veilig {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
-msgstr ""
+msgstr "Voeg versleutelde beveiliging toe aan websites die HTTPS ondersteunen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Winkel en sla op {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "Laat automatisch de beste coupons aan uw winkelwagentje toevoegen bij betalen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Snelle vertalingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "Vertaal gemarkeerde tekst of de hele webpagina."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter video’s {start_sub_heading}met {addon_name} {end_sub_heading}"
+msgstr "Verbeter Reddit {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Wijzig de manier waarop u op Reddit surft door labels en meer te gebruiken."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Leg het web vast {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Maak schermafbeeldingen van webpagina’s, bewerk ze en deel ze."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Een superieur downloadhulpmiddel, alleen voor Windows."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Identificeer uw volgers {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "Zoek uit wie u volgt en waar men mogelijk uw gegevens deelt."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Surf anoniem {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Surf op het web met een verhulde identiteit – zelfs alsof u vanuit een ander land surft."
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Benader uw favoriete websites, onlangs gesloten tabbladen en meer – alles vanuit een prachtige tegelindeling."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Stel uw startpagina in {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "Wijs een aangepaste startpagina toe aan uw nieuwe tabbladen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Toon tabbladen in een lijst {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "Zet al uw open tabbladen om naar een lijst om ze makkelijk te beheren en Firefox te versnellen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Robuust downloadbeheer {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Controleer de status van uw downloads via een statusbalk, pagina met downloadgeschiedenis, en meer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Leg webinhoud vast {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Sla informatie van het internet op naar OneNote, zodat u deze kunt bewerken, aantekeningen kunt maken en meer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Bescherming tegen zoektrackers {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Stop trackers wanneer u op zoekresultaten van Google en Yandex klikt."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Dynamische navigatie {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr ""
+msgstr "Gebruik muisbewegingen om tabbladen te sluiten, een pagina terug te gaan of te vernieuwen, en meer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Voeg afbeeldingen toe aan zoekresultaten {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
-msgstr ""
+msgstr "Geniet van miniatuurafbeeldingen bij uw zoekresultaten."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Verminder vermoeidheid van de ogen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Maak het web makkelijker voor de ogen door de weergave ervan donkerder te maken."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Stop pop-ups {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Blokkeer standaard alle pop-ups en beslis daarna welke u wilt openen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Pas uw favoriete websites aan {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Wijzig de vormgeving van websites! Pas kleuren, pagina-achtergronden en meer aan."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Pas uw nieuwe tabblad aan {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Bewerk de nieuw-tabbladpagina zodat deze uw gewenste aantal tabbladen, een achtergrondafbeelding en meer weergeeft."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vind snelle vertalingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
+msgstr "Markeer tekst op een website, klik met de rechtermuisknop, en vertaal direct."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Beheer uw wachtwoorden {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Bewaar wachtwoorden veilig en benader ze op meerdere apparaten."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Ken uw weg op het web {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Ontdek de landlocatie voor websites die u bezoekt. Wees een geïnformeerde internetreiziger."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Verbeter uw leeservaring {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Maak de tekst die u leest aantrekkelijker door de rommel eromheen te verwijderen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter video’s {start_sub_heading}met {addon_name} {end_sub_heading}"
+msgstr "Open meerdere koppelingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
-msgstr ""
+msgstr "Klik met de rechtermuisknop en sleep over koppelingen die u in nieuwe tabbladen wilt openen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Haal tabbladen terug {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Benader onlangs gesloten tabbladen door met de rechtermuisknop op het pictogram in uw werkbalk te klikken."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter video’s {start_sub_heading}met {addon_name} {end_sub_heading}"
+msgstr "Inspireer productiviteit {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Pas uw nieuw-tabbladpagina aan om een mooie achtergrond weer te geven, uw dagelijkse focus te bepalen, en meer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Bekijk afbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr ""
+msgstr "Brengt de knop ‘Afbeelding weergeven’ bij het zoeken op Google Afbeeldingen terug."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter video’s {start_sub_heading}met {addon_name} {end_sub_heading}"
+msgstr "Verhoog productiviteit {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "Blokkeer tijdverspillende websites, zodat u zich op de actuele taak kunt richten."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vernieuw tabbladen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "Laad automatisch tabbladen opnieuw op basis van tijdsintervallen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Repareer uw favorieten {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "Vind en verhelp defecte bladwijzers, duplicaten en meer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter video’s {start_sub_heading}met {addon_name} {end_sub_heading}"
+msgstr "Minder stress {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Rond dingen af met een nuttige to-dolijst die tussen apparaten synchroniseert."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Winkel slimmer {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr ""
+msgstr "Volg historisch prijsverloop, vind concurrerende producten, bekijk waarderingen voor de verkoper, en meer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Pas YouTube naar wens aan {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "Speel video’s af in een pop-outvenster, zie alleen advertenties binnen geabonneerde kanalen, maak videoafbeeldingen, en zo veel meer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Onderzoek websiteverkeer {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "Verkrijg informatie over betrokkenheid en verkeer voor alle websites."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Geef stijl aan Wikipedia {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh and modern appearance to Wikipedia."
-msgstr ""
+msgstr "Past een frisse en moderne vormgeving toe op Wikipedia."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Werk sneller {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
-msgstr ""
+msgstr "Gebruik muisbewegingen om dingen sneller voor elkaar te krijgen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vermom de pagina {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Verberg gedeelten van de website die u bekijkt."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Download afbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
-msgstr ""
+msgstr "Selecteer afbeeldingen van websites en download ze."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Maskeer uw locatie {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr ""
+msgstr "Verhul uw locatie om trackers af te schudden en uw privacy te beschermen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Gebruik zelfcensuur {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Beperk toegang tot ongepaste of ongewenste inhoud met een filter."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter video’s {start_sub_heading}met {addon_name} {end_sub_heading}"
+msgstr "Verbeter nieuwe tabbladen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "Open een nieuw tabblad naast uw huidige tabblad, niet aan het einde van de rij."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Overwin spam {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Gebruik slimme tijdelijke e-mailadressen om anoniem te blijven en spam te vermijden."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Pas uw privacy aan {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily customize the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Pas eenvoudig de ingebouwde privacyinstellingen in Firefox aan."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Verbeter uw ervaring op VK {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
-msgstr ""
+msgstr "Verwijder advertenties en download audio vanaf VK."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Verkrijg directe vertalingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Toegang tot directe vertaling door tekst te markeren en op de knop die verschijnt te klikken."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Pas nieuwe tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
-msgstr ""
+msgstr "Word creatief en pas uw nieuw-tabbladpagina aan door uw favoriete websites weer te geven en een thema te selecteren."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter video’s {start_sub_heading}met {addon_name} {end_sub_heading}"
+msgstr "Geen omleidingen meer {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "Ga rechtstreeks naar de gewenste website zonder tussendoor te worden omgeleid."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "WhatsApp op het web {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "Benader WhatsApp vanuit de werkbalk van Firefox om meldingen van ongelezen conversaties te verkrijgen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vertaal naar/vanuit het Duits {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "Verkrijg professionele Duitse vertalingen vanuit het Engels, Frans, Spaans en andere talen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Maak een blokkeerlijst voor websites {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
-msgstr ""
+msgstr "Beperk de toegang van Firefox tot websites die u definieert."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Werk slimmer {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "Beheer uw productiviteit door in ingestelde tijdsintervallen te werken."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Makkelijk lezen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "Bekijk al uw favoriete RSS-feeds op één pagina."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Verminder vermoeidheid van de ogen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "Schakel nachtmodus in voor een betere kijkervaring."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Zoek afbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "Omgekeerd afbeeldingen zoeken door de kracht van meerdere zoekproviders te benutten."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Sla iets op voor later {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store web pages to access across devices."
-msgstr ""
+msgstr "Bewaar webpagina’s voor toegang op meerdere apparaten."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Selecteer makkelijk bladwijzerlocaties {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "Een betere manier om webpagina’s op te slaan als u meerdere bladwijzermappen gebruikt."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Geen opmaak {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
-
-#. editorial content for the discovery pane.
-#, fuzzy
-msgid "Get instant translatations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Verwijder onnodige opmaak en kopieer alleen de platte tekst."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Zet een hele webpagina om naar de gewenste taal – met één klik op een knop."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Extraheer koppelingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr ""
+msgstr "Geef direct alle koppelingen van een webpagina weer in nieuwe tabbladen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Bekijk documenten {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
-msgstr ""
+msgstr "Toegang tot PDF’s via de PDF-toepassing van uw voorkeur."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vermijd omleidingen en trackers {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
-msgstr ""
+msgstr "Verwijder omleidingspagina’s en parameters voor URL-tracking."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Stop zoektrackers {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "Voorkom dat zoekmachines weten op welke zoekresultaten u klikt."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Download YouTube-video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
-msgstr ""
+msgstr "Download video en/of audio."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Laat een schoon digitaal spoor na {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Verzamel leesmateriaal {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Een geavanceerde lezer voor het samenvoegen van al uw RSS-/Atom-/RDF-bronnen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Maak notities {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "Maak algemene en websitespecifieke notities voor latere beoordeling."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Scrollen als op een telefoon {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
-msgstr ""
+msgstr "Scrollen met de muis via ‘verslepen’ voor desktopwebpagina’s."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Verwijder gegevens {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Wis uw browsercache met een klik of toetsaanslag."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vergeet nooit meer iets {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
-msgstr ""
+msgstr "Maak en beheer een todolijst in uw browser."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Accentueer tekst {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
-msgstr ""
+msgstr "Geniet van een zeer aanpasbare tekstmarkeerder met verschillende kleuren en opslagopties."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Geniet van muziek uit de hele wereld {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access 20,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Benader meer dan 20.000 radiostations van over de hele wereld."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Luister naar video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "Bespaar bandbreedte door alleen de audio van YouTube-clips te streamen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Zet tekst om naar afbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Zet woorden om naar mooie kopteksten en afbeeldingsoverlaytekst."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Surf veilig {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Navigeer naar de beveiligde versie van een website als die beschikbaar is."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Verwijder uw navigatiegeschiedenis {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Geef een aangepast aantal dagen op voor het behouden van browsergeschiedenis voordat deze automatisch wordt gewist."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Verwijder zoekmachineadvertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "Stop advertenties die binnen uw zoekresultaten verschijnen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Beheer veilig wachtwoorden {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "Bewaar wachtwoorden veilig en meld u automatisch aan bij bekende websites."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Blokkeer advertenties en tracking {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
-msgstr ""
+msgstr "Bescherm uw privacy door advertenties en trackers te blokkeren (en versnel het laden van pagina’s)."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vul automatisch formulieren in {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
-msgstr ""
+msgstr "Sla ingevoerde gegevens eenmaal op en laat ze de volgende keer automatisch invullen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Surf privé {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
-msgstr ""
+msgstr "Wissel met een klik naar privénavigatiemodus."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Stop tabbladkaping {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "Laat aangeklikte koppelingen geen beheer over uw huidige tabblad krijgen en inhoud laden waar u niet om hebt gevraagd."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Makkelijke toegang tot Wikipedia {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Voer een Wikipedia-zoekopdracht uit door tekst van webpagina’s te markeren en met de rechtermuisknop te klikken."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter video’s {start_sub_heading}met {addon_name} {end_sub_heading}"
+msgstr "Ontdek website-specifieke inhoud {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "Vind wat u zoekt binnen een bepaald domein."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vind video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Markeer tekst van een website en klik met de rechtermuisknop om op YouTube naar verwante media te zoeken."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Krijg voordeel bij Amazon {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "Bij het bekijken van productpagina’s op andere onlinewinkels, kunt u op een knop klikken om de vermelding ervan op Amazon te bekijken als het daar beschikbaar is."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Twitter het rond {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily broadcast web content to your Twitter following."
-msgstr ""
+msgstr "Deel eenvoudig webinhoud met uw Twitter-volgers."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Ultiem tabbladbeheer {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Zo veel opties voor tabbladbeheer – dubbele tabbladen sluiten, vensters samenvoegen, de tabbladtitel kopiëren, en meer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Geniet van een vreemde opleiding {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Load a random Wikipedia article each time you open a new tab."
-msgstr "Stel de pagina in die u telkens ziet bij het openen van een nieuw tabblad."
+msgstr "Laad een willekeurig Wikipedia-artikel bij het openen van een nieuw tabblad."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Wijzig uw nieuwe tabblad {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Configureer nieuw-tabbladpagina’s zodat aangepaste achtergrondkleuren en -afbeeldingen worden weergegeven."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter uw emojispel {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Kattenliefhebbers verblijden zich {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Ontmoet een schattig katje bij elk nieuw tabblad. Krab het achter het oor en kijk wat er gebeurt."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Verlaag productiviteit {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "Voor die momenten waarop u lasers vanuit een kat moet schieten."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Doorzoek Firefox {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Eenvoudige toegang tot uw open tabbladen, bladwijzers en geschiedenis."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Veel open tabbladen? Sla het scrollen over en zoek via sneltoetsen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Duik onder de oppervlakte {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Uncover the software that supports whatever website you're visiting."
-msgstr ""
+msgstr "Ontdek de software die uw bezochte websites ondersteunt."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Laat een schoon digitaal spoor na {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Voorkom omleidingen en volgen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Stop omleidingen, zodat u de gewenste website sneller kunt bereiken."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Onthul ingetypte wachtwoorden {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Voegt een mogelijkheid tot tonen/verbergen toe aan alle wachtwoordvelden."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Verminder afleiding {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Richt u op waar u naar kijkt door alles behalve de videospeler donker te maken."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Beheer bladwijzers {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Pas uw bladwijzers aan via een eenvoudig toegankelijk paneel."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Houd wachtwoorden veilig {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Bewaar wachtwoorden veilig en meld u automatisch aan bij bekende websites."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Een simpele adblocker, gericht op het alleen weergeven van gewenste inhoud."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Houd het prijsverloop op Amazon bij {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make informed decisions by tracking the price of a product listed on Amazon."
-msgstr ""
+msgstr "Maak geïnformeerde beslissingen door de prijs van een op Amazon vermeld product te volgen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Winkel met vertrouwen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Een extra controle om te verzekeren dat u op een website winkelt die op betrouwbaarheid is gescreend."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Houd productiviteit bij {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Meet de hoeveelheid tijd die u op de computer doorbrengt, of op specifieke werk-apps zoals Trello, JIRA, Basecamp, GitHub, en veel meer."
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Verzamel webinhoud zoals artikelen, video’s, afbeeldingen en meer om op te slaan en voor individuele projecten of realtime samenwerking in teamverband te gebruiken."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Surf veilig {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
-msgstr ""
+msgstr "Laat alleen webinhoud uitvoeren van websites die u vertrouwt."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Download video’s {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Beheer cookies {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Neem de volledige controle over cookies die u tijdens het browsen hebt verzameld."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Vergeet geschiedenis {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Wis automatisch browsergeschiedenis voor websites die u selecteert."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Bescherm wachtwoorden {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Bescherm uw persoonlijke bladwijzers met een wachtwoord."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter video’s {start_sub_heading}met {addon_name} {end_sub_heading}"
+msgstr "Voorkom lekkages van IP-adressen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "Gebruikt u een VPN? Uw IP-adres kan lekken. Stop dat door WebRTC uit te schakelen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Sluit vervelende overlays {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply click a button to close annoying pop-up overlays."
-msgstr ""
+msgstr "Klik gewoon op een knop om vervelende pop-up-overlays te sluiten."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbeter video’s {start_sub_heading}met {addon_name} {end_sub_heading}"
+msgstr "Onderzoek afbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "Een interessante afbeelding op het web gevonden? Gebruik TinEye om de herkomst ervan te achterhalen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Stroomlijn dingen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Versleep eenvoudig tekst, afbeeldingen of koppelingen om acties zoals kopiëren, openen, zoeken, en meer uit te voeren."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Benut de mogelijkheid om video en/of audio in meerdere indelingen te downloaden."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Locatiebewustzijn {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Ontdek waar de server van een website zich geografisch bevindt. Wees een geïnformeerde webreiziger."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Verhelp storende audio {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Is het volume op een website te laag? Te hoog? SoundFixer kan helpen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Bewerk voor afdrukken {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
-msgstr ""
+msgstr "Maak buitengewone visuele aanpassingen – verwijder advertenties of onsmakelijke inhoud – voor webpagina’s die u wilt afdrukken."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Maak schermafbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Houd het prijsverloop op Amazon bij {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
-msgstr ""
+msgstr "Maak geïnformeerde beslissingen door de prijs van een op Amazon vermeld product te volgen en hiervoor waarschuwingen te ontvangen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Beheers audio {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Pas browseraudio-instellingen aan met extreme helderheid."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pas tabbladen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Privacybescherming {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Verdedig uzelf tegen de meest stiekeme trackers."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Wis uw sporen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
-msgstr ""
+msgstr "Zoek met betere beveiliging via blokkering van trackers, slimmere versleuteling, privé zoeken en andere essentiële zaken."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -7720,12 +7483,6 @@ msgstr "op platform"
 msgid "by Add-on Status"
 msgstr "op add-onstatus"
 
-msgid "Subscribers"
-msgstr "Abonnees"
-
-msgid "Ratings"
-msgstr "Waardering"
-
 msgid "Add-on Statistics"
 msgstr "Add-on-statistieken"
 
@@ -7984,6 +7741,13 @@ msgstr "De nieuwe website bezoeken"
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Om uw eigen collecties aan te maken, moet u een Mozilla-add-ons-account hebben."
 
+msgid "Create an Add-ons Account"
+msgstr "Add-ons-account aanmaken"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "of <a href=\"%(login)s\">meld u aan bij uw account</a>"
+
 msgid "Footer logo"
 msgstr "Voettekstlogo"
 
@@ -8113,15 +7877,15 @@ msgid "Delete Locale"
 msgstr "Locale verwijderen"
 
 #, python-format
-msgid "The user \"%(user)s\" has been banned.user"
+msgid "The user \"%(user)s\" has been banned."
 msgstr "De gebruiker ‘%(user)s’ is verbannen."
 
 #, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr "De afbeelding van gebruiker ‘%(user)s’ is verwijderd."
 
 #, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
+msgid "The users \"%(users)s\" have been banned."
 msgstr "De gebruikers ‘%(users)s’ zijn verbannen."
 
 msgid "Ban selected users"
@@ -8132,6 +7896,9 @@ msgstr "Profielfoto"
 
 msgid "Addons"
 msgstr "Add-ons"
+
+msgid "Ratings"
+msgstr "Waardering"
 
 msgid "Activity Logs"
 msgstr "Activiteitenlogboeken"
@@ -8317,9 +8084,6 @@ msgstr "Beslis welke collecties in uw profiel moeten worden weergegeven."
 msgid "Display the collections I have created"
 msgstr "Door mij gemaakte collecties weergeven"
 
-msgid "Display collections I'm following"
-msgstr "Door mij gevolgde collecties weergeven"
-
 msgid "Notifications"
 msgstr "Notificaties"
 
@@ -8389,9 +8153,6 @@ msgstr "Mijn meest populaire thema’s"
 
 msgid "Themes I've created"
 msgstr "Door mij gemaakte thema’s"
-
-msgid "Followed by Me"
-msgstr "Door mij gevolgd"
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"

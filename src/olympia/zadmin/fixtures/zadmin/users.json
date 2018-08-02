@@ -3,7 +3,6 @@
         "pk": 10968,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": 1,
             "display_collections": 1,
             "averagerating": 3.39,
             "picture_type": "image/jpeg",

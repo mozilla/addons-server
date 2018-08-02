@@ -2,9 +2,9 @@ Babel==2.6.0 \
     --hash=sha256:6778d85147d5d85345c14a26aada5e478ab04e39b078b0745ee6870c2b5cf669 \
     --hash=sha256:8cba50f48c529ca3fa18cf81fa9403be176d374ac4d60738b839122dfaaa3d23
 # Django is required by django-aesfield, django-cache-nuggets, django-csp, django-mozilla-product-details, django-tables2, nobot
-Django==1.11.14 \
-    --hash=sha256:b7f77c0d168de4c4ad30a02ae31b9dca04fb3c10472f04918d5c02b4117bba68 \
-    --hash=sha256:eb9271f0874f53106a2719c0c35ce67631f6cc27cf81a60c6f8c9817b35a3f6e # pyup: >=1.11,<2.0
+Django==1.11.15 \
+    --hash=sha256:8176ac7985fe6737ce3d6b2531b4a2453cb7c3377c9db00bacb2b3320f4a1311 \
+    --hash=sha256:b18235d82426f09733d2de9910cee975cf52ff05e5f836681eb957d105a05a40 # pyup: >=1.11,<2.0
 # Jinja2 is required by Sphinx
 Jinja2==2.10 \
     --hash=sha256:74c935a1b8bb9a3947c50a54766a969d4846290e1e788ea44c1392163723c3bd \
@@ -90,15 +90,15 @@ billiard==3.5.0.4 \
 bleach==1.5.0 \
     --hash=sha256:e67f46adcec78dbc3c04462f3aba3213a673d5652eba2609ed1ef15492a44b8d \
     --hash=sha256:978e758599b54cd3caa2e160d74102879b230ea8dc93871d0783721eef58bc65 # pyup: ==1.5.0
-boto3==1.7.62 \
-    --hash=sha256:330a80a341cccbd8f5f1b77be16e102e006c571f8519534538a5df34d96d0d4c \
-    --hash=sha256:474c2c3aa070a2dae9ecf9d14d974e726960539deec43707385e02cdedae2221
+boto3==1.7.67 \
+    --hash=sha256:c848ae99e09f2899c5f81b8fdad90b2ef1fb7a760b13f2b1e51a345f4fd11d2b \
+    --hash=sha256:e225d9fa3f313049547bf510a54d5f0af82f70d53fe0c0f891a0a9f8d4474681
 celery==4.1.1 \
     --hash=sha256:6fc4678d1692af97e137b2a9f1c04efd8e7e2fb7134c5c5ad60738cdd927762f \
     --hash=sha256:d1f2a3359bdbdfb344edce98b8e891f5fe64f8a11c5a45538ec20ac237c971f5
-botocore==1.10.62 \
-    --hash=sha256:379492474ce4151a26e41e3373cb07ac9642d06a297c78be3c382e3b8c1adbb7 \
-    --hash=sha256:047d553ec2a4c7f80f9ca02f73c3ab443577bad6bcb079c698fb9dd8cc93c0af
+botocore==1.10.68 \
+    --hash=sha256:669844066de8e945890a7842cd445b83b5abf3449425526ce6037276f73e5aa4 \
+    --hash=sha256:f27e82ae95ef3887bf9fa6362aada83f3b56d315ec72e2c4870d322c22e83369
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -251,15 +251,15 @@ mock==2.0.0 \
 natsort==5.3.3 \
     --hash=sha256:6d3e98c8c7ace4024181dca44dfdc57de3489fd92df11a494b8d4c50e81fb219 \
     --hash=sha256:da930bfddce941526955dea8d35a44243c96adf919ceb758ba7bbd1ba5b0a39a
-newrelic==3.4.0.95 \
-    --hash=sha256:0c232892ff4d0b63f25a616e29d57ff4280b4e401f993a94c218eaaa7248608c
+newrelic==4.2.0.100 \
+    --hash=sha256:da56df90005b233466d81424a0478dcea2b00bf5a6853d9a1a1451f03e07f41e
 nobot==0.5 \
     --hash=sha256:fa0582d81f562cd5b61e241005feb3f51548fe3fc165aed292952ff78676e28a \
     --hash=sha256:0a1c43a74f1c55f06cf2eb98cb472762dbdd7df5eb693d438c9fb42cfcfe79e5
 # pbr is required by mock
-pbr==4.1.1 \
-    --hash=sha256:c6bddbad814f23c7faaf88d8a186e9965243cc6206a23361b73023648e645794 \
-    --hash=sha256:754e766b4f4bad3aa68cfd532456298da1aa39375da8748392dbae90860d5f18
+pbr==4.2.0 \
+    --hash=sha256:b486975c0cafb6beeb50ca0e17ba047647f229087bd74e37f4a7e2cac17d2caa \
+    --hash=sha256:1b8be50d938c9bb75d0eaf7eda111eec1bf6dc88a62a6412e33bf077457e0f45
 # polib is required by dennis
 polib==1.1.0 \
     --hash=sha256:93b730477c16380c9a96726c54016822ff81acfa553977fdd131f2b90ba858d7 \
@@ -271,9 +271,9 @@ pyquery==1.4.0 \
     --hash=sha256:07987c2ed2aed5cba29ff18af95e56e9eb04a2249f42ce47bddfb37f487229a3 \
     --hash=sha256:4771db76bd14352eba006463656aef990a0147a0eeaf094725097acfa90442bf
 # pytest is required by amo-validator
-pytest==3.6.3 \
-    --hash=sha256:4b208614ae6d98195430ad6bde03641c78553acee7c83cec2e85d613c0cd383d \
-    --hash=sha256:0453c8676c2bee6feb0434748b068d5510273a916295fd61d306c4f22fbfd752
+pytest==3.6.4 \
+    --hash=sha256:952c0389db115437f966c4c2079ae9d54714b9455190e56acebe14e8c38a7efa \
+    --hash=sha256:341ec10361b64a24accaec3c7ba5f7d5ee1ca4cebea30f76fad3dd12db9f0541
 # python-dateutil is required by elasticsearch-dsl
 python-dateutil==2.7.3 \
     --hash=sha256:1adb80e7a782c12e52ef9a8182bebeb73f1d7e24e374397af06fb4956c8dc5c0 \

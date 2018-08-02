@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-05-11 00:43+0000\n"
+"POT-Creation-Date: 2018-08-02 01:13+0000\n"
+"PO-Revision-Date: 2018-07-28 15:53+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -77,7 +77,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr "Xa xe tikirel yetz'aqatisäx ch'utitzijol pa ri ruk'isib'äl taq kiwäch tz'aqat."
 
 msgid "Status"
-msgstr ""
+msgstr "B'anikil"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Tz'aqat man wachel ta pa AMO -"
@@ -840,9 +840,6 @@ msgstr "Taq mol"
 msgid "Collections I've Made"
 msgstr "Taq Mol Enutz'ukun"
 
-msgid "Collections I'm Following"
-msgstr "Taq Mol Ewojqan"
-
 msgid "My Favorite Add-ons"
 msgstr "Taq Tz'aqat Ewajowan"
 
@@ -1060,28 +1057,11 @@ msgstr "(cha'el)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "o <a id=\"collections-new-cancel\" href=\"#\">Tiq'at</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "Richin niya' kejqalem taq mol, k'o chi k'o jun add-on rub'i' ataqoya'l."
-
-msgid "Create an Add-ons Account"
-msgstr "Titz'uk jun Add-on Rub'i' Taqoya'l"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "o <a href=\"%(login)s\">katok pa rub'i' ataqoya'l k'o wakami</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: Taq mol"
 
 msgid "private"
 msgstr "ichinan"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> ojqanel"
-msgstr[1] "<span>%(num)s</span> ojqanela'"
 
 msgid "About this Collection"
 msgstr "Chi rij re Mol re'"
@@ -1154,48 +1134,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> tz'aqat"
 msgstr[1] "<span>%(addons)s</span> taq tz'aqat"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> ojqanel"
-msgstr[1] "<span>%(followers)s</span> ojqanela'"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s wuqq'ijul ojqanel"
-msgstr[1] "%(num)s wuqq'ijul ojqanela'"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s ik'ul ojqanel"
-msgstr[1] "%(num)s ik'ul ojqanela'"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s ojqanel"
-msgstr[1] "%(num)s ojqanela'"
-
 msgid "by {0}"
 msgstr "ruma {0}"
-
-msgid "Stop Following"
-msgstr "Man Tojqäx chik"
-
-msgid "Follow this Collection"
-msgstr "Tojqäx re Mol re'"
 
 msgid "Edit this Collection"
 msgstr "Tinuk' re Mol re'"
@@ -1245,9 +1185,6 @@ msgstr ""
 msgid "by %(author_link)s"
 msgstr "ruma %(author_link)s"
 
-msgid "Following"
-msgstr "Nojqäx"
-
 msgid "Create a Collection"
 msgstr "Titz'uk jun Mol"
 
@@ -1295,18 +1232,6 @@ msgstr "Titz'aqatisäx jun tzijoxïk"
 
 msgid "Remove this add-on from the collection"
 msgstr "Tisilöx re tz'aqat re' pa ri mol"
-
-msgid "Add a positive vote for this collection"
-msgstr "Titz'aqatisäx jun ütz k'aqwäch richin re mol re'"
-
-msgid "Add a negative vote for this collection"
-msgstr "Titz'aqatisäx jun itzel k'aqwäch richin re mol re'"
-
-msgid "Remove my vote for this collection"
-msgstr "Tiyuj nuk'aqwäch chi rij re mol re'"
-
-msgid "Log in to vote for this collection"
-msgstr "Tatikirisaj molojri'ïl richin nak'äq ruwäch re mol re'"
 
 msgid "Favorite"
 msgstr "Ajowab'äl"
@@ -3393,10 +3318,10 @@ msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
 
 msgid "Summary:"
-msgstr ""
+msgstr "Ch'utitzijol:"
 
 msgid "required"
-msgstr ""
+msgstr "ajowan"
 
 msgid "This add-on is experimental"
 msgstr ""
@@ -5193,10 +5118,6 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Get instant translatations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -7451,12 +7372,6 @@ msgstr ""
 msgid "by Add-on Status"
 msgstr ""
 
-msgid "Subscribers"
-msgstr ""
-
-msgid "Ratings"
-msgstr ""
-
 msgid "Add-on Statistics"
 msgstr ""
 
@@ -7699,6 +7614,13 @@ msgstr ""
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr ""
 
+msgid "Create an Add-ons Account"
+msgstr "Titz'uk jun Add-on Rub'i' Taqoya'l"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "o <a href=\"%(login)s\">katok pa rub'i' ataqoya'l k'o wakami</a>"
+
 msgid "Footer logo"
 msgstr ""
 
@@ -7825,15 +7747,15 @@ msgid "Delete Locale"
 msgstr ""
 
 #, python-format
-msgid "The user \"%(user)s\" has been banned.user"
+msgid "The user \"%(user)s\" has been banned."
 msgstr ""
 
 #, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr ""
 
 #, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
+msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
@@ -7843,6 +7765,9 @@ msgid "Profile Photo"
 msgstr ""
 
 msgid "Addons"
+msgstr ""
+
+msgid "Ratings"
 msgstr ""
 
 #, fuzzy
@@ -8028,9 +7953,6 @@ msgstr ""
 msgid "Display the collections I have created"
 msgstr ""
 
-msgid "Display collections I'm following"
-msgstr ""
-
 msgid "Notifications"
 msgstr ""
 
@@ -8098,9 +8020,6 @@ msgid "My Most Popular Themes"
 msgstr ""
 
 msgid "Themes I've created"
-msgstr ""
-
-msgid "Followed by Me"
 msgstr ""
 
 msgid "Created by Me"

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-21 16:44+0000\n"
-"PO-Revision-Date: 2018-07-22 08:52+0000\n"
+"POT-Creation-Date: 2018-08-02 01:13+0000\n"
+"PO-Revision-Date: 2018-08-02 08:46+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -735,14 +735,16 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Ви бачите це повідомлення, тому що цей HTTPS-сайт вимагає від вашого браузера \"Заголовок джерела посилання\", але його не було відправлено. Цей заголовок необхідний для безпеки, щоб переконатися, "
+"що запити браузера не перехоплюються сторонніми особами."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr ""
+msgstr "Якщо ви налаштували браузер, щоб він не відправляв заголовки джерел посилань, будь ласка, увімкніть їх, принаймні для цього сайту, або для HTTPS-з'єднань чи запитів \"same-origin\"."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
-msgstr ""
+msgstr "Ви бачите це повідомлення, тому що цей сайт вимагає CSRF-куки при відправленні форм. Ці куки необхідні для безпеки, щоб переконатися, що запити браузера не перехоплюються сторонніми особами."
 
 msgid "Page Not Found"
 msgstr "Сторінку не знайдено"
@@ -861,9 +863,6 @@ msgstr "Збірки"
 
 msgid "Collections I've Made"
 msgstr "Створені мною збірки"
-
-msgid "Collections I'm Following"
-msgstr "Збірки, за якими я слідкую"
 
 msgid "My Favorite Add-ons"
 msgstr "Мої улюблені додатки"
@@ -1081,29 +1080,11 @@ msgstr "(необов’язково)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "або <a id=\"collections-new-cancel\" href=\"#\">Скасувати</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "Щоб оцінити збірки, у вас повинен бути обліковий запис на сайті додатків."
-
-msgid "Create an Add-ons Account"
-msgstr "Створити обліковий запис на сайті додатків"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "або <a href=\"%(login)s\">увійти в свій поточний обліковий запис</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: Збірки"
 
 msgid "private"
 msgstr "приватний"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> прихильник"
-msgstr[1] "<span>%(num)s</span> прихильника"
-msgstr[2] "<span>%(num)s</span> прихильників"
 
 msgid "About this Collection"
 msgstr "Про цю збірку"
@@ -1179,52 +1160,8 @@ msgstr[0] "<span>%(addons)s</span> додаток"
 msgstr[1] "<span>%(addons)s</span> додатки"
 msgstr[2] "<span>%(addons)s</span> додатків"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> прихильник"
-msgstr[1] "<span>%(followers)s</span> прихильника"
-msgstr[2] "<span>%(followers)s</span> прихильників"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s щотижневий прихильник"
-msgstr[1] "%(num)s щотижневих прихильника"
-msgstr[2] "%(num)s щотижневих прихильників"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s щомісячний прихильник"
-msgstr[1] "%(num)s щомісячні прихильника"
-msgstr[2] "%(num)s щомісячних прихильників"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s прихильник"
-msgstr[1] "%(num)s прихильника"
-msgstr[2] "%(num)s прихильників"
-
 msgid "by {0}"
 msgstr "від {0}"
-
-msgid "Stop Following"
-msgstr "Не слідкувати"
-
-msgid "Follow this Collection"
-msgstr "Слідкувати за цією збіркою"
 
 msgid "Edit this Collection"
 msgstr "Змінити цю збірку"
@@ -1273,9 +1210,6 @@ msgstr "Збірки - це групи відповідних додатків, 
 msgid "by %(author_link)s"
 msgstr "від %(author_link)s"
 
-msgid "Following"
-msgstr "Слідую"
-
 msgid "Create a Collection"
 msgstr "Створити збірку"
 
@@ -1323,18 +1257,6 @@ msgstr "Додати коментар"
 
 msgid "Remove this add-on from the collection"
 msgstr "Вилучити цей додаток зі збірки"
-
-msgid "Add a positive vote for this collection"
-msgstr "Додати позитивний голос для цієї збірки"
-
-msgid "Add a negative vote for this collection"
-msgstr "Додати негативний голос для цієї збірки"
-
-msgid "Remove my vote for this collection"
-msgstr "Вилучити мій голос за цю збірку"
-
-msgid "Log in to vote for this collection"
-msgstr "Увійдіть, щоб проголосувати за цю збірку"
 
 msgid "Favorite"
 msgstr "Вподобання"
@@ -4513,7 +4435,7 @@ msgstr "Миттєві оновлення погоди {start_sub_heading}за �
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
-msgstr ""
+msgstr "Отримуйте інформацію про погоду з усього світу безпосередньо в Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
@@ -4581,7 +4503,7 @@ msgstr "Доступ до знань {start_sub_heading}за допомогою 
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "Автоматично додавайте факти з Britannica до результатів пошуку."
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4589,7 +4511,7 @@ msgstr "Приберіть рекламу на YouTube {start_sub_heading}за �
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Блокуйте надокучливу рекламу й анотації, що з'являються на YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4597,7 +4519,7 @@ msgstr "Читайте всюди {start_sub_heading}за допомогою {ad
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Надсилайте статті, історії, стрічки блогів та інші матеріали на свій Kindle."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4605,7 +4527,7 @@ msgstr "Позначайте кольором вкладки {start_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Впорядковуйте вкладки в групи за кольором на основі URL-шаблонів."
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4613,7 +4535,7 @@ msgstr "Не дозволяйте майнинг криптовалют {start_s
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Не дозволяйте зловмисним веб-сайтам використовувати ваш комп'ютер для майнингу криптовалют."
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4629,7 +4551,7 @@ msgstr "Перевіряйте всесвітній час {start_sub_heading}з
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Відображення світового часу в панелі стану Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5273,10 +5195,6 @@ msgstr "Жодного форматування {start_sub_heading}разом з
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
 msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Get instant translatations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Отримуйте миттєві переклади {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
@@ -7584,12 +7502,6 @@ msgstr "за платформою"
 msgid "by Add-on Status"
 msgstr "за статусом додатка"
 
-msgid "Subscribers"
-msgstr "Підписники"
-
-msgid "Ratings"
-msgstr "Оцінки"
-
 msgid "Add-on Statistics"
 msgstr "Статистика додатку"
 
@@ -7844,6 +7756,13 @@ msgstr "Відвідати новий сайт"
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Для створення власних збірок, необхідно мати обліковий запис сайту додатків Mozilla."
 
+msgid "Create an Add-ons Account"
+msgstr "Створити обліковий запис на сайті додатків"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "або <a href=\"%(login)s\">увійти в свій поточний обліковий запис</a>"
+
 msgid "Footer logo"
 msgstr "Логотип знизу"
 
@@ -7972,16 +7891,16 @@ msgid "Delete Locale"
 msgstr "Видалити локаль"
 
 #, python-format
-msgid "The user \"%(user)s\" has been banned.user"
+msgid "The user \"%(user)s\" has been banned."
 msgstr "Користувача \"%(user)s\" було заблоковано."
 
 #, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr "Зображення, що належить користувачу \"%(user)s\" було вилучено."
 
 #, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
-msgstr "Користувачі \"%(users)s\" були заблоковані, "
+msgid "The users \"%(users)s\" have been banned."
+msgstr "Користувачів \"%(users)s\" було заблоковано."
 
 msgid "Ban selected users"
 msgstr "Заблокувати вибраних користувачів"
@@ -7991,6 +7910,9 @@ msgstr "Світлина профілю"
 
 msgid "Addons"
 msgstr "Додатки"
+
+msgid "Ratings"
+msgstr "Оцінки"
 
 msgid "Activity Logs"
 msgstr "Журнали активності"
@@ -8175,9 +8097,6 @@ msgstr "Вирішіть, які збірки повинні бути показ
 msgid "Display the collections I have created"
 msgstr "Показувати створені мною збірки"
 
-msgid "Display collections I'm following"
-msgstr "Показувати збірки, за якими я стежу"
-
 msgid "Notifications"
 msgstr "Повідомлення"
 
@@ -8246,9 +8165,6 @@ msgstr "Мої найпопулярніші теми"
 
 msgid "Themes I've created"
 msgstr "Створені мною теми"
-
-msgid "Followed by Me"
-msgstr "Наслідувані мною"
 
 msgid "Created by Me"
 msgstr "Створено мною"

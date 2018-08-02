@@ -135,7 +135,6 @@
         "pk": 54686910,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": false,
             "display_collections": true,
             "occupation": "",
             "display_name": "The Author1",
@@ -161,7 +160,6 @@
         "pk": 54686911,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": false,
             "display_collections": true,
             "occupation": "",
             "display_name": "The Author2",

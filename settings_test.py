@@ -44,10 +44,6 @@ CACHES = {
             'ACTUAL_BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         }
     },
-    'filesystem': {  # In real settings it's a filesystem cache, not here.
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'olympia-filesystem',
-    }
 }
 
 # Overrides whatever storage you might have put in local settings.

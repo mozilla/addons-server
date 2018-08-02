@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-21 16:44+0000\n"
+"POT-Creation-Date: 2018-08-02 01:13+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -861,9 +861,6 @@ msgstr "Колекције"
 msgid "Collections I've Made"
 msgstr "Моје колекције"
 
-msgid "Collections I'm Following"
-msgstr "Колекције које пратим"
-
 msgid "My Favorite Add-ons"
 msgstr "Моји омиљени додаци"
 
@@ -1084,28 +1081,11 @@ msgstr "(изборно)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "или <a id=\"collections-new-cancel\" href=\"#\">Откажи</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "Како бисте оцењивали колекције, морате имати налог за додатке."
-
-msgid "Create an Add-ons Account"
-msgstr "Направите налог за додатке"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "или се <a href=\"%(login)s\">пријавите на Ваш тренутни налог</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: Колекције"
 
 msgid "private"
 msgstr "приватно"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "Број пратиоца: <span>%(num)s</span>"
-msgstr[1] "Број пратиоца: <span>%(num)s</span>"
 
 msgid "About this Collection"
 msgstr "О овој колекцији"
@@ -1179,48 +1159,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> додатак"
 msgstr[1] "<span>%(addons)s</span> додатака"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> пратиоц"
-msgstr[1] "<span>%(followers)s</span> пратиоца"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "Број седмичних пратиоца: %(num)s"
-msgstr[1] "Број седмичних пратиоца: %(num)s"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "Број месечних пратиоца: %(num)s"
-msgstr[1] "Број месечних пратиоца: %(num)s"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "Број пратиоца: %(num)s"
-msgstr[1] "Број пратиоца: %(num)s"
-
 msgid "by {0}"
 msgstr "од {0}"
-
-msgid "Stop Following"
-msgstr "Заустави праћење"
-
-msgid "Follow this Collection"
-msgstr "Прати ову колекцију"
 
 msgid "Edit this Collection"
 msgstr "Измени ову колекцију"
@@ -1268,9 +1208,6 @@ msgstr "Колекције су групе сродних додатака ко�
 #, fuzzy, python-format
 msgid "by %(author_link)s"
 msgstr "од %(users)s"
-
-msgid "Following"
-msgstr "Пратим"
 
 msgid "Create a Collection"
 msgstr "Креирајте колекцију"
@@ -1321,18 +1258,6 @@ msgstr "Додај коментар"
 
 msgid "Remove this add-on from the collection"
 msgstr "Уклони овај додатак из колекције"
-
-msgid "Add a positive vote for this collection"
-msgstr "Додај позитиван глас овој колекцији"
-
-msgid "Add a negative vote for this collection"
-msgstr "Додај негативан глас овој колекцији"
-
-msgid "Remove my vote for this collection"
-msgstr "Уклони мој глас за ову колекцију"
-
-msgid "Log in to vote for this collection"
-msgstr "Пријавите се да бисте могли да гласате за ову колекцију"
 
 msgid "Favorite"
 msgstr "Омиљено"
@@ -5420,10 +5345,6 @@ msgid "Strip away unnecessary formatting and copy just the plain text."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get instant translatations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
 msgstr ""
 
@@ -7780,12 +7701,6 @@ msgstr "по платформи"
 msgid "by Add-on Status"
 msgstr "по статусу додатка"
 
-msgid "Subscribers"
-msgstr "Претплатници"
-
-msgid "Ratings"
-msgstr "Оцене"
-
 msgid "Add-on Statistics"
 msgstr "Статистике додатка"
 
@@ -8034,6 +7949,13 @@ msgstr ""
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Да бисте направили своју колекцију, морате да имате налог на сајту за Mozilla додатке."
 
+msgid "Create an Add-ons Account"
+msgstr "Направите налог за додатке"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "или се <a href=\"%(login)s\">пријавите на Ваш тренутни налог</a>"
+
 msgid "Footer logo"
 msgstr ""
 
@@ -8168,15 +8090,15 @@ msgid "Delete Locale"
 msgstr "Избриши локал"
 
 #, python-format
-msgid "The user \"%(user)s\" has been banned.user"
+msgid "The user \"%(user)s\" has been banned."
 msgstr ""
 
 #, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr ""
 
 #, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
+msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
@@ -8187,6 +8109,9 @@ msgstr "Профилна слика"
 
 msgid "Addons"
 msgstr ""
+
+msgid "Ratings"
+msgstr "Оцене"
 
 #, fuzzy
 msgid "Activity Logs"
@@ -8376,9 +8301,6 @@ msgstr "Одлучите које колекције требају да буд�
 msgid "Display the collections I have created"
 msgstr "Прикажи колекције које сам направио"
 
-msgid "Display collections I'm following"
-msgstr "Прикажи колекције које пратим"
-
 msgid "Notifications"
 msgstr "Обавештења"
 
@@ -8448,9 +8370,6 @@ msgstr "Мојe најпопуларнијe темe"
 
 msgid "Themes I've created"
 msgstr "Теме које сам ја направио"
-
-msgid "Followed by Me"
-msgstr "Ја пратим"
 
 msgid "Created by Me"
 msgstr "Ја сам направио"
