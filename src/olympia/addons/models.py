@@ -1033,8 +1033,10 @@ class Addon(OnChangeMixin, ModelBase):
         qs = sorted(qs, key=lambda u: (u.addon_id, u.position))
         for addon_id, users in itertools.groupby(qs, key=lambda u: u.addon_id):
             addon_dict[addon_id].listed_authors = list(users)
-        # FIXME: set listed_authors to empty list on addons without listed
-        # authors
+            addon_dict[addon_id] = None
+        # set listed_authors to empty list on addons without listed authors.
+        [setattr(addon, 'listed_authors', []) for addon in addon_dict.values()
+         if addon is not None]
 
     @staticmethod
     def attach_previews(addons, addon_dict=None, no_transforms=False):
