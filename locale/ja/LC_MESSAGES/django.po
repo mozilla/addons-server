@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-07-12 04:04+0000\n"
-"Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
+"PO-Revision-Date: 2018-08-02 03:59+0000\n"
+"Last-Translator: Peiying Mo [:CocoMo] <pmo@mozilla.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgstr "アニメーションする画像は使用できません。"
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr "画像のサイズは %d MB 以下にしてください。"
+msgstr "画像のサイズは %dMB 以下にしてください。"
 
 msgid "You are already logged in."
 msgstr "あなたは既にログインしています。"
@@ -101,7 +101,7 @@ msgid "Experimental"
 msgstr "実験的"
 
 msgid "Add to {0}"
-msgstr "{0} へ追加"
+msgstr "{0}へ追加"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "このスラグは既に使われています。別のスラグを付けてください。"
@@ -122,15 +122,15 @@ msgstr[0] "「{0}」は予約されたタグ名なので使用できません。
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] "タグの数が上限を {0} 個超えています。"
+msgstr[0] "タグの数が上限を {0}個超えています。"
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "すべてのタグは無効な文字を除き %s 文字以下でなければなりません。"
+msgstr "すべてのタグは無効な文字を除き %s文字以下でなければなりません。"
 
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "すべてのタグは {0} 文字以上でなければなりません。"
+msgstr[0] "すべてのタグは {0}文字以上でなければなりません。"
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -142,14 +142,14 @@ msgstr "アドオンがこのアプリケーションのおすすめに設定さ
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] "カテゴリーは {0} 個までしか設定できません。"
+msgstr[0] "カテゴリーは {0}個までしか設定できません。"
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "「その他」カテゴリーを他のカテゴリーと組み合わせることはできません。"
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "既定のロケールを変更する前に、そのロケールでアドオンの名前、要約、説明を入力する必要があります。%s が不足しています。"
+msgstr "既定のロケールを変更する前に、そのロケールでアドオンの名前、要約、説明を入力する必要があります。%sが不足しています。"
 
 msgid "A license must be selected."
 msgstr "ライセンスを選択してください。"
@@ -182,10 +182,10 @@ msgstr "このアドオンはどのカテゴリーにも当てはまりません
 msgid "No compatible versions"
 msgstr "互換性のあるバージョンはありません"
 
-# ダウンロードボタン
 #. {0} is a platform name like Windows or Mac OS X.
+# ダウンロードボタン
 msgid "for {0}"
-msgstr "({0} 用)"
+msgstr "({0}用)"
 
 msgid "View privacy policy"
 msgstr "プライバシーポリシーを表示"
@@ -202,7 +202,7 @@ msgstr "このアドオンは作者によって実験的とされています。
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
-msgstr "{0} のエンドユーザー使用許諾契約書"
+msgstr "{0}のエンドユーザー使用許諾契約書"
 
 msgid "End-User License Agreement"
 msgstr "エンドユーザー使用許諾契約書"
@@ -212,13 +212,13 @@ msgid "%(addon_name)s requires that you accept the following End-User License Ag
 msgstr "%(addon_name)s のインストールを続けるには、以下のエンドユーザー使用許諾契約書に同意する必要があります:"
 
 msgid "Back to {0}…"
-msgstr "{0} のページへ戻る…"
+msgstr "{0}のページへ戻る…"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
 msgid "Add-ons for {0}"
-msgstr "{0} 向けアドオン"
+msgstr "{0}向けアドオン"
 
 msgid "Featured Extensions"
 msgstr "おすすめの拡張機能"
@@ -283,18 +283,18 @@ msgstr[0] "週間ダウンロード数 {0}"
 #. {0} is the number of users.
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} ユーザー"
+msgstr[0] "{0}ユーザー"
 
 msgid "by"
 msgstr "作者:"
 
 #. {0} is a category name, such as Nature
 msgid "More {0} Themes"
-msgstr "{0} カテゴリーの他のテーマ"
+msgstr "{0}カテゴリーの他のテーマ"
 
 #. {0} is a category name, such as Nature
 msgid "See all {0} Themes"
-msgstr "{0} カテゴリーのすべてのテーマ"
+msgstr "{0}カテゴリーのすべてのテーマ"
 
 msgid "More by this Artist"
 msgstr "この作者が公開している他のテーマ"
@@ -346,7 +346,7 @@ msgstr "編集"
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 msgid "by {0} on {1}"
-msgstr "投稿者: {0} - 投稿日時: {1}"
+msgstr "投稿者: {0}- 投稿日時: {1}"
 
 msgid "Not yet rated"
 msgstr "まだ評価されていません"
@@ -357,11 +357,11 @@ msgstr "<b>{0}</b> ユーザー"
 #. {0} is the number of users.
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] "{0} 人の日別ユーザー"
+msgstr[0] "{0}人の日別ユーザー"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
-msgstr "{0} のプライバシーポリシー"
+msgstr "{0}のプライバシーポリシー"
 
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
@@ -374,9 +374,7 @@ msgstr "不正報告"
 msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
-msgstr ""
-"このアドオンが %(amo_policy_link_open)sポリシー%(link_close)s に違反していたり、セキュリティやプライバシーの問題があると疑われる場合は、以下のフォームに懸念事項を記入し、送信してください。その他の理"
-"由でこのフォームを使用しないでください。"
+msgstr "このアドオンが %(amo_policy_link_open)sポリシー%(link_close)s に違反していたり、セキュリティやプライバシーの問題があると疑われる場合は、以下のフォームに懸念事項を記入し、送信してください。その他の理由でこのフォームを使用しないでください。"
 
 msgid "Send Report"
 msgstr "レポートを送信"
@@ -412,9 +410,7 @@ msgstr "バグ報告をここに投稿しないでください。あなたのメ
 msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
-msgstr ""
-"このアドオンの <a href=\"%(support)s\">サポートセクション</a> をご覧になり、支援を利用できるか確認してください。または、<a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">"
-"アドオンコミュニティ</a> で手助けを得られるか尋ねてみてください。"
+msgstr "このアドオンの <a href=\"%(support)s\">サポートセクション</a> をご覧になり、支援を利用できるか確認してください。または、<a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">アドオンコミュニティ</a> で手助けを得られるか尋ねてみてください。"
 
 msgid "Review Guidelines"
 msgstr "レビューガイドライン"
@@ -438,7 +434,7 @@ msgid "Tags"
 msgstr "タグ"
 
 msgid "Icon for {0}"
-msgstr "{0} のアイコン"
+msgstr "{0}のアイコン"
 
 #, python-format
 msgid "by %(users)s"
@@ -496,7 +492,7 @@ msgstr "管理者管理"
 
 #. {0} is an add-on name.
 msgid "Icon of {0}"
-msgstr "{0} のアイコン"
+msgstr "{0}のアイコン"
 
 msgid "Contribute"
 msgstr "寄付"
@@ -553,11 +549,9 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "特定の機能を実行するため、許可を要求するアドオンがあります (例: タブを管理するアドオンは、ブラウザーのタブシステムへのアクセス許可を要求します)。"
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
-"some rare cases risk may be involved."
-msgstr ""
-"Firefox を制御するのは利用者です。そのため、これらの要求を承諾するか拒否するかはあなた自身の選択です。許可を承諾することは、本質的にはブラウザーのパフォーマンスやセキュリティについて妥協することでは"
-"ありません。しかし、リスクを伴う場合もあります。"
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
+" rare cases risk may be involved."
+msgstr "Firefox を制御するのは利用者です。そのため、これらの要求を承諾するか拒否するかはあなた自身の選択です。許可を承諾することは、本質的にはブラウザーのパフォーマンスやセキュリティについて妥協することではありません。しかし、リスクを伴う場合もあります。"
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
@@ -603,7 +597,7 @@ msgid "Be the first!"
 msgstr "最初の一人になりましょう！"
 
 msgid "{0} users"
-msgstr "{0} ユーザー"
+msgstr "{0}ユーザー"
 
 msgid "More"
 msgstr "その他"
@@ -619,7 +613,7 @@ msgstr "自分のテーマ"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
-msgstr "{0} のアドオン情報"
+msgstr "{0}のアドオン情報"
 
 msgid "Edit Theme"
 msgstr "テーマを編集"
@@ -709,15 +703,15 @@ msgstr "<h1>申し訳ありませんが、許可されていません。</h1> <p
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
-msgstr ""
+msgstr "この HTTPS サイトではウェブブラウザーから「Referer ヘッダー」を送信する必要がありますが、送信されなかったため、このメッセージが表示されています。このヘッダーは、セキュリティ上の理由から、ブラウザーが第三者にハイジャックされていないことを保証するために必要です。"
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr ""
+msgstr "ブラウザーの「Referer」ヘッダーを無効に設定している場合は、このサイト、HTTPS 接続、または同一リクエスト元だけでも有効化してください。"
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
-msgstr ""
+msgstr "このサイトではフォームの送信時に CSRF Cookie が必要なため、このメッセージが表示されています。この Cookie は、セキュリティ上の理由から、ブラウザーが第三者にハイジャックされていないことを保証するために必要です。"
 
 msgid "Page Not Found"
 msgstr "ページが見つかりませんでした"
@@ -750,17 +744,15 @@ msgstr "見つかりませんでした"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
-"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
+"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>申し訳ありませんが、お探しのものを見つけることができませんでした。</h1> <p>あなたがお探しのページまたはファイルは当サイト内で見つかりませんでした。古いリンクがクリックされたか間違ったアドレスが"
-"入力された可能性があります。</p> <ul> <li>アドレスを直接入力した場合は、スペルに誤りがないか確認してください。</li> <li>別の場所のリンクから移動してきた場合は、<a href=\"https://github.com/mozilla/"
-"addons-server/issues/new/\">issue を登録</a> し、どこから来たのか、何を探していたのかをお知らせください。私たちは最善を尽くして問題を修正します。</li> </ul> <p>あるいは、当サイト内の、いくつかの人気"
-"のあるページに移動してください。</p> <ul> <li><a href=\"%(rec)s\">おすすめのアドオンのリスト</a> に興味ありますか？</li> <li><a href=\"%(search)s\">アドオンを検索</a> したいですか？ <a href="
-"\"%(search)s\">検索ページ</a> へ移動するか、このページの上にある検索バーを使ってください。</li> <li>最初からやり直す場合は、<a href=\"%(home)s\">当サイトのホームページ</a> へ移動してください。</li> "
-"</ul>"
+"<h1>申し訳ありませんが、お探しのものを見つけることができませんでした。</h1> <p>あなたがお探しのページまたはファイルは当サイト内で見つかりませんでした。古いリンクがクリックされたか間違ったアドレスが入力された可能性があります。</p> <ul> <li>アドレスを直接入力した場合は、スペルに誤りがないか確認してください。</li> "
+"<li>別の場所のリンクから移動してきた場合は、<a href=\"https://github.com/mozilla/addons-server/issues/new/\">issue を登録</a> し、どこから来たのか、何を探していたのかをお知らせください。私たちは最善を尽くして問題を修正します。</li> </ul> "
+"<p>あるいは、当サイト内の、いくつかの人気のあるページに移動してください。</p> <ul> <li><a href=\"%(rec)s\">おすすめのアドオンのリスト</a> に興味ありますか？</li> <li><a href=\"%(search)s\">アドオンを検索</a> したいですか？ <a href=\"%(search)s\">検索ページ</a> "
+"へ移動するか、このページの上にある検索バーを使ってください。</li> <li>最初からやり直す場合は、<a href=\"%(home)s\">当サイトのホームページ</a> へ移動してください。</li> </ul>"
 
 msgid "Oops"
 msgstr "申し訳ありません"
@@ -805,8 +797,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> 以下に <strong>すべての単語</strong> を <strong>必要に応じ空白で区切って</strong> 入力してください。 </p> <p> もしこれが読みづらければ、<a href=\"#\" id=\"recaptcha_different\">他の単語に変える"
-"</a> か、代わりに <a href=\"#\" id=\"recaptcha_audio\">別の種類の課題を試す</a> こともできます。</p>"
+"<p>以下に <strong>すべての単語</strong> を <strong>必要に応じ空白で区切って</strong> 入力してください。 </p> <p> もしこれが読みづらければ、<a href=\"#\" id=\"recaptcha_different\">他の単語に変える</a> か、代わりに <a href=\"#\" "
+"id=\"recaptcha_audio\">別の種類の課題を試す</a> こともできます。</p>"
 
 msgid "Top Rated"
 msgstr "高評価"
@@ -910,7 +902,7 @@ msgid "The language code {lang_code} is invalid."
 msgstr "言語コード {lang_code} が正しくありません。"
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "{Lang-code:value} のオブジェクトを提供してください。"
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -926,9 +918,7 @@ msgid "Valid Application Versions"
 msgstr "アプリケーションの有効バージョン"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-"Mozilla のアドオンサイトに提出されるアドオンは、以下のアプリケーションのうち少なくとも 1 つ以上をサポートしたマニフェストファイルが必要です。以下に表示されているバージョンのみ、これらのアプリケー"
-"ションで使用できます。"
+msgstr "Mozilla のアドオンサイトに提出されるアドオンは、以下のアプリケーションのうち少なくとも 1 つ以上をサポートしたマニフェストファイルが必要です。以下に表示されているバージョンのみ、これらのアプリケーションで使用できます。"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
@@ -942,11 +932,9 @@ msgstr "バージョン"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
-msgstr ""
-"対応アプリケーションが マニフェストファイルを必要としない場合でも、ファイルを同梱する必要があります。必要なプロパティは %(amo_manifests_mdn_link_open)sこちら%(amo_manifests_mdn_link_close)s で指定さ"
-"れています。"
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+msgstr "対応アプリケーションが マニフェストファイルを必要としない場合でも、ファイルを同梱する必要があります。必要なプロパティは %(amo_manifests_mdn_link_open)sこちら%(amo_manifests_mdn_link_close)s で指定されています。"
 
 msgid "Only I can view this collection."
 msgstr "このコレクションは私だけが見ることができます。"
@@ -1054,7 +1042,7 @@ msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "または <a id=\"collections-new-cancel\" href=\"#\">キャンセル</a>"
 
 msgid "{0} :: Collections"
-msgstr "{0} :: コレクション"
+msgstr "{0}:: コレクション"
 
 msgid "private"
 msgstr "非公開"
@@ -1108,16 +1096,12 @@ msgstr "よく使われているタグ"
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
-msgstr ""
-"<b>お気に入りへ追加</b> 機能でお気に入りへ追加したアドオンが以下に表示されます。このコレクションは現在 <b>公開</b> で、誰でも見ることができます。コレクションの公開を取りやめたい場合は、下のボタンを"
-"クリックして非公開に変更してください。"
+msgstr "<b>お気に入りへ追加</b> 機能でお気に入りへ追加したアドオンが以下に表示されます。このコレクションは現在 <b>公開</b> で、誰でも見ることができます。コレクションの公開を取りやめたい場合は、下のボタンをクリックして非公開に変更してください。"
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
-msgstr ""
-"<b>お気に入りへ追加</b> 機能でお気に入りへ追加したアドオンが以下に表示されます。このコレクションは現在 <b>非公開</b> で、あなただけが見ることができます。お気に入りを全員に公開したいときは、下のボタ"
-"ンをクリックして公開状態にしてください。"
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
+" be able to see your favorites, click the button below to make it public."
+msgstr "<b>お気に入りへ追加</b> 機能でお気に入りへ追加したアドオンが以下に表示されます。このコレクションは現在 <b>非公開</b> で、あなただけが見ることができます。お気に入りを全員に公開したいときは、下のボタンをクリックして公開状態にしてください。"
 
 msgid "My favorite add-ons"
 msgstr "お気に入りのアドオン"
@@ -1135,7 +1119,7 @@ msgstr "このコレクションを編集"
 
 #. %s is the name of the collection.
 msgid "Delete {0}"
-msgstr "{0} を削除"
+msgstr "{0}を削除"
 
 msgid "Are you sure?"
 msgstr "本当に削除しますか？"
@@ -1148,7 +1132,7 @@ msgstr "いいえ"
 
 #. {0} is the name of the collection.
 msgid "Edit {0}"
-msgstr "{0} を編集"
+msgstr "{0}を編集"
 
 msgid "Description"
 msgstr "説明"
@@ -1164,15 +1148,14 @@ msgstr "お気に入りへ追加"
 
 #. {0} is a username.
 msgid "Collections by {0}"
-msgstr "{0} の作成したコレクション"
+msgstr "{0}の作成したコレクション"
 
 msgid "No collections found."
 msgstr "コレクションが見つかりませんでした。"
 
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr ""
-"コレクションとは、誰もが作成し共有することができる、関連するアドオンのグループのことです。他のユーザーが作成したコレクションを探すか、<a href=\"%(url)s\">自分のコレクションを作成</a> してください。"
+msgstr "コレクションとは、誰もが作成し共有することができる、関連するアドオンのグループのことです。他のユーザーが作成したコレクションを探すか、<a href=\"%(url)s\">自分のコレクションを作成</a> してください。"
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1232,12 +1215,12 @@ msgstr "お気に入り"
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
-msgstr "%s カテゴリーのアドオン"
+msgstr "%sカテゴリーのアドオン"
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Themes"
-msgstr "%s カテゴリーのテーマ"
+msgstr "%sカテゴリーのテーマ"
 
 #, python-format
 msgid "Featured Add-ons :: %s"
@@ -1246,12 +1229,12 @@ msgstr "おすすめのアドオン :: %s"
 #. L10n: %s is an app name.
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr "%s を初めてカスタマイズする人に役立つおすすめのアドオンをいくつかご紹介しましょう。"
+msgstr "%sを初めてカスタマイズする人に役立つおすすめのアドオンをいくつかご紹介しましょう。"
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "Search tools relating to %s"
-msgstr "%s 関連の検索ツール"
+msgstr "%s関連の検索ツール"
 
 msgid "Search tools and search-related extensions"
 msgstr "検索ツールと検索関連の拡張機能"
@@ -1286,7 +1269,7 @@ msgstr "{0}: おすすめのアドオン"
 
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
-msgstr "{0} カテゴリーにおすすめのアドオンはありません。"
+msgstr "{0}カテゴリーにおすすめのアドオンはありません。"
 
 msgid "Subscribe"
 msgstr "購読"
@@ -1312,11 +1295,9 @@ msgstr "言語パックをダウンロード"
 
 #, python-format
 msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
-"of the entire application."
-msgstr ""
-"辞書アドオンをインストールすると、ウェブフォームへの入力時に単語の綴りを確認してくれる %(app_name)s のスペルチェッカーに新しい言語オプションを追加できます。 言語パックアドオンはアプリケーション全体"
-"の言語を変更します。"
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
+" the entire application."
+msgstr "辞書アドオンをインストールすると、ウェブフォームへの入力時に単語の綴りを確認してくれる %(app_name)s のスペルチェッカーに新しい言語オプションを追加できます。 言語パックアドオンはアプリケーション全体の言語を変更します。"
 
 msgid "Available in your locale"
 msgstr "あなたのロケールに対応しているもの"
@@ -1341,7 +1322,7 @@ msgstr "言語パックとスペルチェック辞書の一覧です。"
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
-msgstr "{0} :: 検索ツール"
+msgstr "{0}:: 検索ツール"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
@@ -1365,7 +1346,7 @@ msgstr "関連情報"
 
 #. {0} is an app name, like Firefox.
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "{0} の <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">検索バー</a> について詳しく知る"
+msgstr "{0}の <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">検索バー</a> について詳しく知る"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "その他の検索プロバイダーは、<a href=\"http://mycroftproject.com/\">mycroftproject.com</a> で見つけてください"
@@ -1427,11 +1408,11 @@ msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
 msgstr[0] "%(name)s カテゴリーの %(cnt)s 個の拡張機能を見る &raquo;"
 
 msgid "{0} Themes"
-msgstr "{0} カテゴリーのテーマ"
+msgstr "{0}カテゴリーのテーマ"
 
 #. {0} is a user's name.
 msgid "{0}'s Themes"
-msgstr "{0} さんのテーマ"
+msgstr "{0}さんのテーマ"
 
 msgid "View Profile"
 msgstr "プロファイルを見る"
@@ -1465,9 +1446,7 @@ msgstr "もっとカスタマイズしたい？"
 #. theme.
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
-"完全テーマを使えば、ウィンドウの枠からアドレスバー、ボタン、タブ、メニューに至るまで、ブラウザーの見た目を完全に変えることができます。<a href=\"%(url)s\" class=\"more-info\">お気に入りのテーマを探す"
-"</a>"
+msgstr "完全テーマを使えば、ウィンドウの枠からアドレスバー、ボタン、タブ、メニューに至るまで、ブラウザーの見た目を完全に変えることができます。<a href=\"%(url)s\" class=\"more-info\">お気に入りのテーマを探す</a>"
 
 msgid "Up & Coming Themes"
 msgstr "注目のテーマ"
@@ -1486,11 +1465,9 @@ msgstr "アドオンの互換性レポート"
 
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
-msgstr ""
-"<p> <a href=\"%(url_)s\">アドオン互換性レポーター</a> を通じて Mozilla へ送信されたレポートは、ここで収集され、開発者が参照します。これらのレポートは、どのアドオンが Firefox 次期バージョン対応のため"
-"にサポートを必要としているか Mozilla が判断するのに役立ちます。</p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
+" supporting an upcoming Firefox version. </p>"
+msgstr "<p> <a href=\"%(url_)s\">アドオン互換性レポーター</a> を通じて Mozilla へ送信されたレポートは、ここで収集され、開発者が参照します。これらのレポートは、どのアドオンが Firefox 次期バージョン対応のためにサポートを必要としているか Mozilla が判断するのに役立ちます。</p>"
 
 msgid "Reports for your Add-ons"
 msgstr "このアドオンに関するレポート"
@@ -1503,11 +1480,11 @@ msgstr "{addon} の互換性レポート"
 
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] "{0} 件の成功報告"
+msgstr[0] "{0}件の成功報告"
 
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] "{0} 件の問題報告"
+msgstr[0] "{0}件の問題報告"
 
 msgid "View all"
 msgstr "すべて見る"
@@ -1588,13 +1565,13 @@ msgstr "{addon} の {version} が編集されました。"
 
 #. L10n: {0} is the version number
 msgid "Version {0} deleted from {addon}."
-msgstr "{addon} のバージョン {0} が削除されました。"
+msgstr "{addon} のバージョン {0}が削除されました。"
 
 msgid "File {0.name} added to {version} of {addon}."
 msgstr "{addon} のバージョン {version} にファイル {0.name} が追加されました。"
 
 msgid "File {0} deleted from {version} of {addon}."
-msgstr "{addon} のバージョン {version} からファイル {0} が削除されました。"
+msgstr "{addon} のバージョン {version} からファイル {0}が削除されました。"
 
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} が承認されました。"
@@ -1661,11 +1638,11 @@ msgstr "{addon} の {rating} が投稿されました。"
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
-msgstr "{addon} が {0} の中でおすすめのアドオンとして取り上げられました。"
+msgstr "{addon} が {0}の中でおすすめのアドオンとして取り上げられました。"
 
 #. L10n: {0} is a category name.
 msgid "{addon} no longer featured in {0}."
-msgstr "{addon} が {0} のおすすめのアドオンから外されました。"
+msgstr "{addon} が {0}のおすすめのアドオンから外されました。"
 
 msgid "{addon} is now featured."
 msgstr "{addon} がおすすめのアドオンとして取り上げられました。"
@@ -1675,14 +1652,14 @@ msgstr "{addon} がおすすめのアドオンから外されました。"
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
-msgstr "{0} {1} が追加されました。"
+msgstr "{0}{1} が追加されました。"
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{addon} における {0.name} の役割が {1} へ変更されました。"
+msgstr "{addon} における {0.name} の役割が {1}へ変更されました。"
 
 msgid "{addon} is now licensed under {0}."
-msgstr "{addon} のライセンスが {0} へ変更されました。"
+msgstr "{addon} のライセンスが {0}へ変更されました。"
 
 msgid "{addon} policy changed."
 msgstr "{addon} のポリシーが変更されました。"
@@ -1724,13 +1701,13 @@ msgid "Account updated."
 msgstr "アカウントが更新されました。"
 
 msgid "Created: {0}."
-msgstr "{0} が作成されました。"
+msgstr "{0}が作成されました。"
 
 msgid "Edited field: {2} set to: {0}."
-msgstr "フィールド編集: {2} が {0} へ変更されました。"
+msgstr "フィールド編集: {2}が {0} へ変更されました。"
 
 msgid "Deleted: {1}."
-msgstr "{1} が削除されました。"
+msgstr "{1}が削除されました。"
 
 msgid "User {user} edited, reason: {1}"
 msgstr "ユーザー {user} が編集されました。理由: {1}"
@@ -1742,7 +1719,7 @@ msgid "User {user} restricted."
 msgstr "ユーザー {user} が制限されました。"
 
 msgid "Admin {0} viewed activity log for {user}."
-msgstr "管理者 {0} が {user} の活動記録を見ました。"
+msgstr "管理者 {0}が {user} の活動記録を見ました。"
 
 msgid "{rating} for {addon} updated."
 msgstr "{addon} の {rating} が更新されました。"
@@ -1770,7 +1747,7 @@ msgstr "{file} が署名されました。"
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr "GUID {1} を持つアドオン ID {0} が削除されました"
+msgstr "GUID {1}を持つアドオン ID {0} が削除されました"
 
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} が事前審査から移動されました。"
@@ -2230,13 +2207,13 @@ msgid "No Reputation"
 msgstr "評判がありません"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "良い (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "とても良い (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "非常に良い (3)"
 
 msgid "Manual Reviewer Points"
 msgstr "審査担当者の手作業確認による指摘"
@@ -2387,7 +2364,7 @@ msgstr "コア"
 
 #, python-format
 msgid "Recent Changes for %s"
-msgstr "%s の最近の変更"
+msgstr "%sの最近の変更"
 
 msgid "Recent Changes for My Add-ons"
 msgstr "自分のアドオンの最近の変更"
@@ -2482,20 +2459,16 @@ msgstr "依存アドオンを 3 つ以上指定することはできません。
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
-msgstr ""
-"当サイト上で。<span class=\"helptext\">あなたのアドオンは、コード審査を通った後、当サイトや大勢のユーザーが利用する Firefox のアドオンマネージャーに掲載されます。自動更新は当サイトによって処理されま"
-"す。このアドオンは Mozilla によるプロモーションやコンテストの対象となる可能性もあります。審査済みファイルの自主配布も可能です。</span>"
+msgstr "当サイト上で。<span class=\"helptext\">あなたのアドオンは、コード審査を通った後、当サイトや大勢のユーザーが利用する Firefox のアドオンマネージャーに掲載されます。自動更新は当サイトによって処理されます。このアドオンは Mozilla によるプロモーションやコンテストの対象となる可能性もあります。審査済みファイルの自主配布も可能です。</span>"
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
-msgstr ""
-"自分自身で。<span class=\"helptext\">あなたのアドオンは即座に署名され自主配布可能となります。更新は、updateURL もしくは外部アプリケーションの更新を通じて、あなた自身で処理する必要があります。</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgstr "自分自身で。<span class=\"helptext\">あなたのアドオンは即座に署名され自主配布可能となります。更新は、updateURL もしくは外部アプリケーションの更新を通じて、あなた自身で処理する必要があります。</span>"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "アドオンがおすすめに設定されている間はカテゴリーを変更できません。"
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr ""
+msgstr "Thunderbird と SeaMonkey のアドオンは現在、addons.thunderbird.net に掲載され、維持されています。新しいサイトでアドオンを更新するには、同じアカウントを使えます。"
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Firefox 53 以降、当サイトに登録可能な新規拡張機能は WebExtensions のみとなります。"
@@ -2504,7 +2477,7 @@ msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVer
 msgstr "旧式拡張機能は Firefox 57 以降と互換性がありません。maxVersion には 56.* あるいはそれ以下を設定してください。"
 
 msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr ""
+msgstr "Firefox の旧式言語パックにはもう対応していません。WebExtensions インストールマニフェストが必要です。詳細は {mdn_link} でご覧ください。"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "私たちはアップグレードを許容し推奨していますが、この手続きは取り消せません。一度ユーザーが WebExtension をインストールしたら、旧式のアドオンはインストールできなくなります。"
@@ -2516,11 +2489,11 @@ msgid "Your developer API key was found in the submitted file. To protect your a
 msgstr "あなたの開発者 API キーが送信したファイル内に見つかりました。アカウントを保護するため、そのキーは破棄されます。"
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
+msgstr "送信されたファイルに共同作者の開発者 API キーが見つかりました。アドオンを保護するため、このキーは取り消されます。"
 
 #, python-format
 msgid "%s responded with %s (%s)."
-msgstr "%s が %s (%s) を返しました。"
+msgstr "%sが %s (%s) を返しました。"
 
 #, python-format
 msgid "Connection to \"%s\" timed out."
@@ -2531,11 +2504,11 @@ msgid "Could not contact host at \"%s\"."
 msgstr "ホスト「%s」へ接続できませんでした。"
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Mozilla セキュリティ通知: AMO API 認証情報が取り消されました"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr "検証の結果、多数のエラーや警告が見つかったため、%s 個のメッセージが省略されました。表示されているメッセージを解決すると、他のメッセージも表示されます。"
+msgstr "検証の結果、多数のエラーや警告が見つかったため、%s個のメッセージが省略されました。表示されているメッセージを解決すると、他のメッセージも表示されます。"
 
 msgid "All My Add-ons"
 msgstr "自分のすべてのアドオン"
@@ -2593,26 +2566,26 @@ msgstr "アドオンの互換性を確認"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr "画像は %d KB 未満でなければなりません。"
+msgstr "画像は %dKB 未満でなければなりません。"
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr "画像は幅 {0} ピクセル、高さ {1} ピクセルでなければなりません。"
+msgstr "画像は幅 {0}ピクセル、高さ {1} ピクセルでなければなりません。"
 
 msgid "There was an error uploading your preview."
 msgstr "プレビューのアップロード中に問題が発生しました。"
 
 #, python-format
 msgid "Version %s disabled."
-msgstr "バージョン %s を無効にしました。"
+msgstr "バージョン %sを無効にしました。"
 
 #, python-format
 msgid "Version %s deleted."
-msgstr "バージョン %s を削除しました。"
+msgstr "バージョン %sを削除しました。"
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr "バージョン %s を再び有効にしました。"
+msgstr "バージョン %sを再び有効にしました。"
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "今回のアップロードは検証に失敗したため、完全な検証結果を表示できない可能性があります。審査の際はその点に注意してください。"
@@ -2636,10 +2609,9 @@ msgid "API key revoked"
 msgstr "API キーが無効化されました"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
-msgstr ""
-"始める前に、Firefox アドオン配布規約と審査ポリシー・ルールを読んでその内容に同意してください。個人情報の取り扱いについて説明したプライバシー通知も Firefox アドオン配布規約からリンクされています。"
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
+msgstr "始める前に、Firefox アドオン配布規約と審査ポリシー・ルールを読んでその内容に同意してください。個人情報の取り扱いについて説明したプライバシー通知も Firefox アドオン配布規約からリンクされています。"
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox アドオン配布規約"
@@ -2661,7 +2633,7 @@ msgstr "アドオンのページへ戻る"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
-msgstr "{0} アドオン"
+msgstr "{0}アドオン"
 
 msgid "Return to the DevHub homepage"
 msgstr "開発者センターのトップへ戻る"
@@ -2730,7 +2702,7 @@ msgstr "このアドオンを当サイトで配布しますか？"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr "{0} の検証結果"
+msgstr "{0}の検証結果"
 
 msgid "Validation Results"
 msgstr "検証結果"
@@ -2746,7 +2718,7 @@ msgstr "自分のアドオンの最近のアクティビティ"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr "{0} の最近のアクティビティ"
+msgstr "{0}の最近のアクティビティ"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -2771,12 +2743,8 @@ msgid ""
 msgstr "このアドオンは、%(app_name)s の最新版である <b>%(app_name)s %(app_version)s</b> と互換性がありません。アドオンの互換性情報を更新するか、このアドオンの新バージョンをアップロードしてください。"
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">互換性情報を更新</a> <a href=\"%(version_url)s\" class=\"button\">新バージョンをアップロード</a> または <a href=\"#\" "
-"class=\"close\">無視</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">互換性情報を更新</a> <a href=\"%(version_url)s\" class=\"button\">新バージョンをアップロード</a> または <a href=\"#\" class=\"close\">無視</a>"
 
 msgid "View and update application compatibility ranges."
 msgstr "対応アプリケーションのバージョン範囲を表示または更新します。"
@@ -2827,7 +2795,7 @@ msgid "Preview of listed version"
 msgstr "公開バージョンのプレビュー"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "まだプレビューを生成しています。後で確認するか、ページを再読み込みしてください。"
 
 msgid "Manage Authors & License"
 msgstr "作者とライセンスを管理"
@@ -2841,16 +2809,14 @@ msgstr "作者の役割について"
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
-msgstr ""
-"<p>アドオンの作者は何名でも追加でき、次のいずれかの役割を持たせられます:</p> <ul> <li><b>オーナー:</b> 他の作者の追加と削除を含め、アドオンのあらゆる情報を管理できます</li> <li><b>開発者:</b> 他の作"
-"者の追加と削除を除く、アドオンのあらゆる情報を管理できます</li> </ul>"
+msgstr "<p>アドオンの作者は何名でも追加でき、次のいずれかの役割を持たせられます:</p> <ul> <li><b>オーナー:</b> 他の作者の追加と削除を含め、アドオンのあらゆる情報を管理できます</li> <li><b>開発者:</b> 他の作者の追加と削除を除く、アドオンのあらゆる情報を管理できます</li> </ul>"
 
 msgid "Basic Information"
 msgstr "基本情報"
 
 #. {0} is the addon name
 msgid "Basic Information for {0}"
-msgstr "{0} の基本情報"
+msgstr "{0}の基本情報"
 
 msgid "Add-on URL"
 msgstr "アドオンの URL"
@@ -2895,22 +2861,19 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "カテゴリーはユーザーがアドオンを探すための主要な手段です。できるだけ多く見てもらえるよう、このアドオンの機能に該当するカテゴリーをすべて選んでください。"
 
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr ""
-"カテゴリーは、アドオンがこのアプリケーションのおすすめアドオンに設定されている間は変更できません。カテゴリーを変更する必要がある場合は、その理由を <a href=\"mailto:%(email)s\">%(email)s</a> 宛にメー"
-"ルでお知らせください。"
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr "カテゴリーは、アドオンがこのアプリケーションのおすすめアドオンに設定されている間は変更できません。カテゴリーを変更する必要がある場合は、その理由を <a href=\"mailto:%(email)s\">%(email)s</a> 宛にメールでお知らせください。"
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr "カテゴリーはおすすめアドオンに設定されている間は変更できません。カテゴリーを変更する必要がある場合は、その理由を <a href=\"mailto:%(email)s\">%(email)s</a> 宛にメールでお知らせください。"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "タグはユーザーがアドオンを探すのに役立つ、タブ、ツールバー、Twitter といった短いキーワードです。最大で {0} 個のタグを指定できます。"
+msgstr "タグはユーザーがアドオンを探すのに役立つ、タブ、ツールバー、Twitter といった短いキーワードです。最大で {0}個のタグを指定できます。"
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "カンマ区切りで最低 {0} 文字。"
+msgstr[0] "カンマ区切りで最低 {0}文字。"
 
 msgid "Example: dark, cinema, noir. Limit 20."
 msgstr "例、ダーク、映画、黒。最大 20 個。"
@@ -2946,8 +2909,7 @@ msgstr "ホームページ"
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
-msgstr ""
-"このアドオンに別のホームページがある場合は、そのアドレスを入力してください。そのサイトが他の言語に翻訳されている場合は、この項目の翻訳を複数追加することもできます。当該アドオンにのみ関係します。"
+msgstr "このアドオンに別のホームページがある場合は、そのアドレスを入力してください。そのサイトが他の言語に翻訳されている場合は、この項目の翻訳を複数追加することもできます。当該アドオンにのみ関係します。"
 
 msgid "Images"
 msgstr "画像"
@@ -2957,17 +2919,15 @@ msgstr "サポート情報"
 
 #. {0} is an addon name
 msgid "Support Information for {0}"
-msgstr "{0} のサポート情報"
+msgstr "{0}のサポート情報"
 
 msgid "Email"
 msgstr "メールアドレス"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
-msgstr ""
-"サポートに関する問い合わせのためのメールアドレスを表示したい場合は、そのアドレスを入力してください。言語ごとに異なるアドレスがある場合は、この項目の翻訳を複数追加することもできます。当該アドオンにの"
-"み関係します。"
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
+msgstr "サポートに関する問い合わせのためのメールアドレスを表示したい場合は、そのアドレスを入力してください。言語ごとに異なるアドレスがある場合は、この項目の翻訳を複数追加することもできます。当該アドオンにのみ関係します。"
 
 msgid "Website"
 msgstr "ウェブサイト"
@@ -2975,16 +2935,14 @@ msgstr "ウェブサイト"
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
-msgstr ""
-"このアドオンのサポートに関するサイトやフォーラムがある場合は、そのアドレスを入力してください。サイトが他の言語でも提供されている場合は、この項目の翻訳を複数追加することもできます。当該アドオンにのみ"
-"関係します。"
+msgstr "このアドオンのサポートに関するサイトやフォーラムがある場合は、そのアドレスを入力してください。サイトが他の言語でも提供されている場合は、この項目の翻訳を複数追加することもできます。当該アドオンにのみ関係します。"
 
 msgid "Technical Details"
 msgstr "技術的な詳細"
 
 #. {0} is an addon name
 msgid "Technical Details for {0}"
-msgstr "{0} の技術的な詳細"
+msgstr "{0}の技術的な詳細"
 
 msgid "Developer Comments"
 msgstr "開発者のコメント"
@@ -2992,9 +2950,7 @@ msgstr "開発者のコメント"
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
-msgstr ""
-"アドオンの要約や説明には必ずしも当てはまらないものの、エンドユーザーが知りたいと思われる何らかの情報。例えば、既知の主要なバグ一覧、バグ報告方法の説明、新バージョンの予定公開日などを記入できます。当"
-"該アドオンにのみ関係します。"
+msgstr "アドオンの要約や説明には必ずしも当てはまらないものの、エンドユーザーが知りたいと思われる何らかの情報。例えば、既知の主要なバグ一覧、バグ報告方法の説明、新バージョンの予定公開日などを記入できます。当該アドオンにのみ関係します。"
 
 msgid "Required Add-ons"
 msgstr "必要なアドオン"
@@ -3062,9 +3018,7 @@ msgstr "ホワイトボード"
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
-msgstr ""
-"ホワイトボードはあなたのアドオンについての情報をバージョンに関わらず審査担当者へ提供する場所です。アドオンのテスト方法や、有用な追加情報を提供するために使用してください。このホワイトボードは審査担当"
-"者も編集可能です。"
+msgstr "ホワイトボードはあなたのアドオンについての情報をバージョンに関わらず審査担当者へ提供する場所です。アドオンのテスト方法や、有用な追加情報を提供するために使用してください。このホワイトボードは審査担当者も編集可能です。"
 
 msgid "Remove this dependent add-on"
 msgstr "この依存するアドオンを削除"
@@ -3073,7 +3027,7 @@ msgid "Enter the name of an add-on"
 msgstr "アドオンの名前を入力してください"
 
 msgid "Add-on Media for {0}"
-msgstr "{0} のアドオンメディア"
+msgstr "{0}のアドオンメディア"
 
 msgid "Add-on icon"
 msgstr "アドオンのアイコン"
@@ -3081,9 +3035,7 @@ msgstr "アドオンのアイコン"
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
-msgstr ""
-"このアドオンのアイコンをアップロードするか、用意されたものの中からひとつ選んでください。アイコンはアドオンが掲載されるほぼすべての場所に表示されます。アップロードする画像は PNG もしくは JPEG 形式で"
-"なければなりません。当該アドオンにのみ関係します。"
+msgstr "このアドオンのアイコンをアップロードするか、用意されたものの中からひとつ選んでください。アイコンはアドオンが掲載されるほぼすべての場所に表示されます。アップロードする画像は PNG もしくは JPEG 形式でなければなりません。当該アドオンにのみ関係します。"
 
 msgid "Select an icon for your add-on:"
 msgstr "アドオンのアイコンを選んでください:"
@@ -3123,7 +3075,7 @@ msgstr "スクリーンショットを追加..."
 msgid ""
 "PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
 "page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
+msgstr "対応形式は PNG と JPG です。スクリーンショットの最大および推奨サイズは、1280 × 800 ピクセルです。小さい画像しかない場合は、640 × 400 ピクセルもご使用いただけます。スクリーンショットを詳細ページに入れることで、インストール率や、ホームページでおすすめされるチャンスが増加します。"
 
 msgid "Continue"
 msgstr "続ける"
@@ -3141,7 +3093,7 @@ msgid "Yes, as long as they share alike"
 msgstr "はい、同様に共有している限り"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
+msgstr "ライセンサーは、同じライセンス、またはライセンサーの作品が準じるものと互換性のあるライセンスの下に限って、他者が派生作品を配布することを許可しています。"
 
 msgid "Your Add-on will be released under the following license:"
 msgstr "このアドオンは以下のライセンスで公開されます:"
@@ -3191,9 +3143,7 @@ msgstr "テーマの削除を実行すると、このテーマはサイトから
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
-msgstr ""
-"アドオンを削除すると、このアドオンのために登録されたすべてのバージョンとファイルが、公開かどうかに関わらず永久に削除されます。アドオンの ID は、第三者が同じ ID を使って登録できないよう、引き続きあな"
-"たのアカウントに紐付けられます。"
+msgstr "アドオンを削除すると、このアドオンのために登録されたすべてのバージョンとファイルが、公開かどうかに関わらず永久に削除されます。アドオンの ID は、第三者が同じ ID を使って登録できないよう、引き続きあなたのアカウントに紐付けられます。"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "次のテキストを入力してあなたの決定を確認してください: {slug}"
@@ -3295,7 +3245,7 @@ msgid "Describe Add-on"
 msgstr "アドオンの説明"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "このサイトの詳細ページに表示される名前。Firefox 内で表示される、アドオン内の名称と異なる場合があります。"
 
 msgid "Add-on URL:"
 msgstr "アドオンの URL:"
@@ -3331,8 +3281,7 @@ msgid "Please choose a license appropriate for the rights you grant."
 msgstr "あなたが付与する権利のための適切なライセンスを選択してください。"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
-"あなたのアドオンが、ユーザーのコンピューターから何らかのデータを転送する場合、何のデータが送信されるか、それがどのように使用されるかについて説明するプライバシーポリシーの提示が必要となります。"
+msgstr "あなたのアドオンが、ユーザーのコンピューターから何らかのデータを転送する場合、何のデータが送信されるか、それがどのように使用されるかについて説明するプライバシーポリシーの提示が必要となります。"
 
 msgid "Notes to Reviewer:"
 msgstr "審査担当者へのメモ:"
@@ -3404,7 +3353,7 @@ msgid "You can also edit this version to add version notes, or source code if yo
 msgstr "このバージョンを編集して、バージョンノートを追加したり、もし最小化、難読化あるいはコンパイルされたコードが含まれている場合は、元のソースコードを提供したりすることもできます。"
 
 msgid "Edit version {0}"
-msgstr "バージョン {0} を編集"
+msgstr "バージョン {0}を編集"
 
 msgid "File Signed"
 msgstr "ファイルが署名されました"
@@ -3419,7 +3368,7 @@ msgid "You’re done! This version is signed and ready to for self-distribution.
 msgstr "完了！ このバージョンは署名され、自主配布可能となりました。ダウンロードするには下のボタンをクリックしてください。"
 
 msgid "Download {0}"
-msgstr "{0} をダウンロード"
+msgstr "{0}をダウンロード"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr "このアドオンでは提供可能なプラットフォームの一部しか選択されていません。他のプラットフォームを対象としたファイルを追加でアップロードすることもできます。"
@@ -3562,11 +3511,9 @@ msgstr "JWT 秘密鍵"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
-msgstr ""
-"API リクエストを行うには、認証ヘッダーとして <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> を送信します。<a href=\"%(docs_url)s\">API ドキュメント</a> に書かれている通り、リクエストごとに JWT を"
-"生成する必要があります。"
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
+msgstr "API リクエストを行うには、認証ヘッダーとして <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> を送信します。<a href=\"%(docs_url)s\">API ドキュメント</a> に書かれている通り、リクエストごとに JWT を生成する必要があります。"
 
 msgid "You don't have any API credentials."
 msgstr "あなたは API 認証情報を持っていません。"
@@ -3662,10 +3609,10 @@ msgid "Compatibility Reports"
 msgstr "互換性レポート"
 
 msgid "{0} failure reports"
-msgstr "{0} 個の失敗レポート"
+msgstr "{0}個の失敗レポート"
 
 msgid "{0} success reports"
-msgstr "{0} 個の成功レポート"
+msgstr "{0}個の成功レポート"
 
 msgid "Developer News"
 msgstr "開発者向けニュース"
@@ -3697,19 +3644,15 @@ msgstr "このアプリケーションを削除"
 #. the application name.
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "このアドオンの {1} 用カテゴリーを <b>{0} 個まで</b> 選択してください:"
+msgstr[0] "このアドオンの {1}用カテゴリーを <b>{0} 個まで</b> 選択してください:"
 
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
-msgstr ""
-"ユーザーは、あなたのアドオンをインストールする前に、次のエンドユーザ使用許諾契約書 (EULA) に同意する必要があります。EULA の存在は、アドオンのダウンロード数に大きく影響します。EULA が、GPL や MPL な"
-"どのソースコードのライセンスと同じにならないよう注意してください。これは、掲載中のアドオンにのみ関連付けられます。"
+msgstr "ユーザーは、あなたのアドオンをインストールする前に、次のエンドユーザ使用許諾契約書 (EULA) に同意する必要があります。EULA の存在は、アドオンのダウンロード数に大きく影響します。EULA が、GPL や MPL などのソースコードのライセンスと同じにならないよう注意してください。これは、掲載中のアドオンにのみ関連付けられます。"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
-msgstr ""
-"あなたのアドオンが、ユーザーのコンピューターから何らかのデータを転送する場合、何のデータが送信されるか、それがどのように使用されるかについて説明するプライバシーポリシーの提示が必須になります。これ"
-"は、掲載中のアドオンにのみ関連付けられます。"
+msgstr "あなたのアドオンが、ユーザーのコンピューターから何らかのデータを転送する場合、何のデータが送信されるか、それがどのように使用されるかについて説明するプライバシーポリシーの提示が必須になります。これは、掲載中のアドオンにのみ関連付けられます。"
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
 msgstr "アドオンに既知のライブラリ以外のバイナリコードや不明瞭なコードが含まれる場合は、審査のため、そのソースコードをアップロードしてください。"
@@ -3818,13 +3761,13 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "ログインしてアドオンを編集・更新"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "開始に役立つリソース"
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
-"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
-msgstr ""
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+msgstr "拡張機能を作成し、公開する準備ができました。次の手順は？魅力的な詳細ページを作成したり、拡張機能を %(amo_link_open)saddons.mozilla.org%(amo_link_close)s でおすすめしてもらったり、開発に関する疑問の答えを見つけたり、拡張機能の開発者に関連する最新の情報とイベントを知ったりするためのコツをご確認ください。"
 
 msgid "View Resources for Publishers"
 msgstr "公開者向けのリソースを表示"
@@ -3833,14 +3776,14 @@ msgid "Welcome Back"
 msgstr "お帰りなさい"
 
 msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
+msgstr "魅力的な詳細ページを作成して、拡張機能をユーザーによく知ってもらいましょう。"
 
 msgid "Learn How"
 msgstr "手順を見る"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "拡張機能を %(amo_link_open)saddons.mozilla.org%(amo_link_close)s でおすすめしてもらいたいですか？おすすめ拡張機能ポリシーで、必要な内容をご覧ください。"
 
 msgid "Learn More"
 msgstr "詳細"
@@ -3884,11 +3827,11 @@ msgstr "Firefox をカスタマイズ"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
+"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"アドオンを使って数多くの Firefox ユーザーがブラウジング体験を向上させています。あなたがもし %(html_link_open)sHTML%(link_close)s や %(js_link_open)sJavaScript%(link_close)s、%(css_link_open)sCSS"
-"%(link_close)s を知っているなら、素晴らしいアドオンを作るのに必要な技術を既にお持ちです。"
+"アドオンを使って数多くの Firefox ユーザーがブラウジング体験を向上させています。あなたがもし %(html_link_open)sHTML%(link_close)s や %(js_link_open)sJavaScript%(link_close)s、%(css_link_open)sCSS%(link_close)s "
+"を知っているなら、素晴らしいアドオンを作るのに必要な技術を既にお持ちです。"
 
 msgid "Learn How to Make an Add-on"
 msgstr "アドオンの作り方を学ぶ"
@@ -3949,10 +3892,10 @@ msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "このテーマを、あなたのクレジットを表示する限り、他の人が共有できるようにしますか？"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
+msgstr "ライセンサーは、商用を含め、他者が作品を複製、頒布、展示、実演することを許可します。"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
+msgstr "ライセンサーは、非営利目的に限って、他者が作品を複製、頒布、展示、実演することを許可します。"
 
 msgid "Can others make commercial use of your Theme?"
 msgstr "このテーマを他の人が商用にも利用できるようにしますか？"
@@ -3961,10 +3904,10 @@ msgid "Can others create derivative works from your Theme?"
 msgstr "他の人がこのテーマを元にした派生作品を作れるようにしますか？"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
+msgstr "ライセンサーは、他者が作品を複製、頒布、展示、実演、および本作品に基いた派生作品を作成することを許可します。"
 
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
+msgstr "ライセンサーは、変更していない作品の複製 (本作品に基いた派生作品でない場合) に限って、他者が作品を複製、頒布、送信することを許可します。"
 
 msgid "Your Theme will be released under the following license:"
 msgstr "このテーマは以下のライセンスで公開されます:"
@@ -3979,7 +3922,7 @@ msgid "Upload New Design"
 msgstr "新しいデザインをアップロード"
 
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr ""
+msgstr "アップロードとフォームの送信を行うと、AMO チームが最新のデザインを審査します。その間は、現在のデザインが公開されたままになります。"
 
 msgid "Your previously resubmitted design, which is under pending review."
 msgstr "あなたが以前再投稿したデザインで、現在審査待ちとなっているもの。"
@@ -3988,7 +3931,7 @@ msgid "Pending Header"
 msgstr "保留中のヘッダー"
 
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "承認されたら、テーマのデザインをこちらで更新できます。"
 
 msgid "Header"
 msgstr "ヘッダー"
@@ -4013,7 +3956,7 @@ msgstr "テーマの名前"
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "作者: <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
 msgstr "新しいテーマを作成"
@@ -4027,9 +3970,9 @@ msgstr "テーマに名前を付けてください。"
 
 #, python-format
 msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
-"Communications and Cookies Privacy Notice%(link_close)s."
-msgstr ""
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
+" and Cookies Privacy Notice%(link_close)s."
+msgstr "私は %(agreement_link_open)sFirefox アドオン配布規約%(link_close)s、および、私の情報が %(privacy_notice_link_open)sウェブサイト、通信および Cookie プライバシー通知%(link_close)s に基いて処理されることに、同意します。"
 
 msgid "Submit Theme"
 msgstr "テーマを登録"
@@ -4038,7 +3981,7 @@ msgid "You're done!"
 msgstr "完了！"
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr ""
+msgstr "テーマが審査待ちに送信されました。審査が終わったら (通常 24 時間以内) メールを送信いたします。"
 
 msgid "Next steps:"
 msgstr "次のステップ:"
@@ -4049,7 +3992,7 @@ msgstr "<a href=\"%(edit_url)s\">詳細ページを編集して</a> このテー
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr ""
+msgstr "最新のレビューやコレクションなどを知るため、テーマの<a href=\"%(feed_url)s\">アクティビティフィード</a>を見て、購読しましょう。"
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
@@ -4068,12 +4011,12 @@ msgid "PNG or JPG"
 msgstr "PNG または JPG 形式"
 
 msgid "Manage Version {0}"
-msgstr "バージョン {0} を管理"
+msgstr "バージョン {0}を管理"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
+# {0} is the name of the collection
 msgid "Manage {0}"
-msgstr "{0} を管理"
+msgstr "{0}を管理"
 
 msgid "Files"
 msgstr "ファイル"
@@ -4197,9 +4140,7 @@ msgstr "バージョン {version} を削除"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
-msgstr ""
-"あなたはアドオンの現行バージョンを削除しようとしています。これがあなたのアドオンで唯一の公開バージョンである場合、この操作によってアドオンの状態が変わったり、詳細ページの一般公開が取り消されたりする"
-"可能性があります。"
+msgstr "あなたはアドオンの現行バージョンを削除しようとしています。これがあなたのアドオンで唯一の公開バージョンである場合、この操作によってアドオンの状態が変わったり、詳細ページの一般公開が取り消されたりする可能性があります。"
 
 msgid "Deleting this version will permanently delete:"
 msgstr "このバージョンを削除すると、以下のものが完全に削除されます:"
@@ -4237,17 +4178,17 @@ msgstr "本当にこの審査リクエストをキャンセルしますか？"
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "アドオン開発ドキュメント :: 開発者センター"
 
-# {0} is a number
 #. L10n: first parameter is the number of errors
+# {0} is a number
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] "{0} 個のエラー"
+msgstr[0] "{0}個のエラー"
 
-# {0} is a number
 #. L10n: first parameter is the number of warnings
+# {0} is a number
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] "{0} 個の警告"
+msgstr[0] "{0}個の警告"
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4255,13 +4196,13 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} きれいなデジ�
 
 #. editorial content for the discovery pane.
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Firefox が Cookie やローカルストレージのようなウェブサイトデータを忘れて、選択したドメインのみを記憶するようにします。"
 
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
+msgstr "シネマモード、広告ブロック、自動再生など、YouTube の新機能をお楽しみください。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4270,40 +4211,40 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "ウェブ上であなたを追跡する、目に見えないトラッカーやスパイ広告をブロック。"
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲームを拡張"
 
 msgid "Dozens of amazing emojis for every occasion—just a click away."
-msgstr ""
+msgstr "あらゆるシーンにぴったりの豊富な絵文字が、たったワンクリックで。"
 
 #. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウンロード"
 
 msgid "Works seamlessly with most popular video sites."
-msgstr ""
+msgstr "最も人気のある動画サイトとシームレスに連携。"
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタマイズ"
 
 msgid "Set the page you see every time you open a new tab."
-msgstr ""
+msgstr "新しいタブを開いたときに表示されるページを設定。"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲームを拡張"
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr ""
+msgstr "あらゆるシーンにぴったりの豊富な絵文字が、いつでもワンクリックで。"
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンショットを撮影"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
-msgstr ""
+msgstr "Awesome Screenshot Plus では、基本的なスクリーンショットツールに加えて、カスタムテキストやグラフィックスで画像に注釈を付けたり、ビジュアルを保存して共有したりできます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4312,7 +4253,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "カスタマイズできる背景や地元の気象情報などを備えた、新しくて美しいページをお楽しみください。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4321,7 +4262,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "テキストを強調表示して右クリックすれば、すぐに翻訳できます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4330,7 +4271,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "一連の検索エンジンで逆画像検索を実行。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4339,7 +4280,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "シンプルな設定で、表示される広告やインターネット上で追跡される方法をコントロール。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4348,7 +4289,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "開いているタブが多すぎて困っていませんか？サイドバーですっきり整頓しましょう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4357,7 +4298,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Facebook ID を別の「コンテナー」に隔離することで、Facebook にウェブ上の動きを追跡されにくくできます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4366,7 +4307,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "ウェブページのテキストを強調表示するだけで、検索エンジンでフレーズ検索。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4375,11 +4316,11 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
-msgstr ""
+msgstr "世界中の気象情報を Firefox から即座に入手。"
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
-msgstr ""
+msgstr "新しいタブを開いたときに表示されるページを選びます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4388,15 +4329,15 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "ネットで見つけた面白い写真について、もっと情報を知りたくないですか？この画像検索ツールをお試しください。"
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "YouTube、Facebook、Vimeo、Twitch、Dailymotion、Periscope、その他数多くの動画サイトに対応。"
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
-msgstr ""
+msgstr "あらゆるシーンにぴったりの豊富な絵文字が、いつでもワンクリックで。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4405,7 +4346,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "すべてのウェブサイトのログイン情報をすべてのデバイス上でたった 1 つのパスワードにまとめて同期させ、一括管理。"
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4413,7 +4354,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "軽量で効果的な広告ブロッカー。uBlock Origin は、多くのメモリーを占拠することなく、何千ものコンテンツフィルターを実行します。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4422,7 +4363,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "シネマモード、広告ブロック、自動再生コントロールなど、YouTube の新機能をお楽しみください。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4431,7 +4372,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "テキストを強調表示して右クリックすれば、あっという間に画像検索できます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4440,7 +4381,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites from a tile layout."
-msgstr ""
+msgstr "タイルレイアウトからお気に入りのサイトにアクセス。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4449,7 +4390,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "検索結果にブリタニカ百科事典の内容を自動で追加。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4458,7 +4399,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "YouTube の迷惑な広告や注釈をブロック。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4467,7 +4408,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "あなたの Kindle にニュース記事、ブログ記事などを送信。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4476,7 +4417,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "タブを URL パターンに基づいて色分けして整理。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4485,7 +4426,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "悪意のあるウェブサイトが暗号通貨への攻撃のためにあなたのコンピューターの処理能力を悪用するのを阻止。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4494,7 +4435,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "ソーシャルメディア、メール、ドキュメントなど、ウェブ上で文章を書くときにどこでも役立つ文法サポート。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4503,7 +4444,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "世界の現地時間を Firefox のステータスバーに表示。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4512,7 +4453,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "ウェブページ上でテキストを強調表示 (またはページ全体を選択) すれば、あっという間に翻訳できます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4521,7 +4462,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
-msgstr ""
+msgstr "1,000 万本以上の研究論文に無料でアクセス。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4530,7 +4471,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "50 種類以上の便利なマウスジェスチャーで操作する新しい方法を体験してください。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4539,7 +4480,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "動画に集中できるよう、動画プレーヤーの周囲のページを暗くします。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4549,7 +4490,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "Ecosia は検索収入の 80% を世界中の植林活動に充てています。Ecosia を Firefox 検索に入れましょう"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4558,7 +4499,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウン�
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "探しているページにアクセスできませんか？アーカイブ/キャッシュされたバージョンを検索してみましょう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4572,7 +4513,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウン�
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
-msgstr ""
+msgstr "画像の上にマウスを置くだけで、画像を拡大できます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4581,7 +4522,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "タブを閉じると Cookie が自動的に消去されます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4590,7 +4531,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "どんなページのテキストサイズも簡単に調整。ページ自体を拡大することも可能です。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4599,7 +4540,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "追跡中のトラッカーを停止させ、その詳細を確認。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4608,7 +4549,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
-msgstr ""
+msgstr "同じ文章を繰り返し入力するのはもうやめましょう！仕事やプライベートで頻繁に使うフレーズがあるなら、Clippings に保存すれば、必要に応じて簡単に貼り付けられます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4617,7 +4558,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "ウェブベースの受信トレイから広告を消して、広々とした画面スペースを確保。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4626,7 +4567,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr ""
+msgstr "開いているタブをすっきりと整頓されたサイドバーで管理。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4635,7 +4576,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr ""
+msgstr "ブラウザーと OS の ID を隠すことで、あなたの行動を隠しましょう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4644,7 +4585,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "設定した時間間隔で、タブを自動的に再読み込み。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4653,7 +4594,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr ""
+msgstr "Cookie のデジタル痕跡から色分けされたタブで、オンラインでのさまざまな役割 (仕事、プライベートなど) を個人的に区別。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4662,7 +4603,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "ウェブを閲覧するときのトラッキング防止にさらなる保護を追加しましょう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4671,7 +4612,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウン�
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "フォントサイズやページサイズなどを増やして、ePub ファイルを Firefox で楽しもう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4680,7 +4621,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "初期設定で最高品質の動画を再生、注釈を無効化など。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4689,7 +4630,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "あなたを追跡している人物をワンクリックで垣間見る。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4698,7 +4639,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "自己定義したプロキシ設定でネットサーフィン。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4707,7 +4648,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウン�
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "動画の速度などを調整して、より快適な視聴体験を。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4716,7 +4657,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
-msgstr ""
+msgstr "どんなサイトにも HTTPS 対応の暗号化セキュリティを追加。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4725,7 +4666,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "購入時にショッピングカートに自動適用される最高のクーポンをゲット。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4734,7 +4675,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウン�
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "強調表示されたテキストやウェブページ全体を翻訳"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4743,7 +4684,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Reddit サーフィンを進化させるタグなどの機能。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4752,11 +4693,11 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "ウェブページをスクリーンショット、編集、共有。"
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Windows 専用の便利なダウンローダーツール。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4765,7 +4706,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "誰があなたを追跡して、どこに情報を共有しているのかを調べましょう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4774,11 +4715,11 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "ID の変装をしてウェブを閲覧。外国から閲覧しているかのようにも見せられます。"
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "美しいタイルレイアウトからお気に入りのサイトや最近閉じたタブなどにアクセス。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4787,7 +4728,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "新しいタブ用のカスタムホームページを指定します。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4796,7 +4737,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "開いているすべてのタブを簡単に管理できるリストに変換して、Firefox を高速化します。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4805,7 +4746,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウン�
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "ステータスバー、ダウンロード履歴ページなどでダウンロードの状態を確認。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4814,7 +4755,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "情報をインターネットから OneNote に保存して、編集、注釈付けなどができます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4823,7 +4764,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Google と Yandex の検索結果をクリックすると、トラッカーを停止させます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4832,7 +4773,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr ""
+msgstr "マウスジェスチャーでタブを閉じたり、ページを戻ったり、再読み込みしたりできます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4841,7 +4782,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
-msgstr ""
+msgstr "検索結果と並んでサムネイル画像をお楽しみください。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4850,7 +4791,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "ディスプレイを暗くすることで、ウェブを目に優しく。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4859,7 +4800,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "初期設定ですべてのポップアップをブロックして、開くものを決められます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4868,7 +4809,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "色やページの背景などを変えて、好きなウェブサイトの外観を一新しましょう！"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4877,7 +4818,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "新しいタブページを編集して、好きな数のタイルや背景画像などを表示。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4886,7 +4827,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
+msgstr "ウェブサイトのテキストを強調表示して右クリックすれば、あっという間に翻訳できます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4895,7 +4836,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "パスワードを安全に保管して、複数のデバイスからアクセスできます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4904,7 +4845,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "閲覧したウェブサイトの国名がわかります。情報通のネットの旅人になりましょう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4913,7 +4854,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "周囲のごちゃごちゃを取り除くことで、読んでいるテキストをより魅力的に。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4922,7 +4863,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
-msgstr ""
+msgstr "新しいタブで開きたいリンクを右クリックしてドラッグします。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4931,7 +4872,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "最近開いたタブにアクセスするには、ツールバーのアイコンを右クリックします。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4940,7 +4881,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "美しい背景を表示、毎日のフォーカスを設定するなど、新しいタブページを変更します。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4949,7 +4890,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr ""
+msgstr "Google 画像検索中に「画像を見る」ボタンを表示します。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4958,7 +4899,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "時間を無駄にするサイトをブロックして、手元の作業に集中できます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4967,7 +4908,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "一定の時間間隔で、タブを自動的に再読み込み。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4976,7 +4917,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "壊れたブックマーク、重複などを見つけて解決。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4985,7 +4926,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "デバイス間で同期する便利な予定リストを使って、仕事を終わらせましょう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4994,7 +4935,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr ""
+msgstr "価格の履歴を追跡して、競合製品を検索、売り手の評価もチェックしましょう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5003,7 +4944,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "ポップアウトウィンドウで動画を再生、登録済みチャンネル内の広告のみを表示、動画のスクリーンショットを撮影などの機能。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5012,7 +4953,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "どのウェブサイトでも詳細なエンゲージメントやトラフィック情報を入手できます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5021,7 +4962,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh and modern appearance to Wikipedia."
-msgstr ""
+msgstr "Wikipedia にフレッシュでモダンな外観を適用。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5030,7 +4971,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
-msgstr ""
+msgstr "マウスジェスチャーを使えば、今より素早く仕事をこなせます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5039,7 +4980,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "表示しているウェブサイトの一部を非表示にできます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5048,7 +4989,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウン�
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
-msgstr ""
+msgstr "好きなウェブサイトから画像を取得してダウンロード。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5057,7 +4998,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr ""
+msgstr "トラッカーを振り切ってプライバシーを守るため、あなたの場所を隠します。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5066,7 +5007,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "不適切で望まないコンテンツへのアクセスをフィルターで制限。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5075,7 +5016,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "新しいタブを、列の最後ではなく、現在のタブの右側に開きます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5084,7 +5025,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "匿名性を守って迷惑メールを防ぐために、仮のメールアドレスを賢く使いましょう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5093,7 +5034,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Easily customize the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Firefox の組み込みプライバシー設定を簡単にカスタマイズできます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5102,7 +5043,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
-msgstr ""
+msgstr "Vkontakte から広告を消して、音声をダウンロード。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5111,7 +5052,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "テキストを強調表示して、ポップアップするボタンをクリックすれば、あっという間に翻訳できます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5120,7 +5061,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
-msgstr ""
+msgstr "お気に入りのサイトを表示してテーマを選択すれば、クリエイティブな新しいタブページにカスタマイズできます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5129,7 +5070,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "アクセスしたいウェブサイトへ、他にリダイレクトされることなくまっすぐ移動。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5138,7 +5079,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "Firefox のツールバーパネルから WhatsApp にアクセスして、未読スレッドのバッジ通知を取得。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5147,7 +5088,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "プロによるドイツ語翻訳。英語、フランス語、スペイン語、その他の言語間に対応します。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5156,7 +5097,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
-msgstr ""
+msgstr "定義したウェブサイトへの Firefox のアクセスを制限。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5165,7 +5106,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "一定の時間間隔で作業することで、生産性を管理できます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5174,7 +5115,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "お気に入りの RSS フィードすべてを 1 ページで確認しましょう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5183,7 +5124,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "夜間モードを有効にして、目に優しく閲覧しましょう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5192,7 +5133,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "複数の検索プロバイダーを活用した逆画像検索。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5201,7 +5142,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Store web pages to access across devices."
-msgstr ""
+msgstr "ウェブページを保存して複数のデバイスからアクセス。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5210,7 +5151,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "ブックマークフォルダをいくつも使用する方に、ブックマークを保存する便利な方法です。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5219,11 +5160,11 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "不要な書式を取り除き、プレーンテキストだけをコピー。"
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "ボタンをクリックするだけで、ウェブページ全体をお好きな言語に変換できます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5232,7 +5173,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr ""
+msgstr "ウェブページ内のすべてのリンクを、あっという間に新しいタブで表示。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5241,7 +5182,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
-msgstr ""
+msgstr "お好みの PDF アプリケーションを使って PDF にアクセスできます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5250,7 +5191,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
-msgstr ""
+msgstr "リダイレクトページや URL トラッキングパラメーターを削除。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5259,7 +5200,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "クリックした検索結果を検索エンジンに知られるのを防ぎます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5268,7 +5209,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウン�
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
-msgstr ""
+msgstr "動画や音声をダウンロード。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5277,7 +5218,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} きれいなデジ�
 
 #. editorial content for the discovery pane.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "RSS/Atom/RDF すべてのソースを集約する高度なリーダー。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5286,7 +5227,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "後でレビューするために、一般的なメモとウェブサイト用のメモを作成。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5295,7 +5236,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
-msgstr ""
+msgstr "PC用ウェブページの「グラブ＆ドラッグ」マウススクロール機能を備えています。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5304,7 +5245,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "クリックまたはキーを押してブラウザーのキャッシュを消去。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5313,7 +5254,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
-msgstr ""
+msgstr "ブラウザーで予定リストを作成・管理。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5322,7 +5263,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
-msgstr ""
+msgstr "さまざまな色と保存オプションで高度にカスタマイズ可能なテキストハイライターをお楽しみください。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5331,7 +5272,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Access 20,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "世界中の 20,000 局以上のラジオ局にアクセスできます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5340,7 +5281,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウン�
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "YouTube のクリップからオーディオをストリーミングするだけで、帯域幅を節約。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5349,7 +5290,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "単語を美しい見出しと画像オーバーレイのテキストに変換。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5358,7 +5299,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "セキュリティで保護されたバージョンのウェブサイトがあれば、そのサイトに移動します。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5367,7 +5308,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウン�
 
 #. editorial content for the discovery pane.
 msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "ブラウザーの履歴が自動消去される前に、履歴を保持する日数を指定。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5376,7 +5317,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "検索結果内に広告が表示されないようブロック。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5385,7 +5326,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "パスワードを安全に保存して、既知のウェブサイトに自動的にログイン。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5394,7 +5335,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
-msgstr ""
+msgstr "広告やトラッカーをブロックしてプライバシーを保護 (さらに、ページの読み込み速度も向上します)。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5403,7 +5344,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
-msgstr ""
+msgstr "入力したデータを一度保存すると、次回から自動入力できます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5412,7 +5353,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
-msgstr ""
+msgstr "ワンクリックでプライベートブラウジングモードにジャンプ。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5421,7 +5362,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "クリックしたリンクが現在のタブをコントロールして、頼んでもいないコンテンツを読み込むことを阻止しましょう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5430,7 +5371,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "ウェブページのテキストを強調表示して右クリックするだけで、Wikipedia 検索を実行。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5439,7 +5380,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "特定のドメイン内で必要なものを探します。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5448,7 +5389,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウン�
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "ウェブサイトのテキストを強調表示して右クリックするだけで、関連するメディアを YouTube 検索。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5457,7 +5398,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "他のオンラインショップの商品ページを見ているときに同じ商品が Amazon にもあれば、ボタンをクリックするだけで Amazon のリストを確認できます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5466,7 +5407,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Easily broadcast web content to your Twitter following."
-msgstr ""
+msgstr "Twitter にウェブのコンテンツを簡単に配信。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5475,7 +5416,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "豊富なタブコントロールオプション - 重複したタブを閉じる、ウィンドウの統合、タブタイトルのコピーなどが可能です。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5484,7 +5425,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "Load a random Wikipedia article each time you open a new tab."
-msgstr ""
+msgstr "新しいタブを開くたびに Wikipedia の記事をランダムに読み込みます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5493,7 +5434,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "新しいタブページを設定して、カスタムの背景色と画像で表示。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5502,7 +5443,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲー�
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "新しいタブを開く度に可愛いキティに会えます。耳の後ろをかいてあげると何が起こるかお楽しみに。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5511,7 +5452,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "猫からレーザー光線を発射する必要がある瞬間に。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5520,11 +5461,11 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウン�
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "開いているタブ、ブックマーク、履歴に簡単アクセス。"
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "開いているタブが多すぎる？スクロールをスキップしてキーボードショートカットで検索できます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5533,7 +5474,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Uncover the software that supports whatever website you're visiting."
-msgstr ""
+msgstr "閲覧しているウェブサイトに対応するソフトウェアを発見。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5542,7 +5483,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} きれいなデジ�
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "リダイレクトを阻止して、必要なサイトに素早くアクセス。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5551,7 +5492,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "すべてのパスワード欄に表示 / 非表示機能を追加。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5560,7 +5501,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "動画プレーヤー以外の画面の明るさを調節して、観ている動画に集中できます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5569,7 +5510,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "簡単にアクセスできるパネルからブックマークを変更。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5578,11 +5519,11 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "パスワードを安全に保存して、既知のウェブサイトに自動的にログイン。"
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "必要なコンテンツの表示に焦点を合わせたシンプルな広告ブロッカー。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5591,7 +5532,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Make informed decisions by tracking the price of a product listed on Amazon."
-msgstr ""
+msgstr "Amazon に掲載されている商品価格を追跡して、情報に基づいた決断がくだせます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5600,7 +5541,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウン�
 
 #. editorial content for the discovery pane.
 msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "信頼性が審査されたサイトで買い物をしているかどうかを確認する追加チェック。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5609,11 +5550,11 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "パソコンや、Trello、JIRA、Basecamp、GitHub などの特定の作業アプリで費やす時間を測定。"
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "記事、動画、画像などのウェブコンテンツをクリップして、個人のプロジェクトやリアルタイムの共同作業用に保存・使用できます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5622,7 +5563,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
-msgstr ""
+msgstr "信頼できるサイトのみのウェブコンテンツを実行。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5631,7 +5572,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウン�
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "閲覧中に蓄積した Cookie を完全管理。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5640,7 +5581,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "選択したウェブサイトのブラウザー履歴を自動的に削除。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5649,7 +5590,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "個人的なブックマークをパスワードで保護。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5658,7 +5599,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "VPN を使ってますか？IP アドレスが漏れる可能性があります。WebRTC を無効にして阻止しましょう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5667,7 +5608,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Simply click a button to close annoying pop-up overlays."
-msgstr ""
+msgstr "ボタンをクリックするだけで、迷惑なポップアップオーバーレイを閉じられます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5676,7 +5617,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "ウェブ上で面白い画像を見つけた？TinEye でその発信元を調べましょう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5685,11 +5626,11 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "テキスト、画像、リンクをドラッグするだけで、コピー、開く、検索などの操作を実行できます。"
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "動画や音声を複数の形式でダウンロードする機能を活用しましょう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5698,7 +5639,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "ウェブサイトのサーバーの地理的所在地を確認。情報通のネットの旅人になりましょう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5707,7 +5648,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "ウェブサイトの音量が小さ過ぎる？うるさ過ぎる？SoundFixer がお手伝いします。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5716,7 +5657,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
-msgstr ""
+msgstr "広告や不快なコンテンツを削除すれば、印刷したウェブページに驚きの視覚的変化をもたらします。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5725,7 +5666,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンシ�
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
-msgstr ""
+msgstr "Amazon に掲載されている商品価格を追跡してアラートを受信。情報に基いた決断がくだせます。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5734,7 +5675,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "ブラウザーのオーディオ設定をとても鮮明に調整。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5743,7 +5684,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタ�
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "最も卑劣なトラッカーから自分自身を守りましょう。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5752,11 +5693,11 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
-msgstr ""
+msgstr "トラッカーのブロック、よりスマートな暗号化、プライベート検索、その他の必須機能を備えて、より安心のセキュリティのもとで検索できます。"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr "ファイルビューアーはロックされており、%s の抽出が行われている可能性があります。約 5 分後に再度試してください。"
+msgstr "ファイルビューアーはロックされており、%sの抽出が行われている可能性があります。約 5 分後に再度試してください。"
 
 #, python-format
 msgid "There was an error accessing file %s."
@@ -5767,10 +5708,10 @@ msgstr "このファイルは存在しません。"
 
 #. L10n: {0} is the file size limit of the file viewer.
 msgid "File size is over the limit of {0}."
-msgstr "ファイルサイズが {0} の上限を超えています。"
+msgstr "ファイルサイズが {0}の上限を超えています。"
 
 msgid "Problems decoding {0}."
-msgstr "{0} をデコードできませんでした。"
+msgstr "{0}をデコードできませんでした。"
 
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr "このファイルはオンラインで表示できません。内容を表示するにはファイルをダウンロードしてください。"
@@ -5847,17 +5788,17 @@ msgstr "この種類のアドオンを送信することはできません"
 
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr "%s で終わる GUID が設定されたアドオンを投稿することはできません"
+msgstr "%sで終わる GUID が設定されたアドオンを投稿することはできません"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "あなたは Mozilla Signed Extension を登録できません"
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "予期しないエラーが発生しました。"
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "install.rdf 内の <em:type> (%s) が AMO 上のあなたのアドオンのタイプ (%s) と一致しません"
+msgstr "install.rdf 内の <em:type>(%s) が AMO 上のあなたのアドオンのタイプ (%s) と一致しません"
 
 msgid "Back to review"
 msgstr "レビューのページへ戻る"
@@ -5883,7 +5824,7 @@ msgstr "ファイルの内容が構文の強調表示に対応していません
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "出力が壊れる可能性がありますので気をつけて、至急%(link_start)s問題を報告%(link_end)sしてください。"
 
 msgid "Add-on file being processed, please wait."
 msgstr "アドオンのファイルを処理しています。しばらくお待ちください。"
@@ -5949,7 +5890,7 @@ msgid "Shopping Made Easy"
 msgstr "お手軽ショッピング"
 
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "快適なブラウザーからお気に入りのアイテムを保存します。"
 
 msgid "Build the perfect website"
 msgstr "完璧なウェブサイトを作成"
@@ -5958,76 +5899,76 @@ msgid "First time with Add-ons?"
 msgstr "アドオンを使うのは初めてですか？"
 
 msgid "Not to worry, here are three to get started."
-msgstr ""
+msgstr "ご安心ください。始めるための 3 つのポイントがこちらです。"
 
 msgid "Translate content on the web from and into over 40 languages."
-msgstr ""
+msgstr "ウェブのコンテンツを 40 以上の言語間で翻訳。"
 
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
-msgstr ""
+msgstr "ソーシャルネットワークに手軽に接続して、閲覧しているページを共有したりコメントをつける。"
 
 msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr ""
+msgstr "オンラインでの買物やフライト検索に、価格を比較できるクイックビュー。"
 
 msgid "St. Patrick&rsquo;s Day Themes"
 msgstr "聖パトリック祭のテーマ"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr ""
+msgstr "聖パトリック祭を祝ってブラウザーを飾りましょう。"
 
 msgid "A+ add-ons for School"
-msgstr ""
+msgstr "学校用の A+ アドオン"
 
 msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr ""
+msgstr "新学期を迎える教職員、保護者、生徒・学生向けのアドオン。"
 
 msgid "Would you like to know which websites you can trust?"
-msgstr ""
+msgstr "信頼できるウェブサイトを知りたい？"
 
 msgid "Xmarks is the #1 bookmarking add-on."
-msgstr ""
+msgstr "Xmarks は No.1 のブックマークアドオンです。"
 
 msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
+msgstr "ウェブページとテキストの翻訳や辞書など、豊富な機能。"
 
 msgid "Love is in the Air"
-msgstr ""
+msgstr "Love is in the Air"
 
 msgid "Add some romance to your Firefox."
-msgstr ""
+msgstr "Firefox にちょっとしたロマンスを追加してみませんか。"
 
 msgid "Get up and move!"
-msgstr ""
+msgstr "起き上がって行動しよう！"
 
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "フィットネスアドオンをインストールして、アクティブで健康な毎日を送りましょう。"
 
 msgid "New &amp; Now"
-msgstr ""
+msgstr "New &amp; Now"
 
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "最新の、今最も旬なアドオンをゲットしよう。"
 
 msgid "Worry-free browsing"
 msgstr "心配いらずのブラウジング"
 
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "このコレクションのアドオンで、オンラインのプライバシーを保護しましょう。"
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
+msgstr "仕事、娯楽、プライバシー、生産性... 何でもそろった便利なアドオン。"
 
 msgid "Games!"
 msgstr "ゲーム！"
 
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
+msgstr "Firefox にもっと楽しさを追加しましょう。パズル、クラシックアーケード、アクションゲームなど、豊富なゲームをブラウザーからプレイできます！"
 
 msgid "Must-Have Media"
-msgstr ""
+msgstr "必須メディア"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr ""
+msgstr "便利にスクリーンショットを撮ったり、オンライン動画体験を改善したり、GIF やその他の素晴らしいメディアツールを作成する方法を学んだりできます。"
 
 msgid "Discover Add-ons"
 msgstr "アドオンを見つける"
@@ -6037,7 +5978,7 @@ msgstr "アドオンとは？"
 
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
+msgstr "アドオンは、%(app)s を特別な機能やスタイルでパーソナライズできるアプリケーションです。時間を節約できるサイドバー、天気予報通知、テーマ別の外観などで、%(app)s を自分オリジナルのスタイルに変身させてみましょう。"
 
 msgid "Learn More About Add-ons"
 msgstr "アドオンについて詳しく学ぶ"
@@ -6058,15 +5999,15 @@ msgid "Close Video"
 msgstr "動画を閉じる"
 
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "動画が再生されている間、アドオンがここに表示されます。"
 
 #. {0} is the user's login name.
 msgid "Hi, {0}"
-msgstr "{0} さん、こんにちは"
+msgstr "{0}さん、こんにちは"
 
 #, python-format
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr ""
+msgstr "%(app)s を使用して<a href=\"%(url)s\">Mozilla の使命</a>をサポートしていただき、ありがとうございます！"
 
 msgid "Add-ons downloaded:"
 msgstr "アドオンのダウンロード数:"
@@ -6105,8 +6046,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"一般に \"AMO\" として知られている addons.mozilla.org のサイトは、Firefox や Thunderbird、SeaMonkey などの Mozilla ソフトウェア用アドオンのための Mozilla の公式サイトです。アドオンは、ブラウザーやア"
-"プリケーションの動作に新しい機能を追加したり変更したりします。オンラインでの手段をカスタマイズする数千ものアドオンの中から、あなたに合ったものを見つけてください。"
+"一般に \"AMO\" として知られている addons.mozilla.org のサイトは、Firefox や Thunderbird、SeaMonkey などの Mozilla ソフトウェア用アドオンのための Mozilla "
+"の公式サイトです。アドオンは、ブラウザーやアプリケーションの動作に新しい機能を追加したり変更したりします。オンラインでの手段をカスタマイズする数千ものアドオンの中から、あなたに合ったものを見つけてください。"
 
 msgid "Who creates these add-ons?"
 msgstr "これらのアドオンは誰が作っていますか？"
@@ -6114,9 +6055,7 @@ msgstr "これらのアドオンは誰が作っていますか？"
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
-msgstr ""
-"このサイトのアドオンは、私たちのコミュニティである個人の日曜プログラマから大企業まで、数多くの開発者により製作されています。すべての公開されているアドオンは、公開前に、審査担当者のチームによって審査"
-"されています。ただし、実験段階のアドオンはまだ審査されておらず、インストールに注意が必要です。"
+msgstr "このサイトのアドオンは、私たちのコミュニティである個人の日曜プログラマから大企業まで、数多くの開発者により製作されています。すべての公開されているアドオンは、公開前に、審査担当者のチームによって審査されています。ただし、実験段階のアドオンはまだ審査されておらず、インストールに注意が必要です。"
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "AMO サイトの動向を知るには？"
@@ -6140,35 +6079,34 @@ msgid "This sounds great! How can I get involved?"
 msgstr "いいですね！ 参加するにはどうしたらよいですか？"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "参加には様々な方法があります。技術分野がご専門でしたら、"
 
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr ""
+msgstr "<a href=\"%(url)s\">オリジナルのアドオンを作成しましょう</a>。私たちが無料のホスティングとアップデートのサービスをご提供して、多くのユーザーにアプローチするお手伝いをします。"
 
 #, python-format
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
-msgstr ""
+msgstr "アドオン開発のご経験があるなら、<a href=\"%(url)s\">アドオン審査担当者になりましょう</a>。審査担当者は、アドオンのコードの質と安定性を審査する、技術的経歴を持ったアドオン好きです。"
 
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
-msgstr ""
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgstr "このウェブサイトの改善にご協力ください。オープンソースで、バグを報告したりパッチを送信したりできます。<a href=\"%(url)s\">GitHub</a> には現在のバグがすべて含まれ、従来のバグは Bugzilla で探せます。"
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr ""
+msgstr "アドオンに興味はあるけど技術的専門性があまりない場合でも、サポートする方法はまだあります。"
 
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "あなたが使っているアドオンを友達に教えましょう。"
 
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
 msgstr "私たちの <a href=\"%(url)s\">フォーラム</a> へ参加してください。"
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr ""
+msgstr "サイトでアドオンをレビューしてください。アドオンの作者は、作品について人々が正当に評価してくれたときに、アドオンを改善し、新しいアドオンを作成する傾向が高まります。"
 
 msgid "I have a question"
 msgstr "質問があります"
@@ -6179,13 +6117,13 @@ msgstr "まずは Mozilla の <a href=\"%(sumo_url)s\">サポートサイト</a>
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr ""
+msgstr "Mozilla チームの担当者にどうしても連絡する必要がある場合は、<a href=\"%(url)s\">連絡先情報</a>のページをご覧ください。"
 
 msgid "Who works on this website?"
-msgstr ""
+msgstr "誰がこのウェブサイトで働いているの？"
 
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
-msgstr ""
+msgstr "長年の間、コミュニティーのボランティアと AMO 専属チームを含む、多くの人々がこのウェブサイトに貢献してきました。"
 
 msgid "Sections"
 msgstr "セクション"
@@ -6197,9 +6135,9 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "レビューについてのよくある質問と答え"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
-msgstr ""
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
+msgstr "アドオンのレビューは、インストールして使用したアドオンに関する意見を共有する方法です。当社のレビュー管理チームが、これらのガイドラインに準じていないレビューを拒否または削除する権利を留保しています。"
 
 msgid "Do:"
 msgstr "良いレビュー:"
@@ -6240,7 +6178,7 @@ msgstr "「よかった！」「すばらしい」「よくなかった」 な�
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
-msgstr ""
+msgstr "技術的な問題、サポートのリクエスト、または機能の提案に関する投稿。可能な場合は、アドオンごとに用意されているサポートオプションを使用してください。「このアドオンについて」の横の欄にあります。"
 
 msgid "Write reviews for add-ons which you have not personally used."
 msgstr "自分で使ったのではないアドオンのレビューを書いてはいけません。"
@@ -6249,13 +6187,13 @@ msgid "Use profanity, sexual language or language that can be construed as hatef
 msgstr "冒涜、下品、性的な言葉や相手を傷つけるような言葉遣いをしてはいけません。"
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr ""
+msgstr "HTML、リンク、ソースコード、コードスニペットを含める。レビューにはテキスト文章のみを入力してください。"
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
 msgstr "虚偽のレビューやアドオンの作者を貶す内容、個人的な辱める内容を書いてはいけません。"
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr ""
+msgstr "自分または他人のメールアドレス、電話番号、その他の個人情報を含める。"
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
 msgstr "あなたまたはあなたが所属する組織が作成、提供するアドオンにレビューを投稿してはいけません。"
@@ -6263,7 +6201,7 @@ msgstr "あなたまたはあなたが所属する組織が作成、提供する
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
-msgstr ""
+msgstr "アドオンが意図していることを批判。たとえば、広告表示がアドオンの意図された目的である場合、またはアドオンの実行にデータ収集が必要な場合に、広告表示やデータ収集に関して否定的なレビューを残す。"
 
 msgid "How can I report a problematic review?"
 msgstr "問題のあるレビューを報告するには？"
@@ -6271,14 +6209,14 @@ msgstr "問題のあるレビューを報告するには？"
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
+msgstr "「このレビューを報告」をクリックして、問題のあるレビューを報告またはフラグを付けてください。サイトに送信され、審査されます。管理チームはレビューガイドラインに基いて、レビューを削除するか、サイトに戻すかを評価します。"
 
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "私はアドオンの作者ですが、レビューに返答できますか？"
 
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
+msgstr "はい、アドオンの作者は 1 件のレビューについて 1 回だけ回答できます。<a href=\"%(forum_url)s\">フォーラム</a>でディスカッショントピックを設定して、さらにディスカッションやフォローアップを行うこともできます。"
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "私はアドオンの作者ですが、気に入らないレビューや評価は削除できますか？"
@@ -6286,15 +6224,13 @@ msgstr "私はアドオンの作者ですが、気に入らないレビューや
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
+msgstr "一般的に言えばできません。ただし、レビューが上記のレビューガイドラインに準じていない場合は、「このレビューを報告」をクリックして、審査するようリクエストしてください。アドオンの新しいリリースによって該当しなくなった苦情がレビューに含まれている場合は、削除を検討する可能性があります。"
 
 msgid "Start Now"
 msgstr "早速始めよう"
 
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
-msgstr ""
-"Mozilla は、ユーザーの皆さんがプラグインなど第三者が製作したソフトウェアを使用することを選んだ時の安全性を確保する最善の方法を見つけ出したいと思っています。あなたがこの調査に参加していただければ、そ"
-"の発見の助けとなります！"
+msgstr "Mozilla は、ユーザーの皆さんがプラグインなど第三者が製作したソフトウェアを使用することを選んだ時の安全性を確保する最善の方法を見つけ出したいと思っています。あなたがこの調査に参加していただければ、その発見の助けとなります！"
 
 msgid "What will happen next"
 msgstr "これから何が起こるか"
@@ -6330,9 +6266,7 @@ msgid "Click the remove button."
 msgstr "削除ボタンをクリックしてください。"
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
-"予定より早くこの調査への参加を終えたい場合は、アンケートへの記入をお願いすることになります。たとえあなたが調査の全期間に参加したわけではなかったとしても、私たちはあなたの体験についてお聞きすることに"
-"興味があります。"
+msgstr "予定より早くこの調査への参加を終えたい場合は、アンケートへの記入をお願いすることになります。たとえあなたが調査の全期間に参加したわけではなかったとしても、私たちはあなたの体験についてお聞きすることに興味があります。"
 
 msgid "Opting out of a study does not prevent you from participating in future studies."
 msgstr "調査への参加を早く終えたとしても、将来の調査に参加できなくなることはありません。"
@@ -6344,8 +6278,7 @@ msgid "All Shield Studies"
 msgstr "すべての Shield 調査に関して"
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
-"すべての Shield 調査において、インストール、アンインストール、1 日の使用量、そして調査の終了などの重要な調査上の出来事に関するデータが収集されます。また調査には、任意のアンケートも含まれます。"
+msgstr "すべての Shield 調査において、インストール、アンインストール、1 日の使用量、そして調査の終了などの重要な調査上の出来事に関するデータが収集されます。また調査には、任意のアンケートも含まれます。"
 
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
@@ -6376,28 +6309,26 @@ msgstr "あなたが Firefox をより良くする助けになります"
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
-msgstr ""
-"Mozilla は、ユーザーの皆さんのための製品を作っていることに誇りを持っています！ ですから、あなたの助けが必要なのです。あなたがこの調査に参加していただければ、私たちがあなたの代役としてよりよい決定を"
-"し、あなたが直接 Firefox の未来を形作る助けになります！"
+msgstr "Mozilla は、ユーザーの皆さんのための製品を作っていることに誇りを持っています！ ですから、あなたの助けが必要なのです。あなたがこの調査に参加していただければ、私たちがあなたの代役としてよりよい決定をし、あなたが直接 Firefox の未来を形作る助けになります！"
 
 msgid "Brought to you by:"
 msgstr "開発者:"
 
 #, python-format
 msgid "Reviews for %s"
-msgstr "%s のレビュー"
+msgstr "%sのレビュー"
 
 msgid "Review History for this Addon"
 msgstr "このアドオンのレビュー履歴"
 
-# %1 is the number of stars this add-on has
 #. L10n: This describes the number of stars given out of 5
+# %1 is the number of stars this add-on has
 #, python-format
 msgid "Rated %d out of 5 stars"
-msgstr "5 つ星のうち %d つの評価を受けています"
+msgstr "5 つ星のうち %dつの評価を受けています"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "フラグの理由として「その他」を選択する場合は、短い説明が必要です。"
 
 msgid "Spam or otherwise non-review content"
 msgstr "スパムあるいはその他レビューと無関係の内容"
@@ -6415,7 +6346,7 @@ msgid "This field is required."
 msgstr "この項目は必須です。"
 
 msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
+msgstr "レビューが一度作成されると、レビューのアドオンを変更することはできません。"
 
 msgid "You can't reply to a review that is already a reply."
 msgstr "返信済みのレビューに対して再度返信することはできません。"
@@ -6433,32 +6364,30 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "アドオンの同一バージョンに複数のレビューを残すことはできません。"
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "この評価にはレビューのテキストがないため、フラグを付けることはできません。"
 
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "ありがとうございます。このレビューは審査担当者へ通知されました。"
 
 msgid "Add a review for {0}"
-msgstr "{0} のレビューを追加"
+msgstr "{0}のレビューを追加"
 
 #, python-format
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
+"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
+"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
+"Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>以下のことにご注意ください:</h2> <ul> <li> アドオンについて友人に伝えるように書いてください。あなたが気に入った/気に入らなかった機能、簡単に使用できた、またはよくない点があったなど、ほかのユー"
-"ザーへの助けとなることを書いてください。そう書くべきであるという信念がない限り、\"よかった\"、\"よくなかった\" など、一般的な表現は避けてください。</li> <li> ここにはバグを報告しないでください。。ア"
-"ドオンの開発者にはメールアドレスを公開しません。そのため、開発者はあなたと連絡が取れず、問題を解決できないでしょう。 このアドオンの <a href=\"%(support)s\">サポートセクション</a> をご覧になり、支援"
-"を利用できるか確認してください。または、<a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">アドオンコミュニティ</a> で手助けを得られるか尋ねてみてください。 </li> <li>レ"
-"ビューは簡潔に書き、不適切な表現の使用は避けてください。また、個人情報も投稿しないでください。 </li> </ul> <p>アドオンのユーザーレビューについての詳細な情報は <a href=\"%(guide)s\">レビューガイドラ"
-"イン</a> をご覧ください。</p>"
+"<h2>以下のことにご注意ください:</h2> <ul> <li> アドオンについて友人に伝えるように書いてください。あなたが気に入った/気に入らなかった機能、簡単に使用できた、またはよくない点があったなど、ほかのユーザーへの助けとなることを書いてください。そう書くべきであるという信念がない限り、\"よかった\"、\"よくなかった\" など、一般的な表現は避けてください。</li> <li> "
+"ここにはバグを報告しないでください。。アドオンの開発者にはメールアドレスを公開しません。そのため、開発者はあなたと連絡が取れず、問題を解決できないでしょう。 このアドオンの <a href=\"%(support)s\">サポートセクション</a> をご覧になり、支援を利用できるか確認してください。または、<a href=\"https://discourse.mozilla-"
+"community.org/c/add-ons/add-on-support\">アドオンコミュニティ</a> で手助けを得られるか尋ねてみてください。 </li> <li>レビューは簡潔に書き、不適切な表現の使用は避けてください。また、個人情報も投稿しないでください。 </li> </ul> <p>アドオンのユーザーレビューについての詳細な情報は <a "
+"href=\"%(guide)s\">レビューガイドライン</a> をご覧ください。</p>"
 
 msgid "Reply to review by {0}"
-msgstr "{0} のレビューへの返信"
+msgstr "{0}のレビューへの返信"
 
 msgid "Write a Reply"
 msgstr "返信を書く"
@@ -6512,13 +6441,13 @@ msgstr "返信を削除"
 msgid "Delete review"
 msgstr "レビューを削除"
 
-# ページタイトル
 #. {0} is an add-on name.
+# ページタイトル
 msgid "{0} :: Reviews"
-msgstr "{0} :: レビュー"
+msgstr "{0}:: レビュー"
 
 msgid "Reviews for {0}"
-msgstr "{0} のレビュー"
+msgstr "{0}のレビュー"
 
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
@@ -6527,7 +6456,7 @@ msgstr[0] "このアドオンには <b>{0}</b> 件のレビューがあります
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
-msgstr "開発者 {0} さんからの返信"
+msgstr "開発者 {0}さんからの返信"
 
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
@@ -6552,7 +6481,7 @@ msgid_plural "{num} reviews"
 msgstr[0] "{num} 件のレビュー"
 
 msgid "Rated {0} out of 5 stars"
-msgstr "5 つ星中 {0} つの評価を受けています"
+msgstr "5 つ星中 {0}つの評価を受けています"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
@@ -6617,7 +6546,7 @@ msgid "Applications:"
 msgstr "アプリケーション:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "次の期限以内に開発者の応答が必要..."
 
 msgid "days"
 msgstr "日"
@@ -6673,7 +6602,7 @@ msgid "Is locked by a reviewer."
 msgstr "審査担当者によってロックされています。"
 
 msgid "Has auto-approval disabled flag set."
-msgstr ""
+msgstr "自動承認無効フラグが設定されています。"
 
 msgid "Duplicate Submission"
 msgstr "重複登録"
@@ -6705,17 +6634,17 @@ msgstr "たった今"
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] "{0} 分"
+msgstr[0] "{0}分"
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] "{0} 時間"
+msgstr[0] "{0}時間"
 
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] "{0} 日"
+msgstr[0] "{0}日"
 
 msgid "Last Review"
 msgstr "最後のレビュー"
@@ -6772,7 +6701,7 @@ msgid "Approve Content"
 msgstr "コンテンツを承認"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
+msgstr "これによって、開発者に通知することなく、最新の公開バージョンの内容を承認したことが記録されます。"
 
 msgid "Static Themes and Legacy Add-ons"
 msgstr "静的テーマと旧式アドオン"
@@ -6833,10 +6762,10 @@ msgid "Deleted Themes Log"
 msgstr "削除されたテーマログ"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "ユーザー評価管理"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "管理待ち評価 ({0})"
 
 msgid "Moderated Review Log"
 msgstr "管理者審査履歴"
@@ -6869,11 +6798,11 @@ msgid "Review successfully processed."
 msgstr "審査処理が完了しました。"
 
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "審査ロックの限度に達しました"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} 個のテーマの審査が完了しました (+{1} ポイント、{2} 合計)。"
+msgstr[0] "{0}個のテーマの審査が完了しました (+{1} ポイント、{2} 合計)。"
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr "あなたのテーマロックが解放され、他の審査担当者がこれらの解放されたテーマを審査できるようになりました。以下の表に反映された変更を見るにはページを再読み込みする必要があります。"
@@ -6922,7 +6851,7 @@ msgid "Rendered Preview"
 msgstr "描画プレビュー"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "背景ファイル {0}/ {1} - {2}"
 
 msgid "More about this add-on"
 msgstr "このアドオンの詳細"
@@ -6972,7 +6901,7 @@ msgstr "レビュー投稿者"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "アドオンのタイトル"
@@ -7020,7 +6949,7 @@ msgid "Monthly Performance"
 msgstr "月別パフォーマンス"
 
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "全期間ポイントの種類別内訳"
 
 msgid "Total"
 msgstr "合計"
@@ -7048,14 +6977,14 @@ msgstr "管理アクション:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "%(user)s、%(date)s、%(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">フラグを付けたユーザー: %(user)s、%(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "すべてのレビューが審査されました。お疲れ様です！"
 
 msgid "There are currently no add-ons of this type to review."
 msgstr "現在審査待ちのこの種類のアドオンはありません。"
@@ -7075,7 +7004,7 @@ msgstr "コンテンツ審査 {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
-msgstr "{0} を審査"
+msgstr "{0}を審査"
 
 msgid "Add-on user change history"
 msgstr "アドオンユーザー変更履歴"
@@ -7088,7 +7017,7 @@ msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgstr "バージョン %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "(Confirmed)"
-msgstr ""
+msgstr "(確認済み)"
 
 msgid "Compatibility:"
 msgstr "互換性:"
@@ -7133,7 +7062,7 @@ msgid "The whiteboard is the place to exchange information relevant to this addo
 msgstr "ホワイトボードは、開発者と審査担当者の間で (バージョンに関係なく) このアドオンに関する情報を交換する場所です。これは両者が閲覧、編集可能となっています。"
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "非公開ホワイトボードは、バージョンに依存せず、審査担当者間で情報を交換するために使用します。客観的な表現を守ってください。審査担当者のみに表示されます。"
 
 msgid "Update whiteboards"
 msgstr "ホワイトボードを更新"
@@ -7142,16 +7071,16 @@ msgid "More Actions"
 msgstr "その他のアクション"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "新しく表示されたバージョンについて通知する"
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "アドオンを強制無効化"
 
 msgid "Force-enable add-on"
 msgstr "アドオンを強制有効化"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "自動承認を無効化"
 
 msgid "Enable Auto-Approval"
 msgstr "自動承認を有効化"
@@ -7200,7 +7129,7 @@ msgstr "この期間に審査が行われたアドオンはありません。"
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] が %(object)s を %(date)s に報告"
 
 msgid "Dismiss this announcement"
 msgstr "このお知らせを削除"
@@ -7219,7 +7148,7 @@ msgstr "許可設定:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>ユーザー: %(user)s、%(date)s</div>"
 
 msgid "Older"
 msgstr "前へ"
@@ -7248,7 +7177,7 @@ msgstr "あなたは <span>{0}</span> ポイント獲得しています。"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s、%(date)s [%(ip_address)s]"
 
 msgid "Date Deleted"
 msgstr "削除された日"
@@ -7257,7 +7186,7 @@ msgid "No deleted themes found for this period."
 msgstr "この期間に削除されたテーマはありません。"
 
 msgid "Theme Review History for {0}"
-msgstr "{0} のテーマ審査履歴"
+msgstr "{0}のテーマ審査履歴"
 
 msgid "Review Date"
 msgstr "審査日時"
@@ -7308,7 +7237,7 @@ msgid "Commit Reviews"
 msgstr "審査を実行"
 
 msgid "{0} out of {1} reviewed"
-msgstr "{1} 個中 {0} 個が審査済みです"
+msgstr "{1}個中 {0} 個が審査済みです"
 
 msgid "There are currently no Themes to review."
 msgstr "現在審査待ちのテーマはありません。"
@@ -7326,7 +7255,7 @@ msgid "Reviewers' Guide"
 msgstr "審査担当者用ガイド"
 
 msgid "Theme Review for {0}"
-msgstr "{0} のテーマ審査"
+msgstr "{0}のテーマ審査"
 
 msgid "(Probable Duplicate Submission)"
 msgstr "(重複登録の可能性)"
@@ -7392,7 +7321,7 @@ msgid "Updates"
 msgstr "更新"
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "クエリの最長文字数を超過しました。"
 
 msgid "search for add-ons"
 msgstr "アドオンを検索"
@@ -7444,7 +7373,7 @@ msgstr "テーマの検索結果"
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
-msgstr "{0} :: 検索"
+msgstr "{0}:: 検索"
 
 #. {0} is a search term, such as Firebug.
 msgid "Search Results for \"{0}\""
@@ -7452,7 +7381,7 @@ msgstr "「{0}」の検索結果"
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
-msgstr "{0} :: タグ"
+msgstr "{0}:: タグ"
 
 #. {0} is a tag, such as jetpack.
 msgid "Search Results for tag \"{0}\""
@@ -7482,7 +7411,7 @@ msgstr "<strong>{3}</strong> の検索結果: {2} 件中 {0} 件から {1} 件�
 # {1} is a number
 # {2} is a number
 msgid "Showing {0} - {1} of {2} results"
-msgstr "検索結果 {2} 件中 {0} から {1} 件までを表示しています"
+msgstr "検索結果 {2}件中 {0} から {1} 件までを表示しています"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "サイトメンテナンスの間、いくつかの機能が一時的に無効になっています。まもなく復旧する予定です。"
@@ -7498,7 +7427,7 @@ msgstr "マルチパートファイルデータに「upload」キーが含まれ
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "次のステータスのアドオンにバージョンを追加することはできません: %s。"
 
 msgid "Version does not match the manifest file."
 msgstr "バージョンがマニフェストファイルと一致しません。"
@@ -7510,13 +7439,13 @@ msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "GUID を省略できるのは WebExtensions のみです"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "64 文字を超える場合は、マニフェストでアドオン GUID を指定してください。"
 
 msgid "Invalid GUID in URL"
 msgstr "URL 内の不正な GUID"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "メタデータが不足しているため、リストされたバージョンを API を介してこのアドオンに追加することはできません。ウェブサイトから送信してください"
 
 msgid "No uploaded file for that addon and version."
 msgstr "このアドオンとバージョンのファイルはまだアップロードされていません。"
@@ -7586,17 +7515,17 @@ msgstr "エクスポート"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr "{0} :: 統計ダッシュボード :: {1} 用アドオン"
+msgstr "{0}:: 統計ダッシュボード :: {1} 用アドオン"
 
 msgid "{0} :: Statistics Dashboard"
-msgstr "{0} :: 統計ダッシュボード"
+msgstr "{0}:: 統計ダッシュボード"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr "統計ダッシュボード :: {0} 用アドオン"
+msgstr "統計ダッシュボード :: {0}用アドオン"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
-msgstr "{0} の統計情報"
+msgstr "{0}の統計情報"
 
 msgid "Statistics Dashboard"
 msgstr "統計情報ダッシュボード"
@@ -7682,7 +7611,7 @@ msgstr "ダウンロード数はどのように数えられていますか？"
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
-msgstr ""
+msgstr "<h2>ダウンロードのカウント方法は？</h2> <p> ダウンロード数は毎晩更新され、アップデートではなくオリジナルのアドオンのダウンロードのみが含まれます。ダウンロードは参照元によって分類できます。</p>"
 
 msgid "User languages by Date"
 msgstr "日別ユーザー使用言語数"
@@ -7731,12 +7660,16 @@ msgstr "外部参照元のトラッキングについて..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
+"<h2>外部参照元のトラッキング</h2> <p> ブログやウェブサイトなどの外部サイトからアドオンの詳細ページにリンクしている場合や、ファイルに直接リンクしている場合は、追加のダウンロード参照元として追跡するパラメータをこのページに追加できます。たとえば、次のリンクがブログの参照元として表示されます。<dl> <dt>アドオンの詳細ページ</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>直接ファイルリンク</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> 「external-」で始まる src パラメーター (追加文字数は最大 61 文字) だけが追跡されます。「external-blog」、「external-sidebar」、「external-campaign225」などの、 「external-」以降の任意のテキストを使用して参照元を記述できます。次の URL に使える文字が使用できます:"
+" <code>a-z A-Z - . _ ~ %% +</code>。"
 
 msgid "Add-on Status by Date"
 msgstr "日別アドオンステータス"
@@ -7753,12 +7686,12 @@ msgstr "日別ユーザー数とは？"
 msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
-msgstr ""
+msgstr "<h2>日別ユーザー数とは？</h2> <p> このサイトからインストールされたテーマは、1 日に 1 回更新を確認します。これらの更新 ping の総数は、1 日のアクティブユーザー数、または日毎にテーマを使用しているユーザーの総数として知られています。</p>"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
+msgstr "<h2>日別ユーザー数とは？</h2> <p> このサイトからダウンロードされたアドオンは、1 日に 1 回更新を確認します。これらの更新 ping の総数は、1 日のアクティブユーザー数として知られています。日別ユーザー数は、アドオンのバージョン、オペレーティングシステム、アドオンの状況、アプリケーション、ロケールによって分類できます。</p>"
 
 msgid "User Signups by Date"
 msgstr "日別ユーザー登録者数"
@@ -7798,7 +7731,7 @@ msgid "Choose a category"
 msgstr "カテゴリーを選択"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr ""
+msgstr "新しいウェブサイトはモバイルとデスクトップのクライアントに対応"
 
 msgid "View the new site"
 msgstr "新しいサイトを見る"
@@ -7810,6 +7743,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
+"<a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons 表示-継承ライセンス "
+"3.0</a> 以降に定めがある場合を除きます。"
 
 # フッタ左端
 msgid "get to know <b>add-ons</b>"
@@ -7838,25 +7773,25 @@ msgstr "他の言語"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
-msgstr "{0} アドオンのホームページへ戻る"
+msgstr "{0}アドオンのホームページへ戻る"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> アドオン"
+msgstr "<img alt=\"Firefox\" src=\"{0}\">アドオン"
 
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> アドオン"
+msgstr "<img alt=\"Thunderbird\" src=\"{0}\">アドオン"
 
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> アドオン"
+msgstr "<img alt=\"SeaMonkey\" src=\"{0}\">アドオン"
 
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> アドオン"
+msgstr "<img alt=\"\" src=\"{0}\">アドオン"
 
 msgid "My Account"
 msgstr "マイアカウント"
 
 msgid "Welcome, {0}"
-msgstr "ようこそ {0} さん"
+msgstr "ようこそ {0}さん"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -7868,7 +7803,7 @@ msgstr "ここで公開されている数千ものアドオンを試すには、
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
-msgstr "{0} アドオンサイトへようこそ。"
+msgstr "{0}アドオンサイトへようこそ。"
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr "数千もの追加機能やデザインから好きなものを選んで、Firefox を自分のものにしましょう。"
@@ -7937,7 +7872,7 @@ msgid "Profile Photo"
 msgstr "プロファイル写真"
 
 msgid "Addons"
-msgstr ""
+msgstr "アドオン"
 
 msgid "Ratings"
 msgstr "レーティング"
@@ -7958,7 +7893,7 @@ msgid "Occupation"
 msgstr "職業"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "Firefox アカウントでメールアドレスを変更できます。"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "この URL は不正な形式です。有効な URL は http://example.com/my_page のような形式です。"
@@ -8050,16 +7985,14 @@ msgstr "ユーザーアカウントを削除"
 msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
-msgstr ""
-"あなたが <a href=\"%(link)s\">アドオンの作者</a> として登録されている場合、アカウントを削除することはできません。アカウントを削除するには、開発グループに参加している他の人に頼んで、あなたをアドオン"
-"の作者から外してもらってください。そうすれば、ここでアカウントの削除が可能になります。"
+msgstr "あなたが <a href=\"%(link)s\">アドオンの作者</a> として登録されている場合、アカウントを削除することはできません。アカウントを削除するには、開発グループに参加している他の人に頼んで、あなたをアドオンの作者から外してもらってください。そうすれば、ここでアカウントの削除が可能になります。"
 
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
 msgstr "「削除」をクリックすることで、あなたのアカウントは <strong>永久に削除</strong> されます。つまり、"
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "このメールアドレスで %(site)s に再度ログインすると、このアカウントとは関連のない、まったく新しいアカウントが作成されます。"
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "あなたのレビューと評価は削除されませんが、あなたとの関連づけは失われます。"
@@ -8162,7 +8095,7 @@ msgid "Password Reset"
 msgstr "パスワードの変更"
 
 msgid "User Info for {0}"
-msgstr "{0} のユーザー情報"
+msgstr "{0}のユーザー情報"
 
 msgid "Edit profile"
 msgstr "プロファイルを編集"
@@ -8213,7 +8146,7 @@ msgid "Please describe why you are reporting this user, such as for spam or an i
 msgstr "スパムもしくは不適切な写真など、このユーザーを報告する理由を記入してください。"
 
 msgid "Report user {0}"
-msgstr "ユーザー {0} を報告"
+msgstr "ユーザー {0}を報告"
 
 msgid "Unsubscribe"
 msgstr "購読解除"
@@ -8257,7 +8190,7 @@ msgid "Number of add-ons developed"
 msgstr "開発したアドオンの数"
 
 msgid "{0} add-ons"
-msgstr "{0} 個のアドオン"
+msgstr "{0}個のアドオン"
 
 #, python-format
 msgid "%(num)s theme"
@@ -8279,7 +8212,7 @@ msgstr "その他"
 # {0} is the add-on name
 #, python-format
 msgid "%s Version History"
-msgstr "%s のバージョン履歴"
+msgstr "%sのバージョン履歴"
 
 msgid "Version History with Changelogs"
 msgstr "バージョン履歴・変更点"
@@ -8298,10 +8231,10 @@ msgstr "リリース日: {0}"
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "ソースコードは <a href=\"%(url)s\">%(name)s</a> の下で公開されています"
 
-# {0} is the add-on name
 #. {0} is an add-on name.
+# {0} is the add-on name
 msgid "{0} Version History"
-msgstr "{0} のバージョン履歴"
+msgstr "{0}のバージョン履歴"
 
 #. {0} is a number.
 msgid "<b>{0}</b> version"
