@@ -1006,9 +1006,10 @@ class Addon(OnChangeMixin, ModelBase):
     @staticmethod
     def attach_related_versions(addons, addon_dict=None):
         if addon_dict is None:
-            addon_dict = dict((a.id, a) for a in addons)
+            addon_dict = {addon.id: addon for addon in addons}
 
-        all_ids = set(filter(None, (a._current_version_id for a in addons)))
+        all_ids = set(
+            filter(None, (addon._current_version_id for addon in addons)))
         versions = list(Version.objects.filter(id__in=all_ids).order_by())
         for version in versions:
             try:
@@ -1024,7 +1025,7 @@ class Addon(OnChangeMixin, ModelBase):
     @staticmethod
     def attach_listed_authors(addons, addon_dict=None):
         if addon_dict is None:
-            addon_dict = dict((a.id, a) for a in addons)
+            addon_dict = {addon.id: addon for addon in addons}
 
         qs = (UserProfile.objects
               .filter(addons__in=addons, addonuser__listed=True)
@@ -1058,7 +1059,7 @@ class Addon(OnChangeMixin, ModelBase):
     @staticmethod
     def attach_static_categories(addons, addon_dict=None):
         if addon_dict is None:
-            addon_dict = dict((a.id, a) for a in addons)
+            addon_dict = {addon.id: addon for addon in addons}
 
         qs = (
             AddonCategory.objects
@@ -1323,7 +1324,7 @@ class Addon(OnChangeMixin, ModelBase):
 
         personas = (Addon.objects.filter(type=amo.ADDON_PERSONA)
                     .extra(select={'last_updated': 'created'}))
-        return dict(public=public, exp=exp, personas=personas)
+        return {'public': public, 'exp': exp, 'personas': personas}
 
     @cached_property
     def all_categories(self):
@@ -1525,14 +1526,14 @@ def watch_disabled(old_attr=None, new_attr=None, instance=None, sender=None,
         old_attr = {}
     if new_attr is None:
         new_attr = {}
-    attrs = dict((k, v) for k, v in old_attr.items()
-                 if k in ('disabled_by_user', 'status'))
+    attrs = {key: value for key, value in old_attr.items()
+             if key in ('disabled_by_user', 'status')}
     if Addon(**attrs).is_disabled and not instance.is_disabled:
-        for f in File.objects.filter(version__addon=instance.id):
-            f.unhide_disabled_file()
+        for file_ in File.objects.filter(version__addon=instance.id):
+            file_.unhide_disabled_file()
     if instance.is_disabled and not Addon(**attrs).is_disabled:
-        for f in File.objects.filter(version__addon=instance.id):
-            f.hide_disabled_file()
+        for file_ in File.objects.filter(version__addon=instance.id):
+            file_.hide_disabled_file()
 
 
 def attach_translations(addons):
@@ -1541,7 +1542,7 @@ def attach_translations(addons):
 
 
 def attach_tags(addons):
-    addon_dict = dict((a.id, a) for a in addons)
+    addon_dict = {addon.id: addon for addon in addons}
     qs = (Tag.objects.not_denied().filter(addons__in=addon_dict)
           .values_list('addons__id', 'tag_text'))
     for addon, tags in sorted_groupby(qs, lambda x: x[0]):
@@ -2065,7 +2066,7 @@ class CompatOverride(ModelBase):
         if not overrides:
             return
 
-        id_map = dict((o.id, o) for o in overrides)
+        id_map = {override.id: override for override in overrides}
         qs = CompatOverrideRange.objects.filter(compat__in=id_map)
 
         for compat_id, ranges in sorted_groupby(qs, 'compat_id'):
