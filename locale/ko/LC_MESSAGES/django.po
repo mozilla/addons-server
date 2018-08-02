@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-02 04:12+0000\n"
+"PO-Revision-Date: 2018-08-02 04:17+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -1815,27 +1815,22 @@ msgid "Information request removed"
 msgstr "추가 정보 필요"
 
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version}의 관리자 심사가 요청되었습니다."
+msgstr "{addon} {version}의 관리자 부가 기능 심사가 요청되었습니다."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "상급 심사 요청됨"
+msgstr "관리자 부가 기능 심사 요청됨"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version}의 심사가 요청되었습니다."
+msgstr "{addon} {version}의 관리자 내용 심사가 요청되었습니다."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "상급 심사 요청됨"
+msgstr "관리자 내용 심사 요청됨"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "{addon} {version}의 심사가 요청되었습니다."
+msgstr "{addon} {version}의 관리자 테마 심사가 요청되었습니다."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "심사 요청됨"
+msgstr "관리자 테마 심사 요청됨"
 
 #, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
