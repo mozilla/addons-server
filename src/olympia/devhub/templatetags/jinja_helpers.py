@@ -53,12 +53,6 @@ def docs_page_title(context, title=None):
 
 
 @library.global_function
-@library.render_with('devhub/includes/source_form_field.html')
-def source_form_field(field):
-    return {'field': field}
-
-
-@library.global_function
 @library.render_with('devhub/versions/file_status_message.html')
 def file_status_message(file):
     choices = File.STATUS_CHOICES

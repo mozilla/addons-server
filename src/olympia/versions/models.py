@@ -141,8 +141,7 @@ class Version(OnChangeMixin, ModelBase):
         return self
 
     @classmethod
-    def from_upload(cls, upload, addon, platforms, channel,
-                    source=None, parsed_data=None):
+    def from_upload(cls, upload, addon, platforms, channel, parsed_data=None):
         """
         Create a Version instance and corresponding File(s) from a
         FileUpload, an Addon, a list of platform ids, a channel id and the
@@ -170,7 +169,6 @@ class Version(OnChangeMixin, ModelBase):
             addon=addon,
             version=parsed_data['version'],
             license_id=license_id,
-            source=source,
             channel=channel,
         )
         log.info(

@@ -1,0 +1,91 @@
+{% extends "devhub/addons/submit/base.html" %}
+
+{% block title %}{{ dev_page_title(_('Source Code Upload'), addon) }}{% endblock %}
+
+{% block primary %}
+
+{% set channel_param = 'listed' if channel == amo.RELEASE_CHANNEL_LISTED else 'unlisted' %}
+
+<form method="post" enctype="multipart/form-data" id="submit-source">
+    {% csrf_token %}
+    <h3>{{ _('Submit Source Code') }}</h3>
+    <div>
+        {{ form.non_field_errors() }}
+        <p>
+        {% trans %}
+            You may need to submit source code. If you don’t submit the correct
+            source code now, your add-on may be removed from the site!
+        {% endtrans %}
+        </p>
+        <p id="source-code-submission-question">
+        {% trans a_attrs = 'href="https://developer.mozilla.org/en-US/Add-ons/Source_Code_Submission" target="_blank" rel="noopener noreferrer"'|safe %}
+            Please review the <a {{ a_attrs }}>source code submission policy</a>. Do you use any of the following?
+        {% endtrans %}
+        </p>
+        <ul id="source-code-example">
+            <li>{% trans %}Code minifiers or obfuscators{% endtrans %}</li>
+            <li>
+            {% trans a_attrs = 'href="https://webpack.js.org/" target="_blank" rel="noopener noreferrer"'|safe %}
+                Tools that combine multiple files into a single file, such as <a {{ a_attrs }}>webpack</a>
+            {% endtrans %}
+            </li>
+            <li>{% trans %}Web template engines, both for HTML and CSS{% endtrans %}</li>
+            <li>{% trans %}Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on{% endtrans %}</li>
+        </ul>
+        <p id="id_has_source">
+            {% for radio in form.has_source %}
+                {{ radio }}
+            {% endfor %}
+            {{ form.has_source.errors }}
+        </p>
+    </div>
+    <div id="option_no_source">
+        <p>
+        {% trans %}
+            You do not need to submit Source Code, and you’re ready for the next step.
+        {% endtrans %}
+        </p>
+    </div>
+    <div id="option_yes_source">
+        <p id="submission-header">
+        {% trans a_attrs = 'href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/Source_Code_Submission" target="_blank" rel="noopener noreferrer"'|safe %}
+            Your submission requires source code. The source code must meet <a {{ a_attrs }}>policy requirements</a>, which includes:
+        {% endtrans %}
+        </p>
+        <ul>
+            <li>{% trans %}Step-by-step build instructions to create an exact copy of the add-on code.{% endtrans %}</li>
+            <li>{% trans %}A build script that executes all necessary technical steps.{% endtrans %}</li>
+            <li>{% trans %}Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated.{% endtrans %}</li>
+            <li>{% trans %}Operating system and build environment requirements.{% endtrans %}</li>
+            <li>{% trans %}Details (including required version and installation instructions), of any programs used in the build process (for example: node and npm version used).{% endtrans %}</li>
+        </ul>
+        <p>
+            <span id="readme-instructions">
+            {% trans %}
+                Include instructions in a README file in the source code,
+            {% endtrans %}
+            </span>
+            {% trans %}
+                or in reviewer notes on the next page (if applicable).
+            {% endtrans %}
+        </p>
+        <p>
+            <label for="{{ form.source.auto_id }}">{{ _("Upload Source code:") }}</label>
+            {{ form.source.errors }}
+            {{ form.source }}
+        </p>
+    </div>
+
+    <div class="submission-buttons addon-submission-field">
+      <button class="delete-button" type="submit"
+              formaction="{{ url('devhub.addons.cancel', addon.slug) }}">
+          {{ _('Cancel and Disable Version') }}
+      </button>
+      &nbsp;
+      <button type="submit">
+        {{ _('Continue') }}
+      </button>
+    </div>
+  </form>
+
+{% endblock primary %}
