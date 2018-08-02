@@ -1032,12 +1032,13 @@ class Addon(OnChangeMixin, ModelBase):
               .extra(select={'addon_id': 'addons_users.addon_id',
                              'position': 'addons_users.position'}))
         qs = sorted(qs, key=lambda u: (u.addon_id, u.position))
+        seen = set()
         for addon_id, users in itertools.groupby(qs, key=lambda u: u.addon_id):
             addon_dict[addon_id].listed_authors = list(users)
-            addon_dict[addon_id] = None
+            seen.add(addon_id)
         # set listed_authors to empty list on addons without listed authors.
         [setattr(addon, 'listed_authors', []) for addon in addon_dict.values()
-         if addon is not None]
+         if addon.id not in seen]
 
     @staticmethod
     def attach_previews(addons, addon_dict=None, no_transforms=False):
@@ -1049,12 +1050,13 @@ class Addon(OnChangeMixin, ModelBase):
         if no_transforms:
             qs = qs.no_transforms()
         qs = sorted(qs, key=lambda x: (x.addon_id, x.position, x.created))
+        seen = set()
         for addon_id, previews in itertools.groupby(qs, lambda x: x.addon_id):
             addon_dict[addon_id]._all_previews = list(previews)
-            addon_dict[addon_id] = None
+            seen.add(addon_id)
         # set _all_previews to empty list on addons without previews.
         [setattr(addon, '_all_previews', []) for addon in addon_dict.values()
-         if addon is not None]
+         if addon.id not in seen]
 
     @staticmethod
     def attach_static_categories(addons, addon_dict=None):
