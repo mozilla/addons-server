@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-02 11:53+0000\n"
+"PO-Revision-Date: 2018-08-02 12:09+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4861,7 +4861,7 @@ msgstr "Diversifiez les émoticônes que vous utilisez {start_sub_heading}avec {
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr "Découvrez des informations sur les personnes indélicates qui suivent vos activités sur le Web et apprenez comment ils risquent de partager vos informations."
+msgstr "Découvrez qui piste vos activités sur le Web et apprenez comment ils risquent de divulguer vos informations."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4870,11 +4870,11 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "Naviguez sur le Web avec une identité d'emprunt. Vous pouvez même faire croire que vous vous connectez à partir d'un autre pays..."
+msgstr "Naviguez sur le Web avec une identité d’emprunt. Vous pouvez même faire croire que vous vous connectez à partir d’un autre pays…"
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Un ensemble de tuiles élégant et efficace vous permet d'accéder à vos sites préférés, aux onglets fermés récemment, etc."
+msgstr "Un ensemble de tuiles élégant et efficace vous permet d’accéder à vos sites préférés, aux onglets fermés récemment, etc."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4883,7 +4883,7 @@ msgstr "Diversifiez les émoticônes que vous utilisez {start_sub_heading}avec {
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr "Désignez une page d'accueil pour vos nouveaux onglets."
+msgstr "Désignez une page d’accueil pour vos nouveaux onglets."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4892,7 +4892,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr "En convertissant vos onglets ouverts en liste, vous pourrez les gérer plus facilement (et vous constaterez que Firefox est plus rapide !)."
+msgstr "En convertissant vos onglets ouverts en liste, vous pourrez les gérer plus facilement (et vous constaterez que Firefox est plus rapide !)."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4901,7 +4901,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
-msgstr "Gérez vos téléchargements à l'aide d'une barre d'état, d'une page d'historique, etc."
+msgstr "Gérez vos téléchargements à l’aide d’une barre d’état, d’une page d’historique, etc."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4910,7 +4910,7 @@ msgstr "Effectuez des captures d’écran {start_sub_heading}avec {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr "Le contenu de cette page Web vous intéresse ? Enregistrez-le dans OneNote pour pouvoir le modifier, l'annoter, etc."
+msgstr "Le contenu de cette page web vous intéresse ? Enregistrez-le dans OneNote pour pouvoir le modifier, l’annoter, etc."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4919,7 +4919,7 @@ msgstr "Personnalisez vos onglets {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
-msgstr "Bloquez les trackers qui se précipitent sur votre navigateur chaque fois que vous cliquez sur un résultat de recherche Google ou Yandex."
+msgstr "Bloquez les traqueurs qui s’invitent dans votre navigateur chaque fois que vous cliquez sur un résultat de recherche Google ou Yandex."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4928,7 +4928,7 @@ msgstr "Personnalisez vos onglets {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr "Utilisez la souris pour fermer les onglets, revenir en arrière d'une page, recharger un contenu, etc."
+msgstr "Utilisez la souris pour fermer les onglets, revenir en arrière d’une page, actualiser la page, etc."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4946,7 +4946,7 @@ msgstr "Effectuez des captures d’écran {start_sub_heading}avec {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr "Vous pouvez réduire la luminosité d'affichage des pages Web : vos yeux vous diront merci !"
+msgstr "Vous pouvez réduire la luminosité d’affichage des pages web : vos yeux vous diront merci !"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4955,7 +4955,7 @@ msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr "Bloquez toutes les fenêtres pop-up qui s'affichent par défaut, puis sélectionnez celles que vous souhaitez ouvrir."
+msgstr "Bloquez toutes les fenêtres pop-up par défaut, puis sélectionnez celles que vous souhaitez ouvrir."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4964,7 +4964,7 @@ msgstr "Personnalisez vos onglets {start_sub_heading}avec {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
-msgstr "Changez la présentation des sites Web (couleurs, fond des pages, etc.)."
+msgstr "Changez la présentation des sites web (couleurs, fond des pages, etc.)."
 
 #. editorial content for the discovery pane.
 #, fuzzy
