@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-03 09:31+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2018-08-01 20:02+0000\n"
+"Last-Translator: Alpha <adrien.gat@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -3900,12 +3900,11 @@ msgstr ""
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, trouver des réponses à vos questions de développement et vous tenir informé des nouvelles et des évènements utiles pour les développeurs "
 "d’extension."
 
-#, fuzzy
 msgid "View Resources for Publishers"
-msgstr "Voir les statistiques de l’utilisateur"
+msgstr "Voir les ressources pour les éditeurs"
 
 msgid "Welcome Back"
-msgstr ""
+msgstr "Heureux de vous revoir !"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr "Aidez les utilisateurs à découvrir votre extension en rédigeant une description attrayante."
@@ -5845,9 +5844,8 @@ msgid "Defend yourself against the sneakiest trackers."
 msgstr "Défendez-vous contre les traqueurs les plus sournois."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Effacez vos traces {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
@@ -6278,11 +6276,9 @@ msgstr "Testez les modules du site. Les auteurs sont plus enclins à améliorer 
 msgid "I have a question"
 msgstr "J’ai une question"
 
-#, fuzzy, python-format
+#, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr ""
-"Un bon point de départ est notre <a href=\"%(faq_url)s\"><abbr title=\"Foire Aux Questions\">FAQ</abbr></a>. Si vous n’y trouvez pas votre réponse, vous pouvez toujours <a href=\"%(forum_url)s\"> "
-"demander dans nos forums</a>."
+msgstr "Un bon point de départ est le <a href=\"%(sumo_url)s\">Support</a> Mozilla. Si jamais vous n’y trouvez pas de réponse, vous pouvez <a href=\"%(forum_url)s\"> poser votre question sur nos forums</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -8093,9 +8089,8 @@ msgstr "Modules complémentaires"
 msgid "Ratings"
 msgstr "Notes"
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "Activité"
+msgstr "Journaux d’activité"
 
 msgid "Email must be {email}."
 msgstr "L’adresse électronique doit être {email}."
