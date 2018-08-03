@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-03 13:51+0000\n"
+"PO-Revision-Date: 2018-08-03 14:09+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4760,7 +4760,7 @@ msgstr "Készítsén képernyőképeket weblapokról, végezzen változtatásoka
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Egy nagyobb tudású csak windowsos letöltőeszköz."
 
 #. editorial content for the discovery pane.
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4768,7 +4768,7 @@ msgstr "Tudja meg kik követik {start_sub_heading}a(z) {addon_name} kiegészít�
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "Tudja meg, hogy kik követik Önt, és hogy kivel oszthatják meg az információit."
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4776,11 +4776,11 @@ msgstr "Böngésszen névtelenül {start_sub_heading}a(z) {addon_name} kiegész�
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Böngésszen rejtett személyazonossággal az interneten – akár úgy is tűnhet, hogy másik országból böngészik."
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Érje el a kedvenc oldalait, nemrég bezárt lapjait, és így tovább – egyetlen gyönyörű mozaikos elrendezésből."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4788,7 +4788,7 @@ msgstr "Állítsa be a kezdőlapját {start_sub_heading}a(z) {addon_name} kiegé
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "Állítson be egyéni kezdőlapot az új lapjainak."
 
 #. editorial content for the discovery pane.
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4796,7 +4796,7 @@ msgstr "Listázza a lapjait {start_sub_heading}a(z) {addon_name} kiegészítőve
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "Alakítsa az összes nyitott lapját egy listává, kezelje őket egyszerűen és gyorsítsa fel a Firefoxot."
 
 #. editorial content for the discovery pane.
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
