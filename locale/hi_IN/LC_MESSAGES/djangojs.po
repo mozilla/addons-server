@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-03 10:54+0000\n"
+"PO-Revision-Date: 2018-08-03 13:30+0000\n"
 "Last-Translator: Mahtab <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -53,8 +53,8 @@ msgstr "हमने आपके ऐड-ऑन को संसोधित क
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "आपका ऐड-ऑन {0} त्रुटि के कारण मान्यकरण में असफल रहा."
+msgstr[1] "आपका ऐड-ऑन {0} त्रुटियों के कारण मान्यकरण में असफल रहा."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -62,13 +62,13 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "See full validation report"
-msgstr ""
+msgstr "पूर्ण मान्यकरण रिपोर्ट देखें"
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "{0} कि पुष्ठी जरी है"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "आपका ऐड-ऑन अधिकतम आकार {0} से अधिक है."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr ""
