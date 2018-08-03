@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-02 15:08+0000\n"
+"PO-Revision-Date: 2018-08-03 13:51+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4668,7 +4668,7 @@ msgstr "Válassza külön az online életeit {start_sub_heading}a(z) {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr ""
+msgstr "Privát módon különböztösse meg az online személyiségeit – munka, személyes, stb. – színkódolt lapok segítségével, melyek felosztják a digitális sütilábnyomát."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4740,7 +4740,7 @@ msgstr "Gyors fordítások {start_sub_heading}a(z) {addon_name} kiegészítővel
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "Fordítsa le a kijelölt szöveget vagy az egész weblapot"
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4748,7 +4748,7 @@ msgstr "Javítsa a Redditet {start_sub_heading}a(z) {addon_name} kiegészítőve
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Módosítsa a Redditen szörfölését, címkék használatával és egyebekkel."
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4756,7 +4756,7 @@ msgstr "Rögzítse a webet {start_sub_heading}a(z) {addon_name} kiegészítővel
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Készítsén képernyőképeket weblapokról, végezzen változtatásokat, és ossza meg azokat."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
