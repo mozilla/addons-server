@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-03 20:22+0000\n"
+"PO-Revision-Date: 2018-08-03 20:54+0000\n"
 "Last-Translator: Dhiraj Kumar Singh <Singhdhiraj255@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -485,7 +485,7 @@ msgid "View statistics"
 msgstr ""
 
 msgid "Manage"
-msgstr ""
+msgstr "प्रबंधित करें"
 
 msgid "Add-on Review"
 msgstr ""
@@ -644,16 +644,16 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Not Reviewed"
-msgstr ""
+msgstr "असमीक्षित"
 
 msgid "Tools"
-msgstr ""
+msgstr "उपकरण"
 
 msgid "My Profile"
-msgstr ""
+msgstr "मेरी प्रोफ़ाइल"
 
 msgid "Account Settings"
-msgstr ""
+msgstr "खाता सेटिंग"
 
 msgid "My Collections"
 msgstr ""
@@ -984,16 +984,16 @@ msgid "This add-on already belongs to the collection"
 msgstr ""
 
 msgid "Added"
-msgstr ""
+msgstr "जोड़ा गया"
 
 msgid "Popularity"
-msgstr ""
+msgstr "लोकप्रियता"
 
 msgid "Name"
-msgstr ""
+msgstr "नाम"
 
 msgid "Collection created!"
-msgstr ""
+msgstr "संग्रह बनाया गया!"
 
 #, python-format
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
