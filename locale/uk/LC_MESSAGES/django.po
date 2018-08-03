@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-02 08:46+0000\n"
+"PO-Revision-Date: 2018-08-03 08:41+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4559,7 +4559,7 @@ msgstr "Простий переклад {start_sub_heading}за допомого
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Підсвічуйте текст на будь-якій веб-сторінці — або обирайте цілу сторінку — для миттєвого перекладу."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4567,7 +4567,7 @@ msgstr "Доторкніться до академічних знань {start_s
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
-msgstr ""
+msgstr "Отримайте доступ до понад 10 мільйонів дослідницьких видань."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4575,7 +4575,7 @@ msgstr "Налаштовуйте рухи миші {start_sub_heading}за до�
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "Ознайомтеся з новим способом навігації за допомогою понад 50 корисних рухів миші."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4583,7 +4583,7 @@ msgstr "Оптимізуйте відео {start_sub_heading}за допомог
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "Затемнюйте сторінку навколо відео-програвачів для зосередженого перегляду."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4593,7 +4593,7 @@ msgstr "Блокуйте рекламу {start_sub_heading}за допомого
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "Ecosia віддає 80% свого прибутку від пошуку на підтримку програм саджання дерев у всьому світі. Встановіть Ecosia безпосередньо в пошук Firefox"
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4601,7 +4601,7 @@ msgstr "Знаходьте втрачений веб-вміст  {start_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "Сторінка, яку ви шукаєте, не доступна? Спробуйте знайти її архівну або кешовану версію."
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4613,7 +4613,7 @@ msgstr "Збільшуйте зображення {start_sub_heading}за доп
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
-msgstr ""
+msgstr "Просто наведіть на зображення для його збільшення."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4621,7 +4621,7 @@ msgstr "Стирайте куки {start_sub_heading}за допомогою {ad
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "Автоматично стирайте куки після закриття вкладки."
 
 #. editorial content for the discovery pane.
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4629,7 +4629,7 @@ msgstr "Змінюйте розмір сторінки {start_sub_heading}за �
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "Простий спосіб змінювати розмір шрифту тексту будь-якої сторінки — чи навіть збільшувати увесь текст."
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4637,7 +4637,7 @@ msgstr "Блокуйте невидимі елементи стеження {sta
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "Зупиніть стеження й дізнайтеся більше про нього."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4645,7 +4645,7 @@ msgstr "Зберігайте текст {start_sub_heading}за допомого
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
-msgstr ""
+msgstr "Припиніть писати одне й те саме знову й знову! Якщо ви часто використовуєте однакові фрази в своїй роботі чи інших справах, збережіть їх та легко вставляйте за потреби."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4653,7 +4653,7 @@ msgstr "Блокуйте рекламу в електронній пошті {st
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Отримайте більше простору на екрані, прибравши рекламу з веб-версії своєї пошти."
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4661,7 +4661,7 @@ msgstr "Знаходьте свої вкладки {start_sub_heading}за до�
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr ""
+msgstr "Керуйте відкритими вкладками в охайній бічній панелі."
 
 #. editorial content for the discovery pane.
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
