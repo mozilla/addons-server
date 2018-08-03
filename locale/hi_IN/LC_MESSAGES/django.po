@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-03 20:54+0000\n"
+"PO-Revision-Date: 2018-08-03 21:09+0000\n"
 "Last-Translator: Dhiraj Kumar Singh <Singhdhiraj255@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -720,7 +720,7 @@ msgid "Page Not Found"
 msgstr ""
 
 msgid "Firefox Add-ons"
-msgstr ""
+msgstr "Firefox एड-ऑन‌्स"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
 msgstr ""
@@ -790,7 +790,7 @@ msgid "Are you human?"
 msgstr ""
 
 msgid "What's this?"
-msgstr ""
+msgstr "ये क्या है?"
 
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
@@ -801,26 +801,26 @@ msgid "Top Rated"
 msgstr ""
 
 msgid "Newest"
-msgstr ""
+msgstr "नवीनतम"
 
 msgid "Explore"
-msgstr ""
+msgstr "अन्वेषण करें"
 
 msgid "Extensions"
-msgstr ""
+msgstr "एक्स्टेंशन"
 
 #. {0} is a category name. Ex: "Sports"
 msgid "Themes"
-msgstr ""
+msgstr "प्रसंग"
 
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
 
 msgid "Collections"
-msgstr ""
+msgstr "संग्रह"
 
 msgid "Collections I've Made"
-msgstr ""
+msgstr "मेरे बनाए गए संग्रह"
 
 msgid "My Favorite Add-ons"
 msgstr ""
@@ -846,10 +846,10 @@ msgid "Jump to first page"
 msgstr ""
 
 msgid "Previous"
-msgstr ""
+msgstr "पिछला"
 
 msgid "Jump to last page"
-msgstr ""
+msgstr "अंतिम पृष्ठ पर जायें"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
@@ -865,16 +865,16 @@ msgid "{0} ago"
 msgstr ""
 
 msgid "Title"
-msgstr ""
+msgstr "शीर्षक"
 
 msgid "Body"
-msgstr ""
+msgstr "मुख्य भाग"
 
 msgid "Another Title"
-msgstr ""
+msgstr "अन्य शीर्षक"
 
 msgid "Another Body"
-msgstr ""
+msgstr "अन्य मुख्य भाग"
 
 msgid "Invalid Authorization header. No credentials provided."
 msgstr ""
@@ -942,16 +942,16 @@ msgid "Give your collection a name."
 msgstr ""
 
 msgid "URL:"
-msgstr ""
+msgstr "यूआरएल:"
 
 msgid "Describe your collection (no links allowed)."
 msgstr ""
 
 msgid "Privacy:"
-msgstr ""
+msgstr "गोपनीयता:"
 
 msgid "Icon"
-msgstr ""
+msgstr "प्रती‌क"
 
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
@@ -1056,10 +1056,10 @@ msgid "Make this Collection Public"
 msgstr ""
 
 msgid "More Options:"
-msgstr ""
+msgstr "अधिक विकल्प:"
 
 msgid "Edit Collection"
-msgstr ""
+msgstr "संग्रह संपादित करें"
 
 msgid "Delete Collection"
 msgstr ""
