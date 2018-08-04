@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-03 23:56+0000\n"
+"PO-Revision-Date: 2018-08-04 00:30+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4450,7 +4450,7 @@ msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με τ
 
 #. editorial content for the discovery pane.
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Ένα ελαφρύ και αποτελεσματικό πρόσθετο φραγής διαφημίσεων. Το uBlock Origin εξαναγκάζει χιλιάδες φίλτρα περιεχομένου χωρίς να καταναλώνει υπερβολική μνήμη."
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4458,7 +4458,7 @@ msgstr "Βελτίωση βίντεο {start_sub_heading}με το {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "Απολαύστε μια σουίτα νέων λειτουργιών στο YouTube, όπως λειτουργία κινηματογράφου, φραγή διαφημίσεων, έλεγχος αυτόματης αναπαραγωγής και άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
