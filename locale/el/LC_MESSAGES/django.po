@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-04 00:30+0000\n"
+"PO-Revision-Date: 2018-08-04 00:33+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4099,7 +4099,7 @@ msgstr ""
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
+msgstr "Λάβετε μέρος στη συζήτηση του <a href=\"%(forum_url)s\">φόρουμ</a> μας."
 
 msgid "Select a header image for your Theme."
 msgstr "Επιλέξτε μια εικόνα επικεφαλίδας για το θέμα σας."
@@ -5245,9 +5245,8 @@ msgid "Download video and/or audio."
 msgstr "Λήψη βίντεο και/ή ήχου."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Διαγράψτε τα ψηφιακά ίχνη σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Συλλογή υλικού ανάγνωσης {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
@@ -5609,9 +5608,8 @@ msgid "Password-protect your personal bookmarks."
 msgstr "Προστασία σελιδοδεικτών με κωδικό πρόσβασης."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Αποτροπή διαρροών διεύθυνσης IP {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
