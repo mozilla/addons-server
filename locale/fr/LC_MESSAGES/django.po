@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-01 19:47+0000\n"
+"PO-Revision-Date: 2018-08-01 20:05+0000\n"
 "Last-Translator: Alpha <adrien.gat@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4418,9 +4418,8 @@ msgid "Perform reverse image searches from an array of engines."
 msgstr "Effectuez des recherches inversées d’images depuis un ensemble de moteurs de recherche."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Bloquez les publicités et protégez votre vie privée {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
@@ -4436,27 +4435,24 @@ msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Vous avez ouvert un grand nombre d’onglets ? Organisez-les dans une barre latérale."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Empêchez Facebook de vous pister {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
 msgstr "Isolez votre identité Facebook dans un onglet contextuel distinct qui complique le pistage par Facebook de votre navigation sur le Web."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Simplifiez vos recherches {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
 msgstr "Surlignez du texte dans une page web, puis recherchez ce texte sur différents moteurs."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Soyez informé en temps réel de la météo {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
