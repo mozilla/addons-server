@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-01 20:05+0000\n"
-"Last-Translator: Alpha <adrien.gat@gmail.com>\n"
+"PO-Revision-Date: 2018-08-04 18:32+0000\n"
+"Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -4518,9 +4518,8 @@ msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr "Surlignez n’importe quel extrait de texte, puis effectuez un clic droit pour lancer une recherche d’images."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Profitez de marques-pages visuels {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4537,54 +4536,48 @@ msgid "Automatically add Britannica facts to your search results."
 msgstr "Faites apparaître les contenus de l’Encyclopædia Britannica dans vos résultats de recherche."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Éliminez les pubs YouTube {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
 msgstr "Bloquez ces ennuyeuses publicités et annotations qui s’affichent sur YouTube."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Lisez n’importe où {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
 msgstr "Envoyez de l’actualité, des informations, des articles de blog et d’autres contenus vers votre liseuse Kindle."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Catégorisez vos onglets à l’aide de couleurs {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
 msgstr "Organisez vos onglets en les regroupant par couleur et en fonction de leur URL."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Diversifiez les émoticônes que vous utilisez {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Empêchez le minage intempestif de cryptomonnaies {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
 msgstr "Empêchez les sites web malveillants d’utiliser la puissance de votre ordinateur pour miner des cryptomonnaies."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Vérifiez automatiquement la grammaire {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
 msgstr "Bénéficiez d’une assistance grammaticale chaque fois que vous écrivez sur le Web : réseaux sociaux, courriels, documents, etc."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Jetez un œil sur l’heure partout dans le monde {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
@@ -4609,27 +4602,24 @@ msgid "Enjoy free access to 10+ million research papers."
 msgstr "Profitez d’un accès gratuit à plus de 10 millions de rapports de recherche."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personnalisez vos onglets {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Personnalisez les mouvements de votre souris {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
 msgstr "Découvrez plus de 50 solutions nouvelles pour naviguer avec la souris."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Optimisez les vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
 msgstr "Pour améliorer l’expérience visuelle de vos vidéos, réduisez la luminosité de l’affichage qui entoure votre lecteur vidéo."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Cherchez sans arrière-pensée {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, python-format
@@ -4638,32 +4628,28 @@ msgstr ""
 "Ecosia consacre 80 % de ses bénéfices de recherche au financement de programmes de reforestation partout dans le monde. Pourquoi ne pas inclure Ecosia dans votre environnement de recherche Firefox ?"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Trouvez du contenu web manquant  {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
 msgstr "La page que vous recherchez n’est pas disponible (404…) ? Affichez une version archivée ou en cache."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Trouvez du contenu web manquant {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Agrandissez les images {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
 msgstr "Survolez simplement une image pour l’agrandir."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Effectuez des captures d’écran {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Faites disparaître les cookies {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
@@ -4679,18 +4665,16 @@ msgid "A simple way to adjust the size of any page's text—or even enlarge the 
 msgstr "Solution simple pour ajuster la taille du texte sur une page — ou même pour agrandir la page entière."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Bloquez les traqueurs invisibles {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Bloquez les traqueurs et apprenez-en davantage à leur sujet."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Effectuez des captures d’écran {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Sauvegardez du texte pour plus tard {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
@@ -4698,27 +4682,24 @@ msgstr ""
 "Si vous réutilisez souvent les mêmes éléments de texte dans votre travail ou dans vos communications, enregistrez-les dans le module Clippings et collez-les ensuite très facilement selon besoin."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Bloquez les publicités dans les courriels {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
 msgstr "Augmentez l’espace disponible sur votre écran en supprimant les publicités qui s’affichent automatiquement dans la boîte de réception de votre messagerie web."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Trouvez vos onglets {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
 msgstr "Gérez les onglets ouverts dans une barre latérale."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Évitez les traqueurs et les restrictions {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
