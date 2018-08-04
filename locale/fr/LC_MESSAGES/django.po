@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-04 14:40+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2018-08-01 19:47+0000\n"
+"Last-Translator: Alpha <adrien.gat@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -4340,9 +4340,8 @@ msgstr "Laissez une empreinte numérique propre {start_sub_heading}avec {addon_n
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "Demandez à Firefox de ne pas mémoriser les données des sites web à l’aide de cookies ou du stockage local, mais seulement pour les domaines que vous sélectionnez."
 
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Améliorez vos vidéos {start_sub_heading}avec {addon_name} {end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
 msgstr "Profitez des nouvelles fonctionnalités YouTube : mode Cinéma, blocage des publicités, lecture automatique, etc."
@@ -4394,9 +4393,8 @@ msgstr ""
 "partager vos créations."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personnalisez vos onglets {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Personnalisez votre page nouvel onglet {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
@@ -4412,9 +4410,8 @@ msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Sélectionnez n’importe quel texte, puis effectuez un clic droit pour en obtenir la traduction immédiatement."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Cherchez des images {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
