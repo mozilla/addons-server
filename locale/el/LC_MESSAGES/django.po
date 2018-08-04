@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-03 23:51+0000\n"
+"PO-Revision-Date: 2018-08-03 23:56+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4474,7 +4474,7 @@ msgstr "Απολαύστε οπτικούς σελιδοδείκτες {start_su
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites from a tile layout."
-msgstr ""
+msgstr "Πρόσβαση αγαπημένων ιστοσελίδων από μια διάταξη πλακιδίων."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4482,7 +4482,7 @@ msgstr "Πρόσβαση στη γνώση {start_sub_heading}με το {addon_n
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "Αυτόματη προσθήκη γεγονότων από το Britannica στα αποτελέσματα αναζήτησης."
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5012,7 +5012,7 @@ msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με τ
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh and modern appearance to Wikipedia."
-msgstr ""
+msgstr "Εφαρμόζει μια ανανεωμένη και σύγχρονη εμφάνιση στο Wikipedia."
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5028,7 +5028,7 @@ msgstr "Μεταμφίεση σελίδας {start_sub_heading}με το {addon_
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Απόκρυψη μερών της ιστοσελίδες που βλέπετε."
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5036,7 +5036,7 @@ msgstr "Λήψη εικόνων {start_sub_heading}με το {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
-msgstr ""
+msgstr "Λήψη εικόνων από οποιαδήποτε ιστοσελίδα."
 
 #. editorial content for the discovery pane.
 msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5078,7 +5078,7 @@ msgstr "Αλλαγή απορρήτου {start_sub_heading}με το {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Easily customize the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Εύκολη προσαρμογή ενσωματωμένων ρυθμίσεων απορρήτου στο Firefox."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5087,7 +5087,7 @@ msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
-msgstr ""
+msgstr "Αφαίρεση διαφημίσεων και λήψη ήχου από το VK."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5128,7 +5128,7 @@ msgstr "Μετάφραση σε/από Γερμανικά {start_sub_heading}μ�
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "Επαγγελματικές μεταφράσεις ανάμεσα σε Γερμανικά και Αγγλικά, Γαλλικά, Ισπανικά και άλλες γλώσσες."
 
 #. editorial content for the discovery pane.
 #, fuzzy
