@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-05 08:56+0000\n"
-"Last-Translator: goofy <goofy@babelzilla.org>\n"
+"PO-Revision-Date: 2018-08-04 08:47+0000\n"
+"Last-Translator: Alpha <adrien.gat@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -4354,7 +4354,6 @@ msgstr "Bloquez les traqueurs sournois {start_sub_heading}avec {addon_name}{end_
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "Bloquez les traqueurs invisibles et les publicités espionnes qui vous suivent sur le Web."
 
-#, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Diversifiez les émoticônes que vous utilisez {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
@@ -4645,9 +4644,8 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Effacez automatiquement les cookies dès la fermeture d’un onglet."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Ajustez la taille de la page {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
