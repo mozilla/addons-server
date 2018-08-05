@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-05 21:11+0000\n"
+"PO-Revision-Date: 2018-08-05 21:22+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -140,7 +140,7 @@ msgstr "This slug is already in use. Please choose another."
 #: src/olympia/addons/forms.py:49
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "The slug cannot be \"%(slug)s\". Please choose another."
+msgstr "The slug cannot be “%(slug)s”. Please choose another."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: src/olympia/addons/forms.py:70
@@ -153,8 +153,8 @@ msgstr[1] "Invalid tags: {0}"
 #: src/olympia/addons/forms.py:80
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" is a reserved tag and cannot be used."
-msgstr[1] "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "“{0}” is a reserved tag and cannot be used."
+msgstr[1] "“{0}” are reserved tags and cannot be used."
 
 #: src/olympia/addons/forms.py:88
 msgid "You have {0} too many tags."
@@ -220,7 +220,7 @@ msgstr "Listed"
 
 #: src/olympia/addons/models.py:2179
 msgid "Addon and collection paths need to end with \"/\""
-msgstr "Add-on and collection paths need to end with \"/\""
+msgstr "Add-on and collection paths need to end with “/”"
 
 #: src/olympia/addons/utils.py:118
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -1247,7 +1247,7 @@ msgstr "You must provide an object of {lang-code:value}."
 #: src/olympia/api/fields.py:306
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr "Invalid pk or slug \"%s\" - object does not exist."
+msgstr "Invalid pk or slug “%s” - object does not exist."
 
 #: src/olympia/applications/templates/applications/appversions.html:3 src/olympia/applications/views.py:43
 msgid "Application Versions"
@@ -1268,7 +1268,7 @@ msgstr "Add-ons submitted to Mozilla Add-ons must have a manifest file with at l
 #: src/olympia/applications/templates/applications/appversions.html:18
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
+msgstr "Please be aware that WebExtensions will not accept a “*” in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 #: src/olympia/applications/templates/applications/appversions.html:31 src/olympia/reviewers/utils.py:116
 msgid "GUID"
@@ -3386,12 +3386,12 @@ msgstr "%s responded with %s (%s)."
 #: src/olympia/devhub/tasks.py:945
 #, python-format
 msgid "Connection to \"%s\" timed out."
-msgstr "Connection to \"%s\" timed out."
+msgstr "Connection to “%s” timed out."
 
 #: src/olympia/devhub/tasks.py:947
 #, python-format
 msgid "Could not contact host at \"%s\"."
-msgstr "Could not contact host at \"%s\"."
+msgstr "Could not contact host at “%s”."
 
 #: src/olympia/devhub/tasks.py:989
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
@@ -5048,7 +5048,7 @@ msgstr "Get Your Add-on Featured"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:49
 msgid "\"Get The Add-on\" button"
-msgstr "\"Get The Add-on\" button"
+msgstr "“Get The Add-on” button"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:54
 msgid "Legal"
@@ -5152,7 +5152,7 @@ msgstr "View All Submissions"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:138
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
+msgstr "This is where you view and manage your add-ons and themes. To publish your first add-on, click “Submit Your First Add-on” or “Submit Your First Theme”."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:144
 msgid "Submit Your First Add-on"
@@ -6464,7 +6464,7 @@ msgstr "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:385
 msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr "Brings back the \"View image\" button while searching on Google Images."
+msgstr "Brings back the “View image” button while searching on Google Images."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:388
@@ -6849,7 +6849,7 @@ msgstr "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_headin
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:580
 msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
-msgstr "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
+msgstr "Features “grab-n-drag” mouse scrolling for desktop webpages."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:583
@@ -7414,11 +7414,11 @@ msgstr "GUID is required for Firefox 47 and below."
 
 #: src/olympia/files/utils.py:454
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr "Lowest supported \"strict_min_version\" is 42.0."
+msgstr "Lowest supported “strict_min_version” is 42.0."
 
 #: src/olympia/files/utils.py:491
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
+msgstr "Cannot find min/max version. Maybe “strict_min_version” or “strict_max_version” contains an unsupported version?"
 
 #: src/olympia/files/utils.py:561
 #, python-format
@@ -7824,8 +7824,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"addons.mozilla.org, commonly known as \"AMO\", is Mozilla’s official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
-"the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
+"addons.mozilla.org, commonly known as “AMO”, is Mozilla’s official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change the "
+"way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 
 #: src/olympia/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -7995,7 +7995,7 @@ msgstr "Don’t:"
 
 #: src/olympia/pages/templates/pages/review_guide.html:82
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
+msgstr "Submit one-word reviews such as “Great!”, “wonderful”, or “bad”."
 
 #: src/olympia/pages/templates/pages/review_guide.html:87
 msgid ""
@@ -8046,7 +8046,7 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
+"Please report or flag any questionable reviews by clicking the “Report this review” and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 
 #: src/olympia/pages/templates/pages/review_guide.html:140
@@ -8067,7 +8067,7 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
+"In general, no. But if the review did not meet the review guidelines outlined above, you can click “Report this review” and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:19
@@ -8205,7 +8205,7 @@ msgstr "Rated %d out of 5 stars"
 
 #: src/olympia/ratings/forms.py:79
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr "A short explanation must be provided when selecting “Other” as a flag reason."
 
 #: src/olympia/ratings/models.py:292
 msgid "Spam or otherwise non-review content"
@@ -8274,11 +8274,11 @@ msgid ""
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you’re telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
-"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can’t contact you to resolve your issue. See this add-on’s <a "
-"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
-"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
-"Guidelines</a> for more detail about user add-on reviews.</p>"
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it “Great” or “Bad” unless you can give reasons why you believe this is so. </li> <li> Please do"
+" not post bug reports here. We do not make your email address available to add-on developers, so they can’t contact you to resolve your issue. See this add-on’s <a href=\"%(support)s\">support "
+"section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for help. </li> "
+"<li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail"
+" about user add-on reviews.</p>"
 
 #: src/olympia/ratings/templates/ratings/reply.html:4
 msgid "Reply to review by {0}"
@@ -8690,7 +8690,7 @@ msgstr "If you have concerns about this add-on that an admin reviewer should loo
 
 #: src/olympia/reviewers/utils.py:441
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Make a comment on this version. The developer won't be able to see this."
+msgstr "Make a comment on this version. The developer won’t be able to see this."
 
 #: src/olympia/reviewers/utils.py:451
 msgid "Approve Content"
@@ -9092,7 +9092,7 @@ msgstr "Add-on Policy"
 
 #: src/olympia/reviewers/templates/reviewers/queue.html:167
 msgid "Reviewer's Guide"
-msgstr "Reviewer's Guide"
+msgstr "Reviewer’s Guide"
 
 #. "Content Review [add-on name]"
 #: src/olympia/reviewers/templates/reviewers/review.html:21
@@ -9159,7 +9159,7 @@ msgstr "Please select one or more versions in the list above."
 
 #: src/olympia/reviewers/templates/reviewers/review.html:199
 msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "You can still submit this form, however only do so if you know it won't conflict."
+msgstr "You can still submit this form, however only do so if you know it won’t conflict."
 
 #: src/olympia/reviewers/templates/reviewers/review.html:211
 msgid "Insert canned response..."
@@ -9433,7 +9433,7 @@ msgstr "Interactive Theme Queue"
 
 #: src/olympia/reviewers/templates/reviewers/themes/queue_list.html:85
 msgid "Reviewers' Guide"
-msgstr "Reviewers' Guide"
+msgstr "Reviewers’ Guide"
 
 #: src/olympia/reviewers/templates/reviewers/themes/single.html:8
 msgid "Theme Review for {0}"
@@ -9600,7 +9600,7 @@ msgstr "{0} :: Search"
 #. {0} is a search term, such as Firebug.
 #: src/olympia/search/templates/search/results.html:11
 msgid "Search Results for \"{0}\""
-msgstr "Search Results for \"{0}\""
+msgstr "Search Results for “{0}”"
 
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html:14
@@ -9610,7 +9610,7 @@ msgstr "{0} :: Tag"
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html:16
 msgid "Search Results for tag \"{0}\""
-msgstr "Search Results for tag \"{0}\""
+msgstr "Search Results for tag “{0}”"
 
 #: src/olympia/search/templates/search/results.html:56
 msgid "<b>{0}</b> matching result"
@@ -9640,11 +9640,11 @@ msgstr "Showing {0} - {1} of {2} results"
 
 #: src/olympia/signing/views.py:35 src/olympia/templates/base.html:66 src/olympia/templates/impala/base.html:98
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "Some features are temporarily disabled while we perform website maintenance. We’ll be back to full capacity shortly."
 
 #: src/olympia/signing/views.py:62
 msgid "Could not find add-on with id \"{}\"."
-msgstr "Could not find add-on with id \"{}\"."
+msgstr "Could not find add-on with id “{}”."
 
 #: src/olympia/signing/views.py:81
 msgid "You do not own this addon."
@@ -9652,7 +9652,7 @@ msgstr "You do not own this add-on."
 
 #: src/olympia/signing/views.py:130
 msgid "Missing \"upload\" key in multipart file data."
-msgstr "Missing \"upload\" key in multipart file data."
+msgstr "Missing “upload” key in multipart file data."
 
 #: src/olympia/signing/views.py:137
 #, python-format
@@ -9673,7 +9673,7 @@ msgstr "Only WebExtensions are allowed to omit the GUID"
 
 #: src/olympia/signing/views.py:171
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgstr "Please specify your Add-on GUID in the manifest if it’s longer than 64 characters."
 
 #: src/olympia/signing/views.py:178
 msgid "Invalid GUID in URL"
@@ -9975,11 +9975,11 @@ msgid ""
 "blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
 "\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on’s details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
 " as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
 "<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"blog</b></dd> </dl> <p> Only src parameters that begin with “external-” will be tracked, up to 61 additional characters. Any text after “external-” can be used to describe the source, such as "
+"“external-blog”, \"external-sidebar\", “external-campaign225”, etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 
 #: src/olympia/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
@@ -10222,17 +10222,17 @@ msgstr "Delete Locale"
 #: src/olympia/users/admin.py:130
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr "The user \"%(user)s\" has been banned."
+msgstr "The user “%(user)s” has been banned."
 
 #: src/olympia/users/admin.py:148
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr "The picture belonging to user \"%(user)s\" has been deleted."
+msgstr "The picture belonging to user “%(user)s” has been deleted."
 
 #: src/olympia/users/admin.py:161
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr "The users \"%(users)s\" have been banned."
+msgstr "The users “%(users)s” have been banned."
 
 #: src/olympia/users/admin.py:162
 msgid "Ban selected users"
@@ -10306,7 +10306,7 @@ msgstr "new add-ons or Firefox features are available"
 
 #: src/olympia/users/notifications.py:39
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr "my add-on's compatibility is upgraded successfully"
+msgstr "my add-on’s compatibility is upgraded successfully"
 
 #: src/olympia/users/notifications.py:47
 msgid "my sdk-based add-on is upgraded successfully"
@@ -10322,7 +10322,7 @@ msgstr "stay up-to-date with news and events relevant to add-on developers (incl
 
 #: src/olympia/users/notifications.py:78
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr "my add-on's compatibility cannot be upgraded"
+msgstr "my add-on’s compatibility cannot be upgraded"
 
 #: src/olympia/users/notifications.py:86
 msgid "my sdk-based add-on cannot be upgraded"
@@ -10399,7 +10399,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/delete.html:29
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
+msgstr "By clicking “delete” your account is going to be <strong>permanently removed</strong>. That means:"
 
 #: src/olympia/users/templates/users/delete.html:35
 #, python-format
@@ -10460,7 +10460,7 @@ msgstr "Profile"
 
 #: src/olympia/users/templates/users/edit.html:63
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
+msgstr "Give us a bit more information about yourself. All these fields are optional, but they’ll help other users get to know you better."
 
 #: src/olympia/users/templates/users/edit.html:87
 msgid "This URL will only be visible if you are a developer."
@@ -10573,7 +10573,7 @@ msgstr "In a little more detail..."
 
 #: src/olympia/users/templates/users/profile.html:58
 msgid "Add-ons I've created"
-msgstr "Add-ons I've created"
+msgstr "Add-ons I’ve created"
 
 #: src/olympia/users/templates/users/profile.html:71
 msgid "My Most Popular Themes"
@@ -10581,7 +10581,7 @@ msgstr "My Most Popular Themes"
 
 #: src/olympia/users/templates/users/profile.html:73
 msgid "Themes I've created"
-msgstr "Themes I've created"
+msgstr "Themes I’ve created"
 
 #: src/olympia/users/templates/users/profile.html:83
 msgid "Created by Me"
@@ -10639,7 +10639,7 @@ msgstr "We could not unsubscribe you"
 #: src/olympia/users/templates/users/unsubscribe.html:30
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
+msgstr "Unfortunately, we weren’t able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 
 #: src/olympia/users/templates/users/vcard.html:2
 msgid "Developer Information"
@@ -10681,7 +10681,7 @@ msgstr[1] "%(num)s add-ons"
 
 #: src/olympia/users/templates/users/vcard.html:75
 msgid "Average rating of developer's add-ons"
-msgstr "Average rating of developer's add-ons"
+msgstr "Average rating of developer’s add-ons"
 
 #: src/olympia/users/templatetags/jinja_helpers.py:54
 msgctxt "user_list_others"
