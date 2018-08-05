@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-05 07:09+0000\n"
+"PO-Revision-Date: 2018-08-05 07:43+0000\n"
 "Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4971,7 +4971,7 @@ msgstr "Encouragez la productivité {start_sub_heading}avec {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Modifiez la page nouvel onglet : affichez un fond somptueux, dressez la liste de vos tâches du jour, etc."
 
 #. editorial content for the discovery pane.
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4995,7 +4995,7 @@ msgstr "Actualisez les onglets {start_sub_heading}avec {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "Rechargez automatiquement vos onglets à intervalles réguliers."
 
 #. editorial content for the discovery pane.
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5011,7 +5011,7 @@ msgstr "Subissez moins de stress {start_sub_heading}avec {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Soyez plus efficace en créant une liste de tâches synchronisée sur vos différents appareils."
 
 #. editorial content for the discovery pane.
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5591,63 +5591,56 @@ msgid "Only allow web content to run from sites you trust."
 msgstr "Autorisez l’affichage de contenus web seulement à partir des sites auxquels vous faites confiance."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Gérez les cookies {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
 msgstr "Exercez un contrôle total sur les cookies que vous avez accumulés pendant votre navigation."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Effacez votre historique {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
 msgstr "Supprimez automatiquement l’historique du navigateur pour les sites web que vous sélectionnez."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Sauvegardez vos marque-pages {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
 msgstr "Protégez vos marque-pages personnels à l’aide d’un mot de passe."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Empêchez votre adresse IP de fuiter {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
 msgstr "Si vous utilisez un VPN, votre adresse IP risque d’être révélée. Évitez cette situation en désactivant WebRTC."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Supprimez les surcouches inutiles {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply click a button to close annoying pop-up overlays."
 msgstr "Un simple clic pour fermer les fenêtres pop-up."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Analysez chaque image {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Vous avez déniché une photo sympa sur le Web ? Utilisez TinEye pour déterminer son origine, son auteur, sa date de publication en ligne, etc."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Diffusez simplement {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -5658,9 +5651,8 @@ msgid "Harness the ability to download video and/or audio in multiple formats."
 msgstr "Téléchargez des vidéos et/ou des clips audio sous différents formats."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Sachez où vous vous trouvez {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
@@ -5676,27 +5668,24 @@ msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
 msgstr "Le volume sonore sur cette page web est trop faible ? Trop élevé ? SoundFixer est prêt à vous aider."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personnalisez vos onglets {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Modifiez avant d’imprimer {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
 msgstr "Modifiez radicalement une page web avant de l’imprimer : supprimez les publicités, les contenus peu recommandables, etc. "
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Effectuez des captures d’écran {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Suivez l’historique des prix Amazon {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
 msgstr "Prenez des décisions avisées en suivant le prix d’un produit proposé sur Amazon et en recevant des alertes sur ce prix."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Maîtrisez l’audio {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
