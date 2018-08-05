@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-05 20:52+0000\n"
+"PO-Revision-Date: 2018-08-05 21:11+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -212,7 +212,7 @@ msgstr "Describe your Theme."
 
 #: src/olympia/addons/forms.py:672
 msgid "Enter a new author's email address"
-msgstr "Enter a new author's email address"
+msgstr "Enter a new author’s email address"
 
 #: src/olympia/addons/models.py:1778 src/olympia/constants/base.py:84
 msgid "Listed"
@@ -232,7 +232,7 @@ msgstr "Abuse reported."
 
 #: src/olympia/addons/widgets.py:71
 msgid "My add-on doesn't fit into any of the categories"
-msgstr "My add-on doesn't fit into any of the categories"
+msgstr "My add-on doesn’t fit into any of the categories"
 
 #: src/olympia/addons/templates/addons/button.html:26 src/olympia/addons/templates/addons/impala/button.html:10
 msgid "No compatible versions"
@@ -556,7 +556,7 @@ msgstr "Submit review"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:24 src/olympia/addons/templates/addons/review_add_box.html:22
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
+msgstr "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can’t contact you to resolve your issue."
 
 #: src/olympia/addons/templates/addons/review_add_box.html:30
 #, python-format
@@ -564,7 +564,7 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
-"See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
+"See this add-on’s <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:42 src/olympia/addons/templates/addons/review_add_box.html:36 src/olympia/pages/templates/pages/review_guide.html:3
@@ -583,7 +583,7 @@ msgstr "by %(user)s on %(date)s"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:20 src/olympia/addons/templates/addons/review_list_box.html:15
 msgid "Show the developer's reply to this review"
-msgstr "Show the developer's reply to this review"
+msgstr "Show the developer’s reply to this review"
 
 #: src/olympia/addons/templates/addons/review_list_box.html:23
 #, python-format
@@ -865,7 +865,7 @@ msgstr "This theme is pending. It is invisible to everyone but you."
 
 #: src/olympia/addons/templates/addons/listing/items.html:26
 msgid "Collector's Note"
-msgstr "Collector's Note"
+msgstr "Collector’s Note"
 
 #. {0} is the number of downloads.
 #: src/olympia/addons/templates/addons/listing/macros.html:24 src/olympia/devhub/templates/devhub/addons/listing/macros.html:22
@@ -958,19 +958,19 @@ msgstr "Oops! Not allowed."
 
 #: src/olympia/amo/templates/amo/403.html:9
 msgid "You tried to do something that you weren't allowed to."
-msgstr "You tried to do something that you weren't allowed to."
+msgstr "You tried to do something that you weren’t allowed to."
 
 #: src/olympia/amo/templates/amo/403.html:17
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
-"You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
+"You are seeing this message because this HTTPS site requires a “Referer header” to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 
 #: src/olympia/amo/templates/amo/403.html:24
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
+msgstr "If you have configured your browser to disable “Referer” headers, please re-enable them, at least for this site, or for HTTPS connections, or for “same-origin” requests."
 
 #: src/olympia/amo/templates/amo/403.html:34
 msgid ""
@@ -990,7 +990,7 @@ msgstr "Firefox Add-ons"
 
 #: src/olympia/amo/templates/amo/404-responsive.html:21
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
+msgstr "Sorry, but we can’t find anything at the address you entered. If you followed a link to an add-on, it’s possible that add-on has been removed by its author."
 
 #: src/olympia/amo/templates/amo/404-responsive.html:28
 msgid "Suggested Pages"
@@ -1011,7 +1011,7 @@ msgstr "Add-ons Home Page"
 #: src/olympia/amo/templates/amo/404-responsive.html:35
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
+msgstr "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we’ll do our best to fix it."
 
 #: src/olympia/amo/templates/amo/404.html:3
 msgid "Not Found"
@@ -1026,9 +1026,9 @@ msgid ""
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
+"<h1>We’re sorry, but we can’t find what you’re looking for.</h1> <p> The page or file you requested wasn’t found on our site. It’s possible that you clicked a link that’s out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we’ll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 
@@ -1039,7 +1039,7 @@ msgstr "Oops"
 #: src/olympia/amo/templates/amo/500.html:6
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
+msgstr "<h1>Oops!  We had an error.</h1> <p>We’ll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 
 #: src/olympia/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
@@ -1074,7 +1074,7 @@ msgstr "Maintenance in progress"
 
 #: src/olympia/amo/templates/amo/read-only.html:9
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
+msgstr "This feature is temporarily disabled while we perform website maintenance. Please use your browser’s Back button and try again a little later."
 
 #: src/olympia/amo/templates/amo/read-only.html:14
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
@@ -1086,7 +1086,7 @@ msgstr "Are you human?"
 
 #: src/olympia/amo/templates/amo/recaptcha.html:5
 msgid "What's this?"
-msgstr "What's this?"
+msgstr "What’s this?"
 
 #: src/olympia/amo/templates/amo/recaptcha.html:8
 msgid ""
@@ -1135,7 +1135,7 @@ msgstr "Collections"
 #: src/olympia/amo/templates/amo/site_nav.html:64 src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:8
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:7
 msgid "Collections I've Made"
-msgstr "Collections I've Made"
+msgstr "Collections I’ve Made"
 
 #: src/olympia/amo/templates/amo/site_nav.html:67 src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:10
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:9 src/olympia/users/models.py:530
@@ -1317,7 +1317,7 @@ msgstr "Icon"
 
 #: src/olympia/bandwagon/forms.py:91
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr "Please don't fill out this field, it's used to catch bots"
+msgstr "Please don’t fill out this field, it’s used to catch bots"
 
 #: src/olympia/bandwagon/forms.py:115 src/olympia/bandwagon/serializers.py:54
 msgid "This name cannot be used."
@@ -1376,7 +1376,7 @@ msgstr "Collection created!"
 #: src/olympia/bandwagon/views.py:246
 #, python-format
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
+msgstr "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you’d like."
 
 #: src/olympia/bandwagon/views.py:252
 msgid "Collection updated!"
@@ -1694,7 +1694,7 @@ msgstr "Featured Add-ons :: %s"
 #: src/olympia/browse/feeds.py:137
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr "Here's a few of our favourite add-ons to help you get started customizing %s."
+msgstr "Here’s a few of our favourite add-ons to help you get started customizing %s."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py:156
@@ -1761,7 +1761,7 @@ msgstr "Featured Add-ons"
 #: src/olympia/browse/templates/browse/featured.html:14
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr "Here's a few of our favourite add-ons to help you get started customizing %(app)s."
+msgstr "Here’s a few of our favourite add-ons to help you get started customizing %(app)s."
 
 #: src/olympia/browse/templates/browse/language_tools.html:9
 msgid "Install Dictionary"
@@ -1938,7 +1938,7 @@ msgstr "{0} Themes"
 #. {0} is a user's name.
 #: src/olympia/browse/templates/browse/personas/base.html:15 src/olympia/browse/templates/browse/personas/base.html:40
 msgid "{0}'s Themes"
-msgstr "{0}'s Themes"
+msgstr "{0}’s Themes"
 
 #: src/olympia/browse/templates/browse/personas/base.html:37
 msgid "View Profile"
@@ -2019,7 +2019,7 @@ msgstr "Reports for your Add-ons"
 
 #: src/olympia/compat/templates/compat/reporter.html:33
 msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr "Enter the GUID of an add-on below to view any reports we've received."
+msgstr "Enter the GUID of an add-on below to view any reports we’ve received."
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:3 src/olympia/compat/templates/compat/reporter_detail.html:23
 msgid "{addon} Compatibility Reports"
@@ -2206,7 +2206,7 @@ msgstr "{addon} {version} super review requested."
 
 #: src/olympia/constants/activity.py:205
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr "The add-on has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
+msgstr "The add-on has been flagged for Admin Review.  It’s still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 
 #: src/olympia/constants/activity.py:214
 msgid "Comment on {addon} {version}."
@@ -3236,7 +3236,7 @@ msgstr "Details"
 
 #: src/olympia/devhub/forms.py:143
 msgid "What is your license's name?"
-msgstr "What is your license's name?"
+msgstr "What is your license’s name?"
 
 #: src/olympia/devhub/forms.py:146
 msgid "Provide the text of your license."
@@ -3252,7 +3252,7 @@ msgstr "This add-on has an End-User License Agreement"
 
 #: src/olympia/devhub/forms.py:245
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr "Please specify your add-on's End-User License Agreement:"
+msgstr "Please specify your add-on’s End-User License Agreement:"
 
 #: src/olympia/devhub/forms.py:248 src/olympia/devhub/forms.py:626
 msgid "This add-on has a Privacy Policy"
@@ -3260,7 +3260,7 @@ msgstr "This add-on has a Privacy Policy"
 
 #: src/olympia/devhub/forms.py:252 src/olympia/devhub/forms.py:630
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "Please specify your add-on's Privacy Policy:"
+msgstr "Please specify your add-on’s Privacy Policy:"
 
 #: src/olympia/devhub/forms.py:293
 msgid "Unsupported file type, please upload an archive file {extensions}."
@@ -3296,7 +3296,7 @@ msgstr "You cannot upload any more files for this version."
 
 #: src/olympia/devhub/forms.py:544
 msgid "Version doesn't match"
-msgstr "Version doesn't match"
+msgstr "Version doesn’t match"
 
 #: src/olympia/devhub/forms.py:552
 msgid "Version {version} was uploaded before and deleted."
@@ -3400,7 +3400,7 @@ msgstr "Mozilla Security Notice: Your AMO API credentials have been revoked"
 #: src/olympia/devhub/utils.py:93
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
+msgstr "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you’ll be able to see the others."
 
 #: src/olympia/devhub/views.py:197
 msgid "All My Add-ons"
@@ -3711,7 +3711,7 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
+"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on’s compatibility info, or uploading a newer version of "
 "this add-on."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html:15
@@ -3807,8 +3807,8 @@ msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
-"<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
+"<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on’s listing, including adding and removing other authors</li> "
+"<li><b>Developer:</b> Can manage all aspects of the add-on’s listing, except for adding and removing other authors</li> </ul>"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:7
 msgid "Basic Information"
@@ -3862,7 +3862,7 @@ msgstr "Requires Payment?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:86 src/olympia/devhub/templates/devhub/addons/submit/describe.html:62
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
+msgstr "Check this box if this add-on’s core features require some form of payment upfront or after a trial period in order to work."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:91 src/olympia/devhub/templates/devhub/addons/submit/describe.html:58
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
@@ -3870,11 +3870,11 @@ msgstr "This add-on requires payment, non-free services or software, or addition
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:94
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
+msgstr "This add-on doesn’t require any additional payments, paid services or software, or additional hardware."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:103
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
+msgstr "Categories are the primary way users browse through add-ons. Choose any that fit your add-on’s functionality for the most exposure."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:120
 #, python-format
@@ -3924,7 +3924,7 @@ msgstr "Add-on Details for {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:22
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
+msgstr "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on’s details page. It is only relevant for listed add-ons."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:44 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -4002,7 +4002,7 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
+"Any information end users may want to know that isn’t necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:45 src/olympia/reviewers/templates/reviewers/addon_details_box.html:78
@@ -4035,11 +4035,11 @@ msgstr "Whether the source of your add-on can be displayed in our online viewer.
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:92
 msgid "This add-on's source code is publicly viewable."
-msgstr "This add-on's source code is publicly viewable."
+msgstr "This add-on’s source code is publicly viewable."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr "No, this add-on's source code is not publicly viewable."
+msgstr "No, this add-on’s source code is not publicly viewable."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:101
 msgid "Public Stats?"
@@ -4051,11 +4051,11 @@ msgstr "Whether the download and usage stats of your add-on can be displayed in 
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
-msgstr "This add-on's stats are publicly viewable."
+msgstr "This add-on’s stats are publicly viewable."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:109
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr "No, this add-on's stats are not publicly viewable."
+msgstr "No, this add-on’s stats are not publicly viewable."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:115
 msgid "Upgrade SDK?"
@@ -4184,7 +4184,7 @@ msgstr "Continue"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:2
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr "Can others share your Add-on, as long as you're given credit?"
+msgstr "Can others share your Add-on, as long as you’re given credit?"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:17
 msgid "Can others make commercial use of your Add-on?"
@@ -4200,7 +4200,7 @@ msgstr "Yes, as long as they share alike"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:44 src/olympia/devhub/templates/devhub/personas/edit.html:186
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr "The licensor permits others to distribute derivative works only under the same license or one compatible with the one that governs the licensor's work."
+msgstr "The licensor permits others to distribute derivative works only under the same license or one compatible with the one that governs the licensor’s work."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:57
 msgid "Your Add-on will be released under the following license:"
@@ -4273,7 +4273,7 @@ msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
+"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won’t be "
 "able to submit versions using the same ID."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:26
@@ -4344,7 +4344,7 @@ msgstr "View Recent Changes"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:6
 msgid "Edit details about this theme's listing."
-msgstr "Edit details about this theme's listing."
+msgstr "Edit details about this theme’s listing."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:7 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:69
 #: src/olympia/devhub/templates/devhub/personas/edit.html:6 src/olympia/reviewers/templates/reviewers/themes/single.html:37
@@ -4378,7 +4378,7 @@ msgstr "This add-on is missing some required information before it can be submit
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html:14
 msgid "This add-on doesn't have any versions."
-msgstr "This add-on doesn't have any versions."
+msgstr "This add-on doesn’t have any versions."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html:27 src/olympia/devhub/templates/devhub/includes/addon_details.html:65
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:104 src/olympia/devhub/templates/devhub/personas/edit.html:42
@@ -4466,7 +4466,7 @@ msgstr "Please choose a license appropriate for the rights you grant."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:129
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
+msgstr "If your add-on transmits any data from the user’s computer, a privacy policy is required that explains what data is sent and how it is used."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:142 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:20
 msgid "Notes to Reviewer:"
@@ -4498,7 +4498,7 @@ msgstr "Release Notes:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:14
 msgid "Let your users know what's new and what's changed in this version."
-msgstr "Let your users know what's new and what's changed in this version."
+msgstr "Let your users know what’s new and what’s changed in this version."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:16
 msgid "These notes will appear on the detail page."
@@ -4775,12 +4775,12 @@ msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You’ll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:50
 msgid "You don't have any API credentials."
-msgstr "You don't have any API credentials."
+msgstr "You don’t have any API credentials."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:60
 msgid "Revoke"
@@ -4817,7 +4817,7 @@ msgstr "Your add-on was disabled by a site administrator and is no longer shown 
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:29
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+msgstr "Your add-on won’t be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won’t be accepted in this state."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:36 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:116
@@ -4964,7 +4964,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:24
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
-msgstr "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
+msgstr "If your add-on transmits any data from the user’s computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -5092,7 +5092,7 @@ msgstr "More Ways to Participate"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:90
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr "You don't need coding skills to help keep Firefox the most customizable browser available!"
+msgstr "You don’t need coding skills to help keep Firefox the most customizable browser available!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:95
 msgid "See how"
@@ -5116,7 +5116,7 @@ msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
+"You’ve built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html:20
@@ -5268,7 +5268,7 @@ msgstr "Add some tags to describe your Theme."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:109 src/olympia/devhub/templates/devhub/personas/submit.html:52
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgstr "A short explanation of your theme’s basic functionality that is displayed in search and browse listings, as well as at the top of your theme’s details page."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:125 src/olympia/devhub/templates/devhub/personas/submit.html:66
 msgid "Theme License"
@@ -5276,7 +5276,7 @@ msgstr "Theme License"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:129
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Can others share your Theme, as long as you're given credit?"
+msgstr "Can others share your Theme, as long as you’re given credit?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:135 src/olympia/devhub/templates/devhub/personas/edit.html:156
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
@@ -5360,7 +5360,7 @@ msgstr "This is the colour of the tabs."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:282 src/olympia/devhub/templates/devhub/personas/submit.html:101
 msgid "Your Theme's Name"
-msgstr "Your Theme's Name"
+msgstr "Your Theme’s Name"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:284 src/olympia/devhub/templates/devhub/personas/submit.html:103
 #, python-format
@@ -5395,11 +5395,11 @@ msgstr "Submit Theme"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html:8
 msgid "You're done!"
-msgstr "You're done!"
+msgstr "You’re done!"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html:11
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
+msgstr "Your theme has been submitted to the Review Queue. You’ll receive an email once it has been reviewed, typically within 24 hours."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html:16
 msgid "Next steps:"
@@ -5413,7 +5413,7 @@ msgstr "Provide more details about your theme by <a href=\"%(edit_url)s\">editin
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html:25
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
+msgstr "View and subscribe to your theme’s <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html:32
 #, python-format
@@ -5567,7 +5567,7 @@ msgstr "{label_open}Visible:{label_close} Visible to everyone on {site_url} and 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+"{label_open}Invisible:{label_close} Won’t be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won’t be accepted in this state."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:180
 msgid "Listed versions"
@@ -5968,7 +5968,7 @@ msgstr "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:124
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr "Display current worldwide times in Firefox's status bar."
+msgstr "Display current worldwide times in Firefox’s status bar."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:127
@@ -6029,7 +6029,7 @@ msgstr "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_h
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:154 src/olympia/discovery/strings.jinja2:159
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr "Is the page you're looking for unavailable? Search for an archived/cached version."
+msgstr "Is the page you’re looking for unavailable? Search for an archived/cached version."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:157
@@ -6064,7 +6064,7 @@ msgstr "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_headi
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:174
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr "A simple way to adjust the size of any page's text—or even enlarge the page itself."
+msgstr "A simple way to adjust the size of any page’s text—or even enlarge the page itself."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:177
@@ -6174,7 +6174,7 @@ msgstr "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:234
 msgid "Get a glimpse into who's tracking you with just a click."
-msgstr "Get a glimpse into who's tracking you with just a click."
+msgstr "Get a glimpse into who’s tracking you with just a click."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:237
@@ -6259,7 +6259,7 @@ msgstr "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:279
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr "Find out who's tracking you and where they may be sharing your information."
+msgstr "Find out who’s tracking you and where they may be sharing your information."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:282
@@ -6269,7 +6269,7 @@ msgstr "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:284
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "Browse the web with disguised identity—even appear as if you're browsing from another country."
+msgstr "Browse the web with disguised identity—even appear as if you’re browsing from another country."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:289
@@ -6364,7 +6364,7 @@ msgstr "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:335
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr "Block all pop-ups by default, then decide which ones you'd like to open."
+msgstr "Block all pop-ups by default, then decide which ones you’d like to open."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:338
@@ -6424,7 +6424,7 @@ msgstr "Enhance your reading experience {start_sub_heading}with {addon_name}{end
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:365
 msgid "Make the text you're reading more appealing by removing the clutter around it."
-msgstr "Make the text you're reading more appealing by removing the clutter around it."
+msgstr "Make the text you’re reading more appealing by removing the clutter around it."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:368
@@ -6514,7 +6514,7 @@ msgstr "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:410
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr "Track historical pricing, find competing products, know the seller's ratings, and more."
+msgstr "Track historical pricing, find competing products, know the seller’s ratings, and more."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:413
@@ -6564,7 +6564,7 @@ msgstr "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:435
 msgid "Hide portions of the website you're viewing."
-msgstr "Hide portions of the website you're viewing."
+msgstr "Hide portions of the website you’re viewing."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:438
@@ -6674,7 +6674,7 @@ msgstr "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:490
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
+msgstr "Access WhatsApp from within Firefox’s toolbar panel to get badge notification of unread threads."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:493
@@ -6919,7 +6919,7 @@ msgstr "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:615
 msgid "Navigate to the secure version of a website if it's available."
-msgstr "Navigate to the secure version of a website if it's available."
+msgstr "Navigate to the secure version of a website if it’s available."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:618
@@ -6929,7 +6929,7 @@ msgstr "Delete your navigation history {start_sub_heading}with {addon_name}{end_
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:620
 msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "Specify a custom number of days to retain browser history before it's automatically cleared."
+msgstr "Specify a custom number of days to retain browser history before it’s automatically cleared."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:623
@@ -6959,7 +6959,7 @@ msgstr "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_headin
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:635
 msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
-msgstr "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
+msgstr "Protect your privacy by blocking ads and trackers (plus, you’ll speed up page loads)."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:638
@@ -6989,7 +6989,7 @@ msgstr "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:655
 msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr "Don't let clicked links take control of your current tab and load content you didn't ask for."
+msgstr "Don’t let clicked links take control of your current tab and load content you didn’t ask for."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:658
@@ -7009,7 +7009,7 @@ msgstr "Discover site-specific content {start_sub_heading}with {addon_name}{end_
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:665
 msgid "Find what you're looking for within a specific domain."
-msgstr "Find what you're looking for within a specific domain."
+msgstr "Find what you’re looking for within a specific domain."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:668
@@ -7029,7 +7029,7 @@ msgstr "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:675
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
+msgstr "When looking at product pages on other online shops, if it’s also available on Amazon you can simply click a button to check its Amazon listing."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:678
@@ -7109,12 +7109,12 @@ msgstr "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts.
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:719
 msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Explore what’s beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:721
 msgid "Uncover the software that supports whatever website you're visiting."
-msgstr "Uncover the software that supports whatever website you're visiting."
+msgstr "Uncover the software that supports whatever website you’re visiting."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:724
@@ -7144,7 +7144,7 @@ msgstr "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:736
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr "Focus on what you're watching by dimming everything but the video player."
+msgstr "Focus on what you’re watching by dimming everything but the video player."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:739
@@ -7189,7 +7189,7 @@ msgstr "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_headin
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:761
 msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr "An extra check to ensure you're shopping on a site that's been vetted for reliability."
+msgstr "An extra check to ensure you’re shopping on a site that’s been vetted for reliability."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:764
@@ -7224,7 +7224,7 @@ msgstr "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:781
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr "Take full control of the cookies you've accumulated while browsing."
+msgstr "Take full control of the cookies you’ve accumulated while browsing."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:784
@@ -7299,7 +7299,7 @@ msgstr "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:821
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr "Learn where any website's server is geographically located. Be an informed web traveller."
+msgstr "Learn where any website’s server is geographically located. Be an informed web traveller."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:824
@@ -7638,7 +7638,7 @@ msgstr "Translate content on the web from and into over 40 languages."
 
 #: src/olympia/legacy_discovery/modules.py:184
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
-msgstr "Easily connect to your social networks, and share or comment on the page you're visiting."
+msgstr "Easily connect to your social networks, and share or comment on the page you’re visiting."
 
 #: src/olympia/legacy_discovery/modules.py:186
 msgid "A quick view to compare prices when you shop online or search for flights."
@@ -7773,7 +7773,7 @@ msgstr "Hi, {0}"
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html:17
 #, python-format
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
+msgstr "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla’s mission</a>!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html:23
 msgid "Add-ons downloaded:"
@@ -7824,7 +7824,7 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
+"addons.mozilla.org, commonly known as \"AMO\", is Mozilla’s official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 
 #: src/olympia/pages/templates/pages/about.lhtml:19
@@ -7841,7 +7841,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
-msgstr "How do I keep up with what's happening at AMO?"
+msgstr "How do I keep up with what’s happening at AMO?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:27
 msgid "There are several ways to find out the latest news from the world of add-ons:"
@@ -7868,7 +7868,7 @@ msgstr "This sounds great! How can I get involved?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:40
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr "There are plenty of ways to get involved. If you're on the technical side:"
+msgstr "There are plenty of ways to get involved. If you’re on the technical side:"
 
 #: src/olympia/pages/templates/pages/about.lhtml:42
 #, python-format
@@ -7888,11 +7888,11 @@ msgstr ""
 #, python-format
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+"Help improve this website. It’s open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 
 #: src/olympia/pages/templates/pages/about.lhtml:55
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr "If you're interested in add-ons but not quite as technical, there are still ways to help:"
+msgstr "If you’re interested in add-ons but not quite as technical, there are still ways to help:"
 
 #: src/olympia/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
@@ -7914,7 +7914,7 @@ msgstr "I have a question"
 #: src/olympia/pages/templates/pages/about.lhtml:67
 #, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
+msgstr "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don’t find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml:74
 #, python-format
@@ -8229,31 +8229,31 @@ msgstr "This field is required."
 
 #: src/olympia/ratings/serializers.py:74
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "You can't change the add-on of a review once it has been created."
+msgstr "You can’t change the add-on of a review once it has been created."
 
 #: src/olympia/ratings/serializers.py:121
 msgid "You can't reply to a review that is already a reply."
-msgstr "You can't reply to a review that is already a reply."
+msgstr "You can’t reply to a review that is already a reply."
 
 #: src/olympia/ratings/serializers.py:167
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "You can't change the version of the add-on reviewed once the review has been created."
+msgstr "You can’t change the version of the add-on reviewed once the review has been created."
 
 #: src/olympia/ratings/serializers.py:178
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "This version of the add-on doesn't exist or isn't public."
+msgstr "This version of the add-on doesn’t exist or isn’t public."
 
 #: src/olympia/ratings/serializers.py:187
 msgid "You can't leave a review on your own add-on."
-msgstr "You can't leave a review on your own add-on."
+msgstr "You can’t leave a review on your own add-on."
 
 #: src/olympia/ratings/serializers.py:194
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "You can't leave more than one review for the same version of an add-on."
+msgstr "You can’t leave more than one review for the same version of an add-on."
 
 #: src/olympia/ratings/views.py:107
 msgid "This rating can't be flagged because it has no review text."
-msgstr "This rating can't be flagged because it has no review text."
+msgstr "This rating can’t be flagged because it has no review text."
 
 #: src/olympia/ratings/views.py:119
 msgid "Thanks; this review has been flagged for reviewer approval."
@@ -8273,9 +8273,9 @@ msgid ""
 "community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you’re telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can’t contact you to resolve your issue. See this add-on’s <a "
 "href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
 "community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
@@ -10669,81 +10669,81 @@ msgstr "{0} add-ons"
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s theme"
+msgstr[1] "%(num)s themes"
 
 #: src/olympia/users/templates/users/vcard.html:62
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s add-on"
+msgstr[1] "%(num)s add-ons"
 
 #: src/olympia/users/templates/users/vcard.html:75
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "Average rating of developer's add-ons"
 
 #: src/olympia/users/templatetags/jinja_helpers.py:54
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "others"
 
 #: src/olympia/versions/feeds.py:60
 #, python-format
 msgid "%s Version History"
-msgstr ""
+msgstr "%s Version History"
 
 #: src/olympia/versions/feeds.py:68
 msgid "Version History with Changelogs"
-msgstr ""
+msgstr "Version History with Changelogs"
 
 #: src/olympia/versions/models.py:863
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} and later"
 
 #: src/olympia/versions/templates/versions/version.html:5
 msgid "Permanent link to this version"
-msgstr ""
+msgstr "Permanent link to this version"
 
 #. {0} is a timestamp, such as September 28, 2011.
 #: src/olympia/versions/templates/versions/version.html:10
 msgid "Released {0}"
-msgstr ""
+msgstr "Released {0}"
 
 #: src/olympia/versions/templates/versions/version.html:39 src/olympia/versions/templates/versions/version.html:44
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Source code released under <a href=\"%(url)s\">%(name)s</a>"
 
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/version_list.html:19
 msgid "{0} Version History"
-msgstr ""
+msgstr "{0} Version History"
 
 #. {0} is a number.
 #: src/olympia/versions/templates/versions/version_list.html:22
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> version"
+msgstr[1] "<b>{0}</b> versions"
 
 #: src/olympia/versions/templates/versions/version_list.html:28
 msgid "Be careful with old versions!"
-msgstr ""
+msgstr "Be careful with old versions!"
 
 #: src/olympia/versions/templates/versions/version_list.html:29
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr ""
+msgstr "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
 
 #: src/olympia/zadmin/forms.py:124
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "Deleted versions can’t be changed."
 
 #: src/olympia/zadmin/forms.py:146
 msgid "Binary"
-msgstr ""
+msgstr "Binary"
 
 #: src/olympia/zadmin/forms.py:147
 msgid "Non-binary"
-msgstr ""
+msgstr "Non-binary"

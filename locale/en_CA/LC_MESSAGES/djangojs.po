@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-05 19:22+0000\n"
+"PO-Revision-Date: 2018-08-05 20:59+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -167,7 +167,7 @@ msgstr "Sorry, no supported platform has been found."
 
 #: static/js/common/upload-base.js:64
 msgid "The filetype you uploaded isn't recognized."
-msgstr "The file type you uploaded isn't recognized."
+msgstr "The file type you uploaded isn’t recognized."
 
 #: static/js/common/upload-base.js:73
 msgid "Your file exceeds the maximum size of {0}."
@@ -232,7 +232,7 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: static/js/impala/persona_creation.js:280
 msgid "Your Theme's Name"
-msgstr "Your Theme's Name"
+msgstr "Your Theme’s Name"
 
 #: static/js/impala/ratings.js:23 static/js/zamboni/ratings.js:18
 msgid "Flagged for review"
@@ -937,7 +937,7 @@ msgstr "Changes Saved"
 
 #: static/js/zamboni/devhub.js:389
 msgid "Enter a new author's email address"
-msgstr "Enter a new author's email address"
+msgstr "Enter a new author’s email address"
 
 #: static/js/zamboni/devhub.js:539
 msgid "There was an error uploading your file."
