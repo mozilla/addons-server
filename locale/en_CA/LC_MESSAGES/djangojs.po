@@ -1,0 +1,1133 @@
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT 1.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2018-08-02 01:13+0000\n"
+"PO-Revision-Date: 2018-08-05 19:22+0000\n"
+"Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en_CA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: Babel 2.6.0\n"
+"X-Generator: Pontoon\n"
+
+#: static/js/common/ratingwidget.js:31
+msgid "{0} star"
+msgid_plural "{0} stars"
+msgstr[0] "{0} star"
+msgstr[1] "{0} stars"
+
+#: static/js/common/upload-addon.js:46 static/js/common/upload-image.js:128
+msgid "There was a problem contacting the server."
+msgstr "There was a problem contacting the server."
+
+#: static/js/common/upload-addon.js:74
+msgid "Select a file..."
+msgstr "Select a file..."
+
+#: static/js/common/upload-addon.js:75
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgstr "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+
+#. L10n: {0} is the percent of the file that has been uploaded.
+#: static/js/common/upload-addon.js:108
+#, python-format
+msgid "{0}% complete"
+msgstr "{0}% complete"
+
+#. L10n: "{bytes uploaded} of {total filesize}".
+#: static/js/common/upload-addon.js:111
+msgid "{0} of {1}"
+msgstr "{0} of {1}"
+
+#: static/js/common/upload-addon.js:148
+msgid "Cancel"
+msgstr "Cancel"
+
+#: static/js/common/upload-addon.js:170
+msgid "Uploading {0}"
+msgstr "Uploading {0}"
+
+#: static/js/common/upload-addon.js:198
+msgid "Error with {0}"
+msgstr "Error with {0}"
+
+#: static/js/common/upload-addon.js:204
+msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
+msgstr "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
+
+#: static/js/common/upload-addon.js:212
+msgid "Your add-on failed validation with {0} error."
+msgid_plural "Your add-on failed validation with {0} errors."
+msgstr[0] "Your add-on failed validation with {0} error."
+msgstr[1] "Your add-on failed validation with {0} errors."
+
+#: static/js/common/upload-addon.js:226
+msgid "&hellip;and {0} more"
+msgid_plural "&hellip;and {0} more"
+msgstr[0] "&hellip;and {0} more"
+msgstr[1] "&hellip;and {0} more"
+
+#: static/js/common/upload-addon.js:241 static/js/common/upload-addon.js:528
+msgid "See full validation report"
+msgstr "See full validation report"
+
+#: static/js/common/upload-addon.js:251
+msgid "Validating {0}"
+msgstr "Validating {0}"
+
+#: static/js/common/upload-addon.js:291
+msgid "Your add-on exceeds the maximum size of {0}."
+msgstr "Your add-on exceeds the maximum size of {0}."
+
+#: static/js/common/upload-addon.js:297
+msgid "Received an empty response from the server; status: {0}"
+msgstr "Received an empty response from the server; status: {0}"
+
+#: static/js/common/upload-addon.js:368
+msgid "Unexpected server error while validating."
+msgstr "Unexpected server error while validating."
+
+#: static/js/common/upload-addon.js:416
+msgid "Finished validating {0}"
+msgstr "Finished validating {0}"
+
+#: static/js/common/upload-addon.js:422
+msgid "Your add-on validation timed out, it will be manually reviewed."
+msgstr "Your add-on validation timed out, it will be manually reviewed."
+
+#: static/js/common/upload-addon.js:425
+msgid "Your add-on was validated with no errors and {0} warning."
+msgid_plural "Your add-on was validated with no errors and {0} warnings."
+msgstr[0] "Your add-on was validated with no errors and {0} warning."
+msgstr[1] "Your add-on was validated with no errors and {0} warnings."
+
+#: static/js/common/upload-addon.js:430
+msgid "Your add-on was validated with no errors and {0} message."
+msgid_plural "Your add-on was validated with no errors and {0} messages."
+msgstr[0] "Your add-on was validated with no errors and {0} message."
+msgstr[1] "Your add-on was validated with no errors and {0} messages."
+
+#: static/js/common/upload-addon.js:435
+msgid "Your add-on was validated with no errors or warnings."
+msgstr "Your add-on was validated with no errors or warnings."
+
+#: static/js/common/upload-addon.js:450
+msgid "Your submission will be automatically signed."
+msgstr "Your submission will be automatically signed."
+
+#: static/js/common/upload-addon.js:456
+msgid "WebExtension upgrade"
+msgstr "WebExtension upgrade"
+
+#: static/js/common/upload-addon.js:457
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+
+#: static/js/common/upload-addon.js:461
+msgid "Porting a legacy Firefox add-on on MDN"
+msgstr "Porting a legacy Firefox add-on on MDN"
+
+#: static/js/common/upload-addon.js:472
+msgid "Include detailed version notes (this can be done in the next step)."
+msgstr "Include detailed version notes (this can be done in the next step)."
+
+#: static/js/common/upload-addon.js:473
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgstr "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+
+#: static/js/common/upload-addon.js:492
+msgid "Add-on submission checklist"
+msgstr "Add-on submission checklist"
+
+#: static/js/common/upload-addon.js:493
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgstr "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+
+#: static/js/common/upload-addon.js:495
+msgid ""
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
+msgstr ""
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
+
+#: static/js/common/upload-addon.js:513
+msgid "The validation process found these issues that can lead to rejections:"
+msgstr "The validation process found these issues that can lead to rejections:"
+
+#: static/js/common/upload-addon.js:566
+msgid "Sorry, no supported platform has been found."
+msgstr "Sorry, no supported platform has been found."
+
+#: static/js/common/upload-base.js:64
+msgid "The filetype you uploaded isn't recognized."
+msgstr "The file type you uploaded isn't recognized."
+
+#: static/js/common/upload-base.js:73
+msgid "Your file exceeds the maximum size of {0}."
+msgstr "Your file exceeds the maximum size of {0}."
+
+#: static/js/common/upload-base.js:93
+msgid "You cancelled the upload."
+msgstr "You cancelled the upload."
+
+#: static/js/common/upload-image.js:97 static/js/impala/users.js:51
+msgid "Images must be either PNG or JPG."
+msgstr "Images must be either PNG or JPG."
+
+#: static/js/common/upload-image.js:101
+msgid "Videos must be in WebM."
+msgstr "Videos must be in WebM."
+
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:527
+msgid "Follow this Collection"
+msgstr "Follow this Collection"
+
+#: static/js/impala/collections.js:19
+msgid "Stop Following"
+msgstr "Stop Following"
+
+#: static/js/impala/collections.js:20
+msgid "Following"
+msgstr "Following"
+
+#. L10n: {0} is an app name.
+#: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
+msgid "This theme is incompatible with your version of {0}"
+msgstr "This theme is incompatible with your version of {0}"
+
+#: static/js/impala/persona_creation.js:49
+msgid "All Rights Reserved"
+msgstr "All Rights Reserved"
+
+#: static/js/impala/persona_creation.js:53
+msgid "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Attribution 3.0"
+
+#: static/js/impala/persona_creation.js:58
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
+
+#: static/js/impala/persona_creation.js:63
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+
+#: static/js/impala/persona_creation.js:68
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+
+#: static/js/impala/persona_creation.js:73
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
+
+#: static/js/impala/persona_creation.js:78
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+#: static/js/impala/persona_creation.js:280
+msgid "Your Theme's Name"
+msgstr "Your Theme's Name"
+
+#: static/js/impala/ratings.js:23 static/js/zamboni/ratings.js:18
+msgid "Flagged for review"
+msgstr "Flagged for review"
+
+#: static/js/impala/ratings.js:40 static/js/zamboni/ratings.js:34
+msgid "Your input is required"
+msgstr "Your input is required"
+
+#: static/js/impala/ratings.js:152 static/js/zamboni/ratings.js:103
+msgid "Marked for deletion"
+msgstr "Marked for deletion"
+
+#: static/js/impala/search.js:108
+msgid "Updating results&hellip;"
+msgstr "Updating results&hellip;"
+
+#: static/js/impala/site_suggestions.js:46
+msgid "Category"
+msgstr "Category"
+
+#: static/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr "Search themes for <b>{0}</b>"
+
+#: static/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "Search apps for <b>{0}</b>"
+
+#: static/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "Search add-ons for <b>{0}</b>"
+
+#: static/js/impala/users.js:33
+msgid "Use original"
+msgstr "Use original"
+
+#: static/js/impala/stats/chart.js:267
+msgid "Week of {0}"
+msgstr "Week of {0}"
+
+#: static/js/impala/stats/chart.js:269
+msgid " downloads"
+msgstr " downloads"
+
+#: static/js/impala/stats/chart.js:270
+msgid "{0} users"
+msgstr "{0} users"
+
+#: static/js/impala/stats/chart.js:271
+msgid "{0} add-ons"
+msgstr "{0} add-ons"
+
+#: static/js/impala/stats/chart.js:272
+msgid "{0} collections"
+msgstr "{0} collections"
+
+#: static/js/impala/stats/chart.js:273
+msgid "{0} reviews"
+msgstr "{0} reviews"
+
+#: static/js/impala/stats/chart.js:275
+msgid "{0} sales"
+msgstr "{0} sales"
+
+#: static/js/impala/stats/chart.js:276
+msgid "{0} refunds"
+msgstr "{0} refunds"
+
+#: static/js/impala/stats/chart.js:277
+msgid "{0} installs"
+msgstr "{0} installs"
+
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
+msgid "Downloads"
+msgstr "Downloads"
+
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
+msgid "Daily Users"
+msgstr "Daily Users"
+
+#: static/js/impala/stats/chart.js:410
+msgid "Amount, in USD"
+msgstr "Amount, in USD"
+
+#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:104
+msgid "Number of Contributions"
+msgstr "Number of Contributions"
+
+#: static/js/impala/stats/chart.js:447
+msgid "More Info..."
+msgstr "More Info..."
+
+#. L10n: {0} is an ISO-formatted date.
+#: static/js/impala/stats/chart.js:451
+msgid "Details for {0}"
+msgstr "Details for {0}"
+
+#: static/js/impala/stats/csv_keys.js:9
+msgid "Collections Created"
+msgstr "Collections Created"
+
+#: static/js/impala/stats/csv_keys.js:12
+msgid "Add-ons in Use"
+msgstr "Add-ons in Use"
+
+#: static/js/impala/stats/csv_keys.js:15
+msgid "Add-ons Created"
+msgstr "Add-ons Created"
+
+#: static/js/impala/stats/csv_keys.js:18
+msgid "Add-ons Downloaded"
+msgstr "Add-ons Downloaded"
+
+#: static/js/impala/stats/csv_keys.js:21
+msgid "Add-ons Updated"
+msgstr "Add-ons Updated"
+
+#: static/js/impala/stats/csv_keys.js:24
+msgid "Reviews Written"
+msgstr "Reviews Written"
+
+#: static/js/impala/stats/csv_keys.js:27
+msgid "User Signups"
+msgstr "User Sign-ups"
+
+#: static/js/impala/stats/csv_keys.js:30
+msgid "Subscribers"
+msgstr "Subscribers"
+
+#: static/js/impala/stats/csv_keys.js:33
+msgid "Ratings"
+msgstr "Ratings"
+
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
+msgid "Sales"
+msgstr "Sales"
+
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
+msgid "Installs"
+msgstr "Installs"
+
+#: static/js/impala/stats/csv_keys.js:42
+msgid "Unknown"
+msgstr "Unknown"
+
+#: static/js/impala/stats/csv_keys.js:43
+msgid "Add-ons Manager"
+msgstr "Add-ons Manager"
+
+#: static/js/impala/stats/csv_keys.js:44
+msgid "Add-ons Manager Promo"
+msgstr "Add-ons Manager Promo"
+
+#: static/js/impala/stats/csv_keys.js:45
+msgid "Add-ons Manager Featured"
+msgstr "Add-ons Manager Featured"
+
+#: static/js/impala/stats/csv_keys.js:46
+msgid "Add-ons Manager Learn More"
+msgstr "Add-ons Manager Learn More"
+
+#: static/js/impala/stats/csv_keys.js:47
+msgid "Search Suggestions"
+msgstr "Search Suggestions"
+
+#: static/js/impala/stats/csv_keys.js:48
+msgid "Search Results"
+msgstr "Search Results"
+
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
+msgid "Homepage Promo"
+msgstr "Homepage Promo"
+
+#: static/js/impala/stats/csv_keys.js:52 static/js/impala/stats/csv_keys.js:53
+msgid "Homepage Featured"
+msgstr "Homepage Featured"
+
+#: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:55
+msgid "Homepage Up and Coming"
+msgstr "Homepage Up and Coming"
+
+#: static/js/impala/stats/csv_keys.js:56
+msgid "Homepage Most Popular"
+msgstr "Homepage Most Popular"
+
+#: static/js/impala/stats/csv_keys.js:57 static/js/impala/stats/csv_keys.js:59
+msgid "Detail Page"
+msgstr "Detail Page"
+
+#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:60
+msgid "Detail Page (bottom)"
+msgstr "Detail Page (bottom)"
+
+#: static/js/impala/stats/csv_keys.js:61
+msgid "Detail Page (Development Channel)"
+msgstr "Detail Page (Development Channel)"
+
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
+msgid "Often Used With"
+msgstr "Often Used With"
+
+#: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
+msgid "Others By Author"
+msgstr "Others By Author"
+
+#: static/js/impala/stats/csv_keys.js:67 static/js/impala/stats/csv_keys.js:68
+msgid "Dependencies"
+msgstr "Dependencies"
+
+#: static/js/impala/stats/csv_keys.js:69 static/js/impala/stats/csv_keys.js:70
+msgid "Upsell"
+msgstr "Up-sell"
+
+#: static/js/impala/stats/csv_keys.js:71
+msgid "Meet the Developer"
+msgstr "Meet the Developer"
+
+#: static/js/impala/stats/csv_keys.js:72
+msgid "User Profile"
+msgstr "User Profile"
+
+#: static/js/impala/stats/csv_keys.js:73
+msgid "Version History"
+msgstr "Version History"
+
+#: static/js/impala/stats/csv_keys.js:75
+msgid "Sharing"
+msgstr "Sharing"
+
+#: static/js/impala/stats/csv_keys.js:76
+msgid "Category Pages"
+msgstr "Category Pages"
+
+#: static/js/impala/stats/csv_keys.js:77
+msgid "Collections"
+msgstr "Collections"
+
+#: static/js/impala/stats/csv_keys.js:78 static/js/impala/stats/csv_keys.js:79
+msgid "Category Landing Featured Carousel"
+msgstr "Category Landing Featured Carousel"
+
+#: static/js/impala/stats/csv_keys.js:80 static/js/impala/stats/csv_keys.js:81
+msgid "Category Landing Top Rated"
+msgstr "Category Landing Top Rated"
+
+#: static/js/impala/stats/csv_keys.js:82 static/js/impala/stats/csv_keys.js:83
+msgid "Category Landing Most Popular"
+msgstr "Category Landing Most Popular"
+
+#: static/js/impala/stats/csv_keys.js:84 static/js/impala/stats/csv_keys.js:85
+msgid "Category Landing Recently Added"
+msgstr "Category Landing Recently Added"
+
+#: static/js/impala/stats/csv_keys.js:86 static/js/impala/stats/csv_keys.js:87
+msgid "Browse Listing Featured Sort"
+msgstr "Browse Listing Featured Sort"
+
+#: static/js/impala/stats/csv_keys.js:88 static/js/impala/stats/csv_keys.js:89
+msgid "Browse Listing Users Sort"
+msgstr "Browse Listing Users Sort"
+
+#: static/js/impala/stats/csv_keys.js:90 static/js/impala/stats/csv_keys.js:91
+msgid "Browse Listing Rating Sort"
+msgstr "Browse Listing Rating Sort"
+
+#: static/js/impala/stats/csv_keys.js:92 static/js/impala/stats/csv_keys.js:93
+msgid "Browse Listing Created Sort"
+msgstr "Browse Listing Created Sort"
+
+#: static/js/impala/stats/csv_keys.js:94 static/js/impala/stats/csv_keys.js:95
+msgid "Browse Listing Name Sort"
+msgstr "Browse Listing Name Sort"
+
+#: static/js/impala/stats/csv_keys.js:96 static/js/impala/stats/csv_keys.js:97
+msgid "Browse Listing Popular Sort"
+msgstr "Browse Listing Popular Sort"
+
+#: static/js/impala/stats/csv_keys.js:98 static/js/impala/stats/csv_keys.js:99
+msgid "Browse Listing Updated Sort"
+msgstr "Browse Listing Updated Sort"
+
+#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
+msgid "Browse Listing Up and Coming Sort"
+msgstr "Browse Listing Up and Coming Sort"
+
+#: static/js/impala/stats/csv_keys.js:105
+msgid "Total Amount Contributed"
+msgstr "Total Amount Contributed"
+
+#: static/js/impala/stats/csv_keys.js:106
+msgid "Average Contribution"
+msgstr "Average Contribution"
+
+#: static/js/impala/stats/csv_keys.js:115
+msgid "Usage"
+msgstr "Usage"
+
+#: static/js/impala/stats/csv_keys.js:118
+msgid "Firefox"
+msgstr "Firefox"
+
+#: static/js/impala/stats/csv_keys.js:119
+msgid "Mozilla"
+msgstr "Mozilla"
+
+#: static/js/impala/stats/csv_keys.js:120
+msgid "Thunderbird"
+msgstr "Thunderbird"
+
+#: static/js/impala/stats/csv_keys.js:121
+msgid "Sunbird"
+msgstr "Sunbird"
+
+#: static/js/impala/stats/csv_keys.js:122
+msgid "SeaMonkey"
+msgstr "SeaMonkey"
+
+#: static/js/impala/stats/csv_keys.js:123
+msgid "Fennec"
+msgstr "Fennec"
+
+#: static/js/impala/stats/csv_keys.js:124
+msgid "Android"
+msgstr "Android"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:129
+msgid "Downloads and Daily Users, last {0} days"
+msgstr "Downloads and Daily Users, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:131
+msgid "Downloads and Daily Users from {0} to {1}"
+msgstr "Downloads and Daily Users from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:135
+msgid "Installs and Daily Users, last {0} days"
+msgstr "Installs and Daily Users, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:137
+msgid "Installs and Daily Users from {0} to {1}"
+msgstr "Installs and Daily Users from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:141
+msgid "Downloads, last {0} days"
+msgstr "Downloads, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:143
+msgid "Downloads from {0} to {1}"
+msgstr "Downloads from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:147
+msgid "Daily Users, last {0} days"
+msgstr "Daily Users, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:149
+msgid "Daily Users from {0} to {1}"
+msgstr "Daily Users from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:153
+msgid "Applications, last {0} days"
+msgstr "Applications, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:155
+msgid "Applications from {0} to {1}"
+msgstr "Applications from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:159
+msgid "Platforms, last {0} days"
+msgstr "Platforms, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:161
+msgid "Platforms from {0} to {1}"
+msgstr "Platforms from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:165
+msgid "Languages, last {0} days"
+msgstr "Languages, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:167
+msgid "Languages from {0} to {1}"
+msgstr "Languages from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:171
+msgid "Add-on Versions, last {0} days"
+msgstr "Add-on Versions, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:173
+msgid "Add-on Versions from {0} to {1}"
+msgstr "Add-on Versions from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:177
+msgid "Add-on Status, last {0} days"
+msgstr "Add-on Status, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:179
+msgid "Add-on Status from {0} to {1}"
+msgstr "Add-on Status from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:183
+msgid "Download Sources, last {0} days"
+msgstr "Download Sources, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:185
+msgid "Download Sources from {0} to {1}"
+msgstr "Download Sources from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:189
+msgid "Contributions, last {0} days"
+msgstr "Contributions, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:191
+msgid "Contributions from {0} to {1}"
+msgstr "Contributions from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:195
+msgid "Site Metrics, last {0} days"
+msgstr "Site Metrics, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:197
+msgid "Site Metrics from {0} to {1}"
+msgstr "Site Metrics from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:201
+msgid "Add-ons in Use, last {0} days"
+msgstr "Add-ons in Use, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:203
+msgid "Add-ons in Use from {0} to {1}"
+msgstr "Add-ons in Use from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:207
+msgid "Add-ons Downloaded, last {0} days"
+msgstr "Add-ons Downloaded, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:209
+msgid "Add-ons Downloaded from {0} to {1}"
+msgstr "Add-ons Downloaded from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:213
+msgid "Add-ons Created, last {0} days"
+msgstr "Add-ons Created, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:215
+msgid "Add-ons Created from {0} to {1}"
+msgstr "Add-ons Created from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:219
+msgid "Add-ons Updated, last {0} days"
+msgstr "Add-ons Updated, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:221
+msgid "Add-ons Updated from {0} to {1}"
+msgstr "Add-ons Updated from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:225
+msgid "Reviews Written, last {0} days"
+msgstr "Reviews Written, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:227
+msgid "Reviews Written from {0} to {1}"
+msgstr "Reviews Written from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:231
+msgid "User Signups, last {0} days"
+msgstr "User Sign-ups, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:233
+msgid "User Signups from {0} to {1}"
+msgstr "User Sign-ups from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:237
+msgid "Collections Created, last {0} days"
+msgstr "Collections Created, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:239
+msgid "Collections Created from {0} to {1}"
+msgstr "Collections Created from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:243
+msgid "Subscribers, last {0} days"
+msgstr "Subscribers, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:245
+msgid "Subscribers from {0} to {1}"
+msgstr "Subscribers from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:249
+msgid "Ratings, last {0} days"
+msgstr "Ratings, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:251
+msgid "Ratings from {0} to {1}"
+msgstr "Ratings from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:255
+msgid "Sales, last {0} days"
+msgstr "Sales, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:257
+msgid "Sales from {0} to {1}"
+msgstr "Sales from {0} to {1}"
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:261
+msgid "Installs, last {0} days"
+msgstr "Installs, last {0} days"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:263
+msgid "Installs from {0} to {1}"
+msgstr "Installs from {0} to {1}"
+
+#. L10n: {0} and {1} are integers.
+#: static/js/impala/stats/csv_keys.js:269
+msgid "<b>{0}</b> in last {1} days"
+msgstr "<b>{0}</b> in last {1} days"
+
+#. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
+msgid "<b>{0}</b> from {1} to {2}"
+msgstr "<b>{0}</b> from {1} to {2}"
+
+#. L10n: {0} and {1} are integers.
+#: static/js/impala/stats/csv_keys.js:275
+msgid "<b>{0}</b> average in last {1} days"
+msgstr "<b>{0}</b> average in last {1} days"
+
+#: static/js/impala/stats/overview.js:19
+msgid "No data available."
+msgstr "No data available."
+
+#: static/js/impala/stats/table.js:74
+msgid "Date"
+msgstr "Date"
+
+#: static/js/impala/stats/topchart.js:96
+msgid "Other"
+msgstr "Other"
+
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1297 static/js/zamboni/reviewers.js:410
+msgid "Select an application first"
+msgstr "Select an application first"
+
+#: static/js/zamboni/admin_validation.js:51
+msgid "Set {0} add-on to a max version of {1} and email the author."
+msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
+msgstr[0] "Set {0} add-on to a max version of {1} and email the author."
+msgstr[1] "Set {0} add-ons to a max version of {1} and email the authors."
+
+#: static/js/zamboni/admin_validation.js:54
+msgid "Email author of {2} add-on which failed validation."
+msgid_plural "Email authors of {2} add-ons which failed validation."
+msgstr[0] "Email author of {2} add-on which failed validation."
+msgstr[1] "Email authors of {2} add-ons which failed validation."
+
+#. L10n: {0} is an app name like Firefox.
+#: static/js/zamboni/buttons.js:67
+msgid "Accept and Install"
+msgstr "Accept and Install"
+
+#: static/js/zamboni/buttons.js:67
+msgid "Add to {0}"
+msgstr "Add to {0}"
+
+#. L10n: {0} is an platform like Windows or Linux.
+#: static/js/zamboni/buttons.js:174
+msgid "Install for {0} anyway"
+msgstr "Install for {0} anyway"
+
+#: static/js/zamboni/buttons.js:174
+msgid "Download for {0} anyway"
+msgstr "Download for {0} anyway"
+
+#: static/js/zamboni/buttons.js:214
+msgid "Not available for your platform"
+msgstr "Not available for your platform"
+
+#. L10n: {0} is an app name.
+#: static/js/zamboni/buttons.js:222
+msgid "This add-on is not compatible with your version of {0}."
+msgstr "This add-on is not compatible with your version of {0}."
+
+#: static/js/zamboni/buttons.js:226 static/js/zamboni/buttons.js:247
+msgid "View other versions"
+msgstr "View other versions"
+
+#: static/js/zamboni/buttons.js:243
+msgid "Works with {app} {min} - {max}"
+msgstr "Works with {app} {min} - {max}"
+
+#: static/js/zamboni/buttons.js:244
+msgid "Works with {app}"
+msgstr "Works with {app}"
+
+#: static/js/zamboni/buttons.js:277
+msgid "Only with Firefox — Get Firefox Now!"
+msgstr "Only with Firefox — Get Firefox Now!"
+
+#: static/js/zamboni/buttons.js:321
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+
+#: static/js/zamboni/collections.js:229
+msgid "Adding to Favorites&hellip;"
+msgstr "Adding to Favourites&hellip;"
+
+#: static/js/zamboni/collections.js:232
+msgid "Removing Favorite&hellip;"
+msgstr "Removing Favourite&hellip;"
+
+#: static/js/zamboni/collections.js:235
+msgid "Add to Favorites"
+msgstr "Add to Favourites"
+
+#: static/js/zamboni/collections.js:238
+msgid "Remove from Favorites"
+msgstr "Remove from Favourites"
+
+#: static/js/zamboni/collections.js:303
+msgid "Pending"
+msgstr "Pending"
+
+#: static/js/zamboni/collections.js:304
+msgid "Add a comment"
+msgstr "Add a comment"
+
+#: static/js/zamboni/collections.js:304
+msgid "Comment"
+msgstr "Comment"
+
+#: static/js/zamboni/collections.js:305
+msgid "Remove this add-on from the collection"
+msgstr "Remove this add-on from the collection"
+
+#: static/js/zamboni/collections.js:305
+msgid "Remove"
+msgstr "Remove"
+
+#: static/js/zamboni/collections.js:505
+msgid "Add to favorites"
+msgstr "Add to favourites"
+
+#: static/js/zamboni/collections.js:509
+msgid "Remove from favorites"
+msgstr "Remove from favourites"
+
+#: static/js/zamboni/collections.js:536
+msgid "Stop following"
+msgstr "Stop following"
+
+#: static/js/zamboni/devhub.js:105
+msgid "Your browser does not support the video tag"
+msgstr "Your browser does not support the video tag"
+
+#: static/js/zamboni/devhub.js:373
+msgid "Changes Saved"
+msgstr "Changes Saved"
+
+#: static/js/zamboni/devhub.js:389
+msgid "Enter a new author's email address"
+msgstr "Enter a new author's email address"
+
+#: static/js/zamboni/devhub.js:539
+msgid "There was an error uploading your file."
+msgstr "There was an error uploading your file."
+
+#: static/js/zamboni/devhub.js:684
+msgid "{files} file"
+msgid_plural "{files} files"
+msgstr[0] "{files} file"
+msgstr[1] "{files} files"
+
+#: static/js/zamboni/devhub.js:687
+msgid "{reviews} user review"
+msgid_plural "{reviews} user reviews"
+msgstr[0] "{reviews} user review"
+msgstr[1] "{reviews} user reviews"
+
+#: static/js/zamboni/devhub.js:1198
+msgid "Image changes being processed"
+msgstr "Image changes being processed"
+
+#: static/js/zamboni/devhub_search.js:8
+msgid "No results found."
+msgstr "No results found."
+
+#: static/js/zamboni/global.js:407
+msgid "Loading..."
+msgstr "Loading..."
+
+#. L10n: {0} is the number of characters left.
+#: static/js/zamboni/global.js:470
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> character left."
+msgstr[1] "<b>{0}</b> characters left."
+
+#: static/js/zamboni/init.js:28
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+
+#: static/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr "Remove this localization"
+
+#: static/js/zamboni/reviewers.js:139
+msgid "{name} was viewing this page first."
+msgstr "{name} was viewing this page first."
+
+#: static/js/zamboni/reviewers.js:190
+msgid "Receipt checked by app."
+msgstr "Receipt checked by app."
+
+#: static/js/zamboni/reviewers.js:192
+msgid "Receipt was not checked by app."
+msgstr "Receipt was not checked by app."
+
+#: static/js/zamboni/reviewers.js:338
+msgid "{name} was viewing this add-on first."
+msgstr "{name} was viewing this add-on first."
+
+#: static/js/zamboni/reviewers.js:349 static/js/zamboni/reviewers.js:371
+msgid "Loading&hellip;"
+msgstr "Loading&hellip;"
+
+#: static/js/zamboni/reviewers.js:354
+msgid "Version Notes"
+msgstr "Version Notes"
+
+#: static/js/zamboni/reviewers.js:359
+msgid "Notes for Reviewers"
+msgstr "Notes for Reviewers"
+
+#: static/js/zamboni/reviewers.js:364
+msgid "No version notes found"
+msgstr "No version notes found"
+
+#: static/js/zamboni/reviewers.js:376
+msgid "Review Text"
+msgstr "Review Text"
+
+#: static/js/zamboni/reviewers.js:381
+msgid "Review notes found"
+msgstr "Review notes found"
+
+#: static/js/zamboni/reviewers.js:445
+msgid "Average Reviews"
+msgstr "Average Reviews"
+
+#: static/js/zamboni/reviewers.js:500
+msgid "Number of Reviews"
+msgstr "Number of Reviews"
+
+#: static/js/zamboni/themes_review.js:176
+msgid "Requested Info"
+msgstr "Requested Info"
+
+#: static/js/zamboni/themes_review.js:177
+msgid "Flagged"
+msgstr "Flagged"
+
+#: static/js/zamboni/themes_review.js:178
+msgid "Duplicate"
+msgstr "Duplicate"
+
+#: static/js/zamboni/themes_review.js:179
+msgid "Rejected"
+msgstr "Rejected"
+
+#: static/js/zamboni/themes_review.js:180
+msgid "Approved"
+msgstr "Approved"
+
+#: static/js/zamboni/themes_review.js:424
+msgid "No results found"
+msgstr "No results found"
+
+#: static/js/zamboni/themes_review_templates.js:31
+msgid "Theme"
+msgstr "Theme"
+
+#: static/js/zamboni/themes_review_templates.js:33
+msgid "Reviewer"
+msgstr "Reviewer"
+
+#: static/js/zamboni/themes_review_templates.js:35
+msgid "Status"
+msgstr "Status"
+
+#: static/js/zamboni/validator.js:80
+msgid "All tests passed successfully."
+msgstr "All tests passed successfully."
+
+#: static/js/zamboni/validator.js:83 static/js/zamboni/validator.js:416
+msgid "These tests were not run."
+msgstr "These tests were not run."
+
+#: static/js/zamboni/validator.js:131 static/js/zamboni/validator.js:144
+msgid "Tests"
+msgstr "Tests"
+
+#: static/js/zamboni/validator.js:225 static/js/zamboni/validator.js:513 static/js/zamboni/validator.js:532
+msgid "Error"
+msgstr "Error"
+
+#: static/js/zamboni/validator.js:226
+msgid "Warning"
+msgstr "Warning"
+
+#: static/js/zamboni/validator.js:293
+msgid "{0} line {1} column {2}"
+msgstr "{0} line {1} column {2}"
+
+#: static/js/zamboni/validator.js:295
+msgid "{0} line {1}"
+msgstr "{0} line {1}"
+
+#: static/js/zamboni/validator.js:332
+msgid "Compatibility Tests"
+msgstr "Compatibility Tests"
+
+#: static/js/zamboni/validator.js:404
+msgid "Add-on failed validation."
+msgstr "Add-on failed validation."
+
+#: static/js/zamboni/validator.js:406
+msgid "Add-on passed validation."
+msgstr "Add-on passed validation."
+
+#: static/js/zamboni/validator.js:419
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} error"
+msgstr[1] "{0} errors"
+
+#: static/js/zamboni/validator.js:421
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} warning"
+msgstr[1] "{0} warnings"
+
+#: static/js/zamboni/validator.js:423
+msgid "{0} notice"
+msgid_plural "{0} notices"
+msgstr[0] "{0} notice"
+msgstr[1] "{0} notices"
+
+#: static/js/zamboni/validator.js:515
+msgid "Validation task could not complete or completed with errors"
+msgstr "Validation task could not complete or completed with errors"
+
+#: static/js/zamboni/validator.js:533
+msgid "Internal server error"
+msgstr "Internal server error"
