@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-05 07:43+0000\n"
-"Last-Translator: goofy <goofy@babelzilla.org>\n"
+"PO-Revision-Date: 2018-08-05 08:53+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -4625,7 +4625,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Trouvez du contenu web manquant  {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Trouvez du contenu web manquant {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
@@ -4687,7 +4687,7 @@ msgstr "Augmentez l’espace disponible sur votre écran en supprimant les publi
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Trouvez vos onglets {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Retrouvez vos onglets {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
@@ -4895,7 +4895,7 @@ msgstr "Vous pouvez réduire la luminosité d’affichage des pages web : vos y
 
 #. editorial content for the discovery pane.
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquez les fenêtres pop-up {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Bloquez les fenêtres popup {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
@@ -4987,7 +4987,7 @@ msgstr "Augmentez votre productivité {start_sub_heading}avec {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "Bloquez les sites qui vous font perdre votre temps, pour mieux vous concentrer sur vos tâches en cours."
 
 #. editorial content for the discovery pane.
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
