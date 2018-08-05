@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-05 20:13+0000\n"
+"PO-Revision-Date: 2018-08-05 20:33+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -6739,1137 +6739,1141 @@ msgstr "Reverse image search by leveraging the power of multiple search provider
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:523
 msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:525
 msgid "Store web pages to access across devices."
-msgstr ""
+msgstr "Store web pages to access across devices."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:528
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:530
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "A better way to save bookmarks if you use multiple bookmark folders."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:533
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:535
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "Strip away unnecessary formatting and copy just the plain text."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:540
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Convert an entire webpage to your preferred language—with the click of a button."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:543
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:545
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr ""
+msgstr "Instantly display all links from a webpage in new tabs."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:548
 msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:550
 msgid "Access PDFs using your preferred PDF application."
-msgstr ""
+msgstr "Access PDFs using your preferred PDF application."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:553
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:555
 msgid "Strip away redirect pages and URL tracking parameters."
-msgstr ""
+msgstr "Strip away redirect pages and URL tracking parameters."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:558
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:560
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "Prevent search engines from knowing what search results you click on."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:563 src/olympia/discovery/strings.jinja2:814
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:565
 msgid "Download video and/or audio."
-msgstr ""
+msgstr "Download video and/or audio."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:568
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:570
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:573
 msgid "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:575
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "Create general and website-specific notes to review later."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:578
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:580
 msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
-msgstr ""
+msgstr "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:583
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:585
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Clear your browser cache with a click or keystroke."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:588
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:590
 msgid "Create and manage a to-do list in your browser."
-msgstr ""
+msgstr "Create and manage a to-do list in your browser."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:593
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:595
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
-msgstr ""
+msgstr "Enjoy a highly customizable text highlighter with different colours and save options."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:598
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:600
 msgid "Access 20,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Access 20,000+ radio stations from all over the globe."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:603
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:605
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "Save bandwidth by just streaming the audio from YouTube clips."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:608
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:610
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Turn words into beautiful headlines and image overlay text."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:613
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:615
 msgid "Navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Navigate to the secure version of a website if it's available."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:618
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:620
 msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Specify a custom number of days to retain browser history before it's automatically cleared."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:623
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:625
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "Stop ads from appearing within your search results."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:628 src/olympia/discovery/strings.jinja2:643
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:630 src/olympia/discovery/strings.jinja2:645
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "Store passwords securely and sign in to known websites automatically."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:633
 msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:635
 msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
-msgstr ""
+msgstr "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:638
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:640
 msgid "Save entered data once and it will autofill next time."
-msgstr ""
+msgstr "Save entered data once and it will autofill next time."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:648
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:650
 msgid "Jump into private browsing mode with a click."
-msgstr ""
+msgstr "Jump into private browsing mode with a click."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:653
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:655
 msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "Don't let clicked links take control of your current tab and load content you didn't ask for."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:658
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:660
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:663
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:665
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "Find what you're looking for within a specific domain."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:668
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Highlight text from any website and right-click to search YouTube for related media."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:675
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:678
 msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:680
 msgid "Easily broadcast web content to your Twitter following."
-msgstr ""
+msgstr "Easily broadcast web content to your Twitter following."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:683
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:689
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Load a random Wikipedia article each time you open a new tab."
-msgstr ""
+msgstr "Load a random Wikipedia article each time you open a new tab."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:696
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Configure new tab pages to display custom background colours and images."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:699
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:701
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:704
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "For those moments when you need to fire lasers out of a cat."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:709
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:711
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Easily access your open tabs, bookmarks, and history."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:716
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:719
 msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:721
 msgid "Uncover the software that supports whatever website you're visiting."
-msgstr ""
+msgstr "Uncover the software that supports whatever website you're visiting."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:724
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Stop redirects so you can access the site you want—faster."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:729
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:731
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Adds show/hide ability to all password fields."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:734
 msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:736
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Focus on what you're watching by dimming everything but the video player."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:739
 msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:741
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Modify your bookmarks through an easily accessible panel."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:744
 msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:746
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Store passwords securely and sign in automatically to known websites."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:751
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "A simple ad blocker focused on displaying just the content you want."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:754
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:756
 msgid "Make informed decisions by tracking the price of a product listed on Amazon."
-msgstr ""
+msgstr "Make informed decisions by tracking the price of a product listed on Amazon."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:759
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:761
 msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "An extra check to ensure you're shopping on a site that's been vetted for reliability."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:764
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:766
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:771
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:774
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:776
 msgid "Only allow web content to run from sites you trust."
-msgstr ""
+msgstr "Only allow web content to run from sites you trust."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:779
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:781
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Take full control of the cookies you've accumulated while browsing."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:784
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:786
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Automatically delete browser history for websites you select."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:789
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:791
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Password-protect your personal bookmarks."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:794
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:796
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:799
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:801
 msgid "Simply click a button to close annoying pop-up overlays."
-msgstr ""
+msgstr "Simply click a button to close annoying pop-up overlays."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:804
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:806
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "Find an interesting image on the web? Use TinEye to explore its origins."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:809
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:811
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Just drag text, images, or links to perform actions like copy, open, search, and more."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:816
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Harness the ability to download video and/or audio in multiple formats."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:819
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:821
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Learn where any website's server is geographically located. Be an informed web traveller."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:824
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:826
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Is the volume on a website too quiet? Too loud? SoundFixer can help."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:829
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:831
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
-msgstr ""
+msgstr "Make extraordinary visual changes—remove ads or unsavoury content—to any webpage you want to print."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:834
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:836
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
-msgstr ""
+msgstr "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:839
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:841
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Adjust browser audio settings with extreme clarity."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:844
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:846
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Defend yourself against the sneakiest trackers."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:849
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:851
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
-msgstr ""
+msgstr "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
 
 #: src/olympia/files/file_viewer.py:64
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 
 #: src/olympia/files/file_viewer.py:70
 #, python-format
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "There was an error accessing file %s."
 
 #: src/olympia/files/file_viewer.py:194
 msgid "That file no longer exists."
-msgstr ""
+msgstr "That file no longer exists."
 
 #. L10n: {0} is the file size limit of the file viewer.
 #: src/olympia/files/file_viewer.py:203
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "File size is over the limit of {0}."
 
 #: src/olympia/files/file_viewer.py:217
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "Problems decoding {0}."
 
 #: src/olympia/files/file_viewer.py:227
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
+msgstr "This file is not viewable online. Please download the file to view the contents."
 
 #: src/olympia/files/file_viewer.py:235
 msgid "This file is a directory."
-msgstr ""
+msgstr "This file is a directory."
 
 #: src/olympia/files/forms.py:136
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "Cannot diff a version against itself"
 
 #: src/olympia/files/models.py:434
 msgid "Access your data for {name}"
-msgstr ""
+msgstr "Access your data for {name}"
 
 #: src/olympia/files/models.py:439
 msgid "Access your data on the following websites:"
-msgstr ""
+msgstr "Access your data on the following websites:"
 
 #: src/olympia/files/models.py:783
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Access your data for all websites"
 
 #: src/olympia/files/utils.py:443
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "GUID is required for Firefox 47 and below."
 
 #: src/olympia/files/utils.py:454
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "Lowest supported \"strict_min_version\" is 42.0."
 
 #: src/olympia/files/utils.py:491
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr ""
+msgstr "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 
 #: src/olympia/files/utils.py:561
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr ""
+msgstr "Could not parse uploaded file, missing or empty <%s> element"
 
 #: src/olympia/files/utils.py:577
 msgid "Could not parse uploaded file."
-msgstr ""
+msgstr "Could not parse uploaded file."
 
 #. L10n: {0} is the name of the invalid file.
 #: src/olympia/files/utils.py:617
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 
 #. L10n: {0} is the name of the invalid file.
 #: src/olympia/files/utils.py:626
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Invalid file name in archive: {0}"
 
 #: src/olympia/files/utils.py:634
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "File exceeding size limit in archive: {0}"
 
 #: src/olympia/files/utils.py:684
 msgid "Invalid archive."
-msgstr ""
+msgstr "Invalid archive."
 
 #: src/olympia/files/utils.py:848 src/olympia/files/utils.py:852
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Could not parse the manifest file."
 
 #: src/olympia/files/utils.py:873
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Could not find an add-on ID."
 
 #: src/olympia/files/utils.py:884
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
 
 #: src/olympia/files/utils.py:895
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Duplicate add-on ID found."
 
 #: src/olympia/files/utils.py:898
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "Version numbers should have fewer than 32 characters."
 
 #: src/olympia/files/utils.py:901
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 
 #: src/olympia/files/utils.py:906
 msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
+msgstr "WebExtension theme uploads are currently not supported."
 
 #: src/olympia/files/utils.py:919
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "You cannot submit this type of add-on"
 
 #: src/olympia/files/utils.py:926
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
+msgstr "You cannot submit an add-on with a GUID ending %s"
 
 #: src/olympia/files/utils.py:931
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "You cannot submit a Mozilla Signed Extension"
 
 #: src/olympia/files/utils.py:965
 msgid "Unexpected error."
-msgstr ""
+msgstr "Unexpected error."
 
 #: src/olympia/files/utils.py:970
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
 
 #: src/olympia/files/views.py:49
 msgid "Back to review"
-msgstr ""
+msgstr "Back to review"
 
 #: src/olympia/files/views.py:54
 msgid "Back to add-on"
-msgstr ""
+msgstr "Back to add-on"
 
 #: src/olympia/files/templates/files/file.html:6
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
+msgstr "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; MIME type: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html:4
 msgid "File Compare :: Reviewer tools"
-msgstr ""
+msgstr "File Compare :: Reviewer tools"
 
 #: src/olympia/files/templates/files/viewer.html:6
 msgid "File Viewer :: Reviewer tools"
-msgstr ""
+msgstr "File Viewer :: Reviewer tools"
 
 #: src/olympia/files/templates/files/viewer.html:18
 msgid "Validation failed:"
-msgstr ""
+msgstr "Validation failed:"
 
 #: src/olympia/files/templates/files/viewer.html:21
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "File content not supported for syntax highlighting"
 
 #: src/olympia/files/templates/files/viewer.html:23
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 
 #: src/olympia/files/templates/files/viewer.html:49
 msgid "Add-on file being processed, please wait."
-msgstr ""
+msgstr "Add-on file being processed, please wait."
 
 #: src/olympia/files/templates/files/viewer.html:53
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Fetching validation results..."
 
 #: src/olympia/files/templates/files/viewer.html:61 src/olympia/reviewers/templates/reviewers/review.html:218
 msgid "Files:"
-msgstr ""
+msgstr "Files:"
 
 #: src/olympia/files/templates/files/viewer.html:64
 msgid "Deleted files:"
-msgstr ""
+msgstr "Deleted files:"
 
 #: src/olympia/files/templates/files/viewer.html:73
 msgid "Hide known files"
-msgstr ""
+msgstr "Hide known files"
 
 #: src/olympia/files/templates/files/viewer.html:76
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "Add-on SDK Version:"
 
 #: src/olympia/files/templates/files/viewer.html:80
 msgid "Tab stops:"
-msgstr ""
+msgstr "Tab stops:"
 
 #: src/olympia/files/templates/files/viewer.html:86 src/olympia/files/templates/files/viewer.html:87
 msgid "Up file"
-msgstr ""
+msgstr "Up file"
 
 #: src/olympia/files/templates/files/viewer.html:91 src/olympia/files/templates/files/viewer.html:92
 msgid "Down file"
-msgstr ""
+msgstr "Down file"
 
 #: src/olympia/files/templates/files/viewer.html:97 src/olympia/files/templates/files/viewer.html:98
 msgid "Previous diff"
-msgstr ""
+msgstr "Previous diff"
 
 #: src/olympia/files/templates/files/viewer.html:100 src/olympia/files/templates/files/viewer.html:101
 msgid "Previous note"
-msgstr ""
+msgstr "Previous note"
 
 #: src/olympia/files/templates/files/viewer.html:107 src/olympia/files/templates/files/viewer.html:108
 msgid "Next diff"
-msgstr ""
+msgstr "Next diff"
 
 #: src/olympia/files/templates/files/viewer.html:110 src/olympia/files/templates/files/viewer.html:111
 msgid "Next note"
-msgstr ""
+msgstr "Next note"
 
 #: src/olympia/files/templates/files/viewer.html:116 src/olympia/files/templates/files/viewer.html:117
 msgid "Expand all"
-msgstr ""
+msgstr "Expand all"
 
 #: src/olympia/files/templates/files/viewer.html:121 src/olympia/files/templates/files/viewer.html:122
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Hide or unhide tree"
 
 #: src/olympia/files/templates/files/viewer.html:126 src/olympia/files/templates/files/viewer.html:127
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "Wrap or unwrap text"
 
 #: src/olympia/files/templates/files/viewer.html:135
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "No files in the uploaded file."
 
 #: src/olympia/files/templates/files/viewer.html:141
 msgid "Fetching file."
-msgstr ""
+msgstr "Fetching file."
 
 #: src/olympia/legacy_api/views.py:36
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 
 #: src/olympia/legacy_api/views.py:254
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Not implemented yet."
 
 #: src/olympia/legacy_discovery/modules.py:151
 msgid "Shopping Made Easy"
-msgstr ""
+msgstr "Shopping Made Easy"
 
 #: src/olympia/legacy_discovery/modules.py:152
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "Save on your favourite items from the comfort of your browser."
 
 #: src/olympia/legacy_discovery/modules.py:160
 msgid "Build the perfect website"
-msgstr ""
+msgstr "Build the perfect website"
 
 #: src/olympia/legacy_discovery/modules.py:177
 msgid "First time with Add-ons?"
-msgstr ""
+msgstr "First time with Add-ons?"
 
 #: src/olympia/legacy_discovery/modules.py:178
 msgid "Not to worry, here are three to get started."
-msgstr ""
+msgstr "Not to worry, here are three to get started."
 
 #: src/olympia/legacy_discovery/modules.py:182
 msgid "Translate content on the web from and into over 40 languages."
-msgstr ""
+msgstr "Translate content on the web from and into over 40 languages."
 
 #: src/olympia/legacy_discovery/modules.py:184
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
-msgstr ""
+msgstr "Easily connect to your social networks, and share or comment on the page you're visiting."
 
 #: src/olympia/legacy_discovery/modules.py:186
 msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr ""
+msgstr "A quick view to compare prices when you shop online or search for flights."
 
 #: src/olympia/legacy_discovery/modules.py:196
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "St. Patrick&rsquo;s Day Themes"
 
 #: src/olympia/legacy_discovery/modules.py:197
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr ""
+msgstr "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 
 #: src/olympia/legacy_discovery/modules.py:206
 msgid "A+ add-ons for School"
-msgstr ""
+msgstr "A+ add-ons for School"
 
 #: src/olympia/legacy_discovery/modules.py:207
 msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr ""
+msgstr "Add-ons for teachers, parents, and students heading back to school."
 
 #: src/olympia/legacy_discovery/modules.py:212
 msgid "Would you like to know which websites you can trust?"
-msgstr ""
+msgstr "Would you like to know which websites you can trust?"
 
 #: src/olympia/legacy_discovery/modules.py:213
 msgid "Xmarks is the #1 bookmarking add-on."
-msgstr ""
+msgstr "Xmarks is the #1 bookmarking add-on."
 
 #: src/olympia/legacy_discovery/modules.py:214
 msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
+msgstr "Web page and text translator, dictionary, and more!"
 
 #: src/olympia/legacy_discovery/modules.py:231
 msgid "Love is in the Air"
-msgstr ""
+msgstr "Love is in the Air"
 
 #: src/olympia/legacy_discovery/modules.py:232
 msgid "Add some romance to your Firefox."
-msgstr ""
+msgstr "Add some romance to your Firefox."
 
 #: src/olympia/legacy_discovery/modules.py:239
 msgid "Get up and move!"
-msgstr ""
+msgstr "Get up and move!"
 
 #: src/olympia/legacy_discovery/modules.py:240
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "Install these fitness add-ons to keep you active and healthy."
 
 #: src/olympia/legacy_discovery/modules.py:248
 msgid "New &amp; Now"
-msgstr ""
+msgstr "New &amp; Now"
 
 #: src/olympia/legacy_discovery/modules.py:249
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "Get the latest, must-have add-ons of the moment."
 
 #: src/olympia/legacy_discovery/modules.py:256
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "Worry-free browsing"
 
 #: src/olympia/legacy_discovery/modules.py:257
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "Protect your privacy online with the add-ons in this collection."
 
 #: src/olympia/legacy_discovery/modules.py:266
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
+msgstr "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 
 #: src/olympia/legacy_discovery/modules.py:274
 msgid "Games!"
-msgstr ""
+msgstr "Games!"
 
 #: src/olympia/legacy_discovery/modules.py:275
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
+msgstr "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
 
 #: src/olympia/legacy_discovery/modules.py:285
 msgid "Must-Have Media"
-msgstr ""
+msgstr "Must-Have Media"
 
 #: src/olympia/legacy_discovery/modules.py:286
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr ""
+msgstr "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html:7
 msgid "Discover Add-ons"
-msgstr ""
+msgstr "Discover Add-ons"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:23
 msgid "What are Add-ons?"
-msgstr ""
+msgstr "What are Add-ons?"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:28
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
+msgstr "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:62
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "Learn More About Add-ons"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:66 src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:73
 msgid "See all"
-msgstr ""
+msgstr "See all"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:79
 msgid "More ways to customize"
-msgstr ""
+msgstr "More ways to customize"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:82
 msgid "Browse all add-ons"
-msgstr ""
+msgstr "Browse all add-ons"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:85
 msgid "See all complete themes"
-msgstr ""
+msgstr "See all complete themes"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:91
 msgid "Close Video"
-msgstr ""
+msgstr "Close Video"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:94
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "While the video plays, the add-ons being mentioned will appear here."
 
 #. {0} is the user's login name.
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html:6
 msgid "Hi, {0}"
-msgstr ""
+msgstr "Hi, {0}"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html:17
 #, python-format
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr ""
+msgstr "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html:23
 msgid "Add-ons downloaded:"
-msgstr ""
+msgstr "Add-ons downloaded:"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html:18 src/olympia/reviewers/templates/reviewers/addon_details_box.html:134
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "View Privacy Policy"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html:55
 msgid "Active Users"
-msgstr ""
+msgstr "Active Users"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html:64
 msgid "Last Updated"
-msgstr ""
+msgstr "Last Updated"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html:26
 msgid "Cancel Installation"
-msgstr ""
+msgstr "Cancel Installation"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "Mozilla&rsquo;s Pick of the Month!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html:3
 msgid "Become a Test Pilot"
-msgstr ""
+msgstr "Become a Test Pilot"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html:4
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "Unlock early access to experimental browser features."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html:7
 msgid "Get Started"
-msgstr ""
+msgstr "Get Started"
 
 #: src/olympia/pages/templates/pages/about.lhtml:3 src/olympia/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "About Mozilla Add-ons"
 
 #: src/olympia/pages/templates/pages/about.lhtml:12
 msgid "What is this website?"
-msgstr ""
+msgstr "What is this website?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:13
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
+"the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 
 #: src/olympia/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Who creates these add-ons?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:20
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
+"The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
+"of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 
 #: src/olympia/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "How do I keep up with what's happening at AMO?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:27
 msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr ""
+msgstr "There are several ways to find out the latest news from the world of add-ons:"
 
 #: src/olympia/pages/templates/pages/about.lhtml:29
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr ""
+msgstr "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
 
 #: src/olympia/pages/templates/pages/about.lhtml:32
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
-msgstr ""
+msgstr "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
 
 #: src/olympia/pages/templates/pages/about.lhtml:34
 #, python-format
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
-msgstr ""
+msgstr "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
 
 #: src/olympia/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "This sounds great! How can I get involved?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:40
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "There are plenty of ways to get involved. If you're on the technical side:"
 
 #: src/olympia/pages/templates/pages/about.lhtml:42
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
 
 #: src/olympia/pages/templates/pages/about.lhtml:45
 #, python-format
@@ -7877,372 +7881,387 @@ msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
 msgstr ""
+"If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
+"stability."
 
 #: src/olympia/pages/templates/pages/about.lhtml:49
 #, python-format
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 
 #: src/olympia/pages/templates/pages/about.lhtml:55
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr ""
+msgstr "If you're interested in add-ons but not quite as technical, there are still ways to help:"
 
 #: src/olympia/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Tell your friends! Let people know which add-ons you use."
 
 #: src/olympia/pages/templates/pages/about.lhtml:59
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Participate in our <a href=\"%(url)s\">forums</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml:61
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr ""
+msgstr "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
 
 #: src/olympia/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
-msgstr ""
+msgstr "I have a question"
 
 #: src/olympia/pages/templates/pages/about.lhtml:67
 #, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr ""
+msgstr "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml:74
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr ""
+msgstr "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
 
 #: src/olympia/pages/templates/pages/about.lhtml:78
 msgid "Who works on this website?"
-msgstr ""
+msgstr "Who works on this website?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:79
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
-msgstr ""
+msgstr "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
 
 #: src/olympia/pages/templates/pages/review_guide.html:33
 msgid "Sections"
-msgstr ""
+msgstr "Sections"
 
 #: src/olympia/pages/templates/pages/review_guide.html:36 src/olympia/pages/templates/pages/review_guide.html:51
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "Some tips for writing a great review"
 
 #: src/olympia/pages/templates/pages/review_guide.html:39 src/olympia/pages/templates/pages/review_guide.html:131
 msgid "Frequently Asked Questions about Reviews"
-msgstr ""
+msgstr "Frequently Asked Questions about Reviews"
 
 #: src/olympia/pages/templates/pages/review_guide.html:46
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
 " with these guidelines."
 msgstr ""
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 
 #: src/olympia/pages/templates/pages/review_guide.html:53
 msgid "Do:"
-msgstr ""
+msgstr "Do:"
 
 #: src/olympia/pages/templates/pages/review_guide.html:56
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
+msgstr "Write like you are telling a friend about your experience with the add-on."
 
 #: src/olympia/pages/templates/pages/review_guide.html:61
 msgid "Keep reviews concise and easy to understand."
-msgstr ""
+msgstr "Keep reviews concise and easy to understand."
 
 #: src/olympia/pages/templates/pages/review_guide.html:62
 msgid "Give specific and helpful details. For example:"
-msgstr ""
+msgstr "Give specific and helpful details. For example:"
 
 #: src/olympia/pages/templates/pages/review_guide.html:64
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "Did the add-on work as you expected it to?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:65
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "What features did you like or dislike?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:66
 msgid "Was it useful?"
-msgstr ""
+msgstr "Was it useful?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:67
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "Was it easy to use?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:68
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "Will you continue to use this add-on?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:73
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
+msgstr "Take a moment to read your review before submitting it to minimize typos."
 
 #: src/olympia/pages/templates/pages/review_guide.html:79
 msgid "Don’t:"
-msgstr ""
+msgstr "Don’t:"
 
 #: src/olympia/pages/templates/pages/review_guide.html:82
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr ""
+msgstr "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 
 #: src/olympia/pages/templates/pages/review_guide.html:87
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
+"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
+"section."
 
 #: src/olympia/pages/templates/pages/review_guide.html:92
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr ""
+msgstr "Write reviews for add-ons which you have not personally used."
 
 #: src/olympia/pages/templates/pages/review_guide.html:97
 msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr ""
+msgstr "Use profanity, sexual language or language that can be construed as hateful."
 
 #: src/olympia/pages/templates/pages/review_guide.html:103
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr ""
+msgstr "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
 
 #: src/olympia/pages/templates/pages/review_guide.html:108
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr ""
+msgstr "Make false statements, disparage add-on authors or personally insult them."
 
 #: src/olympia/pages/templates/pages/review_guide.html:114
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr ""
+msgstr "Include your own or anyone else’s email, phone number, or other personal details."
 
 #: src/olympia/pages/templates/pages/review_guide.html:119
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr ""
+msgstr "Post reviews for an add-on you or your organization wrote or represent."
 
 #: src/olympia/pages/templates/pages/review_guide.html:125
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
+"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
+"add-on, or the add-on requires gathering data to function."
 
 #: src/olympia/pages/templates/pages/review_guide.html:133
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "How can I report a problematic review?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:135
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
+"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
+"evaluate whether or not to delete the review or restore it back to the site."
 
 #: src/olympia/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
+msgstr "I’m an add-on author, can I respond to reviews?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:142
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
+msgstr "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
 
 #: src/olympia/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr ""
+msgstr "I’m an add-on author, can I delete unfavourable reviews or ratings?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:151
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
+"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
+"valid due to a new release of your add-on, we may consider deleting the review."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:19
 msgid "Start Now"
-msgstr ""
+msgstr "Start Now"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:27
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
-msgstr ""
+msgstr "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:32
 msgid "What will happen next"
-msgstr ""
+msgstr "What will happen next"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:37
 msgid "<strong>If you agree</strong> to participate:"
-msgstr ""
+msgstr "<strong>If you agree</strong> to participate:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:43
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr ""
+msgstr "We may add security and plugin control features to Firefox to help with online security and performance."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:48
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
+msgstr "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:53
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:58
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:64
 msgid "Leaving the study"
-msgstr ""
+msgstr "Leaving the study"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:69
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:75
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "Type about:addons into the location bar, and press enter."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:80
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "Find Plugin Safety in the add-ons list."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:85
 msgid "Click the remove button."
-msgstr ""
+msgstr "Click the remove button."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:90
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
+msgstr "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:96
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "Opting out of a study does not prevent you from participating in future studies."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:101
 msgid "Your privacy"
-msgstr ""
+msgstr "Your privacy"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:106
 msgid "All Shield Studies"
-msgstr ""
+msgstr "All Shield Studies"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:111
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
+msgstr "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:116
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:121
 msgid "This particular Study"
-msgstr ""
+msgstr "This particular Study"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:126
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:132
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
+msgstr "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:137
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
+msgstr "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:143
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
+msgstr "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:148
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:153
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "You Help Make Firefox Better"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:158
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
+"At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
+"directly shape the future of Firefox!"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html:163
 msgid "Brought to you by:"
-msgstr ""
+msgstr "Brought to you by:"
 
 #: src/olympia/ratings/feeds.py:24
 #, python-format
 msgid "Reviews for %s"
-msgstr ""
+msgstr "Reviews for %s"
 
 #: src/olympia/ratings/feeds.py:32
 msgid "Review History for this Addon"
-msgstr ""
+msgstr "Review History for this Add-on"
 
 #. L10n: This describes the number of stars given out of 5
 #: src/olympia/ratings/feeds.py:50
 #, python-format
 msgid "Rated %d out of 5 stars"
-msgstr ""
+msgstr "Rated %d out of 5 stars"
 
 #: src/olympia/ratings/forms.py:79
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "A short explanation must be provided when selecting \"Other\" as a flag reason."
 
 #: src/olympia/ratings/models.py:292
 msgid "Spam or otherwise non-review content"
-msgstr ""
+msgstr "Spam or otherwise non-review content"
 
 #: src/olympia/ratings/models.py:293
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "Inappropriate language/dialog"
 
 #: src/olympia/ratings/models.py:294
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Misplaced bug report or support request"
 
 #: src/olympia/ratings/models.py:295
 msgid "Other (please specify)"
-msgstr ""
+msgstr "Other (please specify)"
 
 #: src/olympia/ratings/serializers.py:62
 msgid "This field is required."
-msgstr ""
+msgstr "This field is required."
 
 #: src/olympia/ratings/serializers.py:74
 msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
+msgstr "You can't change the add-on of a review once it has been created."
 
 #: src/olympia/ratings/serializers.py:121
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "You can't reply to a review that is already a reply."
 
 #: src/olympia/ratings/serializers.py:167
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "You can't change the version of the add-on reviewed once the review has been created."
 
 #: src/olympia/ratings/serializers.py:178
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "This version of the add-on doesn't exist or isn't public."
 
 #: src/olympia/ratings/serializers.py:187
 msgid "You can't leave a review on your own add-on."
-msgstr ""
+msgstr "You can't leave a review on your own add-on."
 
 #: src/olympia/ratings/serializers.py:194
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr ""
+msgstr "You can't leave more than one review for the same version of an add-on."
 
 #: src/olympia/ratings/views.py:107
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "This rating can't be flagged because it has no review text."
 
 #: src/olympia/ratings/views.py:119
 msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr ""
+msgstr "Thanks; this review has been flagged for reviewer approval."
 
 #: src/olympia/ratings/templates/ratings/add.html:4
 msgid "Add a review for {0}"
-msgstr ""
+msgstr "Add a review for {0}"
 
 #: src/olympia/ratings/templates/ratings/add.html:21
 #, python-format
@@ -8254,269 +8273,275 @@ msgid ""
 "community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
+"disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
+"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
+"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
+"Guidelines</a> for more detail about user add-on reviews.</p>"
 
 #: src/olympia/ratings/templates/ratings/reply.html:4
 msgid "Reply to review by {0}"
-msgstr ""
+msgstr "Reply to review by {0}"
 
 #: src/olympia/ratings/templates/ratings/reply.html:24
 msgid "Write a Reply"
-msgstr ""
+msgstr "Write a Reply"
 
 #: src/olympia/ratings/templates/ratings/reply.html:31 src/olympia/ratings/templates/ratings/report_review.html:12
 msgid "Submit"
-msgstr ""
+msgstr "Submit"
 
 #. this string is following a <button>.
 #: src/olympia/ratings/templates/ratings/reply.html:33
 #, python-format
 msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr ""
+msgstr "or <a href=\"%(url)s\">Cancel</a>"
 
 #: src/olympia/ratings/templates/ratings/report_review.html:3
 msgid "Please select a reason:"
-msgstr ""
+msgstr "Please select a reason:"
 
 #: src/olympia/ratings/templates/ratings/review.html:25
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr ""
+msgstr "by %(user)s <b>(Developer)</b> on %(date)s"
 
 #. {0} is a version number (like 1.01)
 #: src/olympia/ratings/templates/ratings/review.html:44
 msgid "This review is for a previous version of the add-on ({0})."
-msgstr ""
+msgstr "This review is for a previous version of the add-on ({0})."
 
 #: src/olympia/ratings/templates/ratings/review.html:50
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
+msgstr[1] "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
 
 #: src/olympia/ratings/templates/ratings/review.html:56
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr ""
+msgstr "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
 
 #: src/olympia/ratings/templates/ratings/review.html:66
 msgid "Flagged for review"
-msgstr ""
+msgstr "Flagged for review"
 
 #: src/olympia/ratings/templates/ratings/review.html:70
 msgid "Report this review"
-msgstr ""
+msgstr "Report this review"
 
 #: src/olympia/ratings/templates/ratings/review.html:76
 msgid "Reply to review"
-msgstr ""
+msgstr "Reply to review"
 
 #: src/olympia/ratings/templates/ratings/review.html:83
 msgid "Edit reply"
-msgstr ""
+msgstr "Edit reply"
 
 #: src/olympia/ratings/templates/ratings/review.html:88
 msgid "Edit review"
-msgstr ""
+msgstr "Edit review"
 
 #: src/olympia/ratings/templates/ratings/review.html:96
 msgid "Delete reply"
-msgstr ""
+msgstr "Delete reply"
 
 #: src/olympia/ratings/templates/ratings/review.html:101 src/olympia/reviewers/forms.py:555
 msgid "Delete review"
-msgstr ""
+msgstr "Delete review"
 
 #. {0} is an add-on name.
 #: src/olympia/ratings/templates/ratings/review_list.html:4
 msgid "{0} :: Reviews"
-msgstr ""
+msgstr "{0} :: Reviews"
 
 #: src/olympia/ratings/templates/ratings/review_list.html:20
 msgid "Reviews for {0}"
-msgstr ""
+msgstr "Reviews for {0}"
 
 #. {0} is a number.
 #: src/olympia/ratings/templates/ratings/review_list.html:23
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> review for this add-on"
+msgstr[1] "<b>{0}</b> reviews for this add-on"
 
 #. {0} is a developer's name.
 #: src/olympia/ratings/templates/ratings/review_list.html:29
 msgid "Developer reply by {0}"
-msgstr ""
+msgstr "Developer reply by {0}"
 
 #: src/olympia/ratings/templates/ratings/review_list.html:31
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Review for %(addon)s by %(user)s"
+msgstr[1] "Reviews for %(addon)s by %(user)s"
 
 #: src/olympia/ratings/templates/ratings/review_list.html:38
 msgid "No reviews found."
-msgstr ""
+msgstr "No reviews found."
 
 #: src/olympia/ratings/templates/ratings/review_list.html:51
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>Average</strong> (%(total)s)"
 
 #: src/olympia/ratings/templates/ratings/review_list.html:66
 msgid "Write a New Review"
-msgstr ""
+msgstr "Write a New Review"
 
 #: src/olympia/ratings/templates/ratings/review_list.html:75
 msgid "Be the first to write a review."
-msgstr ""
+msgstr "Be the first to write a review."
 
 #: src/olympia/ratings/templates/ratings/reviews_link.html:13
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} review"
+msgstr[1] "{num} reviews"
 
 #: src/olympia/ratings/templates/ratings/impala/reviews_rating.html:1
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Rated {0} out of 5 stars"
 
 #: src/olympia/ratings/templates/ratings/impala/reviews_rating.html:4
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Rated %(rating)s out of 5 stars"
 
 #: src/olympia/reviewers/forms.py:34
 msgid "Approved reviews"
-msgstr ""
+msgstr "Approved reviews"
 
 #: src/olympia/reviewers/forms.py:35
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Deleted reviews"
 
 #: src/olympia/reviewers/forms.py:43 src/olympia/reviewers/forms.py:62
 msgid "View entries between"
-msgstr ""
+msgstr "View entries between"
 
 #: src/olympia/reviewers/forms.py:45 src/olympia/reviewers/forms.py:63
 msgid "and"
-msgstr ""
+msgstr "and"
 
 #: src/olympia/reviewers/forms.py:47
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Filter by type/action"
 
 #: src/olympia/reviewers/forms.py:64
 msgid "containing"
-msgstr ""
+msgstr "containing"
 
 #: src/olympia/reviewers/forms.py:71
 msgid "start"
-msgstr ""
+msgstr "start"
 
 #: src/olympia/reviewers/forms.py:75
 msgid "end"
-msgstr ""
+msgstr "end"
 
 #. L10n: Description of what can be searched for
 #: src/olympia/reviewers/forms.py:78
 msgid "add-on, reviewer or comment"
-msgstr ""
+msgstr "add-on, reviewer or comment"
 
 #: src/olympia/reviewers/forms.py:94
 msgid "Search by add-on name / author email"
-msgstr ""
+msgstr "Search by add-on name / author email"
 
 #: src/olympia/reviewers/forms.py:98 src/olympia/reviewers/forms.py:177 src/olympia/reviewers/models.py:37
 msgid "Needs Admin Code Review"
-msgstr ""
+msgstr "Needs Admin Code Review"
 
 #: src/olympia/reviewers/forms.py:99 src/olympia/reviewers/forms.py:178 src/olympia/reviewers/forms.py:190
 msgid "yes"
-msgstr ""
+msgstr "yes"
 
 #: src/olympia/reviewers/forms.py:99 src/olympia/reviewers/forms.py:178 src/olympia/reviewers/forms.py:190
 msgid "no"
-msgstr ""
+msgstr "no"
 
 #: src/olympia/reviewers/forms.py:107
 msgid "Add-on Types"
-msgstr ""
+msgstr "Add-on Types"
 
 #: src/olympia/reviewers/forms.py:171
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "Search by add-on name / author email / GUID"
 
 #: src/olympia/reviewers/forms.py:186
 msgid "Max. Version"
-msgstr ""
+msgstr "Max. Version"
 
 #: src/olympia/reviewers/forms.py:292
 msgid "Comments:"
-msgstr ""
+msgstr "Comments:"
 
 #: src/olympia/reviewers/forms.py:305
 msgid "Operating systems:"
-msgstr ""
+msgstr "Operating systems:"
 
 #: src/olympia/reviewers/forms.py:307
 msgid "Applications:"
-msgstr ""
+msgstr "Applications:"
 
 #: src/olympia/reviewers/forms.py:309
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "Require developer to respond in less than…"
 
 #: src/olympia/reviewers/forms.py:311
 msgid "days"
-msgstr ""
+msgstr "days"
 
 #: src/olympia/reviewers/forms.py:360
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Choose a canned response..."
 
 #. L10n: Description of what can be searched for.
 #: src/olympia/reviewers/forms.py:401
 msgid "theme name"
-msgstr ""
+msgstr "theme name"
 
 #: src/olympia/reviewers/forms.py:427
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "Someone else is reviewing this theme."
 
 #. L10n: Description of what can be searched for.
 #: src/olympia/reviewers/forms.py:525
 msgid "theme, reviewer, or comment"
-msgstr ""
+msgstr "theme, reviewer, or comment"
 
 #: src/olympia/reviewers/forms.py:535
 msgid "Private Whiteboard"
-msgstr ""
+msgstr "Private Whiteboard"
 
 #: src/olympia/reviewers/forms.py:552
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Keep review; remove flags"
 
 #: src/olympia/reviewers/forms.py:553
 msgid "Skip for now"
-msgstr ""
+msgstr "Skip for now"
 
 #: src/olympia/reviewers/models.py:39
 msgid "Needs Admin Content Review"
-msgstr ""
+msgstr "Needs Admin Content Review"
 
 #: src/olympia/reviewers/models.py:41
 msgid "Needs Admin Static Theme Review"
-msgstr ""
+msgstr "Needs Admin Static Theme Review"
 
 #: src/olympia/reviewers/models.py:42
 msgid "Jetpack Add-on"
-msgstr ""
+msgstr "Jetpack Add-on"
 
 #: src/olympia/reviewers/models.py:44
 msgid "More Information Requested"
-msgstr ""
+msgstr "More Information Requested"
 
 #: src/olympia/reviewers/models.py:45
 msgid "Expired Information Request"
