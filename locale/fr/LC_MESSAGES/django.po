@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-05 08:53+0000\n"
+"PO-Revision-Date: 2018-08-05 08:55+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -5019,7 +5019,7 @@ msgstr "Achetez malin {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr ""
+msgstr "Suivez l’historique des prix, dénichez des produits concurrents, consultez des avis d’internautes sur les vendeurs, etc."
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5035,7 +5035,7 @@ msgstr "Explorez le trafic d’un site web {start_sub_heading}avec {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "Affichez des informations détaillées sur l’engagement et le trafic de n’importe quel site web."
 
 #. editorial content for the discovery pane.
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5092,7 +5092,7 @@ msgstr "Améliorez vos pages Nouvel onglet {start_sub_heading}avec {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "Ouvrez un nouvel onglet immédiatement à droite de l’onglet actif et non au bout de la rangée d’onglets ouverts."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5156,7 +5156,7 @@ msgstr "Traduisez à partir de et vers l’allemand {start_sub_heading}avec {add
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "Obtenez des traductions expertes en allemand à partir de l’anglais, du français, de l’espagnol et d’autres langues encore."
 
 #. editorial content for the discovery pane.
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5315,7 +5315,7 @@ msgstr "Surlignez du texte {start_sub_heading}avec {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
-msgstr ""
+msgstr "Utilisez un surligneur de texte hautement personnalisable avec différentes couleurs et options d'enregistrement."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
