@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 11:31+0000\n"
+"PO-Revision-Date: 2018-08-06 11:37+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4821,7 +4821,7 @@ msgstr "Керуйте завантаженнями {start_sub_heading}за до
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Стежте за станом завантажень на панелі стану, завантажуйте сторінку історії та інше."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4829,7 +4829,7 @@ msgstr "Захоплюйте веб-вміст {start_sub_heading}за допо�
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Зберігайте інформацію з інтернету до OneNote, для подальшого редагування, анотацій та інших можливостей."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4838,7 +4838,7 @@ msgstr "Налаштування вкладки {start_sub_heading}за допо
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Блокуйте стеження при переході в результатах пошуку Google та Yandex."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4846,7 +4846,7 @@ msgstr "Динамічна навігація {start_sub_heading}разом з {
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr ""
+msgstr "Використовуйте рухи миші для закриття вкладок, повернення на одну сторінку назад та інших дій."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4855,7 +4855,7 @@ msgstr "Робіть знімки екрану {start_sub_heading}за допо�
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
-msgstr ""
+msgstr "Переглядайте мініатюри зображень поруч з результатами пошуку."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4863,7 +4863,7 @@ msgstr "Зменште втому очей {start_sub_heading}за допомо�
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Зменште навантаження на очі за допомогою затемнення дисплею."
 
 #. editorial content for the discovery pane.
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4871,7 +4871,7 @@ msgstr "Зупиніть виринаючі елементи {start_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Блокуйте всі виринаючи вікна, потім вирішуйте, які з них відкривати."
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4879,7 +4879,7 @@ msgstr "Налаштуйте свої улюблені веб-сайти {start_
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Змінюйте вигляд будь-якого веб-сайту! Змінюйте кольори, тло сторінок та багато іншого."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
