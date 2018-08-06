@@ -7880,7 +7880,7 @@ msgstr "Obrázek uživatele %(user)s byl smazán."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr "Uživatelé %(user)s byli zablokováni."
+msgstr "Uživatelé %(users)s byli zablokováni."
 
 msgid "Ban selected users"
 msgstr "Zablokovat vybrané uživatele"
