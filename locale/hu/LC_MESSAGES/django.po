@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 16:11+0000\n"
+"PO-Revision-Date: 2018-08-06 16:39+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4941,7 +4941,7 @@ msgstr "Növelje a produktivitást {start_sub_heading}a(z) {addon_name} kiegész
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "Blokkolja az időrabló oldalakat, így az aktuális feladatra koncentrálhat."
 
 #. editorial content for the discovery pane.
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4949,7 +4949,7 @@ msgstr "Frissítse a lapokat {start_sub_heading}a(z) {addon_name} kiegészítőv
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "Automatikusan töltse újra a lapjait időintervallumonként."
 
 #. editorial content for the discovery pane.
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4957,7 +4957,7 @@ msgstr "Rögzítse a kedvenceit {start_sub_heading}a(z) {addon_name} kiegészít
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "Keressen és oldjon meg törött könyvelzőket, ismétlődéseket és egyebeket."
 
 #. editorial content for the discovery pane.
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4965,7 +4965,7 @@ msgstr "Stresszeljen kevesebbet {start_sub_heading}a(z) {addon_name} kiegészít
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Végezzen el a dolgát egy hasznos teendőlistával, amely szinkronizál az eszközei közt."
 
 #. editorial content for the discovery pane.
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5273,7 +5273,7 @@ msgstr "Élvezze a zenét a világ minden tájáról {start_sub_heading}a(z) {ad
 
 #. editorial content for the discovery pane.
 msgid "Access 20,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Érjen el több mint 20.000 rádióállomást szerte a világból."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5281,7 +5281,7 @@ msgstr "Hallgasson videókat {start_sub_heading}a(z) {addon_name} kiegészítőv
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "Spóroljon sávszélességet úgy, hogy csak a hangot tölti le a YouTube klipekből."
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5289,7 +5289,7 @@ msgstr "Alakítsa képpé a szöveget {start_sub_heading}a(z) {addon_name} kieg�
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Alakítsa a szavakat szép címsorokká és képfeliratokká."
 
 #. editorial content for the discovery pane.
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5297,7 +5297,7 @@ msgstr "Szörföljön biztonságosan {start_sub_heading}a(z) {addon_name} kiegé
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Navigáljon a weboldalak biztonságos változatára, ha az elérhető."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5313,7 +5313,7 @@ msgstr "Távolítsa el a keresési reklámokat {start_sub_heading}a(z) {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "Állítsa meg a hirdetéseket, hogy ne jelenjenek meg a keresési találatokban."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5321,7 +5321,7 @@ msgstr "Kezelje biztonságosan a jelszavakat {start_sub_heading}a(z) {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "Tárolja a jelszavait biztonságosan, és jelentkezzen be automatikusan az ismert weboldalakon."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5329,7 +5329,7 @@ msgstr "Blokkolja a reklámokat és a követést {start_sub_heading}a(z) {addon_
 
 #. editorial content for the discovery pane.
 msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
-msgstr ""
+msgstr "Védje a magánszféráját a reklámok és követők blokkolásával (plusz az oldalbetöltés is gyorsabb lesz)."
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5337,7 +5337,7 @@ msgstr "Töltse ki az űrlapokat automatikusan {start_sub_heading}a(z) {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
-msgstr ""
+msgstr "Mentse a megadott adatokat, és legközelebb automatikusan ki lesz töltve."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5345,7 +5345,7 @@ msgstr "Böngésszen privát módon {start_sub_heading}a(z) {addon_name} kiegés
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
-msgstr ""
+msgstr "Ugorjon át privát böngészésbe egyetlen kattintással."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
