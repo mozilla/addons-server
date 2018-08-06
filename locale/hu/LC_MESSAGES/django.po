@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-03 14:09+0000\n"
+"PO-Revision-Date: 2018-08-06 08:30+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4812,7 +4812,7 @@ msgstr "Rögzítse a webes tartalmakat {start_sub_heading}a(z) {addon_name} kieg
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Mentse el az interneten található információkat a OneNote-ba, így szerkesztheti, véleményezheti és így tovább."
 
 #. editorial content for the discovery pane.
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4820,7 +4820,7 @@ msgstr "Keresés közbeni követésvédelem {start_sub_heading}a(z) {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Állítsa meg a követőket, ha Google és Yandex keresési eredményekre kattint."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4828,7 +4828,7 @@ msgstr "Dinamikus navigáció {start_sub_heading}a(z) {addon_name} kiegészítő
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr ""
+msgstr "Használjon egérgesztusokat a lapok bezárásához, az egy lappal visszalépéshez, az újratöltéshez, és egyebekhez."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4836,7 +4836,7 @@ msgstr "Képek hozzáadása a keresési eredményekhez {start_sub_heading}a(z) {
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
-msgstr ""
+msgstr "Élvezze a bélyegképeket a keresési találatok mellett."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4844,7 +4844,7 @@ msgstr "Csökkentse a szemfáradást {start_sub_heading}a(z) {addon_name} kiegé
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Tegye szemkímélőbbé a webet a megjelenítés sötétítésével."
 
 #. editorial content for the discovery pane.
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4852,7 +4852,7 @@ msgstr "Blokkolja a felugró ablakokat {start_sub_heading}a(z) {addon_name} kieg
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Blokkolja alapértelmezetten az összes felugró ablakot, és döntse el melyeket akar megnyitni."
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
