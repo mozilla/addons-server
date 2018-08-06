@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 07:06+0000\n"
+"PO-Revision-Date: 2018-08-06 07:31+0000\n"
 "Last-Translator: jv.raavi <jv.raavi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -59,7 +59,7 @@ msgid "Need help?"
 msgstr "ਮਦਦ ਚਾਹੀਦੀ ਹੈ?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "ਐਡ-ਆਨ ਜਾਂ ਥੀਮ ਦੇ ਡਿਵੈਲਪਰ ਆਪਣਾ ਖਾਤਾ ਨਹੀਂ ਮਿਟਾ ਸਕਦੇ। ਤੁਹਾਨੂੰ ਇਸ ਅਕਾਊਂਟ ਨਾਲ ਸਬੰਧਿਤ ਸਾਰੇ ਐਡ-ਆਨ ਅਤੇ ਥੀਮ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੀਦਾ ਹੈ, ਜਾਂ ਉਨ੍ਹਾਂ ਨੂੰ ਦੂਜੇ ਉਪਭੋਗਤਾਵਾਂ ਨੂੰ ਟਰਾਂਸਫਰ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ।"
 
 msgid "Review"
 msgstr "ਸਮੀਖਿਆ"
@@ -71,16 +71,16 @@ msgid "Review note"
 msgstr "ਸਮੀਖਿਆ ਲਿਖਤ"
 
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "ਐਡਆਨ ਦੇ ਸਿਰਫ ਨਵੀਨਤਮ ਵਰਜਨ ਹੀ ਨੋਟਿਸ ਜੋੜ ਸਕਦੇ ਹਨ।"
 
 msgid "Status"
 msgstr "ਦਰਜਾ"
 
 msgid "- Add-on not on AMO -"
-msgstr ""
+msgstr "AMO - ਉੱਤੇ -ਐਡ-ਆਨ ਨਹੀਂ"
 
 msgid "Download Now"
-msgstr "                  ਹੁਣੇ ਹੀ ਡਾਓਨਲੋਡ ਕਰੋ                "
+msgstr "ਹੁਣੇ ਡਾਊਨਲੋਡ ਕਰੋ"
 
 msgid "Download"
 msgstr "ਡਾਓਨਲੋਡ"
@@ -95,7 +95,7 @@ msgstr "ਪੁਨਰ ਵਿਚਾਰ ਨਹੀਂ"
 
 msgctxt "install_button"
 msgid "Experimental"
-msgstr ""
+msgstr "ਤਜਰਬੇ"
 
 msgid "Add to {0}"
 msgstr "{0} ਨੂੰ ਸ਼ਾਮਲ ਕਰੋ"
@@ -135,7 +135,7 @@ msgstr[1] "ਸਾਰੇ ਟੈਗ ਘੱਟੋ-ਘੱਟ {0} ਅੱਖਰਾਂ 
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
+msgstr "URL ਡੋਮੇਨ [% s] ਵਿੱਚੋਂ ਇੱਕ, ਜਾਂ ਸਬਡੋਮੇਨ ਹੋਣਾ ਜਰੂਰੀ ਹੈ।"
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "ਵਰਗ ਬਦਲੇ ਨਹੀਂਂ ਜਾ ਸਕਦੇ ਜਦ ਕਿ ਤੁਹਾਡਾ ਐਡਓਨ ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਲਈ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਹੈ।"
@@ -169,10 +169,10 @@ msgid "Listed"
 msgstr "ਸੂਚੀਬੱਧ"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "ਐਡਆਨ ਅਤੇ ਕਲੈਕਸ਼ਨ ਪਾਥ ਨੂੰ \"/\" ਨਾਲ ਖਤਮ ਕਰਨ ਦੀ ਲੋੜ ਹੈ"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "ਐਡ-ਆਨ ਦੇ ਨਾਂ ਵਿੱਚ ਮੋਜ਼ੀਲਾ ਜਾਂ ਫਾਇਰਫਾਕਸ ਟ੍ਰੇਡਮਾਰਕ ਸ਼ਾਮਲ ਨਹੀਂ ਹੋ ਸਕਦੇ ਹਨ।"
 
 msgid "Abuse reported."
 msgstr "ਬਦਸਲੂਕੀ ਦੀ ਸੂਚਨਾ।"
@@ -274,7 +274,7 @@ msgid "This add-on is built with new technology that is compatible with Firefox 
 msgstr ""
 
 msgid "Compatible with Firefox 57+"
-msgstr ""
+msgstr "ਫਾਇਰਫਾਕਸ 57+ ਨਾਲ ਅਨੁਕੂਲ"
 
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
