@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 03:31+0000\n"
+"PO-Revision-Date: 2018-08-06 03:34+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -8195,7 +8195,7 @@ msgstr "Reviews for %s"
 
 #: src/olympia/ratings/feeds.py:32
 msgid "Review History for this Addon"
-msgstr "Review History for this Add-on"
+msgstr "Review History for This Add-on"
 
 #. L10n: This describes the number of stars given out of 5
 #: src/olympia/ratings/feeds.py:50
