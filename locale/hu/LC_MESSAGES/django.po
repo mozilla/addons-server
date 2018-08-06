@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 08:30+0000\n"
+"PO-Revision-Date: 2018-08-06 09:02+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2201,22 +2201,22 @@ msgid "All Rights Reserved"
 msgstr "Minden jog fenntartva"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
+msgstr "Creative Commons – Nevezd meg! 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons – Nevezd meg! – Ne add el! 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons – Nevezd meg! – Ne add el! – Ne változtasd! 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons – Nevezd meg! – Ne add el! – Így add tovább! 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons – Nevezd meg! – Ne változtasd! 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons – Nevezd meg! – Így add tovább! 3.0"
 
 msgid "Any"
 msgstr "Bármely"
@@ -2231,7 +2231,7 @@ msgid "Mac OS X"
 msgstr "Mac OS X"
 
 msgid "BSD"
-msgstr "BSD licenc"
+msgstr "BSD"
 
 msgid "Windows"
 msgstr "Windows"
@@ -3269,7 +3269,7 @@ msgid "Statistics"
 msgstr "Statisztika"
 
 msgid "Manage Status & Versions"
-msgstr "Státusz és verziók kezelése"
+msgstr "Állapot és verziók kezelése"
 
 msgid "View Add-on Listing"
 msgstr "Kiegészítő megjelenésének megtekintése"
@@ -4283,7 +4283,7 @@ msgid "Canceling your review request will mark your add-on incomplete, and any v
 msgstr "Az értékelési kérelem megszakításával a kiegészítő befejezetlen állapotba kerül, és minden értékelésre váró verzió letiltásra kerül."
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr "Biztosan megszakítja az értékelési kérést?"
+msgstr "Biztos megszakítja az értékelési kérést?"
 
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Kiegészítődokumentáció :: Fejlesztőközpont"
@@ -4860,7 +4860,7 @@ msgstr "Szabja testre a kedvenc webhelyeit {start_sub_heading}a(z) {addon_name} 
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Módosítsa bármelyik weboldal kinézetét! Állítsa át a színeket, oldalhátteret, és így tovább."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
