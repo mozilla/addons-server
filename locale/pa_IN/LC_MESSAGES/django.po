@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -135,7 +135,7 @@ msgstr[1] "ਸਾਰੇ ਟੈਗ ਘੱਟੋ-ਘੱਟ {0} ਅੱਖਰਾਂ 
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "URL ਡੋਮੇਨ [% s] ਵਿੱਚੋਂ ਇੱਕ, ਜਾਂ ਸਬਡੋਮੇਨ ਹੋਣਾ ਜਰੂਰੀ ਹੈ।"
+msgstr "URL ਡੋਮੇਨ [%s] ਵਿੱਚੋਂ ਇੱਕ, ਜਾਂ ਸਬਡੋਮੇਨ ਹੋਣਾ ਜਰੂਰੀ ਹੈ।"
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "ਵਰਗ ਬਦਲੇ ਨਹੀਂਂ ਜਾ ਸਕਦੇ ਜਦ ਕਿ ਤੁਹਾਡਾ ਐਡਓਨ ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਲਈ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਹੈ।"
