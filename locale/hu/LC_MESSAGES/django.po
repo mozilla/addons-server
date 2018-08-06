@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 10:11+0000\n"
+"PO-Revision-Date: 2018-08-06 16:10+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -726,14 +726,15 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Ezt az üzenetet azért látja, mert ez a HTTPS oldal megköveteli, hogy a böngésző „Referer” fejlécet küldjön. Ez a fejléc biztonsági okokból szükséges, nehogy harmadik felek eltérítsék a böngészőjét."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr ""
+msgstr "Ha úgy állította be a böngészőjét, hogy tiltsa a „Referer” fejléceket, akkor engedélyezze újra őket, legalább ezen az oldalon, vagy a HTTPS kapcsolatok, vagy a „same-origin” kérések esetén."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
-msgstr ""
+msgstr "Ezt az üzenetet azért látja, mert az oldalon szükséges a CSRF süti az űrlapok beküldéséhez. Ez a süti biztonsági okokból szükséges, nehogy harmadik felek eltérítsék a böngészőjét."
 
 msgid "Page Not Found"
 msgstr "Az oldal nem található"
@@ -4804,7 +4805,7 @@ msgstr "Robusztus letöltéskezelés {start_sub_heading}a(z) {addon_name} kiegé
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "A letöltések megtekintése egy állapotsoron, letöltési előzmények oldal, és még sok más."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4868,7 +4869,7 @@ msgstr "Az új lap oldal testreszabása {start_sub_heading}a(z) {addon_name} kie
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Módosítsa az új lap oldalt, hogy annyi csempét jelenítsen meg, amennyit szeretne, cserélje le a háttérképet, és így tovább."
 
 #. editorial content for the discovery pane.
 msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4916,7 +4917,7 @@ msgstr "Szerezze vissza a lapokat {start_sub_heading}a(z) {addon_name} kiegész�
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Érje el a nemrég bezárt lapjait az eszköztáron található ikonon történő jobb kattintással."
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4924,7 +4925,7 @@ msgstr "Inspirálja a produktivitást {start_sub_heading}a(z) {addon_name} kieg�
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Módosítsa az új lap oldalt, hogy egy szép hátteret jelenítsen meg, állítsa be a napi fókuszát, és így tovább."
 
 #. editorial content for the discovery pane.
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
