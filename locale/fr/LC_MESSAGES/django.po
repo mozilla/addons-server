@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 07:14+0000\n"
+"PO-Revision-Date: 2018-08-06 16:41+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -5045,9 +5045,8 @@ msgid "Use mouse gestures to get to things done—quicker."
 msgstr "Apprenez à utiliser la souris plus efficacement et plus rapidement."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Diversifiez les émoticônes que vous utilisez {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Modifiez l’apparence des pages web {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
