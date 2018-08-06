@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-03 13:40+0000\n"
+"PO-Revision-Date: 2018-08-06 08:30+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4733,7 +4733,7 @@ msgstr "Контролюйте відтворення відео {start_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "Вдоскональте перегляд відео, змінюючи його швидкість та інші параметри."
 
 #. editorial content for the discovery pane.
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4741,7 +4741,7 @@ msgstr "Переглядайте Інтернет безпечно {start_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
-msgstr ""
+msgstr "Додайте безпеку шифрування для будь-якого сайту, що підтримує протокол HTTPS."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4749,7 +4749,7 @@ msgstr "Купуйте й зберігайте {start_sub_heading}за допо�
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "Отримуйте найкращі купони, що автоматично застосовуються при оформленні покупок."
 
 #. editorial content for the discovery pane.
 msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4757,7 +4757,7 @@ msgstr "Перемикайте переклади {start_sub_heading}за доп
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "Перекладайте підсвічений текст, або цілі веб- сторінки"
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4765,7 +4765,7 @@ msgstr "Вдосконалюйте Reddit {start_sub_heading}за допомог
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Змініть спосіб перегляду Reddit з використанням міток та інших засобів."
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4773,11 +4773,11 @@ msgstr "Захоплюйте веб-вміст {start_sub_heading}за допо�
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Робіть знімки екрану веб-сторінок, редагуйте і діліться з іншими."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Найкращий засіб для завантаження лише для Windows."
 
 #. editorial content for the discovery pane.
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4785,7 +4785,7 @@ msgstr "Дізнайтеся, хто за вами стежить {start_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "Дізнайтеся, хто за вами стежить і куди вони можуть передавати інформацію про вас."
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
