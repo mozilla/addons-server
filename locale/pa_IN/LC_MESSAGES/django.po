@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 07:31+0000\n"
+"PO-Revision-Date: 2018-08-06 07:33+0000\n"
 "Last-Translator: jv.raavi <jv.raavi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -441,14 +441,14 @@ msgid "Tags"
 msgstr "ਨਿਸ਼ਾਨਬੱਧ"
 
 msgid "Icon for {0}"
-msgstr ""
+msgstr "{0} ਲਈ ਆਈਕਾਨ"
 
 #, python-format
 msgid "by %(users)s"
 msgstr "%(users)s ਵੱਲੋਂ"
 
 msgid "Download Anyway"
-msgstr ""
+msgstr "ਹਰੇਕ ਜਗ੍ਹਾ ਡਾਊਨਲੋਡ ਕਰੋ"
 
 #, fuzzy
 msgid "[Warning]"
