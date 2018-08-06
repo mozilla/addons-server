@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 09:50+0000\n"
+"PO-Revision-Date: 2018-08-06 10:11+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4876,7 +4876,7 @@ msgstr "Kapjon gyors fordításokat {start_sub_heading}a(z) {addon_name} kiegés
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
+msgstr "Jelöljön ki szöveget egy tetszőleges oldalon, kattintson a jobb gombbal, és fordítsa le azonnal."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4884,7 +4884,7 @@ msgstr "Kezelje a jelszavait {start_sub_heading}a(z) {addon_name} kiegészítőv
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Tárolja a jelszavait biztonságosan, és érje el őket több eszközön."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4892,7 +4892,7 @@ msgstr "Tudja merre jár a weben {start_sub_heading}a(z) {addon_name} kiegészí
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Kérje le a meglátogatott weboldalak helyének országát. Legyen tájékozott internetes utazó."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4900,7 +4900,7 @@ msgstr "Javítsa az olvasási élményét {start_sub_heading}a(z) {addon_name} k
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Tegye vonzóbbá az olvasott szöveget azáltal, hogy eltávolítja körülötte a rendetlenséget."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
