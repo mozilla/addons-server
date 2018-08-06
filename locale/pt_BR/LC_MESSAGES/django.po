@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 16:05+0000\n"
+"PO-Revision-Date: 2018-08-06 16:18+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5333,90 +5333,80 @@ msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Exclua dados {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
 msgstr "Limpe o cache do navegador com um clique ou através de um atalho de teclado."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore sua coleção de emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Não se esqueça {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
 msgstr "Crie e gerencie uma lista de tarefas no seu navegador."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Destaque texto {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Desfrute música de todo o mundo {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access 20,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Ouça vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Faça capturas de tela {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Transforme texto em imagens {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Navegue com segurança {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Exclua o seu histórico de navegação {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Remova anúncios das pesquisas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Faça capturas de tela {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Gerencie senhas com segurança {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
@@ -5431,18 +5421,16 @@ msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalização de abas {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Preencha formulários automaticamente {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Navegue de modo privativo {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
@@ -5458,63 +5446,56 @@ msgid "Don't let clicked links take control of your current tab and load content
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Acesse a Wikipédia facilmente {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Descubra conteúdos de sites específicos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Encontre vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore sua coleção de emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Ganhe vantagens na Amazon {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Faça capturas de tela {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Tweet {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily broadcast web content to your Twitter following."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Faça capturas de tela {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Controle totalmente as abas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalização de abas {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Desfrute de uma educação estranha {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, fuzzy
