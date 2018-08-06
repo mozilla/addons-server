@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 03:34+0000\n"
+"PO-Revision-Date: 2018-08-06 11:10+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -55,11 +55,11 @@ msgstr "Please use images smaller than %dMB."
 
 #: src/olympia/accounts/views.py:68
 msgid "You are already logged in."
-msgstr "You are already logged in."
+msgstr "You are already signed in."
 
 #: src/olympia/accounts/views.py:70
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Your login attempt could not be parsed. Please try again."
+msgstr "Your sign-in attempt could not be parsed. Please try again."
 
 #: src/olympia/accounts/views.py:72
 msgid "Your Firefox Account could not be found. Please try again."
@@ -67,7 +67,7 @@ msgstr "Your Firefox Account could not be found. Please try again."
 
 #: src/olympia/accounts/views.py:73
 msgid "You could not be logged in. Please try again."
-msgstr "You could not be logged in. Please try again."
+msgstr "You could not be signed in. Please try again."
 
 #: src/olympia/accounts/views.py:156
 msgid "Need help?"
@@ -539,7 +539,7 @@ msgstr "What do you think?"
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:8 src/olympia/addons/templates/addons/review_add_box.html:6
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr "Please <a href=\"%(login)s\">log in</a> to submit a review"
+msgstr "Please <a href=\"%(login)s\">sign in</a> to submit a review"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:17 src/olympia/addons/templates/addons/review_add_box.html:15
 msgid "Review:"
@@ -5858,7 +5858,7 @@ msgstr "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:69
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr "Simplify and sync all your various website sign-ins across devices with one password to rule them all."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:72 src/olympia/discovery/strings.jinja2:749
@@ -10052,7 +10052,7 @@ msgstr "Create an Add-ons Account"
 #: src/olympia/templates/base.html:154 src/olympia/templates/impala/base.html:186
 #, python-format
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "or <a href=\"%(login)s\">Sign in to your current account</a>"
 
 #: src/olympia/templates/base.html:173 src/olympia/templates/impala/base.html:200
 msgid "Footer logo"
@@ -10145,7 +10145,7 @@ msgstr "Welcome, {0}"
 #: src/olympia/templates/impala/user_login.html:24 src/olympia/templates/user_login.html:39
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
+msgstr "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Sign in</a>"
 
 #: src/olympia/templates/impala/base.html:111
 #, python-format
@@ -10404,7 +10404,7 @@ msgstr "By clicking “delete” your account is going to be <strong>permanently
 #: src/olympia/users/templates/users/delete.html:35
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
+msgstr "Signing in with this email address into %(site)s again will create a new account that is in no way associated with this account."
 
 #: src/olympia/users/templates/users/delete.html:40
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
@@ -10525,15 +10525,15 @@ msgstr "all"
 
 #: src/olympia/users/templates/users/fxa_login_prompt_content.html:3
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
+msgstr "Mozilla Add-ons has transitioned to Firefox Accounts for sign-in. Continue to complete the simple sign-in process."
 
 #: src/olympia/users/templates/users/login.html:3
 msgid "User Login"
-msgstr "User Login"
+msgstr "User Sign-in"
 
 #: src/olympia/users/templates/users/login.html:11
 msgid "Log in with Firefox Accounts"
-msgstr "Log in with Firefox Accounts"
+msgstr "Sign in with Firefox Accounts"
 
 #: src/olympia/users/templates/users/newpw_sent.html:3 src/olympia/users/templates/users/newpw_sent.html:8
 msgid "Password Reset"
@@ -10651,11 +10651,11 @@ msgstr "User since"
 
 #: src/olympia/users/templates/users/vcard.html:34
 msgid "Time of last login"
-msgstr "Time of last login"
+msgstr "Time of last sign-in"
 
 #: src/olympia/users/templates/users/vcard.html:40
 msgid "IP address of last login"
-msgstr "IP address of last login"
+msgstr "IP address of last sign-in"
 
 #: src/olympia/users/templates/users/vcard.html:47
 msgid "Number of add-ons developed"
