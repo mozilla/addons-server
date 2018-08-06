@@ -1,0 +1,2 @@
+# Temporarily use an experimental build of pytest-fxa until an update is released
+-e git://github.com/jrbenny35/pytest-fxa.git@handle-account-errors-better#egg=pytest-fxa
