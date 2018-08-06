@@ -4908,7 +4908,7 @@ msgstr "Nyisson meg több hivatkozást {start_sub_heading}a(z) {addon_name} kieg
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
-msgstr ""
+msgstr "Kattintson a jobb gombbal, és húzza át az új lapon megnyitandó hivatkozásokat."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
