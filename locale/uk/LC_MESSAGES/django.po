@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 08:30+0000\n"
+"PO-Revision-Date: 2018-08-06 11:31+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4793,11 +4793,11 @@ msgstr "Блокуйте рекламу {start_sub_heading}за допомого
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Замаскуйтеся при перегляді інтернету — або навіть робіть вигляд, що ви знаходитесь в іншій країні."
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Отримуйте доступ до улюблених сайтів, недавно закритих вкладок та інших функцій за допомогою зручно розташованих плиток."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4805,7 +4805,7 @@ msgstr "Встановіть свою домівку {start_sub_heading}за д�
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "Призначте власну сторінку, яка буде завантажуватись при відкритті нових вкладок."
 
 #. editorial content for the discovery pane.
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4813,7 +4813,7 @@ msgstr "Перелік ваших вкладок {start_sub_heading}разом �
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "Перетворіть усі відкриті вкладки в список для простого керування та пришвидшення Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
