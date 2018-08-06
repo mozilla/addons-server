@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-05 20:59+0000\n"
+"PO-Revision-Date: 2018-08-06 03:24+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -59,7 +59,7 @@ msgstr "Error with {0}"
 
 #: static/js/common/upload-addon.js:204
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
+msgstr "We have enabled a new linter to process your add-on. Please make sure to report any issues on GitHub"
 
 #: static/js/common/upload-addon.js:212
 msgid "Your add-on failed validation with {0} error."

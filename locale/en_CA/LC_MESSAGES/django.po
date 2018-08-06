@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-05 21:22+0000\n"
+"PO-Revision-Date: 2018-08-06 03:31+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -1475,8 +1475,8 @@ msgstr[1] "%(num)s Themes in this Collection"
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "%(num)s Add-on in this Collection"
-msgstr[1] "%(num)s Add-ons in this Collection"
+msgstr[0] "%(num)s add-on in this collection"
+msgstr[1] "%(num)s add-ons in this collection"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:101 src/olympia/compat/templates/compat/reporter_detail.html:27 src/olympia/files/templates/files/viewer.html:40
 #: src/olympia/templates/footer.html:36 src/olympia/templates/includes/lang_switcher.html:10
@@ -2015,7 +2015,7 @@ msgstr ""
 
 #: src/olympia/compat/templates/compat/reporter.html:18
 msgid "Reports for your Add-ons"
-msgstr "Reports for your Add-ons"
+msgstr "Reports for your add-ons"
 
 #: src/olympia/compat/templates/compat/reporter.html:33
 msgid "Enter the GUID of an add-on below to view any reports we've received."
@@ -2384,7 +2384,7 @@ msgstr "{file} was signed."
 #. L10n: {0} is the add-on GUID.
 #: src/olympia/constants/activity.py:482
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr "Addon id {0} with GUID {1} has been deleted"
+msgstr "Add-on ID {0} with GUID {1} has been deleted"
 
 #: src/olympia/constants/activity.py:523
 msgid "{addon} migrated from preliminary."
@@ -4184,7 +4184,7 @@ msgstr "Continue"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:2
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr "Can others share your Add-on, as long as you’re given credit?"
+msgstr "Can others share your add-on, as long as you’re given credit?"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:17
 msgid "Can others make commercial use of your Add-on?"
@@ -4192,7 +4192,7 @@ msgstr "Can others make commercial use of your Add-on?"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:32
 msgid "Can others create derivative works from your Add-on?"
-msgstr "Can others create derivative works from your Add-on?"
+msgstr "Can others create derivative works from your add-on?"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:43 src/olympia/devhub/templates/devhub/personas/edit.html:185
 msgid "Yes, as long as they share alike"
@@ -4204,7 +4204,7 @@ msgstr "The licensor permits others to distribute derivative works only under th
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:57
 msgid "Your Add-on will be released under the following license:"
-msgstr "Your Add-on will be released under the following license:"
+msgstr "Your add-on will be released under the following license:"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:60 src/olympia/devhub/templates/devhub/personas/edit.html:205
 msgid "Select a different license."
@@ -4960,7 +4960,7 @@ msgid ""
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
-"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
+"receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:24
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
