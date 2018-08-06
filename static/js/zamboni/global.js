@@ -444,16 +444,17 @@ function show_slug_edit(e) {
 }
 
 function slugify() {
-    var slug = $('#id_slug');
-    url_customized = slug.attr('data-customized') == 0;
-    if (url_customized || !slug.val()) {
-        var s = makeslug($('#id_name').val());
-        slug.val(s);
-        name_val = s;
-        $('#slug_value').text(s);
-    } else {
-        $('#slug_value').text($('#id_slug').val());
+    var $slug = $('#id_slug');
+    var url_customized = $slug.attr('data-customized') === 0 ||
+                                    !$slug.attr('data-customized');
+    if (url_customized || !$slug.val()) {
+        var new_slug = makeslug($('#id_name').val());
+        if (new_slug !== "") {
+            $slug.val(new_slug);
+        }
     }
+    name_val = $slug.val();
+    $('#slug_value').text($slug.val());
 }
 
 
