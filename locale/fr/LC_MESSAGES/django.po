@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-07 12:37+0000\n"
+"PO-Revision-Date: 2018-08-07 13:36+0000\n"
 "Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -5042,7 +5042,7 @@ msgstr "Apprenez à utiliser la souris plus efficacement et plus rapidement."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Modifiez l’apparence des pages web {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Masquez tous les éléments de la page web que vous souhaitez {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
