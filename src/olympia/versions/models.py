@@ -638,7 +638,8 @@ class Version(OnChangeMixin, ModelBase):
         auto_approve command."""
         return (
             self.addon.status in (amo.STATUS_PUBLIC, amo.STATUS_NOMINATED) and
-            self.addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP) and
+            self.addon.type in (
+                amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT) and
             self.is_webextension and
             self.is_unreviewed and
             self.channel == amo.RELEASE_CHANNEL_LISTED)

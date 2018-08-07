@@ -70,13 +70,21 @@ class TestAutoApproveCommand(TestCase):
         # Even add an empty reviewer flags instance, that should not matter.
         AddonReviewerFlags.objects.create(addon=new_addon)
 
-        # Add langpack: it should also be considered.
+        # Add langpack: it should be considered.
         langpack = addon_factory(
             type=amo.ADDON_LPAPP, status=amo.STATUS_NOMINATED, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True})
         langpack_version = langpack.versions.all()[0]
         langpack_version.update(nomination=self.days_ago(3))
+
+        # Add a dictionary: it should also be considered.
+        dictionary = addon_factory(
+            type=amo.ADDON_DICT, status=amo.STATUS_NOMINATED, file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True})
+        dictionary_version = dictionary.versions.all()[0]
+        dictionary_version.update(nomination=self.days_ago(4))
 
         # Add a bunch of add-ons in various states that should not be returned.
         # Public add-on with no updates.
@@ -128,13 +136,15 @@ class TestAutoApproveCommand(TestCase):
         command.post_review = True
         qs = command.fetch_candidates()
 
-        # 3 versions should be found. Because of the nomination date,
-        # langpack_version should be first (its nomination date is the oldest),
-        # followed by new_addon_version and then self.version.
-        assert len(qs) == 3
-        assert qs[0] == langpack_version
-        assert qs[1] == new_addon_version
-        assert qs[2] == self.version
+        # 4 versions should be found. Because of the nomination date,
+        # dictionary_version should be first (its nomination date is the
+        # oldest) followed by langpack_version, new_addon_version and then
+        # self.version.
+        assert len(qs) == 4
+        assert qs[0] == dictionary_version
+        assert qs[1] == langpack_version
+        assert qs[2] == new_addon_version
+        assert qs[3] == self.version
 
     @mock.patch(
         'olympia.reviewers.management.commands.auto_approve.statsd.incr')
