@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-07 22:50+0000\n"
+"PO-Revision-Date: 2018-08-07 23:00+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -185,15 +185,15 @@ msgstr "Le imagines debe ser PNG o JPG."
 
 #: static/js/common/upload-image.js:101
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Le videos debe esser in formato WebM."
 
 #: static/js/impala/collections.js:10 static/js/zamboni/collections.js:527
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Seque iste collection"
 
 #: static/js/impala/collections.js:19
 msgid "Stop Following"
-msgstr ""
+msgstr "Stoppar de sequer"
 
 #: static/js/impala/collections.js:20
 msgid "Following"
@@ -202,19 +202,19 @@ msgstr ""
 #. L10n: {0} is an app name.
 #: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Iste thema es incompatibile con tu version de {0}"
 
 #: static/js/impala/persona_creation.js:49
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Tote le derectos es reservate"
 
 #: static/js/impala/persona_creation.js:53
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Attribution 3.0 de Creative Commons"
 
 #: static/js/impala/persona_creation.js:58
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Attribution-non commercial 3.0 de Creative Commons"
 
 #: static/js/impala/persona_creation.js:63
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
@@ -238,7 +238,7 @@ msgstr ""
 
 #: static/js/impala/ratings.js:23 static/js/zamboni/ratings.js:18
 msgid "Flagged for review"
-msgstr ""
+msgstr "Marcate pro le revision"
 
 #: static/js/impala/ratings.js:40 static/js/zamboni/ratings.js:34
 msgid "Your input is required"
