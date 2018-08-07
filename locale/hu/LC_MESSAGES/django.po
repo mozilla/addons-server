@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-07 10:27+0000\n"
+"PO-Revision-Date: 2018-08-07 12:31+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5013,7 +5013,7 @@ msgstr "Álcázza az oldalt {start_sub_heading}a(z) {addon_name} kiegészítőve
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Rejtse el az épp megtekintett oldal egyes részeit."
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5021,7 +5021,7 @@ msgstr "Töltsön le képeket {start_sub_heading}a(z) {addon_name} kiegészítő
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
-msgstr ""
+msgstr "Ragadjon meg képeket bármely weboldalon, és mentse le őket."
 
 #. editorial content for the discovery pane.
 msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
