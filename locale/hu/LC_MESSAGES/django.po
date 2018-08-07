@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-07 12:31+0000\n"
+"PO-Revision-Date: 2018-08-07 12:32+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5029,7 +5029,7 @@ msgstr "Rejtse el a helyét {start_sub_heading}a(z) {addon_name} kiegészítőve
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr ""
+msgstr "Álcázza a tartózkodási helyét, hogy megtévessze a követőket, és védje a magánszféráját."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
