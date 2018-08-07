@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-07 22:27+0000\n"
+"PO-Revision-Date: 2018-08-07 22:50+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -156,30 +156,32 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Files binari compilate, assi como scripts minimisate o offuscate (salvo bibliothecas note) necessita haber lor fontes submittite separatemente pro le revision. Verifica que tu usa le campo pro "
+"cargar codice fonte pro evitar que tu submission sia rejectate."
 
 #: static/js/common/upload-addon.js:513
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "Le processo de validation trovava iste problemas, que pote ducer al rejectiones:"
 
 #: static/js/common/upload-addon.js:566
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Pardono, nulle platteforma supportate ha essite trovate."
 
 #: static/js/common/upload-base.js:64
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Le typo de file que tu cargava non es recognoscite."
 
 #: static/js/common/upload-base.js:73
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Tu file excede le maxime dimension de {0}."
 
 #: static/js/common/upload-base.js:93
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Tu ha cancellate le cargamento."
 
 #: static/js/common/upload-image.js:97 static/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Le imagines debe ser PNG o JPG."
 
 #: static/js/common/upload-image.js:101
 msgid "Videos must be in WebM."
