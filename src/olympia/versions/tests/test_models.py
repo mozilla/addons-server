@@ -502,10 +502,15 @@ class TestVersion(TestCase):
         AddonReviewerFlags.objects.create(
             addon=addon, auto_approval_disabled=False)
 
+        assert version.is_ready_for_auto_approval
+
         addon.type = amo.ADDON_THEME
         assert not version.is_ready_for_auto_approval
 
         addon.type = amo.ADDON_LPAPP
+        assert version.is_ready_for_auto_approval
+
+        addon.type = amo.ADDON_DICT
         assert version.is_ready_for_auto_approval
 
     def test_is_ready_for_auto_approval_addon_status(self):
