@@ -135,7 +135,7 @@ msgstr "Converter un additivo legate a WebExtension MDN"
 
 #: static/js/common/upload-addon.js:472
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Include notas de version detaliate (il es possibile facer isto in le grado successive)."
 
 #: static/js/common/upload-addon.js:473
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
