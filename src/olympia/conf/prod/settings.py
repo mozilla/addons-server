@@ -96,9 +96,7 @@ CEF_PRODUCT = STATSD_PREFIX
 
 NEW_FEATURES = True
 
-CLEANCSS_BIN = 'cleancss'
-UGLIFY_BIN = 'uglifyjs'
-ADDONS_LINTER_BIN = 'addons-linter'
+ADDONS_LINTER_BIN = 'node_modules/.bin/addons-linter'
 
 XSENDFILE_HEADER = 'X-Accel-Redirect'
 
