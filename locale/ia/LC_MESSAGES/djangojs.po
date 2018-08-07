@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-07 18:51+0000\n"
+"PO-Revision-Date: 2018-08-07 22:27+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -140,14 +140,16 @@ msgstr "Include notas de version detaliate (il es possibile facer isto in le gra
 #: static/js/common/upload-addon.js:473
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Si pro facer le test complete del additivo es necessari acceder a un sito web con nomine de usator e contrasigno, insere le datos per le accesso in le notas per le revisores (il es possibile facer "
+"isto in le grado successive)."
 
 #: static/js/common/upload-addon.js:492
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Lista de controlo del submission del additivo"
 
 #: static/js/common/upload-addon.js:493
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "Per favor appura le punctos sequente ante que completar tu submission. Isto minimisara retardos o mal interpretation durante le processo de revision:"
 
 #: static/js/common/upload-addon.js:495
 msgid ""
