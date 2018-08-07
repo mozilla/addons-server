@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-07 11:50+0000\n"
+"PO-Revision-Date: 2018-08-07 11:57+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4475,7 +4475,7 @@ msgstr "Des dizaines de super émoticônes pour toutes les occasions, toujours �
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gérer vos mots de passe {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Gérez vos mots de passe {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
@@ -4966,7 +4966,7 @@ msgstr "Affichez des images {start_sub_heading}avec {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr "Affichez à nouveau le bouton « Afficher l'image » lorsque vous faites des recherches sur Google Images."
+msgstr "Affichez à nouveau le bouton « Afficher l’image » lorsque vous faites des recherches sur Google Images."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
