@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-07 18:12+0000\n"
+"PO-Revision-Date: 2018-08-07 18:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -71,59 +71,59 @@ msgstr[1] "Tu additivo falleva le validation con {0} errores."
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;e {0} altero"
-msgstr[1] ""
+msgstr[1] "&hellip;e altere {0}"
 
 #: static/js/common/upload-addon.js:241 static/js/common/upload-addon.js:528
 msgid "See full validation report"
-msgstr ""
+msgstr "Vide le reporto de validation complete"
 
 #: static/js/common/upload-addon.js:251
 msgid "Validating {0}"
-msgstr ""
+msgstr "Validation de {0} in corso"
 
 #: static/js/common/upload-addon.js:291
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Tu additivo excede le maxime dimension de {0}."
 
 #: static/js/common/upload-addon.js:297
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Recipite un responsa vacue per le servitor; stato: {0}"
 
 #: static/js/common/upload-addon.js:368
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Error impreviste del servitor durante le validation."
 
 #: static/js/common/upload-addon.js:416
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Validation de {0} completate"
 
 #: static/js/common/upload-addon.js:422
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Le validation de tu additivo vadeva foras tempore limite, illo essera revidite manualmente."
 
 #: static/js/common/upload-addon.js:425
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tu additivo esseva validate con nulle errores e {0} aviso."
+msgstr[1] "Tu additivo esseva validate con nulle errores e {0} avisos."
 
 #: static/js/common/upload-addon.js:430
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tu additivo esseva validate con nulle errores e {0} message."
+msgstr[1] "Tu additivo esseva validate con nulle errores e {0} messages."
 
 #: static/js/common/upload-addon.js:435
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Tu additivo esseva validate con nulle errores o avisos."
 
 #: static/js/common/upload-addon.js:450
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Tu submission essera signate automaticamente."
 
 #: static/js/common/upload-addon.js:456
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "Promotion de WebExtension"
 
 #: static/js/common/upload-addon.js:457
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
