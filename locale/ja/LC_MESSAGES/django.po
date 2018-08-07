@@ -900,7 +900,7 @@ msgid "The language code {lang_code} is invalid."
 msgstr "言語コード {lang_code} が正しくありません。"
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr "{Lang-code:value} のオブジェクトを提供してください。"
+msgstr "{lang-code:value} のオブジェクトを提供してください。"
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -4204,7 +4204,7 @@ msgstr "シネマモード、広告ブロック、自動再生など、YouTube �
 
 #. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{Addon_name}{end_sub_heading}で{start_sub_heading}卑劣なトラッカーを阻止"
+msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}卑劣なトラッカーを阻止"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
