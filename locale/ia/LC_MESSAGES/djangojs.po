@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-07 17:51+0000\n"
+"PO-Revision-Date: 2018-08-07 18:12+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -32,45 +32,45 @@ msgstr "Elige un file..."
 
 #: static/js/common/upload-addon.js:75
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr ""
+msgstr "Le nomine de tu additivo debe finir per .zip, .xpi, .crx, .jar o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:108
 #, python-format
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% completate"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: static/js/common/upload-addon.js:111
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} de {1}"
 
 #: static/js/common/upload-addon.js:148
 msgid "Cancel"
-msgstr ""
+msgstr "Cancellar"
 
 #: static/js/common/upload-addon.js:170
 msgid "Uploading {0}"
-msgstr ""
+msgstr "Cargamento de {0} fluente"
 
 #: static/js/common/upload-addon.js:198
 msgid "Error with {0}"
-msgstr ""
+msgstr "Error per {0}"
 
 #: static/js/common/upload-addon.js:204
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "Nos ha activate un nove dispositivo pro processar tu additivo. Per favor reporta sempre ulle problemas sur GitHub"
 
 #: static/js/common/upload-addon.js:212
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tu additivo falleva le validation con {0} error."
+msgstr[1] "Tu additivo falleva le validation con {0} errores."
 
 #: static/js/common/upload-addon.js:226
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
+msgstr[0] "&hellip;e {0} altero"
 msgstr[1] ""
 
 #: static/js/common/upload-addon.js:241 static/js/common/upload-addon.js:528
