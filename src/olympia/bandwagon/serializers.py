@@ -76,7 +76,7 @@ class CollectionSerializer(serializers.ModelSerializer):
 class ThisCollectionDefault(object):
     def set_context(self, serializer_field):
         viewset = serializer_field.context['view']
-        self.collection = viewset.get_collection_viewset().get_object()
+        self.collection = viewset.get_collection()
 
     def __call__(self):
         return self.collection
