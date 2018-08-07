@@ -19,14 +19,15 @@ from olympia.versions.models import Version
 class BaseRatingSerializer(serializers.ModelSerializer):
     addon = serializers.SerializerMethodField()
     body = serializers.CharField(allow_null=True, required=False)
+    is_developer_reply = serializers.SerializerMethodField()
     is_latest = serializers.BooleanField(read_only=True)
     previous_count = serializers.IntegerField(read_only=True)
     user = BaseUserSerializer(read_only=True)
 
     class Meta:
         model = Rating
-        fields = ('id', 'addon', 'body', 'created', 'is_latest',
-                  'previous_count', 'user')
+        fields = ('id', 'addon', 'body', 'created', 'is_developer_reply',
+                  'is_latest', 'previous_count', 'user')
 
     def __init__(self, *args, **kwargs):
         super(BaseRatingSerializer, self).__init__(*args, **kwargs)
@@ -43,6 +44,9 @@ class BaseRatingSerializer(serializers.ModelSerializer):
             'id': addon.id,
             'slug': addon.slug
         }
+
+    def get_is_developer_reply(self, obj):
+        return obj.reply_to_id is not None
 
     def validate(self, data):
         data = super(BaseRatingSerializer, self).validate(data)
