@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 16:45+0000\n"
+"PO-Revision-Date: 2018-08-07 08:48+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4459,7 +4459,7 @@ msgstr "Choisissez la page à afficher à chaque fois que vous ouvrez un nouvel 
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Effectuez une recherche à partir d’images {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
@@ -4934,7 +4934,7 @@ msgstr "Améliorez votre expérience de lecture {start_sub_heading}avec {addon_n
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Rendez plus agréable la lecture des textes en éliminant les éléments superflus qui les entourent."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5086,7 +5086,7 @@ msgstr "Combattez le spam {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Utilisez des adresses électroniques temporaires pour rester anonyme et éviter le spam."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5182,7 +5182,7 @@ msgstr "Recherchez des images {start_sub_heading}avec {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "Recherchez à partir d’une image en augmentant vos chances avec de multiples moteurs de recherche."
 
 #. editorial content for the discovery pane.
 msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5193,9 +5193,8 @@ msgid "Store web pages to access across devices."
 msgstr "Stockez des pages web et consultez-les sur différents appareils."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personnalisez vos onglets {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
@@ -5275,7 +5274,7 @@ msgstr "Faites défiler comme sur votre mobile {start_sub_heading}avec {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
-msgstr ""
+msgstr "Utilisez les fonctionnalités de glisser-déposer à la souris sur les pages web conçues pour ordinateur."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5283,7 +5282,7 @@ msgstr "Supprimez des données {start_sub_heading}avec {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Videz le cache d’un clic ou avec un raccourci-clavier."
 
 #. editorial content for the discovery pane.
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5395,7 +5394,7 @@ msgstr "Accédez simplement à Wikipédia {start_sub_heading}avec {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Effectuez une recherche sur Wikipédia simplement avec un clic droit sur le texte sélectionné dans la page."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5464,9 +5463,8 @@ msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the e
 msgstr "Chaque fois que vous ouvrez un onglet, un adorable chaton apparaît : caressez-le derrière l'oreille et voyez ce qui se passe."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Effectuez des captures d’écran {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Diminuez votre productivité {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
