@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-07 18:32+0000\n"
+"PO-Revision-Date: 2018-08-07 18:51+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -127,11 +127,11 @@ msgstr "Promotion de WebExtension"
 
 #: static/js/common/upload-addon.js:457
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Nos consenti e incoragia un promotion, ma tu non pote inverter iste processo. Un vice que tu usatores ha WebExtension installate, illes non potera plus installar un additivo legate."
 
 #: static/js/common/upload-addon.js:461
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "Converter un additivo legate a WebExtension MDN"
 
 #: static/js/common/upload-addon.js:472
 msgid "Include detailed version notes (this can be done in the next step)."
