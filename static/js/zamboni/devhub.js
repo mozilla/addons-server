@@ -1432,11 +1432,11 @@ function initSourceSubmitOutcomes() {
         $('#option_yes_source').hide();
         $('#submit-source #id_has_source input').each(function(index, element) {
             var $radio = $(element);
-            if ($radio.val() == "yes" & $radio.prop('checked')) {
+            if ($radio.val() == "yes" && $radio.prop('checked')) {
                 $('#option_yes_source').show();
                 $('#id_source').attr('required', true);
             }
-            if ($radio.val() == "no" & $radio.prop('checked')) {
+            if ($radio.val() == "no" && $radio.prop('checked')) {
                 $('#option_no_source').show();
                 $('#id_source').attr('required', null);
 
@@ -1447,7 +1447,7 @@ function initSourceSubmitOutcomes() {
         // Drop the upload if 'no' is selected.
         $('#submit-source #id_has_source input').each(function(index, element) {
             var $radio = $(element);
-            if ($radio.val() == "no" & $radio.prop('checked')) {
+            if ($radio.val() == "no" && $radio.prop('checked')) {
                 $('#id_source').val('');
             }
         });
