@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 00:51+0000\n"
+"PO-Revision-Date: 2018-08-08 01:07+0000\n"
 "Last-Translator: Rodrigo Guerra <rodmguerra@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -149,7 +149,7 @@ msgstr "Lista de controlo del submission del additivo"
 
 #: static/js/common/upload-addon.js:493
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Per favor appura le punctos sequente ante que completar tu submission. Isto minimisara retardos o mal interpretation durante le processo de revision:"
+msgstr "Per favor appura le punctos sequente ante completar tu invio. Isto minimisara retardos o mal interpretation durante le processo de revision:"
 
 #: static/js/common/upload-addon.js:495
 msgid ""
@@ -189,15 +189,15 @@ msgstr "Le videos debe esser in formato WebM."
 
 #: static/js/impala/collections.js:10 static/js/zamboni/collections.js:527
 msgid "Follow this Collection"
-msgstr "Seque iste collection"
+msgstr "Sequer iste collection"
 
 #: static/js/impala/collections.js:19
 msgid "Stop Following"
-msgstr "Stoppar de sequer"
+msgstr "Non plus sequer"
 
 #: static/js/impala/collections.js:20
 msgid "Following"
-msgstr ""
+msgstr "Seque"
 
 #. L10n: {0} is an app name.
 #: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
@@ -290,7 +290,7 @@ msgstr "{0} additivos"
 
 #: static/js/impala/stats/chart.js:272
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} collectiones"
 
 #: static/js/impala/stats/chart.js:273
 msgid "{0} reviews"
@@ -335,7 +335,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:9
 msgid "Collections Created"
-msgstr ""
+msgstr "Collectiones create"
 
 #: static/js/impala/stats/csv_keys.js:12
 msgid "Add-ons in Use"
@@ -387,15 +387,15 @@ msgstr "Gestor de additivos"
 
 #: static/js/impala/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Gestor de additivos in promotion"
 
 #: static/js/impala/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Gestor de additivos in evidentia"
 
 #: static/js/impala/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Gestor de additivos Saper plus"
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
@@ -471,7 +471,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:77
 msgid "Collections"
-msgstr ""
+msgstr "Collectiones"
 
 #: static/js/impala/stats/csv_keys.js:78 static/js/impala/stats/csv_keys.js:79
 msgid "Category Landing Featured Carousel"
@@ -634,7 +634,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:171
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Versiones del additivo, le ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:173
@@ -744,12 +744,12 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:237
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Collectiones create, le ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:239
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Collectiones create de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:243
@@ -911,7 +911,7 @@ msgstr ""
 
 #: static/js/zamboni/collections.js:305
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Remover iste additivo del collection"
 
 #: static/js/zamboni/collections.js:305
 msgid "Remove"
@@ -927,7 +927,7 @@ msgstr ""
 
 #: static/js/zamboni/collections.js:536
 msgid "Stop following"
-msgstr ""
+msgstr "Non plus sequer"
 
 #: static/js/zamboni/devhub.js:105
 msgid "Your browser does not support the video tag"
