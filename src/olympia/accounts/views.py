@@ -384,6 +384,9 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
                 amo.permissions.USERS_EDIT)),
         }),
     ]
+    # Periods are not allowed in username, but we still have some in the
+    # database so relax the lookup regexp to allow them to load their profile.
+    lookup_value_regex = '[^/]+'
 
     def get_queryset(self):
         return UserProfile.objects.exclude(deleted=True).all()
