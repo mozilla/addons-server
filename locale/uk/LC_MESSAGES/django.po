@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 11:37+0000\n"
+"PO-Revision-Date: 2018-08-08 07:40+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4887,7 +4887,7 @@ msgstr "Налаштовуйте нову вкладку {start_sub_heading}за
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Змініть сторінку нової вкладки для відображення бажаної кількості плиток, зображення тла та інших елементів."
 
 #. editorial content for the discovery pane.
 msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4895,7 +4895,7 @@ msgstr "Отримуйте швидкий переклад {start_sub_heading}з
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
+msgstr "Підсвітіть будь-який текст на веб-сайті, натисніть праву кнопку миші й миттєво перекладіть його."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4903,7 +4903,7 @@ msgstr "Керуйте своїми паролями {start_sub_heading}за д�
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Безпечно зберігайте паролі й отримуйте до них доступ з різних пристроїв."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4911,7 +4911,7 @@ msgstr "Знайте більше про те, куди ви переходит�
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Будьте інформованим в інтернеті. Отримуйте дані про розташування відвідуваних веб-сайтів."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4919,7 +4919,7 @@ msgstr "Вдоскональте процес читання {start_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Приберіть зайвий вміст, щоб залишити лише текст, необхідний для читання."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4927,7 +4927,7 @@ msgstr "Відкривайте декілька посилань {start_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
-msgstr ""
+msgstr "Зробіть клік правою кнопкою миші й перетягніть посилання, щоб відкрити їх в нових вкладках."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4935,7 +4935,7 @@ msgstr "Отримуйте вкладки {start_sub_heading}за допомог
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Доступ до недавно закритих вкладок за допомогою правого кліку на піктограмі в панелі інструментів."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4944,7 +4944,7 @@ msgstr "Покращуйте відео {start_sub_heading}за допомого
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Змінюйте сторінку нової вкладки, щоб відобразити гарне тло, встановити щоденний фокус та інше."
 
 #. editorial content for the discovery pane.
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4952,7 +4952,7 @@ msgstr "Переглядайте зображення {start_sub_heading}за д
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr ""
+msgstr "Повертає назад кнопку \"Перегляд зображення\" при пошуку зображень Google."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4960,7 +4960,7 @@ msgstr "Збільште продуктивність {start_sub_heading}за д
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "Блокуйте сайти, що забирають час, щоб зосередитись на поточному завданні."
 
 #. editorial content for the discovery pane.
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4968,7 +4968,7 @@ msgstr "Оновлюйте вкладки {start_sub_heading}за допомог
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "Автоматично перезавантажуйте вкладки за встановленим інтервалом."
 
 #. editorial content for the discovery pane.
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4976,7 +4976,7 @@ msgstr "Виправляйте своє обране {start_sub_heading}за д�
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "Знаходьте та виправляйте пошкоджені закладки, дублікати та інше."
 
 #. editorial content for the discovery pane.
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4984,7 +4984,7 @@ msgstr "Менше стресу {start_sub_heading}за допомогою {addo
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Досягайте більшого за допомогою корисного списку завдань, що синхронізується між пристроями."
 
 #. editorial content for the discovery pane.
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
