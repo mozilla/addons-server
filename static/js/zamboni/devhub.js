@@ -1443,4 +1443,13 @@ function initSourceSubmitOutcomes() {
             }
         });
     }).change();
+    $('#submit-source').submit(function() {
+        // Drop the upload if 'no' is selected.
+        $('#submit-source #id_has_source input').each(function(index, element) {
+            var $radio = $(element);
+            if ($radio.val() == "no" & $radio.prop('checked')) {
+                $('#id_source').val('');
+            }
+        });
+    })
 }
