@@ -81,13 +81,13 @@ REVIEWED_CHOICES = {
     REVIEWED_ADDON_REVIEW_POORLY: _('Add-on Review Moderation Reverted'),
     REVIEWED_CONTENT_REVIEW: _('Add-on Content Review'),
     REVIEWED_EXTENSION_HIGHEST_RISK:
-        _('Post-Approval Add-on Review (Highest Risk)'),
+        _('Post-Approval Review (Highest Risk)'),
     REVIEWED_EXTENSION_HIGH_RISK:
-        _('Post-Approval Add-on Review (High Risk)'),
+        _('Post-Approval Review (High Risk)'),
     REVIEWED_EXTENSION_MEDIUM_RISK:
-        _('Post-Approval Add-on Review (Medium Risk)'),
+        _('Post-Approval Review (Medium Risk)'),
     REVIEWED_EXTENSION_LOW_RISK:
-        _('Post-Approval Add-on Review (Low Risk)'),
+        _('Post-Approval Review (Low Risk)'),
 }
 
 REVIEWED_OVERDUE_BONUS = 2
