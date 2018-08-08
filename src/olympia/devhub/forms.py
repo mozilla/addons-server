@@ -5,6 +5,7 @@ from django import forms
 from django.conf import settings
 from django.db.models import Q
 from django.forms.models import BaseModelFormSet, modelformset_factory
+from django.forms.widgets import RadioSelect
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -464,7 +465,7 @@ CompatFormSet = modelformset_factory(
     form=CompatForm, can_delete=True, extra=0)
 
 
-class AddonUploadForm(WithSourceMixin, forms.Form):
+class NewUploadForm(forms.Form):
     upload = forms.ModelChoiceField(
         widget=forms.HiddenInput,
         queryset=FileUpload.objects,
@@ -476,27 +477,6 @@ class AddonUploadForm(WithSourceMixin, forms.Form):
     )
     admin_override_validation = forms.BooleanField(
         required=False, label=_(u'Override failed validation'))
-    source = forms.FileField(required=False)
-    is_manual_review = forms.BooleanField(
-        initial=False, required=False,
-        label=_(u'Submit my add-on for manual review.'))
-
-    def __init__(self, *args, **kw):
-        self.request = kw.pop('request')
-        super(AddonUploadForm, self).__init__(*args, **kw)
-
-    def _clean_upload(self):
-        if not (self.cleaned_data['upload'].valid or
-                self.cleaned_data['upload'].validation_timeout or
-                self.cleaned_data['admin_override_validation'] and
-                acl.action_allowed(self.request,
-                                   amo.permissions.REVIEWS_ADMIN)):
-            raise forms.ValidationError(
-                ugettext(u'There was an error with your upload. '
-                         u'Please try again.'))
-
-
-class NewUploadForm(AddonUploadForm):
     supported_platforms = forms.TypedMultipleChoiceField(
         choices=amo.SUPPORTED_PLATFORMS_CHOICES,
         widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
@@ -506,6 +486,7 @@ class NewUploadForm(AddonUploadForm):
     )
 
     def __init__(self, *args, **kw):
+        self.request = kw.pop('request')
         self.addon = kw.pop('addon', None)
         self.version = kw.pop('version', None)
         super(NewUploadForm, self).__init__(*args, **kw)
@@ -524,8 +505,16 @@ class NewUploadForm(AddonUploadForm):
                 to_exclude.add(amo.PLATFORM_ALL.id)
                 platforms.choices = [p for p in platforms.choices
                                      if p[0] not in to_exclude]
-            # Don't show the source field for new File uploads
-            del self.fields['source']
+
+    def _clean_upload(self):
+        if not (self.cleaned_data['upload'].valid or
+                self.cleaned_data['upload'].validation_timeout or
+                self.cleaned_data['admin_override_validation'] and
+                acl.action_allowed(self.request,
+                                   amo.permissions.REVIEWS_ADMIN)):
+            raise forms.ValidationError(
+                ugettext(u'There was an error with your upload. '
+                         u'Please try again.'))
 
     def clean(self):
         if self.version and not self.version.is_allowed_upload():
@@ -566,6 +555,31 @@ class NewUploadForm(AddonUploadForm):
                         msg.format(version=parsed_data['version']))
             self.cleaned_data['parsed_data'] = parsed_data
         return self.cleaned_data
+
+
+class SourceForm(WithSourceMixin, forms.ModelForm):
+    source = forms.FileField(required=False, widget=SourceFileInput)
+    has_source = forms.ChoiceField(
+        choices=(('yes', _('Yes')), ('no', _('No'))), required=True,
+        widget=RadioSelect)
+
+    class Meta:
+        model = Version
+        fields = ('source',)
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request')
+        super(SourceForm, self).__init__(*args, **kwargs)
+
+    def clean_has_source(self):
+        data = self.cleaned_data
+        if data.get('has_source') == 'yes' and not data.get('source'):
+            raise forms.ValidationError(
+                ugettext(u'You have not uploaded a source file.'))
+        elif data.get('has_source') == 'no' and data.get('source'):
+            raise forms.ValidationError(
+                ugettext(u'Source file uploaded but you indicated no source '
+                         u'was needed.'))
 
 
 class FileForm(forms.ModelForm):

@@ -41,7 +41,8 @@ from olympia.amo.utils import MenuItem, escape_all, render, send_mail
 from olympia.api.models import APIKey
 from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required, no_admin_disabled
-from olympia.devhub.forms import AgreementForm, CheckCompatibilityForm
+from olympia.devhub.forms import (
+    AgreementForm, CheckCompatibilityForm, SourceForm)
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import add_dynamic_theme_tag, process_validation
 from olympia.files.models import File, FileUpload, FileValidation
@@ -1310,14 +1311,13 @@ def submit_version_distribution(request, addon_id, addon):
 
 
 @transaction.atomic
-def _submit_upload(request, addon, channel, next_details, next_finish,
-                   version=None, wizard=False):
+def _submit_upload(request, addon, channel, next_view, version=None,
+                   wizard=False):
     """ If this is a new addon upload `addon` will be None (and `version`);
     if this is a new version upload `version` will be None; a new file for a
     version will need both an addon and a version supplied.
-    next_details is the view that will be redirected to when details are needed
-    (for listed, addons/versions); next_finish is the finishing view
-    when no details step is needed (for unlisted addons/versions).
+
+    next_view is the view that will be redirected to.
     """
     form = forms.NewUploadForm(
         request.POST or None,
@@ -1343,14 +1343,12 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
                 addon=addon,
                 platforms=data.get('supported_platforms', []),
                 channel=channel,
-                source=data['source'],
                 parsed_data=data['parsed_data'])
             url_args = [addon.slug, version.id]
         else:
             addon = Addon.from_upload(
                 upload=data['upload'],
                 platforms=data.get('supported_platforms', []),
-                source=data['source'],
                 channel=channel,
                 parsed_data=data['parsed_data'],
                 user=request.user)
@@ -1358,18 +1356,6 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
             url_args = [addon.slug]
 
         check_validation_override(request, form, addon, version)
-        if data.get('source'):
-            AddonReviewerFlags.objects.update_or_create(
-                addon=addon, defaults={'needs_admin_code_review': True})
-            activity_log = ActivityLog.objects.create(
-                action=amo.LOG.SOURCE_CODE_UPLOADED.id,
-                user=request.user,
-                details={
-                    'comments': (u'This version has been automatically '
-                                 u'flagged for admin review, as it had source '
-                                 u'files attached when submitted.')})
-            VersionLog.objects.create(version_id=version.id,
-                                      activity_log=activity_log)
         if (addon.status == amo.STATUS_NULL and
                 addon.has_complete_metadata() and
                 channel == amo.RELEASE_CHANNEL_LISTED):
@@ -1377,10 +1363,7 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
         # auto-sign versions (the method checks eligibility)
         auto_sign_version(version)
         add_dynamic_theme_tag(version)
-        next_url = (next_details
-                    if channel == amo.RELEASE_CHANNEL_LISTED
-                    else next_finish)
-        return redirect(next_url, *url_args)
+        return redirect(next_view, *url_args)
     is_admin = acl.action_allowed(request,
                                   amo.permissions.REVIEWS_ADMIN)
     if addon:
@@ -1408,17 +1391,16 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
 @login_required
 def submit_addon_upload(request, channel):
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
-    return _submit_upload(request, None, channel_id,
-                          'devhub.submit.details', 'devhub.submit.finish')
+    return _submit_upload(
+        request, None, channel_id, 'devhub.submit.source')
 
 
 @dev_required(submitting=True)
 @no_admin_disabled
 def submit_version_upload(request, addon_id, addon, channel):
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
-    return _submit_upload(request, addon, channel_id,
-                          'devhub.submit.version.details',
-                          'devhub.submit.version.finish')
+    return _submit_upload(
+        request, addon, channel_id, 'devhub.submit.version.source')
 
 
 @dev_required
@@ -1431,18 +1413,16 @@ def submit_version_auto(request, addon_id, addon):
     if not last_version:
         return redirect('devhub.submit.version.distribution', addon.slug)
     channel = last_version.channel
-    return _submit_upload(request, addon, channel,
-                          'devhub.submit.version.details',
-                          'devhub.submit.version.finish')
+    return _submit_upload(
+        request, addon, channel, 'devhub.submit.version.source')
 
 
 @login_required
 @waffle.decorators.waffle_switch('allow-static-theme-uploads')
 def submit_addon_theme_wizard(request, channel):
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
-    return _submit_upload(request, None, channel_id,
-                          'devhub.submit.details', 'devhub.submit.finish',
-                          wizard=True)
+    return _submit_upload(
+        request, None, channel_id, 'devhub.submit.source', wizard=True)
 
 
 @dev_required
@@ -1450,18 +1430,64 @@ def submit_addon_theme_wizard(request, channel):
 @waffle.decorators.waffle_switch('allow-static-theme-uploads')
 def submit_version_theme_wizard(request, addon_id, addon, channel):
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
-    return _submit_upload(request, addon, channel_id,
-                          'devhub.submit.version.details',
-                          'devhub.submit.version.finish', wizard=True)
+    return _submit_upload(
+        request, addon, channel_id, 'devhub.submit.version.source',
+        wizard=True)
 
 
 @dev_required
 def submit_file(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, id=version_id)
-    return _submit_upload(request, addon, version.channel,
-                          'devhub.submit.file.finish',
-                          'devhub.submit.file.finish',
-                          version=version)
+    return _submit_upload(
+        request, addon, version.channel, 'devhub.submit.file.finish',
+        version=version)
+
+
+def _submit_source(request, addon, version, next_view):
+    redirect_args = [addon.slug, version.pk] if version else [addon.slug]
+    if addon.type == amo.ADDON_STATICTHEME:
+        return redirect(next_view, *redirect_args)
+    latest_version = version or addon.find_latest_version(channel=None)
+
+    form = SourceForm(
+        request.POST or None,
+        request.FILES or None,
+        instance=latest_version,
+        request=request)
+    if request.method == 'POST' and form.is_valid():
+        if form.cleaned_data.get('source'):
+            AddonReviewerFlags.objects.update_or_create(
+                addon=addon, defaults={'needs_admin_code_review': True})
+            activity_log = ActivityLog.objects.create(
+                action=amo.LOG.SOURCE_CODE_UPLOADED.id,
+                user=request.user,
+                details={
+                    'comments': (u'This version has been automatically '
+                                 u'flagged for admin review, as it had source '
+                                 u'files attached when submitted.')})
+            VersionLog.objects.create(
+                version_id=latest_version.id, activity_log=activity_log)
+            form.save()
+        return redirect(next_view, *redirect_args)
+    context = {
+        'form': form,
+        'addon': addon,
+        'version': version,
+        'submit_page': 'version' if version else 'addon',
+    }
+    return render(request, 'devhub/addons/submit/source.html', context)
+
+
+@dev_required(submitting=True)
+def submit_addon_source(request, addon_id, addon):
+    return _submit_source(request, addon, None, 'devhub.submit.details')
+
+
+@dev_required(submitting=True)
+def submit_version_source(request, addon_id, addon, version_id):
+    version = get_object_or_404(Version, id=version_id)
+    return _submit_source(
+        request, addon, version, 'devhub.submit.version.details')
 
 
 def _submit_details(request, addon, version):
