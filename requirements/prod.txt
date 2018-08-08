@@ -288,8 +288,6 @@ pytest==3.7.1 \
 python-dateutil==2.7.3 \
     --hash=sha256:1adb80e7a782c12e52ef9a8182bebeb73f1d7e24e374397af06fb4956c8dc5c0 \
     --hash=sha256:e27001de32f627c22380a688bcc43ce83504a7bc5da472209b4c70f02829f0b8
-python-gflags==2.0 \
-    --hash=sha256:0dff6360423f3ec08cbe3bfaf37b339461a54a21d13be0dd5d9c9999ce531078 # pyup: ==2.0
 # There are known unicode issues with python-memcached beyond 1.53.
 # See https://github.com/mozilla/addons-server/issues/3920 and
 # https://github.com/linsomniac/python-memcached/issues/79

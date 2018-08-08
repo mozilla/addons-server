@@ -9,9 +9,6 @@ apipkg==1.5 \
 execnet==1.5.0 \
     --hash=sha256:fc155a6b553c66c838d1a22dba1dc9f5f505c43285a878c6f74a79c024750b83 \
     --hash=sha256:a7a84d5fa07a089186a329528f127c9d73b9de57f1a1131b82bb5320ee651f6a
-# meld3 is required by supervisor
-meld3==1.0.2 \
-    --hash=sha256:b28a9bfac342aadb4557aa144bea9f8e6208bfb0596190570d10a892d35ff7dc
 # pathlib2 is used by pytest and ipython
 pathlib2==2.3.2 \
     --hash=sha256:d1aa2a11ba7b8f7b21ab852b1fb5afb277e1bb99d5dfc663380b5015c0d80c5a \
@@ -44,9 +41,6 @@ pytest-xdist==1.22.5 \
     --hash=sha256:cce08b4b7f56d34d43b365e2b3667ebb8edcf91d01c2a8fccf45c56d37e71bc1
 pytest-forked==0.2 \
     --hash=sha256:f275cb48a73fc61a6710726348e1da6d68a978f0ec0c54ece5a5fae5977e5a08
-supervisor==3.3.4 \
-    --hash=sha256:212201a3fd1d35c150ef0c35bf0676fd1a6c195fb60bf0f2147fe7dbd317e672
-
 freezegun==0.3.10 \
     --hash=sha256:94c59d69bb99c9ec3ca5a3adb41930d3ea09d2a9756c23a02d89fa75646e78dd \
     --hash=sha256:703caac155dcaad61f78de4cb0666dca778d854dfb90b3699930adee0559a622
@@ -55,7 +49,6 @@ cookies==2.2.1 \
 responses==0.9.0 \
     --hash=sha256:f23a29dca18b815d9d64a516b4a0abb1fbdccff6141d988ad8100facb81cf7b3 \
     --hash=sha256:c6082710f4abfb60793899ca5f21e7ceb25aabf321560cc0726f8b59006811c9
-
 PyYAML==3.13 \
     --hash=sha256:d5eef459e30b09f5a098b9cea68bebfeb268697f78d647bd255a085371ac7f3f \
     --hash=sha256:e01d3203230e1786cd91ccfdc8f8454c8069c91bee3962ad93b87a4b2860f537 \
