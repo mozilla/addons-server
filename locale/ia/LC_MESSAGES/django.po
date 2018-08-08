@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 01:10+0000\n"
+"PO-Revision-Date: 2018-08-08 01:30+0000\n"
 "Last-Translator: Rodrigo Guerra <rodmguerra@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1306,7 +1306,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/forms.py:135
 msgid "This url is already in use by another collection"
-msgstr ""
+msgstr "Iste adresse es ja in uso per un altere collection"
 
 #: src/olympia/bandwagon/forms.py:147 src/olympia/devhub/views.py:995
 msgid "Icons must be either PNG or JPG."
@@ -1318,7 +1318,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/serializers.py:35
 msgid "This custom URL is already in use by another one of your collections."
-msgstr ""
+msgstr "Iste adresse personalisate es ja in uso per un altere de tu collectiones."
 
 #: src/olympia/bandwagon/serializers.py:51
 msgid "Name cannot be empty."
@@ -1334,7 +1334,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/serializers.py:100
 msgid "This add-on already belongs to the collection"
-msgstr ""
+msgstr "Iste additivo pertine ja al collection"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:16 src/olympia/bandwagon/views.py:158
 msgid "Added"
@@ -1352,21 +1352,21 @@ msgstr ""
 
 #: src/olympia/bandwagon/views.py:245
 msgid "Collection created!"
-msgstr ""
+msgstr "Collection create!"
 
 #: src/olympia/bandwagon/views.py:246
 #, python-format
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
+msgstr "Tu nove collection es monstrate a basso. Tu pote <a href=\"%(url)s\">editar parametros additional</a> si tu vole."
 
 #: src/olympia/bandwagon/views.py:252
 msgid "Collection updated!"
-msgstr ""
+msgstr "Collection actualisate!"
 
 #: src/olympia/bandwagon/views.py:253
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Vide tu collection</a> pro reguardar le cambiamentos."
 
 #: src/olympia/bandwagon/views.py:483
 msgid "Icon Deleted"
@@ -1374,28 +1374,28 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html:3 src/olympia/bandwagon/templates/bandwagon/add.html:9 src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:15
 msgid "Create a New Collection"
-msgstr ""
+msgstr "Crear un nove collection"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html:22 src/olympia/bandwagon/templates/bandwagon/ajax_new.html:28
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr ""
+msgstr "Como indicate in nostre <a href=\"%(legal)s\">Notas Legal</a>, le arrangiamentos de collectiones individual es regite per le licentia Creative Commons Attribution Share-Alike"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html:31 src/olympia/bandwagon/templates/bandwagon/ajax_new.html:38
 msgid "Create Collection"
-msgstr ""
+msgstr "Crear un collection"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_list.html:6
 msgid "View this collection"
-msgstr ""
+msgstr "Vider iste collection"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_list.html:12
 msgid "Start a new collection..."
-msgstr ""
+msgstr "Comenciar un nove collection..."
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html:2
 msgid "Start a New Collection"
-msgstr ""
+msgstr "Comencia un nove collection"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html:6 src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:7 src/olympia/devhub/templates/devhub/addons/submit/describe.html:12
 msgid "Name:"
@@ -1407,11 +1407,11 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html:39
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "o <a id=\"collections-new-cancel\" href=\"#\">Cancella</a>"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:5
 msgid "{0} :: Collections"
-msgstr ""
+msgstr "{0} :: Collectiones"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:15
 msgid "private"
@@ -1419,7 +1419,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:35
 msgid "About this Collection"
-msgstr ""
+msgstr "A proposito de iste collection"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:41
 msgid "Add-ons synced to my Mobile Firefox"
@@ -1427,11 +1427,11 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:50
 msgid "Make this Collection Private"
-msgstr ""
+msgstr "Render iste collection private"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:52
 msgid "Make this Collection Public"
-msgstr ""
+msgstr "Render iste collection public"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:62
 msgid "More Options:"
@@ -1439,25 +1439,25 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:63
 msgid "Edit Collection"
-msgstr ""
+msgstr "Editar le collection"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:65 src/olympia/bandwagon/templates/bandwagon/includes/delete.html:3
 msgid "Delete Collection"
-msgstr ""
+msgstr "Deler le collection"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:76
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s thema in iste collection"
+msgstr[1] "%(num)s themas in iste collection"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:87
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s additivo in iste collection"
+msgstr[1] "%(num)s additivos in iste collection"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:101 src/olympia/compat/templates/compat/reporter_detail.html:27 src/olympia/files/templates/files/viewer.html:40
 #: src/olympia/templates/footer.html:36 src/olympia/templates/includes/lang_switcher.html:10
@@ -1466,15 +1466,15 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:111
 msgid "What are Collections?"
-msgstr ""
+msgstr "Que es le collectiones?"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:112
 msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr ""
+msgstr "Collectiones es gruppos de additivos correlate que quicunque pote crear e compartir."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:116
 msgid "Explore Collections"
-msgstr ""
+msgstr "Explorar le collectiones"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:121
 msgid "Common Tags"
@@ -1589,7 +1589,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:42
 msgid "Collection Icon"
-msgstr ""
+msgstr "Icone del collection"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:44
 msgid "Reset"
@@ -1605,7 +1605,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
-msgstr ""
+msgstr "Additivos in tu collection"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:4
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
@@ -1632,7 +1632,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:26
 msgid "Add to Collection"
-msgstr ""
+msgstr "Adder al collection"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:43 src/olympia/reviewers/templatetags/jinja_helpers.py:235 src/olympia/reviewers/templatetags/jinja_helpers.py:253
 msgid "Pending"
@@ -1644,7 +1644,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:46
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Remover iste additivo del collection"
 
 #: src/olympia/bandwagon/templatetags/jinja_helpers.py:70
 msgid "Favorite"
@@ -2199,11 +2199,11 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:237
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} addite a {collection}."
 
 #: src/olympia/constants/activity.py:243
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} removite de {collection}."
 
 #: src/olympia/constants/activity.py:249
 msgid "{rating} for {addon} written."
@@ -3391,7 +3391,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:227
 msgid "User Collections"
-msgstr ""
+msgstr "Collectiones del usator"
 
 #: src/olympia/devhub/views.py:228
 msgid "User Reviews"
