@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 16:51+0000\n"
+"PO-Revision-Date: 2018-08-06 17:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -5341,13 +5341,12 @@ msgid "Enjoy a highly customizable text highlighter with different colors and sa
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocca le pubblicità {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Goditi musica da tutto il mondo {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access 20,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Accedi a più di 20.000 stazioni radio da tutto il globo."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5359,9 +5358,8 @@ msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Cattura screenshot {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Trasforma testo in immagini {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
