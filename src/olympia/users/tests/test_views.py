@@ -453,12 +453,32 @@ class TestLogout(UserViewBase):
         assert jwt_cookie['expires'] == u'Thu, 01-Jan-1970 00:00:00 GMT'
 
 
-class TestRegistration(UserViewBase):
+class TestRegistrationAndLoginViews(UserViewBase):
 
-    def test_redirects_to_login(self):
+    def test_register_redirects_to_login(self):
         """Register should redirect to login."""
         response = self.client.get(reverse('users.register'), follow=True)
         self.assert3xx(response, reverse('users.login'), status_code=301)
+
+    def test_login_page_redirects_to_url_if_authenticated(self):
+        self.client.login(email=self.user.email)
+        # Set target_url to a known valid view on the site.
+        self.target_url = reverse('users.profile', args=[self.user.id])
+        self.url = reverse('users.login') + '?to=%s' % self.target_url
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.target_url, status_code=302)
+
+        # With an external url, we redirect to the homepage instead.
+        self.target_url = 'https://www.example.com/'
+        self.url = reverse('users.login') + '?to=%s' % self.target_url
+        response = self.client.get(self.url)
+        self.assert3xx(response, '/', status_code=302)
+
+    def test_login_page_shows_fxa_transition_message_if_anonymous(self):
+        response = self.client.get(
+            reverse('users.login') + '?to=/foo', follow=True)
+        assert response.status_code == 200
+        assert response.templates[0].name == 'users/login.html'
 
 
 class TestProfileView(UserViewBase):

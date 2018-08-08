@@ -191,7 +191,11 @@ def _clean_next_url(request):
 
 
 def login(request):
-    return render(request, 'users/login.html')
+    if request.user.is_authenticated():
+        request = _clean_next_url(request)
+        return http.HttpResponseRedirect(request.GET['to'])
+    else:
+        return render(request, 'users/login.html')
 
 
 def logout(request):

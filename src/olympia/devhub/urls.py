@@ -70,6 +70,9 @@ detail_patterns = [
     url('^versions/submit/upload-(?P<channel>listed|unlisted)$',
         views.submit_version_upload,
         name='devhub.submit.version.upload'),
+    url('^versions/submit/(?P<version_id>\d+)/source$',
+        views.submit_version_source,
+        name='devhub.submit.version.source'),
     url('^versions/submit/(?P<version_id>\d+)/details$',
         views.submit_version_details,
         name='devhub.submit.version.details'),
@@ -104,6 +107,8 @@ detail_patterns = [
 
     url('^submit/$',
         lambda r, addon_id: redirect('devhub.submit.finish', addon_id)),
+    url('^submit/source$',
+        views.submit_addon_source, name='devhub.submit.source'),
     url('^submit/details$',
         views.submit_addon_details, name='devhub.submit.details'),
     url('^submit/finish$', views.submit_addon_finish,

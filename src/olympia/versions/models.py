@@ -141,8 +141,7 @@ class Version(OnChangeMixin, ModelBase):
         return self
 
     @classmethod
-    def from_upload(cls, upload, addon, platforms, channel,
-                    source=None, parsed_data=None):
+    def from_upload(cls, upload, addon, platforms, channel, parsed_data=None):
         """
         Create a Version instance and corresponding File(s) from a
         FileUpload, an Addon, a list of platform ids, a channel id and the
@@ -170,7 +169,6 @@ class Version(OnChangeMixin, ModelBase):
             addon=addon,
             version=parsed_data['version'],
             license_id=license_id,
-            source=source,
             channel=channel,
         )
         log.info(
@@ -638,7 +636,8 @@ class Version(OnChangeMixin, ModelBase):
         auto_approve command."""
         return (
             self.addon.status in (amo.STATUS_PUBLIC, amo.STATUS_NOMINATED) and
-            self.addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP) and
+            self.addon.type in (
+                amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT) and
             self.is_webextension and
             self.is_unreviewed and
             self.channel == amo.RELEASE_CHANNEL_LISTED)

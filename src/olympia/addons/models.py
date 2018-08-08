@@ -591,9 +591,8 @@ class Addon(OnChangeMixin, ModelBase):
         return addon
 
     @classmethod
-    def from_upload(cls, upload, platforms, source=None,
-                    channel=amo.RELEASE_CHANNEL_LISTED, parsed_data=None,
-                    user=None):
+    def from_upload(cls, upload, platforms, channel=amo.RELEASE_CHANNEL_LISTED,
+                    parsed_data=None, user=None):
         """
         Create an Addon instance, a Version and corresponding File(s) from a
         FileUpload, a list of platform ids, a channel id and the
@@ -611,8 +610,8 @@ class Addon(OnChangeMixin, ModelBase):
         if upload.validation_timeout:
             AddonReviewerFlags.objects.update_or_create(
                 addon=addon, defaults={'needs_admin_code_review': True})
-        Version.from_upload(upload, addon, platforms, source=source,
-                            channel=channel, parsed_data=parsed_data)
+        Version.from_upload(
+            upload, addon, platforms, channel=channel, parsed_data=parsed_data)
 
         activity.log_create(amo.LOG.CREATE_ADDON, addon)
         log.debug('New addon %r from %r' % (addon, upload))

@@ -1,3 +1,7 @@
+import copy
+
+import waffle
+
 import olympia.core.logger
 
 from olympia.addons.cron import reindex_addons
@@ -70,12 +74,22 @@ def create_new_index(index_name=None):
     if index_name is None:
         index_name = BaseSearchIndexer.get_index_alias()
 
+    index_settings = copy.deepcopy(INDEX_SETTINGS)
+
+    if waffle.switch_is_active('es-use-classic-similarity'):
+        # http://bit.ly/es5-similarity-module-docs
+        index_settings['similarity'] = {
+            'default': {
+                'type': 'classic'
+            }
+        }
+
     config = {
         'mappings': get_mappings(),
         'settings': {
             # create_index will add its own index settings like number of
             # shards and replicas.
-            'index': INDEX_SETTINGS
+            'index': index_settings
         },
     }
     create_index(index_name, config)

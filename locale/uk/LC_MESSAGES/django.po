@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 11:37+0000\n"
+"PO-Revision-Date: 2018-08-08 12:46+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4887,7 +4887,7 @@ msgstr "Налаштовуйте нову вкладку {start_sub_heading}за
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Змініть сторінку нової вкладки для відображення бажаної кількості плиток, зображення тла та інших елементів."
 
 #. editorial content for the discovery pane.
 msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4895,7 +4895,7 @@ msgstr "Отримуйте швидкий переклад {start_sub_heading}з
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
+msgstr "Підсвітіть будь-який текст на веб-сайті, натисніть праву кнопку миші й миттєво перекладіть його."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4903,7 +4903,7 @@ msgstr "Керуйте своїми паролями {start_sub_heading}за д�
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Безпечно зберігайте паролі й отримуйте до них доступ з різних пристроїв."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4911,7 +4911,7 @@ msgstr "Знайте більше про те, куди ви переходит�
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Будьте інформованим в інтернеті. Отримуйте дані про розташування відвідуваних веб-сайтів."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4919,7 +4919,7 @@ msgstr "Вдоскональте процес читання {start_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Приберіть зайвий вміст, щоб залишити лише текст, необхідний для читання."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4927,7 +4927,7 @@ msgstr "Відкривайте декілька посилань {start_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
-msgstr ""
+msgstr "Зробіть клік правою кнопкою миші й перетягніть посилання, щоб відкрити їх в нових вкладках."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4935,7 +4935,7 @@ msgstr "Отримуйте вкладки {start_sub_heading}за допомог
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Доступ до недавно закритих вкладок за допомогою правого кліку на піктограмі в панелі інструментів."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4944,7 +4944,7 @@ msgstr "Покращуйте відео {start_sub_heading}за допомого
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Змінюйте сторінку нової вкладки, щоб відобразити гарне тло, встановити щоденний фокус та інше."
 
 #. editorial content for the discovery pane.
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4952,7 +4952,7 @@ msgstr "Переглядайте зображення {start_sub_heading}за д
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr ""
+msgstr "Повертає назад кнопку \"Перегляд зображення\" при пошуку зображень Google."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4960,7 +4960,7 @@ msgstr "Збільште продуктивність {start_sub_heading}за д
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "Блокуйте сайти, що забирають час, щоб зосередитись на поточному завданні."
 
 #. editorial content for the discovery pane.
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4968,7 +4968,7 @@ msgstr "Оновлюйте вкладки {start_sub_heading}за допомог
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "Автоматично перезавантажуйте вкладки за встановленим інтервалом."
 
 #. editorial content for the discovery pane.
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4976,7 +4976,7 @@ msgstr "Виправляйте своє обране {start_sub_heading}за д�
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "Знаходьте та виправляйте пошкоджені закладки, дублікати та інше."
 
 #. editorial content for the discovery pane.
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4984,7 +4984,7 @@ msgstr "Менше стресу {start_sub_heading}за допомогою {addo
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Досягайте більшого за допомогою корисного списку завдань, що синхронізується між пристроями."
 
 #. editorial content for the discovery pane.
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4992,7 +4992,7 @@ msgstr "Робіть розумніші покупки {start_sub_heading}за �
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr ""
+msgstr "Стежте за історією цін, знаходьте конкурентні продукти, дізнавайтеся про рейтинг продавців та інше."
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5000,7 +5000,7 @@ msgstr "Зробіть YouTube своїм {start_sub_heading}за допомог
 
 #. editorial content for the discovery pane.
 msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "Відтворюйте відео в окремому вікні, переглядайте рекламу лише в межах каналів, на які ви підписані, робіть знімки екрану відео та багато іншого."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5008,7 +5008,7 @@ msgstr "Досліджуйте трафік веб-сайту {start_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "Отримуйте детальну інформацію про популярність та трафік будь-якого веб-сайту."
 
 #. editorial content for the discovery pane.
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5016,7 +5016,7 @@ msgstr "Додайте стилю Wikipedia {start_sub_heading}за допомо
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh and modern appearance to Wikipedia."
-msgstr ""
+msgstr "Свіжий та сучасний дизайн для Wikipedia."
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5024,7 +5024,7 @@ msgstr "Працюйте швидше {start_sub_heading}разом з {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
-msgstr ""
+msgstr "Виконуйте різні дії швидше за допомогою жестів миші."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5032,7 +5032,7 @@ msgstr "Замаскуйте сторінку {start_sub_heading}за допом
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Приховуйте частини веб-сайту, який ви переглядаєте."
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5040,7 +5040,7 @@ msgstr "Завантажуйте зображення {start_sub_heading}за д
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
-msgstr ""
+msgstr "Завантажуйте зображення з будь-якого веб-сайту."
 
 #. editorial content for the discovery pane.
 msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5048,7 +5048,7 @@ msgstr "Приховуйте своє розташування {start_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr ""
+msgstr "Замаскуйте своє розташування, щоб захистити свою приватність і не турбуватися про стеження."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5057,7 +5057,7 @@ msgstr "Блокуйте рекламу {start_sub_heading}за допомого
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Обмежте доступ до неналежної або небажаної інформації за допомогою фільтра."
 
 #. editorial content for the discovery pane.
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5065,7 +5065,7 @@ msgstr "Вдоскональте нові вкладки {start_sub_heading}за
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "Відкривайте нову вкладку справа від поточної, а не в кінці усіх вкладок."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5073,7 +5073,7 @@ msgstr "Позбудьтеся небажаної пошти {start_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Використовуйте тимчасові адреси електронної пошти для анонімності та уникнення спаму."
 
 #. editorial content for the discovery pane.
 #, fuzzy
