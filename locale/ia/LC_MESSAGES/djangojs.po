@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 07:51+0000\n"
+"PO-Revision-Date: 2018-08-08 07:55+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -226,15 +226,15 @@ msgstr "Attribution-NonCommercial-ShareAlike 3.0 de Creative Commons"
 
 #: static/js/impala/persona_creation.js:73
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Attribution-NonCommercial-NoDerivs 3.0 de Creative Commons"
 
 #: static/js/impala/persona_creation.js:78
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Attribution-NonCommercial-ShareAlike 3.0 de Creative Commons"
 
 #: static/js/impala/persona_creation.js:280
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Le nomine de tu thema"
 
 #: static/js/impala/ratings.js:23 static/js/zamboni/ratings.js:18
 msgid "Flagged for review"
@@ -242,19 +242,19 @@ msgstr "Marcate pro revision"
 
 #: static/js/impala/ratings.js:40 static/js/zamboni/ratings.js:34
 msgid "Your input is required"
-msgstr ""
+msgstr "Tu contribution es necesse"
 
 #: static/js/impala/ratings.js:152 static/js/zamboni/ratings.js:103
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Marcate pro le deletion"
 
 #: static/js/impala/search.js:108
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Actualisation de results&hellip;"
 
 #: static/js/impala/site_suggestions.js:46
 msgid "Category"
-msgstr ""
+msgstr "Categoria"
 
 #: static/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
