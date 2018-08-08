@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 15:57+0000\n"
+"PO-Revision-Date: 2018-08-08 17:21+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -491,35 +491,35 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:86 static/js/impala/stats/csv_keys.js:87
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Explora le lista ordinate per favoritos"
 
 #: static/js/impala/stats/csv_keys.js:88 static/js/impala/stats/csv_keys.js:89
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Explora le lista ordinate per usatores"
 
 #: static/js/impala/stats/csv_keys.js:90 static/js/impala/stats/csv_keys.js:91
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Explora le lista ordinate per valutationes"
 
 #: static/js/impala/stats/csv_keys.js:92 static/js/impala/stats/csv_keys.js:93
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Explora le lista ordinate per data de creation"
 
 #: static/js/impala/stats/csv_keys.js:94 static/js/impala/stats/csv_keys.js:95
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Explora le lista ordinate per nomine"
 
 #: static/js/impala/stats/csv_keys.js:96 static/js/impala/stats/csv_keys.js:97
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Explora le lista ordinate per popularitate"
 
 #: static/js/impala/stats/csv_keys.js:98 static/js/impala/stats/csv_keys.js:99
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Explora le lista ordinate per data de actualisation"
 
 #: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Explora le lista ordinate per emergentia"
 
 #: static/js/impala/stats/csv_keys.js:105
 msgid "Total Amount Contributed"
@@ -831,8 +831,8 @@ msgstr[1] "Configura le additivo {0} a un version maxime {1} e invia un email al
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Invia un email al autor del {2} additivo que falleva le validation."
+msgstr[1] "Invia un email al autores del {2} additivos que falleva le validation."
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js:67
