@@ -60,9 +60,9 @@ REVIEWED_EXTENSION_LOW_RISK = 105
 # We need to keep the deprecated choices for existing points in the database.
 REVIEWED_CHOICES = {
     REVIEWED_MANUAL: _('Manual Reviewer Points'),
-    REVIEWED_ADDON_FULL: _('New Add-on Review'),
+    REVIEWED_ADDON_FULL: _('New Legacy Add-on Review'),
     _REVIEWED_ADDON_PRELIM: _('Preliminary Add-on Review'),
-    REVIEWED_ADDON_UPDATE: _('Updated Add-on Review'),
+    REVIEWED_ADDON_UPDATE: _('Updated Legacy Add-on Review'),
     REVIEWED_DICT_FULL: _('New Dictionary Review'),
     _REVIEWED_DICT_PRELIM: _('Preliminary Dictionary Review'),
     REVIEWED_DICT_UPDATE: _('Updated Dictionary Review'),
@@ -81,13 +81,13 @@ REVIEWED_CHOICES = {
     REVIEWED_ADDON_REVIEW_POORLY: _('Add-on Review Moderation Reverted'),
     REVIEWED_CONTENT_REVIEW: _('Add-on Content Review'),
     REVIEWED_EXTENSION_HIGHEST_RISK:
-        _('Post-Approval Review (Highest Risk)'),
+        _('Add-on Review (Highest Risk)'),
     REVIEWED_EXTENSION_HIGH_RISK:
-        _('Post-Approval Review (High Risk)'),
+        _('Add-on Review (High Risk)'),
     REVIEWED_EXTENSION_MEDIUM_RISK:
-        _('Post-Approval Review (Medium Risk)'),
+        _('Add-on Review (Medium Risk)'),
     REVIEWED_EXTENSION_LOW_RISK:
-        _('Post-Approval Review (Low Risk)'),
+        _('Add-on Review (Low Risk)'),
 }
 
 REVIEWED_OVERDUE_BONUS = 2
