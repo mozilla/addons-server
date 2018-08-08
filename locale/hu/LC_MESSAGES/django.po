@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 10:11+0000\n"
+"PO-Revision-Date: 2018-08-08 11:22+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5149,7 +5149,7 @@ msgstr "Képek keresése {start_sub_heading}a(z) {addon_name} kiegészítővel{e
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "Fordított képkeresés több keresőszolgáltató erejét felhasználva."
 
 #. editorial content for the discovery pane.
 msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5157,7 +5157,7 @@ msgstr "Tegye el későbbre {start_sub_heading}a(z) {addon_name} kiegészítőve
 
 #. editorial content for the discovery pane.
 msgid "Store web pages to access across devices."
-msgstr ""
+msgstr "Tárolja a weboldalakat, hogy több eszközön is elérje őket."
 
 #. editorial content for the discovery pane.
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5165,7 +5165,7 @@ msgstr "Adja meg könnyen a könyvjelzők helyét {start_sub_heading}a(z) {addon
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "A könyvjelzők mentésének jobb módja, ha több könyvjelző mappát használ."
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5173,11 +5173,11 @@ msgstr "Csak semmi formázás {start_sub_heading}a(z) {addon_name} kiegészítő
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "Dobja el a felesleges formázást, és másolja csak magát a szöveget."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Alakítson egy teljes weboldalt az előnyben részesített nyelvére – egyetlen gombkattintással."
 
 #. editorial content for the discovery pane.
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5185,7 +5185,7 @@ msgstr "Nyerje ki a hivatkozásokat {start_sub_heading}a(z) {addon_name} kiegés
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr ""
+msgstr "Azonnal jelenítse meg új lapokon a weboldalon lévő hivatkozásokat."
 
 #. editorial content for the discovery pane.
 msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5193,7 +5193,7 @@ msgstr "Dokumentumok megtekintése {start_sub_heading}a(z) {addon_name} kiegész
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
-msgstr ""
+msgstr "Érje el a PDF-eket az előnyben részesített PDF alkalmazásában."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5201,7 +5201,7 @@ msgstr "Hagyja ki az átirányításokat és a követőket {start_sub_heading}a(
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
-msgstr ""
+msgstr "Dobja el az átirányítási oldalakat és az URL-követő paramétereket."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5209,7 +5209,7 @@ msgstr "Keresési követők leállítása {start_sub_heading}a(z) {addon_name} k
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "Akadályozza meg, hogy a keresőszolgáltatások tudjanak róla, hogy mely keresési találatokra kattint."
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5217,7 +5217,7 @@ msgstr "YouTube videók letöltése {start_sub_heading}a(z) {addon_name} kiegés
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
-msgstr ""
+msgstr "Videó vagy hang letöltése."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5225,7 +5225,7 @@ msgstr "Gyűjtsön olvasnivalót {start_sub_heading}a(z) {addon_name} kiegészí
 
 #. editorial content for the discovery pane.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Egy fejlett olvasó az összes RSS/Atom/RDF forrása összegyűjtésére."
 
 #. editorial content for the discovery pane.
 msgid "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
