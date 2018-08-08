@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 01:30+0000\n"
-"Last-Translator: Rodrigo Guerra <rodmguerra@gmail.com>\n"
+"PO-Revision-Date: 2018-08-08 23:47+0000\n"
+"Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -18,15 +18,15 @@ msgstr ""
 
 #: src/olympia/accounts/serializers.py:90 src/olympia/bandwagon/forms.py:123 src/olympia/bandwagon/serializers.py:61 src/olympia/users/forms.py:231
 msgid "No links are allowed."
-msgstr ""
+msgstr "Nulle ligamines es consentite."
 
 #: src/olympia/accounts/serializers.py:96 src/olympia/users/forms.py:197
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Iste nomine de schermo non pote ser usate."
 
 #: src/olympia/accounts/serializers.py:104 src/olympia/users/forms.py:173
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Le nomines de usator non pote continer solo digitos."
 
 #: src/olympia/accounts/serializers.py:108 src/olympia/users/forms.py:177
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
