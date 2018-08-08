@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 09:31+0000\n"
+"PO-Revision-Date: 2018-08-08 09:34+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5069,7 +5069,7 @@ msgstr "Javítsa az élményét a VK-n {start_sub_heading}a(z) {addon_name} kieg
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
-msgstr ""
+msgstr "Eltávolítja a reklámokat, és a hangok letöltését a VK-ról."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5077,7 +5077,7 @@ msgstr "Kapjon azonnali fordításokat {start_sub_heading}a(z) {addon_name} kieg
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Kapjon azonnali fordítást a szöveg kiemelésével, és a felugró gombra kattintással."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5085,7 +5085,7 @@ msgstr "Szabja testre az új lapokat {start_sub_heading}a(z) {addon_name} kiegé
 
 #. editorial content for the discovery pane.
 msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
-msgstr ""
+msgstr "Legyen kreatív, és szabja testre az új lap oldalt a kedvenc oldalai megjelenítésével, és egy téma kiválasztásával."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5093,7 +5093,7 @@ msgstr "Nincs több átirányítás {start_sub_heading}a(z) {addon_name} kiegés
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "Ugorjon közvetlenül arra a weboldalra, amit el akar érni, anélkül hogy közben átirányítanák."
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
