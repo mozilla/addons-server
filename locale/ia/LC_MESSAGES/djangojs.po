@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 10:46+0000\n"
+"PO-Revision-Date: 2018-08-08 12:11+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -399,35 +399,35 @@ msgstr "Gestor de additivos, Saper plus"
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Suggestiones de recerca"
 
 #: static/js/impala/stats/csv_keys.js:48
 msgid "Search Results"
-msgstr ""
+msgstr "Resultatos del recerca"
 
 #: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Promotion del pagina principal"
 
 #: static/js/impala/stats/csv_keys.js:52 static/js/impala/stats/csv_keys.js:53
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Pagina principal consiliate"
 
 #: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:55
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Pagina principal emergente"
 
 #: static/js/impala/stats/csv_keys.js:56
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Pagina principal plus popular"
 
 #: static/js/impala/stats/csv_keys.js:57 static/js/impala/stats/csv_keys.js:59
 msgid "Detail Page"
-msgstr ""
+msgstr "Pagina de detalio del additivo"
 
 #: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:60
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Pagina de detalio del additivo (fundo)"
 
 #: static/js/impala/stats/csv_keys.js:61
 msgid "Detail Page (Development Channel)"
