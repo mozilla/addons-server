@@ -1,3 +1,5 @@
+import copy
+
 import waffle
 
 import olympia.core.logger
@@ -72,9 +74,10 @@ def create_new_index(index_name=None):
     if index_name is None:
         index_name = BaseSearchIndexer.get_index_alias()
 
-    index_settings = INDEX_SETTINGS.copy()
+    index_settings = copy.deepcopy(INDEX_SETTINGS)
 
     if waffle.switch_is_active('es-use-classic-similarity'):
+        # http://bit.ly/es5-similarity-module-docs
         index_settings['similarity'] = {
             'default': {
                 'type': 'classic'
