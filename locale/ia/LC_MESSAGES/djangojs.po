@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 15:52+0000\n"
+"PO-Revision-Date: 2018-08-08 15:57+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1128,8 +1128,8 @@ msgstr[1] "{0} notificationes"
 
 #: static/js/zamboni/validator.js:515
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Labor de validation impossibile a completar o completate con errores"
 
 #: static/js/zamboni/validator.js:533
 msgid "Internal server error"
-msgstr ""
+msgstr "Error interne del servitor"
