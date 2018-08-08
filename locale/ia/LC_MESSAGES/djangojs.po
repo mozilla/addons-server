@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 10:08+0000\n"
+"PO-Revision-Date: 2018-08-08 10:27+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -298,40 +298,40 @@ msgstr "{0} revisiones"
 
 #: static/js/impala/stats/chart.js:275
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} venditas"
 
 #: static/js/impala/stats/chart.js:276
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} reimbursamentos"
 
 #: static/js/impala/stats/chart.js:277
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} installationes"
 
 #: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
-msgstr ""
+msgstr "Discargas"
 
 #: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
-msgstr ""
+msgstr "Usatores quotidian"
 
 #: static/js/impala/stats/chart.js:410
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Amonta in USD"
 
 #: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:104
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Numero de contributiones"
 
 #: static/js/impala/stats/chart.js:447
 msgid "More Info..."
-msgstr ""
+msgstr "Altere informationes..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: static/js/impala/stats/chart.js:451
 msgid "Details for {0}"
-msgstr ""
+msgstr "Detalios pro {0}"
 
 #: static/js/impala/stats/csv_keys.js:9
 msgid "Collections Created"
@@ -355,7 +355,7 @@ msgstr "Additivos actualisate"
 
 #: static/js/impala/stats/csv_keys.js:24
 msgid "Reviews Written"
-msgstr ""
+msgstr "Revisiones scribite"
 
 #: static/js/impala/stats/csv_keys.js:27
 msgid "User Signups"
