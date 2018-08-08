@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 12:32+0000\n"
+"PO-Revision-Date: 2018-08-08 12:39+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -629,32 +629,32 @@ msgstr "Linguas, ultime {0} dies"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:167
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Linguas ab {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:171
 msgid "Add-on Versions, last {0} days"
-msgstr "Versiones del additivo, le ultime {0} dies"
+msgstr "Versiones del additivos, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:173
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Versiones del additivos ab {0} al {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:177
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Stato del additivo, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:179
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Stato del additivo, ab {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:183
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Fontes del files discargate, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:185
