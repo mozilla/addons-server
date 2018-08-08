@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 12:11+0000\n"
+"PO-Revision-Date: 2018-08-08 12:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -431,43 +431,43 @@ msgstr "Pagina de detalio del additivo (fundo)"
 
 #: static/js/impala/stats/csv_keys.js:61
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Pagina de detalio del additivo (canal de disveloppamento)"
 
 #: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
-msgstr ""
+msgstr "Sovente usate con"
 
 #: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
 msgid "Others By Author"
-msgstr ""
+msgstr "Altero del mesme autor"
 
 #: static/js/impala/stats/csv_keys.js:67 static/js/impala/stats/csv_keys.js:68
 msgid "Dependencies"
-msgstr ""
+msgstr "Dependentias"
 
 #: static/js/impala/stats/csv_keys.js:69 static/js/impala/stats/csv_keys.js:70
 msgid "Upsell"
-msgstr ""
+msgstr "Promotion"
 
 #: static/js/impala/stats/csv_keys.js:71
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Incontra le disveloppator"
 
 #: static/js/impala/stats/csv_keys.js:72
 msgid "User Profile"
-msgstr ""
+msgstr "Profilo de usator"
 
 #: static/js/impala/stats/csv_keys.js:73
 msgid "Version History"
-msgstr ""
+msgstr "Chronologia del versiones"
 
 #: static/js/impala/stats/csv_keys.js:75
 msgid "Sharing"
-msgstr ""
+msgstr "Compartimento"
 
 #: static/js/impala/stats/csv_keys.js:76
 msgid "Category Pages"
-msgstr ""
+msgstr "Paginas de categoria"
 
 #: static/js/impala/stats/csv_keys.js:77
 msgid "Collections"
@@ -523,15 +523,15 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:105
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Amonta total de donationes"
 
 #: static/js/impala/stats/csv_keys.js:106
 msgid "Average Contribution"
-msgstr ""
+msgstr "Contribution medie"
 
 #: static/js/impala/stats/csv_keys.js:115
 msgid "Usage"
-msgstr ""
+msgstr "Uso"
 
 #: static/js/impala/stats/csv_keys.js:118
 msgid "Firefox"
@@ -547,15 +547,15 @@ msgstr "Thunderbird"
 
 #: static/js/impala/stats/csv_keys.js:121
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 #: static/js/impala/stats/csv_keys.js:122
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: static/js/impala/stats/csv_keys.js:123
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js:124
 msgid "Android"
@@ -564,67 +564,67 @@ msgstr "Android"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:129
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Discargas e usatores per die, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:131
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Discargas e usatores per die ab {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:135
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Installationes e usatores quotidian, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:137
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Installationes e usatores per die ab {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:141
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Discargas, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:143
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Discargas ab {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:147
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Usatores quotidian, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:149
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Usatores quotidian ab {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:153
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Applicationes, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:155
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Applicationes ab {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:159
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Platteformas, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:161
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Platteformas ab {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:165
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Linguas, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:167
