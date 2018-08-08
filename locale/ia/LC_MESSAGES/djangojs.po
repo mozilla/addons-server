@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 12:39+0000\n"
+"PO-Revision-Date: 2018-08-08 13:25+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -659,87 +659,87 @@ msgstr "Fontes del files discargate, ultime {0} dies"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:185
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Fontes del files discargate ab {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:189
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Donationes, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:191
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Donationes ab {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:195
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Statistica del sito, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:197
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Statistica del sito ab {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:201
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Additivos in uso, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:203
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Additivos in uso ab {0} al {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:207
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Additivos discargate, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:209
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Additivos discargate ab {0} al {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:213
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Additivos create, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:215
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Additivos create ab {0} al {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:219
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Additivos actualisate, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:221
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Additivos actualisate ab {0} al {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:225
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Revisiones scribite, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:227
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Revisiones scribite ab {0} al {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:231
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Registrationes de usator, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:233
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Registrationes de usator ab {0} al {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:237
@@ -754,61 +754,61 @@ msgstr "Collectiones create de {0} a {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:243
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Subscriptores, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:245
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Subscriptores ab {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:249
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Valutationes, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:251
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Valutationes ab{0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:255
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Venditas, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:257
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Venditas ab {0} al {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:261
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Installationes, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:263
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Installationes ab {0} al {1}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js:269
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> in le ultime {1} dies"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> ab {1} a {2}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js:275
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "media de <b>{0}</b> in le ultime {1} dies"
 
 #: static/js/impala/stats/overview.js:19
 msgid "No data available."
-msgstr ""
+msgstr "Nulle datos disponibile."
 
 #: static/js/impala/stats/table.js:74
 msgid "Date"
@@ -820,13 +820,13 @@ msgstr "Altero"
 
 #: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1297 static/js/zamboni/reviewers.js:410
 msgid "Select an application first"
-msgstr ""
+msgstr "Elige antea un application"
 
 #: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Configura le additivo {0} a un version maxime {1} e invia un email al autor."
+msgstr[1] "Configura le additivo {0} a un version maxime {1} e invia un email al autores."
 
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
@@ -837,45 +837,45 @@ msgstr[1] ""
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js:67
 msgid "Accept and Install"
-msgstr ""
+msgstr "Acceptar e installar"
 
 #: static/js/zamboni/buttons.js:67
 msgid "Add to {0}"
-msgstr ""
+msgstr "Adder a {0}"
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js:174
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Installar comocunque pro {0}"
 
 #: static/js/zamboni/buttons.js:174
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "Discargar comocunque pro {0}"
 
 #: static/js/zamboni/buttons.js:214
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Non disponibile pro tu platteforma"
 
 #. L10n: {0} is an app name.
 #: static/js/zamboni/buttons.js:222
 msgid "This add-on is not compatible with your version of {0}."
-msgstr ""
+msgstr "Iste additivo non es compatibile con le version in uso de {0}."
 
 #: static/js/zamboni/buttons.js:226 static/js/zamboni/buttons.js:247
 msgid "View other versions"
-msgstr ""
+msgstr "Vider altere versiones"
 
 #: static/js/zamboni/buttons.js:243
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Compatibile con {app} {min} - {max}"
 
 #: static/js/zamboni/buttons.js:244
 msgid "Works with {app}"
-msgstr ""
+msgstr "Compatibile con {app}"
 
 #: static/js/zamboni/buttons.js:277
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Solo con Firefox — Discarga lo subito!"
 
 #: static/js/zamboni/buttons.js:321
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
