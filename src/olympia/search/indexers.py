@@ -1,3 +1,5 @@
+import waffle
+
 import olympia.core.logger
 
 from olympia.addons.cron import reindex_addons
@@ -21,11 +23,6 @@ indexers = (AddonIndexer, AppCompatIndexer,)
 # "decompose compound words found in many German languages"
 # and all the words in the list are English... (cgrebs 042017)
 INDEX_SETTINGS = {
-    'similarity': {
-        'default': {
-            'type': 'classic'
-        }
-    },
     'analysis': {
         'analyzer': {
             'standardPlusWordDelimiter': {
@@ -75,12 +72,21 @@ def create_new_index(index_name=None):
     if index_name is None:
         index_name = BaseSearchIndexer.get_index_alias()
 
+    index_settings = INDEX_SETTINGS.copy()
+
+    if waffle.switch_is_active('es-use-classic-similarity'):
+        index_settings['similarity'] = {
+            'default': {
+                'type': 'classic'
+            }
+        }
+
     config = {
         'mappings': get_mappings(),
         'settings': {
             # create_index will add its own index settings like number of
             # shards and replicas.
-            'index': INDEX_SETTINGS
+            'index': index_settings
         },
     }
     create_index(index_name, config)
