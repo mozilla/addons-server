@@ -81,8 +81,11 @@ jobs:
       - run:
           name: Install Docker Compose
           command: |
+            # using curl to install for better ci -> local compatibility
             set -x
-            pip install docker-compose>=1.18
+            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
             docker-compose --version
       - run:
           name: Start container, verify it's running and start tests
@@ -99,8 +102,13 @@ jobs:
             docker-compose restart worker
             docker-compose exec web make -f Makefile-docker update_deps
             docker-compose restart web
+            # chown to change permissions of olympia.egg* and all folders/file
+            # This is done because cirlceci has permissions do not allow the user `circleci` to remove or add files create by the root, even if it is part of the root group.
+            sudo chown -R circleci:circleci .
+            # Delete any existing uitest users within restmail. TEMP FIX: https://github.com/mozilla/addons-server/issues/8980
+            wget --method=DELETE http://restmail.net/mail/uitest
             # Start Test in Firefox docker container
-            docker-compose exec --user root selenium-firefox tox -e ui-tests
+            docker-compose exec --user circleci selenium-firefox tox -e ui-tests
       - store_artifacts:
           path: ui-test.html
       - save_cache:

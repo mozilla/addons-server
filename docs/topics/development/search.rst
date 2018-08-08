@@ -16,7 +16,7 @@ How does search on AMO work?
 General structure
 =================
 
-Our search contais Add-ons (``addons`` index) and Add-on compatibility report documents (``compat`` index).
+Our search contains Add-ons (``addons`` index) and Add-on compatibility report documents (``compat`` index).
 
 In addition to that we store the following data:
 
@@ -34,7 +34,7 @@ And various other add-on related properties. See the `Add-on Indexer / Serialize
 
 Our search can be reached either via the API through :ref:`/api/v4/addons/search/ <addon-search>` or :ref:`/api/v4/addons/autocomplete/ <addon-autocomplete>` which are used by our addons-frontend as well as via our legacy pages (used much less).
 
-Both use similar filtering and scoring code. For legacy reasons they're not identical though, we should try to focus on our API-based search though since the legacy search will be removed once support for Thunderbird and Seamonkey will be moved to a new platform.
+Both use similar filtering and scoring code. For legacy reasons they're not identical. We should focus on our API-based search though since the legacy search will be removed once support for Thunderbird and Seamonkey is moved to a new platform.
 
 The legacy search uses ElasticSearch to query the data and then requests the actual model objects from the database. The newer API-based search only hits ElasticSearch and uses data directly stored from ES which is much more efficient.
 
@@ -42,11 +42,11 @@ The legacy search uses ElasticSearch to query the data and then requests the act
 Flow of a search query through AMO
 ==================================
 
-Let's assume we search on addons-frontend (not legacy) the search query hits the API and get's handled by ``AddonSearchView`` which directly queries ElasticSearch and doesn't involve the database at all.
+Let's assume we search on addons-frontend (not legacy) the search query hits the API and gets handled by ``AddonSearchView``, which directly queries ElasticSearch and doesn't involve the database at all.
 
-There are a few filters that are described in the :ref:`/api/v4/addons/search/ docs <addon-search>` but most of them are not very relevant for raw search queries. Examples are filters by guid, platform, category, add-on type or appversion.
+There are a few filters that are described in the :ref:`/api/v4/addons/search/ docs <addon-search>` but most of them are not very relevant for raw search queries. Examples are filters by guid, platform, category, add-on type or appversion (application version compatibility).
 
-Much more relevant for raw add-on searches (And this is primarily used when you use the search on the frontend) is ``SearchQueryFilter``.
+Much more relevant for raw add-on searches (and this is primarily used when you use the search on the frontend) is ``SearchQueryFilter``.
 
 It composes various rules to define a more or less usable ranking:
 
@@ -80,10 +80,10 @@ containing more text like description, summary and tags.
 1. Look for phrase matches inside the summary (``boost=0.8``)
 2. Look for phrase matches inside the summary using language specific
    analyzer (``boost=0.6``)
-3. Look for phrase matches inside the description (``boost=0.3``).
+3. Look for phrase matches inside the description (``boost=0.3``)
 4. Look for phrase matches inside the description using language
-   specific analyzer (``boost=0.6``).
-5. Look for matches inside tags (``boost=0.1``).
+   specific analyzer (``boost=0.6``)
+5. Look for matches inside tags (``boost=0.1``)
 6. Append a separate ``match`` query for every word to boost tag matches (``boost=0.1``)
 
 

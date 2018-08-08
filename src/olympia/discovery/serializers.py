@@ -1,11 +1,7 @@
-from django.utils.translation import ugettext
-
 from rest_framework import serializers
 
-from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer, VersionSerializer
-from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.discovery.models import DiscoveryItem
 from olympia.versions.models import Version
 
@@ -33,45 +29,28 @@ class DiscoveryAddonSerializer(AddonSerializer):
 
     class Meta:
         fields = ('id', 'current_version', 'guid', 'icon_url', 'name',
-                  'slug', 'theme_data', 'type', 'url',)
+                  'previews', 'slug', 'theme_data', 'type', 'url',)
         model = Addon
 
 
-class DiscoverySerializer(serializers.Serializer):
+class DiscoverySerializer(serializers.ModelSerializer):
     heading = serializers.CharField()
     description = serializers.CharField()
     addon = DiscoveryAddonSerializer()
-    is_recommendation = serializers.BooleanField()
+    is_recommendation = serializers.SerializerMethodField()
 
-    def to_representation(self, instance):
-        data = super(DiscoverySerializer, self).to_representation(instance)
-        authors = u', '.join(
-            author.name for author in instance.addon.listed_authors)
-        addon_name = unicode(instance.addon_name or instance.addon.name)
-        url = absolutify(instance.addon.get_url_path())
+    class Meta:
+        fields = ('heading', 'description', 'addon', 'is_recommendation')
+        model = DiscoveryItem
 
-        if data['heading'] is None:
-            data['heading'] = (
-                u'{0} <span>{1} <a href="{2}">{3}</a></span>'.format(
-                    addon_name, ugettext(u'by'), url, authors))
+    def get_is_recommendation(self, obj):
+        # If an object is ever returned without having a position set, that
+        # means it's coming from the recommendation server, it wasn't an
+        # editorial choice.
+        request = self.context.get('request')
+        if request and request.GET.get('edition') == 'china':
+            position_field = 'position_china'
         else:
-            # Note: target and rel attrs are added in addons-frontend.
-            addon_link = u'<a href="{0}">{1} {2} {3}</a>'.format(
-                url, addon_name, ugettext(u'by'), authors)
-
-            data['heading'] = data['heading'].replace(
-                '{start_sub_heading}', '<span>').replace(
-                '{end_sub_heading}', '</span>').replace(
-                '{addon_name}', addon_link)
-
-        if data['description'] is None:
-            has_summary = (amo.ADDON_EXTENSION, amo.ADDON_STATICTHEME)
-            if (instance.addon.type in has_summary and instance.addon.summary):
-                data['description'] = (
-                    u'<blockquote>%s</blockquote>' % instance.addon.summary)
-            elif (instance.addon.type == amo.ADDON_PERSONA and
-                    instance.addon.description):
-                data['description'] = (
-                    u'<blockquote>%s</blockquote>' %
-                    instance.addon.description)
-        return data
+            position_field = 'position'
+        position_value = getattr(obj, position_field)
+        return position_value is None or position_value < 1

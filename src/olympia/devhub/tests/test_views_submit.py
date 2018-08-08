@@ -1,11 +1,13 @@
 import json
 import os
+import stat
 
 from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core.files import temp
 from django.core.files.storage import default_storage as storage
+from django.test.utils import override_settings
 
 import mock
 
@@ -377,6 +379,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             mock.call(f)
             for f in latest_version.all_files])
 
+    @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=1)
     def test_with_source(self):
         response = self.client.get(
             reverse('devhub.submit.upload', args=['listed']))
@@ -392,6 +395,27 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             response, reverse('devhub.submit.details', args=[addon.slug]))
         assert addon.current_version.source
         assert Addon.objects.get(pk=addon.pk).needs_admin_code_review
+        mode = oct(os.stat(addon.current_version.source.path)[stat.ST_MODE])
+        assert mode == '0100644'
+
+    @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=2 ** 22)
+    def test_with_source_in_memory_upload(self):
+        response = self.client.get(
+            reverse('devhub.submit.upload', args=['listed']))
+        assert pq(response.content)('#id_source')
+        tdir = temp.gettempdir()
+        source = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)
+        source.write('a' * (2 ** 21))
+        source.seek(0)
+        assert Addon.objects.count() == 0
+        response = self.post(source=source)
+        addon = Addon.objects.get()
+        self.assert3xx(
+            response, reverse('devhub.submit.details', args=[addon.slug]))
+        assert addon.current_version.source
+        assert Addon.objects.get(pk=addon.pk).needs_admin_code_review
+        mode = oct(os.stat(addon.current_version.source.path)[stat.ST_MODE])
+        assert mode == '0100644'
 
     @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_button_shown(self):
@@ -784,6 +808,22 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         self.client.post(self.url, self.get_dict(cat_initial=self.cat_initial))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         assert category_ids_new == [22]
+
+    def test_ul_class_rendering_regression(self):
+        """Test ul of license widget doesn't render `license` class.
+
+        Regression test for:
+         * https://github.com/mozilla/addons-server/issues/8902
+         * https://github.com/mozilla/addons-server/issues/8920
+        """
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        ul = doc('#id_license-builtin')
+
+        assert ul.attr('class') is None
 
     def test_set_builtin_license_no_log(self):
         self.is_success(self.get_dict(**{'license-builtin': 3}))

@@ -14,7 +14,6 @@ from django.core.files.storage import get_storage_class
 from django.db import connection
 from django.db.models import Q
 from django.db.transaction import non_atomic_requests
-from django.shortcuts import get_object_or_404
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 
 from dateutil.parser import parse
@@ -24,19 +23,15 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
-from olympia.addons.decorators import addon_view_factory
-from olympia.addons.models import Addon
+from olympia.stats.decorators import addon_view_stats
 from olympia.lib.cache import memoize
-from olympia.amo.decorators import (
-    allow_cross_site_request, json_view, login_required)
+from olympia.amo.decorators import allow_cross_site_request, json_view
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import AMOJSONEncoder, render
-from olympia.bandwagon.models import Collection
-from olympia.bandwagon.views import get_collection
 from olympia.stats.forms import DateForm
 from olympia.zadmin.models import SiteEvent
 
-from .models import CollectionCount, DownloadCount, ThemeUserCount, UpdateCount
+from .models import DownloadCount, ThemeUserCount, UpdateCount
 
 
 logger = olympia.core.logger.getLogger('z.apps.stats.views')
@@ -47,13 +42,11 @@ SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
 SERIES_FORMATS = ('json', 'csv')
 SERIES = ('downloads', 'usage', 'overview', 'sources', 'os',
           'locales', 'statuses', 'versions', 'apps')
-COLLECTION_SERIES = ('downloads', 'subscribers', 'ratings')
 GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
                  'collections_created', 'reviews_created', 'addons_created',
                  'users_created', 'my_apps')
 
 
-addon_view = addon_view_factory(qs=Addon.objects.valid)
 storage = get_storage_class()()
 
 
@@ -149,7 +142,7 @@ def extract(dicts):
     return extracted
 
 
-@addon_view
+@addon_view_stats
 @non_atomic_requests
 def overview_series(request, addon, group, start, end, format):
     """Combines downloads_series and updates_series into one payload."""
@@ -195,7 +188,7 @@ def zip_overview(downloads, updates):
                'data': {'downloads': dl_count, 'updates': up_count}}
 
 
-@addon_view
+@addon_view_stats
 @non_atomic_requests
 def downloads_series(request, addon, group, start, end, format):
     """Generate download counts grouped by ``group`` in ``format``."""
@@ -210,7 +203,7 @@ def downloads_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view
+@addon_view_stats
 @non_atomic_requests
 def sources_series(request, addon, group, start, end, format):
     """Generate download source breakdown."""
@@ -228,7 +221,7 @@ def sources_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view
+@addon_view_stats
 @non_atomic_requests
 def usage_series(request, addon, group, start, end, format):
     """Generate ADU counts grouped by ``group`` in ``format``."""
@@ -245,7 +238,7 @@ def usage_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view
+@addon_view_stats
 @non_atomic_requests
 def usage_breakdown_series(request, addon, group,
                            start, end, format, field):
@@ -330,7 +323,7 @@ def check_stats_permission(request, addon):
         raise PermissionDenied
 
 
-@addon_view
+@addon_view_stats
 @non_atomic_requests
 def stats_report(request, addon, report):
     check_stats_permission(request, addon)
@@ -494,18 +487,6 @@ def site(request, format, group, start=None, end=None):
     return render_json(request, None, series)
 
 
-@login_required
-@non_atomic_requests
-def collection_report(request, username, slug, report):
-    c = get_collection(request, username, slug)
-    stats_base_url = c.stats_url()
-    view = get_report_view(request)
-    return render(request, 'stats/reports/%s.html' % report,
-                  {'collection': c, 'search_cat': 'collections',
-                   'report': report, 'view': view, 'username': username,
-                   'slug': slug, 'stats_base_url': stats_base_url})
-
-
 @non_atomic_requests
 def site_series(request, format, group, start, end, field):
     """Pull a single field from the site_query data"""
@@ -528,62 +509,6 @@ def site_series(request, format, group, start, end, field):
                           title='%s week Site Statistics' % settings.DOMAIN,
                           show_disclaimer=True)
     return render_json(request, None, series)
-
-
-@non_atomic_requests
-def collection_series(request, username, slug, format, group, start, end,
-                      field):
-    """Pull a single field from the collection_query data"""
-    start, end = get_daterange_or_404(start, end)
-    group = 'date' if group == 'day' else group
-    series = []
-    c = get_collection(request, username, slug)
-    full_series = _collection_query(request, c, start, end)
-    for row in full_series:
-        if field in row['data']:
-            series.append({
-                'date': row['date'],
-                'count': row['data'][field],
-            })
-    return render_json(request, None, series)
-
-
-@non_atomic_requests
-def collection_stats(request, username, slug, group, start, end, format):
-    c = get_collection(request, username, slug)
-    start, end = get_daterange_or_404(start, end)
-    return collection(request, c.uuid, format, start, end)
-
-
-def _collection_query(request, collection, start=None, end=None):
-    if not start and not end:
-        start = date.today() - timedelta(days=365)
-        end = date.today()
-
-    if not collection.can_view_stats(request):
-        raise PermissionDenied
-
-    qs = (CollectionCount.search().order_by('-date')
-                         .filter(id=int(collection.pk),
-                                 date__range=(start, end))
-                         .values_dict('date', 'count', 'data'))[:365]
-    series = []
-    for val in qs:
-        date_ = parse(val['date']).date()
-        series.append(dict(count=val['count'], date=date_, end=date_,
-                           data=extract(val['data'])))
-    return series
-
-
-@non_atomic_requests
-def collection(request, uuid, format, start=None, end=None):
-    collection = get_object_or_404(Collection, uuid=uuid)
-    series = _collection_query(request, collection, start, end)
-    if format == 'csv':
-        series, fields = csv_fields(series)
-        return render_csv(request, collection, series,
-                          ['date', 'count'] + list(fields))
-    return render_json(request, collection, series)
 
 
 def fudge_headers(response, stats):

@@ -39,7 +39,8 @@ class Command(BaseCommand):
         """Return a queryset with the Version instances that should be
         considered for auto approval."""
         return (Version.objects.filter(
-            addon__type__in=(amo.ADDON_EXTENSION, amo.ADDON_LPAPP),
+            addon__type__in=(
+                amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT),
             addon__disabled_by_user=False,
             addon__status__in=(amo.STATUS_PUBLIC, amo.STATUS_NOMINATED),
             files__status=amo.STATUS_AWAITING_REVIEW,

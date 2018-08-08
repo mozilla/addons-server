@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-11 10:53+0000\n"
+"POT-Creation-Date: 2018-08-02 01:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -701,11 +701,28 @@ msgstr "Ŧħīş ḿŭşŧ ƀḗ ȧ ṽȧŀīḓ ħḗẋ ƈǿŀǿř ƈǿḓḗ,
 msgid "Not allowed"
 msgstr "Ƞǿŧ ȧŀŀǿẇḗḓ"
 
-msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr "<h1>Ǿǿƥş! Ƞǿŧ ȧŀŀǿẇḗḓ.</h1> <p>Ẏǿŭ ŧřīḗḓ ŧǿ ḓǿ şǿḿḗŧħīƞɠ ŧħȧŧ ẏǿŭ ẇḗřḗƞ'ŧ ȧŀŀǿẇḗḓ ŧǿ.</p>"
+msgid "Oops! Not allowed."
+msgstr "Ǿǿƥş! Ƞǿŧ ȧŀŀǿẇḗḓ."
 
-msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
-msgstr "<p>Ŧřẏ ɠǿīƞɠ ƀȧƈķ ŧǿ ŧħḗ ƥřḗṽīǿŭş ƥȧɠḗ, řḗƒřḗşħīƞɠ ȧƞḓ ŧħḗƞ ŧřẏīƞɠ ȧɠȧīƞ.</p>"
+msgid "You tried to do something that you weren't allowed to."
+msgstr "Ẏǿŭ ŧřīḗḓ ŧǿ ḓǿ şǿḿḗŧħīƞɠ ŧħȧŧ ẏǿŭ ẇḗřḗƞ'ŧ ȧŀŀǿẇḗḓ ŧǿ."
+
+msgid ""
+"You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
+"browser is not being hijacked by third parties."
+msgstr ""
+"Ẏǿŭ ȧřḗ şḗḗīƞɠ ŧħīş ḿḗşşȧɠḗ ƀḗƈȧŭşḗ ŧħīş ĦŦŦƤŞ şīŧḗ řḗɋŭīřḗş ȧ 'Řḗƒḗřḗř ħḗȧḓḗř' ŧǿ ƀḗ şḗƞŧ ƀẏ ẏǿŭř Ẇḗƀ ƀřǿẇşḗř, ƀŭŧ ƞǿƞḗ ẇȧş şḗƞŧ. Ŧħīş ħḗȧḓḗř īş řḗɋŭīřḗḓ ƒǿř şḗƈŭřīŧẏ řḗȧşǿƞş, ŧǿ ḗƞşŭřḗ ŧħȧŧ ẏǿŭř "
+"ƀřǿẇşḗř īş ƞǿŧ ƀḗīƞɠ ħīĵȧƈķḗḓ ƀẏ ŧħīřḓ ƥȧřŧīḗş."
+
+msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
+msgstr "Īƒ ẏǿŭ ħȧṽḗ ƈǿƞƒīɠŭřḗḓ ẏǿŭř ƀřǿẇşḗř ŧǿ ḓīşȧƀŀḗ 'Řḗƒḗřḗř' ħḗȧḓḗřş, ƥŀḗȧşḗ řḗ-ḗƞȧƀŀḗ ŧħḗḿ, ȧŧ ŀḗȧşŧ ƒǿř ŧħīş şīŧḗ, ǿř ƒǿř ĦŦŦƤŞ ƈǿƞƞḗƈŧīǿƞş, ǿř ƒǿř 'şȧḿḗ-ǿřīɠīƞ' řḗɋŭḗşŧş."
+
+msgid ""
+"You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
+"parties."
+msgstr ""
+"Ẏǿŭ ȧřḗ şḗḗīƞɠ ŧħīş ḿḗşşȧɠḗ ƀḗƈȧŭşḗ ŧħīş şīŧḗ řḗɋŭīřḗş ȧ ƇŞŘƑ ƈǿǿķīḗ ẇħḗƞ şŭƀḿīŧŧīƞɠ ƒǿřḿş. Ŧħīş ƈǿǿķīḗ īş řḗɋŭīřḗḓ ƒǿř şḗƈŭřīŧẏ řḗȧşǿƞş, ŧǿ ḗƞşŭřḗ ŧħȧŧ ẏǿŭř ƀřǿẇşḗř īş ƞǿŧ ƀḗīƞɠ ħīĵȧƈķḗḓ ƀẏ ŧħīřḓ "
+"ƥȧřŧīḗş."
 
 msgid "Page Not Found"
 msgstr "Ƥȧɠḗ Ƞǿŧ Ƒǿŭƞḓ"
@@ -819,9 +836,6 @@ msgstr "Ƈǿŀŀḗƈŧīǿƞş"
 
 msgid "Collections I've Made"
 msgstr "Ƈǿŀŀḗƈŧīǿƞş Ī'ṽḗ Ḿȧḓḗ"
-
-msgid "Collections I'm Following"
-msgstr "Ƈǿŀŀḗƈŧīǿƞş Ī'ḿ Ƒǿŀŀǿẇīƞɠ"
 
 msgid "My Favorite Add-ons"
 msgstr "Ḿẏ Ƒȧṽǿřīŧḗ Aḓḓ-ǿƞş"
@@ -1040,28 +1054,11 @@ msgstr "(ǿƥŧīǿƞȧŀ)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "ǿř <a id=\"collections-new-cancel\" href=\"#\">Ƈȧƞƈḗŀ</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "Ŧǿ řȧŧḗ ƈǿŀŀḗƈŧīǿƞş, ẏǿŭ ḿŭşŧ ħȧṽḗ ȧƞ ȧḓḓ-ǿƞş ȧƈƈǿŭƞŧ."
-
-msgid "Create an Add-ons Account"
-msgstr "Ƈřḗȧŧḗ ȧƞ Aḓḓ-ǿƞş Aƈƈǿŭƞŧ"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "ǿř <a href=\"%(login)s\">ŀǿɠ īƞ ŧǿ ẏǿŭř ƈŭřřḗƞŧ ȧƈƈǿŭƞŧ</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: Ƈǿŀŀḗƈŧīǿƞş"
 
 msgid "private"
 msgstr "ƥřīṽȧŧḗ"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> ƒǿŀŀǿẇḗř"
-msgstr[1] "<span>%(num)s</span> ƒǿŀŀǿẇḗřş"
 
 msgid "About this Collection"
 msgstr "Aƀǿŭŧ ŧħīş Ƈǿŀŀḗƈŧīǿƞ"
@@ -1134,48 +1131,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> ȧḓḓ-ǿƞ"
 msgstr[1] "<span>%(addons)s</span> ȧḓḓ-ǿƞş"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> ƒǿŀŀǿẇḗř"
-msgstr[1] "<span>%(followers)s</span> ƒǿŀŀǿẇḗřş"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s ẇḗḗķŀẏ ƒǿŀŀǿẇḗř"
-msgstr[1] "%(num)s ẇḗḗķŀẏ ƒǿŀŀǿẇḗřş"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s ḿǿƞŧħŀẏ ƒǿŀŀǿẇḗř"
-msgstr[1] "%(num)s ḿǿƞŧħŀẏ ƒǿŀŀǿẇḗřş"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s ƒǿŀŀǿẇḗř"
-msgstr[1] "%(num)s ƒǿŀŀǿẇḗřş"
-
 msgid "by {0}"
 msgstr "ƀẏ {0}"
-
-msgid "Stop Following"
-msgstr "Şŧǿƥ Ƒǿŀŀǿẇīƞɠ"
-
-msgid "Follow this Collection"
-msgstr "Ƒǿŀŀǿẇ ŧħīş Ƈǿŀŀḗƈŧīǿƞ"
 
 msgid "Edit this Collection"
 msgstr "Ḗḓīŧ ŧħīş Ƈǿŀŀḗƈŧīǿƞ"
@@ -1224,9 +1181,6 @@ msgstr "Ƈǿŀŀḗƈŧīǿƞş ȧřḗ ɠřǿŭƥş ǿƒ řḗŀȧŧḗḓ ȧ�
 msgid "by %(author_link)s"
 msgstr "ƀẏ %(author_link)s"
 
-msgid "Following"
-msgstr "Ƒǿŀŀǿẇīƞɠ"
-
 msgid "Create a Collection"
 msgstr "Ƈřḗȧŧḗ ȧ Ƈǿŀŀḗƈŧīǿƞ"
 
@@ -1274,18 +1228,6 @@ msgstr "Aḓḓ ȧ ƈǿḿḿḗƞŧ"
 
 msgid "Remove this add-on from the collection"
 msgstr "Řḗḿǿṽḗ ŧħīş ȧḓḓ-ǿƞ ƒřǿḿ ŧħḗ ƈǿŀŀḗƈŧīǿƞ"
-
-msgid "Add a positive vote for this collection"
-msgstr "Aḓḓ ȧ ƥǿşīŧīṽḗ ṽǿŧḗ ƒǿř ŧħīş ƈǿŀŀḗƈŧīǿƞ"
-
-msgid "Add a negative vote for this collection"
-msgstr "Aḓḓ ȧ ƞḗɠȧŧīṽḗ ṽǿŧḗ ƒǿř ŧħīş ƈǿŀŀḗƈŧīǿƞ"
-
-msgid "Remove my vote for this collection"
-msgstr "Řḗḿǿṽḗ ḿẏ ṽǿŧḗ ƒǿř ŧħīş ƈǿŀŀḗƈŧīǿƞ"
-
-msgid "Log in to vote for this collection"
-msgstr "Ŀǿɠ īƞ ŧǿ ṽǿŧḗ ƒǿř ŧħīş ƈǿŀŀḗƈŧīǿƞ"
 
 msgid "Favorite"
 msgstr "Ƒȧṽǿřīŧḗ"
@@ -4318,9 +4260,11 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ẇȧřƞīƞɠ"
 msgstr[1] "{0} ẇȧřƞīƞɠş"
 
+#. editorial content for the discovery pane.
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ŀḗȧṽḗ ȧ ƈŀḗȧƞ ḓīɠīŧȧŀ ŧřȧīŀ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
+#. editorial content for the discovery pane.
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "Ḿȧķḗ Ƒīřḗƒǿẋ ƒǿřɠḗŧ ẇḗƀşīŧḗ ḓȧŧȧ ŀīķḗ ƈǿǿķīḗş ȧƞḓ ŀǿƈȧŀ şŧǿřȧɠḗ, ƀŭŧ ǿƞŀẏ ƒǿř ḓǿḿȧīƞş ẏǿŭ ƈħǿǿşḗ."
 
@@ -4330,11 +4274,13 @@ msgstr "Īḿƥřǿṽḗ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_na
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
 msgstr "Ḗƞĵǿẏ ȧ şŭīŧḗ ǿƒ ƞḗẇ ẎǿŭŦŭƀḗ ƒḗȧŧŭřḗş, ŀīķḗ ƈīƞḗḿȧ ḿǿḓḗ, ȧḓ ƀŀǿƈķīƞɠ, ȧŭŧǿ-ƥŀȧẏ, ȧƞḓ ḿǿřḗ."
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ɓŀǿƈķ ȧḓş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+#. editorial content for the discovery pane.
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şŧǿƥ şƞḗȧķẏ ŧřȧƈķḗřş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
-msgstr "A ŀīɠħŧẇḗīɠħŧ ȧƞḓ ḗƒƒḗƈŧīṽḗ ȧḓ ƀŀǿƈķḗř. ŭƁŀǿƈķ Ǿřīɠīƞ ḗƞƒǿřƈḗş ŧħǿŭşȧƞḓş ǿƒ ƈǿƞŧḗƞŧ ƒīŀŧḗřş ẇīŧħǿŭŧ ƈħḗẇīƞɠ ŭƥ ȧ ŀǿŧ ǿƒ ḿḗḿǿřẏ."
+#. editorial content for the discovery pane.
+msgid "Block invisible trackers and spying ads that follow you around the web."
+msgstr "Ɓŀǿƈķ īƞṽīşīƀŀḗ ŧřȧƈķḗřş ȧƞḓ şƥẏīƞɠ ȧḓş ŧħȧŧ ƒǿŀŀǿẇ ẏǿŭ ȧřǿŭƞḓ ŧħḗ ẇḗƀ."
 
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ŭƥ ẏǿŭř ḗḿǿĵī ɠȧḿḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
@@ -4342,18 +4288,21 @@ msgstr "Ŭƥ ẏǿŭř ḗḿǿĵī ɠȧḿḗ {start_sub_heading}ẇīŧħ {add
 msgid "Dozens of amazing emojis for every occasion—just a click away."
 msgstr "Ḓǿẑḗƞş ǿƒ ȧḿȧẑīƞɠ ḗḿǿĵīş ƒǿř ḗṽḗřẏ ǿƈƈȧşīǿƞ—ĵŭşŧ ȧ ƈŀīƈķ ȧẇȧẏ."
 
+#. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ḓǿẇƞŀǿȧḓ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "Ẇǿřķş şḗȧḿŀḗşşŀẏ ẇīŧħ ḿǿşŧ ƥǿƥŭŀȧř ṽīḓḗǿ şīŧḗş."
 
+#. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ŧȧƀ Ƈŭşŧǿḿīẑȧŧīǿƞ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
 msgstr "Şḗŧ ŧħḗ ƥȧɠḗ ẏǿŭ şḗḗ ḗṽḗřẏ ŧīḿḗ ẏǿŭ ǿƥḗƞ ȧ ƞḗẇ ŧȧƀ."
 
+#. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ḗƞħȧƞƈḗ ẏǿŭř ḗḿǿĵī ɠȧḿḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
@@ -4365,6 +4314,1299 @@ msgstr "Ŧȧķḗ şƈřḗḗƞşħǿŧş {start_sub_heading}ẇīŧħ {addon_n
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr "Ḿǿřḗ ŧħȧƞ ĵŭşŧ ȧ ƀȧşīƈ şƈřḗḗƞşħǿŧ ŧǿǿŀ, Aẇḗşǿḿḗ Şƈřḗḗƞşħǿŧ Ƥŀŭş ŀḗŧş ẏǿŭ ȧƞƞǿŧȧŧḗ īḿȧɠḗş ẇīŧħ ƈŭşŧǿḿ ŧḗẋŧ ȧƞḓ ɠřȧƥħīƈş, ƥŀŭş ŧħḗ ȧƀīŀīŧẏ ŧǿ şŧǿřḗ ȧƞḓ şħȧřḗ ẏǿŭř ṽīşŭȧŀş."
+
+#. editorial content for the discovery pane.
+msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƈŭşŧǿḿīẑḗ ƞḗẇ ŧȧƀ ƥȧɠḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgstr "Ḗƞĵǿẏ ȧ ƀḗȧŭŧīƒŭŀ ƞḗẇ ƥȧɠḗ ẇīŧħ ƈŭşŧǿḿīẑȧƀŀḗ ƀȧƈķɠřǿŭƞḓş, ŀǿƈȧŀ ẇḗȧŧħḗř īƞƒǿ, ȧƞḓ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŧřȧƞşŀȧŧḗ ḗȧşīŀẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr "Ħīɠħŀīɠħŧ ȧƞẏ ŧḗẋŧ, řīɠħŧ-ƈŀīƈķ, ȧƞḓ ŧřȧƞşŀȧŧḗ īƞşŧȧƞŧŀẏ."
+
+#. editorial content for the discovery pane.
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şḗȧřƈħ Īḿȧɠḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Perform reverse image searches from an array of engines."
+msgstr "Ƥḗřƒǿřḿ řḗṽḗřşḗ īḿȧɠḗ şḗȧřƈħḗş ƒřǿḿ ȧƞ ȧřřȧẏ ǿƒ ḗƞɠīƞḗş."
+
+#. editorial content for the discovery pane.
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Aḓ ƀŀǿƈķīƞɠ & ƥřīṽȧƈẏ ƥřǿŧḗƈŧīǿƞ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr "A şīḿƥŀḗ şḗŧ-ŭƥ ŀḗŧş ẏǿŭ ŧȧķḗ ƈǿƞŧřǿŀ ǿƒ ŧħḗ ȧḓş ẏǿŭ şḗḗ ȧƞḓ ħǿẇ ẏǿŭ’řḗ ŧřȧƈķḗḓ ǿƞ ŧħḗ īƞŧḗřƞḗŧ."
+
+#. editorial content for the discovery pane.
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Řḗ-īḿȧɠīƞḗ ŧȧƀş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr "Ḓǿ ẏǿŭ ħȧṽḗ ȧ ŧǿƞ ǿƒ ǿƥḗƞ ŧȧƀş? Ǿřɠȧƞīẑḗ ŧħḗḿ īƞ ȧ ŧīḓẏ şīḓḗƀȧř."
+
+#. editorial content for the discovery pane.
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şŧǿƥ Ƒȧƈḗƀǿǿķ ŧřȧƈķīƞɠ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
+msgstr "Īşǿŀȧŧḗ ẏǿŭř Ƒȧƈḗƀǿǿķ īḓḗƞŧīŧẏ īƞŧǿ ȧ şḗƥȧřȧŧḗ “ƈǿƞŧȧīƞḗř” ŧħȧŧ ḿȧķḗş īŧ ħȧřḓḗř ƒǿř Ƒȧƈḗƀǿǿķ ŧǿ ŧřȧƈķ ẏǿŭř ḿǿṽḗḿḗƞŧş ȧřǿŭƞḓ ŧħḗ ẇḗƀ."
+
+#. editorial content for the discovery pane.
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şīḿƥŀīƒẏ şḗȧřƈħ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr "Ĵŭşŧ ħīɠħŀīɠħŧ ŧḗẋŧ ǿƞ ȧƞẏ ẇḗƀ ƥȧɠḗ ŧǿ şḗȧřƈħ ŧħḗ ƥħřȧşḗ ƒřǿḿ ȧƞ ȧřřȧẏ ǿƒ ḗƞɠīƞḗş."
+
+#. editorial content for the discovery pane.
+msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Īƞşŧȧƞŧ ẇḗȧŧħḗř ŭƥḓȧŧḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get instant global weather information right in Firefox."
+msgstr "Ɠḗŧ īƞşŧȧƞŧ ɠŀǿƀȧŀ ẇḗȧŧħḗř īƞƒǿřḿȧŧīǿƞ řīɠħŧ īƞ Ƒīřḗƒǿẋ."
+
+#. editorial content for the discovery pane.
+msgid "Choose the page you see every time you open a new tab."
+msgstr "Ƈħǿǿşḗ ŧħḗ ƥȧɠḗ ẏǿŭ şḗḗ ḗṽḗřẏ ŧīḿḗ ẏǿŭ ǿƥḗƞ ȧ ƞḗẇ ŧȧƀ."
+
+#. editorial content for the discovery pane.
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Řḗṽḗřşḗ īḿȧɠḗ şḗȧřƈħ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
+msgstr "Şḗḗ ȧƞ īƞŧḗřḗşŧīƞɠ ƥīƈŧŭřḗ ǿƞ ŧħḗ ẇḗƀ ȧƞḓ ẇȧƞŧ ŧǿ ŀḗȧřƞ ḿǿřḗ ȧƀǿŭŧ īŧ? Ŧřẏ ŧħīş īḿȧɠḗ şḗȧřƈħ ŧǿǿŀ."
+
+#. editorial content for the discovery pane.
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr "Ẇǿřķş ẇīŧħ ẎǿŭŦŭƀḗ, Ƒȧƈḗƀǿǿķ, Ṽīḿḗǿ, Ŧẇīŧƈħ, Ḓȧīŀẏḿǿŧīǿƞ, Ƥḗřīşƈǿƥḗ, ȧƞḓ ħŭƞḓřḗḓş ǿƒ ǿŧħḗř ṽīḓḗǿ şīŧḗş."
+
+#. editorial content for the discovery pane.
+msgid "Dozens of amazing emojis for every occasion—always just a click away."
+msgstr "Ḓǿẑḗƞş ǿƒ ȧḿȧẑīƞɠ ḗḿǿĵīş ƒǿř ḗṽḗřẏ ǿƈƈȧşīǿƞ—ȧŀẇȧẏş ĵŭşŧ ȧ ƈŀīƈķ ȧẇȧẏ."
+
+#. editorial content for the discovery pane.
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḿȧƞȧɠḗ ƥȧşşẇǿřḓş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr "Şīḿƥŀīƒẏ ȧƞḓ şẏƞƈ ȧŀŀ ẏǿŭř ṽȧřīǿŭş ẇḗƀşīŧḗ ŀǿɠīƞş ȧƈřǿşş ḓḗṽīƈḗş ẇīŧħ ǿƞḗ ƥȧşşẇǿřḓ ŧǿ řŭŀḗ ŧħḗḿ ȧŀŀ."
+
+#. editorial content for the discovery pane.
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ɓŀǿƈķ ȧḓş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "A ŀīɠħŧẇḗīɠħŧ ȧƞḓ ḗƒƒḗƈŧīṽḗ ȧḓ ƀŀǿƈķḗř. ŭƁŀǿƈķ Ǿřīɠīƞ ḗƞƒǿřƈḗş ŧħǿŭşȧƞḓş ǿƒ ƈǿƞŧḗƞŧ ƒīŀŧḗřş ẇīŧħǿŭŧ ƈħḗẇīƞɠ ŭƥ ȧ ƀŭƞƈħ ǿƒ ḿḗḿǿřẏ."
+
+#. editorial content for the discovery pane.
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Īḿƥřǿṽḗ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr "Ḗƞĵǿẏ ȧ şŭīŧḗ ǿƒ ƞḗẇ ẎǿŭŦŭƀḗ ƒḗȧŧŭřḗş, ŀīķḗ ƈīƞḗḿȧ ḿǿḓḗ, ȧḓ ƀŀǿƈķīƞɠ, ȧŭŧǿ-ƥŀȧẏ ƈǿƞŧřǿŀ, ȧƞḓ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗȧşīŀẏ ƒīƞḓ īḿȧɠḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "Ħīɠħŀīɠħŧ ȧƞẏ ŧḗẋŧ ȧƞḓ řīɠħŧ-ƈŀīƈķ ŧǿ ɋŭīƈķŀẏ ƥḗřƒǿřḿ ȧƞ īḿȧɠḗ şḗȧřƈħ."
+
+#. editorial content for the discovery pane.
+msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗƞĵǿẏ ṽīşŭȧŀ ƀǿǿķḿȧřķş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Access your favorite sites from a tile layout."
+msgstr "Aƈƈḗşş ẏǿŭř ƒȧṽǿřīŧḗ şīŧḗş ƒřǿḿ ȧ ŧīŀḗ ŀȧẏǿŭŧ."
+
+#. editorial content for the discovery pane.
+msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Aƈƈḗşş ķƞǿẇŀḗḓɠḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically add Britannica facts to your search results."
+msgstr "Aŭŧǿḿȧŧīƈȧŀŀẏ ȧḓḓ Ɓřīŧȧƞƞīƈȧ ƒȧƈŧş ŧǿ ẏǿŭř şḗȧřƈħ řḗşŭŀŧş."
+
+#. editorial content for the discovery pane.
+msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Řḗḿǿṽḗ ẎǿŭŦŭƀḗ Aḓş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Block annoying ads and annotations from appearing on YouTube."
+msgstr "Ɓŀǿƈķ ȧƞƞǿẏīƞɠ ȧḓş ȧƞḓ ȧƞƞǿŧȧŧīǿƞş ƒřǿḿ ȧƥƥḗȧřīƞɠ ǿƞ ẎǿŭŦŭƀḗ."
+
+#. editorial content for the discovery pane.
+msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Řḗȧḓ ȧƞẏẇħḗřḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Send news articles, stories, blog posts, and more to your Kindle."
+msgstr "Şḗƞḓ ƞḗẇş ȧřŧīƈŀḗş, şŧǿřīḗş, ƀŀǿɠ ƥǿşŧş, ȧƞḓ ḿǿřḗ ŧǿ ẏǿŭř Ķīƞḓŀḗ."
+
+#. editorial content for the discovery pane.
+msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƈǿŀǿř ƈǿḓḗ ẏǿŭř ŧȧƀş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Organize your tabs by color grouping them based on URL patterns."
+msgstr "Ǿřɠȧƞīẑḗ ẏǿŭř ŧȧƀş ƀẏ ƈǿŀǿř ɠřǿŭƥīƞɠ ŧħḗḿ ƀȧşḗḓ ǿƞ ŬŘĿ ƥȧŧŧḗřƞş."
+
+#. editorial content for the discovery pane.
+msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƥřḗṽḗƞŧ ƈřẏƥŧǿƈŭřřḗƞƈẏ ḿīƞīƞɠ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
+msgstr "Şŧǿƥ ḿȧŀīƈīǿŭş ẇḗƀşīŧḗş ƒřǿḿ ŭşīƞɠ ẏǿŭř ƈǿḿƥŭŧḗř ƥǿẇḗř ŧǿ ḿīƞḗ ƒǿř ƈřẏƥŧǿƈŭřřḗƞƈẏ."
+
+#. editorial content for the discovery pane.
+msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Aŭŧǿḿȧŧīƈ ɠřȧḿḿȧř ƈħḗƈķş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
+msgstr "Ɠḗŧ ɠřȧḿḿȧř ħḗŀƥ ȧƞẏẇħḗřḗ ẏǿŭ ẇřīŧḗ ǿƞ ŧħḗ ẇḗƀ—şǿƈīȧŀ ḿḗḓīȧ, ḗḿȧīŀ, ḓǿƈş, ȧƞḓ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƈħḗƈķ ɠŀǿƀȧŀ ŧīḿḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Display current worldwide times in Firefox's status bar."
+msgstr "Ḓīşƥŀȧẏ ƈŭřřḗƞŧ ẇǿřŀḓẇīḓḗ ŧīḿḗş īƞ Ƒīřḗƒǿẋ'ş şŧȧŧŭş ƀȧř."
+
+#. editorial content for the discovery pane.
+msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗȧşẏ ŧřȧƞşŀȧŧīǿƞş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
+msgstr "Ħīɠħŀīɠħŧ ŧḗẋŧ ǿƞ ȧƞẏ ẇḗƀƥȧɠḗ—ǿř şḗŀḗƈŧ ŧħḗ ḗƞŧīřḗ ƥȧɠḗ— ŧǿ ŧřȧƞşŀȧŧḗ īƞşŧȧƞŧŀẏ."
+
+#. editorial content for the discovery pane.
+msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŧȧƥ ȧƈȧḓḗḿīƈ ẇīşḓǿḿ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy free access to 10+ million research papers."
+msgstr "Ḗƞĵǿẏ ƒřḗḗ ȧƈƈḗşş ŧǿ 10+ ḿīŀŀīǿƞ řḗşḗȧřƈħ ƥȧƥḗřş."
+
+#. editorial content for the discovery pane.
+msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƈŭşŧǿḿīẑḗ ḿǿŭşḗ ɠḗşŧŭřḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
+msgstr "Ḓīşƈǿṽḗř ȧ ƞḗẇ ẇȧẏ ŧǿ ƞȧṽīɠȧŧḗ ẇīŧħ 50+ ħḗŀƥƒŭŀ ḿǿŭşḗ ɠḗşŧŭřḗş."
+
+#. editorial content for the discovery pane.
+msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ǿƥŧīḿīẑḗ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Darken the page around video players for a focused viewing experience."
+msgstr "Ḓȧřķḗƞ ŧħḗ ƥȧɠḗ ȧřǿŭƞḓ ṽīḓḗǿ ƥŀȧẏḗřş ƒǿř ȧ ƒǿƈŭşḗḓ ṽīḗẇīƞɠ ḗẋƥḗřīḗƞƈḗ."
+
+#. editorial content for the discovery pane.
+msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şḗȧřƈħ īƞ ɠǿǿḓ ƈǿƞşƈīḗƞƈḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+#, python-format
+msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
+msgstr "Ḗƈǿşīȧ ŭşḗş 80% ǿƒ īŧş şḗȧřƈħ ƥřǿƒīŧş ŧǿ ƒŭƞḓ ŧřḗḗ-ƥŀȧƞŧīƞɠ ƥřǿɠřȧḿş ȧřǿŭƞḓ ŧħḗ ẇǿřŀḓ. Ƥŭŧ Ḗƈǿşīȧ řīɠħŧ īƞŧǿ Ƒīřḗƒǿẋ şḗȧřƈħ"
+
+#. editorial content for the discovery pane.
+msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƒīƞḓ ḿīşşīƞɠ ẇḗƀ ƈǿƞŧḗƞŧ  {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
+msgstr "Īş ŧħḗ ƥȧɠḗ ẏǿŭ'řḗ ŀǿǿķīƞɠ ƒǿř ŭƞȧṽȧīŀȧƀŀḗ? Şḗȧřƈħ ƒǿř ȧƞ ȧřƈħīṽḗḓ/ƈȧƈħḗḓ ṽḗřşīǿƞ."
+
+#. editorial content for the discovery pane.
+msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƒīƞḓ ḿīşşīƞɠ ẇḗƀ ƈǿƞŧḗƞŧ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗƞŀȧřɠḗ īḿȧɠḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Simply hover over an image to magnify it."
+msgstr "Şīḿƥŀẏ ħǿṽḗř ǿṽḗř ȧƞ īḿȧɠḗ ŧǿ ḿȧɠƞīƒẏ īŧ."
+
+#. editorial content for the discovery pane.
+msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḿȧķḗ ƈǿǿķīḗş ḓīşȧƥƥḗȧř {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically erase cookies after you close a tab."
+msgstr "Aŭŧǿḿȧŧīƈȧŀŀẏ ḗřȧşḗ ƈǿǿķīḗş ȧƒŧḗř ẏǿŭ ƈŀǿşḗ ȧ ŧȧƀ."
+
+#. editorial content for the discovery pane.
+msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Aḓĵŭşŧ ƥȧɠḗ şīẑḗ ṽīḗẇ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
+msgstr "A şīḿƥŀḗ ẇȧẏ ŧǿ ȧḓĵŭşŧ ŧħḗ şīẑḗ ǿƒ ȧƞẏ ƥȧɠḗ'ş ŧḗẋŧ—ǿř ḗṽḗƞ ḗƞŀȧřɠḗ ŧħḗ ƥȧɠḗ īŧşḗŀƒ."
+
+#. editorial content for the discovery pane.
+msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ɓŀǿƈķ īƞṽīşīƀŀḗ ŧřȧƈķḗřş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop trackers in their tracks and learn more about them."
+msgstr "Şŧǿƥ ŧřȧƈķḗřş īƞ ŧħḗīř ŧřȧƈķş ȧƞḓ ŀḗȧřƞ ḿǿřḗ ȧƀǿŭŧ ŧħḗḿ."
+
+#. editorial content for the discovery pane.
+msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şȧṽḗ ŧḗẋŧ ƒǿř ŀȧŧḗř {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
+msgstr "Şŧǿƥ ẇřīŧīƞɠ ŧħḗ şȧḿḗ ŧħīƞɠ ǿṽḗř ȧƞḓ ǿṽḗř ȧɠȧīƞ! Īƒ ẏǿŭ ƒřḗɋŭḗƞŧŀẏ řḗ-ŭşḗ ŧħḗ şȧḿḗ ƥħřȧşḗş īƞ ẏǿŭř ẇǿřķ ǿř ǿŧħḗř ƈǿḿḿŭƞīƈȧŧīǿƞş, şȧṽḗ ŧħḗḿ īƞ Ƈŀīƥƥīƞɠş ȧƞḓ ḗȧşīŀẏ ƥȧşŧḗ ŧħḗḿ ẇħḗƞ ƞḗḗḓḗḓ."
+
+#. editorial content for the discovery pane.
+msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ɓŀǿƈķ ḗḿȧīŀ ȧḓş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get more screen space by removing ads from your web-based inbox."
+msgstr "Ɠḗŧ ḿǿřḗ şƈřḗḗƞ şƥȧƈḗ ƀẏ řḗḿǿṽīƞɠ ȧḓş ƒřǿḿ ẏǿŭř ẇḗƀ-ƀȧşḗḓ īƞƀǿẋ."
+
+#. editorial content for the discovery pane.
+msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƒīƞḓ ẏǿŭř ŧȧƀş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Manage your open tabs in a tidy sidebar."
+msgstr "Ḿȧƞȧɠḗ ẏǿŭř ǿƥḗƞ ŧȧƀş īƞ ȧ ŧīḓẏ şīḓḗƀȧř."
+
+#. editorial content for the discovery pane.
+msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Aṽǿīḓ şƞḗȧķẏ ŧřȧƈķḗřş ȧƞḓ řḗşŧřīƈŧīǿƞş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
+msgstr "Ḓīşɠŭīşḗ ẏǿŭř ƞȧṽīɠȧŧīǿƞ ƀẏ ƈŀǿȧķīƞɠ ŧħḗ īḓḗƞŧīŧẏ ǿƒ ẏǿŭř ƀřǿẇşḗř ȧƞḓ ǿƥḗřȧŧīƞɠ şẏşŧḗḿ."
+
+#. editorial content for the discovery pane.
+msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Řḗƒřḗşħ ŧȧƀş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically reload tabs based on time intervals you set."
+msgstr "Aŭŧǿḿȧŧīƈȧŀŀẏ řḗŀǿȧḓ ŧȧƀş ƀȧşḗḓ ǿƞ ŧīḿḗ īƞŧḗřṽȧŀş ẏǿŭ şḗŧ."
+
+#. editorial content for the discovery pane.
+msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şḗƥȧřȧŧḗ ẏǿŭř ǿƞŀīƞḗ ŀīṽḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
+msgstr "Ƥřīṽȧŧḗŀẏ ḓīşŧīƞɠŭīşħ ẏǿŭř ṽȧřīǿŭş ǿƞŀīƞḗ īḓḗƞŧīŧīḗş—ẇǿřķ, ƥḗřşǿƞȧŀ, ḗŧƈ.—ŧħřǿŭɠħ ƈǿŀǿř-ƈǿḓḗḓ ŧȧƀş ŧħȧŧ şƥŀīŧ ẏǿŭř ḓīɠīŧȧŀ ƈǿǿķīḗ ŧřȧīŀ."
+
+#. editorial content for the discovery pane.
+msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şŧǿƥ ŧřȧƈķḗřş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Gain an additional layer of tracking protection as you browse the web."
+msgstr "Ɠȧīƞ ȧƞ ȧḓḓīŧīǿƞȧŀ ŀȧẏḗř ǿƒ ŧřȧƈķīƞɠ ƥřǿŧḗƈŧīǿƞ ȧş ẏǿŭ ƀřǿẇşḗ ŧħḗ ẇḗƀ."
+
+#. editorial content for the discovery pane.
+msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Řḗȧḓ ḗƤŭƀ ƒīŀḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
+msgstr "Ḗƞĵǿẏ ḗƤŭƀ ƒīŀḗş řīɠħŧ īƞ Ƒīřḗƒǿẋ—īƞƈřḗȧşḗ ƒǿƞŧ şīẑḗ, ƥȧɠḗ ḓīḿḗƞşīǿƞş, ȧƞḓ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗŀḗṽȧŧḗ ẏǿŭř ẎǿŭŦŭƀḗ ḗẋƥḗřīḗƞƈḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Play videos by default in the highest quality, turn off annotations, and more."
+msgstr "Ƥŀȧẏ ṽīḓḗǿş ƀẏ ḓḗƒȧŭŀŧ īƞ ŧħḗ ħīɠħḗşŧ ɋŭȧŀīŧẏ, ŧŭřƞ ǿƒƒ ȧƞƞǿŧȧŧīǿƞş, ȧƞḓ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŧřȧƈķ ŧħḗ ŧřȧƈķḗřş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get a glimpse into who's tracking you with just a click."
+msgstr "Ɠḗŧ ȧ ɠŀīḿƥşḗ īƞŧǿ ẇħǿ'ş ŧřȧƈķīƞɠ ẏǿŭ ẇīŧħ ĵŭşŧ ȧ ƈŀīƈķ."
+
+#. editorial content for the discovery pane.
+msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƈħȧƞɠḗ ẏǿŭř ƥřǿẋẏ şḗřṽḗř {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Surf the web through self-defined proxy settings."
+msgstr "Şŭřƒ ŧħḗ ẇḗƀ ŧħřǿŭɠħ şḗŀƒ-ḓḗƒīƞḗḓ ƥřǿẋẏ şḗŧŧīƞɠş."
+
+#. editorial content for the discovery pane.
+msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƈǿƞŧřǿŀ ṽīḓḗǿ ƥŀȧẏƀȧƈķ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enhance your viewing experience by adjusting video speed and more."
+msgstr "Ḗƞħȧƞƈḗ ẏǿŭř ṽīḗẇīƞɠ ḗẋƥḗřīḗƞƈḗ ƀẏ ȧḓĵŭşŧīƞɠ ṽīḓḗǿ şƥḗḗḓ ȧƞḓ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ɓřǿẇşḗ şḗƈŭřḗŀẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Add encrypted security to any site that supports HTTPS."
+msgstr "Aḓḓ ḗƞƈřẏƥŧḗḓ şḗƈŭřīŧẏ ŧǿ ȧƞẏ şīŧḗ ŧħȧŧ şŭƥƥǿřŧş ĦŦŦƤŞ."
+
+#. editorial content for the discovery pane.
+msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şħǿƥ & şȧṽḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get the best coupons automatically applied to your shopping cart at checkout."
+msgstr "Ɠḗŧ ŧħḗ ƀḗşŧ ƈǿŭƥǿƞş ȧŭŧǿḿȧŧīƈȧŀŀẏ ȧƥƥŀīḗḓ ŧǿ ẏǿŭř şħǿƥƥīƞɠ ƈȧřŧ ȧŧ ƈħḗƈķǿŭŧ."
+
+#. editorial content for the discovery pane.
+msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şẇīƒŧ ŧřȧƞşŀȧŧīǿƞş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Translate highlighted text or the entire webpage"
+msgstr "Ŧřȧƞşŀȧŧḗ ħīɠħŀīɠħŧḗḓ ŧḗẋŧ ǿř ŧħḗ ḗƞŧīřḗ ẇḗƀƥȧɠḗ"
+
+#. editorial content for the discovery pane.
+msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Īḿƥřǿṽḗ Řḗḓḓīŧ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Change the way you surf Reddit by using tags and more."
+msgstr "Ƈħȧƞɠḗ ŧħḗ ẇȧẏ ẏǿŭ şŭřƒ Řḗḓḓīŧ ƀẏ ŭşīƞɠ ŧȧɠş ȧƞḓ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƈȧƥŧŭřḗ ŧħḗ ẇḗƀ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Screenshot webpages, make edits, and share."
+msgstr "Şƈřḗḗƞşħǿŧ ẇḗƀƥȧɠḗş, ḿȧķḗ ḗḓīŧş, ȧƞḓ şħȧřḗ."
+
+#. editorial content for the discovery pane.
+msgid "A superior Windows-only downloader tool."
+msgstr "A şŭƥḗřīǿř Ẇīƞḓǿẇş-ǿƞŀẏ ḓǿẇƞŀǿȧḓḗř ŧǿǿŀ."
+
+#. editorial content for the discovery pane.
+msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ķƞǿẇ ẏǿŭř ŧřȧƈķḗřş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Find out who's tracking you and where they may be sharing your information."
+msgstr "Ƒīƞḓ ǿŭŧ ẇħǿ'ş ŧřȧƈķīƞɠ ẏǿŭ ȧƞḓ ẇħḗřḗ ŧħḗẏ ḿȧẏ ƀḗ şħȧřīƞɠ ẏǿŭř īƞƒǿřḿȧŧīǿƞ."
+
+#. editorial content for the discovery pane.
+msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şŭřƒ ȧƞǿƞẏḿǿŭşŀẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
+msgstr "Ɓřǿẇşḗ ŧħḗ ẇḗƀ ẇīŧħ ḓīşɠŭīşḗḓ īḓḗƞŧīŧẏ—ḗṽḗƞ ȧƥƥḗȧř ȧş īƒ ẏǿŭ'řḗ ƀřǿẇşīƞɠ ƒřǿḿ ȧƞǿŧħḗř ƈǿŭƞŧřẏ."
+
+#. editorial content for the discovery pane.
+msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
+msgstr "Aƈƈḗşş ẏǿŭř ƒȧṽǿřīŧḗ şīŧḗş, řḗƈḗƞŧŀẏ ƈŀǿşḗḓ ŧȧƀş, ȧƞḓ ḿǿřḗ—ȧŀŀ ƒřǿḿ ȧ ɠǿřɠḗǿŭş ŧīŀḗ ŀȧẏǿŭŧ."
+
+#. editorial content for the discovery pane.
+msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şḗŧ ẏǿŭř ħǿḿḗƥȧɠḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Designate a custom home page for your new tabs."
+msgstr "Ḓḗşīɠƞȧŧḗ ȧ ƈŭşŧǿḿ ħǿḿḗ ƥȧɠḗ ƒǿř ẏǿŭř ƞḗẇ ŧȧƀş."
+
+#. editorial content for the discovery pane.
+msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŀīşŧ ẏǿŭř ŧȧƀş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
+msgstr "Ƈǿƞṽḗřŧ ȧŀŀ ẏǿŭř ǿƥḗƞ ŧȧƀş īƞŧǿ ȧ ŀīşŧ ŧǿ ḗȧşīŀẏ ḿȧƞȧɠḗ ŧħḗḿ ȧƞḓ şƥḗḗḓ ŭƥ Ƒīřḗƒǿẋ."
+
+#. editorial content for the discovery pane.
+msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Řǿƀŭşŧ ḓǿẇƞŀǿȧḓ ḿȧƞȧɠḗḿḗƞŧ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Check the state of your downloads through a status bar, download history page, and more."
+msgstr "Ƈħḗƈķ ŧħḗ şŧȧŧḗ ǿƒ ẏǿŭř ḓǿẇƞŀǿȧḓş ŧħřǿŭɠħ ȧ şŧȧŧŭş ƀȧř, ḓǿẇƞŀǿȧḓ ħīşŧǿřẏ ƥȧɠḗ, ȧƞḓ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƈȧƥŧŭřḗ ẇḗƀ ƈǿƞŧḗƞŧ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
+msgstr "Şȧṽḗ īƞƒǿřḿȧŧīǿƞ ƒřǿḿ ŧħḗ īƞŧḗřƞḗŧ ŧǿ ǾƞḗȠǿŧḗ şǿ ẏǿŭ ƈȧƞ ḗḓīŧ, ȧƞƞǿŧȧŧḗ, ȧƞḓ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şḗȧřƈħ ŧřȧƈķīƞɠ ƥřǿŧḗƈŧīǿƞ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop trackers when you click Google and Yandex search returns."
+msgstr "Şŧǿƥ ŧřȧƈķḗřş ẇħḗƞ ẏǿŭ ƈŀīƈķ Ɠǿǿɠŀḗ ȧƞḓ Ẏȧƞḓḗẋ şḗȧřƈħ řḗŧŭřƞş."
+
+#. editorial content for the discovery pane.
+msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḓẏƞȧḿīƈ ƞȧṽīɠȧŧīǿƞ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
+msgstr "Ŭşḗ ḿǿŭşḗ ɠḗşŧŭřḗş ŧǿ ƈŀǿşḗ ŧȧƀş, ɠǿ ƀȧƈķ ǿƞḗ ƥȧɠḗ, řḗŀǿȧḓ, ȧƞḓ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Aḓḓ īḿȧɠḗş ŧǿ şḗȧřƈħ řḗŧŭřƞş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy thumbnail images alongside your search returns."
+msgstr "Ḗƞĵǿẏ ŧħŭḿƀƞȧīŀ īḿȧɠḗş ȧŀǿƞɠşīḓḗ ẏǿŭř şḗȧřƈħ řḗŧŭřƞş."
+
+#. editorial content for the discovery pane.
+msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗȧşḗ ḗẏḗ şŧřȧīƞ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make the web easier on the eyes by darkening its display."
+msgstr "Ḿȧķḗ ŧħḗ ẇḗƀ ḗȧşīḗř ǿƞ ŧħḗ ḗẏḗş ƀẏ ḓȧřķḗƞīƞɠ īŧş ḓīşƥŀȧẏ."
+
+#. editorial content for the discovery pane.
+msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şŧǿƥ ƥǿƥ-ŭƥş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Block all pop-ups by default, then decide which ones you'd like to open."
+msgstr "Ɓŀǿƈķ ȧŀŀ ƥǿƥ-ŭƥş ƀẏ ḓḗƒȧŭŀŧ, ŧħḗƞ ḓḗƈīḓḗ ẇħīƈħ ǿƞḗş ẏǿŭ'ḓ ŀīķḗ ŧǿ ǿƥḗƞ."
+
+#. editorial content for the discovery pane.
+msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƈŭşŧǿḿīẑḗ ẏǿŭř ƒȧṽǿřīŧḗ ẇḗƀşīŧḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Change the look of any website! Shift colors, page backgrounds, and more."
+msgstr "Ƈħȧƞɠḗ ŧħḗ ŀǿǿķ ǿƒ ȧƞẏ ẇḗƀşīŧḗ! Şħīƒŧ ƈǿŀǿřş, ƥȧɠḗ ƀȧƈķɠřǿŭƞḓş, ȧƞḓ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƈŭşŧǿḿīẑḗ ẏǿŭř ƞḗẇ ŧȧƀ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
+msgstr "Ḗḓīŧ ŧħḗ ƞḗẇ ŧȧƀ ƥȧɠḗ ŧǿ ḓīşƥŀȧẏ ẏǿŭř ƥřḗƒḗřřḗḓ ƞŭḿƀḗř ǿƒ ŧīŀḗş, ƀȧƈķɠřǿŭƞḓ īḿȧɠḗ, ȧƞḓ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ɠḗŧ ɋŭīƈķ ŧřȧƞşŀȧŧīǿƞş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Highlight text on any website, right-click, and translate instantly."
+msgstr "Ħīɠħŀīɠħŧ ŧḗẋŧ ǿƞ ȧƞẏ ẇḗƀşīŧḗ, řīɠħŧ-ƈŀīƈķ, ȧƞḓ ŧřȧƞşŀȧŧḗ īƞşŧȧƞŧŀẏ."
+
+#. editorial content for the discovery pane.
+msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḿȧƞȧɠḗ ẏǿŭř ƥȧşşẇǿřḓş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Store passwords securely and access them across multiple devices."
+msgstr "Şŧǿřḗ ƥȧşşẇǿřḓş şḗƈŭřḗŀẏ ȧƞḓ ȧƈƈḗşş ŧħḗḿ ȧƈřǿşş ḿŭŀŧīƥŀḗ ḓḗṽīƈḗş."
+
+#. editorial content for the discovery pane.
+msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ķƞǿẇ ẇħḗřḗ ẏǿŭ ɠǿ ǿƞ ŧħḗ ẇḗƀ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get the country location for websites you visit. Be an informed internet traveler."
+msgstr "Ɠḗŧ ŧħḗ ƈǿŭƞŧřẏ ŀǿƈȧŧīǿƞ ƒǿř ẇḗƀşīŧḗş ẏǿŭ ṽīşīŧ. Ɓḗ ȧƞ īƞƒǿřḿḗḓ īƞŧḗřƞḗŧ ŧřȧṽḗŀḗř."
+
+#. editorial content for the discovery pane.
+msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗƞħȧƞƈḗ ẏǿŭř řḗȧḓīƞɠ ḗẋƥḗřīḗƞƈḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make the text you're reading more appealing by removing the clutter around it."
+msgstr "Ḿȧķḗ ŧħḗ ŧḗẋŧ ẏǿŭ'řḗ řḗȧḓīƞɠ ḿǿřḗ ȧƥƥḗȧŀīƞɠ ƀẏ řḗḿǿṽīƞɠ ŧħḗ ƈŀŭŧŧḗř ȧřǿŭƞḓ īŧ."
+
+#. editorial content for the discovery pane.
+msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ǿƥḗƞ ḿŭŀŧīƥŀḗ ŀīƞķş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Right-click and drag over links you want open in new tabs."
+msgstr "Řīɠħŧ-ƈŀīƈķ ȧƞḓ ḓřȧɠ ǿṽḗř ŀīƞķş ẏǿŭ ẇȧƞŧ ǿƥḗƞ īƞ ƞḗẇ ŧȧƀş."
+
+#. editorial content for the discovery pane.
+msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Řḗŧřīḗṽḗ ŧȧƀş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
+msgstr "Aƈƈḗşş řḗƈḗƞŧŀẏ ƈŀǿşḗḓ ŧȧƀş ƀẏ řīɠħŧ-ƈŀīƈķīƞɠ ŧħḗ īƈǿƞ īƞ ẏǿŭř ŧǿǿŀƀȧř."
+
+#. editorial content for the discovery pane.
+msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Īƞşƥīřḗ ƥřǿḓŭƈŧīṽīŧẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
+msgstr "Ḿǿḓīƒẏ ẏǿŭř ƞḗẇ ŧȧƀ ƥȧɠḗ ŧǿ ḓīşƥŀȧẏ ȧ ƀḗȧŭŧīƒŭŀ ƀȧƈķɠřǿŭƞḓ, şḗŧ ẏǿŭř ḓȧīŀẏ ƒǿƈŭş, ȧƞḓ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ṽīḗẇ īḿȧɠḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Brings back the \"View image\" button while searching on Google Images."
+msgstr "Ɓřīƞɠş ƀȧƈķ ŧħḗ \"Ṽīḗẇ īḿȧɠḗ\" ƀŭŧŧǿƞ ẇħīŀḗ şḗȧřƈħīƞɠ ǿƞ Ɠǿǿɠŀḗ Īḿȧɠḗş."
+
+#. editorial content for the discovery pane.
+msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Īƞƈřḗȧşḗ ƥřǿḓŭƈŧīṽīŧẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Block time-wasting sites so you can focus on the task at hand."
+msgstr "Ɓŀǿƈķ ŧīḿḗ-ẇȧşŧīƞɠ şīŧḗş şǿ ẏǿŭ ƈȧƞ ƒǿƈŭş ǿƞ ŧħḗ ŧȧşķ ȧŧ ħȧƞḓ."
+
+#. editorial content for the discovery pane.
+msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Řḗƒřḗşħ Ŧȧƀş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically reload tabs based on time intervals."
+msgstr "Aŭŧǿḿȧŧīƈȧŀŀẏ řḗŀǿȧḓ ŧȧƀş ƀȧşḗḓ ǿƞ ŧīḿḗ īƞŧḗřṽȧŀş."
+
+#. editorial content for the discovery pane.
+msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƒīẋ ẏǿŭř ƒȧṽǿřīŧḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Find and resolve broken bookmarks, duplicates, and more."
+msgstr "Ƒīƞḓ ȧƞḓ řḗşǿŀṽḗ ƀřǿķḗƞ ƀǿǿķḿȧřķş, ḓŭƥŀīƈȧŧḗş, ȧƞḓ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şŧřḗşş ŀḗşş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get things done with a helpful to-do list that syncs across devices."
+msgstr "Ɠḗŧ ŧħīƞɠş ḓǿƞḗ ẇīŧħ ȧ ħḗŀƥƒŭŀ ŧǿ-ḓǿ ŀīşŧ ŧħȧŧ şẏƞƈş ȧƈřǿşş ḓḗṽīƈḗş."
+
+#. editorial content for the discovery pane.
+msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şħǿƥ Şḿȧřŧḗř {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
+msgstr "Ŧřȧƈķ ħīşŧǿřīƈȧŀ ƥřīƈīƞɠ, ƒīƞḓ ƈǿḿƥḗŧīƞɠ ƥřǿḓŭƈŧş, ķƞǿẇ ŧħḗ şḗŀŀḗř'ş řȧŧīƞɠş, ȧƞḓ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḿȧķḗ īŧ ẏǿŭř ẎǿŭŦŭƀḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
+msgstr "Ƥŀȧẏ ṽīḓḗǿş īƞ ȧ ƥǿƥ-ǿŭŧ ẇīƞḓǿẇ, ǿƞŀẏ şḗḗ ȧḓş ẇīŧħīƞ şŭƀşƈřīƀḗḓ ƈħȧƞƞḗŀş, ŧȧķḗ ṽīḓḗǿ şƈřḗḗƞşħǿŧş, ȧƞḓ şǿ ḿŭƈħ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗẋƥŀǿřḗ ẇḗƀşīŧḗ ŧřȧƒƒīƈ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get in-depth engagement and traffic information for any website."
+msgstr "Ɠḗŧ īƞ-ḓḗƥŧħ ḗƞɠȧɠḗḿḗƞŧ ȧƞḓ ŧřȧƒƒīƈ īƞƒǿřḿȧŧīǿƞ ƒǿř ȧƞẏ ẇḗƀşīŧḗ."
+
+#. editorial content for the discovery pane.
+msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şŧẏŀḗ Ẇīķīƥḗḓīȧ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Applies a fresh and modern appearance to Wikipedia."
+msgstr "Aƥƥŀīḗş ȧ ƒřḗşħ ȧƞḓ ḿǿḓḗřƞ ȧƥƥḗȧřȧƞƈḗ ŧǿ Ẇīķīƥḗḓīȧ."
+
+#. editorial content for the discovery pane.
+msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ẇǿřķ ƒȧşŧḗř {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Use mouse gestures to get to things done—quicker."
+msgstr "Ŭşḗ ḿǿŭşḗ ɠḗşŧŭřḗş ŧǿ ɠḗŧ ŧǿ ŧħīƞɠş ḓǿƞḗ—ɋŭīƈķḗř."
+
+#. editorial content for the discovery pane.
+msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḓīşɠŭīşḗ ŧħḗ ƥȧɠḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Hide portions of the website you're viewing."
+msgstr "Ħīḓḗ ƥǿřŧīǿƞş ǿƒ ŧħḗ ẇḗƀşīŧḗ ẏǿŭ'řḗ ṽīḗẇīƞɠ."
+
+#. editorial content for the discovery pane.
+msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḓǿẇƞŀǿȧḓ ƥīƈŧŭřḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Grab images from any website and download them."
+msgstr "Ɠřȧƀ īḿȧɠḗş ƒřǿḿ ȧƞẏ ẇḗƀşīŧḗ ȧƞḓ ḓǿẇƞŀǿȧḓ ŧħḗḿ."
+
+#. editorial content for the discovery pane.
+msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḿȧşķ ẏǿŭř ŀǿƈȧŧīǿƞ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Disguise your location to throw off trackers and protect your privacy."
+msgstr "Ḓīşɠŭīşḗ ẏǿŭř ŀǿƈȧŧīǿƞ ŧǿ ŧħřǿẇ ǿƒƒ ŧřȧƈķḗřş ȧƞḓ ƥřǿŧḗƈŧ ẏǿŭř ƥřīṽȧƈẏ."
+
+#. editorial content for the discovery pane.
+msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şḗŀƒ-ƈḗƞşǿř {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Restrict access to inappropriate or undesired content with a filter."
+msgstr "Řḗşŧřīƈŧ ȧƈƈḗşş ŧǿ īƞȧƥƥřǿƥřīȧŧḗ ǿř ŭƞḓḗşīřḗḓ ƈǿƞŧḗƞŧ ẇīŧħ ȧ ƒīŀŧḗř."
+
+#. editorial content for the discovery pane.
+msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Īḿƥřǿṽḗ ƞḗẇ ŧȧƀş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Open a new tab to the right of your current tab, not at the end of the row."
+msgstr "Ǿƥḗƞ ȧ ƞḗẇ ŧȧƀ ŧǿ ŧħḗ řīɠħŧ ǿƒ ẏǿŭř ƈŭřřḗƞŧ ŧȧƀ, ƞǿŧ ȧŧ ŧħḗ ḗƞḓ ǿƒ ŧħḗ řǿẇ."
+
+#. editorial content for the discovery pane.
+msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƈǿƞɋŭḗř şƥȧḿ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
+msgstr "Ŭşḗ ƈŀḗṽḗř ŧḗḿƥǿřȧřẏ ḗḿȧīŀ ȧḓḓřḗşşḗş ŧǿ řḗḿȧīƞ ȧƞǿƞẏḿǿŭş ȧƞḓ ȧṽǿīḓ şƥȧḿ."
+
+#. editorial content for the discovery pane.
+msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Aŀŧḗř ẏǿŭř ƥřīṽȧƈẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Easily customize the built-in privacy settings in Firefox."
+msgstr "Ḗȧşīŀẏ ƈŭşŧǿḿīẑḗ ŧħḗ ƀŭīŀŧ-īƞ ƥřīṽȧƈẏ şḗŧŧīƞɠş īƞ Ƒīřḗƒǿẋ."
+
+#. editorial content for the discovery pane.
+msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗƞħȧƞƈḗ ẏǿŭř ḗẋƥḗřīḗƞƈḗ ǿƞ ṼĶ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Remove ads and download audio from VK."
+msgstr "Řḗḿǿṽḗ ȧḓş ȧƞḓ ḓǿẇƞŀǿȧḓ ȧŭḓīǿ ƒřǿḿ ṼĶ."
+
+#. editorial content for the discovery pane.
+msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ɠḗŧ īƞşŧȧƞŧ ŧřȧƞşŀȧŧīǿƞş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Access immediate translation by highlighting text and clicking the button that pops up."
+msgstr "Aƈƈḗşş īḿḿḗḓīȧŧḗ ŧřȧƞşŀȧŧīǿƞ ƀẏ ħīɠħŀīɠħŧīƞɠ ŧḗẋŧ ȧƞḓ ƈŀīƈķīƞɠ ŧħḗ ƀŭŧŧǿƞ ŧħȧŧ ƥǿƥş ŭƥ."
+
+#. editorial content for the discovery pane.
+msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƈŭşŧǿḿīẑḗ ƞḗẇ ŧȧƀş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
+msgstr "Ɠḗŧ ƈřḗȧŧīṽḗ ȧƞḓ ƈŭşŧǿḿīẑḗ ẏǿŭř ƞḗẇ ŧȧƀ ƥȧɠḗ ƀẏ ḓīşƥŀȧẏīƞɠ ẏǿŭř ƒȧṽǿřīŧḗ şīŧḗş ȧƞḓ şḗŀḗƈŧīƞɠ ȧ ŧħḗḿḗ."
+
+#. editorial content for the discovery pane.
+msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƞǿ ḿǿřḗ řḗḓīřḗƈŧş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Go straight to the website you want to access without being redirected in between."
+msgstr "Ɠǿ şŧřȧīɠħŧ ŧǿ ŧħḗ ẇḗƀşīŧḗ ẏǿŭ ẇȧƞŧ ŧǿ ȧƈƈḗşş ẇīŧħǿŭŧ ƀḗīƞɠ řḗḓīřḗƈŧḗḓ īƞ ƀḗŧẇḗḗƞ."
+
+#. editorial content for the discovery pane.
+msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "ẆħȧŧşAƥƥ ǿƞ ŧħḗ ẇḗƀ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
+msgstr "Aƈƈḗşş ẆħȧŧşAƥƥ ƒřǿḿ ẇīŧħīƞ Ƒīřḗƒǿẋ'ş ŧǿǿŀƀȧř ƥȧƞḗŀ ŧǿ ɠḗŧ ƀȧḓɠḗ ƞǿŧīƒīƈȧŧīǿƞ ǿƒ ŭƞřḗȧḓ ŧħřḗȧḓş."
+
+#. editorial content for the discovery pane.
+msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŧřȧƞşŀȧŧḗ ŧǿ/ƒřǿḿ Ɠḗřḿȧƞ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get expert German translations between English, French, Spanish, and other languages."
+msgstr "Ɠḗŧ ḗẋƥḗřŧ Ɠḗřḿȧƞ ŧřȧƞşŀȧŧīǿƞş ƀḗŧẇḗḗƞ Ḗƞɠŀīşħ, Ƒřḗƞƈħ, Şƥȧƞīşħ, ȧƞḓ ǿŧħḗř ŀȧƞɠŭȧɠḗş."
+
+#. editorial content for the discovery pane.
+msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƈřḗȧŧḗ ȧ ẇḗƀşīŧḗ ƀŀǿƈķ ŀīşŧ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Restrict Firefox from accessing websites you define."
+msgstr "Řḗşŧřīƈŧ Ƒīřḗƒǿẋ ƒřǿḿ ȧƈƈḗşşīƞɠ ẇḗƀşīŧḗş ẏǿŭ ḓḗƒīƞḗ."
+
+#. editorial content for the discovery pane.
+msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ẇǿřķ şḿȧřŧḗř {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Manage your productivity by working in set time intervals."
+msgstr "Ḿȧƞȧɠḗ ẏǿŭř ƥřǿḓŭƈŧīṽīŧẏ ƀẏ ẇǿřķīƞɠ īƞ şḗŧ ŧīḿḗ īƞŧḗřṽȧŀş."
+
+#. editorial content for the discovery pane.
+msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗȧşẏ řḗȧḓīƞɠ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Check your favorite RSS feeds all in a single page."
+msgstr "Ƈħḗƈķ ẏǿŭř ƒȧṽǿřīŧḗ ŘŞŞ ƒḗḗḓş ȧŀŀ īƞ ȧ şīƞɠŀḗ ƥȧɠḗ."
+
+#. editorial content for the discovery pane.
+msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Řḗḓŭƈḗ ḗẏḗ şŧřȧīƞ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enable night mode for a better viewing experience."
+msgstr "Ḗƞȧƀŀḗ ƞīɠħŧ ḿǿḓḗ ƒǿř ȧ ƀḗŧŧḗř ṽīḗẇīƞɠ ḗẋƥḗřīḗƞƈḗ."
+
+#. editorial content for the discovery pane.
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şḗȧřƈħ īḿȧɠḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Reverse image search by leveraging the power of multiple search providers."
+msgstr "Řḗṽḗřşḗ īḿȧɠḗ şḗȧřƈħ ƀẏ ŀḗṽḗřȧɠīƞɠ ŧħḗ ƥǿẇḗř ǿƒ ḿŭŀŧīƥŀḗ şḗȧřƈħ ƥřǿṽīḓḗřş."
+
+#. editorial content for the discovery pane.
+msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şȧṽḗ īŧ ƒǿř ŀȧŧḗř {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Store web pages to access across devices."
+msgstr "Şŧǿřḗ ẇḗƀ ƥȧɠḗş ŧǿ ȧƈƈḗşş ȧƈřǿşş ḓḗṽīƈḗş."
+
+#. editorial content for the discovery pane.
+msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗȧşīŀẏ şḗŀḗƈŧ ƀǿǿķḿȧřķ ŀǿƈȧŧīǿƞş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "A better way to save bookmarks if you use multiple bookmark folders."
+msgstr "A ƀḗŧŧḗř ẇȧẏ ŧǿ şȧṽḗ ƀǿǿķḿȧřķş īƒ ẏǿŭ ŭşḗ ḿŭŀŧīƥŀḗ ƀǿǿķḿȧřķ ƒǿŀḓḗřş."
+
+#. editorial content for the discovery pane.
+msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ẑḗřǿ ƒǿřḿȧŧŧīƞɠ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Strip away unnecessary formatting and copy just the plain text."
+msgstr "Şŧřīƥ ȧẇȧẏ ŭƞƞḗƈḗşşȧřẏ ƒǿřḿȧŧŧīƞɠ ȧƞḓ ƈǿƥẏ ĵŭşŧ ŧħḗ ƥŀȧīƞ ŧḗẋŧ."
+
+#. editorial content for the discovery pane.
+msgid "Convert an entire webpage to your preferred language—with the click of a button."
+msgstr "Ƈǿƞṽḗřŧ ȧƞ ḗƞŧīřḗ ẇḗƀƥȧɠḗ ŧǿ ẏǿŭř ƥřḗƒḗřřḗḓ ŀȧƞɠŭȧɠḗ—ẇīŧħ ŧħḗ ƈŀīƈķ ǿƒ ȧ ƀŭŧŧǿƞ."
+
+#. editorial content for the discovery pane.
+msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗẋŧřȧƈŧ ŀīƞķş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Instantly display all links from a webpage in new tabs."
+msgstr "Īƞşŧȧƞŧŀẏ ḓīşƥŀȧẏ ȧŀŀ ŀīƞķş ƒřǿḿ ȧ ẇḗƀƥȧɠḗ īƞ ƞḗẇ ŧȧƀş."
+
+#. editorial content for the discovery pane.
+msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ṽīḗẇ ḓǿƈŭḿḗƞŧş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Access PDFs using your preferred PDF application."
+msgstr "Aƈƈḗşş ƤḒƑş ŭşīƞɠ ẏǿŭř ƥřḗƒḗřřḗḓ ƤḒƑ ȧƥƥŀīƈȧŧīǿƞ."
+
+#. editorial content for the discovery pane.
+msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şķīƥ řḗḓīřḗƈŧş & ŧřȧƈķḗřş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Strip away redirect pages and URL tracking parameters."
+msgstr "Şŧřīƥ ȧẇȧẏ řḗḓīřḗƈŧ ƥȧɠḗş ȧƞḓ ŬŘĿ ŧřȧƈķīƞɠ ƥȧřȧḿḗŧḗřş."
+
+#. editorial content for the discovery pane.
+msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şŧǿƥ şḗȧřƈħ ŧřȧƈķḗřş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Prevent search engines from knowing what search results you click on."
+msgstr "Ƥřḗṽḗƞŧ şḗȧřƈħ ḗƞɠīƞḗş ƒřǿḿ ķƞǿẇīƞɠ ẇħȧŧ şḗȧřƈħ řḗşŭŀŧş ẏǿŭ ƈŀīƈķ ǿƞ."
+
+#. editorial content for the discovery pane.
+msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḓǿẇƞŀǿȧḓ ẎǿŭŦŭƀḗ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Download video and/or audio."
+msgstr "Ḓǿẇƞŀǿȧḓ ṽīḓḗǿ ȧƞḓ/ǿř ȧŭḓīǿ."
+
+#. editorial content for the discovery pane.
+msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ɠȧŧħḗř řḗȧḓīƞɠ ḿȧŧḗřīȧŀ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
+msgstr "Aƞ ȧḓṽȧƞƈḗḓ řḗȧḓḗř ƒǿř ȧɠɠřḗɠȧŧīƞɠ ȧŀŀ ǿƒ ẏǿŭř ŘŞŞ/Aŧǿḿ/ŘḒƑ şǿŭřƈḗş."
+
+#. editorial content for the discovery pane.
+msgid "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ĵǿŧ īŧ ḓǿẇƞ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Create general and website-specific notes to review later."
+msgstr "Ƈřḗȧŧḗ ɠḗƞḗřȧŀ ȧƞḓ ẇḗƀşīŧḗ-şƥḗƈīƒīƈ ƞǿŧḗş ŧǿ řḗṽīḗẇ ŀȧŧḗř."
+
+#. editorial content for the discovery pane.
+msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƥħǿƞḗ-ŀīķḗ şƈřǿŀŀīƞɠ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
+msgstr "Ƒḗȧŧŭřḗş \"ɠřȧƀ-ƞ-ḓřȧɠ\" ḿǿŭşḗ şƈřǿŀŀīƞɠ ƒǿř ḓḗşķŧǿƥ ẇḗƀƥȧɠḗş."
+
+#. editorial content for the discovery pane.
+msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḓḗŀḗŧḗ ḓȧŧȧ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Clear your browser cache with a click or keystroke."
+msgstr "Ƈŀḗȧř ẏǿŭř ƀřǿẇşḗř ƈȧƈħḗ ẇīŧħ ȧ ƈŀīƈķ ǿř ķḗẏşŧřǿķḗ."
+
+#. editorial content for the discovery pane.
+msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƞḗṽḗř ƒǿřɠḗŧ ȧɠȧīƞ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Create and manage a to-do list in your browser."
+msgstr "Ƈřḗȧŧḗ ȧƞḓ ḿȧƞȧɠḗ ȧ ŧǿ-ḓǿ ŀīşŧ īƞ ẏǿŭř ƀřǿẇşḗř."
+
+#. editorial content for the discovery pane.
+msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ħīɠħŀīɠħŧ ŧḗẋŧ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy a highly customizable text highlighter with different colors and save options."
+msgstr "Ḗƞĵǿẏ ȧ ħīɠħŀẏ ƈŭşŧǿḿīẑȧƀŀḗ ŧḗẋŧ ħīɠħŀīɠħŧḗř ẇīŧħ ḓīƒƒḗřḗƞŧ ƈǿŀǿřş ȧƞḓ şȧṽḗ ǿƥŧīǿƞş."
+
+#. editorial content for the discovery pane.
+msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗƞĵǿẏ ḿŭşīƈ ƒřǿḿ ȧřǿŭƞḓ ŧħḗ ẇǿřŀḓ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Access 20,000+ radio stations from all over the globe."
+msgstr "Aƈƈḗşş 20,000+ řȧḓīǿ şŧȧŧīǿƞş ƒřǿḿ ȧŀŀ ǿṽḗř ŧħḗ ɠŀǿƀḗ."
+
+#. editorial content for the discovery pane.
+msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŀīşŧḗƞ ŧǿ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Save bandwidth by just streaming the audio from YouTube clips."
+msgstr "Şȧṽḗ ƀȧƞḓẇīḓŧħ ƀẏ ĵŭşŧ şŧřḗȧḿīƞɠ ŧħḗ ȧŭḓīǿ ƒřǿḿ ẎǿŭŦŭƀḗ ƈŀīƥş."
+
+#. editorial content for the discovery pane.
+msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŧřȧƞşƒǿřḿ ŧḗẋŧ īƞŧǿ īḿȧɠḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Turn words into beautiful headlines and image overlay text."
+msgstr "Ŧŭřƞ ẇǿřḓş īƞŧǿ ƀḗȧŭŧīƒŭŀ ħḗȧḓŀīƞḗş ȧƞḓ īḿȧɠḗ ǿṽḗřŀȧẏ ŧḗẋŧ."
+
+#. editorial content for the discovery pane.
+msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şŭřƒ şȧƒḗŀẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Navigate to the secure version of a website if it's available."
+msgstr "Ƞȧṽīɠȧŧḗ ŧǿ ŧħḗ şḗƈŭřḗ ṽḗřşīǿƞ ǿƒ ȧ ẇḗƀşīŧḗ īƒ īŧ'ş ȧṽȧīŀȧƀŀḗ."
+
+#. editorial content for the discovery pane.
+msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḓḗŀḗŧḗ ẏǿŭř ƞȧṽīɠȧŧīǿƞ ħīşŧǿřẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
+msgstr "Şƥḗƈīƒẏ ȧ ƈŭşŧǿḿ ƞŭḿƀḗř ǿƒ ḓȧẏş ŧǿ řḗŧȧīƞ ƀřǿẇşḗř ħīşŧǿřẏ ƀḗƒǿřḗ īŧ'ş ȧŭŧǿḿȧŧīƈȧŀŀẏ ƈŀḗȧřḗḓ."
+
+#. editorial content for the discovery pane.
+msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Řḗḿǿṽḗ şḗȧřƈħ ȧḓş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop ads from appearing within your search results."
+msgstr "Şŧǿƥ ȧḓş ƒřǿḿ ȧƥƥḗȧřīƞɠ ẇīŧħīƞ ẏǿŭř şḗȧřƈħ řḗşŭŀŧş."
+
+#. editorial content for the discovery pane.
+msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḿȧƞȧɠḗ ƥȧşşẇǿřḓş şȧƒḗŀẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Store passwords securely and sign in to known websites automatically."
+msgstr "Şŧǿřḗ ƥȧşşẇǿřḓş şḗƈŭřḗŀẏ ȧƞḓ şīɠƞ īƞ ŧǿ ķƞǿẇƞ ẇḗƀşīŧḗş ȧŭŧǿḿȧŧīƈȧŀŀẏ."
+
+#. editorial content for the discovery pane.
+msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ɓŀǿƈķ ȧḓş & ŧřȧƈķīƞɠ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
+msgstr "Ƥřǿŧḗƈŧ ẏǿŭř ƥřīṽȧƈẏ ƀẏ ƀŀǿƈķīƞɠ ȧḓş ȧƞḓ ŧřȧƈķḗřş (ƥŀŭş, ẏǿŭ'ŀŀ şƥḗḗḓ ŭƥ ƥȧɠḗ ŀǿȧḓş)."
+
+#. editorial content for the discovery pane.
+msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƒīŀŀ ƒǿřḿş ȧŭŧǿḿȧŧīƈȧŀŀẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Save entered data once and it will autofill next time."
+msgstr "Şȧṽḗ ḗƞŧḗřḗḓ ḓȧŧȧ ǿƞƈḗ ȧƞḓ īŧ ẇīŀŀ ȧŭŧǿƒīŀŀ ƞḗẋŧ ŧīḿḗ."
+
+#. editorial content for the discovery pane.
+msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ɓřǿẇşḗ ƥřīṽȧŧḗŀẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Jump into private browsing mode with a click."
+msgstr "Ĵŭḿƥ īƞŧǿ ƥřīṽȧŧḗ ƀřǿẇşīƞɠ ḿǿḓḗ ẇīŧħ ȧ ƈŀīƈķ."
+
+#. editorial content for the discovery pane.
+msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şŧǿƥ ŧȧƀ ħīĵȧƈķīƞɠ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
+msgstr "Ḓǿƞ'ŧ ŀḗŧ ƈŀīƈķḗḓ ŀīƞķş ŧȧķḗ ƈǿƞŧřǿŀ ǿƒ ẏǿŭř ƈŭřřḗƞŧ ŧȧƀ ȧƞḓ ŀǿȧḓ ƈǿƞŧḗƞŧ ẏǿŭ ḓīḓƞ'ŧ ȧşķ ƒǿř."
+
+#. editorial content for the discovery pane.
+msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗȧşīŀẏ ȧƈƈḗşş Ẇīķīƥḗḓīȧ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
+msgstr "Ƥḗřƒǿřḿ ȧ Ẇīķīƥḗḓīȧ şḗȧřƈħ ƀẏ şīḿƥŀẏ ħīɠħŀīɠħŧīƞɠ ŧḗẋŧ ƒřǿḿ ȧƞẏ ẇḗƀƥȧɠḗ ȧƞḓ řīɠħŧ-ƈŀīƈķīƞɠ."
+
+#. editorial content for the discovery pane.
+msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḓīşƈǿṽḗř şīŧḗ-şƥḗƈīƒīƈ ƈǿƞŧḗƞŧ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Find what you're looking for within a specific domain."
+msgstr "Ƒīƞḓ ẇħȧŧ ẏǿŭ'řḗ ŀǿǿķīƞɠ ƒǿř ẇīŧħīƞ ȧ şƥḗƈīƒīƈ ḓǿḿȧīƞ."
+
+#. editorial content for the discovery pane.
+msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƒīƞḓ ṽīḓḗǿş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Highlight text from any website and right-click to search YouTube for related media."
+msgstr "Ħīɠħŀīɠħŧ ŧḗẋŧ ƒřǿḿ ȧƞẏ ẇḗƀşīŧḗ ȧƞḓ řīɠħŧ-ƈŀīƈķ ŧǿ şḗȧřƈħ ẎǿŭŦŭƀḗ ƒǿř řḗŀȧŧḗḓ ḿḗḓīȧ."
+
+#. editorial content for the discovery pane.
+msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ɠȧīƞ ȧƞ Aḿȧẑǿƞ ḗḓɠḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
+msgstr "Ẇħḗƞ ŀǿǿķīƞɠ ȧŧ ƥřǿḓŭƈŧ ƥȧɠḗş ǿƞ ǿŧħḗř ǿƞŀīƞḗ şħǿƥş, īƒ īŧ'ş ȧŀşǿ ȧṽȧīŀȧƀŀḗ ǿƞ Aḿȧẑǿƞ ẏǿŭ ƈȧƞ şīḿƥŀẏ ƈŀīƈķ ȧ ƀŭŧŧǿƞ ŧǿ ƈħḗƈķ īŧş Aḿȧẑǿƞ ŀīşŧīƞɠ."
+
+#. editorial content for the discovery pane.
+msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŧẇḗḗŧ īŧ ǿŭŧ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Easily broadcast web content to your Twitter following."
+msgstr "Ḗȧşīŀẏ ƀřǿȧḓƈȧşŧ ẇḗƀ ƈǿƞŧḗƞŧ ŧǿ ẏǿŭř Ŧẇīŧŧḗř ƒǿŀŀǿẇīƞɠ."
+
+#. editorial content for the discovery pane.
+msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŭŀŧīḿȧŧḗ ŧȧƀ ƈǿƞŧřǿŀ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr "Şǿ ḿȧƞẏ ŧȧƀ ƈǿƞŧřǿŀ ǿƥŧīǿƞş—ƈŀǿşḗ ḓŭƥŀīƈȧŧḗ ŧȧƀş, ḿḗřɠḗ ẇīƞḓǿẇş, ƈǿƥẏ ŧħḗ ŧȧƀ ŧīŧŀḗ, ȧƞḓ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗƞĵǿẏ ȧ şŧřȧƞɠḗ ḗḓŭƈȧŧīǿƞ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Load a random Wikipedia article each time you open a new tab."
+msgstr "Ŀǿȧḓ ȧ řȧƞḓǿḿ Ẇīķīƥḗḓīȧ ȧřŧīƈŀḗ ḗȧƈħ ŧīḿḗ ẏǿŭ ǿƥḗƞ ȧ ƞḗẇ ŧȧƀ."
+
+#. editorial content for the discovery pane.
+msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƈħȧƞɠḗ ŭƥ ẏǿŭř ƞḗẇ ŧȧƀ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Configure new tab pages to display custom background colors and images."
+msgstr "Ƈǿƞƒīɠŭřḗ ƞḗẇ ŧȧƀ ƥȧɠḗş ŧǿ ḓīşƥŀȧẏ ƈŭşŧǿḿ ƀȧƈķɠřǿŭƞḓ ƈǿŀǿřş ȧƞḓ īḿȧɠḗş."
+
+#. editorial content for the discovery pane.
+msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƈȧŧ ŀǿṽḗřş řḗĵǿīƈḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
+msgstr "Ḿḗḗŧ ȧƞ ȧḓǿřȧƀŀḗ ķīŧŧẏ ẇīŧħ ḗṽḗřẏ ƞḗẇ ŧȧƀ. Ɠīṽḗ īŧ ȧ şƈřȧŧƈħ ƀḗħīƞḓ ŧħḗ ḗȧř ȧƞḓ şḗḗ ẇħȧŧ ħȧƥƥḗƞş."
+
+#. editorial content for the discovery pane.
+msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḓḗƈřḗȧşḗ ƥřǿḓŭƈŧīṽīŧẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "For those moments when you need to fire lasers out of a cat."
+msgstr "Ƒǿř ŧħǿşḗ ḿǿḿḗƞŧş ẇħḗƞ ẏǿŭ ƞḗḗḓ ŧǿ ƒīřḗ ŀȧşḗřş ǿŭŧ ǿƒ ȧ ƈȧŧ."
+
+#. editorial content for the discovery pane.
+msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şḗȧřƈħ Ƒīřḗƒǿẋ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Easily access your open tabs, bookmarks, and history."
+msgstr "Ḗȧşīŀẏ ȧƈƈḗşş ẏǿŭř ǿƥḗƞ ŧȧƀş, ƀǿǿķḿȧřķş, ȧƞḓ ħīşŧǿřẏ."
+
+#. editorial content for the discovery pane.
+msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
+msgstr "Ŀǿŧş ǿƒ ǿƥḗƞ ŧȧƀş? Şķīƥ ŧħḗ şƈřǿŀŀīƞɠ ȧƞḓ şḗȧřƈħ ṽīȧ ķḗẏƀǿȧřḓ şħǿřŧƈŭŧş."
+
+#. editorial content for the discovery pane.
+msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗẋƥŀǿřḗ ẇħȧŧ'ş ƀḗƞḗȧŧħ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Uncover the software that supports whatever website you're visiting."
+msgstr "Ŭƞƈǿṽḗř ŧħḗ şǿƒŧẇȧřḗ ŧħȧŧ şŭƥƥǿřŧş ẇħȧŧḗṽḗř ẇḗƀşīŧḗ ẏǿŭ'řḗ ṽīşīŧīƞɠ."
+
+#. editorial content for the discovery pane.
+msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƥřḗṽḗƞŧ řḗḓīřḗƈŧş & ŧřȧƈķīƞɠ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop redirects so you can access the site you want—faster."
+msgstr "Şŧǿƥ řḗḓīřḗƈŧş şǿ ẏǿŭ ƈȧƞ ȧƈƈḗşş ŧħḗ şīŧḗ ẏǿŭ ẇȧƞŧ—ƒȧşŧḗř."
+
+#. editorial content for the discovery pane.
+msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Řḗṽḗȧŀ ŧẏƥḗḓ ƥȧşşẇǿřḓş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Adds show/hide ability to all password fields."
+msgstr "Aḓḓş şħǿẇ/ħīḓḗ ȧƀīŀīŧẏ ŧǿ ȧŀŀ ƥȧşşẇǿřḓ ƒīḗŀḓş."
+
+#. editorial content for the discovery pane.
+msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Řḗḓŭƈḗ ḓīşŧřȧƈŧīǿƞş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Focus on what you're watching by dimming everything but the video player."
+msgstr "Ƒǿƈŭş ǿƞ ẇħȧŧ ẏǿŭ'řḗ ẇȧŧƈħīƞɠ ƀẏ ḓīḿḿīƞɠ ḗṽḗřẏŧħīƞɠ ƀŭŧ ŧħḗ ṽīḓḗǿ ƥŀȧẏḗř."
+
+#. editorial content for the discovery pane.
+msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḿȧƞȧɠḗ ƀǿǿķḿȧřķş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Modify your bookmarks through an easily accessible panel."
+msgstr "Ḿǿḓīƒẏ ẏǿŭř ƀǿǿķḿȧřķş ŧħřǿŭɠħ ȧƞ ḗȧşīŀẏ ȧƈƈḗşşīƀŀḗ ƥȧƞḗŀ."
+
+#. editorial content for the discovery pane.
+msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ķḗḗƥ ƥȧşşẇǿřḓş şȧƒḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Store passwords securely and sign in automatically to known websites."
+msgstr "Şŧǿřḗ ƥȧşşẇǿřḓş şḗƈŭřḗŀẏ ȧƞḓ şīɠƞ īƞ ȧŭŧǿḿȧŧīƈȧŀŀẏ ŧǿ ķƞǿẇƞ ẇḗƀşīŧḗş."
+
+#. editorial content for the discovery pane.
+msgid "A simple ad blocker focused on displaying just the content you want."
+msgstr "A şīḿƥŀḗ ȧḓ ƀŀǿƈķḗř ƒǿƈŭşḗḓ ǿƞ ḓīşƥŀȧẏīƞɠ ĵŭşŧ ŧħḗ ƈǿƞŧḗƞŧ ẏǿŭ ẇȧƞŧ."
+
+#. editorial content for the discovery pane.
+msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŧřȧƈķ Aḿȧẑǿƞ Ƥřīƈīƞɠ Ħīşŧǿřẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make informed decisions by tracking the price of a product listed on Amazon."
+msgstr "Ḿȧķḗ īƞƒǿřḿḗḓ ḓḗƈīşīǿƞş ƀẏ ŧřȧƈķīƞɠ ŧħḗ ƥřīƈḗ ǿƒ ȧ ƥřǿḓŭƈŧ ŀīşŧḗḓ ǿƞ Aḿȧẑǿƞ."
+
+#. editorial content for the discovery pane.
+msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şħǿƥ ẇīŧħ ƈǿƞƒīḓḗƞƈḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
+msgstr "Aƞ ḗẋŧřȧ ƈħḗƈķ ŧǿ ḗƞşŭřḗ ẏǿŭ'řḗ şħǿƥƥīƞɠ ǿƞ ȧ şīŧḗ ŧħȧŧ'ş ƀḗḗƞ ṽḗŧŧḗḓ ƒǿř řḗŀīȧƀīŀīŧẏ."
+
+#. editorial content for the discovery pane.
+msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŧřȧƈķ ƥřǿḓŭƈŧīṽīŧẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
+msgstr "Ḿḗȧşŭřḗ ŧħḗ ȧḿǿŭƞŧ ǿƒ ŧīḿḗ ẏǿŭ şƥḗƞḓ ǿƞ ŧħḗ ƈǿḿƥŭŧḗř, ǿř ǿƞ şƥḗƈīƒīƈ ẇǿřķ ȧƥƥş ŀīķḗ Ŧřḗŀŀǿ, ĴĪŘA, Ɓȧşḗƈȧḿƥ, ƓīŧĦŭƀ, ȧƞḓ ḿȧƞẏ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
+msgstr "Ƈŀīƥ ẇḗƀ ƈǿƞŧḗƞŧ ŀīķḗ ȧřŧīƈŀḗş, ṽīḓḗǿş, īḿȧɠḗş, ȧƞḓ ḿǿřḗ ŧǿ şȧṽḗ ȧƞḓ ŭşḗ ƒǿř īƞḓīṽīḓŭȧŀ ƥřǿĵḗƈŧş ǿř řḗȧŀ-ŧīḿḗ ŧḗȧḿ ƈǿŀŀȧƀǿřȧŧīǿƞ."
+
+#. editorial content for the discovery pane.
+msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şŭřƒ şḗƈŭřḗŀẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Only allow web content to run from sites you trust."
+msgstr "Ǿƞŀẏ ȧŀŀǿẇ ẇḗƀ ƈǿƞŧḗƞŧ ŧǿ řŭƞ ƒřǿḿ şīŧḗş ẏǿŭ ŧřŭşŧ."
+
+#. editorial content for the discovery pane.
+msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḿȧƞȧɠḗ ƈǿǿķīḗş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Take full control of the cookies you've accumulated while browsing."
+msgstr "Ŧȧķḗ ƒŭŀŀ ƈǿƞŧřǿŀ ǿƒ ŧħḗ ƈǿǿķīḗş ẏǿŭ'ṽḗ ȧƈƈŭḿŭŀȧŧḗḓ ẇħīŀḗ ƀřǿẇşīƞɠ."
+
+#. editorial content for the discovery pane.
+msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƒǿřɠḗŧ ħīşŧǿřẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically delete browser history for websites you select."
+msgstr "Aŭŧǿḿȧŧīƈȧŀŀẏ ḓḗŀḗŧḗ ƀřǿẇşḗř ħīşŧǿřẏ ƒǿř ẇḗƀşīŧḗş ẏǿŭ şḗŀḗƈŧ."
+
+#. editorial content for the discovery pane.
+msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şȧƒḗɠŭȧřḓ Ɓǿǿķḿȧřķş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Password-protect your personal bookmarks."
+msgstr "Ƥȧşşẇǿřḓ-ƥřǿŧḗƈŧ ẏǿŭř ƥḗřşǿƞȧŀ ƀǿǿķḿȧřķş."
+
+#. editorial content for the discovery pane.
+msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƥřḗṽḗƞŧ ĪƤ ȧḓḓřḗşş ŀḗȧķş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
+msgstr "Ḓǿ ẏǿŭ ŭşḗ ȧ ṼƤȠ? Ẏǿŭř ĪƤ ȧḓḓřḗşş ḿȧẏ ŀḗȧķ. Ƥŭŧ ȧ şŧǿƥ ŧǿ ŧħȧŧ ƀẏ ḓīşȧƀŀīƞɠ ẆḗƀŘŦƇ."
+
+#. editorial content for the discovery pane.
+msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƈŀǿşḗ ȧƞƞǿẏīƞɠ ǿṽḗřŀȧẏş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Simply click a button to close annoying pop-up overlays."
+msgstr "Şīḿƥŀẏ ƈŀīƈķ ȧ ƀŭŧŧǿƞ ŧǿ ƈŀǿşḗ ȧƞƞǿẏīƞɠ ƥǿƥ-ŭƥ ǿṽḗřŀȧẏş."
+
+#. editorial content for the discovery pane.
+msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Īƞṽḗşŧīɠȧŧḗ ȧƞẏ īḿȧɠḗ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Find an interesting image on the web? Use TinEye to explore its origins."
+msgstr "Ƒīƞḓ ȧƞ īƞŧḗřḗşŧīƞɠ īḿȧɠḗ ǿƞ ŧħḗ ẇḗƀ? Ŭşḗ ŦīƞḖẏḗ ŧǿ ḗẋƥŀǿřḗ īŧş ǿřīɠīƞş."
+
+#. editorial content for the discovery pane.
+msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Şŧřḗȧḿŀīƞḗ ŧħīƞɠş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
+msgstr "Ĵŭşŧ ḓřȧɠ ŧḗẋŧ, īḿȧɠḗş, ǿř ŀīƞķş ŧǿ ƥḗřƒǿřḿ ȧƈŧīǿƞş ŀīķḗ ƈǿƥẏ, ǿƥḗƞ, şḗȧřƈħ, ȧƞḓ ḿǿřḗ."
+
+#. editorial content for the discovery pane.
+msgid "Harness the ability to download video and/or audio in multiple formats."
+msgstr "Ħȧřƞḗşş ŧħḗ ȧƀīŀīŧẏ ŧǿ ḓǿẇƞŀǿȧḓ ṽīḓḗǿ ȧƞḓ/ǿř ȧŭḓīǿ īƞ ḿŭŀŧīƥŀḗ ƒǿřḿȧŧş."
+
+#. editorial content for the discovery pane.
+msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŀǿƈȧŧīǿƞ ȧẇȧřḗƞḗşş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Learn where any website's server is geographically located. Be an informed web traveler."
+msgstr "Ŀḗȧřƞ ẇħḗřḗ ȧƞẏ ẇḗƀşīŧḗ'ş şḗřṽḗř īş ɠḗǿɠřȧƥħīƈȧŀŀẏ ŀǿƈȧŧḗḓ. Ɓḗ ȧƞ īƞƒǿřḿḗḓ ẇḗƀ ŧřȧṽḗŀḗř."
+
+#. editorial content for the discovery pane.
+msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƒīẋ ȧƞƞǿẏīƞɠ ȧŭḓīǿ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
+msgstr "Īş ŧħḗ ṽǿŀŭḿḗ ǿƞ ȧ ẇḗƀşīŧḗ ŧǿǿ ɋŭīḗŧ? Ŧǿǿ ŀǿŭḓ? ŞǿŭƞḓƑīẋḗř ƈȧƞ ħḗŀƥ."
+
+#. editorial content for the discovery pane.
+msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗḓīŧ ƀḗƒǿřḗ ƥřīƞŧīƞɠ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
+msgstr "Ḿȧķḗ ḗẋŧřȧǿřḓīƞȧřẏ ṽīşŭȧŀ ƈħȧƞɠḗş—řḗḿǿṽḗ ȧḓş ǿř ŭƞşȧṽǿřẏ ƈǿƞŧḗƞŧ—ŧǿ ȧƞẏ ẇḗƀƥȧɠḗ ẏǿŭ ẇȧƞŧ ŧǿ ƥřīƞŧ."
+
+#. editorial content for the discovery pane.
+msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŧřȧƈķ Aḿȧẑǿƞ ƥřīƈīƞɠ ħīşŧǿřẏ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
+msgstr "Ḿȧķḗ ķƞǿẇŀḗḓɠḗȧƀŀḗ ḓḗƈīşīǿƞş ƀẏ ŧřȧƈķīƞɠ ȧƞḓ řḗƈḗīṽīƞɠ ȧŀḗřŧş ƒǿř ŧħḗ ƥřīƈḗ ǿƒ ȧ ƥřǿḓŭƈŧ ŀīşŧḗḓ ǿƞ Aḿȧẑǿƞ."
+
+#. editorial content for the discovery pane.
+msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḿȧşŧḗř ȧŭḓīǿ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Adjust browser audio settings with extreme clarity."
+msgstr "Aḓĵŭşŧ ƀřǿẇşḗř ȧŭḓīǿ şḗŧŧīƞɠş ẇīŧħ ḗẋŧřḗḿḗ ƈŀȧřīŧẏ."
+
+#. editorial content for the discovery pane.
+msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƥřīṽȧƈẏ ƥřǿŧḗƈŧīǿƞ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Defend yourself against the sneakiest trackers."
+msgstr "Ḓḗƒḗƞḓ ẏǿŭřşḗŀƒ ȧɠȧīƞşŧ ŧħḗ şƞḗȧķīḗşŧ ŧřȧƈķḗřş."
+
+#. editorial content for the discovery pane.
+msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ƈǿṽḗř ẏǿŭř ŧřȧƈķş {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
+msgstr "Şḗȧřƈħ ẇīŧħ ḿǿřḗ şḗƈŭřīŧẏ ẇīŧħ ŧřȧƈķḗř ƀŀǿƈķīƞɠ, şḿȧřŧḗř ḗƞƈřẏƥŧīǿƞ, ƥřīṽȧŧḗ şḗȧřƈħ, ȧƞḓ ǿŧħḗř ḗşşḗƞŧīȧŀş."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -6167,12 +7409,6 @@ msgstr "ƀẏ Ƥŀȧŧƒǿřḿ"
 msgid "by Add-on Status"
 msgstr "ƀẏ Aḓḓ-ǿƞ Şŧȧŧŭş"
 
-msgid "Subscribers"
-msgstr "Şŭƀşƈřīƀḗřş"
-
-msgid "Ratings"
-msgstr "Řȧŧīƞɠş"
-
 msgid "Add-on Statistics"
 msgstr "Aḓḓ-ǿƞ Şŧȧŧīşŧīƈş"
 
@@ -6426,6 +7662,13 @@ msgstr "Ṽīşīŧ ŧħḗ ƞḗẇ şīŧḗ"
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Ŧǿ ƈřḗȧŧḗ ẏǿŭř ǿẇƞ ƈǿŀŀḗƈŧīǿƞş, ẏǿŭ ḿŭşŧ ħȧṽḗ ȧ Ḿǿẑīŀŀȧ Aḓḓ-ǿƞş ȧƈƈǿŭƞŧ."
 
+msgid "Create an Add-ons Account"
+msgstr "Ƈřḗȧŧḗ ȧƞ Aḓḓ-ǿƞş Aƈƈǿŭƞŧ"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "ǿř <a href=\"%(login)s\">ŀǿɠ īƞ ŧǿ ẏǿŭř ƈŭřřḗƞŧ ȧƈƈǿŭƞŧ</a>"
+
 msgid "Footer logo"
 msgstr "Ƒǿǿŧḗř ŀǿɠǿ"
 
@@ -6554,16 +7797,16 @@ msgid "Delete Locale"
 msgstr "Ḓḗŀḗŧḗ Ŀǿƈȧŀḗ"
 
 #, python-format
-msgid "The user \"%(user)s\" has been banned.user"
-msgstr "Ŧħḗ ŭşḗř \"%(user)s\" ħȧş ƀḗḗƞ ƀȧƞƞḗḓ.ŭşḗř"
+msgid "The user \"%(user)s\" has been banned."
+msgstr "Ŧħḗ ŭşḗř \"%(user)s\" ħȧş ƀḗḗƞ ƀȧƞƞḗḓ."
 
 #, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
-msgstr "Ŧħḗ ƥīƈŧŭřḗ ƀḗŀǿƞɠīƞɠ ŧǿ ŭşḗř \"%(user)s\" ħȧş ƀḗḗƞ ḓḗŀḗŧḗḓ.ŭşḗř"
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
+msgstr "Ŧħḗ ƥīƈŧŭřḗ ƀḗŀǿƞɠīƞɠ ŧǿ ŭşḗř \"%(user)s\" ħȧş ƀḗḗƞ ḓḗŀḗŧḗḓ."
 
 #, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
-msgstr "Ŧħḗ ŭşḗřş \"%(users)s\" ħȧṽḗ ƀḗḗƞ ƀȧƞƞḗḓ.ŭşḗřş, "
+msgid "The users \"%(users)s\" have been banned."
+msgstr "Ŧħḗ ŭşḗřş \"%(users)s\" ħȧṽḗ ƀḗḗƞ ƀȧƞƞḗḓ."
 
 msgid "Ban selected users"
 msgstr "Ɓȧƞ şḗŀḗƈŧḗḓ ŭşḗřş"
@@ -6573,6 +7816,9 @@ msgstr "Ƥřǿƒīŀḗ Ƥħǿŧǿ"
 
 msgid "Addons"
 msgstr "Aḓḓǿƞş"
+
+msgid "Ratings"
+msgstr "Řȧŧīƞɠş"
 
 msgid "Activity Logs"
 msgstr "Aƈŧīṽīŧẏ Ŀǿɠş"
@@ -6757,9 +8003,6 @@ msgstr "Ḓḗƈīḓḗ ẇħȧŧ ƈǿŀŀḗƈŧīǿƞş şħǿŭŀḓ ƀḗ �
 msgid "Display the collections I have created"
 msgstr "Ḓīşƥŀȧẏ ŧħḗ ƈǿŀŀḗƈŧīǿƞş Ī ħȧṽḗ ƈřḗȧŧḗḓ"
 
-msgid "Display collections I'm following"
-msgstr "Ḓīşƥŀȧẏ ƈǿŀŀḗƈŧīǿƞş Ī'ḿ ƒǿŀŀǿẇīƞɠ"
-
 msgid "Notifications"
 msgstr "Ƞǿŧīƒīƈȧŧīǿƞş"
 
@@ -6828,9 +8071,6 @@ msgstr "Ḿẏ Ḿǿşŧ Ƥǿƥŭŀȧř Ŧħḗḿḗş"
 
 msgid "Themes I've created"
 msgstr "Ŧħḗḿḗş Ī'ṽḗ ƈřḗȧŧḗḓ"
-
-msgid "Followed by Me"
-msgstr "Ƒǿŀŀǿẇḗḓ ƀẏ Ḿḗ"
 
 msgid "Created by Me"
 msgstr "Ƈřḗȧŧḗḓ ƀẏ Ḿḗ"

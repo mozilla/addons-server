@@ -299,12 +299,36 @@ class TestManifestJSONExtractor(TestCase):
         parsed_data = self.parse(data)
         assert parsed_data['type'] == amo.ADDON_LPAPP
         assert parsed_data['strict_compatibility'] is True
+        assert parsed_data['is_webextension'] is True
 
         apps = parsed_data['apps']
         assert len(apps) == 1  # Langpacks are not compatible with android.
         assert apps[0].appdata == amo.FIREFOX
         assert apps[0].min.version == '60.0'
         assert apps[0].max.version == '60.*'
+
+    def test_dictionary(self):
+        self.create_webext_default_versions()
+        self.create_appversion('firefox', '61.0')
+        data = {
+            'applications': {
+                'gecko': {
+                    'id': '@langp'
+                }
+            },
+            'dictionaries': {'en-US': '/path/to/en-US.dic'}
+        }
+
+        parsed_data = self.parse(data)
+        assert parsed_data['type'] == amo.ADDON_DICT
+        assert parsed_data['strict_compatibility'] is False
+        assert parsed_data['is_webextension'] is True
+
+        apps = parsed_data['apps']
+        assert len(apps) == 1  # Dictionaries are not compatible with android.
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].min.version == '61.0'
+        assert apps[0].max.version == '*'
 
     def test_extensions_dont_have_strict_compatibility(self):
         assert self.parse({})['strict_compatibility'] is False
@@ -559,6 +583,9 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         assert self.parse(data)['theme'] == data['theme']
 
     def test_langpack(self):
+        pass  # Irrelevant for static themes.
+
+    def test_dictionary(self):
         pass  # Irrelevant for static themes.
 
 

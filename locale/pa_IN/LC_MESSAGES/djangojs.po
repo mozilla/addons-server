@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-10 05:38+0000\n"
+"POT-Creation-Date: 2018-08-02 01:13+0000\n"
+"PO-Revision-Date: 2018-07-23 00:12+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -305,7 +305,7 @@ msgid "Add-ons Manager Learn More"
 msgstr ""
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "ਖੋਜ ਸੁਝਾਅ"
 
 msgid "Search Results"
 msgstr "ਨਤੀਜੇ ਖੋਜੋ"
@@ -624,13 +624,13 @@ msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b>ਅੌਸਤ ਆਖਰੀ {1} ਦਿਨਾਂ ਵਿਚ"
 
 msgid "No data available."
-msgstr "ਕੋਈ ਡਾਟਾ ਮੌਜ਼ੂਦ ਨਹੀ"
+msgstr "ਕੋਈ ਡੇਟਾ ਮੌਜ਼ੂਦ ਨਹੀ।"
 
 msgid "Date"
-msgstr "ਤਾਰੀਖ"
+msgstr "ਮਿਤੀ"
 
 msgid "Other"
-msgstr "ਦੂਜਾ"
+msgstr "ਹੋਰ"
 
 msgid "Select an application first"
 msgstr "ਪਹਿਲਾਂ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਚੁੱਣੋ"
@@ -667,14 +667,13 @@ msgid "This add-on is not compatible with your version of {0}."
 msgstr "ਇਹ ਐਡ-ਆਨ ਤੁਹਾਡੀ {0} ਵਾਲੀ ਵੰਨਗੀ ਦੇ ਮੇਚ ਦਾ ਨਹੀਂ ਹੈI"
 
 msgid "View other versions"
-msgstr "ਹੋਰ ਵਰਜਨ ਦੇਖੋ"
+msgstr "ਹੋਰ ਵੰਨਗੀਆਂ ਦੇਖੋ"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "{app} {min} - {max} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
 
-#, fuzzy
 msgid "Works with {app}"
-msgstr "{app} {min} - {max} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
+msgstr "{app} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
 
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "ਸਿਰਫ਼ ਫਾਇਰਫਾਕਸ ਨਾਲ — ਫਾਇਰਫਾਕਸ ਹੁਣੇ ਲਵੋ!"
@@ -698,10 +697,10 @@ msgid "Pending"
 msgstr "ਬਕਾਇਆ"
 
 msgid "Add a comment"
-msgstr "ਕਾਮੈਂਟ ਸ਼ਾਮਲ"
+msgstr "ਕੋਈ ਟਿੱਪਣੀ ਸ਼ਾਮਲ ਕਰੋ"
 
 msgid "Comment"
-msgstr "ਕਾਮੈਂਟ"
+msgstr "ਟਿੱਪਣੀ"
 
 msgid "Remove this add-on from the collection"
 msgstr "ਭੰਡਾਰ ਵਿੱਚੋਂ ਇਹ ਐਡ-ਆਨ ਹਟਾਓ"
@@ -759,7 +758,7 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr "ਇਹ ਫ਼ੀਚਰ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹੈ,ਜਦ ਤੱਕ ਅਸੀ ਵੈਬਸਾਈਟ ਚ ਸੁਧਾਰ ਕਰ ਰਹੇ ਹਾਂ । ਕਿਰਪਾ ਕਰਕੇ ਕੁਝ ਚਿਰ ਬਾਅਦ ਪੜਤਾਲ ਕਰੋ ।"
 
 msgid "Remove this localization"
-msgstr "ਇਹ ਸਥਾਨੀਕਰਨ ਹਟਾਓ"
+msgstr "ਇਹ ਲਿਪੀਅੰਤਰ ਹਟਾਓ"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} ਇਹ ਸਫਾ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
@@ -777,25 +776,25 @@ msgid "Loading&hellip;"
 msgstr "&hellip; ਲ੍ਹੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ"
 
 msgid "Version Notes"
-msgstr "ਸੂਚਨਾਂ ਵਰਜਨ"
+msgstr "ਵੰਨਗੀ ਲਿਖਤ"
 
 msgid "Notes for Reviewers"
 msgstr "ਸਮੀਖਿਅਕ ਲਈ ਸੂਚਨਾਂ"
 
 msgid "No version notes found"
-msgstr "ਵਰਜਨ ਨੂੰ ਨੋਟਿਸ ਨਹੀਂ ਮਿਲਿਆ"
+msgstr "ਕੋਈ ਵੰਨਗੀ ਲਿਖਤ ਨਹੀਂ ਮਿਲੀ"
 
 msgid "Review Text"
-msgstr ""
+msgstr "ਲਿਖਤ ਦੀ ਸਮੀਖਿਆ ਕਰੋ"
 
 msgid "Review notes found"
-msgstr ""
+msgstr "ਲੱਭੀਆਂ ਗਈਆਂ ਲਿਖਤਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ"
 
 msgid "Average Reviews"
-msgstr ""
+msgstr "ਔਸਤ ਸਮੀਖਿਆਵਾਂ"
 
 msgid "Number of Reviews"
-msgstr ""
+msgstr "ਸਮੀਖਿਆਵਾਂ ਦੀ ਗਿਣਤੀ"
 
 msgid "Requested Info"
 msgstr "ਜਾਣਕਾਰੀ ਲਈ ਬੇਨਤੀ"
@@ -819,7 +818,7 @@ msgid "Theme"
 msgstr ""
 
 msgid "Reviewer"
-msgstr "ਪੜਤਾਲਕਰਤਾ"
+msgstr "ਸਮੀਖਿਆ ਕਰਤਾ"
 
 msgid "Status"
 msgstr "ਹਾਲਤ"

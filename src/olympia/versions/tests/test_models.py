@@ -12,8 +12,6 @@ from django.core.files.storage import default_storage as storage
 import mock
 import pytest
 
-from pyquery import PyQuery
-
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
@@ -22,7 +20,6 @@ from olympia.addons.models import (
 from olympia.amo.templatetags.jinja_helpers import user_media_url
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.tests.test_models import BasePreviewMixin
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
@@ -320,54 +317,6 @@ class TestVersion(TestCase):
         version.save()
         assert version.version_int is None
 
-    def test_version_update_info(self):
-        addon = Addon.objects.get(pk=3615)
-        response = self.client.get(
-            reverse('addons.versions.update_info',
-                    args=(addon.slug, self.version.version)))
-        assert response.status_code == 200
-        assert response['Content-Type'] == 'application/xhtml+xml'
-        # pyquery is annoying to use with XML and namespaces. Use the HTML
-        # parser, but do check that xmlns attribute is present (required by
-        # Firefox for the notes to be shown properly).
-        doc = PyQuery(response.content, parser='html')
-        assert doc('html').attr('xmlns') == 'http://www.w3.org/1999/xhtml'
-        assert doc('p').html() == 'Fix for an important bug'
-
-        # Test update info in another language.
-        with self.activate(locale='fr'):
-            response = self.client.get(
-                reverse('addons.versions.update_info',
-                        args=(addon.slug, self.version.version)))
-            assert response.status_code == 200
-            assert response['Content-Type'] == 'application/xhtml+xml'
-            assert '<br/>' in response.content, (
-                'Should be using XHTML self-closing tags!')
-            doc = PyQuery(response.content, parser='html')
-            assert doc('html').attr('xmlns') == 'http://www.w3.org/1999/xhtml'
-            assert doc('p').html() == (
-                u"Quelque chose en français.<br/><br/>Quelque chose d'autre.")
-
-    def test_version_update_info_legacy_redirect(self):
-        r = self.client.get('/versions/updateInfo/%s' % self.version.id,
-                            follow=True)
-        url = reverse('addons.versions.update_info',
-                      args=(self.version.addon.slug, self.version.version))
-        self.assert3xx(r, url, 301)
-
-    def test_version_update_info_legacy_redirect_deleted(self):
-        self.version.delete()
-        response = self.client.get(
-            '/en-US/firefox/versions/updateInfo/%s' % self.version.id)
-        assert response.status_code == 404
-
-    def test_version_update_info_no_unlisted(self):
-        addon = Addon.objects.get(pk=3615)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        r = self.client.get(reverse('addons.versions.update_info',
-                                    args=(addon.slug, self.version.version)))
-        assert r.status_code == 404
-
     def _reset_version(self, version):
         version.all_files[0].status = amo.STATUS_PUBLIC
         version.deleted = False
@@ -553,10 +502,15 @@ class TestVersion(TestCase):
         AddonReviewerFlags.objects.create(
             addon=addon, auto_approval_disabled=False)
 
+        assert version.is_ready_for_auto_approval
+
         addon.type = amo.ADDON_THEME
         assert not version.is_ready_for_auto_approval
 
         addon.type = amo.ADDON_LPAPP
+        assert version.is_ready_for_auto_approval
+
+        addon.type = amo.ADDON_DICT
         assert version.is_ready_for_auto_approval
 
     def test_is_ready_for_auto_approval_addon_status(self):

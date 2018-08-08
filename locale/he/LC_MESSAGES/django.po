@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: 2018-07-12 19:32+0000\n"
+"POT-Creation-Date: 2018-08-02 01:13+0000\n"
+"PO-Revision-Date: 2018-08-06 20:02+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -60,7 +60,7 @@ msgid "You could not be logged in. Please try again."
 msgstr "לא הייתה אפשרות להכניס אותך. נא לנסות שוב."
 
 msgid "Need help?"
-msgstr "צריכים עזרה?"
+msgstr "יש לך צורך בעזרה?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
 msgstr "מפתחי תוספות או ערכות נושא לא יכולים למחוק את החשבון שלהם. עליך למחוק את כל התוספות וערכות הנושא שמקושרות לחשבון זה או להעביר אותן למשתמשים אחרים."
@@ -721,11 +721,24 @@ msgstr "הערך חייב להיות קוד צבע הקסדצימלי תקף, כ
 msgid "Not allowed"
 msgstr "לא מורשה"
 
-msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr "<h1>אופס! הפעולה אסורה.</h1> <p>ניסית לבצע משהו שאין לך הרשאה לבצע.</p>"
+msgid "Oops! Not allowed."
+msgstr "אופס! הפעולה אסורה."
 
-msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
-msgstr "<p>כדאי לנסות לחזור לעמוד הקודם, לרענן את העמוד ואז לנסות שוב.</p>"
+msgid "You tried to do something that you weren't allowed to."
+msgstr "ניסית לבצע משהו שאין לך הרשאה לבצע."
+
+msgid ""
+"You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
+"browser is not being hijacked by third parties."
+msgstr ""
+
+msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
+msgstr ""
+
+msgid ""
+"You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
+"parties."
+msgstr ""
 
 msgid "Page Not Found"
 msgstr "העמוד לא נמצא"
@@ -841,9 +854,6 @@ msgstr "אוספים"
 
 msgid "Collections I've Made"
 msgstr "האוספים שיצרתי"
-
-msgid "Collections I'm Following"
-msgstr "אוספים במעקב"
 
 msgid "My Favorite Add-ons"
 msgstr "התוספות המועדפות עליי"
@@ -1075,28 +1085,11 @@ msgstr "(אופציונלי)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "או <a id=\"collections-new-cancel\" href=\"#\">ביטול</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "על מנת לדרג אוספים, יש צורך בחשבון Add-ons."
-
-msgid "Create an Add-ons Account"
-msgstr "יצירת חשבון Add-ons"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "או <a href=\"%(login)s\">התחברות לחשבון הנוכחי שלך</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: אוספים"
 
 msgid "private"
 msgstr "פרטי"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "עוקב <span>אחד</span>"
-msgstr[1] "<span>%(num)s</span> עוקבים"
 
 # 76%
 # 100%
@@ -1176,48 +1169,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "תוספת <span>אחת</span>"
 msgstr[1] "<span>%(addons)s</span> תוספות"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "עוקב <span>אחד</span>"
-msgstr[1] "<span>%(followers)s</span> עוקבים"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "עוקב אחד בשבוע"
-msgstr[1] "%(num)s עוקבים בשבוע"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "עוקב אחד בחודש"
-msgstr[1] "%(num)s עוקבים בחודש"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "עוקב אחד"
-msgstr[1] "%(num)s עוקבים"
-
 msgid "by {0}"
 msgstr "מאת {0}"
-
-msgid "Stop Following"
-msgstr "הפסקת מעקב"
-
-msgid "Follow this Collection"
-msgstr "מעקב אחרי אוסף זה"
 
 # 76%
 # 100%
@@ -1272,9 +1225,6 @@ msgstr "אוספים הם קבוצות של תוספות הקשורות זו ל�
 msgid "by %(author_link)s"
 msgstr "מאת %(author_link)s"
 
-msgid "Following"
-msgstr "במעקב"
-
 # 89%
 # 100%
 msgid "Create a Collection"
@@ -1324,18 +1274,6 @@ msgstr "הוספת תגובה"
 
 msgid "Remove this add-on from the collection"
 msgstr "הסרת תוספת זו מהאוסף"
-
-msgid "Add a positive vote for this collection"
-msgstr "הוספת הצבעה חיובית לאוסף זה"
-
-msgid "Add a negative vote for this collection"
-msgstr "הוספת הצבעה שלילית לאוסף זה"
-
-msgid "Remove my vote for this collection"
-msgstr "הסרת ההצבעה שלי מאוסף זה"
-
-msgid "Log in to vote for this collection"
-msgstr "יש להתחבר כדי להצביע לאוסף זה"
 
 msgid "Favorite"
 msgstr "מועדף"
@@ -1883,7 +1821,7 @@ msgid "User {0.name} removed from {group}."
 msgstr "המשתמש {0.name} הוסר מהקבוצה {group}."
 
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} לא ברשימה."
 
 msgid "{file} was signed."
 msgstr "הקובץ {file} נחתם."
@@ -2616,9 +2554,11 @@ msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
+"באתר הזה. <span class=\"helptext\">ההגשה שלך תופיע באתר הזה ובמנהל התוספות של Firefox בפני מיליוני משתמשים, לאחר סקירת קוד. עדכונים אוטומטיים נמצאים בטיפול האתר הזה. בתוספת זו ייעשה שימוש גם לצורך "
+"יחסי ציבור ותחרויות של Mozilla. ניתן גם להפיץ את הקבצים שנסקרו באופן עצמאי.</span>"
 
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
-msgstr ""
+msgstr "באופן עצמאי. <span class=\"helptext\">ההגשה שלך תיחתם באופן מיידי לטובת הפצה עצמאית. האחריות לעדכונים היא עליך דרך updateURL או עדכוני יישום חיצוניים.</span>"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "לא ניתן לשנות קטגוריות בזמן שהתוספת שלך מופיעה במומלצים."
@@ -2642,10 +2582,10 @@ msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users
 msgstr "לא ניתן לעדכן תוספת של WebExtensions בתוספת מדור קודם. המשתמשים שלך לא יוכלו להשתמש בגרסה החדשה שלך כיוון שב־Firefox אין עוד תמיכה בעדכון מסוג זה."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr ""
+msgstr "מפתח ה־API שלך לצורכי פיתוח נמצא בקובץ שהוגש. כדי להגן על החשבון שלך, המפתח יישלל."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
+msgstr "מפתח ה־API של אחת מעמיתיך לצורכי פיתוח נמצא בקובץ שהוגש. כדי להגן על התוספת שלך, המפתח יישלל."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -2660,7 +2600,7 @@ msgid "Could not contact host at \"%s\"."
 msgstr "לא ניתן ליצור קשר עם המארח בכתובת \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "הודעת אבטחה של Mozilla: פרטי הגישה שלך ל־API מול AMO נשללו"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -4394,10 +4334,12 @@ msgid_plural "{0} warnings"
 msgstr[0] "אזהרה אחת"
 msgstr[1] "{0} אזהרות"
 
+#. editorial content for the discovery pane.
 #, fuzzy
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "תרגום בקלות {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
+#. editorial content for the discovery pane.
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "להשכיח מ־Firefox נתוני אתרים כגון עוגיות ואחסון מקומי, אך רק עבור שמות מתחם לבחירתך."
 
@@ -4405,13 +4347,16 @@ msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
 msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
+msgstr "הנאה ממגוון של תכונות חדשות ב־YouTube כגון מצב קולנוע, חסימת פרסומות, ניגון אוטומטי ועוד."
 
-msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
-msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
-msgstr "חוסם פרסומות קל ויעיל. uBlock Origin אוכף אלפי מסנני תוכן מבלי לזלול זיכרון."
+#. editorial content for the discovery pane.
+msgid "Block invisible trackers and spying ads that follow you around the web."
+msgstr "חסימת רכיבי מעקב בלתי נראים ופרסומות מרגלות שעוקבים אחריך ברחבי הרשת."
 
 #, fuzzy
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4421,18 +4366,21 @@ msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_hea
 msgid "Dozens of amazing emojis for every occasion—just a click away."
 msgstr "עשרות אימוג׳ים מדהימים—תמיד במרחק נגיעה."
 
+#. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 msgid "Works seamlessly with most popular video sites."
 msgstr "עובד בצורה חלקה עם רוב אתרי הוידאו הפופולריים."
 
+#. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 msgid "Set the page you see every time you open a new tab."
 msgstr "הגדרת העמוד שמופיע עם כל פתיחת לשונית חדשה."
 
+#. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
@@ -4443,6 +4391,1375 @@ msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "התאמה אישית של דף הלשונית החדשה {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "תרגום בקלות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Highlight any text, right-click, and translate instantly."
+msgstr "סימון כל טקסט, לחיצה על כפתור העכבר הימני וקבלת תרגום באופן מיידי."
+
+#. editorial content for the discovery pane.
+msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חיפוש תמונות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Perform reverse image searches from an array of engines."
+msgstr "ביצוע חיפוש תמונות הפוך ממגוון של מנועי חיפוש."
+
+#. editorial content for the discovery pane.
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות והגנת פרטיות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr "הגדרה ראשונית פשוטה מאפשרת לך לקחת שליטה על הפרסומות שמופיעות ועל האופן שבו עוקבים אחריך ברשת."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr "יש לך כמות נכבדת של לשוניות פתוחות? ניתן לארגן אותן בסרגל צד מסודר."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr "סימון טקסט בכל דף אינטנרנט כדי לחפש את הביטוי מתוך מגוון מנועי חיפוש."
+
+#. editorial content for the discovery pane.
+msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "עדכוני מזג אוויר מיידיים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get instant global weather information right in Firefox."
+msgstr "קבלת מידע על מזג האוויר העולמי באופן מיידי היישר ב־Firefox."
+
+#. editorial content for the discovery pane.
+msgid "Choose the page you see every time you open a new tab."
+msgstr "בחירת הדף שמופיע עם כל פתיחת לשונית חדשה."
+
+#. editorial content for the discovery pane.
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חיפוש תמונות הפוך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
+msgstr "ראית תמונה מעניינת ברשת ורוצה ללמוד עוד עליה? ניתן לנסות את כלי חיפוש התמונות הזה."
+
+#. editorial content for the discovery pane.
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr "עובד עם YouTube, ‏Facebook, ‏Vimeo, ‏Twitch, ‏Dailymotion, ‏Periscope ועוד מאות אתרי וידאו אחרים."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Dozens of amazing emojis for every occasion—always just a click away."
+msgstr "עשרות אימוג׳ים מדהימים—תמיד במרחק נגיעה."
+
+#. editorial content for the discovery pane.
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "חוסם פרסומות קל ויעיל. uBlock Origin אוכף אלפי מסנני תוכן מבלי לזלול זיכרון."
+
+#. editorial content for the discovery pane.
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr "הנאה ממגוון של תכונות חדשות ב־YouTube כגון מצב קולנוע, חסימת פרסומות, בקרת ניגון אוטומטי ועוד."
+
+#. editorial content for the discovery pane.
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חיפוש תמונות בקלות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "סימון כל טקסט ולחיצה על כפתור העכבר הימני כדי לבצע חיפוש תמונה."
+
+#. editorial content for the discovery pane.
+msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "להנות מסימניות חזותיות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Access your favorite sites from a tile layout."
+msgstr "ניתן לשמור את הפריטים המועדפים עליך ישירות מהדפדפן."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically add Britannica facts to your search results."
+msgstr "הוספת עובדות מ־Britannica באופן אוטומטי לתוצאות החיפוש שלך."
+
+#. editorial content for the discovery pane.
+msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "הסרת פרסומות ב־YouTube {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Block annoying ads and annotations from appearing on YouTube."
+msgstr "חסימת הערות ופרסומות מציקות המופיעות ב־YouTube."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Send news articles, stories, blog posts, and more to your Kindle."
+msgstr "שליחת מאמרים חדשים, סיפורים, הודעות בבלוגים ועוד ל־Kindle שלך."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Organize your tabs by color grouping them based on URL patterns."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "מניעת כריית מטבע מבוזר {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "בדיקות דקדוק אוטומטיות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
+msgstr "קבלת עזרה בדקדוק בכל מקום בו ברצונך לכתוב ברחבי האינטרנט — רשתות חברתיות, דוא״ל, מסמכים ועוד."
+
+#. editorial content for the discovery pane.
+msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "בדיקת זמנים עולמיים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Display current worldwide times in Firefox's status bar."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "תרגומים קלים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
+msgstr "סימון טקסט בכל דף אינטרנט — או בחירת כל הדף — כדי לתרגם באופן מיידי."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy free access to 10+ million research papers."
+msgstr "הנאה מגישה חופשית ללמעלה מ־10 מיליון כתבי מחקר."
+
+#. editorial content for the discovery pane.
+msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "התאמה אישית של מחוות עכבר {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
+msgstr "דרך חדשה לניווט עם למעלה מ־50 מחוות עכבר שימושיות."
+
+#. editorial content for the discovery pane.
+msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Darken the page around video players for a focused viewing experience."
+msgstr "החשכת הדף מסביב לנגני וידאו לטובת חווית צפייה ממוקדת."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+#, python-format
+msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "הגדלת תמונות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Simply hover over an image to magnify it."
+msgstr "ריחוף על תמונה כדי להגדיל אותה."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically erase cookies after you close a tab."
+msgstr "מחיקת עוגיות באופן אוטומטי לאחר סגירת לשונית."
+
+#. editorial content for the discovery pane.
+msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שינוי תצוגת גודל הדף {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
+msgstr "דרך פשוטה לשנות את גודל הטקסט בכל דף — או אפילו להגדיל את הדף עצמו."
+
+#. editorial content for the discovery pane.
+msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת רכיבי מעקב בלתי נראים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop trackers in their tracks and learn more about them."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שמירת טקסט למועד מאוחר יותר {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות בדוא״ל {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get more screen space by removing ads from your web-based inbox."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חיפוש הלשוניות שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Manage your open tabs in a tidy sidebar."
+msgstr "ניהול הלשוניות הפתוחות שלך בסרגל צד מסודר."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "רענון לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically reload tabs based on time intervals you set."
+msgstr "טעינת לשוניות מחדש באופן אוטומטי בהתבסס על מרווחי זמן מוגדרים."
+
+#. editorial content for the discovery pane.
+msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "הפרדת החיים המקוונים שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת רכיבי מעקב {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Gain an additional layer of tracking protection as you browse the web."
+msgstr "קבלת שכבה נוספת שלך הגנת מעקב תוך כדי גלישה רשת."
+
+#. editorial content for the discovery pane.
+msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "קריאת קובצי ePub {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
+msgstr "להנות מקובצי ePub היישר ב־Firefox — הגדלת גודל הגופן, ממדי הדף ועוד."
+
+#. editorial content for the discovery pane.
+msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שיפור חווית ה־YouTube שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Play videos by default in the highest quality, turn off annotations, and more."
+msgstr "הפעלת סרטונים כברירת מחדל באיכות הגבוהה ביותר, כיבוי הערות ועוד."
+
+#. editorial content for the discovery pane.
+msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "מעקב אחרי רכיבי מעקב {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get a glimpse into who's tracking you with just a click."
+msgstr "קבלת הצצה למי עוקב אחריך בלחיצה אחת."
+
+#. editorial content for the discovery pane.
+msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שינוי השרת המתווך שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Surf the web through self-defined proxy settings."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enhance your viewing experience by adjusting video speed and more."
+msgstr "שיפור חווית הצפייה שלך ע״י שינוי מהירות הסרטון ועוד."
+
+#. editorial content for the discovery pane.
+msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "גלישה באופן מאובטח {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Add encrypted security to any site that supports HTTPS."
+msgstr "הוספת אבטחה מוצפנת לכל אתר התומך ב־HTTPS."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get the best coupons automatically applied to your shopping cart at checkout."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "תרגומים מהירים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Translate highlighted text or the entire webpage"
+msgstr "תרגום טקסט מסומן או דף אינטרנט שלם"
+
+#. editorial content for the discovery pane.
+msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שיפור Reddit {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Change the way you surf Reddit by using tags and more."
+msgstr "שינוי אופן הגלישה ב־Reddit ע״י הוספת תגים ועוד."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Screenshot webpages, make edits, and share."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "A superior Windows-only downloader tool."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Find out who's tracking you and where they may be sharing your information."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "גלישה בעילום שם {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "הגדרת דף הבית שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Designate a custom home page for your new tabs."
+msgstr "הגדרת דף בית מותאם אישית ללשוניות החדשות שלך."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
+msgstr "המרת כל הלשוניות הפתוחות שלך לרשימה כדי לנהל אותם בקלות ולהאיץ את Firefox."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Check the state of your downloads through a status bar, download history page, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
+msgstr "שמירת מידע מהאינטרנט ל־OneNote כדי שיהיה ניתן לערוך, להוסיף הערות ועוד."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop trackers when you click Google and Yandex search returns."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "ניווט דינאמי {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
+msgstr "שימוש במחוות עכבר כדי לסגור לשוניות, לחזור לדף הקודם, לטעון מחדש ועוד."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy thumbnail images alongside your search returns."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make the web easier on the eyes by darkening its display."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת חלונות קופצים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Block all pop-ups by default, then decide which ones you'd like to open."
+msgstr "חסימת כל החלונות הקופצים כברירת מחדל, ולאחר מכן בחירה באלו שברצונך לפתוח."
+
+#. editorial content for the discovery pane.
+msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "התאמה אישית של האתרים המועדפים עליך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Change the look of any website! Shift colors, page backgrounds, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "התאמה אישית הלשונית החדשה שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
+msgstr "עריכת דף הלשונית החדשה כדי שיציג מספר מועדף של אריחים, תמונת רקע ועוד."
+
+#. editorial content for the discovery pane.
+msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "קבלת תרגומים מהירים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Highlight text on any website, right-click, and translate instantly."
+msgstr "סימון טקסט בכל אתר, לחיצה על כפתור העכבר הימני וקבלת תרגום באופן מיידי."
+
+#. editorial content for the discovery pane.
+msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "ניהול הססמאות שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Store passwords securely and access them across multiple devices."
+msgstr "אחסון ססמאות באופן מאובטח וקבלת גישה אליהם מהתקנים מרובים."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get the country location for websites you visit. Be an informed internet traveler."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שיפור חווית הקריאה שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make the text you're reading more appealing by removing the clutter around it."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "פתיחת קישורים מרובים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Right-click and drag over links you want open in new tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
+msgstr "קבלת גישה ללשוניות שנסגרו לאחרונה ע״י לחיצה על כפתור העכבר הימני על הסנח שבסרגל הכלים שלך."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "צפייה בתמונות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Brings back the \"View image\" button while searching on Google Images."
+msgstr "החזרת הכפתור של ״הצגת תמונה״ בזמן חיפוש ב־Google תמונות."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Block time-wasting sites so you can focus on the task at hand."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically reload tabs based on time intervals."
+msgstr "טעינת לשוניות מחדש באופן אוטומטי בהתבסס על מרווחי זמן."
+
+#. editorial content for the discovery pane.
+msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "תיקון המועדפים שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Find and resolve broken bookmarks, duplicates, and more."
+msgstr "איתור ותיקון סימניות שבורות, כפילויות ועוד."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get things done with a helpful to-do list that syncs across devices."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לקנות חכם יותר {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get in-depth engagement and traffic information for any website."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Applies a fresh and modern appearance to Wikipedia."
+msgstr "החלת מראה רענן ומודרני לויקיפדיה."
+
+#. editorial content for the discovery pane.
+msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לעבוד מהר יותר {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Use mouse gestures to get to things done—quicker."
+msgstr "שימוש במחוות עכבר כדי לבצע דברים — במהירות רבה יותר."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Hide portions of the website you're viewing."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "הורדת תמונות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Grab images from any website and download them."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "הסוואת המיקום שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Disguise your location to throw off trackers and protect your privacy."
+msgstr "הסוואת המיקום שלך כדי לבלבל רכיבי מעקב ולהגן על הפרטיות שלך."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Restrict access to inappropriate or undesired content with a filter."
+msgstr "הגבלת גישה לתוכן לא הולם או לא רצוי באמצעות מסנן."
+
+#. editorial content for the discovery pane.
+msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שיפור לשוניות חדשות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Open a new tab to the right of your current tab, not at the end of the row."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
+msgstr "שימוש בכתובות דוא״ל זמניות וחכמות כדי להישאר בעילום שם ולהימנע מספאם."
+
+#. editorial content for the discovery pane.
+msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שינוי הפרטיות שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Easily customize the built-in privacy settings in Firefox."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שיפור החוויה שלך ב־VK {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Remove ads and download audio from VK."
+msgstr "הסרת פרסומות והורדת שמע מ־VK."
+
+#. editorial content for the discovery pane.
+msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "קבלת תרגומים מידיים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Access immediate translation by highlighting text and clicking the button that pops up."
+msgstr "קבלת תרגום מיידי ע״י סימון טקסט ולחיצה על הכפתור שקופץ."
+
+#. editorial content for the discovery pane.
+msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "התאמה אישית של לשוניות חדשות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Go straight to the website you want to access without being redirected in between."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "‏WhatsApp ברשת {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get expert German translations between English, French, Spanish, and other languages."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "יצירת רשימת חסימה לאתרים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Restrict Firefox from accessing websites you define."
+msgstr "הגבלת Firefox מכניסה לאתרים מוגדרים."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Manage your productivity by working in set time intervals."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Check your favorite RSS feeds all in a single page."
+msgstr "בדיקת כל הזנות ה־RSS המועדפים שלך בדף אחד."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enable night mode for a better viewing experience."
+msgstr "הפעלת מצב לילה לחווית צפייה טובה יותר."
+
+#. editorial content for the discovery pane.
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חיפוש תמונות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Reverse image search by leveraging the power of multiple search providers."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Store web pages to access across devices."
+msgstr "אחסון דפי אינטרנט כדי לגשת אליהם מהתקנים אחרים."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "A better way to save bookmarks if you use multiple bookmark folders."
+msgstr "דרך טובה יותר לשמור סימניות אם משתמשים בתיקיות סימניות מרובות."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Strip away unnecessary formatting and copy just the plain text."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Convert an entire webpage to your preferred language—with the click of a button."
+msgstr "המרת דף אינטרנט שלם לשפה המועדפת עליך — בלחיצת כפתור."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Instantly display all links from a webpage in new tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "צפייה במסמכים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Access PDFs using your preferred PDF application."
+msgstr "הצגת קובצי PDF תוך שימוש ביישום ה־PDF המועדף עליך."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Strip away redirect pages and URL tracking parameters."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Prevent search engines from knowing what search results you click on."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "הורדת סרטונים מ־YouTube {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Download video and/or audio."
+msgstr "הורדת סרטונים ו/או קובצי שמע."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "תרגום בקלות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Create general and website-specific notes to review later."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "מחיקת נתונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Clear your browser cache with a click or keystroke."
+msgstr "ניקוי מטמון הדפדפן שלך בלחיצת כפתור או מקש."
+
+#. editorial content for the discovery pane.
+msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לא לשכוח יותר לעולם {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Create and manage a to-do list in your browser."
+msgstr "יצירה וניהול רשימת מטלות בדפדפן שלך."
+
+#. editorial content for the discovery pane.
+msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "סימון טקסט {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy a highly customizable text highlighter with different colors and save options."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "להנות ממוזיקה מרחבי העולם {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Access 20,000+ radio stations from all over the globe."
+msgstr "קבלת גישה ללמעלה מ־20,000 תחנות רדיו מכל רחבי העולם."
+
+#. editorial content for the discovery pane.
+msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "האזנה לסרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Save bandwidth by just streaming the audio from YouTube clips."
+msgstr "חסכון ברוחב הפס ע״י הזרמת שמע בלבד מסרטוני YouTube."
+
+#. editorial content for the discovery pane.
+msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "הפיכת טקסט לתמונות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Turn words into beautiful headlines and image overlay text."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "גלישה באופן בטוח {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Navigate to the secure version of a website if it's available."
+msgstr "ניווט לגרסה המאובטחת של אתר, אם קיימת אחת כזאת."
+
+#. editorial content for the discovery pane.
+msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "מחיקת היסטורית הניווט שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop ads from appearing within your search results."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "ניהול ססמאות באופן בטוח {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Store passwords securely and sign in to known websites automatically."
+msgstr "אחסון ססמאות בצורה מאובטחת והתחברות לאתרים ידועים באופן אוטומטי."
+
+#. editorial content for the discovery pane.
+msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות ורכיבי מעקב {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "מילוי טפסים באופן אוטומטי {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Save entered data once and it will autofill next time."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "גלישה באופן פרטי {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Jump into private browsing mode with a click."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
+msgstr "ביצוע חיפוש בויקיפדיה ע״י סימון טקסט בכל דף אינטרנט ולחיצה ימנית."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Find what you're looking for within a specific domain."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חיפוש סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Highlight text from any website and right-click to search YouTube for related media."
+msgstr "סימון טקסט בכל אתר ולחיצה על כפתור העכבר הימני כדי לחפש ב־YouTube אחר מדיה קשורה."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Easily broadcast web content to your Twitter following."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr "אפשרויות רבות של שליטה על לשוניות — סגירת לשוניות כפולות, מיזוג חלונות, העתקת כותרת הלשונית ועוד."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Load a random Wikipedia article each time you open a new tab."
+msgstr "טעינת מאמר ויקיפדיה אקראי בכל פעם שלשונית חדשה נפתחת."
+
+#. editorial content for the discovery pane.
+msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שינוי הלשונית החדשה שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Configure new tab pages to display custom background colors and images."
+msgstr "הגדרת דפי לשונית חדשה להציג צבעים ותמונות רקע מותאמים אישית."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "For those moments when you need to fire lasers out of a cat."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Easily access your open tabs, bookmarks, and history."
+msgstr "גישה קלה ללשוניות הפתוחות, סימניות והיסטוריה."
+
+#. editorial content for the discovery pane.
+msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Uncover the software that supports whatever website you're visiting."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "תרגום בקלות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop redirects so you can access the site you want—faster."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חשיפת ססמאות מוקלדות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Adds show/hide ability to all password fields."
+msgstr "הוספת יכולת ההצגה/הסתרה לכל שדות הססמאות."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Focus on what you're watching by dimming everything but the video player."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "ניהול סימניות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Modify your bookmarks through an easily accessible panel."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Store passwords securely and sign in automatically to known websites."
+msgstr "אחסון ססמאות בצורה מאובטחת והתחברות אוטומטית לאתרים ידועים."
+
+#. editorial content for the discovery pane.
+msgid "A simple ad blocker focused on displaying just the content you want."
+msgstr "חוסם פרסומות פשוט שממוקד על הצגת רק התוכן הרצוי."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make informed decisions by tracking the price of a product listed on Amazon."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לגלוש באופן מאובטח {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Only allow web content to run from sites you trust."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "ניהול עוגיות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Take full control of the cookies you've accumulated while browsing."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לשכוח מההיסטוריה {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically delete browser history for websites you select."
+msgstr "מחיקה אוטומטית של היסטורית הדפדפן עבור אתרים נבחרים."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Password-protect your personal bookmarks."
+msgstr "הגנה ע״י ססמה לסימניות האישיות שלך."
+
+#. editorial content for the discovery pane.
+msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "מניעת דליפות של כתובת ה־IP {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Simply click a button to close annoying pop-up overlays."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Find an interesting image on the web? Use TinEye to explore its origins."
+msgstr "מצאת תמונה מעניינת ברשת? ניתן להשתמש ב־TinEye כדי לחקור את מקורותיה."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Harness the ability to download video and/or audio in multiple formats."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Learn where any website's server is geographically located. Be an informed web traveler."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
+msgstr "האם עוצמת השמע באתר שקטה מידי? חזקה מידי? SoundFixer יכול לעזור."
+
+#. editorial content for the discovery pane.
+msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "עריכה לפני הדפסה {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "לקיחת צילומי מסך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Adjust browser audio settings with extreme clarity."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "הגנת פרטיות {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Defend yourself against the sneakiest trackers."
+msgstr "להגן על עצמך מפני רכיבי המעקב הערמומיים ביותר."
+
+#. editorial content for the discovery pane.
+msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "טשטוש העקבות שלך {start_sub_heading}עם {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
 msgstr ""
 
 #, python-format
@@ -6274,12 +7591,6 @@ msgstr "לפי פלטפורמה"
 msgid "by Add-on Status"
 msgstr "לפי מצב תוספת"
 
-msgid "Subscribers"
-msgstr "מנויים"
-
-msgid "Ratings"
-msgstr "דירוגים"
-
 msgid "Add-on Statistics"
 msgstr "סטטיסטיקת תוספת"
 
@@ -6528,6 +7839,13 @@ msgstr "ביקור באתר החדש"
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "על מנת ליצור אוספים משלך, יש צורך בחשבון Mozilla Add-ons."
 
+msgid "Create an Add-ons Account"
+msgstr "יצירת חשבון Add-ons"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "או <a href=\"%(login)s\">התחברות לחשבון הנוכחי שלך</a>"
+
 msgid "Footer logo"
 msgstr "לוגו תחתון"
 
@@ -6657,15 +7975,15 @@ msgid "Delete Locale"
 msgstr "מחיקת שפה"
 
 #, python-format
-msgid "The user \"%(user)s\" has been banned.user"
+msgid "The user \"%(user)s\" has been banned."
 msgstr ""
 
 #, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted.user"
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
 msgstr ""
 
 #, python-format
-msgid "The users \"%(users)s\" have been banned.users, "
+msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
@@ -6676,6 +7994,9 @@ msgstr "תמונת פרופיל"
 
 msgid "Addons"
 msgstr "תוספות"
+
+msgid "Ratings"
+msgstr "דירוגים"
 
 msgid "Activity Logs"
 msgstr "יומני פעילות"
@@ -6792,8 +8113,8 @@ msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
-"אין לך אפשרות למחוק את החשבון שלך אם נרשמת בתור <a href=\"%(link)s\">יוצר של תוספת כלשהי</a>. כדי למחוק את החשבון שלך, נא לבקש ממישהו בקבוצת הפיתוח שלך למחוק אותך מרשימת היוצרים של התוספות שלך. לאחר"
-" מכן יתאפשר לך למחוק את החשבון שלך כאן."
+"לא ניתן למחוק את החשבון שלך אם נרשמת בתור <a href=\"%(link)s\">יוצר של תוספת כלשהי</a>. כדי למחוק את החשבון שלך, נא לבקש ממישהו בקבוצת הפיתוח שלך למחוק אותך מרשימת היוצרים של התוספות שלך. לאחר מכן "
+"יתאפשר לך למחוק את החשבון שלך כאן."
 
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
 msgstr "על ידי לחיצה על כפתור המחיקה, החשבון שלך <strong>יימחק לצמיתות</strong>. זאת אומרת:"
@@ -6868,9 +8189,6 @@ msgstr "החליטו אילו אוספים צריכים להיות מוצגים 
 msgid "Display the collections I have created"
 msgstr "הצגת האוספים שיצרתי"
 
-msgid "Display collections I'm following"
-msgstr "הצגת האוספים שבמעקב"
-
 msgid "Notifications"
 msgstr "הודעות"
 
@@ -6940,9 +8258,6 @@ msgstr "ערכות הנושא הפופולריות ביותר שלי"
 
 msgid "Themes I've created"
 msgstr "ערכות נושא שיצרתי"
-
-msgid "Followed by Me"
-msgstr "ברשימת המעקב שלי"
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"

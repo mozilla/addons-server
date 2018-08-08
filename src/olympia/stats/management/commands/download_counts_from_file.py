@@ -111,6 +111,7 @@ class Command(BaseCommand):
 
         # Memoize the files to addon relations and the DownloadCounts.
         download_counts = {}
+
         # Perf: preload all the files and slugs once and for all.
         # This builds two dicts:
         # - One where each key (the file_id we get from the hive query) has
@@ -118,7 +119,9 @@ class Command(BaseCommand):
         # - One where each key (the add-on slug) has the add-on_id as value.
         files_to_addon = dict(File.objects.values_list('id',
                                                        'version__addon_id'))
-        slugs_to_addon = dict(Addon.objects.public().values_list('slug', 'id'))
+        slugs_to_addon = dict(
+            Addon.unfiltered.exclude(status=amo.STATUS_NULL)
+            .values_list('slug', 'id'))
 
         # Only accept valid sources, which are constants. The source must
         # either be exactly one of the "full" valid sources, or prefixed by one

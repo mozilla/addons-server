@@ -55,8 +55,6 @@ ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
 
 REVIEWER_ATTACHMENTS_PATH = MEDIA_ROOT + '/reviewer_attachment'
 
-FILESYSTEM_CACHE_ROOT = NETAPP_STORAGE_ROOT + '/cache'
-
 DATABASES = {}
 DATABASES['default'] = env.db('DATABASES_DEFAULT_URL')
 DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
@@ -78,12 +76,7 @@ SLAVE_DATABASES = ['slave']
 
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 
-CACHES = {
-    'filesystem': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': FILESYSTEM_CACHE_ROOT,
-    }
-}
+CACHES = {}
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
 CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
@@ -94,23 +87,11 @@ CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 
 LOGGING['loggers'].update({
     'z.task': {'level': logging.DEBUG},
-    'z.redis': {'level': logging.DEBUG},
     'z.pool': {'level': logging.ERROR},
 })
 
 # Update the logger name used for mozlog
 LOGGING['formatters']['json']['logger_name'] = 'http_app_addons_stage'
-
-
-# This is used for `django-cache-machine`
-REDIS_BACKEND = env('REDIS_BACKENDS_CACHE')
-
-REDIS_BACKENDS = {
-    'cache': get_redis_settings(env('REDIS_BACKENDS_CACHE')),
-    'cache_slave': get_redis_settings(env('REDIS_BACKENDS_CACHE_SLAVE')),
-    'master': get_redis_settings(env('REDIS_BACKENDS_MASTER')),
-    'slave': get_redis_settings(env('REDIS_BACKENDS_SLAVE'))
-}
 
 csp = 'csp.middleware.CSPMiddleware'
 
@@ -125,9 +106,7 @@ NEW_FEATURES = True
 
 REDIRECT_URL = 'https://outgoing.stage.mozaws.net/v1/'
 
-CLEANCSS_BIN = 'cleancss'
-UGLIFY_BIN = 'uglifyjs'
-ADDONS_LINTER_BIN = 'addons-linter'
+ADDONS_LINTER_BIN = 'node_modules/.bin/addons-linter'
 
 XSENDFILE_HEADER = 'X-Accel-Redirect'
 
@@ -179,9 +158,9 @@ FXA_CONFIG = {
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
-RAVEN_DSN = (
+RAVEN_JS_DSN = (
     'https://e35602be5252460d97587478bcc642df@sentry.prod.mozaws.net/77')
-RAVEN_ALLOW_LIST = ['addons.allizom.org', 'addons-cdn.allizom.org']
+RAVEN_JS_ALLOW_LIST = ['addons.allizom.org', 'addons-cdn.allizom.org']
 
 TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
     'TAAR_LITE_RECOMMENDATION_ENGINE_URL',

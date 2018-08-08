@@ -9,6 +9,7 @@ from olympia.addons.serializers import AddonSerializer
 from olympia.amo.utils import clean_nl, has_links, slug_validator
 from olympia.api.fields import (
     SlugOrPrimaryKeyRelatedField, SplitField, TranslationSerializerField)
+from olympia.api.utils import is_gate_active
 from olympia.bandwagon.models import Collection, CollectionAddon
 from olympia.users.models import DeniedName
 
@@ -75,7 +76,7 @@ class CollectionSerializer(serializers.ModelSerializer):
 class ThisCollectionDefault(object):
     def set_context(self, serializer_field):
         viewset = serializer_field.context['view']
-        self.collection = viewset.get_collection_viewset().get_object()
+        self.collection = viewset.get_collection()
 
     def __call__(self):
         return self.collection
@@ -92,7 +93,7 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CollectionAddon
-        fields = ('addon', 'downloads', 'notes', 'collection')
+        fields = ('addon', 'notes', 'collection')
         validators = [
             UniqueTogetherValidator(
                 queryset=CollectionAddon.objects.all(),
@@ -109,8 +110,16 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
         if self.partial:
             # addon is read_only but SplitField messes with the initialization.
             # DRF normally ignores updates to read_only fields, so do the same.
-            data.pop('addon')
+            data.pop('addon', None)
         return super(CollectionAddonSerializer, self).validate(data)
+
+    def to_representation(self, instance):
+        request = self.context.get('request')
+        out = super(
+            CollectionAddonSerializer, self).to_representation(instance)
+        if request and is_gate_active(request, 'collections-downloads-shim'):
+            out['downloads'] = 0
+        return out
 
 
 class CollectionWithAddonsSerializer(CollectionSerializer):

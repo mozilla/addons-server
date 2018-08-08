@@ -5,10 +5,12 @@ import environ
 import logging
 import os
 import socket
+import json
 
 from django.urls import reverse_lazy
 from django.utils.functional import lazy
 
+import raven
 from kombu import Queue
 
 import olympia.core.logger
@@ -53,11 +55,8 @@ def path(*folders):
     return os.path.join(ROOT, *folders)
 
 
-# We need to track this because hudson can't just call its checkout "olympia".
-# It puts it in a dir called "workspace".  Way to be, hudson.
-ROOT_PACKAGE = os.path.basename(ROOT)
-
 DEBUG = False
+
 # Ensure that exceptions aren't re-raised.
 DEBUG_PROPAGATE_EXCEPTIONS = False
 SILENCED_SYSTEM_CHECKS = (
@@ -426,6 +425,25 @@ X_FRAME_OPTIONS = 'DENY'
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_HSTS_SECONDS = 31536000
+
+# Prefer using `X-Forwarded-Port` header instead of `Port` header.
+# We are behind both, the ELB and nginx which forwards requests to our
+# uwsgi app.
+# Our current request flow is this:
+# Request -> ELB (terminates SSL) -> Nginx -> Uwsgi -> addons-server
+#
+# The ELB terminates SSL and properly sets `X-Forwarded-Port` header
+# as well as `X-Forwarded-Proto` and others.
+# Nginx on the other hand runs on port 81 and thus sets `Port` to be
+# 81 but to make CSRF detection and other mechanisms work properly
+# we need to know that we're running on either port 80 or 443, or do something
+# with SECURE_PROXY_SSL_HEADER but we shouldn't if we can avoid that.
+# So, let's simply grab the properly set `X-Forwarded-Port` header.
+# https://github.com/mozilla/addons-server/issues/8835#issuecomment-405340432
+#
+# This is also backwards compatible for our local setup since Django falls back
+# to using `Port` if `X-Forwarded-Port` isn't set.
+USE_X_FORWARDED_PORT = True
 
 MIDDLEWARE_CLASSES = (
     # Gzip (for API only) middleware needs to be executed after every
@@ -1216,15 +1234,9 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.cron._update_addons_current_version': {'queue': 'cron'},
     'olympia.addons.cron._update_appsupport': {'queue': 'cron'},
     'olympia.addons.cron._update_daily_theme_user_counts': {'queue': 'cron'},
-    'olympia.bandwagon.cron._drop_collection_recs': {'queue': 'cron'},
-    'olympia.bandwagon.cron._update_collections_subscribers': {
-        'queue': 'cron'},
-    'olympia.bandwagon.cron._update_collections_votes': {'queue': 'cron'},
 
     # Bandwagon
     'olympia.bandwagon.tasks.collection_meta': {'queue': 'bandwagon'},
-    'olympia.bandwagon.tasks.collection_votes': {'queue': 'bandwagon'},
-    'olympia.bandwagon.tasks.collection_watchers': {'queue': 'bandwagon'},
     'olympia.bandwagon.tasks.delete_icon': {'queue': 'bandwagon'},
 
     # Reviewers
@@ -1263,9 +1275,6 @@ CELERY_TASK_ROUTES = {
     'olympia.stats.tasks.index_download_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_theme_user_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_update_counts': {'queue': 'stats'},
-    'olympia.stats.tasks.update_addons_collections_downloads': {
-        'queue': 'stats'},
-    'olympia.stats.tasks.update_collections_total': {'queue': 'stats'},
     'olympia.stats.tasks.update_global_totals': {'queue': 'stats'},
 
     # Tags
@@ -1371,6 +1380,12 @@ LOGGING = {
             'level': logging.ERROR,
             'propagate': True,
         },
+        # Django CSRF related warnings
+        'django.security.csrf': {
+            'handlers': ['mozlog'],
+            'level': logging.WARNING,
+            'propagate': True
+        },
         'elasticsearch': {
             'handlers': ['null'],
             'level': logging.DEBUG,
@@ -1420,11 +1435,6 @@ LOGGING = {
         'z.pool': {
             'handlers': ['mozlog'],
             'level': logging.ERROR,
-            'propagate': False
-        },
-        'z.redis': {
-            'handlers': ['mozlog'],
-            'level': logging.DEBUG,
             'propagate': False
         },
         'z.task': {
@@ -1537,6 +1547,10 @@ MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
 MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
 
+# File uploads should have -rw-r--r-- permissions in order to be served by
+# nginx later one. The 0o prefix is intentional, this is an octal value.
+FILE_UPLOAD_PERMISSIONS = 0o644
+
 # RECAPTCHA: overload the following key settings in local_settings.py
 # with your keys.
 # Old recaptcha V1
@@ -1552,40 +1566,6 @@ ASYNC_SIGNALS = True
 # Performance for persona pagination, we hardcode the number of
 # available pages when the filter is up-and-coming.
 PERSONA_DEFAULT_PAGES = 10
-
-REDIS_LOCATION = os.environ.get(
-    'REDIS_LOCATION',
-    'redis://localhost:6379/0?socket_timeout=0.5')
-
-
-def get_redis_settings(uri):
-    import urlparse
-    urlparse.uses_netloc.append('redis')
-
-    result = urlparse.urlparse(uri)
-
-    options = dict(urlparse.parse_qsl(result.query))
-
-    if 'socket_timeout' in options:
-        options['socket_timeout'] = float(options['socket_timeout'])
-
-    return {
-        'HOST': result.hostname,
-        'PORT': result.port,
-        'PASSWORD': result.password,
-        'DB': int((result.path or '0').lstrip('/')),
-        'OPTIONS': options
-    }
-
-
-# This is used for `django-cache-machine`
-REDIS_BACKEND = REDIS_LOCATION
-
-REDIS_BACKENDS = {
-    'master': get_redis_settings(REDIS_LOCATION)
-}
-
-RESPONSYS_ID = env('RESPONSYS_ID', default=None)
 
 # Number of seconds before celery tasks will abort addon validation:
 VALIDATOR_TIMEOUT = 110
@@ -1782,6 +1762,7 @@ DRF_API_GATES = {
         'ratings-rating-shim',
         'ratings-title-shim',
         'l10n_flat_input_output',
+        'collections-downloads-shim'
     ),
     'v4': (
     ),
@@ -1832,8 +1813,35 @@ REST_FRAMEWORK = {
     'ORDERING_PARAM': 'sort',
 }
 
+
+def get_raven_release():
+    version_json = os.path.join(ROOT, 'version.json')
+    version = None
+
+    if os.path.exists(version_json):
+        try:
+            with open(version_json, 'rb') as fobj:
+                data = json.loads(fobj.read())
+                version = data.get('version') or data.get('commit')
+        except (IOError, KeyError):
+            version = None
+
+    if not version or version == 'origin/master':
+        try:
+            version = raven.fetch_git_sha(ROOT)
+        except raven.exceptions.InvalidGitRepository:
+            version = None
+    return version
+
+
 # This is the DSN to the Sentry service.
-SENTRY_DSN = env('SENTRY_DSN', default=os.environ.get('SENTRY_DSN'))
+RAVEN_CONFIG = {
+    'dsn': env('SENTRY_DSN', default=os.environ.get('SENTRY_DSN')),
+    # Automatically configure the release based on git information.
+    # This uses our `version.json` file if possible or tries to fetch
+    # the current git-sha.
+    'release': get_raven_release(),
+}
 
 # Automatically do 'from olympia import amo' when running shell_plus.
 SHELL_PLUS_POST_IMPORTS = (
@@ -1866,12 +1874,7 @@ CRON_JOBS = {
 
     'gc': 'olympia.amo.cron',
     'category_totals': 'olympia.amo.cron',
-    'collection_subscribers': 'olympia.amo.cron',
     'weekly_downloads': 'olympia.amo.cron',
-
-    'update_collections_subscribers': 'olympia.bandwagon.cron',
-    'update_collections_votes': 'olympia.bandwagon.cron',
-    'reindex_collections': 'olympia.bandwagon.cron',
 
     'compatibility_report': 'olympia.compat.cron',
 
@@ -1880,8 +1883,6 @@ CRON_JOBS = {
     'cleanup_extracted_file': 'olympia.files.cron',
     'cleanup_validation_results': 'olympia.files.cron',
 
-    'update_addons_collections_downloads': 'olympia.stats.cron',
-    'update_collections_total': 'olympia.stats.cron',
     'update_global_totals': 'olympia.stats.cron',
     'index_latest_stats': 'olympia.stats.cron',
 

@@ -2,7 +2,7 @@ from django.conf import settings
 
 from django import forms
 from django.utils.encoding import force_text
-from django.utils.html import conditional_escape, format_html_join
+from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext
 
@@ -10,25 +10,45 @@ from olympia.addons.models import Category
 
 
 class IconTypeSelect(forms.RadioSelect):
+    base_html = (
+        '<li>'
+        '<a href="#" class="{active}">'
+        '<img src="{static}img/addon-icons/{icon_name}-32.png" alt="">'
+        '</a>'
+        '<label for="{label_id}">{original_widget}</label>'
+        '</li>'
+    )
 
     def render(self, name, value, attrs=None, renderer=None):
-        args = []
+        output = []
 
-        for option in self.options(name, value, attrs):
+        for option in self.subwidgets(name, value, attrs):
             option_value = option['value']
+
+            option['widget'] = self.create_option(
+                name=name, value=option['value'], label=option['label'],
+                selected=option_value == value,
+                index=option['index'],
+                attrs=option['attrs'])
+
             if option_value.split('/')[0] == 'icon' or option_value == '':
                 icon_name = option['label']
-                args.append((
-                    'active' if option_value == value else '',
-                    settings.STATIC_URL,
-                    icon_name))
 
-        tmpl = (
-            '<li><a href="#" class="{}">'
-            '<img src="{}img/addon-icons/{}-32.png" alt="">'
-            '</a></li>')
+                output.append(format_html(
+                    self.base_html,
+                    active='active' if option_value == value else '',
+                    static=settings.STATIC_URL,
+                    icon_name=icon_name,
+                    label_id=option['widget']['attrs']['id'],
+                    original_widget=self._render(
+                        self.option_template_name, option)
+                ))
+            else:
+                output.append(format_html(
+                    '<li class="hide">{widget}</li>',
+                    widget=self._render(self.option_template_name, option)))
 
-        return format_html_join('', tmpl, args)
+        return mark_safe(u'\n'.join(output))
 
 
 class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):

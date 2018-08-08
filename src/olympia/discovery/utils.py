@@ -12,8 +12,6 @@ from django_statsd.clients import statsd
 import olympia.core.logger
 from olympia import amo
 
-from . import data
-
 
 log = olympia.core.logger.getLogger('z.amo')
 
@@ -41,17 +39,28 @@ def call_recommendation_server(id_or_guid, params, server):
 
 
 def get_recommendations(telemetry_id, params):
-    from olympia.addons.models import Addon  # circular import
+    from olympia.addons.models import Addon
+    from olympia.discovery.models import DiscoveryItem
     guids = call_recommendation_server(
         telemetry_id, params, settings.RECOMMENDATION_ENGINE_URL) or []
-    ids = (Addon.objects.public().filter(guid__in=guids)
-           .values_list('id', flat=True))
-    return [data.DiscoItem(addon_id=id_, is_recommendation=True)
-            for id_ in ids]
+    qs = Addon.objects.select_related('discoveryitem').public().filter(
+        guid__in=guids)
+    result = []
+    for addon in qs:
+        try:
+            addon.discoveryitem
+        except DiscoveryItem.DoesNotExist:
+            # This just means the add-on isn't "known" as a possible
+            # recommendation, but this is fine: create a dummy instance, and
+            # it will use the add-on name and description to build the data
+            # we need to return in the API.
+            addon.discoveryitem = DiscoveryItem(addon=addon)
+        result.append(addon.discoveryitem)
+    return result
 
 
 def replace_extensions(source, replacements):
     replacements = list(replacements)  # copy so we can pop it.
     return [replacements.pop(0)
-            if item.type == amo.ADDON_EXTENSION and replacements else item
-            for item in source]
+            if item.addon.type == amo.ADDON_EXTENSION and replacements
+            else item for item in source]

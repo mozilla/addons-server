@@ -567,7 +567,8 @@ class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
 
         # Put it into a dict so we can easily check for existence.
         set_notifications = {
-            user_nfn.notification.short: user_nfn for user_nfn in queryset}
+            user_nfn.notification.short: user_nfn for user_nfn in queryset
+            if user_nfn.notification}
         out = []
 
         if waffle.switch_is_active('activate-basket-sync'):

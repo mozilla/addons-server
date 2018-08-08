@@ -85,11 +85,10 @@ def clean_slug(instance, slug_field='slug'):
         translations = Translation.objects.filter(id=instance.name_id)
         if translations.exists():
             slug = translations[0]
-        else:
-            slug = get_random_slug()
 
     max_length = instance._meta.get_field(slug_field).max_length
-    slug = slugify(slug)[:max_length]
+    # We have to account for slug being reduced to '' by slugify
+    slug = slugify(slug or '')[:max_length] or get_random_slug()
 
     if DeniedSlug.blocked(slug):
         slug = slug[:max_length - 1] + '~'
@@ -1007,9 +1006,10 @@ class Addon(OnChangeMixin, ModelBase):
     @staticmethod
     def attach_related_versions(addons, addon_dict=None):
         if addon_dict is None:
-            addon_dict = dict((a.id, a) for a in addons)
+            addon_dict = {addon.id: addon for addon in addons}
 
-        all_ids = set(filter(None, (a._current_version_id for a in addons)))
+        all_ids = set(
+            filter(None, (addon._current_version_id for addon in addons)))
         versions = list(Version.objects.filter(id__in=all_ids).order_by())
         for version in versions:
             try:
@@ -1025,36 +1025,43 @@ class Addon(OnChangeMixin, ModelBase):
     @staticmethod
     def attach_listed_authors(addons, addon_dict=None):
         if addon_dict is None:
-            addon_dict = dict((a.id, a) for a in addons)
+            addon_dict = {addon.id: addon for addon in addons}
 
         qs = (UserProfile.objects
               .filter(addons__in=addons, addonuser__listed=True)
               .extra(select={'addon_id': 'addons_users.addon_id',
                              'position': 'addons_users.position'}))
         qs = sorted(qs, key=lambda u: (u.addon_id, u.position))
+        seen = set()
         for addon_id, users in itertools.groupby(qs, key=lambda u: u.addon_id):
             addon_dict[addon_id].listed_authors = list(users)
-        # FIXME: set listed_authors to empty list on addons without listed
-        # authors
+            seen.add(addon_id)
+        # set listed_authors to empty list on addons without listed authors.
+        [setattr(addon, 'listed_authors', []) for addon in addon_dict.values()
+         if addon.id not in seen]
 
     @staticmethod
     def attach_previews(addons, addon_dict=None, no_transforms=False):
         if addon_dict is None:
-            addon_dict = dict((a.id, a) for a in addons)
+            addon_dict = {a.id: a for a in addons}
 
         qs = Preview.objects.filter(addon__in=addons,
                                     position__gte=0).order_by()
         if no_transforms:
             qs = qs.no_transforms()
         qs = sorted(qs, key=lambda x: (x.addon_id, x.position, x.created))
-        for addon, previews in itertools.groupby(qs, lambda x: x.addon_id):
-            addon_dict[addon].all_previews = list(previews)
-        # FIXME: set all_previews to empty list on addons without previews.
+        seen = set()
+        for addon_id, previews in itertools.groupby(qs, lambda x: x.addon_id):
+            addon_dict[addon_id]._all_previews = list(previews)
+            seen.add(addon_id)
+        # set _all_previews to empty list on addons without previews.
+        [setattr(addon, '_all_previews', []) for addon in addon_dict.values()
+         if addon.id not in seen]
 
     @staticmethod
     def attach_static_categories(addons, addon_dict=None):
         if addon_dict is None:
-            addon_dict = dict((a.id, a) for a in addons)
+            addon_dict = {addon.id: addon for addon in addons}
 
         qs = (
             AddonCategory.objects
@@ -1136,7 +1143,7 @@ class Addon(OnChangeMixin, ModelBase):
         Returns the addon's thumbnail url or a default.
         """
         try:
-            preview = self.all_previews[0]
+            preview = self._all_previews[0]
             return preview.thumbnail_url
         except IndexError:
             return settings.STATIC_URL + '/img/icons/no-preview.png'
@@ -1319,7 +1326,7 @@ class Addon(OnChangeMixin, ModelBase):
 
         personas = (Addon.objects.filter(type=amo.ADDON_PERSONA)
                     .extra(select={'last_updated': 'created'}))
-        return dict(public=public, exp=exp, personas=personas)
+        return {'public': public, 'exp': exp, 'personas': personas}
 
     @cached_property
     def all_categories(self):
@@ -1335,10 +1342,10 @@ class Addon(OnChangeMixin, ModelBase):
                 return self.current_version.previews.all()
             return []
         else:
-            return self.all_previews
+            return self._all_previews
 
     @cached_property
-    def all_previews(self):
+    def _all_previews(self):
         """Exclude promo graphics."""
         return list(self.previews.exclude(position=-1))
 
@@ -1521,14 +1528,14 @@ def watch_disabled(old_attr=None, new_attr=None, instance=None, sender=None,
         old_attr = {}
     if new_attr is None:
         new_attr = {}
-    attrs = dict((k, v) for k, v in old_attr.items()
-                 if k in ('disabled_by_user', 'status'))
+    attrs = {key: value for key, value in old_attr.items()
+             if key in ('disabled_by_user', 'status')}
     if Addon(**attrs).is_disabled and not instance.is_disabled:
-        for f in File.objects.filter(version__addon=instance.id):
-            f.unhide_disabled_file()
+        for file_ in File.objects.filter(version__addon=instance.id):
+            file_.unhide_disabled_file()
     if instance.is_disabled and not Addon(**attrs).is_disabled:
-        for f in File.objects.filter(version__addon=instance.id):
-            f.hide_disabled_file()
+        for file_ in File.objects.filter(version__addon=instance.id):
+            file_.hide_disabled_file()
 
 
 def attach_translations(addons):
@@ -1537,7 +1544,7 @@ def attach_translations(addons):
 
 
 def attach_tags(addons):
-    addon_dict = dict((a.id, a) for a in addons)
+    addon_dict = {addon.id: addon for addon in addons}
     qs = (Tag.objects.not_denied().filter(addons__in=addon_dict)
           .values_list('addons__id', 'tag_text'))
     for addon, tags in sorted_groupby(qs, lambda x: x[0]):
@@ -2061,7 +2068,7 @@ class CompatOverride(ModelBase):
         if not overrides:
             return
 
-        id_map = dict((o.id, o) for o in overrides)
+        id_map = {override.id: override for override in overrides}
         qs = CompatOverrideRange.objects.filter(compat__in=id_map)
 
         for compat_id, ranges in sorted_groupby(qs, 'compat_id'):

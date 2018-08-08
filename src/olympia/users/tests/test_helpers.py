@@ -118,6 +118,9 @@ class TestAddonUsersList(TestPersonas, TestCase):
 
     def test_by(self):
         """Test that the by... bit works."""
+        # Need to re-fetch the add-on since the user was attached after the
+        # initial fetch in setUp().
+        self.addon = Addon.objects.get(pk=self.addon.pk)
         content = addon_users_list({'amo': amo}, self.addon)
         assert pq(content).text() == 'by %s' % self.addon.authors.all()[0].name
 

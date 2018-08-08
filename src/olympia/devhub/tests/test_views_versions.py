@@ -3,6 +3,7 @@ import datetime
 import re
 
 from django.core.files import temp
+from django.core.files.base import File as DjangoFile
 
 import mock
 
@@ -683,6 +684,22 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert not response.context['compat_form'].extra_forms
         assert doc('p.add-app')[0].attrib['class'] == 'add-app hide'
 
+    def test_existing_source_link(self):
+        tmp_file = temp.NamedTemporaryFile
+        with tmp_file(suffix=".zip", dir=temp.gettempdir()) as source_file:
+            source_file.write('a' * (2 ** 21))
+            source_file.seek(0)
+            self.version.source = DjangoFile(source_file)
+            self.version.save()
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        link = doc('.current-source-link')
+        assert link
+        assert link.text() == 'View current'
+        assert link[0].attrib['href'] == reverse(
+            'downloads.source', args=(self.version.pk, ))
+
     def test_should_accept_zip_source_file(self):
         tdir = temp.gettempdir()
         tmp_file = temp.NamedTemporaryFile
@@ -1080,9 +1097,17 @@ class TestVersionEditCompat(TestVersionEditBase):
         response = self.client.post(
             self.url, self.formset(data, initial_count=1))
         assert response.status_code == 200
-        assert response.context['compat_form'].non_form_errors() == (
+
+        compat_formset = response.context['compat_form']
+        assert compat_formset.non_form_errors() == (
             ['Need at least one compatible application.'])
         assert self.version.apps.get() == old_av
+
+        # Make sure the user can re-submit again from the page showing the
+        # validation error: we should display all previously present compat
+        # forms, with the DELETE bit off.
+        assert compat_formset.data == compat_formset.forms[0].data
+        assert compat_formset.forms[0]['DELETE'].value() is False
 
     def test_proper_min_max(self):
         form = self.client.get(

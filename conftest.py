@@ -94,7 +94,6 @@ def default_prefixer(settings):
 @pytest.yield_fixture(autouse=True)
 def test_pre_setup(request, tmpdir, settings):
     caches['default'].clear()
-    caches['filesystem'].clear()
 
     translation.trans_real.deactivate()
     # Django fails to clear this cache.

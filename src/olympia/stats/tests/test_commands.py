@@ -77,6 +77,36 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         assert update_count.oses == {u'WINNT': 5}
         assert update_count.locales == {u'en-us': 1, u'en-US': 4}
 
+    def test_update_counts_from_file_includes_disabled_addons(self):
+        addon_factory(
+            guid='{39e6cf40-02f6-4bda-b1ee-409910ffd9f9}',
+            slug='disabled-addon',
+            status=amo.STATUS_DISABLED)
+        addon_factory(
+            guid='9c444b87-1124-4fd2-b97f-8fb7e9be1820',
+            slug='incomplete-addon', status=amo.STATUS_NULL)
+
+        management.call_command('update_counts_from_file', hive_folder,
+                                date=self.date, stats_source=self.stats_source)
+        assert UpdateCount.objects.all().count() == 2
+
+        update_count = UpdateCount.objects.get(addon_id=3615)
+        # should be identical to `statuses.userEnabled`
+        assert update_count.count == 4
+        assert update_count.date == date(2014, 7, 10)
+        assert update_count.versions == {u'3.8': 2, u'3.7': 3}
+        assert update_count.statuses == {u'userDisabled': 1, u'userEnabled': 4}
+
+        update_count = UpdateCount.objects.get(addon__slug='disabled-addon')
+        assert update_count.count == 2
+        assert update_count.date == date(2014, 7, 10)
+        assert update_count.versions == {}
+        assert update_count.statuses == {u'userEnabled': 2}
+
+        # Make sure we didn't generate any stats for incomplete add-ons
+        assert not UpdateCount.objects.filter(
+            addon__slug='incomplete-addon').exists()
+
     def test_update_version(self):
         # Initialize the known addons and their versions.
         self.command.addons_versions = {3615: ['3.5', '3.6']}
@@ -182,6 +212,30 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         assert download_count.count == 3
         assert download_count.date == date(2014, 7, 10)
         assert download_count.sources == {u'search': 2, u'cb-dl-bob': 1}
+
+    def test_download_counts_from_file_includes_disabled_addons(self):
+        # We only exclude STATUS_NULL add-ons
+        addon_factory(slug='disabled-addon', status=amo.STATUS_DISABLED)
+        addon_factory(slug='incomplete-addon', status=amo.STATUS_NULL)
+
+        management.call_command('download_counts_from_file', hive_folder,
+                                date=self.date, stats_source=self.stats_source)
+
+        assert DownloadCount.objects.all().count() == 3
+        download_count = DownloadCount.objects.get(addon_id=3615)
+        assert download_count.count == 3
+        assert download_count.date == date(2014, 7, 10)
+        assert download_count.sources == {u'search': 2, u'cb-dl-bob': 1}
+
+        download_count = DownloadCount.objects.get(
+            addon__slug='disabled-addon')
+        assert download_count.count == 1
+        assert download_count.date == date(2014, 7, 10)
+        assert download_count.sources == {u'search': 1}
+
+        # Make sure we didn't generate any stats for incomplete add-ons
+        assert not DownloadCount.objects.filter(
+            addon__slug='incomplete-addon').exists()
 
     @mock.patch(
         'olympia.stats.management.commands.download_counts_from_file.'

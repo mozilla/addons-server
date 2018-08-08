@@ -26,14 +26,14 @@
 {{ dependencies_note(addon, 'discovery') }}
 
 {% if addon.type != amo.ADDON_PERSONA %}
-  {% if addon.all_previews|length > 0 %}
+  {% if addon.current_previews|length > 0 %}
     <div id="images">
       <ul class="nav-images">
         <li class="nav-prev"><a href="#" class="prev">{{ _('Previous') }}</a></li>
         <li class="nav-next"><a href="#" class="next">{{ _('Next') }}</a></li>
       </ul>
       <ul class="slider">
-        {%- for preview in addon.all_previews -%}
+        {%- for preview in addon.current_previews -%}
           <li class="panel">
             <a class="screenshot thumbnail" rel="jquery-lightbox"
                href="{{ preview.image_url }}" title="{{ preview.caption }}">

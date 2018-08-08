@@ -31,6 +31,7 @@ class TestViews(TestCase):
         self.addon = addon_factory(
             slug=u'my-addôn', file_kw={'size': 1024},
             version_kw={'version': '1.0'})
+        self.version = self.addon.current_version
         self.addon.current_version.update(created=self.days_ago(3))
         self.url_list = reverse('addons.versions', args=[self.addon.slug])
         self.url_detail = reverse(
@@ -174,6 +175,69 @@ class TestViews(TestCase):
         doc = self.get_content()
         compat_info = doc('.compat').text()
         assert not compat_info
+
+    def test_version_update_info(self):
+        self.version.releasenotes = {
+            'en-US': u'Fix for an important bug',
+            'fr': u'Quelque chose en français.\n\nQuelque chose d\'autre.'
+        }
+        self.version.save()
+
+        file_ = self.version.files.all()[0]
+        file_.update(platform=amo.PLATFORM_WIN.id)
+
+        # Copy the file to create a new one attached to the same version.
+        # This tests https://github.com/mozilla/addons-server/issues/8950
+        file_.pk = None
+        file_.platform = amo.PLATFORM_MAC.id
+        file_.save()
+
+        response = self.client.get(
+            reverse('addons.versions.update_info',
+                    args=(self.addon.slug, self.version.version)))
+        assert response.status_code == 200
+        assert response['Content-Type'] == 'application/xhtml+xml'
+
+        # pyquery is annoying to use with XML and namespaces. Use the HTML
+        # parser, but do check that xmlns attribute is present (required by
+        # Firefox for the notes to be shown properly).
+        doc = PyQuery(response.content, parser='html')
+        assert doc('html').attr('xmlns') == 'http://www.w3.org/1999/xhtml'
+        assert doc('p').html() == 'Fix for an important bug'
+
+        # Test update info in another language.
+        with self.activate(locale='fr'):
+            response = self.client.get(
+                reverse('addons.versions.update_info',
+                        args=(self.addon.slug, self.version.version)))
+            assert response.status_code == 200
+            assert response['Content-Type'] == 'application/xhtml+xml'
+            assert '<br/>' in response.content, (
+                'Should be using XHTML self-closing tags!')
+            doc = PyQuery(response.content, parser='html')
+            assert doc('html').attr('xmlns') == 'http://www.w3.org/1999/xhtml'
+            assert doc('p').html() == (
+                u"Quelque chose en français.<br/><br/>Quelque chose d'autre.")
+
+    def test_version_update_info_legacy_redirect(self):
+        response = self.client.get('/versions/updateInfo/%s' % self.version.id,
+                                   follow=True)
+        url = reverse('addons.versions.update_info',
+                      args=(self.version.addon.slug, self.version.version))
+        self.assert3xx(response, url, 301)
+
+    def test_version_update_info_legacy_redirect_deleted(self):
+        self.version.delete()
+        response = self.client.get(
+            '/en-US/firefox/versions/updateInfo/%s' % self.version.id)
+        assert response.status_code == 404
+
+    def test_version_update_info_no_unlisted(self):
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(
+            reverse('addons.versions.update_info',
+                    args=(self.addon.slug, self.version.version)))
+        assert response.status_code == 404
 
 
 class TestDownloadsBase(TestCase):

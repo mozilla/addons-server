@@ -65,7 +65,7 @@ script:
   - |
     if [[ $TRAVIS_EVENT_TYPE != "cron" ]]; then
       if [[ $TOXENV == "amo-locales-and-signing" ]]; then
-         ./scripts/start-autograph.sh
+         docker run --name autograph -d -p 5500:5500 -v $(pwd)/scripts/:/scripts/ mozilla/autograph:latest /go/bin/autograph -c /scripts/autograph_travis_test_config.yaml
       fi
       RUNNING_IN_CI=True tox
     fi
@@ -77,6 +77,9 @@ script:
           bash scripts/travis-extract-l10n.sh
       fi
     fi
+
+after_script:
+  - docker stop autograph
 
 notifications:
   irc:

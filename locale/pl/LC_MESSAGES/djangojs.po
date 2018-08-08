@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-11 10:53+0000\n"
+"POT-Creation-Date: 2018-08-02 01:13+0000\n"
 "PO-Revision-Date: 2015-11-03 11:53+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -48,7 +48,7 @@ msgid "Error with {0}"
 msgstr "Błąd z {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "Włączyliśmy nowy linter w celu przetworzenia dodatku. Pamiętaj o zgłoszeniu wszystkich problemów w serwisie GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -67,7 +67,7 @@ msgid "Validating {0}"
 msgstr "Weryfikowanie {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Rozmiar dodatku przekracza maksymalny rozmiar {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Otrzymano pustą odpowiedź z serwera; status: {0}"
@@ -95,16 +95,17 @@ msgid "Your add-on was validated with no errors or warnings."
 msgstr "Dodatek przeszedł weryfikację bez błędów i ostrzeżeń."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Zgłoszenie zostanie automatycznie podpisany."
 
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "Aktualizacja rozszerzenia WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
+"Zezwalamy na aktualizację i zachęcamy do niej, ale tego procesu nie można odwrócić. Kiedy użytkownicy zainstalują rozszerzenie WebExtension, nie będą mogli zainstalować przestarzałego dodatku."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "Portowanie przestarzałego dodatku Firefoksa na stronie MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Dołącz szczegółowe informacje o wersji dodatku (można zrobić to w kolejnym kroku)."
@@ -135,7 +136,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "Nie rozpoznano typu przesłanego pliku."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Rozmiar pliku przekracza maksymalny rozmiar {0}."
 
 msgid "You cancelled the upload."
 msgstr "Anulowano przesyłanie."
@@ -215,7 +216,7 @@ msgid "Week of {0}"
 msgstr "Tydzień: {0}"
 
 msgid " downloads"
-msgstr ""
+msgstr " pobrań"
 
 msgid "{0} users"
 msgstr "użytkownicy: {0}"
@@ -297,13 +298,13 @@ msgid "Add-ons Manager"
 msgstr "Menedżer dodatków"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Promocja w Menedżerze dodatków"
 
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Polecane w Menedżerze dodatków"
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Więcej informacji w Menedżerze dodatków"
 
 msgid "Search Suggestions"
 msgstr "Sugestie wyszukiwania"
@@ -679,7 +680,7 @@ msgid "Works with {app}"
 msgstr "Działa z {app} {min} - {max}"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Tylko w Firefoksie — pobierz Firefoksa teraz!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Przepraszamy. Aby zainstalować wtyczkę wyszukiwarki, potrzebna jest przeglądarka zbudowana w oparciu o technologię Mozilli – taka jak np. Firefox."
@@ -788,16 +789,16 @@ msgid "No version notes found"
 msgstr "Brak informacji o wersji"
 
 msgid "Review Text"
-msgstr ""
+msgstr "Treść opinii"
 
 msgid "Review notes found"
-msgstr ""
+msgstr "Znaleziono uwagi do opinii"
 
 msgid "Average Reviews"
-msgstr ""
+msgstr "Średnia opinia"
 
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Liczba opinii"
 
 msgid "Requested Info"
 msgstr "Żądana informacja"
@@ -815,16 +816,16 @@ msgid "Approved"
 msgstr "Zaakceptowano"
 
 msgid "No results found"
-msgstr ""
+msgstr "Nic nie znaleziono"
 
 msgid "Theme"
-msgstr ""
+msgstr "Motyw"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Recenzent"
 
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 msgid "All tests passed successfully."
 msgstr "Wszystkie testy zostały zaliczone."
@@ -842,7 +843,7 @@ msgid "Warning"
 msgstr "Ostrzeżenie"
 
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "Wiersz: {0}, kolumna: {1} {2}"
 
 #, fuzzy
 msgid "{0} line {1}"

@@ -22,8 +22,6 @@ DEBUG = False
 # We won't actually send an email.
 SEND_REAL_EMAIL = True
 
-PAYPAL_PERMISSIONS_URL = ''
-
 SITE_URL = CDN_HOST = 'http://testserver'
 
 STATIC_URL = '%s/static/' % CDN_HOST
@@ -46,10 +44,6 @@ CACHES = {
             'ACTUAL_BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         }
     },
-    'filesystem': {  # In real settings it's a filesystem cache, not here.
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'olympia-filesystem',
-    }
 }
 
 # Overrides whatever storage you might have put in local settings.

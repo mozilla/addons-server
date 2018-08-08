@@ -693,7 +693,8 @@ def json_file_validation(request, addon_id, addon, file_id):
 
         # This API is, unfortunately, synchronous, so wait for the
         # task to complete and return the result directly.
-        result = tasks.validate(file, synchronous=True).get()
+        pk = tasks.validate(file, synchronous=True).get()
+        result = FileValidation.objects.get(pk=pk)
 
     return {'validation': result.processed_validation, 'error': None}
 
@@ -912,7 +913,6 @@ def addons_section(request, addon_id, addon, section, editable=False):
             if cat_form:
                 if cat_form.is_valid():
                     cat_form.save()
-                    addon.save()
                 else:
                     editable = True
             if dependency_form:
@@ -1012,7 +1012,7 @@ def ajax_upload_image(request, upload_type, addon_id=None):
             if is_icon:
                 errors.append(
                     ugettext('Please use images smaller than %dMB.')
-                    % (max_size / 1024 / 1024 - 1))
+                    % (max_size / 1024 / 1024))
             if is_persona:
                 errors.append(
                     ugettext('Images cannot be larger than %dKB.')

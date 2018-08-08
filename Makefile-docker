@@ -68,12 +68,7 @@ help_submake:
 
 initialize_db:
 	rm -rf ./user-media/* ./tmp/*
-	# The --no-utf8 is a temporary workaround for https://github.com/mozilla/addons-server/issues/8593
-	# The actual fix is pushed upstream in https://github.com/django-extensions/django-extensions/issues/1213
-	# as https://github.com/django-extensions/django-extensions/pull/1214
-	# So this will have to be reverted once an upstream fix lands.  --no-utf8 here actually *enables*
-	# utf-8 support.
-	python manage.py reset_db --no-utf8
+	python manage.py reset_db
 	python manage.py migrate --noinput --run-syncdb
 	python manage.py loaddata initial.json
 	python manage.py import_prod_versions
@@ -96,6 +91,10 @@ populate_data:
 	# Also update category counts (denormalized field)
 	python manage.py cron category_totals
 	python manage.py update_permissions_from_mc
+
+cleanup_python_build_dir:
+	# Work arounds "Multiple .dist-info directories" issue.
+	rm -rf /deps/build/*
 
 install_python_common_dependencies:
 	# Can't use --progress-bar=off for system packages as long as our docker image
@@ -121,7 +120,7 @@ copy_node_js:
 	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
 	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
 
-update_deps: install_python_dev_dependencies install_node_dependencies
+update_deps: cleanup_python_build_dir install_python_dev_dependencies install_node_dependencies
     # Make sure we pull our latest mozilla-product-data.
     # There were scenarios where this wouldn't happen automatically during our CircleCI ui-tests so we enforce it here as a workaround.
 	python manage.py update_product_details
@@ -142,12 +141,7 @@ reindex:
 setup-ui-tests:
 	rm -rf ./user-media/* ./tmp/*
 	# Reset the database and fake database migrations
-	# The --no-utf8 is a temporary workaround for https://github.com/mozilla/addons-server/issues/8593
-	# The actual fix is pushed upstream in https://github.com/django-extensions/django-extensions/issues/1213
-	# as https://github.com/django-extensions/django-extensions/pull/1214
-	# So this will have to be reverted once an upstream fix lands. --no-utf8 here actually *enables*
-	# utf-8 support.
-	python manage.py reset_db --noinput --no-utf8
+	python manage.py reset_db --noinput
 	python manage.py migrate --noinput --run-syncdb
 	schematic --fake src/olympia/migrations/
 
@@ -162,14 +156,14 @@ setup-ui-tests:
 	# Create a proper superuser that can be used to access the API
 	python manage.py waffle_switch super-create-accounts on --create
 	python manage.py waffle_switch activate-autograph-signing on --create
-	python manage.py createsuperuser --email=uitest@mozilla.com --username=uitest --noinput --add-to-supercreate-group --save-api-credentials=tests/ui/variables.json --hostname=olympia-frontend.test
+	python manage.py createsuperuser --email=uitest@restmail.net --username=uitest --noinput --add-to-supercreate-group --hostname=olympia-frontend.test
 
 ui-tests: setup-ui-tests
 	# Generate test add-ons and force a reindex to make sure things are updated
 	python manage.py generate_ui_test_addons
 	python manage.py reindex --force --noinput --wipe
-
 	pip install --progress-bar=off --no-deps -r requirements/uitests.txt
+	pip install --progress-bar=off --no-deps -r requirements/uitests_no_hash.txt
 
 perf-tests: setup-ui-tests
 	pip install --progress-bar=off --no-deps -r requirements/perftests.txt

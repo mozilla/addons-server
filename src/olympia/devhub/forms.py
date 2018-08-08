@@ -96,6 +96,18 @@ class DeleteForm(forms.Form):
 
 class LicenseRadioSelect(forms.RadioSelect):
 
+    def get_context(self, name, value, attrs):
+        context = super(LicenseRadioSelect, self).get_context(
+            name, value, attrs)
+
+        # Make sure the `class` is only set on the radio fields and
+        # not on the `ul`. This avoids style issues among other things.
+        # See https://github.com/mozilla/addons-server/issues/8902
+        # and https://github.com/mozilla/addons-server/issues/8920
+        del context['widget']['attrs']['class']
+
+        return context
+
     def create_option(self, name, value, label, selected, index,
                       subindex=None, attrs=None):
         context = super(LicenseRadioSelect, self).create_option(
@@ -117,6 +129,13 @@ class LicenseRadioSelect(forms.RadioSelect):
 
 
 class LicenseForm(AMOModelForm):
+    # Hack to restore behavior from pre Django 1.10 times.
+    # Django 1.10 enabled `required` rendering for required widgets. That
+    # wasn't the case before, this should be fixed properly but simplifies
+    # the actual Django 1.11 deployment for now.
+    # See https://github.com/mozilla/addons-server/issues/8912 for proper fix.
+    use_required_attribute = False
+
     builtin = forms.TypedChoiceField(
         choices=[], coerce=int,
         widget=LicenseRadioSelect(attrs={'class': 'license'}))
@@ -278,23 +297,19 @@ class WithSourceMixin(object):
 
 class SourceFileInput(forms.widgets.ClearableFileInput):
     """
-    We need to customize the URL link.
-    1. Remove %(initial)% from template_with_initial
-    2. Prepend the new link (with customized text)
+    Like ClearableFileInput but with custom link URL and text for the initial
+    data. Uses a custom template because django's is not flexible enough for
+    our needs.
     """
+    initial_text = _('View current')
+    template_name = 'devhub/addons/includes/source_file_input.html'
 
-    template_with_initial = '%(clear_template)s<br />%(input_text)s: %(input)s'
-
-    def render(self, name, value, attrs=None):
-        output = super(SourceFileInput, self).render(name, value, attrs)
+    def get_context(self, name, value, attrs):
+        context = super(SourceFileInput, self).get_context(name, value, attrs)
         if value and hasattr(value, 'instance'):
-            url = reverse('downloads.source', args=(value.instance.pk, ))
-            params = {
-                'url': url,
-                'output': output,
-                'label': ugettext('View current')}
-            output = '<a href="%(url)s">%(label)s</a> %(output)s' % params
-        return output
+            context['download_url'] = reverse(
+                'downloads.source', args=(value.instance.pk, ))
+        return context
 
 
 class VersionForm(WithSourceMixin, forms.ModelForm):
@@ -431,6 +446,15 @@ class BaseCompatFormSet(BaseModelFormSet):
                              if not f.cleaned_data.get('DELETE', False)])
 
         if not apps:
+            # At this point, we're raising a global error and re-displaying the
+            # applications that were present before. We don't want to keep the
+            # hidden delete fields in the data attribute, cause that's used to
+            # populate initial data for all forms, and would therefore make
+            # those delete fields active again.
+            self.data = {k: v for k, v in self.data.iteritems()
+                         if not k.endswith('-DELETE')}
+            for form in self.forms:
+                form.data = self.data
             raise forms.ValidationError(
                 ugettext('Need at least one compatible application.'))
 

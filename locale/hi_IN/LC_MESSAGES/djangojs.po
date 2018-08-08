@@ -1,57 +1,60 @@
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-07-11 10:53+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2018-08-02 01:13+0000\n"
+"PO-Revision-Date: 2018-08-04 06:15+0000\n"
+"Last-Translator: Mahtab <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: hi_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} स्टार"
+msgstr[1] "{0} स्टार"
 
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "सर्वर से संपर्क करने में एक समस्या थी."
 
 msgid "Select a file..."
-msgstr ""
+msgstr "एक फ़ाइल चुनें..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr ""
+msgstr "आपके ऐड-ऑन के आखिर में .zip, .xpi, .crx, .jar या .xml होना चाहिए"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% पूर्ण"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{1} में से {0}"
 
 msgid "Cancel"
-msgstr ""
+msgstr "रद्द करें"
 
 msgid "Uploading {0}"
-msgstr ""
+msgstr "{0} अपलोड हो रहा है"
 
 msgid "Error with {0}"
-msgstr ""
+msgstr "{0} के साथ त्रुटि"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "हमने आपके ऐड-ऑन को संसोधित करने के लिए एक नया लिंटर सक्षम किया है. कृपया GitHub पर इससे जुड़े किसी भी मुद्दे की रिपोर्ट करें"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "आपका ऐड-ऑन {0} त्रुटि के कारण मान्यकरण में असफल रहा."
+msgstr[1] "आपका ऐड-ऑन {0} त्रुटियों के कारण मान्यकरण में असफल रहा."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -59,38 +62,38 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "See full validation report"
-msgstr ""
+msgstr "पूर्ण मान्यकरण रिपोर्ट देखें"
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "{0} कि पुष्ठी जरी है"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "आपका ऐड-ऑन अधिकतम आकार {0} से अधिक है."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "सर्वर से एक खाली प्रतिक्रिया प्राप्त हुयी; स्थिति: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "सत्यापन करते समय अप्रत्याशित सर्वर त्रुटि."
 
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "मान्य क्रिया समाप्त {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "आपका ऐड-ऑन सत्यापन समाप्त हो गया है, इसकी मैन्युअल रूप से समीक्षा की जाएगी."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "आपके ऐड-ऑन को बिना किसी त्रुटी तथा {0} चेतावनी के साथ मान्य कर दिया गया."
+msgstr[1] "आपके ऐड-ऑन को बिना किसी त्रुटी तथा {0} चेतावनीयों के साथ मान्य कर दिया गया."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "आपके ऐड-ऑन को बिना किसी त्रुटी तथा {0} संदेश के साथ मान्य कर दिया गया."
+msgstr[1] "आपके ऐड-ऑन को बिना किसी त्रुटी तथा {0} संदेशों के साथ मान्य कर दिया गया."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "आपके ऐड-ऑन को बिना किसी त्रुटी या चेतावनी के मान्य कर दिया गया."
 
 msgid "Your submission will be automatically signed."
 msgstr ""
@@ -180,13 +183,13 @@ msgid "Your Theme's Name"
 msgstr ""
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "समीक्षा के लिए चिह्नित"
 
 msgid "Your input is required"
-msgstr ""
+msgstr "आपके इनपुट की आवश्यकता है"
 
 msgid "Marked for deletion"
-msgstr ""
+msgstr "हटाने के लिए चिह्नित"
 
 msgid "Updating results&hellip;"
 msgstr ""

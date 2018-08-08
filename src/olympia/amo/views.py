@@ -24,8 +24,7 @@ def monitor(request):
     status_summary = {}
     results = {}
 
-    checks = ['memcache', 'libraries', 'elastic', 'path',
-              'rabbitmq', 'redis', 'signer']
+    checks = ['memcache', 'libraries', 'elastic', 'path', 'rabbitmq', 'signer']
 
     for check in checks:
         with statsd.timer('monitor.%s' % check) as timer:
@@ -97,8 +96,13 @@ def handler500(request):
 
 @non_atomic_requests
 def csrf_failure(request, reason=''):
-    return render(request, 'amo/403.html',
-                  {'because_csrf': 'CSRF' in reason}, status=403)
+    from django.middleware.csrf import REASON_NO_REFERER, REASON_NO_CSRF_COOKIE
+    ctx = {
+        'reason': reason,
+        'no_referer': reason == REASON_NO_REFERER,
+        'no_cookie': reason == REASON_NO_CSRF_COOKIE,
+    }
+    return render(request, 'amo/403.html', ctx, status=403)
 
 
 @non_atomic_requests

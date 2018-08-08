@@ -61,7 +61,7 @@ class File(OnChangeMixin, ModelBase):
     # The original hash of the file, before we sign it, or repackage it in
     # any other way.
     original_hash = models.CharField(max_length=255, default='')
-    jetpack_version = models.CharField(max_length=10, null=True)
+    jetpack_version = models.CharField(max_length=10, null=True, blank=True)
     status = models.PositiveSmallIntegerField(
         choices=STATUS_CHOICES.items(), default=amo.STATUS_AWAITING_REVIEW)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
@@ -69,7 +69,7 @@ class File(OnChangeMixin, ModelBase):
     strict_compatibility = models.BooleanField(default=False)
     # The XPI contains JS that calls require("chrome").
     requires_chrome = models.BooleanField(default=False)
-    reviewed = models.DateTimeField(null=True)
+    reviewed = models.DateTimeField(null=True, blank=True)
     # The `binary` field is used to store the flags from amo-validator when it
     # files files with binary extensions or files that may contain binary
     # content.
@@ -309,36 +309,46 @@ class File(OnChangeMixin, ModelBase):
         """Returns the current path of the file, whether or not it is
         guarded."""
 
-        return (self.guarded_file_path if self.status == amo.STATUS_DISABLED
-                else self.file_path)
+        file_disabled = self.status == amo.STATUS_DISABLED
+        addon_disabled = self.addon.is_disabled
+        if file_disabled or addon_disabled:
+            return self.guarded_file_path
+        else:
+            return self.file_path
 
     @property
     def extension(self):
         return os.path.splitext(self.filename)[-1]
 
-    @classmethod
-    def mv(cls, src, dst, msg):
-        """Move a file from src to dst."""
+    def move_file(self, source, destination, log_message):
+        """Move a file from `source` to `destination`."""
+        # Make sure we are passing bytes to Python's io system.
+        source, destination = force_bytes(source), force_bytes(destination)
+
         try:
-            if storage.exists(src):
-                log.info(msg % (src, dst))
-                move_stored_file(src, dst)
-        except UnicodeEncodeError:
-            msg = 'Move Failure: %s %s' % (force_bytes(src), force_bytes(dst))
-            log.error(msg)
+            if storage.exists(source):
+                log.info(log_message.format(
+                    source=source, destination=destination))
+                move_stored_file(source, destination)
+        except (UnicodeEncodeError, IOError):
+            msg = 'Move Failure: {} {}'.format(
+                force_bytes(source), force_bytes(destination))
+            log.exception(msg)
 
     def hide_disabled_file(self):
         """Move a disabled file to the guarded file path."""
         if not self.filename:
             return
         src, dst = self.file_path, self.guarded_file_path
-        self.mv(src, dst, 'Moving disabled file: %s => %s')
+        self.move_file(
+            src, dst, 'Moving disabled file: {source} => {destination}')
 
     def unhide_disabled_file(self):
         if not self.filename:
             return
         src, dst = self.guarded_file_path, self.file_path
-        self.mv(src, dst, 'Moving undisabled file: %s => %s')
+        self.move_file(
+            src, dst, 'Moving undisabled file: {source} => {destination}')
 
     _get_localepicker = re.compile('^locale browser ([\w\-_]+) (.*)$', re.M)
 

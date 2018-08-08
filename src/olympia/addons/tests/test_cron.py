@@ -78,7 +78,7 @@ class TestLastUpdated(TestCase):
 
 
 class TestHideDisabledFiles(TestCase):
-    msg = 'Moving disabled file: %s => %s'
+    msg = 'Moving disabled file: {source} => {destination}'
 
     def setUp(self):
         super(TestHideDisabledFiles, self).setUp()
@@ -101,7 +101,7 @@ class TestHideDisabledFiles(TestCase):
             cron.hide_disabled_files()
             assert not os_mock.path.exists.called, (addon_status, file_status)
 
-    @mock.patch('olympia.files.models.File.mv')
+    @mock.patch('olympia.files.models.File.move_file')
     def test_move_user_disabled_addon(self, mv_mock):
         # Use Addon.objects.update so the signal handler isn't called.
         Addon.objects.filter(id=self.addon.id).update(
@@ -120,7 +120,7 @@ class TestHideDisabledFiles(TestCase):
         # There's only 2 files, both should have been moved.
         assert mv_mock.call_count == 2
 
-    @mock.patch('olympia.files.models.File.mv')
+    @mock.patch('olympia.files.models.File.move_file')
     def test_move_admin_disabled_addon(self, mv_mock):
         Addon.objects.filter(id=self.addon.id).update(
             status=amo.STATUS_DISABLED)
@@ -138,7 +138,7 @@ class TestHideDisabledFiles(TestCase):
         # There's only 2 files, both should have been moved.
         assert mv_mock.call_count == 2
 
-    @mock.patch('olympia.files.models.File.mv')
+    @mock.patch('olympia.files.models.File.move_file')
     def test_move_disabled_file(self, mv_mock):
         Addon.objects.filter(id=self.addon.id).update(status=amo.STATUS_PUBLIC)
         File.objects.filter(id=self.f1.id).update(status=amo.STATUS_DISABLED)
@@ -150,6 +150,34 @@ class TestHideDisabledFiles(TestCase):
         mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path,
                                    self.msg)
         assert mv_mock.call_count == 1
+
+    @mock.patch('olympia.files.models.storage.exists')
+    @mock.patch('olympia.files.models.move_stored_file')
+    def test_move_disabled_addon_ioerror(self, mv_mock, storage_exists):
+        # raise an IOError for the first file, we need to make sure
+        # that the second one is still being properly processed
+        mv_mock.side_effect = [IOError, None]
+        storage_exists.return_value = True
+
+        # Use Addon.objects.update so the signal handler isn't called.
+        Addon.objects.filter(id=self.addon.id).update(
+            status=amo.STATUS_PUBLIC, disabled_by_user=True)
+        File.objects.update(status=amo.STATUS_PUBLIC)
+
+        cron.hide_disabled_files()
+
+        # Check that we called `move_stored_file` for f2 properly
+        f2 = self.f2
+        mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path)
+
+        # Check that we called `move_stored_file` for f1 properly
+        f1 = self.f1
+        mv_mock.call_args = mv_mock.call_args_list[0]
+        mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path)
+
+        # Make sure we called `mv` twice despite an `IOError` for the first
+        # file
+        assert mv_mock.call_count == 2
 
 
 class TestUnhideDisabledFiles(TestCase):

@@ -26,7 +26,7 @@ Firefox (about:addons).
     :>json string results[].heading: The heading for this item. May contain some HTML tags.
     :>json string|null results[].description: The description for this item, if any. May contain some HTML tags.
     :>json boolean results[].is_recommendation: If this item was from the recommendation service, rather than static curated content.
-    :>json object results[].addon: The :ref:`add-on <addon-detail-object>` for this item. Only a subset of fields are present: ``id``, ``current_version`` (with only the ``compatibility`` and ``files`` fields present), ``guid``, ``icon_url``, ``name``, ``slug``, ``theme_data``, ``type`` and ``url``.
+    :>json object results[].addon: The :ref:`add-on <addon-detail-object>` for this item. Only a subset of fields are present: ``id``, ``current_version`` (with only the ``compatibility`` and ``files`` fields present), ``guid``, ``icon_url``, ``name``, ``previews``, ``slug``, ``theme_data``, ``type`` and ``url``.
 
 
 -------------------------

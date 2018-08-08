@@ -56,8 +56,6 @@ ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
 
 REVIEWER_ATTACHMENTS_PATH = MEDIA_ROOT + '/reviewer_attachment'
 
-FILESYSTEM_CACHE_ROOT = NETAPP_STORAGE_ROOT + '/cache'
-
 DATABASES = {}
 DATABASES['default'] = env.db('DATABASES_DEFAULT_URL')
 DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
@@ -79,12 +77,7 @@ SLAVE_DATABASES = ['slave']
 
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 
-CACHES = {
-    'filesystem': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': FILESYSTEM_CACHE_ROOT,
-    }
-}
+CACHES = {}
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
 CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
@@ -99,22 +92,11 @@ LOGGING['loggers'].update({
     'requests': {'level': logging.WARNING},
     'z.addons': {'level': logging.DEBUG},
     'z.task': {'level': logging.DEBUG},
-    'z.redis': {'level': logging.DEBUG},
     'z.pool': {'level': logging.ERROR},
 })
 
 # Update the logger name used for mozlog
 LOGGING['formatters']['json']['logger_name'] = 'http_app_addons_dev'
-
-# This is used for `django-cache-machine`
-REDIS_BACKEND = env('REDIS_BACKENDS_CACHE')
-
-REDIS_BACKENDS = {
-    'cache': get_redis_settings(env('REDIS_BACKENDS_CACHE')),
-    'cache_slave': get_redis_settings(env('REDIS_BACKENDS_CACHE_SLAVE')),
-    'master': get_redis_settings(env('REDIS_BACKENDS_MASTER')),
-    'slave': get_redis_settings(env('REDIS_BACKENDS_SLAVE'))
-}
 
 csp = 'csp.middleware.CSPMiddleware'
 
@@ -129,9 +111,7 @@ NEW_FEATURES = True
 
 REDIRECT_URL = 'https://outgoing.stage.mozaws.net/v1/'
 
-CLEANCSS_BIN = 'cleancss'
-UGLIFY_BIN = 'uglifyjs'
-ADDONS_LINTER_BIN = 'addons-linter'
+ADDONS_LINTER_BIN = 'node_modules/.bin/addons-linter'
 
 XSENDFILE_HEADER = 'X-Accel-Redirect'
 
@@ -185,9 +165,9 @@ CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
     ['amo.addons-dev.allizom.org', 'localhost:3000']
 )
 
-RAVEN_DSN = (
+RAVEN_JS_DSN = (
     'https://5686e2a8f14446a3940c651c6a14dc73@sentry.prod.mozaws.net/75')
-RAVEN_ALLOW_LIST = ['addons-dev.allizom.org', 'addons-dev-cdn.allizom.org']
+RAVEN_JS_ALLOW_LIST = ['addons-dev.allizom.org', 'addons-dev-cdn.allizom.org']
 
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-east-1.amazonaws.com/927034868273/'
