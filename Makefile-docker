@@ -163,6 +163,7 @@ ui-tests: setup-ui-tests
 	python manage.py generate_ui_test_addons
 	python manage.py reindex --force --noinput --wipe
 	pip install --progress-bar=off --no-deps -r requirements/uitests.txt
+	pip install --progress-bar=off --no-deps -r requirements/uitests_no_hash.txt
 
 perf-tests: setup-ui-tests
 	pip install --progress-bar=off --no-deps -r requirements/perftests.txt

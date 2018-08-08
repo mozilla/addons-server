@@ -495,6 +495,10 @@ def mine(request, username=None, slug=None):
 
 
 class CollectionViewSet(ModelViewSet):
+    # Note: CollectionAddonViewSet will call CollectionViewSet().get_object(),
+    # causing the has_object_permission() method of these permissions to be
+    # called. It will do so without setting an action however, bypassing the
+    # PreventActionPermission() parts.
     permission_classes = [
         AnyOf(
             # Collection authors can do everything.
@@ -539,7 +543,7 @@ class CollectionViewSet(ModelViewSet):
             request=self.request
         )
         # Set this to avoid a pointless lookup loop.
-        collection_addons_viewset.collection_viewset = self
+        collection_addons_viewset.collection = self.get_object()
         # This needs to be list to make the filtering work.
         collection_addons_viewset.action = 'list'
         qs = collection_addons_viewset.get_queryset()
@@ -580,14 +584,18 @@ class CollectionAddonViewSet(ModelViewSet):
                               'added': 'created'}
     ordering = ('-addon__weekly_downloads',)
 
-    def get_collection_viewset(self):
-        if not hasattr(self, 'collection_viewset'):
-            # CollectionViewSet's permission_classes are good for us.
-            self.collection_viewset = CollectionViewSet(
+    def get_collection(self):
+        if not hasattr(self, 'collection'):
+            # We're re-using CollectionViewSet and making sure its get_object()
+            # method is called, which triggers the permission checks for that
+            # class so we don't need our own.
+            # Note that we don't pass `action`, so the PreventActionPermission
+            # part of the permission checks won't do anything.
+            self.collection = CollectionViewSet(
                 request=self.request,
                 kwargs={'user_pk': self.kwargs['user_pk'],
-                        'slug': self.kwargs['collection_slug']})
-        return self.collection_viewset
+                        'slug': self.kwargs['collection_slug']}).get_object()
+        return self.collection
 
     def get_object(self):
         self.lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
@@ -600,7 +608,7 @@ class CollectionAddonViewSet(ModelViewSet):
     def get_queryset(self):
         qs = (
             CollectionAddon.objects
-            .filter(collection=self.get_collection_viewset().get_object())
+            .filter(collection=self.get_collection())
             .prefetch_related('addon'))
 
         filter_param = self.request.GET.get('filter')
