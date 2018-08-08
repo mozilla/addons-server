@@ -2,7 +2,8 @@
 import json
 
 from olympia import amo
-from olympia.amo.tests import APITestClient, ESTestCase, reverse_ns
+from olympia.amo.tests import (
+    APITestClient, ESTestCase, reverse_ns, create_switch)
 
 
 class TestRankingScenarios(ESTestCase):
@@ -45,6 +46,12 @@ class TestRankingScenarios(ESTestCase):
 
     @classmethod
     def setUpTestData(cls):
+        # For simplicity reasons, let's simply use the new algorithm
+        # we're most certainly going to put live anyway
+        # Also, this needs to be created before `setUpTestData`
+        # since we need that setting on index-creation time.
+        create_switch('es-use-classic-similarity')
+
         super(TestRankingScenarios, cls).setUpTestData()
 
         # This data was taken from our production add-ons to test
