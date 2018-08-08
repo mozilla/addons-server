@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 07:55+0000\n"
+"PO-Revision-Date: 2018-08-08 10:08+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -258,31 +258,31 @@ msgstr "Categoria"
 
 #: static/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "Cercar themas pro <b>{0}</b>"
 
 #: static/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "Cercar applicationes pro <b>{0}</b>"
 
 #: static/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "Cercar <b>{0}</b> in le additivo"
+msgstr "Cercar additivos pro <b>{0}</b>"
 
 #: static/js/impala/users.js:33
 msgid "Use original"
-msgstr ""
+msgstr "Usar original"
 
 #: static/js/impala/stats/chart.js:267
 msgid "Week of {0}"
-msgstr ""
+msgstr "Septimana del {0}"
 
 #: static/js/impala/stats/chart.js:269
 msgid " downloads"
-msgstr ""
+msgstr " files discargate"
 
 #: static/js/impala/stats/chart.js:270
 msgid "{0} users"
-msgstr ""
+msgstr "{0} usatores"
 
 #: static/js/impala/stats/chart.js:271
 msgid "{0} add-ons"
@@ -294,7 +294,7 @@ msgstr "{0} collectiones"
 
 #: static/js/impala/stats/chart.js:273
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} revisiones"
 
 #: static/js/impala/stats/chart.js:275
 msgid "{0} sales"
