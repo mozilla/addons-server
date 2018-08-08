@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 19:11+0000\n"
+"PO-Revision-Date: 2018-08-08 19:14+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2978,10 +2978,10 @@ msgid "Whether the source of your add-on can be displayed in our online viewer. 
 msgstr ""
 
 msgid "This add-on's source code is publicly viewable."
-msgstr ""
+msgstr "ఈ పొడగింత సోర్స్ కోడును బహిరంగంగా చూడవచ్చు."
 
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr ""
+msgstr "లేదు, ఈ పొడగింత సోర్స్ కోడును బహిరంగంగా చూడలేము."
 
 msgid "Public Stats?"
 msgstr "పబ్లిక్ గణాంకాలు?"
@@ -2990,10 +2990,10 @@ msgid "Whether the download and usage stats of your add-on can be displayed in o
 msgstr ""
 
 msgid "This add-on's stats are publicly viewable."
-msgstr ""
+msgstr "ఈ పొడగింత గణాంకాలు బహిరంగంగా చూడవచ్చు."
 
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr ""
+msgstr "లేదు, ఈ పొడగింత గణాంకాలు బహిరంగంగా చూడలేము."
 
 msgid "Upgrade SDK?"
 msgstr "SDKను నవీకరించాలా?"
