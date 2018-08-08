@@ -847,6 +847,12 @@ class TestAccountViewSet(TestCase):
                               kwargs={'pk': self.user.username})
         self.test_is_public_because_developer()
 
+        # Should still work if the username contains a period.
+        self.user.update(username=u'fôo.bar')
+        self.url = reverse_ns('account-detail',
+                              kwargs={'pk': self.user.username})
+        self.test_is_public_because_developer()
+
     def test_admin_view_slug(self):
         # Check it works the same with an account slug rather than pk.
         self.grant_permission(self.user, 'Users:Edit')
