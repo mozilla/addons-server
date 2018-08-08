@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 15:31+0000\n"
+"PO-Revision-Date: 2018-08-08 15:52+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -998,47 +998,47 @@ msgstr "La quitantia non ha essite verificate per le application."
 
 #: static/js/zamboni/reviewers.js:338
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} visualisava antea iste additivo."
 
 #: static/js/zamboni/reviewers.js:349 static/js/zamboni/reviewers.js:371
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Cargamento&hellip;"
 
 #: static/js/zamboni/reviewers.js:354
 msgid "Version Notes"
-msgstr ""
+msgstr "Notas de version"
 
 #: static/js/zamboni/reviewers.js:359
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Notas pro le revisores"
 
 #: static/js/zamboni/reviewers.js:364
 msgid "No version notes found"
-msgstr ""
+msgstr "Nulle notas de version trovate"
 
 #: static/js/zamboni/reviewers.js:376
 msgid "Review Text"
-msgstr ""
+msgstr "Testo pro revision"
 
 #: static/js/zamboni/reviewers.js:381
 msgid "Review notes found"
-msgstr ""
+msgstr "Notas de revision trovate"
 
 #: static/js/zamboni/reviewers.js:445
 msgid "Average Reviews"
-msgstr ""
+msgstr "Revisiones medie"
 
 #: static/js/zamboni/reviewers.js:500
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Numero de revisiones"
 
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
-msgstr ""
+msgstr "Informationes requirite"
 
 #: static/js/zamboni/themes_review.js:177
 msgid "Flagged"
-msgstr ""
+msgstr "Signalate"
 
 #: static/js/zamboni/themes_review.js:178
 msgid "Duplicate"
@@ -1046,15 +1046,15 @@ msgstr "Duplicate"
 
 #: static/js/zamboni/themes_review.js:179
 msgid "Rejected"
-msgstr ""
+msgstr "Rejectate"
 
 #: static/js/zamboni/themes_review.js:180
 msgid "Approved"
-msgstr ""
+msgstr "Approbate"
 
 #: static/js/zamboni/themes_review.js:424
 msgid "No results found"
-msgstr ""
+msgstr "Nulle resultatos trovate"
 
 #: static/js/zamboni/themes_review_templates.js:31
 msgid "Theme"
@@ -1062,7 +1062,7 @@ msgstr "Thema"
 
 #: static/js/zamboni/themes_review_templates.js:33
 msgid "Reviewer"
-msgstr ""
+msgstr "Revisor"
 
 #: static/js/zamboni/themes_review_templates.js:35
 msgid "Status"
@@ -1070,15 +1070,15 @@ msgstr "Stato"
 
 #: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Tote le tests passate con successo."
 
 #: static/js/zamboni/validator.js:83 static/js/zamboni/validator.js:416
 msgid "These tests were not run."
-msgstr ""
+msgstr "Iste tests non esseva facite fluer."
 
 #: static/js/zamboni/validator.js:131 static/js/zamboni/validator.js:144
 msgid "Tests"
-msgstr ""
+msgstr "Tests"
 
 #: static/js/zamboni/validator.js:225 static/js/zamboni/validator.js:513 static/js/zamboni/validator.js:532
 msgid "Error"
@@ -1090,23 +1090,23 @@ msgstr "Aviso"
 
 #: static/js/zamboni/validator.js:293
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} linea {1} columna {2}"
 
 #: static/js/zamboni/validator.js:295
 msgid "{0} line {1}"
-msgstr ""
+msgstr "{0} linea {1}"
 
 #: static/js/zamboni/validator.js:332
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Test de compatibilitate"
 
 #: static/js/zamboni/validator.js:404
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Validation de additivo fallite."
 
 #: static/js/zamboni/validator.js:406
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Validation de additivo passate."
 
 #: static/js/zamboni/validator.js:419
 msgid "{0} error"
@@ -1117,14 +1117,14 @@ msgstr[1] "{0} errores"
 #: static/js/zamboni/validator.js:421
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} aviso"
+msgstr[1] "{0} avisos"
 
 #: static/js/zamboni/validator.js:423
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} notification"
+msgstr[1] "{0} notificationes"
 
 #: static/js/zamboni/validator.js:515
 msgid "Validation task could not complete or completed with errors"
