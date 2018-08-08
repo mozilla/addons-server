@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 09:34+0000\n"
+"PO-Revision-Date: 2018-08-08 10:11+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5101,7 +5101,7 @@ msgstr "WhatsApp a weben {start_sub_heading}a(z) {addon_name} kiegészítővel{e
 
 #. editorial content for the discovery pane.
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "Érje el a WhatsAppot a Firefox eszköztár paneljéről, és kapjon értesítéseket az olvasatlan szálakról."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5109,7 +5109,7 @@ msgstr "Fordítson németre és németről {start_sub_heading}a(z) {addon_name} 
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "Kapjon szakértő német fordítást angol, francia, spanyol és más nyelvekről."
 
 #. editorial content for the discovery pane.
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5117,7 +5117,7 @@ msgstr "Hozzon létre weboldal blokkolási listát {start_sub_heading}a(z) {addo
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
-msgstr ""
+msgstr "Korlátozza a Firefoxot, hogy ne érje el a megadott oldalakat."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5133,7 +5133,7 @@ msgstr "Könnyű olvasás {start_sub_heading}a(z) {addon_name} kiegészítővel{
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "Nézze meg a kedvenc RSS csatornáit egyetlen oldalon."
 
 #. editorial content for the discovery pane.
 msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5141,7 +5141,7 @@ msgstr "Csökkentse a szemfáradást {start_sub_heading}a(z) {addon_name} kiegé
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "Engedélyezze az éjszakai módot a jobb megtekintési élményért."
 
 #. editorial content for the discovery pane.
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
