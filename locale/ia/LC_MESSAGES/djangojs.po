@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 10:27+0000\n"
+"PO-Revision-Date: 2018-08-08 10:46+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -359,27 +359,27 @@ msgstr "Revisiones scribite"
 
 #: static/js/impala/stats/csv_keys.js:27
 msgid "User Signups"
-msgstr ""
+msgstr "Registrationes de usatores"
 
 #: static/js/impala/stats/csv_keys.js:30
 msgid "Subscribers"
-msgstr ""
+msgstr "Subscriptores"
 
 #: static/js/impala/stats/csv_keys.js:33
 msgid "Ratings"
-msgstr ""
+msgstr "Valutationes"
 
 #: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
-msgstr ""
+msgstr "Venditas"
 
 #: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
-msgstr ""
+msgstr "Installationes"
 
 #: static/js/impala/stats/csv_keys.js:42
 msgid "Unknown"
-msgstr ""
+msgstr "Incognite"
 
 #: static/js/impala/stats/csv_keys.js:43
 msgid "Add-ons Manager"
@@ -395,7 +395,7 @@ msgstr "Gestor de additivos in evidentia"
 
 #: static/js/impala/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
-msgstr "Gestor de additivos Saper plus"
+msgstr "Gestor de additivos, Saper plus"
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
@@ -535,15 +535,15 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:118
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: static/js/impala/stats/csv_keys.js:119
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: static/js/impala/stats/csv_keys.js:120
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: static/js/impala/stats/csv_keys.js:121
 msgid "Sunbird"
@@ -559,7 +559,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:124
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:129
@@ -812,11 +812,11 @@ msgstr ""
 
 #: static/js/impala/stats/table.js:74
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: static/js/impala/stats/topchart.js:96
 msgid "Other"
-msgstr ""
+msgstr "Altero"
 
 #: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1297 static/js/zamboni/reviewers.js:410
 msgid "Select an application first"
@@ -899,7 +899,7 @@ msgstr ""
 
 #: static/js/zamboni/collections.js:303
 msgid "Pending"
-msgstr ""
+msgstr "Pendente"
 
 #: static/js/zamboni/collections.js:304
 msgid "Add a comment"
@@ -1042,7 +1042,7 @@ msgstr ""
 
 #: static/js/zamboni/themes_review.js:178
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicate"
 
 #: static/js/zamboni/themes_review.js:179
 msgid "Rejected"
@@ -1058,7 +1058,7 @@ msgstr ""
 
 #: static/js/zamboni/themes_review_templates.js:31
 msgid "Theme"
-msgstr ""
+msgstr "Thema"
 
 #: static/js/zamboni/themes_review_templates.js:33
 msgid "Reviewer"
@@ -1066,7 +1066,7 @@ msgstr ""
 
 #: static/js/zamboni/themes_review_templates.js:35
 msgid "Status"
-msgstr ""
+msgstr "Stato"
 
 #: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
@@ -1082,11 +1082,11 @@ msgstr ""
 
 #: static/js/zamboni/validator.js:225 static/js/zamboni/validator.js:513 static/js/zamboni/validator.js:532
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #: static/js/zamboni/validator.js:226
 msgid "Warning"
-msgstr ""
+msgstr "Aviso"
 
 #: static/js/zamboni/validator.js:293
 msgid "{0} line {1} column {2}"
@@ -1111,8 +1111,8 @@ msgstr ""
 #: static/js/zamboni/validator.js:419
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} error"
+msgstr[1] "{0} errores"
 
 #: static/js/zamboni/validator.js:421
 msgid "{0} warning"
