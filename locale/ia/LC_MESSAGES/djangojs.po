@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 13:25+0000\n"
+"PO-Revision-Date: 2018-08-08 15:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -879,23 +879,23 @@ msgstr "Solo con Firefox — Discarga lo subito!"
 
 #: static/js/zamboni/buttons.js:321
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
+msgstr "Tu debe usar un navigator basate sur Mozilla (como Firefox) pro installar un plugin de recerca."
 
 #: static/js/zamboni/collections.js:229
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "Addition a Favoritos&hellip;"
 
 #: static/js/zamboni/collections.js:232
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "Remotion de Favorite&hellip;"
 
 #: static/js/zamboni/collections.js:235
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Adder al consiliatos"
 
 #: static/js/zamboni/collections.js:238
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Remover ab favoritos"
 
 #: static/js/zamboni/collections.js:303
 msgid "Pending"
@@ -903,11 +903,11 @@ msgstr "Pendente"
 
 #: static/js/zamboni/collections.js:304
 msgid "Add a comment"
-msgstr ""
+msgstr "Adde un commento"
 
 #: static/js/zamboni/collections.js:304
 msgid "Comment"
-msgstr ""
+msgstr "Commento"
 
 #: static/js/zamboni/collections.js:305
 msgid "Remove this add-on from the collection"
@@ -915,15 +915,15 @@ msgstr "Remover iste additivo del collection"
 
 #: static/js/zamboni/collections.js:305
 msgid "Remove"
-msgstr ""
+msgstr "Remover"
 
 #: static/js/zamboni/collections.js:505
 msgid "Add to favorites"
-msgstr ""
+msgstr "Adder al favoritos"
 
 #: static/js/zamboni/collections.js:509
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Remover del favoritos"
 
 #: static/js/zamboni/collections.js:536
 msgid "Stop following"
@@ -931,70 +931,70 @@ msgstr "Non plus sequer"
 
 #: static/js/zamboni/devhub.js:105
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Tu navigator non supporta le tag video"
 
 #: static/js/zamboni/devhub.js:373
 msgid "Changes Saved"
-msgstr ""
+msgstr "Cambios salvate"
 
 #: static/js/zamboni/devhub.js:389
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Insere le adresse de email de un nove autor"
 
 #: static/js/zamboni/devhub.js:539
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Error durante le cargamento de tu file."
 
 #: static/js/zamboni/devhub.js:684
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} file"
+msgstr[1] "{files} files"
 
 #: static/js/zamboni/devhub.js:687
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} revisiones de usator"
+msgstr[1] "{reviews} revisiones de usator"
 
 #: static/js/zamboni/devhub.js:1198
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Cambios de imagines in elaboration"
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
-msgstr ""
+msgstr "Nulle resultatos."
 
 #: static/js/zamboni/global.js:407
 msgid "Loading..."
-msgstr ""
+msgstr "Cargamento..."
 
 #. L10n: {0} is the number of characters left.
 #: static/js/zamboni/global.js:470
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> character restante."
+msgstr[1] "<b>{0}</b> characteres restante."
 
 #: static/js/zamboni/init.js:28
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
+msgstr "Iste functionalitate es temporarimente disactivate durante que nos exeque le mantenentia del sito web. Per favor controla de novo un poco plus tarde."
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
-msgstr ""
+msgstr "Remover iste localisation"
 
 #: static/js/zamboni/reviewers.js:139
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} visualisava antea iste pagina."
 
 #: static/js/zamboni/reviewers.js:190
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Quitantia verificate per le application."
 
 #: static/js/zamboni/reviewers.js:192
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "La quitantia non ha essite verificate per le application."
 
 #: static/js/zamboni/reviewers.js:338
 msgid "{name} was viewing this add-on first."
