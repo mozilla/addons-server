@@ -168,4 +168,4 @@ class TestIndexCommandClassicAlgorithm(TestIndexCommand):
 
         assert settings['settings']['index']['similarity']['default'] == {
             'type': 'classic'
-            }
+        }
