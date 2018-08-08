@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 11:22+0000\n"
+"PO-Revision-Date: 2018-08-08 14:26+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5233,7 +5233,7 @@ msgstr "Jegyezze le gyorsan {start_sub_heading}a(z) {addon_name} kiegészítőve
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "Készítsen általános és oldalfüggő jegyzeteket, melyet később átnézhet."
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5249,7 +5249,7 @@ msgstr "Adatok törlése {start_sub_heading}a(z) {addon_name} kiegészítővel{e
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Törölje a böngésző gyorsítótárát egy kattintással vagy egy billentyűleütéssel."
 
 #. editorial content for the discovery pane.
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
