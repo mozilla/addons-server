@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-09 20:11+0000\n"
+"PO-Revision-Date: 2018-08-09 20:25+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -3511,21 +3511,25 @@ msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which i
 msgstr "A forráskódnak meg kell felelnie az <a %(a_attrs)s>irányelvek követelményeinek</a>, amelyek ezeket is magukba foglalják:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
-msgstr ""
+msgstr "Lépésről lépésre történő összeállítási utasítások, hogy a kiegészítő kódjával egyező másolat jöjjön létre."
 
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "Összeállítási parancsfájl, amely végrehajta a szükséges műszaki lépéseket."
 
 msgid "Operating system and build environment requirements."
-msgstr ""
+msgstr "Operációs rendszer és összeállítási környezeti követelmények."
 
 msgid ""
 "Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
 "emphasis\">npm</span> version used)."
 msgstr ""
+"Részletek (köztük a szükséges verzió és a telepítési utasítások) az összeállítási folyamat során használt programokról (például: használt <span class=\"tech-emphasis\">node</span> és <span class"
+"=\"tech-emphasis\">npm</span> verziók)."
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
+"<span class=\"instruction-emphasis\">Megjegyzés:</span> A forrásfájlok (leszámítva a harmadik féltől származó nyílt forráskódú programkönyvtárakat) nem lehetnek más nyelvről átfordítva, obfuszkálva,"
+" minimalizálva vagy másképpen gép által előállítva."
 
 msgid "How to Submit:"
 msgstr "Beküldés menete:"
@@ -5604,7 +5608,7 @@ msgstr "Védje meg a könyvjelzőket {start_sub_heading}a(z) {addon_name} kiegé
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Védje jelszóval a személyes könyvjelzőit."
 
 #. editorial content for the discovery pane.
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5612,7 +5616,7 @@ msgstr "Akadályozza meg az IP-cím kiszivárgásokat {start_sub_heading}a(z) {a
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "VPN-t használ? Az IP-címe így is kiderülhet. Állítsa ezt meg a WebRTC letiltásával."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5690,7 +5694,7 @@ msgstr "Adatvédelem {start_sub_heading}a(z) {addon_name} kiegészítővel{end_s
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Védje meg magát a legalattomosabb követőktől."
 
 #. editorial content for the discovery pane.
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
