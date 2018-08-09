@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-08 18:11+0000\n"
-"Last-Translator: Melo46 <melo@carmu.com>\n"
+"PO-Revision-Date: 2018-08-09 14:07+0000\n"
+"Last-Translator: Rodrigo Guerra <rodmguerra@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -275,7 +275,7 @@ msgid "Add-ons Updated"
 msgstr "Additivos actualisate"
 
 msgid "Reviews Written"
-msgstr "Revisiones scribite"
+msgstr "Recensiones scribite"
 
 msgid "User Signups"
 msgstr "Registrationes de usatores"
@@ -560,11 +560,11 @@ msgstr "Additivos actualisate ab {0} al {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr "Revisiones scribite, ultime {0} dies"
+msgstr "Recensiones scribite, ultime {0} dies"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr "Revisiones scribite ab {0} al {1}"
+msgstr "Recensiones scribite de {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
@@ -739,7 +739,7 @@ msgstr[1] "{files} files"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] "{reviews} revisiones de usator"
+msgstr[0] "{reviews} recension de usator"
 msgstr[1] "{reviews} revisiones de usator"
 
 msgid "Image changes being processed"
@@ -794,10 +794,10 @@ msgid "Review notes found"
 msgstr "Notas de revision trovate"
 
 msgid "Average Reviews"
-msgstr "Revisiones medie"
+msgstr "Recenciones medie"
 
 msgid "Number of Reviews"
-msgstr "Numero de revisiones"
+msgstr "Numero de recensiones"
 
 msgid "Requested Info"
 msgstr "Informationes requirite"
