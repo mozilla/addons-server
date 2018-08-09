@@ -17,6 +17,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_jwt.views import refresh_jwt_token
 
+from olympia import core
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     APITestClient, TestCase, WithDynamicEndpoints, user_factory)
@@ -59,8 +60,11 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester):
                                       api_key.secret)
 
     def test_get_user(self):
+        core.set_remote_addr('15.16.23.42')
         user, _ = self.auth.authenticate(self.request(self._create_token()))
         assert user == self.user
+        assert user.last_login_ip == '15.16.23.42'
+        self.assertCloseToNow(user.last_login)
 
     def test_unknown_issuer(self):
         api_key = self.create_api_key(self.user)
@@ -73,11 +77,16 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester):
         assert ctx.exception.detail == 'Unknown JWT iss (issuer).'
 
     def test_deleted_user(self):
-        self.user.update(deleted=True)
+        in_the_past = self.days_ago(42)
+        self.user.update(
+            last_login_ip='48.15.16.23', last_login=in_the_past, deleted=True)
 
         with self.assertRaises(AuthenticationFailed) as ctx:
             self.auth.authenticate(self.request(self._create_token()))
         assert ctx.exception.detail == 'User account is disabled.'
+        self.user.reload()
+        assert self.user.last_login == in_the_past
+        assert self.user.last_login_ip == '48.15.16.23'
 
     def test_user_has_not_read_agreement(self):
         self.user.update(read_dev_agreement=None)

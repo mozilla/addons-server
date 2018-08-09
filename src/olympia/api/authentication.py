@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.signals import user_logged_in
 from django.core import signing
 from django.utils.crypto import constant_time_compare
 from django.utils.encoding import smart_text
@@ -193,6 +194,10 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
             # jwt_decode_handler.
 
         user = self.authenticate_credentials(payload)
+        # Send user_logged_in signal when JWT is used to authenticate an user.
+        # Otherwise, we'd never update the last_login information for users
+        # who never visit the site but do use the API to upload new add-ons.
+        user_logged_in.send(sender=self.__class__, request=request, user=user)
         return (user, jwt_value)
 
     def authenticate_credentials(self, payload):

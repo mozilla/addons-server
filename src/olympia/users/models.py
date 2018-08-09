@@ -8,6 +8,7 @@ from datetime import datetime
 from django import forms
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.signals import user_logged_in
 from django.core import validators
 from django.db import models
 from django.utils import timezone
@@ -136,11 +137,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     read_dev_agreement = models.DateTimeField(null=True, blank=True)
 
     last_login_ip = models.CharField(default='', max_length=45, editable=False)
-    last_login_attempt = models.DateTimeField(null=True, editable=False)
-    last_login_attempt_ip = models.CharField(default='', max_length=45,
-                                             editable=False)
-    failed_login_attempts = models.PositiveIntegerField(default=0,
-                                                        editable=False)
     email_changed = models.DateTimeField(null=True, editable=False)
 
     # Is the profile page for this account publicly viewable?
@@ -481,8 +477,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.deleted = True
             self.picture_type = None
             self.auth_id = generate_auth_id()
-            self.last_login_attempt = None
-            self.last_login_attempt_ip = ''
             self.last_login_ip = ''
             self.anonymize_username()
             self.save()
@@ -499,23 +493,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def check_password(self, password):
         raise NotImplementedError('cannot check password')
 
-    def log_login_attempt(self, successful):
-        """Log a user's login attempt"""
-        self.last_login_attempt = datetime.now()
-        self.last_login_attempt_ip = core.get_remote_addr()
-
-        if successful:
-            log.debug(u"User (%s) logged in successfully" % self)
-            self.failed_login_attempts = 0
-            self.last_login_ip = core.get_remote_addr()
-        else:
-            log.debug(u"User (%s) failed to log in" % self)
-            if self.failed_login_attempts < 16777216:
-                self.failed_login_attempts += 1
-
-        self.save(update_fields=['last_login_ip', 'last_login_attempt',
-                                 'last_login_attempt_ip',
-                                 'failed_login_attempts'])
+    @staticmethod
+    def user_logged_in(sender, request, user, **kwargs):
+        """Log when a user logs in and records its IP address."""
+        log.debug(u'User (%s) logged in successfully' % user)
+        user.update(last_login_ip=core.get_remote_addr() or '')
 
     def mobile_collection(self):
         return self.special_collection(
@@ -635,3 +617,6 @@ def watch_changes(old_attr=None, new_attr=None, instance=None,
         ids = [addon.pk for addon in instance.get_addons_listed()]
         if ids:
             index_addons.delay(ids)
+
+
+user_logged_in.connect(UserProfile.user_logged_in)
