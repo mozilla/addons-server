@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-09 11:44+0000\n"
+"PO-Revision-Date: 2018-08-09 14:11+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5249,7 +5249,7 @@ msgstr "Усуньте непотрібне форматування й копі
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Змінюйте мову цілої веб-сторінки на бажану — одним натиском кнопки."
 
 #. editorial content for the discovery pane.
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5257,7 +5257,7 @@ msgstr "Видобувайте посилання {start_sub_heading}за доп
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr ""
+msgstr "Миттєво відображайте всі посилання з веб-сторінки в нових вкладках."
 
 #. editorial content for the discovery pane.
 msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5265,7 +5265,7 @@ msgstr "Переглядайте документи {start_sub_heading}за до
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
-msgstr ""
+msgstr "Відкривайте файли PDF з використанням бажаної програми."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5273,7 +5273,7 @@ msgstr "Уникайте перенаправлень і стеження {start
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
-msgstr ""
+msgstr "Позбавтеся сторінок перенаправлення й параметрів стеження в URL-адресах."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5281,7 +5281,7 @@ msgstr "Зупиніть пошукове стеження {start_sub_heading}з
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "Не дозволяйте пошуковим засобам дізнаватися про те, які результати ви обираєте."
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5289,7 +5289,7 @@ msgstr "Завантажуйте відео YouTube {start_sub_heading}за до
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
-msgstr ""
+msgstr "Завантажуйте відео та/або аудіо."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5297,7 +5297,7 @@ msgstr "Отримуйте матеріали для читання {start_sub_h
 
 #. editorial content for the discovery pane.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Високоефективний засіб читання усіх ваших ресурсів RSS/Atom/RDF."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5306,7 +5306,7 @@ msgstr "Блокуйте рекламу {start_sub_heading}за допомого
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "Створюйте загальні та пов'язані з веб-сайтом нотатки, щоб переглянути їх згодом."
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5314,7 +5314,7 @@ msgstr "Прокручування екрану, як в телефоні {start
 
 #. editorial content for the discovery pane.
 msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
-msgstr ""
+msgstr "Функції прокручування мишею \"захопити й перетягнути\" для повних версій веб-сторінок."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5322,7 +5322,7 @@ msgstr "Видаляйте дані {start_sub_heading}за допомогою {
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Очищайте кеш браузера однією кнопкою миші чи комбінацією клавіш."
 
 #. editorial content for the discovery pane.
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5330,7 +5330,7 @@ msgstr "Ніколи більше не забувайте {start_sub_heading}р�
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
-msgstr ""
+msgstr "Створюйте й керуйте списком завдань у браузері."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
