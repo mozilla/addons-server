@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-02 01:13+0000\n"
+"POT-Creation-Date: 2018-08-09 07:45+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2573,9 +2573,6 @@ msgstr "There was an error with your upload. Please try again."
 msgid "Override failed validation"
 msgstr "Override failed validation"
 
-msgid "Submit my add-on for manual review."
-msgstr "Submit my add-on for manual review."
-
 msgid "You cannot upload any more files for this version."
 msgstr "You cannot upload any more files for this version."
 
@@ -2592,6 +2589,13 @@ msgstr "Version already exists."
 
 msgid "Continue with existing upload instead?"
 msgstr "Continue with existing upload instead?"
+
+#, fuzzy
+msgid "You have not uploaded a source file."
+msgstr "Could not parse uploaded file."
+
+msgid "Source file uploaded but you indicated no source was needed."
+msgstr "Source file uploaded but you indicated no source was needed."
 
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "The platform All cannot be combined with specific platforms."
@@ -3633,6 +3637,78 @@ msgid "Go to My Submissions"
 msgstr "My Submissions"
 
 #, fuzzy
+msgid "Source Code Upload"
+msgstr "Source code"
+
+msgid "Do You Need to Submit Source Code?"
+msgstr "Do You Need to Submit Source Code?"
+
+msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgstr "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+
+#, python-format
+msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
+msgstr "Please review the <a %(a_attrs)s>source code submission policy</a>."
+
+msgid "Do you use any of the following?"
+msgstr "Do you use any of the following?"
+
+msgid "Code minifiers or obfuscators"
+msgstr "Code minifiers or obfuscators"
+
+msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
+msgstr "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
+
+msgid "Web template engines, both for HTML and CSS"
+msgstr "Web template engines, both for HTML and CSS"
+
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgstr "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+
+msgid "You do not need to submit Source Code, and you’re ready for the next step."
+msgstr "You do not need to submit Source Code, and you’re ready for the next step."
+
+msgid "Your Submission Requires Source Code."
+msgstr "Your Submission Requires Source Code."
+
+#, python-format
+msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
+msgstr "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
+
+msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+msgstr "Step-by-step build instructions to create an exact copy of the add-on code."
+
+msgid "A build script that executes all necessary technical steps."
+msgstr "A build script that executes all necessary technical steps."
+
+msgid "Operating system and build environment requirements."
+msgstr "Operating system and build environment requirements."
+
+msgid ""
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
+msgstr ""
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
+
+msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
+msgstr "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
+
+#, fuzzy
+msgid "How to Submit:"
+msgstr "Submit"
+
+msgid "Include instructions in a README file in the source code,"
+msgstr "Include instructions in a README file in the source code,"
+
+msgid "or in reviewer notes on the next page (if applicable)."
+msgstr "or in reviewer notes on the next page (if applicable)."
+
+#, fuzzy
+msgid "Upload source code:"
+msgstr "Source code"
+
+#, fuzzy
 msgid "Add-on Distribution Agreement"
 msgstr "Firefox Add-on Distribution Agreement"
 
@@ -4546,68 +4622,12 @@ msgstr[1] "{0} warnings"
 
 #. editorial content for the discovery pane.
 #, fuzzy
-msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-
-#, fuzzy
-msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-
-#. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "Block invisible trackers and spying ads that follow you around the web."
-
-#, fuzzy
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-#, fuzzy
-msgid "Dozens of amazing emojis for every occasion—just a click away."
-msgstr "Dozens of amazing emojis—always a click away."
-
-#. editorial content for the discovery pane.
-#, fuzzy
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-msgid "Works seamlessly with most popular video sites."
-msgstr "Works seamlessly with most popular video sites."
-
-#. editorial content for the discovery pane.
-#, fuzzy
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-msgid "Set the page you see every time you open a new tab."
-msgstr "Set the page you see every time you open a new tab."
-
-#. editorial content for the discovery pane.
-#, fuzzy
-msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-#, fuzzy
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Dozens of amazing emojis—always a click away."
-
-#, fuzzy
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
-msgstr "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4683,6 +4703,11 @@ msgstr "Get instant global weather information right in Firefox."
 
 #. editorial content for the discovery pane.
 #, fuzzy
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+#, fuzzy
 msgid "Choose the page you see every time you open a new tab."
 msgstr "Set the page you see every time you open a new tab."
 
@@ -4696,8 +4721,18 @@ msgid "See an interesting picture on the web and want to learn more about it? Tr
 msgstr "See an interesting picture on the web and want to learn more about it? Try this image search tool."
 
 #. editorial content for the discovery pane.
+#, fuzzy
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4910,6 +4945,15 @@ msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Stop trackers in their tracks and learn more about them."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+msgstr "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 
 #. editorial content for the discovery pane.
 #, fuzzy

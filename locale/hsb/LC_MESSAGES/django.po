@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-02 01:13+0000\n"
+"POT-Creation-Date: 2018-08-09 07:45+0000\n"
 "PO-Revision-Date: 2018-07-23 13:34+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2500,9 +2500,6 @@ msgstr "Při nahrawanju je zmylk wustupił. Prošu spytajće hišće raz."
 msgid "Override failed validation"
 msgstr "Njeporadźene přepruwowanje přepisać"
 
-msgid "Submit my add-on for manual review."
-msgstr "Mój přidatk za manuelne přepruwowanje zapodać."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Njemóžeće hižo dataje za tutu wersiju nahrać."
 
@@ -2517,6 +2514,13 @@ msgstr "Wersija {version} hižo eksistuje."
 
 msgid "Continue with existing upload instead?"
 msgstr "Město toho z eksistowacym nahraćom pokročować?"
+
+#, fuzzy
+msgid "You have not uploaded a source file."
+msgstr "Nahrata dataja njeda so analyzować."
+
+msgid "Source file uploaded but you indicated no source was needed."
+msgstr ""
 
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Platforma Wšě njeda so z wěstymi platformami kombinować."
@@ -3504,6 +3508,76 @@ msgstr "Dataju nahrać"
 msgid "Go to My Submissions"
 msgstr "Moje zapodaća sej wobhladać"
 
+#, fuzzy
+msgid "Source Code Upload"
+msgstr "Žórłowy kod nahraty"
+
+msgid "Do You Need to Submit Source Code?"
+msgstr ""
+
+msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgstr ""
+
+#, python-format
+msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
+msgstr ""
+
+msgid "Do you use any of the following?"
+msgstr ""
+
+msgid "Code minifiers or obfuscators"
+msgstr ""
+
+msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
+msgstr ""
+
+msgid "Web template engines, both for HTML and CSS"
+msgstr ""
+
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgstr ""
+
+msgid "You do not need to submit Source Code, and you’re ready for the next step."
+msgstr ""
+
+msgid "Your Submission Requires Source Code."
+msgstr ""
+
+#, python-format
+msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
+msgstr ""
+
+msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+msgstr ""
+
+msgid "A build script that executes all necessary technical steps."
+msgstr ""
+
+msgid "Operating system and build environment requirements."
+msgstr ""
+
+msgid ""
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
+msgstr ""
+
+msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
+msgstr ""
+
+#, fuzzy
+msgid "How to Submit:"
+msgstr "Wotpósłać"
+
+msgid "Include instructions in a README file in the source code,"
+msgstr ""
+
+msgid "or in reviewer notes on the next page (if applicable)."
+msgstr ""
+
+#, fuzzy
+msgid "Upload source code:"
+msgstr "Žórłowy kod"
+
 msgid "Add-on Distribution Agreement"
 msgstr "Dojednanje za rozdźělowanje přidatkow"
 
@@ -4335,60 +4409,12 @@ msgstr[2] "{0} warnowanja"
 msgstr[3] "{0} warnowanjow"
 
 #. editorial content for the discovery pane.
-msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zawostajće čiste digitalne slědy {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Dajće Firefox daty websydła kaž na přikład placki a lokalny składowak zabyć, ale jenož za wubrane domeny."
-
-msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "Polěpšće wideja {start_sub_heading}z {addon_name} {end_sub_heading}"
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr "Wužiwajće rjad nowych funkcijow Youtube, na přikład kinowy modus, blokowanje wabjenja, awtomatiske wothraće a wjace."
-
-#. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokujće lestnych přesćěhowarjow {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "Blokujće njewidźomne přesćěhowaki a wabjenje, kotrež was w interneće wuspionuje."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Polěpšće swoju emodźijowu hru {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis for every occasion—just a click away."
-msgstr "Dwanastki wulkotnych emodźijow za kóždu składnosć - přeco jenož jedne kliknjenje zdalene."
-
-#. editorial content for the discovery pane.
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sćehńće wideja {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "Works seamlessly with most popular video sites."
-msgstr "Funguje bjezposrědnje z najbóle woblubowanymi widejosydłami."
-
-#. editorial content for the discovery pane.
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Přiměrjenje rajtarkow {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "Set the page you see every time you open a new tab."
-msgstr "Postajće stronu, kotruž kóždy raz widźiće, hdyž nowy rajtark wočinjeće."
-
-#. editorial content for the discovery pane.
-msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Polěpšće swoju emodźijowu hru {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Dwanastki wulkotnych emodźijow za kóždu składnosć - přeco jenož jedne kliknjenje zdalene."
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Čińće fota wobrazowki {start_sub_heading}z {addon_name}{end_sub_heading}"
-
-msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
-msgstr ""
-"Wjace hač jenož zakładny program za fota wobrazowki, z Awesome Screenshot Plus móžeće wobrazy ze swójskim tekstom a grafikami wuhotować, nimo toho móžeće swój nazorowy material składować a dźělić."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4455,6 +4481,10 @@ msgid "Get instant global weather information right in Firefox."
 msgstr "Wobstarajće sej globalne wjedrowe daty direktnje w swojim Firefox."
 
 #. editorial content for the discovery pane.
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Přiměrjenje rajtarkow {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
 msgstr "Wubjerće stronu, kotruž kóždy raz widźiće, hdyž nowy rajtark wočinjeće."
 
@@ -4467,8 +4497,16 @@ msgid "See an interesting picture on the web and want to learn more about it? Tr
 msgstr "Chceće sej zajimawy wobraz w interneće wobhladać a wjace wo nim zhonić? Wupruwujće tutón nastroj za pytanje wobrazow."
 
 #. editorial content for the discovery pane.
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sćehńće wideja {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "Funguje z YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope a stami druhich widejosydłow."
+
+#. editorial content for the discovery pane.
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Polěpšće swoju emodźijowu hru {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
@@ -4654,6 +4692,14 @@ msgstr "Blokujće njewidźomne přesćěhowaki {start_sub_heading}z {addon_name}
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Blokujće přesćěhowaki a zhońće wjace wo nich."
+
+#. editorial content for the discovery pane.
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Zawostajće čiste digitalne slědy {start_sub_heading}z {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+msgstr "Dajće Firefox daty websydła kaž na přikład placki a lokalny składowak zabyć, ale jenož za wubrane domeny."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
