@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-09 15:50+0000\n"
+"PO-Revision-Date: 2018-08-09 16:09+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3253,6 +3253,8 @@ msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
+"Η διαγραφή του προσθέτου σας θα διαγράψει οριστικά όλες τις εκδόσεις και τα αρχεία που έχετε υποβάλει για αυτό το πρόσθετο, είτε αναγράφεται είτε όχι. Το αναγνωριστικό προσθέτου θα συνεχίσει να "
+"είναι συνδεδεμένο με το λογαριασμό σας έτσι, ώστε να μην μπορεί κάποιος άλλος να υποβάλει εκδόσεις με το ίδιο αναγνωστικό."
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Εισάγετε το ακόλουθο κείμενο για να επιβεβαιώσετε την απόφασή σας: {slug}"
@@ -3355,7 +3357,7 @@ msgid "Describe Add-on"
 msgstr "Περιγραφή προσθέτου"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Όνομα αναγραφής στην ιστοσελίδα. Μπορεί να είναι διαφορετικό από το όνομα εντός του προσθέτου, που εμφανίζεται μέσα στο Firefox"
 
 msgid "Add-on URL:"
 msgstr "URL προσθέτου:"
@@ -3374,6 +3376,8 @@ msgstr "Αυτό το πρόσθετο είναι πειραματικό"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+"Ενεργοποιήστε αυτή την επιλογή αν το πρόσθετό σας είναι πειραματικό ή όχι έτοιμο για γενική χρήση. Το πρόσθετο θα αναγράφεται, αλλά με μειωμένη ορατότητα. Μπορείτε να αλλάξετε αργότερα αυτή τη "
+"ρύθμιση."
 
 msgid "Select a category for this add-on:"
 msgstr "Επιλέξτε κατηγορία για αυτό το πρόσθετο:"
@@ -3391,13 +3395,13 @@ msgid "Please choose a license appropriate for the rights you grant."
 msgstr "Παρακαλούμε επιλέξτε μια κατάλληλη άδεια για τα δικαιώματα που χορηγείτε."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
+msgstr "Αν το πρόσθετό σας μεταδίδει δεδομένα από τον υπολογιστή του χρήστη, απαιτείται μια πολιτική απορρήτου, η οποία εξηγεί ποια δεδομένα αποστέλλονται και πώς χρησιμοποιούνται."
 
 msgid "Notes to Reviewer:"
 msgstr "Σημειώσεις προς τον κριτή:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Υπάρχει κάτι που πρέπει να λάβουν υπόψη οι αξιολογητές μας κατά την αξιολόγηση του προσθέτου;"
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Αυτές οι σημειώσεις είναι ορατές μόνος σε εσάς και τους αξιολογητές μας."
@@ -3448,16 +3452,16 @@ msgid "You’re done! This version will be available on our site shortly."
 msgstr "Τελειώσατε! Αυτή η έκδοση θα είναι σύντομα διαθέσιμη στην ιστοσελίδα μας."
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Τελειώσατε! Αυτή η έκδοση έχει υποβληθεί για αξιολόγηση. Θα ειδοποιηθείτε όταν ολοκληρωθεί η αξιολόγηση, ή αν οι κριτές έχουν τυχόν απορίες για την υποβολή σας."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr ""
+msgstr "Το πρόσθετό σας θα κάνει μεγαλύτερη επιτυχία με μια λεπτομερή περιγραφή. Προετοιμάστε την καταχώρησή σας για δημοσίευση:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "Το πρόσθετό σας θα κάνει μεγαλύτερη επιτυχία με μια λεπτομερή περιγραφή και στιγμιότυπα. Προετοιμάστε την καταχώρησή σας για δημοσίευση:"
 
 msgid "Manage Listing"
-msgstr "Διαχείριση καταλόγου"
+msgstr "Διαχείριση καταχώρησης"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
