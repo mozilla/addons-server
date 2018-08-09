@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-09 16:09+0000\n"
+"PO-Revision-Date: 2018-08-09 16:25+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3464,7 +3464,7 @@ msgid "Manage Listing"
 msgstr "Διαχείριση καταχώρησης"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
+msgstr "Μπορείτε επίσης να επεξεργαστείτε αυτή την έκδοση για να προσθέσετε σημειώσεις έκδοσης ή πηγαίο κώδικα, αν η υποβολή σας περιέχει ελαχιστοποιημένο, μπερδεμένο ή μεταγλωττισμένο κώδικα."
 
 msgid "Edit version {0}"
 msgstr "Επεξεργασία έκδοσης {0}"
@@ -3485,7 +3485,7 @@ msgid "Download {0}"
 msgstr "Λήψη {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
+msgstr "Επιλέξατε μόνο μερικές από τις διαθέσιμες πλατφόρμες για αυτή την υποβολή. Μπορείτε να μεταφορτώσετε περισσότερα αρχεία που αντιστοιχούν σε άλλες πλατφόρμες:"
 
 msgid "Upload File"
 msgstr "Μεταφόρτωση αρχείου"
@@ -3497,7 +3497,7 @@ msgid "Source Code Upload"
 msgstr "Μεταφόρτωση πηγαίου κώδικα"
 
 msgid "Do You Need to Submit Source Code?"
-msgstr ""
+msgstr "Χρειάζεται να υποβάλετε πηγαίο κώδικα;"
 
 msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
 msgstr ""
@@ -3507,7 +3507,7 @@ msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
 msgstr ""
 
 msgid "Do you use any of the following?"
-msgstr ""
+msgstr "Χρησιμοποιείτε κάτι από τα εξής;"
 
 msgid "Code minifiers or obfuscators"
 msgstr ""
@@ -3552,10 +3552,10 @@ msgid "How to Submit:"
 msgstr "Τρόπος υποβολής:"
 
 msgid "Include instructions in a README file in the source code,"
-msgstr ""
+msgstr "Συμπεριλάβετε οδηγίες σε ένα αρχείο README στον πηγαίο κώδικα,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr ""
+msgstr "ή στις σημειώσεις αξιολογητών στην επόμενη σελίδα (αν ισχύει)."
 
 msgid "Upload source code:"
 msgstr "Μεταφόρτωση πηγαίου κώδικα:"
@@ -3630,25 +3630,25 @@ msgid "The color of the header area background, displayed in the part of the hea
 msgstr ""
 
 msgid "Header area text and icons"
-msgstr ""
+msgstr "Κείμενο και εικονίδια περιοχής επικεφαλίδας"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
 
 msgid "Toolbar area background"
-msgstr ""
+msgstr "Φόντο περιοχής γραμμής εργαλείων"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
 msgid "Toolbar area text and icons"
-msgstr ""
+msgstr "Κείμενο και εικονίδια περιοχής γραμμής εργαλείων"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Το χρώμα του κειμένου και των εικονιδίων στη γραμμή εργαλείων και την ενεργή καρτέλα. Πεδίο αρχείου manifest:  toolbar_text."
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "Φόντο περιοχής πεδίου γραμμής εργαλείων"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
@@ -3679,7 +3679,7 @@ msgstr "Διαπιστευτήρια API"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "Για λεπτομερείς οδηγίες, συμβουλευτείτε την <a href=\"%(docs_url)s\">τεκμηρίωση API</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
 msgstr ""
@@ -3741,13 +3741,13 @@ msgid "Listed on this site after passing code review. Automatic updates are hand
 msgstr ""
 
 msgid "Listed Version:"
-msgstr "Εγγεγραμμένη έκδοση:"
+msgstr "Καταχωρημένη έκδοση:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
 msgstr ""
 
 msgid "Next Listed Version:"
-msgstr "Επόμενη εγγεγραμμένη έκδοση:"
+msgstr "Επόμενη καταχωρημένη έκδοση:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr ""
