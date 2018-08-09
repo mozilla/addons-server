@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 23:47+0000\n"
+"PO-Revision-Date: 2018-08-09 00:11+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -30,87 +30,87 @@ msgstr "Le nomines de usator non pote continer solo digitos."
 
 #: src/olympia/accounts/serializers.py:108 src/olympia/users/forms.py:177
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Insere un nomine de usator valide consistente de litteras, cifras, lineettas basse o lineettas."
 
 #: src/olympia/accounts/serializers.py:112 src/olympia/users/forms.py:182
 msgid "This username cannot be used."
-msgstr ""
+msgstr "Iste nomine de usator non pote ser usate."
 
 #: src/olympia/accounts/serializers.py:119 src/olympia/users/forms.py:189
 msgid "This username is already in use."
-msgstr ""
+msgstr "Iste nomine de usator es ja in uso."
 
 #: src/olympia/accounts/serializers.py:129 src/olympia/devhub/views.py:997 src/olympia/users/forms.py:214
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Le imagines debe ser PNG o JPG."
 
 #: src/olympia/accounts/serializers.py:133 src/olympia/devhub/views.py:1003 src/olympia/users/forms.py:217
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Le imagines non pote ser animate."
 
 #: src/olympia/accounts/serializers.py:138 src/olympia/bandwagon/forms.py:155 src/olympia/devhub/views.py:1014 src/olympia/users/forms.py:220
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "Per favor usa imagines minor que %dMB."
 
 #: src/olympia/accounts/views.py:68
 msgid "You are already logged in."
-msgstr ""
+msgstr "Tu es ja authenticate."
 
 #: src/olympia/accounts/views.py:70
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr ""
+msgstr "Tu tentativa de connexion non pote ser processate. Per favor prova de novo."
 
 #: src/olympia/accounts/views.py:72
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "Tu conto de Firefox non pote ser trovate. Per favor prova de novo."
 
 #: src/olympia/accounts/views.py:73
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "Tu non pote ser authenticate. Per favor prova de novo."
 
 #: src/olympia/accounts/views.py:156
 msgid "Need help?"
-msgstr ""
+msgstr "Besonia tu de adjuta?"
 
 #: src/olympia/accounts/views.py:436
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "Le disveloppatores de additivos o themas non pote deler lor conto. Tu debe deler tote le additivos e themas ligate a iste conto, o transferer illos a altere usatores."
 
 #: src/olympia/activity/models.py:394 src/olympia/ratings/templates/ratings/add.html:53
 msgid "Review"
-msgstr ""
+msgstr "Revider"
 
 #: src/olympia/activity/models.py:397 src/olympia/addons/templates/addons/impala/details.html:198 src/olympia/devhub/templates/devhub/versions/list.html:36
 #: src/olympia/versions/templates/versions/version.html:6
 msgid "Version {0}"
-msgstr ""
+msgstr "Version {0}"
 
 #: src/olympia/activity/serializers.py:32
 msgid "Review note"
-msgstr ""
+msgstr "Nota de revision"
 
 #: src/olympia/activity/views.py:66
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "Solmente le ultime versiones del additivos pote haber notas addite."
 
 #: src/olympia/addons/admin.py:73 src/olympia/devhub/templates/devhub/versions/list.html:188 src/olympia/devhub/templates/devhub/versions/list.html:206
 #: src/olympia/devhub/templates/devhub/versions/list.html:232 src/olympia/reviewers/templates/reviewers/addon_details_box.html:34
 #: src/olympia/reviewers/templates/reviewers/includes/search_results_themes.html:7 src/olympia/reviewers/templates/reviewers/themes/queue_list.html:50
 msgid "Status"
-msgstr ""
+msgstr "Stato"
 
 #: src/olympia/addons/admin.py:143
 msgid "- Add-on not on AMO -"
-msgstr ""
+msgstr "- Additivos externe -"
 
 #: src/olympia/addons/buttons.py:144
 msgid "Download Now"
-msgstr ""
+msgstr "Discargar ora"
 
 #: src/olympia/addons/buttons.py:146 src/olympia/reviewers/templates/reviewers/review.html:111
 msgid "Download"
-msgstr ""
+msgstr "Discargar"
 
 #: src/olympia/addons/buttons.py:160 src/olympia/addons/templates/addons/impala/details.html:115 src/olympia/addons/templates/addons/impala/listing/items.html:14
 #: src/olympia/addons/templatetags/jinja_helpers.py:37 src/olympia/amo/templates/amo/side_nav.html:6 src/olympia/amo/templates/amo/side_nav.html:10 src/olympia/amo/templates/amo/site_nav.html:2
@@ -131,7 +131,7 @@ msgstr ""
 
 #: src/olympia/addons/buttons.py:179
 msgid "Add to {0}"
-msgstr ""
+msgstr "Adder a {0}"
 
 #: src/olympia/addons/forms.py:46
 msgid "This slug is already in use. Please choose another."
