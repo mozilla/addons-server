@@ -216,9 +216,23 @@ class TestLoginUserAndRegisterUser(TestCase):
         assert self.user.auth_id
 
     def test_register_user(self):
-        pass
-        # Make sure user_logged_in signal is triggered, last login is set,
-        # last_login_ip is set, etc.
+        views.register_user(self.__class__, self.request,
+                            {'email': 'new@yeahoo.com', 'uid': '424242'})
+        assert UserProfile.objects.count() == 2
+        user = UserProfile.objects.get(email='new@yeahoo.com')
+        assert user.fxa_id == '424242'
+        self.login_mock.assert_called_with(self.request, user)
+        self.assertCloseToNow(user.last_login)
+        assert user.last_login_ip == '8.8.8.8'
+
+        # The other user wasn't affected.
+        self.user.reload()
+        assert self.user.pk != user.pk
+        assert self.user.auth_id != user.auth_id
+        assert self.user.last_login != user.last_login
+        assert self.user.last_login_ip != user.last_login_ip
+        assert self.user.fxa_id != user.fxa_id
+        assert self.user.email != user.email
 
 
 class TestFindUser(TestCase):
