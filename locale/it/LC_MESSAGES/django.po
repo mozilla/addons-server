@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-08 18:24+0000\n"
+"PO-Revision-Date: 2018-08-08 18:37+0000\n"
 "Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -5532,9 +5532,8 @@ msgid "So many tab control options—close duplicate tabs, merge windows, copy t
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalizza le schede {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Divertiti con una inusuale educazione {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5542,13 +5541,12 @@ msgid "Load a random Wikipedia article each time you open a new tab."
 msgstr "Imposta la pagina che viene mostrata quando apri una nuova scheda."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Arricchisci i tuoi testi di emoji {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Modifica la nuova scheda {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Configura le pagine di nuova scheda per mostrare colori e immagini di sfondo personalizzate."
 
 #. editorial content for the discovery pane.
 #, fuzzy
