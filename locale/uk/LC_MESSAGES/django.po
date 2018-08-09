@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-09 05:38+0000\n"
+"PO-Revision-Date: 2018-08-09 05:56+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5130,7 +5130,7 @@ msgstr "Переклад з та на німецьку мову {start_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "Отримайте професійний переклад німецькою мовою з англійської, французької, іспанської та інших мов."
 
 #. editorial content for the discovery pane.
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5138,7 +5138,7 @@ msgstr "Створіть чорний список веб-сайтів {start_su
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
-msgstr ""
+msgstr "Обмежте для Firefox доступ до визначених вами веб-сайтів."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5146,7 +5146,7 @@ msgstr "Працюйте розумніше {start_sub_heading}разом з {ad
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "Керуйте своєю продуктивністю, працюючи в зазначені проміжки часу."
 
 #. editorial content for the discovery pane.
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5154,7 +5154,7 @@ msgstr "Легке читання {start_sub_heading}за допомогою {ad
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "Перевіряйте всі улюблені стрічки новин RSS на одній сторінці."
 
 #. editorial content for the discovery pane.
 msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5162,7 +5162,7 @@ msgstr "Зменште навантаження на зір {start_sub_heading}�
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "Застосуйте нічний режим для кращого перегляду."
 
 #. editorial content for the discovery pane.
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5170,7 +5170,7 @@ msgstr "Шукайте зображення {start_sub_heading}за допомо
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "Зворотній пошук зображення з використанням можливостей багатьох пошукових провайдерів."
 
 #. editorial content for the discovery pane.
 msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5178,7 +5178,7 @@ msgstr "Зберігайте матеріали на потім {start_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Store web pages to access across devices."
-msgstr ""
+msgstr "Зберігайте веб-сторінки для доступу на різних пристроях."
 
 #. editorial content for the discovery pane.
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5186,7 +5186,7 @@ msgstr "Легко обирайте розташування закладок {s
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "Кращий спосіб зберігання закладок, якщо ви використовуєте багато тек."
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5194,7 +5194,7 @@ msgstr "Жодного форматування {start_sub_heading}разом з
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "Усуньте непотрібне форматування й копіюйте лише простий текст."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
