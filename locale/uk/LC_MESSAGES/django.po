@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 12:46+0000\n"
+"PO-Revision-Date: 2018-08-09 05:28+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5082,7 +5082,7 @@ msgstr "Вдоскональте роботу з emoji {start_sub_heading}за �
 
 #. editorial content for the discovery pane.
 msgid "Easily customize the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Легко змінюйте вбудовані налаштування приватності в Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5090,7 +5090,7 @@ msgstr "Вдоскональте свою роботу з VK {start_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
-msgstr ""
+msgstr "Remove ads and download audio from VK."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5098,7 +5098,7 @@ msgstr "Отримуйте миттєві переклади {start_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Миттєво перекладайте підсвічений текст натисканням виринаючої кнопки."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5106,7 +5106,7 @@ msgstr "Налаштовуйте нові вкладки {start_sub_heading}за
 
 #. editorial content for the discovery pane.
 msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
-msgstr ""
+msgstr "Будьте творчими й налаштовуйте сторінку нової вкладки для відображення улюблених сайтів та змінюйте тему."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5114,7 +5114,7 @@ msgstr "Більше ніяких перенаправлень {start_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "Переходьте безпосередньо на бажаний веб-сайт беж проміжного перенаправлення."
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
