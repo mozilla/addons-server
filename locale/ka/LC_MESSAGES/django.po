@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-09 17:10+0000\n"
+"PO-Revision-Date: 2018-08-09 17:25+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3466,54 +3466,56 @@ msgid "Code minifiers or obfuscators"
 msgstr "კოდის გასამარტივებელი ან ფორმის შემცვლელი საშუალებები"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
-msgstr ""
+msgstr "ხელსაწყოები, რამდენიმე ფაილის ერთ ფაილად გასაერთიანებლად, როგორიცაა <span class=\"tech-emphasis\">webpack</span>"
 
 msgid "Web template engines, both for HTML and CSS"
-msgstr ""
+msgstr "ნიმუშების ძრავები ორივესთვის, HTML და CSS-ისთვის"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr ""
+msgstr "სხვა ნებისმიერი საშუალება, რომელიც იღებს კოდს ან ფაილს, ამუშავებს და შედეგად ქმნის ფორმაშეცვლილ კოდსა და ფაილ(ებ)ს, დამატებაში ჩასართავად"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "თქვენ არ გესაჭიროებათ პირველწყარო კოდის წარდგენა და მზად ხართ შემდეგ საფეხურზე გადასასვლელად."
 
 msgid "Your Submission Requires Source Code."
-msgstr ""
+msgstr "თქვენ მიერ წარდგენილი მასალა საჭიროებს პირველწყარო კოდს."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr ""
+msgstr "პირველწყარო კოდი უნდა შეესაბამებოდეს <a %(a_attrs)s>მოთხოვნების დებულებას</a>, რომელიც მოიცავს:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
-msgstr ""
+msgstr "აწყობის ნაბიჯ-ნაბიჯ მითითებებს დამატების კოდის ზუსტი ასლის შესაქმნელად."
 
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "სკრიპტის შექმნას, რომელიც გაივლის ყველა საჭირო ტექნიკურ საფეხურს."
 
 msgid "Operating system and build environment requirements."
-msgstr ""
+msgstr "საოპერაციო სისტემასა და აწყობის გარსის მოთხოვნებს."
 
 msgid ""
 "Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
 "emphasis\">npm</span> version used)."
 msgstr ""
+"ვრცლად (მათ შორის მოთხოვნილ ვერსიასა და დაყენების მითითებებს) აწყობის პროცესში გამოყენებულ ყველა პროგრამაზე (მაგალითად: <span class=\"tech-emphasis\">node</span> და <span class=\"tech-"
+"emphasis\">npm</span> ვერსიებზე)."
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
+"<span class=\"instruction-emphasis\">შენიშვნა:</span> წყაროს ფაილები (გარდა ღია წყაროს მქონე ცალკეული ბიბლიოთეკებისა) არ უნდა იყოს ერთი ენიდან სხვაზე გადმოტანილი, ფორმაშეცვლილი, გამარტივებული ან "
+"სხვა სახით დამუშავებული მექანიკურად."
 
-#, fuzzy
 msgid "How to Submit:"
-msgstr "წარდგენა"
+msgstr "როგორ ხდება წარდგენა:"
 
 msgid "Include instructions in a README file in the source code,"
-msgstr ""
+msgstr "მითითებები README ფაილის სახით უნდა დაერთოს პირველწყარო კოდს,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr ""
+msgstr "ან მიმომხილველის შენიშვნები მომდევნო გვერდზე (საჭიროების შემთხვევაში)"
 
-#, fuzzy
 msgid "Upload source code:"
-msgstr "პირველწყარო კოდი"
+msgstr "პირველწყარო კოდის ატვირთვა:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "შეთანხმება, დამატების გავრცელების თაობაზე"
