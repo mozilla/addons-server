@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-09 00:11+0000\n"
+"PO-Revision-Date: 2018-08-09 00:19+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -146,26 +146,26 @@ msgstr ""
 #: src/olympia/addons/forms.py:70
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tag non valide: {0}"
+msgstr[1] "Tags non valide: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: src/olympia/addons/forms.py:80
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "\"{0}\" es un tag reservate e non pote ser usate."
+msgstr[1] "\"{0}\" es tags reservate e non pote ser usate."
 
 #: src/olympia/addons/forms.py:88
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
+msgstr[0] "Tu ha {0} tag de troppo."
 msgstr[1] ""
 
 #: src/olympia/addons/forms.py:94
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr ""
+msgstr "Tote le tags debe esser %s characteres o minus, postea la characteres non valide es removite."
 
 #: src/olympia/addons/forms.py:99
 msgid "All tags must be at least {0} character."
