@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 19:34+0000\n"
-"Last-Translator: irina.terzian <irina.terzian@gmail.com>\n"
+"PO-Revision-Date: 2018-08-07 20:23+0000\n"
+"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -75,9 +75,8 @@ msgstr "Opinia"
 msgid "Version {0}"
 msgstr "Wersja {0}"
 
-#, fuzzy
 msgid "Review note"
-msgstr "Data sprawdzenia"
+msgstr "Uwaga do opinii"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Uwagi można dodawać tylko do najnowszych wersji dodatków."
@@ -112,9 +111,9 @@ msgstr "Zainstaluj"
 msgid "This slug is already in use. Please choose another."
 msgstr "Ten ciąg słów jest już używany. Wybierz inny."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Ciąg słów nie może mieć formy „%s”. Wybierz inny."
+msgstr "Ciąg słów nie może mieć formy \"%(slug)s\". Wybierz inny."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -208,13 +207,11 @@ msgstr "Zasady ochrony prywatności"
 msgid "View End-User License Agreement"
 msgstr "Zobacz licencję użytkownika"
 
-#, fuzzy
 msgid "This add-on has not been reviewed by Mozilla."
-msgstr "Nie napisano jeszcze żadnej opinii o tym dodatku."
+msgstr "Ten dodatek nie został jeszcze sprawdzony przez Mozillę."
 
-#, fuzzy
 msgid "This add-on has been marked as experimental by its developers."
-msgstr "Ten dodatek został usunięty przez jego autora."
+msgstr "Ten dodatek został oznaczony jako eksperymentalny przez jego autorów."
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -286,9 +283,8 @@ msgstr[0] "%(num)s użytkownik"
 msgstr[1] "%(num)s użytkowników"
 msgstr[2] "%(num)s użytkowników"
 
-#, fuzzy
 msgid "Requires Restart"
-msgstr "Wymagane pola"
+msgstr "Wymagane ponowne uruchomienie"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
 msgstr "Ten dodatek został utworzony przy użyciu nowej technologii, która jest kompatybilna z przeglądarką Firefox 57 lub nowszą."
@@ -400,13 +396,13 @@ msgstr "Polityka prywatności"
 msgid "Report Abuse"
 msgstr "Zgłoś nadużycie"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
 msgstr ""
-"Jeśli podejrzewasz, że ten dodatek narusza <a href=\"%(url)s\">nasze zasady</a>, ma problemy z bezpieczeństwem lub zachowaniem prywatności – użyj poniższego formularza, by opisać swoje obawy. Nie "
-"używaj tego formularza z innych powodów."
+"Jeśli podejrzewasz, że ten dodatek narusza %(amo_policy_link_open)snasze zasady%(link_close)s, ma problemy z bezpieczeństwem lub zachowaniem prywatności, użyj poniższego formularza, by opisać swoje "
+"obawy. Nie używaj tego formularza z innych powodów."
 
 msgid "Send Report"
 msgstr "Wyślij zgłoszenie"
@@ -435,9 +431,8 @@ msgstr "Ocena:"
 msgid "Submit review"
 msgstr "Prześlij opinię"
 
-#, fuzzy
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr "W opiniach nie zgłaszaj błędów. Twój adres e-mail nie jest dostępny dla twórcy dodatku, a może on potrzebować kontaktu z tobą, by rozwiązać problem."
+msgstr "Nie publikuj tutaj zgłoszeń błędów. Nie udostępniamy Twojego adresu e-mail twórcom dodatków, więc nie będą mogli skontaktować się z Tobą w celu rozwiązania problemu."
 
 #, python-format
 msgid ""
@@ -480,17 +475,14 @@ msgstr "autor: %(users)s"
 msgid "Download Anyway"
 msgstr "Pobierz mimo wszystko"
 
-#, fuzzy
 msgid "[Warning]"
-msgstr "{0} ostrzeżenie"
+msgstr "[Ostrzeżenie"
 
-#, fuzzy
 msgid "Permissions"
-msgstr "Wersje"
+msgstr "Uprawnienia"
 
-#, fuzzy
 msgid "This add-on has been marked as experimental by its developers"
-msgstr "Ten dodatek został usunięty przez jego autora."
+msgstr "Ten dodatek został oznaczony jako eksperymentalny przez jego autorów"
 
 msgid "This add-on requires the following add-ons to work properly:"
 msgstr "Do prawidłowego działania tego dodatku wymagana jest obecność następujących dodatków:"
@@ -527,13 +519,11 @@ msgstr "Zobacz statystyki"
 msgid "Manage"
 msgstr "Zarządzaj"
 
-#, fuzzy
 msgid "Add-on Review"
-msgstr "Pełne sprawdzenie dodatku"
+msgstr "Sprawdzenie dodatku"
 
-#, fuzzy
 msgid "Admin Manage"
-msgstr "Strona administratora"
+msgstr "Zarządzanie przez administratora"
 
 #. {0} is an add-on name.
 msgid "Icon of {0}"
@@ -601,9 +591,8 @@ msgstr ""
 "bezpieczeństwa przeglądarki, ale w pewnych rzadkich przypadkach może to być związane z pewnym ryzykiem."
 
 #. This is a header of a list of things the add-on can do.
-#, fuzzy
 msgid "This add-on can:"
-msgstr "Dodatek wymaga zewnętrznego oprogramowania."
+msgstr "Ten dodatek zapewnia następujące możliwości:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
 msgstr ""
@@ -625,13 +614,11 @@ msgstr "Licencja kodu źródłowego dla {addon}"
 msgid "Source Code License"
 msgstr "Licencja kodu źródłowego"
 
-#, fuzzy
 msgid "support section"
-msgstr "Pomoc"
+msgstr "sekcja pomocy"
 
-#, fuzzy
 msgid "support email"
-msgstr "E-mail pomocy"
+msgstr "adres e-mail pomocy"
 
 msgid "permalink"
 msgstr "zobacz całą"
@@ -729,9 +716,8 @@ msgstr "Strefa autora"
 msgid "Manage API Keys"
 msgstr "Zarządzaj kluczami API"
 
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "Recenzenci"
+msgstr "Strefa recenzenta"
 
 msgid "Admin Tools"
 msgstr "Strefa administratora"
@@ -748,13 +734,11 @@ msgstr "To musi być poprawny kod szesnastkowy koloru, taki jak #000000."
 msgid "Not allowed"
 msgstr "Brak uprawnień."
 
-#, fuzzy
 msgid "Oops! Not allowed."
-msgstr "Brak uprawnień."
+msgstr "Ups! Niedozwolone."
 
-#, fuzzy
 msgid "You tried to do something that you weren't allowed to."
-msgstr "<h1>Ups! Niedozwolone.</h1> <p>Próbujesz zrobić coś, do czego nie masz uprawnień.</p>"
+msgstr "Próbujesz zrobić coś, do czego nie masz uprawnień."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -773,13 +757,11 @@ msgstr ""
 "Ten komunikat jest wyświetlany, ponieważ ta witryna wymaga pliku wymaga ciasteczka CSRF podczas przesyłania formularzy. To ciasteczko jest wymagane ze względów bezpieczeństwa, aby Twoja przeglądarka"
 " nie została przejęta przez inną osobę."
 
-#, fuzzy
 msgid "Page Not Found"
-msgstr "Nie znaleziono"
+msgstr "Nie znaleziono strony"
 
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "Więcej dodatków"
+msgstr "Dodatki Firefoksa"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
 msgstr "Przepraszamy, nie możemy znaleźć niczego pod wprowadzonym adresem. Jeśli kliknięto odnośnik do dodatku, być może ten dodatek został usunięty przez autora."
@@ -787,17 +769,14 @@ msgstr "Przepraszamy, nie możemy znaleźć niczego pod wprowadzonym adresem. Je
 msgid "Suggested Pages"
 msgstr "Proponowane strony"
 
-#, fuzzy
 msgid "Browse all extensions"
-msgstr "Przejrzyj wszystkie dodatki"
+msgstr "Przejrzyj wszystkie rozszerzenia"
 
-#, fuzzy
 msgid "Browse all themes"
-msgstr "Przejrzyj wszystkie dodatki"
+msgstr "Przejrzyj wszystkie motywy"
 
-#, fuzzy
 msgid "Add-ons Home Page"
-msgstr "Strona domowa"
+msgstr "Strona główna dodatków"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
@@ -806,7 +785,7 @@ msgstr "Jeśli kliknięto odnośnik w innym miejscu, %(open_bug_link)szgłoś pr
 msgid "Not Found"
 msgstr "Nie znaleziono"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
@@ -814,19 +793,19 @@ msgid ""
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Przepraszamy, ale nie możemy znaleźć szukanego elementu.</h1> <p>Żądana strona lub plik nie zostały znalezione na tej witrynie. Możliwe, że został użyty nieaktualny odnośnik lub adres był "
-"niepoprawnie wprowadzony.</p> <ul> <li>Sprawdź dokładnie pisownię wprowadzanego adresu strony.</li> <li>Jeśli informacja ta została wyświetlona po kliknięciu odnośnika na jakiejś stronie, wyślij "
-"wiadomość na adres <a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a> zawierającą informacje, na jakiej stronie został użyty odnośnik i jakie informacje były szukane, a my zrobimy "
-"wszystko, by to naprawić.</li> </ul> <p>Możesz również przejść do którejś z popularnych stron na naszej witrynie.</p> <ul> <li>Interesują cię <a href=\"%(rec)s\">polecane dodatki</a>?</li> "
-"<li>Chcesz <a href=\"%(search)s\">poszukać dodatków</a>? Przejdź do <a href=\"%(search)s\">strony wyszukiwania</a> lub użyj pola wyszukiwania znajdującego się powyżej. </li> <li>Jeśli chcesz zacząć "
-"od początku, przejdź do <a href=\"%(home)s\">strony głównej dodatków</a>. </li> </ul>"
+"<h1>Przepraszamy, ale nie możemy znaleźć szukanego elementu.</h1> <p>Żądana strona lub plik nie zostały znalezione w tej witrynie. Możliwe, że został użyty nieaktualny odnośnik lub adres był "
+"niepoprawnie wprowadzony. </p> <ul> <li>Sprawdź dokładnie pisownię wprowadzanego adresu strony.</li> <li>Jeśli informacja ta została wyświetlona po kliknięciu odnośnika na jakiejś stronie, <a "
+"href=\"https://github.com/mozilla/addons-server/issues/new/\">zgłoś problem</a>. Poinformuj nas, na jakiej stronie został użyty odnośnik i jakie informacje były szukane, a my zrobimy wszystko, by to"
+" naprawić.</li> </ul> <p>Możesz również przejść do którejś z popularnych stron w naszej witrynie.</p> <ul> <li>Interesują cię <a href=\"%(rec)s\">polecane dodatki</a>?</li> <li>Chcesz <a "
+"href=\"%(search)s\">poszukać dodatków</a>? Przejdź do <a href=\"%(search)s\">strony wyszukiwania</a> lub użyj pola wyszukiwania znajdującego się powyżej. </li> <li>Jeśli chcesz zacząć od początku, "
+"przejdź do <a href=\"%(home)s\">strony głównej dodatków</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ups"
 
-#, fuzzy, python-format
+#, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr "<h1>Ups! Wystąpił błąd.</h1> <p>Postaramy się szybko to naprawić.</p> <p> Możesz spróbować odświeżyć stronę lub wrócić na <a href=\"%(home)s\">stronę główną</a> dodatków.</p>"
+msgstr "<h1>Ups! Wystąpił błąd.</h1> <p>Postaramy się szybko to naprawić.</p> <p> Możesz spróbować odświeżyć stronę lub wrócić na <a href=\"%(home)s\">stronę główną dodatków</a>. </p>"
 
 msgid "Some rights reserved"
 msgstr "Część praw zastrzeżona"
@@ -905,13 +884,8 @@ msgstr "Dodatki dla Mobile"
 msgid "Dictionaries & Language Packs"
 msgstr "Słowniki i pakiety językowe"
 
-#, fuzzy
 msgid "Search Tools"
-msgstr ""
-"#-#-#-#-#  django.po (addons)  #-#-#-#-#\n"
-"Wyszukiwanie\n"
-"#-#-#-#-#  django.po (addons)  #-#-#-#-#\n"
-"Narzędzia wyszukiwania"
+msgstr "Narzędzia wyszukiwania"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1046,25 +1020,20 @@ msgstr "Ikona musi być w formacie PNG lub JPG."
 msgid "Icons cannot be animated."
 msgstr "Nie można używać animowanych ikon."
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "Ten adres url jest już używany przez inną kolekcję"
+msgstr "Ten niestandardowy adres URL już używany przez inną Twoją kolekcję."
 
-#, fuzzy
 msgid "Name cannot be empty."
-msgstr "Nie można użyć tej nazwy"
+msgstr "Nazwa nie może być pusta."
 
-#, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "Podaj poprawną nazwę użytkownika składającą się z liter, cyfr, podkreślników lub myślników."
+msgstr "Niestandardowy adres URL musi składać się z liter, cyfr, podkreślników lub myślników."
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "Ta nazwa użytkownika nie może być użyta."
+msgstr "Nie można użyć tego niestandardowego adresu URL."
 
-#, fuzzy
 msgid "This add-on already belongs to the collection"
-msgstr "Ten adres url jest już używany przez inną kolekcję"
+msgstr "Ten dodatek już należy do kolekcji"
 
 msgid "Added"
 msgstr "Dodano"
@@ -1183,13 +1152,12 @@ msgstr ""
 "Dodatki dodane za pomocą przycisku <b>Dodaj do ulubionych</b> ukażą się poniżej. Obecnie ta kolekcja ma status <b>publiczna</b>, co oznacza, że jest widoczna dla wszystkich. Jeśli chcesz, by nie "
 "była ona dostępna dla innych, naciśnij przycisk znajdujący się poniżej, by ją określić jako prywatną."
 
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
-"Dodatki dodane za pomocą przycisku <b>Dodaj do ulubionych</b> ukażą się poniżej. Obecnie ta kolekcja ma status <b>prywatna</b>, co oznacza, że jest widoczna tylko dla ciebie. Jeśli chcesz, by była "
-"dostępna dla wszystkich, naciśnij przycisk znajdujący się poniżej, by ją upublicznić."
+"Dodatki dodane za pomocą przycisku <b>Dodaj do ulubionych</b> pojawią się poniżej. Obecnie ta kolekcja ma status <b>prywatna</b>, co oznacza, że jest widoczna tylko dla Ciebie. Jeśli chcesz, by była"
+" dostępna dla wszystkich, kliknij przycisk znajdujący się poniżej, by ją upublicznić."
 
 msgid "My favorite add-ons"
 msgstr "Moje ulubione dodatki"
@@ -1247,9 +1215,9 @@ msgstr "Nie znaleziono kolekcji."
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Kolekcje są grupami pokrewnych dodatków, które każdy może tworzyć i udostępniać. Wypróbuj kolekcje utworzone przez innych użytkowników lub <a href=\"%(url)s\">utwórz własną</a>."
 
-#, fuzzy, python-format
+#, python-format
 msgid "by %(author_link)s"
-msgstr "autor: %(users)s"
+msgstr "autor: %(author_link)s"
 
 msgid "Create a Collection"
 msgstr "Utwórz kolekcję"
@@ -1263,11 +1231,9 @@ msgstr "Ikona kolekcji"
 msgid "Reset"
 msgstr "Resetuj"
 
-#, fuzzy
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
 msgstr "Obsługiwane są formaty PNG i JPG. Obrazek zostanie przeskalowany do rozmiaru 32x32."
 
-#, fuzzy
 msgid "There are errors in this form.  Please correct them below."
 msgstr "Znaleziono błędy w formularzu. Popraw je poniżej."
 
@@ -1441,9 +1407,8 @@ msgid "Additional Resources"
 msgstr "Dodatkowe zasoby"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "Dowiedz się więcej o <a href=\"http://support.mozilla.com/kb/Search+bar\">pasku wyszukiwania</a> w programie {0}"
+msgstr "Dowiedz się więcej o <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">pasku wyszukiwania</a> w programie {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr "Przeglądaj jeszcze większą liczbę dostawców wyszukiwania na stronie <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
@@ -1603,9 +1568,8 @@ msgstr "Typ zgłoszenia"
 msgid "Version"
 msgstr "Wersja"
 
-#, fuzzy
 msgid "Application Version"
-msgstr "Wersje programu"
+msgstr "Wersja programu"
 
 msgid "Application Build"
 msgstr "Kompilacja programu"
