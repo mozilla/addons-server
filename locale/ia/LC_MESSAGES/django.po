@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-09 14:06+0000\n"
+"PO-Revision-Date: 2018-08-09 14:13+0000\n"
 "Last-Translator: Rodrigo Guerra <rodmguerra@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -63,7 +63,7 @@ msgid "Developers of add-ons or themes cannot delete their account. You must del
 msgstr "Le disveloppatores de additivos o themas non pote deler lor conto. Tu debe deler tote le additivos e themas ligate a iste conto, o transferer illos a altere usatores."
 
 msgid "Review"
-msgstr "Revider"
+msgstr "Recension"
 
 msgid "Version {0}"
 msgstr "Version {0}"
