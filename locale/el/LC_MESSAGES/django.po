@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-09 14:48+0000\n"
+"PO-Revision-Date: 2018-08-09 15:11+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3074,7 +3074,7 @@ msgid "View Source?"
 msgstr "Προβολή πηγαίου κώδικα;"
 
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Αν θα μπορεί να εμφανιστεί ο πηγαίος κώδικας του προσθέτου σας στο πρόγραμμα διαδικτυακής προβολής. Αυτό ισχύει μόνο για τα καταχωρημένα πρόσθετα."
 
 msgid "This add-on's source code is publicly viewable."
 msgstr "Ο πηγαίος κώδικας του πρόσθετου διατίθεται για δημόσια προβολή."
@@ -3086,7 +3086,7 @@ msgid "Public Stats?"
 msgstr "Δημόσια στατιστικά;"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Αν μπορούν να προβληθούν τα στατιστικά λήψεων και χρήσης του προσθέτου σας στο πρόγραμμα διαδικτυακής προβολής. Αυτό ισχύει μόνο για τα καταχωρημένα πρόσθετα."
 
 msgid "This add-on's stats are publicly viewable."
 msgstr "Τα στατιστικά αυτού του προσθέτου είναι σε δημόσια προβολή."
@@ -5849,7 +5849,7 @@ msgstr "Απροσδόκητο σφάλμα."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Το <em:type> στο install.rdf (%s) σας δεν ταιριάζει με τον τύπου του προσθέτου στο AMO (%s)"
 
 msgid "Back to review"
 msgstr "Πίσω στην αξιολόγηση"
@@ -5859,7 +5859,7 @@ msgstr "Πίσω στο πρόσθετο"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
+msgstr "Έκδοση: %(version)s &bull; Μέγεθος: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Τύπος MIME: %(mimetype)s"
 
 msgid "File Compare :: Reviewer tools"
 msgstr "Σύγκριση αρχείων :: Εργαλεία κριτή"
@@ -5871,7 +5871,7 @@ msgid "Validation failed:"
 msgstr "Αποτυχία επαλήθευσης:"
 
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "Το περιεχόμενο του αρχείου δεν υποστηρίζεται για επισήμανση συντακτικού"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
@@ -5980,7 +5980,7 @@ msgid "Xmarks is the #1 bookmarking add-on."
 msgstr ""
 
 msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
+msgstr "Μετάφραση ιστοσελίδας και κειμένου, λεξικό και πολλά άλλα!"
 
 msgid "Love is in the Air"
 msgstr "Η αγάπη είναι στον αέρα"
@@ -6120,7 +6120,7 @@ msgstr ""
 
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
-msgstr ""
+msgstr "Αναρτούμε συχνά ειδήσεις, συμβουλές και κόλπα στο λογαριασμό Twitter μας, <a href=\"%(url)s\">mozamo</a>"
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
