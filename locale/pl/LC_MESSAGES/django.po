@@ -1740,16 +1740,16 @@ msgid "{addon} icon changed."
 msgstr "Zmieniono ikonę dodatku {addon}."
 
 msgid "{rating} for {addon} approved."
-msgstr "Zaakceptowano opinię {review} dla dodatku {addon}."
+msgstr "Zaakceptowano opinię {rating} dla dodatku {addon}."
 
 msgid "{user} approved {rating} for {addon}."
-msgstr "Użytkownik {user} zaakceptował opinię {review} dla dodatku {addon}."
+msgstr "Użytkownik {user} zaakceptował opinię {rating} dla dodatku {addon}."
 
 msgid "Review {rating} for {addon} deleted."
-msgstr "Usunięto opinię {review} dla dodatku {addon}."
+msgstr "Usunięto opinię {rating} dla dodatku {addon}."
 
 msgid "{user} deleted {rating} for {addon}."
-msgstr "Użytkownik {user} usunął opinię {review} dla dodatku {addon}."
+msgstr "Użytkownik {user} usunął opinię {rating} dla dodatku {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Zaktualizowano parametr maxVersion w {version}."
@@ -1794,7 +1794,7 @@ msgid "Admin {0} viewed activity log for {user}."
 msgstr "Administrator {0} przejrzał dziennik aktywności użytkownika {user}."
 
 msgid "{rating} for {addon} updated."
-msgstr "Zaktualizowano opinię {review} dla dodatku {addon}."
+msgstr "Zaktualizowano opinię {rating} dla dodatku {addon}."
 
 msgid "{addon} reviewed."
 msgstr "Sprawdzono {addon}."
