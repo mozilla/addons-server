@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-09 15:33+0000\n"
-"Last-Translator: YD <ygda+fx@free.fr>\n"
+"PO-Revision-Date: 2018-08-10 11:39+0000\n"
+"Last-Translator: Sphinx / Julien G <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -3516,25 +3516,25 @@ msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
 msgstr ""
 
 msgid "Do you use any of the following?"
-msgstr ""
+msgstr "Utilisez-vous l’un des outils suivants ?"
 
 msgid "Code minifiers or obfuscators"
-msgstr ""
+msgstr "Compacteurs ou outils d’offuscation de code"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
-msgstr ""
+msgstr "Outils de concaténation de fichiers tel <span class=\"tech-emphasis\">webpack</span>"
 
 msgid "Web template engines, both for HTML and CSS"
-msgstr ""
+msgstr "Moteurs de modèles web pour HTML et CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr ""
+msgstr "Tout autre outil traitant du code ou des fichiers et générant du code ou des fichiers à inclure dans le module"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "Vous n’avez pas besoin de communiquer le code source et vous pouvez passer à l’étape suivante."
 
 msgid "Your Submission Requires Source Code."
-msgstr ""
+msgstr "Le code source est nécessaire pour votre envoi."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
@@ -3547,7 +3547,7 @@ msgid "A build script that executes all necessary technical steps."
 msgstr ""
 
 msgid "Operating system and build environment requirements."
-msgstr ""
+msgstr "Système d’exploitation et environnement d’installation requis."
 
 msgid ""
 "Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
@@ -3568,7 +3568,7 @@ msgid "or in reviewer notes on the next page (if applicable)."
 msgstr ""
 
 msgid "Upload source code:"
-msgstr ""
+msgstr "Ajouter du code source :"
 
 msgid "Add-on Distribution Agreement"
 msgstr "Accord de distribution des modules complémentaires"
