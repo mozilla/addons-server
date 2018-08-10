@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 17:32+0000\n"
+"PO-Revision-Date: 2018-08-10 17:51+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -85,7 +85,7 @@ msgid "Status"
 msgstr "Status"
 
 msgid "- Add-on not on AMO -"
-msgstr "- Dodatek nie znajduje się na AMO -"
+msgstr "– Dodatek nie znajduje się na AMO –"
 
 msgid "Download Now"
 msgstr "Pobierz"
@@ -182,7 +182,7 @@ msgid "Listed"
 msgstr "Wyświetlanie"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr "Ścieżki do dodatku i kolekcji muszą kończyć się znakiem \"/\""
+msgstr "Ścieżki do dodatku i kolekcji muszą kończyć się znakiem „/”"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nazwy dodatków nie mogą zawierać znaków towarowych Mozilli lub Firefoksa."
@@ -669,7 +669,7 @@ msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "Ten motyw jest oczekujący. Jest niewidoczny dla wszystkich oprócz ciebie."
 
 msgid "Collector's Note"
-msgstr "Informacje twórcy kolekcji "
+msgstr "Informacje twórcy kolekcji"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -877,7 +877,7 @@ msgid "More&hellip;"
 msgstr "Więcej&hellip;"
 
 msgid "Add-ons for Mobile"
-msgstr "Dodatki dla Mobile"
+msgstr "Dodatki do Firefoksa na telefon"
 
 msgid "Dictionaries & Language Packs"
 msgstr "Słowniki i pakiety językowe"
@@ -950,7 +950,7 @@ msgstr "Należy określić obiekt {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr "Nieprawidłowy pk lub ciąg słów \"%s\" — obiekt nie istnieje."
+msgstr "Nieprawidłowy pk lub ciąg słów „%s” — obiekt nie istnieje."
 
 msgid "Application Versions"
 msgstr "Wersje programu"
@@ -966,7 +966,7 @@ msgstr "Dodatki przesłane do witryny Mozilla Add-ons muszą mieć plik manifest
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Należy zauważyć, że rozszerzenia WebExtension nie akceptują znaku \"*\" w parametrze %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
+msgstr "Należy zauważyć, że rozszerzenia WebExtension nie akceptują znaku „*” w parametrze %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
@@ -1097,7 +1097,7 @@ msgid "About this Collection"
 msgstr "O tej kolekcji"
 
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr "Dodatki zsynchronizowane z moim Firefoksem Mobile"
+msgstr "Dodatki zsynchronizowane z moim Firefoksem na telefonie"
 
 msgid "Make this Collection Private"
 msgstr "Określ tę kolekcję jako prywatną"
@@ -1916,7 +1916,7 @@ msgid "Sunbird"
 msgstr "Sunbird"
 
 msgid "Mobile"
-msgstr "Mobile"
+msgstr "Na telefon"
 
 msgid "Firefox for Android"
 msgstr "Firefox dla Androida"
@@ -3164,7 +3164,7 @@ msgid "Upload a Custom Icon..."
 msgstr "Prześlij własną ikonę…"
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr "Obsługiwane formaty to PNG i JPG. Ikony, jeśli są większe, zostaną przeskalowane do wielkości 64x64 pikseli."
+msgstr "Obsługiwane formaty to PNG i JPG. Ikony, jeśli są większe, zostaną przeskalowane do wielkości 64×64 pikseli."
 
 msgid "Screenshots"
 msgstr "Obrazy"
@@ -3908,7 +3908,7 @@ msgid "Get Your Add-on Featured"
 msgstr "Wyróżnij swój dodatek"
 
 msgid "\"Get The Add-on\" button"
-msgstr "Przycisk \"Pobierz dodatek\""
+msgstr "Przycisk „Pobierz dodatek”"
 
 msgid "Legal"
 msgstr "Informacje prawne"
@@ -3990,7 +3990,7 @@ msgid "View All Submissions"
 msgstr "Wyświetl wszystkie zgłoszenia"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr "W tym miejscu możesz wyświetlać swoje dodatki i motywy oraz zarządzać nimi. Aby opublikować swój pierwszy dodatek, kliknij \"Prześlij pierwszy dodatek\" lub \"Prześlij pierwszy motyw\"."
+msgstr "W tym miejscu możesz wyświetlać swoje dodatki i motywy oraz zarządzać nimi. Aby opublikować swój pierwszy dodatek, kliknij „Prześlij pierwszy dodatek” lub „Prześlij pierwszy motyw”."
 
 msgid "Submit Your First Add-on"
 msgstr "Prześlij swój pierwszy dodatek"
@@ -4350,7 +4350,7 @@ msgid "Deleting this version will permanently delete:"
 msgstr "Usunięcie tej wersji spowoduje trwałe skasowanie:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr "<strong>Ważne:</strong> Po usunięciu wersji nie można przesłać nowej wersji z tym samym numerem wersji."
+msgstr "<strong>Ważne:</strong> po usunięciu wersji nie można przesłać nowej wersji z tym samym numerem wersji."
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "Czy na pewno chcesz usunąć tę wersję?"
@@ -4995,11 +4995,11 @@ msgstr "Zmodyfikuj stronę nowej karty przy użyciu pięknego tła, ustawiając 
 
 #. editorial content for the discovery pane.
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Wyświetlaj obrazki {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
+msgstr "Wyświetlaj obrazy {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr "Przywróć przycisk \"Zobacz obraz\" podczas szukania obrazów Google."
+msgstr "Przywróć przycisk „Zobacz obraz” podczas szukania obrazów Google."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5083,11 +5083,11 @@ msgstr "Ukryj fragmenty wyświetlanej witryny."
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pobieraj obrazki {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
+msgstr "Pobieraj obrazy {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
-msgstr "Przechwyć i pobierz obrazki z dowolnej witryny."
+msgstr "Przechwyć i pobierz obrazy z dowolnej witryny."
 
 #. editorial content for the discovery pane.
 msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5211,7 +5211,7 @@ msgstr "Włącz tryb nocny, aby zapewnić lepsze doznania podczas oglądania."
 
 #. editorial content for the discovery pane.
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Szukaj obrazków {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
+msgstr "Szukaj obrazów {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
@@ -5351,11 +5351,11 @@ msgstr "Oszczędzaj przepustowość, przesyłając strumieniowo tylko dźwięk z
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Przekształcaj tekst na obrazki {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
+msgstr "Przekształcaj tekst na obrazy {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr "Przekształć słowa w piękne nagłówki i tekst nakładki na obrazku."
+msgstr "Przekształć słowa w piękne nagłówki i tekst nakładki na obrazie."
 
 #. editorial content for the discovery pane.
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5483,7 +5483,7 @@ msgstr "Zmień wygląd nowej karty {start_sub_heading}przy użyciu dodatku {addo
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr "Skonfiguruj stronę nowej karty przy użyciu własnych kolorów tła i obrazków."
+msgstr "Skonfiguruj stronę nowej karty przy użyciu własnych kolorów tła i obrazów."
 
 #. editorial content for the discovery pane.
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5591,7 +5591,7 @@ msgstr "Mierz ilość czasu spędzanego na komputerze lub w określonych aplikac
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Przycinaj zawartość internetową, taką jak artykuły, filmy, obrazki i inne, w celu zapisywania i użycia w indywidualnych projektach lub do współpracy zespołowej w czasie rzeczywistym."
+msgstr "Przycinaj zawartość internetową, taką jak artykuły, filmy, obrazy i inne, w celu zapisywania i użycia w indywidualnych projektach lub do współpracy zespołowej w czasie rzeczywistym."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5643,11 +5643,11 @@ msgstr "Po prostu kliknij przycisk, aby zamknąć denerwujące nakładki wyskaku
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zbadaj dowolny obrazek {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
+msgstr "Zbadaj dowolny obraz {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr "Widzisz interesujący obrazek w Internecie? Użyj dodatku TinEye, aby zbadać jego pochodzenie."
+msgstr "Widzisz interesujący obraz w Internecie? Użyj dodatku TinEye, aby zbadać jego pochodzenie."
 
 #. editorial content for the discovery pane.
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5655,7 +5655,7 @@ msgstr "Uprość wykonywane czynności {start_sub_heading}przy użyciu dodatku {
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr "Po prostu przeciągnij tekst, obrazki lub odnośniki, aby kopiować, otwierać, wyszukiwać i nie tylko."
+msgstr "Po prostu przeciągnij tekst, obrazy lub odnośniki, aby kopiować, otwierać, wyszukiwać i nie tylko."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
@@ -5757,10 +5757,10 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID jest wymagany przez Firefoksa 47 lub nowszego."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr "Najniższa obsługiwana \"strict_min_version\" to 42.0."
+msgstr "Najniższa obsługiwana „strict_min_version” to 42.0."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr "Nie można znaleźć minimalnej/maksymalnej wersji. Być może właściwość \"strict_min_version\" lub \"strict_max_version\" zawiera nieobsługiwaną wersję?"
+msgstr "Nie można znaleźć minimalnej/maksymalnej wersji. Być może właściwość „strict_min_version” lub „strict_max_version” zawiera nieobsługiwaną wersję?"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -6357,7 +6357,7 @@ msgid ""
 "directly shape the future of Firefox!"
 msgstr ""
 "W Mozilla jesteśmy dumni z tworzenia produktów dla Was – użytkowników! Dlatego potrzebujemy Twojej pomocy. Uczestnicząc w tym badaniu, pomożesz nam w podejmowaniu lepszych decyzji z korzyścią dla "
-"Ciebie i będziesz bezpośrednio kształtować przyszłość przeglądarki Firefox!"
+"Ciebie i będziesz bezpośrednio kształtować przyszłość Firefoksa!"
 
 msgid "Brought to you by:"
 msgstr "Przygotowano przez:"
@@ -6375,7 +6375,7 @@ msgid "Rated %d out of 5 stars"
 msgstr "Oceniony jako %d/5"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "W przypadku wybrania odpowiedzi \"Inna\\” jako przyczyny oznaczenia należy podać krótkie wyjaśnienie."
+msgstr "W przypadku wybrania odpowiedzi „Inna” jako przyczyny oznaczenia należy podać krótkie wyjaśnienie."
 
 msgid "Spam or otherwise non-review content"
 msgstr "Spam lub niecenzuralna treść"
@@ -6428,12 +6428,6 @@ msgid ""
 "community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Pamiętaj o tych wskazówkach:</h2> <ul> <li> Napisz tak, jakbyś opowiadał(-a) znajomemu o swoich doświadczeniach z tym dodatkiem. Podaj szczegóły i pomocne szczegóły, takie jak funkcje, które Ci "
-"się podobały lub nie, łatwość obsługi i wszelkie wady. Unikaj języka ogólnego, takiego jak \"Świetny\" lub \"Zły\", chyba że możesz to uzasadnić. </li> <li> Nie publikuj tutaj zgłoszeń błędów. Nie "
-"udostępniamy Twojego adresu e-mail twórcom dodatków, więc nie będą mogli skontaktować się z Tobą w celu rozwiązania problemu. Zobacz <a href=\"%(support)s\">sekcję pomocy</a> tego dodatku, aby "
-"sprawdzić, czy pomoc jest dostępny. Możesz również poprosić o <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for help. </li> <li>Please keep "
-"reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">wytyczne dotyczące opinii</a>, aby uzyskać więcej "
-"informacji o opiniach użytkowników dodatków.</p>"
 
 msgid "Reply to review by {0}"
 msgstr "Odpowiedź na opinię użytkownika {0}"
@@ -6911,7 +6905,7 @@ msgid "Bad User Ratings ({num})"
 msgstr "Złe oceny użytkowników ({num})"
 
 msgid "Theme Images"
-msgstr "Obrazki motywu"
+msgstr "Obrazy motywu"
 
 msgid "Rendered Preview"
 msgstr "Wyrenderowany podgląd"
@@ -6923,7 +6917,7 @@ msgid "More about this add-on"
 msgstr "Więcej informacji o tym dodatku"
 
 msgid "Image Gallery"
-msgstr "Galeria obrazków"
+msgstr "Galeria obrazów"
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Brak zawartości! Autor nie podał żadnych szczegółów."
@@ -7493,13 +7487,13 @@ msgid "Some features are temporarily disabled while we perform website maintenan
 msgstr "W trakcie wykonywania serwisu witryny niektóre funkcje są tymczasowo wyłączone. Pełna funkcjonalność zostanie przywrócona wkrótce."
 
 msgid "Could not find add-on with id \"{}\"."
-msgstr "Nie można znaleźć dodatku o identyfikatorze \"{}\"."
+msgstr "Nie można znaleźć dodatku o identyfikatorze „{}”."
 
 msgid "You do not own this addon."
 msgstr "Nie jesteś właścicielem tego dodatku."
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr "Brak klucza \"upload\" w danych wieloczęściowego pliku."
+msgstr "Brak klucza „upload” w danych wieloczęściowego pliku."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
@@ -7880,7 +7874,7 @@ msgstr "Witaj, {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr "<a href=\"%(reg)s\">Zarejestruj się</a> lub <a href=\"%(login)s\">Zaloguj się</a>"
+msgstr "<a href=\"%(reg)s\">Zarejestruj się</a> lub <a href=\"%(login)s\">zaloguj się</a>"
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
@@ -7901,7 +7895,7 @@ msgid "On the go?"
 msgstr "Jesteś w podróży?"
 
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr "Sprawdź naszą witrynę <a class=\"mobile-link\" href=\"#\">dodatków dla Firefoksa Mobile</a>."
+msgstr "Sprawdź naszą witrynę <a class=\"mobile-link\" href=\"#\">dodatków do Firefoksa na telefon</a>."
 
 msgid "Android Add-ons"
 msgstr "Dodatki dla Androida"
@@ -7944,7 +7938,7 @@ msgstr "Użytkownik „%(user)s” został zablokowany."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr "Obrazek należący do użytkownika „%(user)s” został usunięty."
+msgstr "Obraz należący do użytkownika „%(user)s” został usunięty."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
@@ -7995,7 +7989,7 @@ msgid "Anonymous user {id}"
 msgstr "Anonimowy użytkownik {id}"
 
 msgid "My Mobile Add-ons"
-msgstr "Moje dodatki dla Firefoksa Mobile"
+msgstr "Moje dodatki do Firefoksa na telefon"
 
 msgid "an add-on developer replies to my review"
 msgstr "Autor dodatku odpowiedział na moją opinię"
@@ -8061,7 +8055,7 @@ msgid "Ban"
 msgstr "Zablokuj"
 
 msgid "Delete picture"
-msgstr "Usuń obrazek"
+msgstr "Usuń obraz"
 
 msgid "Delete User Account"
 msgstr "Usuwanie konta użytkownika"
@@ -8230,7 +8224,7 @@ msgid "Report User"
 msgstr "Zgłoś użytkownika"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr "Podaj powód zgłoszenia użytkownika, np. spam lub niestosowny obrazek."
+msgstr "Podaj powód zgłoszenia użytkownika, np. spam lub niestosowny obraz."
 
 msgid "Report user {0}"
 msgstr "Zgłoś użytkownika {0}"
