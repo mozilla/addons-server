@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 21:51+0000\n"
+"PO-Revision-Date: 2018-08-10 22:06+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1385,28 +1385,28 @@ msgstr "Extensiones emergente"
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "Themas complete consiliate"
 
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Themas complete plus popular"
 
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Themas complete melio valutate"
 
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Themas complete plus recente"
 
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Themas complete per nomine"
 
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Themas complete per discargamentos septimanal"
 
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Themas complete recentemente actualisate"
 
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Themas complete emergente"
 
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
@@ -1425,7 +1425,7 @@ msgid "View Profile"
 msgstr "Vider le profilo"
 
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Crea tu proprie thema"
 
 msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr ""
@@ -1434,20 +1434,20 @@ msgid "Learn more"
 msgstr "Saper plus"
 
 msgid "View All Recently Added"
-msgstr ""
+msgstr "Vide tote los recentemente addite"
 
 msgid "View All Most Popular"
-msgstr ""
+msgstr "Vide tote los plus popular"
 
 msgid "View All Top Rated"
-msgstr ""
+msgstr "Vide tote los plus valutate"
 
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
 msgstr ""
 
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Vole tu plus personalisation?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -1456,10 +1456,10 @@ msgid "Complete Themes transform the look of your browser with styles for the wi
 msgstr ""
 
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Themas emergente"
 
 msgid "View All Up & Coming"
-msgstr ""
+msgstr "Vide tote los emergente"
 
 msgid "No themes found"
 msgstr "Nulle themas trovate"
@@ -1477,7 +1477,7 @@ msgid ""
 msgstr ""
 
 msgid "Reports for your Add-ons"
-msgstr ""
+msgstr "Reportos pro tu addtivos"
 
 msgid "Enter the GUID of an add-on below to view any reports we've received."
 msgstr ""
@@ -1487,22 +1487,22 @@ msgstr ""
 
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} reporto de successo"
+msgstr[1] "{0} reportos de successo"
 
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} reporto de problema"
+msgstr[1] "{0} reportos de problema"
 
 msgid "View all"
 msgstr "Vider toto"
 
 msgid "Filter by Application"
-msgstr ""
+msgstr "Filtrar per application"
 
 msgid "Report Type"
-msgstr ""
+msgstr "Typo de reporto"
 
 msgid "Version"
 msgstr "Version"
@@ -1514,7 +1514,7 @@ msgid "Application Build"
 msgstr ""
 
 msgid "Platform"
-msgstr ""
+msgstr "Platteforma"
 
 msgid "e10s Enabled"
 msgstr ""
@@ -1532,10 +1532,10 @@ msgid "Problem"
 msgstr "Problema"
 
 msgid "No reports found."
-msgstr ""
+msgstr "Nulle reportos trovate."
 
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} era create."
 
 msgid "{addon} properties edited."
 msgstr ""
@@ -1557,10 +1557,10 @@ msgid "Contributions for {addon}."
 msgstr ""
 
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} disactivate."
 
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} activate."
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
