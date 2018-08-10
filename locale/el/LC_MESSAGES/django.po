@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 22:11+0000\n"
+"PO-Revision-Date: 2018-08-10 22:18+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -6248,10 +6248,10 @@ msgid "Make false statements, disparage add-on authors or personally insult them
 msgstr "Κάνετε ψευδείς δηλώσεις, να μην υπονομεύετε ή προσβάλλετε προσωπικά τους δημιουργούς."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr ""
+msgstr "Συμπεριλαμβάνετε προσωπικά ή μη email, αριθμούς τηλεφώνου ή άλλες προσωπικές λεπτομέρειες."
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr ""
+msgstr "Δημοσιεύετε κριτικές για ένα πρόσθετο που αναπτύσσετε ή εκπροσωπείτε εσείς ή ο οργανισμός σας."
 
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
@@ -7929,15 +7929,15 @@ msgstr "Διαγραφή γλώσσας"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "Ο χρήστης \"%(user)s\" έχει αποκλειστεί."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "Η εικόνα που ανήκει στο χρήστη \"%(user)s\" έχει διαγραφεί."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "Οι χρήστες \"%(users)s\" έχουν αποκλειστεί."
 
 msgid "Ban selected users"
 msgstr "Φραγή επιλεγμένων χρηστών"
@@ -7973,7 +7973,7 @@ msgid "This URL has an invalid format. Valid URLs look like http://example.com/m
 msgstr "Αυτό το  URL έχει μη έγκυρη μορφή. Τα έγκυρα URL έχουν τη μορφή http://example.com/my_page."
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr ""
+msgstr "Για ανωνυμία, εισάγετε ένα λόγο για την αλλαγή, αλλά μην αλλάξετε κάποιο άλλο πεδίο."
 
 msgid "No user with that email."
 msgstr "Δεν υπάρχει χρήστης με αυτή τη διεύθυνση ηλεκτρονικού ταχυδρομείου."
