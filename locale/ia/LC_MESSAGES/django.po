@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 12:50+0000\n"
+"PO-Revision-Date: 2018-08-10 13:03+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -178,80 +178,80 @@ msgid "Abuse reported."
 msgstr "Abuso signalate."
 
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "Mi additivo non entra in ulle del categorias"
 
 msgid "No compatible versions"
-msgstr ""
+msgstr "Nulle compatibile versiones"
 
 #. {0} is a platform name like Windows or Mac OS X.
 msgid "for {0}"
 msgstr "pro {0}"
 
 msgid "View privacy policy"
-msgstr ""
+msgstr "Vide le politica de confidentialitate"
 
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Vide End-User License Agreement"
 
 msgid "This add-on has not been reviewed by Mozilla."
-msgstr ""
+msgstr "Iste additivo non ha essite revidite per Mozilla."
 
 msgid "This add-on has been marked as experimental by its developers."
-msgstr ""
+msgstr "Iste additivo ha essite marcate como experimental per su disveloppatores."
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
-msgstr ""
+msgstr "End-User License Agreement pro {0}"
 
 msgid "End-User License Agreement"
-msgstr ""
+msgstr "End-User License Agreement"
 
 #, python-format
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr ""
+msgstr "%(addon_name)s necessita que tu accepta le sequente End-User Licence Agreement ante que le installation pote continuar:"
 
 msgid "Back to {0}…"
-msgstr ""
+msgstr "Retro a {0}…"
 
 msgid "Add-ons for {0}"
 msgstr "Additivos pro {0}"
 
 msgid "Featured Extensions"
-msgstr ""
+msgstr "Extensiones favorite"
 
 msgid "Popular Extensions"
-msgstr ""
+msgstr "Extensiones popular"
 
 msgid "Most Popular"
-msgstr ""
+msgstr "Plus popular"
 
 msgid "All »"
-msgstr ""
+msgstr "Tote le »"
 
 msgid "See all »"
-msgstr ""
+msgstr "Vide tote le »"
 
 msgid "Up &amp; Coming Extensions"
-msgstr ""
+msgstr "Super &amp; Extensiones a venir"
 
 msgid "Featured Themes"
-msgstr ""
+msgstr "Themas favorite"
 
 msgid "Featured Collections"
 msgstr "Collectiones in evidentia"
 
 msgid "Sort by:"
-msgstr ""
+msgstr "Ordinar per:"
 
 #. {0} is a date.
 #. {0} is a date
 msgid "Updated {0}"
-msgstr ""
+msgstr "Actualisate {0}"
 
 #. {0} is a date.
 msgid "Added {0}"
-msgstr ""
+msgstr "Addite {0}"
 
 #, python-format
 msgid "%(num)s weekly download"
