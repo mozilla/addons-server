@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 13:03+0000\n"
+"PO-Revision-Date: 2018-08-10 14:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -256,38 +256,38 @@ msgstr "Addite {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s discargamento septimanal"
+msgstr[1] "%(num)s discargamentos septimanal"
 
 #, python-format
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s usator"
+msgstr[1] "%(num)s usatores"
 
 msgid "Requires Restart"
-msgstr ""
+msgstr "Il necesse reinitiar"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
+msgstr "Iste additivo es integrate con le nove technologias que es compatibile con Firefox 57 e superior."
 
 msgid "Compatible with Firefox 57+"
-msgstr ""
+msgstr "Compatibile con Firefox 57+"
 
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} discargamento septimanal"
+msgstr[1] "{0} discargamentos septimanal"
 
 #. {0} is the number of users.
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} usator"
+msgstr[1] "{0} usatores"
 
 msgid "by"
-msgstr ""
+msgstr "per"
 
 #. {0} is a category name, such as Nature
 msgid "More {0} Themes"
@@ -316,62 +316,62 @@ msgid "Rating"
 msgstr "Valutation"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "Usatores quotidian"
 
 msgid "License"
-msgstr ""
+msgstr "Licentias"
 
 msgid "Awaiting Review"
-msgstr ""
+msgstr "Attendente revision"
 
 msgid "Rejected"
-msgstr ""
+msgstr "Rejectate"
 
 msgid "Approved"
-msgstr ""
+msgstr "Approbate"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> usator"
+msgstr[1] "<strong>{0}</strong> usatores"
 
 msgid "Hover to Preview"
-msgstr ""
+msgstr "Passa supra pro le vision preliminar"
 
 msgid "Add"
-msgstr ""
+msgstr "Adder"
 
 msgid "Edit"
-msgstr ""
+msgstr "Edition"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 msgid "by {0} on {1}"
-msgstr ""
+msgstr "per {0} sur {1}"
 
 msgid "Not yet rated"
-msgstr ""
+msgstr "Nondum valutate"
 
 msgid "<b>{0}</b> users"
-msgstr ""
+msgstr "<b>{0}</b> usatores"
 
 #. {0} is the number of users.
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} Usator quotidian"
+msgstr[1] "{0} Usatores quotidian"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
-msgstr ""
+msgstr "Politica de confidentialitate pro {0}"
 
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Politica de confidentialitate"
 
 msgid "Report Abuse"
-msgstr ""
+msgstr "Reporto de abuso"
 
 #, python-format
 msgid ""
@@ -380,29 +380,29 @@ msgid ""
 msgstr ""
 
 msgid "Send Report"
-msgstr ""
+msgstr "Inviar le reporto"
 
 msgid "or"
-msgstr ""
+msgstr "o"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Cancellar"
 
 msgid "What do you think?"
-msgstr ""
+msgstr "Que pensa tu?"
 
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr ""
+msgstr "Per favor <a href=\"%(login)s\">authentica te</a> pro inviar un revision"
 
 msgid "Review:"
-msgstr ""
+msgstr "Revision:"
 
 msgid "Rating:"
 msgstr "Valutation:"
 
 msgid "Submit review"
-msgstr ""
+msgstr "Inviar revision"
 
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
 msgstr ""
@@ -414,10 +414,10 @@ msgid ""
 msgstr ""
 
 msgid "Review Guidelines"
-msgstr ""
+msgstr "Lineas guida del revisiones"
 
 msgid "Reviews"
-msgstr ""
+msgstr "Revisiones"
 
 #, python-format
 msgid "by %(user)s on %(date)s"
