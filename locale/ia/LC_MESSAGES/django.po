@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 14:53+0000\n"
+"PO-Revision-Date: 2018-08-10 15:26+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -464,89 +464,89 @@ msgid "Write a review"
 msgstr "Scribe un revision"
 
 msgid "Related Categories"
-msgstr ""
+msgstr "Categorias associate"
 
 msgid "Part of these Collections"
-msgstr "Parte de iste collectiones"
+msgstr "Presente in iste collectiones"
 
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Altere additivos per %(author)s"
+msgstr[1] "Altere additivos per iste autores"
 
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> recension del usatores"
-msgstr[1] ""
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> revisiones de usator"
 
 msgid "View statistics"
-msgstr ""
+msgstr "Vider statistica"
 
 msgid "Manage"
-msgstr ""
+msgstr "Gerer"
 
 msgid "Add-on Review"
-msgstr ""
+msgstr "Revision de additivo"
 
 msgid "Admin Manage"
-msgstr ""
+msgstr "Gestion de Administrator"
 
 #. {0} is an add-on name.
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Icone de {0}"
 
 msgid "Contribute"
-msgstr ""
+msgstr "Contribuer"
 
 msgid "Enjoy this add-on?"
-msgstr ""
+msgstr "Gaude tu de iste additivo?"
 
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr ""
+msgstr "Le disveloppator de iste additivo te demanda adjuta pro supportar su continuation del disveloppamento per un micre donation."
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Instantaneo de additivo #{0}"
 
 msgid "Add-on home page"
-msgstr ""
+msgstr "Pagina principal del additivo"
 
 msgid "Support site"
-msgstr ""
+msgstr "Sito de supporto"
 
 msgid "Support E-mail"
-msgstr ""
+msgstr "Email de supporto"
 
 msgid "Info"
 msgstr "Informationes"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
-msgstr ""
+msgstr "Ultime actualisation:"
 
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Publicate sub <a href=\"%(url)s\">%(name)s</a>"
 
 msgid "Custom License"
-msgstr ""
+msgstr "Licentia personal"
 
 msgid "About this Add-on"
-msgstr ""
+msgstr "A proposito de iste additivo"
 
 msgid "Developer’s Comments"
-msgstr ""
+msgstr "Commentos del disveloppator"
 
 msgid "Version Information"
-msgstr ""
+msgstr "Informationes del version"
 
 msgid "See complete version history"
-msgstr ""
+msgstr "Vide le chronologia complete del version"
 
 msgid "close"
-msgstr ""
+msgstr "clauder"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
 msgstr ""
