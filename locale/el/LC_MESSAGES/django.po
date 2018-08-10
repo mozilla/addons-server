@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 21:51+0000\n"
+"PO-Revision-Date: 2018-08-10 22:11+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3535,7 +3535,7 @@ msgid "Step-by-step build instructions to create an exact copy of the add-on cod
 msgstr ""
 
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "Ένα δομικό σενάριο που εκτελεί όλα τα απαραίτητα τεχνικά βήματα."
 
 msgid "Operating system and build environment requirements."
 msgstr "Απαιτήσεις λειτουργικού συστήματος και περιβάλλοντος ανάπτυξης."
@@ -3735,7 +3735,7 @@ msgid "Add-on Multi Process Status:"
 msgstr ""
 
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr ""
+msgstr "Η συμβατότητα του προσθέτου σας με την πολυδιεργασία του Firefox (e10s)."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
@@ -4289,14 +4289,16 @@ msgid "Listing visibility"
 msgstr "Ορατότητα στη λίστα"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "{label_open}Ορατό:{label_close} Ορατό σε όλους στο {site_url} και περιλαμβάνεται στα αποτελέσματα αναζήτησης και τις σελίδες καταγραφών."
+msgstr "{label_open}Ορατό:{label_close} Ορατό σε όλους στο {site_url} και συμπεριλαμβάνεται στα αποτελέσματα αναζήτησης και τις σελίδες καταχώρησης."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"{label_open}Αόρατο:{label_close} Δεν θα συμπεριλαμβάνεται στα αποτελέσματα αναζήτησης και η σελίδα καταχώρησης θα υποδεικνύει ότι το έχετε απενεργοποιήσει. Οι υποβολές νέων εκδόσεων για καταχώρηση "
+"δεν θα γίνονται αποδεκτές σε αυτή την κατάσταση,"
 
 msgid "Listed versions"
-msgstr "Αναγραφόμενες εκδόσεις"
+msgstr "Καταχωρημένες εκδόσεις"
 
 msgid "Currently on AMO"
 msgstr "Αυτή τη στιγμή στο AMO"
@@ -4331,7 +4333,7 @@ msgid "Deleting this version will permanently delete:"
 msgstr "Η διαγραφή αυτής της έκδοσης θα διαγράψει οριστικά:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>Σημαντικό:</strong> Μόλις διαγραφεί μια έκδοση, δεν θα μπορείτε να μεταφορτώσετε μια νέα έκδοση με τον ίδιο αριθμό έκδοσης."
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "Θέλετε σίγουρα να διαγράψετε αυτή την έκδοση;"
@@ -4752,22 +4754,20 @@ msgid "Get a glimpse into who's tracking you with just a click."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Αλλαγή διακομιστή μεσολάβησης {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Κάντε λήψη βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Έλεγχος αναπαραγωγής βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "Βελτίωση εμπειρίας θέασης με προσαρμογή ταχύτητας βίντεο και άλλα."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4793,7 +4793,7 @@ msgstr "Ταχείες μεταφράσεις {start_sub_heading}με το {addo
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "Μετάφραση επισημασμένου κειμένου ή ολόκληρης της ιστοσελίδας"
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4814,7 +4814,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Ένα υπερέχον εργαλείο λήψεων μόνο για Windows."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5237,7 +5237,7 @@ msgstr "Εξατομίκευση καρτελών {start_sub_heading}με το {
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "Ένας καλύτερος τρόπος αποθήκευσης σελιδοδεικτών αν χρησιμοποιείτε πολλαπλούς φακέλους σελιδοδεικτών."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5266,7 +5266,7 @@ msgstr "Προβολή εγγράφων {start_sub_heading}με το {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
-msgstr ""
+msgstr "Πρόσβαση σε PDFs με την προτιμώμενη εφαρμογή PDF σας."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -6882,7 +6882,7 @@ msgstr "Αναφορές κατάχρησης για το {addon} και του�
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
-msgstr "Δουλεύει με τον"
+msgstr "Λειτουργεί με το"
 
 msgid "Visibility"
 msgstr "Ορατότητα"
@@ -6900,7 +6900,7 @@ msgid "Requires Payment"
 msgstr "Απαιτεί πληρωμή"
 
 msgid "EULA"
-msgstr "ΣΑΤΧ (EULA)"
+msgstr "EULA"
 
 msgid "Last Approval Date"
 msgstr "Ημερομηνία τελευταίας έγκρισης"
@@ -6939,7 +6939,7 @@ msgid "No review points awarded yet."
 msgstr ""
 
 msgid "Rank"
-msgstr "Βαθμολογία"
+msgstr "Βαθμός"
 
 msgid "Score"
 msgstr "Βαθμολογία"
@@ -6958,7 +6958,7 @@ msgid "More details."
 msgstr "Περισσότερες λεπτομέρειες."
 
 msgid "No events found for this period."
-msgstr ""
+msgstr "Κανένα συμβάν αυτή την περίοδο."
 
 msgid "Log details"
 msgstr "Λεπτομέρειες καταγραφής"
@@ -7096,7 +7096,7 @@ msgid "Download files"
 msgstr "Λήψη αρχείων"
 
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Ο προγραμματιστής παρέχει τον πηγαίο κώδικα."
 
 msgid "Weight:"
 msgstr "Βάρος:"
@@ -7123,7 +7123,7 @@ msgid "Tested on:"
 msgstr "Δοκιμάστηκε σε:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>Προειδοποίηση!</strong> Κάποιος άλλος χρήστη έβλεπε τη σελίδα αυτή πριν από εσάς."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ""
@@ -7138,7 +7138,7 @@ msgid "More Actions"
 msgstr "Περισσότερες ενέργειες"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "Ειδοποίηση για νέες καταχωρημένες εκδόσεις"
 
 msgid "Force-disable add-on"
 msgstr "Εξαναγκασμός απενεργοποίησης προσθέτου"
@@ -7436,7 +7436,7 @@ msgid "Search Unavailable"
 msgstr "Μη διαθέσιμη αναζήτηση"
 
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
+msgstr "Η αναζήτηση είναι προσωρινά μη διαθέσιμη. Παρακαλούμε δοκιμάστε ξανά σε λίγα λεπτά."
 
 #. {0} is the string the user was searching for
 msgid "Themes Search Results for {0}"
@@ -7502,16 +7502,16 @@ msgstr ""
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Δεν μπορείτε να προσθέσετε εκδόσεις σε πρόσθετο με κατάσταση: %s."
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Η έκδοση δεν ταιριάζει με το αρχείο μανιφέστου."
 
 msgid "Version already exists."
 msgstr "Η έκδοση υπάρχει ήδη."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Μόνο τα WebExtensions επιτρέπεται να παραλείπουν το GUID"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
 msgstr ""
@@ -7606,7 +7606,7 @@ msgid "Statistics Dashboard"
 msgstr "Πίνακας στατιστικών"
 
 msgid "Controls:"
-msgstr ""
+msgstr "Στοιχεία ελέγχου:"
 
 msgid "reset zoom"
 msgstr "επαναφορά ζουμ"
@@ -7722,7 +7722,7 @@ msgid "See more platforms&hellip;"
 msgstr "Προβολή περισσότερων πλατφορμών&hellip;"
 
 msgid "Ratings by Date"
-msgstr ""
+msgstr "Κριτικές κατά ημερομηνία"
 
 msgid "Reviews Created by Date"
 msgstr ""
