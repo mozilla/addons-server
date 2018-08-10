@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-09 10:15+0000\n"
+"PO-Revision-Date: 2018-08-10 19:55+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -2498,7 +2498,7 @@ msgid "You have not uploaded a source file."
 msgstr "U hebt geen bronbestand geüpload."
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr "Bronbestand geüpload, maar u hebt aangegeven dat een bron niet nodig was."
+msgstr "Bronbestand geüpload, maar u hebt aangegeven dat er geen bron nodig was."
 
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Het platform Alle kan niet met specifieke platformen worden gecombineerd."
@@ -3481,23 +3481,23 @@ msgid "Go to My Submissions"
 msgstr "Naar mijn bijdragen"
 
 msgid "Source Code Upload"
-msgstr "Upload van broncode"
+msgstr "Uploaden van broncode"
 
 msgid "Do You Need to Submit Source Code?"
-msgstr "Dient u broncode in te dienen?"
+msgstr "Moet u broncode indienen?"
 
 msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
-msgstr "U dient mogelijk broncode in te dienen. Als u niet nu de juiste broncode indient, wordt uw add-on mogelijk van de website verwijderd!"
+msgstr "Mogelijk moet u broncode indienen. Als u niet nu de juiste broncode indient, kan uw add-on van de website worden verwijderd!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
 msgstr "Lees het <a %(a_attrs)s>beleid voor indiening van broncode</a>."
 
 msgid "Do you use any of the following?"
-msgstr "Gebruikt u één van de volgende zaken?"
+msgstr "Gebruikt u een van de volgende zaken?"
 
 msgid "Code minifiers or obfuscators"
-msgstr "Codeverkleiners of verhulling"
+msgstr "Codeverkleiners of -verdoezelaars"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr "Hulpmiddelen die meerdere bestanden in een enkel bestand combineren, zoals <span class=\"tech-emphasis\">webpack</span>"
@@ -3531,12 +3531,12 @@ msgid ""
 "Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
 "emphasis\">npm</span> version used)."
 msgstr ""
-"Details (inclusief vereiste versie en instructies voor installatie) van alle programma’s die in het buildproces worden gebruikt (bijvoorbeeld: gebruikte <span class=\"tech-emphasis\">node</span> en "
-"<span class=\"tech-emphasis\">npm</span>-versie)."
+"Details (waaronder vereiste versie en installatie-instructies) van alle programma’s die in het buildproces worden gebruikt (voorbeeld: gebruikte versie van <span class=\"tech-emphasis\">node</span> "
+"en <span class=\"tech-emphasis\">npm</span>)."
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
-"<span class=\"instruction-emphasis\">Noot:</span> Bronbestanden (afgezien van opensource-bibliotheken van derden) mogen niet worden getranspileerd, versluierd, verkleind of anderszins door een "
+"<span class=\"instruction-emphasis\">Noot:</span> bronbestanden (afgezien van opensource-bibliotheken van derden) mogen niet worden getranspileerd, versluierd, verkleind of anderszins door een "
 "machine worden bewerkt."
 
 msgid "How to Submit:"
@@ -3546,7 +3546,7 @@ msgid "Include instructions in a README file in the source code,"
 msgstr "Neem instructies op in een README-bestand in de broncode,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "of in opmerkingen voor beoordelaars op de volgende pagina (indien van toepassing)."
+msgstr "of in opmerkingen voor beoordelaars op de volgende pagina (wanneer van toepassing)."
 
 msgid "Upload source code:"
 msgstr "Broncode uploaden:"
