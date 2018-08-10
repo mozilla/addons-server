@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 17:51+0000\n"
+"PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -85,7 +85,7 @@ msgid "Status"
 msgstr "Status"
 
 msgid "- Add-on not on AMO -"
-msgstr "– Dodatek nie znajduje się na AMO –"
+msgstr "— Dodatek nie znajduje się na AMO —"
 
 msgid "Download Now"
 msgstr "Pobierz"
@@ -286,10 +286,10 @@ msgid "Requires Restart"
 msgstr "Wymagane ponowne uruchomienie"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr "Ten dodatek został utworzony przy użyciu nowej technologii, która jest kompatybilna z przeglądarką Firefox 57 lub nowszą."
+msgstr "Ten dodatek został utworzony przy użyciu nowej technologii, która jest kompatybilna z Firefoksem 57 lub nowszym."
 
 msgid "Compatible with Firefox 57+"
-msgstr "Kompatybilność z przeglądarką Firefox 57 lub nowszą"
+msgstr "Kompatybilność z Firefoksem 57 lub nowszym"
 
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
@@ -368,7 +368,7 @@ msgstr "Edytuj"
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 msgid "by {0} on {1}"
-msgstr "zamieszczony przez {0} – {1}"
+msgstr "zamieszczony przez {0} — {1}"
 
 msgid "Not yet rated"
 msgstr "Brak ocen"
@@ -1271,7 +1271,7 @@ msgstr "Ulubione"
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
-msgstr "%s – dodatki"
+msgstr "%s — dodatki"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -2900,8 +2900,8 @@ msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Dodatki mogą mieć wielu autorów z przypisaną im jedną z dwóch możliwych ról:</p> <ul> <li><b>Właściciel</b> – może zarządzać wszystkimi aspektami dodatku, łącznie z dodawaniem i usuwaniem innych "
-"autorów</li> <li><b>Autor</b> – może zarządzać wszystkimi aspektami dodatku z wyjątkiem dodawania i usuwania innych autorów</li> </ul>"
+"<p>Dodatki mogą mieć wielu autorów z przypisaną im jedną z dwóch możliwych ról:</p> <ul> <li><b>Właściciel</b> — może zarządzać wszystkimi aspektami dodatku, łącznie z dodawaniem i usuwaniem innych "
+"autorów</li> <li><b>Autor</b> — może zarządzać wszystkimi aspektami dodatku z wyjątkiem dodawania i usuwania innych autorów</li> </ul>"
 
 msgid "Basic Information"
 msgstr "Informacje podstawowe"
@@ -4105,7 +4105,7 @@ msgid "The licensor permits others to copy, distribute, display and perform the 
 msgstr "Licencjodawca zezwala kopiować, rozpowszechniać, odtwarzać i dokonywać zmian, jak również tworzyć prace bazujące na minimotywie."
 
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Licencjodawca zezwala kopiować, rozpowszechniać i odtwarzać prace tylko w niezmienionej postaci – nie prace pochodne bazujące na oryginale."
+msgstr "Licencjodawca zezwala kopiować, rozpowszechniać i odtwarzać prace tylko w niezmienionej postaci — nie prace pochodne bazujące na oryginale."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Twój motyw zostanie opublikowany na następującej licencji:"
@@ -4610,7 +4610,7 @@ msgstr "Skorzystaj z wiedzy akademickiej {start_sub_heading}przy użyciu dodatku
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
-msgstr "Ciesz się darmowym dostępem do ponad 10 milionów artykułów naukowych."
+msgstr "Ciesz się bezpłatnym dostępem do ponad 10 milionów artykułów naukowych."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6109,7 +6109,7 @@ msgstr "Istnieje wiele sposobów, aby się zaangażować. Jeśli zajmujesz się 
 
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr "<a href=\"%(url)s\">Stwórz własny dodatek</a>. Oferujemy darmowy hosting i usługę aktualizacji oraz pomagamy uzyskać szeroką rzeszę użytkowników."
+msgstr "<a href=\"%(url)s\">Stwórz własny dodatek</a>. Oferujemy bezpłatny hosting i usługę aktualizacji oraz pomagamy uzyskać szeroką rzeszę użytkowników."
 
 #, python-format
 msgid ""
@@ -6281,10 +6281,10 @@ msgid "<strong>If you agree</strong> to participate:"
 msgstr "<strong>Jeśli zgodzisz</strong> się wziąć udział w badaniu:"
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr "Możemy dodać do przeglądarki Firefox funkcje bezpieczeństwa i kontroli wtyczek, aby wspomóc internetowe bezpieczeństwo i wydajność."
+msgstr "Możemy dodać do Firefoksa funkcje bezpieczeństwa i kontroli wtyczek, aby wspomóc internetowe bezpieczeństwo i wydajność."
 
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr "Kontynuuj korzystanie z przeglądarki Firefox tak jak dotychczas. W zależności od sposobu korzystania z internetu możesz nie dostrzec żadnych zmian."
+msgstr "Kontynuuj korzystanie z Firefoksa tak jak dotychczas. W zależności od sposobu korzystania z Internetu możesz nie dostrzec żadnych zmian."
 
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
 msgstr "Po kilku tygodniach badanie samoczynnie dobiegnie końca. Twoja przeglądarka Firefox powróci do poprzedniego stanu."
@@ -6356,7 +6356,7 @@ msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
-"W Mozilla jesteśmy dumni z tworzenia produktów dla Was – użytkowników! Dlatego potrzebujemy Twojej pomocy. Uczestnicząc w tym badaniu, pomożesz nam w podejmowaniu lepszych decyzji z korzyścią dla "
+"W Mozilla jesteśmy dumni z tworzenia produktów dla Was — użytkowników! Dlatego potrzebujemy Twojej pomocy. Uczestnicząc w tym badaniu, pomożesz nam w podejmowaniu lepszych decyzji z korzyścią dla "
 "Ciebie i będziesz bezpośrednio kształtować przyszłość Firefoksa!"
 
 msgid "Brought to you by:"
@@ -6911,7 +6911,7 @@ msgid "Rendered Preview"
 msgstr "Wyrenderowany podgląd"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr "Plik tła {0} z {1} - {2}"
+msgstr "Plik tła {0} z {1} — {2}"
 
 msgid "More about this add-on"
 msgstr "Więcej informacji o tym dodatku"
@@ -7475,13 +7475,13 @@ msgstr "Etykieta"
 # {2} is a number
 # {3} is the word the person is searching for
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "Wyświetlone jest {0} - {1} z {2} wyników dla <strong>{3}</strong>"
+msgstr "Wyświetlone jest {0} — {1} z {2} wyników dla <strong>{3}</strong>"
 
 # {0} is a number
 # {1} is a number
 # {2} is a number
 msgid "Showing {0} - {1} of {2} results"
-msgstr "Wyświetlone jest {0} - {1} z {2} wyników"
+msgstr "Wyświetlone jest {0} — {1} z {2} wyników"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "W trakcie wykonywania serwisu witryny niektóre funkcje są tymczasowo wyłączone. Pełna funkcjonalność zostanie przywrócona wkrótce."
@@ -7852,7 +7852,7 @@ msgstr "Inne języki"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
-msgstr "Wróć do głównej strony {0} – dodatki"
+msgstr "Wróć do głównej strony {0} — dodatki"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Dodatki"
@@ -7878,14 +7878,14 @@ msgstr "<a href=\"%(reg)s\">Zarejestruj się</a> lub <a href=\"%(login)s\">zalog
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Aby wypróbować tysiące dostępnych tu dodatków, pobierz program <a href=\"%(url)s\">Mozilla Firefox</a> – szybki i darmowy sposób przeglądania sieci!"
+msgstr "Aby wypróbować tysiące dostępnych tu dodatków, pobierz <a href=\"%(url)s\">Mozillę Firefox</a> — szybki i bezpłatny sposób przeglądania sieci!"
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
 msgstr "Witamy na witrynie Dodatki dla programu {0}."
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "Wybierz spośród tysięcy dodatkowych funkcji i motywów, by dostosować program Firefox do swoich potrzeb."
+msgstr "Wybierz spośród tysięcy dodatkowych funkcji i motywów, by dostosować Firefoksa do swoich potrzeb."
 
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
@@ -8318,7 +8318,7 @@ msgstr "Kod źródłowy wydany na licencji <a href=\"%(url)s\">%(name)s</a>"
 #. {0} is an add-on name.
 # {0} is the add-on name
 msgid "{0} Version History"
-msgstr "{0} – historia wersji"
+msgstr "{0} — historia wersji"
 
 #. {0} is a number.
 msgid "<b>{0}</b> version"

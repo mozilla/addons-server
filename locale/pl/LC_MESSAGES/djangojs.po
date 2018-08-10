@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 17:51+0000\n"
+"PO-Revision-Date: 2018-08-10 17:55+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -436,7 +436,7 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "Liczba pobrań i dziennych użytkowników – ostatnie {0} dni"
+msgstr "Liczba pobrań i dziennych użytkowników — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
@@ -452,7 +452,7 @@ msgstr "Instalacje i dzienni użytkownicy od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr "Liczba pobrań – ostatnie {0} dni"
+msgstr "Liczba pobrań — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
@@ -460,7 +460,7 @@ msgstr "Liczba pobrań od {0} do {1} dni"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr "Liczba dziennych użytkowników – ostatnie {0} dni"
+msgstr "Liczba dziennych użytkowników — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
@@ -468,7 +468,7 @@ msgstr "Liczba dziennych użytkowników od {0} do {1} dni"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr "Programy – ostatnie {0} dni"
+msgstr "Programy — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
@@ -476,7 +476,7 @@ msgstr "Programy od {0} do {1} dni"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr "Systemy operacyjne – ostatnie {0} dni"
+msgstr "Systemy operacyjne — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
@@ -484,7 +484,7 @@ msgstr "Systemy operacyjne od {0} do {1} dni"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr "Języki – ostatnie {0} dni"
+msgstr "Języki — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
@@ -492,7 +492,7 @@ msgstr "Języki od {0} do {1} dni"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr "Wersje dodatku – ostatnie {0} dni"
+msgstr "Wersje dodatku — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
@@ -500,7 +500,7 @@ msgstr "Wersje dodatku od {0} do {1} dni"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr "Status dodatku – ostatnie {0} dni"
+msgstr "Status dodatku — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
@@ -508,7 +508,7 @@ msgstr "Status dodatku od {0} do {1} dni"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr "Źródła pobierania – ostatnie {0} dni"
+msgstr "Źródła pobierania — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
@@ -516,7 +516,7 @@ msgstr "Źródła pobierania od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr "Dotacje – ostatnie {0} dni"
+msgstr "Dotacje — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
@@ -679,7 +679,7 @@ msgid "View other versions"
 msgstr "Zobacz inne wersje"
 
 msgid "Works with {app} {min} - {max}"
-msgstr "Działa z {app} {min} – {max}"
+msgstr "Działa z {app} {min} — {max}"
 
 msgid "Works with {app}"
 msgstr "Działa z programem {app}"
@@ -688,7 +688,7 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Tylko w Firefoksie — pobierz Firefoksa teraz!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Przepraszamy. Aby zainstalować wtyczkę wyszukiwarki, potrzebna jest przeglądarka zbudowana w oparciu o technologię Mozilli – taka jak np. Firefox."
+msgstr "Przepraszamy. Aby zainstalować wtyczkę wyszukiwarki, potrzebna jest przeglądarka zbudowana w oparciu o technologię Mozilli — taka jak np. Firefox."
 
 msgid "Adding to Favorites&hellip;"
 msgstr "Dodawanie do ulubionych&hellip;"
