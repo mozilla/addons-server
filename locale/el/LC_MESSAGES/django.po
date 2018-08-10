@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 20:51+0000\n"
+"PO-Revision-Date: 2018-08-10 21:10+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3895,7 +3895,7 @@ msgid "Promote"
 msgstr "Προώθηση"
 
 msgid "Get Your Add-on Featured"
-msgstr ""
+msgstr "Προσθήκη του προσθέτου σας στα προτεινόμενα"
 
 msgid "\"Get The Add-on\" button"
 msgstr "Κουμπί \"Λήψη προσθέτου\""
@@ -4164,14 +4164,14 @@ msgid "You're done!"
 msgstr "Τελειώσατε!"
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr ""
+msgstr "Το θέμα σας έχει υποβληθεί στη σειρά αξιολόγησης. Θα λάβετε ένα email μόλις αξιολογηθεί, τυπικά μέσα σε 24 ώρες."
 
 msgid "Next steps:"
 msgstr "Επόμενα βήματα:"
 
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr ""
+msgstr "Παρέχετε περισσότερες λεπτομέρειες σχετικά με το θέμα σας <a href=\"%(edit_url)s\">τροποποιώντας την καταχώρηση</a>."
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
@@ -4349,7 +4349,7 @@ msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery
 msgstr ""
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "Τα αρχεία που αναμένουν αξιολόγηση θα απενεργοποιηθούν και θα χρειαστεί να μεταφορτώσετε νέες εκδόσεις."
 
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Θέλετε σίγουρα να αποκρύψετε το πρόσθετό σας;"
@@ -4535,7 +4535,7 @@ msgstr "Αφαίρεση διαφημίσεων YouTube {start_sub_heading}με 
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Φραγή ενοχλητικών διαφημίσεων και σχολιασμών στο YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4543,7 +4543,7 @@ msgstr "Διαβάστε παντού {start_sub_heading}με το {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Αποστολή άρθρων ειδήσεων, ιστοριών, αναρτήσεων ιστολογίου και άλλων στο Kindle σας."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4551,7 +4551,7 @@ msgstr "Χρωματισμός καρτελών {start_sub_heading}με το {ad
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Οργάνωση των καρτελών σας σε ομάδες χρωμάτων, βάσει μοτίβων URL."
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5613,9 +5613,8 @@ msgid "An extra check to ensure you're shopping on a site that's been vetted for
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Εποπτεία παραγωγικότητας {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
@@ -5664,7 +5663,7 @@ msgstr "Αποτροπή διαρροών διεύθυνσης IP {start_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "Χρησιμοποιείτε VPN; Η διεύθυνση IP σας ενδέχεται να διαρρεύσει. Σταματήστε το απενεργοποιώντας το WebRTC."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5696,9 +5695,8 @@ msgid "Harness the ability to download video and/or audio in multiple formats."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Επίγνωση τοποθεσίας {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
@@ -5713,9 +5711,8 @@ msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Εξατομίκευση καρτελών {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Επεξεργασία πριν την εκτύπωση {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
@@ -5775,7 +5772,7 @@ msgid "Problems decoding {0}."
 msgstr "Προβλήματα με την αποκωδικοποίηση του {0}."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
+msgstr "Αυτό το αρχείο δεν μπορεί να προβληθεί στο διαδίκτυο. Παρακαλούμε κάντε λήψη του αρχείου για προβολή περιεχομένων."
 
 msgid "This file is a directory."
 msgstr "Αυτό το αρχείο είναι κατάλογος."
@@ -5942,7 +5939,7 @@ msgid "Fetching file."
 msgstr "Φορτώνεται το αρχείο."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "Η έκδοση API, {0:.1f}, που χρησιμοποιείτε δεν είναι έγκυρη. Παρακαλούμε αναβαθμίστε στην τρέχουσα έκδοση {1:.1f} API."
 
 msgid "Not implemented yet."
 msgstr "Δεν έχει ενσωματωθεί ακόμη."
@@ -5951,7 +5948,7 @@ msgid "Shopping Made Easy"
 msgstr "Οι αγορές έγιναν εύκολες"
 
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "Αποθήκευση στα αγαπημένα σας από την άνεση του προγράμματος περιήγησής σας."
 
 msgid "Build the perfect website"
 msgstr "Φτιάξτε την τέλεια ιστοσελίδα"
@@ -5981,13 +5978,13 @@ msgid "A+ add-ons for School"
 msgstr "Πρόσθετα A+ για το σχολείο"
 
 msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr ""
+msgstr "Πρόσθετα για δασκάλους, γονείς και μαθητές που ξεκινούν πάλι το σχολείο."
 
 msgid "Would you like to know which websites you can trust?"
-msgstr ""
+msgstr "Θα θέλατε να γνωρίζετε ποιες ιστοσελίδες μπορείτε να εμπιστευτείτε;"
 
 msgid "Xmarks is the #1 bookmarking add-on."
-msgstr ""
+msgstr "Το Xmarks είναι το #1 πρόσθετο σελιδοδεικτών."
 
 msgid "Web page and text translator, dictionary, and more!"
 msgstr "Μετάφραση ιστοσελίδας και κειμένου, λεξικό και πολλά άλλα!"
@@ -6062,18 +6059,18 @@ msgid "Close Video"
 msgstr "Κλείσιμο βίντεο"
 
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "Ενώ αναπαράγεται το βίντεο, τα αναφερόμενα πρόσθετα θα εμφανιστούν εδώ."
 
 #. {0} is the user's login name.
 msgid "Hi, {0}"
-msgstr "Χαίρετε, {0}"
+msgstr "Γεια σας, {0}"
 
 #, python-format
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
 msgstr "Σας ευχαριστούμε που χρησιμοποιείτε τον %(app)s και υποστηρίζετε έτσι την <a href=\"%(url)s\">αποστολή του ιδρύματος Mozilla</a>!"
 
 msgid "Add-ons downloaded:"
-msgstr "Πρόσθετα που λήφθηκαν:"
+msgstr "Ληφθέντα πρόσθετα:"
 
 msgid "View Privacy Policy"
 msgstr "Προβολή πολιτικής απορρήτου"
@@ -6244,16 +6241,16 @@ msgstr ""
 "πλευρική στήλη δίπλα στην ενότητα \"Σχετικά με αυτό το πρόσθετο\"."
 
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr ""
+msgstr "Γράφετε κριτικές για πρόσθετα που δεν έχετε χρησιμοποιήσει προσωπικά."
 
 msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr ""
+msgstr "Χρησιμοποιείτε βωμολοχίες, σεξουαλική γλώσσα ή γλώσσα που μπορεί να θεωρηθεί απεχθής."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr ""
+msgstr "Συμπεριλαμβάνετε HTML, συνδέσμους, πηγαίο κώδικα ή μέρη κώδικα. Οι κριτικές πρέπει να περιέχουν μόνο κείμενο."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr ""
+msgstr "Κάνετε ψευδείς δηλώσεις, να μην υπονομεύετε ή προσβάλλετε προσωπικά τους δημιουργούς."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
 msgstr ""
@@ -6308,7 +6305,7 @@ msgid "Continue using Firefox as you normally would. Depending on how you use th
 msgstr ""
 
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "Μετά από μερικές εβδομάδες, η μελέτη θα τελειώσει από μόνη της. Το Firefox θα γίνει ξανά φυσιολογικό."
 
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
 msgstr ""
