@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 19:43+0000\n"
+"PO-Revision-Date: 2018-08-10 21:51+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -767,10 +767,10 @@ msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p
 msgstr ""
 
 msgid "Some rights reserved"
-msgstr ""
+msgstr "Alcun derectos es reservate"
 
 msgid "No results found"
-msgstr ""
+msgstr "Nulle resultatos trovate"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -784,7 +784,7 @@ msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <str
 msgstr "Resultatos <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> de <strong>%(count)s</strong>"
 
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "Mantenentia in curso"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
 msgstr ""
@@ -804,7 +804,7 @@ msgid ""
 msgstr ""
 
 msgid "Top Rated"
-msgstr ""
+msgstr "Los melio valutate"
 
 msgid "Newest"
 msgstr "Le plus recente"
@@ -868,7 +868,7 @@ msgstr "Additivos"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
-msgstr ""
+msgstr "{0} retro"
 
 msgid "Title"
 msgstr "Titulo"
@@ -892,10 +892,10 @@ msgid "Signature has expired."
 msgstr "Signatura expirate."
 
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Error al decodification del signatura."
 
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Token JWT non valide."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr ""
@@ -917,7 +917,7 @@ msgid "Acceptable versions for all applications on AMO."
 msgstr ""
 
 msgid "Valid Application Versions"
-msgstr ""
+msgstr "Versiones del application valide"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
@@ -963,28 +963,28 @@ msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
 
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Iste nomine non pote ser usate."
 
 msgid "This url is already in use by another collection"
 msgstr "Iste adresse es ja in uso per un altere collection"
 
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "Le icones debe ser PNG o JPG."
 
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Le icones non pote ser animate."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Iste adresse personalisate es ja in uso per un altere de tu collectiones."
 
 msgid "Name cannot be empty."
-msgstr ""
+msgstr "Le nomine non pote ser vacue."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
 
 msgid "This custom URL cannot be used."
-msgstr ""
+msgstr "Iste URL personalisate non pote ser usate."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Iste additivo pertine ja al collection"
@@ -1053,7 +1053,7 @@ msgid "About this Collection"
 msgstr "A proposito de iste collection"
 
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "Additivos synchronisate a mi Mobile Firefox"
 
 msgid "Make this Collection Private"
 msgstr "Render iste collection private"
@@ -1095,7 +1095,7 @@ msgid "Explore Collections"
 msgstr "Explorar le collectiones"
 
 msgid "Common Tags"
-msgstr ""
+msgstr "Tags commun"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1113,8 +1113,8 @@ msgstr "Mi additivos favorite"
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(addons)s</span> additivo"
+msgstr[1] "<span>%(addons)s</span> additivos"
 
 msgid "by {0}"
 msgstr "per {0}"
@@ -1164,10 +1164,10 @@ msgstr ""
 
 #, python-format
 msgid "by %(author_link)s"
-msgstr ""
+msgstr "per %(author_link)s"
 
 msgid "Create a Collection"
-msgstr ""
+msgstr "Crear un collection"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr ""
@@ -1200,7 +1200,7 @@ msgid "Remove"
 msgstr "Remover"
 
 msgid "Enter the name of the add-on to include"
-msgstr ""
+msgstr "Insere le nomine del additivos a includer"
 
 msgid "Add to Collection"
 msgstr "Adder al collection"
@@ -1248,13 +1248,13 @@ msgid "Search tools"
 msgstr "Utensiles de recerca"
 
 msgid "Most Users"
-msgstr ""
+msgstr "Le major parte del usatores"
 
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Discargamentos septimanal"
 
 msgid "Recently Updated"
-msgstr ""
+msgstr "Actualisationes recente"
 
 msgid "Up & Coming"
 msgstr ""
@@ -1270,17 +1270,17 @@ msgstr "Discargamentos"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
-msgstr ""
+msgstr "{0}: Additivos preferite"
 
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
-msgstr ""
+msgstr "Nulle additivos preferite in {0}."
 
 msgid "Subscribe"
-msgstr ""
+msgstr "Subscriber"
 
 msgid "Featured Add-ons"
-msgstr ""
+msgstr "Additivos preferite"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
@@ -1317,17 +1317,17 @@ msgid "Dictionary"
 msgstr "Dictionario"
 
 msgid "Language Pack"
-msgstr ""
+msgstr "Pacchetto de lingua"
 
 msgid "All locales"
 msgstr ""
 
 msgid "List of language packs and dictionaries."
-msgstr ""
+msgstr "Lista de pacchettos de lingua e dictionarios."
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
-msgstr ""
+msgstr "{0} :: Applicationes de recerca"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
@@ -1342,10 +1342,10 @@ msgid "Add search-related functionality to Firefox"
 msgstr ""
 
 msgid "Search Providers"
-msgstr ""
+msgstr "Providitores de recerca"
 
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "Trova nove providitores pro tu barra de recerca"
 
 msgid "Additional Resources"
 msgstr "Altere ressources"
@@ -1371,16 +1371,16 @@ msgid "Newest Extensions"
 msgstr "Extensiones plus recente"
 
 msgid "Extensions by Name"
-msgstr ""
+msgstr "Extensiones per nomine"
 
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Extensiones per discargas septimanal"
 
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "Extensiones recentemente actualisate"
 
 msgid "Up & Coming Extensions"
-msgstr ""
+msgstr "Extensiones emergente"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
