@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 19:31+0000\n"
+"PO-Revision-Date: 2018-08-10 19:43+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3297,7 +3297,7 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr ""
 
 msgid "Notes to Reviewer:"
-msgstr ""
+msgstr "Notas pro le revisor:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
@@ -3309,13 +3309,13 @@ msgid "Cancel and Disable Version"
 msgstr ""
 
 msgid "Submit Version"
-msgstr ""
+msgstr "Inviar version"
 
 msgid "Describe Version"
-msgstr ""
+msgstr "Describer version"
 
 msgid "Release Notes:"
-msgstr ""
+msgstr "Notas de revision:"
 
 msgid "Let your users know what's new and what's changed in this version."
 msgstr ""
@@ -3345,7 +3345,7 @@ msgid "You’re done! This version will be available after it passes review. You
 msgstr ""
 
 msgid "Version Submitted"
-msgstr ""
+msgstr "Version inviate"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
@@ -3366,22 +3366,22 @@ msgid "You can also edit this version to add version notes, or source code if yo
 msgstr ""
 
 msgid "Edit version {0}"
-msgstr ""
+msgstr "Rediger version {0}"
 
 msgid "File Signed"
-msgstr ""
+msgstr "File signate"
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
 
 msgid "Version Signed"
-msgstr ""
+msgstr "Version signate"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
 
 msgid "Download {0}"
-msgstr ""
+msgstr "Discargamento de {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr ""
@@ -3448,7 +3448,7 @@ msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside fro
 msgstr ""
 
 msgid "How to Submit:"
-msgstr ""
+msgstr "Como inviar:"
 
 msgid "Include instructions in a README file in the source code,"
 msgstr ""
@@ -3463,7 +3463,7 @@ msgid "Add-on Distribution Agreement"
 msgstr ""
 
 msgid "Upload Add-on"
-msgstr ""
+msgstr "Cargar additivo"
 
 msgid "Where to Host File"
 msgstr ""
@@ -3487,10 +3487,10 @@ msgid "Create a Theme Version"
 msgstr ""
 
 msgid "Create a Theme"
-msgstr ""
+msgstr "Crear un thema"
 
 msgid "Submit File"
-msgstr ""
+msgstr "Inviar file"
 
 msgid "Sign Add-on"
 msgstr ""
@@ -3559,16 +3559,16 @@ msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest
 msgstr ""
 
 msgid "optional"
-msgstr ""
+msgstr "optional"
 
 msgid "Browser preview"
-msgstr ""
+msgstr "Vista preliminar del navigator"
 
 msgid "Back"
-msgstr ""
+msgstr "Retro"
 
 msgid "Uploading Theme"
-msgstr ""
+msgstr "Cargamento de thema"
 
 msgid "Finish Theme"
 msgstr ""
@@ -3599,7 +3599,7 @@ msgid "You don't have any API credentials."
 msgstr ""
 
 msgid "Revoke"
-msgstr ""
+msgstr "Revocar"
 
 msgid "Revoke and regenerate credentials"
 msgstr ""
@@ -3608,7 +3608,7 @@ msgid "Generate new credentials"
 msgstr ""
 
 msgid "Invisible"
-msgstr ""
+msgstr "Invisibile"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
@@ -3627,7 +3627,7 @@ msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
-msgstr ""
+msgstr "Create:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Add-on Multi Process Status:"
@@ -3665,7 +3665,7 @@ msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
 msgid "Latest Version:"
-msgstr ""
+msgstr "Ultime version:"
 
 msgid "This is the newest uploaded unlisted version."
 msgstr ""
@@ -3674,7 +3674,7 @@ msgid "Upload New Version"
 msgstr ""
 
 msgid "View All"
-msgstr ""
+msgstr "Vider toto"
 
 msgid "Listed Review Page"
 msgstr ""
@@ -3718,7 +3718,7 @@ msgid "Some HTML supported."
 msgstr ""
 
 msgid "Remove this application"
-msgstr ""
+msgstr "Remover iste application"
 
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
@@ -3757,22 +3757,22 @@ msgid "Porting"
 msgstr ""
 
 msgid "Community"
-msgstr ""
+msgstr "Communitate"
 
 msgid "About"
-msgstr ""
+msgstr "A proposito"
 
 msgid "Forum"
-msgstr ""
+msgstr "Foro"
 
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
 
 msgid "Contact Us"
 msgstr ""
 
 msgid "Support"
-msgstr ""
+msgstr "Supporto"
 
 msgid "Policies"
 msgstr ""
@@ -3799,13 +3799,13 @@ msgid "\"Get The Add-on\" button"
 msgstr ""
 
 msgid "Legal"
-msgstr ""
+msgstr "Legal"
 
 msgid "Report Trademark Abuse"
 msgstr ""
 
 msgid "Legal Notices"
-msgstr ""
+msgstr "Notas legal"
 
 msgid "Review Add-ons"
 msgstr ""
@@ -3814,7 +3814,7 @@ msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjo
 msgstr ""
 
 msgid "Join us!"
-msgstr ""
+msgstr "Adjunge te a nos!"
 
 msgid "Write Some Code"
 msgstr ""
@@ -3859,14 +3859,14 @@ msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
 msgid "Learn How"
-msgstr ""
+msgstr "Apprende como"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
 msgid "Learn More"
-msgstr ""
+msgstr "Saper plus"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -3888,7 +3888,7 @@ msgid "Docs"
 msgstr ""
 
 msgid "Sign Out"
-msgstr ""
+msgstr "Disconnexion"
 
 msgid "No Photo"
 msgstr ""
@@ -3926,7 +3926,7 @@ msgid "Have an add-on ready? Submit your extension or theme to be listed on addo
 msgstr ""
 
 msgid "Sign In"
-msgstr ""
+msgstr "Apertura de session"
 
 msgid "Web-Ext"
 msgstr ""
@@ -4022,7 +4022,7 @@ msgid "This is the color of the tab text."
 msgstr ""
 
 msgid "Background"
-msgstr ""
+msgstr "Fundo"
 
 msgid "This is the color of the tabs."
 msgstr ""
@@ -4035,7 +4035,7 @@ msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
 msgstr ""
 
 msgid "Create a New Theme"
-msgstr ""
+msgstr "Crear un nove thema"
 
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
