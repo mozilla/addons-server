@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 18:25+0000\n"
+"PO-Revision-Date: 2018-08-10 19:15+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1873,7 +1873,7 @@ msgid "Disabled by Mozilla"
 msgstr ""
 
 msgid "Deleted"
-msgstr ""
+msgstr "Delite"
 
 msgid "Pending approval"
 msgstr ""
@@ -1885,19 +1885,19 @@ msgid "Unlisted"
 msgstr ""
 
 msgid "Owner"
-msgstr ""
+msgstr "Proprietario"
 
 msgid "Developer"
-msgstr ""
+msgstr "Developpator"
 
 msgid "Extension"
-msgstr ""
+msgstr "Extension"
 
 msgid "Complete Theme"
 msgstr ""
 
 msgid "Search Engine"
-msgstr ""
+msgstr "Motor de recerca"
 
 msgid "Language Pack (Application)"
 msgstr ""
@@ -1906,19 +1906,19 @@ msgid "Language Pack (Add-on)"
 msgstr ""
 
 msgid "Plugin"
-msgstr ""
+msgstr "Plugin"
 
 msgid "Theme"
-msgstr ""
+msgstr "Thema"
 
 msgid "Theme (Static)"
-msgstr ""
+msgstr "Thema (Static)"
 
 msgid "Complete Themes"
-msgstr ""
+msgstr "Themas complete"
 
 msgid "Dictionaries"
-msgstr ""
+msgstr "Dictionarios"
 
 msgid "Language Packs (Application)"
 msgstr ""
@@ -1927,29 +1927,29 @@ msgid "Language Packs (Add-on)"
 msgstr ""
 
 msgid "Plugins"
-msgstr ""
+msgstr "Plugins"
 
 msgid "Themes (Static)"
-msgstr ""
+msgstr "Themas (Static)"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
-msgstr ""
+msgstr "Altero"
 
 msgid "Exception"
-msgstr ""
+msgstr "Exception"
 
 msgid "Release"
-msgstr ""
+msgstr "Version"
 
 msgid "Change"
-msgstr ""
+msgstr "Cambiar"
 
 msgid "Compatible"
-msgstr ""
+msgstr "Compatibile"
 
 msgid "Incompatible"
-msgstr ""
+msgstr "Incompatibile"
 
 msgid "Alerts & Updates"
 msgstr ""
@@ -1979,55 +1979,55 @@ msgid "Privacy & Security"
 msgstr ""
 
 msgid "Shopping"
-msgstr ""
+msgstr "Compras"
 
 msgid "Social & Communication"
-msgstr ""
+msgstr "Social & communication"
 
 msgid "Tabs"
-msgstr ""
+msgstr "Schedas"
 
 msgid "Web Development"
-msgstr ""
+msgstr "Disveloppamento del Web"
 
 msgid "Animals"
-msgstr ""
+msgstr "Animales"
 
 msgid "Compact"
-msgstr ""
+msgstr "Compacte"
 
 msgid "Large"
 msgstr ""
 
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Miscellanea"
 
 msgid "Modern"
-msgstr ""
+msgstr "Moderne"
 
 msgid "Nature"
-msgstr ""
+msgstr "Natura"
 
 msgid "OS Integration"
 msgstr ""
 
 msgid "Retro"
-msgstr ""
+msgstr "Retro"
 
 msgid "Sports"
-msgstr ""
+msgstr "Sports"
 
 msgid "Abstract"
 msgstr ""
 
 msgid "Causes"
-msgstr ""
+msgstr "Causas"
 
 msgid "Fashion"
 msgstr ""
 
 msgid "Film and TV"
-msgstr ""
+msgstr "Film e TV"
 
 msgid "Foxkeh"
 msgstr ""
@@ -2048,16 +2048,16 @@ msgid "Solid"
 msgstr ""
 
 msgid "Websites"
-msgstr ""
+msgstr "Sitos web"
 
 msgid "General"
-msgstr ""
+msgstr "General"
 
 msgid "Business"
 msgstr ""
 
 msgid "Dictionaries & Encyclopedias"
-msgstr ""
+msgstr "Dictionarios & encyclopedias"
 
 msgid "Kids"
 msgstr ""
@@ -2069,7 +2069,7 @@ msgid "News & Blogs"
 msgstr ""
 
 msgid "Photos & Images"
-msgstr ""
+msgstr "Photos & imagines"
 
 msgid "Shopping & E-Commerce"
 msgstr ""
@@ -2081,13 +2081,13 @@ msgid "Travel"
 msgstr ""
 
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 msgid "Device Features & Location"
 msgstr ""
 
 msgid "Experimental"
-msgstr ""
+msgstr "Experimental"
 
 msgid "Feeds, News, & Blogging"
 msgstr ""
@@ -2096,19 +2096,19 @@ msgid "Performance"
 msgstr ""
 
 msgid "Photos & Media"
-msgstr ""
+msgstr "Photos & medios"
 
 msgid "Security & Privacy"
-msgstr ""
+msgstr "Securitate & confidentialitate"
 
 msgid "Social Networking"
 msgstr ""
 
 msgid "Sports & Games"
-msgstr ""
+msgstr "Sports & jocos"
 
 msgid "User Interface"
-msgstr ""
+msgstr "Interface de usator"
 
 msgid "Appearance and Customization"
 msgstr ""
@@ -2120,22 +2120,22 @@ msgid "Chat and IM"
 msgstr ""
 
 msgid "Message Composition"
-msgstr ""
+msgstr "Composition de messages"
 
 msgid "Contacts"
-msgstr ""
+msgstr "Contactos"
 
 msgid "Folders and Filters"
-msgstr ""
+msgstr "Plicas e filtros"
 
 msgid "Import/Export"
-msgstr ""
+msgstr "Importar/Exportar"
 
 msgid "Message and News Reading"
 msgstr ""
 
 msgid "Privacy and Security"
-msgstr ""
+msgstr "Confidentialitate e securitate"
 
 msgid "Downloading and File Management"
 msgstr ""
@@ -2147,7 +2147,7 @@ msgid "Language Support and Translation"
 msgstr ""
 
 msgid "Photos and Media"
-msgstr ""
+msgstr "Photos e medios"
 
 msgid "RSS, News and Blogging"
 msgstr ""
@@ -2159,25 +2159,25 @@ msgid "Web and Developer Tools"
 msgstr ""
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Tote le derectos es reservate"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Any"
 msgstr ""
@@ -2186,28 +2186,28 @@ msgid "All Platforms"
 msgstr ""
 
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 msgid "Mac OS X"
-msgstr ""
+msgstr "Mac OS X"
 
 msgid "BSD"
-msgstr ""
+msgstr "BSD"
 
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 msgid "Solaris"
-msgstr ""
+msgstr "Solaris"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 msgid "Static Theme"
 msgstr ""
 
 msgid "Persona"
-msgstr ""
+msgstr "Persona"
 
 msgid "No Reputation"
 msgstr ""
@@ -2219,7 +2219,7 @@ msgid "Very Good (2)"
 msgstr ""
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "Excellente (3)"
 
 msgid "Manual Reviewer Points"
 msgstr ""
@@ -2297,31 +2297,31 @@ msgid "Post-Approval Add-on Review (Low Risk)"
 msgstr ""
 
 msgid "Level 1"
-msgstr ""
+msgstr "Nivello 1"
 
 msgid "Level 2"
-msgstr ""
+msgstr "Nivello 2"
 
 msgid "Level 3"
-msgstr ""
+msgstr "Nivello 3"
 
 msgid "Level 4"
-msgstr ""
+msgstr "Nivello 4"
 
 msgid "Level 5"
-msgstr ""
+msgstr "Nivello 5"
 
 msgid "Level 6"
-msgstr ""
+msgstr "Nivello 6"
 
 msgid "Level 7"
-msgstr ""
+msgstr "Nivello 7"
 
 msgid "Level 8"
-msgstr ""
+msgstr "Nivello 8"
 
 msgid "Level 9"
-msgstr ""
+msgstr "Nivello 9"
 
 msgid "Request More Info"
 msgstr ""
@@ -2330,7 +2330,7 @@ msgid "Flag"
 msgstr ""
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicate"
 
 msgid "Reject"
 msgstr ""
