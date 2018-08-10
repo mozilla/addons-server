@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 19:15+0000\n"
+"PO-Revision-Date: 2018-08-10 19:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2336,7 +2336,7 @@ msgid "Reject"
 msgstr ""
 
 msgid "Approve"
-msgstr ""
+msgstr "Approbar"
 
 msgid "Sexual or pornographic content"
 msgstr ""
@@ -2388,7 +2388,7 @@ msgid "Slug incorrect."
 msgstr ""
 
 msgid "Details"
-msgstr ""
+msgstr "Detalios"
 
 msgid "What is your license's name?"
 msgstr ""
@@ -2457,7 +2457,7 @@ msgid "A platform can only be chosen once."
 msgstr ""
 
 msgid "Application"
-msgstr ""
+msgstr "Application"
 
 msgid "Select an application first"
 msgstr ""
@@ -2520,16 +2520,16 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr ""
 
 msgid "All My Add-ons"
-msgstr ""
+msgstr "Tote mi additivos"
 
 msgid "All Activity"
-msgstr ""
+msgstr "Tote le activitates"
 
 msgid "Add-on Updates"
-msgstr ""
+msgstr "Actualisationes del additivos"
 
 msgid "Add-on Status"
-msgstr ""
+msgstr "Stato del additivo"
 
 msgid "User Collections"
 msgstr "Collectiones del usator"
@@ -2547,10 +2547,10 @@ msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr ""
 
 msgid "Theme deleted."
-msgstr ""
+msgstr "Thema delite."
 
 msgid "Add-on deleted."
-msgstr ""
+msgstr "Additivo delite."
 
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr ""
@@ -2568,7 +2568,7 @@ msgid "An author has been removed from your add-on"
 msgstr ""
 
 msgid "Validate Add-on"
-msgstr ""
+msgstr "Validar additivo"
 
 msgid "Check Add-on Compatibility"
 msgstr ""
@@ -2586,15 +2586,15 @@ msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Version %s disactivate."
 
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "Version %s delite."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "Version %s re-activate."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
@@ -2632,7 +2632,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
 
 msgid "Accept"
-msgstr ""
+msgstr "Acceptar"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr ""
@@ -2642,7 +2642,7 @@ msgstr ""
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
-msgstr ""
+msgstr "{0} Additivos"
 
 msgid "Return to the DevHub homepage"
 msgstr ""
@@ -2655,10 +2655,10 @@ msgid "more add-ons..."
 msgstr ""
 
 msgid "Documentation"
-msgstr ""
+msgstr "Documentation"
 
 msgid "Extension Development"
-msgstr ""
+msgstr "Disveloppamento del extension"
 
 msgid "Lightweight Themes"
 msgstr ""
@@ -2691,7 +2691,7 @@ msgid "Search Developer Docs"
 msgstr ""
 
 msgid "Search"
-msgstr ""
+msgstr "Cercar"
 
 msgid "Use the field below to upload your add-on package."
 msgstr ""
@@ -2714,7 +2714,7 @@ msgid "Validation Results for {0}"
 msgstr ""
 
 msgid "Validation Results"
-msgstr ""
+msgstr "Resultatos del validation"
 
 msgid "Validated at:"
 msgstr ""
@@ -2731,7 +2731,7 @@ msgstr ""
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> per %(user)s"
 
 msgid "No results found."
 msgstr ""
@@ -2740,7 +2740,7 @@ msgid "Refine Activity"
 msgstr ""
 
 msgid "Activity"
-msgstr ""
+msgstr "Activitate"
 
 msgid "Subscribe to this feed"
 msgstr ""
@@ -2759,7 +2759,7 @@ msgid "View and update application compatibility ranges."
 msgstr ""
 
 msgid "Compatibility"
-msgstr ""
+msgstr "Compatibile"
 
 msgid "Update Compatibility"
 msgstr ""
@@ -2774,7 +2774,7 @@ msgid "Add Another Application&hellip;"
 msgstr ""
 
 msgid "Close"
-msgstr ""
+msgstr "Clauder"
 
 msgid "Recent Activity"
 msgstr ""
@@ -2796,10 +2796,10 @@ msgid "Edit Information"
 msgstr ""
 
 msgid "None"
-msgstr ""
+msgstr "Nulle"
 
 msgid "Preview"
-msgstr ""
+msgstr "Vista preliminar"
 
 msgid "Preview of listed version"
 msgstr ""
@@ -2811,7 +2811,7 @@ msgid "Manage Authors & License"
 msgstr ""
 
 msgid "Authors"
-msgstr ""
+msgstr "Autores"
 
 msgid "About author roles"
 msgstr ""
@@ -2829,7 +2829,7 @@ msgid "Basic Information for {0}"
 msgstr ""
 
 msgid "Add-on URL"
-msgstr ""
+msgstr "URL de additivo"
 
 msgid "Choose a short, unique URL slug for your add-on."
 msgstr ""
@@ -2844,7 +2844,7 @@ msgid "This summary should clearly explain what your add-on does. It will be sho
 msgstr ""
 
 msgid "Experimental?"
-msgstr ""
+msgstr "Experimental?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
@@ -2895,13 +2895,13 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Contributions URL"
-msgstr ""
+msgstr "Contributiones URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
 
 msgid "Add-on Details"
-msgstr ""
+msgstr "Detalios del additivo"
 
 msgid "Add-on Details for {0}"
 msgstr ""
@@ -2916,7 +2916,7 @@ msgid "Information about your add-on is displayed in this locale unless you over
 msgstr ""
 
 msgid "Homepage"
-msgstr ""
+msgstr "Pagina principal"
 
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
@@ -2924,7 +2924,7 @@ msgid ""
 msgstr ""
 
 msgid "Images"
-msgstr ""
+msgstr "Imagines"
 
 msgid "Support Information"
 msgstr ""
@@ -2934,7 +2934,7 @@ msgid "Support Information for {0}"
 msgstr ""
 
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
@@ -2942,7 +2942,7 @@ msgid ""
 msgstr ""
 
 msgid "Website"
-msgstr ""
+msgstr "Sito web"
 
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
@@ -2950,7 +2950,7 @@ msgid ""
 msgstr ""
 
 msgid "Technical Details"
-msgstr ""
+msgstr "Detalios technic"
 
 #. {0} is an addon name
 msgid "Technical Details for {0}"
@@ -3019,7 +3019,7 @@ msgid "Universally unique identifier"
 msgstr ""
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
 msgstr ""
@@ -3090,7 +3090,7 @@ msgid ""
 msgstr ""
 
 msgid "Continue"
-msgstr ""
+msgstr "Continuar"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
@@ -3117,7 +3117,7 @@ msgid "More information on Creative Commons licenses"
 msgstr ""
 
 msgid "Tests"
-msgstr ""
+msgstr "Tests"
 
 msgid "General Tests"
 msgstr ""
@@ -3167,7 +3167,7 @@ msgid "Please tell us why you are deleting your add-on:"
 msgstr ""
 
 msgid "Actions"
-msgstr ""
+msgstr "Actiones"
 
 msgid "Resume the submission process for this add-on."
 msgstr ""
@@ -3179,7 +3179,7 @@ msgid "Delete this add-on."
 msgstr ""
 
 msgid "Delete"
-msgstr ""
+msgstr "Deler"
 
 msgid "Edit information about this add-on."
 msgstr ""
@@ -3188,13 +3188,13 @@ msgid "Upload a new version of this add-on."
 msgstr ""
 
 msgid "New Version"
-msgstr ""
+msgstr "Nove version"
 
 msgid "Daily statistics on downloads and users."
 msgstr ""
 
 msgid "Statistics"
-msgstr ""
+msgstr "Statistica"
 
 msgid "Manage Status & Versions"
 msgstr ""
@@ -3215,7 +3215,7 @@ msgid "View the popularity of this theme over time."
 msgstr ""
 
 msgid "View Statistics"
-msgstr ""
+msgstr "Vider statistica"
 
 msgid "Change the owner of this theme."
 msgstr ""
@@ -3233,10 +3233,10 @@ msgid "This add-on doesn't have any versions."
 msgstr ""
 
 msgid "Status:"
-msgstr ""
+msgstr "Stato:"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Disactivate"
 
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
@@ -3249,10 +3249,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Submit a New File"
-msgstr ""
+msgstr "Inviar un nove file"
 
 msgid "Submit a New Version"
-msgstr ""
+msgstr "Inviar un nove version"
 
 msgid "Describe Add-on"
 msgstr ""
@@ -3267,10 +3267,10 @@ msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
 
 msgid "Summary:"
-msgstr ""
+msgstr "Summario:"
 
 msgid "required"
-msgstr ""
+msgstr "necessari"
 
 msgid "This add-on is experimental"
 msgstr ""
@@ -3282,13 +3282,13 @@ msgid "Select a category for this add-on:"
 msgstr ""
 
 msgid "Support email:"
-msgstr ""
+msgstr "Email de supporto:"
 
 msgid "Support website:"
-msgstr ""
+msgstr "Sito de supporto:"
 
 msgid "License:"
-msgstr ""
+msgstr "Licentia:"
 
 msgid "Please choose a license appropriate for the rights you grant."
 msgstr ""
