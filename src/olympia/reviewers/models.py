@@ -112,7 +112,6 @@ class ViewQueue(RawSQLModel):
     latest_version = models.CharField(max_length=255)
     pending_info_request = models.DateTimeField()
     expired_info_request = models.NullBooleanField()
-    has_reviewer_comment = models.BooleanField()
     waiting_time_days = models.IntegerField()
     waiting_time_hours = models.IntegerField()
     waiting_time_min = models.IntegerField()
@@ -132,7 +131,6 @@ class ViewQueue(RawSQLModel):
                 ('needs_admin_theme_review',
                     'addons_addonreviewerflags.needs_admin_theme_review'),
                 ('latest_version', 'versions.version'),
-                ('has_reviewer_comment', 'versions.has_editor_comment'),
                 ('pending_info_request',
                     'addons_addonreviewerflags.pending_info_request'),
                 ('expired_info_request', (

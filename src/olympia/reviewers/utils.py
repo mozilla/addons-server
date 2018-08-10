@@ -622,7 +622,6 @@ class ReviewBase(object):
 
     def process_comment(self):
         if self.version:
-            kw = {'has_reviewer_comment': True}
             if (self.version.channel == amo.RELEASE_CHANNEL_UNLISTED and
                     not self.version.reviewed):
                 kw['reviewed'] = datetime.now()
