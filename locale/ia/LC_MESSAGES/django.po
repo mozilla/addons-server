@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 15:26+0000\n"
+"PO-Revision-Date: 2018-08-10 17:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -555,53 +555,55 @@ msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"Pois que tu controla tu Firefox, le selection pro accordar o negar iste requestas es tue. Le acceptation del permissos non compromitte implicitemente performance o securitate de tu navigator, ma in "
+"alcun rar casos pote ser implicate risco."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
-msgstr ""
+msgstr "Iste additivo pote:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr ""
+msgstr "Alcun additivos demanda permisso pro exequer certe functiones. Pois que tu controla tu Firefox, le selection pro accordar o negar iste requestas es tue."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Per favor nota que iste additivo usa technologia legate, que da illo accesso pro tote functiones e datos del navigator sin requirer tu permisso."
 
 msgid "This add-on has been removed by its author."
-msgstr ""
+msgstr "Iste additivo ha essite removite per su autor."
 
 msgid "This add-on has been disabled by an administrator."
-msgstr ""
+msgstr "Iste additivo ha essite disactivate per un administrator."
 
 msgid "Source Code License for {addon}"
-msgstr ""
+msgstr "Licentia de codice fonte pro {addon}"
 
 #. The License for this add-on.
 msgid "Source Code License"
-msgstr ""
+msgstr "Licentia de codice fonte"
 
 msgid "support section"
-msgstr ""
+msgstr "section supporto"
 
 msgid "support email"
-msgstr ""
+msgstr "email pro supporto"
 
 msgid "permalink"
-msgstr ""
+msgstr "ligamine permanente"
 
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vide tote le revisiones de usator"
+msgstr[1] "Vide tote le %(cnt)s revisiones de usator"
 
 msgid "This add-on has not yet been reviewed."
-msgstr ""
+msgstr "Iste additivo non ha essite ancora revidite."
 
 msgid "Be the first!"
-msgstr ""
+msgstr "Sia tu le prime!"
 
 msgid "{0} users"
-msgstr ""
+msgstr "{0} usatores"
 
 msgid "More"
 msgstr "Plus"
@@ -610,14 +612,14 @@ msgid "Add to collection"
 msgstr "Adder al collection"
 
 msgid "My Add-ons"
-msgstr ""
+msgstr "Mi additivos"
 
 msgid "My Themes"
-msgstr ""
+msgstr "Mi themas"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
-msgstr ""
+msgstr "Informationes de additivo pro {0}"
 
 msgid "Edit Theme"
 msgstr ""
