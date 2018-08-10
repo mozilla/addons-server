@@ -43,7 +43,6 @@ VIEW_QUEUE_FLAGS = (
     ('is_restart_required', 'is_restart_required', _('Requires Restart')),
     ('pending_info_request', 'info', _('More Information Requested')),
     ('expired_info_request', 'expired-info', _('Expired Information Request')),
-    ('has_reviewer_comment', 'reviewer', _('Contains Reviewer Comment')),
     ('sources_provided', 'sources-provided', _('Sources provided')),
     ('is_webextension', 'webextension', _('WebExtension')),
 )
