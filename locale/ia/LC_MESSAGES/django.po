@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 12:29+0000\n"
+"PO-Revision-Date: 2018-08-10 12:50+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -101,11 +101,11 @@ msgid "Add to {0}"
 msgstr "Adder a {0}"
 
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Iste limace es ja in uso. Per favor elige un altero."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr ""
+msgstr "Le limace non pote ser \"%(slug)s\". Per favor elige un altero."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -130,52 +130,52 @@ msgstr "Tote le tags debe esser de %s characteres o minus, postea la characteres
 
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tote le tags debe ser al minus de {0} character."
+msgstr[1] "Tote le tags debe ser al minus de {0} characteres."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
+msgstr "Le dominio del URL debe esser un del [%s], o un sub-dominio."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr ""
+msgstr "Le categorias non pote ser cambiate durante que tu additivo es in evidentia pro iste application."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tu pote haber solo {0} categoria."
+msgstr[1] "Tu pote haber solo {0} categorias."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr ""
+msgstr "Le categoria miscellanea non pote ser combinate con le altere categorias."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr ""
+msgstr "Ante de cambiar tu localisation predefinite tu debe haber un nomine, summario, e description in ille localisation. Tu manca de %s."
 
 msgid "A license must be selected."
-msgstr ""
+msgstr "Un licentia debe esser eligite."
 
 msgid "Give Your Theme a Name."
-msgstr ""
+msgstr "Da a tu thema un nomine."
 
 msgid "Describe your Theme."
-msgstr ""
+msgstr "Describe tu thema."
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Insere un nove adresse email de autor"
 
 msgid "Listed"
-msgstr ""
+msgstr "Listate"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Le percursos del additivo e del collectiones debe finir con \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "Le nomines de additivo non pote continer le marcas de fabrica Mozilla o Firefox."
 
 msgid "Abuse reported."
-msgstr ""
+msgstr "Abuso signalate."
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr ""
