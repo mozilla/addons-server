@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 17:32+0000\n"
+"PO-Revision-Date: 2018-08-10 17:51+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -622,85 +622,85 @@ msgid "Add-on Information for {0}"
 msgstr "Informationes de additivo pro {0}"
 
 msgid "Edit Theme"
-msgstr ""
+msgstr "Modificar thema"
 
 msgid "Approve / Reject"
-msgstr ""
+msgstr "Approbar / rejectar"
 
 msgid "Review History"
-msgstr ""
+msgstr "Chronologia del revision"
 
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "Pardono, iste thema es pendente. Per favor reveni plus tarde."
 
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "Iste thema es pendente. Illo es invisibile a omnes salvo a te."
 
 msgid "Collector's Note"
-msgstr ""
+msgstr "Nota del collector"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> discargamento septimanal"
+msgstr[1] "<strong>{0}</strong> discargamentos septimanal"
 
 msgid "Not Reviewed"
-msgstr ""
+msgstr "Non revidite"
 
 msgid "Tools"
-msgstr ""
+msgstr "Instrumentos"
 
 msgid "My Profile"
-msgstr ""
+msgstr "Mi profilo"
 
 msgid "Account Settings"
-msgstr ""
+msgstr "Configurationes del conto"
 
 msgid "My Collections"
 msgstr "Mi collectiones"
 
 msgid "My Favorites"
-msgstr ""
+msgstr "Mi favoritos"
 
 msgid "Log out"
-msgstr ""
+msgstr "Clauder le session"
 
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Gerer mi submissiones"
 
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "Inviar un nove additivo"
 
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Inviar un nove thema"
 
 msgid "Developer Hub"
-msgstr ""
+msgstr "Centro de developpatores"
 
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Gerer le claves API"
 
 msgid "Reviewer Tools"
-msgstr ""
+msgstr "Applicationes de revisores"
 
 msgid "Admin Tools"
-msgstr ""
+msgstr "Applicationes de administratores"
 
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Error, per favor reproba."
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Error verificante le entrata, per favor prova ancora."
 
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "Isto debe ser un codice hexadecimal de color valide, tal como #000000."
 
 msgid "Not allowed"
 msgstr "Non consentite"
 
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "Ups! Non consentite."
 
 msgid "You tried to do something that you weren't allowed to."
 msgstr ""
