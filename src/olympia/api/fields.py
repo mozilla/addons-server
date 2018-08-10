@@ -5,7 +5,7 @@ from django.utils.translation import get_language, ugettext_lazy as _
 
 from rest_framework import fields, serializers
 
-from olympia.amo.utils import to_language
+from olympia.amo.utils import attach_trans_dict, to_language
 from olympia.api.utils import is_gate_active
 from olympia.translations.models import Translation
 
@@ -92,10 +92,11 @@ class TranslationSerializerField(fields.Field):
         return is_gate_active(request, 'l10n_flat_input_output')
 
     def fetch_all_translations(self, obj, source, field):
-        translations = field.__class__.objects.filter(
-            id=field.id, localized_string__isnull=False)
-        return {to_language(trans.locale): unicode(trans)
-                for trans in translations} if translations else None
+        if not hasattr(obj, 'translations'):
+            attach_trans_dict(obj.__class__, (obj, ))
+        translations = obj.translations[field.id]
+        return {to_language(locale): trans
+                for locale, trans in translations} if translations else None
 
     def fetch_single_translation(self, obj, source, field, requested_language):
         return {to_language(field.locale): unicode(field)} if field else None
