@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 14:50+0000\n"
+"PO-Revision-Date: 2018-08-10 14:53+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1219,11 +1219,11 @@ msgstr "%s Additivos"
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Themes"
-msgstr ""
+msgstr "%s Themas"
 
 #, python-format
 msgid "Featured Add-ons :: %s"
-msgstr ""
+msgstr "Additivos favorite :: %s"
 
 #. L10n: %s is an app name.
 #, python-format
@@ -1281,16 +1281,16 @@ msgid "Here's a few of our favorite add-ons to help you get started customizing 
 msgstr ""
 
 msgid "Install Dictionary"
-msgstr ""
+msgstr "Installar dictionario"
 
 msgid "Install Language Pack"
-msgstr ""
+msgstr "Installar un pacchetto de lingua"
 
 msgid "Download Dictionary"
-msgstr ""
+msgstr "Discargar dictionario"
 
 msgid "Download Language Pack"
-msgstr ""
+msgstr "Discargar un pacchetto de lingua"
 
 #, python-format
 msgid ""
@@ -1305,10 +1305,10 @@ msgid "List of language packs and dictionaries available in your locale."
 msgstr ""
 
 msgid "Language"
-msgstr ""
+msgstr "Lingua"
 
 msgid "Dictionary"
-msgstr ""
+msgstr "Dictionario"
 
 msgid "Language Pack"
 msgstr ""
@@ -1326,8 +1326,8 @@ msgstr ""
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> additivo"
+msgstr[1] "<b>{0}</b> additivos"
 
 msgid "Search Extensions"
 msgstr ""
