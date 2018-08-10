@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-07 20:23+0000\n"
-"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
+"PO-Revision-Date: 2018-08-10 17:32+0000\n"
+"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -42,14 +42,14 @@ msgid "This username is already in use."
 msgstr "Ta nazwa użytkownika jest już używana."
 
 msgid "Images must be either PNG or JPG."
-msgstr "Obrazki muszą być w formacie PNG lub JPG."
+msgstr "Obrazy muszą być w formacie PNG lub JPG."
 
 msgid "Images cannot be animated."
-msgstr "Nie można używać animowanych obrazków."
+msgstr "Nie można używać animowanych obrazów."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr "Proszę użyć obrazków mniejszych niż %dMB."
+msgstr "Proszę użyć obrazów mniejszych niż %d MB."
 
 msgid "You are already logged in."
 msgstr "Już się zalogowano."
@@ -538,7 +538,7 @@ msgstr "Autor prosi cię o niewielką dotację, która pomoże mu kontynuować d
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
-msgstr "Obrazek dodatku #{0}"
+msgstr "Obraz dodatku #{0}"
 
 msgid "Add-on home page"
 msgstr "Strona domowa"
@@ -1230,7 +1230,7 @@ msgid "Reset"
 msgstr "Resetuj"
 
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "Obsługiwane są formaty PNG i JPG. Obrazek zostanie przeskalowany do rozmiaru 32x32."
+msgstr "Obsługiwane są formaty PNG i JPG. Obraz zostanie przeskalowany do rozmiaru 32×32."
 
 msgid "There are errors in this form.  Please correct them below."
 msgstr "Znaleziono błędy w formularzu. Popraw je poniżej."
@@ -2133,7 +2133,7 @@ msgid "News & Blogs"
 msgstr "Wiadomości i blogi"
 
 msgid "Photos & Images"
-msgstr "Zdjęcia i obrazki"
+msgstr "Zdjęcia i obrazy"
 
 msgid "Shopping & E-Commerce"
 msgstr "Zakupy i e-biznes"
@@ -2476,7 +2476,7 @@ msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Określ zasady ochrony prywatności dla dodatku:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr "Nieobsługiwany typ pliku, załaduj plik spakowany plik {extensions}."
+msgstr "Nieobsługiwany typ pliku, wczytaj plik spakowany {extensions}."
 
 msgid "View current"
 msgstr "Wyświetl aktualne"
@@ -2651,10 +2651,10 @@ msgstr "Plik graficzny nie może być większy niż %d KB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr "Obrazek musi mieć dokładnie {0} pikseli szerokości i {1} pikseli wysokości."
+msgstr "Obraz musi mieć dokładnie {0} pikseli szerokości i {1} pikseli wysokości."
 
 msgid "There was an error uploading your preview."
-msgstr "Wystąpił błąd podczas przesyłania obrazka."
+msgstr "Wystąpił błąd podczas przesyłania obrazu."
 
 #, python-format
 msgid "Version %s disabled."
@@ -3010,7 +3010,7 @@ msgid ""
 msgstr "Jeśli dodatek ma inną stronę domową, wpisz tutaj jej adres. Jeśli strona ma wiele wersji językowych, można dodać je w tym polu. Dotyczy tylko wyświetlanych dodatków."
 
 msgid "Images"
-msgstr "Obrazki"
+msgstr "Obrazy"
 
 msgid "Support Information"
 msgstr "Informacje o pomocy"
@@ -3140,7 +3140,7 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Wgraj ikonę dodatku lub wybierz jedną z naszych. Ikona jest wyświetlana prawie wszędzie tam, gdzie dodatek. Wgrywane obrazki muszą być w jednym z formatów: .png, .jpg. Dotyczy tylko wyświetlanych "
+"Wgraj ikonę dodatku lub wybierz jedną z naszych. Ikona jest wyświetlana prawie wszędzie tam, gdzie dodatek. Wgrywane obrazy muszą być w jednym z formatów: .png, .jpg. Dotyczy tylko wyświetlanych "
 "dodatków."
 
 msgid "Select an icon for your add-on:"
@@ -3167,22 +3167,22 @@ msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr "Obsługiwane formaty to PNG i JPG. Ikony, jeśli są większe, zostaną przeskalowane do wielkości 64x64 pikseli."
 
 msgid "Screenshots"
-msgstr "Obrazki"
+msgstr "Obrazy"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr "Dodaj przynajmniej jeden obrazek dodatku:"
+msgstr "Dodaj przynajmniej jeden obraz dodatku:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr "Podaj opis tego obrazka:"
+msgstr "Podaj opis tego obrazu:"
 
 msgid "Add a Screenshot..."
-msgstr "Dodaj obrazek…"
+msgstr "Dodaj obraz…"
 
 msgid ""
 "PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
 "page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
-"Obsługiwane formaty to PNG i JPG. Maksymalny i zalecany rozmiar zrzutów ekranu to 1280x800 pikseli. Rozmiar 640x400 piksel stanowi dobrą alternatywę, jeśli masz tylko mniejsze obrazki. Obecność "
+"Obsługiwane formaty to PNG i JPG. Maksymalny i zalecany rozmiar zrzutów ekranu to 1280×800 pikseli. Rozmiar 640×400 pikseli stanowi dobrą alternatywę, jeśli masz tylko mniejsze obrazy. Obecność "
 "zrzutów ekranu na stronie dodatku znacząco zwiększa prawdopodobieństwo zainstalowania dodatku i wyróżnienia go na stronie głównej."
 
 msgid "Continue"
@@ -3609,10 +3609,10 @@ msgid "Theme name"
 msgstr "Nazwa motywu"
 
 msgid "Select a header image for your theme"
-msgstr "Wybierz obrazek nagłówka dla swojego motywu"
+msgstr "Wybierz obraz nagłówka dla swojego motywu"
 
 msgid "Image height should be 200 pixels"
-msgstr "Wysokość obrazka powinna wynosić 200 pikseli"
+msgstr "Wysokość obrazu powinna wynosić 200 pikseli"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG lub GIF (nie animowany)"
@@ -3621,7 +3621,7 @@ msgid "Aligned to top-right"
 msgstr "Wyrównany do prawego górnego narożnika"
 
 msgid "Select a different header image"
-msgstr "Wybierz inny obrazek nagłówka"
+msgstr "Wybierz inny obraz nagłówka"
 
 msgid "Select colors for your theme"
 msgstr "Wybierz kolory swojego motywu"
@@ -3755,7 +3755,7 @@ msgid "Next Listed Version:"
 msgstr "Następna najnowsza wersja:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr "To jest najnowsza załadowana wersja, jednak nie jest jeszcze dostępna na stronie."
+msgstr "To jest najnowsza przesłana wersja, jednak nie jest jeszcze dostępna na stronie."
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Kolejki nie są sprawdzane dokładnie w kolejności"
@@ -3774,10 +3774,10 @@ msgid "Latest Version:"
 msgstr "Najnowsza wersja:"
 
 msgid "This is the newest uploaded unlisted version."
-msgstr "To jest najnowsza przeładowana wersja, która nie została jeszcze opublikowana."
+msgstr "To jest najnowsza przesłana wersja, która nie została jeszcze opublikowana."
 
 msgid "Upload New Version"
-msgstr "Ładowanie nowej wersji"
+msgstr "Przesyłanie nowej wersji"
 
 msgid "View All"
 msgstr "Wyświetl wszystko"
@@ -4199,7 +4199,7 @@ msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr "Dołącz do rozmowy na naszych <a href=\"%(forum_url)s\">forach</a>."
 
 msgid "Select a header image for your Theme."
-msgstr "Wybierz obrazek nagłówka dla swojego motywu."
+msgstr "Wybierz obraz nagłówka dla swojego motywu."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pikseli"
@@ -4422,11 +4422,11 @@ msgstr "Zaznacz dowolny tekst, kliknij prawym przyciskiem myszy i przetłumacz b
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Szukaj obrazków {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
+msgstr "Szukaj obrazów {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr "Wykonuj odwrotne wyszukiwanie obrazków przy użyciu wielu wyszukiwarek."
+msgstr "Wykonuj odwrotne wyszukiwanie obrazów przy użyciu wielu wyszukiwarek."
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4478,11 +4478,11 @@ msgstr "Wybierz stronę, którą chcesz wyświetlać za każdym razem, gdy otwie
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Odwrotne wyszukiwanie obrazków {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
+msgstr "Odwrotne wyszukiwanie obrazów {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr "Widzisz interesujący obrazek i chcesz uzyskać więcej informacji? Wypróbuj to narzędzie do wyszukiwania obrazków."
+msgstr "Widzisz interesujący obraz i chcesz uzyskać więcej informacji? Wypróbuj to narzędzie do wyszukiwania obrazów."
 
 #. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4526,11 +4526,11 @@ msgstr "Korzystaj z pakietu nowych funkcji YouTube, takich jak tryb kinowy, blok
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Znajduj łatwo obrazki {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
+msgstr "Znajduj łatwo obrazy {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr "Zaznacz dowolny tekst i kliknij prawym przyciskiem myszy, aby szybko wyszukać obrazki."
+msgstr "Zaznacz dowolny tekst i kliknij prawym przyciskiem myszy, aby szybko wyszukać obrazy."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4651,11 +4651,11 @@ msgstr "Znajduj brakującą zawartość internetową {start_sub_heading}przy uż
 
 #. editorial content for the discovery pane.
 msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Powiększaj obrazki {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
+msgstr "Powiększaj obrazy {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
-msgstr "Po prostu umieść kursor myszy nad obrazkiem, aby go powiększyć."
+msgstr "Po prostu umieść kursor myszy nad obrazem, aby go powiększyć."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4895,15 +4895,15 @@ msgstr "Dynamiczna nawigacja {start_sub_heading}przy użyciu dodatku {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr "Używaj gestów myszą, aby zamykać karty, przechodzić do poprzedniej strony, ładować stronę ponownie itp."
+msgstr "Używaj gestów myszą, aby zamykać karty, przechodzić do poprzedniej strony, wczytywać stronę ponownie itp."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Dodaj obrazki do wyników wyszukiwania {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
+msgstr "Dodaj obrazy do wyników wyszukiwania {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
-msgstr "Wyświetlać miniatury obrazków wraz z wynikami wyszukiwania."
+msgstr "Wyświetlać miniatury obrazów wraz z wynikami wyszukiwania."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4971,11 +4971,11 @@ msgstr "Spraw, by czytany tekst był bardziej atrakcyjny, usuwając przeszkadzaj
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Otwieraj wiele odsyłaczy {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
+msgstr "Otwieraj wiele odnośników {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
-msgstr "Kliknij prawym przyciskiem myszy i przeciągnij nad odsyłaczami, które chcesz otworzyć w nowych kartach."
+msgstr "Kliknij prawym przyciskiem myszy i przeciągnij nad odnośnikami, które chcesz otworzyć w nowych kartach."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5247,11 +5247,11 @@ msgstr "Przetłumacz całą stronę internetową na preferowany język — jedny
 
 #. editorial content for the discovery pane.
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Wyodrębniaj odsyłacze {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
+msgstr "Wyodrębniaj odnośniki {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr "Natychmiast wyświetlaj wszystkie odsyłacze w nowych kartach."
+msgstr "Natychmiast wyświetlaj wszystkie odnośniki w nowych kartach."
 
 #. editorial content for the discovery pane.
 msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5395,7 +5395,7 @@ msgstr "Blokuj reklamy i śledzenie {start_sub_heading}przy użyciu dodatku {add
 
 #. editorial content for the discovery pane.
 msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
-msgstr "Chroń swoją prywatność, blokując reklamy i usługi śledzące (a zarazem przyspiesz ładowanie stron)."
+msgstr "Chroń swoją prywatność, blokując reklamy i usługi śledzące (a zarazem przyspiesz wczytywanie stron)."
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5419,7 +5419,7 @@ msgstr "Powstrzymaj przejmowanie kart {start_sub_heading}przy użyciu dodatku {a
 
 #. editorial content for the discovery pane.
 msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr "Nie pozwól, aby kliknięte odsyłacze przejęły kontrolę nad bieżącą kartą i ładowały niepożądaną zawartość."
+msgstr "Nie pozwól, aby kliknięte odnośniki przejęły kontrolę nad bieżącą kartą i wczytywały niepożądaną zawartość."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5475,7 +5475,7 @@ msgstr "Korzystaj z zakręconej edukacji {start_sub_heading}przy użyciu dodatku
 
 #. editorial content for the discovery pane.
 msgid "Load a random Wikipedia article each time you open a new tab."
-msgstr "Załaduj losowy artykuł na Wikipedii za każdym razem, gdy otwierasz nową kartę."
+msgstr "Wczytaj losowy artykuł na Wikipedii za każdym razem, gdy otwierasz nową kartę."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5655,7 +5655,7 @@ msgstr "Uprość wykonywane czynności {start_sub_heading}przy użyciu dodatku {
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr "Po prostu przeciągnij tekst, obrazki lub odsyłacze, aby kopiować, otwierać, wyszukiwać i nie tylko."
+msgstr "Po prostu przeciągnij tekst, obrazki lub odnośniki, aby kopiować, otwierać, wyszukiwać i nie tylko."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
