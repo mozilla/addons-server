@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 18:11+0000\n"
+"PO-Revision-Date: 2018-08-10 18:25+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -732,23 +732,23 @@ msgid "Sorry, but we can't find anything at the address you entered. If you foll
 msgstr "Pardono, ma nos non pote trovar tote le cosas al adresse que tu specificava. Si tu sequeva un ligamine pro un additivo, il es possibile que le additivo ha essite removite per su autor."
 
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Paginas suggerite"
 
 msgid "Browse all extensions"
-msgstr ""
+msgstr "Naviga trans tote le extensiones"
 
 msgid "Browse all themes"
-msgstr ""
+msgstr "Naviga per tote le themas"
 
 msgid "Add-ons Home Page"
-msgstr ""
+msgstr "Pagina principal del additivos"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
 
 msgid "Not Found"
-msgstr ""
+msgstr "Non trovate"
 
 #, python-format
 msgid ""
@@ -760,7 +760,7 @@ msgid ""
 msgstr ""
 
 msgid "Oops"
-msgstr ""
+msgstr "Ups"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
@@ -774,14 +774,14 @@ msgstr ""
 
 #. abbreviation of 'previous'
 msgid "Prev"
-msgstr ""
+msgstr "Previe"
 
 msgid "Next"
-msgstr ""
+msgstr "Sequente"
 
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
-msgstr ""
+msgstr "Resultatos <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> de <strong>%(count)s</strong>"
 
 msgid "Maintenance in progress"
 msgstr ""
@@ -1245,7 +1245,7 @@ msgid "Search tools and search-related extensions"
 msgstr ""
 
 msgid "Search tools"
-msgstr ""
+msgstr "Utensiles de recerca"
 
 msgid "Most Users"
 msgstr ""
@@ -1260,13 +1260,13 @@ msgid "Up & Coming"
 msgstr ""
 
 msgid "Recently Added"
-msgstr ""
+msgstr "Addite recentemente"
 
 msgid "Created"
-msgstr ""
+msgstr "Create"
 
 msgid "Downloads"
-msgstr ""
+msgstr "Discargamentos"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
@@ -1336,7 +1336,7 @@ msgstr[0] "<b>{0}</b> additivo"
 msgstr[1] "<b>{0}</b> additivos"
 
 msgid "Search Extensions"
-msgstr ""
+msgstr "Extensiones de recerca"
 
 msgid "Add search-related functionality to Firefox"
 msgstr ""
@@ -1348,7 +1348,7 @@ msgid "Find new providers for your search bar"
 msgstr ""
 
 msgid "Additional Resources"
-msgstr ""
+msgstr "Altere ressources"
 
 #. {0} is an app name, like Firefox.
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
@@ -1362,13 +1362,13 @@ msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
 msgstr ""
 
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "Extensiones plus popular"
 
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "Extensiones melio valutate"
 
 msgid "Newest Extensions"
-msgstr ""
+msgstr "Extensiones plus recente"
 
 msgid "Extensions by Name"
 msgstr ""
@@ -1415,14 +1415,14 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0} Themas"
 
 #. {0} is a user's name.
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "Themas de {0}"
 
 msgid "View Profile"
-msgstr ""
+msgstr "Vider le profilo"
 
 msgid "Create Your Own Theme"
 msgstr ""
@@ -1431,7 +1431,7 @@ msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr ""
 
 msgid "Learn more"
-msgstr ""
+msgstr "Saper plus"
 
 msgid "View All Recently Added"
 msgstr ""
@@ -1462,10 +1462,10 @@ msgid "View All Up & Coming"
 msgstr ""
 
 msgid "No themes found"
-msgstr ""
+msgstr "Nulle themas trovate"
 
 msgid "All"
-msgstr ""
+msgstr "Toto"
 
 msgid "Add-on Compatibility Reports"
 msgstr ""
@@ -1496,7 +1496,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "View all"
-msgstr ""
+msgstr "Vider toto"
 
 msgid "Filter by Application"
 msgstr ""
@@ -1505,10 +1505,10 @@ msgid "Report Type"
 msgstr ""
 
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 msgid "Application Version"
-msgstr ""
+msgstr "Version del application"
 
 msgid "Application Build"
 msgstr ""
@@ -1523,13 +1523,13 @@ msgid "e10s Compatible"
 msgstr ""
 
 msgid "Submitted"
-msgstr ""
+msgstr "Submittite"
 
 msgid "Success"
-msgstr ""
+msgstr "Successo"
 
 msgid "Problem"
-msgstr ""
+msgstr "Problema"
 
 msgid "No reports found."
 msgstr ""
@@ -1661,7 +1661,7 @@ msgstr ""
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} addite."
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
@@ -1861,10 +1861,10 @@ msgid "Firefox for Android"
 msgstr ""
 
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Incognite"
 
 msgid "Incomplete"
 msgstr ""
