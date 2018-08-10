@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 01:31+0000\n"
+"PO-Revision-Date: 2018-08-10 01:32+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -3867,7 +3867,6 @@ msgstr "상표권 침해 신고"
 msgid "Legal Notices"
 msgstr "법적 고지"
 
-#, fuzzy
 msgid "Review Add-ons"
 msgstr "부가 기능 심사"
 
@@ -3883,7 +3882,6 @@ msgstr "코드 작성"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
-#, fuzzy
 msgid "Get started"
 msgstr "시작하기"
 
@@ -3897,7 +3895,6 @@ msgstr ""
 msgid "See how"
 msgstr ""
 
-#, fuzzy
 msgid "Manage Your Add-on"
 msgstr "부가 기능 관리하기"
 
@@ -3917,16 +3914,14 @@ msgstr ""
 msgid "View Resources for Publishers"
 msgstr "사용자 통계 보기"
 
-#, fuzzy
 msgid "Welcome Back"
-msgstr "{0}님, 어서오세요"
+msgstr "환영합니다"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
-#, fuzzy
 msgid "Learn How"
-msgstr "더 알아보기"
+msgstr "방법 알아보기"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
