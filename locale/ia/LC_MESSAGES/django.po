@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-10 14:31+0000\n"
+"PO-Revision-Date: 2018-08-10 14:50+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -421,47 +421,47 @@ msgstr "Revisiones"
 
 #, python-format
 msgid "by %(user)s on %(date)s"
-msgstr ""
+msgstr "per %(user)s sur %(date)s"
 
 msgid "Show the developer's reply to this review"
-msgstr ""
+msgstr "Monstrar le replicas del developpatores a iste revision"
 
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vide tote le revisiones de iste additivo"
+msgstr[1] "Vide tote le %(cnt)s revisiones a iste additivo"
 
 msgid "Tags"
-msgstr ""
+msgstr "Tags"
 
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Icone pro {0}"
 
 #, python-format
 msgid "by %(users)s"
-msgstr ""
+msgstr "per %(users)s"
 
 msgid "Download Anyway"
-msgstr ""
+msgstr "Discargar comocunque"
 
 msgid "[Warning]"
-msgstr ""
+msgstr "[Aviso]"
 
 msgid "Permissions"
-msgstr ""
+msgstr "Permissiones"
 
 msgid "This add-on has been marked as experimental by its developers"
-msgstr ""
+msgstr "Iste additivo ha essite marcate como experimental per su disveloppatores"
 
 msgid "This add-on requires the following add-ons to work properly:"
 msgstr ""
 
 msgid "Average"
-msgstr ""
+msgstr "Media"
 
 msgid "Write a review"
-msgstr ""
+msgstr "Scribe un revision"
 
 msgid "Related Categories"
 msgstr ""
@@ -520,7 +520,7 @@ msgid "Support E-mail"
 msgstr ""
 
 msgid "Info"
-msgstr ""
+msgstr "Informationes"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
@@ -695,7 +695,7 @@ msgid "This must be a valid hex color code, such as #000000."
 msgstr ""
 
 msgid "Not allowed"
-msgstr ""
+msgstr "Non consentite"
 
 msgid "Oops! Not allowed."
 msgstr ""
@@ -787,10 +787,10 @@ msgid "Some features on this page are temporarily disabled while we perform webs
 msgstr ""
 
 msgid "Are you human?"
-msgstr ""
+msgstr "Es tu human?"
 
 msgid "What's this?"
-msgstr ""
+msgstr "Que es isto?"
 
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
@@ -801,7 +801,7 @@ msgid "Top Rated"
 msgstr ""
 
 msgid "Newest"
-msgstr ""
+msgstr "Le plus recente"
 
 msgid "Explore"
 msgstr "Explorar"
@@ -823,33 +823,33 @@ msgid "Collections I've Made"
 msgstr "Collectiones que io ha create"
 
 msgid "My Favorite Add-ons"
-msgstr ""
+msgstr "Mi additivos favorite"
 
 msgid "More&hellip;"
-msgstr ""
+msgstr "Plus&hellip;"
 
 msgid "Add-ons for Mobile"
-msgstr ""
+msgstr "Additivos pro mobile"
 
 msgid "Dictionaries & Language Packs"
-msgstr ""
+msgstr "Dictionarios e pacchettos de lingua"
 
 msgid "Search Tools"
-msgstr ""
+msgstr "Utensiles de recerca"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
+msgstr "Pagina <a href=\"%(current_pg_url)s\">%(current_pg)s</a> de <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 msgid "Jump to first page"
-msgstr ""
+msgstr "Saltar al prime pagina"
 
 msgid "Previous"
-msgstr ""
+msgstr "Previe"
 
 msgid "Jump to last page"
-msgstr ""
+msgstr "Saltar al ultime pagina"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
@@ -858,23 +858,23 @@ msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr ""
 
 msgid "Add-ons"
-msgstr ""
+msgstr "Additivos"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr ""
 
 msgid "Title"
-msgstr ""
+msgstr "Titulo"
 
 msgid "Body"
-msgstr ""
+msgstr "Corpore"
 
 msgid "Another Title"
-msgstr ""
+msgstr "Un altere titulo"
 
 msgid "Another Body"
-msgstr ""
+msgstr "Un altere corpore"
 
 msgid "Invalid Authorization header. No credentials provided."
 msgstr ""
@@ -883,7 +883,7 @@ msgid "Invalid Authorization header. Credentials string should not contain space
 msgstr ""
 
 msgid "Signature has expired."
-msgstr ""
+msgstr "Signatura expirate."
 
 msgid "Error decoding signature."
 msgstr ""
@@ -905,7 +905,7 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Application Versions"
-msgstr ""
+msgstr "Versiones del application"
 
 msgid "Acceptable versions for all applications on AMO."
 msgstr ""
@@ -921,10 +921,10 @@ msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_versi
 msgstr ""
 
 msgid "GUID"
-msgstr ""
+msgstr "GUIDA"
 
 msgid "Versions"
-msgstr ""
+msgstr "Versiones"
 
 #, python-format
 msgid ""
@@ -942,16 +942,16 @@ msgid "Give your collection a name."
 msgstr "Da un nomine a tu collection."
 
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 msgid "Describe your collection (no links allowed)."
 msgstr "Describe tu collection (non es permittite includer ligamines)."
 
 msgid "Privacy:"
-msgstr ""
+msgstr "Confidentialitate:"
 
 msgid "Icon"
-msgstr ""
+msgstr "Icone"
 
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
@@ -984,13 +984,13 @@ msgid "This add-on already belongs to the collection"
 msgstr "Iste additivo pertine ja al collection"
 
 msgid "Added"
-msgstr ""
+msgstr "Addite"
 
 msgid "Popularity"
-msgstr ""
+msgstr "Popularitate"
 
 msgid "Name"
-msgstr ""
+msgstr "Nomine"
 
 msgid "Collection created!"
 msgstr "Collection create!"
@@ -1007,7 +1007,7 @@ msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">Vide tu collection</a> pro reguardar le cambiamentos."
 
 msgid "Icon Deleted"
-msgstr ""
+msgstr "Icone delite"
 
 msgid "Create a New Collection"
 msgstr "Crear un nove collection"
@@ -1029,10 +1029,10 @@ msgid "Start a New Collection"
 msgstr "Comencia un nove collection"
 
 msgid "Name:"
-msgstr ""
+msgstr "Nomine:"
 
 msgid "(optional)"
-msgstr ""
+msgstr "(optional)"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "o <a id=\"collections-new-cancel\" href=\"#\">Cancella</a>"
@@ -1041,7 +1041,7 @@ msgid "{0} :: Collections"
 msgstr "{0} :: Collectiones"
 
 msgid "private"
-msgstr ""
+msgstr "private"
 
 msgid "About this Collection"
 msgstr "A proposito de iste collection"
@@ -1056,7 +1056,7 @@ msgid "Make this Collection Public"
 msgstr "Render iste collection public"
 
 msgid "More Options:"
-msgstr ""
+msgstr "Plus de optiones:"
 
 msgid "Edit Collection"
 msgstr "Editar le collection"
@@ -1077,7 +1077,7 @@ msgstr[0] "%(num)s additivo in iste collection"
 msgstr[1] "%(num)s additivos in iste collection"
 
 msgid "Go"
-msgstr ""
+msgstr "Ir"
 
 msgid "What are Collections?"
 msgstr "Que es le collectiones?"
@@ -1102,7 +1102,7 @@ msgid ""
 msgstr ""
 
 msgid "My favorite add-ons"
-msgstr ""
+msgstr "Mi additivos favorite"
 
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
@@ -1111,46 +1111,46 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "by {0}"
-msgstr ""
+msgstr "per {0}"
 
 msgid "Edit this Collection"
-msgstr ""
+msgstr "Rediger iste collection"
 
 #. %s is the name of the collection.
 msgid "Delete {0}"
 msgstr "Deler {0}"
 
 msgid "Are you sure?"
-msgstr ""
+msgstr "Es tu secur?"
 
 msgid "Yes"
-msgstr ""
+msgstr "Si"
 
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #. {0} is the name of the collection.
 msgid "Edit {0}"
 msgstr "Editar {0}"
 
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 msgid "Save Changes"
-msgstr ""
+msgstr "Salvar le cambios"
 
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Remover del favoritos"
 
 msgid "Add to favorites"
-msgstr ""
+msgstr "Adder al favoritos"
 
 #. {0} is a username.
 msgid "Collections by {0}"
 msgstr "Collectiones de {0}"
 
 msgid "No collections found."
-msgstr ""
+msgstr "Nulle collectiones trovate."
 
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
@@ -1170,7 +1170,7 @@ msgid "Collection Icon"
 msgstr "Icone del collection"
 
 msgid "Reset"
-msgstr ""
+msgstr "Restabilir"
 
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
 msgstr ""
@@ -1185,13 +1185,13 @@ msgid "To include an add-on in this collection, enter its name in the box below 
 msgstr "Pro includer un additivo in iste collection, scribe su nomine in le cassa a basso e pulsa Enter."
 
 msgid "Add-on"
-msgstr ""
+msgstr "Additivo"
 
 msgid "Comment"
-msgstr ""
+msgstr "Commento"
 
 msgid "Remove"
-msgstr ""
+msgstr "Remover"
 
 msgid "Enter the name of the add-on to include"
 msgstr ""
@@ -1200,21 +1200,21 @@ msgid "Add to Collection"
 msgstr "Adder al collection"
 
 msgid "Pending"
-msgstr ""
+msgstr "Pendente"
 
 msgid "Add a comment"
-msgstr ""
+msgstr "Adde un commento"
 
 msgid "Remove this add-on from the collection"
 msgstr "Remover iste additivo del collection"
 
 msgid "Favorite"
-msgstr ""
+msgstr "Favorite"
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
-msgstr ""
+msgstr "%s Additivos"
 
 #. L10n: %s is a category name.
 #, python-format
