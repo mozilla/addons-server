@@ -21,7 +21,7 @@ SEARCH_ANALYZER_MAP = {
     'danish': ['da'],
     'german': ['de'],
     'greek': ['el'],
-    'english': ['en-us', 'en-gb'],
+    'english': ['en-us', 'en-ca', 'en-gb'],
     'spanish': ['es'],
     'basque': ['eu'],
     'persian': ['fa'],

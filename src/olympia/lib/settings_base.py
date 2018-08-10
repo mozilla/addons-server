@@ -166,6 +166,7 @@ AMO_LANGUAGES = (
     'de',  # German
     'dsb',  # Lower Sorbian
     'el',  # Greek
+    'en-CA',  # English (Canada)
     'en-GB',  # English (British)
     'en-US',  # English (US)
     'es',  # Spanish
