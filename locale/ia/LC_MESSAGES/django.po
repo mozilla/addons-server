@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-11 05:33+0000\n"
+"PO-Revision-Date: 2018-08-11 09:03+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -883,10 +883,10 @@ msgid "Another Body"
 msgstr "Un altere corpore"
 
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Titulo de autorisation non valide. Nulle credentiales fornite."
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "Titulo de autorisation non valide. Le catenas del credentiales non debe continer spatios."
 
 msgid "Signature has expired."
 msgstr "Signatura expirate."
@@ -895,13 +895,13 @@ msgid "Error decoding signature."
 msgstr "Error al decodification del signatura."
 
 msgid "Invalid JWT Token."
-msgstr "Token JWT non valide."
+msgstr "Jeton JWT non valide."
 
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Le campo debe haber un longitude del al minus {num} characteres."
 
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Le codice de lingua {lang_code} non es valide."
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr ""
