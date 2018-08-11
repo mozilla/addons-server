@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-11 12:08+0000\n"
+"PO-Revision-Date: 2018-08-11 12:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1246,10 +1246,10 @@ msgstr "Ecce un poc de nostre favorite additivos pro te adjutar a comenciar a pe
 #. L10n: %s is a category name.
 #, python-format
 msgid "Search tools relating to %s"
-msgstr ""
+msgstr "Applicationes de recerca correlate a %s"
 
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "Applicationes de recerca e extensiones correlate al recerca"
 
 msgid "Search tools"
 msgstr "Utensiles de recerca"
@@ -1261,7 +1261,7 @@ msgid "Weekly Downloads"
 msgstr "Discargamentos septimanal"
 
 msgid "Recently Updated"
-msgstr "Actualisationes recente"
+msgstr "Recentemente actualisate"
 
 msgid "Up & Coming"
 msgstr "Emergentias"
@@ -1281,26 +1281,26 @@ msgstr "{0}: Additivos preferite"
 
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
-msgstr "Nulle additivos preferite in {0}."
+msgstr "Nulle additivos consiliate in {0}."
 
 msgid "Subscribe"
 msgstr "Subscriber"
 
 msgid "Featured Add-ons"
-msgstr "Additivos preferite"
+msgstr "Additivos consiliate"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr ""
+msgstr "Ecce alcun de nostre favorite additivos pro te adjutar a comenciar a personalisar %(app)s."
 
 msgid "Install Dictionary"
-msgstr "Installar dictionario"
+msgstr "Installar un dictionario"
 
 msgid "Install Language Pack"
 msgstr "Installar un pacchetto de lingua"
 
 msgid "Download Dictionary"
-msgstr "Discargar dictionario"
+msgstr "Discargar un dictionario"
 
 msgid "Download Language Pack"
 msgstr "Discargar un pacchetto de lingua"
