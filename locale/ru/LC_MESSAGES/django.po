@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-11 13:12+0000\n"
+"PO-Revision-Date: 2018-08-11 13:29+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -2508,9 +2508,8 @@ msgstr "Версия {version} уже существует."
 msgid "Continue with existing upload instead?"
 msgstr "Продолжить текущую загрузку?"
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "Не удалось распарсить загруженный файл."
+msgstr "Вы не выгрузили файл с исходным кодом."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
@@ -3511,9 +3510,8 @@ msgstr "Загрузить файл"
 msgid "Go to My Submissions"
 msgstr "Перейти в мои представления"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "Исходный код загружен"
+msgstr "Выгрузка исходного кода"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
@@ -3567,9 +3565,8 @@ msgstr ""
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
 
-#, fuzzy
 msgid "How to Submit:"
-msgstr "Отправить"
+msgstr "Как отправить:"
 
 msgid "Include instructions in a README file in the source code,"
 msgstr ""
@@ -3577,9 +3574,8 @@ msgstr ""
 msgid "or in reviewer notes on the next page (if applicable)."
 msgstr ""
 
-#, fuzzy
 msgid "Upload source code:"
-msgstr "Исходный код"
+msgstr "Выгрузить исходный код:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "Соглашение распространения дополнения"
@@ -5097,7 +5093,7 @@ msgstr "Непривычное, современное оформление дл
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Работайте быстрее {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Ускорьте работу {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
@@ -5153,7 +5149,7 @@ msgstr "Сохраняйте анонимность и защищайтесь о
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Выбирайте себе конфиденциальность {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Выберите степень приватности {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily customize the built-in privacy settings in Firefox."
@@ -5161,7 +5157,7 @@ msgstr "Меняйте по своему вкусу встроенные нас�
 
 #. editorial content for the discovery pane.
 msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Удобнее чувствуйте себя в VK {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Удобнее чувствуйте себя в ВКонтакте {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
@@ -5309,7 +5305,7 @@ msgstr "Запретите поисковым системам узнавать 
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Загружайте видео YouTube {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Загружайте видео с YouTube {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
