@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-11 17:11+0000\n"
+"PO-Revision-Date: 2018-08-11 17:16+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -870,7 +870,7 @@ msgstr "Saltar al ultime pagina"
 #. third argument is the number of total results (e.g., 1,000).
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "Monstrante <b>%(begin)s</b>&ndash;<b>%(end)s</b> de <b>%(count)s</b>"
 
 msgid "Add-ons"
 msgstr "Additivos"
@@ -907,7 +907,7 @@ msgid "Invalid JWT Token."
 msgstr "Jeton JWT non valide."
 
 msgid "The field must have a length of at least {num} characters."
-msgstr "Le campo debe haber un longitude del al minus {num} characteres."
+msgstr "Le campo debe haber un longitude de al minus {num} characteres."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "Le codice de lingua {lang_code} non es valide."
