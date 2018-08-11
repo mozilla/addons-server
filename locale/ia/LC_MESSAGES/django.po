@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-11 09:03+0000\n"
+"PO-Revision-Date: 2018-08-11 09:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -904,17 +904,17 @@ msgid "The language code {lang_code} is invalid."
 msgstr "Le codice de lingua {lang_code} non es valide."
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "Tu debe fornir un objecto de {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "\"%s\" non es un pk o limace valide - le objecto non existe."
 
 msgid "Application Versions"
 msgstr "Versiones del application"
 
 msgid "Acceptable versions for all applications on AMO."
-msgstr ""
+msgstr "Versiones acceptabile pro tote le applicationes sur AMO."
 
 msgid "Valid Application Versions"
 msgstr "Versiones del application valide"
