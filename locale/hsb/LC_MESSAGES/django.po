@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-09 19:31+0000\n"
+"PO-Revision-Date: 2018-08-11 19:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3505,7 +3505,7 @@ msgid "Source Code Upload"
 msgstr "Nahraće žórłoweho koda"
 
 msgid "Do You Need to Submit Source Code?"
-msgstr "Dyrbiće žórłowy kod zapódać?"
+msgstr "Dyrbiće žórłowy kod zapodać?"
 
 msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
 msgstr "Snano dyrbiće žórłowy kod zapodać. Jeli korektny žórłowy kod nětko njezapodawaće, móhł waš přidatk ze sydła wotstronić!"
@@ -3515,7 +3515,7 @@ msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
 msgstr "Prošu přečitajće <a %(a_attrs)s>prawidła za zapodawanje žórłoweho koda</a>."
 
 msgid "Do you use any of the following?"
-msgstr "Wužiwaće jedyn ze slědowacyh nastrojow?"
+msgstr "Wužiwaće jedyn ze slědowacych nastrojow?"
 
 msgid "Code minifiers or obfuscators"
 msgstr "Pomjeńšowaki abo zakrywaki koda"
@@ -3537,7 +3537,7 @@ msgstr "Waše zapodaće žórłowy kod trjeba."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr "Žórłowy kod dyrbi <a %(a_attrs)s>žadanjam prawidłow</a> wotpowědać, k nim słušeja:"
+msgstr "Žórłowy kod dyrbi <a %(a_attrs)s>žadanjam prawidłow</a> wotpowědować, k nim słušeja:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
 msgstr "Instrukcije krok po kroku za wutworjenje eksaktneje kopije přidatkoweho koda."
@@ -3561,7 +3561,7 @@ msgstr ""
 " mnašinu wutworić."
 
 msgid "How to Submit:"
-msgstr "Kak zapódać:"
+msgstr "Kak zapodać:"
 
 msgid "Include instructions in a README file in the source code,"
 msgstr "Zasadźće instrukcije w dataji README w žórłowym kodźe"
