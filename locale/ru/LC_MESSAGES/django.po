@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-11 14:05+0000\n"
+"PO-Revision-Date: 2018-08-11 14:51+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -5653,7 +5653,7 @@ msgstr "Защитите свои личные закладки паролем."
 
 #. editorial content for the discovery pane.
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Предотвратите утечку IP-адресов {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Предотвратите утечку IP-адреса {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
@@ -5729,7 +5729,7 @@ msgstr "Отрегулируйте звуковые настройки брау�
 
 #. editorial content for the discovery pane.
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Защита конфиденциальности {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Защита приватности {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
