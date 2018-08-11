@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-11 10:57+0000\n"
+"PO-Revision-Date: 2018-08-11 12:08+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1092,7 +1092,7 @@ msgid "What are Collections?"
 msgstr "Que es le collectiones?"
 
 msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Collectiones es gruppos de additivos correlate que quicunque pote crear e compartir."
+msgstr "Le collectiones es gruppos de additivos correlate que quicunque pote crear e compartir."
 
 msgid "Explore Collections"
 msgstr "Explorar le collectiones"
@@ -1241,7 +1241,7 @@ msgstr "Additivos favorite :: %s"
 #. L10n: %s is an app name.
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr ""
+msgstr "Ecce un poc de nostre favorite additivos pro te adjutar a comenciar a personalisar %s."
 
 #. L10n: %s is a category name.
 #, python-format
