@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-11 16:40+0000\n"
+"PO-Revision-Date: 2018-08-11 17:11+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -771,7 +771,7 @@ msgstr "Ups"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgstr "<h1>Ups!  Nos habeva un error.</h1> <p>Nos lo remediara tosto.</p> <p> Tu pote provar a refrescar le pagina, o receder al <a href=\"%(home)s\">Pagina principal del additivos</a>. </p>"
 
 msgid "Some rights reserved"
 msgstr "Alcun derectos es reservate"
@@ -791,13 +791,13 @@ msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <str
 msgstr "Resultatos <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> de <strong>%(count)s</strong>"
 
 msgid "Maintenance in progress"
-msgstr "Mantenentia in curso"
+msgstr "Mantenentia in progresso"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
+msgstr "Iste functionalitate es temporarimente disactivate durante que nos exeque le mantenentia del sito web. Per favor usa le button Receder tu navigator e prova ancora un poco plus tarde."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
+msgstr "Alcun functionalitates sur iste pagina es temporarimente disactivate durante que nos exeque le mantenentia del sito web. Per favor prova de novo un poco plus tarde."
 
 msgid "Are you human?"
 msgstr "Es tu human?"
@@ -809,6 +809,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Per favor insere <strong>tote le parolas</strong> infra, <strong>separate per un spatio si necessari</strong>. </p> <p> Si isto es dur a leger, tu pote <a href=\"#\" "
+"id=\"recaptcha_different\">provar differente parolas</a> o <a href=\"#\" id=\"recaptcha_audio\"> provar un differente typo de defia</a> in vice. </p>"
 
 msgid "Top Rated"
 msgstr "Los melio valutate"
@@ -827,7 +829,7 @@ msgid "Themes"
 msgstr "Themas"
 
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Desira tu plus personalisationes? Prova <b>Themas complete</b>"
 
 msgid "Collections"
 msgstr "Collectiones"
@@ -848,7 +850,7 @@ msgid "Dictionaries & Language Packs"
 msgstr "Dictionarios e pacchettos de lingua"
 
 msgid "Search Tools"
-msgstr "Utensiles de recerca"
+msgstr "Applicationes de recerca"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
