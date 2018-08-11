@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-11 09:31+0000\n"
+"PO-Revision-Date: 2018-08-11 10:09+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -921,13 +921,14 @@ msgstr "Versiones del application valide"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
+"Additivos submittite pro Mozilla Additivos debe haber un file manifesto con supportate al minus un del applicationes infra. Solmente le versiones listate infra es consentite pro iste applicationes."
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
+msgstr "Per favor es conscie que WebExtensions non acceptara un \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
-msgstr "GUIDA"
+msgstr "GUID"
 
 msgid "Versions"
 msgstr "Versiones"
@@ -937,6 +938,8 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
+"Si tu application supportate non require un file manifesto, tu debe includer comocunque uno con le proprietates requirite como specificate per "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 
 msgid "Only I can view this collection."
 msgstr "Solmente io pote vider iste collection."
@@ -960,7 +963,7 @@ msgid "Icon"
 msgstr "Icone"
 
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
+msgstr "Per favor non plenar iste campo, illo es usate pro trappar bots"
 
 msgid "This name cannot be used."
 msgstr "Iste nomine non pote ser usate."
@@ -981,7 +984,7 @@ msgid "Name cannot be empty."
 msgstr "Le nomine non pote ser vacue."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Le URL personalisate debe consister de litteras, numeros, lineettas basse o lineettas."
 
 msgid "This custom URL cannot be used."
 msgstr "Iste URL personalisate non pote ser usate."
