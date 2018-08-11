@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-11 23:30+0000\n"
+"PO-Revision-Date: 2018-08-11 23:51+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -3525,15 +3525,16 @@ msgstr ""
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
+"<span class=\"instruction-emphasis\">Nota:</span> Ficheiros fonte (à parte de bibliotecas de código aberto de terceiros) não podem ser transformadas, ofuscadas, minificadas ou geradas por máquina."
 
 msgid "How to Submit:"
 msgstr "Como submeter:"
 
 msgid "Include instructions in a README file in the source code,"
-msgstr ""
+msgstr "Inclua instruções num ficheiro README no código fonte,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr ""
+msgstr "ou nas notas de revisão na próxima página (se aplicável)."
 
 msgid "Upload source code:"
 msgstr "Enviar código fonte:"
@@ -4953,7 +4954,7 @@ msgstr "Melhore a sua experiência de leitura {start_sub_heading}com {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Torne o texto que está a ler mais apelativo removendo as distrações à volta do mesmo."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4961,7 +4962,7 @@ msgstr "Abra múltiplas ligações {start_sub_heading}com {addon_name} {end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
-msgstr ""
+msgstr "Clique com o lado direito e arraste para cima ligações que pretende abrir em novos separadores."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4969,7 +4970,7 @@ msgstr "Recupere separadores {start_sub_heading}com {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Aceda aos separadores que fechou recentemente clicando com o lado direito no ícone na sua barra de ferramentas."
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4977,7 +4978,7 @@ msgstr "Inspire produtividade {start_sub_heading}com {addon_name} {end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Modifique a sua página de novo separador para mostrar um fundo bonito, definir o seu foco diário, entre outros."
 
 #. editorial content for the discovery pane.
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4985,7 +4986,7 @@ msgstr "Ver imagens {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr ""
+msgstr "Traga de volta o botão \"Ver imagem\" enquanto pesquisa no Google Images."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4993,7 +4994,7 @@ msgstr "Melhore a produtividade {start_sub_heading}com {addon_name} {end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "Bloqueie sites que desperdiçam o seu tempo para que possa focar-se na tarefa que tem em mãos."
 
 #. editorial content for the discovery pane.
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5001,7 +5002,7 @@ msgstr "Atualize separadores {start_sub_heading}com {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "Recarregue separadores automaticamente com base em intervalos de tempo."
 
 #. editorial content for the discovery pane.
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5009,7 +5010,7 @@ msgstr "Corrija os seus favoritos {start_sub_heading}com {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "Encontre e resolva marcadores quebrados, duplicados, entre outros."
 
 #. editorial content for the discovery pane.
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5017,7 +5018,7 @@ msgstr "Fique menos stressado {start_sub_heading}com {addon_name} {end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Termine tarefas com uma lista útil de coisas a fazer que é sincronizada entre vários dispositivos."
 
 #. editorial content for the discovery pane.
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5025,7 +5026,7 @@ msgstr "Faça compras mais inteligentes {start_sub_heading}with {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr ""
+msgstr "Acompanhe o histórico de preços, encontre produtos concorrentes, conheça a classificação do vendedor, entre outros."
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5033,7 +5034,7 @@ msgstr "Torne o YouTube seu {start_sub_heading}com {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "Reproduza vídeos numa janela destacada, e apenas veja anúncios dentro dos canais subscritos, tire capturas de ecrã aos vídeos e muito mais."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5041,7 +5042,7 @@ msgstr "Melhore o tráfego do seu site {start_sub_heading}com {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "Obtenha informações pormenorizadas sobre o tráfego e interesse para qualquer site."
 
 #. editorial content for the discovery pane.
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5049,7 +5050,7 @@ msgstr "Dê estilo à Wikipedia {start_sub_heading}com {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh and modern appearance to Wikipedia."
-msgstr ""
+msgstr "Aplica uma aparência moderna e refrescante à Wikipedia."
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5057,7 +5058,7 @@ msgstr "Trabalhe mais rápido {start_sub_heading}com {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
-msgstr ""
+msgstr "Utilize gestos com o rato para fazer as coisas—mais rapidamente."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5065,7 +5066,7 @@ msgstr "Disfarce a página {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Oculte partes do site que está a ver."
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5073,7 +5074,7 @@ msgstr "Transfira imagens {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
-msgstr ""
+msgstr "Obtenha imagens de qualquer site e transfira as mesmas."
 
 #. editorial content for the discovery pane.
 msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5081,7 +5082,7 @@ msgstr "Mascare a sua localização {start_sub_heading}com {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr ""
+msgstr "Disfarce a sua localização para enganar as ferramentas de monitorização e proteger a sua privacidade."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5089,7 +5090,7 @@ msgstr "Auto-censura {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Restrinja o acesso a conteúdos inapropriados ou indesejados com um filtro."
 
 #. editorial content for the discovery pane.
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5097,7 +5098,7 @@ msgstr "Melhore os novos separadores {start_sub_heading}com {addon_name} {end_su
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "Abra um novo separador à direita do seu separador atual e não no final da fila."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
