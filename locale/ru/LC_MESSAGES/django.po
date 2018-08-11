@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-11 13:29+0000\n"
+"PO-Revision-Date: 2018-08-11 14:05+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -5481,7 +5481,7 @@ msgstr "Если товар, который вы ищете в интернет-
 
 #. editorial content for the discovery pane.
 msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Распространяйте твиты {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Размещайте твиты {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily broadcast web content to your Twitter following."
@@ -5557,7 +5557,7 @@ msgstr "Устраните перенаправление и быстрее до
 
 #. editorial content for the discovery pane.
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Раскрывайте введенные пароли {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Раскрывайте введённые пароли {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
