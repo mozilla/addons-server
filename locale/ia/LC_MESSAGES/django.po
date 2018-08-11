@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-11 10:09+0000\n"
+"PO-Revision-Date: 2018-08-11 10:49+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1104,11 +1104,15 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
+"Le additivos que tu marca como favoritos per le functionalitate <b>Adder a Favoritos</b> appare infra. Iste collection es actualmente <b>public</b>, significa que totes pote vider illo. Si tu desira"
+" celar illo ab le vista public, clicca le button infra pro render illo private."
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
+"Le additivos que tu marca como favoritos per le functionalitate <b>Adder a Favoritos</b> appare infra. Iste collection es actualmente <b>private</b>, significa que solmente tu pote vide illo. Si tu "
+"desira que totes pote vider tu favoritos, clicca le button infra pro render illos public."
 
 msgid "My favorite add-ons"
 msgstr "Mi additivos favorite"
@@ -1146,10 +1150,10 @@ msgid "Description"
 msgstr "Description"
 
 msgid "Save Changes"
-msgstr "Salvar le cambios"
+msgstr "Salvar le cambiamentos"
 
 msgid "Remove from favorites"
-msgstr "Remover del favoritos"
+msgstr "Remover ab le favoritos"
 
 msgid "Add to favorites"
 msgstr "Adder al favoritos"
@@ -1163,17 +1167,17 @@ msgstr "Nulle collectiones trovate."
 
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr ""
+msgstr "Le collectiones es gruppos de additivos correlate que quicunque pote crear e compartir. Explora collectiones create per altere usatores o <a href=\"%(url)s\">crear tu proprie</a>."
 
 #, python-format
 msgid "by %(author_link)s"
-msgstr "per %(author_link)s"
+msgstr "de %(author_link)s"
 
 msgid "Create a Collection"
 msgstr "Crear un collection"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr ""
+msgstr "Le collectiones rende facile tener tracia del additivos favorite e compartir tu navigator perfectemente personalisate con alteres."
 
 msgid "Collection Icon"
 msgstr "Icone del collection"
