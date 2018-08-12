@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-12 15:26+0000\n"
+"PO-Revision-Date: 2018-08-12 15:47+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1540,34 +1540,34 @@ msgid "Application Build"
 msgstr "Numero de compilation del application"
 
 msgid "Platform"
-msgstr "Platteforma"
+msgstr "Systema operative"
 
 msgid "e10s Enabled"
-msgstr "e10s Activate"
+msgstr "e10s activate"
 
 msgid "e10s Compatible"
 msgstr "Compatibile con e10s"
 
 msgid "Submitted"
-msgstr "Submittite"
+msgstr "Inviate"
 
 msgid "Success"
 msgstr "Successo"
 
 msgid "Problem"
-msgstr "Problema"
+msgstr "Problemas"
 
 msgid "No reports found."
 msgstr "Nulle reportos trovate."
 
 msgid "{addon} was created."
-msgstr "{addon} era create."
+msgstr "{addon} esseva create."
 
 msgid "{addon} properties edited."
-msgstr "{addon} proprietates editate."
+msgstr "Proprietates de {addon} editate."
 
 msgid "{addon} description edited."
-msgstr "{addon} description editate."
+msgstr "Description de {addon} editate."
 
 msgid "Categories edited for {addon}."
 msgstr "Categorias editate pro {addon}."
@@ -1609,7 +1609,7 @@ msgid "File {0} deleted from {version} of {addon}."
 msgstr "File {0} delite ex {version} de {addon}."
 
 msgid "{addon} {version} approved."
-msgstr "{addon} {version} approvate."
+msgstr "{addon} {version} approbate."
 
 msgid "{addon} {version} given preliminary review."
 msgstr "Revision preliminar de {addon} {version} facite."
