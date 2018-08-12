@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-12 16:32+0000\n"
+"PO-Revision-Date: 2018-08-12 16:52+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1717,13 +1717,13 @@ msgid "{user} deleted {rating} for {addon}."
 msgstr "{user}ha delite {rating} pro {addon}."
 
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Version maximal del application actualisate al {version}."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "Email inviate al autores circa le compatibilitate del {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "Email inviate al autor circa le compatibilitate del additivo."
 
 msgid "Password changed."
 msgstr "Contrasigno cambiate."
@@ -1741,19 +1741,19 @@ msgid "Created: {0}."
 msgstr "Create: {0}."
 
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Campo {2} modificate, definite a: {0}."
 
 msgid "Deleted: {1}."
 msgstr "Delite: {1}."
 
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Usator {user} modificate, ration: {1}"
 
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Usator {user} rendite anonyme."
 
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Usator {user} limitate."
 
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
