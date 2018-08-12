@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-12 07:56+0000\n"
+"PO-Revision-Date: 2018-08-12 08:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1377,11 +1377,11 @@ msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-
 msgstr "Saper plus re le <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">barra de recerca</a> in {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "Naviga per mesmo plus fornitores de recercas a <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sCrea tu proprie%(amo_mdn_link_close)s application de recerca"
 
 msgid "Most Popular Extensions"
 msgstr "Extensiones plus popular"
@@ -1396,7 +1396,7 @@ msgid "Extensions by Name"
 msgstr "Extensiones per nomine"
 
 msgid "Extensions by Weekly Downloads"
-msgstr "Extensiones per discargas septimanal"
+msgstr "Extensiones per files discargate septimanalmente"
 
 msgid "Recently Updated Extensions"
 msgstr "Extensiones recentemente actualisate"
@@ -1422,10 +1422,10 @@ msgid "Complete Themes by Name"
 msgstr "Themas complete per nomine"
 
 msgid "Complete Themes by Weekly Downloads"
-msgstr "Themas complete per discargamentos septimanal"
+msgstr "Themas complete per numero de discargamentos septimanal"
 
 msgid "Recently Updated Complete Themes"
-msgstr "Themas complete recentemente actualisate"
+msgstr "Themas complete plus recentemente actualisate"
 
 msgid "Up & Coming Complete Themes"
 msgstr "Themas complete emergente"
@@ -1433,8 +1433,8 @@ msgstr "Themas complete emergente"
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vide le %(cnt)s extension in %(name)s &raquo;"
+msgstr[1] "Vide tote le %(cnt)s extensiones in %(name)s &raquo;"
 
 msgid "{0} Themes"
 msgstr "{0} Themas"
