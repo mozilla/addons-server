@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-12 10:14+0000\n"
+"PO-Revision-Date: 2018-08-12 10:31+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -773,7 +773,7 @@ msgstr "Aduh"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr "<h1>Ups!  Terjadi kesalahan.</h1> <p>Kami akan memperbaikinya segera.</p> <p> Anda bisa mencoba menyegarkan laman, atau kembali ke <a href=\"%(home)s\">beranda Pengaya</a>. </p>"
+msgstr "<h1>Ups!  Terjadi kesalahan.</h1> <p>Kami akan memperbaikinya segera.</p> <p> Anda bisa mencoba memuat ulang laman, atau kembali ke <a href=\"%(home)s\">beranda Pengaya</a>. </p>"
 
 msgid "Some rights reserved"
 msgstr "Sebagian hak cipta dilindungi"
@@ -2838,7 +2838,7 @@ msgid "Preview of listed version"
 msgstr "Pratinjau versi terdaftar"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr "Pratinjau sedang disiapkan - kembalilah nanti atau perbarui laman."
+msgstr "Pratinjau sedang disiapkan - kembalilah nanti atau memuat ulang laman."
 
 msgid "Manage Authors & License"
 msgstr "Mengelola Penulis dan Lisensi"
@@ -4680,126 +4680,112 @@ msgid "Make Firefox forget website data like cookies and local storage, but only
 msgstr "Buat Firefox melupakan data situs seperti kuki dan penyimpanan lokal, tapi hanya untuk domain yang Anda pilih."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ambil tangkapan layar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Simpan teks untuk lain kali {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Blokir surel iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Temukan tab Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
 msgstr "Kelola tab terbuka Anda dalam bilah samping yang rapi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Hindari pelacak licik dan pembatasan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ambil tangkapan layar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Memuat ulang tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan permainan emoji Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Pisahkan hidup daring Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Hentikan pelacak {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Baca berkas ePub {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan permainan emoji Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Tingkatkan pengalaman YouTube Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Lacak pelacak {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan permainan emoji Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Ubah server proksi Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Kendalikan putar-balik video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Menjelajah aman {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Belanja & simpan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
@@ -5039,9 +5025,8 @@ msgid "Block time-wasting sites so you can focus on the task at hand."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Memuat ulang Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
@@ -6970,8 +6955,8 @@ msgstr[0] "{0} ulasan tema berhasil diproses (+{1} poin, {2} total)."
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
-"Kunci tema anda berhasil dilepaskan. Pengulas lainnya sekarang bisa mengulas tema yang sudah dirilis tersebut. Anda mungkin harus melakukan refresh laman untuk melihat perubahan yang dimaksud dalam "
-"tabel di bawah ini."
+"Kunci tema anda berhasil dilepaskan. Pengulas lainnya kini bisa mengulas tema yang sudah dirilis tersebut. Anda mungkin harus memuat ulang laman untuk melihat perubahan yang dimaksud dalam tabel di "
+"bawah ini."
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Laporan Penyalahgunaan"
