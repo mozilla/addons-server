@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-12 09:12+0000\n"
+"PO-Revision-Date: 2018-08-12 09:32+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -933,7 +933,7 @@ msgstr "Versi Aplikasi yang Sah"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
-"Pengaya yang didaftarkan ke Pengaya Mozilla harus memiliki sebuah berkas keterangan dengan sekurangnya satu dari aplikasi di bawah ini yang didukung. Hanya versi yang tercantum di bawah ini yang "
+"Pengaya yang diajukan ke Pengaya Mozilla harus memiliki sebuah berkas keterangan dengan sekurangnya satu dari aplikasi di bawah ini yang didukung. Hanya versi yang tercantum di bawah ini yang "
 "diperkenankan untuk aplikasi ini."
 
 #, python-format
@@ -1540,7 +1540,7 @@ msgid "e10s Compatible"
 msgstr "e10s Kompatibel"
 
 msgid "Submitted"
-msgstr "Dikirim"
+msgstr "Diajukan"
 
 msgid "Success"
 msgstr "Berhasil"
@@ -1755,13 +1755,11 @@ msgstr "{rating} untuk {addon} yang diperbarui."
 msgid "{addon} reviewed."
 msgstr "{addon} diulas."
 
-#, fuzzy
 msgid "User {user} banned."
-msgstr "Pengguna {user} dianonimkan."
+msgstr "Pengguna {user} telah diblokir."
 
-#, fuzzy
 msgid "User {user} picture deleted."
-msgstr "Pengguna {user} dibatasi."
+msgstr "Pengguna {user} gambar telah dihapus."
 
 msgid "User {0.name} added to {group}."
 msgstr "Pengguna {0.name} ditambahkan ke {group}."
@@ -2233,9 +2231,8 @@ msgstr "Tema Statis"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "No Reputation"
-msgstr "Reputasi"
+msgstr "Tanpa Reputasi"
 
 msgid "Good (1)"
 msgstr "Baik (1)"
@@ -2469,9 +2466,8 @@ msgstr "Versi {version} sudah ada."
 msgid "Continue with existing upload instead?"
 msgstr "Lanjutkan saja dengan unggahan yang ada?"
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "Tidak dapat mengurai berkas yang diunggah."
+msgstr "Anda tidak mengunggah berkas sumber."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
@@ -3480,9 +3476,8 @@ msgstr "Unggah Berkas"
 msgid "Go to My Submissions"
 msgstr "Menuju Pengajuan Saya"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "KOde sumber diunggah"
+msgstr "Unggah Kode Sumber"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
@@ -3536,9 +3531,8 @@ msgstr ""
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
 
-#, fuzzy
 msgid "How to Submit:"
-msgstr "Затвердити"
+msgstr "Cara Mengajukan:"
 
 msgid "Include instructions in a README file in the source code,"
 msgstr ""
@@ -3546,9 +3540,8 @@ msgstr ""
 msgid "or in reviewer notes on the next page (if applicable)."
 msgstr ""
 
-#, fuzzy
 msgid "Upload source code:"
-msgstr "Kode sumber"
+msgstr "Unggah kode sumber:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "Perjanjian Distribusi Pengaya"
@@ -3954,10 +3947,11 @@ msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
+"Anda telah membuat ekstensi dan siap menerbitkannya. Selanjutnya bagaimana? Cek kiat kami untuk membuat laman daftar yang menarik, menampilkan ekstensi Anda di "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, menemukan jawaban atas pertanyaan pengembangan, dan tetap terkini dengan berita dan acara yang relevan bagi pengembang ekstensi."
 
-#, fuzzy
 msgid "View Resources for Publishers"
-msgstr "Tampilkan statistik untuk pengguna"
+msgstr "Tampilkan Sumber Daya bagi Para Penerbit"
 
 msgid "Welcome Back"
 msgstr "Selamat Datang Kembali"
@@ -4393,27 +4387,24 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} pesan peringatan"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Hentikan pelacak {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pengubahsuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Pengubahsuaian tab laman baru {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Nikmati laman baru yang cantik dengan latar yang dapat diubahsuaikan, info cuaca lokal, dan banyak lagi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Terjemahkan dengan mudah {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
@@ -8070,7 +8061,7 @@ msgstr "Hapus Pelokalan"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "Pengguna \"%(user)s\" telah diblokir."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
@@ -8078,7 +8069,7 @@ msgstr ""
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "Pengguna \"%(users)s\" telah diblokir."
 
 msgid "Ban selected users"
 msgstr "Cekal pengguna terpilih"
