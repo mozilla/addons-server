@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-12 10:15+0000\n"
+"PO-Revision-Date: 2018-08-12 10:16+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4816,9 +4816,8 @@ msgid "Play videos by default in the highest quality, turn off annotations, and 
 msgstr "Samodejno predvajajte videoposnetke v najvišji kakovosti, izklopite pripombe in drugo."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Sledite sledilcem {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
@@ -5331,7 +5330,7 @@ msgstr "Oglejte si dokumente {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
-msgstr ""
+msgstr "Dostopajte do datotek PDF z želenim programom PDF."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5703,9 +5702,8 @@ msgid "Automatically delete browser history for websites you select."
 msgstr "Samodejno izbrišite zgodovino za izbrane spletne strani."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Zavarujte zaznamke {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
