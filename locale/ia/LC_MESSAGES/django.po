@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-12 16:09+0000\n"
+"PO-Revision-Date: 2018-08-12 16:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1649,7 +1649,7 @@ msgstr "Super revision de {addon} {version} demandate."
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-"Le additivo ha essite signalate pro le revision de administrator. Illo es ancora in nostre cauda de revision, ma illo debera ser marcate per un de nostre revisor administrator. Le revision pote "
+"Le additivo ha essite signalate pro le revision de administrator. Illo es ancora in nostre cauda de revision, ma illo debera ser controlate per un de nostre revisor administrator. Le revision pote "
 "prender plus tempore que le usual."
 
 msgid "Comment on {addon} {version}."
@@ -1668,10 +1668,10 @@ msgid "{addon} added to {collection}."
 msgstr "{addon} addite a {collection}."
 
 msgid "{addon} removed from {collection}."
-msgstr "{addon} removite de {collection}."
+msgstr "{addon} removite ex {collection}."
 
 msgid "{rating} for {addon} written."
-msgstr "{rating} pro {addon} scribite."
+msgstr "{rating} scribite pro {addon}."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1689,32 +1689,32 @@ msgstr "{addon} non es plus consiliate."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
-msgstr "{0} {1} addite."
+msgstr "Addite {0} {1}."
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{0.name} rolo cambiate a {1} pro {addon}."
+msgstr "Rolo de {0.name} cambiate a {1} pro {addon}."
 
 msgid "{addon} is now licensed under {0}."
-msgstr ""
+msgstr "{addon} es ora licentiate sub {0}."
 
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "Politica de {addon} cambiate."
 
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "Icone de {addon} cambiate."
 
 msgid "{rating} for {addon} approved."
-msgstr ""
+msgstr "{rating} pro {addon} approbate."
 
 msgid "{user} approved {rating} for {addon}."
-msgstr ""
+msgstr "{user} ha approbate {rating} pro {addon}."
 
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
+msgstr "Revision {rating} pro {addon} delite."
 
 msgid "{user} deleted {rating} for {addon}."
-msgstr ""
+msgstr "{user}ha delite {rating} pro {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr ""
