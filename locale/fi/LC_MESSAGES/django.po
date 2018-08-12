@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-12 10:12+0000\n"
+"PO-Revision-Date: 2018-08-12 10:20+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -67,7 +67,7 @@ msgstr ""
 
 # 85%
 msgid "Review"
-msgstr "Arvostelu"
+msgstr "Arvio"
 
 msgid "Version {0}"
 msgstr "Versio {0}"
@@ -3199,14 +3199,14 @@ msgstr "Valitse kuvake lisäosallesi:"
 
 #. The size of the icon
 msgid "32x32px"
-msgstr ""
+msgstr "32x32 px"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
 msgstr ""
 
 #. The size of the icon
 msgid "64x64px"
-msgstr ""
+msgstr "64x64 px"
 
 msgid "Used in add-on detail pages."
 msgstr ""
@@ -3332,19 +3332,19 @@ msgid "Edit information about this add-on."
 msgstr "Lisätietoja tästä lisäosasta"
 
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "Lähetä uusi versio tästä lisäosasta."
 
 msgid "New Version"
 msgstr "Uusi versio"
 
 msgid "Daily statistics on downloads and users."
-msgstr ""
+msgstr "Päivittäiset tilastot latauksista ja käyttäjistä."
 
 msgid "Statistics"
 msgstr "Tilastot"
 
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Hallitse tilaa ja versioita"
 
 msgid "View Add-on Listing"
 msgstr ""
@@ -3365,7 +3365,7 @@ msgid "View Statistics"
 msgstr "Näytä tilastoja"
 
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "Vaihda tämän teeman omistajaa."
 
 msgid "Transfer Ownership"
 msgstr "Siirrä omistajuus"
@@ -3384,7 +3384,7 @@ msgid "Status:"
 msgstr "Tila:"
 
 msgid "Disabled"
-msgstr ""
+msgstr "Poistettu käytöstä"
 
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
@@ -3403,9 +3403,8 @@ msgstr "Lisää uusi tiedosto"
 msgid "Submit a New Version"
 msgstr "Lisää uusi versio"
 
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "Löydä lisäosia"
+msgstr "Kuvaa lisäosa"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
@@ -3425,7 +3424,7 @@ msgid "required"
 msgstr "vaaditaan"
 
 msgid "This add-on is experimental"
-msgstr ""
+msgstr "Tämä lisäosa on kokeellinen"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
@@ -3685,7 +3684,7 @@ msgid "Select a header image for your theme"
 msgstr ""
 
 msgid "Image height should be 200 pixels"
-msgstr ""
+msgstr "Kuvan korkeus tulisi olla 200 pikseliä"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG tai GIF (ei animoitu)"
@@ -4043,7 +4042,7 @@ msgid "Manage Your Add-on"
 msgstr "Lisää lisäosia"
 
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "Kirjaudu sisään muokataksesi ja päivittääksesi lisäosaasi"
 
 msgid "Resources for a successful launch"
 msgstr ""
@@ -4107,9 +4106,9 @@ msgstr "Ei kuvaa"
 msgid "User Photo"
 msgstr "Käyttäjän valokuva"
 
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(reg)s\">Rekisteröidy</a> tai <a href=\"%(login)s\">kirjaudu sisään</a>"
+msgstr "<a href=\"%(register)s\">Rekisteröidy</a> tai <a href=\"%(login)s\">kirjaudu sisään</a>"
 
 msgid "Customize Firefox"
 msgstr "Muokkaa Firefoxia"
@@ -4159,7 +4158,7 @@ msgid "Compatibility Test"
 msgstr "Yhteensopivuustesti"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "Tarkista nähdäksesi onko laajennuksesi yhteensopiva Firefoxin kanssa."
 
 msgid "Transfer ownership"
 msgstr "Siirrä omistajuus"
@@ -4231,7 +4230,7 @@ msgid "Header"
 msgstr ""
 
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "Valitse värit teemallesi."
 
 msgid "Foreground Text"
 msgstr ""
@@ -4278,7 +4277,7 @@ msgid "Your theme has been submitted to the Review Queue. You'll receive an emai
 msgstr ""
 
 msgid "Next steps:"
-msgstr ""
+msgstr "Seuraavat vaiheet:"
 
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
@@ -4296,7 +4295,7 @@ msgid "Select a header image for your Theme."
 msgstr ""
 
 msgid "3000 &times; 200 pixels"
-msgstr ""
+msgstr "3000 &times; 200 pikseliä"
 
 msgid "300 KB max"
 msgstr ""
@@ -7262,9 +7261,8 @@ msgstr ""
 msgid "Update whiteboards"
 msgstr ""
 
-#, fuzzy
 msgid "More Actions"
-msgstr "Lisää toimintoja:"
+msgstr "Lisää toimintoja"
 
 msgid "Notify me about new listed versions"
 msgstr ""
@@ -7965,9 +7963,8 @@ msgstr ""
 msgid "View the new site"
 msgstr "Näytä uusi sivusto"
 
-#, fuzzy
 msgid "Report a bug"
-msgstr "Ilmoita väärinkäyttö"
+msgstr "Ilmoita viasta"
 
 #, fuzzy
 msgid ""
@@ -8106,7 +8103,7 @@ msgstr "Lisäosat"
 
 # 85%
 msgid "Ratings"
-msgstr "Arvostelut"
+msgstr "Arviot"
 
 # 75%
 #, fuzzy
@@ -8329,9 +8326,8 @@ msgstr ""
 msgid "User Login"
 msgstr "Käyttäjäkirjautuminen"
 
-#, fuzzy
 msgid "Log in with Firefox Accounts"
-msgstr "Voit nyt kirjautua lisäosiin kirjautumalla Firefox-tilillesi."
+msgstr "Kirjaudu käyttäen Firefox-tiliä"
 
 msgid "Password Reset"
 msgstr "Salasanan nollaaminen"
@@ -8427,10 +8423,10 @@ msgid "User since"
 msgstr "Käyttäjä alkaen"
 
 msgid "Time of last login"
-msgstr ""
+msgstr "Viimeisimmän kirjautumisen ajankohta"
 
 msgid "IP address of last login"
-msgstr ""
+msgstr "Viimeisimmän kirjautumisen IP-osoite"
 
 msgid "Number of add-ons developed"
 msgstr "Kehitettyjä lisäosia"
