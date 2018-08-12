@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-11 23:51+0000\n"
+"PO-Revision-Date: 2018-08-11 23:54+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -5106,7 +5106,7 @@ msgstr "Conquiste o spam {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Utilize endereços de e-mail temporários para se manter anónimo e evitar spam."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5114,7 +5114,7 @@ msgstr "Altere a sua privacidade {start_sub_heading}com {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Easily customize the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Personalize facilmente as definições de privacidade no Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5122,7 +5122,7 @@ msgstr "Melhore a sua experiência em VK {start_sub_heading}com {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
-msgstr ""
+msgstr "Remova anúncios e descarregue áudio de VK."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5130,7 +5130,7 @@ msgstr "Obtenha traduções instantâneas {start_sub_heading}com {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Aceda a traduções instantâneas selecionando texto e clicando no botão que é apresentado."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5138,7 +5138,7 @@ msgstr "Personalize os novos separadores {start_sub_heading}com {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
-msgstr ""
+msgstr "Seja criativo e personalize a sua página de novo separador mostrando os seus sites favoritos e selecionando um tema."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5146,7 +5146,7 @@ msgstr "Sem mais redirecionamentos {start_sub_heading}com {addon_name} {end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "Aceda diretamente ao site que quer aceder sem ser redirecionado pelo meio."
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
