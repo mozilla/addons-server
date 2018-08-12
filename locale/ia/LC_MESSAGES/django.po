@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-12 08:47+0000\n"
+"PO-Revision-Date: 2018-08-12 12:46+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1539,7 +1539,7 @@ msgid "Platform"
 msgstr "Platteforma"
 
 msgid "e10s Enabled"
-msgstr ""
+msgstr "e10s Activate"
 
 msgid "e10s Compatible"
 msgstr "Compatibile con e10s"
@@ -1560,20 +1560,20 @@ msgid "{addon} was created."
 msgstr "{addon} era create."
 
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "{addon} proprietates editate."
 
 msgid "{addon} description edited."
-msgstr ""
+msgstr "{addon} description editate."
 
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Categorias editate pro {addon}."
 
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) addite a {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) removite ex {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "Donationes pro {addon}."
@@ -1599,64 +1599,64 @@ msgid "Version {0} deleted from {addon}."
 msgstr "Version {0} de {addon} delite."
 
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "File {0.name} addite al {version} de {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "File {0} delite ex {version} de {addon}."
 
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} approvate."
 
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "Revision preliminar de {addon} {version} facite."
 
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Approbate preliminarmente"
 
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} {version} rejectate."
 
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "{addon} {version} retenite."
 
 msgid "Retained"
-msgstr ""
+msgstr "Retenite"
 
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {version} escalate."
 
 msgid "Super review requested"
 msgstr ""
 
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "{addon} {version} revision demandate."
 
 msgid "Review requested"
 msgstr "Recension requirite"
 
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "{addon} {version} altere informationes demandate."
 
 msgid "More information requested"
-msgstr ""
+msgstr "Altere informationes demandate"
 
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "Super revision de {addon} {version} demandate."
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "Commento sur {addon} {version}."
 
 msgid "Commented"
-msgstr ""
+msgstr "Commentate"
 
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} addite a {addon}."
 
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} removite ex {addon}."
 
 msgid "{addon} added to {collection}."
 msgstr "{addon} addite a {collection}."
@@ -1665,7 +1665,7 @@ msgid "{addon} removed from {collection}."
 msgstr "{addon} removite de {collection}."
 
 msgid "{rating} for {addon} written."
-msgstr ""
+msgstr "{rating} pro {addon} scribite."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1687,7 +1687,7 @@ msgstr "{0} {1} addite."
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "{0.name} rolo cambiate a {1} pro {addon}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr ""
