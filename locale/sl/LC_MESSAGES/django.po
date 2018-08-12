@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-11 22:14+0000\n"
+"PO-Revision-Date: 2018-08-12 09:52+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2525,9 +2525,8 @@ msgstr "Različica {version} že obstaja."
 msgid "Continue with existing upload instead?"
 msgstr "Nadaljuj z obstoječim nalaganjem?"
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "Prenesene datoteke ni bilo mogoče razčleniti."
+msgstr "Niste naložili izvorne datoteke."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
@@ -3380,7 +3379,7 @@ msgid "Describe Add-on"
 msgstr "Opišite dodatek"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Ime dodatka za prikaz na spletni strani. Lahko je drugačno od imena znotraj dodatka, ki je prikazano v Firefoxu"
 
 msgid "Add-on URL:"
 msgstr "Spletni naslov dodatka:"
@@ -3524,11 +3523,11 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Ali morate poslati izvorno kodo?"
 
 msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
-msgstr ""
+msgstr "Morda morate poslati izvorno kodo. Če ne naložite prave izvorne kode zdaj, bo vaš dodatek morda odstranjen s strani!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr ""
+msgstr "Preberite si <a %(a_attrs)s>pravilnik o pošiljanju izvorne kode</a>."
 
 msgid "Do you use any of the following?"
 msgstr "Ali uporabljate kaj od naslednjega?"
@@ -3537,7 +3536,7 @@ msgid "Code minifiers or obfuscators"
 msgstr "Minimiziranje ali zakrivanje kode"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
-msgstr ""
+msgstr "Orodja, ki združijo več datotek v eno, kot je <span class=\"tech-emphasis\">webpack</span>"
 
 msgid "Web template engines, both for HTML and CSS"
 msgstr ""
@@ -3546,10 +3545,10 @@ msgid "Any other tool that takes code or files, applies processing, and generate
 msgstr ""
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "Ni vam potrebno poslati izvorne kode in pripravljeni ste na naslednji korak."
 
 msgid "Your Submission Requires Source Code."
-msgstr ""
+msgstr "Vaš prispevek zahteva izvorno kodo."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
@@ -5043,9 +5042,8 @@ msgid "Right-click and drag over links you want open in new tabs."
 msgstr "Pritisnite desno miškino tipko in potegnite čez povezave, ki bi jih radi odprli v novih zavihkih."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Povrnite zavihke {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
