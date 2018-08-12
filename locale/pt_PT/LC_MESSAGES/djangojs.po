@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2017-11-27 18:26+0000\n"
-"Last-Translator: Alberto Castro <albertdcastro@gmail.com>\n"
+"PO-Revision-Date: 2018-08-12 21:11+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgid "Finished validating {0}"
 msgstr "Validação de {0} terminada"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "A validação do seu extra expirou; será revisto manualmente."
+msgstr "A validação do seu extra expirou, será revisto manualmente."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
@@ -101,7 +101,8 @@ msgid "WebExtension upgrade"
 msgstr "Atualização WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Permitimos e encorajamos uma atualização, mas você não poderá reverter este processo. Assim que os seus utilizadores tenham a WebExtension instalada, não poderão instalar um extra de legado."
+msgstr ""
+"Nós permitimos e encorajamos uma atualização, mas não poderá reverter este processo. Assim que os seus utilizadores tenham a WebExtension instalada, estes não poderão instalar um extra anterior."
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Portar um extra de legado do Firefox no MDN"
@@ -191,7 +192,7 @@ msgid "Your input is required"
 msgstr "É necessária a sua entrada"
 
 msgid "Marked for deletion"
-msgstr "Marcado para eliminar"
+msgstr "Marcado para eliminação"
 
 msgid "Updating results&hellip;"
 msgstr "A atualizar resultados&hellip;"
@@ -251,7 +252,7 @@ msgid "Number of Contributions"
 msgstr "Número de contribuições"
 
 msgid "More Info..."
-msgstr "Mais info..."
+msgstr "Mais informação..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
