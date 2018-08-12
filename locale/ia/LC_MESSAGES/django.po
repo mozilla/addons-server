@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-12 16:52+0000\n"
+"PO-Revision-Date: 2018-08-12 16:59+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1756,19 +1756,19 @@ msgid "User {user} restricted."
 msgstr "Usator {user} limitate."
 
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "Le administrator {0} revideva le registro de activitate pro {user}."
 
 msgid "{rating} for {addon} updated."
-msgstr ""
+msgstr "{rating} pro {addon} actualisate."
 
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} revidite."
 
 msgid "User {user} banned."
-msgstr ""
+msgstr "Usator {user} blocate."
 
 msgid "User {user} picture deleted."
-msgstr ""
+msgstr "Photo del usator {user} delite."
 
 msgid "User {0.name} added to {group}."
 msgstr ""
