@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-13 08:57+0000\n"
+"PO-Revision-Date: 2018-08-13 13:42+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5554,7 +5554,7 @@ msgstr "Зменште відволікання {start_sub_heading}за допо
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Зосереджуйтесь на перегляді, затемнюючи все, окрім відео-плеєра."
 
 #. editorial content for the discovery pane.
 msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5562,7 +5562,7 @@ msgstr "Керуйте закладками {start_sub_heading}за допомо
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Змінюйте свої закладки через швидко-доступну панель."
 
 #. editorial content for the discovery pane.
 msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5570,11 +5570,11 @@ msgstr "Зберігайте паролі в безпеці {start_sub_heading}�
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Надійно зберігайте паролі й автоматично виконуйте вхід на відомих веб-сайтах."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Простий блокувальник реклами, зосереджений на відображенні лише необхідного вам вмісту."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5582,7 +5582,7 @@ msgstr "Відстежуйте історію цін Amazon {start_sub_heading}�
 
 #. editorial content for the discovery pane.
 msgid "Make informed decisions by tracking the price of a product listed on Amazon."
-msgstr ""
+msgstr "Робіть зважені рішення, відстежуючи ціну продуктів, виставлених на Amazon."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5590,7 +5590,7 @@ msgstr "Робіть покупки з упевненістю {start_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Додаткова перевірка, щоб упевнитися що ви купуєте на сайті, вартому довіри."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5598,11 +5598,11 @@ msgstr "Стежте за продуктивністю {start_sub_heading}за �
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Вимірюйте кількість часу, проведеного за комп'ютером, або в певній програмі, наприклад, Trello, JIRA, Basecamp, GitHub, та багатьох інших."
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Робіть вирізки веб-вмісту, наприклад, статей, відео, зображень та інших матеріалів, щоб зберігати й використовувати їх у власних проектах або для співпраці в реальному часі."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5610,7 +5610,7 @@ msgstr "Безпечно переглядайте Інтернет {start_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
-msgstr ""
+msgstr "Дозволяйте виконання веб-вмісту лише для сайтів, яким ви довіряєте."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
