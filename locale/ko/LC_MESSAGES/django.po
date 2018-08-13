@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-13 01:28+0000\n"
+"PO-Revision-Date: 2018-08-13 01:51+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -2433,20 +2433,17 @@ msgstr "이 버전엔 이이상 많은 파일을 업로드 할 수 없습니다.
 msgid "Version doesn't match"
 msgstr "버전이 일치하지 않습니다"
 
-#, fuzzy
 msgid "Version {version} was uploaded before and deleted."
-msgstr "버전 %s 이 이미 존재하거나, 이전에 이미 업로드되어 있습니다."
+msgstr "{version} 버전이 이전에 업로드 되고 삭제된적이 있습니다."
 
-#, fuzzy
 msgid "Version {version} already exists."
-msgstr "버전 %s 이 이미 존재하거나, 이전에 이미 업로드되어 있습니다."
+msgstr "{version} 버전이 이미 존재합니다."
 
 msgid "Continue with existing upload instead?"
 msgstr "대신 기존 업로드로 게속하십니까?"
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "업로드한 파일을 인식할 수 없습니다."
+msgstr "소스 파일을 업로드 하지 않았습니다."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
@@ -2476,9 +2473,8 @@ msgstr ""
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
-#, fuzzy
 msgid "Categories cannot be changed while your add-on is featured."
-msgstr "이 애플리케이션의 추천 부가 기능으로 선정되어 있는 동안은 분류를 변경할 수 없습니다."
+msgstr "추천 부가 기능으로 선정되어 있는 동안은 분류를 변경할 수 없습니다."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
