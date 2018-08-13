@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-13 10:57+0000\n"
+"PO-Revision-Date: 2018-08-13 12:50+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1992,19 +1992,19 @@ msgid "Download Management"
 msgstr "Gestion de discargamento"
 
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "Feeds de novas, novas e blog"
 
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "Jocos e amusamento"
 
 msgid "Language Support"
-msgstr ""
+msgstr "Supporto de linguas"
 
 msgid "Photos, Music & Videos"
-msgstr ""
+msgstr "Photos, Musica & Videos"
 
 msgid "Privacy & Security"
-msgstr ""
+msgstr "Confidentialitate & securitate"
 
 msgid "Shopping"
 msgstr "Compras"
