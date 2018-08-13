@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-13 16:32+0000\n"
+"PO-Revision-Date: 2018-08-13 16:40+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2184,7 +2184,7 @@ msgid "Site-specific"
 msgstr "Specific pro un sito"
 
 msgid "Web and Developer Tools"
-msgstr ""
+msgstr "Utensiles de web e disveloppatores"
 
 msgid "All Rights Reserved"
 msgstr "Tote le derectos es reservate"
@@ -2208,10 +2208,10 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Any"
-msgstr ""
+msgstr "Ulle"
 
 msgid "All Platforms"
-msgstr ""
+msgstr "Tote le systemas operative"
 
 msgid "Linux"
 msgstr "Linux"
@@ -2232,19 +2232,19 @@ msgid "Android"
 msgstr "Android"
 
 msgid "Static Theme"
-msgstr ""
+msgstr "Thema static"
 
 msgid "Persona"
-msgstr "Persona"
+msgstr "Thema de personas"
 
 msgid "No Reputation"
-msgstr ""
+msgstr "Nulle reputation"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "Bon (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Multo bon (2)"
 
 msgid "Excellent (3)"
 msgstr "Excellente (3)"
