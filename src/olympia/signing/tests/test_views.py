@@ -100,12 +100,6 @@ class TestUploadVersion(BaseUploadVersionCase):
         response = self.client.put(self.url(self.guid, '12.5'))
         assert response.status_code == 401
 
-    @override_settings(READ_ONLY=True)
-    def test_read_only_mode(self):
-        response = self.request('PUT', self.url(self.guid, '12.5'))
-        assert response.status_code == 503
-        assert 'website maintenance' in response.data['error']
-
     def test_addon_does_not_exist(self):
         guid = '@create-version'
         qs = Addon.unfiltered.filter(guid=guid)

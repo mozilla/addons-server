@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+from datetime import timedelta
+
 from django import test
 from django.test.client import RequestFactory
+from django.test.utils import override_settings
 
 import pytest
 
@@ -10,7 +13,7 @@ from pyquery import PyQuery as pq
 from olympia.amo.middleware import (
     AuthenticationMiddlewareWithoutAPI, ScrubRequestOnException,
     RequestIdMiddleware)
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, reverse_ns
 from olympia.amo.urlresolvers import reverse
 from olympia.zadmin.models import Config
 
@@ -127,3 +130,29 @@ def test_request_id_middleware(client):
     request = RequestFactory().get('/')
     RequestIdMiddleware().process_request(request)
     assert request.request_id
+
+
+def test_read_only_header_always_set(client):
+    response = client.get(reverse_ns('abusereportuser-list'))
+    assert response['X-AMO-Read-Only'] == 'false'
+
+
+def test_read_only_mode(client):
+    with override_settings(READ_ONLY=True):
+        response = client.post(reverse_ns('abusereportuser-list'))
+
+    assert response.status_code == 503
+    assert 'website maintenance' in response.json()['error']
+    assert response['X-AMO-Read-Only'] == 'true'
+    assert 'Retry-After' not in response
+
+
+def test_read_only_mode_with_retry_after(client):
+    delta = timedelta(minutes=8)
+    with override_settings(READ_ONLY=True, READ_ONLY_EXPECTED_END=delta):
+        response = client.post(reverse_ns('abusereportuser-list'))
+
+    assert response.status_code == 503
+    assert 'website maintenance' in response.json()['error']
+    assert response['X-AMO-Read-Only'] == 'true'
+    assert response['Retry-After'] == '480'
