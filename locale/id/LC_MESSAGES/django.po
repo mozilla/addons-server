@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-12 11:29+0000\n"
+"PO-Revision-Date: 2018-08-13 01:12+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -5112,54 +5112,48 @@ msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan permainan emoji Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Ubah privasi Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily customize the built-in privacy settings in Firefox."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan permainan emoji Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Tingkatkan pengalaman Anda di VK {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
 msgstr "Buang iklan dan unduh audio dari VK."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ambil tangkapan layar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Dapatkan terjemahan seketika {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pengubahsuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Pengubahsuaian tab baru {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Tak ada pengalihan lagi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan permainan emoji Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "WhatsApp di web {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
@@ -8091,13 +8085,11 @@ msgstr "Pengguna dilaporkan."
 msgid "new"
 msgstr "baru"
 
-#, fuzzy
 msgid "Ban"
-msgstr "dan"
+msgstr "Larang"
 
-#, fuzzy
 msgid "Delete picture"
-msgstr "Hapus gambar pengguna saya sekarang"
+msgstr "Hapus gambar"
 
 msgid "Delete User Account"
 msgstr "Hapus Akun Pengguna"
