@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-09 14:12+0000\n"
+"PO-Revision-Date: 2018-08-13 07:26+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5354,7 +5354,7 @@ msgstr "Слухайте відео {start_sub_heading}за допомогою {
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "Не навантажуйте канал - відтворюйте лише аудіо з кліпів YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5362,7 +5362,7 @@ msgstr "Перетворюйте текст на зображення {start_sub
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Перетворіть слова на чудові заголовки і текст для накладання на зображення."
 
 #. editorial content for the discovery pane.
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5370,7 +5370,7 @@ msgstr "Переглядайте Інтернет безпечно {start_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Переходьте до захищеної версії веб-сайту, якщо вона доступна."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5378,7 +5378,7 @@ msgstr "Видаляйте історію навігації {start_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Вкажіть власне число днів зберігання історії браузера, після чого вона буде автоматично стиратись."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5386,7 +5386,7 @@ msgstr "Вилучайте рекламу в результатах пошуку
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "Заблокуйте появу реклами у ваших результатах пошуку."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5394,7 +5394,7 @@ msgstr "Безпечно керуйте паролями {start_sub_heading}за
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "Зберігайте паролі в безпеці й виконуйте автоматичний вхід на відомих веб-сайтах."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5402,7 +5402,7 @@ msgstr "Блокуйте рекламу й стеження {start_sub_heading}�
 
 #. editorial content for the discovery pane.
 msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
-msgstr ""
+msgstr "Захистіть свою приватність та пришвидшіть завантаження сторінок, блокуючи рекламу й стеження."
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5410,7 +5410,7 @@ msgstr "Автоматично заповнюйте форми {start_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
-msgstr ""
+msgstr "Зберігайте введені дані для автоматичного їх заповнення наступного разу."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5418,7 +5418,7 @@ msgstr "Переглядайте Інтернет приватно {start_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
-msgstr ""
+msgstr "Переходьте в режим приватного перегляду одним натиском кнопки."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5426,7 +5426,7 @@ msgstr "Зупиніть викрадання вкладки {start_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "Не дозволяйте відкритим посиланням контролювати вашу вкладку й завантажувати небажаний вміст."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5434,7 +5434,7 @@ msgstr "Легко отримуйте доступ до Wikipedia {start_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Виконуйте пошук по Wikipedia, підсвітивши текст й натиснувши на праву кнопку миші."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5442,7 +5442,7 @@ msgstr "Досліджуйте вміст сайтів {start_sub_heading}за �
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "Знаходьте те, що вам потрібно в межах певного домену."
 
 #. editorial content for the discovery pane.
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5450,7 +5450,7 @@ msgstr "Знаходьте відео {start_sub_heading}за допомогою
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Виконуйте пошук на YouTube, підсвітивши текст і натиснувши праву кнопку миші."
 
 #. editorial content for the discovery pane.
 #, fuzzy
