@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-13 08:53+0000\n"
+"PO-Revision-Date: 2018-08-13 08:57+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5521,7 +5521,7 @@ msgstr "Легко отримуйте доступ до своїх відкри�
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Маєте забагато відкритих вкладок? Припиніть прокручування й переходьте на комбінації клавіш."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5530,7 +5530,7 @@ msgstr "Блокуйте рекламу {start_sub_heading}за допомого
 
 #. editorial content for the discovery pane.
 msgid "Uncover the software that supports whatever website you're visiting."
-msgstr ""
+msgstr "Віднайдіть програмне забезпечення, що підтримує будь-який відвідуваний веб-сайт."
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5538,7 +5538,7 @@ msgstr "Не дозволяйте перенаправлення і стежен
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Припиніть перенаправлення для швидшого доступу до бажаних сайтів."
 
 #. editorial content for the discovery pane.
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5546,7 +5546,7 @@ msgstr "Відображайте введені паролі {start_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Додає можливість показувати та приховувати пароль для будь-яких полів."
 
 #. editorial content for the discovery pane.
 msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
