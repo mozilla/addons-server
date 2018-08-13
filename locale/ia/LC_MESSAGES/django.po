@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-12 16:59+0000\n"
+"PO-Revision-Date: 2018-08-13 08:52+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1771,16 +1771,16 @@ msgid "User {user} picture deleted."
 msgstr "Photo del usator {user} delite."
 
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Usator {0.name} addite a {group}."
 
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Usator {0.name} removite ex {group}."
 
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} non listate."
 
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} esseva signate."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
@@ -1793,13 +1793,13 @@ msgid "Reply by developer on {addon} {version}."
 msgstr ""
 
 msgid "Developer Reply"
-msgstr ""
+msgstr "Responsa de developpator"
 
 msgid "Reply by reviewer on {addon} {version}."
 msgstr ""
 
 msgid "Reviewer Reply"
-msgstr ""
+msgstr "Responsa de revisor"
 
 msgid "Approval notes changed for {addon} {version}."
 msgstr ""
@@ -1820,34 +1820,34 @@ msgid "Auto-Approval confirmed"
 msgstr ""
 
 msgid "{addon} {version} re-enabled."
-msgstr ""
+msgstr "{addon} {version} re-activate."
 
 msgid "{addon} {version} disabled."
-msgstr ""
+msgstr "{addon} {version} disactivate."
 
 msgid "{addon} {version} content approved."
-msgstr ""
+msgstr "{addon} {version} contento approbate."
 
 msgid "Content approved"
-msgstr ""
+msgstr "Contento approbate"
 
 msgid "{addon} {version} content rejected."
-msgstr ""
+msgstr "{addon} {version} contento rejectate."
 
 msgid "Content rejected"
-msgstr ""
+msgstr "Contento rejectate"
 
 msgid "{addon} information request altered or removed by admin."
-msgstr ""
+msgstr "{addon} requesta de informationes alterate o removite per administrator."
 
 msgid "Information request altered"
-msgstr ""
+msgstr "Requesta de informationes alterate"
 
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr ""
+msgstr "Requesta de informationes clarate per le disveloppator sur {addon} {version}."
 
 msgid "Information request removed"
-msgstr ""
+msgstr "Requesta de informationes removite"
 
 msgid "{addon} {version} admin add-on-review requested."
 msgstr ""
