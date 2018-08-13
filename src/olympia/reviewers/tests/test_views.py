@@ -3434,6 +3434,20 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         self.assertContains(response, 'View End-User License Agreement')
+        eula_url = reverse(
+            'reviewers.eula', args=(self.addon.slug,))
+        self.assertContains(response, eula_url + '"')
+
+        # The url should pass on the channel param so the backlink works
+        self.make_addon_unlisted(self.addon)
+        self.login_as_admin()
+        unlisted_url = reverse(
+            'reviewers.review', args=['unlisted', self.addon.slug])
+        response = self.client.get(unlisted_url)
+        assert response.status_code == 200
+        eula_url = reverse(
+            'reviewers.eula', args=(self.addon.slug,))
+        self.assertContains(response, eula_url + '?channel=unlisted"')
 
     def test_privacy_policy_displayed(self):
         assert self.addon.privacy_policy is None
@@ -3446,6 +3460,20 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         self.assertContains(response, 'View Privacy Policy')
+        privacy_url = reverse(
+            'reviewers.privacy', args=(self.addon.slug,))
+        self.assertContains(response, privacy_url + '"')
+
+        # The url should pass on the channel param so the backlink works
+        self.make_addon_unlisted(self.addon)
+        self.login_as_admin()
+        unlisted_url = reverse(
+            'reviewers.review', args=['unlisted', self.addon.slug])
+        response = self.client.get(unlisted_url)
+        assert response.status_code == 200
+        privacy_url = reverse(
+            'reviewers.privacy', args=(self.addon.slug,))
+        self.assertContains(response, privacy_url + '?channel=unlisted"')
 
     def test_requires_payment_indicator(self):
         assert not self.addon.requires_payment
@@ -4745,6 +4773,83 @@ class TestXssOnAddonName(amo.tests.TestXss):
     def test_reviewers_review_page(self):
         url = reverse('reviewers.review', args=[self.addon.slug])
         self.assertNameAndNoXSS(url)
+
+
+class TestPolicyView(ReviewerTest):
+    def setUp(self):
+        super(TestPolicyView, self).setUp()
+        self.addon = addon_factory()
+        self.eula_url = reverse('reviewers.eula', args=[self.addon.slug])
+        self.privacy_url = reverse('reviewers.privacy', args=[self.addon.slug])
+        self.login_as_reviewer()
+        self.review_url = reverse(
+            'reviewers.review', args=('listed', self.addon.slug,))
+
+    def test_eula(self):
+        assert not bool(self.addon.eula)
+        response = self.client.get(self.eula_url)
+        assert response.status_code == 404
+
+        self.addon.eula = u'Eulá!'
+        self.addon.save()
+        assert bool(self.addon.eula)
+        response = self.client.get(self.eula_url)
+        assert response.status_code == 200
+        self.assertContains(
+            response,
+            '{addon} :: EULA'.format(addon=self.addon.name))
+        self.assertContains(response, u'End-User License Agreement')
+        self.assertContains(response, u'Eulá!')
+        self.assertContains(response, unicode(self.review_url))
+
+    def test_eula_with_channel(self):
+        unlisted_review_url = reverse(
+            'reviewers.review', args=('unlisted', self.addon.slug,))
+        self.addon.eula = u'Eulá!'
+        self.addon.save()
+        assert bool(self.addon.eula)
+        response = self.client.get(self.eula_url + '?channel=unlisted')
+        assert response.status_code == 403  # Because unlisted
+        self.grant_permission(
+            UserProfile.objects.get(email='reviewer@mozilla.com'),
+            'ReviewerTools:View')  # so get the view permissions
+        response = self.client.get(self.eula_url + '?channel=unlisted')
+        assert response.status_code == 200
+        self.assertContains(response, u'Eulá!')
+        self.assertContains(response, unicode(unlisted_review_url))
+
+    def test_privacy(self):
+        assert not bool(self.addon.privacy_policy)
+        response = self.client.get(self.privacy_url)
+        assert response.status_code == 404
+
+        self.addon.privacy_policy = u'Prívacy Pólicy?'
+        self.addon.save()
+        assert bool(self.addon.privacy_policy)
+        response = self.client.get(self.privacy_url)
+        assert response.status_code == 200
+        self.assertContains(
+            response,
+            '{addon} :: Privacy Policy'.format(addon=self.addon.name))
+        self.assertContains(response, 'Privacy Policy')
+        self.assertContains(response, u'Prívacy Pólicy?')
+        self.assertContains(response, unicode(self.review_url))
+
+    def test_privacy_with_channel(self):
+        unlisted_review_url = reverse(
+            'reviewers.review', args=('unlisted', self.addon.slug,))
+        self.addon.privacy_policy = u'Prívacy Pólicy?'
+        self.addon.save()
+        assert bool(self.addon.privacy_policy)
+        response = self.client.get(self.privacy_url + '?channel=unlisted')
+        assert response.status_code == 403  # Because unlisted
+        self.grant_permission(
+            UserProfile.objects.get(email='reviewer@mozilla.com'),
+            'ReviewerTools:View')  # so get the view permissions
+        response = self.client.get(self.privacy_url + '?channel=unlisted')
+        assert response.status_code == 200
+        self.assertContains(response, u'Prívacy Pólicy?')
+        self.assertContains(response, unicode(unlisted_review_url))
 
 
 class TestAddonReviewerViewSet(TestCase):
