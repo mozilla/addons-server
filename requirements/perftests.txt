@@ -1,6 +1,6 @@
 # Required by locust, not using hashes for now. We'll use them once we can
 # use a tagged locust release
-pyzmq==17.1.0
+pyzmq==17.1.2
 
 # We need this specific commit until there is a new locust release. Once this happens
 # This can be pinned to a specific version.
