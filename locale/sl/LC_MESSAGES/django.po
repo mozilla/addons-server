@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-12 11:51+0000\n"
+"PO-Revision-Date: 2018-08-13 12:52+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4641,9 +4641,8 @@ msgid "Display current worldwide times in Firefox's status bar."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Prilagodite si zavihke {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Preprosti prevodi {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
@@ -4842,9 +4841,8 @@ msgid "Add encrypted security to any site that supports HTTPS."
 msgstr "Dodajte šifrirano varnost stranem, ki podpirajo HTTPS."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Nakupujte in prihranite {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
@@ -4915,9 +4913,8 @@ msgid "Convert all your open tabs into a list to easily manage them and speed up
 msgstr "Pretvorite vse odprte zavihke v seznam, na katerem jih lahko preprosto upravljate, in pospešite Firefox."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Prenašajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Zmogljivo upravljanje prenosov {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
@@ -4981,18 +4978,16 @@ msgid "Change the look of any website! Shift colors, page backgrounds, and more.
 msgstr "Spremenite videz katerekoli spletne strani! Zamenjajte barve, ozadja in še veliko več."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Prilagodite si zavihke {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Prilagodite si nov zavihek {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zajemajte posnetke zaslona {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Hitri prevodi {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
@@ -5251,13 +5246,12 @@ msgid "Manage your productivity by working in set time intervals."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Preprosto branje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "Oglejte si svoje priljubljene vire RSS vse na eni strani."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5286,31 +5280,28 @@ msgid "Store web pages to access across devices."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Prilagodite si zavihke {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Preprosto izberite mesto zaznamkom {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Prilagodite si zavihke {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Brez oblikovanja {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "Odstranite nepotrebno oblikovanje in kopirajte zgolj golo besedilo."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Prevedite celotno spletno stran v želen jezik – z enim klikom gumba."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Izvlecite povezave {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
@@ -5409,13 +5400,12 @@ msgid "Access 20,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Prenašajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Poslušajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "Zmanjšajte prenos podatkov in iz posnetkov na YouTube prenašajte samo zvok."
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5431,12 +5421,11 @@ msgstr "Brskajte varno {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Obiščite varno različico spletnega mesta, če obstaja."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Prenašajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Izbrišite zgodovino brskanja {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
@@ -5594,13 +5583,12 @@ msgid "Uncover the software that supports whatever website you're visiting."
 msgstr "Odkrijte programsko opremo, ki poganja katerokoli spletno mesto, ki ga obiščete."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Preprosto prevajanje {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Preprečite preusmeritve in sledenje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Izognite se preusmeritvam in obiščite želeno stran – hitreje."
 
 #. editorial content for the discovery pane.
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5739,9 +5727,8 @@ msgid "Harness the ability to download video and/or audio in multiple formats."
 msgstr "Uporabljajte možnost prenosa videa in/ali zvoka v več oblikah."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Podatki o lokaciji {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
