@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-13 08:52+0000\n"
+"PO-Revision-Date: 2018-08-13 08:56+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1850,22 +1850,22 @@ msgid "Information request removed"
 msgstr "Requesta de informationes removite"
 
 msgid "{addon} {version} admin add-on-review requested."
-msgstr ""
+msgstr "Le administrator demandava revision de additivo pro {addon} {version}."
 
 msgid "Admin add-on-review requested"
-msgstr ""
+msgstr "Le administrator demandava revision de additivo"
 
 msgid "{addon} {version} admin content-review requested."
-msgstr ""
+msgstr "Le administrator demandava revision de contento pro {addon} {version}."
 
 msgid "Admin content-review requested"
-msgstr ""
+msgstr "Le administrator demandava revision de contento"
 
 msgid "{addon} {version} admin theme-review requested."
-msgstr ""
+msgstr "Le administrator demandava revision de thema pro {addon} {version}."
 
 msgid "Admin theme-review requested"
-msgstr ""
+msgstr "Le administrator demandava revision de thema"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr ""
