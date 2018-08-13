@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-13 07:26+0000\n"
+"PO-Revision-Date: 2018-08-13 08:53+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5459,7 +5459,7 @@ msgstr "Вдоскональте роботу з emoji {start_sub_heading}за �
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "При пошуку сторінок продукту в інших онлайн-магазинах, якщо це також доступно в Amazon, ви можете просто натиснути кнопку і перевірити сторінку продукту на Amazon."
 
 #. editorial content for the discovery pane.
 msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5467,7 +5467,7 @@ msgstr "Поширюйте твіти {start_sub_heading}за допомогою
 
 #. editorial content for the discovery pane.
 msgid "Easily broadcast web content to your Twitter following."
-msgstr ""
+msgstr "Легко передавайте веб-вміст тим, хто стежить за вами в Twitter."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5475,7 +5475,7 @@ msgstr "Виключний контроль вкладки {start_sub_heading}р
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Різні можливості керування вкладками — закривайте дублікати, об'єднуйте вікна, копіюйте заголовок вкладки та інше."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5492,7 +5492,7 @@ msgstr "Змініть нову вкладку {start_sub_heading}за допо�
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Налаштуйте сторінки нових вкладок для відображення власних кольорів та зображень тла."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5501,7 +5501,7 @@ msgstr "Вдоскональте роботу з emoji {start_sub_heading}за �
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Зустрічайте чарівну кицю на кожній новій вкладці. Почухайте її за вушком і погляньте, що станеться."
 
 #. editorial content for the discovery pane.
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5509,7 +5509,7 @@ msgstr "Зменште продуктивність {start_sub_heading}разо�
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "Для випадків, коли вам треба спалити щось лазером з очей кота."
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5517,7 +5517,7 @@ msgstr "Пошук у Firefox {start_sub_heading}за допомогою {addon_
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Легко отримуйте доступ до своїх відкритих вкладок, закладок та історії."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
