@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-11 09:09+0000\n"
+"PO-Revision-Date: 2018-08-13 13:45+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4770,9 +4770,8 @@ msgid "Enhance your viewing experience by adjusting video speed and more."
 msgstr "Βελτίωση εμπειρίας θέασης με προσαρμογή ταχύτητας βίντεο και άλλα."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Ασφαλής περιήγηση {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
@@ -5493,14 +5492,12 @@ msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "Εξατομίκευση καρτελών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Load a random Wikipedia article each time you open a new tab."
-msgstr "Ορίστε τη σελίδα που θα βλέπετε κάθε φορά που ανοίγετε μια νέα καρτέλα."
+msgstr "Φορτώστε ένα τυχαίο άρθρο της Wikipedia κάθε φορά που ανοίγετε μια νέα καρτέλα."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Αλλαγή νέας καρτέλας {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
@@ -7746,7 +7743,7 @@ msgid "Add-on Status by Date"
 msgstr "Κατάσταση πρόσθετου κατά ημερομηνία"
 
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "Συνδρομητές κατά ημερομηνία"
 
 msgid "Daily Users by Date"
 msgstr "Ημερήσιοι χρήστες κατά ημερομηνία"
