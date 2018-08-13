@@ -228,7 +228,7 @@ msgid "{0} reviews"
 msgstr ""
 
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} बिक्री"
 
 msgid "{0} refunds"
 msgstr ""
