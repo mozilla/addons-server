@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-14 21:52+0000\n"
+"PO-Revision-Date: 2018-08-14 22:13+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3231,13 +3231,13 @@ msgid "View Add-on Listing"
 msgstr ""
 
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Vider cambiamentos recente"
 
 msgid "Edit details about this theme's listing."
-msgstr ""
+msgstr "Editar detalios del lista de iste thema."
 
 msgid "Edit Listing"
-msgstr ""
+msgstr "Editar lista"
 
 msgid "View the popularity of this theme over time."
 msgstr "Vider le popularitate de iste thema in le tempore."
@@ -3246,10 +3246,10 @@ msgid "View Statistics"
 msgstr "Vider statistica"
 
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "Cambiar le proprietario de iste thema."
 
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Transferer le proprietate"
 
 msgid "Delete this theme."
 msgstr "Deler iste thema."
@@ -3258,7 +3258,7 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr ""
 
 msgid "This add-on doesn't have any versions."
-msgstr ""
+msgstr "Iste additivo non ha ulle versiones."
 
 msgid "Status:"
 msgstr "Stato:"
@@ -3268,7 +3268,7 @@ msgstr "Disactivate"
 
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Position in cauda:</b> %(pos)s de %(total)s"
 
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
@@ -3307,7 +3307,7 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 
 msgid "Select a category for this add-on:"
-msgstr ""
+msgstr "Selige un cathegoria pro iste additivo:"
 
 msgid "Support email:"
 msgstr "Email de supporto:"
@@ -3319,7 +3319,7 @@ msgid "License:"
 msgstr "Licentia:"
 
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr ""
+msgstr "Per favor elige un licentia appropriate pro le derectos que tu vole ceder."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
@@ -3334,7 +3334,7 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
 msgid "Cancel and Disable Version"
-msgstr ""
+msgstr "Cancellar e disactivar version"
 
 msgid "Submit Version"
 msgstr "Inviar version"
@@ -3349,10 +3349,10 @@ msgid "Let your users know what's new and what's changed in this version."
 msgstr ""
 
 msgid "These notes will appear on the detail page."
-msgstr ""
+msgstr "Iste notas parera sur le pagina de detalio."
 
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Como distribuer iste version"
 
 msgid "More information on Add-on Distribution and Signing"
 msgstr ""
@@ -3364,10 +3364,10 @@ msgid "You’re done!"
 msgstr ""
 
 msgid "Version Submitted for Review"
-msgstr ""
+msgstr "Version inviate pro revision"
 
 msgid "Preview of the version submitted"
-msgstr ""
+msgstr "Vista preliminar del version inviate"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
@@ -3388,7 +3388,7 @@ msgid "Your listing will be more successful by adding a detailed description and
 msgstr ""
 
 msgid "Manage Listing"
-msgstr ""
+msgstr "Gerer lista"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
@@ -3434,7 +3434,7 @@ msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
 msgstr ""
 
 msgid "Do you use any of the following?"
-msgstr ""
+msgstr "Usa tu ulle de los sequente?"
 
 msgid "Code minifiers or obfuscators"
 msgstr ""
@@ -3452,7 +3452,7 @@ msgid "You do not need to submit Source Code, and you’re ready for the next st
 msgstr ""
 
 msgid "Your Submission Requires Source Code."
-msgstr ""
+msgstr "Tu invio require le codice fonte."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
@@ -3488,7 +3488,7 @@ msgid "Upload source code:"
 msgstr "Cargar codice fonte:"
 
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "Accordo de distribution del additivo"
 
 msgid "Upload Add-on"
 msgstr "Cargar additivo"
@@ -3545,19 +3545,19 @@ msgid "Aligned to top-right"
 msgstr "Alineate in alto a dextera"
 
 msgid "Select a different header image"
-msgstr ""
+msgstr "Elige un imagine differente del titulo"
 
 msgid "Select colors for your theme"
 msgstr "Elige un color pro tu thema"
 
 msgid "Header area background"
-msgstr ""
+msgstr "Fundo del area del titulo"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
 msgid "Header area text and icons"
-msgstr ""
+msgstr "Texto e icones del area de titulo"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
@@ -4283,14 +4283,14 @@ msgstr ""
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} error"
+msgstr[1] "{0} errores"
 
 #. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} aviso"
+msgstr[1] "{0} avisos"
 
 #. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5179,7 +5179,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
-msgstr ""
+msgstr "Discargar video o audio."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5391,7 +5391,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Diminue productivitate {start_sub_heading} con {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
@@ -5399,11 +5399,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Recerca in Firefox {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Accede facilemente a tu schedas, marcapaginas e chronologia."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
