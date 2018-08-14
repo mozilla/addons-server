@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-14 16:20+0000\n"
+"PO-Revision-Date: 2018-08-14 18:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2628,7 +2628,7 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr ""
 
 msgid "Review requested."
-msgstr ""
+msgstr "Revision demandate."
 
 msgid "You must provide further details to proceed."
 msgstr ""
@@ -2640,10 +2640,10 @@ msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
 msgid "New API key created"
-msgstr ""
+msgstr "Create nove clave API"
 
 msgid "API key revoked"
-msgstr ""
+msgstr "Clave API revocate"
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
@@ -2654,7 +2654,7 @@ msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
 msgid "Review Policies and Rules"
-msgstr ""
+msgstr "Politicas e regulas de revision"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
@@ -2663,24 +2663,24 @@ msgid "Accept"
 msgstr "Acceptar"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "o <a href=\"{0}\">Cancellar</a>"
 
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "Retro al additivos"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} Additivos"
 
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Retornar al pagina principal de DevHub"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "Centro de disveloppamento de <small>Additivo</small>"
 
 msgid "more add-ons..."
-msgstr ""
+msgstr "plus de additivos..."
 
 msgid "Documentation"
 msgstr "Documentation"
@@ -2689,13 +2689,13 @@ msgid "Extension Development"
 msgstr "Disveloppamento del extension"
 
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Themas legier"
 
 msgid "Add-on Policies"
-msgstr ""
+msgstr "Politicas del additivo"
 
 msgid "Add-on Validator"
-msgstr ""
+msgstr "Validator de additivo"
 
 msgid "Add-on Compatibility Checker"
 msgstr ""
@@ -2704,16 +2704,16 @@ msgid "Development Add-ons"
 msgstr ""
 
 msgid "Community & Support"
-msgstr ""
+msgstr "Communitate & supporto"
 
 msgid "Add-ons Blog"
-msgstr ""
+msgstr "Blog del additivos"
 
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "Foro del additivos"
 
 msgid "More Resources"
-msgstr ""
+msgstr "Altere ressources"
 
 msgid "Search Developer Docs"
 msgstr ""
@@ -2745,7 +2745,7 @@ msgid "Validation Results"
 msgstr "Resultatos del validation"
 
 msgid "Validated at:"
-msgstr ""
+msgstr "Validate a:"
 
 msgid "Tested for compatibility against:"
 msgstr ""
@@ -2762,16 +2762,16 @@ msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> per %(user)s"
 
 msgid "No results found."
-msgstr ""
+msgstr "Nulle resultatos trovate."
 
 msgid "Refine Activity"
-msgstr ""
+msgstr "Affinar le activitate"
 
 msgid "Activity"
 msgstr "Activitate"
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Subscriber se a iste alimentation de novas"
 
 #, python-format
 msgid ""
@@ -2790,22 +2790,22 @@ msgid "Compatibility"
 msgstr "Compatibile"
 
 msgid "Update Compatibility"
-msgstr ""
+msgstr "Actualisar le compatibilitate"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
 
 msgid "Supported Versions"
-msgstr ""
+msgstr "Versiones supportate"
 
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "Adder un altere application&hellip;"
 
 msgid "Close"
 msgstr "Clauder"
 
 msgid "Recent Activity"
-msgstr ""
+msgstr "Activitate recente"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
@@ -2866,7 +2866,7 @@ msgid "View Listing"
 msgstr ""
 
 msgid "Summary"
-msgstr ""
+msgstr "Summario"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -2985,7 +2985,7 @@ msgid "Technical Details for {0}"
 msgstr ""
 
 msgid "Developer Comments"
-msgstr ""
+msgstr "Commentos del disveloppator"
 
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
@@ -3089,7 +3089,7 @@ msgstr ""
 
 #. The size of the icon
 msgid "64x64px"
-msgstr ""
+msgstr "64x64px"
 
 msgid "Used in add-on detail pages."
 msgstr ""
@@ -3101,7 +3101,7 @@ msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr ""
 
 msgid "Screenshots"
-msgstr ""
+msgstr "Instantaneos de schermo"
 
 msgid "Please provide at least one screen shot of your add-on:"
 msgstr ""
