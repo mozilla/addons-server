@@ -211,6 +211,9 @@ class ReadOnlyMiddleware(object):
         return response
 
     def process_request(self, request):
+        if not settings.READ_ONLY:
+            return
+
         if request.path.startswith('/api/'):
             writable_method = request.method in ('POST', 'PUT', 'DELETE')
             if settings.READ_ONLY and writable_method:
@@ -219,14 +222,16 @@ class ReadOnlyMiddleware(object):
             return render(request, 'amo/read-only.html', status=503)
 
     def process_exception(self, request, exception):
-        if request.path.startswith('/api/'):
-            return self._render_api_error()
-
         if isinstance(exception, mysql.OperationalError):
+            if request.path.startswith('/api/'):
+                return self._render_api_error()
             return render(request, 'amo/read-only.html', status=503)
 
     def process_response(self, request, response):
-        if self.API_HEADER_NAME not in response:
+        # We haven't set the header yet so it's not an error response
+        header_name = self.API_HEADER_NAME
+
+        if header_name not in response and response.status_code != 503:
             response[self.API_HEADER_NAME] = 'false'
         return response
 
