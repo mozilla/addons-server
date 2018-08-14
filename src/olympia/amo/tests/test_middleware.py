@@ -149,7 +149,7 @@ def test_read_only_mode(client):
 
 def test_read_only_mode_with_retry_after(client):
     delta = timedelta(minutes=8)
-    with override_settings(READ_ONLY=True, READ_ONLY_EXPECTED_END=delta):
+    with override_settings(READ_ONLY=True, READ_ONLY_RETRY_AFTER=delta):
         response = client.post(reverse_ns('abusereportuser-list'))
 
     assert response.status_code == 503

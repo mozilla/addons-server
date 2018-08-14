@@ -206,8 +206,8 @@ class ReadOnlyMiddleware(object):
     def _render_api_error(self):
         response = JsonResponse({'error': self.ERROR_MSG}, status=503)
         response[self.API_HEADER_NAME] = 'true'
-        if settings.READ_ONLY_EXPECTED_END is not None:
-            response['Retry-After'] = settings.READ_ONLY_EXPECTED_END.seconds
+        if settings.READ_ONLY_RETRY_AFTER is not None:
+            response['Retry-After'] = settings.READ_ONLY_RETRY_AFTER.seconds
         return response
 
     def process_request(self, request):

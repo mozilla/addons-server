@@ -1531,7 +1531,7 @@ READ_ONLY = env.bool('READ_ONLY', default=False)
 # We don't support hard dates as these are usually quite hard to
 # adhere anyway.
 # Will be ignored if `None`
-READ_ONLY_EXPECTED_END = None
+READ_ONLY_RETRY_AFTER = None
 
 
 # Turn on read-only mode in local_settings.py by putting this line
