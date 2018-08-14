@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-14 12:12+0000\n"
+"PO-Revision-Date: 2018-08-14 12:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2376,44 +2376,44 @@ msgid "Violence, war, or weaponry images"
 msgstr "Imagines de violentia, guerra, o armamento"
 
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Nazismo o altere contento de odio"
 
 msgid "Defamatory content"
-msgstr ""
+msgstr "Contento diffamatori"
 
 msgid "Online gambling"
-msgstr ""
+msgstr "Joco de hasardo online"
 
 msgid "Spam content"
-msgstr ""
+msgstr "Contento SPAM"
 
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "Imagine de basse qualitate, deformate o vacue"
 
 msgid "Header image alignment problem"
-msgstr ""
+msgstr "Problema de alineamento del imagine del titulo"
 
 msgid "Core"
-msgstr ""
+msgstr "Nucleo"
 
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "Recente cambiamentos pro %s"
 
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Recente cambiamentos pro mi additivos"
 
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "Debe haber al minus un proprietario."
 
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "Al minus un autor debe ser listate."
 
 msgid "An author can only be listed once."
-msgstr ""
+msgstr "Un autor pote ser listate solo un vice."
 
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Limace incorrecte."
 
 msgid "Details"
 msgstr "Detalios"
