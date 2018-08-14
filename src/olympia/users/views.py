@@ -206,14 +206,14 @@ def logout(request):
     if 'to' in request.GET:
         request = _clean_next_url(request)
 
-    next = request.GET.get('to')
-    if not next:
-        next = settings.LOGOUT_REDIRECT_URL
+    next_url = request.GET.get('to')
+    if not next_url:
+        next_url = settings.LOGOUT_REDIRECT_URL
         prefixer = get_url_prefix()
         if prefixer:
-            next = prefixer.fix(next)
+            next_url = prefixer.fix(next_url)
 
-    response = http.HttpResponseRedirect(next)
+    response = http.HttpResponseRedirect(next_url)
 
     logout_user(request, response)
 
