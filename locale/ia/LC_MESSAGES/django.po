@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-13 16:40+0000\n"
+"PO-Revision-Date: 2018-08-14 00:52+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3201,31 +3201,31 @@ msgid "Resume the submission process for this add-on."
 msgstr ""
 
 msgid "Resume"
-msgstr ""
+msgstr "Resumer"
 
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Deler iste additivo."
 
 msgid "Delete"
 msgstr "Deler"
 
 msgid "Edit information about this add-on."
-msgstr ""
+msgstr "Rediger informationes de iste additivo."
 
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "Cargar un nove version de iste additivo."
 
 msgid "New Version"
 msgstr "Nove version"
 
 msgid "Daily statistics on downloads and users."
-msgstr ""
+msgstr "Statistica quotidiad sur discargamentos e usatores."
 
 msgid "Statistics"
 msgstr "Statistica"
 
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Gerer stato e versiones"
 
 msgid "View Add-on Listing"
 msgstr ""
@@ -3240,7 +3240,7 @@ msgid "Edit Listing"
 msgstr ""
 
 msgid "View the popularity of this theme over time."
-msgstr ""
+msgstr "Vider le popularitate de iste thema in le tempore."
 
 msgid "View Statistics"
 msgstr "Vider statistica"
@@ -3252,7 +3252,7 @@ msgid "Transfer Ownership"
 msgstr ""
 
 msgid "Delete this theme."
-msgstr ""
+msgstr "Deler iste thema."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
@@ -3283,13 +3283,13 @@ msgid "Submit a New Version"
 msgstr "Inviar un nove version"
 
 msgid "Describe Add-on"
-msgstr ""
+msgstr "Describer additivo"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
 
 msgid "Add-on URL:"
-msgstr ""
+msgstr "URL del additivo:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
@@ -3301,7 +3301,7 @@ msgid "required"
 msgstr "necessari"
 
 msgid "This add-on is experimental"
-msgstr ""
+msgstr "Iste additivo es experimental"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
