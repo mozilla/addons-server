@@ -61,11 +61,12 @@ class TestAkismetReportsModel(TestCase):
         instance = AkismetReport.objects.create(**defaults)
         return instance
 
+    @responses.activate
     def test_comment_check(self):
         report = self._create_report()
 
         url = settings.AKISMET_API_URL.format(
-            api_key=settings.AKISMET_API_KEY, action='comment-check')
+            api_key='none', action='comment-check')
         responses.add(responses.POST, url, json=True)
         responses.add(
             responses.POST, url, json=True,

@@ -9,6 +9,7 @@ from olympia.amo.tests import addon_factory, user_factory
 from olympia.ratings.models import Rating
 from olympia.ratings.utils import maybe_check_with_akismet
 
+
 @pytest.mark.django_db
 @pytest.mark.parametrize(
     'body,pre_save_body,user_id,user_id_resp,waffle_enabled,is_checked',
