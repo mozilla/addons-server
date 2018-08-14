@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-14 18:32+0000\n"
+"PO-Revision-Date: 2018-08-14 18:38+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3148,19 +3148,19 @@ msgid "Tests"
 msgstr "Tests"
 
 msgid "General Tests"
-msgstr ""
+msgstr "Tests general"
 
 msgid "Security Tests"
-msgstr ""
+msgstr "Tests de securitate"
 
 msgid "Extension Tests"
-msgstr ""
+msgstr "Tests del extension"
 
 msgid "Localization Tests"
-msgstr ""
+msgstr "Tests del localisation"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Tests del compatibilitate"
 
 msgid "Hide messages not required for automated signing"
 msgstr ""
@@ -3169,13 +3169,13 @@ msgid "Hide messages present in previous version and ignored"
 msgstr ""
 
 msgid "Top"
-msgstr ""
+msgstr "Apice"
 
 msgid "Delete Theme"
-msgstr ""
+msgstr "Deler le thema"
 
 msgid "Delete Add-on"
-msgstr ""
+msgstr "Deler le additivo"
 
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr ""
@@ -3358,7 +3358,7 @@ msgid "More information on Add-on Distribution and Signing"
 msgstr ""
 
 msgid "Submission Complete"
-msgstr ""
+msgstr "Submission complete"
 
 msgid "You’re done!"
 msgstr ""
@@ -3415,7 +3415,7 @@ msgid "You selected only some of the available platforms for this submission. Yo
 msgstr ""
 
 msgid "Upload File"
-msgstr ""
+msgstr "Cargar file"
 
 msgid "Go to My Submissions"
 msgstr "Va a mi submissiones"
@@ -3599,7 +3599,7 @@ msgid "Uploading Theme"
 msgstr "Cargamento de thema"
 
 msgid "Finish Theme"
-msgstr ""
+msgstr "Finir le thema"
 
 msgid "API Credentials"
 msgstr ""
@@ -3699,7 +3699,7 @@ msgid "This is the newest uploaded unlisted version."
 msgstr ""
 
 msgid "Upload New Version"
-msgstr ""
+msgstr "Cargar nove version"
 
 msgid "View All"
 msgstr "Vider toto"
@@ -3773,13 +3773,13 @@ msgid "Read more about the source code review policy."
 msgstr ""
 
 msgid "Latest News"
-msgstr ""
+msgstr "Ultime novas"
 
 msgid "Read more in our Blog"
 msgstr ""
 
 msgid "Resources"
-msgstr ""
+msgstr "Fontes"
 
 msgid "Porting"
 msgstr ""
@@ -3836,7 +3836,7 @@ msgid "Legal Notices"
 msgstr "Notas legal"
 
 msgid "Review Add-ons"
-msgstr ""
+msgstr "Revider le additivos"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
 msgstr ""
