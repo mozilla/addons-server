@@ -1445,7 +1445,7 @@ def submit_file(request, addon_id, addon, version_id):
 
 def _submit_source(request, addon, version, next_view):
     redirect_args = [addon.slug, version.pk] if version else [addon.slug]
-    if addon.type == amo.ADDON_STATICTHEME:
+    if addon.type != amo.ADDON_EXTENSION:
         return redirect(next_view, *redirect_args)
     latest_version = version or addon.find_latest_version(channel=None)
 
