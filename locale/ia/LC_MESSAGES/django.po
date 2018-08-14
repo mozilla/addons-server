@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-14 22:32+0000\n"
+"PO-Revision-Date: 2018-08-14 22:51+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2530,7 +2530,7 @@ msgstr ""
 
 #, python-format
 msgid "%s responded with %s (%s)."
-msgstr ""
+msgstr "%s respondite con %s (%s)."
 
 #, python-format
 msgid "Connection to \"%s\" timed out."
@@ -2755,7 +2755,7 @@ msgstr ""
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "Activitate recente pro {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -2817,11 +2817,11 @@ msgstr ""
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> thema"
+msgstr[1] "<b>{0}</b> themas"
 
 msgid "Edit Information"
-msgstr ""
+msgstr "Modificar le informationes"
 
 msgid "None"
 msgstr "Nulle"
@@ -2850,11 +2850,11 @@ msgid ""
 msgstr ""
 
 msgid "Basic Information"
-msgstr ""
+msgstr "Informationes basic"
 
 #. {0} is the addon name
 msgid "Basic Information for {0}"
-msgstr ""
+msgstr "Informationes basic pro {0}"
 
 msgid "Add-on URL"
 msgstr "URL de additivo"
@@ -2955,11 +2955,11 @@ msgid "Images"
 msgstr "Imagines"
 
 msgid "Support Information"
-msgstr ""
+msgstr "Informationes de supporto"
 
 #. {0} is an addon name
 msgid "Support Information for {0}"
-msgstr ""
+msgstr "Informationes de supporto pro {0}"
 
 msgid "Email"
 msgstr "Email"
@@ -2996,7 +2996,7 @@ msgid "Required Add-ons"
 msgstr ""
 
 msgid "Limit 3"
-msgstr ""
+msgstr "Limite 3"
 
 msgid "Add-on Flags"
 msgstr ""
@@ -3070,7 +3070,7 @@ msgid "Add-on Media for {0}"
 msgstr ""
 
 msgid "Add-on icon"
-msgstr ""
+msgstr "Icone de additivo"
 
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
@@ -3082,7 +3082,7 @@ msgstr ""
 
 #. The size of the icon
 msgid "32x32px"
-msgstr ""
+msgstr "32x32px"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
 msgstr ""
@@ -3110,7 +3110,7 @@ msgid "Please provide a caption for this screenshot:"
 msgstr ""
 
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "Adder un instantaneo..."
 
 msgid ""
 "PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
@@ -3602,7 +3602,7 @@ msgid "Finish Theme"
 msgstr "Finir le thema"
 
 msgid "API Credentials"
-msgstr ""
+msgstr "Credentiales de API"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
@@ -3683,11 +3683,11 @@ msgid "Queues are not reviewed strictly in order"
 msgstr ""
 
 msgid "Queue Position:"
-msgstr ""
+msgstr "Position in cauda:"
 
 #, python-format
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(position)s de %(total)s"
 
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
@@ -3809,7 +3809,7 @@ msgid "Report Bug"
 msgstr ""
 
 msgid "Site Status"
-msgstr ""
+msgstr "Stato del sito"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
@@ -3907,7 +3907,7 @@ msgid "Submit Your First Add-on"
 msgstr ""
 
 msgid "Submit Your First Theme"
-msgstr ""
+msgstr "Invia tu prime thema"
 
 msgid "Add-on Developer Hub"
 msgstr ""
@@ -3975,7 +3975,7 @@ msgid "Transfer ownership"
 msgstr ""
 
 msgid "Theme Details"
-msgstr ""
+msgstr "Detalios de thema"
 
 msgid "Supply a pretty URL for your detail page."
 msgstr ""
@@ -4020,7 +4020,7 @@ msgid "Select a license for your Theme."
 msgstr ""
 
 msgid "Theme Design"
-msgstr ""
+msgstr "Designo del thema"
 
 msgid "Upload New Design"
 msgstr ""
@@ -4145,7 +4145,7 @@ msgid "Optionally, enter any information that may be useful to the Reviewer of t
 msgstr ""
 
 msgid "Source code"
-msgstr ""
+msgstr "Codice fonte"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 msgstr ""
@@ -4220,7 +4220,7 @@ msgid "Currently on AMO"
 msgstr ""
 
 msgid "Validation"
-msgstr ""
+msgstr "Validation"
 
 msgid "Delete/Disable"
 msgstr ""
@@ -4235,10 +4235,10 @@ msgid "All versions"
 msgstr ""
 
 msgid "Upload a New Version"
-msgstr ""
+msgstr "Cargar un nove version"
 
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "Deler version {version}"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
@@ -5719,10 +5719,10 @@ msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on
 msgstr ""
 
 msgid "Back to review"
-msgstr ""
+msgstr "Retro al revision"
 
 msgid "Back to add-on"
-msgstr ""
+msgstr "Retro al additivo"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
@@ -5751,7 +5751,7 @@ msgid "Fetching validation results..."
 msgstr ""
 
 msgid "Files:"
-msgstr ""
+msgstr "Files:"
 
 msgid "Deleted files:"
 msgstr ""
@@ -5775,7 +5775,7 @@ msgid "Previous diff"
 msgstr ""
 
 msgid "Previous note"
-msgstr ""
+msgstr "Note previe"
 
 msgid "Next diff"
 msgstr ""
@@ -5784,7 +5784,7 @@ msgid "Next note"
 msgstr ""
 
 msgid "Expand all"
-msgstr ""
+msgstr "Expander toto"
 
 msgid "Hide or unhide tree"
 msgstr ""
@@ -5877,7 +5877,7 @@ msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about any
 msgstr ""
 
 msgid "Games!"
-msgstr ""
+msgstr "Jocos!"
 
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
 msgstr ""
@@ -5902,7 +5902,7 @@ msgid "Learn More About Add-ons"
 msgstr ""
 
 msgid "See all"
-msgstr ""
+msgstr "Vider toto"
 
 msgid "More ways to customize"
 msgstr ""
@@ -6042,7 +6042,7 @@ msgid "Over the years, many people have contributed to this website, including b
 msgstr ""
 
 msgid "Sections"
-msgstr ""
+msgstr "Sectiones"
 
 msgid "Some tips for writing a great review"
 msgstr ""
@@ -6143,7 +6143,7 @@ msgid ""
 msgstr ""
 
 msgid "Start Now"
-msgstr ""
+msgstr "Initia ora"
 
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
@@ -6188,7 +6188,7 @@ msgid "Opting out of a study does not prevent you from participating in future s
 msgstr ""
 
 msgid "Your privacy"
-msgstr ""
+msgstr "Tu confidentialitate"
 
 msgid "All Shield Studies"
 msgstr ""
