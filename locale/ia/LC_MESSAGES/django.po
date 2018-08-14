@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-14 22:13+0000\n"
+"PO-Revision-Date: 2018-08-14 22:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2534,11 +2534,11 @@ msgstr ""
 
 #, python-format
 msgid "Connection to \"%s\" timed out."
-msgstr ""
+msgstr "Tempore de connexion a \"%s\" expirate."
 
 #, python-format
 msgid "Could not contact host at \"%s\"."
-msgstr ""
+msgstr "Impossibile contactar le hospite a \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
@@ -2563,16 +2563,16 @@ msgid "User Collections"
 msgstr "Collectiones del usator"
 
 msgid "User Reviews"
-msgstr ""
+msgstr "Revisiones del usator"
 
 msgid "Changes successfully saved."
 msgstr ""
 
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "Per favor controla le modello per errores."
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr ""
+msgstr "Le additivo non pote ser delite, disactiva lo, in vice."
 
 msgid "Theme deleted."
 msgstr "Thema delite."
@@ -2581,36 +2581,36 @@ msgid "Add-on deleted."
 msgstr "Additivo delite."
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "Le nomine del URL esseva incorrecte. Le thema non esseva delite."
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "Le nomine del URL esseva incorrecte. Le additivo non esseva delite."
 
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Un autor ha essite addite a tu additivo"
 
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "Un autor ha essite cambiate de rolo sur tu additivo"
 
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Un autor ha essite removite de tu additivo"
 
 msgid "Validate Add-on"
 msgstr "Validar additivo"
 
 msgid "Check Add-on Compatibility"
-msgstr ""
+msgstr "Controla le compatibilitate del additivo"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "Le imagines non pote ser major de %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr ""
 
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Error durante le cargamento de tu vista preliminar."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2631,7 +2631,7 @@ msgid "Review requested."
 msgstr "Revision demandate."
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "Tu debe fornir altere detalio pro proceder."
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr ""
@@ -2651,7 +2651,7 @@ msgid ""
 msgstr ""
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Accordo de distribution del additivo de Firefox"
 
 msgid "Review Policies and Rules"
 msgstr "Politicas e regulas de revision"
@@ -2698,10 +2698,10 @@ msgid "Add-on Validator"
 msgstr "Validator de additivo"
 
 msgid "Add-on Compatibility Checker"
-msgstr ""
+msgstr "Controlator de compatibilitate del additivo"
 
 msgid "Development Add-ons"
-msgstr ""
+msgstr "Additivos pro le disveloppamento"
 
 msgid "Community & Support"
 msgstr "Communitate & supporto"
@@ -5677,20 +5677,20 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
 msgid "Invalid archive."
-msgstr ""
+msgstr "Archivo non valide."
 
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Impossibile tractar le file de manifesto."
 
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Impossibile trovar le ID del additivo."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr ""
 
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "ID de additivo trovate duplicate."
 
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
@@ -6718,9 +6718,8 @@ msgstr ""
 msgid "{addon} :: EULA"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} :: Privacy Policy"
-msgstr "Politica de confidentialitate"
+msgstr "{addon} :: Politica de confidentialitate"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
