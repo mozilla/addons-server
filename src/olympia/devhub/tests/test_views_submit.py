@@ -638,6 +638,20 @@ class TestAddonSubmitSource(TestSubmitBase):
         assert not self.get_version().source
         assert not self.addon.needs_admin_code_review
 
+    def test_non_extension_redirects_past_to_details(self):
+        # static themes should redirect
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.next_url)
+        # extensions shouldn't redirect
+        self.addon.update(type=amo.ADDON_EXTENSION)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        # check another non-extension type also redirects
+        self.addon.update(type=amo.ADDON_DICT)
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.next_url)
+
 
 class DetailsPageMixin(object):
     """ Some common methods between TestAddonSubmitDetails and
