@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-14 01:17+0000\n"
+"PO-Revision-Date: 2018-08-14 09:04+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2250,40 +2250,40 @@ msgid "Excellent (3)"
 msgstr "Excellente (3)"
 
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Punctos de revisores de manual"
 
 msgid "New Add-on Review"
-msgstr ""
+msgstr "Nove revision de additivo"
 
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "Revision preliminar del additivo"
 
 msgid "Updated Add-on Review"
-msgstr ""
+msgstr "Revision actualisate del additivo"
 
 msgid "New Dictionary Review"
-msgstr ""
+msgstr "Nove revision del dictionario"
 
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "Revision preliminar del dictionario"
 
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "Revision actualisate del dictionario"
 
 msgid "New Language Pack Review"
-msgstr ""
+msgstr "Nove revision del pacchetto de lingua"
 
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "Revision preliminar del pacchetto de lingua"
 
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "Revision actualisate del pacchetto de lingua"
 
 msgid "Theme Review"
-msgstr ""
+msgstr "Revision de thema"
 
 msgid "Theme (Static) Review"
-msgstr ""
+msgstr "Revision de thema (Static)"
 
 msgid "New Search Provider Review"
 msgstr ""
