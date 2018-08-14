@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-14 01:11+0000\n"
+"PO-Revision-Date: 2018-08-14 01:17+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3990,7 +3990,7 @@ msgid "A short explanation of your theme's basic functionality that is displayed
 msgstr ""
 
 msgid "Theme License"
-msgstr ""
+msgstr "Licentia del thema"
 
 msgid "Can others share your Theme, as long as you're given credit?"
 msgstr ""
@@ -4038,10 +4038,10 @@ msgid "You may update your theme design here once it has been approved."
 msgstr ""
 
 msgid "Header"
-msgstr ""
+msgstr "Titulo"
 
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "Elige le colores pro tu thema."
 
 msgid "Foreground Text"
 msgstr ""
@@ -4056,11 +4056,11 @@ msgid "This is the color of the tabs."
 msgstr ""
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Le nomine del thema"
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "per <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
 msgstr "Crear un nove thema"
@@ -4070,7 +4070,7 @@ msgid "Background themes let you easily personalize the look of your Firefox. Su
 msgstr ""
 
 msgid "Give your Theme a name."
-msgstr ""
+msgstr "Da un nomine a tu thema."
 
 #, python-format
 msgid ""
@@ -4079,7 +4079,7 @@ msgid ""
 msgstr ""
 
 msgid "Submit Theme"
-msgstr ""
+msgstr "Invia thema"
 
 msgid "You're done!"
 msgstr ""
@@ -4088,7 +4088,7 @@ msgid "Your theme has been submitted to the Review Queue. You'll receive an emai
 msgstr ""
 
 msgid "Next steps:"
-msgstr ""
+msgstr "Grado sequente:"
 
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
@@ -4106,29 +4106,29 @@ msgid "Select a header image for your Theme."
 msgstr ""
 
 msgid "3000 &times; 200 pixels"
-msgstr ""
+msgstr "3000 &times; 200 pixels"
 
 msgid "300 KB max"
-msgstr ""
+msgstr "300 KB max"
 
 msgid "PNG or JPG"
-msgstr ""
+msgstr "PNG o JPG"
 
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "Gere version {0}"
 
 #. {0} is an add-on name.
 msgid "Manage {0}"
-msgstr ""
+msgstr "Gere {0}"
 
 msgid "Files"
-msgstr ""
+msgstr "Files"
 
 msgid "Upload Another File"
-msgstr ""
+msgstr "Cargar un altere file"
 
 msgid "Version Notes"
-msgstr ""
+msgstr "Notas de version"
 
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
