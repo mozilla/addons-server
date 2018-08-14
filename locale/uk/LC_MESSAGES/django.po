@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-14 07:08+0000\n"
+"PO-Revision-Date: 2018-08-14 08:33+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2498,9 +2498,8 @@ msgstr "Версія {version} вже існує."
 msgid "Continue with existing upload instead?"
 msgstr "Продовжити з існуючим завантаженням замість цього?"
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "Не вдалося розібрати завантажений файл."
+msgstr "Ви не вивантажили вихідний файл."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Вихідний файл вивантажено, але ви зазначили, що джерело не потрібне."
@@ -3495,9 +3494,8 @@ msgstr "Вивантажити файл"
 msgid "Go to My Submissions"
 msgstr "Перейти в мої подання"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "Завантажено програмний код"
+msgstr "Вивантаження програмного коду"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr "Вам необхідно відправити програмний код?"
@@ -3555,9 +3553,8 @@ msgstr ""
 "<span class=\"instruction-emphasis\">Примітка:</span> Вихідні файли (в тому числі сторонні бібліотеки з відкритим кодом) не можуть бути транспільовані, видозмінені, оптимізовані або згенеровані "
 "будь-яким машинним методом."
 
-#, fuzzy
 msgid "How to Submit:"
-msgstr "Затвердити"
+msgstr "Як подавати:"
 
 msgid "Include instructions in a README file in the source code,"
 msgstr "Включити інструкції в файл README програмного коду,"
@@ -3565,9 +3562,8 @@ msgstr "Включити інструкції в файл README програм�
 msgid "or in reviewer notes on the next page (if applicable)."
 msgstr "або до приміток для редактора на наступній сторінці (при необхідності)."
 
-#, fuzzy
 msgid "Upload source code:"
-msgstr "Програмний код"
+msgstr "Вивантажити програмний код:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "Угода про розповсюдження додатків"
@@ -4629,9 +4625,8 @@ msgid "Darken the page around video players for a focused viewing experience."
 msgstr "Затемнюйте сторінку навколо відео-програвачів для зосередженого перегляду."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Блокуйте рекламу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Виконуйте пошук на совість {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, python-format
@@ -4883,9 +4878,8 @@ msgid "Save information from the internet to OneNote so you can edit, annotate, 
 msgstr "Зберігайте інформацію з інтернету до OneNote, для подальшого редагування, анотацій та інших можливостей."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Налаштування вкладки {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Пошук із захистом від стеження {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
@@ -4900,9 +4894,8 @@ msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
 msgstr "Використовуйте рухи миші для закриття вкладок, повернення на одну сторінку назад та інших дій."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Робіть знімки екрану {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Додавайте зображення до результатів пошуку {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
@@ -4989,9 +4982,8 @@ msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
 msgstr "Доступ до недавно закритих вкладок за допомогою правого кліку на піктограмі в панелі інструментів."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Покращуйте відео {start_sub_heading}за допомогою {addon_name} {end_sub_heading}"
+msgstr "Працюйте продуктивно {start_sub_heading}разом з {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
@@ -5102,9 +5094,8 @@ msgid "Disguise your location to throw off trackers and protect your privacy."
 msgstr "Замаскуйте своє розташування, щоб захистити свою приватність і не турбуватися про стеження."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Блокуйте рекламу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Самоцензура {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
@@ -5127,9 +5118,8 @@ msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
 msgstr "Використовуйте тимчасові адреси електронної пошти для анонімності та уникнення спаму."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Вдоскональте роботу з emoji {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Оберіть свій рівень приватності {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily customize the built-in privacy settings in Firefox."
@@ -5300,9 +5290,8 @@ msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
 msgstr "Високоефективний засіб читання усіх ваших ресурсів RSS/Atom/RDF."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Блокуйте рекламу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Робіть нотатки {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
@@ -5453,9 +5442,8 @@ msgid "Highlight text from any website and right-click to search YouTube for rel
 msgstr "Виконуйте пошук на YouTube, підсвітивши текст і натиснувши праву кнопку миші."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Вдоскональте роботу з emoji {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Станьте знавцем Amazon {start_sub_heading}разом з {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
