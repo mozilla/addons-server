@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-14 12:37+0000\n"
+"PO-Revision-Date: 2018-08-14 16:11+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2160,7 +2160,7 @@ msgid "Import/Export"
 msgstr "Importar/Exportar"
 
 msgid "Message and News Reading"
-msgstr ""
+msgstr "Lectura de messages e novas"
 
 msgid "Privacy and Security"
 msgstr "Confidentialitate e securitate"
@@ -2428,49 +2428,49 @@ msgid "License text is required when choosing Other."
 msgstr "Le texto del licentia es requirite si tu selige altero.."
 
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Iste additivo ha un accordo de licentia con le usator final (EULA)"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Per favor specifica tu accordo de licentia con le usator final (EULA) del additivo:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "Iste additivo ha un politica de confidentialitate"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr ""
+msgstr "Per favor specifica tu Politica de confidentialitate del additivo:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "Typo de file non tractate, per favor carga un file archivo {extensions}."
 
 msgid "View current"
-msgstr ""
+msgstr "Vider version actual"
 
 msgid "Invalid version range."
-msgstr ""
+msgstr "Intervallo de version non valide."
 
 msgid "Need at least one compatible application."
-msgstr ""
+msgstr "Il necesse al minus un application compatibile."
 
 msgid "There was an error with your upload. Please try again."
-msgstr ""
+msgstr "Il ha habite un error con tu cargamento. Per favor prova de novo."
 
 msgid "Override failed validation"
-msgstr ""
+msgstr "Supplantar validation mancate"
 
 msgid "You cannot upload any more files for this version."
-msgstr ""
+msgstr "Tu non pote cargar ulle altere files pro iste version."
 
 msgid "Version doesn't match"
-msgstr ""
+msgstr "Le version non concorda"
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr ""
+msgstr "Le version {version} esseva jam cargate e delite."
 
 msgid "Version {version} already exists."
-msgstr ""
+msgstr "Le version {version} ja existe."
 
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "Continuar in vice con le cargamento existente?"
 
 msgid "You have not uploaded a source file."
 msgstr ""
