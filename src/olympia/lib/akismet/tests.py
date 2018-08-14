@@ -3,7 +3,7 @@ from datetime import datetime
 
 from django.conf import settings
 
-import mock
+import responses
 
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.ratings.models import Rating
@@ -12,13 +12,6 @@ from .models import AkismetReport
 
 
 class TestAkismetReportsModel(TestCase):
-
-    def setUp(self):
-        patcher = mock.patch('olympia.lib.akismet.models.requests.post')
-        self.post = patcher.start()
-        self.addCleanup(patcher.stop)
-        self.post.return_value.status_code = 200
-        self.post.return_value.json.return_value = {}
 
     def test_create_for_rating(self):
         user = user_factory(homepage='https://spam.spam/')
@@ -71,15 +64,22 @@ class TestAkismetReportsModel(TestCase):
     def test_comment_check(self):
         report = self._create_report()
 
-        self.post.return_value.json.return_value = True
+        url = settings.AKISMET_API_URL.format(
+            api_key=settings.AKISMET_API_KEY, action='comment-check')
+        responses.add(responses.POST, url, json=True)
+        responses.add(
+            responses.POST, url, json=True,
+            headers={'X-akismet-pro-tip': 'discard'})
+        # Headers should be ignored on False but add anyway.
+        responses.add(
+            responses.POST, url, json=False,
+            headers={'X-akismet-pro-tip': 'discard'})
+
         result = report.comment_check()
         assert result == report.result == AkismetReport.MAYBE_SPAM
 
-        self.post.return_value.headers = {'X-akismet-pro-tip': 'discard'}
         result = report.comment_check()
         assert result == report.result == AkismetReport.DEFINITE_SPAM
 
-        self.post.return_value.json.return_value = False
-        # Headers should be ignored, so we won't bother resetting it.
         result = report.comment_check()
         assert result == report.result == AkismetReport.HAM
