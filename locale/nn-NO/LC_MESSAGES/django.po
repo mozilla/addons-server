@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-09 07:45+0000\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
 "PO-Revision-Date: 2018-07-27 20:13+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6694,9 +6694,6 @@ msgstr "Meir informasjon er påkravd"
 msgid "Expired Information Request"
 msgstr "Meir informasjon er påkravd"
 
-msgid "Contains Reviewer Comment"
-msgstr "Inneheld vurderarkommentar"
-
 msgid "Sources provided"
 msgstr "Tilgjengelege kjelder"
 
@@ -6911,6 +6908,14 @@ msgstr "Vurdering behandla."
 
 msgid "Review lock limit reached"
 msgstr "Grensa for granskingslås er nådd"
+
+#, fuzzy
+msgid "{addon} :: EULA"
+msgstr "{addon} :: misbruksrapportar"
+
+#, fuzzy
+msgid "{addon} :: Privacy Policy"
+msgstr "Denne utvidinga har ein personvernpraksis"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."

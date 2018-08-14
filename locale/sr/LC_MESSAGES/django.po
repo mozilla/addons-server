@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-09 07:45+0000\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -6790,10 +6790,6 @@ msgstr "Захтеване додатне информације"
 msgid "Expired Information Request"
 msgstr "Захтеване додатне информације"
 
-#, fuzzy
-msgid "Contains Reviewer Comment"
-msgstr "Садржи коментар уредника"
-
 msgid "Sources provided"
 msgstr "Пружени извори"
 
@@ -7041,6 +7037,14 @@ msgstr "Рецензија успешно процесирана."
 
 msgid "Review lock limit reached"
 msgstr ""
+
+#, fuzzy
+msgid "{addon} :: EULA"
+msgstr "{addon} :: Извештаји злостављања"
+
+#, fuzzy
+msgid "{addon} :: Privacy Policy"
+msgstr "Овај додатак има Полису приватности"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."

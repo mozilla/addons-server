@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-09 07:45+0000\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6570,9 +6570,6 @@ msgstr "pǝʇsǝnbǝᴚ uoıʇɐɯɹoɟuI ǝɹoW"
 msgid "Expired Information Request"
 msgstr "ʇsǝnbǝᴚ uoıʇɐɯɹoɟuI pǝɹıdxƎ"
 
-msgid "Contains Reviewer Comment"
-msgstr "ʇuǝɯɯoↃ ɹǝʍǝıʌǝᴚ suıɐʇuoↃ"
-
 msgid "Sources provided"
 msgstr "pǝpıʌoɹd sǝɔɹnoS"
 
@@ -6784,6 +6781,12 @@ msgstr ".pǝssǝɔoɹd ʎʅʅnɟssǝɔɔns ʍǝıʌǝᴚ"
 
 msgid "Review lock limit reached"
 msgstr "pǝɥɔɐǝɹ ʇıɯıʅ ʞɔoʅ ʍǝıʌǝᴚ"
+
+msgid "{addon} :: EULA"
+msgstr "∀⅂∩Ǝ :: {addon}"
+
+msgid "{addon} :: Privacy Policy"
+msgstr "ʎɔıʅoԀ ʎɔɐʌıɹԀ :: {addon}"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."

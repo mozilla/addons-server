@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-09 07:45+0000\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
 "PO-Revision-Date: 2018-08-06 20:13+0000\n"
 "Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -6703,9 +6703,6 @@ msgstr "Se ha solicitado más información"
 msgid "Expired Information Request"
 msgstr "La solicitud de información ha expirado"
 
-msgid "Contains Reviewer Comment"
-msgstr "Contiene un comentario del revisor"
-
 msgid "Sources provided"
 msgstr "Fuentes facilitadas"
 
@@ -6919,6 +6916,14 @@ msgstr "Revisión procesada con éxito."
 
 msgid "Review lock limit reached"
 msgstr "Límite de bloqueo de revisiones alcanzado"
+
+#, fuzzy
+msgid "{addon} :: EULA"
+msgstr "{addon} :: Informes de uso indebido"
+
+#, fuzzy
+msgid "{addon} :: Privacy Policy"
+msgstr "Este complemento tiene una política de privacidad"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."

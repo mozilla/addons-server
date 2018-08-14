@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-09 07:45+0000\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
 "PO-Revision-Date: 2018-06-20 17:05+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -6760,10 +6760,6 @@ msgstr ""
 msgid "Expired Information Request"
 msgstr "S'ha sol·licitat més informació"
 
-#, fuzzy
-msgid "Contains Reviewer Comment"
-msgstr "Punts de revisors manuals"
-
 msgid "Sources provided"
 msgstr ""
 
@@ -7019,6 +7015,13 @@ msgstr "La revisió s'ha processat correctament."
 
 msgid "Review lock limit reached"
 msgstr ""
+
+msgid "{addon} :: EULA"
+msgstr ""
+
+#, fuzzy
+msgid "{addon} :: Privacy Policy"
+msgstr "Aquest complement té una política de privadesa"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
