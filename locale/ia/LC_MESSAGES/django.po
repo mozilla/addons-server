@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-14 15:51+0000\n"
+"PO-Revision-Date: 2018-08-14 16:11+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2452,25 +2452,25 @@ msgid "Need at least one compatible application."
 msgstr "Il necesse al minus un application compatibile."
 
 msgid "There was an error with your upload. Please try again."
-msgstr ""
+msgstr "Il ha habite un error con tu cargamento. Per favor prova de novo."
 
 msgid "Override failed validation"
-msgstr ""
+msgstr "Supplantar validation mancate"
 
 msgid "You cannot upload any more files for this version."
-msgstr ""
+msgstr "Tu non pote cargar ulle altere files pro iste version."
 
 msgid "Version doesn't match"
-msgstr ""
+msgstr "Le version non concorda"
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr ""
+msgstr "Le version {version} esseva jam cargate e delite."
 
 msgid "Version {version} already exists."
-msgstr ""
+msgstr "Le version {version} ja existe."
 
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "Continuar in vice con le cargamento existente?"
 
 msgid "You have not uploaded a source file."
 msgstr ""
