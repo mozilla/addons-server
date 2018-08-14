@@ -29,6 +29,7 @@ class AkismetReport(ModelBase):
     referrer = models.CharField(max_length=255)
     user_name = models.CharField(max_length=255)
     user_email = models.CharField(max_length=255)
+    user_homepage = models.CharField(max_length=255)
     comment = models.TextField()
     comment_modified = models.DateTimeField()
     content_link = models.CharField(max_length=255)
@@ -58,14 +59,11 @@ class AkismetReport(ModelBase):
             'comment_type': self.comment_type,
             'comment_author': self.user_name,
             'comment_author_email': self.user_email,
-            # 'comment_author_url': '',
+            'comment_author_url': self.user_homepage,
             'comment_content': self.comment,
             'comment_date_gmt': self.comment_modified,
             'comment_post_modified_gmt': self.content_modified,
-
-            # 'blog_lang' : get_language(),
             'blog_charset': 'utf-8',
-            # 'user_role': 'administrator' if user.is_staff else ''
             'is_test': not settings.AKISMET_REAL_SUBMIT,
         }
         return {key: value for key, value in data.items() if value is not None}
@@ -104,6 +102,7 @@ class AkismetReport(ModelBase):
             referrer=referrer,
             user_name=rating.user.name,
             user_email=rating.user.email,
+            user_homepage=rating.user.homepage,
             content_link=rating.addon.get_url_path(),
             content_modified=rating.addon.last_updated,
             comment=rating.body,

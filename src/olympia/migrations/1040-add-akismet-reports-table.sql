@@ -8,6 +8,7 @@ CREATE TABLE `akismet_reports` (
   `referrer` varchar(255) NOT NULL,
   `user_name` varchar(255) NOT NULL,
   `user_email` varchar(255) NOT NULL,
+  `user_homepage` varchar(255) NOT NULL,
   `comment` longtext NOT NULL,
   `comment_modified` datetime(6) NOT NULL,
   `content_link` varchar(255) NOT NULL,

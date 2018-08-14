@@ -21,7 +21,7 @@ class TestAkismetReportsModel(TestCase):
         self.post.return_value.json.return_value = {}
 
     def test_create_for_rating(self):
-        user = user_factory()
+        user = user_factory(homepage='https://spam.spam/')
         addon = addon_factory()
         rating = Rating.objects.create(
             addon=addon, user=user, rating=4, body='spám?',
@@ -41,6 +41,7 @@ class TestAkismetReportsModel(TestCase):
             'comment_type': 'user-review',
             'comment_author': user.username,
             'comment_author_email': user.email,
+            'comment_author_url': user.homepage,
             'comment_content': rating.body,
             'comment_date_gmt': rating.modified,
             'comment_post_modified_gmt': addon.last_updated,
@@ -56,6 +57,7 @@ class TestAkismetReportsModel(TestCase):
             referrer='á4565',
             user_name='steve',
             user_email='steve@steve.com',
+            user_homepage='http://spam.spam',
             content_link='https://addons.mozilla.org',
             content_modified=datetime.now(),
             comment='spammy McSpam?',
