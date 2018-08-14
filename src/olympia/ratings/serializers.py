@@ -204,7 +204,9 @@ class RatingSerializer(BaseRatingSerializer):
         return super(RatingSerializer, self).create(validated_data)
 
     def save(self, **kwargs):
-        pre_save_body = self.instance.body if self.instance else None
+        # Take a copy of the body before the save because we pass it to
+        # maybe_check_with_akismet to confirm it changed.
+        pre_save_body = unicode(self.instance.body) if self.instance else None
 
         instance = super(RatingSerializer, self).save(**kwargs)
 

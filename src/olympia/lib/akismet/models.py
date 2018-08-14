@@ -79,13 +79,14 @@ class AkismetReport(ModelBase):
         try:
             outcome = response.json()
             discard = response.headers.get('X-akismet-pro-tip') == 'discard'
+            # Only True or False outcomes are valid.
             if outcome is True or outcome is False:
                 self.update(result=(
                     self.HAM if not outcome else
                     self.DEFINITE_SPAM if discard else self.MAYBE_SPAM))
                 return self.result
-            # If outcome isn't True or False it's invalid.
         except ValueError:
+            # if outcome isn't valid json `response.json` will raise ValueError
             pass
         log.error(
             'Akismet error %s' % (
