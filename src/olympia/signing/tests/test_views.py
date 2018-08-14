@@ -6,7 +6,6 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.forms import ValidationError
-from django.test.utils import override_settings
 from django.utils import translation
 
 import mock
