@@ -4,6 +4,7 @@ import time
 from collections import OrderedDict, defaultdict
 from datetime import date, datetime, timedelta
 
+from django import http
 from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
@@ -766,6 +767,13 @@ def determine_channel(channel_as_text):
 @login_required
 @addon_view_factory(qs=Addon.unfiltered.all)
 def review(request, addon, channel=None):
+    channel_param = ('?channel=%s' % channel) if channel else ''
+    eula_url = reverse(
+        'reviewers.eula',
+        args=(addon.slug if addon.slug else addon.pk,)) + (channel_param)
+    privacy_url = reverse(
+        'reviewers.privacy',
+        args=(addon.slug if addon.slug else addon.pk,)) + (channel_param)
     whiteboard_url = reverse(
         'reviewers.whiteboard',
         args=(channel or 'listed', addon.slug if addon.slug else addon.pk))
@@ -943,8 +951,9 @@ def review(request, addon, channel=None):
         api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
         backgrounds=backgrounds, content_review_only=content_review_only,
-        count=count, flags=flags, form=form, is_admin=is_admin,
-        num_pages=num_pages, pager=pager, reports=reports, show_diff=show_diff,
+        count=count, eula_url=eula_url, flags=flags, form=form,
+        is_admin=is_admin, num_pages=num_pages, pager=pager, reports=reports,
+        privacy_url=privacy_url, show_diff=show_diff,
         subscribed=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon).exists(),
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
@@ -1119,6 +1128,46 @@ def whiteboard(request, addon, channel):
 def unlisted_list(request):
     return _queue(request, ViewUnlistedAllListTable, 'all',
                   unlisted=True, SearchForm=AllAddonSearchForm)
+
+
+def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
+    if not eula_or_privacy:
+        raise http.Http404
+    channel_text = request.GET.get('channel')
+    channel, content_review_only = determine_channel(channel_text)
+    # It's a read-only view so we can bypass the specific permissions checks
+    # if we have ReviewerTools:View.
+    bypass_more_specific_permissions_because_read_only = (
+        acl.action_allowed(
+            request, amo.permissions.REVIEWER_TOOLS_VIEW))
+    if not bypass_more_specific_permissions_because_read_only:
+        perform_review_permission_checks(
+            request, addon, channel, content_review_only=content_review_only)
+
+    review_url = reverse(
+        'reviewers.review',
+        args=(channel_text or 'listed',
+              addon.slug if addon.slug else addon.pk))
+    return render(request, 'reviewers/policy_view.html',
+                  {'addon': addon, 'review_url': review_url,
+                   'content': eula_or_privacy,
+                   'page_title': page_title, 'long_title': long_title})
+
+
+@login_required
+@addon_view_factory(qs=Addon.unfiltered.all)
+def eula(request, addon):
+    return policy_viewer(request, addon, addon.eula,
+                         page_title=ugettext('{addon} :: EULA'),
+                         long_title=ugettext('End-User License Agreement'))
+
+
+@login_required
+@addon_view_factory(qs=Addon.unfiltered.all)
+def privacy(request, addon):
+    return policy_viewer(request, addon, addon.privacy_policy,
+                         page_title=ugettext('{addon} :: Privacy Policy'),
+                         long_title=ugettext('Privacy Policy'))
 
 
 class AddonReviewerViewSet(GenericViewSet):
