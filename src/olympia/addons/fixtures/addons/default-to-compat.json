@@ -166,7 +166,6 @@
         "fields": {
             "license": null,
             "created": "2011-12-05 14:46:43",
-            "has_reviewer_comment": false,
             "releasenotes": null,
             "approvalnotes": "",
             "modified": "2011-12-05 14:46:43",
@@ -193,7 +192,6 @@
         "fields": {
             "license": null,
             "created": "2011-12-05 14:46:44",
-            "has_reviewer_comment": false,
             "releasenotes": null,
             "approvalnotes": "",
             "modified": "2011-12-05 14:46:43",
@@ -220,7 +218,6 @@
         "fields": {
             "license": null,
             "created": "2011-12-05 14:46:45",
-            "has_reviewer_comment": false,
             "releasenotes": null,
             "approvalnotes": "",
             "modified": "2011-12-05 14:46:43",
@@ -247,7 +244,6 @@
         "fields": {
             "license": null,
             "created": "2011-12-05 14:46:46",
-            "has_reviewer_comment": false,
             "releasenotes": null,
             "approvalnotes": "",
             "modified": "2011-12-05 14:46:43",

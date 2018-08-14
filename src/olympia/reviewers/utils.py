@@ -621,13 +621,13 @@ class ReviewBase(object):
                        detail_kwargs={'reviewtype': self.review_type})
 
     def process_comment(self):
-        if self.version:
-            kw = {'has_reviewer_comment': True}
-            if (self.version.channel == amo.RELEASE_CHANNEL_UNLISTED and
-                    not self.version.reviewed):
-                kw['reviewed'] = datetime.now()
-            self.version.update(**kw)
         self.log_action(amo.LOG.COMMENT_VERSION)
+        update_reviewed = (
+            self.version and
+            self.version.channel == amo.RELEASE_CHANNEL_UNLISTED and
+            not self.version.reviewed)
+        if update_reviewed:
+            self.version.update(reviewed=datetime.now())
 
     def process_public(self):
         """Set an add-on or a version to public."""
