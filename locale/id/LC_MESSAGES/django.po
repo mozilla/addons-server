@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-13 13:05+0000\n"
+"PO-Revision-Date: 2018-08-14 06:27+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -5237,18 +5237,16 @@ msgid "Convert an entire webpage to your preferred language—with the click of 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Mengurai tautan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ambil tangkapan layar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Tampilkan dokumen {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
@@ -5289,9 +5287,8 @@ msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Menuliskan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
