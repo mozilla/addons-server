@@ -9,9 +9,6 @@ from olympia.amo.tests import addon_factory, user_factory
 from olympia.ratings.models import Rating
 from olympia.ratings.utils import maybe_check_with_akismet
 
-#        waffle.switch_is_active('akismet'))
-
-
 @pytest.mark.django_db
 @pytest.mark.parametrize(
     'body,pre_save_body,user_id,user_id_resp,waffle_enabled,is_checked',
@@ -48,7 +45,7 @@ def test_maybe_check_with_akismet(body, pre_save_body, user_id,
     request = RequestFactory().get('/')
 
     with mock.patch('olympia.ratings.utils.check_with_akismet.delay') as cmock:
-        with override_switch('akismet', active=waffle_enabled):
+        with override_switch('akismet-spam-check', active=waffle_enabled):
             result = maybe_check_with_akismet(request, rating, pre_save_body)
             assert result == is_checked
             if is_checked:

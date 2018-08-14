@@ -610,7 +610,7 @@ class TestCreate(ReviewTest):
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.add_url).status_code == 404
 
-    @override_switch('akismet', active=True)
+    @override_switch('akismet-spam-check', active=True)
     @mock.patch('olympia.ratings.utils.check_with_akismet.delay')
     def test_create_calls_akismet(self, check_with_akismet_mock):
         response = self.client.post(
@@ -726,7 +726,7 @@ class TestEdit(ReviewTest):
 
         assert len(mail.outbox) == 0
 
-    @override_switch('akismet', active=True)
+    @override_switch('akismet-spam-check', active=True)
     @mock.patch('olympia.ratings.utils.check_with_akismet.delay')
     def test_edit_calls_akismet(self, check_with_akismet_mock):
         url = jinja_helpers.url('addons.ratings.edit', self.addon.slug, 218207)
@@ -1680,7 +1680,7 @@ class TestRatingViewSetEdit(TestCase):
         self.rating.reload()
         assert unicode(self.rating.body) == u'yés!'
 
-    @override_switch('akismet', active=True)
+    @override_switch('akismet-spam-check', active=True)
     @mock.patch('olympia.ratings.utils.check_with_akismet.delay')
     def test_edit_calls_akismet(self, check_with_akismet_mock):
         self.client.login_api(self.user)
@@ -2113,7 +2113,7 @@ class TestRatingViewSetPost(TestCase):
                 'score': 2, 'version': new_version.pk})
             assert response.status_code == 201, response.content
 
-    @override_switch('akismet', active=True)
+    @override_switch('akismet-spam-check', active=True)
     @mock.patch('olympia.ratings.utils.check_with_akismet.delay')
     def test_post_rating_calls_akismet(self, check_with_akismet_mock):
         self.user = user_factory()
