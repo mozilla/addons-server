@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-14 18:38+0000\n"
+"PO-Revision-Date: 2018-08-14 19:09+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2809,7 +2809,7 @@ msgstr "Activitate recente"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s per %(user)s"
 
 msgid "Older activity for My Add-ons"
 msgstr ""
@@ -6304,7 +6304,7 @@ msgid "Write a Reply"
 msgstr ""
 
 msgid "Submit"
-msgstr ""
+msgstr "Submitter"
 
 #. this string is following a <button>.
 #, python-format
@@ -6351,11 +6351,11 @@ msgid "Delete reply"
 msgstr ""
 
 msgid "Delete review"
-msgstr ""
+msgstr "Deler le revision"
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
-msgstr ""
+msgstr "{0} :: Revisiones"
 
 msgid "Reviews for {0}"
 msgstr ""
@@ -6391,7 +6391,7 @@ msgstr ""
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
+msgstr[0] "{num} revision"
 msgstr[1] ""
 
 msgid "Rated {0} out of 5 stars"
