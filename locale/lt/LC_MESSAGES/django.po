@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-09 07:45+0000\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6610,9 +6610,6 @@ msgstr ""
 msgid "Expired Information Request"
 msgstr " Priedo {0} indormacija"
 
-msgid "Contains Reviewer Comment"
-msgstr ""
-
 msgid "Sources provided"
 msgstr ""
 
@@ -6849,6 +6846,13 @@ msgstr ""
 
 msgid "Review lock limit reached"
 msgstr ""
+
+msgid "{addon} :: EULA"
+msgstr ""
+
+#, fuzzy
+msgid "{addon} :: Privacy Policy"
+msgstr "Privatumo politika"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."

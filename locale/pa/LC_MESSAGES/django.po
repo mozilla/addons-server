@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-09 07:45+0000\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6772,10 +6772,6 @@ msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
 msgid "Expired Information Request"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
 
-#, fuzzy
-msgid "Contains Reviewer Comment"
-msgstr "ਸੰਪਾਦਕ ਟਿੱਪਣੀ ਸ਼ਾਮਲ"
-
 msgid "Sources provided"
 msgstr "ਸੋਰਸ ਮੁਹੱਇਆ ਕਰਵਾਏ"
 
@@ -7021,6 +7017,14 @@ msgstr "ਸਮੀਖਿਆ ਤੇ ਕਾਰਵਾਈ ਸਫ਼ਲਤਾਪਰੂਵ
 
 msgid "Review lock limit reached"
 msgstr ""
+
+#, fuzzy
+msgid "{addon} :: EULA"
+msgstr "{addon} :: ਬਦਸਲੂਕੀ ਸੂਚਨਾਵਾਂ"
+
+#, fuzzy
+msgid "{addon} :: Privacy Policy"
+msgstr "ਇਸ ਐਡ-ਆਨ ਦੀ ਇੱਕ ਪਰਦਾ ਨੀਤੀ ਹੈ"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."

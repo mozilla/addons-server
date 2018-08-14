@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-09 07:45+0000\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
 "PO-Revision-Date: 2018-03-04 16:16+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6592,10 +6592,6 @@ msgstr ""
 msgid "Expired Information Request"
 msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
 
-#, fuzzy
-msgid "Contains Reviewer Comment"
-msgstr "ম্যানুয়াল রিভিউয়ার পয়েন্ট সমূহ"
-
 msgid "Sources provided"
 msgstr ""
 
@@ -6833,6 +6829,13 @@ msgstr ""
 
 msgid "Review lock limit reached"
 msgstr ""
+
+msgid "{addon} :: EULA"
+msgstr ""
+
+#, fuzzy
+msgid "{addon} :: Privacy Policy"
+msgstr "এই অ্যাড-অনের একটি গোপনীয়তার নীতি রয়েছে"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-09 07:45+0000\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
 "PO-Revision-Date: 2018-07-27 12:14+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6618,9 +6618,6 @@ msgstr "Mear ynformaasje frege"
 msgid "Expired Information Request"
 msgstr "Ferrûn fersyk om ynformaasje"
 
-msgid "Contains Reviewer Comment"
-msgstr "Befettet beoardielersopmerking"
-
 msgid "Sources provided"
 msgstr "Boarnen levere"
 
@@ -6836,6 +6833,14 @@ msgstr "Beoardieling mei sukses ferwurke."
 
 msgid "Review lock limit reached"
 msgstr "Limyt foar beoardielingsbeskoattelingen berikke"
+
+#, fuzzy
+msgid "{addon} :: EULA"
+msgstr "{addon}:: Misbrûkmeldingen"
+
+#, fuzzy
+msgid "{addon} :: Privacy Policy"
+msgstr "Dizze add-on hat in privacybelied"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."

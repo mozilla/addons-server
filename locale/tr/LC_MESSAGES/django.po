@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-09 07:45+0000\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
 "PO-Revision-Date: 2018-07-10 14:14+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -6708,10 +6708,6 @@ msgid "Expired Information Request"
 msgstr "Daha fazla bilgi istendi"
 
 #, fuzzy
-msgid "Contains Reviewer Comment"
-msgstr "tema, inceleyen veya yorum"
-
-#, fuzzy
 msgid "Sources provided"
 msgstr "Kaynak kodu"
 
@@ -6949,6 +6945,16 @@ msgstr ""
 
 msgid "Review lock limit reached"
 msgstr ""
+
+#, fuzzy
+msgid "{addon} :: EULA"
+msgstr "{addon} :: Suistimal Raporları"
+
+# 89%
+# 100%
+#, fuzzy
+msgid "{addon} :: Privacy Policy"
+msgstr "Bu eklentinin Gizlilik Kuralları var"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."

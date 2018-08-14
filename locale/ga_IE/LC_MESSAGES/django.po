@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-09 07:45+0000\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -6766,10 +6766,6 @@ msgstr ""
 msgid "Expired Information Request"
 msgstr "Cuir an tEolas in Eagar"
 
-#, fuzzy
-msgid "Contains Reviewer Comment"
-msgstr "breiseán, eagarthóir nó nóta tráchta"
-
 msgid "Sources provided"
 msgstr ""
 
@@ -7026,6 +7022,13 @@ msgstr "Próiseáladh an léirmheas."
 
 msgid "Review lock limit reached"
 msgstr ""
+
+msgid "{addon} :: EULA"
+msgstr ""
+
+#, fuzzy
+msgid "{addon} :: Privacy Policy"
+msgstr "Tá Polasaí Príobháideachta ag an mbreiseán seo"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
