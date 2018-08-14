@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-09 07:45+0000\n"
-"PO-Revision-Date: 2018-08-14 09:04+0000\n"
+"PO-Revision-Date: 2018-08-14 09:30+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2286,31 +2286,31 @@ msgid "Theme (Static) Review"
 msgstr "Revision de thema (Static)"
 
 msgid "New Search Provider Review"
-msgstr ""
+msgstr "Nove revision de motor de recerca"
 
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "Revision preliminar de motor de recerca"
 
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "Revision actualisate de motor de recerca"
 
 msgid "New Complete Theme Review"
-msgstr ""
+msgstr "Nove revision de thema complete"
 
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "Revision preliminar de thema complete"
 
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "Revision actualisate de thema complete"
 
 msgid "Moderated Add-on Review"
-msgstr ""
+msgstr "Revision moderate del additivo"
 
 msgid "Add-on Review Moderation Reverted"
-msgstr ""
+msgstr "Moderation del revision de additivo revertite"
 
 msgid "Add-on Content Review"
-msgstr ""
+msgstr "Revision de contento del additivo"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
 msgstr ""
