@@ -15,7 +15,7 @@ CREATE TABLE `akismet_reports` (
   `content_modified` datetime(6) NOT NULL,
   `result` smallint(5) unsigned DEFAULT NULL,
   `reported` tinyint(1) NOT NULL,
-  `rating_instance_id` int(11) DEFAULT NULL,
+  `rating_instance_id` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `akismet_reports_rating_instance_id_d282058c_fk_reviews_id` (`rating_instance_id`),
   CONSTRAINT `akismet_reports_rating_instance_id_d282058c_fk_reviews_id` FOREIGN KEY (`rating_instance_id`) REFERENCES `reviews` (`id`)
