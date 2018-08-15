@@ -222,6 +222,9 @@ class ReadOnlyMiddleware(object):
             return render(request, 'amo/read-only.html', status=503)
 
     def process_exception(self, request, exception):
+        if not settings.READ_ONLY:
+            return
+
         if isinstance(exception, mysql.OperationalError):
             if request.path.startswith('/api/'):
                 return self._render_api_error()
