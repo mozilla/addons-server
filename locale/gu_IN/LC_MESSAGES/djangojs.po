@@ -1,18 +1,18 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-06-25 22:44+0000\n"
-"Last-Translator: Mehul Patel <iamrowdymehul@gmail.com>\n"
+"PO-Revision-Date: 2018-02-24 18:50+0000\n"
+"Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 2.5.3\n"
 "X-Generator: Pontoon\n"
 
@@ -49,12 +49,12 @@ msgid "Error with {0}"
 msgstr "ભૂલ સાથે {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "અમે તમારા ઍડ-ઑનની પ્રક્રિયા કરવા માટે એક નવું લિનટર સક્ષમ કર્યું છે. કૃપા કરીને GitHub પર કોઈપણ સમસ્યાઓની જાણ કરવાની ખાતરી કરો"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "તમારી ઍડ-ઓન {0} ભૂલો સાથે માન્યતા નિષ્ફળ."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -68,10 +68,10 @@ msgid "Validating {0}"
 msgstr ""
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "તમારા ઍડ-ઑન {0}ના મહત્તમ કદ કરતાં વધી ગયો છે."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "સર્વરમાંથી ખાલી પ્રતિભાવ મળ્યો; સ્થિતિ: {0}"
 
 msgid "Unexpected server error while validating."
 msgstr ""

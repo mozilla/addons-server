@@ -566,8 +566,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         if not expect_errors:
             # Show any unexpected form errors.
             if response.context and 'form' in response.context:
-                assert (
-                    response.context['form'].errors.as_text() == '')
+                assert response.context['form'].errors == {}
         return response
 
     def get_source(self, suffix='.zip'):
@@ -592,9 +591,11 @@ class TestAddonSubmitSource(TestSubmitBase):
     def test_say_no_but_submit_source_anyway_fails(self):
         response = self.post(
             has_source=False, source=self.get_source(), expect_errors=True)
-        assert response.context['form'].errors.as_text() == (
-            '* has_source\n'
-            '  * Source file uploaded but you indicated no source was needed.')
+        assert response.context['form'].errors == {
+            'has_source': [
+                u'Source file uploaded but you indicated no source was needed.'
+            ]
+        }
         self.addon = self.addon.reload()
         assert not self.get_version().source
         assert not self.addon.needs_admin_code_review
@@ -602,9 +603,9 @@ class TestAddonSubmitSource(TestSubmitBase):
     def test_say_yes_but_dont_submit_source_fails(self):
         response = self.post(
             has_source=True, source=None, expect_errors=True)
-        assert response.context['form'].errors.as_text() == (
-            '* has_source\n'
-            '  * You have not uploaded a source file.')
+        assert response.context['form'].errors == {
+            'has_source': [u'You have not uploaded a source file.']
+        }
         self.addon = self.addon.reload()
         assert not self.get_version().source
         assert not self.addon.needs_admin_code_review
@@ -624,9 +625,16 @@ class TestAddonSubmitSource(TestSubmitBase):
         response = self.post(
             has_source=True, source=self.get_source(suffix='.exe'),
             expect_errors=True)
-        assert response.context['form'].errors.as_text().startswith(
-            '* source\n'
-            '  * Unsupported file type, please upload an archive')
+        assert response.context['form'].errors == {
+            'source': [
+                u"Unsupported file type, please upload an archive file "
+                "('.zip', '.tar', '.7z', '.tar.gz', '.tgz', '.tbz', '.txz', "
+                "'.tar.bz2', '.tar.xz')."],
+            # Django deletes the source data from the cleaned form data
+            # in case of an error on a field, so that `source` doesn't
+            # exist for the `has_source` check
+            'has_source': [u'You have not uploaded a source file.']
+        }
         self.addon = self.addon.reload()
         assert not self.get_version().source
         assert not self.addon.needs_admin_code_review

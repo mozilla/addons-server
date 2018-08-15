@@ -486,6 +486,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',
     'olympia.search.middleware.ElasticsearchExceptionMiddleware',
+
+    # Our middleware that adds additional information for the user
+    # and API about our read-only status.
+    'olympia.amo.middleware.ReadOnlyMiddleware',
+
     'django.middleware.csrf.CsrfViewMiddleware',
 
     # This should come after AuthenticationMiddlewareWithoutAPI (to get the
@@ -1519,11 +1524,25 @@ ENGAGE_ROBOTS = True
 # Read-only mode setup.
 READ_ONLY = env.bool('READ_ONLY', default=False)
 
+# Expected retry-time that can be respected by clients. This will
+# be set as `Retry-After` header.
+# Please set this to a `datetime.timedelta()` instance that is
+# reasonable for clients to try again.
+# We don't support hard dates as these are usually quite hard to
+# adhere anyway.
+# Will be ignored if `None`
+READ_ONLY_RETRY_AFTER = None
+
 
 # Turn on read-only mode in local_settings.py by putting this line
 # at the VERY BOTTOM: read_only_mode(globals())
-def read_only_mode(env):
+# Please also consider setting `retry_after` like this
+# import datetime
+# read_only_mode(globals(), retry_after=datetime.timedelta(minutes=10))
+# See `READ_ONLY_RETRY_AFTER` comment for more details
+def read_only_mode(env, retry_after=None):
     env['READ_ONLY'] = True
+    env['READ_ONLY_RETRY_AFTER'] = retry_after
 
     # Replace the default (master) db with a slave connection.
     if not env.get('SLAVE_DATABASES'):
@@ -1533,13 +1552,6 @@ def read_only_mode(env):
 
     # No sessions without the database, so disable auth.
     env['AUTHENTICATION_BACKENDS'] = ('olympia.users.backends.NoAuthForYou',)
-
-    # Add in the read-only middleware before csrf middleware.
-    extra = 'olympia.amo.middleware.ReadOnlyMiddleware'
-    before = 'django.middleware.csrf.CsrfViewMiddleware'
-    m = list(env['MIDDLEWARE_CLASSES'])
-    m.insert(m.index(before), extra)
-    env['MIDDLEWARE_CLASSES'] = tuple(m)
 
 
 # Uploaded file limits
