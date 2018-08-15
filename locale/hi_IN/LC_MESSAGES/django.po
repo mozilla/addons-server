@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 20:08+0000\n"
+"PO-Revision-Date: 2018-08-15 20:33+0000\n"
 "Last-Translator: Dhiraj Kumar Singh <Singhdhiraj255@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -2063,37 +2063,37 @@ msgid "News & Blogs"
 msgstr ""
 
 msgid "Photos & Images"
-msgstr ""
+msgstr "चित्र और छवियाँ"
 
 msgid "Shopping & E-Commerce"
-msgstr ""
+msgstr "खरीदारी और ई-कॉमर्स"
 
 msgid "Social & People"
-msgstr ""
+msgstr "सामाजिक एवं लोक"
 
 msgid "Travel"
-msgstr ""
+msgstr "यात्रा"
 
 msgid "Video"
-msgstr ""
+msgstr "वीडियो"
 
 msgid "Device Features & Location"
-msgstr ""
+msgstr "उपकरण की विशेषताएँ और स्थान"
 
 msgid "Experimental"
-msgstr ""
+msgstr "प्रयोगात्मक"
 
 msgid "Feeds, News, & Blogging"
-msgstr ""
+msgstr "फ़ीड्स, समाचार, व ब्लॉगिंग"
 
 msgid "Performance"
-msgstr ""
+msgstr "प्रदर्शन"
 
 msgid "Photos & Media"
-msgstr ""
+msgstr "चित्र और मीडिया"
 
 msgid "Security & Privacy"
-msgstr ""
+msgstr "सुरक्षा और गोपनीयता"
 
 msgid "Social Networking"
 msgstr ""
@@ -2102,7 +2102,7 @@ msgid "Sports & Games"
 msgstr ""
 
 msgid "User Interface"
-msgstr ""
+msgstr "उपयोगकर्ता अंतरापृष्ठ"
 
 msgid "Appearance and Customization"
 msgstr ""
@@ -2117,25 +2117,25 @@ msgid "Message Composition"
 msgstr ""
 
 msgid "Contacts"
-msgstr ""
+msgstr "संपर्क"
 
 msgid "Folders and Filters"
-msgstr ""
+msgstr "फ़ोल्डर और फ़िल्टर"
 
 msgid "Import/Export"
 msgstr ""
 
 msgid "Message and News Reading"
-msgstr ""
+msgstr "संदेश और समाचार पठन"
 
 msgid "Privacy and Security"
-msgstr ""
+msgstr "गोपनीयता और सुरक्षा"
 
 msgid "Downloading and File Management"
-msgstr ""
+msgstr "डाउनलोड और फ़ाइल प्रबंधन"
 
 msgid "Interface Customizations"
-msgstr ""
+msgstr "अंतरापृष्ठ अनुकूलन"
 
 msgid "Language Support and Translation"
 msgstr ""
@@ -2237,13 +2237,13 @@ msgid "Updated Dictionary Review"
 msgstr ""
 
 msgid "New Language Pack Review"
-msgstr ""
+msgstr "नई भाषा पैक समीक्षा"
 
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "प्रारंभिक भाषा पैक समीक्षा"
 
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "उद्दिनांकित भाषा पैक समीक्षा"
 
 msgid "Theme Review"
 msgstr ""
@@ -2409,13 +2409,13 @@ msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
 msgid "View current"
-msgstr ""
+msgstr "वर्तमान देखें"
 
 msgid "Invalid version range."
-msgstr ""
+msgstr "अमान्य संस्करण विस्तार।"
 
 msgid "Need at least one compatible application."
-msgstr ""
+msgstr "कम से कम एक संगत अनुप्रयोग की आवश्यकता है।"
 
 msgid "There was an error with your upload. Please try again."
 msgstr ""
@@ -2427,7 +2427,7 @@ msgid "You cannot upload any more files for this version."
 msgstr ""
 
 msgid "Version doesn't match"
-msgstr ""
+msgstr "संस्करण मेल नहीं करता है"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2514,28 +2514,28 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr ""
 
 msgid "All My Add-ons"
-msgstr ""
+msgstr "मेरे सभी ऐड-ऑन्स"
 
 msgid "All Activity"
-msgstr ""
+msgstr "सभी गतिविधि"
 
 msgid "Add-on Updates"
-msgstr ""
+msgstr "ऐड-ऑन अद्यतन"
 
 msgid "Add-on Status"
-msgstr ""
+msgstr "ऐड-ऑन स्थिति"
 
 msgid "User Collections"
-msgstr ""
+msgstr "उपयोगकर्ता संग्रह"
 
 msgid "User Reviews"
-msgstr ""
+msgstr "उपयोगकर्ता समीक्षाएँ"
 
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "परिवर्तन सफलतापूर्वक सहेजे गए।"
 
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "कृपया त्रुटियों के लिए फॉर्म की जांच करें।"
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr ""
