@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 12:09+0000\n"
+"PO-Revision-Date: 2018-08-15 12:15+0000\n"
 "Last-Translator: Wolfgang Marcos <wolfgang@alcateia.eti.br>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4800,7 +4800,7 @@ msgstr "Atualize abas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "Recarregue abas automaticamente com base nos intervalos de tempo que você definir."
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4808,7 +4808,7 @@ msgstr "Separe suas vidas on-line {start_sub_heading}com {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr ""
+msgstr "Distinga em privado suas múltiplas identidades on-line — trabalho, pessoal, etc. — através de abas destacadas com cores que separam seu rastro digital de cookies."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4816,7 +4816,7 @@ msgstr "Impeça rastreadores {start_sub_heading}com {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "Ganhe uma camada adicional de proteção contra rastreamento enquanto navega a web."
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4824,7 +4824,7 @@ msgstr "Leia arquivos ePub {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "Aproveite arquivos de formato ePub no Firefox — aumente o tamanho da fonte, dimensões das páginas e mais."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4832,7 +4832,7 @@ msgstr "Eleve sua experiência no YouTube {start_sub_heading}com {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "Por padrão, reproduza vídeos em qualidade máxima, desligue anotações e mais."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4848,7 +4848,7 @@ msgstr "Mude seu servidor proxy {start_sub_heading}com {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "Navegue na web através de configurações de proxy que você mesmo definiu."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4864,7 +4864,7 @@ msgstr "Navegue com segurança {start_sub_heading}com {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
-msgstr ""
+msgstr "Adicione segurança criptografada a qualquer site que suporte HTTPS."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4872,7 +4872,7 @@ msgstr "Compre e economize {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "Tenha os melhores cupons automaticamente aplicados ao seu carrinho compras na finalização da compra."
 
 #. editorial content for the discovery pane.
 msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4888,7 +4888,7 @@ msgstr "Aprimore o Reddit {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Altere a forma como navega no Reddit usando marcações e mais."
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4896,7 +4896,7 @@ msgstr "Capture a web {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Faça capturas de tela de páginas da web, edições e compartilhe."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
