@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-02 14:59+0000\n"
-"Last-Translator: Mohit Bansal <philomath@disroot.org>\n"
+"PO-Revision-Date: 2018-08-15 16:50+0000\n"
+"Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -696,22 +696,22 @@ msgid "Add to Favorites"
 msgstr ""
 
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "पसंदीदा से हटाएँ"
 
 msgid "Pending"
 msgstr ""
 
 msgid "Add a comment"
-msgstr ""
+msgstr "टिप्पणी जोड़ें"
 
 msgid "Comment"
-msgstr ""
+msgstr "टिप्पणी"
 
 msgid "Remove this add-on from the collection"
 msgstr ""
 
 msgid "Remove"
-msgstr ""
+msgstr "हटाएँ"
 
 msgid "Add to favorites"
 msgstr ""
@@ -726,10 +726,10 @@ msgid "Your browser does not support the video tag"
 msgstr ""
 
 msgid "Changes Saved"
-msgstr ""
+msgstr "परिवर्तन सहेजे गए"
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "एक नया लेखक का ईमेल पता दर्ज करें"
 
 msgid "There was an error uploading your file."
 msgstr ""
@@ -763,7 +763,7 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr ""
 
 msgid "Remove this localization"
-msgstr ""
+msgstr "इस स्थानीयकरण को निकालें"
 
 msgid "{name} was viewing this page first."
 msgstr ""
@@ -778,7 +778,7 @@ msgid "{name} was viewing this add-on first."
 msgstr ""
 
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "&hellip;लोड हो रहा है"
 
 msgid "Version Notes"
 msgstr ""
@@ -796,13 +796,13 @@ msgid "Review notes found"
 msgstr ""
 
 msgid "Average Reviews"
-msgstr ""
+msgstr "औसत समीक्षाएं"
 
 msgid "Number of Reviews"
 msgstr ""
 
 msgid "Requested Info"
-msgstr ""
+msgstr "अनुरोधित जानकारी"
 
 msgid "Flagged"
 msgstr ""
@@ -820,13 +820,13 @@ msgid "No results found"
 msgstr ""
 
 msgid "Theme"
-msgstr ""
+msgstr "थीम"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "समीक्षक"
 
 msgid "Status"
-msgstr ""
+msgstr "स्थिति"
 
 msgid "All tests passed successfully."
 msgstr ""
@@ -835,13 +835,13 @@ msgid "These tests were not run."
 msgstr ""
 
 msgid "Tests"
-msgstr ""
+msgstr "परीक्षण"
 
 msgid "Error"
-msgstr ""
+msgstr "त्रुटि"
 
 msgid "Warning"
-msgstr ""
+msgstr "चेतावनी"
 
 msgid "{0} line {1} column {2}"
 msgstr ""
@@ -850,7 +850,7 @@ msgid "{0} line {1}"
 msgstr ""
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "अनुकूलता परीक्षण"
 
 msgid "Add-on failed validation."
 msgstr ""
@@ -860,12 +860,12 @@ msgstr ""
 
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
+msgstr[0] "{0} त्रुटि"
 msgstr[1] ""
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
+msgstr[0] "{0} चेतावनी"
 msgstr[1] ""
 
 msgid "{0} notice"
@@ -877,4 +877,4 @@ msgid "Validation task could not complete or completed with errors"
 msgstr ""
 
 msgid "Internal server error"
-msgstr ""
+msgstr "आंतरिक सर्वर त्रुटि"
