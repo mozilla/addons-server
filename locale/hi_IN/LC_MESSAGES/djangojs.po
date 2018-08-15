@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 22:11+0000\n"
+"PO-Revision-Date: 2018-08-15 22:27+0000\n"
 "Last-Translator: Dhiraj Kumar Singh <Singhdhiraj255@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -158,7 +158,7 @@ msgid "Stop Following"
 msgstr "पालन करना ​​बंद करें"
 
 msgid "Following"
-msgstr ""
+msgstr "अनुसरण"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -304,7 +304,7 @@ msgid "Add-ons Manager Promo"
 msgstr "ऐड-ऑन प्रबंधक प्रोमो"
 
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "ऐड-ऑन प्रबंधक विशेष रुप से प्रदर्शित"
 
 msgid "Add-ons Manager Learn More"
 msgstr ""
@@ -632,13 +632,13 @@ msgid "No data available."
 msgstr "कोई आँकड़ा उपलब्ध नहीं."
 
 msgid "Date"
-msgstr ""
+msgstr "दिनांक"
 
 msgid "Other"
-msgstr ""
+msgstr "अन्य"
 
 msgid "Select an application first"
-msgstr ""
+msgstr "पहले एक अनुप्रयोग का चयन करें"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
@@ -652,10 +652,10 @@ msgstr[1] ""
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
-msgstr ""
+msgstr "स्वीकार करें और संस्थापित करें"
 
 msgid "Add to {0}"
-msgstr ""
+msgstr "{0} में जोड़ें"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
@@ -772,7 +772,7 @@ msgid "Receipt checked by app."
 msgstr "ऐप द्वारा रसीद की जाँच की गयी।"
 
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "ऐप द्वारा रसीद की जाँच नही की गयी थी।"
 
 msgid "{name} was viewing this add-on first."
 msgstr ""

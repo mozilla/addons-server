@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 21:58+0000\n"
+"PO-Revision-Date: 2018-08-15 22:31+0000\n"
 "Last-Translator: Dhiraj Kumar Singh <Singhdhiraj255@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -45,7 +45,7 @@ msgid "Please use images smaller than %dMB."
 msgstr ""
 
 msgid "You are already logged in."
-msgstr ""
+msgstr "आपने पहले से ही लॉग-इन किया है।"
 
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
@@ -57,7 +57,7 @@ msgid "You could not be logged in. Please try again."
 msgstr ""
 
 msgid "Need help?"
-msgstr ""
+msgstr "मदद चाहिए?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
 msgstr ""
@@ -69,7 +69,7 @@ msgid "Version {0}"
 msgstr "संस्करण {0}"
 
 msgid "Review note"
-msgstr ""
+msgstr "समीक्षा नोट"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
@@ -175,13 +175,13 @@ msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
 msgid "Abuse reported."
-msgstr ""
+msgstr "दुर्व्यवहार की रिपोर्ट की गयी।"
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr ""
 
 msgid "No compatible versions"
-msgstr ""
+msgstr "कोई संगत संस्करण नहीं"
 
 #. {0} is a platform name like Windows or Mac OS X.
 msgid "for {0}"
@@ -239,7 +239,7 @@ msgid "Featured Themes"
 msgstr ""
 
 msgid "Featured Collections"
-msgstr ""
+msgstr "विशेष रुप से प्रदर्शित संग्रह"
 
 msgid "Sort by:"
 msgstr ""
@@ -272,36 +272,36 @@ msgid "This add-on is built with new technology that is compatible with Firefox 
 msgstr ""
 
 msgid "Compatible with Firefox 57+"
-msgstr ""
+msgstr "Firefox 57+ के साथ संगत"
 
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} साप्ताहिक डाउनलोड"
+msgstr[1] "{0} साप्ताहिक डाउनलोड"
 
 #. {0} is the number of users.
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} उपयोगकर्ता"
+msgstr[1] "{0} उपयोगकर्ता"
 
 msgid "by"
 msgstr "द्वारा"
 
 #. {0} is a category name, such as Nature
 msgid "More {0} Themes"
-msgstr ""
+msgstr "और {0} थीम"
 
 #. {0} is a category name, such as Nature
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "सभी {0} थीम देखें"
 
 msgid "More by this Artist"
-msgstr ""
+msgstr "इस कलाकार द्वारा और अधिक"
 
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "इस कलाकार द्वारा सभी थीम देखें"
 
 msgid "Categories"
 msgstr "श्रेणियाँ"
@@ -316,7 +316,7 @@ msgid "Rating"
 msgstr "रेटिंग"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "दैनिक उपयोगकर्ता"
 
 msgid "License"
 msgstr "लाइसेंस"
@@ -325,25 +325,25 @@ msgid "Awaiting Review"
 msgstr "समीक्षा का इंतजार"
 
 msgid "Rejected"
-msgstr ""
+msgstr "खारिज"
 
 msgid "Approved"
-msgstr ""
+msgstr "अनुमोदित"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> उपयोगकर्ता"
+msgstr[1] "<strong>{0}</strong> उपयोगकर्ता"
 
 msgid "Hover to Preview"
 msgstr ""
 
 msgid "Add"
-msgstr ""
+msgstr "जोड़ें"
 
 msgid "Edit"
-msgstr ""
+msgstr "संपादन"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
@@ -351,16 +351,16 @@ msgid "by {0} on {1}"
 msgstr ""
 
 msgid "Not yet rated"
-msgstr ""
+msgstr "अब तक रेट नही किया गया"
 
 msgid "<b>{0}</b> users"
-msgstr ""
+msgstr "<b>{0}</b> उपयोगकर्ता"
 
 #. {0} is the number of users.
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} दैनिक उपयोगकर्ता"
+msgstr[1] "{0} दैनिक उपयोगकर्ता"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -368,10 +368,10 @@ msgstr ""
 
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
-msgstr ""
+msgstr "गोपनीयता नीति"
 
 msgid "Report Abuse"
-msgstr ""
+msgstr "दुर्व्यवहार की रिपोर्ट करें"
 
 #, python-format
 msgid ""
@@ -380,29 +380,29 @@ msgid ""
 msgstr ""
 
 msgid "Send Report"
-msgstr ""
+msgstr "रिपोर्ट भेजें"
 
 msgid "or"
-msgstr ""
+msgstr "या"
 
 msgid "Cancel"
-msgstr ""
+msgstr "रद्द करें"
 
 msgid "What do you think?"
-msgstr ""
+msgstr "आप क्या सोचते हैं?"
 
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr ""
 
 msgid "Review:"
-msgstr ""
+msgstr "समीक्षा:"
 
 msgid "Rating:"
-msgstr ""
+msgstr "रेटिंग:"
 
 msgid "Submit review"
-msgstr ""
+msgstr "समीक्षा दर्ज़ करें"
 
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
 msgstr ""
@@ -511,7 +511,7 @@ msgid "Add-on screenshot #{0}"
 msgstr ""
 
 msgid "Add-on home page"
-msgstr ""
+msgstr "ऐड-ऑन मुख पृष्ठ"
 
 msgid "Support site"
 msgstr "समर्थन साइट"
@@ -537,10 +537,10 @@ msgid "About this Add-on"
 msgstr ""
 
 msgid "Developer’s Comments"
-msgstr ""
+msgstr "डेवलपर की टिप्पणियाँ"
 
 msgid "Version Information"
-msgstr ""
+msgstr "संस्करण की जानकारी"
 
 msgid "See complete version history"
 msgstr ""
@@ -591,23 +591,23 @@ msgstr ""
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "सभी उपयोगकर्ता समीक्षाएँ देखें"
+msgstr[1] "सभी %(cnt)s उपयोगकर्ता समीक्षाएँ देखें"
 
 msgid "This add-on has not yet been reviewed."
 msgstr ""
 
 msgid "Be the first!"
-msgstr ""
+msgstr "आगे रहें!"
 
 msgid "{0} users"
-msgstr ""
+msgstr "{0} उपयोगकर्ता"
 
 msgid "More"
-msgstr ""
+msgstr "अधिक"
 
 msgid "Add to collection"
-msgstr ""
+msgstr "संग्रह में जोड़ें"
 
 msgid "My Add-ons"
 msgstr ""
@@ -656,13 +656,13 @@ msgid "Account Settings"
 msgstr "खाता सेटिंग"
 
 msgid "My Collections"
-msgstr ""
+msgstr "मेरे संग्रह"
 
 msgid "My Favorites"
-msgstr ""
+msgstr "मेरे पसंदीदा"
 
 msgid "Log out"
-msgstr ""
+msgstr "लॉग आउट"
 
 msgid "Manage My Submissions"
 msgstr ""
