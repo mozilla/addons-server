@@ -221,6 +221,16 @@ class ReadOnlyMiddleware(object):
         elif request.method == 'POST':
             return render(request, 'amo/read-only.html', status=503)
 
+    def process_response(self, request, response):
+        # We haven't set the header yet so it's not an error response
+        # set by this middleware so we should default to setting it to
+        # `false`
+        header_name = self.READ_ONLY_HEADER
+
+        if header_name not in response:
+            response[self.READ_ONLY_HEADER] = 'false'
+        return response
+
     def process_exception(self, request, exception):
         if not settings.READ_ONLY:
             return
@@ -229,14 +239,6 @@ class ReadOnlyMiddleware(object):
             if request.path.startswith('/api/'):
                 return self._render_api_error()
             return render(request, 'amo/read-only.html', status=503)
-
-    def process_response(self, request, response):
-        # We haven't set the header yet so it's not an error response
-        header_name = self.READ_ONLY_HEADER
-
-        if header_name not in response and response.status_code != 503:
-            response[self.READ_ONLY_HEADER] = 'false'
-        return response
 
 
 class SetRemoteAddrFromForwardedFor(object):
