@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-03 05:40+0000\n"
-"Last-Translator: Mohit Bansal <philomath@disroot.org>\n"
+"PO-Revision-Date: 2018-08-15 16:57+0000\n"
+"Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -87,7 +87,7 @@ msgid "Download"
 msgstr "डाउनलोड करें"
 
 msgid "Featured"
-msgstr ""
+msgstr "चुनिंदा"
 
 msgctxt "install_button"
 msgid "Not Reviewed"
@@ -95,10 +95,10 @@ msgstr ""
 
 msgctxt "install_button"
 msgid "Experimental"
-msgstr ""
+msgstr "प्रयोगात्मक"
 
 msgid "Add to {0}"
-msgstr ""
+msgstr "{0} में जोड़ें"
 
 msgid "This slug is already in use. Please choose another."
 msgstr ""
@@ -110,7 +110,7 @@ msgstr ""
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
+msgstr[0] "अमान्य टैग: {0}"
 msgstr[1] ""
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
@@ -166,7 +166,7 @@ msgid "Enter a new author's email address"
 msgstr ""
 
 msgid "Listed"
-msgstr ""
+msgstr "सूचीबद्ध"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
@@ -188,7 +188,7 @@ msgid "for {0}"
 msgstr ""
 
 msgid "View privacy policy"
-msgstr ""
+msgstr "गोपनीयता नीति देखें"
 
 msgid "View End-User License Agreement"
 msgstr ""
@@ -224,7 +224,7 @@ msgid "Popular Extensions"
 msgstr ""
 
 msgid "Most Popular"
-msgstr ""
+msgstr "सर्वाधिक लोकप्रिय"
 
 msgid "All »"
 msgstr ""
@@ -287,7 +287,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "by"
-msgstr ""
+msgstr "द्वारा"
 
 #. {0} is a category name, such as Nature
 msgid "More {0} Themes"
@@ -304,25 +304,25 @@ msgid "See all Themes by this Artist"
 msgstr ""
 
 msgid "Categories"
-msgstr ""
+msgstr "श्रेणियाँ"
 
 msgid "Updated"
-msgstr ""
+msgstr "अद्यतन"
 
 msgid "Artist"
-msgstr ""
+msgstr "कलाकार"
 
 msgid "Rating"
-msgstr ""
+msgstr "रेटिंग"
 
 msgid "Daily Users"
 msgstr ""
 
 msgid "License"
-msgstr ""
+msgstr "लाइसेंस"
 
 msgid "Awaiting Review"
-msgstr ""
+msgstr "समीक्षा का इंतजार"
 
 msgid "Rejected"
 msgstr ""
@@ -514,24 +514,24 @@ msgid "Add-on home page"
 msgstr ""
 
 msgid "Support site"
-msgstr ""
+msgstr "समर्थन साइट"
 
 msgid "Support E-mail"
-msgstr ""
+msgstr "समर्थन ई-मेल"
 
 msgid "Info"
 msgstr "सूचना"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
-msgstr ""
+msgstr "अंतिम अद्यतन:"
 
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr ""
 
 msgid "Custom License"
-msgstr ""
+msgstr "अनुकूलित लाइसेंस"
 
 msgid "About this Add-on"
 msgstr ""
