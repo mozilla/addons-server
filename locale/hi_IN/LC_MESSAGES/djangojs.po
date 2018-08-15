@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 06:29+0000\n"
+"PO-Revision-Date: 2018-08-15 06:51+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -127,43 +127,45 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"संकलित बाइनरी, साथ ही minified या obfuscated स्क्रिप्ट (ज्ञात पुस्तकालयों को छोड़कर) को अपने स्रोतों को समीक्षा के लिए अलग से सबमिट करने की आवश्यकता है. सुनिश्चित करें कि आप अपना सबमिशन अस्वीकार "
+"होने से बचने के लिए सोर्स कोड अपलोड फ़ील्ड का उपयोग करते हैं."
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "सत्यापन प्रक्रिया को ये मुद्दे मिले जो अस्वीकृति का कारण बन सकते हैं:"
 
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "क्षमा करें, कोई समर्थित प्लेटफ़ॉर्म नहीं पाया गया है."
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "आपने जो फाइलटाइप अपलोड किया वह मान्य नहीं है."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "आपकी फ़ाइल {0} के अधिकतम आकार से अधिक है."
 
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "आपने अपलोड रद्द कर दिया."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "इमेज या तो PNG या JPG होने चाहिए ."
 
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "वीडियोस WebM में होना चाहिए."
 
 msgid "Follow this Collection"
-msgstr ""
+msgstr "इस संग्रह का पालन करें"
 
 msgid "Stop Following"
-msgstr ""
+msgstr "पालन करना ​​बंद करें"
 
 msgid "Following"
 msgstr ""
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "यह थीम {0} के आपके संस्करण के साथ असंगत है"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "सर्वाधिकार सुरक्षित"
 
 msgid "Creative Commons Attribution 3.0"
 msgstr ""
@@ -184,7 +186,7 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr ""
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "आपकी थीम का नाम"
 
 msgid "Flagged for review"
 msgstr "समीक्षा के लिए चिह्नित"
@@ -196,28 +198,28 @@ msgid "Marked for deletion"
 msgstr "हटाने के लिए चिह्नित"
 
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "परिणाम अपडेट कर रहे हैं&hellip;"
 
 msgid "Category"
-msgstr ""
+msgstr "श्रेणी"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "<b>{0}</b> के लिए थीम खोजें"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "<b>{0}</b> के लिए एप्लिकेशन खोजें"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "<b>{0}</b> के लिए ऐड-ऑन खोजें"
 
 msgid "Use original"
 msgstr ""
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "{0} का सप्ताह"
 
 msgid " downloads"
-msgstr ""
+msgstr " डाउनलोड्स"
 
 msgid "{0} users"
 msgstr "{0} उपयोगकर्ता"
@@ -229,7 +231,7 @@ msgid "{0} collections"
 msgstr "{0} संग्रहित"
 
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} समीक्षा"
 
 msgid "{0} sales"
 msgstr "{0} बिक्री"
@@ -238,68 +240,68 @@ msgid "{0} refunds"
 msgstr ""
 
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} इंस्टॉल किये गए"
 
 msgid "Downloads"
-msgstr ""
+msgstr "डाउनलोड"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "दैनिक उपभोक्ता"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "राशि, USD में"
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "योगदानो की संख्या"
 
 msgid "More Info..."
-msgstr ""
+msgstr "अधिक जानकारी..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr ""
+msgstr "{0} के लिए विवरण"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "संग्रह बनाया गया"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "उपयोग हो रहे ऐड-ऑन"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "बनाए गए ऐड-ऑन"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "डाउनलोड किए गये ऐड-ऑन"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "अपडेट किए गये ऐड-ऑन"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "लिखित समीक्षाएं"
 
 msgid "User Signups"
-msgstr ""
+msgstr "उपयोगकर्ता साइन अप"
 
 msgid "Subscribers"
-msgstr ""
+msgstr "सदस्य"
 
 msgid "Ratings"
-msgstr ""
+msgstr "रेटिंग्स"
 
 msgid "Sales"
-msgstr ""
+msgstr "बिक्री"
 
 msgid "Installs"
-msgstr ""
+msgstr "संस्थापित"
 
 msgid "Unknown"
-msgstr ""
+msgstr "अज्ञात"
 
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "ऐड-ऑन प्रबंधक"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "ऐड-ऑन प्रबंधक प्रोमो"
 
 msgid "Add-ons Manager Featured"
 msgstr ""
