@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 16:50+0000\n"
-"Last-Translator: ravi <ravi.103151@gmail.com>\n"
+"PO-Revision-Date: 2018-08-15 22:11+0000\n"
+"Last-Translator: Dhiraj Kumar Singh <Singhdhiraj255@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -769,7 +769,7 @@ msgid "{name} was viewing this page first."
 msgstr ""
 
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "ऐप द्वारा रसीद की जाँच की गयी।"
 
 msgid "Receipt was not checked by app."
 msgstr ""
@@ -781,43 +781,43 @@ msgid "Loading&hellip;"
 msgstr "&hellip;लोड हो रहा है"
 
 msgid "Version Notes"
-msgstr ""
+msgstr "संस्करण नोट"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "समीक्षकों के लिए नोट"
 
 msgid "No version notes found"
-msgstr ""
+msgstr "कोई संस्करण नोट नहीं मिला"
 
 msgid "Review Text"
-msgstr ""
+msgstr "समीक्षा पाठ"
 
 msgid "Review notes found"
-msgstr ""
+msgstr "समीक्षा नोट मिले"
 
 msgid "Average Reviews"
 msgstr "औसत समीक्षाएं"
 
 msgid "Number of Reviews"
-msgstr ""
+msgstr "समीक्षा की संख्या"
 
 msgid "Requested Info"
 msgstr "अनुरोधित जानकारी"
 
 msgid "Flagged"
-msgstr ""
+msgstr "ध्वजांकित"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "प्रतिलिपि"
 
 msgid "Rejected"
-msgstr ""
+msgstr "खारिज"
 
 msgid "Approved"
-msgstr ""
+msgstr "अनुमोदित"
 
 msgid "No results found"
-msgstr ""
+msgstr "कोई परिणाम नहीं मिले"
 
 msgid "Theme"
 msgstr "थीम"
@@ -829,7 +829,7 @@ msgid "Status"
 msgstr "स्थिति"
 
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "सभी परीक्षण सफलतापूर्वक पारित किये गए।"
 
 msgid "These tests were not run."
 msgstr ""

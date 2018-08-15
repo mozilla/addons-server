@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 21:52+0000\n"
+"PO-Revision-Date: 2018-08-15 21:58+0000\n"
 "Last-Translator: Dhiraj Kumar Singh <Singhdhiraj255@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -2336,16 +2336,16 @@ msgid "Sexual or pornographic content"
 msgstr "यौन या अश्लील सामग्री"
 
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "अनुचित या आक्रामक सामग्री"
 
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "हिंसा, युद्ध, या हथियार की छवियाँ"
 
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "नाज़ी या अन्य नफरत वाली सामग्री"
 
 msgid "Defamatory content"
-msgstr ""
+msgstr "मानहानिकारक सामग्री"
 
 msgid "Online gambling"
 msgstr ""
@@ -2451,10 +2451,10 @@ msgid "A platform can only be chosen once."
 msgstr ""
 
 msgid "Application"
-msgstr ""
+msgstr "अनुप्रयोग"
 
 msgid "Select an application first"
-msgstr ""
+msgstr "पहले एक अनुप्रयोग का चयन करें"
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr ""
