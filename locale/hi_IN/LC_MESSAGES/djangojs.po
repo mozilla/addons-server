@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 06:51+0000\n"
+"PO-Revision-Date: 2018-08-15 07:08+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -310,13 +310,13 @@ msgid "Add-ons Manager Learn More"
 msgstr ""
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "खोज सुझाव"
 
 msgid "Search Results"
-msgstr ""
+msgstr "खोज के परिणाम"
 
 msgid "Homepage Promo"
-msgstr ""
+msgstr "मुखपृष्ठ का प्रचार"
 
 msgid "Homepage Featured"
 msgstr ""
@@ -325,46 +325,46 @@ msgid "Homepage Up and Coming"
 msgstr ""
 
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "मुखपृष्ठ सबसे लोकप्रिय"
 
 msgid "Detail Page"
-msgstr ""
+msgstr "विवरण पृष्ठ"
 
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "विवरण पृष्ठ (नीचे)"
 
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "विवरण पृष्ठ (विकास प्रणाली)"
 
 msgid "Often Used With"
-msgstr ""
+msgstr "के साथ अक्सर प्रयोग किया जाता है"
 
 msgid "Others By Author"
-msgstr ""
+msgstr "लेखक द्वारा अन्य"
 
 msgid "Dependencies"
-msgstr ""
+msgstr "निर्भरता"
 
 msgid "Upsell"
 msgstr ""
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "डेवलपर से मिलें"
 
 msgid "User Profile"
-msgstr ""
+msgstr "उपयोगकर्ता प्रोफ़ाइल"
 
 msgid "Version History"
-msgstr ""
+msgstr "संस्करण इतिहास"
 
 msgid "Sharing"
-msgstr ""
+msgstr "साझा हो रहा है"
 
 msgid "Category Pages"
-msgstr ""
+msgstr "श्रेणी पेज"
 
 msgid "Collections"
-msgstr ""
+msgstr "संग्रह"
 
 msgid "Category Landing Featured Carousel"
 msgstr ""
@@ -406,131 +406,131 @@ msgid "Total Amount Contributed"
 msgstr ""
 
 msgid "Average Contribution"
-msgstr ""
+msgstr "औसत योगदान"
 
 msgid "Usage"
-msgstr ""
+msgstr "प्रयोगीक"
 
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "डाउनलोड्स तथा दैनिक उपयोगकर्ता, पिछले {0} दिन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "डाउनलोड्स तथा दैनिक उपयोगकर्ता {0} से {1} तक"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनों में हुए इंस्टॉल और दैनिक उपयोगकर्ता"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "हुए इंस्टॉल और दैनिक उपयोगकर्ता {0} से {1} तक"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "डाउनलोड्स, पिछले {0} दिन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} तक की गई डाउनलोड्स"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "दैनिक उपयोगकर्ता, पिछले {0} दिन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} तक दैनिक उपयोगकर्ता"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "आवेदन, पिछले {0} दिन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} तक के आवेदन"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "प्लेटफॉर्म, पिछले {0} दिन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "प्लेटफार्म {0} से {1} तक"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "भाषाएँ, पिछले {0} दिन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "भाषाएँ, {0} से {1} तक"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "ऐड-ऑन संस्करण, पिछले {0} दिन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "ऐड-ऑन संस्करण {0} से {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "ऐड-ऑन स्थिति, अंतिम {0} दिन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "ऐड-ऑन स्थिति {0} से {1} तक"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "डाउनलोड स्रोत, पिछले {0} दिन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "डाउनलोड स्रोत {0} से {1} तक"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "योगदानें, अंतिम {0} दिन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} तक के योगदान"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "साइट आकंडे, अंतिम {0} दिन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "साइट आंकडे, {0} से {1} तक"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "उपयोग हो रहे गए ऐड-ऑन, पिछले {0} दिन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
@@ -614,7 +614,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} तक हुए इंस्टॉल"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
@@ -629,7 +629,7 @@ msgid "<b>{0}</b> average in last {1} days"
 msgstr ""
 
 msgid "No data available."
-msgstr ""
+msgstr "कोई आँकड़ा उपलब्ध नहीं."
 
 msgid "Date"
 msgstr ""
