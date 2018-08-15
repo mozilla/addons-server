@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-12 13:36+0000\n"
-"Last-Translator: Manuela Silva <manuelarodsilva@gmail.com>\n"
+"PO-Revision-Date: 2018-08-15 15:16+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -105,7 +105,7 @@ msgstr ""
 "Nós permitimos e encorajamos uma atualização, mas não poderá reverter este processo. Assim que os seus utilizadores tenham a WebExtension instalada, estes não poderão instalar um extra anterior."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Portar um extra de legado do Firefox no MDN"
+msgstr "Portar um extra de legado do Firefox na MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Inclua notas detalhadas da versão (isto pode ser feito no próximo passo)."
