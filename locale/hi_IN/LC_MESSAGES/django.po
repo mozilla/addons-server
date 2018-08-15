@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 21:29+0000\n"
+"PO-Revision-Date: 2018-08-15 21:52+0000\n"
 "Last-Translator: Dhiraj Kumar Singh <Singhdhiraj255@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -2006,58 +2006,58 @@ msgid "OS Integration"
 msgstr "ओएस एकीकरण"
 
 msgid "Retro"
-msgstr ""
+msgstr "पूर्वव्यापी"
 
 msgid "Sports"
-msgstr ""
+msgstr "खेल"
 
 msgid "Abstract"
-msgstr ""
+msgstr "सार"
 
 msgid "Causes"
-msgstr ""
+msgstr "कारण"
 
 msgid "Fashion"
-msgstr ""
+msgstr "फैशन"
 
 msgid "Film and TV"
-msgstr ""
+msgstr "फिल्म और टीवी"
 
 msgid "Foxkeh"
 msgstr ""
 
 msgid "Holiday"
-msgstr ""
+msgstr "छुट्टी"
 
 msgid "Music"
-msgstr ""
+msgstr "संगीत"
 
 msgid "Scenery"
-msgstr ""
+msgstr "दृश्य"
 
 msgid "Seasonal"
-msgstr ""
+msgstr "सामयिक"
 
 msgid "Solid"
-msgstr ""
+msgstr "ठोस"
 
 msgid "Websites"
-msgstr ""
+msgstr "वेबसाइट"
 
 msgid "General"
-msgstr ""
+msgstr "सामान्य"
 
 msgid "Business"
-msgstr ""
+msgstr "व्यापार"
 
 msgid "Dictionaries & Encyclopedias"
-msgstr ""
+msgstr "शब्दकोश व विश्वकोश"
 
 msgid "Kids"
-msgstr ""
+msgstr "बच्चे"
 
 msgid "Multiple Search"
-msgstr ""
+msgstr "विभिन्न खोज"
 
 msgid "News & Blogs"
 msgstr ""
@@ -2174,49 +2174,49 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr ""
 
 msgid "Any"
-msgstr ""
+msgstr "कोई"
 
 msgid "All Platforms"
-msgstr ""
+msgstr "सभी प्लेटफार्म"
 
 msgid "Linux"
-msgstr ""
+msgstr "लिनक्स"
 
 msgid "Mac OS X"
-msgstr ""
+msgstr "मैक ओएस एक्स"
 
 msgid "BSD"
-msgstr ""
+msgstr "बीएसडी"
 
 msgid "Windows"
-msgstr ""
+msgstr "विंडोज़"
 
 msgid "Solaris"
-msgstr ""
+msgstr "सोलारिस"
 
 msgid "Android"
-msgstr ""
+msgstr "एंड्रॉयड"
 
 msgid "Static Theme"
-msgstr ""
+msgstr "स्थैतिक थीम"
 
 msgid "Persona"
-msgstr ""
+msgstr "परसोना"
 
 msgid "No Reputation"
-msgstr ""
+msgstr "कोई प्रतिष्ठा नहीं"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "अच्छा (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "बहुत अच्छा (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "बेहतरीन (3)"
 
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "गाइड समीक्षाकर्ता अंक"
 
 msgid "New Add-on Review"
 msgstr ""
@@ -2246,37 +2246,37 @@ msgid "Updated Language Pack Review"
 msgstr "उद्दिनांकित भाषा पैक समीक्षा"
 
 msgid "Theme Review"
-msgstr ""
+msgstr "थीम समीक्षा"
 
 msgid "Theme (Static) Review"
-msgstr ""
+msgstr "थीम (स्थैतिक) समीक्षा"
 
 msgid "New Search Provider Review"
-msgstr ""
+msgstr "नई खोज प्रदाता समीक्षा"
 
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "प्रारंभिक खोज प्रदाता समीक्षा"
 
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "अपडेट किया गया खोज प्रदाता समीक्षा"
 
 msgid "New Complete Theme Review"
-msgstr ""
+msgstr "नई पूर्ण थीम समीक्षा"
 
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "प्रारंभिक पूर्ण थीम समीक्षा"
 
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "अपडेट की गयी पूर्ण थीम समीक्षा"
 
 msgid "Moderated Add-on Review"
-msgstr ""
+msgstr "नियंत्रित ऐड-ऑन समीक्षा"
 
 msgid "Add-on Review Moderation Reverted"
-msgstr ""
+msgstr "ऐड-ऑन समीक्षा संतुलन वापस किया गया"
 
 msgid "Add-on Content Review"
-msgstr ""
+msgstr "ऐड-ऑन सामग्री समीक्षा"
 
 msgid "Post-Approval Add-on Review (Highest Risk)"
 msgstr ""
@@ -2291,49 +2291,49 @@ msgid "Post-Approval Add-on Review (Low Risk)"
 msgstr ""
 
 msgid "Level 1"
-msgstr ""
+msgstr "स्तर 1"
 
 msgid "Level 2"
-msgstr ""
+msgstr "स्तर 2"
 
 msgid "Level 3"
-msgstr ""
+msgstr "स्तर 3"
 
 msgid "Level 4"
-msgstr ""
+msgstr "स्तर 4"
 
 msgid "Level 5"
-msgstr ""
+msgstr "स्तर 5"
 
 msgid "Level 6"
-msgstr ""
+msgstr "स्तर 6"
 
 msgid "Level 7"
-msgstr ""
+msgstr "स्तर 7"
 
 msgid "Level 8"
-msgstr ""
+msgstr "स्तर 8"
 
 msgid "Level 9"
-msgstr ""
+msgstr "स्तर 9"
 
 msgid "Request More Info"
-msgstr ""
+msgstr "अधिक जानकारी का अनुरोध करें"
 
 msgid "Flag"
-msgstr ""
+msgstr "ध्वजांकित करें"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "प्रतिलिपि"
 
 msgid "Reject"
-msgstr ""
+msgstr "अस्वीकृत करें"
 
 msgid "Approve"
-msgstr ""
+msgstr "अनुमोदित करें"
 
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "यौन या अश्लील सामग्री"
 
 msgid "Inappropriate or offensive content"
 msgstr ""
