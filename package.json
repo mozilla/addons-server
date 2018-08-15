@@ -30,6 +30,6 @@
 
   },
   "devDependencies": {
-    "potools": "0.2.0"
+    "potools": "0.3.0"
   }
 }
