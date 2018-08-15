@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 17:04+0000\n"
+"PO-Revision-Date: 2018-08-15 21:30+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2520,27 +2520,27 @@ msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVer
 msgstr "Le additivos legate non es compatibile con Firefox 57 o superior. Usar un maxVersion de 56.* o inferior."
 
 msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr ""
+msgstr "Le pacchettos de lingua precedente pro Firefox non es plus supportate. Un file manifest es requirite pro installar WebExtensions. Vide {mdn_link} pro altere detalios."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Nos consenti e incoragia un promotion, ma tu non pote inverter iste processo. Un vice que tu usatores ha WebExtension installate, illes non potera plus installar un additivo precedente."
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr ""
+msgstr "Tu non pote actualisar un additivo de WebExtensions con un precedente additivo. Tu usatores non potera usar tu nove version pois que Firefox non supporta iste typo de actualisation."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr ""
+msgstr "Tu clave API de disveloppator esseva trovate in le file inviate. Pro proteger tu conto, le clave essera revocate."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
+msgstr "Le clave API de disveloppator de un coautor esseva trovate in le file inviate. Pro proteger tu additivo, le clave essera revocate."
 
 #, python-format
 msgid "%s responded with %s (%s)."
-msgstr "%s respondite con %s (%s)."
+msgstr "%s ha respondite con %s (%s)."
 
 #, python-format
 msgid "Connection to \"%s\" timed out."
-msgstr "Tempore de connexion a \"%s\" expirate."
+msgstr "Connexion a \"%s\" foras tempore limite.\n"
 
 #, python-format
 msgid "Could not contact host at \"%s\"."
