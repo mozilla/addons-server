@@ -1,3 +1,4 @@
+import urllib
 import json
 import os
 import stat
@@ -10,9 +11,11 @@ from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 
 import mock
+import responses
 
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
+from nobot.client import HumanCaptchaClient, RecaptchaResponse
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -181,7 +184,7 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         assert 'recaptcha' not in form.fields
 
     @override_switch('addon-submission-captcha', active=True)
-    def test_read_dev_agreement_captcha_active(self):
+    def test_read_dev_agreement_captcha_active_error(self):
         self.user.update(read_dev_agreement=None)
         response = self.client.get(reverse('devhub.submit.agreement'))
         assert response.status_code == 200
@@ -191,6 +194,35 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         response = self.client.post(reverse('devhub.submit.agreement'))
 
         assert 'recaptcha' in response.context['agreement_form'].errors
+
+    @responses.activate
+    @override_switch('addon-submission-captcha', active=True)
+    def test_read_dev_agreement_captcha_active_success(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        assert response.status_code == 200
+        form = response.context['agreement_form']
+        assert 'recaptcha' in form.fields
+
+        verify_data = urllib.urlencode({
+            'secret': 'privkey',
+            'remoteip': '127.0.0.1',
+            'response': 'test',
+        })
+
+        responses.add(
+            responses.GET,
+            'https://www.google.com/recaptcha/api/siteverify?' + verify_data,
+            json={'error-codes': [], 'success': True})
+
+        response = self.client.post(reverse('devhub.submit.agreement'), data={
+            'g-recaptcha-response': 'test',
+            'distribution_agreement': 'on',
+            'review_policy': 'on',
+        })
+
+        assert response.status_code == 302
+        assert response['Location'] == reverse('devhub.submit.distribution')
 
 
 class TestAddonSubmitDistribution(TestCase):
