@@ -216,7 +216,7 @@ class ReadOnlyMiddleware(object):
 
         if request.path.startswith('/api/'):
             writable_method = request.method in ('POST', 'PUT', 'DELETE')
-            if settings.READ_ONLY and writable_method:
+            if writable_method:
                 return self._render_api_error()
         elif request.method == 'POST':
             return render(request, 'amo/read-only.html', status=503)
