@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 17:51+0000\n"
+"PO-Revision-Date: 2018-08-15 18:03+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -4099,7 +4099,7 @@ msgid "Sign In"
 msgstr "Giriş yapın"
 
 msgid "Web-Ext"
-msgstr ""
+msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
 msgstr "Eklenti oluşturmak, çalıştırmak ve test etmek için bir komut satırı aracı."
@@ -4488,7 +4488,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Bir sürü açık sekmeniz var mı? Bunları bir kenar çubuğunda düzenleyin."
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4512,7 +4512,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
-msgstr ""
+msgstr "Firefox'ta anında hava durumu bilgilerini alın."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4702,7 +4702,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
-msgstr ""
+msgstr "Bir resmin üzerine gelerek onu büyütün."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6356,7 +6356,7 @@ msgid "Your privacy"
 msgstr "Gizliliğiniz"
 
 msgid "All Shield Studies"
-msgstr ""
+msgstr "Tüm Shield araştırmaları"
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
 msgstr ""
@@ -6518,9 +6518,8 @@ msgstr "Ön izleme için üstüne gelin"
 msgid "Edit reply"
 msgstr "Yanıtı düzenle"
 
-#, fuzzy
 msgid "Edit review"
-msgstr "İncelemeyi Tamamla"
+msgstr "İncelemeyi düzenle"
 
 msgid "Delete reply"
 msgstr "Yanıtı sil"
@@ -6655,7 +6654,7 @@ msgid "days"
 msgstr "gün"
 
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Hazır yanıtı seçin..."
 
 #. L10n: Description of what can be searched for.
 msgid "theme name"
@@ -8179,9 +8178,8 @@ msgstr "Fotoğraf silindi"
 msgid "Profile Updated"
 msgstr "Profil güncellendi"
 
-#, fuzzy
 msgid "Errors Found"
-msgstr "Bulunamadı"
+msgstr "Hatalar bulundu"
 
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "Yaptığınız değişikliklerde hatalar bulunmaktadır. Lütfen düzeltip yeniden gönderin."
