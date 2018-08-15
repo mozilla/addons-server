@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-14 22:51+0000\n"
+"PO-Revision-Date: 2018-08-15 07:39+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2473,7 +2473,7 @@ msgid "Continue with existing upload instead?"
 msgstr "Continuar in vice con le cargamento existente?"
 
 msgid "You have not uploaded a source file."
-msgstr ""
+msgstr "Tu non ha cargate un file fonte."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
@@ -2566,7 +2566,7 @@ msgid "User Reviews"
 msgstr "Revisiones del usator"
 
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "Cambios salvate con successo."
 
 msgid "Please check the form for errors."
 msgstr "Per favor controla le modello per errores."
@@ -2842,7 +2842,7 @@ msgid "Authors"
 msgstr "Autores"
 
 msgid "About author roles"
-msgstr ""
+msgstr "A proposito del rolo del autores"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -3032,7 +3032,7 @@ msgid "No, this add-on's stats are not publicly viewable."
 msgstr ""
 
 msgid "Upgrade SDK?"
-msgstr ""
+msgstr "Promover SDK?"
 
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
 msgstr ""
@@ -3064,7 +3064,7 @@ msgid "Remove this dependent add-on"
 msgstr ""
 
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "Scribe le nomine de un additivo"
 
 msgid "Add-on Media for {0}"
 msgstr ""
@@ -3506,7 +3506,7 @@ msgid "Use the fields below to upload your add-on package. After upload, a serie
 msgstr ""
 
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "Con qual systema operative iste file es compatibile?"
 
 msgid "Administrative overrides"
 msgstr ""
