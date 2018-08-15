@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 19:29+0000\n"
+"PO-Revision-Date: 2018-08-15 19:47+0000\n"
 "Last-Translator: Wolfgang Marcos <eusou@olobo.me>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5042,7 +5042,7 @@ msgstr "Melhore sua experiência de leitura {start_sub_heading}com {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Torne o texto que você está lendo mais atraente removendo os elementos desnecessários que o rodeiam."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5050,7 +5050,7 @@ msgstr "Abra múltiplos links {start_sub_heading}com {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
-msgstr ""
+msgstr "Clique com o botão direito do mouse e arraste os links que você quer abrir em novas abas."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5058,7 +5058,7 @@ msgstr "Recupere abas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Acesse as abas recentemente fechadas clicando com o botão direito no ícone da barra de ferramentas."
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5066,7 +5066,7 @@ msgstr "Inspire produtividade {start_sub_heading}com {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Modifique a página de nova aba para exibir um plano de fundo bonito, definir o que deseja ver diariamente e mais."
 
 #. editorial content for the discovery pane.
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5074,7 +5074,7 @@ msgstr "Visualize imagens {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr ""
+msgstr "Traz de volta o botão \"Visualizar imagem\" enquanto pesquisa no Google Imagens."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5082,7 +5082,7 @@ msgstr "Melhore sua produtividade {start_sub_heading}com {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "Bloqueie sites que fazem você perder tempo a fim de se concentrar na tarefa que está realizando."
 
 #. editorial content for the discovery pane.
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5090,7 +5090,7 @@ msgstr "Atualiza suas abas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "Recarregue automaticamente as abas com base em intervalos de tempo."
 
 #. editorial content for the discovery pane.
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5106,7 +5106,7 @@ msgstr "Faça menos esforço {start_sub_heading}com {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Conclua suas tarefas com uma prática lista de afazeres que sincroniza em todos seus dispositivos."
 
 #. editorial content for the discovery pane.
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5114,7 +5114,7 @@ msgstr "Faça compras de forma inteligente {start_sub_heading}com {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr ""
+msgstr "Monitore a cronologia dos preços, identifique produtos concorrentes, conheça a classificação do vendedor e mais."
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5122,7 +5122,7 @@ msgstr "Torne o YouTube seu {start_sub_heading}com {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "Reproduza vídeos numa janela pop-up, veja anúncios somente nos canais inscritos, faça captura de telas em vídeos e muito mais."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5130,7 +5130,7 @@ msgstr "Melhore o tráfego ao visitar sites {start_sub_heading}com {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "Obtenha informação detalhada sobre interação e tráfego de qualquer site."
 
 #. editorial content for the discovery pane.
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5138,7 +5138,7 @@ msgstr "Estilo Wikipédia {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh and modern appearance to Wikipedia."
-msgstr ""
+msgstr "Aplica um tema original e moderno ao site Wikipedia."
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5146,7 +5146,7 @@ msgstr "Trabalhe mais rápido {start_sub_heading}com {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
-msgstr ""
+msgstr "Use gestos do mouse para executar as coisas mais rapidamente."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5162,7 +5162,7 @@ msgstr "Baixe fotos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
-msgstr ""
+msgstr "Baixe imagens de qualquer site."
 
 #. editorial content for the discovery pane.
 msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5170,7 +5170,7 @@ msgstr "Mascare sua localização {start_sub_heading}com {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr ""
+msgstr "Disfarce sua localização para despistar rastreadores e proteger sua privacidade."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5178,7 +5178,7 @@ msgstr "Auto-censura {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Restrinja acesso a conteúdo inapropriado ou indesejado com um filtro."
 
 #. editorial content for the discovery pane.
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5186,7 +5186,7 @@ msgstr "Melhore as novas abas {start_sub_heading}com {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "Abra uma nova aba à direita da aba atual e não ao final da sequência de abas."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5194,7 +5194,7 @@ msgstr "Combata o spam {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Use e-mails temporários inteligentes para se manter anônimo e evitar spam."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5202,7 +5202,7 @@ msgstr "Modifique a sua privacidade {start_sub_heading}com {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Easily customize the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Personalize facilmente as configurações de privacidade internas do Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5218,7 +5218,7 @@ msgstr "Obtenha traduções instantâneas {start_sub_heading}com {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Obtenha uma tradução instantânea selecionando um texto e clicando no botão que surgirá."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5226,7 +5226,7 @@ msgstr "Personalize as novas abas {start_sub_heading}com {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
-msgstr ""
+msgstr "Seja criativo e personalize a página da nova aba mostrando seus sites favoritos e escolhendo um tema."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5234,7 +5234,7 @@ msgstr "Não aos redirecionamentos {start_sub_heading}com {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "Acesse diretamente (sem redirecionamento) o site que deseja."
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5242,7 +5242,7 @@ msgstr "WhatsApp na Web {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "Conecte-se ao WhatsApp a partir do painel da barra de ferramentas do Firefox para receber uma notificação de conversas não lidas."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5250,7 +5250,7 @@ msgstr "Traduza de/para o Alemão {start_sub_heading}com {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "Obtenha traduções especializadas em alemão a partir do inglês, francês, espanhol e outros idiomas."
 
 #. editorial content for the discovery pane.
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5258,7 +5258,7 @@ msgstr "Crie uma lista de sites bloqueados {start_sub_heading}com {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
-msgstr ""
+msgstr "Restrinja o acesso do Firefox aos sites de sua escolha."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5266,7 +5266,7 @@ msgstr "Trabalhe de forma mais inteligente {start_sub_heading}com {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "Gerencie sua produtividade trabalhando em intervalos de tempo preestabelecidos."
 
 #. editorial content for the discovery pane.
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5274,7 +5274,7 @@ msgstr "Leia facilmente {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "Confira todos seus canais RSS numa só página."
 
 #. editorial content for the discovery pane.
 msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5290,7 +5290,7 @@ msgstr "Encontre imagens {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "Faça uma pesquise inversa de imagem utilizando o poder de múltiplos mecanismos de busca."
 
 #. editorial content for the discovery pane.
 msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5298,7 +5298,7 @@ msgstr "Guarde para mais tarde {start_sub_heading}com {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Store web pages to access across devices."
-msgstr ""
+msgstr "Armazene páginas da web para acessar em seus diferentes dispositivos."
 
 #. editorial content for the discovery pane.
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5314,11 +5314,11 @@ msgstr "Sem formatações {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "Elimine a formatação desnecessária e copie somente o texto simples."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Com um simples clique, traduza uma página da web inteira para o idioma se sua escolha."
 
 #. editorial content for the discovery pane.
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5326,7 +5326,7 @@ msgstr "Extrair links {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr ""
+msgstr "Abra imediatamente todos os links de uma página da web em abas novas."
 
 #. editorial content for the discovery pane.
 msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5342,7 +5342,7 @@ msgstr "Evitar redirecionamentos e rastradores {start_sub_heading}com {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
-msgstr ""
+msgstr "Remova parâmetros e páginas de redirecionamento."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5350,7 +5350,7 @@ msgstr "Pare as pesquisas rastreadas {start_sub_heading}com {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "Evite que mecanismos de busca saibam em quais resultados você clicou."
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5819,7 +5819,7 @@ msgstr "Esconda seus rastros {start_sub_heading}com {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
-msgstr ""
+msgstr "Realize pesquisas mais seguras com bloqueio de rastreadores, criptografia inteligente, pesquisa privativas e outros fatores essenciais."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
