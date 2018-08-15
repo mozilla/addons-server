@@ -173,6 +173,25 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
+    def test_read_dev_agreement_captcha_inactive(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        assert response.status_code == 200
+        form = response.context['agreement_form']
+        assert 'recaptcha' not in form.fields
+
+    @override_switch('addon-submission-captcha', active=True)
+    def test_read_dev_agreement_captcha_active(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        assert response.status_code == 200
+        form = response.context['agreement_form']
+        assert 'recaptcha' in form.fields
+
+        response = self.client.post(reverse('devhub.submit.agreement'))
+
+        assert 'recaptcha' in response.context['agreement_form'].errors
+
 
 class TestAddonSubmitDistribution(TestCase):
     fixtures = ['base/users']

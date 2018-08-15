@@ -20,7 +20,7 @@ from olympia.addons.forms import AddonFormBase
 from olympia.addons.models import (
     Addon, AddonCategory, AddonDependency, AddonReviewerFlags, AddonUser,
     Preview)
-from olympia.amo.fields import HttpHttpsOnlyURLField
+from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.templatetags.jinja_helpers import mark_safe_lazy
 from olympia.amo.urlresolvers import reverse
@@ -799,6 +799,15 @@ class DistributionChoiceForm(forms.Form):
 class AgreementForm(forms.Form):
     distribution_agreement = forms.BooleanField()
     review_policy = forms.BooleanField()
+    recaptcha = ReCaptchaField(label='')
+
+    def __init__(self, *args, **kwargs):
+        render_captcha = kwargs.pop('render_captcha', False)
+
+        super(AgreementForm, self).__init__(*args, **kwargs)
+
+        if not render_captcha:
+            del self.fields['recaptcha']
 
 
 class SingleCategoryForm(forms.Form):
