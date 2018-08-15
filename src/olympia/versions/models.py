@@ -95,9 +95,6 @@ class Version(OnChangeMixin, ModelBase):
     nomination = models.DateTimeField(null=True)
     reviewed = models.DateTimeField(null=True)
 
-    has_reviewer_comment = models.BooleanField(
-        db_column='has_editor_comment', default=False)
-
     deleted = models.BooleanField(default=False)
 
     source = models.FileField(

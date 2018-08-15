@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 20:11+0000\n"
-"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
+"POT-Creation-Date: 2018-08-09 07:45+0000\n"
+"PO-Revision-Date: 2018-08-13 12:07+0000\n"
+"Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -2421,9 +2421,6 @@ msgstr "アップロードした内容にエラーがあります。もう一度
 msgid "Override failed validation"
 msgstr "失敗した検証を上書き"
 
-msgid "Submit my add-on for manual review."
-msgstr "このアドオンの手作業による審査を申請します。"
-
 msgid "You cannot upload any more files for this version."
 msgstr "このバージョンにはこれ以上ファイルをアップロードできません。"
 
@@ -2438,6 +2435,12 @@ msgstr "バージョン {version} は既に存在します。"
 
 msgid "Continue with existing upload instead?"
 msgstr "代わりに既存のアップロードで続けますか？"
+
+msgid "You have not uploaded a source file."
+msgstr "ソースファイルをアップロードしていません。"
+
+msgid "Source file uploaded but you indicated no source was needed."
+msgstr "ソースファイルがアップロードされましたが、あなたはソースが必要ないと示しています。"
 
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "「すべて」の OS は、特定の OS と組み合わせることができません。"
@@ -3377,6 +3380,73 @@ msgstr "ファイルをアップロード"
 msgid "Go to My Submissions"
 msgstr "自分の登録アイテムを見る"
 
+msgid "Source Code Upload"
+msgstr "ソースコードのアップロード"
+
+msgid "Do You Need to Submit Source Code?"
+msgstr "ソースコードを提出する必要がありますか？"
+
+msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgstr "ソースコードの提出は必要となるかもしれません。今正しいコースコードを提出しなかった場合、あなたのアドオンはサイトから削除される可能性があります！"
+
+#, python-format
+msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
+msgstr "<a %(a_attrs)s>ソースコード提出ポリシー</a> を確認してください。"
+
+msgid "Do you use any of the following?"
+msgstr "以下のいずれかを使っていますか？"
+
+msgid "Code minifiers or obfuscators"
+msgstr "コードを最小化もしくは難読化するツール"
+
+msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
+msgstr "<span class=\"tech-emphasis\">webpack</span> など、複数のファイルをひとつにまとめるツール"
+
+msgid "Web template engines, both for HTML and CSS"
+msgstr "HTML や CSS 向けのウェブテンプレートエンジン"
+
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgstr "コードやファイルに対して何らかの処理を行い、最終的にアドオンに含めるコードやファイルを生成する、その他何らかのツール"
+
+msgid "You do not need to submit Source Code, and you’re ready for the next step."
+msgstr "あなたはソースコードを提出する必要はなく、次のステップへ向けた準備が整いました。"
+
+msgid "Your Submission Requires Source Code."
+msgstr "あなたはソースコードを提出する必要があります。"
+
+#, python-format
+msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
+msgstr "ソースコードは、以下に示すものを含め、<a %(a_attrs)s>ポリシー要件</a> を満たす必要があります。"
+
+msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+msgstr "アドオンのコードと完全に同一のものを生成するためのビルド手順書。"
+
+msgid "A build script that executes all necessary technical steps."
+msgstr "すべての必要な技術的手順を実行するビルドスクリプト。"
+
+msgid "Operating system and build environment requirements."
+msgstr "オペレーティングシステムとビルド環境の要件。"
+
+msgid ""
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
+msgstr "ビルドプロセスで何らかのプログラムを使っている場合はその詳細 (必須バージョンやインストール手順など) (例: 使用している <span class=\"tech-emphasis\">node</span> と <span class=\"tech-emphasis\">npm</span> のバージョン)。"
+
+msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
+msgstr "<span class=\"instruction-emphasis\">注:</span> トランスパイル、難読化、最小化、その他自動生成されたソースファイルは受け入れられません (オープンソースのサードパーティライブラリを除く)。"
+
+msgid "How to Submit:"
+msgstr "提出方法:"
+
+msgid "Include instructions in a README file in the source code,"
+msgstr "ソースコード内の README ファイルか、"
+
+msgid "or in reviewer notes on the next page (if applicable)."
+msgstr "(該当する場合) 次のページの「審査担当者へのメモ」に手順を含めてください。"
+
+msgid "Upload source code:"
+msgstr "ソースコードをアップロード:"
+
 msgid "Add-on Distribution Agreement"
 msgstr "アドオン配布規約"
 
@@ -4189,59 +4259,12 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0}個の警告"
 
 #. editorial content for the discovery pane.
-msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} きれいなデジタルの足跡を残す"
-
-#. editorial content for the discovery pane.
-msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Firefox が Cookie やローカルストレージのようなウェブサイトデータを忘れて、選択したドメインのみを記憶するようにします。"
-
-msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr "シネマモード、広告ブロック、自動再生など、YouTube の新機能をお楽しみください。"
-
-#. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}卑劣なトラッカーを阻止"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "ウェブ上であなたを追跡する、目に見えないトラッカーやスパイ広告をブロック。"
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲームを拡張"
-
-msgid "Dozens of amazing emojis for every occasion—just a click away."
-msgstr "あらゆるシーンにぴったりの豊富な絵文字が、たったワンクリックで。"
-
-#. editorial content for the discovery pane.
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウンロード"
-
-msgid "Works seamlessly with most popular video sites."
-msgstr "最も人気のある動画サイトとシームレスに連携。"
-
-#. editorial content for the discovery pane.
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタマイズ"
-
-msgid "Set the page you see every time you open a new tab."
-msgstr "新しいタブを開いたときに表示されるページを設定。"
-
-#. editorial content for the discovery pane.
-msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲームを拡張"
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "あらゆるシーンにぴったりの豊富な絵文字が、いつでもワンクリックで。"
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンショットを撮影"
-
-msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
-msgstr "Awesome Screenshot Plus では、基本的なスクリーンショットツールに加えて、カスタムテキストやグラフィックスで画像に注釈を付けたり、ビジュアルを保存して共有したりできます。"
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4308,6 +4331,10 @@ msgid "Get instant global weather information right in Firefox."
 msgstr "世界中の気象情報を Firefox から即座に入手。"
 
 #. editorial content for the discovery pane.
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブをカスタマイズ"
+
+#. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
 msgstr "新しいタブを開いたときに表示されるページを選びます。"
 
@@ -4320,8 +4347,16 @@ msgid "See an interesting picture on the web and want to learn more about it? Tr
 msgstr "ネットで見つけた面白い写真について、もっと情報を知りたくないですか？この画像検索ツールをお試しください。"
 
 #. editorial content for the discovery pane.
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウンロード"
+
+#. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "YouTube、Facebook、Vimeo、Twitch、Dailymotion、Periscope、その他数多くの動画サイトに対応。"
+
+#. editorial content for the discovery pane.
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} で絵文字ゲームを拡張"
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
@@ -4507,6 +4542,14 @@ msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}見えないトラッ
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "追跡中のトラッカーを停止させ、その詳細を確認。"
+
+#. editorial content for the discovery pane.
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} きれいなデジタルの足跡を残す"
+
+#. editorial content for the discovery pane.
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+msgstr "Firefox が Cookie やローカルストレージのようなウェブサイトデータを忘れて、選択したドメインのみを記憶するようにします。"
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7696,15 +7739,15 @@ msgstr "ロケールを削除"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "ユーザー「%(user)s」のアカウントが停止されました。"
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "ユーザー「%(user)s」に属する写真が削除されました。"
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "ユーザー「%(users)s」のアカウントが停止されました。"
 
 msgid "Ban selected users"
 msgstr "選択したユーザーのアカウントを停止"

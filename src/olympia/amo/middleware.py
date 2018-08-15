@@ -14,11 +14,13 @@ from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.urls import is_valid_path
-from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.http import (
+    HttpResponsePermanentRedirect, HttpResponseRedirect,
+    JsonResponse)
 from django.middleware import common
 from django.utils.cache import patch_cache_control, patch_vary_headers
 from django.utils.encoding import force_bytes, iri_to_uri
-from django.utils.translation import activate
+from django.utils.translation import activate, ugettext_lazy as _
 
 import MySQLdb as mysql
 
@@ -124,6 +126,7 @@ class NoVarySessionMiddleware(SessionMiddleware):
     def process_response(self, request, response):
         if settings.READ_ONLY:
             return response
+
         # Let SessionMiddleware do its processing but prevent it from changing
         # the Vary header.
         vary = None
@@ -188,14 +191,49 @@ class CommonMiddleware(common.CommonMiddleware):
 
 
 class ReadOnlyMiddleware(object):
+    """Middleware that announces a downtime which for us usually means
+    putting the site into read only mode.
+
+    Supports issuing `Retry-After` header.
+    """
+    ERROR_MSG = _(
+        u'Some features are temporarily disabled while we '
+        u'perform website maintenance. We\'ll be back to '
+        u'full capacity shortly.')
+
+    API_HEADER_NAME = 'X-AMO-Read-Only'
+
+    def _render_api_error(self):
+        response = JsonResponse({'error': self.ERROR_MSG}, status=503)
+        response[self.API_HEADER_NAME] = 'true'
+        if settings.READ_ONLY_RETRY_AFTER is not None:
+            response['Retry-After'] = settings.READ_ONLY_RETRY_AFTER.seconds
+        return response
 
     def process_request(self, request):
-        if request.method == 'POST':
+        if not settings.READ_ONLY:
+            return
+
+        if request.path.startswith('/api/'):
+            writable_method = request.method in ('POST', 'PUT', 'DELETE')
+            if settings.READ_ONLY and writable_method:
+                return self._render_api_error()
+        elif request.method == 'POST':
             return render(request, 'amo/read-only.html', status=503)
 
     def process_exception(self, request, exception):
         if isinstance(exception, mysql.OperationalError):
+            if request.path.startswith('/api/'):
+                return self._render_api_error()
             return render(request, 'amo/read-only.html', status=503)
+
+    def process_response(self, request, response):
+        # We haven't set the header yet so it's not an error response
+        header_name = self.API_HEADER_NAME
+
+        if header_name not in response and response.status_code != 503:
+            response[self.API_HEADER_NAME] = 'false'
+        return response
 
 
 class SetRemoteAddrFromForwardedFor(object):

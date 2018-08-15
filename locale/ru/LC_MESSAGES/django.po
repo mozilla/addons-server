@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-06 20:10+0000\n"
-"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
+"POT-Creation-Date: 2018-08-09 07:45+0000\n"
+"PO-Revision-Date: 2018-08-11 14:51+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -732,7 +732,7 @@ msgid "Not allowed"
 msgstr "Не разрешено"
 
 msgid "Oops! Not allowed."
-msgstr "Ой! Не разрешено"
+msgstr "Ой! Не разрешено."
 
 msgid "You tried to do something that you weren't allowed to."
 msgstr "Вы попытались сделать что-то, что вам не разрешено."
@@ -2493,9 +2493,6 @@ msgstr "В процессе вашей загрузки произошла ош�
 msgid "Override failed validation"
 msgstr "Игнорировать неудавшуюся валидацию"
 
-msgid "Submit my add-on for manual review."
-msgstr "Представить моё дополнение на проверку вручную."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Вы не можете загрузить больше файлов для этой версии."
 
@@ -2510,6 +2507,12 @@ msgstr "Версия {version} уже существует."
 
 msgid "Continue with existing upload instead?"
 msgstr "Продолжить текущую загрузку?"
+
+msgid "You have not uploaded a source file."
+msgstr "Вы не выгрузили файл с исходным кодом."
+
+msgid "Source file uploaded but you indicated no source was needed."
+msgstr ""
 
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Платформа Все не может быть скомбинирована со специфичными платформами."
@@ -3507,6 +3510,73 @@ msgstr "Загрузить файл"
 msgid "Go to My Submissions"
 msgstr "Перейти в мои представления"
 
+msgid "Source Code Upload"
+msgstr "Выгрузка исходного кода"
+
+msgid "Do You Need to Submit Source Code?"
+msgstr ""
+
+msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgstr ""
+
+#, python-format
+msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
+msgstr ""
+
+msgid "Do you use any of the following?"
+msgstr ""
+
+msgid "Code minifiers or obfuscators"
+msgstr ""
+
+msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
+msgstr ""
+
+msgid "Web template engines, both for HTML and CSS"
+msgstr ""
+
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgstr ""
+
+msgid "You do not need to submit Source Code, and you’re ready for the next step."
+msgstr ""
+
+msgid "Your Submission Requires Source Code."
+msgstr ""
+
+#, python-format
+msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
+msgstr ""
+
+msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+msgstr ""
+
+msgid "A build script that executes all necessary technical steps."
+msgstr ""
+
+msgid "Operating system and build environment requirements."
+msgstr ""
+
+msgid ""
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
+msgstr ""
+
+msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
+msgstr ""
+
+msgid "How to Submit:"
+msgstr "Как отправить:"
+
+msgid "Include instructions in a README file in the source code,"
+msgstr ""
+
+msgid "or in reviewer notes on the next page (if applicable)."
+msgstr ""
+
+msgid "Upload source code:"
+msgstr "Выгрузить исходный код:"
+
 msgid "Add-on Distribution Agreement"
 msgstr "Соглашение распространения дополнения"
 
@@ -4353,60 +4423,12 @@ msgstr[1] "{0} предупреждения"
 msgstr[2] "{0} предупреждений"
 
 #. editorial content for the discovery pane.
-msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Не оставляйте цифрового следа {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Заставьте Firefox забыть данные веб-сайтов, такие как куки и локальное хранилище, но только для выбранных вами доменов."
-
-msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "Улучшайте видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr "Наслаждайтесь набором новых возможностей YouTube — режим кино, блокировка рекламы, автовоспроизведение и многое другое."
-
-#. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Создайте проблемы следящим за вами трекерам {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "Блокируйте невидимые трекеры и шпионскую рекламу, которая следит за вами в Интернете."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Улучшите свою работу с эмодзи {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis for every occasion—just a click away."
-msgstr "Десятки удивительных эмодзи для каждого случая — на расстоянии одного щелчка."
-
-#. editorial content for the discovery pane.
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Загружайте видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
-
-msgid "Works seamlessly with most popular video sites."
-msgstr "Работает с многими популярными видео-хостингами."
-
-#. editorial content for the discovery pane.
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Настраивайте вкладки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
-
-msgid "Set the page you see every time you open a new tab."
-msgstr "Укажите страницу, которую вы будете видеть каждый раз, когда вы откроете новую вкладку."
-
-#. editorial content for the discovery pane.
-msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Улучшите работу с эмодзи {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Десятки удивительных эмодзи для каждого случая — всегда на расстоянии одного щелчка."
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Делайте скриншоты {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
-
-msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
-msgstr ""
-"Больше, чем просто инструмент создания скриншотов, Awesome Screenshot Plus позволяет вам добавлять на ваши изображения текст и графику, а также предоставляет возможность хранить и делиться ими."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4434,7 +4456,7 @@ msgstr "Выполняйте поиск по картинке в множест�
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Блокировка рекламы и защита конфиденциальности {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Блокировка рекламы и защита приватности {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
@@ -4473,20 +4495,32 @@ msgid "Get instant global weather information right in Firefox."
 msgstr "Мгновенно получайте сведения о погоде во всем мире прямо в Firefox."
 
 #. editorial content for the discovery pane.
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Настраивайте вкладки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
 msgstr "Выберите страницу, которая будет отображаться при открытии новой вкладки."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Обратный поиск изображений {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Поиск по изображениям {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
 msgstr "Нашли интересное изображение в Интернете и хотите узнать о нем больше? Попробуйте этот инструмент поиска изображений."
 
 #. editorial content for the discovery pane.
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Загружайте видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "Работает с YouTube, Фейсбуком, Vimeo, Twitch, Dailymotion, Periscope и сотнями других сайтов с видео."
+
+#. editorial content for the discovery pane.
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Улучшите работу с эмодзи {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
@@ -4582,7 +4616,7 @@ msgstr "Получайте справку по грамматике, когда 
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Узнайте время во всем мире {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Узнайте время во всём мире {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
@@ -4631,7 +4665,7 @@ msgstr "80% прибыли от поисковых операций Ecosia ин�
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Находите недостающий веб-контент {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Находите недостающий веб-контент  {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
@@ -4672,6 +4706,14 @@ msgstr "Блокируйте невидимые трекеры {start_sub_headin
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Помешайте трекерам следить за вами и узнайте о них больше."
+
+#. editorial content for the discovery pane.
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Не оставляйте цифрового следа {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+msgstr "Заставьте Firefox забыть данные веб-сайтов, такие как куки и локальное хранилище, но только для выбранных вами доменов."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4795,7 +4837,7 @@ msgstr "Получите перевод выделенного текста ил
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Улучшайте Reddit {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Улучшите свой Reddit {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
@@ -4851,7 +4893,7 @@ msgstr "Превратите все свои открытые вкладки в 
 
 #. editorial content for the discovery pane.
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Грамотное управление загрузкой {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Грамотное управление загрузками {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
@@ -5051,7 +5093,7 @@ msgstr "Непривычное, современное оформление дл
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Работайте быстрее {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Ускорьте работу {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
@@ -5107,7 +5149,7 @@ msgstr "Сохраняйте анонимность и защищайтесь о
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Выбирайте себе конфиденциальность {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Выберите степень приватности {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily customize the built-in privacy settings in Firefox."
@@ -5115,7 +5157,7 @@ msgstr "Меняйте по своему вкусу встроенные нас�
 
 #. editorial content for the discovery pane.
 msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Удобнее чувствуйте себя в VK {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Удобнее чувствуйте себя в ВКонтакте {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
@@ -5263,7 +5305,7 @@ msgstr "Запретите поисковым системам узнавать 
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Загружайте видео YouTube {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Загружайте видео с YouTube {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
@@ -5439,7 +5481,7 @@ msgstr "Если товар, который вы ищете в интернет-
 
 #. editorial content for the discovery pane.
 msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Распространяйте твиты {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Размещайте твиты {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily broadcast web content to your Twitter following."
@@ -5515,7 +5557,7 @@ msgstr "Устраните перенаправление и быстрее до
 
 #. editorial content for the discovery pane.
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Раскрывайте введенные пароли {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Раскрывайте введённые пароли {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
@@ -5611,7 +5653,7 @@ msgstr "Защитите свои личные закладки паролем."
 
 #. editorial content for the discovery pane.
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Предотвратите утечку IP-адресов {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Предотвратите утечку IP-адреса {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
@@ -5687,7 +5729,7 @@ msgstr "Отрегулируйте звуковые настройки брау�
 
 #. editorial content for the discovery pane.
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Защита конфиденциальности {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Защита приватности {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."

@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2017-02-20 09:07+0000\n"
-"Last-Translator: Po-chiang (Bob) Chao <bobchao@gmail.com>\n"
+"POT-Creation-Date: 2018-08-09 07:45+0000\n"
+"PO-Revision-Date: 2018-08-09 12:39+0000\n"
+"Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -105,7 +105,7 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "包含詳細的版本資訊（可以在下一步完成）。"
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "若您的附加元件需要在某個網站上有帳號才能進行測試，請也在給審核者的紀錄中包含測試帳號的帳號名稱與密碼。（可以在下一步完成）"
+msgstr "若您的附加元件需要在某個網站上有帳號才能進行測試，請也在給審核者的留言中包含測試帳號的帳號名稱與密碼。（可以在下一步完成）"
 
 msgid "Add-on submission checklist"
 msgstr "附加元件送出前檢查清單"
@@ -767,7 +767,7 @@ msgid "Version Notes"
 msgstr "版本資訊"
 
 msgid "Notes for Reviewers"
-msgstr "給審查者的筆記"
+msgstr "給審核者的留言"
 
 msgid "No version notes found"
 msgstr "找不到版本紀錄"

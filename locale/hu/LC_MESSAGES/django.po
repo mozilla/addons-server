@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 16:25+0000\n"
+"POT-Creation-Date: 2018-08-09 07:45+0000\n"
+"PO-Revision-Date: 2018-08-09 20:25+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2469,9 +2469,6 @@ msgstr "Hiba történt a feltöltés közben, próbálja újra."
 msgid "Override failed validation"
 msgstr "Sikertelen vizsgálat felülbírálása"
 
-msgid "Submit my add-on for manual review."
-msgstr "Kiegészítő kézi értékelésre benyújtása."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Ehhez a verzióhoz több fájl nem tölthető fel."
 
@@ -2486,6 +2483,12 @@ msgstr "A(z) {version} verzió már létezik."
 
 msgid "Continue with existing upload instead?"
 msgstr "Folytatja a meglévő feltöltéssel?"
+
+msgid "You have not uploaded a source file."
+msgstr "Nem töltött fel forrásfájlt."
+
+msgid "Source file uploaded but you indicated no source was needed."
+msgstr "A forrásfájl feltöltésre került, de azt jelezte, hogy nincs szükség forrásra."
 
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Az Összes platform nem vonható össze más platformokkal."
@@ -3469,6 +3472,77 @@ msgstr "Fájl feltöltése"
 msgid "Go to My Submissions"
 msgstr "Ugrás a beküldésekhez"
 
+msgid "Source Code Upload"
+msgstr "Forráskód feltöltés"
+
+msgid "Do You Need to Submit Source Code?"
+msgstr "Be kell küldenie a forráskódot?"
+
+msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgstr "Lehet hogy forráskódot kell beküldenie. Ha most nem küldi be a helyes forráskódot, akkor lehet hogy a kiegészítő eltávolításra kerül az oldalról."
+
+#, python-format
+msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
+msgstr "Kérjük tekintse meg a <a %(a_attrs)s>forráskód beküldési irányelveket</a>."
+
+msgid "Do you use any of the following?"
+msgstr "Használja-e a következők bármelyikét?"
+
+msgid "Code minifiers or obfuscators"
+msgstr "Kód minimalizálók és obfuszkálók"
+
+msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
+msgstr "Olyan eszközök, melyek több fájl egyetlen fájlban kombinálnak, mint a <span class=\"tech-emphasis\">webpack</span>"
+
+msgid "Web template engines, both for HTML and CSS"
+msgstr "Webes sablonmotorok, akár HTML-hez, akár CSS-hez"
+
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgstr "Egyéb olyan eszközök, melyek kódot vagy fájlokat olvasnak be, feldolgozzák őket, és kódot vagy fájlokat generálnak, majd felhasználják azokat a kiegészítőben"
+
+msgid "You do not need to submit Source Code, and you’re ready for the next step."
+msgstr "Nem kell forráskódot feltöltenie, és készen áll a következő lépésre."
+
+msgid "Your Submission Requires Source Code."
+msgstr "A beküldéséhez forráskód szükséges."
+
+#, python-format
+msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
+msgstr "A forráskódnak meg kell felelnie az <a %(a_attrs)s>irányelvek követelményeinek</a>, amelyek ezeket is magukba foglalják:"
+
+msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+msgstr "Lépésről lépésre történő összeállítási utasítások, hogy a kiegészítő kódjával egyező másolat jöjjön létre."
+
+msgid "A build script that executes all necessary technical steps."
+msgstr "Összeállítási parancsfájl, amely végrehajta a szükséges műszaki lépéseket."
+
+msgid "Operating system and build environment requirements."
+msgstr "Operációs rendszer és összeállítási környezeti követelmények."
+
+msgid ""
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
+msgstr ""
+"Részletek (köztük a szükséges verzió és a telepítési utasítások) az összeállítási folyamat során használt programokról (például: használt <span class=\"tech-emphasis\">node</span> és <span class"
+"=\"tech-emphasis\">npm</span> verziók)."
+
+msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
+msgstr ""
+"<span class=\"instruction-emphasis\">Megjegyzés:</span> A forrásfájlok (leszámítva a harmadik féltől származó nyílt forráskódú programkönyvtárakat) nem lehetnek más nyelvről átfordítva, obfuszkálva,"
+" minimalizálva vagy másképpen gép által előállítva."
+
+msgid "How to Submit:"
+msgstr "Beküldés menete:"
+
+msgid "Include instructions in a README file in the source code,"
+msgstr ""
+
+msgid "or in reviewer notes on the next page (if applicable)."
+msgstr ""
+
+msgid "Upload source code:"
+msgstr "Forráskód feltöltése:"
+
 msgid "Add-on Distribution Agreement"
 msgstr "Kiegészítő terjesztési megállapodás"
 
@@ -4302,59 +4376,12 @@ msgstr[0] "{0} figyelmeztetés"
 msgstr[1] "{0} figyelmeztetés"
 
 #. editorial content for the discovery pane.
-msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ne hagyjon digitális nyomot {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Felejtesse el a Firefoxszal a webhelyadatokat, mint a sütiket és a helyi tárolót, de csak azoknál az oldalaknál, amelyeket kiválaszt."
-
-msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "Javítsa a videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr "Élvezzen egy csokornyi új YouTube funkciót, mint a mozi mód, reklámblokkolás, automatikus lejátszás, és így tovább."
-
-#. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Állítsa meg az alattomos követőket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "Blokkolja a láthatatlan követőket, és a kémkedő hirdetéseket, amelyek követik a weben."
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Még több emodzsi {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
-
-msgid "Dozens of amazing emojis for every occasion—just a click away."
-msgstr "Lenyűgöző emodzsik tucatjai minden alkalomra – csak egy kattintásnyira."
-
-#. editorial content for the discovery pane.
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Töltsön le videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
-
-msgid "Works seamlessly with most popular video sites."
-msgstr "Zökkenőmentesen működik a legnépszerűbb videós oldalakkal."
-
-#. editorial content for the discovery pane.
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lap testreszabás {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
-
-msgid "Set the page you see every time you open a new tab."
-msgstr "Állítsa be az oldalt, amit minden új lapon látni fog."
-
-#. editorial content for the discovery pane.
-msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Még több emodzsi {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Lenyűgöző emodzsik tucatjai minden alkalomra – mindig csak egy kattintásnyira."
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Készítsen képernyőképeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
-
-msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
-msgstr "Több, mint egyszerű képernyőkép eszköz, az Awesome Screenshot Plus lehetővé teszi a képek feliratozását egyéni szöveggel és grafikákkal, valamint a képek tárolását és megosztását is megoldja."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4421,6 +4448,10 @@ msgid "Get instant global weather information right in Firefox."
 msgstr "Kapjon azonnali globális időjárási információkat közvetlenül a Firefoxban."
 
 #. editorial content for the discovery pane.
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Lap testreszabás {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+
+#. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
 msgstr "Válassza ki az oldalt, amit minden új lapon látni fog."
 
@@ -4433,8 +4464,16 @@ msgid "See an interesting picture on the web and want to learn more about it? Tr
 msgstr "Egy érdekes képet lát a weben, és szeretne többet megtudni róla? Próbálja ki ezt a képkereső eszközt."
 
 #. editorial content for the discovery pane.
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Töltsön le videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+
+#. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "Működik a YouTube-bal, a Facebookkal, a Vimeóval, a Twitchel, a Dailymotionnel, a Periscope-pal, és több száz más videós oldallal."
+
+#. editorial content for the discovery pane.
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Még több emodzsi {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
@@ -4620,6 +4659,14 @@ msgstr "Blokkolja a láthatatlan követőket {start_sub_heading}a(z) {addon_name
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Állítsa meg menet közben a követőket, és tudjon meg többet róluk."
+
+#. editorial content for the discovery pane.
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ne hagyjon digitális nyomot {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+msgstr "Felejtesse el a Firefoxszal a webhelyadatokat, mint a sütiket és a helyi tárolót, de csak azoknál az oldalaknál, amelyeket kiválaszt."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5561,7 +5608,7 @@ msgstr "Védje meg a könyvjelzőket {start_sub_heading}a(z) {addon_name} kiegé
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Védje jelszóval a személyes könyvjelzőit."
 
 #. editorial content for the discovery pane.
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5569,7 +5616,7 @@ msgstr "Akadályozza meg az IP-cím kiszivárgásokat {start_sub_heading}a(z) {a
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "VPN-t használ? Az IP-címe így is kiderülhet. Állítsa ezt meg a WebRTC letiltásával."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5647,7 +5694,7 @@ msgstr "Adatvédelem {start_sub_heading}a(z) {addon_name} kiegészítővel{end_s
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Védje meg magát a legalattomosabb követőktől."
 
 #. editorial content for the discovery pane.
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"

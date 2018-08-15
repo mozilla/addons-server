@@ -13,6 +13,7 @@ from olympia.addons.serializers import SimpleVersionSerializer
 from olympia.api.utils import is_gate_active
 from olympia.ratings.forms import RatingForm
 from olympia.ratings.models import Rating
+from olympia.ratings.utils import maybe_check_with_akismet
 from olympia.versions.models import Version
 
 
@@ -205,3 +206,14 @@ class RatingSerializer(BaseRatingSerializer):
             validated_data['version'] = (
                 validated_data['version'].get('version'))
         return super(RatingSerializer, self).create(validated_data)
+
+    def save(self, **kwargs):
+        # Take a copy of the body before the save because we pass it to
+        # maybe_check_with_akismet to confirm it changed.
+        pre_save_body = unicode(self.instance.body) if self.instance else None
+
+        instance = super(RatingSerializer, self).save(**kwargs)
+
+        request = self.context.get('request')
+        maybe_check_with_akismet(request, instance, pre_save_body)
+        return instance

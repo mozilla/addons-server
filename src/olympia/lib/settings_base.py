@@ -166,6 +166,7 @@ AMO_LANGUAGES = (
     'de',  # German
     'dsb',  # Lower Sorbian
     'el',  # Greek
+    'en-CA',  # English (Canada)
     'en-GB',  # English (British)
     'en-US',  # English (US)
     'es',  # Spanish
@@ -540,6 +541,7 @@ INSTALLED_APPS = (
     'olympia.legacy_api',
     'olympia.legacy_discovery',
     'olympia.lib.es',
+    'olympia.lib.akismet',
     'olympia.pages',
     'olympia.ratings',
     'olympia.reviewers',
@@ -1273,6 +1275,7 @@ CELERY_TASK_ROUTES = {
     'olympia.ratings.tasks.addon_grouped_rating': {'queue': 'ratings'},
     'olympia.ratings.tasks.addon_rating_aggregates': {'queue': 'ratings'},
     'olympia.ratings.tasks.update_denorm': {'queue': 'ratings'},
+    'olympia.ratings.tasks.check_with_akismet': {'queue': 'ratings'},
 
 
     # Stats
@@ -1521,9 +1524,14 @@ ENGAGE_ROBOTS = True
 # Read-only mode setup.
 READ_ONLY = env.bool('READ_ONLY', default=False)
 
-# If there is an expected timeframe for our downtime, please set this
-#
-READ_ONLY_EXPECTED_TIMEFRAME = None
+# Expected retry-time that can be respected by clients. This will
+# be set as `Retry-After` header.
+# Please set this to a `datetime.timedelta()` instance that is
+# reasonable for clients to try again.
+# We don't support hard dates as these are usually quite hard to
+# adhere anyway.
+# Will be ignored if `None`
+READ_ONLY_RETRY_AFTER = None
 
 
 # Turn on read-only mode in local_settings.py by putting this line
@@ -1922,3 +1930,8 @@ BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
 BASKET_API_KEY = env('BASKET_API_KEY', default=None)
 # Default is 10, the API usually answers in 0.5 - 1.5 seconds.
 BASKET_TIMEOUT = 5
+
+AKISMET_API_URL = 'https://{api_key}.rest.akismet.com/1.1/{action}'
+AKISMET_API_KEY = env('AKISMET_API_KEY', default=None)
+AKISMET_API_TIMEOUT = 100
+AKISMET_REAL_SUBMIT = False

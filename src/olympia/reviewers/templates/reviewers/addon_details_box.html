@@ -130,7 +130,7 @@
             <tr>
               <th>{{ _('Privacy Policy') }}</th>
               <td>
-                <a href="{{ addon.get_detail_url('privacy') }}">
+                <a href="{{ privacy_url }}">
                   {{ _('View Privacy Policy') }}</a>
               </td>
             </tr>
@@ -145,7 +145,7 @@
             <tr>
               <th>{{ _('EULA') }}</th>
               <td>
-                <a href="{{ url('addons.eula', addon.slug) }}">
+                <a href="{{ eula_url }}">
                   {{ _('View End-User License Agreement') }}</a>
               </td>
             </tr>

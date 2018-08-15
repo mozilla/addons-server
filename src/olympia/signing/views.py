@@ -1,7 +1,6 @@
 import functools
 
 from django import forms
-from django.conf import settings
 from django.utils.translation import ugettext
 
 from rest_framework import status
@@ -25,21 +24,6 @@ from olympia.versions.models import Version
 
 
 log = olympia.core.logger.getLogger('signing')
-
-
-def handle_read_only_mode(fn):
-    @functools.wraps(fn)
-    def inner(*args, **kwargs):
-        if settings.READ_ONLY:
-            return Response(
-                {'error': ugettext(
-                    'Some features are temporarily disabled while we '
-                    'perform website maintenance. We\'ll be back to '
-                    'full capacity shortly.')},
-                status=503)
-        else:
-            return fn(*args, **kwargs)
-    return inner
 
 
 def with_addon(allow_missing=False):
@@ -88,7 +72,6 @@ class VersionView(APIView):
     authentication_classes = [JWTKeyAuthentication]
     permission_classes = [IsAuthenticated]
 
-    @handle_read_only_mode
     def post(self, request, *args, **kwargs):
         version_string = request.data.get('version', None)
 
@@ -103,7 +86,6 @@ class VersionView(APIView):
             file_upload, context={'request': request})
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    @handle_read_only_mode
     @with_addon(allow_missing=True)
     def put(self, request, addon, version_string, guid=None):
         try:

@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-06-22 12:40+0000\n"
-"Last-Translator: Jarmo <jarmo@juslin.me>\n"
+"POT-Creation-Date: 2018-08-09 07:45+0000\n"
+"PO-Revision-Date: 2018-08-12 10:20+0000\n"
+"Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -263,19 +263,19 @@ msgid "Add-ons in Use"
 msgstr "Käytössä olevat lisäosat"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Lisäosia luotu"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Lisäosia ladattu"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Lisäosia päivitetty"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "Arvioita kirjoitettu"
 
 msgid "User Signups"
-msgstr ""
+msgstr "Käyttäjiä rekisteröitynyt"
 
 msgid "Subscribers"
 msgstr "Tilaajat"

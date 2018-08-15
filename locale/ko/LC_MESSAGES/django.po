@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2016-03-20 22:19+0000\n"
-"Last-Translator: ash153311 <ash153311@gmail.com>\n"
+"POT-Creation-Date: 2018-08-09 07:45+0000\n"
+"PO-Revision-Date: 2018-08-13 01:51+0000\n"
+"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -1798,21 +1798,17 @@ msgstr "{addon} {version} 내용이 거부 되었습니다."
 msgid "Content rejected"
 msgstr "내용이 거부됨"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "추가 정보 필요"
+msgstr "관리자에 의해 {addon} 정보 요청이 변경되거나 삭제되었습니다."
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "추가 정보 필요"
+msgstr "정보 요청 변경됨"
 
-#, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "{addon} {version}에 개발자의 코멘트가 달렸습니다."
+msgstr "{addon} {version}에 정보 요청이 개발자에 의해 삭제되었습니다."
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "추가 정보 필요"
+msgstr "정보 요청 삭제됨"
 
 msgid "{addon} {version} admin add-on-review requested."
 msgstr "{addon} {version}의 관리자 부가 기능 심사가 요청되었습니다."
@@ -1906,9 +1902,8 @@ msgstr "플러그인"
 msgid "Theme"
 msgstr "테마"
 
-#, fuzzy
 msgid "Theme (Static)"
-msgstr "테마 상세 정보"
+msgstr "테마(정적)"
 
 msgid "Complete Themes"
 msgstr "완전 테마"
@@ -1927,9 +1922,8 @@ msgstr "언어팩(부가 기능)"
 msgid "Plugins"
 msgstr "플러그인"
 
-#, fuzzy
 msgid "Themes (Static)"
-msgstr "테마 제작자"
+msgstr "테마(정적)"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -2202,16 +2196,14 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "안드로이드"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "테마 제출"
+msgstr "정적 테마"
 
 msgid "Persona"
 msgstr "페르소나"
 
-#, fuzzy
 msgid "No Reputation"
-msgstr "평판"
+msgstr "평판 없음"
 
 msgid "Good (1)"
 msgstr ""
@@ -2255,9 +2247,8 @@ msgstr "업데이트된 언어팩 심사"
 msgid "Theme Review"
 msgstr "테마 심사"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "테마 상세 정보"
+msgstr "테마(정적) 검토"
 
 msgid "New Search Provider Review"
 msgstr "새 검색 도구 심사"
@@ -2436,25 +2427,26 @@ msgstr "업로드 도중 오류가 있었습니다. 다시 해주세요."
 msgid "Override failed validation"
 msgstr "Override failed validation"
 
-msgid "Submit my add-on for manual review."
-msgstr "수동 심사를 위해 부가 기능을 제출합니다."
-
 msgid "You cannot upload any more files for this version."
 msgstr "이 버전엔 이이상 많은 파일을 업로드 할 수 없습니다."
 
 msgid "Version doesn't match"
 msgstr "버전이 일치하지 않습니다"
 
-#, fuzzy
 msgid "Version {version} was uploaded before and deleted."
-msgstr "버전 %s 이 이미 존재하거나, 이전에 이미 업로드되어 있습니다."
+msgstr "{version} 버전이 이전에 업로드 되고 삭제된적이 있습니다."
 
-#, fuzzy
 msgid "Version {version} already exists."
-msgstr "버전 %s 이 이미 존재하거나, 이전에 이미 업로드되어 있습니다."
+msgstr "{version} 버전이 이미 존재합니다."
 
 msgid "Continue with existing upload instead?"
 msgstr "대신 기존 업로드로 게속하십니까?"
+
+msgid "You have not uploaded a source file."
+msgstr "소스 파일을 업로드 하지 않았습니다."
+
+msgid "Source file uploaded but you indicated no source was needed."
+msgstr ""
 
 # 98%
 # 100%
@@ -2481,9 +2473,8 @@ msgstr ""
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
-#, fuzzy
 msgid "Categories cannot be changed while your add-on is featured."
-msgstr "이 애플리케이션의 추천 부가 기능으로 선정되어 있는 동안은 분류를 변경할 수 없습니다."
+msgstr "추천 부가 기능으로 선정되어 있는 동안은 분류를 변경할 수 없습니다."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
@@ -3359,7 +3350,6 @@ msgstr "부가 기능 배포와 등록에 대한 더 많은 정보"
 msgid "Submission Complete"
 msgstr "등록 완료"
 
-#, fuzzy
 msgid "You’re done!"
 msgstr "완료하셨습니다!"
 
@@ -3373,9 +3363,8 @@ msgstr "버전 기록"
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "버전 기록"
+msgstr "버전 제출됨"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
@@ -3427,6 +3416,76 @@ msgstr "파일 업로드"
 msgid "Go to My Submissions"
 msgstr "나의 제출로 이동"
 
+#, fuzzy
+msgid "Source Code Upload"
+msgstr "소스 코드가 업로드 됨"
+
+msgid "Do You Need to Submit Source Code?"
+msgstr ""
+
+msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgstr ""
+
+#, python-format
+msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
+msgstr ""
+
+msgid "Do you use any of the following?"
+msgstr ""
+
+msgid "Code minifiers or obfuscators"
+msgstr ""
+
+msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
+msgstr ""
+
+msgid "Web template engines, both for HTML and CSS"
+msgstr ""
+
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgstr ""
+
+msgid "You do not need to submit Source Code, and you’re ready for the next step."
+msgstr ""
+
+msgid "Your Submission Requires Source Code."
+msgstr ""
+
+#, python-format
+msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
+msgstr ""
+
+msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+msgstr ""
+
+msgid "A build script that executes all necessary technical steps."
+msgstr ""
+
+msgid "Operating system and build environment requirements."
+msgstr ""
+
+msgid ""
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
+msgstr ""
+
+msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
+msgstr ""
+
+#, fuzzy
+msgid "How to Submit:"
+msgstr "입력하기"
+
+msgid "Include instructions in a README file in the source code,"
+msgstr ""
+
+msgid "or in reviewer notes on the next page (if applicable)."
+msgstr ""
+
+#, fuzzy
+msgid "Upload source code:"
+msgstr "소스 코드"
+
 msgid "Add-on Distribution Agreement"
 msgstr "부가 기능 배포 계약"
 
@@ -3469,15 +3528,12 @@ msgstr "파일 제출"
 msgid "Sign Add-on"
 msgstr "부가 기능 등록"
 
-#, fuzzy
 msgid "Theme generate"
-msgstr "테마가 삭제됐습니다."
+msgstr "테마 생성"
 
-#, fuzzy
 msgid "Theme generator"
-msgstr "테마 라이선스"
+msgstr "테마 생성기"
 
-#, fuzzy
 msgid "Theme name"
 msgstr "테마 이름"
 
@@ -3539,24 +3595,20 @@ msgstr ""
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
-#, fuzzy
 msgid "optional"
-msgstr "(선택사항)"
+msgstr "선택 사항"
 
-#, fuzzy
 msgid "Browser preview"
-msgstr "커서를 올려서 미리보기 확인"
+msgstr "미리보기 보기"
 
 msgid "Back"
 msgstr ""
 
-#, fuzzy
 msgid "Uploading Theme"
-msgstr "인기 급상승 테마"
+msgstr "테마 업로드"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "%s 테마"
+msgstr "테마 완료"
 
 msgid "API Credentials"
 msgstr ""
@@ -3754,9 +3806,8 @@ msgstr "그밖의 자원"
 msgid "Porting"
 msgstr "별점"
 
-#, fuzzy
 msgid "Community"
-msgstr "코멘트"
+msgstr "커뮤니티"
 
 msgid "About"
 msgstr "소개"
@@ -3768,20 +3819,17 @@ msgstr "포럼"
 msgid "Blog"
 msgstr "블로그"
 
-#, fuzzy
 msgid "Contact Us"
 msgstr "연락처"
 
 msgid "Support"
 msgstr "도움말"
 
-#, fuzzy
 msgid "Policies"
-msgstr "부가 기능 정책"
+msgstr "정책"
 
-#, fuzzy
 msgid "Report Bug"
-msgstr "정책 위반 신고"
+msgstr "오류 보고"
 
 msgid "Site Status"
 msgstr "사이트 상태"
@@ -3789,9 +3837,8 @@ msgstr "사이트 상태"
 msgid "Web-Ext: build & test extensions"
 msgstr ""
 
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "부가 기능 호환성 검사기"
+msgstr "호환성 검사기"
 
 msgid "Promote"
 msgstr "승격"
@@ -3806,14 +3853,12 @@ msgstr ""
 msgid "Legal"
 msgstr "법률"
 
-#, fuzzy
 msgid "Report Trademark Abuse"
-msgstr "정책 위반 신고"
+msgstr "상표권 침해 신고"
 
 msgid "Legal Notices"
 msgstr "법적 고지"
 
-#, fuzzy
 msgid "Review Add-ons"
 msgstr "부가 기능 심사"
 
@@ -3829,7 +3874,6 @@ msgstr "코드 작성"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
-#, fuzzy
 msgid "Get started"
 msgstr "시작하기"
 
@@ -3843,7 +3887,6 @@ msgstr ""
 msgid "See how"
 msgstr ""
 
-#, fuzzy
 msgid "Manage Your Add-on"
 msgstr "부가 기능 관리하기"
 
@@ -3863,16 +3906,14 @@ msgstr ""
 msgid "View Resources for Publishers"
 msgstr "사용자 통계 보기"
 
-#, fuzzy
 msgid "Welcome Back"
-msgstr "{0}님, 어서오세요"
+msgstr "환영합니다"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
-#, fuzzy
 msgid "Learn How"
-msgstr "더 알아보기"
+msgstr "방법 알아보기"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -4314,58 +4355,11 @@ msgid_plural "{0} warnings"
 msgstr[0] "경고 {0}개"
 
 #. editorial content for the discovery pane.
-msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
-
-msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr ""
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis for every occasion—just a click away."
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Works seamlessly with most popular video sites."
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Set the page you see every time you open a new tab."
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr ""
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4433,6 +4427,10 @@ msgid "Get instant global weather information right in Firefox."
 msgstr ""
 
 #. editorial content for the discovery pane.
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
 msgstr ""
 
@@ -4445,7 +4443,15 @@ msgid "See an interesting picture on the web and want to learn more about it? Tr
 msgstr ""
 
 #. editorial content for the discovery pane.
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4632,6 +4638,14 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr ""
 
 #. editorial content for the discovery pane.
