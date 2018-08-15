@@ -201,11 +201,11 @@ class ReadOnlyMiddleware(object):
         u'perform website maintenance. We\'ll be back to '
         u'full capacity shortly.')
 
-    API_HEADER_NAME = 'X-AMO-Read-Only'
+    READ_ONLY_HEADER = 'X-AMO-Read-Only'
 
     def _render_api_error(self):
         response = JsonResponse({'error': self.ERROR_MSG}, status=503)
-        response[self.API_HEADER_NAME] = 'true'
+        response[self.READ_ONLY_HEADER] = 'true'
         if settings.READ_ONLY_RETRY_AFTER is not None:
             response['Retry-After'] = settings.READ_ONLY_RETRY_AFTER.seconds
         return response
@@ -229,10 +229,10 @@ class ReadOnlyMiddleware(object):
 
     def process_response(self, request, response):
         # We haven't set the header yet so it's not an error response
-        header_name = self.API_HEADER_NAME
+        header_name = self.READ_ONLY_HEADER
 
         if header_name not in response and response.status_code != 503:
-            response[self.API_HEADER_NAME] = 'false'
+            response[self.READ_ONLY_HEADER] = 'false'
         return response
 
 
