@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 21:12+0000\n"
+"PO-Revision-Date: 2018-08-15 21:29+0000\n"
 "Last-Translator: Dhiraj Kumar Singh <Singhdhiraj255@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -1837,28 +1837,28 @@ msgid "{addon} was migrated from a lightweight theme."
 msgstr ""
 
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 msgid "SeaMonkey"
-msgstr ""
+msgstr "Seamonkey"
 
 msgid "Sunbird"
 msgstr ""
 
 msgid "Mobile"
-msgstr ""
+msgstr "मोबाइल"
 
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Android के लिए Firefox"
 
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 msgid "Unknown"
-msgstr ""
+msgstr "अज्ञात"
 
 msgid "Incomplete"
 msgstr ""
@@ -1882,128 +1882,128 @@ msgid "Owner"
 msgstr ""
 
 msgid "Developer"
-msgstr ""
+msgstr "डेवलेपर"
 
 msgid "Extension"
-msgstr ""
+msgstr "विस्तारक"
 
 msgid "Complete Theme"
-msgstr ""
+msgstr "पूर्ण थीम"
 
 msgid "Search Engine"
-msgstr ""
+msgstr "खोज इंजन"
 
 msgid "Language Pack (Application)"
-msgstr ""
+msgstr "भाषा पैक (अनुप्रयोग)"
 
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "भाषा पैक (ऐड-ऑन)"
 
 msgid "Plugin"
-msgstr ""
+msgstr "प्लगइन"
 
 msgid "Theme"
-msgstr ""
+msgstr "थीम"
 
 msgid "Theme (Static)"
-msgstr ""
+msgstr "थीम (स्थैतिक)"
 
 msgid "Complete Themes"
-msgstr ""
+msgstr "पूर्ण थीम"
 
 msgid "Dictionaries"
-msgstr ""
+msgstr "शब्दकोश"
 
 msgid "Language Packs (Application)"
-msgstr ""
+msgstr "भाषा पैक (अनुप्रयोग)"
 
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "भाषा पैक (ऐड-ऑन)"
 
 msgid "Plugins"
-msgstr ""
+msgstr "प्लगिन्स"
 
 msgid "Themes (Static)"
-msgstr ""
+msgstr "थीम (स्थैतिक)"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
-msgstr ""
+msgstr "अन्य"
 
 msgid "Exception"
 msgstr "अपवाद"
 
 msgid "Release"
-msgstr ""
+msgstr "प्रकाशित करें"
 
 msgid "Change"
-msgstr ""
+msgstr "परिवर्तित करें"
 
 msgid "Compatible"
-msgstr ""
+msgstr "संगत"
 
 msgid "Incompatible"
-msgstr ""
+msgstr "असंगत"
 
 msgid "Alerts & Updates"
-msgstr ""
+msgstr "चेतावनी व अद्यतन"
 
 msgid "Appearance"
-msgstr ""
+msgstr "उपस्थिति"
 
 msgid "Bookmarks"
-msgstr ""
+msgstr "पुस्तचिह्न"
 
 msgid "Download Management"
-msgstr ""
+msgstr "डाउनलोड प्रबंधन"
 
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "फ़ीड्स, समाचार व ब्लॉगिंग"
 
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "खेल और मनोरंजन"
 
 msgid "Language Support"
-msgstr ""
+msgstr "भाषा सहयोग"
 
 msgid "Photos, Music & Videos"
-msgstr ""
+msgstr "तस्वीरें, संगीत और वीडियो"
 
 msgid "Privacy & Security"
-msgstr ""
+msgstr "गोपनीयता और सुरक्षा"
 
 msgid "Shopping"
-msgstr ""
+msgstr "खरीदारी"
 
 msgid "Social & Communication"
-msgstr ""
+msgstr "सामाजिक व संचार"
 
 msgid "Tabs"
-msgstr ""
+msgstr "टैब"
 
 msgid "Web Development"
-msgstr ""
+msgstr "वेब डेवलपमेंट"
 
 msgid "Animals"
-msgstr ""
+msgstr "जानवर"
 
 msgid "Compact"
-msgstr ""
+msgstr "सघन"
 
 msgid "Large"
-msgstr ""
+msgstr "बड़ा"
 
 msgid "Miscellaneous"
-msgstr ""
+msgstr "विविध"
 
 msgid "Modern"
-msgstr ""
+msgstr "आधुनिक"
 
 msgid "Nature"
-msgstr ""
+msgstr "प्रकृति"
 
 msgid "OS Integration"
-msgstr ""
+msgstr "ओएस एकीकरण"
 
 msgid "Retro"
 msgstr ""
@@ -3073,10 +3073,10 @@ msgid "Please provide at least one screen shot of your add-on:"
 msgstr "कृपया अपने ऐड-ऑन का कम से कम एक स्क्रीनशॉट प्रदान करें:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "कृपया इस स्क्रीनशॉट के लिए एक शीर्षक प्रदान करें:"
 
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "एक स्क्रीनशॉट जोड़ें..."
 
 msgid ""
 "PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
@@ -3084,7 +3084,7 @@ msgid ""
 msgstr ""
 
 msgid "Continue"
-msgstr ""
+msgstr "जारी रखें"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
@@ -3197,7 +3197,7 @@ msgid "View Add-on Listing"
 msgstr ""
 
 msgid "View Recent Changes"
-msgstr ""
+msgstr "हालिया परिवर्तन देखें"
 
 msgid "Edit details about this theme's listing."
 msgstr ""
@@ -3215,10 +3215,10 @@ msgid "Change the owner of this theme."
 msgstr ""
 
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "स्वामित्व स्थानांतरित करें"
 
 msgid "Delete this theme."
-msgstr ""
+msgstr "इस थीम को मिटाएँ।"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
@@ -3327,7 +3327,7 @@ msgid "Submission Complete"
 msgstr ""
 
 msgid "You’re done!"
-msgstr ""
+msgstr "हो गया!"
 
 msgid "Version Submitted for Review"
 msgstr ""
