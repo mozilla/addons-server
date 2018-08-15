@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 16:57+0000\n"
-"Last-Translator: ravi <ravi.103151@gmail.com>\n"
+"PO-Revision-Date: 2018-08-15 20:08+0000\n"
+"Last-Translator: Dhiraj Kumar Singh <Singhdhiraj255@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -911,7 +911,7 @@ msgid "Acceptable versions for all applications on AMO."
 msgstr ""
 
 msgid "Valid Application Versions"
-msgstr ""
+msgstr "वैध अनुप्रयोग संस्करण"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
@@ -1124,33 +1124,33 @@ msgid "Are you sure?"
 msgstr ""
 
 msgid "Yes"
-msgstr ""
+msgstr "हाँ"
 
 msgid "No"
-msgstr ""
+msgstr "नहीं‌"
 
 #. {0} is the name of the collection.
 msgid "Edit {0}"
-msgstr ""
+msgstr "{0} संपादित करें"
 
 msgid "Description"
-msgstr ""
+msgstr "वर्णन"
 
 msgid "Save Changes"
-msgstr ""
+msgstr "परिवर्तन सहेजें"
 
 msgid "Remove from favorites"
-msgstr ""
+msgstr "पसंदीदा से हटाएँ"
 
 msgid "Add to favorites"
-msgstr ""
+msgstr "पसंदीदा में जोड़ें"
 
 #. {0} is a username.
 msgid "Collections by {0}"
-msgstr ""
+msgstr "{0} द्वारा संग्रह"
 
 msgid "No collections found."
-msgstr ""
+msgstr "कोई संग्रह नहीं मिले।"
 
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
@@ -1161,7 +1161,7 @@ msgid "by %(author_link)s"
 msgstr ""
 
 msgid "Create a Collection"
-msgstr ""
+msgstr "एक संग्रह बनाएँ"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr ""
@@ -1170,7 +1170,7 @@ msgid "Collection Icon"
 msgstr ""
 
 msgid "Reset"
-msgstr ""
+msgstr "पुनः ठीक करें"
 
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
 msgstr ""
@@ -1185,45 +1185,45 @@ msgid "To include an add-on in this collection, enter its name in the box below 
 msgstr ""
 
 msgid "Add-on"
-msgstr ""
+msgstr "ऐड-ऑन"
 
 msgid "Comment"
-msgstr ""
+msgstr "टिप्पणी"
 
 msgid "Remove"
-msgstr ""
+msgstr "हटाएँ"
 
 msgid "Enter the name of the add-on to include"
-msgstr ""
+msgstr "शामिल करने के लिए ऐड-ऑन का नाम दर्ज करें"
 
 msgid "Add to Collection"
-msgstr ""
+msgstr "संग्रह में जोड़ें"
 
 msgid "Pending"
-msgstr ""
+msgstr "अपूर्ण"
 
 msgid "Add a comment"
-msgstr ""
+msgstr "टिप्पणी जोड़ें"
 
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "इस ऐड-ऑन को संग्रह से निकालें"
 
 msgid "Favorite"
-msgstr ""
+msgstr "पसंदीदा"
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
-msgstr ""
+msgstr "%s ऐड-ऑन्स"
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Themes"
-msgstr ""
+msgstr "%s प्रसंग"
 
 #, python-format
 msgid "Featured Add-ons :: %s"
-msgstr ""
+msgstr "विशेष रुप से प्रदर्शित ऐड-ऑन:: %s"
 
 #. L10n: %s is an app name.
 #, python-format
@@ -1931,7 +1931,7 @@ msgid "Other"
 msgstr ""
 
 msgid "Exception"
-msgstr ""
+msgstr "अपवाद"
 
 msgid "Release"
 msgstr ""
