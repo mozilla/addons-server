@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 20:33+0000\n"
+"PO-Revision-Date: 2018-08-15 20:52+0000\n"
 "Last-Translator: Dhiraj Kumar Singh <Singhdhiraj255@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -2544,7 +2544,7 @@ msgid "Theme deleted."
 msgstr ""
 
 msgid "Add-on deleted."
-msgstr ""
+msgstr "ऐड-ऑन हटाया गया।"
 
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr ""
@@ -2562,10 +2562,10 @@ msgid "An author has been removed from your add-on"
 msgstr ""
 
 msgid "Validate Add-on"
-msgstr ""
+msgstr "ऐड-ऑन प्रमाणित करें"
 
 msgid "Check Add-on Compatibility"
-msgstr ""
+msgstr "ऐड-ऑन संगतता जांचें"
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
@@ -2626,17 +2626,17 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
 
 msgid "Accept"
-msgstr ""
+msgstr "स्वीकार करें"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "या <a href=\"{0}\">रद्द करें</a>"
 
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "ऐड-ऑन्स पर वापस जाएँ"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
-msgstr ""
+msgstr "{0} ऐड-ऑन्स"
 
 msgid "Return to the DevHub homepage"
 msgstr ""
@@ -2646,10 +2646,10 @@ msgid "<small>Add-on</small> Developer Hub"
 msgstr ""
 
 msgid "more add-ons..."
-msgstr ""
+msgstr "और ऐड-ऑन्स..."
 
 msgid "Documentation"
-msgstr ""
+msgstr "दस्तावेज़ीकरण"
 
 msgid "Extension Development"
 msgstr ""
@@ -2658,34 +2658,34 @@ msgid "Lightweight Themes"
 msgstr ""
 
 msgid "Add-on Policies"
-msgstr ""
+msgstr "ऐड-ऑन नीतियाँ"
 
 msgid "Add-on Validator"
-msgstr ""
+msgstr "ऐड-ऑन प्रमाणनकर्ता"
 
 msgid "Add-on Compatibility Checker"
-msgstr ""
+msgstr "ऐड-ऑन संगतता परीक्षक"
 
 msgid "Development Add-ons"
 msgstr ""
 
 msgid "Community & Support"
-msgstr ""
+msgstr "समुदाय व समर्थन"
 
 msgid "Add-ons Blog"
-msgstr ""
+msgstr "ऐड-ऑन्स ब्लॉग"
 
 msgid "Add-ons Forum"
 msgstr ""
 
 msgid "More Resources"
-msgstr ""
+msgstr "और अधिक संसाधन"
 
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "डेवलपर दस्तावेज़ खोजें"
 
 msgid "Search"
-msgstr ""
+msgstr "खोजें"
 
 msgid "Use the field below to upload your add-on package."
 msgstr ""
@@ -2708,10 +2708,10 @@ msgid "Validation Results for {0}"
 msgstr ""
 
 msgid "Validation Results"
-msgstr ""
+msgstr "प्रमाणीकरण परिणाम"
 
 msgid "Validated at:"
-msgstr ""
+msgstr "पर प्रमाणित:"
 
 msgid "Tested for compatibility against:"
 msgstr ""
@@ -2731,13 +2731,13 @@ msgid "No results found."
 msgstr ""
 
 msgid "Refine Activity"
-msgstr ""
+msgstr "गतिविधि परिशोधित करें"
 
 msgid "Activity"
-msgstr ""
+msgstr "गतिविधि"
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "इस फ़ीड की सदस्यता लें"
 
 #, python-format
 msgid ""
@@ -2750,25 +2750,25 @@ msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_ur
 msgstr ""
 
 msgid "View and update application compatibility ranges."
-msgstr ""
+msgstr "अनुप्रयोग संगतता विस्तार देखें और अद्यतन करें।"
 
 msgid "Compatibility"
-msgstr ""
+msgstr "संगतता"
 
 msgid "Update Compatibility"
-msgstr ""
+msgstr "संगतता अद्यतन करें"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
 
 msgid "Supported Versions"
-msgstr ""
+msgstr "समर्थित संस्करण"
 
 msgid "Add Another Application&hellip;"
 msgstr ""
 
 msgid "Close"
-msgstr ""
+msgstr "बंद करें"
 
 msgid "Recent Activity"
 msgstr ""
@@ -2783,14 +2783,14 @@ msgstr ""
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> थीम"
+msgstr[1] "<b>{0}</b> थीम"
 
 msgid "Edit Information"
-msgstr ""
+msgstr "सूचना संपादित करें"
 
 msgid "None"
-msgstr ""
+msgstr "कुछ नहीं"
 
 msgid "Preview"
 msgstr ""
