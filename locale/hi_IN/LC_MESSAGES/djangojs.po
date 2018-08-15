@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-13 08:31+0000\n"
+"PO-Revision-Date: 2018-08-15 05:29+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -103,6 +103,8 @@ msgstr "WebExtension अपग्रेड"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
+"हम एक अपग्रेड कि अनुमति तथा प्रोत्साहन दे सकते हैं लेकिन आप इस प्रक्रिया को उलट नहीं सकते हैं. एक बार आपके उपयोगकर्ताओं के पास WebExtension स्थापित हो जाने बाद, वो कोई लीगेसी ऐड-ऑन इंस्टॉल नहीं कर "
+"पाएंगे."
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr ""
