@@ -1536,8 +1536,13 @@ READ_ONLY_RETRY_AFTER = None
 
 # Turn on read-only mode in local_settings.py by putting this line
 # at the VERY BOTTOM: read_only_mode(globals())
-def read_only_mode(env):
+# Please also consider setting `retry_after` like this
+# import datetime
+# read_only_mode(globals(), retry_after=datetime.timedelta(minutes=10))
+# See `READ_ONLY_RETRY_AFTER` comment for more details
+def read_only_mode(env, retry_after=None):
     env['READ_ONLY'] = True
+    env['READ_ONLY_RETRY_AFTER'] = retry_after
 
     # Replace the default (master) db with a slave connection.
     if not env.get('SLAVE_DATABASES'):
