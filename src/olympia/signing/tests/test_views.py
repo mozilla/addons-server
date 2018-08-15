@@ -6,7 +6,6 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.forms import ValidationError
-from django.test.utils import override_settings
 from django.utils import translation
 
 import mock
@@ -99,12 +98,6 @@ class TestUploadVersion(BaseUploadVersionCase):
         # Use self.client.put so that we don't add the authorization header.
         response = self.client.put(self.url(self.guid, '12.5'))
         assert response.status_code == 401
-
-    @override_settings(READ_ONLY=True)
-    def test_read_only_mode(self):
-        response = self.request('PUT', self.url(self.guid, '12.5'))
-        assert response.status_code == 503
-        assert 'website maintenance' in response.data['error']
 
     def test_addon_does_not_exist(self):
         guid = '@create-version'
