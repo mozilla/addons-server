@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 16:26+0000\n"
+"PO-Revision-Date: 2018-08-16 16:46+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2910,23 +2910,27 @@ msgid "This add-on doesn't require any additional payments, paid services or sof
 msgstr "Iste additivo non require ulle altere pagamentos, servicios o software pagate, o altere hardware."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
+msgstr "Le categorias es le maniera primari pro le usatores de navigar per le additivos. Elige lo que adhere al functionalitate de tu additivo pro le melior visibilitate."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
+"Le categorias non pote ser cambiate durante que tu additivo es in evidentia pro iste application. Per favor invia un email <a href=\"mailto:%(email)s\">%(email)s</a> si il ha un ration proque tu "
+"necessita de modificar tu categorias."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
+"Le categorias non pote ser cambiate durante que tu additivos es consiliate. Per favor invia un email <a href=\"mailto:%(email)s\">%(email)s</a> si il ha un ration proque tu necessita de modificar tu"
+" categorias."
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
+msgstr "Le tags adjuta le usatores a trovar tu additivo e debe esser breve descriptores tal como schedas, barra de instrumentos, o twitter. Tu pote haber un maximo de {0} tags."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Separate per virgula, minimo de {0} character."
+msgstr[1] "Separate per virgula, minimo de {0} characteres."
 
 msgid "Example: dark, cinema, noir. Limit 20."
 msgstr ""
