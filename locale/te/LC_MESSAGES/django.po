@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 09:17+0000\n"
+"PO-Revision-Date: 2018-08-16 12:10+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2217,7 +2217,7 @@ msgid "Excellent (3)"
 msgstr ""
 
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "మానవీయ సమీక్షకుల బిందువులు"
 
 msgid "New Add-on Review"
 msgstr "కొత్త పొడిగింత సమీక్ష"
@@ -3331,7 +3331,7 @@ msgid "You’re done!"
 msgstr "మీరు పూర్తి చేశారు!"
 
 msgid "Version Submitted for Review"
-msgstr ""
+msgstr "సమీక్ష కోసం సమర్పించిన వెర్షను"
 
 msgid "Preview of the version submitted"
 msgstr "దాఖలు చేసిన వెర్షను మునుజూపు"
@@ -3340,7 +3340,7 @@ msgid "You’re done! This version will be available after it passes review. You
 msgstr ""
 
 msgid "Version Submitted"
-msgstr ""
+msgstr "వెర్షను సమర్పించబడింది"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
@@ -5933,7 +5933,7 @@ msgid ""
 msgstr ""
 
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "ఈ పొడగింతలను ఎవరు సృష్టించారు?"
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
@@ -6187,7 +6187,7 @@ msgid "You can learn more about the data collection for this study <a href=\"%(u
 msgstr ""
 
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "Firefoxని మెరుగుపరచడంలో మీరు సహాయపడుతున్నారు"
 
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
@@ -6252,7 +6252,7 @@ msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr ""
 
 msgid "Add a review for {0}"
-msgstr ""
+msgstr "{0} కోసం సమీక్షను చేర్చండి"
 
 #, python-format
 msgid ""
@@ -6265,7 +6265,7 @@ msgid ""
 msgstr ""
 
 msgid "Reply to review by {0}"
-msgstr ""
+msgstr "{0} సమీక్షకు స్పందించండి"
 
 msgid "Write a Reply"
 msgstr "ప్రత్యుత్తరం వ్రాయండి"
@@ -6306,7 +6306,7 @@ msgid "Report this review"
 msgstr "ఈ సమీక్షను నివేదించండి"
 
 msgid "Reply to review"
-msgstr ""
+msgstr "సమీక్షకు స్పందించండి"
 
 msgid "Edit reply"
 msgstr "ప్రత్యుత్తరం సవరించండి"
@@ -6471,7 +6471,7 @@ msgid "Expired Information Request"
 msgstr "కాలంచెల్లిన సమాచార అభ్యర్థన"
 
 msgid "Sources provided"
-msgstr ""
+msgstr "అందించిన మూలాలు"
 
 msgid "WebExtension"
 msgstr "WebExtension"
@@ -7052,10 +7052,10 @@ msgid "No points awarded yet."
 msgstr "ఇంకా పాయింట్లు ఇవ్వలేదు."
 
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "మేటి సమీక్షకులు (గత 7 రోజులు)"
 
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "ఇంకా మేటి సమీక్షకులు లేరు."
 
 msgid "All Time"
 msgstr "అన్ని సమయాలలో"
@@ -7087,7 +7087,7 @@ msgid "Reason"
 msgstr "కారణం"
 
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "ప్రస్తుతం సమీక్షలు ఏమీ లేవు."
 
 msgid "Flagged Themes"
 msgstr ""
