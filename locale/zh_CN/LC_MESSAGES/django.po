@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-07-23 20:59+0000\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"PO-Revision-Date: 2018-08-14 18:02+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -826,7 +826,7 @@ msgid "Add-ons for Mobile"
 msgstr "移动版附加组件"
 
 msgid "Dictionaries & Language Packs"
-msgstr "字典及语言包"
+msgstr "字典和语言包"
 
 msgid "Search Tools"
 msgstr "搜索工具"
@@ -2413,9 +2413,6 @@ msgstr "您的上传过程中发生错误，请重试。"
 msgid "Override failed validation"
 msgstr "无视验证失败"
 
-msgid "Submit my add-on for manual review."
-msgstr "提交我的附加组件进行人工审核。"
-
 msgid "You cannot upload any more files for this version."
 msgstr "您不能再为此版本上传文件。"
 
@@ -2430,6 +2427,12 @@ msgstr "版本 {version} 已经存在。"
 
 msgid "Continue with existing upload instead?"
 msgstr "继续使用现有上传？"
+
+msgid "You have not uploaded a source file."
+msgstr "您尚未上传源文件。"
+
+msgid "Source file uploaded but you indicated no source was needed."
+msgstr "源文件已上传，但您标明无需源文件。"
 
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "不能既选择所有平台又指定特定平台。"
@@ -3369,6 +3372,73 @@ msgstr "上传文件"
 msgid "Go to My Submissions"
 msgstr "转至我的提交"
 
+msgid "Source Code Upload"
+msgstr "源代码上传"
+
+msgid "Do You Need to Submit Source Code?"
+msgstr "您需要提交源代码吗？"
+
+msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgstr "您可能需要提交源代码。如果您不提交正确的源代码，您的附加组件可能在本网站上下架！"
+
+#, python-format
+msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
+msgstr "请查阅<a %(a_attrs)s>源代码提交政策</a>。"
+
+msgid "Do you use any of the following?"
+msgstr "您使用了下列任何一种工具吗？"
+
+msgid "Code minifiers or obfuscators"
+msgstr "代码压缩或混淆工具"
+
+msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
+msgstr "将多个文件合并为一的工具，例如 <span class=\"tech-emphasis\">webpack</span>"
+
+msgid "Web template engines, both for HTML and CSS"
+msgstr "Web 模板引擎，对于 HTML 和 CSS"
+
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgstr "任何对代码或文件二次处理，并生成附加组件中的代码或文件的其他工具"
+
+msgid "You do not need to submit Source Code, and you’re ready for the next step."
+msgstr "您不需要提交源代码，可以直接进行下一步。"
+
+msgid "Your Submission Requires Source Code."
+msgstr "您的提交必须包含源代码。"
+
+#, python-format
+msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
+msgstr "源代码必须符合<a %(a_attrs)s>政策的要求</a>，包含下列项目："
+
+msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+msgstr "创建附加组件精确副本的逐步构建说明。"
+
+msgid "A build script that executes all necessary technical steps."
+msgstr "一个可以执行所有必要技术步骤的构建脚本。"
+
+msgid "Operating system and build environment requirements."
+msgstr "操作系统与构建环境要求。"
+
+msgid ""
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
+msgstr "构建过程中会使用到的任何程序的详细信息（包含需要使用的版本与安装步骤，例如：所用的 <span class=\"tech-emphasis\">node</span> 与 <span class=\"tech-emphasis\">npm</span> 的版本）。"
+
+msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
+msgstr "<span class=\"instruction-emphasis\">注意：</span>源文件（不含第三方开源库）请勿转译（transpile）、混淆（obfuscate）、压缩（minify）或使用机器生成源代码。"
+
+msgid "How to Submit:"
+msgstr "如何提交："
+
+msgid "Include instructions in a README file in the source code,"
+msgstr "在源代码中的 README 文件包含用法说明，"
+
+msgid "or in reviewer notes on the next page (if applicable)."
+msgstr "或者写在下一页给审核者的留言中（若可行）。"
+
+msgid "Upload source code:"
+msgstr "上传源代码："
+
 msgid "Add-on Distribution Agreement"
 msgstr "附加组件分发协议"
 
@@ -4178,59 +4248,12 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} 个警告"
 
 #. editorial content for the discovery pane.
-msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "保持干净的数字足迹 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "让 Firefox 对您选择的域名，忘记 Cookie 和本地存储等网站数据。"
-
-msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "改善视频体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr "尊享全新的 YouTube 功能，如剧院模式、广告拦截、自动播放等等。"
-
-#. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "阻止鬼祟跟踪器 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "拦截在网络世界中不断尾随你的跟踪器。"
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "提高您的 emoji 技巧 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis for every occasion—just a click away."
-msgstr "无数的精美 emoji，只需一键。"
-
-#. editorial content for the discovery pane.
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
-
-msgid "Works seamlessly with most popular video sites."
-msgstr "与大多数流行的视频网站无缝协作。"
-
-#. editorial content for the discovery pane.
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "标签页定制 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
-
-msgid "Set the page you see every time you open a new tab."
-msgstr "设置每次打开新标签页时看到的页面。"
-
-#. editorial content for the discovery pane.
-msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "增强您的 emoji 体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "无数的精美 emoji，只需一键。"
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "拍摄截图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
-
-msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
-msgstr "Awesome Screenshot Plus 不只有基础的截图功能，它可用来在图像上圈点和加注文字，并存储与分享您的作品。"
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4297,6 +4320,10 @@ msgid "Get instant global weather information right in Firefox."
 msgstr "在 Firefox 中即时获取全球天气信息。"
 
 #. editorial content for the discovery pane.
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "标签页定制 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
 msgstr "设置每次打开新标签页时您看到的页面。"
 
@@ -4309,8 +4336,16 @@ msgid "See an interesting picture on the web and want to learn more about it? Tr
 msgstr "如果在网上看到一张有趣的图片，如何了解有关它的更多信息？试试这个图片搜索工具。"
 
 #. editorial content for the discovery pane.
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "适用于 YouTube、Facebook、Vimeo、Twitch、Dailymotion、Periscope 等数百个视频网站。"
+
+#. editorial content for the discovery pane.
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "增强您的 emoji 体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
@@ -4496,6 +4531,14 @@ msgstr "拦截隐形跟踪器 {start_sub_heading}就用 {addon_name}{end_sub_hea
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "阻止跟踪器的跟踪，还能了解有关它们的更多信息。"
+
+#. editorial content for the discovery pane.
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "保持干净的数字足迹 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+msgstr "让 Firefox 对您选择的域名，忘记 Cookie 和本地存储等网站数据。"
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6414,9 +6457,6 @@ msgstr "要求更多信息"
 msgid "Expired Information Request"
 msgstr "过期的信息请求"
 
-msgid "Contains Reviewer Comment"
-msgstr "包含审核员意见"
-
 msgid "Sources provided"
 msgstr "已提供来源"
 
@@ -6624,6 +6664,12 @@ msgstr "审核处理成功。"
 
 msgid "Review lock limit reached"
 msgstr "达到的审查锁限制"
+
+msgid "{addon} :: EULA"
+msgstr "{addon} :: 最终用户许可协议（EULA）"
+
+msgid "{addon} :: Privacy Policy"
+msgstr "{addon} :: 隐私政策"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."

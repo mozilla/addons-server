@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-08 16:04+0000\n"
-"Last-Translator: irina.terzian <irina.terzian@gmail.com>\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"PO-Revision-Date: 2018-08-10 17:55+0000\n"
+"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} gwiazdka"
 msgstr[1] "{0} gwiazdki"
-msgstr[2] ""
+msgstr[2] "{0} gwiazdek"
 
 msgid "There was a problem contacting the server."
 msgstr "Wystąpił problem skontaktowania się z serwerem."
@@ -56,13 +56,13 @@ msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Dodatek nie przeszedł weryfikacji z powodu {0} błędu."
 msgstr[1] "Dodatek nie przeszedł weryfikacji z powodu {0} błędów."
-msgstr[2] ""
+msgstr[2] "Dodatek nie przeszedł weryfikacji z powodu {0} błędów."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;i {0} więcej"
 msgstr[1] "&hellip;i {0} więcej"
-msgstr[2] ""
+msgstr[2] "&hellip;i {0} więcej"
 
 msgid "See full validation report"
 msgstr "Zobacz pełny raport"
@@ -88,14 +88,14 @@ msgstr "Limit czasowy sprawdzenia dodatku wygasł, zostanie sprawdzony ręcznie.
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Dodatek przeszedł weryfikację bez błędów i z {0} ostrzeżeniem."
-msgstr[1] ""
-msgstr[2] ""
+msgstr[1] "Dodatek przeszedł weryfikację bez błędów i z {0} ostrzeżeniami."
+msgstr[2] "Dodatek przeszedł weryfikację bez błędów i z {0} ostrzeżeniami."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Dodatek przeszedł weryfikację bez błędów i z {0} wiadomością."
 msgstr[1] "Dodatek przeszedł weryfikację bez błędów i z {0} wiadomościami."
-msgstr[2] ""
+msgstr[2] "Dodatek przeszedł weryfikację bez błędów i z {0} wiadomościami."
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Dodatek przeszedł weryfikację bez błędów i ostrzeżeń."
@@ -130,7 +130,7 @@ msgid ""
 "field to avoid having your submission rejected."
 msgstr ""
 "Skompilowane pliki binarne oraz zminimalizowane i zaciemnione skrypty (z wyłączeniem znanych bibliotek) wymagają oddzielnie przesłanych kodów źródłowych do sprawdzenia. Upewnij się, że używasz pola "
-"do załadowania kodu źródłowego, aby uniknąć odrzucenia zgłoszenia."
+"do przesłania kodu źródłowego, aby uniknąć odrzucenia zgłoszenia."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Podczas weryfikacji znaleziono poniższe problemy, które mogą prowadzić do odrzucenia dodatku:"
@@ -148,7 +148,7 @@ msgid "You cancelled the upload."
 msgstr "Anulowano przesyłanie."
 
 msgid "Images must be either PNG or JPG."
-msgstr "Obrazki muszą być w formacie PNG lub JPG."
+msgstr "Obrazy muszą być w formacie PNG lub JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Wideo musi być w formacie WebM."
@@ -188,7 +188,7 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Your Theme's Name"
-msgstr "Nazwa  twojego motywu"
+msgstr "Nazwa twojego motywu"
 
 msgid "Flagged for review"
 msgstr "Oznaczona do sprawdzenia"
@@ -236,7 +236,7 @@ msgid "{0} reviews"
 msgstr "opinie: {0}"
 
 msgid "{0} sales"
-msgstr "sprzedaże: "
+msgstr "sprzedaże: {0}"
 
 msgid "{0} refunds"
 msgstr "zwroty: {0}"
@@ -436,7 +436,7 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "Liczba pobrań i dziennych użytkowników – ostatnie {0} dni"
+msgstr "Liczba pobrań i dziennych użytkowników — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
@@ -452,7 +452,7 @@ msgstr "Instalacje i dzienni użytkownicy od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr "Liczba pobrań – ostatnie {0} dni"
+msgstr "Liczba pobrań — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
@@ -460,7 +460,7 @@ msgstr "Liczba pobrań od {0} do {1} dni"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr "Liczba dziennych użytkowników – ostatnie {0} dni"
+msgstr "Liczba dziennych użytkowników — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
@@ -468,7 +468,7 @@ msgstr "Liczba dziennych użytkowników od {0} do {1} dni"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr "Programy – ostatnie {0} dni"
+msgstr "Programy — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
@@ -476,7 +476,7 @@ msgstr "Programy od {0} do {1} dni"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr "Systemy operacyjne – ostatnie {0} dni"
+msgstr "Systemy operacyjne — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
@@ -484,7 +484,7 @@ msgstr "Systemy operacyjne od {0} do {1} dni"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr "Języki – ostatnie {0} dni"
+msgstr "Języki — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
@@ -492,7 +492,7 @@ msgstr "Języki od {0} do {1} dni"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr "Wersje dodatku – ostatnie {0} dni"
+msgstr "Wersje dodatku — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
@@ -500,7 +500,7 @@ msgstr "Wersje dodatku od {0} do {1} dni"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr "Status dodatku – ostatnie {0} dni"
+msgstr "Status dodatku — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
@@ -508,7 +508,7 @@ msgstr "Status dodatku od {0} do {1} dni"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr "Źródła pobierania – ostatnie {0} dni"
+msgstr "Źródła pobierania — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
@@ -516,7 +516,7 @@ msgstr "Źródła pobierania od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr "Dotacje – ostatnie {0} dni"
+msgstr "Dotacje — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
@@ -646,13 +646,13 @@ msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "Ustaw {0} dodatek na najwyższą wersję programu {1} i powiadom autora."
 msgstr[1] "Ustaw {0} dodatki na najwyższą wersję programu {1} i powiadom autorów."
-msgstr[2] ""
+msgstr[2] "Ustaw {0} dodatków na najwyższą wersję programu {1} i powiadom autorów."
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Poinformuj mailowo autora {2} dodatku, który nie przeszedł weryfikacji."
 msgstr[1] "Poinformuj mailowo autora {2} dodatków, które nie przeszły weryfikacji."
-msgstr[2] ""
+msgstr[2] "Poinformuj mailowo autora {2} dodatków, które nie przeszły weryfikacji."
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
@@ -679,7 +679,7 @@ msgid "View other versions"
 msgstr "Zobacz inne wersje"
 
 msgid "Works with {app} {min} - {max}"
-msgstr "Działa z {app} {min} - {max}"
+msgstr "Działa z {app} {min} — {max}"
 
 msgid "Works with {app}"
 msgstr "Działa z programem {app}"
@@ -688,7 +688,7 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Tylko w Firefoksie — pobierz Firefoksa teraz!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Przepraszamy. Aby zainstalować wtyczkę wyszukiwarki, potrzebna jest przeglądarka zbudowana w oparciu o technologię Mozilli – taka jak np. Firefox."
+msgstr "Przepraszamy. Aby zainstalować wtyczkę wyszukiwarki, potrzebna jest przeglądarka zbudowana w oparciu o technologię Mozilli — taka jak np. Firefox."
 
 msgid "Adding to Favorites&hellip;"
 msgstr "Dodawanie do ulubionych&hellip;"
@@ -742,16 +742,16 @@ msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} plik"
 msgstr[1] "{files} pliki"
-msgstr[2] ""
+msgstr[2] "{files} plików"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} opinia użytkownika"
 msgstr[1] "{reviews} opinie użytkowników"
-msgstr[2] ""
+msgstr[2] "{reviews} opinii użytkowników"
 
 msgid "Image changes being processed"
-msgstr "Przetwarzanie zmian obrazka…"
+msgstr "Przetwarzanie zmian obrazu…"
 
 msgid "No results found."
 msgstr "Nic nie znaleziono."
@@ -764,7 +764,7 @@ msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "Pozostał <b>{0}</b> znak."
 msgstr[1] "Pozostały <b>{0}</b> znaki."
-msgstr[2] ""
+msgstr[2] "Pozostały <b>{0}</b> znaków."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "W trakcie wykonywania serwisu witryny ta funkcja jest tymczasowo wyłączona. Sprawdź ponownie nieco później."
@@ -854,7 +854,7 @@ msgid "{0} line {1} column {2}"
 msgstr "Wiersz: {0}, kolumna: {1} {2}"
 
 msgid "{0} line {1}"
-msgstr "{0} linia {1}"
+msgstr "{0} wiersz {1}"
 
 msgid "Compatibility Tests"
 msgstr "Testy kompatybilności"
@@ -869,19 +869,19 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} błąd"
 msgstr[1] "{0} błędy"
-msgstr[2] ""
+msgstr[2] "{0} błędów"
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} ostrzeżenie"
 msgstr[1] "{0} ostrzeżenia"
-msgstr[2] ""
+msgstr[2] "{0} ostrzeżeń"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} informacja"
 msgstr[1] "{0} informacje"
-msgstr[2] ""
+msgstr[2] "{0} informacji"
 
 msgid "Validation task could not complete or completed with errors"
 msgstr "Nie można dokończyć weryfikacji lub zadanie zostało zakończone z błędami"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-02 01:13+0000\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2449,9 +2449,6 @@ msgstr ".uıɐƃɐ ʎɹʇ ǝsɐǝʅԀ .pɐoʅdn ɹnoʎ ɥʇıʍ ɹoɹɹǝ uɐ s�
 msgid "Override failed validation"
 msgstr "uoıʇɐpıʅɐʌ pǝʅıɐɟ ǝpıɹɹǝʌO"
 
-msgid "Submit my add-on for manual review."
-msgstr ".ʍǝıʌǝɹ ʅɐnuɐɯ ɹoɟ uo-ppɐ ʎɯ ʇıɯqnS"
-
 msgid "You cannot upload any more files for this version."
 msgstr ".uoısɹǝʌ sıɥʇ ɹoɟ sǝʅıɟ ǝɹoɯ ʎuɐ pɐoʅdn ʇouuɐɔ no⅄"
 
@@ -2466,6 +2463,12 @@ msgstr ".sʇsıxǝ ʎpɐǝɹʅɐ {version} uoısɹǝɅ"
 
 msgid "Continue with existing upload instead?"
 msgstr "¿pɐǝʇsuı pɐoʅdn ƃuıʇsıxǝ ɥʇıʍ ǝnuıʇuoↃ"
+
+msgid "You have not uploaded a source file."
+msgstr ".ǝʅıɟ ǝɔɹnos ɐ pǝpɐoʅdn ʇou ǝʌɐɥ no⅄"
+
+msgid "Source file uploaded but you indicated no source was needed."
+msgstr ".pǝpǝǝu sɐʍ ǝɔɹnos ou pǝʇɐɔıpuı noʎ ʇnq pǝpɐoʅdn ǝʅıɟ ǝɔɹnoS"
 
 msgid "The platform All cannot be combined with specific platforms."
 msgstr ".sɯɹoɟʇɐʅd ɔıɟıɔǝds ɥʇıʍ pǝuıqɯoɔ ǝq ʇouuɐɔ ʅʅ∀ ɯɹoɟʇɐʅd ǝɥ⊥"
@@ -3441,6 +3444,75 @@ msgstr "ǝʅıℲ pɐoʅd∩"
 msgid "Go to My Submissions"
 msgstr "suoıssıɯqnS ʎW oʇ o⅁"
 
+msgid "Source Code Upload"
+msgstr "pɐoʅd∩ ǝpoↃ ǝɔɹnoS"
+
+msgid "Do You Need to Submit Source Code?"
+msgstr "¿ǝpoↃ ǝɔɹnoS ʇıɯqnS oʇ pǝǝN no⅄ oᗡ"
+
+msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgstr "¡ǝʇıs ǝɥʇ ɯoɹɟ pǝʌoɯǝɹ ǝq ʎɐɯ uo-ppɐ ɹnoʎ ´ʍou ǝpoɔ ǝɔɹnos ʇɔǝɹɹoɔ ǝɥʇ ʇıɯqns ʇ’uop noʎ ɟI .ǝpoɔ ǝɔɹnos ʇıɯqns oʇ pǝǝu ʎɐɯ no⅄"
+
+#, python-format
+msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
+msgstr ".<a %(a_attrs)s=\"\">ʎɔıʅod uoıssıɯqns ǝpoɔ ǝɔɹnos</a> ǝɥʇ ʍǝıʌǝɹ ǝsɐǝʅԀ"
+
+msgid "Do you use any of the following?"
+msgstr "¿ƃuıʍoʅʅoɟ ǝɥʇ ɟo ʎuɐ ǝsn noʎ oᗡ"
+
+msgid "Code minifiers or obfuscators"
+msgstr "sɹoʇɐɔsnɟqo ɹo sɹǝıɟıuıɯ ǝpoↃ"
+
+msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
+msgstr "<span class=\"tech-emphasis\">ʞɔɐdqǝʍ</span> sɐ ɥɔns ´ǝʅıɟ ǝʅƃuıs ɐ oʇuı sǝʅıɟ ǝʅdıʇʅnɯ ǝuıqɯoɔ ʇɐɥʇ sʅoo⊥"
+
+msgid "Web template engines, both for HTML and CSS"
+msgstr "SSↃ puɐ ⅂W⊥H ɹoɟ ɥʇoq ´sǝuıƃuǝ ǝʇɐʅdɯǝʇ qǝＭ"
+
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgstr "uo-ppɐ ǝɥʇ uı ǝpnʅɔuı oʇ (s)ǝʅıɟ ɹo ǝpoɔ sǝʇɐɹǝuǝƃ puɐ ´ƃuıssǝɔoɹd sǝıʅddɐ ´sǝʅıɟ ɹo ǝpoɔ sǝʞɐʇ ʇɐɥʇ ʅooʇ ɹǝɥʇo ʎu∀"
+
+msgid "You do not need to submit Source Code, and you’re ready for the next step."
+msgstr ".dǝʇs ʇxǝu ǝɥʇ ɹoɟ ʎpɐǝɹ ǝɹ’noʎ puɐ ´ǝpoↃ ǝɔɹnoS ʇıɯqns oʇ pǝǝu ʇou op no⅄"
+
+msgid "Your Submission Requires Source Code."
+msgstr ".ǝpoↃ ǝɔɹnoS sǝɹınbǝᴚ uoıssıɯqnS ɹno⅄"
+
+#, python-format
+msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
+msgstr ":sǝpnʅɔuı ɥɔıɥʍ ´<a %(a_attrs)s=\"\">sʇuǝɯǝɹınbǝɹ ʎɔıʅod</a> ʇǝǝɯ ʇsnɯ ǝpoɔ ǝɔɹnos ǝɥ⊥"
+
+msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+msgstr ".ǝpoɔ uo-ppɐ ǝɥʇ ɟo ʎdoɔ ʇɔɐxǝ uɐ ǝʇɐǝɹɔ oʇ suoıʇɔnɹʇsuı pʅınq dǝʇs-ʎq-dǝʇS"
+
+msgid "A build script that executes all necessary technical steps."
+msgstr ".sdǝʇs ʅɐɔıuɥɔǝʇ ʎɹɐssǝɔǝu ʅʅɐ sǝʇnɔǝxǝ ʇɐɥʇ ʇdıɹɔs pʅınq ∀"
+
+msgid "Operating system and build environment requirements."
+msgstr ".sʇuǝɯǝɹınbǝɹ ʇuǝɯuoɹıʌuǝ pʅınq puɐ ɯǝʇsʎs ƃuıʇɐɹǝdO"
+
+msgid ""
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
+msgstr ""
+".(pǝsn uoısɹǝʌ <span class=\"tech-emphasis\">ɯdu</span> puɐ <span class=\"tech-emphasis\">ǝpou</span> :ǝʅdɯɐxǝ ɹoɟ) ssǝɔoɹd pʅınq ǝɥʇ uı pǝsn sɯɐɹƃoɹd ʎuɐ ɟo ´(suoıʇɔnɹʇsuı uoıʇɐʅʅɐʇsuı puɐ uoısɹǝʌ "
+"pǝɹınbǝɹ ƃuıpnʅɔuı) sʅıɐʇǝᗡ"
+
+msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
+msgstr ".pǝʇɐɹǝuǝƃ-ǝuıɥɔɐɯ ǝsıʍɹǝɥʇo ɹo pǝıɟıuıɯ ´pǝʇɐɔsnɟqo ´pǝʅıdsuɐɹʇ ǝq ʇouuɐɔ (sǝıɹɐɹqıʅ ʎʇɹɐd pɹıɥʇ ǝɔɹnos-uǝdo ɯoɹɟ ǝpısɐ) sǝʅıɟ ǝɔɹnoS <span class=\"instruction-emphasis\">:ǝʇoN</span>"
+
+msgid "How to Submit:"
+msgstr ":ʇıɯqnS oʇ ʍoH"
+
+msgid "Include instructions in a README file in the source code,"
+msgstr "´ǝpoɔ ǝɔɹnos ǝɥʇ uı ǝʅıɟ ƎWᗡ∀Ǝᴚ ɐ uı suoıʇɔnɹʇsuı ǝpnʅɔuI"
+
+msgid "or in reviewer notes on the next page (if applicable)."
+msgstr ".(ǝʅqɐɔıʅddɐ ɟı) ǝƃɐd ʇxǝu ǝɥʇ uo sǝʇou ɹǝʍǝıʌǝɹ uı ɹo"
+
+msgid "Upload source code:"
+msgstr ":ǝpoɔ ǝɔɹnos pɐoʅd∩"
+
 msgid "Add-on Distribution Agreement"
 msgstr "ʇuǝɯǝǝɹƃ∀ uoıʇnqıɹʇsıᗡ uo-pp∀"
 
@@ -4262,59 +4334,12 @@ msgstr[0] "ƃuıuɹɐʍ {0}"
 msgstr[1] "sƃuıuɹɐʍ {0}"
 
 #. editorial content for the discovery pane.
-msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ʅıɐɹʇ ʅɐʇıƃıp uɐǝʅɔ ɐ ǝʌɐǝ⅂"
-
-#. editorial content for the discovery pane.
-msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ".ǝsooɥɔ noʎ suıɐɯop ɹoɟ ʎʅuo ʇnq ´ǝƃɐɹoʇs ʅɐɔoʅ puɐ sǝıʞooɔ ǝʞıʅ ɐʇɐp ǝʇısqǝʍ ʇǝƃɹoɟ xoɟǝɹıℲ ǝʞɐW"
-
-msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "{start_sub_heading} {addon_name} ɥʇıʍ{end_sub_heading} soǝpıʌ ǝʌoɹdɯI"
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ".ǝɹoɯ puɐ ´ʎɐʅd-oʇnɐ ´ƃuıʞɔoʅq pɐ ´ǝpoɯ ɐɯǝuıɔ ǝʞıʅ ´sǝɹnʇɐǝɟ ǝqn⊥no⅄ ʍǝu ɟo ǝʇıns ɐ ʎoɾuƎ"
-
-#. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sɹǝʞɔɐɹʇ ʎʞɐǝus doʇS"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr ".qǝʍ ǝɥʇ punoɹɐ noʎ ʍoʅʅoɟ ʇɐɥʇ spɐ ƃuıʎds puɐ sɹǝʞɔɐɹʇ ǝʅqısıʌuı ʞɔoʅԐ"
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ǝɯɐƃ ıɾoɯǝ ɹnoʎ d∩"
-
-msgid "Dozens of amazing emojis for every occasion—just a click away."
-msgstr ".ʎɐʍɐ ʞɔıʅɔ ɐ ʇsnɾ—uoısɐɔɔo ʎɹǝʌǝ ɹoɟ sıɾoɯǝ ƃuızɐɯɐ ɟo suǝzoᗡ"
-
-#. editorial content for the discovery pane.
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} soǝpıʌ pɐoʅuʍoᗡ"
-
-msgid "Works seamlessly with most popular video sites."
-msgstr ".sǝʇıs oǝpıʌ ɹɐʅndod ʇsoɯ ɥʇıʍ ʎʅssǝʅɯɐǝs sʞɹoＭ"
-
-#. editorial content for the discovery pane.
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} uoıʇɐzıɯoʇsnↃ qɐ⊥"
-
-msgid "Set the page you see every time you open a new tab."
-msgstr ".qɐʇ ʍǝu ɐ uǝdo noʎ ǝɯıʇ ʎɹǝʌǝ ǝǝs noʎ ǝƃɐd ǝɥʇ ʇǝS"
-
-#. editorial content for the discovery pane.
-msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ǝɯɐƃ ıɾoɯǝ ɹnoʎ ǝɔuɐɥuƎ"
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr ".ʎɐʍɐ ʞɔıʅɔ ǝuo ʇsnɾ sʎɐʍʅɐ—uoısɐɔɔo ʎɹǝʌǝ ɹoɟ sıɾoɯǝ ƃuızɐɯɐ ɟo suǝzoᗡ"
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sʇoɥsuǝǝɹɔs ǝʞɐ⊥"
-
-msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
-msgstr ".sʅɐnsıʌ ɹnoʎ ǝɹɐɥs puɐ ǝɹoʇs oʇ ʎʇıʅıqɐ ǝɥʇ snʅd ´sɔıɥdɐɹƃ puɐ ʇxǝʇ ɯoʇsnɔ ɥʇıʍ sǝƃɐɯı ǝʇɐʇouuɐ noʎ sʇǝʅ snʅԀ ʇoɥsuǝǝɹɔS ǝɯosǝʍ∀ ´ʅooʇ ʇoɥsuǝǝɹɔs ɔısɐq ɐ ʇsnɾ uɐɥʇ ǝɹoW"
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4381,6 +4406,10 @@ msgid "Get instant global weather information right in Firefox."
 msgstr ".xoɟǝɹıℲ uı ʇɥƃıɹ uoıʇɐɯɹoɟuı ɹǝɥʇɐǝʍ ʅɐqoʅƃ ʇuɐʇsuı ʇǝ⅁"
 
 #. editorial content for the discovery pane.
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} uoıʇɐzıɯoʇsnↃ qɐ⊥"
+
+#. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
 msgstr ".qɐʇ ʍǝu ɐ uǝdo noʎ ǝɯıʇ ʎɹǝʌǝ ǝǝs noʎ ǝƃɐd ǝɥʇ ǝsooɥↃ"
 
@@ -4393,8 +4422,16 @@ msgid "See an interesting picture on the web and want to learn more about it? Tr
 msgstr ".ʅooʇ ɥɔɹɐǝs ǝƃɐɯı sıɥʇ ʎɹ⊥ ¿ʇı ʇnoqɐ ǝɹoɯ uɹɐǝʅ oʇ ʇuɐʍ puɐ qǝʍ ǝɥʇ uo ǝɹnʇɔıd ƃuıʇsǝɹǝʇuı uɐ ǝǝS"
 
 #. editorial content for the discovery pane.
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} soǝpıʌ pɐoʅuʍoᗡ"
+
+#. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr ".sǝʇıs oǝpıʌ ɹǝɥʇo ɟo spǝɹpunɥ puɐ ´ǝdoɔsıɹǝԀ ´uoıʇoɯʎʅıɐᗡ ´ɥɔʇıʍ⊥ ´oǝɯıɅ ´ʞooqǝɔɐℲ ´ǝqn⊥no⅄ ɥʇıʍ sʞɹoＭ"
+
+#. editorial content for the discovery pane.
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ǝɯɐƃ ıɾoɯǝ ɹnoʎ ǝɔuɐɥuƎ"
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
@@ -4580,6 +4617,14 @@ msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sɹǝʞɔɐɹ�
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr ".ɯǝɥʇ ʇnoqɐ ǝɹoɯ uɹɐǝʅ puɐ sʞɔɐɹʇ ɹıǝɥʇ uı sɹǝʞɔɐɹʇ doʇS"
+
+#. editorial content for the discovery pane.
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ʅıɐɹʇ ʅɐʇıƃıp uɐǝʅɔ ɐ ǝʌɐǝ⅂"
+
+#. editorial content for the discovery pane.
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+msgstr ".ǝsooɥɔ noʎ suıɐɯop ɹoɟ ʎʅuo ʇnq ´ǝƃɐɹoʇs ʅɐɔoʅ puɐ sǝıʞooɔ ǝʞıʅ ɐʇɐp ǝʇısqǝʍ ʇǝƃɹoɟ xoɟǝɹıℲ ǝʞɐW"
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6525,9 +6570,6 @@ msgstr "pǝʇsǝnbǝᴚ uoıʇɐɯɹoɟuI ǝɹoW"
 msgid "Expired Information Request"
 msgstr "ʇsǝnbǝᴚ uoıʇɐɯɹoɟuI pǝɹıdxƎ"
 
-msgid "Contains Reviewer Comment"
-msgstr "ʇuǝɯɯoↃ ɹǝʍǝıʌǝᴚ suıɐʇuoↃ"
-
 msgid "Sources provided"
 msgstr "pǝpıʌoɹd sǝɔɹnoS"
 
@@ -6739,6 +6781,12 @@ msgstr ".pǝssǝɔoɹd ʎʅʅnɟssǝɔɔns ʍǝıʌǝᴚ"
 
 msgid "Review lock limit reached"
 msgstr "pǝɥɔɐǝɹ ʇıɯıʅ ʞɔoʅ ʍǝıʌǝᴚ"
+
+msgid "{addon} :: EULA"
+msgstr "∀⅂∩Ǝ :: {addon}"
+
+msgid "{addon} :: Privacy Policy"
+msgstr "ʎɔıʅoԀ ʎɔɐʌıɹԀ :: {addon}"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."

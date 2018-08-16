@@ -108,8 +108,6 @@ class TestUserProfile(TestCase):
         assert user.display_name
         assert user.homepage
         assert user.picture_type
-        assert user.last_login_attempt
-        assert user.last_login_attempt_ip
         assert user.last_login_ip
         assert not user.has_anonymous_username
 
@@ -123,8 +121,6 @@ class TestUserProfile(TestCase):
         assert user.display_name is None
         assert user.homepage == ''
         assert user.picture_type is None
-        assert user.last_login_attempt is None
-        assert user.last_login_attempt_ip == ''
         assert user.last_login_ip == ''
         assert user.has_anonymous_username
         assert not storage.exists(user.picture_path)

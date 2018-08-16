@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-02 01:13+0000\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -827,7 +827,7 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1297
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1300
 #: static/js/zamboni/reviewers.js:410
 msgid "Select an application first"
 msgstr ""
@@ -941,35 +941,35 @@ msgstr ""
 msgid "Stop following"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:105
+#: static/js/zamboni/devhub.js:108
 msgid "Your browser does not support the video tag"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:373
+#: static/js/zamboni/devhub.js:376
 msgid "Changes Saved"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:389
+#: static/js/zamboni/devhub.js:392
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:539
+#: static/js/zamboni/devhub.js:542
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: static/js/zamboni/devhub.js:684
+#: static/js/zamboni/devhub.js:687
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:687
+#: static/js/zamboni/devhub.js:690
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:1198
+#: static/js/zamboni/devhub.js:1201
 msgid "Image changes being processed"
 msgstr ""
 
@@ -982,7 +982,7 @@ msgid "Loading..."
 msgstr ""
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js:470
+#: static/js/zamboni/global.js:471
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] ""

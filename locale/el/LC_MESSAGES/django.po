@@ -1,10 +1,10 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-04 00:33+0000\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"PO-Revision-Date: 2018-08-13 13:45+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -568,8 +568,8 @@ msgstr ""
 "περιήγησής σας)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
-" rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"some rare cases risk may be involved."
 msgstr ""
 "Επειδή έχετε τον απόλυτο έλεγχο του Firefox σας, η επιλογή για αποδοχή ή άρνηση αυτών των αιτημάτων είναι δική σας. Η παραχώρηση δικαιωμάτων δεν επηρεάζει εγγενώς τις επιδόσεις ή την ασφάλεια του "
 "προγράμματος περιήγησης, αλλά σε μερικές, σπάνιες περιπτώσεις υπάρχει κίνδυνος."
@@ -602,7 +602,7 @@ msgid "support section"
 msgstr "τμήμα υποστήριξης"
 
 msgid "support email"
-msgstr "e-mail υποστήριξης"
+msgstr "email υποστήριξης"
 
 msgid "permalink"
 msgstr "μόνιμος σύνδεσμος"
@@ -738,8 +738,8 @@ msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
-"Βλέπετε αυτό το μήνυμα επειδή αυτός ο ιστότοπος απαιτεί ένα cookie CSRF κατά την υποβολή αιτήσεων. Αυτό το cookie απαιτείται για λόγους ασφαλείας, για να διασφαλιστεί ότι το πρόγραμμα περιήγησής σας"
-" δε θα καταχραστεί από τρίτους."
+"Βλέπετε αυτό το μήνυμα επειδή αυτός ο ιστότοπος απαιτεί ένα cookie CSRF κατά την υποβολή αιτήσεων. Αυτό το cookie απαιτείται για λόγους ασφαλείας, για να διασφαλιστεί ότι το πρόγραμμα περιήγησής "
+"σας δε θα καταχραστεί από τρίτους."
 
 msgid "Page Not Found"
 msgstr "Η σελίδα δεν βρέθηκε"
@@ -775,17 +775,17 @@ msgstr "Δεν βρέθηκε"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
+"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Λυπούμαστε, αλλά δεν μπορούμε να βρούμε αυτό που ψάχνετε.</h1> <p> Η σελίδα ή το αρχείο που ζητήσατε δεν βρέθηκε στην ιστοσελίδα μας. Είναι πιθανό να έχετε κάνει κλικ σε κάποιο παλιό σύνδεσμο, ή"
-" να πληκτρολογήσατε εσφαλμένα τη διεύθυνση. </p> <ul> <li>Αν πληκτρολογήσατε τη διεύθυνση, παρακαλούμε ελέγξτε τη για ορθογραφικά λάθη.</li> <li> Αν ακολουθήσατε κάποιο σύνδεσμο από κάπου, "
-"παρακαλούμε <a href=\"https://github.com/mozilla/addons-server/issues/new/\">αναφέρετε το ζήτημα</a>. Πείτε μας από που ήλθατε και τι ψάχνατε και θα κάνουμε ό,τι μπορούμε για να το διορθώσουμε. "
-"</li> </ul> <p>Ή μπορείτε απλά να μεταβείτε σε μερικές άλλες δημοφιλείς σελίδες στην ιστοσελίδα μας.</p> <ul> <li>Σάς ενδιαφέρει μια <a href=\"%(rec)s\">λίστα με προβεβλημένα πρόσθετα</a>;</li> <li>"
-" Θέλετε να κάνετε <a href=\"%(search)s\">αναζήτηση για πρόσθετα</a>; Μπορείτε να μεταβείτε στη <a href=\"%(search)s\">σελίδα αναζήτησης</a> ή να χρησιμοποιήσετε απλά το παραπάνω πεδίο αναζήτησης. "
-"</li> <li> Αν προτιμάτε να ξεκινήσετε από την αρχή, απλά μεταβείτε στην <a href=\"%(home)s\">αρχική σελίδα των προσθέτων</a>. </li> </ul>"
+"<h1>Λυπούμαστε, αλλά δεν μπορούμε να βρούμε αυτό που ψάχνετε.</h1> <p> Η σελίδα ή το αρχείο που ζητήσατε δεν βρέθηκε στην ιστοσελίδα μας. Είναι πιθανό να έχετε κάνει κλικ σε κάποιο παλιό σύνδεσμο, "
+"ή να πληκτρολογήσατε εσφαλμένα τη διεύθυνση. </p> <ul> <li>Αν πληκτρολογήσατε τη διεύθυνση, παρακαλούμε ελέγξτε τη για ορθογραφικά λάθη.</li> <li> Αν ακολουθήσατε κάποιο σύνδεσμο από κάπου, "
+"παρακαλούμε <a href=\"https://github.com/mozilla/addons-server/issues/new/\">αναφέρετε το ζήτημα</a>. Πείτε μας από που ήλθατε και τι ψάχνατε και θα κάνουμε ό,τι μπορούμε για να το διορθώσουμε. </"
+"li> </ul> <p>Ή μπορείτε απλά να μεταβείτε σε μερικές άλλες δημοφιλείς σελίδες στην ιστοσελίδα μας.</p> <ul> <li>Σάς ενδιαφέρει μια <a href=\"%(rec)s\">λίστα με προβεβλημένα πρόσθετα</a>;</li> <li> "
+"Θέλετε να κάνετε <a href=\"%(search)s\">αναζήτηση για πρόσθετα</a>; Μπορείτε να μεταβείτε στη <a href=\"%(search)s\">σελίδα αναζήτησης</a> ή να χρησιμοποιήσετε απλά το παραπάνω πεδίο αναζήτησης. </"
+"li> <li> Αν προτιμάτε να ξεκινήσετε από την αρχή, απλά μεταβείτε στην <a href=\"%(home)s\">αρχική σελίδα των προσθέτων</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ωχ"
@@ -793,8 +793,8 @@ msgstr "Ωχ"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
-"<h1>Ωχ!  Προέκυψε σφάλμα.</h1> <p>Θα το διορθώσουμε σύντομα.</p> <p> Μπορείτε να δοκιμάσετε να φορτώσετε εκ νέου τη σελίδα, ή να επιστρέψετε στην <a href=\"%(home)s\">αρχική σελίδα των "
-"προσθέτων</a>. </p>"
+"<h1>Ωχ!  Προέκυψε σφάλμα.</h1> <p>Θα το διορθώσουμε σύντομα.</p> <p> Μπορείτε να δοκιμάσετε να φορτώσετε εκ νέου τη σελίδα, ή να επιστρέψετε στην <a href=\"%(home)s\">αρχική σελίδα των προσθέτων</"
+"a>. </p>"
 
 msgid "Some rights reserved"
 msgstr "Μερική επιφύλαξη δικαιωμάτων"
@@ -833,8 +833,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Παρακαλώ εισάγετε <strong>όλες τις λέξεις</strong> παρακάτω, <strong>διαχωρισμένες με διάστημα αν χρειάζεται</strong>. </p> <p> Αν είναι δυσανάγνωστες, μπορείτε να <a href=\"#\" "
-"id=\"recaptcha_different\">δοκιμάσετε διαφορετικές λέξεις</a> ή να <a href=\"#\" id=\"recaptcha_audio\">δοκιμαστείτε με έναν άλλο τρόπο</a> . </p>"
+"<p> Παρακαλώ εισάγετε <strong>όλες τις λέξεις</strong> παρακάτω, <strong>διαχωρισμένες με διάστημα αν χρειάζεται</strong>. </p> <p> Αν είναι δυσανάγνωστες, μπορείτε να <a href=\"#\" id="
+"\"recaptcha_different\">δοκιμάσετε διαφορετικές λέξεις</a> ή να <a href=\"#\" id=\"recaptcha_audio\">δοκιμαστείτε με έναν άλλο τρόπο</a> . </p>"
 
 msgid "Top Rated"
 msgstr "Υψηλότερη βαθμολογια"
@@ -971,11 +971,11 @@ msgstr "Εκδόσεις"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"Αν η υποστηριζόμενη εφαρμογή σας δεν απαιτεί ένα αρχείο manifest, πρέπει ακόμη να περιλάβετε ένα με τις απαιτούμενες ιδιότητες, όπως περιγράφεται "
-"%(amo_manifests_mdn_link_open)sεδώ%(amo_manifests_mdn_link_close)s."
+"Αν η υποστηριζόμενη εφαρμογή σας δεν απαιτεί ένα αρχείο manifest, πρέπει ακόμη να περιλάβετε ένα με τις απαιτούμενες ιδιότητες, όπως περιγράφεται %(amo_manifests_mdn_link_open)sεδώ"
+"%(amo_manifests_mdn_link_close)s."
 
 msgid "Only I can view this collection."
 msgstr "Μόνο εγώ θα μπορώ να δω αυτή τη συλλογή."
@@ -1059,7 +1059,8 @@ msgstr "Δημιουργία νέας συλλογής"
 
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr "Όπως αναφέρεται και στις <a href=\"%(legal)s\">νομικές σημειώσεις</a> μας, κάθε ξεχωριστή διάταξη συλλογής διέπεται από την άδεια χρήσης Creative Commons Αναφορά προέλευσης - Παρόμοια Διανομή."
+msgstr ""
+"Όπως αναφέρεται και στις <a href=\"%(legal)s\">νομικές σημειώσεις</a> μας, κάθε ξεχωριστή διάταξη συλλογής διέπεται από την άδεια χρήσης Creative Commons Αναφορά προέλευσης - Παρόμοια Διανομή."
 
 msgid "Create Collection"
 msgstr "Δημιουργία συλλογής"
@@ -1140,12 +1141,12 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
-"Παρακάτω εμφανίζονται τα πρόσθετα που σημειώνετε σαν αγαπημένα χρησιμοποιώντας τη λειτουργία <b>Προσθήκη στα αγαπημένα</b>. Αυτή η συλλογή είναι προς το παρόν <b>δημόσια</b>, πράγμα που σημαίνει ότι"
-" μπορεί να τη δει οποιοσδήποτε. Αν θέλετε να αποκρυφτεί από τη δημόσια θέα, κάντε κλικ στο παρακάτω κουμπί για να την κάνετε ιδιωτική."
+"Παρακάτω εμφανίζονται τα πρόσθετα που σημειώνετε σαν αγαπημένα χρησιμοποιώντας τη λειτουργία <b>Προσθήκη στα αγαπημένα</b>. Αυτή η συλλογή είναι προς το παρόν <b>δημόσια</b>, πράγμα που σημαίνει "
+"ότι μπορεί να τη δει οποιοσδήποτε. Αν θέλετε να αποκρυφτεί από τη δημόσια θέα, κάντε κλικ στο παρακάτω κουμπί για να την κάνετε ιδιωτική."
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
-" be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
+"to be able to see your favorites, click the button below to make it public."
 msgstr ""
 "Τα πρόσθετα που επισημαίνετε ως αγαπημένα με τη λειτουργία <b>Προσθήκη στα αγαπημένα</b> εμφανίζονται παρακάτω. Αυτή η συλλογή είναι <b>ιδιωτική</b> προς το παρόν, που σημαίνει ότι μόνο εσείς "
 "μπορείτε να την δείτε. Αν θέλετε να μπορούν όλοι να δουν τα αγαπημένα σας, κάντε κλικ στο παρακάτω κουμπί για να γίνουν δημόσια."
@@ -1204,8 +1205,8 @@ msgstr "Δεν βρέθηκαν συλλογές."
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
-"Οι συλλογές είναι ομάδες σχετιζόμενων πρόσθετων που μπορεί να δημιουργήσει και να μοιράσει ο καθένας. Ανακαλύψτε τις συλλογές που έχουν φτιάξει άλλοι ή <a href=\"%(url)s\">δημιουργήστε τη δική "
-"σας</a>."
+"Οι συλλογές είναι ομάδες σχετιζόμενων πρόσθετων που μπορεί να δημιουργήσει και να μοιράσει ο καθένας. Ανακαλύψτε τις συλλογές που έχουν φτιάξει άλλοι ή <a href=\"%(url)s\">δημιουργήστε τη δική σας</"
+"a>."
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1345,8 +1346,8 @@ msgstr "Λήψη πακέτου γλώσσας"
 
 #, python-format
 msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
-" the entire application."
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
+"of the entire application."
 msgstr ""
 "Η εγκατάσταση ενός προσθέτου λεξικού θα προσθέσει μια νέα επιλογή γλώσσας στον ορθογραφικό έλεγχο του %(app_name)s, που ελέγχει την ορθογραφία σας όταν συμπληρώνετε διαδικτυακές φόρμες. Τα πρόσθετα "
 "πακέτων γλωσσών αλλάζουν τη γλώσσα ολόκληρης της εφαρμογής."
@@ -1523,8 +1524,8 @@ msgstr "Αναφορές συμβατότητας πρόσθετων"
 
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
-" supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
+"help supporting an upcoming Firefox version. </p>"
 msgstr ""
 "<p> Οι αναφορές που υποβάλλονται μέσω του <a href=\"%(url_)s\">Add-on Compatibility Reporter</a>, συλλέγονται εδώ για να τις δουν οι δημιουργοί. Αυτές οι αναφορές μας βοηθούν στο να αποφασίσουμε "
 "ποια πρόσθετα θα χρειαστούν επεμβάσεις για να είναι συμβατά με μια επερχόμενη έκδοση του Firefox. </p>"
@@ -2487,9 +2488,6 @@ msgstr "Παρουσιάστηκε σφάλμα στην αποστολή. Πα�
 msgid "Override failed validation"
 msgstr "Η παράκαμψη απέτυχε να επικυρωθεί"
 
-msgid "Submit my add-on for manual review."
-msgstr "Υποβολή του προσθέτου μου για χειροκίνητη αξιολόγηση."
-
 msgid "You cannot upload any more files for this version."
 msgstr "Δεν μπορείτε να αποστείλετε περισσότερα αρχεία γι' αυτή την έκδοση."
 
@@ -2504,6 +2502,12 @@ msgstr "Η έκδοση {version} υπάρχει ήδη."
 
 msgid "Continue with existing upload instead?"
 msgstr "Συνέχει με την υπάρχουσα μεταφόρτωση;"
+
+msgid "You have not uploaded a source file."
+msgstr "Δεν έχετε μεταφορτώσει αρχείο πηγής."
+
+msgid "Source file uploaded but you indicated no source was needed."
+msgstr "Το αρχείο πηγής μεταφορτώθηκε, αλλά υποδείξατε ότι δεν χρειαζόταν πηγή."
 
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Η πλατφόρμα «Όλες» δεν μπορεί να συνδυαστεί με συγκεκριμένες πλατφόρμες."
@@ -2525,10 +2529,11 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 "Σε αυτή την ιστοσελίδα. <span class=\"helptext\">Η υποβολή σας θα συμπεριληφθεί σε αυτή την ιστοσελίδα και τη Διαχείριση προσθέτων του Firefox για εκατομμύρια χρήστες, αφού περάσει την αξιολόγηση "
-"κώδικα. Οι αυτόματες ενημερώσεις διαχειρίζονται από αυτή την ιστοσελίδα. Αυτό το πρόσθετο θα είναι υποψήφιο και για τους διαγωνισμούς προώθησης της Mozilla. Η αυτοδιανομή αξιολογημένων αρχείων είναι"
-" επίσης δυνατή.</span>"
+"κώδικα. Οι αυτόματες ενημερώσεις διαχειρίζονται από αυτή την ιστοσελίδα. Αυτό το πρόσθετο θα είναι υποψήφιο και για τους διαγωνισμούς προώθησης της Mozilla. Η αυτοδιανομή αξιολογημένων αρχείων "
+"είναι επίσης δυνατή.</span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "Μόνοι σας. <span class=\"helptext\">Η υποβολή σας θα υπογραφεί άμεσα για αυτοδιανομή. Οι ενημερώσεις θα διαχειρίζονται από εσάς μέσω updateURL ή ενημερώσεων εξωτερικής εφαρμογής.</span>"
 
 msgid "Categories cannot be changed while your add-on is featured."
@@ -2682,11 +2687,11 @@ msgid "API key revoked"
 msgstr "Ανακλήθηκε κλειδί API"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
-"Πριν ξεκινήσετε, παρακαλώ διαβάστε και αποδεχτείτε τη συμφωνία διανομής προσθέτων του Firefox, καθώς και στις πολιτικές και τους κανόνες αξιολόγησης. Η συμφωνία διανομής προσθέτων του Firefox θα σάς"
-" παραπέμψει στη σημείωση απορρήτου μας, που εξηγεί πώς χειριζόμαστε τις πληροφορίες σας."
+"Πριν ξεκινήσετε, παρακαλώ διαβάστε και αποδεχτείτε τη συμφωνία διανομής προσθέτων του Firefox, καθώς και στις πολιτικές και τους κανόνες αξιολόγησης. Η συμφωνία διανομής προσθέτων του Firefox θα "
+"σάς παραπέμψει στη σημείωση απορρήτου μας, που εξηγεί πώς χειριζόμαστε τις πληροφορίες σας."
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Συμφωνία διανομής προσθέτων Firefox"
@@ -2820,7 +2825,9 @@ msgstr ""
 "σας ή αποστείλετε μια νέα έκδοση του."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Αναβάθμιση συμβατότητας</a> <a href=\"%(version_url)s\" class=\"button\">Αποστολή νέας έκδοσης</a> ή <a href=\"#\" "
 "class=\"close\">αγνόηση</a>"
@@ -2945,7 +2952,8 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "Οι κατηγορίες είναι ο κύριος τρόπος με τον οποίο οι χρήστες περιηγούνται στα πρόσθετα. Επιλέξτε αυτή που ταιριάζει στη λειτουργία του προσθέτου σας για μέγιστη προβολή."
 
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Οι κατηγορίες δεν μπορούν να τροποποιηθούν ενώ το πρόσθετό σας προτείνεται για αυτή την εφαρμογή. Παρακαλούμε στείλτε email στο <a href=\"mailto:%(email)s\">%(email)s</a> αν υπάρχει λόγος για να "
 "τροποποιήσετε τις κατηγορίες σας."
@@ -3019,11 +3027,11 @@ msgid "Email"
 msgstr "Email"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
-"Εάν θέλετε προσθέσετε ένα e-mail για ερωτήσεις υποστήριξης, εισάγετε το εδώ. Αν έχετε διαφορετικές διευθύνσεις για κάθε γλώσσα, μπορούν να προστεθούν πολλές μεταφράσεις αυτού του πεδίου. Αυτό ισχύει"
-" μόνο για τα καταχωρημένα πρόσθετα."
+"Αν θέλετε να γίνεται προβολή ενός email για απορίες υποστήριξης, εισάγετέ το εδώ. Αν έχετε διαφορετικές διευθύνσεις για κάθε γλώσσα, μπορείτε να προσθέσετε πολλές μεταφράσεις αυτού του πεδίου. Αυτό "
+"ισχύει μόνο για τα καταχωρημένα πρόσθετα."
 
 msgid "Website"
 msgstr "Ιστοσελίδα"
@@ -3032,8 +3040,8 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
-"Εάν το πρόσθετο σας διαθέτει μία ιστοσελίδα υποστήριξης ή φόρουμ, εισαγάγετε εδώ τη διεύθυνσή του. Εάν ο ιστότοπός σας είναι τοποθετημένος σε άλλες γλώσσες, μπορούν να προστεθούν πολλαπλές "
-"μεταφράσεις αυτού του πεδίου. Αυτό ισχύει μόνο για τα καταχωρημένα πρόσθετα."
+"Αν το πρόσθετό σας διαθέτει μία ιστοσελίδα υποστήριξης ή φόρουμ, εισαγάγετε εδώ τη διεύθυνσή του. Αν η ιστοσελίδα σας έχει μεταφραστεί σε άλλες γλώσσες, μπορείτε να προσθέσετε πολλαπλές μεταφράσεις "
+"αυτού του πεδίου. Αυτό ισχύει μόνο για τα καταχωρημένα πρόσθετα."
 
 msgid "Technical Details"
 msgstr "Τεχνικές λεπτομέρειες"
@@ -3049,8 +3057,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Οποιαδήποτε πληροφορία μπορεί οι τελικοί χρήστες να θέλουν να γνωρίζουν που δεν ισχύει κατ 'ανάγκη στην περίληψη πρόσθετου ή την περιγραφή. Οι συνήθεις χρήσεις περιλαμβάνουν την καταγραφή γνωστών "
-"σημαντικών σφαλμάτων, πληροφορίες σχετικά με τον τρόπο αναφοράς σφαλμάτων, την αναμενόμενη ημερομηνία κυκλοφορίας μιας νέας έκδοσης κ.λπ. Είναι χρήσιμο μόνο για τα καταχωρημένα πρόσθετα."
+"Κάθε πληροφορία που ενδέχεται να θέλουν να γνωρίζουν οι τελικοί χρήστες και δεν ισχύει κατ' ανάγκη στην περίληψη ή την περιγραφή του προσθέτου. Οι συνήθεις χρήσεις περιλαμβάνουν την καταγραφή "
+"γνωστών σημαντικών σφαλμάτων, πληροφορίες σχετικά με τον τρόπο αναφοράς σφαλμάτων, την αναμενόμενη ημερομηνία κυκλοφορίας μιας νέας έκδοσης κ.λπ. Αυτό ισχύει μόνο για τα καταχωρημένα πρόσθετα."
 
 msgid "Required Add-ons"
 msgstr "Απαιτούμενα πρόσθετα"
@@ -3071,7 +3079,7 @@ msgid "View Source?"
 msgstr "Προβολή πηγαίου κώδικα;"
 
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Αν θα μπορεί να εμφανιστεί ο πηγαίος κώδικας του προσθέτου σας στο πρόγραμμα διαδικτυακής προβολής. Αυτό ισχύει μόνο για τα καταχωρημένα πρόσθετα."
 
 msgid "This add-on's source code is publicly viewable."
 msgstr "Ο πηγαίος κώδικας του πρόσθετου διατίθεται για δημόσια προβολή."
@@ -3083,7 +3091,7 @@ msgid "Public Stats?"
 msgstr "Δημόσια στατιστικά;"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Αν μπορούν να προβληθούν τα στατιστικά λήψεων και χρήσης του προσθέτου σας στο πρόγραμμα διαδικτυακής προβολής. Αυτό ισχύει μόνο για τα καταχωρημένα πρόσθετα."
 
 msgid "This add-on's stats are publicly viewable."
 msgstr "Τα στατιστικά αυτού του προσθέτου είναι σε δημόσια προβολή."
@@ -3095,7 +3103,7 @@ msgid "Upgrade SDK?"
 msgstr "Ενημέρωση του SDK;"
 
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Αν επιλεχθεί, θα προσπαθήσουμε να αναβαθμίσουμε αυτόματα το πρόσθετό σας, όταν κυκλοφορήσει μια νέα έκδοση του SDK. Αυτό ισχύει μόνο για τα καταχωρημένα πρόσθετα."
 
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
 msgstr "Αυτό το πρόσθετο θα ενημερώνεται αυτόματα με τις μελλοντικές εκδόσεις του Add-on SDK."
@@ -3119,6 +3127,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Ο λευκός πίνακας παρέχει πληροφορίες σχετικά με το πρόσθετό σας, για οποιαδήποτε έκδοση, στους αξιολογητές. Χρησιμοποιήστε τον για να παρέχετε τρόπους δοκιμής του προσθέτου, καθώς και τυχόν "
+"επιπρόσθετες πληροφορίες που ενδέχεται να φανούν χρήσιμες. Αυτός ο λευκός πίνακας μπορεί να επεξεργαστεί και από τους αξιολογητές."
 
 msgid "Remove this dependent add-on"
 msgstr "Αφαίρεση εξαρτώμενου προσθέτου"
@@ -3136,6 +3146,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Μεταφορτώστε ένα εικονίδιο για το πρόσθετό σας ή επιλέξτε ένα από τα δικά μας. Το εικονίδιο εμφανίζεται σχεδόν οπουδήποτε βρίσκεται το πρόσθετό σας. Οι μεταφορτωμένες εικόνες πρέπει να έχουν έναν "
+"από τους εξής τύπους: .png, .jpg. Αυτό ισχύει μόνο για τα καταχωρημένα πρόσθετα."
 
 msgid "Select an icon for your add-on:"
 msgstr "Επιλογή εικονιδίου για το πρόσθετο σας:"
@@ -3161,21 +3173,23 @@ msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr "Υποστηρίζονται μορφές PNG και JPG. Το μέγεθος των εικονιδίων μετατρέπεται σε 64x64 pixel αν είναι μεγαλύτερο."
 
 msgid "Screenshots"
-msgstr "Εικόνες προεπισκόπησης"
+msgstr "Στιγμιότυπα"
 
 msgid "Please provide at least one screen shot of your add-on:"
 msgstr "Παρακαλώ παρέχετε τουλάχιστον ένα στιγμιότυπο του προσθέτου σας:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr "Παρακαλούμε δώστε μια λεζάντα για την εικόνα:"
+msgstr "Παρακαλούμε δώστε μια λεζάντα για το στιγμιότυπο:"
 
 msgid "Add a Screenshot..."
-msgstr "Προσθήκη εικόνας προεπισκόπησης..."
+msgstr "Προσθήκη στιγμιότυπου..."
 
 msgid ""
 "PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
 "page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
+"Υποστηρίζονται PNG και JPG. Το μέγιστο και προτεινόμενο μέγεθος για στιγμιότυπα είναι 1280x800 pixels. Η ανάλυση 640x400 pixels είναι καλή εναλλακτική αν έχετε μόνο μικρότερες εικόνες. Τα "
+"στιγμιότυπα στη σελίδα του προσθέτου σας αυξάνουν σημαντικά τις πιθανότητες να εγκατασταθεί και να προταθεί στην αρχική σελίδα."
 
 msgid "Continue"
 msgstr "Συνέχεια"
@@ -3190,10 +3204,10 @@ msgid "Can others create derivative works from your Add-on?"
 msgstr "Μπορούν οι άλλοι χρήστες να δημιουργήσουν παράγωγα έργα από το πρόσθετό σας;"
 
 msgid "Yes, as long as they share alike"
-msgstr "Ναι, εφ'όσον μοιράζονται το ίδιο"
+msgstr "Ναι, εφόσον μοιράζονται την ίδια"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
+msgstr "Ο αδειοδότης επιτρέπει σε άλλους να διανέμουν παράγωγα έργα μόνο υπό την ίδια άδεια ή μια συμβατή με αυτή του έργου."
 
 msgid "Your Add-on will be released under the following license:"
 msgstr "Το πρόσθετό σας θα εκδοθεί υπό την ακόλουθη άδεια:"
@@ -3244,6 +3258,8 @@ msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
+"Η διαγραφή του προσθέτου σας θα διαγράψει οριστικά όλες τις εκδόσεις και τα αρχεία που έχετε υποβάλει για αυτό το πρόσθετο, είτε αναγράφεται είτε όχι. Το αναγνωριστικό προσθέτου θα συνεχίσει να "
+"είναι συνδεδεμένο με το λογαριασμό σας έτσι, ώστε να μην μπορεί κάποιος άλλος να υποβάλει εκδόσεις με το ίδιο αναγνωστικό."
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Εισάγετε το ακόλουθο κείμενο για να επιβεβαιώσετε την απόφασή σας: {slug}"
@@ -3346,7 +3362,7 @@ msgid "Describe Add-on"
 msgstr "Περιγραφή προσθέτου"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Όνομα αναγραφής στην ιστοσελίδα. Μπορεί να είναι διαφορετικό από το όνομα εντός του προσθέτου, που εμφανίζεται μέσα στο Firefox"
 
 msgid "Add-on URL:"
 msgstr "URL προσθέτου:"
@@ -3365,6 +3381,8 @@ msgstr "Αυτό το πρόσθετο είναι πειραματικό"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+"Ενεργοποιήστε αυτή την επιλογή αν το πρόσθετό σας είναι πειραματικό ή όχι έτοιμο για γενική χρήση. Το πρόσθετο θα αναγράφεται, αλλά με μειωμένη ορατότητα. Μπορείτε να αλλάξετε αργότερα αυτή τη "
+"ρύθμιση."
 
 msgid "Select a category for this add-on:"
 msgstr "Επιλέξτε κατηγορία για αυτό το πρόσθετο:"
@@ -3382,13 +3400,13 @@ msgid "Please choose a license appropriate for the rights you grant."
 msgstr "Παρακαλούμε επιλέξτε μια κατάλληλη άδεια για τα δικαιώματα που χορηγείτε."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
+msgstr "Αν το πρόσθετό σας μεταδίδει δεδομένα από τον υπολογιστή του χρήστη, απαιτείται μια πολιτική απορρήτου, η οποία εξηγεί ποια δεδομένα αποστέλλονται και πώς χρησιμοποιούνται."
 
 msgid "Notes to Reviewer:"
 msgstr "Σημειώσεις προς τον κριτή:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Υπάρχει κάτι που πρέπει να λάβουν υπόψη οι αξιολογητές μας κατά την αξιολόγηση του προσθέτου;"
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Αυτές οι σημειώσεις είναι ορατές μόνος σε εσάς και τους αξιολογητές μας."
@@ -3406,7 +3424,7 @@ msgid "Release Notes:"
 msgstr "Σημειώσεις έκδοσης:"
 
 msgid "Let your users know what's new and what's changed in this version."
-msgstr "Ενημερώνετε τους χρήστες για οτιδήποτε νέο υπάρχει και τι άλλαξε στη τωρινή έκδοση."
+msgstr "Οι χρήστες ενημερώνονται για οποιεσδήποτε αλλαγές και προσθήκες σε αυτή την έκδοση."
 
 msgid "These notes will appear on the detail page."
 msgstr "Αυτές οι σημειώσεις θα εμφανίζονται στη σελίδα λεπτομερειών."
@@ -3424,7 +3442,7 @@ msgid "You’re done!"
 msgstr "Τελειώσατε!"
 
 msgid "Version Submitted for Review"
-msgstr "Υποβληθείσα Έκδοση για αναθεώρηση"
+msgstr "Υποβληθείσα έκδοση για αναθεώρηση"
 
 msgid "Preview of the version submitted"
 msgstr "Υπεβλήθη προεπισκόπηση της έκδοσης"
@@ -3439,19 +3457,19 @@ msgid "You’re done! This version will be available on our site shortly."
 msgstr "Τελειώσατε! Αυτή η έκδοση θα είναι σύντομα διαθέσιμη στην ιστοσελίδα μας."
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Τελειώσατε! Αυτή η έκδοση έχει υποβληθεί για αξιολόγηση. Θα ειδοποιηθείτε όταν ολοκληρωθεί η αξιολόγηση, ή αν οι κριτές έχουν τυχόν απορίες για την υποβολή σας."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr ""
+msgstr "Το πρόσθετό σας θα κάνει μεγαλύτερη επιτυχία με μια λεπτομερή περιγραφή. Προετοιμάστε την καταχώρησή σας για δημοσίευση:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "Το πρόσθετό σας θα κάνει μεγαλύτερη επιτυχία με μια λεπτομερή περιγραφή και στιγμιότυπα. Προετοιμάστε την καταχώρησή σας για δημοσίευση:"
 
 msgid "Manage Listing"
-msgstr "Διαχείριση καταλόγου"
+msgstr "Διαχείριση καταχώρησης"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
+msgstr "Μπορείτε επίσης να επεξεργαστείτε αυτή την έκδοση για να προσθέσετε σημειώσεις έκδοσης ή πηγαίο κώδικα, αν η υποβολή σας περιέχει ελαχιστοποιημένο, μπερδεμένο ή μεταγλωττισμένο κώδικα."
 
 msgid "Edit version {0}"
 msgstr "Επεξεργασία έκδοσης {0}"
@@ -3472,13 +3490,80 @@ msgid "Download {0}"
 msgstr "Λήψη {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
+msgstr "Επιλέξατε μόνο μερικές από τις διαθέσιμες πλατφόρμες για αυτή την υποβολή. Μπορείτε να μεταφορτώσετε περισσότερα αρχεία που αντιστοιχούν σε άλλες πλατφόρμες:"
 
 msgid "Upload File"
 msgstr "Μεταφόρτωση αρχείου"
 
 msgid "Go to My Submissions"
 msgstr "Μετάβαση στις υποβολές μου"
+
+msgid "Source Code Upload"
+msgstr "Μεταφόρτωση πηγαίου κώδικα"
+
+msgid "Do You Need to Submit Source Code?"
+msgstr "Χρειάζεται να υποβάλετε πηγαίο κώδικα;"
+
+msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgstr "Ενδέχεται να χρειαστεί να υποβάλετε τον πηγαίο κώδικα. Αν δεν υποβάλετε τώρα το σωστό πηγαίο κώδικα, το πρόσθετό σας μπορεί να αφαιρεθεί από αυτή την ιστοσελίδα!"
+
+#, python-format
+msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
+msgstr "Παρακαλούμε ελέγξτε την <a %(a_attrs)s>πολιτική υποβολής πηγαίου κώδικα</a>."
+
+msgid "Do you use any of the following?"
+msgstr "Χρησιμοποιείτε κάτι από τα εξής;"
+
+msgid "Code minifiers or obfuscators"
+msgstr ""
+
+msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
+msgstr ""
+
+msgid "Web template engines, both for HTML and CSS"
+msgstr ""
+
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgstr ""
+
+msgid "You do not need to submit Source Code, and you’re ready for the next step."
+msgstr ""
+
+msgid "Your Submission Requires Source Code."
+msgstr ""
+
+#, python-format
+msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
+msgstr ""
+
+msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+msgstr ""
+
+msgid "A build script that executes all necessary technical steps."
+msgstr "Ένα δομικό σενάριο που εκτελεί όλα τα απαραίτητα τεχνικά βήματα."
+
+msgid "Operating system and build environment requirements."
+msgstr "Απαιτήσεις λειτουργικού συστήματος και περιβάλλοντος ανάπτυξης."
+
+msgid ""
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
+msgstr ""
+
+msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
+msgstr ""
+
+msgid "How to Submit:"
+msgstr "Τρόπος υποβολής:"
+
+msgid "Include instructions in a README file in the source code,"
+msgstr "Συμπεριλάβετε οδηγίες σε ένα αρχείο README στον πηγαίο κώδικα,"
+
+msgid "or in reviewer notes on the next page (if applicable)."
+msgstr "ή στις σημειώσεις αξιολογητών στην επόμενη σελίδα (αν ισχύει)."
+
+msgid "Upload source code:"
+msgstr "Μεταφόρτωση πηγαίου κώδικα:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "Συμφωνία διανομής προσθέτων"
@@ -3544,37 +3629,37 @@ msgid "Select colors for your theme"
 msgstr "Επιλέξτε χρώματα για το θέμα σας"
 
 msgid "Header area background"
-msgstr ""
+msgstr "Φόντο περιοχής επικεφαλίδας"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
 
 msgid "Header area text and icons"
-msgstr ""
+msgstr "Κείμενο και εικονίδια περιοχής επικεφαλίδας"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
 
 msgid "Toolbar area background"
-msgstr ""
+msgstr "Φόντο περιοχής γραμμής εργαλείων"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
 msgid "Toolbar area text and icons"
-msgstr ""
+msgstr "Κείμενο και εικονίδια περιοχής γραμμής εργαλείων"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Το χρώμα του κειμένου και των εικονιδίων στη γραμμή εργαλείων και την ενεργή καρτέλα. Πεδίο αρχείου manifest:  toolbar_text."
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "Φόντο περιοχής πεδίου γραμμής εργαλείων"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
 msgid "Toolbar field area text"
-msgstr "Μέρος πεδίου γραμμής εργαλείων κειμένου"
+msgstr "Κείμενο περιοχής πεδίου γραμμής εργαλείων"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
@@ -3599,7 +3684,7 @@ msgstr "Διαπιστευτήρια API"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "Για λεπτομερείς οδηγίες, συμβουλευτείτε την <a href=\"%(docs_url)s\">τεκμηρίωση API</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
 msgstr ""
@@ -3612,8 +3697,8 @@ msgstr "Μυστικό JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
 msgid "You don't have any API credentials."
@@ -3655,19 +3740,19 @@ msgid "Add-on Multi Process Status:"
 msgstr ""
 
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr ""
+msgstr "Η συμβατότητα του προσθέτου σας με την πολυδιεργασία του Firefox (e10s)."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
 
 msgid "Listed Version:"
-msgstr "Εγγεγραμμένη έκδοση:"
+msgstr "Καταχωρημένη έκδοση:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
 msgstr ""
 
 msgid "Next Listed Version:"
-msgstr "Επόμενη εγγεγραμμένη έκδοση:"
+msgstr "Επόμενη καταχωρημένη έκδοση:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr ""
@@ -3815,7 +3900,7 @@ msgid "Promote"
 msgstr "Προώθηση"
 
 msgid "Get Your Add-on Featured"
-msgstr ""
+msgstr "Προσθήκη του προσθέτου σας στα προτεινόμενα"
 
 msgid "\"Get The Add-on\" button"
 msgstr "Κουμπί \"Λήψη προσθέτου\""
@@ -3867,8 +3952,8 @@ msgstr "Πόροι για μια επιτυχή αρχή"
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
-"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
 msgid "View Resources for Publishers"
@@ -3930,8 +4015,8 @@ msgstr "Προσαρμογή του Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
-"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
+"%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 
 msgid "Learn How to Make an Add-on"
@@ -3966,7 +4051,7 @@ msgid "Compatibility Test"
 msgstr "Δοκιμή συμβατότητας"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "Δείτε αν η επέκτασή σας είναι συμβατή με το Firefox."
 
 msgid "Transfer ownership"
 msgstr "Μεταφορά ιδιοκτησίας"
@@ -4071,8 +4156,8 @@ msgstr "Δώστε ένα όνομα στο θέμα σας."
 
 #, python-format
 msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
-" and Cookies Privacy Notice%(link_close)s."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
+"Communications and Cookies Privacy Notice%(link_close)s."
 msgstr ""
 "Αποδέχομαι τη %(agreement_link_open)sσυμφωνία διανομής προσθέτων του Firefox%(link_close)s και συμφωνώ με τη μεταχείριση των πληροφοριών μου, όπως περιγράφεται στη "
 "%(privacy_notice_link_open)sσημείωση απορρήτου ιστοσελίδων, επικοινωνιών και cookies%(link_close)s."
@@ -4084,14 +4169,14 @@ msgid "You're done!"
 msgstr "Τελειώσατε!"
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr ""
+msgstr "Το θέμα σας έχει υποβληθεί στη σειρά αξιολόγησης. Θα λάβετε ένα email μόλις αξιολογηθεί, τυπικά μέσα σε 24 ώρες."
 
 msgid "Next steps:"
 msgstr "Επόμενα βήματα:"
 
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr ""
+msgstr "Παρέχετε περισσότερες λεπτομέρειες σχετικά με το θέμα σας <a href=\"%(edit_url)s\">τροποποιώντας την καταχώρηση</a>."
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
@@ -4116,8 +4201,8 @@ msgstr "PNG ή JPG"
 msgid "Manage Version {0}"
 msgstr "Διαχείριση της έκδοσης {0}"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "Διαχείριση συλλογής {0}"
 
@@ -4209,14 +4294,16 @@ msgid "Listing visibility"
 msgstr "Ορατότητα στη λίστα"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "{label_open}Ορατό:{label_close} Ορατό σε όλους στο {site_url} και περιλαμβάνεται στα αποτελέσματα αναζήτησης και τις σελίδες καταγραφών."
+msgstr "{label_open}Ορατό:{label_close} Ορατό σε όλους στο {site_url} και συμπεριλαμβάνεται στα αποτελέσματα αναζήτησης και τις σελίδες καταχώρησης."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"{label_open}Αόρατο:{label_close} Δεν θα συμπεριλαμβάνεται στα αποτελέσματα αναζήτησης και η σελίδα καταχώρησης θα υποδεικνύει ότι το έχετε απενεργοποιήσει. Οι υποβολές νέων εκδόσεων για καταχώρηση "
+"δεν θα γίνονται αποδεκτές σε αυτή την κατάσταση,"
 
 msgid "Listed versions"
-msgstr "Αναγραφόμενες εκδόσεις"
+msgstr "Καταχωρημένες εκδόσεις"
 
 msgid "Currently on AMO"
 msgstr "Αυτή τη στιγμή στο AMO"
@@ -4251,7 +4338,7 @@ msgid "Deleting this version will permanently delete:"
 msgstr "Η διαγραφή αυτής της έκδοσης θα διαγράψει οριστικά:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>Σημαντικό:</strong> Μόλις διαγραφεί μια έκδοση, δεν θα μπορείτε να μεταφορτώσετε μια νέα έκδοση με τον ίδιο αριθμό έκδοσης."
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "Θέλετε σίγουρα να διαγράψετε αυτή την έκδοση;"
@@ -4269,7 +4356,7 @@ msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery
 msgstr ""
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "Τα αρχεία που αναμένουν αξιολόγηση θα απενεργοποιηθούν και θα χρειαστεί να μεταφορτώσετε νέες εκδόσεις."
 
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Θέλετε σίγουρα να αποκρύψετε το πρόσθετό σας;"
@@ -4283,33 +4370,19 @@ msgstr "Θέλετε σίγουρα να ακυρωθεί η αίτηση σας
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Τεκμηρίωση πρόσθετων :: Κέντρο δημιουργών"
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} σφάλμα"
 msgstr[1] "{0} σφάλματα"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} προειδοποίηση"
 msgstr[1] "{0} προειδοποιήσεις"
-
-#. editorial content for the discovery pane.
-msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Διαγράψτε τα ψηφιακά ίχνη σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
-
-msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "Βελτιώστε τα βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr "Απολαύστε μια σουίτα νέων λειτουργιών στο YouTube, όπως λειτουργία κινηματογράφου, φραγή διαφημίσεων, αυτόματη αναπαραγωγή και άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4317,39 +4390,6 @@ msgstr "Αποτροπή ύπουλων ιχνηλατών {start_sub_heading}μ
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis for every occasion—just a click away."
-msgstr "Δωδεκάδες απίθανων emojis για κάθε περίσταση—ένα μόνο κλικ μακριά."
-
-#. editorial content for the discovery pane.
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Κάντε λήψη βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
-
-msgid "Works seamlessly with most popular video sites."
-msgstr "Λειτουργεί απρόσκοπτα με τις πιο δημοφιλείς ιστοσελίδες βίντεο."
-
-#. editorial content for the discovery pane.
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Εξατομίκευση καρτελών {start_sub_heading}με το {addon_name}{end_sub_heading}"
-
-msgid "Set the page you see every time you open a new tab."
-msgstr "Ορίστε τη σελίδα που θα βλέπετε κάθε φορά που ανοίγετε μια νέα καρτέλα."
-
-#. editorial content for the discovery pane.
-msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Δωδεκάδες απίθανων emojis για κάθε περίσταση—πάντα ένα μόνο κλικ μακριά."
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Κάντε λήψη στιγμιότυπων {start_sub_heading}με το {addon_name}{end_sub_heading}"
-
-msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4417,6 +4457,10 @@ msgid "Get instant global weather information right in Firefox."
 msgstr ""
 
 #. editorial content for the discovery pane.
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Εξατομίκευση καρτελών {start_sub_heading}με το {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
 msgstr "Επιλέξτε τη σελίδα που θα βλέπετε όταν ανοίγετε μια νέα καρτέλα."
 
@@ -4429,8 +4473,16 @@ msgid "See an interesting picture on the web and want to learn more about it? Tr
 msgstr ""
 
 #. editorial content for the discovery pane.
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Κάντε λήψη βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
@@ -4490,7 +4542,7 @@ msgstr "Αφαίρεση διαφημίσεων YouTube {start_sub_heading}με 
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Φραγή ενοχλητικών διαφημίσεων και σχολιασμών στο YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4498,7 +4550,7 @@ msgstr "Διαβάστε παντού {start_sub_heading}με το {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Αποστολή άρθρων ειδήσεων, ιστοριών, αναρτήσεων ιστολογίου και άλλων στο Kindle σας."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4506,7 +4558,7 @@ msgstr "Χρωματισμός καρτελών {start_sub_heading}με το {ad
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Οργάνωση των καρτελών σας σε ομάδες χρωμάτων, βάσει μοτίβων URL."
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4618,6 +4670,14 @@ msgid "Stop trackers in their tracks and learn more about them."
 msgstr ""
 
 #. editorial content for the discovery pane.
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Διαγράψτε τα ψηφιακά ίχνη σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+msgstr ""
+
+#. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Αποθήκευση κειμένου {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
@@ -4659,9 +4719,8 @@ msgid "Automatically reload tabs based on time intervals you set."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Διαχωρισμός διαδικτυακών ζωών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
@@ -4692,36 +4751,32 @@ msgid "Play videos by default in the highest quality, turn off annotations, and 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Εντοπισμός ιχνηλατών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Αλλαγή διακομιστή μεσολάβησης {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Κάντε λήψη βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Έλεγχος αναπαραγωγής βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "Βελτίωση εμπειρίας θέασης με προσαρμογή ταχύτητας βίντεο και άλλα."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Ασφαλής περιήγηση {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
@@ -4742,7 +4797,7 @@ msgstr "Ταχείες μεταφράσεις {start_sub_heading}με το {addo
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "Μετάφραση επισημασμένου κειμένου ή ολόκληρης της ιστοσελίδας"
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4763,7 +4818,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Ένα υπερέχον εργαλείο λήψεων μόνο για Windows."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5047,9 +5102,8 @@ msgid "Disguise your location to throw off trackers and protect your privacy."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Αυτο-λογοκρισία {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
@@ -5187,7 +5241,7 @@ msgstr "Εξατομίκευση καρτελών {start_sub_heading}με το {
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "Ένας καλύτερος τρόπος αποθήκευσης σελιδοδεικτών αν χρησιμοποιείτε πολλαπλούς φακέλους σελιδοδεικτών."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5216,7 +5270,7 @@ msgstr "Προβολή εγγράφων {start_sub_heading}με το {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
-msgstr ""
+msgstr "Πρόσβαση σε PDFs με την προτιμώμενη εφαρμογή PDF σας."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5371,9 +5425,8 @@ msgid "Save entered data once and it will autofill next time."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Ιδιωτική περιήγηση {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
@@ -5423,18 +5476,16 @@ msgid "When looking at product pages on other online shops, if it's also availab
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Κάντε λήψη στιγμιότυπων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Κάντε tweet {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily broadcast web content to your Twitter following."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Κάντε λήψη στιγμιότυπων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Απόλυτος έλεγχος καρτελών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
@@ -5446,14 +5497,12 @@ msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "Εξατομίκευση καρτελών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Load a random Wikipedia article each time you open a new tab."
-msgstr "Ορίστε τη σελίδα που θα βλέπετε κάθε φορά που ανοίγετε μια νέα καρτέλα."
+msgstr "Φορτώστε ένα τυχαίο άρθρο της Wikipedia κάθε φορά που ανοίγετε μια νέα καρτέλα."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Αλλαγή νέας καρτέλας {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
@@ -5532,9 +5581,8 @@ msgid "Modify your bookmarks through an easily accessible panel."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Προστασία κωδικών πρόσβασης {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
@@ -5562,9 +5610,8 @@ msgid "An extra check to ensure you're shopping on a site that's been vetted for
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Εποπτεία παραγωγικότητας {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
@@ -5613,7 +5660,7 @@ msgstr "Αποτροπή διαρροών διεύθυνσης IP {start_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "Χρησιμοποιείτε VPN; Η διεύθυνση IP σας ενδέχεται να διαρρεύσει. Σταματήστε το απενεργοποιώντας το WebRTC."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5645,9 +5692,8 @@ msgid "Harness the ability to download video and/or audio in multiple formats."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Επίγνωση τοποθεσίας {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
@@ -5662,9 +5708,8 @@ msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Εξατομίκευση καρτελών {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Επεξεργασία πριν την εκτύπωση {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
@@ -5724,7 +5769,7 @@ msgid "Problems decoding {0}."
 msgstr "Προβλήματα με την αποκωδικοποίηση του {0}."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
+msgstr "Αυτό το αρχείο δεν μπορεί να προβληθεί στο διαδίκτυο. Παρακαλούμε κάντε λήψη του αρχείου για προβολή περιεχομένων."
 
 msgid "This file is a directory."
 msgstr "Αυτό το αρχείο είναι κατάλογος."
@@ -5801,14 +5846,14 @@ msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Δεν μπορείτε να υποβάλετε υπογεγραμμένη επέκταση Mozilla"
 
 msgid "Unexpected error."
 msgstr "Απροσδόκητο σφάλμα."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Το <em:type> στο install.rdf (%s) σας δεν ταιριάζει με τον τύπου του προσθέτου στο AMO (%s)"
 
 msgid "Back to review"
 msgstr "Πίσω στην αξιολόγηση"
@@ -5818,7 +5863,7 @@ msgstr "Πίσω στο πρόσθετο"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
+msgstr "Έκδοση: %(version)s &bull; Μέγεθος: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Τύπος MIME: %(mimetype)s"
 
 msgid "File Compare :: Reviewer tools"
 msgstr "Σύγκριση αρχείων :: Εργαλεία κριτή"
@@ -5830,7 +5875,7 @@ msgid "Validation failed:"
 msgstr "Αποτυχία επαλήθευσης:"
 
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "Το περιεχόμενο του αρχείου δεν υποστηρίζεται για επισήμανση συντακτικού"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
@@ -5891,7 +5936,7 @@ msgid "Fetching file."
 msgstr "Φορτώνεται το αρχείο."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "Η έκδοση API, {0:.1f}, που χρησιμοποιείτε δεν είναι έγκυρη. Παρακαλούμε αναβαθμίστε στην τρέχουσα έκδοση {1:.1f} API."
 
 msgid "Not implemented yet."
 msgstr "Δεν έχει ενσωματωθεί ακόμη."
@@ -5900,7 +5945,7 @@ msgid "Shopping Made Easy"
 msgstr "Οι αγορές έγιναν εύκολες"
 
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "Αποθήκευση στα αγαπημένα σας από την άνεση του προγράμματος περιήγησής σας."
 
 msgid "Build the perfect website"
 msgstr "Φτιάξτε την τέλεια ιστοσελίδα"
@@ -5930,16 +5975,16 @@ msgid "A+ add-ons for School"
 msgstr "Πρόσθετα A+ για το σχολείο"
 
 msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr ""
+msgstr "Πρόσθετα για δασκάλους, γονείς και μαθητές που ξεκινούν πάλι το σχολείο."
 
 msgid "Would you like to know which websites you can trust?"
-msgstr ""
+msgstr "Θα θέλατε να γνωρίζετε ποιες ιστοσελίδες μπορείτε να εμπιστευτείτε;"
 
 msgid "Xmarks is the #1 bookmarking add-on."
-msgstr ""
+msgstr "Το Xmarks είναι το #1 πρόσθετο σελιδοδεικτών."
 
 msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
+msgstr "Μετάφραση ιστοσελίδας και κειμένου, λεξικό και πολλά άλλα!"
 
 msgid "Love is in the Air"
 msgstr "Η αγάπη είναι στον αέρα"
@@ -6011,18 +6056,18 @@ msgid "Close Video"
 msgstr "Κλείσιμο βίντεο"
 
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "Ενώ αναπαράγεται το βίντεο, τα αναφερόμενα πρόσθετα θα εμφανιστούν εδώ."
 
 #. {0} is the user's login name.
 msgid "Hi, {0}"
-msgstr "Χαίρετε, {0}"
+msgstr "Γεια σας, {0}"
 
 #, python-format
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
 msgstr "Σας ευχαριστούμε που χρησιμοποιείτε τον %(app)s και υποστηρίζετε έτσι την <a href=\"%(url)s\">αποστολή του ιδρύματος Mozilla</a>!"
 
 msgid "Add-ons downloaded:"
-msgstr "Πρόσθετα που λήφθηκαν:"
+msgstr "Ληφθέντα πρόσθετα:"
 
 msgid "View Privacy Policy"
 msgstr "Προβολή πολιτικής απορρήτου"
@@ -6079,7 +6124,7 @@ msgstr ""
 
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
-msgstr ""
+msgstr "Αναρτούμε συχνά ειδήσεις, συμβουλές και κόλπα στο λογαριασμό Twitter μας, <a href=\"%(url)s\">mozamo</a>"
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
@@ -6102,7 +6147,8 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
@@ -6145,8 +6191,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Συχνές ερωτήσεις σχετικά με τις αξιολογήσεις"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -6193,22 +6239,22 @@ msgstr ""
 "πλευρική στήλη δίπλα στην ενότητα \"Σχετικά με αυτό το πρόσθετο\"."
 
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr ""
+msgstr "Γράφετε κριτικές για πρόσθετα που δεν έχετε χρησιμοποιήσει προσωπικά."
 
 msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr ""
+msgstr "Χρησιμοποιείτε βωμολοχίες, σεξουαλική γλώσσα ή γλώσσα που μπορεί να θεωρηθεί απεχθής."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr ""
+msgstr "Συμπεριλαμβάνετε HTML, συνδέσμους, πηγαίο κώδικα ή μέρη κώδικα. Οι κριτικές πρέπει να περιέχουν μόνο κείμενο."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr ""
+msgstr "Κάνετε ψευδείς δηλώσεις, να μην υπονομεύετε ή προσβάλλετε προσωπικά τους δημιουργούς."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr ""
+msgstr "Συμπεριλαμβάνετε προσωπικά ή μη email, αριθμούς τηλεφώνου ή άλλες προσωπικές λεπτομέρειες."
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr ""
+msgstr "Δημοσιεύετε κριτικές για ένα πρόσθετο που αναπτύσσετε ή εκπροσωπείτε εσείς ή ο οργανισμός σας."
 
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
@@ -6257,7 +6303,7 @@ msgid "Continue using Firefox as you normally would. Depending on how you use th
 msgstr ""
 
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "Μετά από μερικές εβδομάδες, η μελέτη θα τελειώσει από μόνη της. Το Firefox θα γίνει ξανά φυσιολογικό."
 
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
 msgstr ""
@@ -6281,7 +6327,7 @@ msgid "If you opt out of the study early we will ask you to fill out a survey. W
 msgstr ""
 
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "Η αποχώρηση από μια μελέτη δεν σάς εμποδίζει από το να συμμετέχετε σε μελλοντικές μελέτες."
 
 msgid "Your privacy"
 msgstr "Το απόρρητό σας"
@@ -6294,29 +6340,29 @@ msgstr ""
 
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "Αυτά τα δεδομένα σχετίζονται με τη <a href=\"%(url)s\">συλλογή Τηλεμετρίας Firefox</a>."
 
 msgid "This particular Study"
 msgstr "Αυτή η συγκεκριμένη έρευνα"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "Πέρα από τα δεδομένα που συλλέγονται από όλες τις μελέτες Shield, η Mozilla θα συλλέγει πληροφορίες σχετικά με:"
 
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
+msgstr "Τις ιστοσελίδες που επισκέπτεστε και που προσπαθούν να χρησιμοποιήσουν αρθρώματα, καθώς και ποιο περιεχόμενο στην ιστοσελίδα απαιτεί το άρθρωμα·"
 
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
+msgstr "Τον τρόπο αλληλεπίδρασης με το περιεχόμενο αρθρώματος σε αυτές τις ιστοσελίδες, συμπεριλαμβανομένου και του αν και πώς επιλέγετε να ενεργοποιήσετε το άρθρωμα για εκτέλεση."
 
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
 msgstr ""
 
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "Μπορείτε να μάθετε περισσότερα σχετικά με τη συλλογή δεδομένων για αυτή τη μελέτη <a href=\"%(url)s\">εδώ</a>."
 
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "Βοηθάτε το Firefox να γίνει καλύτερο"
 
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
@@ -6387,10 +6433,10 @@ msgstr "Προσθήκη αξιολόγησης για το {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
-"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
-"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
-"Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
 msgstr ""
 
 msgid "Reply to review by {0}"
@@ -6598,9 +6644,6 @@ msgstr "Απαιτούνται περισσότερες πληροφορίες"
 
 msgid "Expired Information Request"
 msgstr "Ληγμένο αίτημα πληροφοριών"
-
-msgid "Contains Reviewer Comment"
-msgstr "Περιέχει σχόλιο κριτή"
 
 msgid "Sources provided"
 msgstr "Παρέχονται πηγές"
@@ -6823,6 +6866,14 @@ msgstr "Η αξιολόγηση επεξεργάστηκε με επιτυχία
 msgid "Review lock limit reached"
 msgstr ""
 
+#, fuzzy
+msgid "{addon} :: EULA"
+msgstr "{addon} :: Αναφορές κατάχρησης"
+
+#, fuzzy
+msgid "{addon} :: Privacy Policy"
+msgstr "Αυτό το πρόσθετο συνοδεύεται από πολιτική απορρήτου"
+
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] "Επεξεργάστηκε επιτυχώς {0} κριτική θέματος (+{1} πόντοι, {2} συνολικά)."
@@ -6839,7 +6890,7 @@ msgstr "Αναφορές κατάχρησης για το {addon} και του�
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
-msgstr "Δουλεύει με τον"
+msgstr "Λειτουργεί με το"
 
 msgid "Visibility"
 msgstr "Ορατότητα"
@@ -6857,7 +6908,7 @@ msgid "Requires Payment"
 msgstr "Απαιτεί πληρωμή"
 
 msgid "EULA"
-msgstr "ΣΑΤΧ (EULA)"
+msgstr "EULA"
 
 msgid "Last Approval Date"
 msgstr "Ημερομηνία τελευταίας έγκρισης"
@@ -6896,7 +6947,7 @@ msgid "No review points awarded yet."
 msgstr ""
 
 msgid "Rank"
-msgstr "Βαθμολογία"
+msgstr "Βαθμός"
 
 msgid "Score"
 msgstr "Βαθμολογία"
@@ -6915,7 +6966,7 @@ msgid "More details."
 msgstr "Περισσότερες λεπτομέρειες."
 
 msgid "No events found for this period."
-msgstr ""
+msgstr "Κανένα συμβάν αυτή την περίοδο."
 
 msgid "Log details"
 msgstr "Λεπτομέρειες καταγραφής"
@@ -7053,7 +7104,7 @@ msgid "Download files"
 msgstr "Λήψη αρχείων"
 
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Ο προγραμματιστής παρέχει τον πηγαίο κώδικα."
 
 msgid "Weight:"
 msgstr "Βάρος:"
@@ -7080,7 +7131,7 @@ msgid "Tested on:"
 msgstr "Δοκιμάστηκε σε:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>Προειδοποίηση!</strong> Κάποιος άλλος χρήστη έβλεπε τη σελίδα αυτή πριν από εσάς."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ""
@@ -7095,7 +7146,7 @@ msgid "More Actions"
 msgstr "Περισσότερες ενέργειες"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "Ειδοποίηση για νέες καταχωρημένες εκδόσεις"
 
 msgid "Force-disable add-on"
 msgstr "Εξαναγκασμός απενεργοποίησης προσθέτου"
@@ -7393,7 +7444,7 @@ msgid "Search Unavailable"
 msgstr "Μη διαθέσιμη αναζήτηση"
 
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
+msgstr "Η αναζήτηση είναι προσωρινά μη διαθέσιμη. Παρακαλούμε δοκιμάστε ξανά σε λίγα λεπτά."
 
 #. {0} is the string the user was searching for
 msgid "Themes Search Results for {0}"
@@ -7459,16 +7510,16 @@ msgstr ""
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Δεν μπορείτε να προσθέσετε εκδόσεις σε πρόσθετο με κατάσταση: %s."
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Η έκδοση δεν ταιριάζει με το αρχείο μανιφέστου."
 
 msgid "Version already exists."
 msgstr "Η έκδοση υπάρχει ήδη."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Μόνο τα WebExtensions επιτρέπεται να παραλείπουν το GUID"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
 msgstr ""
@@ -7563,7 +7614,7 @@ msgid "Statistics Dashboard"
 msgstr "Πίνακας στατιστικών"
 
 msgid "Controls:"
-msgstr ""
+msgstr "Στοιχεία ελέγχου:"
 
 msgid "reset zoom"
 msgstr "επαναφορά ζουμ"
@@ -7679,7 +7730,7 @@ msgid "See more platforms&hellip;"
 msgstr "Προβολή περισσότερων πλατφορμών&hellip;"
 
 msgid "Ratings by Date"
-msgstr ""
+msgstr "Κριτικές κατά ημερομηνία"
 
 msgid "Reviews Created by Date"
 msgstr ""
@@ -7692,18 +7743,18 @@ msgstr "Σχετικά με την καταγραφή εξωτερικών πη�
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 msgid "Add-on Status by Date"
 msgstr "Κατάσταση πρόσθετου κατά ημερομηνία"
 
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "Συνδρομητές κατά ημερομηνία"
 
 msgid "Daily Users by Date"
 msgstr "Ημερήσιοι χρήστες κατά ημερομηνία"
@@ -7886,15 +7937,15 @@ msgstr "Διαγραφή γλώσσας"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "Ο χρήστης \"%(user)s\" έχει αποκλειστεί."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "Η εικόνα που ανήκει στο χρήστη \"%(user)s\" έχει διαγραφεί."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "Οι χρήστες \"%(users)s\" έχουν αποκλειστεί."
 
 msgid "Ban selected users"
 msgstr "Φραγή επιλεγμένων χρηστών"
@@ -7930,7 +7981,7 @@ msgid "This URL has an invalid format. Valid URLs look like http://example.com/m
 msgstr "Αυτό το  URL έχει μη έγκυρη μορφή. Τα έγκυρα URL έχουν τη μορφή http://example.com/my_page."
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr ""
+msgstr "Για ανωνυμία, εισάγετε ένα λόγο για την αλλαγή, αλλά μην αλλάξετε κάποιο άλλο πεδίο."
 
 msgid "No user with that email."
 msgstr "Δεν υπάρχει χρήστης με αυτή τη διεύθυνση ηλεκτρονικού ταχυδρομείου."
@@ -8265,8 +8316,8 @@ msgstr "Εκδόθηκε στις {0}"
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Ο πηγαίος κώδικας εκδίδεται από <a href=\"%(url)s\">%(name)s</a>"
 
-#. {0} is an add-on name.
 # {0} is the add-on name
+#. {0} is an add-on name.
 msgid "{0} Version History"
 msgstr "Ιστορικό εκδόσεων {0} "
 

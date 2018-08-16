@@ -33,6 +33,7 @@ from .models import GroupedRating, Rating, RatingFlag
 from .permissions import CanDeleteRatingPermission
 from .serializers import RatingSerializer, RatingSerializerReply
 from .templatetags.jinja_helpers import user_can_delete_review
+from .utils import maybe_check_with_akismet
 
 
 log = olympia.core.logger.getLogger('z.ratings')
@@ -191,6 +192,7 @@ def add(request, addon):
             not request.POST.get('detailed')):
         details = _review_details(request, addon, form)
         rating = Rating.objects.create(**details)
+        maybe_check_with_akismet(request, rating, None)
         if 'flag' in form.cleaned_data and form.cleaned_data['flag']:
             rf = RatingFlag(rating=rating,
                             user_id=request.user.id,
@@ -213,6 +215,7 @@ def edit(request, addon, review_id):
     cls = forms.RatingReplyForm if rating.reply_to else forms.RatingForm
     form = cls(request.POST)
     if form.is_valid():
+        pre_save_body = rating.body
         data = _review_details(request, addon, form, create=False)
         for field, value in data.items():
             setattr(rating, field, value)
@@ -220,6 +223,7 @@ def edit(request, addon, review_id):
         # doesn't work with extra fields that are not meant to be saved like
         # 'user_responsible'.
         rating.save()
+        maybe_check_with_akismet(request, rating, pre_save_body)
         return {}
     else:
         return json_view.error(form.errors)

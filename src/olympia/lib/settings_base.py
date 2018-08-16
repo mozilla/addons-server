@@ -166,6 +166,7 @@ AMO_LANGUAGES = (
     'de',  # German
     'dsb',  # Lower Sorbian
     'el',  # Greek
+    'en-CA',  # English (Canada)
     'en-GB',  # English (British)
     'en-US',  # English (US)
     'es',  # Spanish
@@ -485,6 +486,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',
     'olympia.search.middleware.ElasticsearchExceptionMiddleware',
+
+    # Our middleware that adds additional information for the user
+    # and API about our read-only status.
+    'olympia.amo.middleware.ReadOnlyMiddleware',
+
     'django.middleware.csrf.CsrfViewMiddleware',
 
     # This should come after AuthenticationMiddlewareWithoutAPI (to get the
@@ -535,6 +541,7 @@ INSTALLED_APPS = (
     'olympia.legacy_api',
     'olympia.legacy_discovery',
     'olympia.lib.es',
+    'olympia.lib.akismet',
     'olympia.pages',
     'olympia.ratings',
     'olympia.reviewers',
@@ -1268,6 +1275,7 @@ CELERY_TASK_ROUTES = {
     'olympia.ratings.tasks.addon_grouped_rating': {'queue': 'ratings'},
     'olympia.ratings.tasks.addon_rating_aggregates': {'queue': 'ratings'},
     'olympia.ratings.tasks.update_denorm': {'queue': 'ratings'},
+    'olympia.ratings.tasks.check_with_akismet': {'queue': 'ratings'},
 
 
     # Stats
@@ -1516,11 +1524,25 @@ ENGAGE_ROBOTS = True
 # Read-only mode setup.
 READ_ONLY = env.bool('READ_ONLY', default=False)
 
+# Expected retry-time that can be respected by clients. This will
+# be set as `Retry-After` header.
+# Please set this to a `datetime.timedelta()` instance that is
+# reasonable for clients to try again.
+# We don't support hard dates as these are usually quite hard to
+# adhere anyway.
+# Will be ignored if `None`
+READ_ONLY_RETRY_AFTER = None
+
 
 # Turn on read-only mode in local_settings.py by putting this line
 # at the VERY BOTTOM: read_only_mode(globals())
-def read_only_mode(env):
+# Please also consider setting `retry_after` like this
+# import datetime
+# read_only_mode(globals(), retry_after=datetime.timedelta(minutes=10))
+# See `READ_ONLY_RETRY_AFTER` comment for more details
+def read_only_mode(env, retry_after=None):
     env['READ_ONLY'] = True
+    env['READ_ONLY_RETRY_AFTER'] = retry_after
 
     # Replace the default (master) db with a slave connection.
     if not env.get('SLAVE_DATABASES'):
@@ -1530,13 +1552,6 @@ def read_only_mode(env):
 
     # No sessions without the database, so disable auth.
     env['AUTHENTICATION_BACKENDS'] = ('olympia.users.backends.NoAuthForYou',)
-
-    # Add in the read-only middleware before csrf middleware.
-    extra = 'olympia.amo.middleware.ReadOnlyMiddleware'
-    before = 'django.middleware.csrf.CsrfViewMiddleware'
-    m = list(env['MIDDLEWARE_CLASSES'])
-    m.insert(m.index(before), extra)
-    env['MIDDLEWARE_CLASSES'] = tuple(m)
 
 
 # Uploaded file limits
@@ -1920,3 +1935,8 @@ BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
 BASKET_API_KEY = env('BASKET_API_KEY', default=None)
 # Default is 10, the API usually answers in 0.5 - 1.5 seconds.
 BASKET_TIMEOUT = 5
+
+AKISMET_API_URL = 'https://{api_key}.rest.akismet.com/1.1/{action}'
+AKISMET_API_KEY = env('AKISMET_API_KEY', default=None)
+AKISMET_API_TIMEOUT = 100
+AKISMET_REAL_SUBMIT = False

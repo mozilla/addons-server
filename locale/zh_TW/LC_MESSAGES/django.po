@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-02 01:13+0000\n"
-"PO-Revision-Date: 2018-08-01 10:38+0000\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"PO-Revision-Date: 2018-08-09 12:47+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -2433,9 +2433,6 @@ msgstr "您的上傳過程發生錯誤，請再試一次。"
 msgid "Override failed validation"
 msgstr "無視驗證失敗"
 
-msgid "Submit my add-on for manual review."
-msgstr "送出我的附加元件進行手動審查。"
-
 msgid "You cannot upload any more files for this version."
 msgstr "您不行再對這個版本上傳檔案。"
 
@@ -2450,6 +2447,12 @@ msgstr "版本 {version} 已存在。"
 
 msgid "Continue with existing upload instead?"
 msgstr "要繼續使用目前的上傳版本嗎？"
+
+msgid "You have not uploaded a source file."
+msgstr "尚未上傳原始碼檔案。"
+
+msgid "Source file uploaded but you indicated no source was needed."
+msgstr "上傳了原始碼檔案，但您標明無須原始碼。"
 
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "所有平台不能與某特定平台結合。"
@@ -3309,13 +3312,13 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr "若您的附加元件會從使用者電腦傳出任何資料，將需要提供隱私權保護政策，當中需解釋會傳出哪些資料，以及這些資料會被如何使用。"
 
 msgid "Notes to Reviewer:"
-msgstr "留言給審核者："
+msgstr "留言給審核者:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "還有沒有什麼審核者進行審核時需注意的事項？"
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "這些註記只有您與審核者看得到。"
+msgstr "這些留言註記只有您與審核者看得到。"
 
 msgid "Cancel and Disable Version"
 msgstr "取消並停用此版本"
@@ -3405,6 +3408,73 @@ msgstr "上傳檔案"
 
 msgid "Go to My Submissions"
 msgstr "前往我的提交"
+
+msgid "Source Code Upload"
+msgstr "上傳原始碼"
+
+msgid "Do You Need to Submit Source Code?"
+msgstr "您需要上傳原始碼嗎？"
+
+msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgstr "您可能必須上傳原始碼。若您不上傳正確的原始碼，可能會造成附加元件被下架！"
+
+#, python-format
+msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
+msgstr "請參考<a %(a_attrs)s>原始碼提交政策</a>。"
+
+msgid "Do you use any of the following?"
+msgstr "您使用了下列任何工具嗎？"
+
+msgid "Code minifiers or obfuscators"
+msgstr "程式碼最小化工具（minifier）或干擾工具（obfuscator）"
+
+msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
+msgstr "將多個檔案合併為一的工具，例如 <span class=\"tech-emphasis\">webpack</span>"
+
+msgid "Web template engines, both for HTML and CSS"
+msgstr "網頁排版引擎，包含 HTML 與 CSS"
+
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgstr "任何在附加元件中透過對程式碼或檔案進行額外處理，並再產生程式碼或檔案的工具"
+
+msgid "You do not need to submit Source Code, and you’re ready for the next step."
+msgstr "您不需要送出原始碼，可以直接前進下一步。"
+
+msgid "Your Submission Requires Source Code."
+msgstr "您需要送出原始碼才能上架。"
+
+#, python-format
+msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
+msgstr "原始碼必須符合<a %(a_attrs)s>政策的要求</a>，包含下列項目:"
+
+msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+msgstr "能夠產生相同附加元件程式碼的逐步建構步驟。"
+
+msgid "A build script that executes all necessary technical steps."
+msgstr "會執行所有必須的技術指令的編譯指令碼或腳本。"
+
+msgid "Operating system and build environment requirements."
+msgstr "作業系統與編譯環境需求。"
+
+msgid ""
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
+msgstr "編譯過程中會使用到的任何程式的詳細資訊（包含需要使用的版本與安裝步驟，舉例來說: <span class=\"tech-emphasis\">node</span> 與 <span class=\"tech-emphasis\">npm</span> 的版本）。"
+
+msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
+msgstr "<span class=\"instruction-emphasis\">註:</span> 請勿轉譯（transpile）、混淆（obfuscate）、最小化（minify）或使用機器產生原始碼（不含第三方的開放原始碼程式庫）。"
+
+msgid "How to Submit:"
+msgstr "如何上傳:"
+
+msgid "Include instructions in a README file in the source code,"
+msgstr "在原始碼中的 README 檔案包含步驟教學，"
+
+msgid "or in reviewer notes on the next page (if applicable)."
+msgstr "或是紀錄在下一頁給審核者的留言中（若可行）。"
+
+msgid "Upload source code:"
+msgstr "上傳原始碼:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "附加元件發行同意書"
@@ -4075,7 +4145,7 @@ msgid "Approval Status"
 msgstr "審核狀態"
 
 msgid "Notes for Reviewers"
-msgstr "審核者意見"
+msgstr "給審核者的留言"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
 msgstr "可在此輸入任何讓審核者在審核此附加元件時有所幫助的資訊，例如測試帳號資訊等。"
@@ -4230,59 +4300,12 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} 個警告"
 
 #. editorial content for the discovery pane.
-msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}清除數位足跡{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "讓 Firefox 針對您指定的網域，忘記 Cookie、本機儲存空間等網站資料。"
-
-msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}改善影片播放功能{end_sub_heading}"
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr "享用全新的 YouTube 功能大補包，諸如電影院模式、封鎖廣告、自動播放等功能。"
-
-#. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}封鎖追蹤器{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "封鎖隱藏在黑暗中，同時跟蹤您上網的追蹤器。"
-
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}加強表情符號內容{end_sub_heading}"
-
-msgid "Dozens of amazing emojis for every occasion—just a click away."
-msgstr "好幾打適用於任何情況的表情符號，點一下即可輸入。"
-
-#. editorial content for the discovery pane.
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}下載影片{end_sub_heading}"
-
-msgid "Works seamlessly with most popular video sites."
-msgstr "與大部分知名的影音網站能夠無縫接軌。"
-
-#. editorial content for the discovery pane.
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}客製化分頁內容{end_sub_heading}"
-
-msgid "Set the page you see every time you open a new tab."
-msgstr "設定當您每次開啟新分頁時，會看到的頁面。"
-
-#. editorial content for the discovery pane.
-msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}加強您的表情符號內容{end_sub_heading}"
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "好幾打適用於任何情況的表情符號，讓您點一下即可輸入。"
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}拍攝畫面擷圖{end_sub_heading}"
-
-msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
-msgstr "不只是一般拍攝畫面擷圖的工具，Awesome Screenshot Plus 更可讓您在圖片上加註文字與圖片，並進行儲存或分享。"
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4349,6 +4372,10 @@ msgid "Get instant global weather information right in Firefox."
 msgstr "直接在 Firefox 取得全球天氣資訊。"
 
 #. editorial content for the discovery pane.
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}客製化分頁內容{end_sub_heading}"
+
+#. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
 msgstr "設定當您每次開啟新分頁時，會看到的頁面。"
 
@@ -4361,8 +4388,16 @@ msgid "See an interesting picture on the web and want to learn more about it? Tr
 msgstr "在網路上看到有趣的圖片，想了解更多資訊嗎？試試這套圖片搜尋工具。"
 
 #. editorial content for the discovery pane.
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}下載影片{end_sub_heading}"
+
+#. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "可用於 YouTube、Facebook、Vimeo、Twitch、Dailymotion、Periscope 等數以百計的影片網站。"
+
+#. editorial content for the discovery pane.
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}加強您的表情符號內容{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
@@ -4566,6 +4601,14 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}清除數位足跡{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+msgstr "讓 Firefox 針對您指定的網域，忘記 Cookie、本機儲存空間等網站資料。"
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6609,9 +6652,6 @@ msgstr "被要求提供更多資訊"
 msgid "Expired Information Request"
 msgstr "過期的資訊要求"
 
-msgid "Contains Reviewer Comment"
-msgstr "含有審核者的意見"
-
 msgid "Sources provided"
 msgstr "已提供來源"
 
@@ -6819,6 +6859,14 @@ msgstr "審核流程已順利開始。"
 
 msgid "Review lock limit reached"
 msgstr "已達審核鎖定限制"
+
+#, fuzzy
+msgid "{addon} :: EULA"
+msgstr "{addon} :: 濫用回報"
+
+#, fuzzy
+msgid "{addon} :: Privacy Policy"
+msgstr "這個附加元件有隱私權保護政策"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -7876,17 +7924,17 @@ msgstr "您確定要移除所有的 <b>{0}</b> 翻譯? 此動作無法復原。"
 msgid "Delete Locale"
 msgstr "刪除語系"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr "使用者「%(user)s」已被封鎖。使用者"
+msgstr "已封鎖使用者「%(user)s」。"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr "已刪除使用者「%(user)s」的照片。使用者"
+msgstr "已刪除使用者「%(user)s」的照片。"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr "使用者「%(users)s」已被封鎖。使用者，"
+msgstr "已封鎖使用者「%(users)s」。"
 
 msgid "Ban selected users"
 msgstr "封鎖所選的使用者"

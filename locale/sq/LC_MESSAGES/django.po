@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-02 01:13+0000\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
 "PO-Revision-Date: 2018-05-12 09:36+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -2477,9 +2477,6 @@ msgstr "Pati një gabim me ngarkimin tuaj. Ju lutemi, riprovoni."
 msgid "Override failed validation"
 msgstr "Anashkaloje vleftësimin e dështuar"
 
-msgid "Submit my add-on for manual review."
-msgstr "Parashtoje shtesën time për shqyrtim dorazi."
-
 msgid "You cannot upload any more files for this version."
 msgstr "S’mund të ngarkoni më kartela për këtë version."
 
@@ -2494,6 +2491,13 @@ msgstr "Ka tashmë një version {version}."
 
 msgid "Continue with existing upload instead?"
 msgstr "Të vazhdohet me ngarkimin ekzistues?"
+
+#, fuzzy
+msgid "You have not uploaded a source file."
+msgstr "S’u përtyp dot kartela e ngarkuar."
+
+msgid "Source file uploaded but you indicated no source was needed."
+msgstr ""
 
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Platforma Krejt s’mund të ndërthuret me platforma të caktuara."
@@ -3477,6 +3481,76 @@ msgstr "Përditësoni Kartelën"
 msgid "Go to My Submissions"
 msgstr "Kalo te Parashtrimet e Mia"
 
+#, fuzzy
+msgid "Source Code Upload"
+msgstr "U ngarkua kod burim"
+
+msgid "Do You Need to Submit Source Code?"
+msgstr ""
+
+msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgstr ""
+
+#, python-format
+msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
+msgstr ""
+
+msgid "Do you use any of the following?"
+msgstr ""
+
+msgid "Code minifiers or obfuscators"
+msgstr ""
+
+msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
+msgstr ""
+
+msgid "Web template engines, both for HTML and CSS"
+msgstr ""
+
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgstr ""
+
+msgid "You do not need to submit Source Code, and you’re ready for the next step."
+msgstr ""
+
+msgid "Your Submission Requires Source Code."
+msgstr ""
+
+#, python-format
+msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
+msgstr ""
+
+msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+msgstr ""
+
+msgid "A build script that executes all necessary technical steps."
+msgstr ""
+
+msgid "Operating system and build environment requirements."
+msgstr ""
+
+msgid ""
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
+msgstr ""
+
+msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
+msgstr ""
+
+#, fuzzy
+msgid "How to Submit:"
+msgstr "Parashtroje"
+
+msgid "Include instructions in a README file in the source code,"
+msgstr ""
+
+msgid "or in reviewer notes on the next page (if applicable)."
+msgstr ""
+
+#, fuzzy
+msgid "Upload source code:"
+msgstr "Kodi burim"
+
 msgid "Add-on Distribution Agreement"
 msgstr "Marrëveshje Shpërndarjesh Shtesash"
 
@@ -4314,65 +4388,12 @@ msgstr[1] "{0} sinjalizime"
 
 #. editorial content for the discovery pane.
 #, fuzzy
-msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ripërfytyroni skedat {start_sub_heading}përmes {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
-
-#, fuzzy
-msgid "Improve videos {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
-
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
-msgstr ""
-
-#. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr ""
-
-#, fuzzy
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{end_sub_heading}"
-
-#, fuzzy
-msgid "Dozens of amazing emojis for every occasion—just a click away."
-msgstr "Dhjetra emoji mahnitës, për çfarëdo nevoje - vetëm një klik larg."
-
-#. editorial content for the discovery pane.
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
-
-msgid "Works seamlessly with most popular video sites."
-msgstr "Punon vaj me shumicën e sajteve popullore të videove."
-
-#. editorial content for the discovery pane.
-msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Përshtatje Skedash {start_sub_heading}me {addon_name}{end_sub_heading}"
-
-msgid "Set the page you see every time you open a new tab."
-msgstr "Caktoni faqen që shihni sa herë që hapni një skedë të re."
-
-#. editorial content for the discovery pane.
-msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Dhjetra emoji mahnitës, për çfarëdo nevoje - vetëm një klik larg."
-
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëni foto ekrani {start_sub_heading}me {addon_name}{end_sub_heading}"
-
-msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
-msgstr ""
-"Më shumë se sa një thjesht një mjet foto, Awesome Screenshot Plus ju lejon të bëni shënime mbi figura, me tekst dhe elementë grafikë tuajt, plus aftësinë për të depozituar dhe ndarë me të tjerët "
-"gjëra tuajat pamore."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4447,6 +4468,10 @@ msgid "Get instant global weather information right in Firefox."
 msgstr ""
 
 #. editorial content for the discovery pane.
+msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Përshtatje Skedash {start_sub_heading}me {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
 #, fuzzy
 msgid "Choose the page you see every time you open a new tab."
 msgstr "Caktoni faqen që shihni sa herë që hapni një skedë të re."
@@ -4461,8 +4486,16 @@ msgid "See an interesting picture on the web and want to learn more about it? Tr
 msgstr ""
 
 #. editorial content for the discovery pane.
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4672,6 +4705,15 @@ msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ripërfytyroni skedat {start_sub_heading}përmes {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -6758,9 +6800,6 @@ msgstr "Lypsen Më Tepër të Dhëna"
 msgid "Expired Information Request"
 msgstr "Kërkesë e Skaduar të Dhënash"
 
-msgid "Contains Reviewer Comment"
-msgstr "Përmban Koment Shqyrtuesi"
-
 msgid "Sources provided"
 msgstr "Burimet janë dhënë"
 
@@ -6972,6 +7011,14 @@ msgstr "Shqyrtimi u krye me sukses."
 
 msgid "Review lock limit reached"
 msgstr "U mbërrit në kufijtë e kyçjes së rishikimit"
+
+#, fuzzy
+msgid "{addon} :: EULA"
+msgstr "{addon} :: Njoftime Abuzimesh"
+
+#, fuzzy
+msgid "{addon} :: Privacy Policy"
+msgstr "Kjo shtesë ka Rregulla Privatësi"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."

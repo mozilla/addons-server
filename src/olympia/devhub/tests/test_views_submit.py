@@ -1,3 +1,4 @@
+import urllib
 import json
 import os
 import stat
@@ -10,6 +11,7 @@ from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 
 import mock
+import responses
 
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
@@ -172,6 +174,54 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         response = self.client.get(reverse('devhub.submit.agreement'))
         assert response.status_code == 200
         assert 'agreement_form' in response.context
+
+    def test_read_dev_agreement_captcha_inactive(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        assert response.status_code == 200
+        form = response.context['agreement_form']
+        assert 'recaptcha' not in form.fields
+
+    @override_switch('addon-submission-captcha', active=True)
+    def test_read_dev_agreement_captcha_active_error(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        assert response.status_code == 200
+        form = response.context['agreement_form']
+        assert 'recaptcha' in form.fields
+
+        response = self.client.post(reverse('devhub.submit.agreement'))
+
+        assert 'recaptcha' in response.context['agreement_form'].errors
+
+    @responses.activate
+    @override_switch('addon-submission-captcha', active=True)
+    def test_read_dev_agreement_captcha_active_success(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        assert response.status_code == 200
+        form = response.context['agreement_form']
+        assert 'recaptcha' in form.fields
+
+        verify_data = urllib.urlencode({
+            'secret': 'privkey',
+            'remoteip': '127.0.0.1',
+            'response': 'test',
+        })
+
+        responses.add(
+            responses.GET,
+            'https://www.google.com/recaptcha/api/siteverify?' + verify_data,
+            json={'error-codes': [], 'success': True})
+
+        response = self.client.post(reverse('devhub.submit.agreement'), data={
+            'g-recaptcha-response': 'test',
+            'distribution_agreement': 'on',
+            'review_policy': 'on',
+        })
+
+        assert response.status_code == 302
+        assert response['Location'] == reverse('devhub.submit.distribution')
 
 
 class TestAddonSubmitDistribution(TestCase):
@@ -566,8 +616,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         if not expect_errors:
             # Show any unexpected form errors.
             if response.context and 'form' in response.context:
-                assert (
-                    response.context['form'].errors.as_text() == '')
+                assert response.context['form'].errors == {}
         return response
 
     def get_source(self, suffix='.zip'):
@@ -592,9 +641,11 @@ class TestAddonSubmitSource(TestSubmitBase):
     def test_say_no_but_submit_source_anyway_fails(self):
         response = self.post(
             has_source=False, source=self.get_source(), expect_errors=True)
-        assert response.context['form'].errors.as_text() == (
-            '* has_source\n'
-            '  * Source file uploaded but you indicated no source was needed.')
+        assert response.context['form'].errors == {
+            'has_source': [
+                u'Source file uploaded but you indicated no source was needed.'
+            ]
+        }
         self.addon = self.addon.reload()
         assert not self.get_version().source
         assert not self.addon.needs_admin_code_review
@@ -602,9 +653,9 @@ class TestAddonSubmitSource(TestSubmitBase):
     def test_say_yes_but_dont_submit_source_fails(self):
         response = self.post(
             has_source=True, source=None, expect_errors=True)
-        assert response.context['form'].errors.as_text() == (
-            '* has_source\n'
-            '  * You have not uploaded a source file.')
+        assert response.context['form'].errors == {
+            'has_source': [u'You have not uploaded a source file.']
+        }
         self.addon = self.addon.reload()
         assert not self.get_version().source
         assert not self.addon.needs_admin_code_review
@@ -624,9 +675,16 @@ class TestAddonSubmitSource(TestSubmitBase):
         response = self.post(
             has_source=True, source=self.get_source(suffix='.exe'),
             expect_errors=True)
-        assert response.context['form'].errors.as_text().startswith(
-            '* source\n'
-            '  * Unsupported file type, please upload an archive')
+        assert response.context['form'].errors == {
+            'source': [
+                u"Unsupported file type, please upload an archive file "
+                "('.zip', '.tar', '.7z', '.tar.gz', '.tgz', '.tbz', '.txz', "
+                "'.tar.bz2', '.tar.xz')."],
+            # Django deletes the source data from the cleaned form data
+            # in case of an error on a field, so that `source` doesn't
+            # exist for the `has_source` check
+            'has_source': [u'You have not uploaded a source file.']
+        }
         self.addon = self.addon.reload()
         assert not self.get_version().source
         assert not self.addon.needs_admin_code_review
@@ -637,6 +695,20 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.addon = self.addon.reload()
         assert not self.get_version().source
         assert not self.addon.needs_admin_code_review
+
+    def test_non_extension_redirects_past_to_details(self):
+        # static themes should redirect
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.next_url)
+        # extensions shouldn't redirect
+        self.addon.update(type=amo.ADDON_EXTENSION)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        # check another non-extension type also redirects
+        self.addon.update(type=amo.ADDON_DICT)
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.next_url)
 
 
 class DetailsPageMixin(object):

@@ -1265,15 +1265,20 @@ def get_next_version_number(addon):
 
 @login_required
 def submit_addon(request):
-    return render_agreement(request, 'devhub/addons/submit/start.html',
-                            'devhub.submit.distribution')
+    return render_agreement(
+        request=request,
+        template='devhub/addons/submit/start.html',
+        next_step='devhub.submit.distribution',
+        render_captcha=waffle.switch_is_active('addon-submission-captcha')
+    )
 
 
 @dev_required
 def submit_version_agreement(request, addon_id, addon):
     return render_agreement(
-        request, 'devhub/addons/submit/start.html',
-        reverse('devhub.submit.version', args=(addon.slug,)),
+        request=request,
+        template='devhub/addons/submit/start.html',
+        next_step=reverse('devhub.submit.version', args=(addon.slug,)),
         submit_page='version')
 
 
@@ -1445,7 +1450,7 @@ def submit_file(request, addon_id, addon, version_id):
 
 def _submit_source(request, addon, version, next_view):
     redirect_args = [addon.slug, version.pk] if version else [addon.slug]
-    if addon.type == amo.ADDON_STATICTHEME:
+    if addon.type != amo.ADDON_EXTENSION:
         return redirect(next_view, *redirect_args)
     latest_version = version or addon.find_latest_version(channel=None)
 
@@ -1743,8 +1748,11 @@ def api_key_agreement(request):
     return render_agreement(request, 'devhub/api/agreement.html', next_step)
 
 
-def render_agreement(request, template, next_step, **extra_context):
-    form = AgreementForm(request.POST if request.method == 'POST' else None)
+def render_agreement(
+        request, template, next_step, render_captcha=False, **extra_context):
+    form = AgreementForm(
+        request.POST if request.method == 'POST' else None,
+        render_captcha=render_captcha)
     if request.method == 'POST' and form.is_valid():
         # Developer has validated the form: let's update its profile and
         # redirect to next step.

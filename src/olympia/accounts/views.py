@@ -4,6 +4,7 @@ import os
 
 from django.conf import settings
 from django.contrib.auth import login, logout
+from django.contrib.auth.signals import user_logged_in
 from django.core import signing
 from django.urls import reverse
 from django.db.models import Q
@@ -118,11 +119,11 @@ def find_user(identity):
         raise
 
 
-def register_user(request, identity):
+def register_user(sender, request, identity):
     user = UserProfile.objects.create_user(
         email=identity['email'], username=None, fxa_id=identity['uid'])
     log.info('Created user {} from FxA'.format(user))
-    login(request, user)
+    login_user(sender, request, user, identity)
     return user
 
 
@@ -143,10 +144,10 @@ def update_user(user, identity):
         user.update(auth_id=UserProfile._meta.get_field('auth_id').default())
 
 
-def login_user(request, user, identity):
+def login_user(sender, request, user, identity):
     update_user(user, identity)
     log.info('Logging in user {} from FxA'.format(user))
-    user.log_login_attempt(True)
+    user_logged_in.send(sender=sender, request=request, user=user)
     login(request, user)
 
 
@@ -334,14 +335,14 @@ class AuthenticateView(FxAConfigMixin, APIView):
     @with_user(format='html')
     def get(self, request, user, identity, next_path):
         if user is None:
-            user = register_user(request, identity)
+            user = register_user(self.__class__, request, identity)
             fxa_config = self.get_fxa_config(request)
             if fxa_config.get('skip_register_redirect'):
                 response = safe_redirect(next_path, 'register')
             else:
                 response = safe_redirect(reverse('users.edit'), 'register')
         else:
-            login_user(request, user, identity)
+            login_user(self.__class__, request, user, identity)
             response = safe_redirect(next_path, 'login')
         add_api_token_to_response(response, user)
         return response
@@ -505,7 +506,8 @@ class AccountSuperCreate(APIView):
         if group:
             GroupUser.objects.create(user=user, group=group)
 
-        login(request, user)
+        identity = {'email': email, 'uid': fxa_id}
+        login_user(self.__class__, request, user, identity)
         request.session.save()
 
         log.info(u'API user {api_user} created and logged in a user from '
