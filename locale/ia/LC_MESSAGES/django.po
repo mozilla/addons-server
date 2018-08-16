@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 11:41+0000\n"
+"PO-Revision-Date: 2018-08-16 12:22+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2817,14 +2817,14 @@ msgid "Close"
 msgstr "Clauder"
 
 msgid "Recent Activity"
-msgstr "Activitate recente"
+msgstr "Recente activitate"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
 msgstr "%(ago)s per %(user)s"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Activitate plus vetere pro mi additivos"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
@@ -2833,7 +2833,7 @@ msgstr[0] "<b>{0}</b> thema"
 msgstr[1] "<b>{0}</b> themas"
 
 msgid "Edit Information"
-msgstr "Modificar le informationes"
+msgstr "Rediger le informationes"
 
 msgid "None"
 msgstr "Nulle"
@@ -2842,19 +2842,19 @@ msgid "Preview"
 msgstr "Vista preliminar"
 
 msgid "Preview of listed version"
-msgstr ""
+msgstr "Vista preliminar del version listate"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "Le vista preliminar debe ancora esser generate - reveni plus tarde o refresca le pagina."
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Gerer autores & licentia"
 
 msgid "Authors"
 msgstr "Autores"
 
 msgid "About author roles"
-msgstr "A proposito del rolo del autores"
+msgstr "Circa le rolos del autores"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
