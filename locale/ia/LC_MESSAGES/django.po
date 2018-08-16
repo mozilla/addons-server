@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 08:28+0000\n"
+"PO-Revision-Date: 2018-08-16 08:38+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2740,14 +2740,14 @@ msgid "After upload, a series of automated validation tests will run to check co
 msgstr "Post le cargamento, un series de tests de validation automatisate fluera pro controlar le compatibilitate con le version de application sequente:"
 
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Post le cargamento, un serie de tests de validation automatisate fluera sur tu file."
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Desira tu que tu additivo es distribuite sur iste sito?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Resultatos de validation pro {0}"
 
 msgid "Validation Results"
 msgstr "Resultatos del validation"
@@ -2756,7 +2756,7 @@ msgid "Validated at:"
 msgstr "Validate a:"
 
 msgid "Tested for compatibility against:"
-msgstr ""
+msgstr "Testate pro compatibilitate contra:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr ""
