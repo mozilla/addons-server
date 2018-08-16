@@ -205,7 +205,7 @@ def check_render_additional(svg_content, inner_svg_width):
         '<pattern id="AdditionalBackground1"\n'
         '                   width="%s" height="%s"\n'
         '                   x="%s" y="%s" patternUnits="userSpaceOnUse">' % (
-            image_width, '100%', pattern_x_offset, 0))
+            image_width, 3 * inner_svg_width / 4, pattern_x_offset, 0))
     assert pattern_tag in svg_content, svg_content
     image_tag = '<image width="%s" height="%s"' % (image_width, image_height)
     assert image_tag in svg_content, svg_content
