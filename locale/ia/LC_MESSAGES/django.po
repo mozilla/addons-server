@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 16:46+0000\n"
+"PO-Revision-Date: 2018-08-16 17:03+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2933,30 +2933,32 @@ msgstr[0] "Separate per virgula, minimo de {0} character."
 msgstr[1] "Separate per virgula, minimo de {0} characteres."
 
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Exemplo: obscur, cinema, noir. Limite 20."
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tag reservate:"
+msgstr[1] "Tag reservate:"
 
 msgid "Contributions URL"
-msgstr "Contributiones URL"
+msgstr "URL del donationes"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "Si tu desira demandar donationes monetari a tu usatores, defini lo a un pagina ubi illes pote lo facer."
 
 msgid "Add-on Details"
 msgstr "Detalios del additivo"
 
 msgid "Add-on Details for {0}"
-msgstr ""
+msgstr "Detalios del additivo pro {0}"
 
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
+"Un plus longe explanation de functionalitates e altere pertinente informationes. Iste campo es displicate solo sur le pagina de detalios del additivo. Illo es pertinente solo pro le additivos "
+"listate."
 
 msgid "Default Locale"
-msgstr ""
+msgstr "Local predefinite"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
