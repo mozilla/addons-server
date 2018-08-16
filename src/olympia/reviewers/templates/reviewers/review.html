@@ -272,7 +272,7 @@
   {% csrf_token %}
   <div class="whiteboard">
     <div class="whiteboard-inner">
-      <label for="id_whiteboard-public">{{ whiteboard_form.public.label }}</label>
+      <label for="{{ whiteboard_form.public.auto_id }}">{{ whiteboard_form.public.label }}</label>
       {{ whiteboard_form.public }}
       <p>{{ _('The whiteboard is the place to exchange information relevant to '
               'this addon (whatever the version), between the developer and the '
@@ -282,7 +282,7 @@
   {% if 'private' in whiteboard_form.fields %}
   <div class="whiteboard private">
     <div class="whiteboard-inner">
-      <label for="id_whiteboar-private">{{ whiteboard_form.private.label }}</label>
+      <label for="{{ whiteboard_form.private.auto_id }}">{{ whiteboard_form.private.label }}</label>
       {{ whiteboard_form.private }}
       <p>{{ _('The private whiteboard is used for exchanging information '
               'between reviewers that is independent of the version. Please '
