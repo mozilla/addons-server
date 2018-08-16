@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 08:11+0000\n"
+"PO-Revision-Date: 2018-08-16 08:28+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2715,29 +2715,29 @@ msgid "Community & Support"
 msgstr "Communitate & supporto"
 
 msgid "Add-ons Blog"
-msgstr "Blog del additivos"
+msgstr "Blog de additivos"
 
 msgid "Add-ons Forum"
-msgstr "Foro del additivos"
+msgstr "Foro de additivos"
 
 msgid "More Resources"
 msgstr "Altere ressources"
 
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Recercar in le documentation de disveloppatores"
 
 msgid "Search"
-msgstr "Cercar"
+msgstr "Recercar"
 
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Usa le campo infra pro cargar tu pacchetto de additivo."
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
+msgstr "Nota que iste application labora solmente con additivos precedente. Le APIs de WebExtension es documentate a fundo  <a href=\"%(webext_doc_url)s\">ci</a>."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
+msgstr "Post le cargamento, un series de tests de validation automatisate fluera pro controlar le compatibilitate con le version de application sequente:"
 
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr ""
