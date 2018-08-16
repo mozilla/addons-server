@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 21:33+0000\n"
+"PO-Revision-Date: 2018-08-16 07:04+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2575,7 +2575,7 @@ msgid "Changes successfully saved."
 msgstr "Cambios salvate con successo."
 
 msgid "Please check the form for errors."
-msgstr "Per favor controla le modello per errores."
+msgstr "Per favor controla le formulario pro errores."
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Le additivo non pote ser delite, disactiva lo, in vice."
@@ -2596,10 +2596,10 @@ msgid "An author has been added to your add-on"
 msgstr "Un autor ha essite addite a tu additivo"
 
 msgid "An author has a role changed on your add-on"
-msgstr "Un autor ha essite cambiate de rolo sur tu additivo"
+msgstr "Un autor ha un rolo cambiate sur tu additivo"
 
 msgid "An author has been removed from your add-on"
-msgstr "Un autor ha essite removite de tu additivo"
+msgstr "Un autor ha essite removite ex tu additivo"
 
 msgid "Validate Add-on"
 msgstr "Validar additivo"
@@ -2613,7 +2613,7 @@ msgstr "Le imagines non pote ser major de %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Le imagine debe ser large exactemente {0} pixels e alte {1} pixels."
 
 msgid "There was an error uploading your preview."
 msgstr "Error durante le cargamento de tu vista preliminar."
