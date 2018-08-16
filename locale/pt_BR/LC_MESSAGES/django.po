@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 00:12+0000\n"
+"PO-Revision-Date: 2018-08-16 00:25+0000\n"
 "Last-Translator: Wolfgang Marcos <eusou@olobo.me>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2532,9 +2532,8 @@ msgstr "A versão {version} já existe."
 msgid "Continue with existing upload instead?"
 msgstr "Continuar com upload existente, em vez disso?"
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "Não foi possível interpretar o arquivo enviado."
+msgstr "Você não enviou o arquivo de código fonte."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "O arquivo fonte foi enviado, contudo, você indicou que nenhum arquivo era necessário."
@@ -3543,9 +3542,8 @@ msgstr "Enviar arquivo"
 msgid "Go to My Submissions"
 msgstr "Ir para minhas submissões"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "Código-fonte enviado"
+msgstr "Envio de Código Fonte"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr "Precisa Enviar O Código Fonte?"
@@ -3601,9 +3599,8 @@ msgstr ""
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr "<span class=\"instruction-emphasis\">Nota:</span> os arquivos fonte (exceto bibliotecas de código aberto de terceiros) não podem ser transformados, ofuscados, minificados ou gerados por máquina."
 
-#, fuzzy
 msgid "How to Submit:"
-msgstr "Submeter"
+msgstr "Como enviar:"
 
 msgid "Include instructions in a README file in the source code,"
 msgstr "Inclua instruções num arquivo README no código fonte,"
@@ -3611,9 +3608,8 @@ msgstr "Inclua instruções num arquivo README no código fonte,"
 msgid "or in reviewer notes on the next page (if applicable)."
 msgstr "ou nas notas de revisão na próxima página (se aplicável)."
 
-#, fuzzy
 msgid "Upload source code:"
-msgstr "Código-fonte"
+msgstr "Enviar código fonte:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "Acordo de distribuição de extensão"
@@ -5377,9 +5373,8 @@ msgid "Create general and website-specific notes to review later."
 msgstr "Crie notas gerais ou específicas a websites para revisar depois."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Faça capturas de tela {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Rolagem de página como em um smartphone {start_sub_heading} com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
@@ -5793,7 +5788,7 @@ msgstr "Faça capturas de tela {start_sub_heading}com {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
-msgstr ""
+msgstr "Tome decisões informadas rastreando e recebendo alertas a respeito dos preços de um produto listado na Amazon."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -6977,13 +6972,11 @@ msgstr "Avaliação processada com sucesso."
 msgid "Review lock limit reached"
 msgstr "Limite de bloqueio de análise atingido"
 
-#, fuzzy
 msgid "{addon} :: EULA"
-msgstr "{addon} :: Denúncias de abuso"
+msgstr "{addon} :: Política de uso"
 
-#, fuzzy
 msgid "{addon} :: Privacy Policy"
-msgstr "Essa extensão possui uma Política de Privacidade"
+msgstr "{addon} :: Política de Privacidade"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -8076,11 +8069,11 @@ msgstr "O usuário \"%(user)s\" foi banido."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "A imagem pertecente ao usuário \"%(user)s\" foi removida."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "Os usuários \"%(users)s\" foram banidos."
 
 msgid "Ban selected users"
 msgstr "Banir usuários selecionados"
