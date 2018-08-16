@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 07:04+0000\n"
+"PO-Revision-Date: 2018-08-16 07:21+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2631,22 +2631,22 @@ msgid "Version %s re-enabled."
 msgstr "Version %s re-activate."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr ""
+msgstr "Iste cargamento ha mancate de validation, e pote mancar de resultatos complete de validation. Per favor prende debite cura quando lo revide."
 
 msgid "Review requested."
 msgstr "Revision demandate."
 
 msgid "You must provide further details to proceed."
-msgstr "Tu debe fornir altere detalio pro proceder."
+msgstr "Tu debe fornir altere detalios pro continuar."
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr ""
+msgstr "Tu vetere credentiales esseva revocate e non es plus valide. Verifica de actualisar tote le clientes API con le nove credentiales."
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Tu vetere credentiales esseva revocate e non es plus valide."
 
 msgid "New API key created"
-msgstr "Create nove clave API"
+msgstr "Nove clave API create"
 
 msgid "API key revoked"
 msgstr "Clave API revocate"
