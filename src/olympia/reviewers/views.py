@@ -38,8 +38,9 @@ from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.devhub import tasks as devhub_tasks
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.forms import (
-    AllAddonSearchForm, MOTDForm, QueueSearchForm, RatingFlagFormSet,
-    RatingModerationLogForm, ReviewForm, ReviewLogForm, WhiteboardForm)
+    AllAddonSearchForm, MOTDForm, PublicWhiteboardForm, QueueSearchForm,
+    RatingFlagFormSet, RatingModerationLogForm, ReviewForm, ReviewLogForm,
+    WhiteboardForm)
 from olympia.reviewers.models import (
     AutoApprovalSummary, PerformanceGraph,
     RereviewQueueTheme, ReviewerScore, ReviewerSubscription,
@@ -925,16 +926,13 @@ def review(request, addon, channel=None):
 
     flags = get_flags(addon, version) if version else []
 
-    if not is_static_theme:
-        try:
-            whiteboard = Whiteboard.objects.get(pk=addon.pk)
-        except Whiteboard.DoesNotExist:
-            whiteboard = Whiteboard(pk=addon.pk)
+    try:
+        whiteboard = Whiteboard.objects.get(pk=addon.pk)
+    except Whiteboard.DoesNotExist:
+        whiteboard = Whiteboard(pk=addon.pk)
 
-        whiteboard_form = WhiteboardForm(
-            instance=whiteboard, prefix='whiteboard')
-    else:
-        whiteboard_form = None
+    wb_form_cls = PublicWhiteboardForm if is_static_theme else WhiteboardForm
+    whiteboard_form = wb_form_cls(instance=whiteboard, prefix='whiteboard')
 
     backgrounds = version.get_background_image_urls() if version else []
 
