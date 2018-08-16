@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 07:21+0000\n"
+"PO-Revision-Date: 2018-08-16 07:48+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2655,15 +2655,17 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
+"Ante de initiar, per favor leger e acceptar nostre Accordo de distribution del additivos de Firefox tam ben como nostre Politicas e regulas de revision. Le Accordo de distribution del additivos de "
+"Firefox alsi se refere a nostre Aviso de confidentialitate que explica como nos gere tu informationes."
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr "Accordo de distribution del additivo de Firefox"
+msgstr "Accordo de distribution del additivos de Firefox"
 
 msgid "Review Policies and Rules"
 msgstr "Politicas e regulas de revision"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Io ha legite e accepta iste accordo e le regulas e politicas"
 
 msgid "Accept"
 msgstr "Acceptar"
@@ -2676,7 +2678,7 @@ msgstr "Retro al additivos"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
-msgstr "{0} Additivos"
+msgstr " Additivos pro {0}"
 
 msgid "Return to the DevHub homepage"
 msgstr "Retornar al pagina principal de DevHub"
@@ -2686,22 +2688,22 @@ msgid "<small>Add-on</small> Developer Hub"
 msgstr "Centro de disveloppamento de <small>Additivo</small>"
 
 msgid "more add-ons..."
-msgstr "plus de additivos..."
+msgstr "altere additivos..."
 
 msgid "Documentation"
 msgstr "Documentation"
 
 msgid "Extension Development"
-msgstr "Disveloppamento del extension"
+msgstr "Disveloppamento de extensiones"
 
 msgid "Lightweight Themes"
 msgstr "Themas legier"
 
 msgid "Add-on Policies"
-msgstr "Politicas del additivo"
+msgstr "Politicas de additivos"
 
 msgid "Add-on Validator"
-msgstr "Validator de additivo"
+msgstr "Utensile de validation de additivos"
 
 msgid "Add-on Compatibility Checker"
 msgstr "Controlator de compatibilitate del additivo"
