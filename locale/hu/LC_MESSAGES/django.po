@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 12:17+0000\n"
+"PO-Revision-Date: 2018-08-16 12:19+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5451,9 +5451,8 @@ msgid "So many tab control options—close duplicate tabs, merge windows, copy t
 msgstr "Számos lapkezelési lehetőség – duplán megnyitott lapok bezárása, ablakok egyesítése, lapcím másolása, és még sok más."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lap testreszabás {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Élvezze a furcsa oktatást {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Load a random Wikipedia article each time you open a new tab."
@@ -5465,7 +5464,7 @@ msgstr "Cserélje le az új lap oldalt {start_sub_heading}a(z) {addon_name} kieg
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Állítsa be úgy az új lap oldalakat, hogy egyéni háttérszíneket és képeket jelenítsenek meg."
 
 #. editorial content for the discovery pane.
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5698,7 +5697,7 @@ msgstr "Tüntesse el a lábnyomait {start_sub_heading}a(z) {addon_name} kiegész
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
-msgstr ""
+msgstr "Keressen nagyobb biztonsággal: követők blokkolásával, okosabb titkosítással, privát kereséssel és más elengedhetetlen dolgokkal."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
