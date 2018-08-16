@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 12:22+0000\n"
+"PO-Revision-Date: 2018-08-16 15:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2860,22 +2860,24 @@ msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
+"<p>Le additivos pote haber ulle numeros de autores con 2 possibile rolos:</p><ul><li><b>Proprietario:</b> Pote gerer tote le aspectos del visualisation del additivo, includite addition e remotion de"
+" altere autores</li><li><b>Disveloppator:</b> Pote gerer tote le aspectos del visualisation del additivo, totos minus illo del addition e remotion de altere autores</li></ul>"
 
 msgid "Basic Information"
-msgstr "Informationes basic"
+msgstr "Informationes de base"
 
 #. {0} is the addon name
 msgid "Basic Information for {0}"
-msgstr "Informationes basic pro {0}"
+msgstr "Informationes de base pro {0}"
 
 msgid "Add-on URL"
 msgstr "URL de additivo"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "Elige un URL (slug - limace) breve, unic pro tu additivo."
 
 msgid "View Listing"
-msgstr ""
+msgstr "Vide le lista"
 
 msgid "Summary"
 msgstr "Summario"
