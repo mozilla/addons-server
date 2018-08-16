@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 21:33+0000\n"
+"PO-Revision-Date: 2018-08-16 17:12+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2539,7 +2539,7 @@ msgid "%s responded with %s (%s)."
 msgstr "%s ha respondite con %s (%s)."
 
 #, python-format
-msgid "Connection to \"%s\" timed out."
+msgid "Connection to \"%s\" timed out.\n"
 msgstr "Connexion a \"%s\" foras tempore limite.\n"
 
 #, python-format
@@ -2575,7 +2575,7 @@ msgid "Changes successfully saved."
 msgstr "Cambios salvate con successo."
 
 msgid "Please check the form for errors."
-msgstr "Per favor controla le modello per errores."
+msgstr "Per favor controla le formulario pro errores."
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Le additivo non pote ser delite, disactiva lo, in vice."
@@ -2596,10 +2596,10 @@ msgid "An author has been added to your add-on"
 msgstr "Un autor ha essite addite a tu additivo"
 
 msgid "An author has a role changed on your add-on"
-msgstr "Un autor ha essite cambiate de rolo sur tu additivo"
+msgstr "Un autor ha un rolo cambiate sur tu additivo"
 
 msgid "An author has been removed from your add-on"
-msgstr "Un autor ha essite removite de tu additivo"
+msgstr "Un autor ha essite removite ex tu additivo"
 
 msgid "Validate Add-on"
 msgstr "Validar additivo"
@@ -2613,7 +2613,7 @@ msgstr "Le imagines non pote ser major de %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Le imagine debe ser large exactemente {0} pixels e alte {1} pixels."
 
 msgid "There was an error uploading your preview."
 msgstr "Error durante le cargamento de tu vista preliminar."
@@ -2631,22 +2631,22 @@ msgid "Version %s re-enabled."
 msgstr "Version %s re-activate."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr ""
+msgstr "Iste cargamento ha mancate de validation, e pote mancar de resultatos complete de validation. Per favor prende debite cura quando lo revide."
 
 msgid "Review requested."
 msgstr "Revision demandate."
 
 msgid "You must provide further details to proceed."
-msgstr "Tu debe fornir altere detalio pro proceder."
+msgstr "Tu debe fornir altere detalios pro continuar."
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr ""
+msgstr "Tu vetere credentiales esseva revocate e non es plus valide. Verifica de actualisar tote le clientes API con le nove credentiales."
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Tu vetere credentiales esseva revocate e non es plus valide."
 
 msgid "New API key created"
-msgstr "Create nove clave API"
+msgstr "Nove clave API create"
 
 msgid "API key revoked"
 msgstr "Clave API revocate"
@@ -2655,15 +2655,17 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
+"Ante de initiar, per favor leger e acceptar nostre Accordo de distribution del additivos de Firefox tam ben como nostre Politicas e regulas de revision. Le Accordo de distribution del additivos de "
+"Firefox alsi se refere a nostre Aviso de confidentialitate que explica como nos gere tu informationes."
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr "Accordo de distribution del additivo de Firefox"
+msgstr "Accordo de distribution del additivos de Firefox"
 
 msgid "Review Policies and Rules"
 msgstr "Politicas e regulas de revision"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Io ha legite e accepta iste accordo e le regulas e politicas"
 
 msgid "Accept"
 msgstr "Acceptar"
@@ -2676,7 +2678,7 @@ msgstr "Retro al additivos"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
-msgstr "{0} Additivos"
+msgstr " Additivos pro {0}"
 
 msgid "Return to the DevHub homepage"
 msgstr "Retornar al pagina principal de DevHub"
@@ -2686,66 +2688,66 @@ msgid "<small>Add-on</small> Developer Hub"
 msgstr "Centro de disveloppamento de <small>Additivo</small>"
 
 msgid "more add-ons..."
-msgstr "plus de additivos..."
+msgstr "altere additivos..."
 
 msgid "Documentation"
 msgstr "Documentation"
 
 msgid "Extension Development"
-msgstr "Disveloppamento del extension"
+msgstr "Disveloppamento de extensiones"
 
 msgid "Lightweight Themes"
 msgstr "Themas legier"
 
 msgid "Add-on Policies"
-msgstr "Politicas del additivo"
+msgstr "Politicas de additivos"
 
 msgid "Add-on Validator"
-msgstr "Validator de additivo"
+msgstr "Utensile de validation de additivos"
 
 msgid "Add-on Compatibility Checker"
-msgstr "Controlator de compatibilitate del additivo"
+msgstr "Utensile de verification de compatibilitate de additivos"
 
 msgid "Development Add-ons"
-msgstr "Additivos pro le disveloppamento"
+msgstr "Additivos de disveloppamento"
 
 msgid "Community & Support"
 msgstr "Communitate & supporto"
 
 msgid "Add-ons Blog"
-msgstr "Blog del additivos"
+msgstr "Blog de additivos"
 
 msgid "Add-ons Forum"
-msgstr "Foro del additivos"
+msgstr "Foro de additivos"
 
 msgid "More Resources"
 msgstr "Altere ressources"
 
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Recercar in le documentation de disveloppatores"
 
 msgid "Search"
-msgstr "Cercar"
+msgstr "Recercar"
 
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Usa le campo infra pro cargar tu pacchetto de additivo."
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
+msgstr "Nota que iste application labora solmente con additivos precedente. Le APIs de WebExtension es documentate a fundo  <a href=\"%(webext_doc_url)s\">ci</a>."
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
+msgstr "Post le cargamento, un series de tests de validation automatisate fluera pro controlar le compatibilitate con le version de application sequente:"
 
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Post le cargamento, un serie de tests de validation automatisate fluera sur tu file."
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Desira tu que tu additivo es distribuite sur iste sito?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Resultatos de validation pro {0}"
 
 msgid "Validation Results"
 msgstr "Resultatos del validation"
@@ -2754,14 +2756,14 @@ msgid "Validated at:"
 msgstr "Validate a:"
 
 msgid "Tested for compatibility against:"
-msgstr ""
+msgstr "Testate pro compatibilitate contra:"
 
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Recente activitate pro mi additivos"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr "Activitate recente pro {0}"
+msgstr "Recente activitate pro {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -2771,7 +2773,7 @@ msgid "No results found."
 msgstr "Nulle resultatos trovate."
 
 msgid "Refine Activity"
-msgstr "Affinar le activitate"
+msgstr "Affinar activitate"
 
 msgid "Activity"
 msgstr "Activitate"
@@ -2784,13 +2786,17 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
+"Iste additivo es incompatibile con <b>%(app_name)s %(app_version)s</b>, le ultime version de %(app_name)s. Per favor considera le actualisation de tu information de compatibilitate del additivo, o "
+"le cargamento de un version plus recente de iste additivo."
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Actualisar Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Cargar nove version</a> o <a href=\"#\" "
+"class=\"close\">Ignorar</a>"
 
 msgid "View and update application compatibility ranges."
-msgstr ""
+msgstr "Vide e actualisa le intervallos de compatibilitate del application."
 
 msgid "Compatibility"
 msgstr "Compatibile"
@@ -2799,7 +2805,7 @@ msgid "Update Compatibility"
 msgstr "Actualisar le compatibilitate"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
+msgstr "Adjustar le informationes del application ci consentira al usatores de installar tu additivo mesmo si le file manifest de installation in le pacchetto indica que le additivo es incompatibile."
 
 msgid "Supported Versions"
 msgstr "Versiones supportate"
@@ -2811,14 +2817,14 @@ msgid "Close"
 msgstr "Clauder"
 
 msgid "Recent Activity"
-msgstr "Activitate recente"
+msgstr "Recente activitate"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
 msgstr "%(ago)s per %(user)s"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Activitate plus vetere pro mi additivos"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
@@ -2827,7 +2833,7 @@ msgstr[0] "<b>{0}</b> thema"
 msgstr[1] "<b>{0}</b> themas"
 
 msgid "Edit Information"
-msgstr "Modificar le informationes"
+msgstr "Rediger le informationes"
 
 msgid "None"
 msgstr "Nulle"
@@ -2836,118 +2842,126 @@ msgid "Preview"
 msgstr "Vista preliminar"
 
 msgid "Preview of listed version"
-msgstr ""
+msgstr "Vista preliminar del version listate"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "Le vista preliminar debe ancora esser generate - reveni plus tarde o refresca le pagina."
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Gerer autores & licentia"
 
 msgid "Authors"
 msgstr "Autores"
 
 msgid "About author roles"
-msgstr "A proposito del rolo del autores"
+msgstr "Circa le rolos del autores"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
+"<p>Le additivos pote haber ulle numeros de autores con 2 possibile rolos:</p><ul><li><b>Proprietario:</b> Pote gerer tote le aspectos del visualisation del additivo, includite addition e remotion de"
+" altere autores</li><li><b>Disveloppator:</b> Pote gerer tote le aspectos del visualisation del additivo, totos minus illo del addition e remotion de altere autores</li></ul>"
 
 msgid "Basic Information"
-msgstr "Informationes basic"
+msgstr "Informationes de base"
 
 #. {0} is the addon name
 msgid "Basic Information for {0}"
-msgstr "Informationes basic pro {0}"
+msgstr "Informationes de base pro {0}"
 
 msgid "Add-on URL"
 msgstr "URL de additivo"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "Elige un URL (slug - limace) breve, unic pro tu additivo."
 
 msgid "View Listing"
-msgstr ""
+msgstr "Vide le lista"
 
 msgid "Summary"
 msgstr "Summario"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "Iste summario debe explicar clarmente lo que tu additivo face. Illo sera monstrate in listas e recercas, e illo sera usate per le revisores pro testar tu additivo."
 
 msgid "Experimental?"
 msgstr "Experimental?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "Si tu additivo es experimental o alias non preste pro uso general. Le additivo sera listate ma habera reducite visibilitate."
 
 msgid "This add-on is experimental."
-msgstr ""
+msgstr "Iste additivo es experimental."
 
 msgid "This add-on is ready for general use."
-msgstr ""
+msgstr "Iste additivo es preste pro uso general."
 
 msgid "Requires Payment?"
-msgstr ""
+msgstr "Require illo un pagamento?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Marca iste option si iste functionalitates del nucleo del additivo require alcun forma de pagamento previe o post un periodo de prova pro functionar."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Iste additivo necessita pagamento, servicios o software non-libere, o altere hardware."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "Iste additivo non require ulle altere pagamentos, servicios o software pagate, o altere hardware."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
+msgstr "Le categorias es le maniera primari pro le usatores de navigar per le additivos. Elige lo que adhere al functionalitate de tu additivo pro le melior visibilitate."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
+"Le categorias non pote ser cambiate durante que tu additivo es in evidentia pro iste application. Per favor invia un email <a href=\"mailto:%(email)s\">%(email)s</a> si il ha un ration proque tu "
+"necessita de modificar tu categorias."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
+"Le categorias non pote ser cambiate durante que tu additivos es consiliate. Per favor invia un email <a href=\"mailto:%(email)s\">%(email)s</a> si il ha un ration proque tu necessita de modificar tu"
+" categorias."
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
+msgstr "Le tags adjuta le usatores a trovar tu additivo e debe esser breve descriptores tal como schedas, barra de instrumentos, o twitter. Tu pote haber un maximo de {0} tags."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Separate per virgula, minimo de {0} character."
+msgstr[1] "Separate per virgula, minimo de {0} characteres."
 
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Exemplo: obscur, cinema, noir. Limite 20."
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tag reservate:"
+msgstr[1] "Tag reservate:"
 
 msgid "Contributions URL"
-msgstr "Contributiones URL"
+msgstr "URL del donationes"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "Si tu desira demandar donationes monetari a tu usatores, defini lo a un pagina ubi illes pote lo facer."
 
 msgid "Add-on Details"
 msgstr "Detalios del additivo"
 
 msgid "Add-on Details for {0}"
-msgstr ""
+msgstr "Detalios del additivo pro {0}"
 
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
+"Un plus longe explanation de functionalitates e altere pertinente informationes. Iste campo es displicate solo sur le pagina de detalios del additivo. Illo es pertinente solo pro le additivos "
+"listate."
 
 msgid "Default Locale"
-msgstr ""
+msgstr "Local predefinite"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Le informationes circa tu additivo es displicate in iste localisation a minus que tu supplanta lo con un traduction specific pro le loco. Illo es pertinente solo pro le additivos listate."
 
 msgid "Homepage"
 msgstr "Pagina principal"

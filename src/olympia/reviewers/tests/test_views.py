@@ -2698,6 +2698,8 @@ class TestReview(ReviewBase):
         assert (
             doc('#whiteboard_form').attr('action') ==
             '/en-US/reviewers/whiteboard/listed/public')
+        assert doc('#id_whiteboard-public')
+        assert doc('#id_whiteboard-private')
 
         # Content review.
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
@@ -2735,13 +2737,17 @@ class TestReview(ReviewBase):
             doc('#whiteboard_form').attr('action') ==
             '/en-US/reviewers/whiteboard/listed/%d' % self.addon.pk)
 
-    def test_no_whiteboards_for_static_themes(self):
+    def test_whiteboard_for_static_themes(self):
         self.grant_permission(self.reviewer, 'Addons:ThemeReview')
         self.addon.update(type=amo.ADDON_STATICTHEME)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert not doc('#whiteboard_form')
+        assert (
+            doc('#whiteboard_form').attr('action') ==
+            '/en-US/reviewers/whiteboard/listed/public')
+        assert doc('#id_whiteboard-public')
+        assert not doc('#id_whiteboard-private')
 
     def test_comment(self):
         response = self.client.post(self.url, {'action': 'comment',

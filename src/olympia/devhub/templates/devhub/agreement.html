@@ -15,10 +15,11 @@
     {{ _('I have read and accept this Agreement and the Rules and Policies') }}.
   </p>
 
-  {% if agreement_form.recapcha %}
-    <p>
-      {{ agreement_form.recaptcha }}
-    </p>
+  {% if 'recaptcha' in agreement_form.fields %}
+  <p>
+    {{ agreement_form.recaptcha }}
+    {{ agreement_form.recaptcha.errors }}
+  </p>
   {% endif %}
 
   <div class="submit-buttons">

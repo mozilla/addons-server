@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-09 20:25+0000\n"
+"PO-Revision-Date: 2018-08-16 12:19+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -427,8 +427,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
-"Nézze meg a kiegészítő <a href=\"%(support)s\">támogatás szakaszát</a>, hogy megtudja áll-e rendelkezésre támogatás. Megpróbálhat segítséget kérni a <a href=\"https://discourse.mozilla-community."
-"org/c/add-ons/add-on-support\">kiegészítők közösségétől</a> is."
+"Nézze meg a kiegészítő <a href=\"%(support)s\">támogatás szakaszát</a>, hogy megtudja áll-e rendelkezésre támogatás. Megpróbálhat segítséget kérni a <a href=\"https://discourse.mozilla-"
+"community.org/c/add-ons/add-on-support\">kiegészítők közösségétől</a> is."
 
 msgid "Review Guidelines"
 msgstr "Értékelési útmutató"
@@ -569,8 +569,8 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Néhány kiegészítő engedélyt kér bizonyos funkciókhoz (például: egy lapkezelő kiegészítő engedélyt fog kérni, hogy hozzáférjen a böngésző lapkezelő rendszeréhez)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
-"some rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
+" rare cases risk may be involved."
 msgstr ""
 "Mivel Ön irányítja a saját Firefoxát, ezért ezen kérések engedélyezése vagy megtagadása Önre bízott. A jogosultságok elfogadása nem feltétlenül csökkenti a böngészője teljesítményét vagy "
 "biztonságát, de ritka esetekben lehetnek kockázatok."
@@ -767,15 +767,15 @@ msgstr "Nem található"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
-"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
+"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Sajnáljuk, de nem találjuk amit keres.</h1> <p> A keresett oldal vagy fájl nem található a weboldalunkon. Lehetséges, hogy elavult hivatkozást használt vagy hibásan gépelte be a megadott címet. "
-"</p> <ul> <li>Amennyiben begépelte a címet, akkor ellenőrizze annak helyességét.</li> <li> Amennyiben másik oldalról jutott el ide, akkor kérjük <a href=\"https://github.com/mozilla/addons-server/"
-"issues/new/\">nyújtson be egy jegyet</a>. Írja meg, hogy honnan jött, és hogy mit keresett; mindent meg fogunk tenni a hiba kijavítása érdekében.</li> </ul> <p>Vagy egyszerűen csak ugorjon át "
-"valamelyik népszerű weboldalunkra..</p> <ul> <li>Érdeklik a <a href=\"%(rec)s\">kiemelt kiterjesztések</a>?</li> <li> <a href=\"%(search)s\">Kiterjesztést szeretne keresni</a>? Ebben az esetben "
+"</p> <ul> <li>Amennyiben begépelte a címet, akkor ellenőrizze annak helyességét.</li> <li> Amennyiben másik oldalról jutott el ide, akkor kérjük <a href=\"https://github.com/mozilla/addons-"
+"server/issues/new/\">nyújtson be egy jegyet</a>. Írja meg, hogy honnan jött, és hogy mit keresett; mindent meg fogunk tenni a hiba kijavítása érdekében.</li> </ul> <p>Vagy egyszerűen csak ugorjon át"
+" valamelyik népszerű weboldalunkra..</p> <ul> <li>Érdeklik a <a href=\"%(rec)s\">kiemelt kiterjesztések</a>?</li> <li> <a href=\"%(search)s\">Kiterjesztést szeretne keresni</a>? Ebben az esetben "
 "menjen a <a href=\"%(search)s\">keresőoldalra</a> vagy használja a keresőmezőt. </li> <li> Amennyiben az elejéről kívánja kezdeni, akkor ugorjon a <a href=\"%(home)s\">kiegészítők kezdőlapjára</a>. "
 "</li> </ul>"
 
@@ -822,8 +822,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Kérjük, írja be <strong>mind</strong> az alábbi szavakat, szükség esetén <strong>szóközzel elválasztva</strong>. </p> <p>Ha ezt nehéz elolvasni, akkor <a href=\"#\" id=\"recaptcha_different"
-"\">próbálkozhat más szavakkal</a> vagy <a href=\"#\" id=\"recaptcha_audio\">próbáljon ki más típusú ellenőrzést</a> helyette. </p>"
+"<p> Kérjük, írja be <strong>mind</strong> az alábbi szavakat, szükség esetén <strong>szóközzel elválasztva</strong>. </p> <p>Ha ezt nehéz elolvasni, akkor <a href=\"#\" "
+"id=\"recaptcha_different\">próbálkozhat más szavakkal</a> vagy <a href=\"#\" id=\"recaptcha_audio\">próbáljon ki más típusú ellenőrzést</a> helyette. </p>"
 
 msgid "Top Rated"
 msgstr "Legjobbra értékelt"
@@ -959,8 +959,8 @@ msgstr "Verziók"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr "Ha a támogatott alkalmazás nem igényli a jegyzékfájlt, akkor is mellékelni kell egyet az %(amo_manifests_mdn_link_open)sitt%(amo_manifests_mdn_link_close)s meghatározott tartalommal."
 
 msgid "Only I can view this collection."
@@ -1130,8 +1130,8 @@ msgstr ""
 "hogy mindenki láthatja. Amennyiben el akarja rejteni a nyilvánosság elől, akkor az alábbi gomb megnyomásával priváttá teheti."
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
+" be able to see your favorites, click the button below to make it public."
 msgstr ""
 "Azok a kiegészítők, amelyek a kedvencek közé kerültek a <b>Hozzáadás a kedvencekhez</b> funkció használatával, azok alul jelennek meg. Ez a gyűjtemény jelenleg <b>privát</b>, ami azt jelenti, hogy "
 "más nem láthatja. Amennyiben a kedvenceit mindenki számára láthatóvá kívánja tenni, akkor az alábbi gomb megnyomásával nyilvánossá teheti."
@@ -1190,8 +1190,8 @@ msgstr "Nincsenek gyűjtemények."
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
-"A gyűjtemények valaki által összeállított és megosztott, valamilyen módon kapcsolatban lévő kiegészítők csoportja. Fedezze fel a mások által készített gyűjteményeket vagy <a href=\"%(url)s"
-"\">készítse el sajátját</a>."
+"A gyűjtemények valaki által összeállított és megosztott, valamilyen módon kapcsolatban lévő kiegészítők csoportja. Fedezze fel a mások által készített gyűjteményeket vagy <a "
+"href=\"%(url)s\">készítse el sajátját</a>."
 
 #, python-format
 msgid "by %(author_link)s"
@@ -1331,8 +1331,8 @@ msgstr "Nyelvi csomag letöltése"
 
 #, python-format
 msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
-"of the entire application."
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
+" the entire application."
 msgstr ""
 "A szótár kiegészítő telepítése új nyelvi lehetőséget az a %(app_name)s helyesírás-ellenőrzőjébe, amely ellenőrzi a helyesírást, amikor webes űrlapokat tölt ki. A nyelvi csomag kiegészítőkkel a "
 "teljes alkalmazás nyelvét átállíthatja."
@@ -1505,11 +1505,11 @@ msgstr "Kiegészítők kompatibilitási jelentései"
 
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
+" supporting an upcoming Firefox version. </p>"
 msgstr ""
-"<p>A <a href=\"%(url_)s\">kiegészítők kompatibilitási jelentésén</a> keresztül beküldött jelentések itt kerülnek összegyűjtésre a fejlesztők számára. Ezek a jelentések segítenek nekünk "
-"meghatározni, hogy mely kiegészítők igényelnek majd segítséget egy soron következő Firefox verzió támogatásához.</p>"
+"<p>A <a href=\"%(url_)s\">kiegészítők kompatibilitási jelentésén</a> keresztül beküldött jelentések itt kerülnek összegyűjtésre a fejlesztők számára. Ezek a jelentések segítenek nekünk meghatározni,"
+" hogy mely kiegészítők igényelnek majd segítséget egy soron következő Firefox verzió támogatásához.</p>"
 
 msgid "Reports for your Add-ons"
 msgstr "Kiegészítőinek jelentései"
@@ -2512,11 +2512,10 @@ msgstr ""
 "Ezen az oldalon. <span class=\"helptext\">A beküldése listázásra kerül ezen az oldalon, és a Firefox kiegészítőkezelőben, felhasználók millióinak, amint átjut a kódellenőrzésen. Az automatikus "
 "frissítéseket ez az oldal kezeli. Ez a kiegészítő figyelembe lesz véve a Mozilla promóciókban és versenyekben. Az értékelt fájlok saját terjesztésére is nyílik lehetőség.</span>"
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
-"Saját maga. <span class=\"helptext\">A beküldése azonnal aláírásra kerül saját terjesztéshez. A frissítéseket Önnek kell kezelnie egy frissítési URL-en keresztül, vagy külső alkalmazásfrissítéssel."
-"</span>"
+"Saját maga. <span class=\"helptext\">A beküldése azonnal aláírásra kerül saját terjesztéshez. A frissítéseket Önnek kell kezelnie egy frissítési URL-en keresztül, vagy külső "
+"alkalmazásfrissítéssel.</span>"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "A kategóriák nem változtathatóak meg, míg kiemelt a kiegészítő."
@@ -2665,8 +2664,8 @@ msgid "API key revoked"
 msgstr "API kulcs visszavonva"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 "Kezdés előtt olvassa el és fogadja el a Firefox kiegészítő-terjesztési megállapodásunkat, valamint az értékelési irányelveinket és szabályzatunkat. A Firefox kiegészítő-terjesztési megállapodás "
 "hivatkozik az adatvédelmi nyilatkozatra is, amely elmagyarázza, hogyan kezeljük az adatait."
@@ -2803,9 +2802,7 @@ msgstr ""
 "kiegészítő újabb verzióját."
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibilitás frissítése</a> <a href=\"%(version_url)s\" class=\"button\">Új verzió feltöltése</a> or <a href=\"#\" "
 "class=\"close\">Kihagyás</a>"
@@ -2932,8 +2929,7 @@ msgstr ""
 "találhassák meg."
 
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "A kategóriák nem módosíthatók amíg az alkalmazás kiemelt kiegészítője. Küldjön levelet ide: <a href=\"mailto:%(email)s\">%(email)s</a>, amennyiben valamilyen okból módosítani szeretné a kategóriát."
 
@@ -3003,8 +2999,8 @@ msgid "Email"
 msgstr "E-mail"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 "Ha szeretne megjeleníteni egy e-mail címet a támogatási kérdések fogadására, azt itt adja meg. Ha különböző címek tartoznak egyes nyelvekhez, ezen mező többszöri fordítása hozzáadható. Ez csak "
 "listázott kiegészítőkre érvényes."
@@ -3103,8 +3099,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"A faliújság a szerkesztőnek szánt, kiegészítőre vonatkozó információk helye, verziótól függetlenül. Használja a kiegészítő tesztelhetőségnek leírására vagy hasznos kiegészítő információk "
-"megadására. Ezt a faliújságot a szerkesztők is alakíthatják."
+"A faliújság a szerkesztőnek szánt, kiegészítőre vonatkozó információk helye, verziótól függetlenül. Használja a kiegészítő tesztelhetőségnek leírására vagy hasznos kiegészítő információk megadására."
+" Ezt a faliújságot a szerkesztők is alakíthatják."
 
 msgid "Remove this dependent add-on"
 msgstr "Függőségi kiegészítő eltávolítása"
@@ -3122,8 +3118,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Töltsön fel egy ikont kiegészítőjéhez vagy használjon egyet a mieink közül. Ez az ikon szinte mindenhol megjelenik a kiegészítő mellett. A feltöltött kép a következő kiterjesztésű lehet: .png, ."
-"jpg. Csak listázott kiegészítőkre érvényes."
+"Töltsön fel egy ikont kiegészítőjéhez vagy használjon egyet a mieink közül. Ez az ikon szinte mindenhol megjelenik a kiegészítő mellett. A feltöltött kép a következő kiterjesztésű lehet: .png, .jpg."
+" Csak listázott kiegészítőkre érvényes."
 
 msgid "Select an icon for your add-on:"
 msgstr "Válasszon egy ikont a kiegészítőhöz:"
@@ -3524,25 +3520,25 @@ msgid "Operating system and build environment requirements."
 msgstr "Operációs rendszer és összeállítási környezeti követelmények."
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
 msgstr ""
-"Részletek (köztük a szükséges verzió és a telepítési utasítások) az összeállítási folyamat során használt programokról (például: használt <span class=\"tech-emphasis\">node</span> és <span class="
-"\"tech-emphasis\">npm</span> verziók)."
+"Részletek (köztük a szükséges verzió és a telepítési utasítások) az összeállítási folyamat során használt programokról (például: használt <span class=\"tech-emphasis\">node</span> és <span class"
+"=\"tech-emphasis\">npm</span> verziók)."
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
-"<span class=\"instruction-emphasis\">Megjegyzés:</span> A forrásfájlok (leszámítva a harmadik féltől származó nyílt forráskódú programkönyvtárakat) nem lehetnek más nyelvről átfordítva, "
-"obfuszkálva, minimalizálva vagy másképpen gép által előállítva."
+"<span class=\"instruction-emphasis\">Megjegyzés:</span> A forrásfájlok (leszámítva a harmadik féltől származó nyílt forráskódú programkönyvtárakat) nem lehetnek más nyelvről átfordítva, obfuszkálva,"
+" minimalizálva vagy másképpen gép által előállítva."
 
 msgid "How to Submit:"
 msgstr "Beküldés menete:"
 
 msgid "Include instructions in a README file in the source code,"
-msgstr ""
+msgstr "Írja bele az utasításokat egy README fájlba a forráskódban,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr ""
+msgstr "vagy az értékelői megjegyzésekbe a következő oldalon (ha alkalmazható)."
 
 msgid "Upload source code:"
 msgstr "Forráskód feltöltése:"
@@ -3679,8 +3675,8 @@ msgstr "JWT titok"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 "API kéréshez küldjön egy <a href=\"%(jwt_url)s\">JSON Web Tokent (JWT),</a> az autorizációs fejlécben. Egy JWT-t kell generálnia minden egyes kéréshez, ahogy azt az <a href=\"%(docs_url)s\">API "
 "dokumentáció</a> elmagyarázza."
@@ -3943,8 +3939,8 @@ msgstr "Erőforrások a sikeres induláshoz"
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
-"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 "Elkészítette a kiegészítőjét, és készen áll a közzétételre. Most mi következik? Nézze meg a tippjeinket a vonzó részletező oldal létrehozásáról, emelje ki a kiterjesztését az "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s-on, találjon választ fejlesztési kérdésekre, és legyen naprakész a kiegészítőfejlesztőkkel kapcsolatos hírekkel és eseményekkel."
@@ -4006,11 +4002,11 @@ msgstr "Firefox testreszabása"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
+"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"A kiegészítők Firefox felhasználók millióinak javítják a böngészési élményét. Ha ismeri a %(html_link_open)sHTML%(link_close)s-t, %(js_link_open)sJavaScript%(link_close)set, és %(css_link_open)sCSS"
-"%(link_close)s-t, máris minden szükséges képessége megvan egy nagyszerű kiegészítő elkészítéséhez."
+"A kiegészítők Firefox felhasználók millióinak javítják a böngészési élményét. Ha ismeri a %(html_link_open)sHTML%(link_close)s-t, %(js_link_open)sJavaScript%(link_close)set, és "
+"%(css_link_open)sCSS%(link_close)s-t, máris minden szükséges képessége megvan egy nagyszerű kiegészítő elkészítéséhez."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Tudja meg hogy készítsen el egy kiegészítőt"
@@ -4021,8 +4017,8 @@ msgstr "Egy Chrome kiegészítő portolása"
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
-"A Firefox támogatja a WebExtension API-kat, amelyek a legtöbb esetben kompatibilisek a Chrome, Opera és Edge által támogatott bővítmény API-kkal, tehát a bővítmények csupán néhány módosítással "
-"futni fognak a Firefoxban is."
+"A Firefox támogatja a WebExtension API-kat, amelyek a legtöbb esetben kompatibilisek a Chrome, Opera és Edge által támogatott bővítmény API-kkal, tehát a bővítmények csupán néhány módosítással futni"
+" fognak a Firefoxban is."
 
 msgid "Publish Your Add-on"
 msgstr "Tegye közzé kiegészítőjét"
@@ -4151,8 +4147,8 @@ msgstr "Adjon egy nevet a témának."
 
 #, python-format
 msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
-"Communications and Cookies Privacy Notice%(link_close)s."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
+" and Cookies Privacy Notice%(link_close)s."
 msgstr ""
 "Egyetértek a %(agreement_link_open)sFirefox kiegészítő-terjesztési megállapodással%(link_close)s, és azzal hogy az információimat a %(privacy_notice_link_open)sWeboldalakra, kommunikációra és a "
 "sütikre vonatkozó adatvédelmi nyilatkozat%(link_close)s szerint kezelik."
@@ -4196,8 +4192,8 @@ msgstr "PNG vagy JPG"
 msgid "Manage Version {0}"
 msgstr "{0} verzió kezelése"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
+# {0} is the name of the collection
 msgid "Manage {0}"
 msgstr "{0} kezelése"
 
@@ -5176,7 +5172,7 @@ msgstr "Dolgozzon okosabban {start_sub_heading}a(z) {addon_name} kiegészítőve
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "Kezelje a produktivitását azáltal, hogy megadott időintervallumokban dolgozik."
 
 #. editorial content for the discovery pane.
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5292,7 +5288,7 @@ msgstr "Telefonszerű görgetés {start_sub_heading}a(z) {addon_name} kiegészí
 
 #. editorial content for the discovery pane.
 msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
-msgstr ""
+msgstr "„Fogd és húzd” egérgörgetés az asztali weboldalakhoz."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5412,7 +5408,7 @@ msgstr "Érje el könnyedén a Wikipédiát {start_sub_heading}a(z) {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Végezzen Wikipédia keresést a szöveg kijelölésével és jobb kattintással bármely weboldalon."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5420,7 +5416,7 @@ msgstr "Fedezzen fel oldalfüggő tartalmakat {start_sub_heading}a(z) {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "Találja meg amit keres egy adott domainen belül."
 
 #. editorial content for the discovery pane.
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5428,7 +5424,7 @@ msgstr "Keressen videókat {start_sub_heading}a(z) {addon_name} kiegészítővel
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Jelöljön ki szöveget bármely weboldalon, és jobb kattintással keressen kapcsolódó médiát a YouTube-on."
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5436,7 +5432,7 @@ msgstr "Tegyen szert előnyökre az Amazonon {start_sub_heading}a(z) {addon_name
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "Ha termékoldalakat néz más online boltokban, és ha az Amazonon is kaphatóm akkor egy gombnyomással megnézheti az amazonos listázását."
 
 #. editorial content for the discovery pane.
 msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5444,7 +5440,7 @@ msgstr "Kürtölje világgá {start_sub_heading}a(z) {addon_name} kiegészítőv
 
 #. editorial content for the discovery pane.
 msgid "Easily broadcast web content to your Twitter following."
-msgstr ""
+msgstr "Ossza meg könnyen a webes tartalmakat Twitter követőivel."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5452,12 +5448,11 @@ msgstr "A legjobb lapkezelés {start_sub_heading}a(z) {addon_name} kiegészítő
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Számos lapkezelési lehetőség – duplán megnyitott lapok bezárása, ablakok egyesítése, lapcím másolása, és még sok más."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Lap testreszabás {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Élvezze a furcsa oktatást {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Load a random Wikipedia article each time you open a new tab."
@@ -5469,7 +5464,7 @@ msgstr "Cserélje le az új lap oldalt {start_sub_heading}a(z) {addon_name} kieg
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Állítsa be úgy az új lap oldalakat, hogy egyéni háttérszíneket és képeket jelenítsenek meg."
 
 #. editorial content for the discovery pane.
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5477,29 +5472,27 @@ msgstr "Macskarajongók örvendjetek {start_sub_heading}a(z) {addon_name} kiegé
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Találkozzon egy aranyos cicával minden új lapon. Vakarja meg a füle mögött, és nézze meg mi történik."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Készítsen képernyőképeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Csökkentse a produktivitását {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "Azokra a pillanatokra, amikor lézereket kell kilőnie egy macskából."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Töltsön le videókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Firefox keresés {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Érje el könnyen a nyitott lapjait, könyvjelzőit és előzményeit."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Sok a nyitott lap? Hagyja a görgetést, és keressen gyorsbillentyűkkel."
 
 #. editorial content for the discovery pane.
 msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5507,7 +5500,7 @@ msgstr "Fedezze fel mi van a felszín alatt {start_sub_heading}a(z) {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Uncover the software that supports whatever website you're visiting."
-msgstr ""
+msgstr "Fedezze fel, hogy milyen szoftver van az épp felkeresett weboldal mögött."
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5515,7 +5508,7 @@ msgstr "Akadályozza meg az átirányításokat és a követést {start_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Állítsa meg az átirányításokat, hogy elérje azt az oldalt, amit akar – gyorsabban."
 
 #. editorial content for the discovery pane.
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5523,7 +5516,7 @@ msgstr "Fedje fel a beírt jelszavakat {start_sub_heading}a(z) {addon_name} kieg
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Megjelenítés/elrejtés funkció az összes jelszómezőnek."
 
 #. editorial content for the discovery pane.
 msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5531,7 +5524,7 @@ msgstr "Csökkentse a zavaró tényezőket {start_sub_heading}a(z) {addon_name} 
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Fókuszáljon arra, amit néz, a videolejátszón kívül minden más elsötétítésével."
 
 #. editorial content for the discovery pane.
 msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5539,7 +5532,7 @@ msgstr "Kezelje a könyvjelzőket {start_sub_heading}a(z) {addon_name} kiegész�
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Módosítsa a könyvjelzőit egy könnyen elérhető panelről."
 
 #. editorial content for the discovery pane.
 msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5547,11 +5540,11 @@ msgstr "Tartsa jelszavait biztonságban {start_sub_heading}a(z) {addon_name} kie
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Tárolja a jelszavait biztonságosan, és jelentkezzen be automatikusan az ismert oldalakon."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Egy egyszerű reklámblokkoló, amely csak a kívánt tartalom megjelenítésére koncentrál."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5559,7 +5552,7 @@ msgstr "Kövesse az Amazon árelőzményeit {start_sub_heading}a(z) {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Make informed decisions by tracking the price of a product listed on Amazon."
-msgstr ""
+msgstr "Hozzon megfontolt döntést az Amazonon található termékek árának követésével."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5567,20 +5560,19 @@ msgstr "Vásároljon magabiztosan {start_sub_heading}a(z) {addon_name} kiegész�
 
 #. editorial content for the discovery pane.
 msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Egy további ellenőrzés, hogy biztosan egy megbízható oldalról vásárol."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Mérje a produktivitását {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Mérje, hogy mennyi időt tölt a számítógépnél, vagy adott alkalmazásoknál, mint a Trello, JIRA, Basecamp, GitHub és számos további."
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Vágjon ki webes tartalmakat, mint a cikkek, videók, képek és egyebek, és használja egyéni projektjeihez vagy valós idejű csapatmunkához."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5588,7 +5580,7 @@ msgstr "Böngésszen biztonságosan {start_sub_heading}a(z) {addon_name} kiegés
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
-msgstr ""
+msgstr "Csak azt a webes tartalmat engedélyezze, amelyben megbízik."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5596,7 +5588,7 @@ msgstr "Kezelje a sütiket {start_sub_heading}a(z) {addon_name} kiegészítővel
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Vegye a kezébe a böngészés során felgyülemlett sütik feletti irányítást."
 
 #. editorial content for the discovery pane.
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5604,7 +5596,7 @@ msgstr "Felejtesse el az előzményeket {start_sub_heading}a(z) {addon_name} kie
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Automatikusan törölje a böngészőelőzményeket a kiválasztott weboldalak esetén."
 
 #. editorial content for the discovery pane.
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5637,7 +5629,7 @@ msgstr "Vizsgálja meg bármelyik képet {start_sub_heading}a(z) {addon_name} ki
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "Talált egy érdekes képet a weben? Használja a TinEye-t az eredete felfedezéséhez."
 
 #. editorial content for the discovery pane.
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5645,20 +5637,19 @@ msgstr "Áramvonalasítsa a dolgokat {start_sub_heading}a(z) {addon_name} kiegé
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Csak húzza a szöveget, képeket vagy hivatkozásokat, és végezzen olyan műveleteket mint a másolás, megnyitás, keresés és egyebek"
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Töltsön le videót vagy hangot több formátumban."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Helyinformációk {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Tudja meg, hogy a weboldal kiszolgálója földrajzilag merre található. Legyen informált webes utazó."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5666,7 +5657,7 @@ msgstr "Iktassa ki a zavaró hangokat {start_sub_heading}a(z) {addon_name} kieg�
 
 #. editorial content for the discovery pane.
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Egy weboldal hangereje túl halk? Túl hangos? A SoundFixer segíthet."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5674,7 +5665,7 @@ msgstr "Szerkesztés nyomtatás előtt {start_sub_heading}a(z) {addon_name} kieg
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
-msgstr ""
+msgstr "Végezzen rendkívüli vizuális módosításokat – távolítsa el a reklámokat vagy nem kívánt tartalmat – bármely kinyomtatandó weboldalon."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5682,7 +5673,7 @@ msgstr "Kövesse az Amazon árelőzményeit {start_sub_heading}a(z) {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
-msgstr ""
+msgstr "Hozzon megfontolt döntést az Amazonon található termékek árának követésével, és riasztások fogadásával."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5690,7 +5681,7 @@ msgstr "Legyen a hangok mestere {start_sub_heading}a(z) {addon_name} kiegészít
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Igazítsa a böngésző hangbeállításait tökéletes pontossággal."
 
 #. editorial content for the discovery pane.
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5706,7 +5697,7 @@ msgstr "Tüntesse el a lábnyomait {start_sub_heading}a(z) {addon_name} kiegész
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
-msgstr ""
+msgstr "Keressen nagyobb biztonsággal: követők blokkolásával, okosabb titkosítással, privát kereséssel és más elengedhetetlen dolgokkal."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5994,8 +5985,8 @@ msgstr "Mik azok a kiegészítők?"
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
 msgstr ""
-"A kiegészítők olyan alkalmazások, amelynek segítségével személyre szabható, extra szolgáltatások vagy funkciók adhatók a %(app)s alkalmazáshoz. Próbálja ki az időjárás értesítőt, a hírkeresőt vagy "
-"a %(app)s alkalmazáshoz készített témák valamelyikét."
+"A kiegészítők olyan alkalmazások, amelynek segítségével személyre szabható, extra szolgáltatások vagy funkciók adhatók a %(app)s alkalmazáshoz. Próbálja ki az időjárás értesítőt, a hírkeresőt vagy a"
+" %(app)s alkalmazáshoz készített témák valamelyikét."
 
 msgid "Learn More About Add-ons"
 msgstr "Tudjon meg többet a kiegészítőkről"
@@ -6113,8 +6104,7 @@ msgstr ""
 "stabilitásukat."
 
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Segítsen tökéletesíteni honlapunkat. Nyílt forráskódú, és bejelentheti a hibákat, valamint javításokat küldhet be. A <a href=\"%(url)s\">GitHub</a> tartalmazza az összes jelenlegi hibát, a korábbi "
 "hibák pedig megtalálható a Bugzillában."
@@ -6159,8 +6149,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Gyakran ismételt kérdések az értékelésekről"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 "A kiegészítőértékelésekkel megoszthatja véleményét azokról a kiegészítőkről, amelyeket telepített és használt. Az értékelési moderátorcsapatunk fenntartja a jogot, hogy visszautasítson vagy "
 "eltávolítson minden olyan értékelést, amely nem tartja be ezeket az irányelveket."
@@ -6413,17 +6403,17 @@ msgstr "Értékelés hozzáadása a(z) {0} kiegészítőhöz"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
+"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
+"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
+"Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
 "<h2>Tartsa ezeket észben</h2> <ul> <li> Írjon úgy, mintha egy barátjának mesélné el a tapasztalatát a kiegészítővel. Adjon meg részletes és segítőkész részleteket, mint például hogy mi tetszett/nem "
-"tetszett, milyen könnyű használni, milyen hátrányai vannak. Tartózkodjon a túl általános kifejezésektől, mint a „Nagyszerű” vagy „Rossz”, hacsak nem tud valami okot mondani, amiért ezt gondolja. </"
-"li> <li> Ne írjon hibajelentéseket az értékelésekbe. Nem tesszük elérhetővé az e-mail címét a kiegészítő fejlesztője számára, viszont szükségük lehet kapcsolatba lépniük Önnel a probléma "
-"megoldásához. Lásd a <a href=\"%(support)s\">támogatás szakaszt</a>, hogy megtudja hol kaphat segítséget a kiegészítőhöz. Segítségért felkeresheti a <a href=\"https://discourse.mozilla-community."
-"org/c/add-ons/add-on-support\">kiegészítők közösségét</a> is. </li> <li>Tartsa tisztán az értékeléseket, kerülje a nem megfelelő nyelvezetet, és ne írjon le semmi személyes információt. </li> </ul> "
-"<p> További részletekért a kiegészítő értékelésről, olvassa el az <a href=\"%(guide)s\">Értékelési irányelveket</a>.</p>"
+"tetszett, milyen könnyű használni, milyen hátrányai vannak. Tartózkodjon a túl általános kifejezésektől, mint a „Nagyszerű” vagy „Rossz”, hacsak nem tud valami okot mondani, amiért ezt gondolja. "
+"</li> <li> Ne írjon hibajelentéseket az értékelésekbe. Nem tesszük elérhetővé az e-mail címét a kiegészítő fejlesztője számára, viszont szükségük lehet kapcsolatba lépniük Önnel a probléma "
+"megoldásához. Lásd a <a href=\"%(support)s\">támogatás szakaszt</a>, hogy megtudja hol kaphat segítséget a kiegészítőhöz. Segítségért felkeresheti a <a href=\"https://discourse.mozilla-"
+"community.org/c/add-ons/add-on-support\">kiegészítők közösségét</a> is. </li> <li>Tartsa tisztán az értékeléseket, kerülje a nem megfelelő nyelvezetet, és ne írjon le semmi személyes információt. "
+"</li> </ul> <p> További részletekért a kiegészítő értékelésről, olvassa el az <a href=\"%(guide)s\">Értékelési irányelveket</a>.</p>"
 
 msgid "Reply to review by {0}"
 msgstr "Válasz {0} értékelésére"
@@ -6845,13 +6835,11 @@ msgstr "Az értékelés sikeresen megtörtént."
 msgid "Review lock limit reached"
 msgstr "Értékelések zárolási korlátja elérve"
 
-#, fuzzy
 msgid "{addon} :: EULA"
-msgstr "{addon} :: Visszaélési jelentések"
+msgstr "{addon} :: Végfelhasználói licencszerződés"
 
-#, fuzzy
 msgid "{addon} :: Privacy Policy"
-msgstr "A kiegészítő adatvédelmi irányelvvel rendelkezik"
+msgstr "{addon} :: Adatvédelmi irányelvek"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -7725,17 +7713,17 @@ msgstr "A külső források követéséről…"
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>Külső források követése</h2> <p> Ha hivatkozik a kiegészítő részletező oldalára, vagy közvetlenül a fájlra egy külső helyről, mint például egy blogról vagy egy weboldalról, akkor hozzáfűzhet "
-"egy paramétert, amely a letöltési forrást követi. Például a következő hivatkozások jelennének meg a blogban: <dl><dt>Kiegészítő részletező oldala</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?"
-"src=<b>external-blog</b><dd> <dt>Közvetlen fájl hivatkozás</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> <dl> <p> Csak az "
-"„external-” karakterlánccal kezdődő src attribútumok lesznek követve, legfeljebb 61 további karakterig. Az „external-” után következő szöveg írhatja le a forrást, például „external-blog”, „external-"
-"oldalsav”, „external-kampany255”, stb. A következő URL-biztos karakterek engedélyezettek: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Külső források követése</h2> <p> Ha hivatkozik a kiegészítő részletező oldalára, vagy közvetlenül a fájlra egy külső helyről, mint például egy blogról vagy egy weboldalról, akkor hozzáfűzhet egy"
+" paramétert, amely a letöltési forrást követi. Például a következő hivatkozások jelennének meg a blogban: <dl><dt>Kiegészítő részletező oldala</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b><dd> <dt>Közvetlen fájl hivatkozás</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b"
+">external-blog</b></dd> <dl> <p> Csak az „external-” karakterlánccal kezdődő src attribútumok lesznek követve, legfeljebb 61 további karakterig. Az „external-” után következő szöveg írhatja le a "
+"forrást, például „external-blog”, „external-oldalsav”, „external-kampany255”, stb. A következő URL-biztos karakterek engedélyezettek: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Kiegészítő állapota dátum szerint"
@@ -8303,8 +8291,8 @@ msgstr "Kiadva: {0}"
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "A forráskód kiadva <a href=\"%(url)s\">%(name)s</a> alatt"
 
-# {0} is the add-on name
 #. {0} is an add-on name.
+# {0} is the add-on name
 msgid "{0} Version History"
 msgstr "{0} verziótörténete"
 
