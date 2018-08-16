@@ -182,6 +182,9 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         form = response.context['agreement_form']
         assert 'recaptcha' not in form.fields
 
+        doc = pq(response.content)
+        assert doc('.g-recaptcha') == []
+
     @override_switch('addon-submission-captcha', active=True)
     def test_read_dev_agreement_captcha_active_error(self):
         self.user.update(read_dev_agreement=None)
@@ -191,6 +194,10 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         assert 'recaptcha' in form.fields
 
         response = self.client.post(reverse('devhub.submit.agreement'))
+
+        # Captcha is properly rendered
+        doc = pq(response.content)
+        assert doc('.g-recaptcha')
 
         assert 'recaptcha' in response.context['agreement_form'].errors
 
@@ -202,6 +209,9 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         assert response.status_code == 200
         form = response.context['agreement_form']
         assert 'recaptcha' in form.fields
+        # Captcha is also properly rendered
+        doc = pq(response.content)
+        assert doc('.g-recaptcha')
 
         verify_data = urllib.urlencode({
             'secret': 'privkey',
