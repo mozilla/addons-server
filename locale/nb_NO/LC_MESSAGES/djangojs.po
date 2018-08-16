@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-06-04 08:23+0000\n"
+"PO-Revision-Date: 2018-08-16 12:51+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -26,9 +26,8 @@ msgstr "Et problem oppstod ved forsøk på å kontakte serveren."
 msgid "Select a file..."
 msgstr "Velg fil ..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Utvidelsen må ende på .xpi, .jar eller .xml"
+msgstr "Utvidelsen må ende på .zip, .xpi, .crx, .jar eller .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -814,7 +813,7 @@ msgid "Approved"
 msgstr "Godkjent"
 
 msgid "No results found"
-msgstr ""
+msgstr "Ingen resultat"
 
 msgid "Theme"
 msgstr "Tema"
@@ -843,9 +842,8 @@ msgstr "Advarsel"
 msgid "{0} line {1} column {2}"
 msgstr "{0} linje {1} kolonne {2}"
 
-#, fuzzy
 msgid "{0} line {1}"
-msgstr "{0} av {1}"
+msgstr "{0} linje {1}"
 
 msgid "Compatibility Tests"
 msgstr "Kompatibilitetstester"
