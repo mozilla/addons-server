@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 15:32+0000\n"
+"PO-Revision-Date: 2018-08-16 15:41+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2883,19 +2883,19 @@ msgid "Summary"
 msgstr "Summario"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "Iste summario debe explicar clarmente lo que tu additivo face. Illo sera monstrate in listas e recercas, e illo sera usate per le revisores pro testar tu additivo."
 
 msgid "Experimental?"
 msgstr "Experimental?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "Si tu additivo es experimental o alias non preste pro uso general. Le additivo sera listate ma habera reducite visibilitate."
 
 msgid "This add-on is experimental."
-msgstr ""
+msgstr "Iste additivo es experimental."
 
 msgid "This add-on is ready for general use."
-msgstr ""
+msgstr "Iste additivo es preste pro uso general."
 
 msgid "Requires Payment?"
 msgstr ""
