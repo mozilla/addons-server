@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 08:38+0000\n"
+"PO-Revision-Date: 2018-08-16 11:29+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2759,11 +2759,11 @@ msgid "Tested for compatibility against:"
 msgstr "Testate pro compatibilitate contra:"
 
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Recente activitate pro mi additivos"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr "Activitate recente pro {0}"
+msgstr "Recente activitate pro {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -2773,7 +2773,7 @@ msgid "No results found."
 msgstr "Nulle resultatos trovate."
 
 msgid "Refine Activity"
-msgstr "Affinar le activitate"
+msgstr "Affinar activitate"
 
 msgid "Activity"
 msgstr "Activitate"
