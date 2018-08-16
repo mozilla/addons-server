@@ -1,4 +1,4 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -2539,7 +2539,7 @@ msgid "%s responded with %s (%s)."
 msgstr "%s ha respondite con %s (%s)."
 
 #, python-format
-msgid "Connection to \"%s\" timed out."
+msgid "Connection to \"%s\" timed out.\n"
 msgstr "Connexion a \"%s\" foras tempore limite.\n"
 
 #, python-format
