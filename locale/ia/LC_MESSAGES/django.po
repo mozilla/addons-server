@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 22:23+0000\n"
+"PO-Revision-Date: 2018-08-17 01:43+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4462,7 +4462,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites from a tile layout."
-msgstr ""
+msgstr "Accede tu sitos consiliate ab un mappa de quadrellas."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5003,7 +5003,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Celar portiones del sito web que tu vide."
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5015,7 +5015,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Masca tu position {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
@@ -5782,13 +5782,13 @@ msgid "Files:"
 msgstr "Files:"
 
 msgid "Deleted files:"
-msgstr ""
+msgstr "Files delite:"
 
 msgid "Hide known files"
-msgstr ""
+msgstr "Celar le files note"
 
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "Version SDK del additivo:"
 
 msgid "Tab stops:"
 msgstr ""
