@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-17 08:31+0000\n"
+"PO-Revision-Date: 2018-08-17 08:51+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3124,36 +3124,38 @@ msgid "64x64px"
 msgstr "64x64px"
 
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "Usate in paginas de detalios del additivo."
 
 msgid "Upload a Custom Icon..."
 msgstr "Cargar un icone personalisate..."
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr ""
+msgstr "PNG e JPG supportate. Icones redimensionate a 64x64 pixels si plus grande."
 
 msgid "Screenshots"
 msgstr "Instantaneos de schermo"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr "Per favor forni al minus un instantaneo de tu additivo:"
+msgstr "Per favor forni al minus un instantaneo de schermo de tu additivo:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "Per favor forni un legenda pro iste instantaneo de schermo:"
 
 msgid "Add a Screenshot..."
-msgstr "Adder un instantaneo..."
+msgstr "Adder un instantaneo de schermo..."
 
 msgid ""
 "PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
 "page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
+"PNG e JPG supportate. Le dimensiones maxime e recommendate pro le instantaneos de schermo es 1280x800 pixels. 640x400 pixels es un bon alternative si tu ha solo imagines minor. Con instantaneos de "
+"schermo in tu pagina de lista tu incrementa assatis su chances de esser installate e de esser consiliate in le pagina principal."
 
 msgid "Continue"
 msgstr "Continuar"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr ""
+msgstr "Pote alteres compartir tu additivo, fin que tu ha date credito?"
 
 msgid "Can others make commercial use of your Add-on?"
 msgstr ""
