@@ -4,12 +4,12 @@ from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext
 
 from olympia.addons.models import Addon
-from olympia.amo.feeds import NonAtomicFeed
+from olympia.amo.feeds import BaseFeed
 from olympia.amo.templatetags import jinja_helpers
 from olympia.ratings.models import Rating
 
 
-class RatingsRss(NonAtomicFeed):
+class RatingsRss(BaseFeed):
 
     addon = None
 

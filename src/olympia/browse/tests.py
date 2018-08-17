@@ -350,8 +350,8 @@ class TestFeeds(TestCase):
         those for their respective RSS feeds.
         """
         # Check URLs.
-        r = self.client.get(browse_url, follow=True)
-        doc = pq(r.content)
+        response = self.client.get(browse_url, follow=True)
+        doc = pq(response.content)
         rss_url += '?sort=%s' % sort
         assert doc('link[type="application/rss+xml"]').attr('href') == rss_url
         assert doc('#subscribe').attr('href') == rss_url
@@ -395,24 +395,30 @@ class TestFeeds(TestCase):
     def test_extensions_feed(self):
         assert self.client.get(self.rss_url).status_code == 200
 
+    def test_extensions_feed_with_garbage(self):
+        addon = Addon.objects.get(pk=3615)
+        addon.description = '-\x08\x0b-\x0c\x0e-'
+        addon.save()
+        self.test_extensions_feed()
+
     def test_themes_feed(self):
         Addon.objects.update(type=amo.ADDON_THEME)
         Category.objects.update(type=amo.ADDON_THEME)
-        r = self.client.get(reverse('browse.themes.rss',
-                                    args=['alerts-updates']))
-        assert r.status_code == 200
+        response = self.client.get(reverse('browse.themes.rss',
+                                           args=['alerts-updates']))
+        assert response.status_code == 200
 
     def test_extensions_sort_opts_urls(self):
-        r = self.client.get(self.url, follow=True)
-        s = pq(r.content)('#sorter')
+        response = self.client.get(self.url, follow=True)
+        sorter = pq(response.content)('#sorter')
         self._check_feed(self.url, self.rss_url, 'featured')
-        self._check_sort_urls(s.find('a.opt'), 'opts')
-        self._check_sort_urls(s.find('a.extra-opt'), 'extras')
+        self._check_sort_urls(sorter.find('a.opt'), 'opts')
+        self._check_sort_urls(sorter.find('a.extra-opt'), 'extras')
 
     def test_themes_sort_opts_urls(self):
-        r = self.client.get(reverse('browse.themes'))
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(reverse('browse.themes'))
+        assert response.status_code == 200
+        doc = pq(response.content)
         assert doc('#sorter').length == 1
         assert doc('#subscribe').length == 0
 
@@ -422,11 +428,11 @@ class TestFeeds(TestCase):
         self.url = reverse('browse.themes', args=['alerts-updates'])
         self.rss_url = reverse('browse.themes.rss', args=['alerts-updates'])
         self.filter = ThemeFilter
-        r = self.client.get(self.url, follow=True)
-        s = pq(r.content)('#sorter')
+        response = self.client.get(self.url, follow=True)
+        sorter = pq(response.content)('#sorter')
         self._check_feed(self.url, self.rss_url, 'users')
-        self._check_sort_urls(s.find('a.opt'), 'opts')
-        self._check_sort_urls(s.find('a.extra-opt'), 'extras')
+        self._check_sort_urls(sorter.find('a.opt'), 'opts')
+        self._check_sort_urls(sorter.find('a.extra-opt'), 'extras')
 
 
 class TestFeaturedLocale(TestCase):
