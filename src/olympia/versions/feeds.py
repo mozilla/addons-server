@@ -4,7 +4,7 @@ from django.utils.translation import ugettext
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.feeds import NonAtomicFeed
+from olympia.amo.feeds import BaseFeed
 from olympia.amo.templatetags.jinja_helpers import absolutify, format_date, url
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
@@ -37,7 +37,7 @@ class PagedFeed(DefaultFeed):
         self.add_page_relation(handler, 'last', self.page.paginator.num_pages)
 
 
-class VersionsRss(NonAtomicFeed):
+class VersionsRss(BaseFeed):
 
     feed_type = PagedFeed
     addon = None

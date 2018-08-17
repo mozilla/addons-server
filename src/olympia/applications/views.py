@@ -4,7 +4,7 @@ from django.utils.translation import ugettext
 import waffle
 
 from olympia import amo
-from olympia.amo.feeds import NonAtomicFeed
+from olympia.amo.feeds import BaseFeed
 from olympia.amo.templatetags.jinja_helpers import absolutify, url
 from olympia.amo.utils import render
 from olympia.lib.cache import cache_get_or_set
@@ -35,7 +35,7 @@ def appversions(request):
                   {'apps': apps, 'versions': versions})
 
 
-class AppversionsFeed(NonAtomicFeed):
+class AppversionsFeed(BaseFeed):
     # appversions aren't getting a created date so the sorting is kind of
     # wanky.  I blame fligtar.
 
