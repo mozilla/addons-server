@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 12:52+0000\n"
+"PO-Revision-Date: 2018-08-17 07:45+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -47,13 +47,13 @@ msgid "You are already logged in."
 msgstr "Du er allerede innlogget."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr ""
+msgstr "Klarte ikke å tolke innloggingsforsøket ditt. Prøv igjen."
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "Fant ikke Firefox-kontoen din. Prøv på nytt."
 
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "Du kunne ikke logges inn. Prøv på nytt."
 
 msgid "Need help?"
 msgstr "Trenger du hjelp?"
@@ -276,7 +276,7 @@ msgid "This add-on is built with new technology that is compatible with Firefox 
 msgstr ""
 
 msgid "Compatible with Firefox 57+"
-msgstr ""
+msgstr "Kompatibel med Firefox 57+"
 
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
@@ -738,9 +738,8 @@ msgstr ""
 msgid "Page Not Found"
 msgstr "Ikke funnet"
 
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "Flere utvidelser"
+msgstr "Firefox-utvidelser"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
 msgstr ""
