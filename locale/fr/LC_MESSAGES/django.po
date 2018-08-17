@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-10 06:34+0000\n"
-"Last-Translator: Alpha <adrien.gat@gmail.com>\n"
+"PO-Revision-Date: 2018-08-17 13:11+0000\n"
+"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -3507,7 +3507,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Devez-vous communiquer votre code source ?"
 
 msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
-msgstr ""
+msgstr "Vous devez peut-être communiquer du code source. Si vous ne transmettez pas le code source correct maintenant, votre module complémentaire pourrait être supprimé du site !"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
@@ -3558,7 +3558,7 @@ msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside fro
 msgstr ""
 
 msgid "How to Submit:"
-msgstr ""
+msgstr "Comment envoyer :"
 
 msgid "Include instructions in a README file in the source code,"
 msgstr "Incluez les instructions dans un fichier README à l’intérieur du code source,"
@@ -6865,9 +6865,8 @@ msgstr "Revue complétée avec succès."
 msgid "Review lock limit reached"
 msgstr "Limite atteinte pour les revues"
 
-#, fuzzy
 msgid "{addon} :: EULA"
-msgstr "{addon} :: Rapport d’abus"
+msgstr "{addon} :: accord de licence"
 
 msgid "{addon} :: Privacy Policy"
 msgstr "{addon} :: Politique de confidentialité"
