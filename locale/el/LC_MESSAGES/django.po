@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-17 08:52+0000\n"
+"PO-Revision-Date: 2018-08-17 09:13+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -164,7 +164,7 @@ msgid "Describe your Theme."
 msgstr "Περιγράψτε το θέμα σας."
 
 msgid "Enter a new author's email address"
-msgstr "Εισάγετε τη διεύθυνση email ενός νέου συντάκτη"
+msgstr "Εισάγετε τη διεύθυνση email νέου συντάκτη"
 
 # Column name in a table.
 msgid "Listed"
@@ -475,7 +475,7 @@ msgid "Average"
 msgstr "Μέσος όρος"
 
 msgid "Write a review"
-msgstr "Γράψτε μια αξιολόγηση"
+msgstr "Γράψτε μια κριτική"
 
 msgid "Related Categories"
 msgstr "Σχετικές κατηγορίες"
@@ -515,7 +515,7 @@ msgid "Contribute"
 msgstr "Συνεισφορά"
 
 msgid "Enjoy this add-on?"
-msgstr "Σας αρέσει αυτό το πρόσθετο;"
+msgstr "Σάς αρέσει αυτό το πρόσθετο;"
 
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
 msgstr "Ο δημιουργός αυτού του πρόσθετου ζητάει να βοηθήσετε στην περαιτέρω ανάπτυξη του κάνοντας μια μικρή δωρεά."
@@ -531,7 +531,7 @@ msgid "Support site"
 msgstr "Ιστοσελίδα υποστήριξης"
 
 msgid "Support E-mail"
-msgstr "Ε-mail υποστήριξης"
+msgstr "Εmail υποστήριξης"
 
 msgid "Info"
 msgstr "Πληροφορίες"
@@ -542,7 +542,7 @@ msgstr "Τελευταία ενημέρωση:"
 
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Εκδίδεται σύμφωνα με την <a href=\"%(url)s\">%(name)s</a>"
+msgstr "Εκδίδεται σύμφωνα με <a href=\"%(url)s\">%(name)s</a>"
 
 msgid "Custom License"
 msgstr "Προσαρμοσμένη άδεια"
@@ -551,13 +551,13 @@ msgid "About this Add-on"
 msgstr "Σχετικά με αυτό το πρόσθετο"
 
 msgid "Developer’s Comments"
-msgstr "Σχόλια δημιουργού"
+msgstr "Σχόλια προγραμματιστή"
 
 msgid "Version Information"
 msgstr "Πληροφορίες έκδοσης"
 
 msgid "See complete version history"
-msgstr "Προβολή πλήρους ιστορικού έκδοσης"
+msgstr "Προβολή πλήρους ιστορικού εκδόσεων"
 
 msgid "close"
 msgstr "κλείσιμο"
@@ -632,29 +632,29 @@ msgid "My Add-ons"
 msgstr "Τα πρόσθετά μου"
 
 msgid "My Themes"
-msgstr "Τα θέματα μου"
+msgstr "Τα θέματά μου"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
 msgstr "Πληροφορίες πρόσθετου για το {0}"
 
 msgid "Edit Theme"
-msgstr "Επεξεργασία Θέματος"
+msgstr "Επεξεργασία θέματος"
 
 msgid "Approve / Reject"
-msgstr "Αποδοχή / Απόρριψη"
+msgstr "Αποδοχή/Απόρριψη"
 
 msgid "Review History"
-msgstr "Επιθεώρηση Ιστορικού"
+msgstr "Προβολή ιστορικού"
 
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr "Συγγνώμη, αυτό το θέμα εκκρεμεί. Παρακαλώ επιστρέψτε αργότερα."
+msgstr "Συγγνώμη, αυτό το θέμα εκκρεμεί. Παρακαλούμε επιστρέψτε αργότερα."
 
 msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "Αυτό το θέμα εκκρεμεί. Είναι αόρατο σε όλους εκτός από εσάς."
 
 msgid "Collector's Note"
-msgstr "Σημείωση δημιουργού συλλογής"
+msgstr "Σημείωση συλλέκτη"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -663,7 +663,7 @@ msgstr[0] "<strong>{0}</strong> εβδομαδιαία λήψη"
 msgstr[1] "<strong>{0}</strong> εβδομαδιαίες λήψεις"
 
 msgid "Not Reviewed"
-msgstr "Χωρίς Αξιολόγηση"
+msgstr "Χωρίς αξιολόγηση"
 
 msgid "Tools"
 msgstr "Εργαλεία"
@@ -684,7 +684,7 @@ msgid "Log out"
 msgstr "Αποσύνδεση"
 
 msgid "Manage My Submissions"
-msgstr "Διαχείτιση των υποβολών μου"
+msgstr "Διαχείριση των υποβολών μου"
 
 msgid "Submit a New Add-on"
 msgstr "Υποβολή νέου πρόσθετου"
@@ -693,7 +693,7 @@ msgid "Submit a New Theme"
 msgstr "Υποβολή νέου θέματος"
 
 msgid "Developer Hub"
-msgstr "Γωνιά προγραμματιστών"
+msgstr "Κέντρο προγραμματιστών"
 
 msgid "Manage API Keys"
 msgstr "Διαχείριση κλειδιών API"
@@ -702,19 +702,19 @@ msgid "Reviewer Tools"
 msgstr "Εργαλεία κριτή"
 
 msgid "Admin Tools"
-msgstr "Εργαλεία διαχειριστών"
+msgstr "Εργαλεία διαχειριστή"
 
 msgid "Incorrect, please try again."
-msgstr "Εσφαλμένο, παρακαλώ δοκιμάστε ξανά."
+msgstr "Λάθος, παρακαλούμε δοκιμάστε ξανά."
 
 msgid "Error verifying input, please try again."
-msgstr "Σφάλμα κατά την επαλήθευση της εισόδου, παρακαλώ δοκιμάστε ξανά."
+msgstr "Σφάλμα επαλήθευσης εισόδου, παρακαλούμε δοκιμάστε ξανά."
 
 msgid "This must be a valid hex color code, such as #000000."
-msgstr "Θα πρέπει να είναι μια έγκυρη δεκαεξαδική τιμή χρώματος, όπως η #000000."
+msgstr "Αυτή πρέπει να είναι μια έγκυρη δεκαεξαδική τιμή χρώματος, όπως #000000."
 
 msgid "Not allowed"
-msgstr "Μη επιτρεπτό"
+msgstr "Δεν επιτρέπεται"
 
 msgid "Oops! Not allowed."
 msgstr "Ωχ! Δεν επιτρέπεται."
@@ -800,7 +800,7 @@ msgid "Some rights reserved"
 msgstr "Μερική επιφύλαξη δικαιωμάτων"
 
 msgid "No results found"
-msgstr "Δε βρέθηκαν αποτελέσματα"
+msgstr "Δεν βρέθηκαν αποτελέσματα"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -814,7 +814,7 @@ msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <str
 msgstr "Αποτελέσματα <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> από <strong>%(count)s</strong>"
 
 msgid "Maintenance in progress"
-msgstr "Εκτελούνται εργασίες συντήρησης"
+msgstr "Έργα συντήρησης σε εξέλιξη"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
 msgstr ""
@@ -837,13 +837,13 @@ msgstr ""
 "id=\"recaptcha_different\">δοκιμάσετε διαφορετικές λέξεις</a> ή να <a href=\"#\" id=\"recaptcha_audio\">δοκιμαστείτε με έναν άλλο τρόπο</a> . </p>"
 
 msgid "Top Rated"
-msgstr "Υψηλότερη βαθμολογια"
+msgstr "Υψηλότερη βαθμολογία"
 
 msgid "Newest"
-msgstr "Πιο πρόσφατα"
+msgstr "Νεότερα"
 
 msgid "Explore"
-msgstr "Ανακαλύψτε"
+msgstr "Εξερεύνηση"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -909,13 +909,13 @@ msgid "Title"
 msgstr "Τίτλος"
 
 msgid "Body"
-msgstr "Σώμα"
+msgstr "Κύριο μέρος"
 
 msgid "Another Title"
 msgstr "Άλλος τίτλος"
 
 msgid "Another Body"
-msgstr "Άλλο σώμα"
+msgstr "Άλλο κύριο μέρος"
 
 msgid "Invalid Authorization header. No credentials provided."
 msgstr "Μη έγκυρη επικεφαλίδα πιστοποίησης. Δεν παρέχονται διαπιστευτήρια."
@@ -946,7 +946,7 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Άκυρο pk ή slug \"%s\" - το αντικείμενο δεν υπάρχει."
 
 msgid "Application Versions"
-msgstr "Εκδόσεις εφαρμογών"
+msgstr "Εκδόσεις εφαρμογής"
 
 msgid "Acceptable versions for all applications on AMO."
 msgstr "Αποδεκτές εκδόσεις για όλες τις εφαρμογές του ΑΜΟ."
@@ -978,13 +978,13 @@ msgstr ""
 "%(amo_manifests_mdn_link_open)sεδώ%(amo_manifests_mdn_link_close)s."
 
 msgid "Only I can view this collection."
-msgstr "Μόνο εγώ θα μπορώ να δω αυτή τη συλλογή."
+msgstr "Μόνο εγώ μπορώ να δω αυτή τη συλλογή."
 
 msgid "Anybody can view this collection."
 msgstr "Οποιοσδήποτε μπορεί να δει τη συλλογή."
 
 msgid "Give your collection a name."
-msgstr "Δώστε ένα όνομα για τη συλλογή σας."
+msgstr "Δώστε ένα όνομα στη συλλογή σας."
 
 msgid "URL:"
 msgstr "URL:"
@@ -993,7 +993,7 @@ msgid "Describe your collection (no links allowed)."
 msgstr "Περιγράψτε τη συλλογή σας (δεν επιτρέπονται σύνδεσμοι)."
 
 msgid "Privacy:"
-msgstr "Ιδιωτικό απόρρητο:"
+msgstr "Απόρρητο:"
 
 msgid "Icon"
 msgstr "Εικονίδιο"
@@ -1068,10 +1068,10 @@ msgid "View this collection"
 msgstr "Προβολή της συλλογής"
 
 msgid "Start a new collection..."
-msgstr "Φτιάξτε μια νέα συλλογή..."
+msgstr "Έναρξη νέας συλλογής..."
 
 msgid "Start a New Collection"
-msgstr "Φτιάξτε μια νέα συλλογή"
+msgstr "Έναρξη νέας συλλογής"
 
 msgid "Name:"
 msgstr "Όνομα:"
@@ -1092,10 +1092,10 @@ msgid "About this Collection"
 msgstr "Σχετικά με αυτή τη συλλογή"
 
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr "Τα πρόσθετα συγχρονίστηκαν στο Mobile Firefox μου"
+msgstr "Τα πρόσθετα συγχρονίστηκαν στο Firefox για κινητά μου"
 
 msgid "Make this Collection Private"
-msgstr "Η συλλογή να γίνει ιδιωτική"
+msgstr "Ορισμός συλλογής ως ιδιωτικής"
 
 msgid "Make this Collection Public"
 msgstr "Η συλλογή να γίνει δημόσια"
@@ -8138,7 +8138,7 @@ msgid "Notifications"
 msgstr "Ειδοποιήσεις"
 
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr ""
+msgstr "Η Mozilla ενδέχεται να σάς στέλνει, περιστασιακά, email σχετικά με ανερχόμενες κυκλοφορίες και εκδηλώσεις προσθέτων. Παρακαλούμε επιλέξτε τα θέματα που σάς ενδιαφέρουν."
 
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
 msgstr "Η Mozilla διατηρεί το δικαίωμα να επικοινωνήσει προσωπικά μαζί σας για συγκεκριμένα θέματα σχετικά με το πρόσθετό σας."
@@ -8159,7 +8159,7 @@ msgid "all"
 msgstr "όλα"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
+msgstr "Τα Πρόσθετα Mozilla έχουν κάνει μετάβαση στους Λογαριασμούς Firefox για σύνδεση. Συνεχίστε για να ολοκληρώσετε την απλή διαδικασία σύνδεσης."
 
 msgid "User Login"
 msgstr "Σύνδεση χρήστη"
@@ -8225,10 +8225,10 @@ msgid "Report user {0}"
 msgstr "Αναφορά χρήστη {0}"
 
 msgid "Unsubscribe"
-msgstr "Κατάργηση εγγραφής"
+msgstr "Κατάργηση συνδρομής"
 
 msgid "You are successfully unsubscribed!"
-msgstr "Έχετε καταργήσει επιτυχώς την εγγραφή σας!"
+msgstr "Έχετε καταργήσει επιτυχώς τη συνδρομή σας!"
 
 #, python-format
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
@@ -8244,11 +8244,13 @@ msgid "edit your profile"
 msgstr "γίνεται επεξεργασία του προφίλ σας"
 
 msgid "We could not unsubscribe you"
-msgstr "Δεν μπορέσαμε να καταργήσουμε την εγγραφή σας"
+msgstr "Δεν μπορέσαμε να καταργήσουμε τη συνδρομή σας"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
+"Δυστυχώς, δεν μπορέσαμε να καταργήσουμε τη συνδρομή σας. Ο σύνδεσμος που κάνετε κλικ είναι άκυρος. Ωστόσο, μπορείτε ακόμη να ακυρώσετε τη συνδρομή σας στη <a href=\"%(edit_url)s\">σελίδα "
+"επεξεργασίας του προφίλ</a> σας."
 
 msgid "Developer Information"
 msgstr "Πληροφορίες δημιουργού"
