@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-17 07:21+0000\n"
+"PO-Revision-Date: 2018-08-17 07:46+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3051,25 +3051,25 @@ msgid "Public Stats?"
 msgstr "Statistica public?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Si le statistica de discarga e uso de tu additivo pote esser displicate in nostre visor online. Illo es pertinente solo pro le additivos listate."
 
 msgid "This add-on's stats are publicly viewable."
-msgstr ""
+msgstr "Le statistica de iste additivo es publicamente visibile."
 
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr ""
+msgstr "No, le statistica de iste additivo non es publicamente visibile."
 
 msgid "Upgrade SDK?"
 msgstr "Promover SDK?"
 
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Si seligite, nos provara a promover automaticamente tu additivo quando un nove version del SDK es publicate. Illo es pertinente solo al additivos listate."
 
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr ""
+msgstr "Iste additivo sera promovite automaticamente al nove versiones del SDK del additivo."
 
 msgid "No, this add-on will be upgraded manually."
-msgstr ""
+msgstr "No, iste additivo sera promovite manualmente."
 
 msgid "Universally unique identifier"
 msgstr ""
