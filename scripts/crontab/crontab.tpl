@@ -38,7 +38,6 @@ HOME=/tmp
 55 9 * * * %(z_cron)s update_global_totals
 00 10 * * * %(z_cron)s update_addon_average_daily_users
 30 10 * * * %(z_cron)s index_latest_stats
-45 10 * * * %(z_cron)s update_addons_collections_downloads
 
 # Update ADI metrics from S3.
 # Once per day after 0800 UTC
