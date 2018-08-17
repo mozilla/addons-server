@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-17 08:04+0000\n"
+"PO-Revision-Date: 2018-08-17 08:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3087,33 +3087,37 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Le tabula blanc es le loco pro fornir al revisores informationes pertinente a tu additivo, qualcunque version. Usa lo pro fornir manieras pro testar le additivo, e ulle altere informationes que pote"
+" adjutar. Iste tabula blanc es alsi modificabile per le revisores."
 
 msgid "Remove this dependent add-on"
-msgstr ""
+msgstr "Remover iste additivo dependente"
 
 msgid "Enter the name of an add-on"
-msgstr "Scribe le nomine de un additivo"
+msgstr "Insere le nomine de un additivo"
 
 msgid "Add-on Media for {0}"
-msgstr ""
+msgstr "Medios de additivo pro {0}"
 
 msgid "Add-on icon"
-msgstr "Icone de additivo"
+msgstr "Icone del additivo"
 
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Carga un icone pro tu additivo o elige uno del nostre. Le icone es displicate presso tu additivo, ubique illo es. Le imagines cargate debe ser de un del sequente typos: .png, .jpg. Illo es "
+"pertinente solo al additivos listate."
 
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "Elige un icone pro tu additivo:"
 
 #. The size of the icon
 msgid "32x32px"
 msgstr "32x32px"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr ""
+msgstr "Usate in listas de additivos, como resultatos del recerca e additivos consiliate."
 
 #. The size of the icon
 msgid "64x64px"
