@@ -377,12 +377,10 @@ class AddonFormDetails(AddonFormBase):
         return data
 
 
-class AddonFormDetailsUnlisted(AddonFormBase):
-    homepage = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
-
-    class Meta:
-        model = Addon
-        fields = ('description', 'homepage')
+class AddonFormDetailsUnlisted(AddonFormDetails):
+    # We want the same fields as the listed version. In particular,
+    # default_locale is referenced in the template and needs to exist.
+    pass
 
 
 class AddonFormSupport(AddonFormBase):

@@ -1030,7 +1030,7 @@ class TestEditMedia(BaseTestEdit):
 
 
 class BaseTestEditDetails(BaseTestEdit):
-    __test__ = True
+    __test__ = False
 
     def setUp(self):
         super(BaseTestEditDetails, self).setUp()
@@ -1043,8 +1043,11 @@ class BaseTestEditDetails(BaseTestEdit):
             'default_locale': 'en-US',
             'homepage': 'http://twitter.com/fligtarsmom'
         }
+        response = self.client.get(self.details_edit_url)
+        assert response.status_code == 200
 
         response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
         assert response.context['form'].errors == {}
         addon = self.get_addon()
 
@@ -1060,10 +1063,18 @@ class BaseTestEditDetails(BaseTestEdit):
                                   "<script>alert('awesome')</script>")
         self.addon.save()
         response = self.client.get(self.url)
+        assert response.status_code == 200
         doc = pq(response.content)
 
         assert doc('#edit-addon-details span[lang]').html() == (
             "This<br/><b>IS</b>&lt;script&gt;alert('awesome')&lt;/script&gt;")
+
+        response = self.client.get(self.details_edit_url)
+        assert response.status_code == 200
+
+        assert '<script>' not in response.content
+        assert ('This\n&lt;b&gt;IS&lt;/b&gt;&lt;script&gt;alert(&#39;awesome'
+                '&#39;)&lt;/script&gt;</textarea>') in response.content
 
     def test_edit_homepage_optional(self):
         data = {
@@ -1073,6 +1084,7 @@ class BaseTestEditDetails(BaseTestEdit):
         }
 
         response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
         assert response.context['form'].errors == {}
         addon = self.get_addon()
 
@@ -1081,6 +1093,7 @@ class BaseTestEditDetails(BaseTestEdit):
 
 
 class TestEditDetailsListed(BaseTestEditDetails):
+    __test__ = True
 
     def test_edit_default_locale_required_trans(self):
         # name, summary, and description are required in the new locale.
@@ -1472,6 +1485,7 @@ class TestEditBasicUnlisted(BaseTestEditBasic, L10nTestsMixin):
 
 class TestEditDetailsUnlisted(BaseTestEditDetails):
     listed = False
+    __test__ = True
 
 
 class TestEditTechnicalUnlisted(BaseTestEdit):
