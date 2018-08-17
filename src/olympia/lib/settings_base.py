@@ -109,29 +109,39 @@ def cors_endpoint_overrides(whitelist_endpoints):
 
 CORS_ENDPOINT_OVERRIDES = []
 
+
+def get_db_config(environ_var):
+    values = env.db(
+        var=environ_var,
+        default='mysql://root:@localhost/olympia')
+
+    values.update({
+        # Run all views in a transaction unless they are decorated not to.
+        'ATOMIC_REQUESTS': True,
+        # Pool our database connections up for 300 seconds
+        'CONN_MAX_AGE': 300,
+        'OPTIONS': {
+            'sql_mode': 'STRICT_ALL_TABLES',
+            'isolation_level': 'read committed'
+        },
+        'TEST': {
+            'CHARSET': 'utf8',
+            'COLLATION': 'utf8_general_ci'
+        },
+    })
+
+    return values
+
+
 DATABASES = {
-    'default': env.db(default='mysql://root:@localhost/olympia')
+    'default': get_db_config('DATABASES_DEFAULT_URL'),
 }
-DATABASES['default']['OPTIONS'] = {'sql_mode': 'STRICT_ALL_TABLES'}
-DATABASES['default']['TEST'] = {
-    'CHARSET': 'utf8',
-    'COLLATION': 'utf8_general_ci'
-}
-# Run all views in a transaction unless they are decorated not to.
-DATABASES['default']['ATOMIC_REQUESTS'] = True
-# Pool our database connections up for 300 seconds
-DATABASES['default']['CONN_MAX_AGE'] = 300
 
 # A database to be used by the services scripts, which does not use Django.
-# The settings can be copied from DATABASES, but since its not a full Django
-# database connection, only some values are supported.
-SERVICES_DATABASE = {
-    'NAME': DATABASES['default']['NAME'],
-    'USER': DATABASES['default']['USER'],
-    'PASSWORD': DATABASES['default']['PASSWORD'],
-    'HOST': DATABASES['default']['HOST'],
-    'PORT': DATABASES['default']['PORT'],
-}
+# Please note that this is not a full Django database connection
+# so the amount of values supported are limited. By default we are using
+# the same connection as 'default' but that changes in prod/dev/stage.
+SERVICES_DATABASE = get_db_config('DATABASES_DEFAULT_URL')
 
 DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
 

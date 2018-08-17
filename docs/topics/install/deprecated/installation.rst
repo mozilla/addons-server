@@ -198,7 +198,7 @@ If you want to change settings, you can either add the database settings in
 your :ref:`local_settings.py<example-settings>` or set the environment variable
 ``DATABASE_URL``::
 
-    export DATABASE_URL=mysql://<user>:<password>@<hostname>/<database>
+    export DATABASES_DEFAULT_URL=mysql://<user>:<password>@<hostname>/<database>
 
 If you've changed the user and password information, you need to grant
 permissions to the new user::
