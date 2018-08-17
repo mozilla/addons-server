@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-14 14:20+0000\n"
-"Last-Translator: Winfox <openlib@email.it>\n"
+"PO-Revision-Date: 2018-08-16 11:50+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -3515,7 +3515,7 @@ msgid "Go to My Submissions"
 msgstr "Vai ai miei progetti"
 
 msgid "Source Code Upload"
-msgstr ""
+msgstr "Caricamento codice sorgente"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr "È necessario caricare il codice sorgente?"
@@ -3573,9 +3573,8 @@ msgstr ""
 "<span class=\"instruction-emphasis\">Nota:</span> il codice sorgente, con l’eccezione di librerie open source di terze parti, non può essere transcompilato (transpiled), offuscato, minificato o "
 "generato da computer con altri metodi."
 
-#, fuzzy
 msgid "How to Submit:"
-msgstr "Invia"
+msgstr "Come caricare il componente aggiuntivo:"
 
 msgid "Include instructions in a README file in the source code,"
 msgstr "Includere le istruzioni in un file README nel codice sorgente,"
@@ -5547,7 +5546,7 @@ msgstr "Accedi facilmente alle schede, ai segnalibri e alla cronologia."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Hai molte schede aperte? Non utilizzare lo scorrimento per ritrovarle, ma selezionale attraverso scorciatoie da tastiera."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5601,7 +5600,7 @@ msgstr "Memorizza le password in modo sicuro e accedi automaticamente ai siti co
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Un semplice strumento per il blocco delle pubblicità incentrato sulla visualizzazione dei soli contenuti desiderati."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5667,18 +5666,16 @@ msgid "Password-protect your personal bookmarks."
 msgstr "Proteggi con una password i tuoi segnalibri."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Perfeziona la tua esperienza video {start_sub_heading}con {addon_name} {end_sub_heading}"
+msgstr "Evita che il tuo indirizzo IP trapeli {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
 msgstr "Utilizzi una VPN per navigare? Il tuo indirizzo IP potrebbe essere visibile a terzi. Risolvi il problema disattivando WebRTC."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocca le pubblicità {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Blocca le noiose pubblicità in sovraimpressione {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply click a button to close annoying pop-up overlays."
@@ -5705,9 +5702,8 @@ msgid "Harness the ability to download video and/or audio in multiple formats."
 msgstr "Sfrutta la possibilità di scaricare video e audio in più formati."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocca le pubblicità {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Ottieni il riconoscimento delle presenze in rete {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
@@ -5754,9 +5750,8 @@ msgid "Defend yourself against the sneakiest trackers."
 msgstr "Proteggiti dai sistemi traccianti più insidiosi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocca le pubblicità {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Copri le tue tracce {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
