@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-17 09:34+0000\n"
+"PO-Revision-Date: 2018-08-17 09:48+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2079,13 +2079,13 @@ msgid "Abstract"
 msgstr "Αφηρημένα"
 
 msgid "Causes"
-msgstr "Σκοποί"
+msgstr "Εκδηλώσεις"
 
 msgid "Fashion"
 msgstr "Μόδα"
 
 msgid "Film and TV"
-msgstr "Κινηματογράφος και τηλεόραση"
+msgstr "Κινηματογράφος & τηλεόραση"
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
@@ -2112,16 +2112,16 @@ msgid "General"
 msgstr "Γενικά"
 
 msgid "Business"
-msgstr "Επαγγελματικά"
+msgstr "Επιχειρήσεις"
 
 msgid "Dictionaries & Encyclopedias"
-msgstr "Λεξικά και εγκυκλοπαίδειες"
+msgstr "Λεξικά & εγκυκλοπαίδειες"
 
 msgid "Kids"
-msgstr "Παιδικά"
+msgstr "Παιδιά"
 
 msgid "Multiple Search"
-msgstr "Πολλαπλής αναζήτησης"
+msgstr "Πολλαπλή αναζήτηση"
 
 msgid "News & Blogs"
 msgstr "Ειδήσεις & ιστολόγια"
@@ -2133,7 +2133,7 @@ msgid "Shopping & E-Commerce"
 msgstr "Αγορές & ηλεκτρονικό εμπόριο"
 
 msgid "Social & People"
-msgstr "Άνθρωποι & κοινωνική δικτύωση"
+msgstr "Κοινωνικά δίκτυα & άτομα"
 
 msgid "Travel"
 msgstr "Ταξίδια"
@@ -2142,7 +2142,7 @@ msgid "Video"
 msgstr "Βίντεο"
 
 msgid "Device Features & Location"
-msgstr "Χαρακτηριστικά συσκευών & τοποθεσίες"
+msgstr "Λειτουργίες συσκευής & τοποθεσία"
 
 msgid "Experimental"
 msgstr "Πειραματικά"
@@ -2166,10 +2166,10 @@ msgid "Sports & Games"
 msgstr "Αθλητισμός & παιχνίδια"
 
 msgid "User Interface"
-msgstr "Διασύνδεση χρήστη"
+msgstr "Περιβάλλον χρήστη"
 
 msgid "Appearance and Customization"
-msgstr "Εμφάνιση και προσαρμογή"
+msgstr "Εμφάνιση και εξατομίκευση"
 
 msgid "Calendar and Date/Time"
 msgstr "Ημερολόγιο και ημερομηνίες/ώρα"
@@ -2187,10 +2187,10 @@ msgid "Folders and Filters"
 msgstr "Φάκελοι και φίλτρα"
 
 msgid "Import/Export"
-msgstr "Εισαγωγή/εξαγωγή"
+msgstr "Εισαγωγή/Εξαγωγή"
 
 msgid "Message and News Reading"
-msgstr "Ανάγνωση μηνυμάτων"
+msgstr "Ανάγνωση μηνυμάτων και ειδήσεων"
 
 msgid "Privacy and Security"
 msgstr "Απόρρητο και ασφάλεια"
@@ -2199,10 +2199,10 @@ msgid "Downloading and File Management"
 msgstr "Διαχείριση αρχείων και λήψεων"
 
 msgid "Interface Customizations"
-msgstr "Προσαρμογή διασύνδεσης"
+msgstr "Προσαρμογή περιβάλλοντος χρήστη"
 
 msgid "Language Support and Translation"
-msgstr "Υποστήριξη ξένων γλωσσών και μεταφράσεις"
+msgstr "Υποστήριξη γλωσσών και μεταφράσεις"
 
 msgid "Photos and Media"
 msgstr "Εικόνες και πολυμέσα"
@@ -2211,10 +2211,10 @@ msgid "RSS, News and Blogging"
 msgstr "RSS, ειδήσεις και ιστολόγια"
 
 msgid "Site-specific"
-msgstr "Συσχετιζόμενες με ιστότοπους"
+msgstr "Για συγκεκριμένες ιστοσελίδες"
 
 msgid "Web and Developer Tools"
-msgstr "Εργαλεία ιστού και δημιουργών"
+msgstr "Εργαλεία ιστού και προγραμματιστών"
 
 msgid "All Rights Reserved"
 msgstr "Με την επιφύλαξη παντός δικαιώματος"
@@ -2238,7 +2238,7 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Any"
-msgstr "Οποιοδήποτε"
+msgstr "Όλα"
 
 msgid "All Platforms"
 msgstr "Όλες οι πλατφόρμες"
@@ -2277,40 +2277,40 @@ msgid "Very Good (2)"
 msgstr "Πολύ καλό (2)"
 
 msgid "Excellent (3)"
-msgstr "Εξαιρετικό (3)"
+msgstr "Άριστο (3)"
 
 msgid "Manual Reviewer Points"
-msgstr "Σημεία χειροκίνητης επιθεώρησης"
+msgstr "Πόντοι χειροκίνητης αξιολόγησης"
 
 msgid "New Add-on Review"
 msgstr "Αξιολόγηση νέου προσθέτου"
 
 msgid "Preliminary Add-on Review"
-msgstr "Πρωταρχική επιθεώρηση προσθέτου"
+msgstr "Προκαταρκτική αξιολόγηση προσθέτου"
 
 msgid "Updated Add-on Review"
-msgstr "Ενημερωμένη επιθεώρηση προσθέτου"
+msgstr "Αξιολόγηση ενημερωμένου προσθέτου"
 
 msgid "New Dictionary Review"
 msgstr "Αξιολόγηση νέου λεξικού"
 
 msgid "Preliminary Dictionary Review"
-msgstr "Πρωταρχική επιθεώρηση λεξικού"
+msgstr "Προκαταρκτική αξιολόγηση λεξικού"
 
 msgid "Updated Dictionary Review"
-msgstr "Ενημερωμένη επιθεώρηση λεξικού"
+msgstr "Αξιολόγηση ενημερωμένου λεξικού"
 
 msgid "New Language Pack Review"
 msgstr "Αξιολόγηση νέου πακέτου γλώσσας"
 
 msgid "Preliminary Language Pack Review"
-msgstr "Πρωταρχική επιθεώρηση πακέτου γλώσσας"
+msgstr "Προκαταρκτική αξιολόγηση πακέτου γλώσσας"
 
 msgid "Updated Language Pack Review"
-msgstr "Ενημερωμένη επιθεώρηση πακέτου γλώσσας"
+msgstr "Αξιολόγηση ενημερωμένου πακέτου γλώσσας"
 
 msgid "Theme Review"
-msgstr "Επιθεώρηση θέματος"
+msgstr "Αξιολόγηση θέματος"
 
 msgid "Theme (Static) Review"
 msgstr "Αξιολόγηση (στατικού) θέματος"
@@ -2319,22 +2319,22 @@ msgid "New Search Provider Review"
 msgstr "Αξιολόγηση νέου παρόχου αναζήτησης"
 
 msgid "Preliminary Search Provider Review"
-msgstr "Πρωταρχική επιθεώρηση παρόχου ανζήτησης"
+msgstr "Προκαταρκτική αξιολόγηση παρόχου αναζήτησης"
 
 msgid "Updated Search Provider Review"
-msgstr "Ενημερωμένη επιθεώρηση παρόχου ανζήτησης"
+msgstr "Αξιολόγηση ενημερωμένου παρόχου αναζήτησης"
 
 msgid "New Complete Theme Review"
 msgstr "Αξιολόγηση νέου πλήρους θέματος"
 
 msgid "Preliminary Complete Theme Review"
-msgstr "Πρωταρχική επιθεώρηση θέματος"
+msgstr "Προκαταρκτική αξιολόγηση πλήρους θέματος"
 
 msgid "Updated Complete Theme Review"
-msgstr "Ενημερωμένη επιθεώρηση θέματος"
+msgstr "Αξιολόγηση ενημερωμένου πλήρους θέματος"
 
 msgid "Moderated Add-on Review"
-msgstr "Συντονισμένος έλεγχος προσθέτου"
+msgstr "Συντονισμένη αξιολόγηση προσθέτου"
 
 msgid "Add-on Review Moderation Reverted"
 msgstr "Αναιρέθηκε ο έλεγχος της αξιολόγησης του προσθέτου"
