@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-17 09:17+0000\n"
+"PO-Revision-Date: 2018-08-17 14:52+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3200,7 +3200,7 @@ msgid "Hide messages not required for automated signing"
 msgstr "Celar messages non requirite pro firma automatisate"
 
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Celar messages presente in previe version e ignorate"
 
 msgid "Top"
 msgstr "Apice"
@@ -3212,27 +3212,29 @@ msgid "Delete Add-on"
 msgstr "Deler le additivo"
 
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr ""
+msgstr "Deler tu thema removera illo permanentemente ex le sito."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
+"Deler tu additivo removera permanentemente tote le versiones e files que tu ha submittite pro iste additivo, listate o non. Le ID del additivo continuara a ser ligate a tu conto, assi alteres non "
+"potera inviar versiones per le mesme ID."
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "Insere le sequente texto pro confirmar tu decision: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "Per favor conta nos perque tu dele tu thema:"
 
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Per favor conta nos perque tu dele tu additivo:"
 
 msgid "Actions"
 msgstr "Actiones"
 
 msgid "Resume the submission process for this add-on."
-msgstr ""
+msgstr "Resumer le processo de submission pro iste additivo."
 
 msgid "Resume"
 msgstr "Resumer"
@@ -3262,16 +3264,16 @@ msgid "Manage Status & Versions"
 msgstr "Gerer stato e versiones"
 
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "Vider le lista de presentation del additivo"
 
 msgid "View Recent Changes"
-msgstr "Vider cambiamentos recente"
+msgstr "Vider recente cambiamentos"
 
 msgid "Edit details about this theme's listing."
 msgstr "Editar detalios del lista de iste thema."
 
 msgid "Edit Listing"
-msgstr "Editar lista"
+msgstr "Rediger le lista de presentation"
 
 msgid "View the popularity of this theme over time."
 msgstr "Vider le popularitate de iste thema in le tempore."
