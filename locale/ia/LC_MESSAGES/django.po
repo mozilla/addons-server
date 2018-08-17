@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-17 08:51+0000\n"
+"PO-Revision-Date: 2018-08-17 09:12+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3158,19 +3158,19 @@ msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Pote alteres compartir tu additivo, fin que tu ha date credito?"
 
 msgid "Can others make commercial use of your Add-on?"
-msgstr ""
+msgstr "Pote alteres facer uso commercial de tu additivo?"
 
 msgid "Can others create derivative works from your Add-on?"
-msgstr ""
+msgstr "Pote alteres crear labores derivative ex tu additivo?"
 
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "Si, fin que illes lo comparti del mesme maniera"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
+msgstr "Le licentiante permitte alteres de distribuer labores derivate solmente sub le mesme licentia o uno compatibile con illo que rege le labor del licentiante."
 
 msgid "Your Add-on will be released under the following license:"
-msgstr ""
+msgstr "Tu additivo sera publicate sub le sequente licentia:"
 
 msgid "Select a different license."
 msgstr "Elige un licentia differente."
