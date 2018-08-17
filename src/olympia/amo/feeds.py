@@ -10,6 +10,10 @@ class BaseFeed(Feed):
     A base feed class that does not use transactions and tries to avoid raising
     exceptions on unserializable content.
     """
+    # Regexp controlling which characters to strip from the items because they
+    # would raise UnserializableContentError. Pretty much all control chars
+    # except things like line feed, carriage return etc which are fine.
+    CONTROL_CHARS_REGEXP = r'[\x00-\x08\x0B-\x0C\x0E-\x1F]'
 
     # Feeds are special because they don't inherit from generic Django class
     # views so you can't decorate dispatch() to add non_atomic_requests
@@ -37,5 +41,5 @@ class BaseFeed(Feed):
             'title'
         )
         if data and attname in problematic_keys:
-            data = re.sub(r'[\x00-\x08\x0B-\x0C\x0E-\x1F]', '', unicode(data))
+            data = re.sub(self.CONTROL_CHARS_REGEXP, '', unicode(data))
         return data
