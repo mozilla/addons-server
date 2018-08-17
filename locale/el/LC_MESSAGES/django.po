@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-17 09:13+0000\n"
+"PO-Revision-Date: 2018-08-17 09:34+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1098,7 +1098,7 @@ msgid "Make this Collection Private"
 msgstr "Ορισμός συλλογής ως ιδιωτικής"
 
 msgid "Make this Collection Public"
-msgstr "Η συλλογή να γίνει δημόσια"
+msgstr "Ορισμός συλλογής ως δημόσιας"
 
 msgid "More Options:"
 msgstr "Περισσότερες επιλογές:"
@@ -1112,8 +1112,8 @@ msgstr "Διαγραφή συλλογής"
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] "%(num)s Θέμα στη συλλογή"
-msgstr[1] "%(num)s Θέματα στη συλλογή"
+msgstr[0] "%(num)s θέμα στη συλλογή"
+msgstr[1] "%(num)s θέματα στη συλλογή"
 
 #, python-format
 msgid "%(num)s Add-on in this Collection"
@@ -1125,13 +1125,13 @@ msgid "Go"
 msgstr "Μετάβαση"
 
 msgid "What are Collections?"
-msgstr "Τί είναι οι συλλογές;"
+msgstr "Τι είναι οι συλλογές;"
 
 msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Οι συλλογές είναι ομάδες σχετιζόμενων πρόσθετων που μπορεί να δημιουργήσει και να μοιράσει ο καθένας."
+msgstr "Οι συλλογές είναι ομάδες σχετικών πρόσθετων που μπορεί να δημιουργήσει και να μοιραστεί ο καθένας."
 
 msgid "Explore Collections"
-msgstr "Ανακαλύψτε συλλογές"
+msgstr "Εξερεύνηση συλλογών"
 
 msgid "Common Tags"
 msgstr "Κοινές ετικέτες"
@@ -1189,14 +1189,14 @@ msgid "Save Changes"
 msgstr "Αποθήκευση αλλαγών"
 
 msgid "Remove from favorites"
-msgstr "Αφαίρεση από τις αγαπημένες"
+msgstr "Αφαίρεση από αγαπημένα"
 
 msgid "Add to favorites"
 msgstr "Προσθήκη στα αγαπημένα"
 
 #. {0} is a username.
 msgid "Collections by {0}"
-msgstr "Συλλογές του {0}"
+msgstr "Συλλογές από {0}"
 
 msgid "No collections found."
 msgstr "Δεν βρέθηκαν συλλογές."
@@ -1265,12 +1265,12 @@ msgstr "Αγαπημένη"
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
-msgstr "Πρόσθετα %s"
+msgstr "Πρόσθετα \"%s\""
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Themes"
-msgstr "%s Θέματα"
+msgstr "Θέματα \"%s\""
 
 #, python-format
 msgid "Featured Add-ons :: %s"
@@ -1279,7 +1279,7 @@ msgstr "Προβεβλημένα πρόσθετα :: %s"
 #. L10n: %s is an app name.
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr "Σας παρουσιάζουμε μερικά από τα αγαπημένα μας πρόσθετα για να σας βοηθήσουμε να ξεκινήσετε να προσαρμόζετε τον %s."
+msgstr "Ορίστε μερικά από τα αγαπημένα μας πρόσθετα για να σάς βοηθήσουμε να ξεκινήσετε την προσαρμογή του %s."
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1287,28 +1287,28 @@ msgid "Search tools relating to %s"
 msgstr "Εργαλεία αναζήτησης σχετικά με %s"
 
 msgid "Search tools and search-related extensions"
-msgstr "Εργαλεία αναζήτησης και επεκτάσεις σχετικές με αναζητήσεις"
+msgstr "Εργαλεία αναζήτησης και επεκτάσεις σχετικές με αναζήτηση"
 
 msgid "Search tools"
 msgstr "Εργαλεία αναζήτησης"
 
 msgid "Most Users"
-msgstr "Περισσότεροι χρήστες"
+msgstr "Πλειοψηφία χρηστών"
 
 msgid "Weekly Downloads"
 msgstr "Εβδομαδιαίες λήψεις"
 
 msgid "Recently Updated"
-msgstr "Πρόσφατα ενημερωμένα"
+msgstr "Πρόσφατες ενημερώσεις"
 
 msgid "Up & Coming"
 msgstr "Επερχόμενα"
 
 msgid "Recently Added"
-msgstr "Προστεθηκαν προσφατα"
+msgstr "Πρόσφατες προσθήκες"
 
 msgid "Created"
-msgstr "Δημιουργήθηκε"
+msgstr "Δημιουργία"
 
 msgid "Downloads"
 msgstr "Λήψεις"
@@ -1319,10 +1319,10 @@ msgstr "{0}: Προβεβλημένα πρόσθετα"
 
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
-msgstr "Δεν υπάρχουν προβεβλημένα πρόσθετα για {0}."
+msgstr "Κανένα προβεβλημένο πρόσθετο στο \"{0}\"."
 
 msgid "Subscribe"
-msgstr "Εγγραφή"
+msgstr "Συνδρομή"
 
 msgid "Featured Add-ons"
 msgstr "Προβεβλημένα πρόσθετα"
@@ -1370,7 +1370,7 @@ msgid "All locales"
 msgstr "Όλες οι γλώσσες"
 
 msgid "List of language packs and dictionaries."
-msgstr "Λίστα πακέτων γλωσσών και λεξικών.."
+msgstr "Λίστα πακέτων γλωσσών και λεξικών."
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
@@ -1383,19 +1383,19 @@ msgstr[0] "<b>{0}</b> πρόσθετο"
 msgstr[1] "<b>{0}</b> πρόσθετα"
 
 msgid "Search Extensions"
-msgstr "Αναζήτηση για επεκτάσεις"
+msgstr "Επεκτάσεις αναζήτησης"
 
 msgid "Add search-related functionality to Firefox"
-msgstr "Προσθήκη νέων λειτουργιών αναζήτησης στον Firefox"
+msgstr "Προσθήκη νέων λειτουργιών αναζήτησης στο Firefox"
 
 msgid "Search Providers"
-msgstr "Αναζήτηση για μηχανές αναζήτησης"
+msgstr "Πάροχοι αναζήτησης"
 
 msgid "Find new providers for your search bar"
-msgstr "Βρείτε νέες υπηρεσίες για την εργαλειοθήκη αναζήτησης"
+msgstr "Βρείτε νέους παρόχους για τη γραμμή αναζήτησής σας"
 
 msgid "Additional Resources"
-msgstr "Πρόσθετοι πόροι"
+msgstr "Επιπρόσθετοι πόροι"
 
 #. {0} is an app name, like Firefox.
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
@@ -1412,16 +1412,16 @@ msgid "Most Popular Extensions"
 msgstr "Πιο δημοφιλείς επεκτάσεις"
 
 msgid "Top-Rated Extensions"
-msgstr "Υψηλότερα βαθμολογημένες επεκτάσεις"
+msgstr "Κορυφαίες επεκτάσεις"
 
 msgid "Newest Extensions"
-msgstr "Πιο πρόσφατες επεκτάσεις"
+msgstr "Νεότερες επεκτάσεις"
 
 msgid "Extensions by Name"
-msgstr "Επεκτάσεις ονομαστικά"
+msgstr "Επεκτάσεις κατά όνομα"
 
 msgid "Extensions by Weekly Downloads"
-msgstr "Επεκτάσεις με βάση εβδομαδιαίες λήψεις"
+msgstr "Επεκτάσεις κατά εβδομαδιαίες λήψεις"
 
 msgid "Recently Updated Extensions"
 msgstr "Πρόσφατα ενημερωμένες επεκτάσεις"
@@ -1462,11 +1462,11 @@ msgstr[0] "Δείτε την επέκταση %(cnt)s σε %(name)s &raquo;"
 msgstr[1] "Δείτε όλες τις επεκτάσεις %(cnt)s σε %(name)s &raquo;"
 
 msgid "{0} Themes"
-msgstr "{0} Θέματα"
+msgstr "{0} θέματα"
 
 #. {0} is a user's name.
 msgid "{0}'s Themes"
-msgstr "Θέματα χρήστη {0}"
+msgstr "Θέματα του/της {0}"
 
 msgid "View Profile"
 msgstr "Προβολή προφίλ"
@@ -1513,7 +1513,7 @@ msgid "View All Up & Coming"
 msgstr "Εμφάνιση όλων των επερχόμενων"
 
 msgid "No themes found"
-msgstr "Δε βρέθηκαν θέματα"
+msgstr "Δεν βρέθηκαν θέματα"
 
 msgid "All"
 msgstr "Όλα"
@@ -1585,19 +1585,19 @@ msgid "Problem"
 msgstr "Πρόβλημα"
 
 msgid "No reports found."
-msgstr "Δεν βρέθηκαν αναφορές"
+msgstr "Δεν βρέθηκαν αναφορές."
 
 msgid "{addon} was created."
 msgstr "Δημιουργήθηκε το {addon}."
 
 msgid "{addon} properties edited."
-msgstr "Επεξεργάστηκαν  οι ιδιότητες του {addon}."
+msgstr "Έγινε επεξεργασία των ιδιοτήτων του {addon}."
 
 msgid "{addon} description edited."
-msgstr "Επεξεργάστηκε η περιγραφή του {addon}."
+msgstr "Έγινε επεξεργασία της περιγραφής του {addon}."
 
 msgid "Categories edited for {addon}."
-msgstr "Επεξεργάστηκαν οι κατηγορίες του {addon}."
+msgstr "Έγινε επεξεργασία των κατηγοριών για το {addon}."
 
 msgid "{0.name} ({1}) added to {addon}."
 msgstr "{0.name} ({1}) προστέθηκε στο {addon}."
@@ -1607,23 +1607,23 @@ msgid "{0.name} ({1}) removed from {addon}."
 msgstr "{0.name} ({1}) αφαιρέθηκε από το {addon}."
 
 msgid "Contributions for {addon}."
-msgstr "Δωρεές για το {addon}."
+msgstr "Συνεισφορές για το {addon}."
 
 msgid "{addon} disabled."
-msgstr "Το {addon} είναι απενεργοποιημένο."
+msgstr "Το {addon} απενεργοποιήθηκε."
 
 msgid "{addon} enabled."
-msgstr "Το {addon} είναι απενεργοποιημένο."
+msgstr "Το {addon} ενεργοποιήθηκε."
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
 msgstr "Η κατάσταση του {addon} άλλαξε σε {status}."
 
 msgid "{version} added to {addon}."
-msgstr "Η έκδοση {version} προστέθηκε στο πρόσθετο {addon}."
+msgstr "Η έκδοση {version} προστέθηκε στο {addon}."
 
 msgid "{version} edited for {addon}."
-msgstr "Επεξεργάστηκε η έκδοση {version} του {addon}."
+msgstr "Έγινε επεξεργασία της έκδοσης {version} του {addon}."
 
 #. L10n: {0} is the version number
 msgid "Version {0} deleted from {addon}."
@@ -1636,7 +1636,7 @@ msgid "File {0} deleted from {version} of {addon}."
 msgstr "Διαγράφηκε το αρχείο {0} από την έκδοση {version} του {addon}."
 
 msgid "{addon} {version} approved."
-msgstr "Εγκρίθηκε το {addon} {version}."
+msgstr "Εγκρίθηκε η έκδοση {version} του {addon}."
 
 msgid "{addon} {version} given preliminary review."
 msgstr "Η έκδοση {version} του {addon} έχει αξιολογηθεί εισαγωγικώς."
@@ -1645,16 +1645,16 @@ msgid "Preliminarily approved"
 msgstr "Εγκρίθηκε προκαταρκτικά"
 
 msgid "{addon} {version} rejected."
-msgstr "Το {addon} {version} απορίφθηκε."
+msgstr "Απορρίφθηκε η έκδοση {version} του {addon}."
 
 msgid "{addon} {version} retained."
-msgstr "Η έκδοση {version} του {addon} διατηρήθηκε."
+msgstr "Διατηρήθηκε η έκδοση {version} του {addon}."
 
 msgid "Retained"
 msgstr "Διατηρήθηκε"
 
 msgid "{addon} {version} escalated."
-msgstr "Η έκδοση {version} του {addon} κλιμακώθηκε."
+msgstr "Κλιμακώθηκε η έκδοση {version} του {addon}."
 
 msgid "Super review requested"
 msgstr "Ζητήθηκε υπερ αξιολόγηση"
@@ -1910,7 +1910,7 @@ msgid "Sunbird"
 msgstr "Sunbird"
 
 msgid "Mobile"
-msgstr "Κινητό"
+msgstr "Κινητά"
 
 msgid "Firefox for Android"
 msgstr "Firefox για Android"
@@ -1925,7 +1925,7 @@ msgid "Incomplete"
 msgstr "Ημιτελές"
 
 msgid "Disabled by Mozilla"
-msgstr "Απενεργοποιημένο από το Mozilla"
+msgstr "Απενεργοποιημένο από τη Mozilla"
 
 msgid "Deleted"
 msgstr "Διαγράφηκε"
@@ -1956,7 +1956,7 @@ msgid "Search Engine"
 msgstr "Μηχανή αναζήτησης"
 
 msgid "Language Pack (Application)"
-msgstr "Πακέτο γλώσσας (εφαρμογής)"
+msgstr "Πακέτο γλώσσας (Εφαρμογή)"
 
 msgid "Language Pack (Add-on)"
 msgstr "Πακέτο γλώσσας (Πρόσθετο)"
@@ -1979,7 +1979,7 @@ msgstr "Λεξικά"
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
-msgstr "Πακέτα γλώσσας (εφαρμογής)"
+msgstr "Πακέτα γλώσσας (Εφαρμογή)"
 
 msgid "Language Packs (Add-on)"
 msgstr "Πακέτα γλώσσας (Πρόσθετο)"
@@ -2022,13 +2022,13 @@ msgid "Download Management"
 msgstr "Διαχείριση λήψεων"
 
 msgid "Feeds, News & Blogging"
-msgstr "Αρχεία ροής, ειδήσεις & ιστολόγια"
+msgstr "Ροές, ειδήσεις & ιστολόγια"
 
 msgid "Games & Entertainment"
 msgstr "Παιχνίδια & ψυχαγωγία"
 
 msgid "Language Support"
-msgstr "Υποστήριξη ξένων γλωσσών"
+msgstr "Υποστήριξη γλωσσών"
 
 msgid "Photos, Music & Videos"
 msgstr "Εικόνες & πολυμέσα"
@@ -2040,7 +2040,7 @@ msgid "Shopping"
 msgstr "Αγορές"
 
 msgid "Social & Communication"
-msgstr "Επικοινωνίες & κοινωνική δικτύωση"
+msgstr "Κοινωνικά δίκτυα & επικοινωνία"
 
 msgid "Tabs"
 msgstr "Καρτέλες"
@@ -2058,16 +2058,16 @@ msgid "Large"
 msgstr "Μεγάλα"
 
 msgid "Miscellaneous"
-msgstr "Διάφορες"
+msgstr "Διάφορα"
 
 msgid "Modern"
-msgstr "Μοντέρνα"
+msgstr "Σύγχρονα"
 
 msgid "Nature"
 msgstr "Φύση"
 
 msgid "OS Integration"
-msgstr "Ενσωματωμένα με το λειτουργικό σύστημα"
+msgstr "Ενσωμάτωση ΛΣ"
 
 msgid "Retro"
 msgstr "Ρετρό"
