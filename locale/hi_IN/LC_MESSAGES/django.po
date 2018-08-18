@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-18 06:41+0000\n"
+"PO-Revision-Date: 2018-08-18 07:55+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -2364,13 +2364,13 @@ msgstr ""
 
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "%s के लिए हाल ही में हुये बदलाव"
 
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "मेरे ऐड-ऑनों के लिए हाल ही में हुए बदलाव"
 
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "कम से कम एक मालिक होना चाहिए."
 
 msgid "At least one author must be listed."
 msgstr ""
