@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-18 08:10+0000\n"
+"PO-Revision-Date: 2018-08-18 08:28+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3532,25 +3532,25 @@ msgid "Add-on Distribution Agreement"
 msgstr "Accordo de distribution del additivo"
 
 msgid "Upload Add-on"
-msgstr "Cargar additivo"
+msgstr "Cargar le additivo"
 
 msgid "Where to Host File"
-msgstr "Ubi hospitar le file"
+msgstr "Le servitor hospite del file"
 
 msgid "Where to Host Version"
-msgstr "Ubi hospitar le version"
+msgstr "Le servitor hospite del version"
 
 msgid "Upload Version"
 msgstr "Cargar version"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Usa le campos infra pro cargar le pacchetto de tu additivo. Post le cargamento, un serie de tests de validation automatisate fluera sur tu file."
 
 msgid "Which platforms is this file compatible with?"
 msgstr "Con qual systema operative iste file es compatibile?"
 
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Substitutiones administrative"
 
 msgid "Create a Theme Version"
 msgstr "Crear un version del thema"
@@ -3562,7 +3562,7 @@ msgid "Submit File"
 msgstr "Inviar file"
 
 msgid "Sign Add-on"
-msgstr "Signar addition"
+msgstr "Signar additivo"
 
 msgid "Theme generate"
 msgstr "Thema generate"
@@ -3574,22 +3574,22 @@ msgid "Theme name"
 msgstr "Nomine del thema"
 
 msgid "Select a header image for your theme"
-msgstr ""
+msgstr "Elige un imagine del titulo pro tu thema"
 
 msgid "Image height should be 200 pixels"
-msgstr ""
+msgstr "Le altitude del imagine debe ser 200 pixels"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr "PNG, JPG, APNG, SVG o GIF (non animate)"
+msgstr "PNG, JPG, APNG, SVG o GIF (sin animation)"
 
 msgid "Aligned to top-right"
 msgstr "Alineate in alto a dextera"
 
 msgid "Select a different header image"
-msgstr "Elige un imagine differente del titulo"
+msgstr "Eliger un differente imagine de titulo"
 
 msgid "Select colors for your theme"
-msgstr "Elige un color pro tu thema"
+msgstr "Eliger colores pro tu thema"
 
 msgid "Header area background"
 msgstr "Fundo del area del titulo"
