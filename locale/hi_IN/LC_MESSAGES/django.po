@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-13 11:20+0000\n"
-"Last-Translator: Shivam Singhal <shivams2799@gmail.com>\n"
+"PO-Revision-Date: 2018-08-14 07:32+0000\n"
+"Last-Translator: Mohit Bansal <philomath@disroot.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -482,33 +482,33 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "View statistics"
-msgstr ""
+msgstr "आंकड़े देखें"
 
 msgid "Manage"
 msgstr "प्रबंधित करें"
 
 msgid "Add-on Review"
-msgstr ""
+msgstr "ऐड-ऑन समीक्षा"
 
 msgid "Admin Manage"
 msgstr ""
 
 #. {0} is an add-on name.
 msgid "Icon of {0}"
-msgstr ""
+msgstr "{0} का चिह्न"
 
 msgid "Contribute"
-msgstr ""
+msgstr "योगदान करें"
 
 msgid "Enjoy this add-on?"
-msgstr ""
+msgstr "इस ऐड-ऑन का आनंद लें?"
 
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
 msgstr ""
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "एड-ऑन स्क्रीनशॉट #{0}"
 
 msgid "Add-on home page"
 msgstr "ऐड-ऑन मुख पृष्ठ"
