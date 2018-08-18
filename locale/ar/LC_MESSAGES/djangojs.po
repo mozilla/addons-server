@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-18 09:25+0000\n"
-"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
+"PO-Revision-Date: 2018-08-18 18:51+0000\n"
+"Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,7 @@ msgstr[0] "تم التحقق من إضافتك بدون أي أخطاء أو ت�
 msgstr[1] "تم التحقق من إضافتك بدون أي أخطاء، ومع تحذير واحد."
 msgstr[2] "تم التحقق من إضافتك بدون أي أخطاء، ومع تحذيرين."
 msgstr[3] "تم التحقق من إضافتك بدون أي أخطاء، ومع {0} تحذيرات."
-msgstr[4] ""
+msgstr[4] "تم التحقق من إضافتك بدون أي أخطاء، ومع {0} تحذيرًا."
 msgstr[5] "تم التحقق من إضافتك بدون أي أخطاء، ومع {0} تحذير."
 
 msgid "Your add-on was validated with no errors and {0} message."
