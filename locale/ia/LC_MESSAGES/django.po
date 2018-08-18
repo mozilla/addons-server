@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-18 01:59+0000\n"
+"PO-Revision-Date: 2018-08-18 07:13+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2551,7 +2551,7 @@ msgstr "Aviso de securitate de Mozilla: Tu credentiales API de AMO ha essite rev
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
+msgstr "Le validation generava trop errores//warnings assi %s le messages esseva truncate. Post haber affrontate le messages visibile, tu potera vider los altere."
 
 msgid "All My Add-ons"
 msgstr "Tote mi additivos"
@@ -3081,7 +3081,7 @@ msgid "The UUID of your add-on is specified in its install manifest and uniquely
 msgstr "Le UUID de tu additivo es specificate in su manifesto de installation que lo identifica unicamente. Tu non pote cambiar tu UUID un vice que illo ha essite submittite."
 
 msgid "Whiteboard"
-msgstr ""
+msgstr "Tabula blanc"
 
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
@@ -3359,76 +3359,76 @@ msgid "Please choose a license appropriate for the rights you grant."
 msgstr "Per favor elige un licentia appropriate pro le derectos que tu vole ceder."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
+msgstr "Si tu additivo transmitte ulle datos ab le computator del usator, un politica de confidentialitate es necesse que explica que datos es inviate e como illos es usate."
 
 msgid "Notes to Reviewer:"
 msgstr "Notas pro le revisor:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Ha il alco que tu revisores debe tener in mente durante le revision de iste additivo?"
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "Iste notas essera visibile solo a te e a nostre revisores."
 
 msgid "Cancel and Disable Version"
-msgstr "Cancellar e disactivar version"
+msgstr "Cancellar e disactivar le version"
 
 msgid "Submit Version"
 msgstr "Inviar version"
 
 msgid "Describe Version"
-msgstr "Describer version"
+msgstr "Describer le version"
 
 msgid "Release Notes:"
-msgstr "Notas de revision:"
+msgstr "Notas de version:"
 
 msgid "Let your users know what's new and what's changed in this version."
-msgstr ""
+msgstr "Lassa tu usatores saper que es nove e que es cambiate in iste version."
 
 msgid "These notes will appear on the detail page."
-msgstr "Iste notas parera sur le pagina de detalio."
+msgstr "Iste notas parera sur le pagina de detalios."
 
 msgid "How to Distribute this Version"
 msgstr "Como distribuer iste version"
 
 msgid "More information on Add-on Distribution and Signing"
-msgstr ""
+msgstr "Altere informationes sur le distribution e le signatura del additivo"
 
 msgid "Submission Complete"
 msgstr "Submission complete"
 
 msgid "You’re done!"
-msgstr ""
+msgstr "Tu ha finite!"
 
 msgid "Version Submitted for Review"
-msgstr "Version inviate pro revision"
+msgstr "Version inviate pro le revision"
 
 msgid "Preview of the version submitted"
 msgstr "Vista preliminar del version inviate"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr ""
+msgstr "Tu ha finite! Iste version sera disponibile post que illo passa le revision. Tu sera notificate quando illo es revidite."
 
 msgid "Version Submitted"
 msgstr "Version inviate"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "Tu ha finite! Iste version sera disponibile sur nostre sito a breve."
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Tu ha finite! Iste version ha essite submittite pro revision. Tu sera notificate quando le revision ha essite completate, o si nostre revisores ha ulle questiones circa tu submission."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr ""
+msgstr "Tu lista de presentation habera plus successo per le addition de un detaliate description. Rende tu lista de presentation preste pro le publication:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "Tu lista de presentation habera plus successo per le addition de un detaliate description e de instantaneos de schermo. Rende tu lista de presentation preste pro le publication:"
 
 msgid "Manage Listing"
-msgstr "Gerer lista"
+msgstr "Gerer le lista de presentation"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
+msgstr "Tu pote alsi rediger iste version pro adder notas de version, o codice fonte si tu submission include codice minimisate, offuscate o compilate."
 
 msgid "Edit version {0}"
 msgstr "Rediger version {0}"
@@ -3437,31 +3437,31 @@ msgid "File Signed"
 msgstr "File signate"
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
+msgstr "Tu ha finite! Iste file es signate e preste pro le auto-distribution. Tu pote lo discargar cliccante le button infra."
 
 msgid "Version Signed"
 msgstr "Version signate"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
+msgstr "Tu ha finite! Iste version es signate e preste pro auto-distribution. Tu pote lo discargar cliccante le button infra."
 
 msgid "Download {0}"
 msgstr "Discargamento de {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
+msgstr "Tu seligeva solmente alcun del systemas operative disponibile pro iste submission. Tu pote cargar altere files destinate a altere systemas operative:"
 
 msgid "Upload File"
 msgstr "Cargar file"
 
 msgid "Go to My Submissions"
-msgstr "Va a mi submissiones"
+msgstr "Ir a mi submissiones"
 
 msgid "Source Code Upload"
 msgstr "Cargamento de codice fonte"
 
 msgid "Do You Need to Submit Source Code?"
-msgstr "An tu besonia de inviar codice fonte?"
+msgstr "Ha tu besonio de inviar codice fonte?"
 
 msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
 msgstr ""
