@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-18 07:31+0000\n"
+"PO-Revision-Date: 2018-08-18 07:46+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3480,26 +3480,26 @@ msgid "Tools that combine multiple files into a single file, such as <span class
 msgstr "Applicationes que combina plure files in un singule file, tal como <span class=\"tech-emphasis\">webpack</span>"
 
 msgid "Web template engines, both for HTML and CSS"
-msgstr ""
+msgstr "Motores de modellos de web, ambe pro HTML e CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr ""
+msgstr "Ulle altere application que prende codice o files, processa, e genera codice o file(s) a includer in le additivo"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "Tu non necessita de inviar codice fonte, e tu es preste pro le grado successive."
 
 msgid "Your Submission Requires Source Code."
-msgstr "Tu invio require le codice fonte."
+msgstr "Tu submission require codice fonte."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr ""
+msgstr "Le codice fonte debe concordar le <a %(a_attrs)s>requisitos del politica</a>, que include:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
-msgstr ""
+msgstr "Instructiones detaliate de compilation pro crear un copia exacte del codice del additivo."
 
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "Un script de compilation que exeque tote le necessari grados technic."
 
 msgid "Operating system and build environment requirements."
 msgstr ""
