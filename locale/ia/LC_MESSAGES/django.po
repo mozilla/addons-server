@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-18 14:28+0000\n"
+"PO-Revision-Date: 2018-08-18 14:46+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3625,7 +3625,7 @@ msgid "Toolbar field area text"
 msgstr "Texto in campos del barra del instrumentos"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
+msgstr "Le color de texto in le campos del barra del instrumentos e in le barra del URL. Campo de manifesto:  toolbar_field_text."
 
 msgid "optional"
 msgstr "optional"
@@ -3647,16 +3647,16 @@ msgstr "Credentiales de API"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "Pro instructiones detaliate, consulta le <a href=\"%(docs_url)s\">documentation del API</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "Mantene secrete tu claves API e <strong>jammais comparti los con quicunque</strong>, includite collaboratores de Mozilla."
 
 msgid "JWT issuer"
-msgstr ""
+msgstr "Emissor del JWT"
 
 msgid "JWT secret"
-msgstr ""
+msgstr "Jeton secrete JWT"
 
 #, python-format
 msgid ""
