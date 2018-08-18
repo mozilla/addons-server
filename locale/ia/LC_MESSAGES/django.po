@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-18 15:07+0000\n"
+"PO-Revision-Date: 2018-08-18 15:26+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3704,28 +3704,28 @@ msgstr "Create:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Add-on Multi Process Status:"
-msgstr ""
+msgstr "Stato Multi Process del additivo:"
 
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr ""
+msgstr "Compatibilitate de tu additivo con Firefox Multi Process (e10s)."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "Listate sur iste sito post passate le revision del codice. Le actualisationes automatic es tractate per iste sito."
 
 msgid "Listed Version:"
-msgstr ""
+msgstr "Version in le lista de presentation:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr ""
+msgstr "Isto es le version de tu additivo que sera installate si alcuno clicca le button Installar sur addons.mozilla.org."
 
 msgid "Next Listed Version:"
-msgstr ""
+msgstr "Version successive in le lista de presentation:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
+msgstr "Isto es le version ultime cargate, totevia illo non es ancora al vivo sur le sito."
 
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Le caudas de revision non es revidite strictemente in ordine"
 
 msgid "Queue Position:"
 msgstr "Position in cauda:"
@@ -3735,7 +3735,7 @@ msgid "%(position)s of %(total)s"
 msgstr "%(position)s de %(total)s"
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Signate pro auto-distribution. Le actualisationes es tractate per te."
 
 msgid "Latest Version:"
 msgstr "Ultime version:"
