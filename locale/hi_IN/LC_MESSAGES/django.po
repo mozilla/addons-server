@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-14 07:32+0000\n"
-"Last-Translator: Mohit Bansal <philomath@disroot.org>\n"
+"PO-Revision-Date: 2018-08-18 06:41+0000\n"
+"Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -534,7 +534,7 @@ msgid "Custom License"
 msgstr "अनुकूलित लाइसेंस"
 
 msgid "About this Add-on"
-msgstr ""
+msgstr "इस ऐड-ऑन के बारे में"
 
 msgid "Developer’s Comments"
 msgstr "डेवलपर की टिप्पणियाँ"
@@ -543,10 +543,10 @@ msgid "Version Information"
 msgstr "संस्करण की जानकारी"
 
 msgid "See complete version history"
-msgstr ""
+msgstr "पूर्ण संस्करण इतिहास देखें"
 
 msgid "close"
-msgstr ""
+msgstr "बन्‍द करें"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
 msgstr ""
@@ -580,10 +580,10 @@ msgid "Source Code License"
 msgstr ""
 
 msgid "support section"
-msgstr ""
+msgstr "सहायता अनुभाग"
 
 msgid "support email"
-msgstr ""
+msgstr "समर्थन ईमेल"
 
 msgid "permalink"
 msgstr ""
@@ -595,7 +595,7 @@ msgstr[0] "सभी उपयोगकर्ता समीक्षाएँ 
 msgstr[1] "सभी %(cnt)s उपयोगकर्ता समीक्षाएँ देखें"
 
 msgid "This add-on has not yet been reviewed."
-msgstr ""
+msgstr "इस ऐड-ऑन की अभी तक समीक्षा नहीं की गई है."
 
 msgid "Be the first!"
 msgstr "आगे रहें!"
@@ -610,29 +610,29 @@ msgid "Add to collection"
 msgstr "संग्रह में जोड़ें"
 
 msgid "My Add-ons"
-msgstr ""
+msgstr "मेरे ऐड-ऑन्स"
 
 msgid "My Themes"
-msgstr ""
+msgstr "मेरे थीम"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
-msgstr ""
+msgstr "{0} के लिए ऐड-ऑन जानकारी"
 
 msgid "Edit Theme"
-msgstr ""
+msgstr "थीम संपादित करें"
 
 msgid "Approve / Reject"
-msgstr ""
+msgstr "स्वीकारें / अस्वीकारें"
 
 msgid "Review History"
-msgstr ""
+msgstr "इतिहास की समीक्षा करें"
 
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "क्षमा करें, यह थीम लंबित है. कृपया बाद में आइये."
 
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "यह थीम लंबित है. यह सभी के लिए अदृश्य है लेकिन आप."
 
 msgid "Collector's Note"
 msgstr ""
