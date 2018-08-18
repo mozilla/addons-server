@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-18 08:50+0000\n"
+"PO-Revision-Date: 2018-08-18 09:10+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3601,22 +3601,22 @@ msgid "Header area text and icons"
 msgstr "Texto e icones del area de titulo"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
+msgstr "Le color del texto e le icones in le area del titulo, a exception del scheda active. Campo de manifesto:  textcolor."
 
 msgid "Toolbar area background"
-msgstr ""
+msgstr "Fundo del area del barra del instrumentos"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
+msgstr "Le color de fundo pro le barra de navigation, le barra del marcapaginas, e le scheda seligite. Campo de manifesto: barra del instrumentos."
 
 msgid "Toolbar area text and icons"
-msgstr ""
+msgstr "Barra del instrumentos area texto e icones"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr ""
+msgstr "Le color del texto e del icones in le barra del instrumentos e le scheda active. Campo de manifesto:  toolbar_text."
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "Fundo del area del campo del barra del instrumentos"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
