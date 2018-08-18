@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-18 14:46+0000\n"
+"PO-Revision-Date: 2018-08-18 15:07+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3663,36 +3663,40 @@ msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
+"Pro facer requestas de API, invia un <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> como titulo de autorisation. Tu debera generar un JWT pro cata requesta como explicate in le <a "
+"href=\"%(docs_url)s\">Documentation API</a>."
 
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "Tu non ha ulle credentiales API."
 
 msgid "Revoke"
 msgstr "Revocar"
 
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Revocar e regenerar credentiales"
 
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Generar nove credentiales"
 
 msgid "Invisible"
 msgstr "Invisibile"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Per favor completa tu additivo per le metadatos o un version mancante."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
+msgstr "Tu recipera un email quando le revision es complete. Usque alora, tu additivo non es listate in nostre galeria ma pote ser accedite directemente per su pagina de detalios. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr ""
+msgstr "Tu additivo es displicate in nostre galeria e le usatores recipe le actualisationes automatic."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
+msgstr "Tu additivo esseva disactivate per un administrator del sito e non es plus monstrate in nostre galeria. Si tu ha ulle questiones, per favor email amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"Tu additivo non essera includite in le resultatos del recerca, e le pagina de su lista de presentation indicara que tu disactivava illo. Le submission de nove versiones pro le lista de presentation "
+"non essera acceptate in iste stato."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
