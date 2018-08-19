@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-17 12:31+0000\n"
+"PO-Revision-Date: 2018-08-19 10:12+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4723,13 +4723,12 @@ msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Ustavite sledilce na sledi in jih spoznajte."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Preprosto prevajanje {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Zabrišite sledi svojega brskanja {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Naj Firefox pozabi podatke spletnih mest, kot so piškotki in krajevna shramba, vendar samo za domene, ki jih določite."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
