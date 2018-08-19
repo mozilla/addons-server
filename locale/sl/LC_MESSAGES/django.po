@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-19 10:12+0000\n"
+"PO-Revision-Date: 2018-08-19 10:25+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4736,7 +4736,7 @@ msgstr "Shranite besedilo za kasneje {start_sub_heading}s {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
-msgstr ""
+msgstr "Ne pišite istih stvari vedno znova in znova! Če pri pisanju pogosto uporabljate enake fraze, jih shranite v Clippings in preprosto prilepite, ko jih potrebujete."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4792,7 +4792,7 @@ msgstr "Berite datoteke ePub {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "Oglejte si datoteke ePub neposredno v Firefoxu – povečajte velikost pisave, dimenzije strani in več."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5331,18 +5331,16 @@ msgid "Download video and/or audio."
 msgstr "Prenašajte video ali zvočne posnetke."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Preprosto prevajanje {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Zbirajte vsebino za branje {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Napreden bralnik, ki združuje vse vaše vire RSS/Atom/RDF."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Ustvarite si zapiske {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
@@ -5379,7 +5377,7 @@ msgstr "Označite besedilo {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
-msgstr ""
+msgstr "Visoko prilagodljiv označevalnik besedila z različnimi barvami in možnostmi shranjevanja."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5735,7 +5733,7 @@ msgstr "Najprej uredite, nato natisnite {start_sub_heading}z {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
-msgstr ""
+msgstr "Uredite spletne strani – odstranite oglase ali neželeno vsebino – preden jih natisnete."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
