@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-19 03:06+0000\n"
-"Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
+"PO-Revision-Date: 2018-08-19 04:49+0000\n"
+"Last-Translator: Fauzan Alfi <fauzanalfi@mozilla.web.id>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -4480,7 +4480,7 @@ msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Berfungsi dengan Youtube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, dan ratusan situs video lainnya."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5396,9 +5396,8 @@ msgid "Save entered data once and it will autofill next time."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Menjelajahlah secara pribadi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
@@ -5413,36 +5412,32 @@ msgid "Don't let clicked links take control of your current tab and load content
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Akses Wikipedia lebih mudah {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Temukan konten spefisik untuk situs tertentu {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Temukan video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan permainan emoji Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Permudah pencarian di Amazon {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
@@ -5457,55 +5452,48 @@ msgid "Easily broadcast web content to your Twitter following."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ambil tangkapan layar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Kendalikan tab dengan maksimal {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pengubahsuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Nikmati pendidikan tak terduga {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Load a random Wikipedia article each time you open a new tab."
-msgstr "Atur halaman yang Anda lihat tiap kali membuka tab baru."
+msgstr "Muat artikel acak dari Wikipedia setiap kali membuka tab baru."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan permainan emoji Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Ubah total tab baru Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan permainan emoji Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Penyuka kucing kan lebih senang {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ambil tangkapan layar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Kurangi produktivitas {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Lakukan pencarian di Firefox {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
@@ -5516,18 +5504,16 @@ msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Temukan lebih dalam {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Uncover the software that supports whatever website you're visiting."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Terjemahkan dengan mudah {start_sub_heading} dengan {addon_name}{end_sub_heading}"
+msgstr "Hindari pengarahan ulang dan pelacakan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
@@ -5552,18 +5538,16 @@ msgid "Focus on what you're watching by dimming everything but the video player.
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Kelola markah {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Simpan sandi dengan aman {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
@@ -5641,9 +5625,8 @@ msgid "Password-protect your personal bookmarks."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Cegah kebocoran alamat IP {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
@@ -5699,9 +5682,8 @@ msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pengubahsuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Edit sebelum mencetak {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
@@ -5726,9 +5708,8 @@ msgid "Adjust browser audio settings with extreme clarity."
 msgstr "Sesuaikan setelan audio peramban dengan kejernihan ekstrem."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pengubahsuaian Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Lindungi privasi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
@@ -6871,13 +6852,11 @@ msgstr "Ulasan berhasil diproses."
 msgid "Review lock limit reached"
 msgstr "Batas pemeriksaan kuncian telah tercapai"
 
-#, fuzzy
 msgid "{addon} :: EULA"
-msgstr "{addon} :: Laporan Penyalahgunaan"
+msgstr "{addon} :: EULA"
 
-#, fuzzy
 msgid "{addon} :: Privacy Policy"
-msgstr "Pengaya ini mengandung Kebijakan Privasi"
+msgstr "{addon} :: Kebijakan Privasi"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
