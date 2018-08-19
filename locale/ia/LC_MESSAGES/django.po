@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-19 10:00+0000\n"
+"PO-Revision-Date: 2018-08-19 10:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4054,7 +4054,7 @@ msgid "The licensor permits others to copy, distribute, display, and perform the
 msgstr "Le licentiante permitte al alteres de copiar, distribuer, monstrar e exequer le labor, anque pro propositos commercial."
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Le licentiante permitte al alteres de copiar, distribuer, monstrar, e exequer le labor solo pro propositos non-commercial."
+msgstr "Le licentiante permitte al alteres de copiar, distribuer, monstrar e exequer le labor solo pro propositos non-commercial."
 
 msgid "Can others make commercial use of your Theme?"
 msgstr "Pote alteres facer uso commercial de tu Thema?"
@@ -4084,10 +4084,10 @@ msgid "Upon upload and form submission, the AMO Team will review your updated de
 msgstr ""
 
 msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
+msgstr "Tu motivo previemente re-submittite, que attende un revision."
 
 msgid "Pending Header"
-msgstr ""
+msgstr "Titulo que attende revision"
 
 msgid "You may update your theme design here once it has been approved."
 msgstr ""
