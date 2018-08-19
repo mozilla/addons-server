@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-19 09:50+0000\n"
+"PO-Revision-Date: 2018-08-19 10:00+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4057,28 +4057,28 @@ msgid "The licensor permits others to copy, distribute, display, and perform the
 msgstr "Le licentiante permitte al alteres de copiar, distribuer, monstrar, e exequer le labor solo pro propositos non-commercial."
 
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "Pote alteres facer uso commercial de tu Thema?"
 
 msgid "Can others create derivative works from your Theme?"
-msgstr ""
+msgstr "Pote alteres crear labores derivative ex tu thema?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
+msgstr "Le licentiante permitte a alteres de copiar, distribuer, monstrar e exequer le labor, tam ben como facer labores derivative basate sur illo."
 
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
+msgstr "Le licentiante permitte a alteres de copiar, distribuer e transmitter solo copias inalterate del labor — non labores derivative basate sur illo."
 
 msgid "Your Theme will be released under the following license:"
-msgstr ""
+msgstr "Tu thema sera publicate sub le sequente licentia:"
 
 msgid "Select a license for your Theme."
-msgstr ""
+msgstr "Elige un licentia pro tu thema."
 
 msgid "Theme Design"
 msgstr "Designo del thema"
 
 msgid "Upload New Design"
-msgstr ""
+msgstr "Cargar un nove motivo"
 
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
 msgstr ""
