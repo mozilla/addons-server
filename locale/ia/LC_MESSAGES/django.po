@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-19 09:32+0000\n"
+"PO-Revision-Date: 2018-08-19 09:50+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4033,28 +4033,28 @@ msgid "Theme Details"
 msgstr "Detalios de thema"
 
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "Forni un URL attrahente pro tu pagina del detalios."
 
 msgid "Select the category that best describes your Theme."
-msgstr ""
+msgstr "Elige le categoria que melio describe tu thema."
 
 msgid "Add some tags to describe your Theme."
-msgstr ""
+msgstr "Adde alcun tags pro describer tu thema."
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr ""
+msgstr "Un breve explanation del functionalitates basic de tu thema que es displicate in le listas de recerca e navigation, tam ben como in le melior paginas de detalios de tu thema."
 
 msgid "Theme License"
 msgstr "Licentia del thema"
 
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
+msgstr "Pote alteres compartir tu thema, fin que tu ha date credito a illes?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
+msgstr "Le licentiante permitte al alteres de copiar, distribuer, monstrar e exequer le labor, anque pro propositos commercial."
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
+msgstr "Le licentiante permitte al alteres de copiar, distribuer, monstrar, e exequer le labor solo pro propositos non-commercial."
 
 msgid "Can others make commercial use of your Theme?"
 msgstr ""
