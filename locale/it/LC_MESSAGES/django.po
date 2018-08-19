@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 11:50+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2018-08-18 13:34+0000\n"
+"Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -5518,18 +5518,16 @@ msgid "Configure new tab pages to display custom background colors and images."
 msgstr "Configura le pagine di nuova scheda per mostrare colori e immagini di sfondo personalizzate."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Arricchisci i tuoi testi con le emoji {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Gli amanti dei gatti gioiscono {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Cattura screenshot {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Diminuisci la produttività {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
@@ -5558,9 +5556,8 @@ msgid "Uncover the software that supports whatever website you're visiting."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Fai perdere la tua traccia digitale {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Impedisci i reindirizzamenti e i tracciamenti {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
@@ -5617,12 +5614,11 @@ msgstr "Scarica video {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Un ulteriore controllo per avere la certezza di acquistare su un sito la cui affidabilità è stata verificata."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocca le pubblicità {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Traccia la produttività {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
@@ -5633,9 +5629,8 @@ msgid "Clip web content like articles, videos, images, and more to save and use 
 msgstr "Ritaglia contenuti interessanti sul Web (articoli, video, immagini e altro ancora), salvali per utilizzarli più tardi oppure condividili in tempo reale con il tuo team di lavoro."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocca le pubblicità {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Naviga in sicurezza {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
@@ -6904,13 +6899,11 @@ msgstr "Revisione elaborata correttamente."
 msgid "Review lock limit reached"
 msgstr "Raggiunto il limite di recensioni esaminabili"
 
-#, fuzzy
 msgid "{addon} :: EULA"
-msgstr "{addon} :: Segnalazioni abusi"
+msgstr "{addon} :: EULA"
 
-#, fuzzy
 msgid "{addon} :: Privacy Policy"
-msgstr "Questo componente aggiuntivo ha un’informativa sulla privacy."
+msgstr "{addon} :: Informativa sulla privacy"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
