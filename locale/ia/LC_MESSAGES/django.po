@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-19 10:31+0000\n"
+"PO-Revision-Date: 2018-08-19 10:48+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4090,7 +4090,7 @@ msgid "Pending Header"
 msgstr "Titulo que attende revision"
 
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "Tu potera actualisar ci tu motivo del thema, un vice que illo ha essite approbate."
 
 msgid "Header"
 msgstr "Titulo"
@@ -4099,16 +4099,16 @@ msgid "Select colors for your Theme."
 msgstr "Elige le colores pro tu thema."
 
 msgid "Foreground Text"
-msgstr ""
+msgstr "Texto in prime plano"
 
 msgid "This is the color of the tab text."
-msgstr ""
+msgstr "Iste es le color del texto del schedas."
 
 msgid "Background"
 msgstr "Fundo"
 
 msgid "This is the color of the tabs."
-msgstr ""
+msgstr "Isto es le color del schedas."
 
 msgid "Your Theme's Name"
 msgstr "Le nomine del thema"
@@ -4122,7 +4122,7 @@ msgstr "Crear un nove thema"
 
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
+msgstr "Le themas de fundo te lassa personalisar facilemente le vista de tu Firefox. Invia tu proprie motivo infra, o <a href=\"%(submit_url)s\">apprende como crear uno</a>!"
 
 msgid "Give your Theme a name."
 msgstr "Da un nomine a tu thema."
@@ -4132,12 +4132,14 @@ msgid ""
 "I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
 " and Cookies Privacy Notice%(link_close)s."
 msgstr ""
+"Io concorda con le %(agreement_link_open)sAccordo de distribution del additivos de Firefox%(link_close)s e que mi informationes es tractate como describite in le %(privacy_notice_link_open)sAviso de"
+" confidentialitate de sito web, communicationes e cookies%(link_close)s."
 
 msgid "Submit Theme"
 msgstr "Invia thema"
 
 msgid "You're done!"
-msgstr ""
+msgstr "Tu ha finite!"
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
 msgstr ""
