@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-19 08:05+0000\n"
+"PO-Revision-Date: 2018-08-19 08:50+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3831,7 +3831,7 @@ msgid "Resources"
 msgstr "Fontes"
 
 msgid "Porting"
-msgstr ""
+msgstr "Portabilitate"
 
 msgid "Community"
 msgstr "Communitate"
@@ -3846,25 +3846,25 @@ msgid "Blog"
 msgstr "Blog"
 
 msgid "Contact Us"
-msgstr ""
+msgstr "Contacta nos"
 
 msgid "Support"
 msgstr "Supporto"
 
 msgid "Policies"
-msgstr ""
+msgstr "Politicas"
 
 msgid "Report Bug"
-msgstr ""
+msgstr "Reportar un defecto"
 
 msgid "Site Status"
 msgstr "Stato del sito"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: compilar & testar extensiones"
 
 msgid "Compatibility Checker"
-msgstr ""
+msgstr "Utensile de verification de compatibilitate"
 
 msgid "Promote"
 msgstr "Promover"
@@ -3873,13 +3873,13 @@ msgid "Get Your Add-on Featured"
 msgstr "Prende tu functionalitate de aditivo"
 
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "Button \"Obtener le additivo\""
 
 msgid "Legal"
 msgstr "Legal"
 
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Reportar un abuso de marca de fabrica"
 
 msgid "Legal Notices"
 msgstr "Notas legal"
@@ -3888,16 +3888,16 @@ msgid "Review Add-ons"
 msgstr "Revider le additivos"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "Le revisores voluntari adjuta a mantener le additivos secur e fidabile a usar. Illes gaude anque de grande avantages!"
 
 msgid "Join us!"
 msgstr "Adjunge te a nos!"
 
 msgid "Write Some Code"
-msgstr ""
+msgstr "Scribe alcun codice"
 
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "Adjuta a meliorar le additivos per tu habilitates de codification."
 
 msgid "Get started"
 msgstr "Que nos va"
@@ -3906,7 +3906,7 @@ msgid "More Ways to Participate"
 msgstr "Plure manieras pro participar"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "Tu non necessita habilitates de codification pro adjutar a mantener Firefox le navigator le plus personalisabile disponibile!"
 
 msgid "See how"
 msgstr "Vide como"
@@ -3915,7 +3915,7 @@ msgid "Manage Your Add-on"
 msgstr "Gere tu additivos"
 
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "Authentica te pro rediger e actualisar tu additivos"
 
 msgid "Resources for a successful launch"
 msgstr ""
