@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-19 08:50+0000\n"
+"PO-Revision-Date: 2018-08-19 09:09+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3918,29 +3918,31 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Authentica te pro rediger e actualisar tu additivos"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "Ressources pro un lanceamento plen de successo"
 
 #, python-format
 msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
+"Tu ha compilate tu extension e tu es preste a publicar illo. Que veni pois? Controla nostre suggestiones pro crear un pagina de lista de presentation attrahente, render consiliate tu extension sur "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, trovar responsas pro questiones circa le disveloppamento, e remaner actualisate con novas e eventos pertinente al disveloppatores de extension."
 
 msgid "View Resources for Publishers"
-msgstr ""
+msgstr "Vide le ressources pro le editores"
 
 msgid "Welcome Back"
 msgstr "Ben-retornate"
 
 msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
+msgstr "Adjuta le usatores a discoperir tu extensiones per crear un lista de presentation attrahente."
 
 msgid "Learn How"
 msgstr "Apprende como"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "Desira tu que tu extension es consiliate sur %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Nostre politicas del extensiones consiliate te contara illo que tu debe saper."
 
 msgid "Learn More"
 msgstr "Saper plus"
@@ -3950,16 +3952,16 @@ msgid "View All Submissions"
 msgstr "Vide tote le submissiones"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
+msgstr "Isto es ubi tu vide e gere tu additivos e themas. Pro publicar tu prime additivo, clicca \"Inviar tu prime additivo\" o \"Inviar tu prime thema\"."
 
 msgid "Submit Your First Add-on"
-msgstr ""
+msgstr "Inviar tu prime additivo"
 
 msgid "Submit Your First Theme"
 msgstr "Invia tu prime thema"
 
 msgid "Add-on Developer Hub"
-msgstr ""
+msgstr "Centro de disveloppamento de additivos"
 
 msgid "Docs"
 msgstr "Documentos"
