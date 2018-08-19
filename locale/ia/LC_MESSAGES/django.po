@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-19 16:11+0000\n"
+"PO-Revision-Date: 2018-08-19 16:18+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4271,27 +4271,29 @@ msgstr "{label_open}Visibile:{label_close} Visibile a totes sur {site_url} e inc
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"{label_open}Invisibile:{label_close} Non essera includite in le resultatos del recerca, e su pagina del lista de presentation indicara que tu disactivava illo. Le submission de nove versiones pro le"
+" lista de presentation non essera acceptate in iste stato."
 
 msgid "Listed versions"
-msgstr ""
+msgstr "Versiones in le lista de presentation"
 
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Actualmente sur AMO"
 
 msgid "Validation"
 msgstr "Validation"
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "Deler/disactivar"
 
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Version sequente de iste additivo"
 
 msgid "Other versions"
-msgstr ""
+msgstr "Altere versiones"
 
 msgid "All versions"
-msgstr ""
+msgstr "Tote le versiones"
 
 msgid "Upload a New Version"
 msgstr "Cargar un nove version"
@@ -4302,42 +4304,44 @@ msgstr "Deler version {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
+"Tu va deler le version actual de tu additivo. Isto pote causar cambiar le stato de tu additivo, o de tu lista de presentation pro perder public visibilitate, si isto es le sol public version de tu "
+"additivo."
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Deler iste version delera permanentemente:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>Importante:</strong> Un vice que un version ha essite delite, tu non pote cargar un nove version con le mesme numero de version."
 
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Desira tu vermente deler iste version?"
 
 msgid "Delete Version"
-msgstr ""
+msgstr "Deler le version"
 
 msgid "Disable Version"
-msgstr ""
+msgstr "Disactivar le version"
 
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Celar le additivo"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "Celar tu additivo impedira a illo de parer ubicunque in nostre galeria e stoppara al usatores de reciper le actualisationes automatic."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "Le files attendente revision sera disactivate e tu debera cargar nove versiones."
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Desira tu vermente celar tu additivo?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
+msgstr "Cancellar tu requesta de revision marcara tu additivo incomplete, e tote le versiones attendente revision sera disactivate."
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Desira tu vermente cancellar tu requesta de revision?"
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "Documentation del additivo :: Centro de disveloppamento"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
