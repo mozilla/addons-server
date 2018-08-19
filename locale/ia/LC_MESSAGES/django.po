@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-19 10:48+0000\n"
+"PO-Revision-Date: 2018-08-19 16:11+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3741,7 +3741,7 @@ msgid "Latest Version:"
 msgstr "Ultime version:"
 
 msgid "This is the newest uploaded unlisted version."
-msgstr ""
+msgstr "Isto es le version plus recente cargate e non listate."
 
 msgid "Upload New Version"
 msgstr "Cargar nove version"
@@ -4142,25 +4142,25 @@ msgid "You're done!"
 msgstr "Tu ha finite!"
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr ""
+msgstr "Tu thema ha essite submittite al Cauda de revision. Tu recipera un email un vice que illo ha essite revidite, typicamente intra le 24 horas."
 
 msgid "Next steps:"
 msgstr "Grado sequente:"
 
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr ""
+msgstr "Forni altere detalios de tu thema per le <a href=\"%(edit_url)s\">redaction de su lista de presentation</a>."
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr ""
+msgstr "Vide e subscribe te al <a href=\"%(feed_url)s\">alimentation de novas</a> de tu thema pro remaner al currente circa revisiones, collectiones, e plus."
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
+msgstr "Junge te al conversation in nostre <a href=\"%(forum_url)s\">foros</a>."
 
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "Elige un imagine del titulo pro tu thema."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pixels"
@@ -4191,80 +4191,82 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
+"Informationes circa cambiamentos in iste version, nove functionalitates, note defectos e altere utile informationes specific pro iste publication/version. Iste informationes es alsi monstrate in le "
+"Gestor de additivos durante le actualisation."
 
 msgid "Approval Status"
-msgstr ""
+msgstr "Stato del approbation"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Notas pro le revisores"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr ""
+msgstr "Optionalmente, insere tote le informationes que pote ser utile al revisor de iste additivo, tal como informationes del conto de test."
 
 msgid "Source code"
 msgstr "Codice fonte"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr ""
+msgstr "Si tu additivo contine codice binari o offuscate, rende ci disponibile le codice fonte pro le revisores."
 
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "File {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "Create le %(created)s e cambiate a %(status)s le %(status_date)s"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Create le %(created)s e cambiate a %(status)s"
 
 msgid "Status & Versions"
-msgstr ""
+msgstr "Stato & versiones"
 
 msgid "Edit this version"
-msgstr ""
+msgstr "Rediger iste version"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 files"
 
 msgid "Re-enable Version"
-msgstr ""
+msgstr "Re-activar le version"
 
 msgid "Close Review History"
-msgstr ""
+msgstr "Clauder le chronologia del revision"
 
 msgid "Not validated."
-msgstr ""
+msgstr "Non validate."
 
 msgid "Validate now."
-msgstr ""
+msgstr "Validar ora."
 
 msgid "Request Review"
-msgstr ""
+msgstr "Requirer revision"
 
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "Cancellar le requesta de revision"
 
 msgid "Loading Review History..."
-msgstr ""
+msgstr "Cargamento del chronologia de revision..."
 
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "Nos habeva un problema a recuperar le notas de revision"
 
 msgid "Load older..."
-msgstr ""
+msgstr "Cargamento del revisiones plus vetere..."
 
 msgid "Leave a reply"
-msgstr ""
+msgstr "Lassar un replica"
 
 msgid "Reply"
-msgstr ""
+msgstr "Replicar"
 
 msgid "Listing visibility"
-msgstr ""
+msgstr "Visibilitate del lista de presentation"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr ""
+msgstr "{label_open}Visibile:{label_close} Visibile a totes sur {site_url} e includite in le paginas de resultatos del recerca e del lista de presentation."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
