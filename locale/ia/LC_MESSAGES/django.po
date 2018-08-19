@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-18 15:26+0000\n"
+"PO-Revision-Date: 2018-08-19 07:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3750,42 +3750,42 @@ msgid "View All"
 msgstr "Vider toto"
 
 msgid "Listed Review Page"
-msgstr ""
+msgstr "Pagina de revision del additivos in le lista de presentation"
 
 msgid "Unlisted Review Page"
-msgstr ""
+msgstr "Pagina de revision de additivo externe"
 
 msgid "View Statistics Dashboard"
-msgstr ""
+msgstr "Vider pannello de statistica"
 
 msgid "Compatibility Reports"
-msgstr ""
+msgstr "Reportos de compatibilitate"
 
 msgid "{0} failure reports"
-msgstr ""
+msgstr "{0} reportos de insuccesso"
 
 msgid "{0} success reports"
-msgstr ""
+msgstr "{0} reportos de successo"
 
 msgid "Developer News"
-msgstr ""
+msgstr "Novas de disveloppator"
 
 msgid "View the blog &#9658;"
-msgstr ""
+msgstr "Vide le blog &#9658;"
 
 msgid "Pending information request:"
-msgstr ""
+msgstr "Requesta de informationes pendente:"
 
 msgid "This request for information has been resolved"
-msgstr ""
+msgstr "Iste requesta pro informationes ha essite resolvite"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Per favor elige un licentia appropriate pro le derectos que tu accorda sur tu codice fonte. Illo es pertinente solo al additivos listate."
 
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "Tags HTML consentite: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr ""
