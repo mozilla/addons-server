@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-19 16:18+0000\n"
+"PO-Revision-Date: 2018-08-20 00:36+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4373,7 +4373,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Traduce facilemente {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
@@ -4381,7 +4381,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Cerca imagines {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
@@ -4405,7 +4405,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Stoppa le traciamento de Facebook {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
@@ -5925,7 +5925,7 @@ msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr ""
 
 msgid "New &amp; Now"
-msgstr ""
+msgstr "Nove &amp; Nunc"
 
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr ""
@@ -5997,13 +5997,13 @@ msgid "View Privacy Policy"
 msgstr ""
 
 msgid "Active Users"
-msgstr ""
+msgstr "Usatores active"
 
 msgid "Last Updated"
-msgstr ""
+msgstr "Ultime actualisation"
 
 msgid "Cancel Installation"
-msgstr ""
+msgstr "Cancellar le installation"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr ""
