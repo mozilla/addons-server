@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-20 15:03+0000\n"
+"PO-Revision-Date: 2018-08-20 15:28+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4513,7 +4513,7 @@ msgstr "Remove le avisos publicitari de YouTube {start_sub_heading}con {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr "Impedi de parer sur YouTube al enoiose avisos publicitari e al annotationes."
+msgstr "Impedi al enoiose avisos publicitari e al annotationes de parer sur YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4537,7 +4537,7 @@ msgstr "Preveni le sondage de crypto-monetas {start_sub_heading}con {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr "Stoppa sitos web maligne que usa le potentia de tu computator pro cavar crypto-monetas."
+msgstr "Stoppa le sitos web maligne que usa le potentia de tu computator pro cavar crypto-monetas."
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
