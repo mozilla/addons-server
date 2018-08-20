@@ -64,15 +64,15 @@ def test_additional_background_split_alignment(alignment, alignments_tuple):
 @pytest.mark.parametrize(
     'alignment, tiling,'  # inputs
     'pattern_width, pattern_height, pattern_x, pattern_y', (
-        ('center bottom', 'no-repeat', '100%', '100%', 280, -358),
-        ('top', 'repeat-x', 120, '100%', 280, 0),
-        ('center', 'repeat-y', '100%', 450, 280, -179),
+        ('center bottom', 'no-repeat', 680, 92, 280, -358),
+        ('top', 'repeat-x', 120, 92, 280, 0),
+        ('center', 'repeat-y', 680, 450, 280, -179),
         ('left top', 'repeat', 120, 450, 0, 0),
         # alignment=None is 'left top'
         (None, 'repeat', 120, 450, 0, 0),
         # tiling=None is 'no-repeat'
-        ('center', None, '100%', '100%', 280, -179),
-        (None, None, '100%', '100%', 0, 0),
+        ('center', None, 680, 92, 280, -179),
+        (None, None, 680, 92, 0, 0),
     )
 )
 def test_additional_background(encode_header_image, alignment, tiling,
@@ -86,11 +86,11 @@ def test_additional_background(encode_header_image, alignment, tiling,
     assert background.src == 'foobaa'
     assert background.width == 120
     assert background.height == 450
-    assert background.pattern_width == pattern_width
-    assert background.pattern_height == pattern_height
     background.calculate_pattern_offsets(
         amo.THEME_PREVIEW_SIZES['header']['full'].width,
         amo.THEME_PREVIEW_SIZES['header']['full'].height)
+    assert background.pattern_width == pattern_width
+    assert background.pattern_height == pattern_height
     assert background.pattern_x == pattern_x
     assert background.pattern_y == pattern_y
 

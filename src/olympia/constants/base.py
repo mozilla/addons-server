@@ -249,7 +249,7 @@ THEME_PREVIEW_SIZES = {
         'position': 1},
 }
 THEME_ACCENTCOLOR_DEFAULT = 'rgba(229,230,232,1)'
-THEME_PREVIEW_HEIGHT = 92  # The template supports different widths only.
+THEME_PREVIEW_TOOLBAR_HEIGHT = 92  # The template toolbar is this height.
 
 # Persona image sizes [preview, full]
 PERSONA_IMAGE_SIZES = {
