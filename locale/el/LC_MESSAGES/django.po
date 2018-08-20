@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-20 14:11+0000\n"
+"PO-Revision-Date: 2018-08-20 14:37+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3510,29 +3510,29 @@ msgid "Do you use any of the following?"
 msgstr "Χρησιμοποιείτε κάτι από τα εξής;"
 
 msgid "Code minifiers or obfuscators"
-msgstr ""
+msgstr "Minifiers κώδικα ή obfuscators"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
-msgstr ""
+msgstr "Εργαλεία που συνδυάζουν πολλαπλά αρχεία σε ένα αρχείο, όπως το <span class=\"tech-emphasis\">webpack</span>"
 
 msgid "Web template engines, both for HTML and CSS"
-msgstr ""
+msgstr "Μηχανές διαδικτυακών προτύπων, για HTML και CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
 msgstr ""
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "Δεν χρειάζεται να υποβάλετε πηγαίο κώδικα και είστε έτοιμοι για το επόμενο βήμα."
 
 msgid "Your Submission Requires Source Code."
-msgstr ""
+msgstr "Η υποβολή σας απαιτεί πηγαίο κώδικα."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr ""
+msgstr "Ο πηγαίος κώδικας πρέπει να πληροί τις <a %(a_attrs)s>προϋποθέσεις πολιτικής</a>, που περιλαμβάνει:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
-msgstr ""
+msgstr "Αναλυτικές οδηγίες ανάπτυξης για να δημιουργήσετε ένα ακριβές αντίγραφο του κώδικα του προσθέτου."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Ένα δομικό σενάριο που εκτελεί όλα τα απαραίτητα τεχνικά βήματα."
@@ -3633,7 +3633,7 @@ msgid "Header area text and icons"
 msgstr "Κείμενο και εικονίδια περιοχής επικεφαλίδας"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
+msgstr "Το χρώμα του κειμένου και των εικονιδίων στην περιοχή επικεφαλίδας, εκτός της ενεργής καρτέλας. Πεδίο αρχείου manifest:  textcolor."
 
 msgid "Toolbar area background"
 msgstr "Φόντο περιοχής γραμμής εργαλείων"
@@ -3657,7 +3657,7 @@ msgid "Toolbar field area text"
 msgstr "Κείμενο περιοχής πεδίου γραμμής εργαλείων"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
+msgstr "Το χρώμα του κειμένου στα πεδία της γραμμής εργαλείων, όπως η γραμμή URL. Πεδίο αρχείου manifest:  toolbar_field_text."
 
 msgid "optional"
 msgstr "προαιρετικό"
@@ -3715,7 +3715,7 @@ msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
+msgstr "Θα λάβετε ένα email όταν ολοκληρωθεί η αξιολόγηση. Μέχρι τότε, το πρόσθετο σας δεν θα εμφανίζεται γενικά στις σελίδες μας αλλά θα μπορείτε να το δείτε μόνο απευθείας στη σελίδα προβολής του. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Το πρόσθετο σας εμφανίζεται κανονικά στις σελίδες μας κι οι χρήστες θα λαμβάνουν αυτόματα ενημερώσεις."
@@ -3725,6 +3725,8 @@ msgstr ""
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"Το πρόσθετό σας δεν θα συμπεριλαμβάνεται στα αποτελέσματα αναζήτησης και η σελίδα καταχώρησης θα υποδεικνύει ότι το έχετε απενεργοποιήσει. Οι υποβολές νέων εκδόσεων για καταχώρηση δεν θα γίνονται "
+"αποδεκτές σε αυτή την κατάσταση."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
@@ -3778,10 +3780,10 @@ msgid "View All"
 msgstr "Προβολή όλων"
 
 msgid "Listed Review Page"
-msgstr ""
+msgstr "Σελίδα καταχωρημένης κριτικής"
 
 msgid "Unlisted Review Page"
-msgstr ""
+msgstr "Σελίδα μη καταχωρημένης κριτικής"
 
 msgid "View Statistics Dashboard"
 msgstr "Προβολή ταμπλό στατιστικών"
@@ -4175,7 +4177,7 @@ msgstr "Παρέχετε περισσότερες λεπτομέρειες σχ�
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr ""
+msgstr "Προβολή και εγγραφή στο <a href=\"%(feed_url)s\">αρχείο ροής δραστηριότητας</a> του θέματός σας, για να ενημερώνεστε για αξιολογήσεις, συλλογές και ακόμη περισσότερα."
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
@@ -4224,7 +4226,7 @@ msgid "Notes for Reviewers"
 msgstr "Σημειώσεις για αξιολογητές"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr ""
+msgstr "Προαιρετικά, εισάγετε οποιαδήποτε πληροφορία που μπορεί να είναι χρήσιμη για τον αξιολογητή αυτού του προσθέτου, όπως πληροφορίες δοκιμαστικού λογαριασμού."
 
 msgid "Source code"
 msgstr "Πηγαίος κώδικας"
