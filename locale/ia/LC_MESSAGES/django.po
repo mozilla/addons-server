@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-20 15:50+0000\n"
+"PO-Revision-Date: 2018-08-20 16:09+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4630,23 +4630,23 @@ msgstr "Adjusta le dimension del vista del pagina {start_sub_heading}con {addon_
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "Un simple maniera pro adjustar le dimension del texto de ulle pagina —o mesmo aggrandir le pagina mesme."
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Bloca le traciatores invisibile {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "Stoppa le traciatores durante lor tracias e apprende altero circa illos."
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Lassa un pista digital munde {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Face si que Firefox oblida sito web e datos como le cookies e le local immagazinage, ma solo pro le dominios que tu elige."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4655,14 +4655,16 @@ msgstr "Salva texto pro plus tarde {start_sub_heading}con {addon_name}{end_sub_h
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
 msgstr ""
+"Stoppa le scriptura del mesme cosa ancora e ancora! Si tu frequentemente re-usa le mesme phrases in tu labor o in altere communicationes, salva los in Clippings e colla facilemente los quando "
+"necessari."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Bloca le avisos publicitari del web-email {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Obtene altere spatio de schermo per le remotion de avisos publicitari ex tu cassa de ingresso basate sur web."
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
