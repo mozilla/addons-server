@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-20 00:36+0000\n"
+"PO-Revision-Date: 2018-08-20 04:51+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4557,7 +4557,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Facile traduction {start_sub_heading}con {end_sub_heading}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
@@ -4581,7 +4581,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Optimisa videos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
@@ -4598,7 +4598,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Trova contento web mancante  {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
@@ -4606,7 +4606,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Trova contento web mancante {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4618,7 +4618,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Face disparer le cookies {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
@@ -4650,7 +4650,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Salva texto pro plus tarde {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
