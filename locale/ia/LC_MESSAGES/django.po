@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-20 11:32+0000\n"
+"PO-Revision-Date: 2018-08-20 11:37+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4409,15 +4409,15 @@ msgstr "Stoppa le traciamento de Facebook {start_sub_heading}con {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Isola tu identitate de Facebook in un separate “receptaculo” que rende plus dur pro Facebook traciar tu movimentos circum le web."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Simplifica le recerca {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Basta poner in evidentia texto sur ulle pagina web pro recercar le phrase ex un serie de motores."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
