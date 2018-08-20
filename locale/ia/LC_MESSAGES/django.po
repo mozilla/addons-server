@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-20 14:47+0000\n"
+"PO-Revision-Date: 2018-08-20 15:03+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4594,7 +4594,7 @@ msgstr "Recerca in bon conscientia {start_sub_heading}con {addon_name}{end_sub_h
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr "Ecosia usa 80% del profitos de su recerca pro financiar programmas de reboscage circum le mundo. Pone Ecosia como motor de recerca in Firefox"
+msgstr "Ecosia usa 80% del profitos de su recerca pro financiar programmas de reboscage circum le mundo. Que tu pone Ecosia como motor de recerca in Firefox!"
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
