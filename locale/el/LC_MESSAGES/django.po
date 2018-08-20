@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-17 09:48+0000\n"
+"PO-Revision-Date: 2018-08-20 14:11+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4425,7 +4425,7 @@ msgstr "Δείτε αλλιώς τις καρτέλες {start_sub_heading}με 
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Έχετε πολλές ανοικτές καρτέλες; Οργανώστε τις σε μια τακτοποιημένη πλευρική γραμμή."
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4449,7 +4449,7 @@ msgstr "Άμεσες ενημερώσεις καιρού {start_sub_heading}με
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
-msgstr ""
+msgstr "Άμεση λήψη παγκόσμιων πληροφοριών καιρού εντός του Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4481,7 +4481,7 @@ msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
-msgstr ""
+msgstr "Δωδεκάδες απίθανων emojis για κάθε περίσταση—πάντα ένα μόνο κλικ μακριά."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4936,7 +4936,7 @@ msgstr "Γρήγορες μεταφράσεις {start_sub_heading}με το {ad
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
+msgstr "Επισημάνετε κείμενο σε οποιαδήποτε ιστοσελίδα, κάντε δεξί κλικ και δείτε άμεσα τη μετάφραση."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
