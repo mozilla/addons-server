@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-20 08:10+0000\n"
+"PO-Revision-Date: 2018-08-20 09:08+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5034,7 +5034,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Disguisa le pagina {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
@@ -5042,7 +5042,7 @@ msgstr "Celar portiones del sito web que tu vide."
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Discarga imagines {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
@@ -5066,7 +5066,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Meliora le nove schedas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
@@ -5082,7 +5082,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Modifica tu confidentialitate {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily customize the built-in privacy settings in Firefox."
@@ -5098,7 +5098,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Obtene traductiones instantanee {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
@@ -5106,7 +5106,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Personalisa le nove schedas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
@@ -5154,7 +5154,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Lectura facile {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
@@ -5214,7 +5214,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Vide documentos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
@@ -5238,7 +5238,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Discarga videos de YouTube {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
@@ -5246,7 +5246,7 @@ msgstr "Discargar video o audio."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Collige material de lectura {start_sub_heading}con {addon_name}{addon_name}"
 
 #. editorial content for the discovery pane.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
@@ -5310,7 +5310,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Transforma texto in imagines {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
@@ -5326,7 +5326,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Dele tu chronologia de navigation {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
