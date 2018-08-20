@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-20 14:37+0000\n"
+"PO-Revision-Date: 2018-08-20 14:40+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -6148,7 +6148,7 @@ msgid "Help improve this website. It's open source, and you can file bugs and su
 msgstr ""
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr ""
+msgstr "Αν σάς ενδιαφέρουν τα πρόσθετα, αλλά δεν είστε αρκετά τεχνικοί τύποι, μπορείτε ακόμη να βοηθήσετε:"
 
 msgid "Tell your friends! Let people know which add-ons you use."
 msgstr "Πείτε το στους φίλους σας! Ενημερώστε τον κόσμο για το ποια πρόσθετα χρησιμοποιείτε."
@@ -6399,13 +6399,13 @@ msgid "This field is required."
 msgstr "Αυτό το πεδίο απαιτείται."
 
 msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
+msgstr "Δεν μπορείτε να αλλάξετε το πρόσθετο μιας κριτικής, αφού δημιουργηθεί."
 
 msgid "You can't reply to a review that is already a reply."
 msgstr "Δεν μπορείτε να απαντήσετε σε μια κριτική που είναι ήδη απάντηση."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Δεν μπορείτε να αλλάξετε την έκδοση του αξιολογούμενου προσθέτου, αφού έχει δημιουργηθεί η κριτική."
 
 msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "Αυτή η έκδοση του προσθέτου δεν υπάρχει ή δεν είναι δημόσια."
@@ -6414,7 +6414,7 @@ msgid "You can't leave a review on your own add-on."
 msgstr "Δεν μπορείτε να αφήσετε κριτική για το δικό σας πρόσθετο."
 
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr ""
+msgstr "Δεν μπορείτε να αφήσετε περισσότερες από μία κριτικές για την ίδια έκδοση του προσθέτου."
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr ""
