@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-20 04:51+0000\n"
+"PO-Revision-Date: 2018-08-20 05:07+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4666,7 +4666,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Trova tu schedas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
@@ -4698,7 +4698,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Stop al traciatores {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
@@ -4722,7 +4722,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tracia le traciatores {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
@@ -4738,7 +4738,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Controla le reproduction del video {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
@@ -4746,7 +4746,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Naviga con securitate {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
@@ -4754,7 +4754,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Compra & sparnia {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
@@ -4954,7 +4954,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Vide imagines {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
@@ -4962,7 +4962,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Incrementa le productivitate {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
@@ -4970,7 +4970,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Refresca le schedas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
@@ -5775,7 +5775,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "Error inexpectate."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -5798,7 +5798,7 @@ msgid "File Viewer :: Reviewer tools"
 msgstr ""
 
 msgid "Validation failed:"
-msgstr ""
+msgstr "Validation faillite:"
 
 msgid "File content not supported for syntax highlighting"
 msgstr ""
@@ -5844,13 +5844,13 @@ msgid "Next diff"
 msgstr ""
 
 msgid "Next note"
-msgstr ""
+msgstr "Nota successive"
 
 msgid "Expand all"
 msgstr "Expander toto"
 
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Celar o disvelar arbore"
 
 msgid "Wrap or unwrap text"
 msgstr ""
@@ -5859,16 +5859,16 @@ msgid "No files in the uploaded file."
 msgstr ""
 
 msgid "Fetching file."
-msgstr ""
+msgstr "Recuperante file."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr ""
 
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Non ancora implementate."
 
 msgid "Shopping Made Easy"
-msgstr ""
+msgstr "Compras rendite facile"
 
 msgid "Save on your favorite items from the comfort of your browser."
 msgstr ""
@@ -5898,7 +5898,7 @@ msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr ""
 
 msgid "A+ add-ons for School"
-msgstr ""
+msgstr "A+ additivos pro le schola"
 
 msgid "Add-ons for teachers, parents, and students heading back to school."
 msgstr ""
@@ -5952,7 +5952,7 @@ msgid "Take better screenshots, improve your online video experience, finally le
 msgstr ""
 
 msgid "Discover Add-ons"
-msgstr ""
+msgstr "Discoperi additivos"
 
 msgid "What are Add-ons?"
 msgstr ""
@@ -5962,22 +5962,22 @@ msgid "Add-ons are applications that let you personalize %(app)s with extra func
 msgstr ""
 
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "Saper plus re additivos"
 
 msgid "See all"
 msgstr "Vider toto"
 
 msgid "More ways to customize"
-msgstr ""
+msgstr "Plus manieras de personalisar"
 
 msgid "Browse all add-ons"
-msgstr ""
+msgstr "Naviga trans tote le additivos"
 
 msgid "See all complete themes"
-msgstr ""
+msgstr "Vide tote le themas complete"
 
 msgid "Close Video"
-msgstr ""
+msgstr "Claude video"
 
 msgid "While the video plays, the add-ons being mentioned will appear here."
 msgstr ""
