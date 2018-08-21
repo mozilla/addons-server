@@ -3,8 +3,7 @@
   "version": "0.0.17",
   "private": true,
   "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
+    "node": ">= 8"
   },
   "scripts": {
     "potools": "potools"
