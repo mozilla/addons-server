@@ -146,9 +146,10 @@
           {% if sources_provided %}
             <p>
               <span class="req">{{ _('Remember') }}</span>:
-              {% trans %}
+              {% trans policy_requirements_open='<a href="https://developer.mozilla.org/docs/Mozilla/Add-ons/Source_Code_Submission">'|safe, policy_requirements_close='</a>'|safe %}
               If you submitted source code, but did not include instructions, you must provide them here.
-              Enter step-by-step build instructions to create an exact copy of the add-on code, per policy requirements.
+              Enter step-by-step build instructions to create an exact copy of the add-on code, per
+              {{ policy_requirements_open }}policy requirements{{ policy_requirements_close }}.
               {%- endtrans -%}
             </p>
           {% endif %}
