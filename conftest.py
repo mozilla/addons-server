@@ -1,14 +1,5 @@
-from django import http, test
-from django.core.cache import caches
-from django.utils import translation
-
 import responses
 import pytest
-
-from multidb import pinning
-
-from olympia import amo, core
-from olympia.translations.hold import clean_translations
 
 
 @pytest.fixture(autouse=True)
@@ -18,6 +9,7 @@ def unpin_db(request):
     The `multidb` middleware pins the current thread to master for 15 seconds
     after any POST request, which can lead to unexpected results for tests
     of DB slave functionality."""
+    from multidb import pinning
 
     request.addfinalizer(pinning.unpin_this_thread)
 
@@ -60,6 +52,16 @@ def mock_basket(settings):
 
 
 def pytest_configure(config):
+    import django
+    # Forcefully call `django.setup`, pytest-django tries to be very lazy
+    # and doesn't call it if it has already been setup.
+    # That is problematic for us since we overwrite our logging config
+    # in settings_test and it can happen that django get's initialized
+    # with the wrong configuration. So let's forcefully re-initialize
+    # to setup the correct logging config since at this point
+    # DJANGO_SETTINGS_MODULE should be `settings_test` every time.
+    django.setup()
+
     from olympia.amo.tests import prefix_indexes
     prefix_indexes(config)
 
@@ -69,6 +71,8 @@ def instrument_jinja():
     """Make sure the "templates" list in a response is properly updated, even
     though we're using Jinja2 and not the default django template engine."""
     import jinja2
+    from django import test
+
     old_render = jinja2.Template.render
 
     def instrumented_render(self, *args, **kwargs):
@@ -82,6 +86,9 @@ def instrument_jinja():
 
 def default_prefixer(settings):
     """Make sure each test starts with a default URL prefixer."""
+    from django import http
+    from olympia import amo
+
     request = http.HttpRequest()
     request.META['SCRIPT_NAME'] = ''
     prefixer = amo.urlresolvers.Prefixer(request)
@@ -92,6 +99,11 @@ def default_prefixer(settings):
 
 @pytest.yield_fixture(autouse=True)
 def test_pre_setup(request, tmpdir, settings):
+    from django.core.cache import caches
+    from django.utils import translation
+    from olympia import amo, core
+    from olympia.translations.hold import clean_translations
+
     caches['default'].clear()
 
     translation.trans_real.deactivate()
