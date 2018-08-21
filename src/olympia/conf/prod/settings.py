@@ -46,22 +46,12 @@ ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
 
 REVIEWER_ATTACHMENTS_PATH = MEDIA_ROOT + '/reviewer_attachment'
 
-DATABASES = {}
-DATABASES['default'] = env.db('DATABASES_DEFAULT_URL')
-DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
-# Run all views in a transaction (on master) unless they are decorated not to.
-DATABASES['default']['ATOMIC_REQUESTS'] = True
-# Pool our database connections up for 300 seconds
-DATABASES['default']['CONN_MAX_AGE'] = 300
+DATABASES = {
+    'default': get_db_config('DATABASES_DEFAULT_URL'),
+    'slave': get_db_config('DATABASES_SLAVE_URL'),
+}
 
-DATABASES['slave'] = env.db('DATABASES_SLAVE_URL')
-# Do not open a transaction for every view on the slave DB.
-DATABASES['slave']['ATOMIC_REQUESTS'] = False
-DATABASES['slave']['ENGINE'] = 'django.db.backends.mysql'
-# Pool our database connections up for 300 seconds
-DATABASES['slave']['CONN_MAX_AGE'] = 300
-
-SERVICES_DATABASE = env.db('SERVICES_DATABASE_URL')
+SERVICES_DATABASE = get_db_config('SERVICES_DATABASE_URL')
 
 SLAVE_DATABASES = ['slave']
 
