@@ -720,6 +720,16 @@ class TestAddonSubmitSource(TestSubmitBase):
         response = self.client.get(self.url)
         self.assert3xx(response, self.next_url)
 
+    def test_source_submission_notes_not_shown_by_default(self):
+        response = self.post(has_source=False, source=None)
+        doc = pq(response.content)
+        assert 'Remember: ' not in doc('.source-submission-note').text()
+
+    def test_source_submission_notes_shown(self):
+        response = self.post(has_source=True, source=self.get_source())
+        doc = pq(response.content)
+        assert 'Remember: ' in doc('.source-submission-note').text()
+
 
 class DetailsPageMixin(object):
     """ Some common methods between TestAddonSubmitDetails and
