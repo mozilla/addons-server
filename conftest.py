@@ -8,10 +8,7 @@ import pytest
 from multidb import pinning
 
 from olympia import amo, core
-from olympia.access.models import Group, GroupUser
-from olympia.amo.tests import start_es_mocks, stop_es_mocks
 from olympia.translations.hold import clean_translations
-from olympia.users.models import UserProfile
 
 
 @pytest.fixture(autouse=True)
@@ -31,6 +28,8 @@ def mock_elasticsearch():
 
     Tests that do need ES should inherit from ESTestCase, which will stop the
     mock at setup time."""
+    from olympia.amo.tests import start_es_mocks, stop_es_mocks
+
     start_es_mocks()
 
     yield
@@ -130,12 +129,16 @@ def test_pre_setup(request, tmpdir, settings):
 @pytest.fixture
 def admin_group(db):
     """Create the Admins group."""
+    from olympia.access.models import Group
     return Group.objects.create(name='Admins', rules='*:*')
 
 
 @pytest.fixture
 def mozilla_user(admin_group, settings):
     """Create a "Mozilla User"."""
+    from olympia.access.models import GroupUser
+    from olympia.users.models import UserProfile
+
     user = UserProfile.objects.create(pk=settings.TASK_USER_ID,
                                       email='admin@mozilla.com',
                                       username='admin')
