@@ -1,6 +1,0 @@
-[mysql56-community]
-name=MySQL 5.6 Community Server
-baseurl=https://s3-us-west-2.amazonaws.com/net-mozaws-prod-us-west-2-ops-rpmrepo-mirror/mysql/5.6/7/$basearch/
-enabled=1
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
