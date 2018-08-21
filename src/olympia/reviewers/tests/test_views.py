@@ -437,6 +437,42 @@ class TestReviewLog(ReviewerTest):
         assert pq(response.content)(
             '#log-listing tr td a').eq(1).attr('href') == url
 
+    def test_reviewers_can_only_see_addon_types_they_have_perms_for(self):
+        self.make_approvals()
+        response = self.client.get(self.url)
+        assert response .status_code == 200
+        doc = pq(response .content)
+        assert doc('#log-filter button'), 'No filters.'
+        # Should have 2 showing.
+        rows = doc('tbody tr')
+        assert rows.filter(':not(.hide)').length == 2
+        assert rows.filter('.hide').eq(0).text() == 'youwin'
+        # Should have none showing if the addons are static themes.
+        for addon in Addon.objects.all():
+            addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        assert response .status_code == 200
+        doc = pq(response.content)
+        assert not doc('tbody tr :not(.hide)')
+
+        # But they should have 2 showing for someone with the right perms.
+        GroupUser.objects.filter(user=self.user).delete()
+        self.grant_permission(self.user, 'Addons:ThemeReview')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        rows = doc('tbody tr')
+        assert rows.filter(':not(.hide)').length == 2
+        assert rows.filter('.hide').eq(0).text() == 'youwin'
+
+        # Check if we set them back to extensions theme reviewers can't see 'em
+        for addon in Addon.objects.all():
+            addon.update(type=amo.ADDON_EXTENSION)
+        response = self.client.get(self.url)
+        assert response .status_code == 200
+        doc = pq(response.content)
+        assert not doc('tbody tr :not(.hide)')
+
 
 class TestDashboard(TestCase):
     def setUp(self):
