@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 19:26+0000\n"
+"PO-Revision-Date: 2018-08-21 05:30+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -51,7 +51,7 @@ msgid "Your login attempt could not be parsed. Please try again."
 msgstr "თქვენი შესვლის მცდელობები წარუმატებლად დასრულდა. გთხოვთ სცადოთ ხელახლა."
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr "თქვენი Firefox ანგარიში ვერ მოიძებნა. გთხოვთ სცადოთ ხელახლა."
+msgstr "თქვენი Firefox-ანგარიში ვერ მოიძებნა. გთხოვთ სცადოთ ხელახლა."
 
 msgid "You could not be logged in. Please try again."
 msgstr "შესვლა ვერ მოხერხდა. გთხოვთ სცადოთ ხელახლა."
@@ -7906,7 +7906,7 @@ msgid "Occupation"
 msgstr "საქმიანობა"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr "შეგიძლიათ შეცვალოთ თქვენი ელფოსტის მისამართი Firefox ანგარიშებზე."
+msgstr "შეგიძლიათ შეცვალოთ თქვენი ელფოსტის მისამართი Firefox-ანგარიშებზე."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "ეს URL ბმული არასწორი ფორმატისაა. მართებული URL ბმულები გამოიყურება შემდეგნაირად: http://example.com/my_page."
@@ -8034,7 +8034,7 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "გთხოვთ მიუთითოთ გამოსაჩენი სახელი და მომხმარებლის სახელი, რეგისტრაციის დასასრულებლად."
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "ანგარიშის ძირითადი მონაცემების მართვა, როგორიცაა მომხმარებლის სახელი და Firefox ანგარიშის პარამეტრები."
+msgstr "ანგარიშის ძირითადი მონაცემების მართვა, როგორიცაა მომხმარებლის სახელი და Firefox-ანგარიშის პარამეტრები."
 
 msgid "Username"
 msgstr "მომხმარებლის სახელი"
@@ -8043,7 +8043,7 @@ msgid "Email Address"
 msgstr "ელფოსტის მისამართი"
 
 msgid "Manage Firefox Account..."
-msgstr "Firefox ანგარიშის მართვა..."
+msgstr "Firefox-ანგარიშის მართვა..."
 
 msgid "Profile"
 msgstr "პროფილი"
@@ -8098,7 +8098,7 @@ msgid "all"
 msgstr "ყველა"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "ანგარიშზე შესვლისთვის, Mozilla დამატებების საიტი გადამისამართდება Firefox ანგარიშების საიტზე. გადადით და დაასრულეთ ანგარიშის მონაცემების შეყვანა."
+msgstr "ანგარიშზე შესვლისთვის, Mozilla დამატებების საიტი გადამისამართდება Firefox-ანგარიშების საიტზე. გადადით და დაასრულეთ ანგარიშის მონაცემების შეყვანა."
 
 msgid "User Login"
 msgstr "მომხმარებლის შესვლა"
