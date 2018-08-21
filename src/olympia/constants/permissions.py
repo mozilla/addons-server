@@ -84,7 +84,14 @@ PERMISSIONS_LIST = [
 DJANGO_PERMISSIONS_MAPPING = defaultdict(lambda: SUPERPOWERS)
 
 DJANGO_PERMISSIONS_MAPPING.update({
+    'abuse.delete_abusereport': ADMIN_ADVANCED,
+    # Note that ActivityLog's ModelAdmin actually forbids deletion entirely.
+    # This is just here to allow deletion of users, because django checks
+    # foreign keys even though users are only soft-deleted and related objects
+    # will be kept.
+    'activity.delete_activitylog': ADMIN_ADVANCED,
     'addons.change_addon': ADDONS_EDIT,
+    'addons.delete_addonuser': ADMIN_ADVANCED,
     # Users with Admin:Curation can do anything to ReplacementAddon.
     # In addition, the modeladmin will also check for Addons:Edit and give them
     # read-only access to the changelist (obj=None passed to the
@@ -100,8 +107,11 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'discovery.change_discoveryitem': DISCOVERY_EDIT,
     'discovery.delete_discoveryitem': DISCOVERY_EDIT,
 
+    'reviewers.delete_reviewerscore': ADMIN_ADVANCED,
+
     'users.change_userprofile': USERS_EDIT,
     'users.delete_userprofile': ADMIN_ADVANCED,
 
     'ratings.change_rating': RATINGS_MODERATE,
+    'ratings.delete_rating': ADMIN_ADVANCED,
 })

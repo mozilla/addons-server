@@ -73,6 +73,10 @@ class AddonAdmin(admin.ModelAdmin):
     status_with_admin_manage_link.short_description = _(u'Status')
 
 
+class AddonUserAdmin(admin.ModelAdmin):
+    raw_id_fields = ('addon', 'user')
+
+
 class FeatureAdmin(admin.ModelAdmin):
     raw_id_fields = ('addon',)
     list_filter = ('application', 'locale')

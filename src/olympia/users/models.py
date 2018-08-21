@@ -419,6 +419,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                     addon.delete()
                 else:
                     addon.force_disable()
+            else:
+                addon.addonuser_set.filter(user=self).delete()
         user_responsible = core.get_user()
         self._ratings_all.all().delete(user_responsible=user_responsible)
         self.delete_picture()
