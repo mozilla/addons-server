@@ -1,0 +1,15 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_static admin_list admin_urls %}
+
+{% block submit_buttons_top %}
+    <div class="submit-row align-right">
+        {% if action_value %}
+           <input type="hidden" name="_selected_action" value="{{ original.pk }}"/>
+           <input type="hidden" name="action" value="{{ action_value }}"/>
+           <input formaction="{% url 'admin:akismet_akismetreport_changelist' %}"
+                  type="submit" value="{{ button_label }}"/>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block submit_buttons_bottom %}{% endblock %}
