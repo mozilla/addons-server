@@ -3,7 +3,7 @@
   "version": "0.0.17",
   "private": true,
   "engines": {
-    "node": ">= 8"
+    "node": ">= 8.10"
   },
   "scripts": {
     "potools": "potools"
@@ -26,7 +26,6 @@
     "timeago": "1.6.2",
     "uglify-js": "3.4.7",
     "underscore": "1.9.1"
-
   },
   "devDependencies": {
     "potools": "0.3.0"
