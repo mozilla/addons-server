@@ -1520,8 +1520,10 @@ def _submit_details(request, addon, version):
     context = {
         'addon': addon,
         'version': version,
+        'sources_provided': latest_version.sources_provided,
         'submit_page': 'version' if version else 'addon',
     }
+
     post_data = request.POST if request.method == 'POST' else None
     show_all_fields = not version or not addon.has_complete_metadata()
 

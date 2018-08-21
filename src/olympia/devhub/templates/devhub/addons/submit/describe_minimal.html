@@ -19,7 +19,18 @@
       <label for="{{ reviewer_form.approvalnotes.auto_id }}">
       {{ _('Notes to Reviewer:') }}
       </label>
-      <p>{{ _('Is there anything our reviewers should bear in mind when reviewing this add-on?') }}</p>
+      <div class="source-submission-note">
+        <p>{{ _('Is there anything our reviewers should bear in mind when reviewing this add-on?') }}</p>
+        {% if sources_provided %}
+          <p>
+            <span class="req">{{ _('Remember') }}</span>:
+            {% trans %}
+            If you submitted source code, but did not include instructions, you must provide them here.
+            Enter step-by-step build instructions to create an exact copy of the add-on code, per policy requirements.
+            {%- endtrans -%}
+          </p>
+        {% endif %}
+      </div>
       {{ reviewer_form.approvalnotes }}
       <p>{{ _('These notes will only be visible to you and our reviewers.') }}</p>
     </div>

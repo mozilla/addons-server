@@ -1547,3 +1547,12 @@ span.distribution-tag-listed {
 span.distribution-tag-unlisted {
     background-color: #7A2F7A;
 }
+
+.source-submission-note p {
+    font-size: 0.9em;
+    margin-bottom: 0.2em;
+}
+
+.source-submission-note p:last-child {
+    margin-bottom: 1.5em;
+}
