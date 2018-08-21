@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-21 04:48+0000\n"
+"PO-Revision-Date: 2018-08-21 05:07+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4757,7 +4757,7 @@ msgstr "Lacak pelacak {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "Lirik siapa yang melacak Anda cukup dengan sekali klik."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4813,7 +4813,7 @@ msgstr "Tangkap cuplikan web {start_sub_heading}dengan {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Tangkap layar laman, buat ubahan, dan bagikan."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
@@ -5189,7 +5189,7 @@ msgstr "Bacaan ringan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "Periksa seluruh umpan RSS favorit Anda dalam satu laman tunggal."
 
 #. editorial content for the discovery pane.
 msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5273,7 +5273,7 @@ msgstr "Unduh video YouTube {start_sub_heading}dengan {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
-msgstr ""
+msgstr "Unduh video dan/atau audio."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5329,7 +5329,7 @@ msgstr "Nikmati musik dari seluruh dunia {start_sub_heading}dengan {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Access 20,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Akses 20,000+ stasiun radio dari berbagai penjuru dunia."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
