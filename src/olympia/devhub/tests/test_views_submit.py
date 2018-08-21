@@ -1320,7 +1320,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         # First link is to edit listing.
         assert links[0].attrib['href'] == self.addon.get_dev_url()
         # Second link is back to my submissions.
-        assert links[1].attrib['href'] == reverse('devhub.addons')
+        assert links[1].attrib['href'] == reverse('devhub.themes')
 
         # Text is static theme specific.
         assert "This version will be available after it passes review." in (
