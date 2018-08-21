@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-18 07:55+0000\n"
-"Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
+"PO-Revision-Date: 2018-08-21 19:14+0000\n"
+"Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -227,16 +227,16 @@ msgid "Most Popular"
 msgstr "सर्वाधिक लोकप्रिय"
 
 msgid "All »"
-msgstr ""
+msgstr "सभी »"
 
 msgid "See all »"
-msgstr ""
+msgstr "सभी देखें »"
 
 msgid "Up &amp; Coming Extensions"
 msgstr ""
 
 msgid "Featured Themes"
-msgstr ""
+msgstr "चुनिंदा थीम्स"
 
 msgid "Featured Collections"
 msgstr "विशेष रुप से प्रदर्शित संग्रह"
@@ -247,26 +247,26 @@ msgstr ""
 #. {0} is a date.
 #. {0} is a date
 msgid "Updated {0}"
-msgstr ""
+msgstr "अद्यतनीकृत {0}"
 
 #. {0} is a date.
 msgid "Added {0}"
-msgstr ""
+msgstr "जोड़ा गया {0}"
 
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s साप्ताहिक डाउनलोड"
+msgstr[1] "%(num)s साप्ताहिक डॉउनलोड्स"
 
 #, python-format
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s उपयोगकर्ता"
+msgstr[1] "%(num)s उपयोगकर्ताओं"
 
 msgid "Requires Restart"
-msgstr ""
+msgstr "पुनः प्रारंभ की आवश्यकता है"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
 msgstr ""
@@ -417,7 +417,7 @@ msgid "Review Guidelines"
 msgstr ""
 
 msgid "Reviews"
-msgstr ""
+msgstr "समीक्षाएँ"
 
 #, python-format
 msgid "by %(user)s on %(date)s"
@@ -449,7 +449,7 @@ msgid "[Warning]"
 msgstr ""
 
 msgid "Permissions"
-msgstr ""
+msgstr "अनुमति‌"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr ""
@@ -458,16 +458,16 @@ msgid "This add-on requires the following add-ons to work properly:"
 msgstr ""
 
 msgid "Average"
-msgstr ""
+msgstr "औसत"
 
 msgid "Write a review"
-msgstr ""
+msgstr "एक समीक्षा लिखे"
 
 msgid "Related Categories"
-msgstr ""
+msgstr "संबंधित श्रेणियाँ"
 
 msgid "Part of these Collections"
-msgstr ""
+msgstr "इन संग्रहों का हिस्सा"
 
 #, python-format
 msgid "Other add-ons by %(author)s"
@@ -695,7 +695,7 @@ msgid "This must be a valid hex color code, such as #000000."
 msgstr ""
 
 msgid "Not allowed"
-msgstr ""
+msgstr "अनुमति नही है"
 
 msgid "Oops! Not allowed."
 msgstr ""
@@ -717,7 +717,7 @@ msgid ""
 msgstr ""
 
 msgid "Page Not Found"
-msgstr ""
+msgstr "पेज उपलब्ध नहीं है"
 
 msgid "Firefox Add-ons"
 msgstr "Firefox एड-ऑन‌्स"
@@ -742,7 +742,7 @@ msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an is
 msgstr ""
 
 msgid "Not Found"
-msgstr ""
+msgstr "नहीं मिला"
 
 #, python-format
 msgid ""
@@ -764,14 +764,14 @@ msgid "Some rights reserved"
 msgstr ""
 
 msgid "No results found"
-msgstr ""
+msgstr "कोई परिणाम नहीं मिला"
 
 #. abbreviation of 'previous'
 msgid "Prev"
-msgstr ""
+msgstr "पिछला"
 
 msgid "Next"
-msgstr ""
+msgstr "अगला"
 
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
