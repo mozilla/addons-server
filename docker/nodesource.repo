@@ -1,7 +1,0 @@
-[nodesource]
-name=Node.js Packages for Enterprise Linux 7 - $basearch
-baseurl=https://s3-us-west-2.amazonaws.com/net-mozaws-prod-us-west-2-ops-rpmrepo-mirror/nodesource/6.x/7/x86_64/
-failovermethod=priority
-enabled=1
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-nodesource
