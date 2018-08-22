@@ -1060,10 +1060,10 @@ def reviewlog(request):
         # right permission.
         list_channel = amo.RELEASE_CHANNEL_LISTED
         approvals = approvals.filter(versionlog__version__channel=list_channel)
-    if not acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
+    if not acl.check_addons_reviewer(request):
         approvals = approvals.exclude(
             versionlog__version__addon__type__in=amo.GROUP_TYPE_ADDON)
-    if not acl.action_allowed(request, amo.permissions.STATIC_THEMES_REVIEW):
+    if not acl.check_static_theme_reviewer(request):
         approvals = approvals.exclude(
             versionlog__version__addon__type=amo.ADDON_STATICTHEME)
 
