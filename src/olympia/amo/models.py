@@ -4,7 +4,7 @@ import time
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.db import models, transaction
+from django.db import models
 from django.utils import translation
 from django.db.models.query import ModelIterable
 
