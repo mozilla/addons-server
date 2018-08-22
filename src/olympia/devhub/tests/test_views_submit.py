@@ -1333,8 +1333,24 @@ class TestAddonSubmitFinish(TestSubmitBase):
 
     def test_finish_submitting_unlisted_static_theme(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)
-        # Page should be identical to extensions
-        self.test_finish_submitting_unlisted_addon
+        self.make_addon_unlisted(self.addon)
+
+        latest_version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        content = doc('.addon-submission-process')
+        links = content('a')
+        assert len(links) == 2
+        # First link is to the file download.
+        file_ = latest_version.all_files[-1]
+        assert links[0].attrib['href'] == file_.get_url_path('devhub')
+        assert links[0].text == (
+            'Download %s' % file_.filename)
+        # Second back to my submissions.
+        assert links[1].attrib['href'] == reverse('devhub.themes')
 
 
 class TestAddonSubmitResume(TestSubmitBase):
