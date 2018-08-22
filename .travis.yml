@@ -51,8 +51,8 @@ before_install:
 install:
   - nvm current
   - nvm deactivate
-  - nvm install 6
-  - nvm use 6
+  - nvm install 8
+  - nvm use 8
   - pip install --upgrade pip wheel setuptools tox==2.9.1
 
 before_script:
