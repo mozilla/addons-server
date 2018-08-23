@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-23 16:41+0000\n"
+"PO-Revision-Date: 2018-08-23 17:29+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2255,16 +2255,14 @@ msgstr "Excellente (3)"
 msgid "Manual Reviewer Points"
 msgstr "Punctos de revisores de manual"
 
-#, fuzzy
 msgid "New Legacy Add-on Review"
-msgstr "Nove revision de additivo"
+msgstr "Nove revision de additivo legate"
 
 msgid "Preliminary Add-on Review"
 msgstr "Revision preliminar del additivo"
 
-#, fuzzy
 msgid "Updated Legacy Add-on Review"
-msgstr "Revision actualisate del additivo"
+msgstr "Revision actualisate del additivo legate"
 
 msgid "New Dictionary Review"
 msgstr "Nove revision del dictionario"
@@ -2317,21 +2315,17 @@ msgstr "Moderation del revision de additivo revertite"
 msgid "Add-on Content Review"
 msgstr "Revision de contento del additivo"
 
-#, fuzzy
 msgid "Add-on Review (Highest Risk)"
-msgstr "Revision de additivo post approbation (risco maxime)"
+msgstr "Revision de additivo (risco maxime)"
 
-#, fuzzy
 msgid "Add-on Review (High Risk)"
-msgstr "Revision de additivo post approbation (risco alte)"
+msgstr "Revision de additivo (risco alte)"
 
-#, fuzzy
 msgid "Add-on Review (Medium Risk)"
-msgstr "Revision de additivo post approbation (risco medie)"
+msgstr "Revision de additivo (risco medie)"
 
-#, fuzzy
 msgid "Add-on Review (Low Risk)"
-msgstr "Revision de additivo post approbation (risco basse)"
+msgstr "Revision de additivo (risco basse)"
 
 msgid "Level 1"
 msgstr "Nivello 1"
@@ -2547,9 +2541,9 @@ msgstr "Le clave API de disveloppator de un coautor esseva trovate in le file in
 msgid "%s responded with %s (%s)."
 msgstr "%s ha respondite con %s (%s)."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Connection to \"%s\" timed out."
-msgstr "Connexion a \"%s\" foras tempore limite.\n"
+msgstr "Tempore de connexion a \"%s\" expirate."
 
 #, python-format
 msgid "Could not contact host at \"%s\"."
@@ -3377,7 +3371,7 @@ msgid "Is there anything our reviewers should bear in mind when reviewing this a
 msgstr "Ha il alco que tu revisores debe tener in mente durante le revision de iste additivo?"
 
 msgid "Remember"
-msgstr ""
+msgstr "Memorar"
 
 #, python-format
 msgid ""
@@ -4750,7 +4744,7 @@ msgstr "Da un oculata a qui te spia per justo un clic."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Cambia tu servitor proxy {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
