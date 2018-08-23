@@ -2276,13 +2276,13 @@ msgid "Manual Reviewer Points"
 msgstr "Handmatige beoordelaarspunten"
 
 msgid "New Legacy Add-on Review"
-msgstr "Nieuwe beoordeling verouderde add-on"
+msgstr ""
 
 msgid "Preliminary Add-on Review"
 msgstr "Voorlopige add-on-beoordeling"
 
 msgid "Updated Legacy Add-on Review"
-msgstr "Bijgewerkte beoordeling van verouderde add-on"
+msgstr ""
 
 msgid "New Dictionary Review"
 msgstr "Beoordeling van nieuw woordenboek"
@@ -3401,8 +3401,6 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
-"Als u broncode hebt ingediend, maar geen instructies heeft bijgevoegd, dan moet u ze hier opgeven. Voer stap-voor-stap-buildinstructies in om een exacte kopie van de add-oncode te genereren, zoals "
-"verwoord in de %(policy_requirements_open)sbeleidsvoorschriften%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Deze opmerkingen zijn alleen voor u en onze beoordelaars zichtbaar."
