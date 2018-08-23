@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-23 11:32+0000\n"
+"PO-Revision-Date: 2018-08-23 11:34+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -1646,9 +1646,8 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Коментар на {addon} {version}."
 
-#, fuzzy
 msgid "Commented"
-msgstr "Коментар"
+msgstr "Коментирано"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} добавен към {addon}."
@@ -3287,7 +3286,7 @@ msgid "Statistics"
 msgstr "Статистика"
 
 msgid "Manage Status & Versions"
-msgstr "Състояние и версии"
+msgstr "Състояние и издания"
 
 msgid "View Add-on Listing"
 msgstr "Преглед на добавката"
@@ -4260,7 +4259,7 @@ msgid "Created on %(created)s and changed to %(status)s"
 msgstr ""
 
 msgid "Status & Versions"
-msgstr "Състояние и версии"
+msgstr "Състояние и издания"
 
 msgid "Edit this version"
 msgstr "Редактиране на колекцията"
