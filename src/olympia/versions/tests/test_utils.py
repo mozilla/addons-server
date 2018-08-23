@@ -62,31 +62,60 @@ def test_additional_background_split_alignment(alignment, alignments_tuple):
 
 @mock.patch('olympia.versions.utils.encode_header_image')
 @pytest.mark.parametrize(
-    'alignment, tiling,'  # inputs
-    'pattern_width, pattern_height, pattern_x, pattern_y', (
-        ('center bottom', 'no-repeat', 680, 92, 280, -358),
-        ('top', 'repeat-x', 120, 92, 280, 0),
-        ('center', 'repeat-y', 680, 450, 280, -179),
-        ('left top', 'repeat', 120, 450, 0, 0),
+    'alignment, tiling, image_width, image_height, '  # inputs
+    'pattern_width, pattern_height, pattern_x, pattern_y',  # results
+    (
+        # these are all with a small image than the svg size
+        ('center bottom', 'no-repeat', 120, 50,
+         680, 92, 280, 42),
+        ('top', 'repeat-x', 120, 50,
+         120, 92, 280, 0),
+        ('center', 'repeat-y', 120, 50,
+         680, 50, 280, 21),
+        ('left top', 'repeat', 120, 50,
+         120, 50, 0, 0),
         # alignment=None is 'right top'
-        (None, 'repeat', 120, 450, 560, 0),
+        (None, 'repeat', 120, 50,
+         120, 50, 560, 0),
         # tiling=None is 'no-repeat'
-        ('center', None, 680, 92, 280, -179),
+        ('center', None, 120, 50,
+         680, 92, 280, 21),
         # so this is alignment='right top'; tiling='no-repeat'
-        (None, None, 680, 92, 560, 0),
+        (None, None, 120, 50,
+         680, 92, 560, 0),
+
+        # repeat with a larger image than the svg size
+        ('center bottom', 'no-repeat', 1120, 450,
+         1120, 450, -220, -358),
+        ('top', 'repeat-x', 1120, 450,
+         1120, 450, -220, 0),
+        ('center', 'repeat-y', 1120, 450,
+         1120, 450, -220, -179),
+        ('left top', 'repeat', 1120, 450,
+         1120, 450, 0, 0),
+        # alignment=None is 'right top'
+        (None, 'repeat', 1120, 450,
+         1120, 450, -440, 0),
+        # tiling=None is 'no-repeat'
+        ('center', None, 1120, 450,
+         1120, 450, -220, -179),
+        # so this is alignment='right top'; tiling='no-repeat'
+        (None, None, 1120, 450,
+         1120, 450, -440, 0),
     )
 )
-def test_additional_background(encode_header_image, alignment, tiling,
-                               pattern_width, pattern_height, pattern_x,
-                               pattern_y):
-    encode_header_image.return_value = ('foobaa', 120, 450)
+def test_additional_background(
+        encode_header_image_mock, alignment, tiling, image_width, image_height,
+        pattern_width, pattern_height, pattern_x, pattern_y):
+    encode_header_image_mock.return_value = (
+        'foobaa', image_width, image_height)
     path = 'empty.png'
     header_root = os.path.join(
         settings.ROOT, 'src/olympia/versions/tests/static_themes/')
     background = AdditionalBackground(path, alignment, tiling, header_root)
     assert background.src == 'foobaa'
-    assert background.width == 120
-    assert background.height == 450
+    assert background.width == image_width
+    assert background.height == image_height
     background.calculate_pattern_offsets(
         amo.THEME_PREVIEW_SIZES['header']['full'].width,
         amo.THEME_PREVIEW_SIZES['header']['full'].height)

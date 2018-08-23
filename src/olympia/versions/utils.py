@@ -84,6 +84,7 @@ class AdditionalBackground(object):
 
     def calculate_pattern_offsets(self, svg_width, svg_height):
         align_x, align_y = self.split_alignment(self.alignment)
+
         if align_x == 'right':
             self.pattern_x = svg_width - self.width
         elif align_x == 'center':
@@ -96,12 +97,15 @@ class AdditionalBackground(object):
             self.pattern_y = (svg_height - self.height) / 2
         else:
             self.pattern_y = 0
-        self.pattern_width = (
-            self.width if self.tiling in ['repeat', 'repeat-x']
-            else svg_width)
-        self.pattern_height = (
-            self.height if self.tiling in ['repeat', 'repeat-y']
-            else svg_height)
+
+        if self.tiling in ['repeat', 'repeat-x'] or self.width > svg_width:
+            self.pattern_width = self.width
+        else:
+            self.pattern_width = svg_width
+        if self.tiling in ['repeat', 'repeat-y'] or self.height > svg_height:
+            self.pattern_height = self.height
+        else:
+            self.pattern_height = svg_height
 
 
 CHROME_COLOR_TO_CSS = {
