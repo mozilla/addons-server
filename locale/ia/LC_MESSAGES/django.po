@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-23 19:30+0000\n"
+"PO-Revision-Date: 2018-08-23 19:49+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -701,7 +701,7 @@ msgid "This must be a valid hex color code, such as #000000."
 msgstr "Isto debe ser un codice hexadecimal de color valide, tal como #000000."
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "Alcun functionalitates es temporarimente disactivate durante que nos exeque le mantenentia del sito web. Nos tornara al plen capacitate a breve."
 
 msgid "Not allowed"
 msgstr "Non consentite"
@@ -3337,7 +3337,7 @@ msgid "Summary:"
 msgstr "Summario:"
 
 msgid "required"
-msgstr "requirite"
+msgstr "necessari"
 
 msgid "This add-on is experimental"
 msgstr "Iste additivo es experimental"
@@ -5969,11 +5969,13 @@ msgid "Discover Add-ons"
 msgstr "Discoperi additivos"
 
 msgid "What are Add-ons?"
-msgstr ""
+msgstr "Que es additivos?"
 
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
 msgstr ""
+"Le additivos es applicationes que lassa te personalisar %(app)s con functionalitates o stilos extra. Prova un barra lateral pro sparniar tempore, un notificator meteorologic, o un apparentia a thema"
+" pro rende %(app)sr tu proprie."
 
 msgid "Learn More About Add-ons"
 msgstr "Saper plus re additivos"
