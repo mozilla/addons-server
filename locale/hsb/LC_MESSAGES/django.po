@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-23 11:46+0000\n"
+"PO-Revision-Date: 2018-08-23 11:58+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2296,16 +2296,14 @@ msgstr "Wuběrny (3)"
 msgid "Manual Reviewer Points"
 msgstr "Dypki za manuelne přepruwowanje"
 
-#, fuzzy
 msgid "New Legacy Add-on Review"
-msgstr "Nowe přepruwowanje přidatka"
+msgstr "Nowe přepruwowanje zestarjeneho přidatka"
 
 msgid "Preliminary Add-on Review"
 msgstr "Nachwilne přepruwowanje přidatka"
 
-#, fuzzy
 msgid "Updated Legacy Add-on Review"
-msgstr "Přepruwowanje zaktualizowaneho přidatka"
+msgstr "Zaktualizowane přepruwowanje zestarjeneho přidatka"
 
 msgid "New Dictionary Review"
 msgstr "Nowe přepruwowanje słownika"
@@ -2358,21 +2356,17 @@ msgstr "Moderacija za pohódnoćenje přidatka je so anulowała"
 msgid "Add-on Content Review"
 msgstr "Přepruwowanje wobsaha přidatka"
 
-#, fuzzy
 msgid "Add-on Review (Highest Risk)"
-msgstr "Přepruwowanje přidatka po schwalenju (najwyše riziko)"
+msgstr "Přepruwowanje přidatka (najwyše riziko)"
 
-#, fuzzy
 msgid "Add-on Review (High Risk)"
-msgstr "Přepruwowanje přidatka po schwalenju (wysoke riziko)"
+msgstr "Přepruwowanje přidatka (wysoke riziko)"
 
-#, fuzzy
 msgid "Add-on Review (Medium Risk)"
-msgstr "Přepruwowanje přidatka po schwalenju (srjedźne riziko)"
+msgstr "Přepruwowanje přidatk (srjedźne riziko)"
 
-#, fuzzy
 msgid "Add-on Review (Low Risk)"
-msgstr "Protokol přidatkowych přepruwowanjow"
+msgstr "Přepruwowanje přidatka (niske riziko)"
 
 msgid "Level 1"
 msgstr "Schodźenk 1"
@@ -3428,6 +3422,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
+"Jeli sće žórłowy kod zapodał, ale njejsće instrukcije zapřijał, dyrbiće je tu podać. Zapodajće instrukcije krok po kroku za wutworjenje, zo byšće eksaktnu kopiju přidatkoweho koda wutworił, po "
+"%(policy_requirements_open)sžadanjach prawidłow%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Tute přispomnjenki su jenož za was a našich přepruwowarjow widźomne."
@@ -3525,9 +3521,8 @@ msgstr "Nahraće žórłoweho koda"
 msgid "Do You Need to Submit Source Code?"
 msgstr "Dyrbiće žórłowy kod zapodać?"
 
-#, fuzzy
 msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "Snano dyrbiće žórłowy kod zapodać. Jeli korektny žórłowy kod nětko njezapodawaće, móhł waš přidatk ze sydła wotstronić!"
+msgstr "Snano dyrbiće žórłowy kod zapodać. Jeli to nječiniće, móhł so waš přidatk ze sydła wotstronić!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
