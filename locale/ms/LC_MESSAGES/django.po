@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-23 13:53+0000\n"
+"PO-Revision-Date: 2018-08-23 13:56+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2290,17 +2290,14 @@ msgstr "Semakan Kandungan Add-on"
 msgid "Add-on Review (Highest Risk)"
 msgstr "Ulasan Add-on (Risiko Tertinggi)"
 
-#, fuzzy
 msgid "Add-on Review (High Risk)"
-msgstr "Semakan Add-on Pasca-Kelulusan (Risiko Tinggi)"
+msgstr "Ulasan Add-on (Risiko Tinggi)"
 
-#, fuzzy
 msgid "Add-on Review (Medium Risk)"
-msgstr "Semakan Add-on Pasca-Kelulusan (Risiko Medium)"
+msgstr "Ulasan Add-on (Risiko Medium)"
 
-#, fuzzy
 msgid "Add-on Review (Low Risk)"
-msgstr "Log Semakan Add-on"
+msgstr "Ulasan Add-on (Risiko Rendah)"
 
 msgid "Level 1"
 msgstr "Tahap 1"
@@ -3438,9 +3435,8 @@ msgstr "Kod Sumber Dimuat naik"
 msgid "Do You Need to Submit Source Code?"
 msgstr "Adakah Anda Perlu Serahkan Kod Sumber?"
 
-#, fuzzy
 msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "Anda mungkin perlu serahkan kod sumber. Jika anda tidak serahkan kod sumber yang betul sekarang, add-on anda mungkin dibuang daripada laman berkenaan!"
+msgstr "Anda mungkin perlu serahkan kod sumber. Jika tidak, add-on anda mungkin dibuang daripada laman berkenaan!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
