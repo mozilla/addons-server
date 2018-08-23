@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-23 20:51+0000\n"
+"PO-Revision-Date: 2018-08-23 21:05+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2540,7 +2540,7 @@ msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVer
 msgstr "Ri taq tz'aqat e'ichinan kan man e k'amonel ta rik'in ri Firefox 57 o jotöl. Tokisäx jun maxVersion richin 56.* o qajinäq."
 
 msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr ""
+msgstr "Man yek'ul ta chik ojer taq pisoj ch'ab'äl pa Firefox. Rajowaxik niyak jun WebExtensions tzijoxïk. Tatz'eta' {mdn_link} richin ch'aqa' chik rutzijol."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Niqaya' q'ij chuqa' niqaya' kitzijol ri taq k'exoj, xa xe man tikirel ta nik'ex. Toq ri okisaxela' kiyakon chik ri WebExtension, man xketikïr ta xtikiyäk jun rutz'aqat choltz'ib'anem."
@@ -2568,7 +2568,7 @@ msgid "Could not contact host at \"%s\"."
 msgstr "Man rilon ta ri k'uxasamaj pa \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Rutzijol Rujikomal Mozilla: Xeyuj ri taq AMO API wujil"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2904,25 +2904,25 @@ msgid "Summary"
 msgstr "Ch'utitzijol"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "Wawe' k'o ta chi naya' rutzijol rusamaj nub'än ri achokoy. Xtiwachin pa taq cholb'äl chuqa' pa taq kanoxïk chuqa' xtikokisaj ri nik'onela' richin nikitojtob'ej ri achokoy."
 
 msgid "Experimental?"
 msgstr "¿La soltojtob'enel?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "We nitojtob'ëx ri achokoy o k'a majani ütz nokisäx kuma xab'achike winäq.  Xtiwachin pa cholb'äl ri chokoy xa xe chi e jub'a' xketz'eto. "
 
 msgid "This add-on is experimental."
 msgstr "Re tz'aqat re' nitojtob'ëx."
 
 msgid "This add-on is ready for general use."
-msgstr ""
+msgstr "Re chokoy re' ütz chik nikokisaj xab'achike winäq."
 
 msgid "Requires Payment?"
-msgstr ""
+msgstr "¿La k'o chi nitoj?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Taya' retal re kajtz'ik re' we ri nïm rusamaj achokoy nrajo' chi nab'ey titoj o nik'o na q'ij tojtob'enïk richin ütz nisamäj."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr ""
