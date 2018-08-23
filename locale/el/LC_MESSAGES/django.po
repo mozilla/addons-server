@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-23 13:07+0000\n"
+"PO-Revision-Date: 2018-08-23 13:53+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3639,7 +3639,7 @@ msgid "Header area background"
 msgstr "Φόντο περιοχής επικεφαλίδας"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr ""
+msgstr "Το χρώμα φόντου της περιοχής επικεφαλίδας, που προβάλλεται στο μέρος της επικεφαλίδας που δεν καλύπτεται ή που είναι ορατό μέσω της εικόνας επικεφαλίδας. Πεδίο αρχείου manifest:  accentcolor."
 
 msgid "Header area text and icons"
 msgstr "Κείμενο και εικονίδια περιοχής επικεφαλίδας"
@@ -3651,7 +3651,7 @@ msgid "Toolbar area background"
 msgstr "Φόντο περιοχής γραμμής εργαλείων"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
+msgstr "Το χρώμα φόντου για τη γραμμή πλοήγησης, τη γραμμή σελιδοδεικτών και την επιλεγμένη καρτέλα. Πεδίο αρχείου manifest:  toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Κείμενο και εικονίδια περιοχής γραμμής εργαλείων"
@@ -3663,7 +3663,7 @@ msgid "Toolbar field area background"
 msgstr "Φόντο περιοχής πεδίου γραμμής εργαλείων"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
+msgstr "Το χρώμα φόντου για πεδία της γραμμής εργαλείων, όπως η γραμμή URL. Πεδίο αρχείου manifest:  toolbar_field."
 
 msgid "Toolbar field area text"
 msgstr "Κείμενο περιοχής πεδίου γραμμής εργαλείων"
@@ -3767,7 +3767,7 @@ msgid "This is the newest uploaded version, however it isn’t live on the site 
 msgstr ""
 
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Οι ουρές δεν αξιολογούνται αυστηρά με σειρά"
 
 msgid "Queue Position:"
 msgstr "Θέση ουράς:"
@@ -4487,7 +4487,7 @@ msgstr "Κάντε λήψη βίντεο {start_sub_heading}με το {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Λειτουργεί με YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope και εκατοντάδες άλλες ιστοσελίδες βίντεο."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4591,7 +4591,7 @@ msgstr "Έλεγχος παγκόσμιας ώρας {start_sub_heading}με τ�
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Εμφάνιση παγκόσμιας ώρας στη γραμμή κατάστασης του Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4903,9 +4903,8 @@ msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Κάντε λήψη στιγμιότυπων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Προσθήκη εικόνων σε αποτελέσματα αναζήτησης {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
@@ -4978,9 +4977,8 @@ msgid "Make the text you're reading more appealing by removing the clutter aroun
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Άνοιγμα πολλαπλών συνδέσμων {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
@@ -5033,7 +5031,7 @@ msgstr "Διόρθωση αγαπημένων {start_sub_heading}με το {addo
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "Εύρεση και επίλυση χαλασμένων σελιδοδεικτών, διπλότυπων και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5070,9 +5068,8 @@ msgid "Get in-depth engagement and traffic information for any website."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Εξατομίκευση Wikipedia {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh and modern appearance to Wikipedia."
@@ -5358,9 +5355,8 @@ msgid "Enjoy a highly customizable text highlighter with different colors and sa
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Απολαύστε μουσική απ' όλο τον κόσμο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access 20,000+ radio stations from all over the globe."
@@ -5399,9 +5395,8 @@ msgid "Specify a custom number of days to retain browser history before it's aut
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Αφαίρεση διαφημίσεων αναζήτησης {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
@@ -7671,22 +7666,22 @@ msgid "Change settings."
 msgstr "Αλλαγή ρυθμίσεων."
 
 msgid "Add-ons Created by Date"
-msgstr ""
+msgstr "Δημιουργία προσθέτων κατά ημερομηνία"
 
 msgid "Add-ons Downloaded by Date"
-msgstr ""
+msgstr "Λήψεις προσθέτων κατά ημερομηνία"
 
 msgid "Add-ons in Use by Date"
-msgstr ""
+msgstr "Πρόσθετα σε χρήση κατά ημερομηνία"
 
 msgid "Add-ons Updated by Date"
-msgstr ""
+msgstr "Ενημερωμένα πρόσθετα κατά ημερομηνία"
 
 msgid "Application usage by Date"
 msgstr "Χρήση εφαρμογής κατά ημερομηνία"
 
 msgid "Collections Created by Date"
-msgstr ""
+msgstr "Δημιουργία συλλογών κατά ημερομηνία"
 
 msgid "Downloaded by Date"
 msgstr "Λήψεις κατά ημερομηνία"
