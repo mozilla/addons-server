@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-02 10:53+0000\n"
-"Last-Translator: Mohit Bansal <philomath@disroot.org>\n"
+"PO-Revision-Date: 2018-08-23 14:27+0000\n"
+"Last-Translator: Umesh Agarwal <umesh.agarwal1@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -102,16 +102,20 @@ msgid "WebExtension upgrade"
 msgstr "WebExtension अपग्रेड"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "हम एक अपग्रेड कि अनुमति तथा प्रोत्साहन दे सकते हैं लेकिन आप इस प्रक्रिया को उलट नहीं सकते हैं. एक बार आपके उपयोगकर्ताओं के पास WebExtension स्थापित हो जाने बाद, वो कोई लीगेसी ऐड-ऑन इंस्टॉल नहीं कर पाएंगे."
+msgstr ""
+"हम एक अपग्रेड कि अनुमति तथा प्रोत्साहन दे सकते हैं लेकिन आप इस प्रक्रिया को उलट नहीं सकते हैं. एक बार आपके उपयोगकर्ताओं के पास WebExtension स्थापित हो जाने बाद, वो कोई लीगेसी ऐड-ऑन इंस्टॉल नहीं कर "
+"पाएंगे."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "MDN पर एक लिगेसी एड-ऑन पोर्ट करना"
+msgstr ""
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "विस्तृत संस्करण नोट्स शामिल करें (यह अगले चरण में किया जा सकता है)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "यदि आपके ऐड-ऑन को पूरी तरह से परीक्षण करने के लिए किसी वेबसाइट पर एक खाता की आवश्यकता होती है, तो रिव्यूर हेतु नोट्स में एक टेस्ट उपयोगकर्ता नाम और पासवर्ड शामिल करें (यह अगले चरण में किया जा सकता है)."
+msgstr ""
+"यदि आपके ऐड-ऑन को पूरी तरह से परीक्षण करने के लिए किसी वेबसाइट पर एक खाता की आवश्यकता होती है, तो रिव्यूर हेतु नोट्स में एक टेस्ट उपयोगकर्ता नाम और पासवर्ड शामिल करें (यह अगले चरण में किया जा सकता "
+"है)."
 
 msgid "Add-on submission checklist"
 msgstr "ऐड-ऑन सबमिशन चेकलिस्ट"
@@ -123,8 +127,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"संकलित बाइनरी, साथ ही minified या obfuscated स्क्रिप्ट (ज्ञात पुस्तकालयों को छोड़कर) को अपने स्रोतों को समीक्षा के लिए अलग से सबमिट करने की आवश्यकता है. सुनिश्चित करें कि आप अपना सबमिशन अस्वीकार होने से बचने के लिए सोर्स कोड "
-"अपलोड फ़ील्ड का उपयोग करते हैं."
+"संकलित बाइनरी, साथ ही minified या obfuscated स्क्रिप्ट (ज्ञात पुस्तकालयों को छोड़कर) को अपने स्रोतों को समीक्षा के लिए अलग से सबमिट करने की आवश्यकता है. सुनिश्चित करें कि आप अपना सबमिशन अस्वीकार "
+"होने से बचने के लिए सोर्स कोड अपलोड फ़ील्ड का उपयोग करते हैं."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "सत्यापन प्रक्रिया को ये मुद्दे मिले जो अस्वीकृति का कारण बन सकते हैं:"
@@ -164,22 +168,22 @@ msgid "All Rights Reserved"
 msgstr "सर्वाधिकार सुरक्षित"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Your Theme's Name"
 msgstr "आपकी थीम का नाम"
