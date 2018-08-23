@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-21 02:06+0000\n"
+"PO-Revision-Date: 2018-08-23 01:13+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -65,7 +65,7 @@ msgid "Developers of add-ons or themes cannot delete their account. You must del
 msgstr ""
 
 msgid "Review"
-msgstr "평가"
+msgstr "검토"
 
 msgid "Version {0}"
 msgstr "버전 {0}"
@@ -390,16 +390,16 @@ msgstr "당신은 어떻게 생각하세요?"
 
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr "평가를 작성하려면 <a href=\"%(login)s\">로그인</a> 하세요"
+msgstr "검토를 작성하려면 <a href=\"%(login)s\">로그인</a> 하세요"
 
 msgid "Review:"
-msgstr "평가:"
+msgstr "검토:"
 
 msgid "Rating:"
 msgstr "별점:"
 
 msgid "Submit review"
-msgstr "평가 작성"
+msgstr "검토 제출"
 
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
 msgstr "여기에 버그 리포트를 올리지 마세요. 저희는 부가 기능 개발자가 여러분의 이메일 주소로 직접 연락해 문제를 해결하는 것을 허용하지 않습니다."
@@ -411,22 +411,22 @@ msgid ""
 msgstr "부가 기능의 <a href=\"%(support)s\">도움말 섹션</a>에서 도움될만 한 것이 있는지 살펴보세요. <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">부가 기능 커뮤니티</a>에 도움을 요청하실수도 있습니다."
 
 msgid "Review Guidelines"
-msgstr "평가 지침"
+msgstr "검토 가이드"
 
 msgid "Reviews"
-msgstr "평가"
+msgstr "검토"
 
 #, python-format
 msgid "by %(user)s on %(date)s"
 msgstr "작성: %(user)s, 날짜: %(date)s"
 
 msgid "Show the developer's reply to this review"
-msgstr "이 평가에 달린 개발자 답변 보기"
+msgstr "이 검토에 달린 개발자 답변 보기"
 
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "이 부가 기능의 평가 %(cnt)s 개 모두 보기"
+msgstr[0] "이 부가 기능의 검토 %(cnt)s개 모두 보기"
 
 msgid "Tags"
 msgstr "태그"
@@ -458,7 +458,7 @@ msgid "Average"
 msgstr "평균"
 
 msgid "Write a review"
-msgstr "평가 작성하기"
+msgstr "검토 작성하기"
 
 msgid "Related Categories"
 msgstr "관련 분류"
@@ -474,7 +474,7 @@ msgstr[0] "이 제작자의 다른 부가 기능"
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "사용자 평가 <span itemprop=\"ratingCount\">%(num)s</span>개"
+msgstr[0] "사용자 검토 <span itemprop=\"ratingCount\">%(num)s</span>개"
 
 msgid "View statistics"
 msgstr "통계 보기"
@@ -586,7 +586,7 @@ msgstr "고유 주소"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "모든 %(cnt)s 사용자 평가 보기"
+msgstr[0] "모든 %(cnt)s개 사용자 검토 보기"
 
 msgid "This add-on has not yet been reviewed."
 msgstr "이 부가 기능은 아직 심사를 거치지 않았습니다."
@@ -2534,7 +2534,7 @@ msgid "User Collections"
 msgstr "사용자 모음집"
 
 msgid "User Reviews"
-msgstr "사용자 평가"
+msgstr "사용자 검토"
 
 msgid "Changes successfully saved."
 msgstr "변경 내역이 성공적으로 저장되었습니다."
@@ -3315,7 +3315,7 @@ msgid "Notes to Reviewer:"
 msgstr "심사자 주의 사항:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr "저희 심사원들이 이 add-on을 평가할 때 고려해야 할 점이 있습니까?"
+msgstr "저희 심사원들이 이 add-on을 검토할 때 고려해야 할 점이 있습니까?"
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "이 노트는 귀하와 저희 심사원들에게만 보여집니다."
@@ -3720,9 +3720,8 @@ msgstr "전부 보기"
 msgid "Listed Review Page"
 msgstr "심사 조정 기록"
 
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "사용자 평가"
+msgstr "목록에 없는 검토 페이지"
 
 msgid "View Statistics Dashboard"
 msgstr "통계 대시보드 보기"
@@ -4142,7 +4141,7 @@ msgstr "<a href=\"%(edit_url)s\">등재 정보를 편집해서</a> 테마에 보
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "테마의 <a href=\"%(feed_url)s\">활동량 피드</a>를 보고 구독하세요. 사용자 평가, 모음집 등록 등의 정보가 지속적으로 업데이트됩니다."
+msgstr "테마의 <a href=\"%(feed_url)s\">활동량 피드</a>를 보고 구독하세요. 사용자 검토, 모음집 등록 등의 정보가 지속적으로 업데이트됩니다."
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
@@ -5782,7 +5781,7 @@ msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on
 msgstr ""
 
 msgid "Back to review"
-msgstr "평가로 돌아가기"
+msgstr "검토로 돌아가기"
 
 # 80%
 # 100%
@@ -6093,7 +6092,7 @@ msgid "Participate in our <a href=\"%(url)s\">forums</a>."
 msgstr "<a href=\"%(url)s\">포럼</a>에도 참여해 보세요."
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr "부가 기능에 평가를 적어주세요. 제작자들은 사람들이 자기 작품을 쓰면서 기뻐한다는 걸 알면 좀 더 개선하거나 새 작품을 만들려고 하니까요."
+msgstr "사이트의 부가 기능을 검토해 주세요. 제작자들은 사람들이 자기 작품을 쓰면서 기뻐한다는 걸 알면 좀 더 개선하거나 새 작품을 만들려고 하니까요."
 
 msgid "I have a question"
 msgstr "질문이 있어요"
@@ -6117,10 +6116,10 @@ msgid "Sections"
 msgstr "항목"
 
 msgid "Some tips for writing a great review"
-msgstr "훌륭한 평가를 쓰기 위한 몇 가지 팁"
+msgstr "훌륭한 검토를 쓰기 위한 몇 가지 팁"
 
 msgid "Frequently Asked Questions about Reviews"
-msgstr "평가 작성에 관한 자주 묻는 질문들"
+msgstr "검토 작성에 관한 자주 묻는 질문들"
 
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
@@ -6134,7 +6133,7 @@ msgid "Write like you are telling a friend about your experience with the add-on
 msgstr "친구에게 부가 기능 사용 경험을 이야기하는 식으로 작성해 주세요."
 
 msgid "Keep reviews concise and easy to understand."
-msgstr "평가는 간결하고 읽기 쉽게 작성하세요."
+msgstr "검토는 간결하고 읽기 쉽게 작성하세요."
 
 msgid "Give specific and helpful details. For example:"
 msgstr "구체적이고 유용한 정보를 제공해 주세요. 예를 들면:"
@@ -6169,7 +6168,7 @@ msgid ""
 msgstr ""
 
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr "사용하고 있지도 않은 부가 기능에 대한 평가는 올리지 마세요."
+msgstr "사용하고 있지도 않은 부가 기능에 대한 검토는 올리지 마세요."
 
 msgid "Use profanity, sexual language or language that can be construed as hateful."
 msgstr "신성 모독, 외설적이거나 혐오감을 줄 수 있는 단어를 적지 마세요."
@@ -6184,7 +6183,7 @@ msgid "Include your own or anyone else’s email, phone number, or other persona
 msgstr ""
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "집단이나 조직 명의로 평가를 작성하거나 그들을 대표해서 작성하지 마세요."
+msgstr "집단이나 조직 명의로 검토를 작성하거나 그들을 대표해서 작성하지 마세요."
 
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
@@ -6192,7 +6191,7 @@ msgid ""
 msgstr ""
 
 msgid "How can I report a problematic review?"
-msgstr "문제성 평가는 어떻게 신고할 수 있나요?"
+msgstr "문제있는 검토는 어떻게 신고할 수 있나요?"
 
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
@@ -6200,14 +6199,14 @@ msgid ""
 msgstr ""
 
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "부가 기능 제작자입니다. 평가에 답변을 달 수 있나요?"
+msgstr "부가 기능 제작자인데 검토에 답변을 달 수 있나요?"
 
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
 msgstr ""
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "부가 기능 제작자입니다. 맘에 들지 않는 평가나 별점을 삭제할 수 있나요?"
+msgstr "부가 기능 제작자인데 맘에 들지 않는 검토나 별점을 삭제할 수 있나요?"
 
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
@@ -6306,10 +6305,10 @@ msgstr ""
 
 #, python-format
 msgid "Reviews for %s"
-msgstr "%s에 대한 평가"
+msgstr "%s에 대한 검토"
 
 msgid "Review History for this Addon"
-msgstr "이 부가 기능의 평가 내역"
+msgstr "이 부가 기능의 검토 내역"
 
 #. L10n: This describes the number of stars given out of 5
 #, python-format
@@ -6320,7 +6319,7 @@ msgid "A short explanation must be provided when selecting \"Other\" as a flag r
 msgstr ""
 
 msgid "Spam or otherwise non-review content"
-msgstr "스팸이거나 내용이 평가가 아닙니다"
+msgstr "스팸이거나 검토 내용이 아님"
 
 msgid "Inappropriate language/dialog"
 msgstr "부적절한 언어/대화입니다"
@@ -6348,9 +6347,8 @@ msgstr ""
 msgid "This version of the add-on doesn't exist or isn't public."
 msgstr ""
 
-#, fuzzy
 msgid "You can't leave a review on your own add-on."
-msgstr "누군가 부가 기능에 평가를 작성했습니다"
+msgstr "자신의 부가 기능에는 검토 의견을 남길 수 없습니다."
 
 #, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
@@ -6360,10 +6358,10 @@ msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "감사합니다. 심사가 심사자에게 전달되었습니다."
+msgstr "감사합니다. 검토 의견이 검토자에게 전달되었습니다."
 
 msgid "Add a review for {0}"
-msgstr "{0}에 대한 평가 작성"
+msgstr "{0}에 대한 검토 의견 작성"
 
 #, python-format
 msgid ""
@@ -6376,7 +6374,7 @@ msgid ""
 msgstr ""
 
 msgid "Reply to review by {0}"
-msgstr "{0}님의 평가 답변"
+msgstr "{0}님의 검토에 답변"
 
 msgid "Write a Reply"
 msgstr "댓글 작성하기"

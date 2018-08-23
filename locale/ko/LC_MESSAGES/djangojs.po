@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-07-04 10:21+0000\n"
-"Last-Translator: seungjin <seungjin@seungjin.net>\n"
+"PO-Revision-Date: 2018-08-23 01:04+0000\n"
+"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -116,9 +116,7 @@ msgstr "제출을 마무리 하기 전에 다음 사항을 확인 하십시오. 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr ""
-"컴파일된 바이너리파일, 압축되거나 난독화된 스크립트(알려진 라이브러리 제외)는 리뷰를 위해 별도로 제출되어야 합니다. 귀하의 제출이 거절되지 않도록 소스 코드 업로드 필드를 사용하고 있는지 확인하십시"
-"오."
+msgstr "컴파일된 바이너리파일, 압축되거나 난독화된 스크립트(알려진 라이브러리 제외)는 리뷰를 위해 별도로 제출되어야 합니다. 귀하의 제출이 거절되지 않도록 소스 코드 업로드 필드를 사용하고 있는지 확인하십시오."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "유효성 검사 과정에서 거부 원인이 될 수 있는 문제들 발견:"
@@ -179,7 +177,7 @@ msgid "Your Theme's Name"
 msgstr "테마 이름"
 
 msgid "Flagged for review"
-msgstr "평가에 표시하기"
+msgstr "검토를 위해 표시됨"
 
 msgid "Your input is required"
 msgstr "글을 입력해야 합니다"
@@ -221,7 +219,7 @@ msgid "{0} collections"
 msgstr "모음집 {0}개"
 
 msgid "{0} reviews"
-msgstr "평가 {0}개"
+msgstr "검토 {0}개"
 
 msgid "{0} sales"
 msgstr "판매 {0}회"
@@ -267,7 +265,7 @@ msgid "Add-ons Updated"
 msgstr "업데이트한 부가 기능"
 
 msgid "Reviews Written"
-msgstr "평가가 있는 부가 기능"
+msgstr "검토 작성됨"
 
 msgid "User Signups"
 msgstr "사용자 등록"
@@ -552,11 +550,11 @@ msgstr "{0}부터 {1}까지 업데이트된 부가 기능"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr "최근 {0}일간 작성된 평가"
+msgstr "최근 {0}일간 작성된 검토"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr "{0}부터 {1}까지 작성된 평가"
+msgstr "{0}부터 {1}까지 작성된 검토"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
