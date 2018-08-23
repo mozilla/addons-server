@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-23 19:12+0000\n"
+"PO-Revision-Date: 2018-08-23 19:30+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6999,57 +6999,57 @@ msgstr "Guida del revisor"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
-msgstr ""
+msgstr "Revision de contentos de {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
 msgstr "Revision {0}"
 
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Chronologia del modificationes de usator del additivo"
 
 msgid "Add-on History"
-msgstr ""
+msgstr "Chronologia del additivo"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "(Confirmed)"
-msgstr ""
+msgstr "(Confirmate)"
 
 msgid "Compatibility:"
-msgstr ""
+msgstr "Compatibilitate:"
 
 msgid "Additional sources:"
-msgstr "Altere ressources:"
+msgstr "Altere fontes:"
 
 msgid "Download files"
-msgstr ""
+msgstr "Discargar files"
 
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Le disveloppator ha fornite le codice fonte."
 
 msgid "Weight:"
 msgstr "Peso:"
 
 msgid "Not Auto Approved Because"
-msgstr ""
+msgstr "Non approbate automaticamente perque"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "Le script pro le approbation automatic non ha ancora analysate iste version."
 
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "Iste version ha non essite revidite."
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "Per favor eliger un o plus versiones in le lista supra."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
+msgstr "Tu pote ancora inviar iste forma, totevia face assi solo si tu sape que illo non confligera."
 
 msgid "Insert canned response..."
-msgstr ""
+msgstr "Inserer le responsa predefinite..."
 
 msgid "Tested on:"
 msgstr ""
@@ -7064,7 +7064,7 @@ msgid "The private whiteboard is used for exchanging information between reviewe
 msgstr ""
 
 msgid "Update whiteboards"
-msgstr ""
+msgstr "Actualisar le tabulas blanc"
 
 msgid "More Actions"
 msgstr "Altere actiones"
@@ -7097,13 +7097,13 @@ msgid "Clear Admin Static Theme Review Flag"
 msgstr ""
 
 msgid "(admin)"
-msgstr ""
+msgstr "(administrator)"
 
 msgid "Admin Page"
-msgstr ""
+msgstr "Pagina del administrator"
 
 msgid "Review This Add-on"
-msgstr ""
+msgstr "Revider iste additivo"
 
 msgid "More Information"
 msgstr "Altere informationes"
@@ -7115,13 +7115,13 @@ msgid "Reviewer"
 msgstr "Revisor"
 
 msgid "Add-on has been deleted."
-msgstr ""
+msgstr "Le additivo ha essite delite."
 
 msgid "Show Comments"
-msgstr ""
+msgstr "Monstrar le commentos"
 
 msgid "Hide Comments"
-msgstr ""
+msgstr "Celar le commentos"
 
 msgid "No reviews found for this period."
 msgstr ""
