@@ -90,7 +90,7 @@ def compatibility_report(index=None):
 
     total = sum(updates.values())
     # Remember the total so we can show % of usage later.
-    compat_total, created = CompatTotals.objects.safer_get_or_create(
+    compat_total, created = CompatTotals.objects.get_or_create(
         defaults={'total': total})
     if not created:
         compat_total.update(total=total)
