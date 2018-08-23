@@ -77,7 +77,7 @@ class AdditionalBackground(object):
     def __init__(self, path, alignment, tiling, header_root):
         # If there an unequal number of alignments or tiling to srcs the value
         # will be None so use defaults.
-        self.alignment = (alignment or 'left top').lower()
+        self.alignment = (alignment or 'right top').lower()
         self.tiling = (tiling or 'no-repeat').lower()
         self.src, self.width, self.height = encode_header_image(
             os.path.join(header_root, path))

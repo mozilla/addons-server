@@ -68,11 +68,12 @@ def test_additional_background_split_alignment(alignment, alignments_tuple):
         ('top', 'repeat-x', 120, 92, 280, 0),
         ('center', 'repeat-y', 680, 450, 280, -179),
         ('left top', 'repeat', 120, 450, 0, 0),
-        # alignment=None is 'left top'
-        (None, 'repeat', 120, 450, 0, 0),
+        # alignment=None is 'right top'
+        (None, 'repeat', 120, 450, 560, 0),
         # tiling=None is 'no-repeat'
         ('center', None, 680, 92, 280, -179),
-        (None, None, 680, 92, 0, 0),
+        # so this is alignment='right top'; tiling='no-repeat'
+        (None, None, 680, 92, 560, 0),
     )
 )
 def test_additional_background(encode_header_image, alignment, tiling,
