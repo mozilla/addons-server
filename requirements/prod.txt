@@ -356,9 +356,9 @@ spidermonkey==58.0a1.post2 \
     --hash=sha256:ad85213e8e68b059599460a3f8b69705b8141951fcccc4efa0b5284e04ac8d06 \
     --hash=sha256:6301903a0cc3f201264aba36ae20cff5bc983f68ae9333c3955430bddb4985af
 # statsd is required by django-statsd-mozilla
-statsd==3.2.2 \
-    --hash=sha256:50e0e7b34e5c01e78e270f17ccbd6bcc334f1a81ac5cb0b19050f7dd24d72c3e \
-    --hash=sha256:84f2427ef7b8ffab28cdb717933f6889d248d710eee32b5eb79e3fdac0e374dd
+statsd==3.3.0 \
+    --hash=sha256:c610fb80347fca0ef62666d241bce64184bd7cc1efe582f9690e045c25535eaa \
+    --hash=sha256:e3e6db4c246f7c59003e51c9720a51a7f39a396541cb9b147ff4b14d15b5dd1f
 vine==1.1.4 \
     --hash=sha256:6849544be74ec3638e84d90bc1cf2e1e9224cc10d96cd4383ec3f69e9bce077b \
     --hash=sha256:52116d59bc45392af9fdd3b75ed98ae48a93e822cee21e5fda249105c59a7a72
