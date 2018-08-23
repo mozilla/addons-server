@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-23 20:29+0000\n"
+"PO-Revision-Date: 2018-08-23 20:51+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -726,11 +726,15 @@ msgstr ""
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
+"We pa runuk'ulem ri awokik'amaya'l yeruchüp ri taq rujub'i'aj 'ketal ruxaq k'amaya'l', tatzija' chik, estape' xa xe pa re ruxaq k'amaya'l re', o pa taq HTTPS okem, o pa taq k'utuj kepe' pa 'xa jun "
+"ruxe'el'."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
+"Natz'ët re rutzijol re' ruma ri ruxaq k'amaya'l nrajo' jun CSRF kaxlanwäy toq nutäq nojwuj. K'atzinel re kaxlanwäy re' ruma ri jikomal, richin nijikib'äx chi man neleq'äx ta ri awokik'amaya'l kuma "
+"aj rox winäq."
 
 msgid "Page Not Found"
 msgstr "Man Xilitäj ta Ruxaq"
@@ -921,7 +925,7 @@ msgid "The language code {lang_code} is invalid."
 msgstr "Man okel ta ri rub'itz'ib' {lang_code} ch'ab'äl."
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "K'o chi naya' jun ruwachinaq {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -2254,13 +2258,13 @@ msgid "No Reputation"
 msgstr "Ejqalem"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "Ütz (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Yalan Ütz (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "Jwi' (3)"
 
 msgid "Manual Reviewer Points"
 msgstr "Ketal Ajq'ab'aj Nik'onela'"
