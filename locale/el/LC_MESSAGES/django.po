@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-23 13:53+0000\n"
+"PO-Revision-Date: 2018-08-23 13:55+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4607,7 +4607,7 @@ msgstr "Λάβετε ακαδημαϊκές γνώσεις {start_sub_heading}μ
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
-msgstr ""
+msgstr "Απολαύστε ελεύθερη πρόσβαση σε 10+ εκατομμύρια ερευνητικές εργασίες."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5081,7 +5081,7 @@ msgstr "Ταχύτερη εργασία {start_sub_heading}με το {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
-msgstr ""
+msgstr "Χρησιμοποιήστε κινήσεις ποντικιού για να κάνετε πράγματα—ταχύτερα."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5105,7 +5105,7 @@ msgstr "Απόκρυψη τοποθεσίας {start_sub_heading}με το {addo
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr ""
+msgstr "Μεταμφιέστε την τοποθεσία σας για να εξαπατήσετε τους ιχνηλάτες και να προστατέψετε το απόρρητό σας."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
