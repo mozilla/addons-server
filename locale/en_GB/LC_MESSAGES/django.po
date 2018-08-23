@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-08-23 07:48+0000\n"
 "PO-Revision-Date: 2018-03-25 14:57+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -699,6 +699,9 @@ msgstr "Error verifying input, please try again."
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "This must be a valid hex colour code, such as #000000."
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "Some features are temporarily disabled while we perform web site maintenance. We'll be back to full capacity shortly."
 
 msgid "Not allowed"
 msgstr "Not allowed"
@@ -2257,13 +2260,15 @@ msgstr ""
 msgid "Manual Reviewer Points"
 msgstr "Manual Reviewer Points"
 
-msgid "New Add-on Review"
+#, fuzzy
+msgid "New Legacy Add-on Review"
 msgstr "New Add-on Review"
 
 msgid "Preliminary Add-on Review"
 msgstr "Preliminary Add-on Review"
 
-msgid "Updated Add-on Review"
+#, fuzzy
+msgid "Updated Legacy Add-on Review"
 msgstr "Updated Add-on Review"
 
 msgid "New Dictionary Review"
@@ -2318,17 +2323,21 @@ msgstr "Add-on Review Moderation Reverted"
 msgid "Add-on Content Review"
 msgstr "Add-on Content Review"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
+#, fuzzy
+msgid "Add-on Review (Highest Risk)"
 msgstr "Post-Approval Add-on Review (Highest Risk)"
 
-msgid "Post-Approval Add-on Review (High Risk)"
+#, fuzzy
+msgid "Add-on Review (High Risk)"
 msgstr "Post-Approval Add-on Review (High Risk)"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
+#, fuzzy
+msgid "Add-on Review (Medium Risk)"
 msgstr "Post-Approval Add-on Review (Medium Risk)"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr "Post-Approval Add-on Review (Low Risk)"
+#, fuzzy
+msgid "Add-on Review (Low Risk)"
+msgstr "Add-on Review Log"
 
 msgid "Level 1"
 msgstr "Level 1"
@@ -3399,6 +3408,15 @@ msgstr "Notes to Reviewer:"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 
+msgid "Remember"
+msgstr ""
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "These notes will only be visible to you and our reviewers."
 
@@ -3497,7 +3515,7 @@ msgstr "Source code uploaded"
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
 
 #, python-format
@@ -7646,9 +7664,6 @@ msgstr "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Showing {0} - {1} of {2} results"
-
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Some features are temporarily disabled while we perform web site maintenance. We'll be back to full capacity shortly."
 
 msgid "Could not find add-on with id \"{}\"."
 msgstr "Could not find add-on with id \"{}\"."

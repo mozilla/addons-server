@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-08-23 07:48+0000\n"
 "PO-Revision-Date: 2018-07-27 12:14+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -708,6 +708,9 @@ msgstr "Flater by kontrolearjen ynfier, probearje it opnij."
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Dit moat in jildige hex-kleurkoade wêze, lykas #000000."
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "Inkelde funksjes binne tydlik útskeakele fanwegen ûnderhâld oan de website. Ynkoarten binne wy wer folslein beskikber."
 
 msgid "Not allowed"
 msgstr "Net tastien"
@@ -2264,13 +2267,15 @@ msgstr "Poerbêst (3)"
 msgid "Manual Reviewer Points"
 msgstr "Hânmjittige beoardielerspunten"
 
-msgid "New Add-on Review"
+#, fuzzy
+msgid "New Legacy Add-on Review"
 msgstr "Nije add-on-beoardieling"
 
 msgid "Preliminary Add-on Review"
 msgstr "Foarriedige add-on-beoardieling"
 
-msgid "Updated Add-on Review"
+#, fuzzy
+msgid "Updated Legacy Add-on Review"
 msgstr "Bywurke add-on-beoardieling"
 
 # Plural in this context means many of the add-on type
@@ -2325,17 +2330,21 @@ msgstr "Evaluaasje fan add-on-beoardieling ûngedien makke"
 msgid "Add-on Content Review"
 msgstr "Beoardieling fan add-on-ynhâld"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
+#, fuzzy
+msgid "Add-on Review (Highest Risk)"
 msgstr "Add-on-beoardieling nei goedkarren (Heechste risiko)"
 
-msgid "Post-Approval Add-on Review (High Risk)"
+#, fuzzy
+msgid "Add-on Review (High Risk)"
 msgstr "Add-on-beoardieling nei goedkarring (Heech risiko)"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
+#, fuzzy
+msgid "Add-on Review (Medium Risk)"
 msgstr "Add-on-beoardieling nei goedkarring (Middelgrut risiko)"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr "Add-on-beoardieling nei goedkarring (Leech risiko)"
+#, fuzzy
+msgid "Add-on Review (Low Risk)"
+msgstr "Add-on-beoardielingslochboek"
 
 msgid "Level 1"
 msgstr "Nivo 1"
@@ -3384,6 +3393,15 @@ msgstr "Opmerkingen foar beoardielers:"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "Is der earne wat ús beoardielers yn tinzen hâlde moatte by de beoardieling fan dizze add-on?"
 
+msgid "Remember"
+msgstr ""
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Dizze opmerkingen binne allinnich sichtber foar jo en beoardielers."
 
@@ -3481,7 +3499,7 @@ msgstr "Boarnekoade opladen"
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
 
 #, python-format
@@ -7462,9 +7480,6 @@ msgstr "Werjûn: {0} - {1} fan {2} resultaten foar <strong>{3}</strong>"
 # {2} is a number
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Werjûn: {0} - {1} fan {2} resultaten"
-
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Inkelde funksjes binne tydlik útskeakele fanwegen ûnderhâld oan de website. Ynkoarten binne wy wer folslein beskikber."
 
 msgid "Could not find add-on with id \"{}\"."
 msgstr "Koe gjin add-on mei id ‘{}’ fine."

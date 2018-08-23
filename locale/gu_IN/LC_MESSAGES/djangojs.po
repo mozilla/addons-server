@@ -1,12 +1,12 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"PO-Revision-Date: 2018-02-24 18:50+0000\n"
+"Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-21 07:00+0000\n"
-"Last-Translator: Anvee Malviya <abmalviya5@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
 "MIME-Version: 1.0\n"

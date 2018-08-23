@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-08-23 07:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,8 +11,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.6.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "No links are allowed."
 msgstr "Ƞǿ ŀīƞķş ȧřḗ ȧŀŀǿẇḗḓ."
@@ -697,6 +697,9 @@ msgstr "Ḗřřǿř ṽḗřīƒẏīƞɠ īƞƥŭŧ, ƥŀḗȧşḗ ŧřẏ ȧ�
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Ŧħīş ḿŭşŧ ƀḗ ȧ ṽȧŀīḓ ħḗẋ ƈǿŀǿř ƈǿḓḗ, şŭƈħ ȧş #000000."
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "Şǿḿḗ ƒḗȧŧŭřḗş ȧřḗ ŧḗḿƥǿřȧřīŀẏ ḓīşȧƀŀḗḓ ẇħīŀḗ ẇḗ ƥḗřƒǿřḿ ẇḗƀşīŧḗ ḿȧīƞŧḗƞȧƞƈḗ. Ẇḗ'ŀŀ ƀḗ ƀȧƈķ ŧǿ ƒŭŀŀ ƈȧƥȧƈīŧẏ şħǿřŧŀẏ."
 
 msgid "Not allowed"
 msgstr "Ƞǿŧ ȧŀŀǿẇḗḓ"
@@ -2243,14 +2246,14 @@ msgstr "Ḗẋƈḗŀŀḗƞŧ (3)"
 msgid "Manual Reviewer Points"
 msgstr "Ḿȧƞŭȧŀ Řḗṽīḗẇḗř Ƥǿīƞŧş"
 
-msgid "New Add-on Review"
-msgstr "Ƞḗẇ Aḓḓ-ǿƞ Řḗṽīḗẇ"
+msgid "New Legacy Add-on Review"
+msgstr "Ƞḗẇ Ŀḗɠȧƈẏ Aḓḓ-ǿƞ Řḗṽīḗẇ"
 
 msgid "Preliminary Add-on Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Aḓḓ-ǿƞ Řḗṽīḗẇ"
 
-msgid "Updated Add-on Review"
-msgstr "Ŭƥḓȧŧḗḓ Aḓḓ-ǿƞ Řḗṽīḗẇ"
+msgid "Updated Legacy Add-on Review"
+msgstr "Ŭƥḓȧŧḗḓ Ŀḗɠȧƈẏ Aḓḓ-ǿƞ Řḗṽīḗẇ"
 
 msgid "New Dictionary Review"
 msgstr "Ƞḗẇ Ḓīƈŧīǿƞȧřẏ Řḗṽīḗẇ"
@@ -2303,17 +2306,17 @@ msgstr "Aḓḓ-ǿƞ Řḗṽīḗẇ Ḿǿḓḗřȧŧīǿƞ Řḗṽḗřŧḗ
 msgid "Add-on Content Review"
 msgstr "Aḓḓ-ǿƞ Ƈǿƞŧḗƞŧ Řḗṽīḗẇ"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr "Ƥǿşŧ-Aƥƥřǿṽȧŀ Aḓḓ-ǿƞ Řḗṽīḗẇ (Ħīɠħḗşŧ Řīşķ)"
+msgid "Add-on Review (Highest Risk)"
+msgstr "Aḓḓ-ǿƞ Řḗṽīḗẇ (Ħīɠħḗşŧ Řīşķ)"
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr "Ƥǿşŧ-Aƥƥřǿṽȧŀ Aḓḓ-ǿƞ Řḗṽīḗẇ (Ħīɠħ Řīşķ)"
+msgid "Add-on Review (High Risk)"
+msgstr "Aḓḓ-ǿƞ Řḗṽīḗẇ (Ħīɠħ Řīşķ)"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr "Ƥǿşŧ-Aƥƥřǿṽȧŀ Aḓḓ-ǿƞ Řḗṽīḗẇ (Ḿḗḓīŭḿ Řīşķ)"
+msgid "Add-on Review (Medium Risk)"
+msgstr "Aḓḓ-ǿƞ Řḗṽīḗẇ (Ḿḗḓīŭḿ Řīşķ)"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr "Ƥǿşŧ-Aƥƥřǿṽȧŀ Aḓḓ-ǿƞ Řḗṽīḗẇ (Ŀǿẇ Řīşķ)"
+msgid "Add-on Review (Low Risk)"
+msgstr "Aḓḓ-ǿƞ Řḗṽīḗẇ (Ŀǿẇ Řīşķ)"
 
 msgid "Level 1"
 msgstr "Ŀḗṽḗŀ 1"
@@ -3353,6 +3356,17 @@ msgstr "Ƞǿŧḗş ŧǿ Řḗṽīḗẇḗř:"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "Īş ŧħḗřḗ ȧƞẏŧħīƞɠ ǿŭř řḗṽīḗẇḗřş şħǿŭŀḓ ƀḗȧř īƞ ḿīƞḓ ẇħḗƞ řḗṽīḗẇīƞɠ ŧħīş ȧḓḓ-ǿƞ?"
 
+msgid "Remember"
+msgstr "Řḗḿḗḿƀḗř"
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+"Īƒ ẏǿŭ şŭƀḿīŧŧḗḓ şǿŭřƈḗ ƈǿḓḗ, ƀŭŧ ḓīḓ ƞǿŧ īƞƈŀŭḓḗ īƞşŧřŭƈŧīǿƞş, ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ŧħḗḿ ħḗřḗ. Ḗƞŧḗř şŧḗƥ-ƀẏ-şŧḗƥ ƀŭīŀḓ īƞşŧřŭƈŧīǿƞş ŧǿ ƈřḗȧŧḗ ȧƞ ḗẋȧƈŧ ƈǿƥẏ ǿƒ ŧħḗ ȧḓḓ-ǿƞ ƈǿḓḗ, ƥḗř "
+"%(policy_requirements_open)sƥǿŀīƈẏ řḗɋŭīřḗḿḗƞŧş%(policy_requirements_close)s."
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Ŧħḗşḗ ƞǿŧḗş ẇīŀŀ ǿƞŀẏ ƀḗ ṽīşīƀŀḗ ŧǿ ẏǿŭ ȧƞḓ ǿŭř řḗṽīḗẇḗřş."
 
@@ -3449,8 +3463,8 @@ msgstr "Şǿŭřƈḗ Ƈǿḓḗ Ŭƥŀǿȧḓ"
 msgid "Do You Need to Submit Source Code?"
 msgstr "Ḓǿ Ẏǿŭ Ƞḗḗḓ ŧǿ Şŭƀḿīŧ Şǿŭřƈḗ Ƈǿḓḗ?"
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
-msgstr "Ẏǿŭ ḿȧẏ ƞḗḗḓ ŧǿ şŭƀḿīŧ şǿŭřƈḗ ƈǿḓḗ. Īƒ ẏǿŭ ḓǿƞ’ŧ şŭƀḿīŧ ŧħḗ ƈǿřřḗƈŧ şǿŭřƈḗ ƈǿḓḗ ƞǿẇ, ẏǿŭř ȧḓḓ-ǿƞ ḿȧẏ ƀḗ řḗḿǿṽḗḓ ƒřǿḿ ŧħḗ şīŧḗ!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
+msgstr "Ẏǿŭ ḿȧẏ ƞḗḗḓ ŧǿ şŭƀḿīŧ şǿŭřƈḗ ƈǿḓḗ. Īƒ ẏǿŭ ḓǿƞ’ŧ, ẏǿŭř ȧḓḓ-ǿƞ ḿȧẏ ƀḗ řḗḿǿṽḗḓ ƒřǿḿ ŧħḗ şīŧḗ!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
@@ -7398,9 +7412,6 @@ msgstr "Şħǿẇīƞɠ {0} - {1} ǿƒ {2} řḗşŭŀŧş ƒǿř <strong>{3}</s
 
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Şħǿẇīƞɠ {0} - {1} ǿƒ {2} řḗşŭŀŧş"
-
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Şǿḿḗ ƒḗȧŧŭřḗş ȧřḗ ŧḗḿƥǿřȧřīŀẏ ḓīşȧƀŀḗḓ ẇħīŀḗ ẇḗ ƥḗřƒǿřḿ ẇḗƀşīŧḗ ḿȧīƞŧḗƞȧƞƈḗ. Ẇḗ'ŀŀ ƀḗ ƀȧƈķ ŧǿ ƒŭŀŀ ƈȧƥȧƈīŧẏ şħǿřŧŀẏ."
 
 msgid "Could not find add-on with id \"{}\"."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƒīƞḓ ȧḓḓ-ǿƞ ẇīŧħ īḓ \"{}\"."

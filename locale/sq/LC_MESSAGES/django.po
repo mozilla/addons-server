@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-08-23 07:48+0000\n"
 "PO-Revision-Date: 2018-05-12 09:36+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -709,6 +709,9 @@ msgstr "Gabim gjatë verifikimit të asaj që u dha, ju lutemi, riprovoni."
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Ky duhet të jetë kod u vlefshëm gjashtëmbëdhjetësh, fjala vjen #000000."
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "Disa veçori janë çaktivizuar përkohësisht, teksa bëjmë mirëmbajtjen e sajtit. Së shpejti do t’i kthehemi kapacitetit të plotë."
 
 msgid "Not allowed"
 msgstr "E palejuar"
@@ -2272,13 +2275,15 @@ msgstr ""
 msgid "Manual Reviewer Points"
 msgstr "Pikë Shqyrtuesi Dorazi"
 
-msgid "New Add-on Review"
+#, fuzzy
+msgid "New Legacy Add-on Review"
 msgstr "Shqyrtim Shtese të Re"
 
 msgid "Preliminary Add-on Review"
 msgstr "Shqyrtim Paraprak Shtese"
 
-msgid "Updated Add-on Review"
+#, fuzzy
+msgid "Updated Legacy Add-on Review"
 msgstr "Shqyrtimi i Shtesës u Përditësua"
 
 msgid "New Dictionary Review"
@@ -2332,17 +2337,21 @@ msgstr "Moderimi i Shqyrtimit të Shtesës u Rikthye"
 msgid "Add-on Content Review"
 msgstr "Shqyrtim Lënde Shtese"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
+#, fuzzy
+msgid "Add-on Review (Highest Risk)"
 msgstr "Shqyrtim Shtese Post-Miratim  (Rreziku Më i Madh)"
 
-msgid "Post-Approval Add-on Review (High Risk)"
+#, fuzzy
+msgid "Add-on Review (High Risk)"
 msgstr "Shqyrtim Shtese Post-Miratim  (Rrezik i Madh)"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
+#, fuzzy
+msgid "Add-on Review (Medium Risk)"
 msgstr "Shqyrtim Shtese Post-Miratim  (Rrezik i Mesëm)"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr "Shqyrtim Shtese Post-Miratim  (Rrezik i Ulët)"
+#, fuzzy
+msgid "Add-on Review (Low Risk)"
+msgstr "Regjistër Shqyrtimesh Shtese"
 
 msgid "Level 1"
 msgstr "Shkalla 1"
@@ -3391,6 +3400,15 @@ msgstr "Shënime për Shqyrtuesin:"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "Ka ndonjë gjë që duhet ta kenë parasysh shqyrtuesit tanë kur të shqyrtojnë këtë shtesë?"
 
+msgid "Remember"
+msgstr ""
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Këto shënime do të jenë të dukshme vetëm për ju dhe shqyrtuesit tanë."
 
@@ -3488,7 +3506,7 @@ msgstr "U ngarkua kod burim"
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
 
 #, python-format
@@ -7641,9 +7659,6 @@ msgstr "Po shfaqen përfundimet {0} - {1} nga {2} gjithsej për <strong>{3}</str
 # %3$s is a number
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Po shfaqen përfundimet {0} - {1} nga {2} gjithsej"
-
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Disa veçori janë çaktivizuar përkohësisht, teksa bëjmë mirëmbajtjen e sajtit. Së shpejti do t’i kthehemi kapacitetit të plotë."
 
 msgid "Could not find add-on with id \"{}\"."
 msgstr "S’u gjet dot shtesë me id-në \"{}\"."

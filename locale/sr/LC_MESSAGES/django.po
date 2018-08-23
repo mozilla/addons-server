@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-08-23 07:48+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -716,6 +716,9 @@ msgstr ""
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Морате унети исправну хексадецималну шифру боје, као што је #000000."
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "Неке функције су привремено онемогућене док вршимо одржавање веб сајта. Ми ћемо се вратити у пуном капацитету ускоро."
 
 msgid "Not allowed"
 msgstr "Није допуштено"
@@ -2352,13 +2355,14 @@ msgid "Manual Reviewer Points"
 msgstr "Поени самосталног рецензента"
 
 #, fuzzy
-msgid "New Add-on Review"
+msgid "New Legacy Add-on Review"
 msgstr "Пуна рецензија додатка"
 
 msgid "Preliminary Add-on Review"
 msgstr "Прелиминарна рецензија додатка"
 
-msgid "Updated Add-on Review"
+#, fuzzy
+msgid "Updated Legacy Add-on Review"
 msgstr "Ажурирана рецензија додатка"
 
 #, fuzzy
@@ -2420,17 +2424,21 @@ msgstr "Модерација рецензије додатка је поништ
 msgid "Add-on Content Review"
 msgstr "Извршити рецензију"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Highest Risk)"
+msgstr "Пуна рецензија додатка"
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (High Risk)"
+msgstr "Дневник рецензија додатка"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Medium Risk)"
+msgstr "Пуна рецензија додатка"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Low Risk)"
+msgstr "Дневник рецензија додатка"
 
 msgid "Level 1"
 msgstr "Ниво 1"
@@ -3483,6 +3491,15 @@ msgstr "Подаци за прегледаче"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
 
+msgid "Remember"
+msgstr ""
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+
 #, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "URL ће бити само видљив ако сте програмер."
@@ -3595,7 +3612,7 @@ msgstr "Изворни код"
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
 
 #, python-format
@@ -7693,9 +7710,6 @@ msgstr "Приказано је {0} - {1} од {2} резултата за <stro
 # {2} is a number
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Приказано је {0} - {1} од {2} резултата"
-
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Неке функције су привремено онемогућене док вршимо одржавање веб сајта. Ми ћемо се вратити у пуном капацитету ускоро."
 
 msgid "Could not find add-on with id \"{}\"."
 msgstr ""
