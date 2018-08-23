@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-23 01:04+0000\n"
+"PO-Revision-Date: 2018-08-23 01:19+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
@@ -767,7 +767,7 @@ msgid "Version Notes"
 msgstr "버전 기록서"
 
 msgid "Notes for Reviewers"
-msgstr "심사자의 메모"
+msgstr "검토자 메모"
 
 msgid "No version notes found"
 msgstr "버전 기록서가 없습니다"
@@ -776,13 +776,13 @@ msgid "Review Text"
 msgstr "검토 내용"
 
 msgid "Review notes found"
-msgstr "심사 메모가 발견됨"
+msgstr "검토 메모가 발견됨"
 
 msgid "Average Reviews"
-msgstr "평균 심사 횟수"
+msgstr "평균 검토 횟수"
 
 msgid "Number of Reviews"
-msgstr "심사 횟수"
+msgstr "검토 횟수"
 
 msgid "Requested Info"
 msgstr "요청된 정보"
@@ -806,7 +806,7 @@ msgid "Theme"
 msgstr "테마"
 
 msgid "Reviewer"
-msgstr "심사원"
+msgstr "검토자"
 
 msgid "Status"
 msgstr "상태"
