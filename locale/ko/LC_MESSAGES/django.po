@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-23 01:31+0000\n"
+"PO-Revision-Date: 2018-08-23 04:28+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -6646,9 +6646,8 @@ msgstr "마지막 콘텐츠 검토"
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
-#, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "부가 기능 심사를 거부하며 심사 대기열에서 삭제합니다."
+msgstr "이 버전을 거부하고 대기열에서 삭제합니다. 의견이 개발자에게 보내집니다."
 
 #, fuzzy
 msgid "Confirm Approval"
@@ -6661,22 +6660,21 @@ msgstr ""
 msgid "Reject Multiple Versions"
 msgstr "인쇄용 버전"
 
-#, fuzzy
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "부가 기능 심사를 거부하며 심사 대기열에서 삭제합니다."
+msgstr "선택된 공개 버전을 거부하게 됩니다. 의견이 개발자에게 보내집니다."
 
 msgid "Reviewer reply"
-msgstr "심사자 답변"
+msgstr "검토자 답변"
 
 #, fuzzy
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr "제작자에게 추가 정보를 요청하려면 다음의 양식을 기입해 주세요. 제작자들은 이메일을 받은 후 이곳에 답변을 적을 수 있게 됩니다. 제작자의 답변이 오면 이메일로 알림 메시지를 받게 됩니다."
 
 msgid "Request super-review"
-msgstr "상급 심사 요구"
+msgstr "상급 검토 요구"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "이 부가 기능을 심사자가 봐야 한다고 생각되시면 아래에 의견을 입력해 주세요. 이 의견은 개발자에게는 보내지지 않습니다."
+msgstr "이 부가 기능을 검토자가 봐야 한다고 생각되시면 아래에 의견을 입력해 주세요. 이 의견은 개발자에게는 보내지지 않습니다."
 
 #, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
@@ -6709,17 +6707,14 @@ msgstr "내가 제작한 모든 부가 기능"
 msgid "Updates ({0})"
 msgstr "업데이트 ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "심사 노트"
+msgstr "검토 기록"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "부가 기능 전체 심사"
+msgstr "부가 기능 검토 가이드"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "테마 심사 대기열"
+msgstr "테마 검토 가이드"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -6730,20 +6725,17 @@ msgid "Auto Approved Add-ons ({0})"
 msgstr "내가 제작한 모든 부가 기능"
 
 msgid "Add-on Review Log"
-msgstr "부가 기능 심사 기록"
+msgstr "부가 기능 검토 기록"
 
-#, fuzzy
 msgid "Review Guide"
-msgstr "심사원 지침사항"
+msgstr "검토 가이드"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "심사 완료하기"
+msgstr "콘텐츠 검토"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "심사 조정 ({0})"
+msgstr[0] "콘텐츠 검토({0})"
 
 #, fuzzy
 msgid "New Themes ({0})"
@@ -6773,7 +6765,7 @@ msgstr ""
 # 80%
 # 100%
 msgid "Moderated Review Log"
-msgstr "심사 조정 기록"
+msgstr "검토 조정 기록"
 
 #, fuzzy
 msgid "Moderation Guide"
@@ -6801,10 +6793,10 @@ msgid "An unknown error occurred"
 msgstr "알 수 없는 오류 발생"
 
 msgid "Self-reviews are not allowed."
-msgstr "자신의 부가 기능은 심사할 수 없습니다."
+msgstr "자신의 부가 기능은 검토할 수 없습니다."
 
 msgid "Review successfully processed."
-msgstr "심사 작업을 진행 합니다."
+msgstr "검토가 성공적으로 진행되었습니다."
 
 msgid "Review lock limit reached"
 msgstr ""
@@ -6819,10 +6811,10 @@ msgstr "이 부가 기능은 개인 정보 보호 정책을 보유하고 있습�
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "테마 심사 {0}건이 처리되었습니다. (+{1} 포인트, 총 {2}건)"
+msgstr[0] "테마 검토 {0}건이 처리되었습니다(+{1} 포인트, 총 {2}건)."
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr "테마 잠금 상태가 해제되었습니다. 이제 다른 심사원이 해금된 테마를 심사합니다. 본 페이지를 새로고침하면 아래 테이블에 변경 내역이 반영됩니다."
+msgstr "테마 잠금 상태가 해제되었습니다. 이제 다른 검토자가 해제된 테마를 검토합니다. 본 페이지를 새로고침하면 아래 테이블에 변경 내역이 반영됩니다."
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: 정책 위반 신고"
