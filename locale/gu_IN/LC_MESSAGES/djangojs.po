@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-23 07:48+0000\n"
 "PO-Revision-Date: 2018-02-24 18:50+0000\n"
 "Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
+"POT-Creation-Date: 2018-08-14 15:24+0000\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
 "MIME-Version: 1.0\n"
@@ -460,7 +460,7 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "એપ્લિકેશન્સ, છેલ્લા {0} દિવસ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
@@ -532,11 +532,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "એડ-ઓન્સ ડાઉનલોડ કરેલ, છેલ્લા {0} દિવસ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "એડ-ઑન્સ {0} થી {1} સુધીની ડાઉનલોડ કરી"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
@@ -623,7 +623,7 @@ msgid "<b>{0}</b> average in last {1} days"
 msgstr ""
 
 msgid "No data available."
-msgstr ""
+msgstr "કોઈ ડેટા ઉપલબ્ધ નથી."
 
 msgid "Date"
 msgstr ""
@@ -632,11 +632,11 @@ msgid "Other"
 msgstr ""
 
 msgid "Select an application first"
-msgstr ""
+msgstr "પ્રથમ એપ્લિકેશન પસંદ કરો"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
+msgstr[0] "{0} ઍડ-ઑનને {1} ના મહત્તમ સંસ્કરણ પર સેટ કરો અને લેખકને ઇમેઇલ કરો."
 msgstr[1] ""
 
 msgid "Email author of {2} add-on which failed validation."
