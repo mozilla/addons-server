@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-23 19:27+0000\n"
+"PO-Revision-Date: 2018-08-23 19:33+0000\n"
 "Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -642,7 +642,7 @@ msgstr[1] "{0} ઍડ-ઑન્સને {1} ના મહત્તમ સંસ
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "{2} ઍડ-ઑનનું ઇમેઇલ લેખક જે માન્યતા નિષ્ફળ થયું."
-msgstr[1] ""
+msgstr[1] "{2} ઍડ-ઑન્સના ઇમેઇલ લેખકો કે જેણે માન્યતાને નિષ્ફળ કરી."
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
@@ -678,7 +678,7 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
+msgstr "માફ કરશો, શોધ પ્લગઇન સ્થાપિત કરવા માટે તમને Mozilla-આધારિત બ્રાઉઝર (જેમ કે Firefox) ની જરૂર છે."
 
 msgid "Adding to Favorites&hellip;"
 msgstr ""
@@ -754,7 +754,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
+msgstr "અમે વેબસાઇટ જાળવણી કરતી વખતે આ સુવિધા અસ્થાયી રૂપે અક્ષમ કરેલી છે. થોડીવાર પછી ફરી તપાસો."
 
 msgid "Remove this localization"
 msgstr ""
@@ -766,7 +766,7 @@ msgid "Receipt checked by app."
 msgstr ""
 
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "એપ્લિકેશન દ્વારા રસીદની તપાસ કરવામાં આવી ન હતી."
 
 msgid "{name} was viewing this add-on first."
 msgstr ""
