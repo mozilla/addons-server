@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-23 18:49+0000\n"
+"PO-Revision-Date: 2018-08-23 19:12+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6951,51 +6951,51 @@ msgid "All-time Point Breakdown by Type"
 msgstr ""
 
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 msgid "Month"
-msgstr ""
+msgstr "Mense"
 
 msgid "Year"
-msgstr ""
+msgstr "Anno"
 
 msgid "All-Time"
-msgstr ""
+msgstr "De sempre"
 
 msgid "Advanced Search"
-msgstr ""
+msgstr "Recerca avantiate"
 
 msgid "clear search"
-msgstr ""
+msgstr "clarar le recerca"
 
 msgid "Process Reviews"
-msgstr ""
+msgstr "Processar revisiones"
 
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Actiones de moderation:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "de %(user)s le %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Signalate per %(user)s le %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "Tote le revisiones ha essite moderate. Bon labor!"
 
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "Il ha actualmente nulle additivos de iste typo pro revision."
 
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Utile ligamines:"
 
 msgid "Add-on Policy"
-msgstr ""
+msgstr "Politica del additivos"
 
 msgid "Reviewer's Guide"
-msgstr ""
+msgstr "Guida del revisor"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -7003,7 +7003,7 @@ msgstr ""
 
 #. "Review [add-on name]"
 msgid "Review {0}"
-msgstr ""
+msgstr "Revision {0}"
 
 msgid "Add-on user change history"
 msgstr ""
@@ -7013,7 +7013,7 @@ msgstr ""
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "(Confirmed)"
 msgstr ""
@@ -7022,7 +7022,7 @@ msgid "Compatibility:"
 msgstr ""
 
 msgid "Additional sources:"
-msgstr ""
+msgstr "Altere ressources:"
 
 msgid "Download files"
 msgstr ""
@@ -7031,7 +7031,7 @@ msgid "The developer has provided source code."
 msgstr ""
 
 msgid "Weight:"
-msgstr ""
+msgstr "Peso:"
 
 msgid "Not Auto Approved Because"
 msgstr ""
@@ -7067,7 +7067,7 @@ msgid "Update whiteboards"
 msgstr ""
 
 msgid "More Actions"
-msgstr ""
+msgstr "Altere actiones"
 
 msgid "Notify me about new listed versions"
 msgstr ""
@@ -7106,13 +7106,13 @@ msgid "Review This Add-on"
 msgstr ""
 
 msgid "More Information"
-msgstr ""
+msgstr "Altere informationes"
 
 msgid "Resolution"
-msgstr ""
+msgstr "Resolution"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Revisor"
 
 msgid "Add-on has been deleted."
 msgstr ""
@@ -7137,7 +7137,7 @@ msgid "Files in this version:"
 msgstr ""
 
 msgid "Contents"
-msgstr ""
+msgstr "Contentos"
 
 msgid "Compare"
 msgstr ""
