@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-23 21:05+0000\n"
+"PO-Revision-Date: 2018-08-23 22:41+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2925,7 +2925,7 @@ msgid "Check this box if this add-on's core features require some form of paymen
 msgstr "Taya' retal re kajtz'ik re' we ri nïm rusamaj achokoy nrajo' chi nab'ey titoj o nik'o na q'ij tojtob'enïk richin ütz nisamäj."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Re chokoy re' nrajo' rutojik, rusamajixik o tojel kema' o rutz'aqat ch'akulkem."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
