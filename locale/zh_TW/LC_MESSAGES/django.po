@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-08-23 07:48+0000\n"
 "PO-Revision-Date: 2018-08-09 12:47+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -684,6 +684,9 @@ msgstr "驗證輸入內容時發生錯誤，請再試一次。"
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "這必須是個正確的十六進位顏色代碼，像是 #000000。"
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "我們正在進行網站維護，部分功能暫時無法使用。我們將盡快完全復原。"
 
 msgid "Not allowed"
 msgstr "不允許"
@@ -2228,13 +2231,15 @@ msgstr "傑出（3）"
 msgid "Manual Reviewer Points"
 msgstr "手動審核點數"
 
-msgid "New Add-on Review"
+#, fuzzy
+msgid "New Legacy Add-on Review"
 msgstr "新附加元件審核"
 
 msgid "Preliminary Add-on Review"
 msgstr "初步附加元件審核"
 
-msgid "Updated Add-on Review"
+#, fuzzy
+msgid "Updated Legacy Add-on Review"
 msgstr "更新附加元件審核"
 
 msgid "New Dictionary Review"
@@ -2288,17 +2293,21 @@ msgstr "已還原附加元件評論管理"
 msgid "Add-on Content Review"
 msgstr "附加元件內容審核"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
+#, fuzzy
+msgid "Add-on Review (Highest Risk)"
 msgstr "附加元件先上後審審核（最高風險）"
 
-msgid "Post-Approval Add-on Review (High Risk)"
+#, fuzzy
+msgid "Add-on Review (High Risk)"
 msgstr "附加元件先上後審審核（高風險）"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
+#, fuzzy
+msgid "Add-on Review (Medium Risk)"
 msgstr "附加元件先上後審審核（中風險）"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr "附加元件先上後審審核（低風險）"
+#, fuzzy
+msgid "Add-on Review (Low Risk)"
+msgstr "附加元件審核紀錄"
 
 msgid "Level 1"
 msgstr "第 1 級"
@@ -3317,6 +3326,15 @@ msgstr "留言給審核者:"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "還有沒有什麼審核者進行審核時需注意的事項？"
 
+msgid "Remember"
+msgstr ""
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "這些留言註記只有您與審核者看得到。"
 
@@ -3415,7 +3433,8 @@ msgstr "上傳原始碼"
 msgid "Do You Need to Submit Source Code?"
 msgstr "您需要上傳原始碼嗎？"
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+#, fuzzy
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr "您可能必須上傳原始碼。若您不上傳正確的原始碼，可能會造成附加元件被下架！"
 
 #, python-format
@@ -7482,9 +7501,6 @@ msgstr "顯示關鍵字 <strong>{3}</strong> 的 {2} 筆結果中的第 {0} - {1
 # {2} is a number
 msgid "Showing {0} - {1} of {2} results"
 msgstr "顯示 {2} 筆結果中的第 {0} - {1} 筆"
-
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "我們正在進行網站維護，部分功能暫時無法使用。我們將盡快完全復原。"
 
 msgid "Could not find add-on with id \"{}\"."
 msgstr "找不到 ID 為「{}」的附加元件。"

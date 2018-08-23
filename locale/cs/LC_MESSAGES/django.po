@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-08-23 07:48+0000\n"
 "PO-Revision-Date: 2018-08-04 21:11+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -726,6 +726,9 @@ msgstr "Chyba při kontrole vstupu, zkuste to prosím znovu."
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Musí se jednat o platnou barvu v hexa formátu, například #000000."
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "Některá funkčnost je v průběhu údržby webu dočasně nedostupná. Brzy opět poběžíme naplno."
 
 msgid "Not allowed"
 msgstr "Není povoleno"
@@ -2282,13 +2285,15 @@ msgstr "Výborné (3)"
 msgid "Manual Reviewer Points"
 msgstr "Ruční body redaktora"
 
-msgid "New Add-on Review"
+#, fuzzy
+msgid "New Legacy Add-on Review"
 msgstr "Nová kontrola doplňku"
 
 msgid "Preliminary Add-on Review"
 msgstr "Kontrola doplňku pro předběžné schválení"
 
-msgid "Updated Add-on Review"
+#, fuzzy
+msgid "Updated Legacy Add-on Review"
 msgstr "Kontrola aktualizace doplňku"
 
 msgid "New Dictionary Review"
@@ -2342,17 +2347,21 @@ msgstr "Úprava recenze doplňku byla odstraněna"
 msgid "Add-on Content Review"
 msgstr "Kontrola obsahu doplňku"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
+#, fuzzy
+msgid "Add-on Review (Highest Risk)"
 msgstr "Kontrola doplňku po schválení (nejvyšší riziko)"
 
-msgid "Post-Approval Add-on Review (High Risk)"
+#, fuzzy
+msgid "Add-on Review (High Risk)"
 msgstr "Kontrola doplňku po schválení (vysoké riziko)"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
+#, fuzzy
+msgid "Add-on Review (Medium Risk)"
 msgstr "Kontrola doplňku po schválení (střední riziko)"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr "Kontrola doplňku po schválení (nízké riziko)"
+#, fuzzy
+msgid "Add-on Review (Low Risk)"
+msgstr "Seznam kontrol doplňků"
 
 msgid "Level 1"
 msgstr "Úroveň 1"
@@ -3404,6 +3413,15 @@ msgstr "Poznámky pro redaktora:"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "Je tu něco, na co by redaktoři měli při kontrole doplňku myslet?"
 
+msgid "Remember"
+msgstr ""
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Tyto poznámky budou viditelné pouze vám a našim redaktorům."
 
@@ -3501,7 +3519,7 @@ msgstr "Zdrojový kód nahrán"
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
 
 #, python-format
@@ -7483,9 +7501,6 @@ msgstr "Zobrazeno {0} - {1} z {2} výsledků obsahujících <strong>{3}</strong>
 # {2} is a number
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Zobrazeno {0} - {1} z {2} výsledků"
-
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Některá funkčnost je v průběhu údržby webu dočasně nedostupná. Brzy opět poběžíme naplno."
 
 msgid "Could not find add-on with id \"{}\"."
 msgstr "Doplněk s id \"{}\" nebyl nalezen."

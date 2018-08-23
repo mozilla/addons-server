@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-08-23 07:48+0000\n"
 "PO-Revision-Date: 2018-06-20 17:05+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -738,6 +738,9 @@ msgstr ""
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Cal que sigui un codi de color hexadecimal vàlid, com ara #000000."
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "Algunes característiques s'han inhabilitat temporalment mentre fem tasques de manteniment del lloc web. Tornarem a la plena capacitat aviat."
 
 msgid "Not allowed"
 msgstr ""
@@ -2344,13 +2347,14 @@ msgid "Manual Reviewer Points"
 msgstr "Punts de revisors manuals"
 
 #, fuzzy
-msgid "New Add-on Review"
+msgid "New Legacy Add-on Review"
 msgstr "Valoració completa del complement"
 
 msgid "Preliminary Add-on Review"
 msgstr "Valoració preliminar del complement"
 
-msgid "Updated Add-on Review"
+#, fuzzy
+msgid "Updated Legacy Add-on Review"
 msgstr "Valoració actualitzada del complement"
 
 #, fuzzy
@@ -2412,17 +2416,21 @@ msgstr ""
 msgid "Add-on Content Review"
 msgstr "No s'ha revisat"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Highest Risk)"
+msgstr "Valoració completa del complement"
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (High Risk)"
+msgstr "Valoració completa del complement"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Medium Risk)"
+msgstr "Valoració completa del complement"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Low Risk)"
+msgstr "Valoració completa del complement"
 
 msgid "Level 1"
 msgstr ""
@@ -3470,6 +3478,15 @@ msgstr "Notes dels revisors"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
 
+msgid "Remember"
+msgstr ""
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
@@ -3587,7 +3604,7 @@ msgstr "Llicència del codi font"
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
 
 #, python-format
@@ -7670,9 +7687,6 @@ msgstr "S'estan mostrant {0} - {1} dels {2} resultats per a <strong>{3}</strong>
 # {2} is a number
 msgid "Showing {0} - {1} of {2} results"
 msgstr "S'estan mostrant {0} - {1} dels {2} resultats"
-
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Algunes característiques s'han inhabilitat temporalment mentre fem tasques de manteniment del lloc web. Tornarem a la plena capacitat aviat."
 
 msgid "Could not find add-on with id \"{}\"."
 msgstr ""
