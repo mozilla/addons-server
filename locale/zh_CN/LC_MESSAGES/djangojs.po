@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-01-20 15:23+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2018-08-23 14:41+0000\n"
+"Last-Translator: RainSlide <RainSlide@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -204,7 +204,7 @@ msgid "Use original"
 msgstr "使用原样"
 
 msgid "Week of {0}"
-msgstr "每周有{0}次"
+msgstr "每周有 {0} 次"
 
 msgid " downloads"
 msgstr " 次下载"
