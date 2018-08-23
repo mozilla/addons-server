@@ -107,7 +107,8 @@ class Collection(ModelBase):
 
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                               db_column='application_id',
-                                              null=True, db_index=True)
+                                              blank=True, null=True,
+                                              db_index=True)
     addon_count = models.PositiveIntegerField(default=0,
                                               db_column='addonCount')
 
