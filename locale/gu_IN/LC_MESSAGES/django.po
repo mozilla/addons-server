@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-07 14:30+0000\n"
-"Last-Translator: Anvee Malviya <abmalviya5@gmail.com>\n"
+"PO-Revision-Date: 2018-08-24 20:44+0000\n"
+"Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
 "MIME-Version: 1.0\n"
@@ -202,14 +202,14 @@ msgstr "આ ઍડ-ઑન તેના વિકાસકર્તાઓ દ્�
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
-msgstr ""
+msgstr "{0} માટે અંતિમ-વપરાશકર્તા લાઈસન્સ કરાર"
 
 msgid "End-User License Agreement"
 msgstr ""
 
 #, python-format
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr ""
+msgstr "%(addon_name)s ને જરૂરી છે કે તમે નીચેની અંતિમ-વપરાશકર્તા લાઈસન્સ કરાર સ્વીકારો તે પહેલાં સ્થાપન ચાલુ કરી શકો છો:"
 
 msgid "Back to {0}…"
 msgstr ""
@@ -378,6 +378,8 @@ msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
 msgstr ""
+"જો તમને એમ લાગે કે આ એડ-ઓન%(amo_policy_link_open)s ખામીવાળી નીતિઓ%(link_close)s અથવા સુરક્ષા અથવા ગોપનીયતા સમસ્યાઓનું ઉલ્લંઘન કરે છે, તો કૃપા કરીને તમારી ચિંતાઓનું વર્ણન કરવા માટે નીચેના ફોર્મનો "
+"ઉપયોગ કરો. કૃપા કરીને આ ફોર્મનો ઉપયોગ બીજા કોઈ કારણસર કરશો નહીં."
 
 msgid "Send Report"
 msgstr ""
@@ -389,7 +391,7 @@ msgid "Cancel"
 msgstr ""
 
 msgid "What do you think?"
-msgstr ""
+msgstr "તમે શુ વિચારો છો?"
 
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
