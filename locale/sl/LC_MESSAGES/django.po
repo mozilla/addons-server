@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-24 19:07+0000\n"
+"PO-Revision-Date: 2018-08-24 19:14+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3536,9 +3536,8 @@ msgstr "Nalaganje izvorne kode"
 msgid "Do You Need to Submit Source Code?"
 msgstr "Ali morate poslati izvorno kodo?"
 
-#, fuzzy
 msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "Morda morate poslati izvorno kodo. Če ne naložite prave izvorne kode zdaj, bo vaš dodatek morda odstranjen s strani!"
+msgstr "Morda morate poslati izvorno kodo. Če je ne boste, bo vaš dodatek morda odstranjen s strani!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
