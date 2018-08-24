@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-23 19:33+0000\n"
-"Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
+"PO-Revision-Date: 2018-08-23 17:27+0000\n"
+"Last-Translator: Anvee Malviya <abmalviya5@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
 "MIME-Version: 1.0\n"
@@ -468,11 +468,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "પ્લેટફોર્મ્સ, છેલ્લા {0} દિવસ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "{0} થી {1} સુધીની પ્લેટફોર્મ્સ"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"

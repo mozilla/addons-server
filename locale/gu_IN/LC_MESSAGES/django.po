@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-24 09:36+0000\n"
-"Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
+"PO-Revision-Date: 2018-08-07 15:03+0000\n"
+"Last-Translator: Anvee Malviya <abmalviya5@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
 "MIME-Version: 1.0\n"
@@ -197,7 +197,7 @@ msgid "This add-on has not been reviewed by Mozilla."
 msgstr "આ ઍડ-ઑનની Mozilla દ્વારા સમીક્ષા કરવામાં આવી નથી."
 
 msgid "This add-on has been marked as experimental by its developers."
-msgstr ""
+msgstr "આ ઍડ-ઑન તેના વિકાસકર્તાઓ દ્વારા પ્રાયોગિક તરીકે ચિહ્નિત કરવામાં આવ્યું છે."
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -215,7 +215,7 @@ msgid "Back to {0}…"
 msgstr ""
 
 msgid "Add-ons for {0}"
-msgstr ""
+msgstr "{0} માટે એડ-ઑન્સ"
 
 msgid "Featured Extensions"
 msgstr ""
@@ -269,7 +269,7 @@ msgid "Requires Restart"
 msgstr ""
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
+msgstr "આ ઍડ-ઑન નવી તકનીક સાથે બનેલ છે જે Firefox 57 અને પછીની સાથે સુસંગત છે."
 
 msgid "Compatible with Firefox 57+"
 msgstr ""
@@ -291,17 +291,17 @@ msgstr ""
 
 #. {0} is a category name, such as Nature
 msgid "More {0} Themes"
-msgstr ""
+msgstr "વધુ {0} થીમ્સ"
 
 #. {0} is a category name, such as Nature
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "બધા {0} થીમ્સ જુઓ"
 
 msgid "More by this Artist"
 msgstr ""
 
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "આ કલાકારની તમામ થીમ્સ જુઓ"
 
 msgid "Categories"
 msgstr ""
