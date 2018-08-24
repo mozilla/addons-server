@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-24 20:08+0000\n"
+"PO-Revision-Date: 2018-08-24 21:25+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2309,16 +2309,14 @@ msgstr "Odličen (3)"
 msgid "Manual Reviewer Points"
 msgstr "Točke ročnega recenzenta"
 
-#, fuzzy
 msgid "New Legacy Add-on Review"
-msgstr "Pregled novega dodatka"
+msgstr "Pregled novega zastarelega dodatka"
 
 msgid "Preliminary Add-on Review"
 msgstr "Predhodni pregled dodatka"
 
-#, fuzzy
 msgid "Updated Legacy Add-on Review"
-msgstr "Posodobljen pregled dodatka"
+msgstr "Pregled posodobljenega zastarelega dodatka"
 
 msgid "New Dictionary Review"
 msgstr "Pregled novega slovarja"
@@ -2327,7 +2325,7 @@ msgid "Preliminary Dictionary Review"
 msgstr "Predhodni pregled slovarja"
 
 msgid "Updated Dictionary Review"
-msgstr "Posodobljen pregled slovarja"
+msgstr "Pregled posodobljenega slovarja"
 
 msgid "New Language Pack Review"
 msgstr "Pregled novega jezikovnega paketa"
@@ -2336,7 +2334,7 @@ msgid "Preliminary Language Pack Review"
 msgstr "Predhoden pregled jezikovnega paketa"
 
 msgid "Updated Language Pack Review"
-msgstr "Posodobljen pregled jezikovnega paketa"
+msgstr "Pregled posodobljenega jezikovnega paketa"
 
 msgid "Theme Review"
 msgstr "Pregled teme"
@@ -2351,7 +2349,7 @@ msgid "Preliminary Search Provider Review"
 msgstr "Predhoden pregled ponudnika za iskanje"
 
 msgid "Updated Search Provider Review"
-msgstr "Posodobljen pregled ponudnika za iskanje"
+msgstr "Pregled posodobljenega ponudnika iskanja"
 
 msgid "New Complete Theme Review"
 msgstr "Nov pregled celotne teme"
@@ -2360,7 +2358,7 @@ msgid "Preliminary Complete Theme Review"
 msgstr "Predhoden pregled celotne teme"
 
 msgid "Updated Complete Theme Review"
-msgstr "Posodobljen pregled celotne teme"
+msgstr "Pregled posodobljene celotne teme"
 
 msgid "Moderated Add-on Review"
 msgstr "Moderirana ocena dodatka"
@@ -3580,7 +3578,7 @@ msgid "A build script that executes all necessary technical steps."
 msgstr "Skript za izgradnjo, ki izvede vse potrebne tehnične korake."
 
 msgid "Operating system and build environment requirements."
-msgstr ""
+msgstr "Operacijski sistem in zahteve za okolje za izgradnjo."
 
 msgid ""
 "Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
