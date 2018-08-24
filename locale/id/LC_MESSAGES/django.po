@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-24 00:52+0000\n"
+"PO-Revision-Date: 2018-08-24 00:57+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -2249,16 +2249,14 @@ msgstr "Istimewa (3)"
 msgid "Manual Reviewer Points"
 msgstr "Poin Pengulas Manual"
 
-#, fuzzy
 msgid "New Legacy Add-on Review"
-msgstr "Ulasan Pengaya Baru"
+msgstr "Ulasan Pengaya Peninggalan Baru"
 
 msgid "Preliminary Add-on Review"
 msgstr "Ulasan Pendahuluan Pengaya"
 
-#, fuzzy
 msgid "Updated Legacy Add-on Review"
-msgstr "Ulasan Pengaya yang Diperbarui"
+msgstr "Ulasan Pengaya Peninggalan yang Diperbarui"
 
 msgid "New Dictionary Review"
 msgstr "Ulasan Kamus Baru"
@@ -5676,9 +5674,8 @@ msgid "Learn where any website's server is geographically located. Be an informe
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Benahi audio yang mengganggu {start_sub_heading}dengan{addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
