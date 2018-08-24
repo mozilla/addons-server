@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-23 22:41+0000\n"
+"PO-Revision-Date: 2018-08-24 21:10+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2928,18 +2928,19 @@ msgid "This add-on requires payment, non-free services or software, or additiona
 msgstr "Re chokoy re' nrajo' rutojik, rusamajixik o tojel kema' o rutz'aqat ch'akulkem."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "Majun tojïk nrajo' re tz'aqat re'. rutojik samaj o kema' o jun rutz'aqat ch'akulkem."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
+msgstr "Ri taq ruwäch e nima'q rub'anikil richin yekanöx taq tz'aqat. Tacha' ri ütz, ri nuk'äm ri' rik'in ri rusamaj atz'aqat richin nawïl jeb'ël taq q'i'oj."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
+"Man tikirel ta yejal ri taq ruwäch toq ya'on ruq'ij ri atz'aqat pa re chokoy re'. Katz'ib'an chi re <a href=\"mailto:%(email)s\">%(email)s</a> we k'o jun aruma toq nawajo' ye'ajäl ri taq ab'anikil."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr ""
+msgstr "Man tikirel ta yejal ri taq ruwäch toq ya'on ruq'ij ri atz'aqat. Katz'ib'an chi re <a href=\"mailto:%(email)s\">%(email)s</a> we k'o jun aruma toq nawajo' ye'ajäl ri taq ab'anikil."
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
