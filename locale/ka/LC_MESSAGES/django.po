@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-24 06:36+0000\n"
+"PO-Revision-Date: 2018-08-24 20:13+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -992,16 +992,16 @@ msgid "Icons cannot be animated."
 msgstr "ხატულები არ იმოძრავებს."
 
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "URL ბმულის ეს დაბოლოება უკვე გამოყენებულია თქვენს ერთ-ერთ კრებულში."
+msgstr "URL-ბმულის ეს დაბოლოება უკვე გამოყენებულია თქვენს ერთ-ერთ კრებულში."
 
 msgid "Name cannot be empty."
 msgstr "სახელი ცარიელი ვერ იქნება."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "შეიყვანეთ URL ბმულის მართებული დაბოლოება, რომელიც შეიძლება შედგებოდეს ასოებისგან, ციფრებისგან, ტირესა და დეფისისგან."
+msgstr "შეიყვანეთ URL-ბმულის მართებული დაბოლოება, რომელიც შეიძლება შედგებოდეს ასოებისგან, ციფრებისგან, ტირესა და დეფისისგან."
 
 msgid "This custom URL cannot be used."
-msgstr "ამ URL ბმულის გამოყენება შეუძლებელია."
+msgstr "ამ URL-ბმულის გამოყენება შეუძლებელია."
 
 msgid "This add-on already belongs to the collection"
 msgstr "ეს დამატება, უკვე სხვა კრებულს ეკუთვნის"
@@ -3319,7 +3319,7 @@ msgid "Add-on URL:"
 msgstr "დამატების URL:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr "გთხოვთ გამოიყენოთ მხოლოდ ასოები, ციფრები, დეფისი და ტირე, თქვენს URL ბმულში."
+msgstr "გთხოვთ გამოიყენოთ მხოლოდ ასოები, ციფრები, დეფისი და ტირე, თქვენს URL-ბმულში."
 
 msgid "Summary:"
 msgstr "შეჯამება:"
@@ -4036,7 +4036,7 @@ msgid "Theme Details"
 msgstr "თემის მონაცემები"
 
 msgid "Supply a pretty URL for your detail page."
-msgstr "შეუსაბამეთ სასურველი URL ბმული თქვენს გვერდს."
+msgstr "შეუსაბამეთ სასურველი URL-ბმული თქვენს გვერდს."
 
 msgid "Select the category that best describes your Theme."
 msgstr "მიუთითეთ კატეგორია, რომელიც ყველაზე უკეთ მიესადაგება თქვენს თემას."
@@ -5229,7 +5229,7 @@ msgstr "აირიდეთ გადამისამართება დ�
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
-msgstr "გადამისამართების გვერდებისა და URL ბმულებიდან თვალის დევნების პარამეტრების მოცილება."
+msgstr "გადამისამართების გვერდებისა და URL-ბმულებიდან თვალის დევნების პარამეტრების მოცილება."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7301,7 +7301,7 @@ msgid "Field required"
 msgstr "ველის შევსება აუცილებელია"
 
 msgid "Enter the ID or URL of the duplicate"
-msgstr "ID ან URL ბმულის მითითება გაორმაგებულისთვის"
+msgstr "ID-ის ან URL-ბმულის მითითება გაორმაგებულისთვის"
 
 msgid "Select a reason for rejection"
 msgstr "უარყოფის მიზეზის მითითება"
@@ -7461,7 +7461,7 @@ msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 ch
 msgstr "გთხოვთ, მიუთითოთ დამატების GUID მანიფესტის ფაილში, თუ არ აღემატება 64 სიმბოლოს."
 
 msgid "Invalid GUID in URL"
-msgstr "უმართებულო GUID URL ბმულში"
+msgstr "უმართებულო GUID URL-ბმულში"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "ამ დამატების გამოქვეყნებულ ვერსიაზე API-ის საშუალებით დამატება არ შეგიძლიათ, არასაკმარისი მონაცემების გამო. გთხოვთ გადმოაგზავნოთ საიტის მეშვეობით"
@@ -7920,7 +7920,7 @@ msgid "You can change your email address on Firefox Accounts."
 msgstr "შეგიძლიათ შეცვალოთ თქვენი ელფოსტის მისამართი Firefox-ანგარიშებზე."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "ეს URL ბმული არასწორი ფორმატისაა. მართებული URL ბმულები გამოიყურება შემდეგნაირად: http://example.com/my_page."
+msgstr "ეს URL-ბმული არასწორი სახისაა. მართებული URL-ბმულები გამოიყურება შემდეგნაირად: http://example.com/my_page."
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "ანონიმურობისთვის, მიუთითეთ ცვლილების მიზეზი, მაგრამ არ შეაფასოთ სხვა ველები."
@@ -8063,7 +8063,7 @@ msgid "Give us a bit more information about yourself. All these fields are optio
 msgstr "მოგვაწოდეთ ცოტა უფრო მეტი ინფორმაცია თქვენზე. ყველა ამ ველის შევსება, არაა სავალდებულო, თუმცა დაეხმარება სხვა მომხმარებლებს, უკეთ გაგიცნონ."
 
 msgid "This URL will only be visible if you are a developer."
-msgstr "ეს URL ბმული მხოლოდ იმ შემთხვევაში გამოჩნდება, თუ შემმუშავებელი ხართ."
+msgstr "ეს URL-ბმული მხოლოდ იმ შემთხვევაში გამოჩნდება, თუ შემმუშავებელი ხართ."
 
 msgid "Choose Photo&hellip;"
 msgstr "სურათის არჩევა&hellip;"
