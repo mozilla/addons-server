@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-24 13:17+0000\n"
+"PO-Revision-Date: 2018-08-24 19:07+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -41,7 +41,7 @@ msgstr "Slike ne morejo biti animirane."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr "Uporabljajte slike, ki so manjše kot %dMB."
+msgstr "Uporabljajte slike, ki so manjše od %d MB."
 
 msgid "You are already logged in."
 msgstr "Ste že prijavljeni."
