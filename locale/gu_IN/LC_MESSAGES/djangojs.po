@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-24 10:20+0000\n"
+"PO-Revision-Date: 2018-08-23 19:31+0000\n"
 "Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -663,7 +663,7 @@ msgstr "તમારા પ્લેટફોર્મ માટે ઉપલબ
 
 #. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
-msgstr ""
+msgstr "આ ઍડ-ઑન {0}તમારી આવૃત્તિ સાથે સુસંગત નથી."
 
 msgid "View other versions"
 msgstr ""
