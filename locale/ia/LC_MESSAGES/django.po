@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-23 22:17+0000\n"
+"PO-Revision-Date: 2018-08-24 15:48+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5060,7 +5060,7 @@ msgstr "Discarga imagines {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
-msgstr ""
+msgstr "Collige imagines ex omne sito web e discarga los."
 
 #. editorial content for the discovery pane.
 msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5068,7 +5068,7 @@ msgstr "Masca tu position {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr ""
+msgstr "Disguisa tu position pro jectar foras le traciatores e proteger tu confidentialitate."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
