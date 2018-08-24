@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-24 02:27+0000\n"
-"Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
+"PO-Revision-Date: 2018-08-24 04:52+0000\n"
+"Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -906,26 +906,26 @@ msgid "Invalid Authorization header. Credentials string should not contain space
 msgstr ""
 
 msgid "Signature has expired."
-msgstr ""
+msgstr "ਦਸਤਖਤ ਦੀ ਮਿਆਦ ਪੁੱਗ ਗਈ ਹੈ।"
 
 msgid "Error decoding signature."
-msgstr ""
+msgstr "ਗਲਤੀ ਡੀਕੋਡਿੰਗ ਦਸਤਖਤ।"
 
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "ਗੈਰ-ਪ੍ਰਮਾਣਿਤ JWT ਟੋਕਨ।"
 
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "ਖੇਤਰ ਵਿੱਚ ਅੱਖਰਾਂ ਦੀ ਗਿਣਤੀ ਘੱਟੋ ਘੱਟ {num} ਜ਼ਰੂਰ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।"
 
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "ਬੋਲੀ ਕੋਡ {lang_code} ਗੈਰ-ਪ੍ਰਮਾਣਿਤ ਹੈ।"
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "{lang-code:value} ਦੀ ਕੋਈ ਇਕਾਈ ਮੁਹੱਈਆ ਕਰਵਾਉਣਾ ਤੁਹਾਡੇ ਲਈ ਲਾਜਮੀ ਹੈ।"
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "ਗੈਰ-ਪ੍ਰਮਾਣਿਤ pk ਜਾਂ ਸਲੱਗ \"%s\" - ਇਕਾਈ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।"
 
 msgid "Application Versions"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵੰਨਗੀ"
