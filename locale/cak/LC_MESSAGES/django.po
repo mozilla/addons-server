@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-24 22:56+0000\n"
+"PO-Revision-Date: 2018-08-24 23:06+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3055,25 +3055,25 @@ msgid "View Source?"
 msgstr "¿La Nitz'et Ruxe'el?"
 
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Yojtikïr niqak'üt ri ruxe'el atz'aqat pan online qatz'eob'al. Okel xa xe pa cholajin taq tz'aqat."
+msgstr "Yojtikïr niqak'üt ri ruxe'el atz'aqat pan online qatz'etob'al. Okel xa xe pa cholajin taq tz'aqat."
 
 msgid "This add-on's source code is publicly viewable."
-msgstr ""
+msgstr "Ri rub'itz'ib' ruxe'el re tz'aqat re' xab'achike nitz'eto."
 
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr ""
+msgstr "Manäq, ri rub'itz'ib' ruxe'el re tz'aqat re' man xab'achike ta nitz'eto."
 
 msgid "Public Stats?"
-msgstr ""
+msgstr "¿La E Xab'achike Molob'a'?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Yojtikïr niqak'üt ri ruqasaxik chuqa' ri rub'anikil rokisaxik ri atz'aqat pan online qatz'etob'al. Okel xa xe pa cholajin taq tz'aqat."
 
 msgid "This add-on's stats are publicly viewable."
-msgstr ""
+msgstr "Ri taq rumolob'a' re tz'aqat re' xab'achike nitz'eto."
 
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr ""
+msgstr "Manäq, ri taq rumolob'a' re tz'aqat re' man xab'achike ta nitz'eto."
 
 msgid "Upgrade SDK?"
 msgstr ""
