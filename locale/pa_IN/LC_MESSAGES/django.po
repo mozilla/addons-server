@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-24 04:52+0000\n"
+"PO-Revision-Date: 2018-08-24 05:00+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -977,7 +977,7 @@ msgid "Icon"
 msgstr "ਆਈਕਾਨ"
 
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
+msgstr "ਕਿਰਪਾ ਕਰਕੇ ਇਹ ਖੇਤਰ ਨਾ ਭਰੋ, ਇਹ ਬੌਟ ਬੋਚਣ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ"
 
 msgid "This name cannot be used."
 msgstr "ਇਹ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
@@ -1024,7 +1024,7 @@ msgstr "ਸੰਗ੍ਰਹਿ ਰਚਿਆ!"
 
 #, python-format
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
+msgstr "ਤੁਹਾਡਾ ਨਵਾਂ ਸੰਗ੍ਰਹਿ ਹੇਠਾਂ ਵਿਖਾਇਆ ਗਿਆ ਹੈ। ਜੇਕਰ ਤੁਹਾਨੂੰ ਚੰਗਾ ਲੱਗੇ ਤਾਂ ਤੁਸੀਂ <a href=\"%(url)s\">ਸੈਟਿੰਗ ਵਿੱਚ ਹੋਰ ਸੋਧ</a> ਕਰ ਸਕਦੇ ਹੋ।"
 
 msgid "Collection updated!"
 msgstr "ਸੰਗ੍ਰਹਿ ਅੱਪਡੇਟ ਹੋਏ!"
@@ -1205,7 +1205,7 @@ msgid "Reset"
 msgstr "ਰੀਸੈੱਟ"
 
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "PNG ਅਤੇ JPG ਸਮਰਥਿਤ।  ਚਿੱਤਰ ਨੂੰ 32x32 ਦੇ ਮਾਪ ਦਾ ਕੀਤਾ ਜਾਵੇਗਾ।"
 
 msgid "There are errors in this form.  Please correct them below."
 msgstr "ਇਸ ਫ਼ਾਰਮ ਵਿੱਚ ਗਲਤੀਆਂ ਹਨ।  ਕਿਰਪਾ ਕਰਕੇ ਹੇਠ ਦਿੱਤੇ ਨੂੰ ਠੀਕ ਕਰੋ।"
@@ -1214,7 +1214,7 @@ msgid "Add-ons in Your Collection"
 msgstr "ਤੁਹਾਡੇ ਸੰਗ੍ਰਹਿ ਵਿੱਚ ਐਡ-ਆਨ"
 
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
+msgstr "ਇਸ ਸੰਗ੍ਰਹਿ ਵਿੱਚ ਕੋਈ ਐਡ-ਔਨ ਸ਼ਾਮਲ ਕਰਨ ਲਈ, ਹੇਠਾਂ ਦਿੱਤੇ ਡੱਬੇ ਵਿੱਚ ਇਸਦਾ ਨਾਂ ਭਰੋ ਅਤੇ ਐਂਟਰ ਦੱਬੋ।"
 
 msgid "Add-on"
 msgstr "ਐਡ-ਆਨ"
@@ -2273,13 +2273,13 @@ msgid "No Reputation"
 msgstr "ਰਸੂਖ"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "ਚੰਗਾ (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "ਬਹੁਤ ਚੰਗਾ (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "ਸ਼ਾਨਦਾਰ (3)"
 
 msgid "Manual Reviewer Points"
 msgstr "ਦਸਤੀ ਸਮੀਖਿਆ ਬਿੰਦੂ"
@@ -3674,7 +3674,7 @@ msgid "Image height should be 200 pixels"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG ਜਾਂ GIF (ਐਨੀਮੇਟਡ ਨਹੀਂ)"
 
 msgid "Aligned to top-right"
 msgstr "ਉੱਪਰੀ-ਸੱਜੇ ਪਾਸੇ ਇਕਸਾਰ"
