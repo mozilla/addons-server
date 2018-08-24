@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-24 21:52+0000\n"
+"PO-Revision-Date: 2018-08-24 22:06+0000\n"
 "Last-Translator: Juan Esteban Ajsivinac Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2977,7 +2977,7 @@ msgid "Default Locale"
 msgstr "Ch'ab'äl K'o Wi"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Ri retamab'al atz'aqat nik'ut pa re ch'ab'äl re', man ke ta ri' we nanab'eyisaj jun chik tz'alq'omanem. Okel xa xe pa cholajin taq tz'aqat."
 
 msgid "Homepage"
 msgstr "Ruxaq tikirib'äl"
@@ -2986,16 +2986,18 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"We ri atz'aqat k'o chik jun tikirib'äl ruxaq, tatz'ib'aj ri ochochib'äl wawe'. We ri ruxaq tzalq'omin pa ch'aqa' chik ch'ab'äl, tikirel yetz'aqatisäx ri jalajöj taq tzalq'omanem. Okel xa xe pa "
+"cholajin taq tz'aqat."
 
 msgid "Images"
 msgstr "Taq wachib'äl"
 
 msgid "Support Information"
-msgstr ""
+msgstr "Retamab'al Tob'äl"
 
 #. {0} is an addon name
 msgid "Support Information for {0}"
-msgstr ""
+msgstr "Retamab'al Rutob'al {0}"
 
 msgid "Email"
 msgstr "Taqoya'l"
