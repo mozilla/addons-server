@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-07 15:03+0000\n"
-"Last-Translator: Anvee Malviya <abmalviya5@gmail.com>\n"
+"PO-Revision-Date: 2018-08-24 10:26+0000\n"
+"Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
 "MIME-Version: 1.0\n"
@@ -313,22 +313,22 @@ msgid "Artist"
 msgstr ""
 
 msgid "Rating"
-msgstr ""
+msgstr "રેટિંગ"
 
 msgid "Daily Users"
 msgstr ""
 
 msgid "License"
-msgstr ""
+msgstr "લાયસન્સ"
 
 msgid "Awaiting Review"
 msgstr ""
 
 msgid "Rejected"
-msgstr ""
+msgstr "નકારેલું"
 
 msgid "Approved"
-msgstr ""
+msgstr "મંજૂર"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
@@ -337,7 +337,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Hover to Preview"
-msgstr ""
+msgstr "પૂર્વદર્શન પર હૉવર કરો"
 
 msgid "Add"
 msgstr ""
@@ -351,7 +351,7 @@ msgid "by {0} on {1}"
 msgstr ""
 
 msgid "Not yet rated"
-msgstr ""
+msgstr "હજુ સુધી રેટ નથી"
 
 msgid "<b>{0}</b> users"
 msgstr ""
@@ -364,11 +364,11 @@ msgstr[1] ""
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
-msgstr ""
+msgstr "{0} માટે ગોપનીયતા નીતિ"
 
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
-msgstr ""
+msgstr "ગોપનીયતા નીતિ"
 
 msgid "Report Abuse"
 msgstr ""

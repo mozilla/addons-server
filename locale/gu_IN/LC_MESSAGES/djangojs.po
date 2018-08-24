@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-23 17:27+0000\n"
+"PO-Revision-Date: 2018-08-23 17:28+0000\n"
 "Last-Translator: Anvee Malviya <abmalviya5@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -504,7 +504,7 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "{0} થી {1} માંથી સ્ત્રોતો ડાઉનલોડ કરો"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -516,11 +516,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "સાઇટ મેટ્રિક્સ, છેલ્લા {0} દિવસ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "સાઇટ મેટ્રિક્સ {0} થી {1} સુધી"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
@@ -540,11 +540,11 @@ msgstr "એડ-ઑન્સ {0} થી {1} સુધીની ડાઉનલો
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "ઍડ-ઑન્સ બનાવ્યાં, છેલ્લા {0} દિવસ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "{0} થી {1} માંથી બનાવેલ એડ-ઓન્સ"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
@@ -799,7 +799,7 @@ msgid "Requested Info"
 msgstr ""
 
 msgid "Flagged"
-msgstr ""
+msgstr "ચિહ્નિત"
 
 msgid "Duplicate"
 msgstr ""
