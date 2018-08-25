@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-24 00:57+0000\n"
+"PO-Revision-Date: 2018-08-25 04:11+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4548,7 +4548,7 @@ msgstr "Akses pengetahuan {start_sub_heading}dengan {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "Tambahkan fakta Britannica ke hasil pencarian Anda secara otomatis."
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4564,7 +4564,7 @@ msgstr "Membaca di mana saja {start_sub_heading}dengan {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Kirim artikel berita, cerita, kiriman blog, dan yang lainnya ke Kindle Anda."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4572,7 +4572,7 @@ msgstr "Tandai tab dengan warna {start_sub_heading}dengan {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Kelola tab Anda dengan pengelompokan warna berdasarkan pola URL."
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4588,7 +4588,7 @@ msgstr "Pengecekan tata bahasa otomatis {start_sub_heading}dengan {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Dapatkan bantuan tata bahasa di mana pun Anda menulis di web—media sosial, surel, dokumen, dan yang lainnya."
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
