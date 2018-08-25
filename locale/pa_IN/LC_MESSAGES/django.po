@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-24 05:00+0000\n"
+"PO-Revision-Date: 2018-08-25 07:00+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -3687,7 +3687,7 @@ msgid "Select colors for your theme"
 msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ।"
 
 msgid "Header area background"
-msgstr ""
+msgstr "ਸਿਰਲੇਖ ਇਲਾਕੇ ਦੇ ਪਿਛਲਾ ਪਰਦਾ"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
@@ -3747,13 +3747,13 @@ msgstr ""
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "ਵਿਸਥਾਰਤ ਹਦਾਇਤਾਂ ਲਈ, <a href=\"%(docs_url)s\">API ਦਸਤਾਵੇਜਾਂ</a> ਤੇ ਵਿਚਾਰ ਕਰੋ।"
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
 msgstr ""
 
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT ਜਾਰੀ ਕਰਤਾ"
 
 msgid "JWT secret"
 msgstr ""
@@ -3768,7 +3768,7 @@ msgid "You don't have any API credentials."
 msgstr ""
 
 msgid "Revoke"
-msgstr ""
+msgstr "ਰੱਦ ਕਰੋ"
 
 msgid "Revoke and regenerate credentials"
 msgstr ""
@@ -3777,10 +3777,10 @@ msgid "Generate new credentials"
 msgstr ""
 
 msgid "Invisible"
-msgstr ""
+msgstr "ਅਦਿੱਖ"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "ਮਿਹਰਬਾਨੀ ਕਰ ਕੇ ਕੋਈ ਵੰਨਗੀ ਜਾਂ ਗੁਆਚਿਆ ਹੋਇਆ ਮੇਟਾਡੇਟਾ ਜੋੜ ਕੇ ਆਪਣਾ ਐਡ-ਔਨ ਪੂਰਾ ਕਰੋ।"
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr ""
