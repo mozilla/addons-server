@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-25 04:11+0000\n"
+"PO-Revision-Date: 2018-08-25 04:30+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4620,7 +4620,7 @@ msgstr "Pengubahsuaian gestur tetikus {start_sub_heading}dengan {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "Temukan cara baru dalam mengarahkan dengan bantuan 50+ gestur tetikus."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4628,7 +4628,7 @@ msgstr "Optimalkan video {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "Gelapkan laman sekitar pemutar video untuk pengalaman menonton yang terfokus."
 
 #. editorial content for the discovery pane.
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4637,7 +4637,7 @@ msgstr "Pencarian dalam kesadaran {start_sub_heading}dengan {addon_name}{end_sub
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "Ecosia menggunakan 80% dari keuntungan pencariannya untuk mendanai program penanaman pohon di seluruh dunia. Tempatkan Ecosia persis di pencarian Firefox"
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4645,7 +4645,7 @@ msgstr "Temukan konten web yang hilang {start_sub_heading}dengan {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "Laman yang Anda cari tidak tersedia? Temukan versi arsip/singgahannya."
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4705,7 +4705,7 @@ msgstr "Blokir surel iklan {start_sub_heading}dengan {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Dapatkan lebih banyak ruang layar dengan menghapus iklan dari kotak masuk berbasis web Anda."
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4793,7 +4793,7 @@ msgstr "Menjelajah aman {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
-msgstr ""
+msgstr "Tambahkan keamanan terenkripsi ke tiap situs yang mendukung HTTPS."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4897,7 +4897,7 @@ msgstr "Navigasi dinamis {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr ""
+msgstr "Gunakan gestur tetikus untuk menutup tab, mundur satu laman, memuat ulang, dan banyak lagi."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
