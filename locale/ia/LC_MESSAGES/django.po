@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-24 16:49+0000\n"
+"PO-Revision-Date: 2018-08-25 03:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7401,10 +7401,10 @@ msgid "Filter Results"
 msgstr ""
 
 msgid "Category"
-msgstr ""
+msgstr "Categoria"
 
 msgid "Tag"
-msgstr ""
+msgstr "Tag"
 
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 msgstr ""
@@ -8019,7 +8019,7 @@ msgid "Manage Firefox Account..."
 msgstr ""
 
 msgid "Profile"
-msgstr ""
+msgstr "Profilo"
 
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
 msgstr ""
@@ -8056,31 +8056,31 @@ msgid "Mozilla reserves the right to contact you individually about specific con
 msgstr ""
 
 msgid "Admin"
-msgstr ""
+msgstr "Administrator"
 
 msgid "Delete Account"
-msgstr ""
+msgstr "Deler le conto"
 
 msgid "Update Account"
-msgstr ""
+msgstr "Actualisar le conto"
 
 msgid "none"
-msgstr ""
+msgstr "nulle"
 
 msgid "all"
-msgstr ""
+msgstr "toto"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr ""
 
 msgid "User Login"
-msgstr ""
+msgstr "Authentication de usator"
 
 msgid "Log in with Firefox Accounts"
-msgstr ""
+msgstr "Acceder per contos de Firefox"
 
 msgid "Password Reset"
-msgstr ""
+msgstr "Restabilir le contrasigno"
 
 msgid "User Info for {0}"
 msgstr ""
@@ -8092,22 +8092,22 @@ msgid "Manage user"
 msgstr ""
 
 msgid "Report user"
-msgstr ""
+msgstr "Denunciar usator"
 
 msgid "Add-ons Developer"
-msgstr ""
+msgstr "Disveloppator de additivos"
 
 msgid "Themes Artist"
-msgstr ""
+msgstr "Artista de themas"
 
 msgid "About me"
-msgstr ""
+msgstr "A proposito de me"
 
 msgid "In a little more detail..."
 msgstr ""
 
 msgid "Add-ons I've created"
-msgstr ""
+msgstr "Additivos que io ha create"
 
 msgid "My Most Popular Themes"
 msgstr ""
@@ -8116,16 +8116,16 @@ msgid "Themes I've created"
 msgstr ""
 
 msgid "Created by Me"
-msgstr ""
+msgstr "Create per io"
 
 msgid "My Reviews"
-msgstr ""
+msgstr "Mi revisiones"
 
 msgid "No add-on reviews yet."
 msgstr ""
 
 msgid "Report User"
-msgstr ""
+msgstr "Denunciar usator"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr ""
@@ -8134,7 +8134,7 @@ msgid "Report user {0}"
 msgstr ""
 
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Remover le subscription"
 
 msgid "You are successfully unsubscribed!"
 msgstr ""
@@ -8144,7 +8144,7 @@ msgid "The email address <strong>%(email)s</strong> will no longer get messages 
 msgstr ""
 
 msgid "More Actions:"
-msgstr ""
+msgstr "Altere actiones:"
 
 msgid "edit your notification settings"
 msgstr ""
