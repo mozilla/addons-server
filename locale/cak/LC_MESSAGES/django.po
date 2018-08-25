@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-25 22:31+0000\n"
+"PO-Revision-Date: 2018-08-25 22:51+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3341,10 +3341,10 @@ msgid "Name on listing on this site. May be different to the name inside the add
 msgstr "Ri b'i'aj pa ri rucholb'al re ruxaq k'amaya'l re' tikirel jun wi ri rub'i' rik'in ri niq'alajin pa ri tz'aqat pa Firefox."
 
 msgid "Add-on URL:"
-msgstr ""
+msgstr "Tz'aqat URL:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
+msgstr "Tawokisaj xa xe tz'ib', ajilab'äl, ikim juch' chuqa' juch' pa ri URL."
 
 msgid "Summary:"
 msgstr "Ch'utitzijol:"
@@ -3353,37 +3353,38 @@ msgid "required"
 msgstr "ajowan"
 
 msgid "This add-on is experimental"
-msgstr ""
+msgstr "Re tz'aqat re' nitojtob'ëx"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+"Tacha' re' cha'oj re' we ri atz'aqat nitojtob'ëx o k'a man okel ta nikokisaj konojel.  Ri tz'aqat xtiwachin pa cholb'äl, xa xe chi man konojel ta xketz'eto.  Xkatikïr na xtajäl re runuk'ulem re'."
 
 msgid "Select a category for this add-on:"
-msgstr ""
+msgstr "Ticha' jun ruwäch re tz'aqat re':"
 
 msgid "Support email:"
-msgstr ""
+msgstr "Rutaqoya'l Tob'äl"
 
 msgid "Support website:"
-msgstr ""
+msgstr "Ruxaq Ruk'amaya'l Tob'äl:"
 
 msgid "License:"
-msgstr ""
+msgstr "Ya'oj q'ij:"
 
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr ""
+msgstr "Tacha' jun ruk'amon ya'oj kiq'ij ri taq ch'ojib'äl najikib'a'."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
+msgstr "We ri atz'aqat nuq'alajisaj tzij pa ri rusamajib'al okisanel, nrajo' jun runa'ojil ichinanem, ri nuchöl achike tzij xketaq chuqa' achike rokisaxik xkeb'an."
 
 msgid "Notes to Reviewer:"
-msgstr ""
+msgstr "Kich'utitzijol Nik'onela':"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "¿La k'o ri k'o chi niketamaj ri nik'onela' toq xtikitz'ët re tz'aqat re'?"
 
 msgid "Remember"
-msgstr ""
+msgstr "Tinatäx"
 
 #, python-format
 msgid ""
