@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-25 23:13+0000\n"
+"PO-Revision-Date: 2018-08-25 23:26+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3690,7 +3690,7 @@ msgid "You don't have any API credentials."
 msgstr ""
 
 msgid "Revoke"
-msgstr ""
+msgstr "Tiyuj"
 
 msgid "Revoke and regenerate credentials"
 msgstr ""
@@ -3699,7 +3699,7 @@ msgid "Generate new credentials"
 msgstr ""
 
 msgid "Invisible"
-msgstr ""
+msgstr "Metz'etel"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
@@ -3718,7 +3718,7 @@ msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
-msgstr ""
+msgstr "Xtz'uk:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Add-on Multi Process Status:"
@@ -3756,7 +3756,7 @@ msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
 msgid "Latest Version:"
-msgstr ""
+msgstr "Ruk'isib'äl Ruwäch:"
 
 msgid "This is the newest uploaded unlisted version."
 msgstr ""
@@ -3765,7 +3765,7 @@ msgid "Upload New Version"
 msgstr ""
 
 msgid "View All"
-msgstr ""
+msgstr "Titz'et Ronojel"
 
 msgid "Listed Review Page"
 msgstr ""
@@ -3783,7 +3783,7 @@ msgid "{0} failure reports"
 msgstr ""
 
 msgid "{0} success reports"
-msgstr ""
+msgstr "{0} ütz taq rutzijol"
 
 msgid "Developer News"
 msgstr ""
@@ -3890,13 +3890,13 @@ msgid "\"Get The Add-on\" button"
 msgstr ""
 
 msgid "Legal"
-msgstr ""
+msgstr "Taqanel"
 
 msgid "Report Trademark Abuse"
 msgstr ""
 
 msgid "Legal Notices"
-msgstr ""
+msgstr "Taqanel Rutzijol"
 
 msgid "Review Add-ons"
 msgstr ""
@@ -3905,7 +3905,7 @@ msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjo
 msgstr ""
 
 msgid "Join us!"
-msgstr ""
+msgstr "¡Tatunu' pe awi'!"
 
 msgid "Write Some Code"
 msgstr ""
@@ -3914,7 +3914,7 @@ msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
 msgid "Get started"
-msgstr ""
+msgstr "Titikirisäx"
 
 msgid "More Ways to Participate"
 msgstr ""
@@ -3950,14 +3950,14 @@ msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
 
 msgid "Learn How"
-msgstr ""
+msgstr "Tetamäx Achike Rub'eyal"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
 
 msgid "Learn More"
-msgstr ""
+msgstr "Tetamäx Ch'aqa' Chik"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -3992,7 +3992,7 @@ msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a
 msgstr ""
 
 msgid "Customize Firefox"
-msgstr ""
+msgstr "Tawichinaj Firefox"
 
 #, python-format
 msgid ""
@@ -4017,7 +4017,7 @@ msgid "Have an add-on ready? Submit your extension or theme to be listed on addo
 msgstr ""
 
 msgid "Sign In"
-msgstr ""
+msgstr "Titikirisäx Molojri'ïl"
 
 msgid "Web-Ext"
 msgstr ""
@@ -4101,7 +4101,7 @@ msgid "You may update your theme design here once it has been approved."
 msgstr ""
 
 msgid "Header"
-msgstr ""
+msgstr "Jub'i'aj"
 
 msgid "Select colors for your Theme."
 msgstr ""
@@ -4113,7 +4113,7 @@ msgid "This is the color of the tab text."
 msgstr ""
 
 msgid "Background"
-msgstr ""
+msgstr "Rupam"
 
 msgid "This is the color of the tabs."
 msgstr ""
@@ -4123,7 +4123,7 @@ msgstr ""
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "ruma <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
 msgstr ""
@@ -4175,7 +4175,7 @@ msgid "300 KB max"
 msgstr ""
 
 msgid "PNG or JPG"
-msgstr ""
+msgstr "PNG o JPG"
 
 msgid "Manage Version {0}"
 msgstr ""
@@ -4185,13 +4185,13 @@ msgid "Manage {0}"
 msgstr ""
 
 msgid "Files"
-msgstr ""
+msgstr "Taq Yakb'äl"
 
 msgid "Upload Another File"
 msgstr ""
 
 msgid "Version Notes"
-msgstr ""
+msgstr "Kich'utitzijol Ruwäch"
 
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
@@ -4202,19 +4202,19 @@ msgid "Approval Status"
 msgstr ""
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Kich'utitzijol Nik'onela'"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
 msgstr ""
 
 msgid "Source code"
-msgstr ""
+msgstr "Ruxe'el b'itz'ib'"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 msgstr ""
 
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Yakb'äl {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -4228,7 +4228,7 @@ msgid "Status & Versions"
 msgstr ""
 
 msgid "Edit this version"
-msgstr ""
+msgstr "Tinuk' re ruwäch re'"
 
 msgid "0 files"
 msgstr ""
