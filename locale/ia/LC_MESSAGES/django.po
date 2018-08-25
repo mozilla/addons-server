@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-25 03:32+0000\n"
+"PO-Revision-Date: 2018-08-25 03:36+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -8163,31 +8163,31 @@ msgid "Developer Information"
 msgstr ""
 
 msgid "User since"
-msgstr ""
+msgstr "Usator desde"
 
 msgid "Time of last login"
-msgstr ""
+msgstr "Tempore del ultime connexion"
 
 msgid "IP address of last login"
-msgstr ""
+msgstr "Adresse IP del ultime connexion"
 
 msgid "Number of add-ons developed"
-msgstr ""
+msgstr "Numero del additivos disveloppate"
 
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} additivos"
 
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s thema"
+msgstr[1] "%(num)s themas"
 
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s additivo"
+msgstr[1] "%(num)s additivos"
 
 msgid "Average rating of developer's add-ons"
 msgstr ""
@@ -8238,7 +8238,7 @@ msgid "Deleted versions can`t be changed."
 msgstr ""
 
 msgid "Binary"
-msgstr ""
+msgstr "Compilate"
 
 msgid "Non-binary"
-msgstr ""
+msgstr "Non compilate"
