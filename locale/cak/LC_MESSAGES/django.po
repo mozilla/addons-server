@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-25 22:51+0000\n"
+"PO-Revision-Date: 2018-08-25 23:13+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3393,55 +3393,55 @@ msgid ""
 msgstr ""
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "Re taq ch'utitzijol re' xa xe rat chuqa' ri qanik'onela' xketikïr xketz'eto."
 
 msgid "Cancel and Disable Version"
-msgstr ""
+msgstr "Tiq'at chuqa' Tichup Ruwäch"
 
 msgid "Submit Version"
-msgstr ""
+msgstr "Titaq Ruwäch"
 
 msgid "Describe Version"
-msgstr ""
+msgstr "Titz'ijöx rij Ruwäch"
 
 msgid "Release Notes:"
-msgstr ""
+msgstr "Ruch'utitzijol re Ruwäch re'"
 
 msgid "Let your users know what's new and what's changed in this version."
-msgstr ""
+msgstr "Taya' q'ij chi ri okisanela' tiketamaj ri k'ak'a' chuqa' ri jaloj ruk'amon pe re ruwäch re'."
 
 msgid "These notes will appear on the detail page."
-msgstr ""
+msgstr "Re taq ch'utitzijol re' xkewachin pa ri tzijoxkil ruxaq."
 
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Achike Rub'eyal Nitalüx re Ruwäch re'"
 
 msgid "More information on Add-on Distribution and Signing"
-msgstr ""
+msgstr "Ch'aqa' chik Etamab'äl chi rij ri Juch' chuqa' Rutaluxik Tz'aqat"
 
 msgid "Submission Complete"
-msgstr ""
+msgstr "Xtaq Ronojel"
 
 msgid "You’re done!"
-msgstr ""
+msgstr "¡Xk'achoj!"
 
 msgid "Version Submitted for Review"
-msgstr ""
+msgstr "Xtaq Ruwäch richin Ninik'öx"
 
 msgid "Preview of the version submitted"
-msgstr ""
+msgstr "Nab'ey rutzub'al ri ruwäch xtaq"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr ""
+msgstr "¡Xk'achoj! Re ruwäch re' okel chik toq xtinik'öx. Xtitaq rutzijol chawe toq xtinik'öx."
 
 msgid "Version Submitted"
-msgstr ""
+msgstr "Ruwäch Xtaq"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "¡Xk'achoj! Re ruwäch re' xtiwachin yan pa ri ruxaq qak'amaya'l."
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "¡Xk'achoj! Xtaq re ruwäch re' richin ninik'öx. Xtitzijöx chawe toq xtitz'aqatisäx runik'oxik o jun chi ke ri nik'onela' k'o ruk'utunik."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr ""
@@ -3471,13 +3471,13 @@ msgid "You’re done! This version is signed and ready to for self-distribution.
 msgstr ""
 
 msgid "Download {0}"
-msgstr ""
+msgstr "Qasanïk {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr ""
 
 msgid "Upload File"
-msgstr ""
+msgstr "Tjotob'äx Yakb'äl"
 
 msgid "Go to My Submissions"
 msgstr ""
@@ -3551,7 +3551,7 @@ msgid "Upload source code:"
 msgstr ""
 
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "Ruch'ob'otzij Kijachik Rutz'aqat"
 
 msgid "Upload Add-on"
 msgstr ""
@@ -3650,13 +3650,13 @@ msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest
 msgstr ""
 
 msgid "optional"
-msgstr ""
+msgstr "cha'el"
 
 msgid "Browser preview"
 msgstr ""
 
 msgid "Back"
-msgstr ""
+msgstr "Chi rij"
 
 msgid "Uploading Theme"
 msgstr ""
