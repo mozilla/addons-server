@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-25 04:30+0000\n"
+"PO-Revision-Date: 2018-08-25 04:39+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4913,7 +4913,7 @@ msgstr "Meredakan ketegangan mata {start_sub_heading}dengan {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Jadikan web lebih nyaman dipandang dengan menggelapkan tampilan."
 
 #. editorial content for the discovery pane.
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4929,7 +4929,7 @@ msgstr "Mengubahsuaikan situs web favorit Anda {start_sub_heading}dengan {addon_
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Ubah tampilan situs web apa saja! Geser warna, latar laman, dan banyak lainnya."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4945,7 +4945,7 @@ msgstr "Dapatkan terjemahan cepat {start_sub_heading}dengan {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
+msgstr "Sorot teks pada situs web, klik kanan, dan terjemahkan seketika."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5065,7 +5065,7 @@ msgstr "Gayakan Wikipedia {start_sub_heading}dengan {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh and modern appearance to Wikipedia."
-msgstr ""
+msgstr "Terapkan tampilan yang segar dan modern untuk Wikipedia."
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5073,7 +5073,7 @@ msgstr "Bekerja lebih cepat  {start_sub_heading}dengan {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
-msgstr ""
+msgstr "Gunakan gestur tetikus untuk melalukan sesuatu—lebih cepat."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
