@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-24 20:37+0000\n"
+"PO-Revision-Date: 2018-08-25 08:31+0000\n"
 "Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -218,10 +218,10 @@ msgid "Add-ons for {0}"
 msgstr "{0} માટે એડ-ઑન્સ"
 
 msgid "Featured Extensions"
-msgstr ""
+msgstr "ફીચર્ડ એક્સ્ટેન્શન્સ"
 
 msgid "Popular Extensions"
-msgstr ""
+msgstr "લોકપ્રિય એક્સટેન્શન્સ"
 
 msgid "Most Popular"
 msgstr ""
@@ -236,7 +236,7 @@ msgid "Up &amp; Coming Extensions"
 msgstr ""
 
 msgid "Featured Themes"
-msgstr ""
+msgstr "ફીચર્ડ થીમ્સ"
 
 msgid "Featured Collections"
 msgstr ""
@@ -395,25 +395,27 @@ msgstr "તમે શુ વિચારો છો?"
 
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr ""
+msgstr "એક સમીક્ષા રજુ કરવા માટે કૃપા કરીને <a href=\"%(login)s\"> લોગ ઇન કરો </a>"
 
 msgid "Review:"
 msgstr ""
 
 msgid "Rating:"
-msgstr ""
+msgstr "રેટિંગ:"
 
 msgid "Submit review"
 msgstr ""
 
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr ""
+msgstr "કૃપા કરીને ભૂલ અહેવાલો અહીં પોસ્ટ કરશો નહીં. અમે ઍડ-ઑન વિકાસકર્તાઓ માટે તમારું ઇમેઇલ સરનામું ઉપલબ્ધ કરાવતા નથી, જેથી તેઓ તમારી સમસ્યાને ઉકેલવા માટે તમારો સંપર્ક કરી શકતા નથી."
 
 #, python-format
 msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
+"જો સહાય ઉપલબ્ધ છે કે નહીં તે જાણવા માટે આ ઍડ-ઑનનો <a href=\"%(support)s\">સહાય વિભાગ</a> જુઓ. તમે મદદ માટે <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">ઍડ-ઑન "
+"સમુદાય</a> પૂછવા પણ પ્રયાસ કરી શકો છો."
 
 msgid "Review Guidelines"
 msgstr ""
@@ -426,12 +428,12 @@ msgid "by %(user)s on %(date)s"
 msgstr ""
 
 msgid "Show the developer's reply to this review"
-msgstr ""
+msgstr "આ સમીક્ષકે વિકાસકર્તાનો જવાબ બતાવો"
 
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] ""
+msgstr[0] "આ ઍડ-ઑનની તમામ સમીક્ષાઓ જુઓ"
 msgstr[1] ""
 
 msgid "Tags"
