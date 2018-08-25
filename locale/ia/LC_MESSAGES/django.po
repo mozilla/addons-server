@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-25 17:15+0000\n"
+"PO-Revision-Date: 2018-08-25 18:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5156,15 +5156,15 @@ msgstr "Crea un lista de bloco de sitos web {start_sub_heading}con {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
-msgstr ""
+msgstr "Impedi a Firefox de acceder al sitos web que tu defini."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Labora in maniera plus intelligente {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "Gere tu productivitate per laborar in un serie de intervallos de tempore."
 
 #. editorial content for the discovery pane.
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
