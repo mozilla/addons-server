@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-25 08:31+0000\n"
+"PO-Revision-Date: 2018-08-25 08:47+0000\n"
 "Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -434,10 +434,10 @@ msgstr "આ સમીક્ષકે વિકાસકર્તાનો જવ
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "આ ઍડ-ઑનની તમામ સમીક્ષાઓ જુઓ"
-msgstr[1] ""
+msgstr[1] "આ ઍડ-ઑનની બધી %(cnt)s સમીક્ષાઓ જુઓ"
 
 msgid "Tags"
-msgstr ""
+msgstr "ટૅગ્સ"
 
 msgid "Icon for {0}"
 msgstr ""
@@ -456,10 +456,10 @@ msgid "Permissions"
 msgstr ""
 
 msgid "This add-on has been marked as experimental by its developers"
-msgstr ""
+msgstr "આ ઍડ-ઑન તેના વિકાસકર્તાઓ દ્વારા પ્રાયોગિક તરીકે ચિહ્નિત કરવામાં આવ્યું છે"
 
 msgid "This add-on requires the following add-ons to work properly:"
-msgstr ""
+msgstr "આ ઍડ-ઑનને યોગ્ય રીતે કામ કરવા માટે નીચેના ઍડ-ઑન્સની જરૂર છે:"
 
 msgid "Average"
 msgstr ""
@@ -476,23 +476,23 @@ msgstr ""
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(author)s દ્વારા અન્ય ઍડ-ઑન્સ"
+msgstr[1] "આ લેખકો દ્વારા અન્ય ઍડ-ઑન્સ"
 
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> વપરાશકર્તા સમીક્ષા"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> વપરાશકર્તા સમીક્ષાઓ"
 
 msgid "View statistics"
-msgstr ""
+msgstr "આંકડા જુઓ"
 
 msgid "Manage"
 msgstr ""
 
 msgid "Add-on Review"
-msgstr ""
+msgstr "એડ-ઑન સમીક્ષા"
 
 msgid "Admin Manage"
 msgstr ""
@@ -505,7 +505,7 @@ msgid "Contribute"
 msgstr ""
 
 msgid "Enjoy this add-on?"
-msgstr ""
+msgstr "આ ઍડ-ઑનનો આનંદ માણો?"
 
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
 msgstr ""
