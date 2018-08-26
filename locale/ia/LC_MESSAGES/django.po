@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-26 07:39+0000\n"
+"PO-Revision-Date: 2018-08-26 09:56+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6270,10 +6270,10 @@ msgid "Your privacy"
 msgstr "Tu confidentialitate"
 
 msgid "All Shield Studies"
-msgstr ""
+msgstr "Tote le studios de Shield"
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
+msgstr "Cata studio de Shield collige datos circa importante eventos de studio, tal como installation, disinstallation, uso quotidian, e fin de studio. Le studios include alsi un sondage optional."
 
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
