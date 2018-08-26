@@ -97,6 +97,10 @@ class LocaleAndAppURLMiddleware(object):
         activate(request.LANG)
         request.APP = amo.APPS.get(prefixer.app, amo.FIREFOX)
 
+        # We have to do this again to match legacy api requests too
+        # TODO - remove this when legacy_api goes away
+        request.is_api = request.path_info.startswith('/api/')
+
 
 class AuthenticationMiddlewareWithoutAPI(AuthenticationMiddleware):
     """
@@ -104,8 +108,7 @@ class AuthenticationMiddlewareWithoutAPI(AuthenticationMiddleware):
     own authentication mechanism.
     """
     def process_request(self, request):
-        if (request.path.startswith('/api/') and
-                not auth_path.match(request.path)):
+        if request.is_api and not auth_path.match(request.path):
             request.user = AnonymousUser()
         else:
             return super(
@@ -214,7 +217,7 @@ class ReadOnlyMiddleware(object):
         if not settings.READ_ONLY:
             return
 
-        if request.path.startswith('/api/'):
+        if request.is_api:
             writable_method = request.method in ('POST', 'PUT', 'DELETE')
             if writable_method:
                 return self._render_api_error()
@@ -236,7 +239,7 @@ class ReadOnlyMiddleware(object):
             return
 
         if isinstance(exception, mysql.OperationalError):
-            if request.path.startswith('/api/'):
+            if request.is_api:
                 return self._render_api_error()
             return render(request, 'amo/read-only.html', status=503)
 
