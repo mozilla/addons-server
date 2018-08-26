@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-25 08:47+0000\n"
+"PO-Revision-Date: 2018-08-26 19:50+0000\n"
 "Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -512,16 +512,16 @@ msgstr ""
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "એડ-ઓન સ્ક્રીનશૉટ #{0}"
 
 msgid "Add-on home page"
-msgstr ""
+msgstr "એડ-ઑન મુખ્ય પૃષ્ઠ"
 
 msgid "Support site"
 msgstr ""
 
 msgid "Support E-mail"
-msgstr ""
+msgstr "ઈ-મેલ ને આધાર આપો"
 
 msgid "Info"
 msgstr ""
