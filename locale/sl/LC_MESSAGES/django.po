@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-26 13:03+0000\n"
+"PO-Revision-Date: 2018-08-26 13:33+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3559,7 +3559,7 @@ msgid "Web template engines, both for HTML and CSS"
 msgstr ""
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr ""
+msgstr "Katerokoli drugo orodje, ki vzame kodo ali datoteke, jih obdela ter ustvari kodo ali datoteko(e) za vključitev v dodatek"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "Ni vam potrebno poslati izvorne kode in pripravljeni ste na naslednji korak."
@@ -3584,9 +3584,13 @@ msgid ""
 "Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
 "emphasis\">npm</span> version used)."
 msgstr ""
+"Podrobnosti (vključno z zahtevano različico in navodili za namestitev) o kakršnihkoli programih, ki so uporabljeni v postopku izgradnje (na primer, uporabljena različica <span class=\"tech-"
+"emphasis\">node</span> in <span class=\"tech-emphasis\">npm</span>)."
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
+"<span class=\"instruction-emphasis\">Opomba:</span> Izvorne datoteke (razen odprtokodnih knjižnic tretjih ponudnikov) ne smejo biti prevedene, zakrite, minimizirane ali kakorkoli drugače strojno "
+"ustvarjene."
 
 msgid "How to Submit:"
 msgstr "Kako predložiti:"
@@ -4589,13 +4593,12 @@ msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr "Označite besedilo, kliknite ga z desno miškino tipko ter hitro izvedite slikovno iskanje."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Vizualni zaznamki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites from a tile layout."
-msgstr ""
+msgstr "Dostopajte do svojih priljubljenih strani s pogleda ploščic."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4627,7 +4630,7 @@ msgstr "Označite zavihke po barvah {start_sub_heading}z {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Razvrstite svoje zavihke z združevanjem po barvah glede na vzorce spletnih naslovov."
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
