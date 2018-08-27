@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-26 13:33+0000\n"
+"PO-Revision-Date: 2018-08-27 19:41+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -5087,9 +5087,8 @@ msgid "Find and resolve broken bookmarks, duplicates, and more."
 msgstr "Poiščite in popravite nedelujoče zaznamke, dvojnike in drugo."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Prenašajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Zmanjšajte stres {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
