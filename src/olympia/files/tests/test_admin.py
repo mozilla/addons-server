@@ -98,7 +98,7 @@ class TestFileAdmin(TestCase):
 
         assert response.url == (
             urlparams('%s%s/%s' % (
-                path, file_.id, urlquote(file_.filename)
+                path, addon.id, urlquote(file_.filename)
             ), filehash=file_.hash))
         assert response['X-Target-Digest'] == file_.hash
 
