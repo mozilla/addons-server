@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-27 01:32+0000\n"
+"PO-Revision-Date: 2018-08-27 01:36+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -2219,16 +2219,14 @@ msgstr ""
 msgid "Manual Reviewer Points"
 msgstr "수동 검토 포인트"
 
-#, fuzzy
 msgid "New Legacy Add-on Review"
-msgstr "새로운 부가 기능 검토"
+msgstr "새로운 기존 부가 기능 검토"
 
 msgid "Preliminary Add-on Review"
 msgstr "부가 기능 예비 검토"
 
-#, fuzzy
 msgid "Updated Legacy Add-on Review"
-msgstr "업데이트된 부가 기능 검토"
+msgstr "업데이트된 기존 부가 기능 검토"
 
 msgid "New Dictionary Review"
 msgstr "새 사전 검토"
@@ -2281,21 +2279,17 @@ msgstr "부가 기능 검토 과정"
 msgid "Add-on Content Review"
 msgstr "검토 완료하기"
 
-#, fuzzy
 msgid "Add-on Review (Highest Risk)"
-msgstr "승인 후 부가 기능 검토 (가장 위험)"
+msgstr "부가 기능 검토(가장 위험)"
 
-#, fuzzy
 msgid "Add-on Review (High Risk)"
-msgstr "승인 후 부가 기능 검토 (고위험)"
+msgstr "부가 기능 검토(고위험)"
 
-#, fuzzy
 msgid "Add-on Review (Medium Risk)"
-msgstr "승인 후 부가 기능 검토 (중간 위험)"
+msgstr "부가 기능 검토(중간 위험)"
 
-#, fuzzy
 msgid "Add-on Review (Low Risk)"
-msgstr "부가 기능 검토 기록"
+msgstr "부가 기능 검토(저위험)"
 
 msgid "Level 1"
 msgstr "1단계"
