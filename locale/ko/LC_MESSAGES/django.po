@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-27 04:40+0000\n"
+"PO-Revision-Date: 2018-08-27 07:29+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -6693,9 +6693,8 @@ msgstr ""
 msgid "Static Themes and Legacy Add-ons"
 msgstr "나의 부가 기능"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "추천 테마"
+msgstr "정적 테마"
 
 #, fuzzy
 msgid "Legacy Add-ons"
@@ -6739,24 +6738,20 @@ msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
 msgstr[0] "콘텐츠 검토({0})"
 
-#, fuzzy
 msgid "New Themes ({0})"
-msgstr "내가 제작한 모든 부가 기능"
+msgstr "새로운 테마 ({0})"
 
-#, fuzzy
 msgid "Themes Updates ({0})"
-msgstr "최근 업데이트: {0}"
+msgstr "테마 업데이트 ({0})"
 
-#, fuzzy
 msgid "Flagged Themes ({0})"
-msgstr "표시된 테마"
+msgstr "표시된 테마 ({0})"
 
 msgid "Lightweight Themes Review Log"
 msgstr "가벼운 테마 검토 로그"
 
-#, fuzzy
 msgid "Deleted Themes Log"
-msgstr "테마 삭제"
+msgstr "삭제된 테마 로그"
 
 msgid "User Ratings Moderation"
 msgstr ""
