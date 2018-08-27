@@ -12,6 +12,8 @@ from .models import File
 
 @admin.register(File)
 class FileAdmin(admin.ModelAdmin):
+    view_on_site = False
+
     raw_id_fields = ('version',)
     list_display = (
         '__unicode__', 'addon_slug', 'addon_guid')
