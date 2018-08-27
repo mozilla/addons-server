@@ -849,7 +849,8 @@ class TestFileDownload(TestCase):
         assert resp.status_code == 302
 
         self.upload = FileUpload.objects.get()
-        self.url = reverse('zadmin.download_file', args=[self.upload.uuid.hex])
+        self.url = reverse(
+            'zadmin.download_file_upload', args=[self.upload.uuid.hex])
 
     def test_download(self):
         """Test that downloading file_upload objects works."""
@@ -874,7 +875,8 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.env', 200)
         self.assert_status('zadmin.settings', 200)
-        self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
+        self.assert_status(
+            'zadmin.download_file_upload', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
         self.assert_status('zadmin.monthly_pick', 200)
         self.assert_status('zadmin.features', 200)
@@ -889,7 +891,8 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.env', 200)
         self.assert_status('zadmin.settings', 200)
-        self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
+        self.assert_status(
+            'zadmin.download_file_upload', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
         self.assert_status('zadmin.monthly_pick', 200)
         self.assert_status('zadmin.features', 200)
@@ -901,7 +904,8 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.index', 403)
         self.assert_status('zadmin.env', 403)
         self.assert_status('zadmin.settings', 403)
-        self.assert_status('zadmin.download_file', 403, uuid=self.FILE_ID)
+        self.assert_status(
+            'zadmin.download_file_upload', 403, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 403)
         self.assert_status('zadmin.monthly_pick', 403)
         self.assert_status('zadmin.features', 403)

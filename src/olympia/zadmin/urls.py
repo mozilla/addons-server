@@ -43,7 +43,7 @@ urlpatterns = [
     url(r'^compat$', views.compat, name='zadmin.compat'),
 
     url(r'^file-upload/(?P<uuid>[0-9a-f]{32})/download$',
-        views.download_file, name='zadmin.download_file'),
+        views.download_file_upload, name='zadmin.download_file_upload'),
 
     url('^features$', views.features, name='zadmin.features'),
     url('^features/collections\.json$', views.es_collections_json,

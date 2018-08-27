@@ -390,7 +390,7 @@ def addon_manage(request, addon):
 
 
 @admin_required
-def download_file(request, uuid):
+def download_file_upload(request, uuid):
     upload = get_object_or_404(FileUpload, uuid=uuid)
 
     return HttpResponseSendFile(request, upload.path,

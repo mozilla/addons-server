@@ -71,7 +71,7 @@ class File(OnChangeMixin, ModelBase):
     requires_chrome = models.BooleanField(default=False)
     reviewed = models.DateTimeField(null=True, blank=True)
     # The `binary` field is used to store the flags from amo-validator when it
-    # files files with binary extensions or files that may contain binary
+    # finds files with binary extensions or files that may contain binary
     # content.
     binary = models.BooleanField(default=False)
     # The `binary_components` field is used to store the flag from
