@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-27 20:34+0000\n"
+"PO-Revision-Date: 2018-08-27 20:50+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3447,34 +3447,34 @@ msgid "Your listing will be more successful by adding a detailed description. Ge
 msgstr "Xtik'oje' ruchuqa' ri acholb'al we natz'aqatisaj jun jeb'ël rutzijoxkil. Tatz'ib'aj ri acholb'al richin nataluj:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "Xtik'oje' ruchuqa' ri acholb'al we natz'aqatisaj jun jeb'ël rutzijoxkil chuqa' chapoj taq ruwäch. Tatz'ib'aj ri acholb'al richin nataluj:"
 
 msgid "Manage Listing"
-msgstr ""
+msgstr "Tinuk'samajïx Cholb'äl"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
+msgstr "Yatikïr nanük' ri ruwäch xatäq rik'in ye'atz'aqatisaj ruch'utitzijol ruwäch o ri rub'itz'ib' xe'el toq ruk'wan k'ayew b'itz'ib' o e sachel."
 
 msgid "Edit version {0}"
-msgstr ""
+msgstr "Tinuk' ruwäch {0}"
 
 msgid "File Signed"
-msgstr ""
+msgstr "Yakb'äl Juch'un"
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
+msgstr "¡Xk'achoj! Xjuch' re yakb'äl re' chuqa' ütz chik richin nitalüx. Yatikïr naqasaj rik'in napïtz ri pitz'b'äl k'o ikim."
 
 msgid "Version Signed"
-msgstr ""
+msgstr "Ruwäch Juch'un"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
+msgstr "¡Xk'achoj! Xjuch' re ruwäch re' chuqa' ütz chik richin nitalüx. Yatikïr naqasaj rik'in napïtz ri pitz'b'äl k'o ikim."
 
 msgid "Download {0}"
 msgstr "Qasanïk {0}"
 
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
+msgstr "E'acha'on jujun ok taq nuk'uche'el richin re taqoj re'. Yatikïr ye'ajotob'a' ch'aqa' chik taq yakb'äl kichin ch'aqa' chik taq nuk'uche'el:"
 
 msgid "Upload File"
 msgstr "Tjotob'äx Yakb'äl"
