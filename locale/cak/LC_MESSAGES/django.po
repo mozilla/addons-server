@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-25 23:26+0000\n"
+"PO-Revision-Date: 2018-08-27 20:34+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3088,7 +3088,7 @@ msgid "No, this add-on will be upgraded manually."
 msgstr "Manäq, re tz'aqat re' xtik'ex chi q'ab'aj."
 
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "Ojer yonil k'utunel"
 
 msgid "UUID"
 msgstr "UUID"
@@ -3444,7 +3444,7 @@ msgid "You’re done! This version has been submitted for review. You will be no
 msgstr "¡Xk'achoj! Xtaq re ruwäch re' richin ninik'öx. Xtitzijöx chawe toq xtitz'aqatisäx runik'oxik o jun chi ke ri nik'onela' k'o ruk'utunik."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr ""
+msgstr "Xtik'oje' ruchuqa' ri acholb'al we natz'aqatisaj jun jeb'ël rutzijoxkil. Tatz'ib'aj ri acholb'al richin nataluj:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr ""
