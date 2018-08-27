@@ -122,3 +122,31 @@ class TestFileAdmin(TestCase):
         assert response.status_code == 200
         assert response[settings.XSENDFILE_HEADER]
         assert response['Content-Type'] == 'application/x-xpinstall'
+
+    def test_download_view_disabled_file_permission_denied(self):
+        """Disabled files are not served through the CDN"""
+        addon = addon_factory()
+        file_ = addon.current_version.all_files[0]
+        file_.update(status=amo.STATUS_DISABLED)
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Curation')
+
+        self.client.login(email=user.email)
+
+        download_url = reverse('admin:files_file_download', args=(file_.pk,))
+        response = self.client.get(download_url, follow=True)
+        assert response.status_code == 404
+
+    def test_download_view_listed_public_file_permission_denied(self):
+        """Disabled files are not served through the CDN"""
+        addon = addon_factory()
+        file_ = addon.current_version.all_files[0]
+        file_.update()
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Curation')
+
+        self.client.login(email=user.email)
+
+        download_url = reverse('admin:files_file_download', args=(file_.pk,))
+        response = self.client.get(download_url, follow=True)
+        assert response.status_code == 404
