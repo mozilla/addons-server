@@ -83,6 +83,7 @@ class TestFileAdmin(TestCase):
         assert expected_url in force_text(response.content)
 
     def test_download_view(self):
+        """Regular listed files are served through the CDN"""
         addon = addon_factory()
         file_ = addon.current_version.all_files[0]
         user = user_factory()
@@ -102,6 +103,7 @@ class TestFileAdmin(TestCase):
         assert response['X-Target-Digest'] == file_.hash
 
     def test_download_view_disabled_file(self):
+        """Disabled files are not served through the CDN"""
         addon = addon_factory()
         file_ = addon.current_version.all_files[0]
         file_.update(status=amo.STATUS_DISABLED)
