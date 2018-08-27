@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-27 01:36+0000\n"
+"PO-Revision-Date: 2018-08-27 04:40+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -2846,9 +2846,8 @@ msgstr "요약 정보"
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
 
-#, fuzzy
 msgid "Experimental?"
-msgstr "테스트용"
+msgstr "시험용인가요?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
@@ -3423,9 +3422,8 @@ msgstr "파일 업로드"
 msgid "Go to My Submissions"
 msgstr "나의 제출로 이동"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "소스 코드가 업로드 됨"
+msgstr "소스 코드 업로드"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
@@ -3496,7 +3494,6 @@ msgstr "소스 코드"
 msgid "Add-on Distribution Agreement"
 msgstr "부가 기능 배포 계약"
 
-#, fuzzy
 msgid "Upload Add-on"
 msgstr "부가 기능 업로드"
 
@@ -3792,9 +3789,8 @@ msgstr "README 파일, 혹은 검토자에게 알려줄 주의 사항으로 마�
 msgid "Read more about the source code review policy."
 msgstr "소스 코드 검토 정책에 대해 자세히 읽어보세요."
 
-#, fuzzy
 msgid "Latest News"
-msgstr "최신 버전:"
+msgstr "최신 뉴스"
 
 # 79%
 # 100%
@@ -3802,9 +3798,8 @@ msgstr "최신 버전:"
 msgid "Read more in our Blog"
 msgstr "추가 정보 요구"
 
-#, fuzzy
 msgid "Resources"
-msgstr "그밖의 자원"
+msgstr "자원"
 
 #, fuzzy
 msgid "Porting"
@@ -3950,16 +3945,14 @@ msgstr "부가 기능 개발자"
 msgid "Docs"
 msgstr "문서"
 
-#, fuzzy
 msgid "Sign Out"
-msgstr "부가 기능 등록"
+msgstr "로그아웃"
 
 msgid "No Photo"
 msgstr "사진 없음"
 
-#, fuzzy
 msgid "User Photo"
-msgstr "사용자 사진 삭제"
+msgstr "사용자 사진"
 
 #, fuzzy, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
@@ -3994,9 +3987,8 @@ msgstr "부가 기능 관리하기"
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr ""
 
-#, fuzzy
 msgid "Sign In"
-msgstr "부가 기능 등록"
+msgstr "로그인"
 
 msgid "Web-Ext"
 msgstr ""
@@ -4288,13 +4280,11 @@ msgstr "번역 삭제"
 msgid "Next version of this add-on"
 msgstr "이 부가 기능의 차기 버전"
 
-#, fuzzy
 msgid "Other versions"
-msgstr "구버전"
+msgstr "다른 버전"
 
-#, fuzzy
 msgid "All versions"
-msgstr "구버전"
+msgstr "모든 버전"
 
 msgid "Upload a New Version"
 msgstr "새 버전 업로드"
