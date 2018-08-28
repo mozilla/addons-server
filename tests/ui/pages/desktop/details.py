@@ -8,7 +8,7 @@ class Detail(Base):
 
     _root_locator = (By.CLASS_NAME, 'Addon-extension')
     _addon_name_locator = (By.CLASS_NAME, 'Addon-title')
-    _install_button_locator = (By.CLASS_NAME, 'InstallButton-button')
+    _install_button_locator = (By.CLASS_NAME, 'AMInstallButton-button')
 
     def wait_for_page_to_load(self):
         self.wait.until(
