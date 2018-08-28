@@ -14,7 +14,7 @@ class ReportedStatusFilter(admin.SimpleListFilter):
     REPORTED_HAM = 'ham'
     REPORTED_SPAM = 'spam'
     UNREPORTED = 'unreported'
-    QUERYSET_LOOKUP = {
+    FILTERS = {
         REPORTED_SPAM: {'reported': True,
                         'result__in': [AkismetReport.DEFINITE_SPAM,
                                        AkismetReport.MAYBE_SPAM]},
@@ -22,8 +22,10 @@ class ReportedStatusFilter(admin.SimpleListFilter):
                        'result': AkismetReport.HAM},
         UNREPORTED: {'reported': False},
     }
+    # The keys in FILTERS and VALUES should be the same
     VALUES = {
         REPORTED_SPAM: _('Reported Spam'),
+        # L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
         REPORTED_HAM: _('Reported Ham'),
         UNREPORTED: _('Not Reported'),
     }
@@ -32,7 +34,7 @@ class ReportedStatusFilter(admin.SimpleListFilter):
         return self.VALUES.items()
 
     def queryset(self, request, queryset):
-        filters = self.QUERYSET_LOOKUP.get(self.value(), {})
+        filters = self.FILTERS.get(self.value(), {})
         return queryset.filter(**filters) if filters else queryset
 
 
@@ -84,7 +86,8 @@ class AkismetAdmin(admin.ModelAdmin):
         url = (
             obj.rating_instance.get_url_path() if obj.rating_instance
             else None)
-        return format_html('<a href="{}">View Rating on site</a>', url)
+        return format_html(
+            '<a href="{}">{}</a>', url, _('View Rating on site'))
 
     def has_add_permission(self, request):
         return False
@@ -94,6 +97,7 @@ class AkismetAdmin(admin.ModelAdmin):
 
     def submit_ham(self, request, queryset):
         self.submit_report(request, queryset, False)
+    # L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
     submit_ham.short_description = _('Submit Ham to Akismet')
 
     def submit_spam(self, request, queryset):
@@ -108,6 +112,7 @@ class AkismetAdmin(admin.ModelAdmin):
             report_ids = list(qs.values_list('id', flat=True))
             submit_to_akismet.delay(report_ids, True)
             messages.append(
+                # L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
                 ugettext('%s Ham reports submitted as Spam') % len(report_ids))
         else:
             qs = qs.filter(reported=False, result__in=[
@@ -115,6 +120,7 @@ class AkismetAdmin(admin.ModelAdmin):
             report_ids = list(qs.values_list('id', flat=True))
             submit_to_akismet.delay(report_ids, False)
             messages.append(
+                # L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
                 ugettext('%s Spam reports submitted as Ham') % len(report_ids))
 
         total_count -= len(report_ids)
