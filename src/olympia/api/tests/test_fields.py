@@ -58,7 +58,8 @@ class TestTranslationSerializerField(TestCase):
 
     def _test_expected_dict(self, field, serializer=None):
         field.bind('name', serializer)
-        result = field.to_representation(field.get_attribute(self.addon))
+        with self.assertNumQueries(1):
+            result = field.to_representation(field.get_attribute(self.addon))
         expected = {
             'en-US': unicode(Translation.objects.get(id=self.addon.name.id,
                                                      locale='en-US')),
@@ -69,7 +70,8 @@ class TestTranslationSerializerField(TestCase):
 
         field.source = None
         field.bind('description', serializer)
-        result = field.to_representation(field.get_attribute(self.addon))
+        with self.assertNumQueries(0):
+            result = field.to_representation(field.get_attribute(self.addon))
         expected = {
             'en-US': Translation.objects.get(
                 id=self.addon.description.id, locale='en-US'),
