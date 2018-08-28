@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-28 13:06+0000\n"
+"PO-Revision-Date: 2018-08-28 15:39+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -3521,16 +3521,16 @@ msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
 msgstr "נא לסקור את <a %(a_attrs)s>מדיניות ההגשה של קוד מקור</a>."
 
 msgid "Do you use any of the following?"
-msgstr ""
+msgstr "אחד מהבאים משמש אותך?"
 
 msgid "Code minifiers or obfuscators"
 msgstr ""
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
-msgstr ""
+msgstr "כלים שמשלבים מספר קבצים לקובץ אחד, כגון <span class=\"tech-emphasis\">webpack</span>"
 
 msgid "Web template engines, both for HTML and CSS"
-msgstr ""
+msgstr "מנועי תבניות אתרים, עבור HTML ו־CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
 msgstr ""
@@ -3552,7 +3552,7 @@ msgid "A build script that executes all necessary technical steps."
 msgstr ""
 
 msgid "Operating system and build environment requirements."
-msgstr ""
+msgstr "דרישות סביבת הידור קוד ומערכת הפעלה."
 
 msgid ""
 "Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
