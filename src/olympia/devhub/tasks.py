@@ -369,6 +369,15 @@ def annotate_legacy_addon_restrictions(results, is_new_upload):
         insert_validation_message(
             results, message=msg, msg_id='thunderbird_and_seamonkey_migration')
 
+    # Legacy add-ons are no longer supported on AMO (if waffle is enabled).
+    elif (is_extension_or_complete_theme and
+            waffle.switch_is_active('disallow-legacy-submissions')):
+        msg = ugettext(
+            u'Legacy extensions are no longer supported in Firefox.')
+
+        insert_validation_message(
+            results, message=msg, msg_id='legacy_addons_unsupported')
+
     # New legacy add-ons targeting Firefox only must target Firefox 53 or
     # lower, strictly. Extensions targeting multiple other apps are exempt from
     # this.
