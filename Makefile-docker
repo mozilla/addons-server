@@ -1,3 +1,7 @@
+# FXA username and password for ui-tests
+export FXA_EMAIL=uitest-$(shell uuid)@restmail.net
+export FXA_PASSWORD=uitester
+
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
 
@@ -156,13 +160,13 @@ setup-ui-tests:
 	# Create a proper superuser that can be used to access the API
 	python manage.py waffle_switch super-create-accounts on --create
 	python manage.py waffle_switch activate-autograph-signing on --create
-	python manage.py createsuperuser --email=uitest@restmail.net --username=uitest --noinput --add-to-supercreate-group --hostname=olympia-frontend.test
 
-ui-tests: setup-ui-tests
+run-ui-tests: setup-ui-tests
 	# Generate test add-ons and force a reindex to make sure things are updated
+	pip install --progress-bar=off --no-deps -r requirements/uitests.txt
 	python manage.py generate_ui_test_addons
 	python manage.py reindex --force --noinput --wipe
-	pip install --progress-bar=off --no-deps -r requirements/uitests.txt
+	pytest --driver Firefox tests/ui/
 
 perf-tests: setup-ui-tests
 	pip install --progress-bar=off --no-deps -r requirements/perftests.txt

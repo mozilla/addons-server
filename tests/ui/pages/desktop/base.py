@@ -32,6 +32,7 @@ class Base(Page):
     def login(self, email, password):
         login_page = self.header.click_login()
         login_page.login(email, password)
+        self.selenium.get(self.base_url)
         self.wait.until(lambda _: self.logged_in)
 
     def logout(self):

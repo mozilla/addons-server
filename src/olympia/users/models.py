@@ -87,13 +87,17 @@ class UserEmailField(forms.EmailField):
 
 class UserManager(BaseUserManager, ManagerBase):
 
-    def create_user(self, username, email, fxa_id=None):
+    def create_user(self, username, email, fxa_id=None, **kwargs):
         # We'll send username=None when registering through FxA to generate
         # an anonymous username.
         now = timezone.now()
         user = self.model(
-            username=username, email=email, fxa_id=fxa_id,
-            last_login=now)
+            username=username,
+            email=email,
+            fxa_id=fxa_id,
+            last_login=now,
+            **kwargs
+        )
         if username is None:
             user.anonymize_username()
         log.debug('Creating user with email {} and username {}'.format(
@@ -105,7 +109,7 @@ class UserManager(BaseUserManager, ManagerBase):
         """
         Creates and saves a superuser.
         """
-        user = self.create_user(username, email, fxa_id)
+        user = self.create_user(username=username, email=email, fxa_id=fxa_id)
         admins = Group.objects.get(name='Admins')
         GroupUser.objects.create(user=user, group=admins)
         return user
