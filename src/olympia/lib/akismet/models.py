@@ -68,12 +68,20 @@ class AkismetReport(ModelBase):
         }
         return {key: value for key, value in data.items() if value is not None}
 
-    def comment_check(self):
+    def _post(self, action):
+        log.debug(
+            u'Akismet (#{id}) {action}, type: {comment_type}, '
+            u'content: {comment}'.format(
+                id=self.id, action=action, comment_type=self.comment_type,
+                comment=self.comment))
         url = settings.AKISMET_API_URL.format(
-            api_key=settings.AKISMET_API_KEY, action='comment-check')
-        response = requests.post(
+            api_key=settings.AKISMET_API_KEY, action=action)
+        return requests.post(
             url, data=self._get_data(), headers=self.HEADERS,
             timeout=settings.AKISMET_API_TIMEOUT)
+
+    def comment_check(self):
+        response = self._post('comment-check')
         try:
             outcome = response.json()
             discard = response.headers.get('X-akismet-pro-tip') == 'discard'
@@ -82,27 +90,52 @@ class AkismetReport(ModelBase):
                 self.update(result=(
                     self.HAM if not outcome else
                     self.DEFINITE_SPAM if discard else self.MAYBE_SPAM))
+                log.debug('Akismet response %s' % self.get_result_display())
                 return self.result
         except ValueError:
             # if outcome isn't valid json `response.json` will raise ValueError
             pass
         log.error(
-            'Akismet error %s' % (
+            'Akismet comment-check error: %s' % (
                 response.headers.get('X-akismet-debug-help') or response.text))
         self.update(result=self.UNKNOWN)
         return self.result
+
+    def _submit(self, spam_or_ham):
+        assert spam_or_ham in ('ham', 'spam')
+        response = self._post('submit-%s' % spam_or_ham)
+        if response.content == 'Thanks for making the web a better place.':
+            log.debug('Akismet %s submitted.' % spam_or_ham)
+            self.update(reported=True)
+            return True
+        else:
+            log.error('Akismet submit-%s error: %s' % (
+                spam_or_ham, response.text))
+            return False
+
+    def submit_spam(self):
+        # Should be unnecessary, but do some sanity checks.
+        assert not self.reported
+        assert self.result in [self.HAM]
+        return self._submit('spam')
+
+    def submit_ham(self):
+        # Should be unnecessary, but do some sanity checks.
+        assert not self.reported
+        assert self.result in [self.DEFINITE_SPAM, self.MAYBE_SPAM]
+        return self._submit('ham')
 
     @classmethod
     def create_for_rating(cls, rating, user_agent, referrer):
         instance = cls.objects.create(
             rating_instance=rating,
             comment_type='user-review',
-            user_ip=rating.ip_address,
-            user_agent=user_agent,
-            referrer=referrer,
-            user_name=rating.user.name,
+            user_ip=rating.ip_address or '',
+            user_agent=user_agent or '',
+            referrer=referrer or '',
+            user_name=rating.user.name or '',
             user_email=rating.user.email,
-            user_homepage=rating.user.homepage,
+            user_homepage=rating.user.homepage or '',
             content_link=rating.addon.get_url_path(),
             content_modified=rating.addon.last_updated,
             comment=rating.body,
