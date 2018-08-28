@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-24 00:09+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2018-08-28 00:23+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -2251,16 +2251,14 @@ msgstr "Utmärkt (3)"
 msgid "Manual Reviewer Points"
 msgstr "Manuella granskningspoäng"
 
-#, fuzzy
 msgid "New Legacy Add-on Review"
-msgstr "Ny granskning av tillägg"
+msgstr "Ny granskning av äldre tillägg"
 
 msgid "Preliminary Add-on Review"
 msgstr "Preliminär tilläggsgranskning"
 
-#, fuzzy
 msgid "Updated Legacy Add-on Review"
-msgstr "Uppdaterad tilläggsgranskning"
+msgstr "Uppdaterad granskning av äldre tillägg"
 
 msgid "New Dictionary Review"
 msgstr "Ny granskning av ordlista"
@@ -3402,6 +3400,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
+"Om du skickade in källkod, som inte innehåller instruktioner, måste du ange dem här. Ange bygginstruktioner steg-för-steg för att skapa en exakt kopia av tilläggskoden, "
+"per%(policy_requirements_open)spolicy krav%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Dessa anteckningar visas endast för dig och våra granskare."
@@ -3499,9 +3499,8 @@ msgstr "Källkodsuppladdning"
 msgid "Do You Need to Submit Source Code?"
 msgstr "Behöver du skicka in källkod?"
 
-#, fuzzy
 msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "Du kan behöva skicka in källkod. Om du inte skickar in rätt källkod nu kan ditt tillägg tas bort från webbplatsen!"
+msgstr "Du kan behöva skicka in källkod. Om du inte gör det kan ditt tillägg tas bort från webbplatsen!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
