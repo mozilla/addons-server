@@ -86,15 +86,33 @@ class TestAkismetReportsModel(TestCase):
         responses.add(
             responses.POST, url, json=False,
             headers={'X-akismet-pro-tip': 'discard'})
+        # Send a nonsense response
+        responses.add(
+            responses.POST, url, body='foo')
 
-        result = report.comment_check()
-        assert result == report.result == AkismetReport.MAYBE_SPAM
+        with mock.patch('olympia.lib.akismet.models.statsd.incr') as incr_mock:
+            result = report.comment_check()
+            assert result == report.result == AkismetReport.MAYBE_SPAM
+            incr_mock.assert_called_with(
+                'services.akismet.comment_check.user-review.maybespam')
 
-        result = report.comment_check()
-        assert result == report.result == AkismetReport.DEFINITE_SPAM
+        with mock.patch('olympia.lib.akismet.models.statsd.incr') as incr_mock:
+            result = report.comment_check()
+            assert result == report.result == AkismetReport.DEFINITE_SPAM
+            incr_mock.assert_called_with(
+                'services.akismet.comment_check.user-review.definitespam')
 
-        result = report.comment_check()
-        assert result == report.result == AkismetReport.HAM
+        with mock.patch('olympia.lib.akismet.models.statsd.incr') as incr_mock:
+            result = report.comment_check()
+            assert result == report.result == AkismetReport.HAM
+            incr_mock.assert_called_with(
+                'services.akismet.comment_check.user-review.ham')
+
+        with mock.patch('olympia.lib.akismet.models.statsd.incr') as incr_mock:
+            result = report.comment_check()
+            assert result == report.result == AkismetReport.UNKNOWN
+            incr_mock.assert_called_with(
+                'services.akismet.comment_check.user-review.fail')
 
     @responses.activate
     @override_settings(AKISMET_API_KEY=None)

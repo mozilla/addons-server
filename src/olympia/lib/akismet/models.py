@@ -3,6 +3,8 @@ import requests
 from django.conf import settings
 from django.db import models
 
+from django_statsd.clients import statsd
+
 import olympia.core.logger
 from olympia.amo.models import ModelBase
 
@@ -11,16 +13,22 @@ log = olympia.core.logger.getLogger('z.lib.akismet')
 
 
 class AkismetReport(ModelBase):
-    UNKNOWN = -1
     HAM = 0
     DEFINITE_SPAM = 1
     MAYBE_SPAM = 2
+    UNKNOWN = 3
     RESULT_CHOICES = (
         (UNKNOWN, 'Unknown'),
         (HAM, 'Ham'),
         (DEFINITE_SPAM, 'Definite Spam'),
         (MAYBE_SPAM, 'Maybe Spam'))
     HEADERS = {'User-Agent': 'Mozilla Addons/3.0'}
+    METRIC_LOOKUP = {
+        UNKNOWN: 'fail',
+        HAM: 'ham',
+        DEFINITE_SPAM: 'definitespam',
+        MAYBE_SPAM: 'maybespam',
+    }
 
     # The following should normally be set before comment_check()
     comment_type = models.CharField(max_length=255)
@@ -80,6 +88,12 @@ class AkismetReport(ModelBase):
             url, data=self._get_data(), headers=self.HEADERS,
             timeout=settings.AKISMET_API_TIMEOUT)
 
+    def _statsd_incr(self):
+        metric = self.METRIC_LOOKUP.get(self.result, '')
+        statsd.incr(
+            'services.akismet.comment_check.%s.%s' % (
+                self.comment_type, metric))
+
     def comment_check(self):
         response = self._post('comment-check')
         try:
@@ -91,6 +105,7 @@ class AkismetReport(ModelBase):
                     self.HAM if not outcome else
                     self.DEFINITE_SPAM if discard else self.MAYBE_SPAM))
                 log.debug('Akismet response %s' % self.get_result_display())
+                self._statsd_incr()
                 return self.result
         except ValueError:
             # if outcome isn't valid json `response.json` will raise ValueError
@@ -99,6 +114,7 @@ class AkismetReport(ModelBase):
             'Akismet comment-check error: %s' % (
                 response.headers.get('X-akismet-debug-help') or response.text))
         self.update(result=self.UNKNOWN)
+        self._statsd_incr()
         return self.result
 
     def _submit(self, spam_or_ham):
