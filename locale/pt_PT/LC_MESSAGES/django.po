@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-23 07:48+0000\n"
+"POT-Creation-Date: 2018-08-28 07:16+0000\n"
 "PO-Revision-Date: 2018-08-22 15:10+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -7997,8 +7997,9 @@ msgstr "Nenhum utilizador com esse email."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr "Utilizador anónimo {id}"
+#, fuzzy
+msgid "Firefox user {id}"
+msgstr "Firefox para Android"
 
 msgid "My Mobile Add-ons"
 msgstr "Os meus extras do Mobile"

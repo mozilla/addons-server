@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-23 07:48+0000\n"
+"POT-Creation-Date: 2018-08-28 07:16+0000\n"
 "PO-Revision-Date: 2018-08-15 18:03+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -8141,8 +8141,9 @@ msgstr "Bu e-posta ile kayıtlı kullanıcı yok."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr "Adsız kullanıcı {id}"
+#, fuzzy
+msgid "Firefox user {id}"
+msgstr "Android İçin Firefox"
 
 msgid "My Mobile Add-ons"
 msgstr "Mobil eklentilerim"

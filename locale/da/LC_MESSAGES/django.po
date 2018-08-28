@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-23 07:48+0000\n"
+"POT-Creation-Date: 2018-08-28 07:16+0000\n"
 "PO-Revision-Date: 2018-07-27 10:37+0000\n"
 "Last-Translator: Jakob Kappel <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
@@ -8108,8 +8108,9 @@ msgstr "Ingen bruger med denne mailadresse."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr "Anonym bruger {id}"
+#, fuzzy
+msgid "Firefox user {id}"
+msgstr "Firefox til Android"
 
 msgid "My Mobile Add-ons"
 msgstr "Mine tilføjelser til Mobilen"
