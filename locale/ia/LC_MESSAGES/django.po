@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-28 21:53+0000\n"
+"PO-Revision-Date: 2018-08-28 21:59+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6941,7 +6941,7 @@ msgid "Active Contributors"
 msgstr ""
 
 msgid "This Month"
-msgstr ""
+msgstr "Iste mense"
 
 msgid "This Year"
 msgstr ""
@@ -7145,7 +7145,7 @@ msgid "Compare"
 msgstr ""
 
 msgid "Permissions:"
-msgstr ""
+msgstr "Permissos:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -7193,10 +7193,10 @@ msgid "Review Date"
 msgstr ""
 
 msgid "Action"
-msgstr ""
+msgstr "Action"
 
 msgid "Reason"
-msgstr ""
+msgstr "Ration"
 
 msgid "There are currently no reviews."
 msgstr ""
@@ -7323,7 +7323,7 @@ msgid "Flagged"
 msgstr ""
 
 msgid "Updates"
-msgstr ""
+msgstr "Actualisationes"
 
 msgid "Maximum query length exceeded."
 msgstr ""
@@ -7386,7 +7386,7 @@ msgstr ""
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "{0} :: Tag"
 
 #. {0} is a tag, such as jetpack.
 msgid "Search Results for tag \"{0}\""
@@ -7498,16 +7498,16 @@ msgid "Custom Date Range"
 msgstr ""
 
 msgid "From"
-msgstr ""
+msgstr "De"
 
 msgid "To"
-msgstr ""
+msgstr "A"
 
 msgid "Update"
-msgstr ""
+msgstr "Actualisar"
 
 msgid "Export"
-msgstr ""
+msgstr "Exportar"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
@@ -7527,7 +7527,7 @@ msgid "Statistics Dashboard"
 msgstr ""
 
 msgid "Controls:"
-msgstr ""
+msgstr "Controlos:"
 
 msgid "reset zoom"
 msgstr ""
@@ -7536,13 +7536,13 @@ msgid "Group by:"
 msgstr ""
 
 msgid "day"
-msgstr ""
+msgstr "die"
 
 msgid "week"
 msgstr ""
 
 msgid "month"
-msgstr ""
+msgstr "mense"
 
 msgid "For last:"
 msgstr ""
@@ -7560,7 +7560,7 @@ msgid "365 days"
 msgstr ""
 
 msgid "Custom..."
-msgstr ""
+msgstr "Personalisar..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
@@ -7619,7 +7619,7 @@ msgid "<b>{0}</b> Downloads"
 msgstr ""
 
 msgid "Loading..."
-msgstr ""
+msgstr "Cargamento..."
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
