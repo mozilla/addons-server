@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-23 07:48+0000\n"
+"POT-Creation-Date: 2018-08-28 07:16+0000\n"
 "PO-Revision-Date: 2018-08-04 21:11+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -7998,8 +7998,9 @@ msgstr "Nebyl nalezen uživatel, který by měl tento e-mail."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr "Anonymní uživatel {id}"
+#, fuzzy
+msgid "Firefox user {id}"
+msgstr "Firefox pro Android"
 
 msgid "My Mobile Add-ons"
 msgstr "Mé mobilní doplňky"
