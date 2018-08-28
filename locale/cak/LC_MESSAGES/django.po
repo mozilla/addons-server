@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-28 22:14+0000\n"
+"PO-Revision-Date: 2018-08-28 22:33+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3566,55 +3566,55 @@ msgid "Upload Version"
 msgstr "Tijotob'äx Ruwäch"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Ke'awokisaj re taq k'ojlib'äl re' richin najotob'a' ri tz'aqat. Toq xjotob'äx yan, xtisamajib'ëx jutanaj rutojtob'enik yonil jikib'anem pan ayakb'al."
 
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "¿Achike nuk'che'el nunäm ri' re yakb'äl re'?"
 
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Tzolin taq nuk'samajixïk"
 
 msgid "Create a Theme Version"
-msgstr ""
+msgstr "Titz'uk jun Ruwäch Wachinel"
 
 msgid "Create a Theme"
-msgstr ""
+msgstr "Titz'uk jun Wachinel"
 
 msgid "Submit File"
-msgstr ""
+msgstr "Titaq Yakb'äl"
 
 msgid "Sign Add-on"
-msgstr ""
+msgstr "Tijux Tz'aqat"
 
 msgid "Theme generate"
-msgstr ""
+msgstr "Tib'an wachinel"
 
 msgid "Theme generator"
-msgstr ""
+msgstr "B'anöy wachinel"
 
 msgid "Theme name"
-msgstr ""
+msgstr "Rub'i' wachinel"
 
 msgid "Select a header image for your theme"
-msgstr ""
+msgstr "Tacha' jun ruwachib'al jub'i'aj richin ri awachinel"
 
 msgid "Image height should be 200 pixels"
-msgstr ""
+msgstr "Ri rupalem wachib'äl k'o ta chi 200 rupiksel"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG o GIF (man nisilon ta)"
 
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "Cholajin pa ajsik ajqkiq'a' tz'ik"
 
 msgid "Select a different header image"
-msgstr ""
+msgstr "Ticha' jun chik rujub'i'aj wachib'äl"
 
 msgid "Select colors for your theme"
-msgstr ""
+msgstr "Ke'acha' taq rub'onil awachinel"
 
 msgid "Header area background"
-msgstr ""
+msgstr "Rupam ruk'ojlib'al jub'i'aj"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
 msgstr ""
