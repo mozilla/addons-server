@@ -102,6 +102,7 @@ class AkismetReport(ModelBase):
         return self.result
 
     def _submit(self, spam_or_ham):
+        assert spam_or_ham in ('ham', 'spam')
         response = self._post('submit-%s' % spam_or_ham)
         if response.content == 'Thanks for making the web a better place.':
             log.debug('Akismet %s submitted.' % spam_or_ham)

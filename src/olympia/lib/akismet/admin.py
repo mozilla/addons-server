@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.admin.utils import flatten_fieldsets
 from django.shortcuts import get_object_or_404
 from django.utils.html import format_html
 from django.utils.translation import ugettext, ugettext_lazy as _
@@ -8,7 +9,7 @@ from .tasks import submit_to_akismet
 
 
 class ReportedStatusFilter(admin.SimpleListFilter):
-    title = 'Reported Status'
+    title = _('Reported Status')
     parameter_name = 'reported_status'
     REPORTED_HAM = 'ham'
     REPORTED_SPAM = 'spam'
@@ -22,9 +23,9 @@ class ReportedStatusFilter(admin.SimpleListFilter):
         UNREPORTED: {'reported': False},
     }
     VALUES = {
-        REPORTED_SPAM: ugettext('Reported Spam'),
-        REPORTED_HAM: ugettext('Reported Ham'),
-        UNREPORTED: ugettext('Not Reported'),
+        REPORTED_SPAM: _('Reported Spam'),
+        REPORTED_HAM: _('Reported Ham'),
+        UNREPORTED: _('Not Reported'),
     }
 
     def lookups(self, request, model_admin):
@@ -32,7 +33,7 @@ class ReportedStatusFilter(admin.SimpleListFilter):
 
     def queryset(self, request, queryset):
         filters = self.QUERYSET_LOOKUP.get(self.value(), {})
-        return queryset.filter(**filters)
+        return queryset.filter(**filters) if filters else queryset
 
 
 @admin.register(AkismetReport)
@@ -42,7 +43,7 @@ class AkismetAdmin(admin.ModelAdmin):
         (None, {'fields': (
             'result', 'reported_status', 'rating',
         )}),
-        (ugettext('Content Submitted'), {'fields': (
+        (_('Content Submitted'), {'fields': (
             'comment_type', 'user_ip', 'user_agent', 'referrer', 'user_name',
             'user_email', 'user_homepage', 'comment', 'comment_modified',
             'content_link', 'content_modified',
@@ -50,7 +51,7 @@ class AkismetAdmin(admin.ModelAdmin):
     )
     list_display = ('comment_type', 'comment', 'result', 'reported_status')
     list_filter = ('comment_type', 'result', ReportedStatusFilter,)
-    readonly_fields = fieldsets[0][1]['fields'] + fieldsets[1][1]['fields']
+    readonly_fields = flatten_fieldsets(fieldsets)
     save_on_top = True
     search_fields = ('comment',)
     view_on_site = False
@@ -83,7 +84,7 @@ class AkismetAdmin(admin.ModelAdmin):
         url = (
             obj.rating_instance.get_url_path() if obj.rating_instance
             else None)
-        return format_html('<a href="{}">View</a>', url)
+        return format_html('<a href="{}">View Rating on site</a>', url)
 
     def has_add_permission(self, request):
         return False
