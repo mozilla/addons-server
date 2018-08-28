@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-23 19:31+0000\n"
+"PO-Revision-Date: 2018-02-24 18:54+0000\n"
 "Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -65,7 +65,7 @@ msgid "See full validation report"
 msgstr "સંપૂર્ણ માન્યતા અહેવાલ જુઓ"
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "માન્યતા {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "તમારા ઍડ-ઑન {0}ના મહત્તમ કદ કરતાં વધી ગયો છે."
@@ -74,7 +74,7 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "સર્વરમાંથી ખાલી પ્રતિભાવ મળ્યો; સ્થિતિ: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "માન્ય કરતી વખતે અનપેક્ષિત સર્વર ભૂલ."
 
 msgid "Finished validating {0}"
 msgstr ""
@@ -89,11 +89,11 @@ msgstr[1] "તમાર‍ા એડ-ઓન કોઈ ભૂલો અને {0}
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "તમારા ઍડ-ઑનને કોઈ ભૂલ અને {0} સંદેશા સાથે માન્ય કરવામાં આવ્યું ન હતું."
+msgstr[1] "તમારા ઍડ-ઑનને કોઈ ભૂલો અને {0} સંદેશા વિના માન્ય કરવામાં આવ્યું હતું."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "તમારા ઍડ-ઑનને કોઈ ભૂલો અથવા ચેતવણીઓ વગર માન્ય કરવામાં આવી હતી."
 
 msgid "Your submission will be automatically signed."
 msgstr ""
