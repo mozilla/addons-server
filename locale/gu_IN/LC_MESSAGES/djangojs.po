@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-28 11:10+0000\n"
+"PO-Revision-Date: 2018-08-28 11:30+0000\n"
 "Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -209,28 +209,28 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "<b>{0}</b> માટે ઍડ-ઑન્સ શોધો"
 
 msgid "Use original"
-msgstr ""
+msgstr "મૂળ ઉપયોગ કરો"
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "{0} નું અઠવાડિયું"
 
 msgid " downloads"
-msgstr ""
+msgstr " ડાઉનલોડ્સ"
 
 msgid "{0} users"
-msgstr ""
+msgstr "{0} વપરાશકર્તાઓ"
 
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} એડ-ઑન્સ"
 
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} સંગ્રહો"
 
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} સમીક્ષાઓ"
 
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} વેચાણ"
 
 msgid "{0} refunds"
 msgstr ""
@@ -239,41 +239,41 @@ msgid "{0} installs"
 msgstr ""
 
 msgid "Downloads"
-msgstr ""
+msgstr "ડાઉનલોડ્સ"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "દૈનિક વપરાશકર્તાઓ"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "રકમ, USD માં"
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "યોગદાનની સંખ્યા"
 
 msgid "More Info..."
-msgstr ""
+msgstr "વધુ માહિતી..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr ""
+msgstr "{0} માટે વિગતો"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "સંગ્રહો બનાવ્યાં"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "ઉપયોગમાં એડ-ઑન્સ"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "એડ-ઓન બનાવ્યું"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "એડ-ઓન ડાઉનલોડ કરેલ"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "એડ-ઓન અપડેટ"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "લખાયેલી સમીક્ષાઓ"
 
 msgid "User Signups"
 msgstr ""
@@ -282,19 +282,19 @@ msgid "Subscribers"
 msgstr ""
 
 msgid "Ratings"
-msgstr ""
+msgstr "રેટિંગ્સ"
 
 msgid "Sales"
-msgstr ""
+msgstr "વેચાણ"
 
 msgid "Installs"
 msgstr ""
 
 msgid "Unknown"
-msgstr ""
+msgstr "અજ્ઞાત"
 
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "એડ-ઑન્સ સંચાલક"
 
 msgid "Add-ons Manager Promo"
 msgstr ""
