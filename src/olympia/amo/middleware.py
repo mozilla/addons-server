@@ -97,9 +97,10 @@ class LocaleAndAppURLMiddleware(object):
         activate(request.LANG)
         request.APP = amo.APPS.get(prefixer.app, amo.FIREFOX)
 
-        # We have to do this again to match legacy api requests too
+        # Match legacy api requests too - IdentifyAPIRequestMiddleware is v3+
         # TODO - remove this when legacy_api goes away
-        request.is_api = request.path_info.startswith('/api/')
+        # https://github.com/mozilla/addons-server/issues/9274
+        request.is_legacy_api = request.path_info.startswith('/api/')
 
 
 class AuthenticationMiddlewareWithoutAPI(AuthenticationMiddleware):
@@ -108,7 +109,8 @@ class AuthenticationMiddlewareWithoutAPI(AuthenticationMiddleware):
     own authentication mechanism.
     """
     def process_request(self, request):
-        if request.is_api and not auth_path.match(request.path):
+        legacy_or_drf_api = request.is_api or request.is_legacy_api
+        if legacy_or_drf_api and not auth_path.match(request.path):
             request.user = AnonymousUser()
         else:
             return super(

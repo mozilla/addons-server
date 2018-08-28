@@ -18,7 +18,7 @@ class TestIdentifyAPIRequestMiddleware(TestCase):
         assert request.is_api
 
     def test_disabled_for_the_rest(self):
-        """Test that we don't call gzip middleware for "regular" pages."""
+        """Test that we don't tag the request as API on "regular" pages."""
         request = mock.Mock()
         request.path_info = '/'
         IdentifyAPIRequestMiddleware().process_request(request)

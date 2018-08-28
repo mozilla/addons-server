@@ -39,6 +39,7 @@ class TestMiddleware(TestCase):
     def test_authentication_used_outside_the_api(self, process_request):
         req = RequestFactory().get('/')
         req.is_api = False
+        req.is_legacy_api = False
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert process_request.called
 
@@ -47,6 +48,13 @@ class TestMiddleware(TestCase):
     def test_authentication_not_used_with_the_api(self, process_request):
         req = RequestFactory().get('/')
         req.is_api = True
+        req.is_legacy_api = False
+        AuthenticationMiddlewareWithoutAPI().process_request(req)
+        assert not process_request.called
+
+        req = RequestFactory().get('/')
+        req.is_api = False
+        req.is_legacy_api = True
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert not process_request.called
 

@@ -85,13 +85,13 @@ class MiddlewareTest(BaseTestCase):
         response = self.process('/en-US/firefox/api/')
         assert response is None
         assert self.request.LANG == 'en-US'
-        assert self.request.is_api
+        assert self.request.is_legacy_api
 
         # double-check _only_ /api/ is marked as .is_api
         response = self.process('/en-US/firefox/apii/')
         assert response is None
         assert self.request.LANG == 'en-US'
-        assert not self.request.is_api
+        assert not self.request.is_legacy_api
 
     def test_vary(self):
         response = self.process('/')
