@@ -82,6 +82,30 @@ class TestExtractor(TestCase):
         assert not rdf_extractor.called
         assert manifest_json_extractor.called
 
+    @mock.patch('olympia.files.utils.os.path.getsize')
+    @override_switch('allow-static-theme-uploads', active=True)
+    def test_static_theme_max_size(self, getsize_mock):
+        getsize_mock.return_value = settings.MAX_STATICTHEME_SIZE
+        manifest = utils.ManifestJSONExtractor(
+            '/fake_path', '{"theme": {}}').parse()
+
+        # Calling to check it doesn't raise.
+        assert utils.check_xpi_info(manifest, xpi_file=mock.Mock())
+
+        # Increase the size though and it should raise an error.
+        getsize_mock.return_value = settings.MAX_STATICTHEME_SIZE + 1
+        with pytest.raises(forms.ValidationError) as exc:
+            utils.check_xpi_info(manifest, xpi_file=mock.Mock())
+
+        assert (
+            exc.value.message ==
+            'Maximum size for WebExtension themes is 7MB.')
+
+        # dpuble check only static themes are limited
+        manifest = utils.ManifestJSONExtractor(
+            '/fake_path', '{}').parse()
+        assert utils.check_xpi_info(manifest, xpi_file=mock.Mock())
+
 
 class TestRDFExtractor(TestCase):
     def setUp(self):

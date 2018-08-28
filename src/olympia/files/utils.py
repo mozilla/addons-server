@@ -911,6 +911,11 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
         if not waffle.switch_is_active('allow-static-theme-uploads'):
             raise forms.ValidationError(ugettext(
                 'WebExtension theme uploads are currently not supported.'))
+        max_size = settings.MAX_STATICTHEME_SIZE
+        if xpi_file and os.path.getsize(xpi_file.name) > max_size:
+            raise forms.ValidationError(
+                ugettext('Maximum size for WebExtension themes is %sMB.')
+                % (max_size / 1024 / 1024))
 
     if xpi_file:
         # Make sure we pass in a copy of `xpi_info` since

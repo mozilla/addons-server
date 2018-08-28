@@ -1570,7 +1570,7 @@ MAX_IMAGE_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_VIDEO_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
-MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
+MAX_STATICTHEME_SIZE = 7 * 1024 * 1024
 
 # File uploads should have -rw-r--r-- permissions in order to be served by
 # nginx later one. The 0o prefix is intentional, this is an octal value.
