@@ -9,6 +9,7 @@ from django.apps import apps
 from django.conf import settings
 from django.urls import reverse
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import ugettext
 
 import jinja2
@@ -482,71 +483,49 @@ class ActivityLog(ModelBase):
             log.warning('Activity log called with no user: %s' % action.id)
             return
 
-        al = ActivityLog(user=user, action=action.id)
+        # We make sure that we take the timestamp if provided, instead of
+        # creating a new one, especially useful for log entries created
+        # in a loop.
+        al = ActivityLog(
+            user=user, action=action.id,
+            created=kw.get('created', timezone.now()))
         al.arguments = args
         if 'details' in kw:
             al.details = kw['details']
         al.save()
 
-        # We make sure that we take the timestamp if provided, instead of
-        # creating a new one, especially useful for log entries created
-        # in a loop.
-        if 'created' in kw:
-            al.update(created=kw.get('created'))
-
         if 'details' in kw and 'comments' in al.details:
-            cl = CommentLog(comments=al.details['comments'], activity_log=al)
-            cl.save()
-            if 'created' in kw:
-                cl.update(created=kw.get('created'))
+            CommentLog.objects.create(
+                comments=al.details['comments'], activity_log=al,
+                created=kw.get('created', timezone.now()))
 
         for arg in args:
             if isinstance(arg, tuple):
-                if arg[0] == Addon:
-                    addon_l = AddonLog(addon_id=arg[1], activity_log=al)
-                    addon_l.save()
-                    if 'created' in kw:
-                        addon_l.update(created=kw.get('created'))
-                elif arg[0] == Version:
-                    vl = VersionLog(version_id=arg[1], activity_log=al)
-                    vl.save()
-                    if 'created' in kw:
-                        vl.update(created=kw.get('created'))
-                elif arg[0] == UserProfile:
-                    ul = UserLog(user_id=arg[1], activity_log=al)
-                    ul.save()
-                    if 'created' in kw:
-                        ul.update(created=kw.get('created'))
-                elif arg[0] == Group:
-                    gl = GroupLog(group_id=arg[1], activity_log=al)
-                    gl.save()
-                    if 'created' in kw:
-                        gl.update(created=kw.get('created'))
-            elif isinstance(arg, Addon):
-                addon_l = AddonLog(addon=arg, activity_log=al)
-                addon_l.save()
-                if 'created' in kw:
-                    addon_l.update(created=kw.get('created'))
-            elif isinstance(arg, Version):
-                vl = VersionLog(version=arg, activity_log=al)
-                vl.save()
-                if 'created' in kw:
-                    vl.update(created=kw.get('created'))
-            elif isinstance(arg, UserProfile):
-                # Index by any user who is mentioned as an argument.
-                ul = UserLog(activity_log=al, user=arg)
-                ul.save()
-                if 'created' in kw:
-                    ul.update(created=kw.get('created'))
-            elif isinstance(arg, Group):
-                gl = GroupLog(group=arg, activity_log=al)
-                gl.save()
-                if 'created' in kw:
-                    gl.update(created=kw.get('created'))
+                class_ = arg[0]
+                id_ = arg[1]
+            else:
+                class_ = arg.__class__
+                id_ = arg.id if isinstance(arg, ModelBase) else None
+
+            if class_ == Addon:
+                AddonLog.objects.create(
+                    addon_id=id_, activity_log=al,
+                    created=kw.get('created', timezone.now()))
+            elif class_ == Version:
+                VersionLog.objects.create(
+                    version_id=id_, activity_log=al,
+                    created=kw.get('created', timezone.now()))
+            elif class_ == UserProfile:
+                UserLog.objects.create(
+                    user_id=id_, activity_log=al,
+                    created=kw.get('created', timezone.now()))
+            elif class_ == Group:
+                GroupLog.objects.create(
+                    group_id=id_, activity_log=al,
+                    created=kw.get('created', timezone.now()))
 
         # Index by every user
-        ul = UserLog(activity_log=al, user=user)
-        ul.save()
-        if 'created' in kw:
-            ul.update(created=kw.get('created'))
+        UserLog.objects.create(
+            activity_log=al, user=user,
+            created=kw.get('created', timezone.now()))
         return al
