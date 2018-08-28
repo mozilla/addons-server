@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-28 11:30+0000\n"
+"PO-Revision-Date: 2018-08-28 11:41+0000\n"
 "Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -294,7 +294,7 @@ msgid "Unknown"
 msgstr "અજ્ઞાત"
 
 msgid "Add-ons Manager"
-msgstr "એડ-ઑન્સ સંચાલક"
+msgstr ""
 
 msgid "Add-ons Manager Promo"
 msgstr ""
@@ -306,25 +306,25 @@ msgid "Add-ons Manager Learn More"
 msgstr ""
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "શોધ સૂચનો"
 
 msgid "Search Results"
-msgstr ""
+msgstr "શોધ પરિણામો"
 
 msgid "Homepage Promo"
-msgstr ""
+msgstr "મુખપૃષ્ઠ પ્રોમો"
 
 msgid "Homepage Featured"
 msgstr ""
 
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "મુખપૃષ્ઠ ઉપર અને આવતા"
 
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "મુખપૃષ્ઠ સૌથી વધુ લોકપ્રિય"
 
 msgid "Detail Page"
-msgstr ""
+msgstr "વિગતવાર પેજમાં"
 
 msgid "Detail Page (bottom)"
 msgstr ""
