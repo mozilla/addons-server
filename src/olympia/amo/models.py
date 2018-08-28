@@ -5,7 +5,7 @@ import time
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models
-from django.utils import translation
+from django.utils import timezone, translation
 from django.db.models.query import ModelIterable
 
 import elasticsearch
@@ -348,7 +348,8 @@ class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
     * Fetches all translations in one subsequent query during initialization.
     """
 
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(
+        default=timezone.now, editable=False, blank=True)
     modified = models.DateTimeField(auto_now=True)
 
     objects = ManagerBase()

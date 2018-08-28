@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-02-24 18:54+0000\n"
+"PO-Revision-Date: 2018-08-28 11:41+0000\n"
 "Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -102,45 +102,47 @@ msgid "WebExtension upgrade"
 msgstr "WebExtension સુધારો"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "અમે અપગ્રેડ કરવાની મંજૂરી આપીએ છીએ, પરંતુ તમે આ પ્રક્રિયાને ઉલટાવી શકતા નથી. એકવાર તમારા વપરાશકર્તાઓ પાસે WebExtension ઇન્સ્ટોલ કરેલું હોય, તો તેઓ કોઈ લીગસી એડ-ઓન ઇન્સ્ટોલ કરી શકશે નહીં."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "MDN પર લેગસી Firefox ઍડ-ઑનને પોર્ટેંગ કરવું"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "વિગતવાર આવૃત્તિ નોંધો શામેલ કરો(આ આગળના પગલામાં કરી શકાય છે)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "જો તમારા ઍડ-ઑનને સંપૂર્ણ પરીક્ષણ માટે વેબસાઇટ પર કોઈ એકાઉન્ટની જરૂર હોય, તો સમીક્ષકોની નોંધો મા એક ટેસ્ટ વપરાશકર્તાનામ અને પાસવર્ડ શામેલ કરો(આ આગળના પગલામાં કરી શકાય છે)."
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "એડ-ઓન રજૂઆત તપાસ યાદી"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "તમારી રજૂઆતને અંતિમ રૂપ આપતા પહેલાં નીચેના મુદ્દાઓ ચકાસો. આ સમીક્ષા પ્રક્રિયા દરમિયાન વિલંબ અથવા ગેરસમજને ઘટાડેશે:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"સંકલિત દ્વિસંગીઓ, તેમજ minified અથવા obfuscated સ્ક્રિપ્ટો(જાણીતા લાઈબ્રેરીઓ સિવાય) તેમના સ્રોતો સમીક્ષા માટે અલગ સબમિટ કરવાની જરૂર છે. તમારી રજૂઆત નકારવાથી ટાળવા માટે તમે સ્ત્રોત કોડ અપલોડ ફીલ્ડનો "
+"ઉપયોગ કરો છો તેની ખાતરી કરો."
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "માન્યતા પ્રક્રિયાએ આ મુદ્દાઓ શોધી કાઢ્યાં છે જે અસ્વીકાર તરફ દોરી શકે છે:"
 
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "માફ કરશો, કોઈ સમર્થિત પ્લેટફોર્મ મળ્યું નથી."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr ""
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "તમારી ફાઇલ મહત્તમ {0}ના કદને ઓળંગે છે."
 
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "તમે અપલોડને રદ કર્યું."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "છબીઓ ક્યાં તો PNG અથવા JPG હોવી જોઈએ."
 
 msgid "Videos must be in WebM."
 msgstr ""
@@ -201,34 +203,34 @@ msgid "Search themes for <b>{0}</b>"
 msgstr "<b>{0}</b> માટે થીમ્સ શોધો"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "<b>{0}</b> માટે એપ્લિકેશન્સ શોધો"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "<b>{0}</b> માટે ઍડ-ઑન્સ શોધો"
 
 msgid "Use original"
-msgstr ""
+msgstr "મૂળ ઉપયોગ કરો"
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "{0} નું અઠવાડિયું"
 
 msgid " downloads"
-msgstr ""
+msgstr " ડાઉનલોડ્સ"
 
 msgid "{0} users"
-msgstr ""
+msgstr "{0} વપરાશકર્તાઓ"
 
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} એડ-ઑન્સ"
 
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} સંગ્રહો"
 
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} સમીક્ષાઓ"
 
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} વેચાણ"
 
 msgid "{0} refunds"
 msgstr ""
@@ -237,41 +239,41 @@ msgid "{0} installs"
 msgstr ""
 
 msgid "Downloads"
-msgstr ""
+msgstr "ડાઉનલોડ્સ"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "દૈનિક વપરાશકર્તાઓ"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "રકમ, USD માં"
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "યોગદાનની સંખ્યા"
 
 msgid "More Info..."
-msgstr ""
+msgstr "વધુ માહિતી..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr ""
+msgstr "{0} માટે વિગતો"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "સંગ્રહો બનાવ્યાં"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "ઉપયોગમાં એડ-ઑન્સ"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "એડ-ઓન બનાવ્યું"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "એડ-ઓન ડાઉનલોડ કરેલ"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "એડ-ઓન અપડેટ"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "લખાયેલી સમીક્ષાઓ"
 
 msgid "User Signups"
 msgstr ""
@@ -280,16 +282,16 @@ msgid "Subscribers"
 msgstr ""
 
 msgid "Ratings"
-msgstr ""
+msgstr "રેટિંગ્સ"
 
 msgid "Sales"
-msgstr ""
+msgstr "વેચાણ"
 
 msgid "Installs"
 msgstr ""
 
 msgid "Unknown"
-msgstr ""
+msgstr "અજ્ઞાત"
 
 msgid "Add-ons Manager"
 msgstr ""
@@ -304,25 +306,25 @@ msgid "Add-ons Manager Learn More"
 msgstr ""
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "શોધ સૂચનો"
 
 msgid "Search Results"
-msgstr ""
+msgstr "શોધ પરિણામો"
 
 msgid "Homepage Promo"
-msgstr ""
+msgstr "મુખપૃષ્ઠ પ્રોમો"
 
 msgid "Homepage Featured"
 msgstr ""
 
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "મુખપૃષ્ઠ ઉપર અને આવતા"
 
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "મુખપૃષ્ઠ સૌથી વધુ લોકપ્રિય"
 
 msgid "Detail Page"
-msgstr ""
+msgstr "વિગતવાર પેજમાં"
 
 msgid "Detail Page (bottom)"
 msgstr ""
