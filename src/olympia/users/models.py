@@ -370,7 +370,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         elif self.has_anonymous_username:
             # L10n: {id} will be something like "13ad6a", just a random number
             # to differentiate this user from other anonymous users.
-            return ugettext('Anonymous user {id}').format(
+            return ugettext('Firefox user {id}').format(
                 id=self._anonymous_username_id())
         else:
             return force_text(self.username)
