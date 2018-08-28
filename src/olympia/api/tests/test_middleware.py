@@ -6,7 +6,27 @@ from django.conf import settings
 import mock
 
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns
-from olympia.api.middleware import GZipMiddlewareForAPIOnly
+from olympia.api.middleware import (
+    GZipMiddlewareForAPIOnly, IdentifyAPIRequestMiddleware)
+
+
+class TestIdentifyAPIRequestMiddleware(TestCase):
+    def test_api_identified(self):
+        request = mock.Mock()
+        request.path_info = '/api/v3/lol/'
+        IdentifyAPIRequestMiddleware().process_request(request)
+        assert request.is_api
+
+    def test_disabled_for_the_rest(self):
+        """Test that we don't tag the request as API on "regular" pages."""
+        request = mock.Mock()
+        request.path_info = '/'
+        IdentifyAPIRequestMiddleware().process_request(request)
+        assert not request.is_api
+
+        request.path = '/en-US/firefox/'
+        IdentifyAPIRequestMiddleware().process_request(request)
+        assert not request.is_api
 
 
 class TestGzipMiddleware(TestCase):
@@ -14,7 +34,7 @@ class TestGzipMiddleware(TestCase):
     def test_enabled_for_api(self, django_gzip_middleware):
         """Test that we call the gzip middleware for API pages."""
         request = mock.Mock()
-        request.path = '/api/v3/lol/'
+        request.is_api = True
         GZipMiddlewareForAPIOnly().process_response(request, mock.Mock())
         assert django_gzip_middleware.call_count == 1
 
@@ -22,11 +42,7 @@ class TestGzipMiddleware(TestCase):
     def test_disabled_for_the_rest(self, django_gzip_middleware):
         """Test that we don't call gzip middleware for "regular" pages."""
         request = mock.Mock()
-        request.path = '/'
-        GZipMiddlewareForAPIOnly().process_response(request, mock.Mock())
-        assert django_gzip_middleware.call_count == 0
-
-        request.path = '/en-US/firefox/'
+        request.is_api = False
         GZipMiddlewareForAPIOnly().process_response(request, mock.Mock())
         assert django_gzip_middleware.call_count == 0
 
@@ -38,7 +54,7 @@ class TestGzipMiddleware(TestCase):
         # Sadly, raven inserts 2 middlewares before, but luckily the ones it
         # automatically inserts not modify the response.
         assert (
-            settings.MIDDLEWARE_CLASSES[2] ==
+            settings.MIDDLEWARE_CLASSES[3] ==
             'olympia.api.middleware.GZipMiddlewareForAPIOnly')
 
     def test_api_endpoint_gzipped(self):

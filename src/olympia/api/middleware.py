@@ -1,4 +1,16 @@
+import re
+
+from django.conf import settings
 from django.middleware.gzip import GZipMiddleware
+from django.utils.deprecation import MiddlewareMixin
+
+
+class IdentifyAPIRequestMiddleware(MiddlewareMixin):
+    def process_request(self, request):
+        """Identify API requests.  Note this will not identify legacy API
+        requests - we can't do that reliably until after
+        LocaleAndAppURLMiddleware has activated."""
+        request.is_api = re.match(settings.DRF_API_REGEX, request.path_info)
 
 
 class GZipMiddlewareForAPIOnly(GZipMiddleware):
@@ -13,7 +25,7 @@ class GZipMiddlewareForAPIOnly(GZipMiddleware):
     """
 
     def process_response(self, request, response):
-        if not request.path.startswith('/api/'):
+        if not request.is_api:
             return response
 
         return super(GZipMiddlewareForAPIOnly, self).process_response(

@@ -457,6 +457,8 @@ SECURE_HSTS_SECONDS = 31536000
 USE_X_FORWARDED_PORT = True
 
 MIDDLEWARE_CLASSES = (
+    # Test if it's an API request first so later middlewares don't need to.
+    'olympia.api.middleware.IdentifyAPIRequestMiddleware',
     # Gzip (for API only) middleware needs to be executed after every
     # modification to the response, so it's placed at the top of the list.
     'olympia.api.middleware.GZipMiddlewareForAPIOnly',

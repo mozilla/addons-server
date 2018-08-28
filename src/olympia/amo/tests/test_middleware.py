@@ -38,13 +38,23 @@ class TestMiddleware(TestCase):
            'AuthenticationMiddleware.process_request')
     def test_authentication_used_outside_the_api(self, process_request):
         req = RequestFactory().get('/')
+        req.is_api = False
+        req.is_legacy_api = False
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert process_request.called
 
     @patch('django.contrib.sessions.middleware.'
            'SessionMiddleware.process_request')
     def test_authentication_not_used_with_the_api(self, process_request):
-        req = RequestFactory().get('/api/lol')
+        req = RequestFactory().get('/')
+        req.is_api = True
+        req.is_legacy_api = False
+        AuthenticationMiddlewareWithoutAPI().process_request(req)
+        assert not process_request.called
+
+        req = RequestFactory().get('/')
+        req.is_api = False
+        req.is_legacy_api = True
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert not process_request.called
 
@@ -52,10 +62,12 @@ class TestMiddleware(TestCase):
            'AuthenticationMiddleware.process_request')
     def test_authentication_is_used_with_accounts_auth(self, process_request):
         req = RequestFactory().get('/api/v3/accounts/authenticate/')
+        req.is_api = True
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert process_request.call_count == 1
 
         req = RequestFactory().get('/api/v4/accounts/authenticate/')
+        req.is_api = True
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert process_request.call_count == 2
 

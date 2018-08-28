@@ -1,6 +1,5 @@
 import json
 import os
-import re
 
 from django import http
 from django.conf import settings
@@ -62,7 +61,7 @@ def contribute(request):
 
 @non_atomic_requests
 def handler403(request):
-    if request.path_info.startswith('/api/'):
+    if request.is_legacy_api:
         # Pass over to handler403 view in api if api was targeted.
         return legacy_api.views.handler403(request)
     else:
@@ -71,11 +70,12 @@ def handler403(request):
 
 @non_atomic_requests
 def handler404(request):
-    if re.match(settings.DRF_API_REGEX, request.path_info):
+    if request.is_api:
+        # It's a v3+ api request
         return JsonResponse(
             {'detail': unicode(NotFound.default_detail)}, status=404)
-    elif request.path_info.startswith('/api/'):
-        # Pass over to handler404 view in api if api was targeted.
+    elif request.is_legacy_api:
+        # It's a legacy api request - pass over to legacy api handler404.
         return legacy_api.views.handler404(request)
     # X_IS_MOBILE_AGENTS is set by nginx as an env variable when it detects
     # a mobile User Agent or when the mamo cookie is present.
@@ -87,7 +87,7 @@ def handler404(request):
 
 @non_atomic_requests
 def handler500(request):
-    if request.path_info.startswith('/api/'):
+    if request.is_legacy_api:
         # Pass over to handler500 view in api if api was targeted.
         return legacy_api.views.handler500(request)
     else:
