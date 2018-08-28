@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-28 13:39+0000\n"
+"PO-Revision-Date: 2018-08-28 21:53+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5300,7 +5300,7 @@ msgstr "Crea e gere un agenda in tu navigator."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Evidentia texto {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
@@ -6031,7 +6031,7 @@ msgid "Unlock early access to experimental browser features."
 msgstr ""
 
 msgid "Get Started"
-msgstr ""
+msgstr "Comenciar"
 
 msgid "About Mozilla Add-ons"
 msgstr ""
@@ -6135,7 +6135,7 @@ msgid ""
 msgstr ""
 
 msgid "Do:"
-msgstr ""
+msgstr "A facer:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr ""
@@ -6153,7 +6153,7 @@ msgid "What features did you like or dislike?"
 msgstr ""
 
 msgid "Was it useful?"
-msgstr ""
+msgstr "Esseva illo utile?"
 
 msgid "Was it easy to use?"
 msgstr ""
@@ -6228,7 +6228,7 @@ msgid "Mozilla wants to figure out the best way to keep our users safe if they c
 msgstr ""
 
 msgid "What will happen next"
-msgstr ""
+msgstr "Que evenira pois"
 
 msgid "<strong>If you agree</strong> to participate:"
 msgstr ""
@@ -6246,7 +6246,7 @@ msgid "We will ask you to fill out a quick optional survey to tell us about your
 msgstr ""
 
 msgid "Leaving the study"
-msgstr ""
+msgstr "Lassar le studio"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
 msgstr ""
@@ -6280,7 +6280,7 @@ msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collec
 msgstr ""
 
 msgid "This particular Study"
-msgstr ""
+msgstr "Iste studio particular"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
 msgstr ""
@@ -6490,7 +6490,7 @@ msgid "View entries between"
 msgstr ""
 
 msgid "and"
-msgstr ""
+msgstr "e"
 
 msgid "Filter by type/action"
 msgstr ""
@@ -6515,10 +6515,10 @@ msgid "Needs Admin Code Review"
 msgstr ""
 
 msgid "yes"
-msgstr ""
+msgstr "si"
 
 msgid "no"
-msgstr ""
+msgstr "no"
 
 msgid "Add-on Types"
 msgstr ""
@@ -6530,7 +6530,7 @@ msgid "Max. Version"
 msgstr ""
 
 msgid "Comments:"
-msgstr ""
+msgstr "Commentos:"
 
 msgid "Operating systems:"
 msgstr ""
@@ -6542,7 +6542,7 @@ msgid "Require developer to respond in less than…"
 msgstr ""
 
 msgid "days"
-msgstr ""
+msgstr "dies"
 
 msgid "Choose a canned response..."
 msgstr ""
@@ -6586,7 +6586,7 @@ msgid "Sources provided"
 msgstr ""
 
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
 msgstr ""
@@ -6649,7 +6649,7 @@ msgid "No Reviews"
 msgstr ""
 
 msgid "Weight"
-msgstr ""
+msgstr "Peso"
 
 msgid "Information Request Deadline"
 msgstr ""
@@ -6691,7 +6691,7 @@ msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
 msgid "Approve Content"
-msgstr ""
+msgstr "Approbar le contento"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
@@ -6706,10 +6706,10 @@ msgid "Legacy Add-ons"
 msgstr ""
 
 msgid "New ({0})"
-msgstr ""
+msgstr "Nove ({0})"
 
 msgid "Updates ({0})"
-msgstr ""
+msgstr "Actualisate ({0})"
 
 msgid "Review Log"
 msgstr ""
@@ -6822,7 +6822,7 @@ msgid "Visibility"
 msgstr ""
 
 msgid "Visible"
-msgstr ""
+msgstr "Visibile"
 
 msgid "Average Daily Users"
 msgstr ""
@@ -6834,7 +6834,7 @@ msgid "Requires Payment"
 msgstr ""
 
 msgid "EULA"
-msgstr ""
+msgstr "EULA"
 
 msgid "Last Approval Date"
 msgstr ""
@@ -6880,13 +6880,13 @@ msgstr ""
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
-msgstr ""
+msgstr "Filtro"
 
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 msgid "Event"
-msgstr ""
+msgstr "Evento"
 
 msgid "More details."
 msgstr ""
@@ -6917,7 +6917,7 @@ msgid "Undelete"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "Salvar"
 
 msgid "Add-on Reviewer Performance"
 msgstr ""
