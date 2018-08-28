@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-23 07:48+0000\n"
-"PO-Revision-Date: 2018-08-25 07:00+0000\n"
+"PO-Revision-Date: 2018-08-28 06:48+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -450,9 +450,8 @@ msgstr "%(users)s ਵੱਲੋਂ"
 msgid "Download Anyway"
 msgstr "ਹਰੇਕ ਜਗ੍ਹਾ ਡਾਊਨਲੋਡ ਕਰੋ"
 
-#, fuzzy
 msgid "[Warning]"
-msgstr "{0} ਚੇਤਾਵਨੀ"
+msgstr "[ਚੇਤਾਵਨੀ]"
 
 msgid "Permissions"
 msgstr "ਪਰਵਾਨਗੀਆਂ"
@@ -2123,7 +2122,7 @@ msgid "Multiple Search"
 msgstr "ਬਹੁਤੀਆਂ ਖੋਜਾਂ"
 
 msgid "News & Blogs"
-msgstr ""
+msgstr "ਖ਼ਬਰਾਂ ਅਤੇ ਬਲੌਗ"
 
 msgid "Photos & Images"
 msgstr "ਤਸਵੀਰਾਂ"
@@ -2153,7 +2152,7 @@ msgid "Performance"
 msgstr "ਕਾਰਗੁਜ਼ਾਰੀ"
 
 msgid "Photos & Media"
-msgstr ""
+msgstr "ਤਸਵੀਰਾਂ ਅਤੇ ਮੀਡੀਆ"
 
 msgid "Security & Privacy"
 msgstr "ਸੁਰੱਖਿਆ ਅਤੇ ਨਿੱਜਤਾ"
@@ -2190,10 +2189,10 @@ msgid "Import/Export"
 msgstr "ਬਰਾਮਦ/Export"
 
 msgid "Message and News Reading"
-msgstr ""
+msgstr "ਸੁਨੇਹਾ ਅਤੇ ਖ਼ਬਰ ਪਾੜ੍ਹਤ"
 
 msgid "Privacy and Security"
-msgstr ""
+msgstr "ਪਰਦੇਦਾਰੀ ਅਤੇ ਸੁਰੱਖਿਆ"
 
 msgid "Downloading and File Management"
 msgstr ""
@@ -2205,10 +2204,10 @@ msgid "Language Support and Translation"
 msgstr "ਬੋਲੀ ਸਮਰਥਨ ਅਤੇ ਲਿਪੀਅੰਤਰ"
 
 msgid "Photos and Media"
-msgstr ""
+msgstr "ਤਸਵੀਰਾਂ ਅਤੇ ਮੀਡੀਆ"
 
 msgid "RSS, News and Blogging"
-msgstr ""
+msgstr "RSS, ਖ਼ਬਰਾਂ ਅਤੇ ਬਲੌਗ ਲਿਖਣਾ"
 
 #, fuzzy
 msgid "Site-specific"
@@ -2920,7 +2919,7 @@ msgid "This summary should clearly explain what your add-on does. It will be sho
 msgstr ""
 
 msgid "Experimental?"
-msgstr ""
+msgstr "ਪ੍ਰਯੋਗਾਤਮਕ?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
@@ -3459,7 +3458,7 @@ msgid "These notes will appear on the detail page."
 msgstr ""
 
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "ਇਸ ਵੰਨਗੀ ਨੂੰ ਕਿਵੇਂ ਵੰਡਣਾ ਹੈ"
 
 msgid "More information on Add-on Distribution and Signing"
 msgstr ""
@@ -3718,7 +3717,7 @@ msgid "The background color for fields in the toolbar, such as the URL bar. Mani
 msgstr ""
 
 msgid "Toolbar field area text"
-msgstr ""
+msgstr "ਸੰਦ-ਪੱਟੀ ਇਲਾਕਾ ਖੇਤਰ ਲਿਖਤ"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
@@ -3732,7 +3731,7 @@ msgid "Browser preview"
 msgstr "ਝਲਕ ਵੇਖਣ ਲਈ ਘੁਮਾਓ"
 
 msgid "Back"
-msgstr ""
+msgstr "ਪਿੱਛੇ ਜਾਉ"
 
 #, fuzzy
 msgid "Uploading Theme"
@@ -3783,7 +3782,7 @@ msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "ਮਿਹਰਬਾਨੀ ਕਰ ਕੇ ਕੋਈ ਵੰਨਗੀ ਜਾਂ ਗੁਆਚਿਆ ਹੋਇਆ ਮੇਟਾਡੇਟਾ ਜੋੜ ਕੇ ਆਪਣਾ ਐਡ-ਔਨ ਪੂਰਾ ਕਰੋ।"
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
+msgstr "ਸਮੀਖਿਆ ਮੁਕੰਮਲ ਹੋਣ ਤੇ ਤੁਹਾਨੂੰ ਇੱਕ ਈ-ਚਿੱਠੀ ਮਿਲੇਗੀ। ਉਦੋਂ ਤੱਕ, ਤੁਹਾਡੇ ਐਡ-ਔਨ ਨੂੰ ਸਾਡੀ ਅਹਾਤੇ ਵਿੱਚ ਸੂਚੀਬੱਧ ਨਹੀਂ ਕੀਤਾ ਜਾਂਦਾ ਹੈ ਪਰ ਇਸ ਤੱਕ ਇਹਦੇ ਵੇਰਵਿਆਂ ਦੇ ਵਰਕੇ ਤੇ ਸਿੱਧਾ ਹੀ ਪਹੁੰਚ ਕੀਤੀ ਜਾ ਸਕਦੀ ਹੈ। "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਸਾਡੀ ਗੈਲਰੀ ਵਿੱਚ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਅਤੇ ਉਪਭੋਗੀ ਆਪਣੇ ਆਪ ਹੀ ਅੱਪਡੇਟਾਂ ਪ੍ਰਾਪਤ ਕਰ ਰਹੇ ਹਨ।"
@@ -3987,7 +3986,7 @@ msgid "\"Get The Add-on\" button"
 msgstr ""
 
 msgid "Legal"
-msgstr ""
+msgstr "ਕਨੂੰਨੀ"
 
 #, fuzzy
 msgid "Report Trademark Abuse"
@@ -4004,10 +4003,10 @@ msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjo
 msgstr ""
 
 msgid "Join us!"
-msgstr ""
+msgstr "ਸਾਡੇ ਨਾਲ ਰਲੋ!"
 
 msgid "Write Some Code"
-msgstr ""
+msgstr "ਕੁੱਝ ਕੋਡ ਲਿਖੋ"
 
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
@@ -4024,7 +4023,7 @@ msgid "You don't need coding skills to help keep Firefox the most customizable b
 msgstr ""
 
 msgid "See how"
-msgstr ""
+msgstr "ਵੇਖੋ ਕਿਵੇਂ"
 
 #, fuzzy
 msgid "Manage Your Add-on"
@@ -4416,7 +4415,7 @@ msgid "Validation"
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ"
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "ਮਿਟਾਉ /Disable"
 
 msgid "Next version of this add-on"
 msgstr "ਇਸ ਐਡ-ਆਨ ਦਾ ਅਗਲਾ ਵਰਜਨ"
