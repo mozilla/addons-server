@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from django.core.cache import cache
-from django.core.management import call_command
 from django.core.management.base import BaseCommand
 from django.utils import translation
 from django.test.utils import override_settings
+from django.db.models.signals import post_save
 
 from olympia.landfill.serializers import GenerateAddonsSerializer
+from olympia.addons.models import Addon, update_search_index
+
 
 #  Featured collections on the homepage.
 #  Needs to be updated as the homepage is updated
@@ -66,6 +67,11 @@ class Command(BaseCommand):
     """
 
     def handle(self, *args, **kwargs):
+        # Disconnect reindexing for every save, we'll reindex
+        # once all addons were generated
+        post_save.disconnect(update_search_index, sender=Addon,
+                             dispatch_uid='addons.search.index')
+
         with override_settings(CELERY_ALWAYS_EAGER=True):
             translation.activate('en-US')
             serializer = GenerateAddonsSerializer()
@@ -83,5 +89,3 @@ class Command(BaseCommand):
             for addon in hero_addons:
                 serializer.create_named_addon_with_author(addon)
             serializer.create_installable_addon()
-        cache.clear()
-        call_command('clear_cache')

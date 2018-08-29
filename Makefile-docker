@@ -82,10 +82,13 @@ populate_data:
 	# make sure the mapping is correct before adding a bunch of add-ons.
 	python manage.py reindex --wipe --force --noinput
 	python manage.py generate_addons --app firefox $(NUM_ADDONS)
-	python manage.py generate_addons --app thunderbird $(NUM_ADDONS)
 	python manage.py generate_addons --app android $(NUM_ADDONS)
-	python manage.py generate_addons --app seamonkey $(NUM_ADDONS)
 	python manage.py generate_themes $(NUM_THEMES)
+	# These add-ons are specifically useful for the addons-frontend
+	# homepage. You may have to re-run this, in case the data there
+	# changes.
+	python manage.py generate_ui_test_addons
+
 	# Now that addons have been generated, reindex.
 	python manage.py reindex --force --noinput
 	# Also update category counts (denormalized field)
