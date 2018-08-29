@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-29 22:21+0000\n"
+"PO-Revision-Date: 2018-08-29 22:46+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3716,7 +3716,7 @@ msgid "Your add-on was disabled by a site administrator and is no longer shown i
 msgstr "Jun nuk'samajel xuchüp ri atz'aqat ruma ri' toq man k'o ta chik pa wachib'äl qochochch. We k'o ak'utunik, katz'ib'an pa amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "Man xtiq'alajin ta pe ri atz'aqat pa ri yekanöx, pa ri ruxaq xtitz'et chi xachüp. Man xkek'ul ta chik ri k'ak'a' ruwäch xketaq richin yecholajïx. "
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
@@ -3724,10 +3724,10 @@ msgstr "Xtz'uk:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Add-on Multi Process Status:"
-msgstr ""
+msgstr "Rub'anikil K'ïy Rutajinik Tz'aqat:"
 
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr ""
+msgstr "Ri nuk'äm ri' atz'aqat rik'in ri K'ïy Rutajinik Firefox (e10s)."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
