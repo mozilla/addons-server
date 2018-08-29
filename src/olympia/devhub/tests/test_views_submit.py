@@ -410,6 +410,27 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert doc('ul.errorlist').text() == (
             'Need at least one platform.')
 
+    @override_switch('disallow-supported-platform-submission', active=True)
+    def test_disallowing_supported_platform_submission(self):
+        """Test that we don't complain about missing platform data.
+
+        https://github.com/mozilla/addons-server/issues/8752
+        """
+        url = reverse('devhub.submit.upload', args=['listed'])
+        response = self.client.post(url, {'upload': self.upload.uuid.hex})
+        addon = Addon.objects.get()
+        # Success, redirecting to source submission step.
+        self.assert3xx(
+            response, reverse('devhub.submit.source', args=[addon.slug]))
+
+        # Check that `all_files` is correct
+        all_ = sorted([f.filename for f in addon.current_version.all_files])
+        assert all_ == [u'xpi_name-0.1.xpi']
+
+        # In case the switch is active, we are explicitly setting platform
+        # support to `PLATFORM_ALL`.
+        assert addon.current_version.supported_platforms == [amo.PLATFORM_ALL]
+
     def test_one_xpi_for_multiple_platforms(self):
         assert Addon.objects.count() == 0
         response = self.post(

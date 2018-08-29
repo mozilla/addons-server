@@ -83,9 +83,13 @@
       {% csrf_token %}
       <div class="hidden">
         {{ new_addon_form.upload }}
-        {{ new_addon_form.supported_platforms }}
+        {% if 'supported_platforms' in new_addon_form.fields %}
+          {{ new_addon_form.supported_platforms }}
+        {% endif %}
       </div>
-      {{ new_addon_form.supported_platforms.errors }}
+      {% if 'supported_platforms' in new_addon_form.fields %}
+        {{ new_addon_form.supported_platforms.errors }}
+      {% endif %}
       {{ new_addon_form.upload.errors }}
       {{ new_addon_form.non_field_errors() }}
       <ul class="errorlist validator">

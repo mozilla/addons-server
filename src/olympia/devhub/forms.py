@@ -491,8 +491,14 @@ class NewUploadForm(forms.Form):
         self.version = kw.pop('version', None)
         super(NewUploadForm, self).__init__(*args, **kw)
 
+        show_supported_platforms = not waffle.switch_is_active(
+            'disallow-supported-platform-submission')
+
+        if not show_supported_platforms:
+            del self.fields['supported_platforms']
+
         # If we have a version reset platform choices to just those compatible.
-        if self.version:
+        if self.version and show_supported_platforms:
             platforms = self.fields['supported_platforms']
             compat_platforms = self.version.compatible_platforms().values()
             platforms.choices = sorted(
