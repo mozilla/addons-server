@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-29 16:31+0000\n"
+"PO-Revision-Date: 2018-08-29 16:48+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5849,13 +5849,13 @@ msgid "Down file"
 msgstr ""
 
 msgid "Previous diff"
-msgstr ""
+msgstr "Differentia previe"
 
 msgid "Previous note"
 msgstr "Note previe"
 
 msgid "Next diff"
-msgstr ""
+msgstr "Differentia sequente"
 
 msgid "Next note"
 msgstr "Nota successive"
@@ -5927,10 +5927,10 @@ msgid "Web page and text translator, dictionary, and more!"
 msgstr ""
 
 msgid "Love is in the Air"
-msgstr ""
+msgstr "Le amor es in le aria"
 
 msgid "Add some romance to your Firefox."
-msgstr ""
+msgstr "Adde romantismo a tu Firefox."
 
 msgid "Get up and move!"
 msgstr ""
@@ -6655,7 +6655,7 @@ msgid "Information Request Deadline"
 msgstr "Data limite del demanda de informationes"
 
 msgid "Last Content Review"
-msgstr ""
+msgstr "Ultime revision de contentos"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -6676,7 +6676,7 @@ msgid "This will reject the selected public versions. The comments will be sent 
 msgstr ""
 
 msgid "Reviewer reply"
-msgstr ""
+msgstr "Responsa del revisor"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr ""
@@ -6697,13 +6697,13 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 msgid "Static Themes and Legacy Add-ons"
-msgstr ""
+msgstr "Themas static e additivos legate"
 
 msgid "Static Themes"
-msgstr ""
+msgstr "Themas static"
 
 msgid "Legacy Add-ons"
-msgstr ""
+msgstr "Additivos legate"
 
 msgid "New ({0})"
 msgstr "Nove ({0})"
@@ -6712,42 +6712,42 @@ msgid "Updates ({0})"
 msgstr "Actualisate ({0})"
 
 msgid "Review Log"
-msgstr ""
+msgstr "Registration de revision"
 
 msgid "Add-on Review Guide"
-msgstr ""
+msgstr "Guida al revision del additivos"
 
 msgid "Theme Review Guide"
-msgstr ""
+msgstr "Guida al revision del themas"
 
 msgid "Auto-Approved Add-ons"
-msgstr ""
+msgstr "Additivos approbate automaticamente"
 
 msgid "Auto Approved Add-ons ({0})"
-msgstr ""
+msgstr "Additivos approbate automaticamente ({0})"
 
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "Registro de revision de additivo"
 
 msgid "Review Guide"
-msgstr ""
+msgstr "Guida de revision"
 
 msgid "Content Review"
-msgstr ""
+msgstr "Revision de contento"
 
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Revision de contentos de ({0})"
+msgstr[1] "Revision de contento de ({0})"
 
 msgid "New Themes ({0})"
-msgstr ""
+msgstr "Nove themas ({0})"
 
 msgid "Themes Updates ({0})"
-msgstr ""
+msgstr "Actualisationes de themas ({0})"
 
 msgid "Flagged Themes ({0})"
-msgstr ""
+msgstr "Themas signalate ({0})"
 
 msgid "Lightweight Themes Review Log"
 msgstr ""
@@ -6765,22 +6765,22 @@ msgid "Moderated Review Log"
 msgstr ""
 
 msgid "Moderation Guide"
-msgstr ""
+msgstr "Guida al moderation"
 
 msgid "Unlisted Add-ons"
-msgstr ""
+msgstr "Additivos non listate"
 
 msgid "All Unlisted Add-ons"
-msgstr ""
+msgstr "Tote le additivos non listate"
 
 msgid "Announcement"
-msgstr ""
+msgstr "Annuncio"
 
 msgid "Update message of the day"
-msgstr ""
+msgstr "Actualisar le message del die"
 
 msgid "Expired Information Requests ({0})"
-msgstr ""
+msgstr "Requestas de informationes expirate ({0})"
 
 msgid "An unknown error occurred"
 msgstr ""
@@ -7894,9 +7894,8 @@ msgstr ""
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-#, fuzzy
 msgid "Firefox user {id}"
-msgstr "Firefox pro Android"
+msgstr "Usator de Firefox {id}"
 
 msgid "My Mobile Add-ons"
 msgstr ""
