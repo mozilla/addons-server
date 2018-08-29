@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-28 13:39+0000\n"
+"PO-Revision-Date: 2018-08-29 09:10+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4888,39 +4888,39 @@ msgstr "Rende le web plus leve pro tu oculos per obscurar su schermo."
 
 #. editorial content for the discovery pane.
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Bloca le quadros emergente {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Activa le bloco per tote le quadros emergente, pois decide los que lassar aperir."
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Personalisa tu favorite sitos web {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Cambia le apparentia de ulle sito web! Displacia colores, fundos de pagina, e altero ancora."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Personalisa tu nove schedas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Redige le pagina del nove schedas pro monstrar tu preferite numero de quadrellas, imagine de fundo, e altero ancora."
 
 #. editorial content for the discovery pane.
 msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Traduce rapidemente{start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
+msgstr "Evidentia texto sur ulle sito web, clicca dextre, e traduce instantaneemente."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Gere tu contrasignos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
@@ -5300,11 +5300,11 @@ msgstr "Crea e gere un agenda in tu navigator."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Evidentia texto {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
-msgstr ""
+msgstr "Gaude de un application pro evidentiar texto multo personalisabile con differente colores e salva le optiones."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5757,7 +5757,7 @@ msgid "Invalid archive."
 msgstr "Archivo non valide."
 
 msgid "Could not parse the manifest file."
-msgstr "Impossibile tractar le file de manifesto."
+msgstr "Impossibile tractar le file manifesto."
 
 msgid "Could not find an add-on ID."
 msgstr "Impossibile trovar le ID del additivo."
@@ -6031,7 +6031,7 @@ msgid "Unlock early access to experimental browser features."
 msgstr ""
 
 msgid "Get Started"
-msgstr ""
+msgstr "Comenciar"
 
 msgid "About Mozilla Add-ons"
 msgstr ""
@@ -6135,7 +6135,7 @@ msgid ""
 msgstr ""
 
 msgid "Do:"
-msgstr ""
+msgstr "A facer:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr ""
@@ -6153,7 +6153,7 @@ msgid "What features did you like or dislike?"
 msgstr ""
 
 msgid "Was it useful?"
-msgstr ""
+msgstr "Esseva illo utile?"
 
 msgid "Was it easy to use?"
 msgstr ""
@@ -6228,7 +6228,7 @@ msgid "Mozilla wants to figure out the best way to keep our users safe if they c
 msgstr ""
 
 msgid "What will happen next"
-msgstr ""
+msgstr "Que evenira pois"
 
 msgid "<strong>If you agree</strong> to participate:"
 msgstr ""
@@ -6246,7 +6246,7 @@ msgid "We will ask you to fill out a quick optional survey to tell us about your
 msgstr ""
 
 msgid "Leaving the study"
-msgstr ""
+msgstr "Lassar le studio"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
 msgstr ""
@@ -6280,7 +6280,7 @@ msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collec
 msgstr ""
 
 msgid "This particular Study"
-msgstr ""
+msgstr "Iste studio particular"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
 msgstr ""
@@ -6490,7 +6490,7 @@ msgid "View entries between"
 msgstr ""
 
 msgid "and"
-msgstr ""
+msgstr "e"
 
 msgid "Filter by type/action"
 msgstr ""
@@ -6515,10 +6515,10 @@ msgid "Needs Admin Code Review"
 msgstr ""
 
 msgid "yes"
-msgstr ""
+msgstr "si"
 
 msgid "no"
-msgstr ""
+msgstr "no"
 
 msgid "Add-on Types"
 msgstr ""
@@ -6530,7 +6530,7 @@ msgid "Max. Version"
 msgstr ""
 
 msgid "Comments:"
-msgstr ""
+msgstr "Commentos:"
 
 msgid "Operating systems:"
 msgstr ""
@@ -6542,7 +6542,7 @@ msgid "Require developer to respond in less than…"
 msgstr ""
 
 msgid "days"
-msgstr ""
+msgstr "dies"
 
 msgid "Choose a canned response..."
 msgstr ""
@@ -6586,7 +6586,7 @@ msgid "Sources provided"
 msgstr ""
 
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
 msgstr ""
@@ -6649,7 +6649,7 @@ msgid "No Reviews"
 msgstr ""
 
 msgid "Weight"
-msgstr ""
+msgstr "Peso"
 
 msgid "Information Request Deadline"
 msgstr ""
@@ -6691,7 +6691,7 @@ msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
 msgid "Approve Content"
-msgstr ""
+msgstr "Approbar le contento"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
@@ -6706,10 +6706,10 @@ msgid "Legacy Add-ons"
 msgstr ""
 
 msgid "New ({0})"
-msgstr ""
+msgstr "Nove ({0})"
 
 msgid "Updates ({0})"
-msgstr ""
+msgstr "Actualisate ({0})"
 
 msgid "Review Log"
 msgstr ""
@@ -6822,7 +6822,7 @@ msgid "Visibility"
 msgstr ""
 
 msgid "Visible"
-msgstr ""
+msgstr "Visibile"
 
 msgid "Average Daily Users"
 msgstr ""
@@ -6834,7 +6834,7 @@ msgid "Requires Payment"
 msgstr ""
 
 msgid "EULA"
-msgstr ""
+msgstr "EULA"
 
 msgid "Last Approval Date"
 msgstr ""
@@ -6880,13 +6880,13 @@ msgstr ""
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
-msgstr ""
+msgstr "Filtro"
 
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 msgid "Event"
-msgstr ""
+msgstr "Evento"
 
 msgid "More details."
 msgstr ""
@@ -6917,7 +6917,7 @@ msgid "Undelete"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "Salvar"
 
 msgid "Add-on Reviewer Performance"
 msgstr ""
@@ -6941,7 +6941,7 @@ msgid "Active Contributors"
 msgstr ""
 
 msgid "This Month"
-msgstr ""
+msgstr "Iste mense"
 
 msgid "This Year"
 msgstr ""
@@ -7145,7 +7145,7 @@ msgid "Compare"
 msgstr ""
 
 msgid "Permissions:"
-msgstr ""
+msgstr "Permissos:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -7193,10 +7193,10 @@ msgid "Review Date"
 msgstr ""
 
 msgid "Action"
-msgstr ""
+msgstr "Action"
 
 msgid "Reason"
-msgstr ""
+msgstr "Ration"
 
 msgid "There are currently no reviews."
 msgstr ""
@@ -7323,7 +7323,7 @@ msgid "Flagged"
 msgstr ""
 
 msgid "Updates"
-msgstr ""
+msgstr "Actualisationes"
 
 msgid "Maximum query length exceeded."
 msgstr ""
@@ -7386,7 +7386,7 @@ msgstr ""
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "{0} :: Tag"
 
 #. {0} is a tag, such as jetpack.
 msgid "Search Results for tag \"{0}\""
@@ -7498,16 +7498,16 @@ msgid "Custom Date Range"
 msgstr ""
 
 msgid "From"
-msgstr ""
+msgstr "De"
 
 msgid "To"
-msgstr ""
+msgstr "A"
 
 msgid "Update"
-msgstr ""
+msgstr "Actualisar"
 
 msgid "Export"
-msgstr ""
+msgstr "Exportar"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
@@ -7527,7 +7527,7 @@ msgid "Statistics Dashboard"
 msgstr ""
 
 msgid "Controls:"
-msgstr ""
+msgstr "Controlos:"
 
 msgid "reset zoom"
 msgstr ""
@@ -7536,13 +7536,13 @@ msgid "Group by:"
 msgstr ""
 
 msgid "day"
-msgstr ""
+msgstr "die"
 
 msgid "week"
 msgstr ""
 
 msgid "month"
-msgstr ""
+msgstr "mense"
 
 msgid "For last:"
 msgstr ""
@@ -7560,7 +7560,7 @@ msgid "365 days"
 msgstr ""
 
 msgid "Custom..."
-msgstr ""
+msgstr "Personalisar..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
@@ -7619,7 +7619,7 @@ msgid "<b>{0}</b> Downloads"
 msgstr ""
 
 msgid "Loading..."
-msgstr ""
+msgstr "Cargamento..."
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
