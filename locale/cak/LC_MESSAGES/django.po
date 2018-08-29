@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-29 20:11+0000\n"
+"PO-Revision-Date: 2018-08-29 20:21+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3623,25 +3623,25 @@ msgid "Header area text and icons"
 msgstr "Rutz'ib'anïk chuqa' ruwachib'al ruk'ojlib'al b'i'aj"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
+msgstr "Ri rub'onil tz'ib'anïk chuqa' ruwachib'al ruk'ojlib'al b'i'aj, man ke ta ri' ri tzijïl ruwi'. Ruk'ojlib'al Manifiesto:  textcolor."
 
 msgid "Toolbar area background"
-msgstr ""
+msgstr "Rupam ruk'ojlib'al rukajtz'ik samajib'äl"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
+msgstr "Ri rub'onil rupam rukajtz'ik okem pa k'amaya'l, kikajtz'ik yaketal chuqa' ri ruwi' cha'on.  Ruk'ojlib'al manifiesto:  toolbar."
 
 msgid "Toolbar area text and icons"
-msgstr ""
+msgstr "Rutz'ib'anïk chuqa' ruwachib'al ruk'ojlib'al rukajtz'ik samajib'äl"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr ""
+msgstr "Ri rub'onil tz'ib'anïk chuqa' ruwachib'al pa ri rukajtz'ik samajib'äl chuqa' ri tzijïl ruwi'. Ruk'ojlib'al Manifiesto:  toolbar_text."
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "Rupam ruk'ojlib'al rukajtz'ik samajib'äl"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
+msgstr "Ri rub'onil rupam ruk'ojlib'al rukajtz'ik samajib'äl, achi'el ri rukajtz'ik URL. Ruk'ojlib'al Manifiesto:  toolbar_field."
 
 msgid "Toolbar field area text"
 msgstr ""
