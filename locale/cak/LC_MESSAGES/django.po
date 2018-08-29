@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-29 21:43+0000\n"
+"PO-Revision-Date: 2018-08-29 22:05+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3669,16 +3669,16 @@ msgstr "API Taq Wujil"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "Richin ch'aqa' chik rucholsamaj, tatz'eta' ri <a href=\"%(docs_url)s\">API wujinem </a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "Ke'ajask'umij ri API taq ajaqb'al chuqa' <strong>man tak'üt chuwäch xab'achike</strong>, ni xa ta kik'in ri ruto'onela' Mozilla."
 
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT tikirisanel tzij"
 
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT jask'um"
 
 #, python-format
 msgid ""
