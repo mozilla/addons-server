@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-28 22:34+0000\n"
+"PO-Revision-Date: 2018-08-29 20:11+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3548,7 +3548,7 @@ msgid "or in reviewer notes on the next page (if applicable)."
 msgstr ""
 
 msgid "Upload source code:"
-msgstr ""
+msgstr "Xjotob'äx ruxe'el b'itz'ib':"
 
 msgid "Add-on Distribution Agreement"
 msgstr "Ruch'ob'otzij Kijachik Rutz'aqat"
@@ -3620,7 +3620,7 @@ msgid "The color of the header area background, displayed in the part of the hea
 msgstr "Ri rub'onil rupam ruk'ojlib'al b'i'aj, ri k'o pa ruk'ojlib'al b'i'an, ri man nojinäq ta o man tz'etel ta rik'in ri wachib'äl. Ruk'ojlib'al manifiesto:  accentcolor."
 
 msgid "Header area text and icons"
-msgstr ""
+msgstr "Rutz'ib'anïk chuqa' ruwachib'al ruk'ojlib'al b'i'aj"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
