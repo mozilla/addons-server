@@ -86,10 +86,13 @@ populate_data:
 	# make sure the mapping is correct before adding a bunch of add-ons.
 	python manage.py reindex --wipe --force --noinput
 	python manage.py generate_addons --app firefox $(NUM_ADDONS)
-	python manage.py generate_addons --app thunderbird $(NUM_ADDONS)
 	python manage.py generate_addons --app android $(NUM_ADDONS)
-	python manage.py generate_addons --app seamonkey $(NUM_ADDONS)
 	python manage.py generate_themes $(NUM_THEMES)
+	# These add-ons are specifically useful for the addons-frontend
+	# homepage. You may have to re-run this, in case the data there
+	# changes.
+	python manage.py generate_default_addons_for_frontend
+
 	# Now that addons have been generated, reindex.
 	python manage.py reindex --force --noinput
 	# Also update category counts (denormalized field)
@@ -164,7 +167,7 @@ setup-ui-tests:
 run-ui-tests: setup-ui-tests
 	# Generate test add-ons and force a reindex to make sure things are updated
 	pip install --progress-bar=off --no-deps -r requirements/uitests.txt
-	python manage.py generate_ui_test_addons
+	python manage.py generate_default_addons_for_frontend
 	python manage.py reindex --force --noinput --wipe
 	pytest --driver Firefox tests/ui/
 
