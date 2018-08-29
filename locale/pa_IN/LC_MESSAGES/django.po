@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-29 05:32+0000\n"
+"PO-Revision-Date: 2018-08-29 05:34+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -6449,7 +6449,7 @@ msgid ""
 msgstr ""
 
 msgid "Brought to you by:"
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਤੱਕ ਲੈ ਕੇ ਆਉਣ ਵਾਲੇ ਹਨ:"
 
 #, python-format
 msgid "Reviews for %s"
@@ -6574,7 +6574,7 @@ msgid "Edit review"
 msgstr "ਸਮੀਖਿਆ ਸੋਧ"
 
 msgid "Delete reply"
-msgstr ""
+msgstr "ਜਵਾਬ ਮਿਟਾਓ"
 
 msgid "Delete review"
 msgstr "ਸਮੀਖਿਆ ਹਟਾਓ"
@@ -6796,16 +6796,16 @@ msgstr[0] "{0} ਦਿਨ"
 msgstr[1] "{0} ਦਿਨਾਂ"
 
 msgid "Last Review"
-msgstr ""
+msgstr "ਆਖਰੀ ਸਮੀਖਿਆ"
 
 msgid "Last Update"
-msgstr ""
+msgstr "ਆਖਰੀ ਨਵਿਆਉਣ"
 
 msgid "No Reviews"
-msgstr ""
+msgstr "ਕੋਈ ਸਮੀਖਿਆ ਨਹੀਂ"
 
 msgid "Weight"
-msgstr ""
+msgstr "ਭਾਰ"
 
 #, fuzzy
 msgid "Information Request Deadline"
