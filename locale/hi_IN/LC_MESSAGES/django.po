@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-29 13:01+0000\n"
-"Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
+"PO-Revision-Date: 2018-08-29 19:33+0000\n"
+"Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -17,22 +17,22 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "No links are allowed."
-msgstr ""
+msgstr "कोई भी लिंक की अनुमति नहीं है।"
 
 msgid "This display name cannot be used."
 msgstr ""
 
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "उपयोक्तानाम में केवल अंक नहीं हो सकते हैं।"
 
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr ""
 
 msgid "This username cannot be used."
-msgstr ""
+msgstr "यह उपयोक्तानाम उपयोग नहीं किया जा सकता है।"
 
 msgid "This username is already in use."
-msgstr ""
+msgstr "यह उपयोक्तानाम पहले से उपयोग में हैं।"
 
 msgid "Images must be either PNG or JPG."
 msgstr ""
@@ -51,10 +51,10 @@ msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "आपका Firefox खाता नहीं मिल सका। कृपया पुन: प्रयास करें।"
 
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "आप लॉग इन नहीं कर सके। कृपया पुन: प्रयास करें।"
 
 msgid "Need help?"
 msgstr "मदद चाहिए?"
@@ -81,7 +81,7 @@ msgid "- Add-on not on AMO -"
 msgstr ""
 
 msgid "Download Now"
-msgstr ""
+msgstr "अभी डाउनलोड करें"
 
 msgid "Download"
 msgstr "डाउनलोड करें"
@@ -433,7 +433,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Tags"
-msgstr ""
+msgstr "टैग"
 
 msgid "Icon for {0}"
 msgstr ""
@@ -683,13 +683,13 @@ msgid "Reviewer Tools"
 msgstr ""
 
 msgid "Admin Tools"
-msgstr ""
+msgstr "व्यवस्थापक उपकरण"
 
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "गलत, पुनः प्रयास करें।"
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "इनपुट सत्यापित करने में त्रुटि, कृपया पुन: प्रयास करें।"
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr ""
@@ -701,10 +701,10 @@ msgid "Not allowed"
 msgstr "अनुमति नही है"
 
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "उफ! अनुमति नही हैं।"
 
 msgid "You tried to do something that you weren't allowed to."
-msgstr ""
+msgstr "आपने कुछ ऐसा करने की कोशिश की जिसकी आपको अनुमति नहीं थी।"
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -729,16 +729,16 @@ msgid "Sorry, but we can't find anything at the address you entered. If you foll
 msgstr ""
 
 msgid "Suggested Pages"
-msgstr ""
+msgstr "सुझाए गए पृष्ठ"
 
 msgid "Browse all extensions"
-msgstr ""
+msgstr "सभी एक्सटेंशन ब्राउज करें"
 
 msgid "Browse all themes"
-msgstr ""
+msgstr "सभी थीम ब्राउज़ करें"
 
 msgid "Add-ons Home Page"
-msgstr ""
+msgstr "ऐड-ऑन मुख पृष्ठ"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
@@ -826,13 +826,13 @@ msgid "Collections I've Made"
 msgstr "मेरे बनाए गए संग्रह"
 
 msgid "My Favorite Add-ons"
-msgstr ""
+msgstr "मेरा पसंदीदा ऐड-ऑन"
 
 msgid "More&hellip;"
 msgstr ""
 
 msgid "Add-ons for Mobile"
-msgstr ""
+msgstr "मोबाइल के लिए ऐड-ऑन"
 
 msgid "Dictionaries & Language Packs"
 msgstr ""
@@ -908,7 +908,7 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Application Versions"
-msgstr ""
+msgstr "आवेदन संस्करण"
 
 msgid "Acceptable versions for all applications on AMO."
 msgstr ""
@@ -1428,7 +1428,7 @@ msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr ""
 
 msgid "Learn more"
-msgstr ""
+msgstr "अधिक जानें"
 
 msgid "View All Recently Added"
 msgstr ""
