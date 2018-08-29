@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-29 20:26+0000\n"
+"PO-Revision-Date: 2018-08-29 20:49+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4944,27 +4944,27 @@ msgstr "Rende plus attrahente le texto que tu lege per le remotion del disordine
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Aperi plure ligamines {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
-msgstr ""
+msgstr "Clicca dextre e trahe super le ligamines que tu desira aperir in nove schedas."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Recupera le schedas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Accede le schedas claudite recentemente per clic dextre sur le icone in tu barra del instrumentos."
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Inspira productivitate {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Modifica le presentation de tu nove schedas pro monstrar un belle fundo, definir tu foco quotidian, e altero ancora."
 
 #. editorial content for the discovery pane.
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
