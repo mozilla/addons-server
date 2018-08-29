@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-29 20:21+0000\n"
+"PO-Revision-Date: 2018-08-29 21:43+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3644,28 +3644,28 @@ msgid "The background color for fields in the toolbar, such as the URL bar. Mani
 msgstr "Ri rub'onil rupam ruk'ojlib'al rukajtz'ik samajib'äl, achi'el ri rukajtz'ik URL. Ruk'ojlib'al Manifiesto:  toolbar_field."
 
 msgid "Toolbar field area text"
-msgstr ""
+msgstr "Kitz'ib'anik ruk'ojlib'al rukajtz'ik samajib'äl"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
+msgstr "Ri rub'onil rutz'ib'anik ruk'ojlib'al rukajtz'ik samajib'äl, achi'el ri rukajtz'ik URL. Ruk'ojlib'al manifiesto:  toolbar:field_text."
 
 msgid "optional"
 msgstr "cha'el"
 
 msgid "Browser preview"
-msgstr ""
+msgstr "Nab'ey rutzub'al okik'amaya'l"
 
 msgid "Back"
 msgstr "Chi rij"
 
 msgid "Uploading Theme"
-msgstr ""
+msgstr "Nijotob'äx Wachinel"
 
 msgid "Finish Theme"
-msgstr ""
+msgstr "Tik'is Wachinel"
 
 msgid "API Credentials"
-msgstr ""
+msgstr "API Taq Wujil"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
