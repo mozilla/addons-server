@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-29 22:05+0000\n"
+"PO-Revision-Date: 2018-08-29 22:21+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3685,33 +3685,35 @@ msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
+"Richin ye'ab'än API taq k'utunïk, tataqa' jun <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> achi'el rub'anikil b'i'aj richin niya' q'ij. K'o chi nab'än jun JWT toq natäq jun k'utunïk, achi'el "
+"nitzijöx pa <a href=\"%(docs_url)s\">API wujinem</a>."
 
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "Man k'o ta API awujil."
 
 msgid "Revoke"
 msgstr "Tiyuj"
 
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Ketzolïx chuqa' keb'an taq wujil"
 
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Keb'an k'ak'a' wujil"
 
 msgid "Invisible"
 msgstr "Metz'etel"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Tatz'aqatisaj ri atz'aqat, rik'in natz'aqatisaj jun ruwäch o ri taq ichintzij nrajo' na."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
+msgstr "Xtak'ül jun taqoya'l toq xtik'is runik'oxik. Ruma k'a ri', ri atz'aqat man xtiwachin ta pa wachib'äl qochoch, po tikirel nib'an okem chupam pa ri ruxaq rub'anikil. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr ""
+msgstr "Ri atz'aqat k'o pa ruwachib'al qochoch chuqa' ri okisanela' yekik'ül yonil taq k'exoj."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
+msgstr "Jun nuk'samajel xuchüp ri atz'aqat ruma ri' toq man k'o ta chik pa wachib'äl qochochch. We k'o ak'utunik, katz'ib'an pa amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
