@@ -13,6 +13,7 @@ from django.core.files.storage import default_storage as storage
 
 import mock
 import pytest
+from waffle.testutils import override_switch
 
 from PIL import Image
 
@@ -1079,6 +1080,41 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         results = tasks.annotate_legacy_addon_restrictions(
             data.copy(), is_new_upload=True)
         assert results['errors'] == 0
+
+    @override_switch('disallow-legacy-submissions', active=True)
+    def test_legacy_submissions_disabled(self):
+        file_ = get_addon_file('valid_firefox_addon.xpi')
+        upload = FileUpload.objects.create(path=file_)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 1
+        expected = ['validation', 'messages', 'legacy_addons_unsupported']
+        assert upload.processed_validation['messages'][0]['id'] == expected
+        assert not upload.valid
+
+    @override_switch('disallow-legacy-submissions', active=True)
+    def test_legacy_updates_disabled(self):
+        file_ = get_addon_file('valid_firefox_addon.xpi')
+        addon = addon_factory(version_kw={'version': '0.1'})
+        upload = FileUpload.objects.create(path=file_, addon=addon)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 1
+        expected = ['validation', 'messages', 'legacy_addons_unsupported']
+        assert upload.processed_validation['messages'][0]['id'] == expected
+        assert not upload.valid
+
+    @override_switch('disallow-legacy-submissions', active=True)
+    def test_submit_webextension_okay_after_legacy_unsupported(self):
+        self.test_submit_webextension()
+
+    @override_switch('disallow-legacy-submissions', active=True)
+    def test_submit_non_extension_okay_after_legacy_unsupported(self):
+        self.test_submit_non_extension()
 
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
