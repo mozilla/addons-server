@@ -87,7 +87,7 @@ populate_data:
 	# These add-ons are specifically useful for the addons-frontend
 	# homepage. You may have to re-run this, in case the data there
 	# changes.
-	python manage.py generate_ui_test_addons
+	python manage.py generate_default_addons_for_frontend
 
 	# Now that addons have been generated, reindex.
 	python manage.py reindex --force --noinput
@@ -163,7 +163,7 @@ setup-ui-tests:
 
 ui-tests: setup-ui-tests
 	# Generate test add-ons and force a reindex to make sure things are updated
-	python manage.py generate_ui_test_addons
+	python manage.py generate_default_addons_for_frontend
 	python manage.py reindex --force --noinput --wipe
 	pip install --progress-bar=off --no-deps -r requirements/uitests.txt
 

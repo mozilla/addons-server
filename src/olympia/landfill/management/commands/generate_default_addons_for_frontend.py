@@ -62,7 +62,7 @@ class Command(BaseCommand):
 
     Usage:
 
-        python manage.py generate_ui_test_addons
+        python manage.py generate_default_addons_for_frontend
 
     """
 
