@@ -1196,7 +1196,7 @@ class TestCreateVersionForUpload(TestCase):
         self.create_version_for_upload(self.addon, newer_upload,
                                        amo.RELEASE_CHANNEL_LISTED)
         self.mocks['Version.from_upload'].assert_called_with(
-            newer_upload, self.addon, [amo.PLATFORM_ALL.id],
+            newer_upload, self.addon, [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.mocks['parse_addon'].return_value)
 
@@ -1232,7 +1232,7 @@ class TestCreateVersionForUpload(TestCase):
         self.mocks['parse_addon'].assert_called_with(
             upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(
-            upload, self.addon, [amo.PLATFORM_ALL.id],
+            upload, self.addon, [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.mocks['parse_addon'].return_value)
 
@@ -1243,7 +1243,7 @@ class TestCreateVersionForUpload(TestCase):
         self.mocks['parse_addon'].assert_called_with(
             upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(
-            upload, self.addon, [amo.PLATFORM_ALL.id],
+            upload, self.addon, [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.mocks['parse_addon'].return_value)
 
@@ -1254,7 +1254,7 @@ class TestCreateVersionForUpload(TestCase):
         self.mocks['parse_addon'].assert_called_with(
             upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(
-            upload, self.addon, [amo.PLATFORM_ALL.id],
+            upload, self.addon, [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.mocks['parse_addon'].return_value)
 

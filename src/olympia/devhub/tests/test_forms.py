@@ -30,10 +30,32 @@ from olympia.versions.models import ApplicationsVersions, License
 
 class TestNewUploadForm(TestCase):
 
+    def test_firefox_default_selected(self):
+        upload = FileUpload.objects.create(valid=False)
+        form = forms.NewUploadForm(
+            {'upload': upload.uuid}, request=mock.Mock())
+        assert form.fields['compatible_apps'].initial == [amo.FIREFOX.id]
+
+    def test_compat_apps_widget_custom_label_class_rendered(self):
+        """We are setting a custom class at the label
+        of the compatibility apps multi-select to correctly render
+        images.
+        """
+        upload = FileUpload.objects.create(valid=False)
+        form = forms.NewUploadForm(
+            {'upload': upload.uuid}, request=mock.Mock())
+        result = form.fields['compatible_apps'].widget.render(
+            name='compatible_apps', value=amo.FIREFOX.id)
+        assert 'class="app firefox"' in result
+
+        result = form.fields['compatible_apps'].widget.render(
+            name='compatible_apps', value=amo.ANDROID.id)
+        assert 'class="app android"' in result
+
     def test_only_valid_uploads(self):
         upload = FileUpload.objects.create(valid=False)
         form = forms.NewUploadForm(
-            {'upload': upload.uuid, 'supported_platforms': [1]},
+            {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]},
             request=mock.Mock())
         assert ('There was an error with your upload. Please try again.' in
                 form.errors.get('__all__')), form.errors
@@ -43,7 +65,7 @@ class TestNewUploadForm(TestCase):
             # For the 'Addons:Edit' permission check.
             acl.return_value = True
             form = forms.NewUploadForm(
-                {'upload': upload.uuid, 'supported_platforms': [1],
+                {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id],
                     'admin_override_validation': True},
                 request=mock.Mock())
             assert ('There was an error with your upload. Please try' not in
@@ -53,7 +75,7 @@ class TestNewUploadForm(TestCase):
         upload.save()
         addon = Addon.objects.create()
         form = forms.NewUploadForm(
-            {'upload': upload.uuid, 'supported_platforms': [1]},
+            {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]},
             addon=addon, request=mock.Mock())
         assert ('There was an error with your upload. Please try again.' not in
                 form.errors.get('__all__')), form.errors
@@ -77,7 +99,7 @@ class TestNewUploadForm(TestCase):
         upload = FileUpload.objects.create(valid=True)
         addon = Addon.objects.create()
         form = forms.NewUploadForm(
-            {'upload': upload.uuid, 'supported_platforms': [1]},
+            {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]},
             addon=addon, request=mock.Mock())
         form.clean()
         assert mock_check_xpi_info.called
