@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-29 05:12+0000\n"
+"PO-Revision-Date: 2018-08-29 05:32+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -3479,17 +3479,17 @@ msgid "Preview of the version submitted"
 msgstr "ਵਰਜਨ ਨੋਟ"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr ""
+msgstr "ਤੁਸੀਂ ਪੂਰਾ ਕਰ ਲਿਆ! ਸਮੀਖਿਆ ਵਿੱਚ ਸਫਲ ਹੋਣ ਤੋਂ ਬਾਅਦ ਇਹ ਵੰਨਗੀ ਉਪਲੱਬਧ ਹੋ ਜਾਵੇਗੀ। ਜਦੋਂ ਇਸ ਦੀ ਸਮੀਖਿਆ ਕੀਤੀ ਗਈ ਤਾਂ ਤੁਹਾਨੂੰ ਸੂਚਿਤ ਕੀਤਾ ਜਾਵੇਗਾ।"
 
 #, fuzzy
 msgid "Version Submitted"
 msgstr "ਵਰਜਨ ਨੋਟ"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "ਤੁਸੀਂ ਪੂਰਾ ਕਰ ਲਿਆ! ਇਹ ਵੰਨਗੀ ਛੇਤੀ ਹੀ ਸਾਡੀ ਸਾਈਟ ਤੇ ਉਪਲੱਬਧ ਹੋਵੇਗੀ।"
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "ਤੁਸੀਂ ਪੂਰਾ ਕਰ ਲਿਆ! ਇਹ ਵੰਨਗੀ ਸਮੀਖਿਆ ਲਈ ਜਮ੍ਹਾਂ ਕਰਾਈ ਗਈ ਹੈ। ਸਮੀਖਿਆ ਮੁਕੰਮਲ ਹੋ ਜਾਣ ਤੇ, ਜਾਂ ਤੁਹਾਡੇ ਜਮ੍ਹਾਂ ਕੀਤੇ ਹੋਏ ਤੇ ਸਾਡੇ ਸਮੀਖਿਆਕਾਰਾਂ ਦਾ ਕੋਈ ਸਵਾਲ ਹੋਣ ਤੇ ਤੁਹਾਨੂੰ ਸੂਚਿਤ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ।"
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr ""
@@ -3546,7 +3546,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "ਕੀ ਤੁਹਾਨੂੰ ਸਰੋਤ ਕੋਡ ਜਮ੍ਹਾਂ ਕਰਾਉਣ ਦੀ ਲੋੜ ਹੈ?"
 
 msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr ""
+msgstr "ਤੁਹਾਨੂੰ ਸਰੋਤ ਕੋਡ ਜਮ੍ਹਾਂ ਕਰਾਉਣਾ ਪੈ ਸਕਦਾ ਹੈ। ਜੇ ਤੁਸੀਂ ਨਹੀਂ ਕਰਦੇ, ਤਾਂ ਸਾਈਟ ਤੋਂ ਤੁਹਾਡਾ ਐਡ-ਔਨ ਹਟਾਇਆ ਜਾ ਸਕਦਾ ਹੈ!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
@@ -3609,7 +3609,7 @@ msgid "Upload source code:"
 msgstr "ਸੋਰਸ ਕੋਡ"
 
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "ਐਡ-ਔਨ ਵੰਡ ਸਮਝੌਤਾ"
 
 #, fuzzy
 msgid "Upload Add-on"
@@ -4355,7 +4355,7 @@ msgid "0 files"
 msgstr "0 ਫ਼ਾਈਲਾਂ"
 
 msgid "Re-enable Version"
-msgstr ""
+msgstr "ਵੰਨਗੀ ਨੂੰ ਮੁੜ ਸਮਰੱਥ ਕਰੋ"
 
 #, fuzzy
 msgid "Close Review History"
@@ -7223,7 +7223,7 @@ msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgstr "ਵਰਜਨ %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "(Confirmed)"
-msgstr ""
+msgstr "(ਪੱਕਾ)"
 
 msgid "Compatibility:"
 msgstr "ਅਨੁਕੂਲਤਾ:"
@@ -7238,7 +7238,7 @@ msgid "The developer has provided source code."
 msgstr "ਡਿਵੈਲਪਰ ਨੇ ਸੋਰਸ ਕੋਡ ਮੁਹੱਇਆ ਕਰਵਾਇਆ।"
 
 msgid "Weight:"
-msgstr ""
+msgstr "ਭਾਰ:"
 
 #, fuzzy
 msgid "Not Auto Approved Because"
@@ -7281,7 +7281,7 @@ msgid "More Actions"
 msgstr "ਹੋਰ ਕਾਰਵਾਈਆਂ:"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "ਨਵੀਆਂ ਸੂਚੀਬੱਧ ਵੰਨਗੀਆਂ ਬਾਰੇ ਮੈਨੂੰ ਸੂਚਿਤ ਕਰੋ"
 
 msgid "Force-disable add-on"
 msgstr ""
@@ -7649,7 +7649,7 @@ msgid "Version does not match the manifest file."
 msgstr ""
 
 msgid "Version already exists."
-msgstr ""
+msgstr "ਵੰਨਗੀ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।"
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr ""
@@ -7935,7 +7935,7 @@ msgid "AMO is getting a new look. Would you like to see it?"
 msgstr ""
 
 msgid "Visit the new site"
-msgstr ""
+msgstr "ਨਵੀਂ ਸਾਈਟ ਤੇ ਜਾਓ"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "ਆਪਣੇ ਖੁਦ ਦੇ ਸੰਗ੍ਰਹਿ ਬਣਾਉਣ ਲਈ, ਤੁਹਾਡੇ ਕੋਲ ਇੱਕ ਮੌਜੀਲਾ ਐਡ-ਆਨ ਖਾਤਾ ਹੋਣਾ ਚਾਹੀਦਾ।"
@@ -7984,13 +7984,13 @@ msgid "Android Browser"
 msgstr "ਐਨਡਰੋਇਡ ਐਡ-ਆਨ"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "iOS ਬਰਾਊਜ਼ਰ"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "ਫੋਕਸ ਬਰਾਊਜ਼ਰ"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "ਡੈਸਕਟਾਪ ਬਰਾਊਜ਼ਰ"
 
 msgid "Beta, Nightly, Developer Edition"
 msgstr ""
@@ -8092,7 +8092,7 @@ msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "ਚੁਣੇ ਹੋਏ ਵਰਤੋਂਕਾਰਾਂ ਉੱਤੇ ਪਾਬੰਦੀ ਲਾਓ"
 
 msgid "Profile Photo"
 msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੋਟੋ"
@@ -8108,7 +8108,7 @@ msgid "Activity Logs"
 msgstr "ਸਰਗਰਮੀ"
 
 msgid "Email must be {email}."
-msgstr ""
+msgstr "ਈ-ਚਿੱਠੀ ਲਾਜ਼ਮੀ {email} ਹੋਵੇ।"
 
 msgid "Display Name"
 msgstr "ਨਾਂ ਵਿਖਾਓ"
@@ -8120,7 +8120,7 @@ msgid "Occupation"
 msgstr "ਕਿੱਤਾ"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "ਤੁਸੀਂ ਆਪਣਾ ਈ-ਚਿੱਠੀ ਪਤਾ Firefox ਖਾਤਿਆਂ ਤੇ ਬਦਲ ਸਕਦੇ ਹੋ।"
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "ਇਸ URL ਦਾ ਫ਼ਾਰਮੈਟ ਗਲਤ ਹੈ। ਸਹੀ URLs http://example.com/my_page ਦੀ ਤਰ੍ਹਾਂ ਵਿਖਾਈ ਦਿੰਦੀਆਂ ਹਨ।"
@@ -8246,7 +8246,7 @@ msgid "Delete my user picture now"
 msgstr "ਮੇਰੀ ਉਪਭੋਗੀ ਤਸਵੀਰ ਹੁਣੇ ਹਟਾਓ"
 
 msgid "Please set your display name"
-msgstr ""
+msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਵਿਖਾਇਆ ਜਾਣ ਵਾਲਾ ਨਾਮ ਪੱਕਾ ਕਰੋ"
 
 msgid "Please set your display name or username to complete the registration process."
 msgstr ""
@@ -8262,7 +8262,7 @@ msgid "Email Address"
 msgstr "ਈਮੇਲ ਪਤਾ"
 
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Firefox ਖਾਤੇ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ..."
 
 msgid "Profile"
 msgstr "ਪ੍ਰੋਫ਼ਾਈਲ"
@@ -8323,7 +8323,7 @@ msgid "User Login"
 msgstr "ਉਪਭੋਗੀ ਲਾਗਇਨ"
 
 msgid "Log in with Firefox Accounts"
-msgstr ""
+msgstr "Firefox ਖਾਤਿਆਂ ਨਾਲ ਲੌਗਇਨ ਕਰੋ"
 
 msgid "Password Reset"
 msgstr "ਪਾਸਵਰਡ ਰੀਸੈੱਟ"
@@ -8481,7 +8481,7 @@ msgid "These versions are displayed for reference and testing purposes. You shou
 msgstr "ਇਹ ਵਰਜਨ ਹਵਾਲੇ ਅਤੇ ਟੈਸਟਿੰਗ ਦੇ ਮਕਸਦ ਲਈ ਵਿਖਾਏ ਗਏ ਹਨ। ਤੁਹਾਨੂੰ ਹਮੇਸ਼ਾ ਐਡ-ਆਨ ਦੇ <a href=\"%(url)s\">ਤਾਜ਼ੇ ਵਰਜਨ</a> ਦੀ ਵਰਤੋਂ ਕਰਨੀ ਚਾਹੀਦੀ ਹੈ।"
 
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "ਮਿਟ ਚੁੱਕੀਆਂ ਵੰਨਗੀਆਂ ਵਿੱਚ ਬਦਲਾਅ ਨਹੀਂ ਹੋ ਸਕਦੇ।"
 
 msgid "Binary"
 msgstr "ਬਾਈਨਰੀ"
