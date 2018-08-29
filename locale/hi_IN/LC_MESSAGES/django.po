@@ -1422,10 +1422,10 @@ msgid "View Profile"
 msgstr ""
 
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "अपनी खुद की थीम बनाएं"
 
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "आपका ब्राउज़र, आपकी शैली! इसे अपने डिजाइन के साथ तैयार करें!"
 
 msgid "Learn more"
 msgstr "अधिक जानें"
@@ -1434,7 +1434,7 @@ msgid "View All Recently Added"
 msgstr ""
 
 msgid "View All Most Popular"
-msgstr ""
+msgstr "सबसे लोकप्रिय देखें"
 
 msgid "View All Top Rated"
 msgstr ""
