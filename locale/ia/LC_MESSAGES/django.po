@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-29 09:10+0000\n"
+"PO-Revision-Date: 2018-08-29 16:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4924,7 +4924,7 @@ msgstr "Gere tu contrasignos {start_sub_heading}con {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Salva contrasignos con securitate e accede a illos trans plure apparatos."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6643,16 +6643,16 @@ msgid "Last Review"
 msgstr ""
 
 msgid "Last Update"
-msgstr ""
+msgstr "Ultime actualisation"
 
 msgid "No Reviews"
-msgstr ""
+msgstr "Nulle revisiones"
 
 msgid "Weight"
 msgstr "Peso"
 
 msgid "Information Request Deadline"
-msgstr ""
+msgstr "Data limite del demanda de informationes"
 
 msgid "Last Content Review"
 msgstr ""
@@ -6664,13 +6664,13 @@ msgid "This will reject this version and remove it from the queue. The comments 
 msgstr ""
 
 msgid "Confirm Approval"
-msgstr ""
+msgstr "Confirmar le approbation"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
 msgid "Reject Multiple Versions"
-msgstr ""
+msgstr "Rejectar plure versiones"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr ""
