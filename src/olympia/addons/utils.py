@@ -7,6 +7,7 @@ from django import forms
 from django.conf import settings
 from django.core.cache import cache
 from django.db.models import Q
+from django.forms import ValidationError
 from django.utils.translation import ugettext
 
 from olympia import amo
@@ -206,3 +207,65 @@ def build_static_theme_xpi_from_lwt(lwt, upload_zip):
     with zipfile.ZipFile(upload_zip, 'w', zipfile.ZIP_DEFLATED) as dest:
         dest.writestr('manifest.json', json.dumps(manifest))
         dest.write(lwt.persona.header_path, arcname=lwt.persona.header)
+
+
+def build_webext_dictionary_from_legacy(addon, destination):
+    """Create a webext package of a legacy dictionary `addon`, and put it in
+    `destination` path."""
+    from olympia.files.utils import SafeZip  # Avoid circular import.
+    old_path = addon.current_version.all_files[0].file_path
+    old_zip = SafeZip(old_path)
+    if not old_zip.is_valid():
+        raise ValidationError('Current dictionary xpi is not valid')
+
+    if not addon.target_locale:
+        raise ValidationError('Addon has no target_locale')
+
+    dictionary_path = ''
+
+    with zipfile.ZipFile(destination, 'w', zipfile.ZIP_DEFLATED) as new_zip:
+        for obj in old_zip.filelist:
+            splitted = obj.filename.split('/')
+            # Ignore useless directories and files.
+            if splitted[0] in ('META-INF', '__MACOSX', 'chrome',
+                               'chrome.manifest', 'install.rdf'):
+                continue
+
+            # Also ignore javascript (regardless of where they are, not just at
+            # the root), since dictionaries should not contain any code.
+            if splitted[-1].endswith('.js'):
+                continue
+
+            # Store the path of the last .dic file we find. It can be inside a
+            # directory.
+            if (splitted[-1].endswith('.dic')):
+                dictionary_path = obj.filename
+
+            new_zip.writestr(obj.filename, old_zip.read(obj.filename))
+
+        # Now that all files we want from the old zip are copied, build and
+        # add manifest.json.
+        if not dictionary_path:
+            # This should not happen... It likely means it's an invalid
+            # dictionary to begin with, or one that has its .dic file in a
+            # chrome/ directory for some reason. Abort!
+            raise ValidationError('Current dictionary xpi has no .dic file')
+
+        # Dumb version number increment. This will be invalid in some cases,
+        # but some of the dictionaries we have currently already have wild
+        # version numbers anyway.
+        version_number = addon.current_version.version
+        if version_number.endswith('.1-typefix'):
+            version_number = version_number.replace('.1-typefix', '.2webext')
+        else:
+            version_number = '%s.1webext' % version_number
+
+        manifest = {
+            'manifest_version': 2,
+            'name': unicode(addon.name),
+            'version': version_number,
+            'dictionaries': {addon.target_locale: dictionary_path},
+        }
+
+        # Write manifest.json we just build.
+        new_zip.writestr('manifest.json', json.dumps(manifest))

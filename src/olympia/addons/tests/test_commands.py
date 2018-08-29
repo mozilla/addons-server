@@ -608,3 +608,31 @@ class TestDeleteAddonsNotCompatibleWithFirefoxes(TestCase):
             addon__in=(addon, addon2, addon3), app=amo.SEAMONKEY.id).exists()
         assert not AppSupport.objects.filter(
             addon__in=(addon, addon2, addon3), app=amo.THUNDERBIRD.id).exists()
+
+
+class TestMigrateLegacyDictionariesToWebextension(TestCase):
+    @mock.patch('olympia.addons.tasks.index_addons.delay', autospec=True)
+    @mock.patch(
+        'olympia.addons.tasks.migrate_legacy_dictionary_to_webextension',
+        autospec=True)
+    def test_basic(
+            self, migrate_legacy_dictionary_to_webextension_mock,
+            index_addons_mock):
+        addon_factory()
+        addon_factory(type=amo.ADDON_LPAPP)
+        addon_factory(type=amo.ADDON_STATICTHEME)
+        addon_factory(type=amo.ADDON_DICT, file_kw={'is_webextension': True})
+        addon_factory(type=amo.ADDON_DICT, target_locale=None)
+        addon_factory(type=amo.ADDON_DICT, target_locale='')
+        addon_factory(
+            type=amo.ADDON_DICT, target_locale='es',
+            status=amo.STATUS_DISABLED)
+        addon_factory(
+            type=amo.ADDON_DICT, target_locale='it',
+            disabled_by_user=True)
+        self.addon = addon_factory(type=amo.ADDON_DICT, target_locale='fr')
+        call_command('process_addons',
+                     task='migrate_legacy_dictionaries_to_webextension')
+        migrate_legacy_dictionary_to_webextension_mock.assert_called_once_with(
+            self.addon)
+        index_addons_mock.assert_called_once_with([self.addon])

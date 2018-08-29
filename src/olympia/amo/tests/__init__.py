@@ -257,7 +257,7 @@ def create_flag(name=None, **kw):
 class PatchMixin(object):
 
     def patch(self, thing):
-        patcher = mock.patch(thing)
+        patcher = mock.patch(thing, autospec=True)
         self.addCleanup(patcher.stop)
         return patcher.start()
 
