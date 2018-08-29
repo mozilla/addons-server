@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-29 12:51+0000\n"
+"PO-Revision-Date: 2018-08-29 13:01+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -116,21 +116,21 @@ msgstr[1] ""
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "\"{0}\" एक आरक्षित टैग है और इसका उपयोग नहीं किया जा सकता है."
+msgstr[1] "\"{0}\" आरक्षित टैग हैं और इनका उपयोग नहीं किया जा सकता है."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "आपके पास {0} बहुत सारे टैग है."
+msgstr[1] "आपके पास {0} बहुत सारे टैग हैं."
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr ""
+msgstr "अमान्य वर्णों के निकाले जाने के बाद सभी टैग %s वर्ण या उससे कम होने चाहिए."
 
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
+msgstr[0] "सभी टैग में कम से कम {0} वर्ण होना चाहिए."
 msgstr[1] ""
 
 #, python-format
