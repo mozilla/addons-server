@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-28 17:40+0000\n"
+"PO-Revision-Date: 2018-08-30 19:31+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4875,7 +4875,7 @@ msgstr "Izboljšajte Reddit {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Spremenite način brskanja po Redditu z oznakami in še čim."
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4907,7 +4907,7 @@ msgstr "Brskajte po spletu z zakrito identiteto – po želji celo brskajte iz d
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Dostopajte do svojih priljubljenih strani, nedavno zaprtih zavihkov in drugih na ličnem pogledu ploščic."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4931,7 +4931,7 @@ msgstr "Zmogljivo upravljanje prenosov {start_sub_heading}z {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Preverite stanje svojih prenosov prek vrstice stanja, strani zgodovine prenosov in več."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
