@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 12:13+0000\n"
+"PO-Revision-Date: 2018-08-30 12:28+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -5308,7 +5308,7 @@ msgstr "Deslocamento como nos dispositivos móveis {start_sub_heading}com {addon
 
 #. editorial content for the discovery pane.
 msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
-msgstr ""
+msgstr "Contém deslocamento do rato \"agarrar e arrastar\" para páginas web de computador."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5420,7 +5420,7 @@ msgstr "Pare com o rapto de separadores {start_sub_heading}com {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "Não deixe que as ligações clicadas tomem controlo do seu separador atual e carreguem conteúdo que você não pediu."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5428,7 +5428,7 @@ msgstr "Aceda com facilidade à Wikipedia {start_sub_heading}com {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Realize uma pesquisa Wikipedia ao simplesmente destacar texto de qualquer página web e clicar com o lado direito."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5444,7 +5444,7 @@ msgstr "Encontre vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Destaque texto de qualquer website e clique com o lado direito para pesquisar no YouTube por multimédia relacionada."
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5452,7 +5452,7 @@ msgstr "Ganhe vantagens na Amazon {start_sub_heading}com {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "Ao olhar para páginas de produtos em lojas online, se também está disponível na Amazon pode simplesmente clicar num botão para verificar a sua listagem na Amazon."
 
 #. editorial content for the discovery pane.
 msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5460,7 +5460,7 @@ msgstr "Tweet {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily broadcast web content to your Twitter following."
-msgstr ""
+msgstr "Transmita facilmente conteúdo web para os seus seguidores do Twitter."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5492,7 +5492,7 @@ msgstr "Alegrem-se amantes de gatos, {start_sub_heading}com {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Conheça um adorável gatinho a cada novo separador. Dê-lhe uma festa atrás da orelha e veja o que acontece."
 
 #. editorial content for the discovery pane.
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5512,7 +5512,7 @@ msgstr "Aceda facilmente aos seus separadores abertos, marcadores, e histórico.
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Muitos separadores abertos? Salte o deslocamento e pesquise via atalhos de teclado."
 
 #. editorial content for the discovery pane.
 msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5520,7 +5520,7 @@ msgstr "Explore o que está por baixo {start_sub_heading}com {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Uncover the software that supports whatever website you're visiting."
-msgstr ""
+msgstr "Revele o software que suporta qualquer website que está a visitar."
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5528,7 +5528,7 @@ msgstr "Impeça redirecionamentos e monitorização {start_sub_heading}com {addo
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Pare redirecionamentos para que possa aceder ao site que pretende—mais rápido."
 
 #. editorial content for the discovery pane.
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5564,7 +5564,7 @@ msgstr "Armazene palavras-passe em segurança e inicie sessão automaticamente p
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Um simples bloqueador de anúncios focado em mostrar apenas o conteúdo que pretende."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5580,7 +5580,7 @@ msgstr "Compre com confiança {start_sub_heading}com {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Uma verificação extra para assegurar que está a comprar num site que foi testado quanto à fiabilidade."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5588,11 +5588,11 @@ msgstr "Acompanhe a produtividade {start_sub_heading}com {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Meça o montante de tempo que gasta no computador, em aplicações de trabalho específicas como Trello, JIRA, Basecamp, GitHub, e muitas mais."
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Clipe conteúdo web como artigos, vídeo, imagens, e mais para guardar e utilizar para projetos individuais ou colaboração em equipa em tempo real."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5648,7 +5648,7 @@ msgstr "Investigue qualquer imagem {start_sub_heading}com {addon_name} {end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "Encontrou uma imagem interessante na web? Utilize TinEye para explorar as suas origens."
 
 #. editorial content for the discovery pane.
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5656,11 +5656,11 @@ msgstr "Agilize coisas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Apenas arraste texto, imagens, ou ligações para realizar ações como copiar, abrir, pesquisar, e mais."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Aproveite a habilidade de transferir vídeo e/ou áudio em múltiplos formatos."
 
 #. editorial content for the discovery pane.
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5668,7 +5668,7 @@ msgstr "Conhecimento da localização {start_sub_heading}com {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Saiba onde o servidor de qualquer website está localizado geograficamente. Seja um(a) viajante web informado(a)."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5684,7 +5684,7 @@ msgstr "Edite antes de imprimir {start_sub_heading}com {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
-msgstr ""
+msgstr "Faça alterações visuais extraordinárias—remova anúncios ou conteúdo desagradável—a qualquer página web que pretende imprimir."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5716,7 +5716,7 @@ msgstr "Esconda o seu rasto {start_sub_heading}com {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
-msgstr ""
+msgstr "Pesquise com mais segurança com bloqueio de trackers, encriptação mais inteligente, pesquisa privada, e outros essenciais."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
