@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 21:25+0000\n"
+"PO-Revision-Date: 2018-08-30 23:53+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3847,70 +3847,70 @@ msgid "Resources"
 msgstr "Taq Tob'äl"
 
 msgid "Porting"
-msgstr ""
+msgstr "Niq'axäx"
 
 msgid "Community"
-msgstr ""
+msgstr "Tinamital"
 
 msgid "About"
-msgstr ""
+msgstr "Qawäch"
 
 msgid "Forum"
-msgstr ""
+msgstr "Molna'oj"
 
 msgid "Blog"
-msgstr ""
+msgstr "Ichinya'l"
 
 msgid "Contact Us"
-msgstr ""
+msgstr "Tzijonem Qik'in"
 
 msgid "Support"
-msgstr ""
+msgstr "To'ïk"
 
 msgid "Policies"
-msgstr ""
+msgstr "Taq Na'ojil"
 
 msgid "Report Bug"
-msgstr ""
+msgstr "Tiya' Rutzijol Sachoj"
 
 msgid "Site Status"
-msgstr ""
+msgstr "Rub'anikil Ruxaq K'amaya'l"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: okisan & tojtob'en taq k'amal"
 
 msgid "Compatibility Checker"
-msgstr ""
+msgstr "Runik'onel K'amonel"
 
 msgid "Promote"
-msgstr ""
+msgstr "To'ïk"
 
 msgid "Get Your Add-on Featured"
-msgstr ""
+msgstr "Tiya' Ruq'ij Atz'aqat"
 
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "\"Tik'ul ri Tz'aqat\" pitz'b'äl"
 
 msgid "Legal"
 msgstr "Taqanel"
 
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Taya' Rutzijol Itzel Rokisaxik ri Retal B'i'aj"
 
 msgid "Legal Notices"
 msgstr "Taqanel Rutzijol"
 
 msgid "Review Add-ons"
-msgstr ""
+msgstr "Kenik'öx taq Tz'aqat"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "Ri yenik'on yeto'on chi nakuqub'a' ak'u'x chi kij chuqa' chi e ütz ri taq tz'aqat richin nawokisaj. ¡Chuqa' niqa chi kiwäch ri nima'q taq rutzil!"
 
 msgid "Join us!"
 msgstr "¡Tatunu' pe awi'!"
 
 msgid "Write Some Code"
-msgstr ""
+msgstr "Titz'ib'äx B'itz'ib'"
 
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
