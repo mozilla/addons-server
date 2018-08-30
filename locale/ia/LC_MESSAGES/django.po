@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 15:11+0000\n"
+"PO-Revision-Date: 2018-08-30 15:19+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6675,25 +6675,25 @@ msgid "Confirm Approval"
 msgstr "Confirmar le approbation"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr ""
+msgstr "Le ultime version public de iste additivo esseva automaticamente approbate. Isto registra tu confirmation del approbation de ille version, sin notificar le disveloppator."
 
 msgid "Reject Multiple Versions"
 msgstr "Rejectar plure versiones"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr ""
+msgstr "Isto rejectara le versiones public seligite. Le commentos sera inviate al disveloppator."
 
 msgid "Reviewer reply"
 msgstr "Responsa del revisor"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
+msgstr "Isto inviara un message al disveloppator. Tu sera notificate quando illes responde."
 
 msgid "Request super-review"
-msgstr ""
+msgstr "Requesta de super-revision"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
+msgstr "Si tu ha anxietates circa iste additivo que un administrator revisor debe reguardar, insere tu commentos in le area infra. Illos non sera inviate al disveloppator."
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
