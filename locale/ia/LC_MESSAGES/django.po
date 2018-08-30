@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 14:13+0000\n"
+"PO-Revision-Date: 2018-08-30 14:36+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6366,7 +6366,7 @@ msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr ""
 
 msgid "Add a review for {0}"
-msgstr ""
+msgstr "Adder un revision pro {0}"
 
 #, python-format
 msgid ""
@@ -6561,49 +6561,49 @@ msgid "theme, reviewer, or comment"
 msgstr "thema, revisor, o commento"
 
 msgid "Private Whiteboard"
-msgstr ""
+msgstr "Tabula blanc private"
 
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Retener le revision; remover le flags"
 
 msgid "Skip for now"
-msgstr ""
+msgstr "Saltar pro iste momento"
 
 msgid "Needs Admin Content Review"
-msgstr ""
+msgstr "Necessita revision de contento per administrator"
 
 msgid "Needs Admin Static Theme Review"
-msgstr ""
+msgstr "Necessita revision de thema static per administrator"
 
 msgid "Jetpack Add-on"
-msgstr ""
+msgstr "Additivo de Jetpack"
 
 msgid "More Information Requested"
-msgstr ""
+msgstr "Altere informationes demandate"
 
 msgid "Expired Information Request"
-msgstr ""
+msgstr "Requesta de informationes expirate"
 
 msgid "Sources provided"
-msgstr ""
+msgstr "Fontes disponibile"
 
 msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
-msgstr ""
+msgstr "Es blocate per un revisor."
 
 msgid "Has auto-approval disabled flag set."
-msgstr ""
+msgstr "Ha le signo del parametro de auto-approbation disactivate."
 
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "Submission duplicate"
 
 msgid "Thanks for submitting your Theme"
-msgstr ""
+msgstr "Gratias pro le invio de tu thema"
 
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "Un problema occurreva con le invio de tu thema"
 
 msgid "Theme submission flagged for review"
 msgstr ""
