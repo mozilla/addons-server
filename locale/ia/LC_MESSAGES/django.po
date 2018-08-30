@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 19:00+0000\n"
+"PO-Revision-Date: 2018-08-30 20:09+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5334,7 +5334,7 @@ msgstr "Cambia le parolas in belle titulos e texto superponite al imagine."
 
 #. editorial content for the discovery pane.
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Naviga con securitate {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
@@ -8136,39 +8136,41 @@ msgid "Report User"
 msgstr "Denunciar usator"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr ""
+msgstr "Per favor describe perque tu denuncia iste usator, tal como pro SPAM o un imagine inappropriate."
 
 msgid "Report user {0}"
-msgstr ""
+msgstr "Denunciar usator {0}"
 
 msgid "Unsubscribe"
 msgstr "Remover le subscription"
 
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "Tu subscription esseva annullate con successo!"
 
 #, python-format
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr ""
+msgstr "Le adresse de email <strong>%(email)s</strong> non recipera plus messages quando:"
 
 msgid "More Actions:"
 msgstr "Altere actiones:"
 
 msgid "edit your notification settings"
-msgstr ""
+msgstr "redige tu configurationes del notificationes"
 
 msgid "edit your profile"
-msgstr ""
+msgstr "redige tu profilo"
 
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "Nos non pote annullar tu inrolamento"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
+"Infelicemente, nos non poteva annullar tu inrolamento. Le ligamine que tu cliccava non es valide. Totevia, tu pote ancora remover tu inrolamento sur tu <a href=\"%(edit_url)s\">pagina pro rediger le"
+" profilo</a>."
 
 msgid "Developer Information"
-msgstr ""
+msgstr "Informationes del disveloppator"
 
 msgid "User since"
 msgstr "Usator desde"
