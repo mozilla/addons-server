@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 21:07+0000\n"
+"PO-Revision-Date: 2018-08-30 21:25+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3800,25 +3800,25 @@ msgid "This request for information has been resolved"
 msgstr "Xsol re ruk'utuxik etamab'äl re'"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Tacha' jun ruk'amon ya'oj q'ij kichin ri taq ch'ojib'äl ye'ajikib'a' pa ri ruxe'el b'itz'ib'. Xa xe okel pa cholajin taq tz'aqat"
 
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "Ya'on q'ij HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
-msgstr ""
+msgstr "Jujun HTML ya'on q'ij."
 
 msgid "Remove this application"
-msgstr ""
+msgstr "Tiyuj re chokoy re'"
 
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tacha' <b>k'a {0}</b>  {1} ruwäch re tz'aqat re':"
+msgstr[1] "Kecha' <b>k'a {0}</b> {1} ruwäch re tz'aqat re':"
 
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
@@ -3835,16 +3835,16 @@ msgid "Please include instructions on how to reproduce the final add-on file, ei
 msgstr ""
 
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Tisik'ïx ch'aqa' chik chi rij ri runa'ojil kinik'oxik kixe'el b'itz'ib'."
 
 msgid "Latest News"
-msgstr ""
+msgstr "Ruk'isib'äl taq Rutzijol"
 
 msgid "Read more in our Blog"
-msgstr ""
+msgstr "Tisik'ïx ch'aqa' chik pa ri Qichinya'l"
 
 msgid "Resources"
-msgstr ""
+msgstr "Taq Tob'äl"
 
 msgid "Porting"
 msgstr ""
