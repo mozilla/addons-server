@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 13:32+0000\n"
+"PO-Revision-Date: 2018-08-30 13:53+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6414,22 +6414,22 @@ msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this a
 msgstr ""
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "Marcate pro le revision"
 
 msgid "Report this review"
-msgstr ""
+msgstr "Reportar iste revision"
 
 msgid "Reply to review"
-msgstr ""
+msgstr "Responder al revision"
 
 msgid "Edit reply"
-msgstr ""
+msgstr "Rediger le responsa"
 
 msgid "Edit review"
-msgstr ""
+msgstr "Rediger le revision"
 
 msgid "Delete reply"
-msgstr ""
+msgstr "Deler le responsa"
 
 msgid "Delete review"
 msgstr "Deler le revision"
@@ -6439,51 +6439,51 @@ msgid "{0} :: Reviews"
 msgstr "{0} :: Revisiones"
 
 msgid "Reviews for {0}"
-msgstr ""
+msgstr "Revisiones pro {0}"
 
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> revision pro iste additivo"
+msgstr[1] "<b>{0}</b> revisiones pro iste additivo"
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
-msgstr ""
+msgstr "Responsa del disveloppator per {0}"
 
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Revision pro %(addon)s per %(user)s"
+msgstr[1] "Revisiones pro %(addon)s per %(user)s"
 
 msgid "No reviews found."
-msgstr ""
+msgstr "Nulle revisiones trovate."
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>Media</strong> (%(total)s)"
 
 msgid "Write a New Review"
-msgstr ""
+msgstr "Scribe un nove revision"
 
 msgid "Be the first to write a review."
-msgstr ""
+msgstr "Que tu es le primo a scriber un revision."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} revision"
-msgstr[1] ""
+msgstr[1] "{num} revisiones"
 
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Valutate {0} de 5 stellas"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Valutate %(rating)s de 5 stellas"
 
 msgid "Approved reviews"
-msgstr ""
+msgstr "Revisiones approbate"
 
 msgid "Deleted reviews"
 msgstr ""
