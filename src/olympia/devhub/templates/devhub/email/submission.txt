@@ -1,23 +1,23 @@
-Subject: Mozilla Add-ons: {{ add-on name }} has been submitted to addons.mozilla.org! 
+Subject: Mozilla Add-ons: {{ addon_name }} has been submitted to addons.mozilla.org!
 
-Thanks for submitting your {{ add-on name }} add-on to addons.mozilla.org (AMO)! Your add-on listing will go live shortly in our gallery here: {{ url }}
+Thanks for submitting your {{ addon_name }} add-on to addons.mozilla.org (AMO)! Your add-on listing will go live shortly in our gallery here: {{ detail_url }}
 
 Please keep in mind that while your add-on has been screened and approved for listing, other reviewers may look into it in the future and determine that it requires changes or should be removed from the gallery. If that occurs, you will receive a separate notification with details and next steps.
 
-For more information about the review process and policies, please visit https://developer.mozilla.org/Add-ons/AMO/Policy/Reviews. 
+For more information about the review process and policies, please visit https://developer.mozilla.org/Add-ons/AMO/Policy/Reviews.
 
 ********
-Attract Users, Stay Updated, & Get in Touch 
+Attract Users, Stay Updated, & Get in Touch
 ********
 
-Add-ons help personalize the web experience for millions of users who have installed Firefox, and we want to help make your users happy! 
+Add-ons help personalize the web experience for millions of users who have installed Firefox, and we want to help make your users happy!
 
-To learn how to help users discover your extension, stay up-to-date with news from the add-ons community, or contact the add-ons team, please visit https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/Distribution/Resources_for_publishers. 
+To learn how to help users discover your extension, stay up-to-date with news from the add-ons community, or contact the add-ons team, please visit https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/Distribution/Resources_for_publishers.
 
-If you are interested in getting more involved with Mozilla and want to help keep the add-ons ecosystem safe and healthy, please consider becoming a volunteer add-on reviewer. You can learn more at https://wiki.mozilla.org/Add-ons/Reviewers. 
+If you are interested in getting more involved with Mozilla and want to help keep the add-ons ecosystem safe and healthy, please consider becoming a volunteer add-on reviewer. You can learn more at https://wiki.mozilla.org/Add-ons/Reviewers.
 
-Happy developing! 
+Happy developing!
 
---
+-- 
 Mozilla Add-ons
 https://addons.mozilla.org
