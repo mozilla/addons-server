@@ -43,6 +43,8 @@ RUN apt-get update && apt-get install -y \
         librsvg2-bin \
         # Use pngcrush to optimize the PNGs uploaded by developers
         pngcrush \
+        # our makefile and ui-tests require uuid to be installed
+        uuid \
     && rm -rf /var/lib/apt/lists/*
 
 # Compile required locale
