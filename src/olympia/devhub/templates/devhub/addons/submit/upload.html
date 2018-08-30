@@ -52,13 +52,15 @@
 
   {{ new_addon_form.non_field_errors() }}
 
-    <div class="platform">
-      <div class="supported-platforms{% if not new_addon_form.supported_platforms.errors %} edit_initially_hidden{% endif %}">
-        <label>{{ _('Which platforms is this file compatible with?') }}</label>
-        {{ new_addon_form.supported_platforms.errors }}
-        {{ new_addon_form.supported_platforms }}
+    {% if 'supported_platforms' in new_addon_form.fields %}
+      <div class="platform">
+        <div class="supported-platforms{% if not new_addon_form.supported_platforms.errors %} edit_initially_hidden{% endif %}">
+          <label>{{ _('Which platforms is this file compatible with?') }}</label>
+          {{ new_addon_form.supported_platforms.errors }}
+          {{ new_addon_form.supported_platforms }}
+        </div>
       </div>
-    </div>
+    {% endif %}
 
     {% if is_admin %}
     <div class="admin-settings">

@@ -1334,8 +1334,18 @@ def _submit_upload(request, addon, channel, next_view, version=None,
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
 
+        supported_platforms = data.get('supported_platforms', [])
+
+        if waffle.switch_is_active('disallow-supported-platform-submission'):
+            # This is naiv but should work for WebExtensions in general.
+            # Statistics show that there's only a handful of add-ons that
+            # actually make use of platforms and that usually could be done
+            # via specifiying application compat data in the manifest.
+            # https://github.com/mozilla/addons-server/issues/8752
+            supported_platforms = [amo.PLATFORM_ALL.id]
+
         if version:
-            for platform in data.get('supported_platforms', []):
+            for platform in supported_platforms:
                 File.from_upload(
                     upload=data['upload'],
                     version=version,
@@ -1346,14 +1356,14 @@ def _submit_upload(request, addon, channel, next_view, version=None,
             version = Version.from_upload(
                 upload=data['upload'],
                 addon=addon,
-                platforms=data.get('supported_platforms', []),
+                platforms=supported_platforms,
                 channel=channel,
                 parsed_data=data['parsed_data'])
             url_args = [addon.slug, version.id]
         else:
             addon = Addon.from_upload(
                 upload=data['upload'],
-                platforms=data.get('supported_platforms', []),
+                platforms=supported_platforms,
                 channel=channel,
                 parsed_data=data['parsed_data'],
                 user=request.user)
