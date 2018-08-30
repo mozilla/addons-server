@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 20:46+0000\n"
+"PO-Revision-Date: 2018-08-30 21:07+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3761,43 +3761,43 @@ msgid "Latest Version:"
 msgstr "Ruk'isib'äl Ruwäch:"
 
 msgid "This is the newest uploaded unlisted version."
-msgstr ""
+msgstr "Ja ruk'isib'äl ruwäch re' k'o, ri man cholajin ta."
 
 msgid "Upload New Version"
-msgstr ""
+msgstr "Tijotob'äx K'ak'a' Ruwäch"
 
 msgid "View All"
 msgstr "Titz'et Ronojel"
 
 msgid "Listed Review Page"
-msgstr ""
+msgstr "Cholajin Nik'oxïk Ruxaq"
 
 msgid "Unlisted Review Page"
-msgstr ""
+msgstr "Man Cholajin Ta Nik'oxïk Ruxaq"
 
 msgid "View Statistics Dashboard"
-msgstr ""
+msgstr "Titz'et Rupas Molob'a'"
 
 msgid "Compatibility Reports"
-msgstr ""
+msgstr "K'amonel taq Rutzijol"
 
 msgid "{0} failure reports"
-msgstr ""
+msgstr "{0} kitzijol sachoj"
 
 msgid "{0} success reports"
 msgstr "{0} ütz taq rutzijol"
 
 msgid "Developer News"
-msgstr ""
+msgstr "Kitzijol B'anonela'"
 
 msgid "View the blog &#9658;"
-msgstr ""
+msgstr "Titz'et ri ichinya'l"
 
 msgid "Pending information request:"
-msgstr ""
+msgstr "Oyob'en retamab'al ri xk'utüx:"
 
 msgid "This request for information has been resolved"
-msgstr ""
+msgstr "Xsol re ruk'utuxik etamab'äl re'"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
