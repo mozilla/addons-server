@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-29 22:46+0000\n"
+"PO-Revision-Date: 2018-08-30 20:46+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3730,32 +3730,32 @@ msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr "Ri nuk'äm ri' atz'aqat rik'in ri K'ïy Rutajinik Firefox (e10s)."
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "Yetz'etetäj pa re ruxaq k'amaya'l re' toq xkik'owisaj runik'oxik b'itz'ib'. Ja ri ruxaq yerusamajij ri yonil taq k'exoj."
 
 msgid "Listed Version:"
-msgstr ""
+msgstr "Cholajin Ruwäch:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr ""
+msgstr "Ja ruwäch atz'aqat re', ri xtiyak we k'o xtipitz'on pa ri rupitz'b'al yakoj pa addons.mozilla.org."
 
 msgid "Next Listed Version:"
-msgstr ""
+msgstr "Jun chik Cholajin Ruwäch:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
+msgstr "Ja ruk'isib'äl ruwäch re', xa xe chi k'a man wachel ta pa ri ruxaq."
 
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Man yenik'öx ta ri taq jey pa rub'eyal rucholajem"
 
 msgid "Queue Position:"
-msgstr ""
+msgstr "Ruk'ojlib'al Rujey:"
 
 #, python-format
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(position)s richin %(total)s"
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Juxun richin ichin-jachoj. Ja rat ye'asamajij ri taq k'exoj."
 
 msgid "Latest Version:"
 msgstr "Ruk'isib'äl Ruwäch:"
