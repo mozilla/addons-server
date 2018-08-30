@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 14:36+0000\n"
+"PO-Revision-Date: 2018-08-30 14:53+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6377,9 +6377,15 @@ msgid ""
 "community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Retene iste suggestiones in mente:</h2> <ul> <li> Scribe como tu conta a un amico circa tu experientia con le additivo. Da detalios specific e utile, tal como que functionalitates te place o non"
+" te place, quanto illo es facile a usar, e ulle disavantages que illo ha. Evita generic linguage como appellar illo \"Grande\" o \"Mal\" a minus que tu pote dar rationes perque tu fide que isto es "
+"assi. </li> <li> Per favor non postar reportos de defecto ci. Nos non rende tu adresse de email disponibile pro le disveloppatores de additivos, assi illes non pote continger te pro resolver tu "
+"problema. Vide le <a href=\"%(support)s\">section de supporto</a> de iste additivo pro trovar si es disponibile assistentia. Tu pote alsi provar a demandar al <a href=\"https://discourse.mozilla-"
+"community.org/c/add-ons/add-on-support\">communitate del additivos</a> pro auxilio. </li> <li>Per favor mantene le revisiones munde, evita le uso de linguage improprie e non postar ulle "
+"informationes personal. </li> </ul> <p>Per favor lege le <a href=\"%(guide)s\">Lineas guida de revision</a> pro altere detalios circa le revisiones de additivo de usator.</p>"
 
 msgid "Reply to review by {0}"
-msgstr ""
+msgstr "Responder al revision per {0}"
 
 msgid "Write a Reply"
 msgstr "Scribe un replica"
@@ -6401,12 +6407,12 @@ msgstr "per %(user)s <b>(Disveloppator)</b> on %(date)s"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
-msgstr ""
+msgstr "Iste revision es pro un previe version del additivo ({0})."
 
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] ""
+msgstr[0] "Iste usator ha un <a href=\"%(user_review_url)s\">previe revision</a> de iste additivo."
 msgstr[1] ""
 
 #, python-format
