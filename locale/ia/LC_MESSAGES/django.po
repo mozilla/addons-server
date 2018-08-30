@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 14:53+0000\n"
+"PO-Revision-Date: 2018-08-30 15:11+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6413,11 +6413,11 @@ msgstr "Iste revision es pro un previe version del additivo ({0})."
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
 msgstr[0] "Iste usator ha un <a href=\"%(user_review_url)s\">previe revision</a> de iste additivo."
-msgstr[1] ""
+msgstr[1] "Iste usator ha <a href=\"%(user_review_url)s\">%(cnt)s previe revisiones</a> de iste additivo."
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr ""
+msgstr "Iste usator ha <a href=\"%(user_review_url)s\">altere revisiones</a> de iste additivo."
 
 msgid "Flagged for review"
 msgstr "Marcate pro le revision"
@@ -6612,43 +6612,43 @@ msgid "A problem with your Theme submission"
 msgstr "Un problema occurreva con le invio de tu thema"
 
 msgid "Theme submission flagged for review"
-msgstr ""
+msgstr "Invio de thema signalate pro revision"
 
 msgid "A question about your Theme submission"
-msgstr ""
+msgstr "Un question circa le invio de tu thema"
 
 msgid "Type"
-msgstr ""
+msgstr "Typo"
 
 msgid "Waiting Time"
-msgstr ""
+msgstr "Tempore de expectativa"
 
 msgid "Flags"
-msgstr ""
+msgstr "Flags"
 
 msgid "moments ago"
-msgstr ""
+msgstr "momentos retro"
 
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} minuta"
+msgstr[1] "{0} minutas"
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} hora"
+msgstr[1] "{0} horas"
 
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} die"
+msgstr[1] "{0} dies"
 
 msgid "Last Review"
-msgstr ""
+msgstr "Ultime revision"
 
 msgid "Last Update"
 msgstr "Ultime actualisation"
@@ -6666,10 +6666,10 @@ msgid "Last Content Review"
 msgstr "Ultime revision de contentos"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "Isto approbara, signara, e publicara iste version. Le commentos sera inviate al disveloppator."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr ""
+msgstr "Isto rejectara iste version e removera illo ex le cauda. Le commentos sera inviate al disveloppator."
 
 msgid "Confirm Approval"
 msgstr "Confirmar le approbation"
