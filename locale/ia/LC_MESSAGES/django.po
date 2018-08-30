@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 12:24+0000\n"
+"PO-Revision-Date: 2018-08-30 12:38+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5714,7 +5714,7 @@ msgid "This file is not viewable online. Please download the file to view the co
 msgstr ""
 
 msgid "This file is a directory."
-msgstr ""
+msgstr "Iste file es un directorio."
 
 msgid "Cannot diff a version against itself"
 msgstr ""
@@ -5742,7 +5742,7 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
-msgstr ""
+msgstr "Impossibile tractar le file cargate."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -5750,10 +5750,10 @@ msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Nomine de file non valide in le archivo: {0}"
 
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "File excedente le dimension limite in le archivo: {0}"
 
 msgid "Invalid archive."
 msgstr "Archivo non valide."
@@ -6313,7 +6313,7 @@ msgstr ""
 
 #, python-format
 msgid "Reviews for %s"
-msgstr ""
+msgstr "Revisiones pro %s"
 
 msgid "Review History for this Addon"
 msgstr ""
@@ -6321,7 +6321,7 @@ msgstr ""
 #. L10n: This describes the number of stars given out of 5
 #, python-format
 msgid "Rated %d out of 5 stars"
-msgstr ""
+msgstr "Valutate %d de 5 stellas"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
@@ -6336,10 +6336,10 @@ msgid "Misplaced bug report or support request"
 msgstr ""
 
 msgid "Other (please specify)"
-msgstr ""
+msgstr "Altero (specificar)"
 
 msgid "This field is required."
-msgstr ""
+msgstr "Campo obligatori."
 
 msgid "You can't change the add-on of a review once it has been created."
 msgstr ""
@@ -6393,7 +6393,7 @@ msgid "or <a href=\"%(url)s\">Cancel</a>"
 msgstr ""
 
 msgid "Please select a reason:"
-msgstr ""
+msgstr "Per favor elige un ration:"
 
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
