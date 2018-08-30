@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 20:25+0000\n"
+"PO-Revision-Date: 2018-08-30 20:52+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5929,10 +5929,10 @@ msgid "Web page and text translator, dictionary, and more!"
 msgstr ""
 
 msgid "Love is in the Air"
-msgstr "Le amor es in le aria"
+msgstr "Le amor es in le aere"
 
 msgid "Add some romance to your Firefox."
-msgstr "Adde romantismo a tu Firefox."
+msgstr "Adde romanticismo a tu Firefox."
 
 msgid "Get up and move!"
 msgstr "Leva te e move te!"
@@ -5953,25 +5953,25 @@ msgid "Protect your privacy online with the add-ons in this collection."
 msgstr "Protege tu confidentialitate online con le additivos in iste collection."
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
+msgstr "Grande additivos pro labor, amusamento, confidentialitate, productivitate&hellip; justo circa tote le cosas!"
 
 msgid "Games!"
 msgstr "Jocos!"
 
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
+msgstr "Adde altere amusamento a tu Firefox. Joca dozenas de jocos justo per tu navigator — puzzles, arcade classic, jocos de action, e altero ancora!"
 
 msgid "Must-Have Media"
 msgstr "Medios imperdibile"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr ""
+msgstr "Prende instantaneos de schermo melior, meliora tu experientia de video online, al fin de apprender como facer un GIF, e altere grande applicationes multimedial."
 
 msgid "Discover Add-ons"
 msgstr "Discoperi additivos"
 
 msgid "What are Add-ons?"
-msgstr "Que es additivos?"
+msgstr "Que es le additivos?"
 
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
