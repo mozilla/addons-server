@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 20:52+0000\n"
+"PO-Revision-Date: 2018-08-30 21:14+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5986,19 +5986,19 @@ msgid "See all"
 msgstr "Vider toto"
 
 msgid "More ways to customize"
-msgstr "Plus manieras de personalisar"
+msgstr "Altere manieras pro personalisar"
 
 msgid "Browse all add-ons"
-msgstr "Naviga trans tote le additivos"
+msgstr "Naviga tra tote le additivos"
 
 msgid "See all complete themes"
 msgstr "Vide tote le themas complete"
 
 msgid "Close Video"
-msgstr "Claude video"
+msgstr "Claude le video"
 
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "Durante que le video es reproducite, le additivos a esser mentionate apparera ci."
 
 #. {0} is the user's login name.
 msgid "Hi, {0}"
@@ -6006,13 +6006,13 @@ msgstr "Holla {0}"
 
 #, python-format
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr ""
+msgstr "Gratias pro usar %(app)s e supportar le <a href=\"%(url)s\">mission de Mozilla</a>!"
 
 msgid "Add-ons downloaded:"
 msgstr "Additivos discargate:"
 
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "Vider le politica de confidentialitate"
 
 msgid "Active Users"
 msgstr "Usatores active"
@@ -6024,10 +6024,10 @@ msgid "Cancel Installation"
 msgstr "Cancellar le installation"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "Le election del mense de Mozilla!"
 
 msgid "Become a Test Pilot"
-msgstr ""
+msgstr "Deveni un pilota de test"
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
@@ -6330,7 +6330,7 @@ msgid "Spam or otherwise non-review content"
 msgstr ""
 
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "Lingua/dialogo inappropriate"
 
 msgid "Misplaced bug report or support request"
 msgstr ""
@@ -6791,7 +6791,7 @@ msgid "Expired Information Requests ({0})"
 msgstr "Requestas de informationes expirate ({0})"
 
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Un error incognite occurreva"
 
 msgid "Self-reviews are not allowed."
 msgstr ""
@@ -6827,7 +6827,7 @@ msgid "Works with"
 msgstr ""
 
 msgid "Visibility"
-msgstr ""
+msgstr "Visibilitate"
 
 msgid "Visible"
 msgstr "Visibile"
@@ -6836,10 +6836,10 @@ msgid "Average Daily Users"
 msgstr ""
 
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Reportos de abuso"
 
 msgid "Requires Payment"
-msgstr ""
+msgstr "Require pagamento"
 
 msgid "EULA"
 msgstr "EULA"
@@ -6854,7 +6854,7 @@ msgid "Bad User Ratings ({num})"
 msgstr ""
 
 msgid "Theme Images"
-msgstr ""
+msgstr "Imagines del thema"
 
 msgid "Rendered Preview"
 msgstr ""
@@ -6866,7 +6866,7 @@ msgid "More about this add-on"
 msgstr ""
 
 msgid "Image Gallery"
-msgstr ""
+msgstr "Galeria de imagine"
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
@@ -6881,10 +6881,10 @@ msgid "No review points awarded yet."
 msgstr ""
 
 msgid "Rank"
-msgstr ""
+msgstr "Classification"
 
 msgid "Score"
-msgstr ""
+msgstr "Punctuation"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6897,7 +6897,7 @@ msgid "Event"
 msgstr "Evento"
 
 msgid "More details."
-msgstr ""
+msgstr "Plus de detalios."
 
 msgid "No events found for this period."
 msgstr ""
@@ -6934,10 +6934,10 @@ msgid "View statistics for user"
 msgstr ""
 
 msgid "Range"
-msgstr ""
+msgstr "Campo"
 
 msgid "Your Reviews"
-msgstr ""
+msgstr "Tu revisiones"
 
 msgid "By {user_name}"
 msgstr ""
