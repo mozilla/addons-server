@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-27 06:34+0000\n"
+"PO-Revision-Date: 2018-08-30 14:40+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1118,10 +1118,10 @@ msgid "Are you sure?"
 msgstr "您確定嗎？"
 
 msgid "Yes"
-msgstr "可以"
+msgstr "是"
 
 msgid "No"
-msgstr "不行"
+msgstr "否"
 
 #. {0} is the name of the collection.
 msgid "Edit {0}"
