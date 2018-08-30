@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 17:30+0000\n"
+"PO-Revision-Date: 2018-08-30 17:51+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5935,22 +5935,22 @@ msgid "Add some romance to your Firefox."
 msgstr "Adde romantismo a tu Firefox."
 
 msgid "Get up and move!"
-msgstr ""
+msgstr "Leva te e move te!"
 
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "Installa iste additivos de sanitate pro mantener te active e salubre."
 
 msgid "New &amp; Now"
 msgstr "Nove &amp; Nunc"
 
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "Procura te le ultime, imperdibile additivos del momento."
 
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "Naviga sin anxietate"
 
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "Protege tu confidentialitate online con le additivos in iste collection."
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr ""
