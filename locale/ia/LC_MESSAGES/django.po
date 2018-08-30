@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 18:32+0000\n"
+"PO-Revision-Date: 2018-08-30 18:51+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5330,7 +5330,7 @@ msgstr "Transforma texto in imagines {start_sub_heading}con {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Cambia le parolas in belle titulos e texto superponite al imagine."
 
 #. editorial content for the discovery pane.
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -8082,22 +8082,22 @@ msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue 
 msgstr ""
 
 msgid "User Login"
-msgstr "Authentication de usator"
+msgstr "Apertura de session del usator"
 
 msgid "Log in with Firefox Accounts"
-msgstr "Acceder per contos de Firefox"
+msgstr "Connecte te con le contos de Firefox"
 
 msgid "Password Reset"
 msgstr "Restabilir le contrasigno"
 
 msgid "User Info for {0}"
-msgstr ""
+msgstr "Informationes de usator pro {0}"
 
 msgid "Edit profile"
-msgstr ""
+msgstr "Rediger le profilo"
 
 msgid "Manage user"
-msgstr ""
+msgstr "Gerer le usator"
 
 msgid "Report user"
 msgstr "Denunciar usator"
@@ -8112,16 +8112,16 @@ msgid "About me"
 msgstr "A proposito de me"
 
 msgid "In a little more detail..."
-msgstr ""
+msgstr "In un poco plus de detalios..."
 
 msgid "Add-ons I've created"
 msgstr "Additivos que io ha create"
 
 msgid "My Most Popular Themes"
-msgstr ""
+msgstr "Mi themas plus popular"
 
 msgid "Themes I've created"
-msgstr ""
+msgstr "Themas que io ha create"
 
 msgid "Created by Me"
 msgstr "Create per io"
