@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 21:14+0000\n"
+"PO-Revision-Date: 2018-08-30 21:23+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6940,19 +6940,19 @@ msgid "Your Reviews"
 msgstr "Tu revisiones"
 
 msgid "By {user_name}"
-msgstr ""
+msgstr "Per {user_name}"
 
 msgid "Total Reviews"
-msgstr ""
+msgstr "Revisiones total"
 
 msgid "Active Contributors"
-msgstr ""
+msgstr "Contributores active"
 
 msgid "This Month"
 msgstr "Iste mense"
 
 msgid "This Year"
-msgstr ""
+msgstr "Iste anno"
 
 msgid "Monthly Performance"
 msgstr ""
@@ -7150,20 +7150,20 @@ msgid "Contents"
 msgstr "Contentos"
 
 msgid "Compare"
-msgstr ""
+msgstr "Comparar"
 
 msgid "Permissions:"
 msgstr "Permissos:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>Per %(user)s le %(date)s</div>"
 
 msgid "Older"
-msgstr ""
+msgstr "Plus ancian"
 
 msgid "Newer"
-msgstr ""
+msgstr "Plus recente"
 
 msgid "Recent Points"
 msgstr ""
@@ -7216,10 +7216,10 @@ msgid "Theme Review Queue"
 msgstr ""
 
 msgid "Queues"
-msgstr ""
+msgstr "Caudas"
 
 msgid "Review Options"
-msgstr ""
+msgstr "Optiones de revision"
 
 msgid "Auto-advance after review"
 msgstr ""
@@ -7346,13 +7346,13 @@ msgid "search for apps"
 msgstr ""
 
 msgid "Relevance"
-msgstr ""
+msgstr "Relevantia"
 
 msgid "All Add-ons"
-msgstr ""
+msgstr "Tote le additivos"
 
 msgid "Any {0}"
-msgstr ""
+msgstr "Cata {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 msgid "All Systems"
@@ -7369,10 +7369,10 @@ msgid "Collection Search Results"
 msgstr ""
 
 msgid "Search Results"
-msgstr ""
+msgstr "Resultatos del recerca"
 
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Recerca non disponibile"
 
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
 msgstr ""
@@ -7437,7 +7437,7 @@ msgid "Version does not match the manifest file."
 msgstr ""
 
 msgid "Version already exists."
-msgstr ""
+msgstr "Le version existe jam."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr ""
@@ -7458,7 +7458,7 @@ msgid "Overview"
 msgstr ""
 
 msgid "by Source"
-msgstr ""
+msgstr "per fonte"
 
 msgid "by Add-on Version"
 msgstr ""
@@ -7467,7 +7467,7 @@ msgid "by Application"
 msgstr ""
 
 msgid "by Language"
-msgstr ""
+msgstr "per lingua"
 
 msgid "by Platform"
 msgstr ""
