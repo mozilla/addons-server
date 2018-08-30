@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import os
 import shutil
@@ -99,7 +100,7 @@ class TestExtractor(TestCase):
 
         assert (
             exc.value.message ==
-            'Maximum size for WebExtension themes is 7MB.')
+            u'Maximum size for WebExtension themes is 7.0 MB.')
 
         # dpuble check only static themes are limited
         manifest = utils.ManifestJSONExtractor(

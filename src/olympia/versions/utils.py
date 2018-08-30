@@ -27,14 +27,11 @@ def write_svg_to_png(svg_content, out):
         try:
             if not os.path.exists(os.path.dirname(out)):
                 os.makedirs(out)
-            # Actually, we should never require this as we limit uploads to 7mb
-            large_file = os.path.getsize(temporary_svg.name) > 9 * 1024 * 1024
-            command = (
-                [settings.RSVG_CONVERT_BIN] +
-                (['--unlimited'] if large_file else []) +  # allows >10mb svgs
-                ['--output', out] +
-                [temporary_svg.name]
-            )
+            command = [
+                settings.RSVG_CONVERT_BIN,
+                '--output', out,
+                temporary_svg.name,
+            ]
             subprocess.check_call(command)
         except IOError as io_error:
             log.debug(io_error)

@@ -22,6 +22,7 @@ from django import forms
 from django.conf import settings
 from django.core.files.storage import (
     File as DjangoFile, default_storage as storage)
+from django.template.defaultfilters import filesizeformat
 from django.utils.encoding import force_text
 from django.utils.jslex import JsLexer
 from django.utils.translation import ugettext
@@ -914,8 +915,8 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
         max_size = settings.MAX_STATICTHEME_SIZE
         if xpi_file and os.path.getsize(xpi_file.name) > max_size:
             raise forms.ValidationError(
-                ugettext('Maximum size for WebExtension themes is %sMB.')
-                % (max_size / 1024 / 1024))
+                ugettext(u'Maximum size for WebExtension themes is {0}.')
+                .format(filesizeformat(max_size)))
 
     if xpi_file:
         # Make sure we pass in a copy of `xpi_info` since

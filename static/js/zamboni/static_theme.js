@@ -146,7 +146,7 @@ $(document).ready(function() {
 
             zip.generateAsync({type: 'blob'}).then(function (blob) {
                 if (blob.size > MAX_STATICTHEME_SIZE) {
-                    throw format(gettext("Maximum upload size is {0}MB - choose a smaller background image."), MAX_STATICTHEME_SIZE / 1024 /1024);
+                    throw format(gettext("Maximum upload size is {0} - choose a smaller background image."), fileSizeFormat(MAX_STATICTHEME_SIZE));
                 }
                 return blob;
             }).then(function (blob) {
