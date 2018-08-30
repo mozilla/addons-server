@@ -189,7 +189,7 @@ AMO_LANGUAGES = (
     'he',  # Hebrew
     'hsb',  # Upper Sorbian
     'hu',  # Hungarian
-    'ia',  # Interlingua
+    # 'ia',  # Interlingua - doesn't exist in product_details yet.
     'id',  # Indonesian
     'it',  # Italian
     'ja',  # Japanese
