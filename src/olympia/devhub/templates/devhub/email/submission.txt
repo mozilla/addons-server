@@ -1,5 +1,3 @@
-Subject: Mozilla Add-ons: {{ addon_name }} has been submitted to addons.mozilla.org!
-
 Thanks for submitting your {{ addon_name }} add-on to addons.mozilla.org (AMO)! Your add-on listing will go live shortly in our gallery here: {{ detail_url }}
 
 Please keep in mind that while your add-on has been screened and approved for listing, other reviewers may look into it in the future and determine that it requires changes or should be removed from the gallery. If that occurs, you will receive a separate notification with details and next steps.
