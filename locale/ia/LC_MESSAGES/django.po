@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 13:53+0000\n"
+"PO-Revision-Date: 2018-08-30 14:13+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6486,35 +6486,35 @@ msgid "Approved reviews"
 msgstr "Revisiones approbate"
 
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Revisiones delite"
 
 msgid "View entries between"
-msgstr ""
+msgstr "Vider entratas inter"
 
 msgid "and"
 msgstr "e"
 
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Filtrar per typo/action"
 
 msgid "containing"
-msgstr ""
+msgstr "continente"
 
 msgid "start"
-msgstr ""
+msgstr "initiar"
 
 msgid "end"
-msgstr ""
+msgstr "finir"
 
 #. L10n: Description of what can be searched for
 msgid "add-on, reviewer or comment"
-msgstr ""
+msgstr "additivo, revisor o commento"
 
 msgid "Search by add-on name / author email"
-msgstr ""
+msgstr "Recercar per nomine de additivo / email de autor"
 
 msgid "Needs Admin Code Review"
-msgstr ""
+msgstr "Necessita revision del codice per un administrator"
 
 msgid "yes"
 msgstr "si"
@@ -6523,42 +6523,42 @@ msgid "no"
 msgstr "no"
 
 msgid "Add-on Types"
-msgstr ""
+msgstr "Typos de additivo"
 
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "Recerca per nomine de additivo / email de autor / guida"
 
 msgid "Max. Version"
-msgstr ""
+msgstr "Maxime version"
 
 msgid "Comments:"
 msgstr "Commentos:"
 
 msgid "Operating systems:"
-msgstr ""
+msgstr "Systemas operative:"
 
 msgid "Applications:"
-msgstr ""
+msgstr "Applicationes:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "Requirer al disveloppator de responder in minus que…"
 
 msgid "days"
 msgstr "dies"
 
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Eliger un responsa predefinite..."
 
 #. L10n: Description of what can be searched for.
 msgid "theme name"
-msgstr ""
+msgstr "nomine del thema"
 
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "Alcuno altere revide iste thema."
 
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
-msgstr ""
+msgstr "thema, revisor, o commento"
 
 msgid "Private Whiteboard"
 msgstr ""
