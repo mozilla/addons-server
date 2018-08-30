@@ -21,6 +21,7 @@ from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.applications.models import AppVersion
 from olympia.devhub import tasks
 from olympia.files.models import File, FileUpload
+from olympia.files.utils import parse_addon
 from olympia.signing.views import VersionView
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
@@ -70,7 +71,8 @@ class BaseUploadVersionCase(SigningAPITestCase):
             '{addon}-{version}.xpi'.format(addon=addon, version=version))
 
     def request(self, method='PUT', url=None, version='3.0',
-                addon='@upload-version', filename=None, channel=None):
+                addon='@upload-version', filename=None, channel=None,
+                extra_kwargs=None):
         if filename is None:
             filename = self.xpi_filepath(addon, version)
         if url is None:
@@ -85,7 +87,7 @@ class BaseUploadVersionCase(SigningAPITestCase):
             return getattr(self.client, method.lower())(
                 url, data,
                 HTTP_AUTHORIZATION=self.authorization(),
-                format='multipart')
+                format='multipart', **(extra_kwargs or {}))
 
     def make_admin(self, user):
         admin_group = Group.objects.create(name='Admin', rules='*:*')
@@ -189,6 +191,55 @@ class TestUploadVersion(BaseUploadVersionCase):
         self.auto_sign_version.assert_called_with(version)
         assert not version.all_files[0].is_mozilla_signed_extension
         assert not version.addon.tags.filter(tag_text='dynamic theme').exists()
+
+    @mock.patch('olympia.signing.views.akismet_is_addon_submission_spammy',
+                return_value=True)
+    def test_spam_rejection(self, spammy_mock):
+        def parse_addon_wrapper(*args, **kw):
+            self.parsed_data = parse_addon(*args, **kw)
+            return self.parsed_data
+
+        assert not Version.objects.filter(
+            addon__guid=self.guid, version='3.0').exists()
+
+        with mock.patch('olympia.signing.views.parse_addon',
+                        wraps=parse_addon_wrapper):
+            response = self.request(
+                'PUT', self.url(self.guid, '3.0'), channel='listed',
+                extra_kwargs={
+                    'HTTP_USER_AGENT': 'bob/bob',
+                    'HTTP_REFERER': 'https://winr/'})
+
+        assert not Version.objects.filter(
+            addon__guid=self.guid, version='3.0').exists()
+        assert response.status_code == 400
+        error_msg = 'The text entered has been flagged as spam.'
+        assert error_msg in response.data['error']
+
+        spammy_mock.assert_called_once()
+        spammy_mock.assert_called_with(
+            addon=Addon.objects.get(guid=self.guid),
+            user=self.user,
+            parsed_data=self.parsed_data,
+            user_agent='bob/bob',
+            referrer='https://winr/')
+
+        spammy_mock.return_value = False
+        self.request('PUT', self.url(self.guid, '3.0'), channel='listed')
+        assert Version.objects.filter(
+            addon__guid=self.guid, version='3.0').exists()
+
+    @mock.patch('olympia.signing.views.akismet_is_addon_submission_spammy')
+    def test_no_akismet_check_for_unlisted(self, spammy_mock):
+        assert not Version.objects.filter(
+            addon__guid=self.guid, version='3.0').exists()
+
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), channel='unlisted')
+        assert response.status_code == 202
+        spammy_mock.assert_not_called()
+        assert Version.objects.filter(
+            addon__guid=self.guid, version='3.0').exists()
 
     def test_version_already_uploaded(self):
         response = self.request('PUT', self.url(self.guid, '3.0'))
@@ -356,7 +407,7 @@ class TestUploadVersion(BaseUploadVersionCase):
 
     def test_raises_response_code(self):
         # A check that any bare error in handle_upload will return a 400.
-        with mock.patch('olympia.signing.views.handle_upload') as patch:
+        with mock.patch('olympia.signing.views.devhub_handle_upload') as patch:
             patch.side_effect = ValidationError(message='some error')
             response = self.request('PUT', self.url(self.guid, '1.0'))
             assert response.status_code == 400

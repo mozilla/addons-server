@@ -1329,7 +1329,8 @@ def _submit_upload(request, addon, channel, next_view, version=None,
         request.FILES or None,
         addon=addon,
         version=version,
-        request=request
+        request=request,
+        channel=channel,
     )
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data

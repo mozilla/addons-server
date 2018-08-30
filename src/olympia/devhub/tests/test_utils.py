@@ -1,16 +1,20 @@
+# -*- coding: utf-8 -*-
 import os.path
 
 from django.conf import settings
 from django.test.utils import override_settings
 
 import mock
+from waffle.testutils import override_switch
 
 from celery.result import AsyncResult
 
 from olympia import amo
-from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.tests import (
+    addon_factory, TestCase, user_factory, version_factory)
 from olympia.devhub import tasks, utils
 from olympia.files.models import FileUpload
+from olympia.lib.akismet.models import AkismetReport
 
 
 class TestValidatorBase(TestCase):
@@ -274,3 +278,106 @@ class TestFixAddonsLinterOutput(TestCase):
         # Make sure original metadata was preserved.
         for key, value in original_output['metadata'].items():
             assert fixed['metadata'][key] == value
+
+
+@override_switch('akismet-spam-check', active=True)
+class TestAkismetIsAddonSubmissionSpammy(TestCase):
+    def setUp(self):
+        super(TestAkismetIsAddonSubmissionSpammy, self).setUp()
+
+        self.akismet_report_mock = mock.MagicMock(
+            **{'comment_check.return_value': 0})
+
+        patcher = mock.patch.object(
+            AkismetReport, 'create_for_addon',
+            return_value=self.akismet_report_mock)
+        self.addCleanup(patcher.stop)
+        self.create_for_addon_mock = patcher.start()
+
+    @override_switch('akismet-spam-check', active=False)
+    def test_waffle_off(self):
+        result = utils.akismet_is_addon_submission_spammy(
+            None, None, {}, '', '')
+        assert result is False
+        self.create_for_addon_mock.assert_not_called()
+        self.akismet_report_mock.comment_check.assert_not_called()
+
+    def test_basic(self):
+        addon = addon_factory()
+        user = user_factory()
+        parsed_data = {'description': u'fóó'}
+        user_agent = 'Mr User/Agent'
+        referrer = 'http://foo.baa/'
+        result = utils.akismet_is_addon_submission_spammy(
+            addon, user, parsed_data, user_agent, referrer)
+        self.create_for_addon_mock.assert_called_with(
+            addon, user, 'description', u'fóó', user_agent, referrer)
+        self.create_for_addon_mock.assert_called_once()
+        self.akismet_report_mock.comment_check.assert_called_once()
+        assert result is False
+
+    def test_locales(self):
+        addon = addon_factory()
+        user = user_factory()
+        parsed_data = {
+            'description': {
+                'en-US': u'fóó',
+                'fr': u'lé foo',
+                'de': '',  # should be ignored
+            },
+            'name': {
+                'en-US': u'just one name',
+            },
+            'summary': None,  # should also be ignored
+        }
+        user_agent = 'Mr User/Agent'
+        referrer = 'http://foo.baa/'
+        result = utils.akismet_is_addon_submission_spammy(
+            addon, user, parsed_data, user_agent, referrer)
+        assert self.create_for_addon_mock.call_count == 3
+        calls = [
+            mock.call(
+                addon, user, 'name', u'just one name', user_agent, referrer),
+            mock.call(
+                addon, user, 'description', u'fóó', user_agent, referrer),
+            mock.call(
+                addon, user, 'description', u'lé foo', user_agent, referrer)]
+        self.create_for_addon_mock.assert_has_calls(calls, any_order=True)
+        assert self.akismet_report_mock.comment_check.call_count == 3
+        assert result is False
+
+    def test_spam_response(self):
+        addon = addon_factory()
+        user = user_factory()
+        parsed_data = {
+            'description': {
+                'en-US': u'fóó',
+                'fr': u'lé foo',
+                'de': u'ick bin foo',
+            }
+        }
+        user_agent = 'Mr User/Agent'
+        referrer = 'http://foo.baa/'
+
+        self.akismet_report_mock.comment_check.side_effect = [
+            AkismetReport.HAM, AkismetReport.HAM, AkismetReport.MAYBE_SPAM]
+        result = utils.akismet_is_addon_submission_spammy(
+            addon, user, parsed_data, user_agent, referrer)
+        assert self.create_for_addon_mock.call_count == 3
+        assert self.akismet_report_mock.comment_check.call_count == 3
+        assert result is True
+
+        self.create_for_addon_mock.reset_mock()
+        self.akismet_report_mock.comment_check.reset_mock()
+        # Remaining checks are skipped if the first piece of content is spammy.
+        self.akismet_report_mock.comment_check.side_effect = [
+            AkismetReport.MAYBE_SPAM, AkismetReport.HAM, AkismetReport.HAM]
+        result = utils.akismet_is_addon_submission_spammy(
+            addon, user, parsed_data, user_agent, referrer)
+        assert self.create_for_addon_mock.call_count == 3
+        assert self.akismet_report_mock.comment_check.call_count == 1
+        assert result is True
+
+
+def test_akismet_is_addon_update_spammy():
+    pass

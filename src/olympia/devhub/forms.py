@@ -36,7 +36,7 @@ from olympia.translations.widgets import (
 from olympia.versions.models import (
     VALID_SOURCE_EXTENSIONS, ApplicationsVersions, License, Version)
 
-from . import tasks
+from . import tasks, utils
 
 
 class AuthorForm(forms.ModelForm):
@@ -489,6 +489,7 @@ class NewUploadForm(forms.Form):
         self.request = kw.pop('request')
         self.addon = kw.pop('addon', None)
         self.version = kw.pop('version', None)
+        self.channel = kw.pop('channel', None)
         super(NewUploadForm, self).__init__(*args, **kw)
 
         # If we have a version reset platform choices to just those compatible.
@@ -553,6 +554,19 @@ class NewUploadForm(forms.Form):
                         msg = ugettext(u'Version {version} already exists.')
                     raise forms.ValidationError(
                         msg.format(version=parsed_data['version']))
+
+            parsed_data = Addon.resolve_webext_translations(
+                parsed_data, self.cleaned_data['upload'])
+            is_unlisted = self.channel == amo.RELEASE_CHANNEL_UNLISTED
+            if not is_unlisted and utils.akismet_is_addon_submission_spammy(
+                    addon=self.addon,
+                    user=self.request.user,
+                    parsed_data=parsed_data,
+                    user_agent=self.request.META.get('HTTP_USER_AGENT'),
+                    referrer=self.request.META.get('HTTP_REFERER')):
+                raise forms.ValidationError(ugettext(
+                    'The text entered has been flagged as spam.'))
+
             self.cleaned_data['parsed_data'] = parsed_data
         return self.cleaned_data
 

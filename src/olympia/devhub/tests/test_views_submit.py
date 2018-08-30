@@ -303,6 +303,8 @@ class TestAddonSubmitDistribution(TestCase):
 
 class TestAddonSubmitUpload(UploadTest, TestCase):
     fixtures = ['base/users']
+    akismet_to_mock = (
+        'olympia.devhub.forms.utils.akismet_is_addon_submission_spammy')
 
     def setUp(self):
         super(TestAddonSubmitUpload, self).setUp()
@@ -311,7 +313,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         self.client.post(reverse('devhub.submit.agreement'))
 
     def post(self, supported_platforms=None, expect_errors=False,
-             listed=True, status_code=200, url=None):
+             listed=True, status_code=200, url=None, extra_kwargs=None):
         if supported_platforms is None:
             supported_platforms = [amo.PLATFORM_ALL]
         data = {
@@ -320,7 +322,8 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         }
         url = url or reverse('devhub.submit.upload',
                              args=['listed' if listed else 'unlisted'])
-        response = self.client.post(url, data, follow=True)
+        response = self.client.post(
+            url, data, follow=True, **(extra_kwargs or {}))
         assert response.status_code == status_code
         if not expect_errors:
             # Show any unexpected form errors.
@@ -364,7 +367,9 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
 
     def test_success_listed(self):
         assert Addon.objects.count() == 0
-        response = self.post()
+        with mock.patch(self.akismet_to_mock, return_value=False) as mock_:
+            response = self.post()
+            mock_.assert_called_once()
         addon = Addon.objects.get()
         version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
         assert version
@@ -390,7 +395,9 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         }
         self.upload = self.get_upload(
             'extension.xpi', validation=json.dumps(result))
-        self.post(listed=False)
+        with mock.patch(self.akismet_to_mock, return_value=False) as mock_:
+            self.post(listed=False)
+            mock_.assert_not_called()
         addon = Addon.objects.get()
         version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -399,6 +406,39 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert addon.status == amo.STATUS_NULL
         assert mock_sign_file.called
         assert not addon.tags.filter(tag_text='dynamic theme').exists()
+
+    @mock.patch(akismet_to_mock, return_value=True)
+    def test_spam_rejection(self, spammy_mock):
+        assert Addon.objects.count() == 0
+
+        spec = 'olympia.devhub.forms.parse_addon'
+
+        def parse_addon_wrapper(*args, **kw):
+            self.parsed_data = parse_addon(*args, **kw)
+            return self.parsed_data
+
+        with mock.patch(spec, wraps=parse_addon_wrapper):
+            response = self.post(
+                expect_errors=True, extra_kwargs={
+                    'HTTP_USER_AGENT': 'bob/bob',
+                    'HTTP_REFERER': 'https://winr/'})
+        assert Addon.objects.count() == 0
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('ul.errorlist').text() == (
+            'The text entered has been flagged as spam.')
+
+        spammy_mock.assert_called_once()
+        spammy_mock.assert_called_with(
+            addon=None,
+            user=UserProfile.objects.get(email='regular@mozilla.com'),
+            parsed_data=self.parsed_data,
+            user_agent='bob/bob',
+            referrer='https://winr/')
+
+        spammy_mock.return_value = False
+        self.post(expect_errors=False)
+        assert Addon.objects.count() == 1
 
     def test_missing_platforms(self):
         url = reverse('devhub.submit.upload', args=['listed'])
@@ -1478,6 +1518,8 @@ class TestVersionSubmitAutoChannel(TestSubmitBase):
 class VersionSubmitUploadMixin(object):
     channel = None
     fixtures = ['base/users', 'base/addon_3615']
+    akismet_to_mock = (
+        'olympia.devhub.forms.utils.akismet_is_addon_submission_spammy')
 
     def setUp(self):
         super(VersionSubmitUploadMixin, self).setUp()
@@ -1496,7 +1538,8 @@ class VersionSubmitUploadMixin(object):
         self.version.save()
 
     def post(self, supported_platforms=None,
-             override_validation=False, expected_status=302, source=None):
+             override_validation=False, expected_status=302, source=None,
+             extra_kwargs=None):
         if supported_platforms is None:
             supported_platforms = [amo.PLATFORM_MAC]
         data = {
@@ -1505,7 +1548,7 @@ class VersionSubmitUploadMixin(object):
             'supported_platforms': [p.id for p in supported_platforms],
             'admin_override_validation': override_validation
         }
-        response = self.client.post(self.url, data)
+        response = self.client.post(self.url, data, **(extra_kwargs or {}))
         assert response.status_code == expected_status
         return response
 
@@ -1699,7 +1742,9 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
                 "metadata": {}, "warnings": 1,
             }))
         self.addon.update(guid='experiment@xpi', status=amo.STATUS_PUBLIC)
-        self.post()
+        with mock.patch(self.akismet_to_mock, return_value=False) as mock_:
+            self.post()
+            mock_.assert_called_once()
         # Make sure the file created and signed is for this addon.
         assert mock_sign_file.call_count == 1
         mock_sign_file_call = mock_sign_file.call_args[0]
@@ -1781,6 +1826,34 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         self.addon.reload()
         assert self.addon.status == amo.STATUS_NOMINATED
 
+    @mock.patch(VersionSubmitUploadMixin.akismet_to_mock, return_value=True)
+    def test_spam_rejection(self, spammy_mock):
+        spec = 'olympia.devhub.forms.parse_addon'
+
+        def parse_addon_wrapper(*args, **kw):
+            self.parsed_data = parse_addon(*args, **kw)
+            return self.parsed_data
+
+        with mock.patch(spec, wraps=parse_addon_wrapper):
+            response = self.post(
+                expected_status=200, extra_kwargs={
+                    'HTTP_USER_AGENT': 'bob/bob',
+                    'HTTP_REFERER': 'https://winr/'})
+        doc = pq(response.content)
+        assert doc('ul.errorlist').text() == (
+            'The text entered has been flagged as spam.')
+
+        spammy_mock.assert_called_once()
+        spammy_mock.assert_called_with(
+            addon=self.addon,
+            user=self.user,
+            parsed_data=self.parsed_data,
+            user_agent='bob/bob',
+            referrer='https://winr/')
+
+        spammy_mock.return_value = False
+        self.post(expected_status=302)
+
 
 class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
     channel = amo.RELEASE_CHANNEL_UNLISTED
@@ -1798,7 +1871,9 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         }
         self.upload = self.get_upload(
             'extension.xpi', validation=json.dumps(result))
-        response = self.post()
+        with mock.patch(self.akismet_to_mock) as mock_:
+            response = self.post()
+            mock_.assert_not_called()
         version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED

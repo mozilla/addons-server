@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.forms import ValidationError
 from django.utils.translation import ugettext
 
+import waffle
 from celery import chain
 
 import olympia.core.logger
@@ -13,6 +14,7 @@ from olympia import amo
 from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
+from olympia.lib.akismet.models import AkismetReport
 from olympia.tags.models import Tag
 from olympia.versions.compare import version_int
 
@@ -307,3 +309,30 @@ def add_dynamic_theme_tag(version):
     files = version.all_files
     if any('theme' in file_.webext_permissions_list for file_ in files):
         Tag(tag_text='dynamic theme').save_tag(version.addon)
+
+
+def akismet_is_addon_submission_spammy(addon, user, parsed_data, user_agent,
+                                       referrer):
+    if not waffle.switch_is_active('akismet-spam-check'):
+        return False
+    properties = ('name', 'summary', 'description')
+    reports = []
+    for prop in properties:
+        locales = parsed_data.get(prop, [])
+        if not isinstance(locales, dict):
+            # It's not a localized dict, it's a flat string; so wrap it.
+            locales = {'': locales}
+        for comment in locales.values():
+            if not comment:
+                # We don't want to submit empty content
+                continue
+            reports.append(AkismetReport.create_for_addon(
+                addon, user, prop, comment, user_agent,
+                referrer))
+
+    return any(
+        (report.comment_check() != AkismetReport.HAM for report in reports))
+
+
+def akismet_is_addon_update_spammy(addon, user, data, user_agent, referrer):
+    pass

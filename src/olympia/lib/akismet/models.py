@@ -40,8 +40,8 @@ class AkismetReport(ModelBase):
     user_homepage = models.CharField(max_length=255)
     comment = models.TextField()
     comment_modified = models.DateTimeField()
-    content_link = models.CharField(max_length=255)
-    content_modified = models.DateTimeField()
+    content_link = models.CharField(max_length=255, null=True)
+    content_modified = models.DateTimeField(null=True)
 
     # Non-comment properties:
     result = models.PositiveSmallIntegerField(
@@ -52,6 +52,17 @@ class AkismetReport(ModelBase):
     # Just Rating at first
     rating_instance = models.ForeignKey(
         'ratings.Rating', related_name='+', null=True,
+        on_delete=models.SET_NULL)
+    addon_instance = models.ForeignKey(
+        'addons.Addon', related_name='+', null=True,
+        on_delete=models.SET_NULL)
+    collection_instance = models.ForeignKey(
+        'bandwagon.Collection', related_name='+', null=True,
+        on_delete=models.SET_NULL)
+
+    # Fk to the user who submitted the content.
+    user = models.ForeignKey(
+        'users.UserProfile', related_name='+', null=True,
         on_delete=models.SET_NULL)
 
     class Meta:
@@ -149,6 +160,7 @@ class AkismetReport(ModelBase):
             user_ip=rating.ip_address or '',
             user_agent=user_agent or '',
             referrer=referrer or '',
+            user=rating.user,
             user_name=rating.user.name or '',
             user_email=rating.user.email,
             user_homepage=rating.user.homepage or '',
@@ -158,3 +170,25 @@ class AkismetReport(ModelBase):
             comment_modified=rating.modified,
         )
         return instance
+
+    @classmethod
+    def create_for_addon(cls, addon, user, property_name, property_value,
+                         user_agent, referrer):
+        instance = cls.objects.create(
+            addon_instance=addon,
+            comment_type='product-' + property_name,
+            user_ip=user.last_login_ip or '',
+            user_agent=user_agent or '',
+            referrer=referrer or '',
+            user=user,
+            user_name=user.name or '',
+            user_email=user.email,
+            user_homepage=user.homepage or '',
+            comment=property_value,
+            comment_modified=addon.modified,
+        )
+        return instance
+
+    @classmethod
+    def create_for_collection(cls, rating, user_agent, referrer):
+        raise NotImplementedError()
