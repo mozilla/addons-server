@@ -159,13 +159,12 @@ TIME_ZONE = 'UTC'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-US'
 
-# Accepted locales
-# Note: If you update this list, don't forget to also update the locale
-# permissions in the database.
+# Accepted locales.
 AMO_LANGUAGES = (
     'af',  # Afrikaans
     'ar',  # Arabic
     'ast',  # Asturian
+    'az',  # Azerbaijani
     'bg',  # Bulgarian
     'bn-BD',  # Bengali (Bangladesh)
     'bs',  # Bosnian
@@ -190,6 +189,7 @@ AMO_LANGUAGES = (
     'he',  # Hebrew
     'hsb',  # Upper Sorbian
     'hu',  # Hungarian
+    # 'ia',  # Interlingua - doesn't exist in product_details yet.
     'id',  # Indonesian
     'it',  # Italian
     'ja',  # Japanese
