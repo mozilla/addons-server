@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-31 22:51+0000\n"
+"PO-Revision-Date: 2018-08-31 23:00+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4201,7 +4201,7 @@ msgid ""
 msgstr ""
 
 msgid "Approval Status"
-msgstr ""
+msgstr "Rub'anikil Tojtob'enïk"
 
 msgid "Notes for Reviewers"
 msgstr "Kich'utitzijol Nik'onela'"
@@ -4224,28 +4224,28 @@ msgstr ""
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Xtz'uk pa %(created)s chuqa' xjal rik'in %(status)s"
 
 msgid "Status & Versions"
-msgstr ""
+msgstr "Taq B'anikil & Taq Ruwäch"
 
 msgid "Edit this version"
 msgstr "Tinuk' re ruwäch re'"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 taq yakb'äl"
 
 msgid "Re-enable Version"
-msgstr ""
+msgstr "Titzij-chik Ruwäch"
 
 msgid "Close Review History"
-msgstr ""
+msgstr "Titz'apïx Runatab'al Nik'oxik"
 
 msgid "Not validated."
-msgstr ""
+msgstr "Man xjikib'äx ta."
 
 msgid "Validate now."
-msgstr ""
+msgstr "Tijikib'äx wakami."
 
 msgid "Request Review"
 msgstr ""
