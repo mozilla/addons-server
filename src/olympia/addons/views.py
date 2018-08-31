@@ -933,13 +933,10 @@ class LanguageToolsView(ListAPIView):
         # can avoid loading translations by removing transforms and then
         # re-applying the default one that takes care of the files and compat
         # info.
-        versions_qs = Version.objects.filter(
-            apps__application=application,
-            apps__min__version_int__lte=appversions['min'],
-            apps__max__version_int__gte=appversions['max'],
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            files__status=amo.STATUS_PUBLIC,
-        ).order_by('-created').no_transforms().transform(Version.transformer)
+        versions_qs = (
+            Version.objects
+                   .latest_public_compatible_with(application, appversions)
+                   .no_transforms().transform(Version.transformer))
         return (
             qs.prefetch_related(Prefetch('versions',
                                          to_attr='compatible_versions',

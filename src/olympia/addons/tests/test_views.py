@@ -1811,6 +1811,34 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             assert result['id'] == self.addon.pk
             assert result['name'] == u'My Addôn, mine'
 
+    def test_with_wrong_app_and_appversion_params(self):
+        # These parameters should only work with langpacks, and are ignored
+        # for the rest. Although the code lives in the serializer, this is
+        # tested on the view to make sure the error is propagated back
+        # correctly up to the view, generating a 400 error and not a 500.
+        # appversion without app
+        self.addon.update(type=amo.ADDON_LPAPP)
+
+        # Missing app
+        response = self.client.get(self.url, {'appversion': '58.0'})
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data == {'detail': 'Invalid or missing app parameter.'}
+
+        # Invalid appversion
+        response = self.client.get(
+            self.url, {'appversion': 'fr', 'app': 'firefox'})
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data == {'detail': 'Invalid appversion parameter.'}
+
+        # Invalid app
+        response = self.client.get(
+            self.url, {'appversion': '58.0', 'app': 'fr'})
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data == {'detail': 'Invalid or missing app parameter.'}
+
 
 class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     client_class = APITestClient
