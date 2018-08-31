@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-31 20:51+0000\n"
+"PO-Revision-Date: 2018-08-31 20:58+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5779,17 +5779,17 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Le numeros de version debe continer solo litteras, numeros, e iste characteres de punctuation: +*.-_."
 
 msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
+msgstr "Le cargamento de themas de WebExtension non es actualmente supportate."
 
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "Tu non pote inviar iste typo de additivo"
 
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
+msgstr "Tu non pote inviar un additivo con un guid que fini in %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Tu non pote inviar un extension jam signate per Mozilla"
 
 msgid "Unexpected error."
 msgstr "Error inexpectate."
