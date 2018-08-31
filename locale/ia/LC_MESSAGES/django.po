@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-31 20:31+0000\n"
+"PO-Revision-Date: 2018-08-31 20:51+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5730,24 +5730,24 @@ msgid "Access your data for all websites"
 msgstr "Accede tu datos pro tote le sitos web"
 
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "Un GUID es obligatori pro le versiones 47 e precedente de Firefox."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "Le version compatibile minus recente, “strict_min_version”, es le 42.0."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr ""
+msgstr "Impossibile trovar la version min/max. Forsan \"strict_min_version\" o \"strict_max_version\" contine un version non tractate?"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr ""
+msgstr "Impossibile tractar le file cargate, elemento <%s> mancante o vacue"
 
 msgid "Could not parse uploaded file."
 msgstr "Impossibile tractar le file cargate."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Nomine de file non valide in le archivo. Per favor verifica que le nomines de file es codificate utf-8 o latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -5767,16 +5767,16 @@ msgstr "Impossibile trovar le ID del additivo."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Le ID del additivo in tu manifest.json o install.rdf (%s) non concorda con le ID de tu additivo sur AMO (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "ID de additivo trovate duplicate."
 
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "Le numeros de version debe haber minus que 32 characteres."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "Le numeros de version debe continer solo litteras, numeros, e iste characteres de punctuation: +*.-_."
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
