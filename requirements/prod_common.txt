@@ -203,16 +203,10 @@ feedparser==5.2.1 \
     --hash=sha256:ce875495c90ebd74b179855449040003a1beb40cd13d5f037a0654251e260b02 \
     --hash=sha256:bd030652c2d08532c034c27fcd7c85868e7fa3cb2b17f230a44a6bbc92519bf9 \
     --hash=sha256:cd2485472e41471632ed3029d44033ee420ad0b57111db95c240c9160a85831c
-flufl.lock==2.4.1 \
-    --hash=sha256:72639aca3ef0379aef125c7346b042691c3452152843f301801b3c2ddcac1032 # pyup: <3.0
 # funcsigs is required by mock
 funcsigs==1.0.2 \
     --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \
     --hash=sha256:a7bb0f2cf3a3fd1ab2732cb49eba4252c2af4240442415b4abce3b87022a8f50
-# futures is required by s3transfer
-futures==3.2.0 \
-    --hash=sha256:9ec02aa7d674acb8618afb127e27fde7fc68994c0437ad759fa094a574adb265 \
-    --hash=sha256:ec0a6cb848cc212002b9828c3e34c675e0c9ff6741dc445cab6fdd4e1085d1f1
 # html5lib is required by bleach, rdflib
 # see setup.py of bleach for supported and required versions
 html5lib==0.9999999 \
@@ -298,11 +292,6 @@ pytest==3.7.4 \
 python-dateutil==2.7.3 \
     --hash=sha256:1adb80e7a782c12e52ef9a8182bebeb73f1d7e24e374397af06fb4956c8dc5c0 \
     --hash=sha256:e27001de32f627c22380a688bcc43ce83504a7bc5da472209b4c70f02829f0b8
-# There are known unicode issues with python-memcached beyond 1.53.
-# See https://github.com/mozilla/addons-server/issues/3920 and
-# https://github.com/linsomniac/python-memcached/issues/79
-python-memcached==1.53 \
-    --hash=sha256:bcf71371d997bb46a3168a7b63aae66b56cccacc025af9310db4315681ef8868 # pyup: ==1.5.3
 # pytz is required by Babel, celery
 pytz==2018.5 \
     --hash=sha256:a061aa0a9e06881eb8b3b2b43f05b9439d6583c206d0a6c340ff72a7b6669053 \

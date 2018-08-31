@@ -1,6 +1,3 @@
--r flake8.txt
--r prod.txt
-
 # apipkg is required by execnet
 apipkg==1.5 \
     --hash=sha256:58587dd4dc3daefad0487f6d9ae32b4542b185e1c36db6993290e7c41ca2b47c \

@@ -1,0 +1,13 @@
+-r prod_common.txt
+
+# futures is required by s3transfer
+futures==3.2.0 \
+    --hash=sha256:9ec02aa7d674acb8618afb127e27fde7fc68994c0437ad759fa094a574adb265 \
+    --hash=sha256:ec0a6cb848cc212002b9828c3e34c675e0c9ff6741dc445cab6fdd4e1085d1f1
+flufl.lock==2.4.1 \
+    --hash=sha256:72639aca3ef0379aef125c7346b042691c3452152843f301801b3c2ddcac1032 # pyup: <3.0
+# There are known unicode issues with python-memcached beyond 1.53.
+# See https://github.com/mozilla/addons-server/issues/3920 and
+# https://github.com/linsomniac/python-memcached/issues/79
+python-memcached==1.53 \
+    --hash=sha256:bcf71371d997bb46a3168a7b63aae66b56cccacc025af9310db4315681ef8868 # pyup: ==1.5.3

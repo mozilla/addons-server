@@ -1,0 +1,7 @@
+-r prod_common.txt
+
+flufl.lock==3.2 \
+    --hash=sha256:a8d66accc9ab41f09961cd8f8db39f9c28e97e2769659a3567c63930a869ff5b
+python-memcached==1.59 \
+    --hash=sha256:4dac64916871bd3550263323fc2ce18e1e439080a2d5670c594cf3118d99b594
+    --hash=sha256:a2e28637be13ee0bf1a8b6843e7490f9456fd3f2a4cb60471733c7b5d5557e4f
