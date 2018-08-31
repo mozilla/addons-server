@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     $('#theme-wizard').each(initThemeWizard);
 
-    const MAX_STATICTHEME_SIZE = 7 * 1024 * 1024;
+    var MAX_STATICTHEME_SIZE = 7 * 1024 * 1024;
 
     function initThemeWizard() {
         var $wizard = $(this);
