@@ -690,17 +690,32 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
             type=amo.ADDON_LPAPP, target_locale='es',
             file_kw={'strict_compatibility': True},
             version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
-        self.addon.current_version.update(created=self.days_ago(2))
+        self.addon.current_version.update(created=self.days_ago(3))
         version_for_58 = version_factory(
             addon=self.addon,
             file_kw={'strict_compatibility': True},
             min_app_version='58.0', max_app_version='58.*')
-        version_for_58.update(created=self.days_ago(1))
+        version_for_58.update(created=self.days_ago(2))
         # Extra version for 59, should not be returned.
         version_factory(
             addon=self.addon,
             file_kw={'strict_compatibility': True},
             min_app_version='59.0', max_app_version='59.*')
+        # Extra version that would be compatible and more recent, but belongs
+        # to a different add-on and should be ignored.
+        addon_factory(
+            type=amo.ADDON_LPAPP, target_locale='fr',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '58.0', 'max_app_version': '58.*'})
+        # Extra version that would be compatible and more recent, but is not
+        # public.
+        not_public_version_for_58 = version_factory(
+            addon=self.addon,
+            file_kw={'strict_compatibility': True,
+                     'status': amo.STATUS_DISABLED},
+            min_app_version='58.0', max_app_version='58.*')
+        not_public_version_for_58.update(created=self.days_ago(1))
+
         self.request = APIRequestFactory().get('/?app=firefox&appversion=58.0')
         self.action = 'retrieve'
 
