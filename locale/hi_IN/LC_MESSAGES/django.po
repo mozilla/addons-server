@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-29 19:33+0000\n"
-"Last-Translator: ravi <ravi.103151@gmail.com>\n"
+"PO-Revision-Date: 2018-08-31 00:02+0000\n"
+"Last-Translator: Dhiraj Kumar Singh <Singhdhiraj255@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -3895,16 +3895,16 @@ msgid "Add-on Developer Hub"
 msgstr ""
 
 msgid "Docs"
-msgstr ""
+msgstr "दस्तावेज़"
 
 msgid "Sign Out"
 msgstr "साइन आउट करें"
 
 msgid "No Photo"
-msgstr ""
+msgstr "कोई तस्वीर नहीं"
 
 msgid "User Photo"
-msgstr ""
+msgstr "उपयोगकर्ता की फोटो"
 
 #, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
@@ -3920,7 +3920,7 @@ msgid ""
 msgstr ""
 
 msgid "Learn How to Make an Add-on"
-msgstr ""
+msgstr "ऐड-ऑन बनाने का तरीका जानें"
 
 msgid "Port a Chrome Extension"
 msgstr ""
@@ -3936,7 +3936,7 @@ msgid "Have an add-on ready? Submit your extension or theme to be listed on addo
 msgstr ""
 
 msgid "Sign In"
-msgstr ""
+msgstr "साइन इन करें"
 
 msgid "Web-Ext"
 msgstr ""
@@ -4236,13 +4236,13 @@ msgid "Are you sure you wish to delete this version?"
 msgstr ""
 
 msgid "Delete Version"
-msgstr ""
+msgstr "संस्करण हटाएँ"
 
 msgid "Disable Version"
 msgstr ""
 
 msgid "Hide Add-on"
-msgstr ""
+msgstr "ऐड-ऑन छुपाएँ"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
@@ -5704,7 +5704,7 @@ msgid "Back to review"
 msgstr ""
 
 msgid "Back to add-on"
-msgstr ""
+msgstr "ऐड-ऑन पर वापस जाएँ"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
@@ -5733,13 +5733,13 @@ msgid "Fetching validation results..."
 msgstr ""
 
 msgid "Files:"
-msgstr ""
+msgstr "फ़ाइलें:"
 
 msgid "Deleted files:"
-msgstr ""
+msgstr "मिटाई गयी फाइलें:"
 
 msgid "Hide known files"
-msgstr ""
+msgstr "ज्ञात फाइलों को छिपाएँ"
 
 msgid "Add-on SDK Version:"
 msgstr ""
@@ -5874,7 +5874,7 @@ msgid "Discover Add-ons"
 msgstr ""
 
 msgid "What are Add-ons?"
-msgstr ""
+msgstr "ऐड-ऑन क्या हैं?"
 
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
@@ -5937,7 +5937,7 @@ msgid "Get Started"
 msgstr ""
 
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "Mozilla ऐड-ऑन के बारे में"
 
 msgid "What is this website?"
 msgstr ""
