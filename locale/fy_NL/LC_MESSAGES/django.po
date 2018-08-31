@@ -6836,13 +6836,11 @@ msgstr "Beoardieling mei sukses ferwurke."
 msgid "Review lock limit reached"
 msgstr "Limyt foar beoardielingsbeskoattelingen berikke"
 
-#, fuzzy
 msgid "{addon} :: EULA"
-msgstr "{addon}:: Misbrûkmeldingen"
+msgstr "{addon} :: EULA"
 
-#, fuzzy
 msgid "{addon} :: Privacy Policy"
-msgstr "Dizze add-on hat in privacybelied"
+msgstr "{addon} :: Privacybelied"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -7964,9 +7962,8 @@ msgstr "Der is gjin brûker mei dat e-mailadres."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-#, fuzzy
 msgid "Firefox user {id}"
-msgstr "Firefox foar Android"
+msgstr "Firefox-brûker {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Myn Mobyl-add-ons"
