@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-31 20:45+0000\n"
+"PO-Revision-Date: 2018-08-31 21:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4003,17 +4003,17 @@ msgid ""
 msgstr ""
 
 msgid "Learn How to Make an Add-on"
-msgstr ""
+msgstr "Tawetamaj Rub'eyal Nab'än jun Tz'aqat"
 
 msgid "Port a Chrome Extension"
-msgstr ""
+msgstr "Tik'wäx jun Ruk'amal Chrome"
 
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
 
 msgid "Publish Your Add-on"
-msgstr ""
+msgstr "Tataluj Atz'aqat"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr ""
@@ -4022,19 +4022,19 @@ msgid "Sign In"
 msgstr "Titikirisäx Molojri'ïl"
 
 msgid "Web-Ext"
-msgstr ""
+msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
-msgstr ""
+msgstr "Jun rucholajem nuk'uj richin yetz'uk, yeb'an chuqa' yetojtob'ëx k'amal."
 
 msgid "Automated code tests for your add-on."
-msgstr ""
+msgstr "Kitojtob'enik yonil b'itz'ib' richin atz'aqat."
 
 msgid "Compatibility Test"
-msgstr ""
+msgstr "Rutojtob'enik K'amonïk"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "Tatojtob'ej we ri ak'amal nuk'äm ri' rik'in Firefox."
 
 msgid "Transfer ownership"
 msgstr ""
