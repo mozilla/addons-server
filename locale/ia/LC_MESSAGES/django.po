@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-31 19:40+0000\n"
+"PO-Revision-Date: 2018-08-31 20:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5699,35 +5699,35 @@ msgstr ""
 
 #, python-format
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "Error durante le accesso al file %s."
 
 msgid "That file no longer exists."
 msgstr "Ille file non existe plus."
 
 #. L10n: {0} is the file size limit of the file viewer.
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "Le dimensiones del file es supra le limite de {0}."
 
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "Problemas al decodification de {0}."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
+msgstr "Iste file non es visibile online. Per favor discarga le file pro vider le contentos."
 
 msgid "This file is a directory."
 msgstr "Iste file es un directorio."
 
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "Impossibile comparar un version contra se mesme"
 
 msgid "Access your data for {name}"
-msgstr ""
+msgstr "Accede tu datos pro {name}"
 
 msgid "Access your data on the following websites:"
-msgstr ""
+msgstr "Accede tu datos sur le sitos web sequente:"
 
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Accede tu datos pro tote le sitos web"
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
