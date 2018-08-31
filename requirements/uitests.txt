@@ -77,6 +77,6 @@ pluggy==0.7.1 \
 attrs==18.1.0 \
     --hash=sha256:4b90b09eeeb9b88c35bc642cbac057e45a5fd85367b985bd2809c62b7b939265 \
     --hash=sha256:e0d0eb91441a3b53dab4d9b743eafc1ac44476296a2053b6ca3af0b139faf87b
-pytest-fxa==1.3.0 \
-    --hash=sha256:8aa5aca97750ac714300a5013b3a9ddb858eb15b205e4d1d3dfce2746706e4ea \
-    --hash=sha256:9753faca995135ecae4330a7961e918684f16482afc4eede4bd8a8a8295ac29f
+pytest-fxa==1.4.0 \
+    --hash=sha256:778dfdb019f1e0af8744704fe5f7ac5c08fd5d45ff054023b0a18d5f99d737f1 \
+    --hash=sha256:b75967e74e9b2f3ffa5558421fdf61c7fff5948fc9d7e357e7147c682988ecc1
