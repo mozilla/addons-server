@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 21:23+0000\n"
+"PO-Revision-Date: 2018-08-31 04:13+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7210,10 +7210,10 @@ msgid "There are currently no reviews."
 msgstr ""
 
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Themas signalate"
 
 msgid "Theme Review Queue"
-msgstr ""
+msgstr "Cauda de revision de themas"
 
 msgid "Queues"
 msgstr "Caudas"
@@ -7225,80 +7225,80 @@ msgid "Auto-advance after review"
 msgstr ""
 
 msgid "Enable keyboard shortcuts"
-msgstr ""
+msgstr "Activar le vias breve de claviero"
 
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Vias breve de claviero"
 
 msgid "Next Theme"
-msgstr ""
+msgstr "Thema successive"
 
 msgid "Previous Theme"
-msgstr ""
+msgstr "Thema previe"
 
 msgid "Your Review History"
-msgstr ""
+msgstr "Chronologia de tu revision"
 
 msgid "Commit Review"
-msgstr ""
+msgstr "Inviar revision"
 
 msgid "Commit Reviews"
-msgstr ""
+msgstr "Inviar revisiones"
 
 msgid "{0} out of {1} reviewed"
-msgstr ""
+msgstr "{0} de {1} revidite"
 
 msgid "There are currently no Themes to review."
-msgstr ""
+msgstr "Il ha actualmente nulle thema a revider."
 
 msgid "Clear Search"
-msgstr ""
+msgstr "Clarar le recerca"
 
 msgid "Release My Theme Locks"
 msgstr ""
 
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Cauda de themas interactive"
 
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Guida del revisor"
 
 msgid "Theme Review for {0}"
-msgstr ""
+msgstr "Thema revidite pro {0}"
 
 msgid "(Probable Duplicate Submission)"
 msgstr ""
 
 msgid "Past Review Notes"
-msgstr ""
+msgstr "Notas del revision passate"
 
 #. {previous review action taken on theme}: {comment about review action}
 msgid "More Info Requested: {0}"
 msgstr ""
 
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "Signalate: {0}"
 
 msgid "Approve Theme"
-msgstr ""
+msgstr "Approbar le thema"
 
 msgid "Field required"
-msgstr ""
+msgstr "Campo obligatori"
 
 msgid "Enter the ID or URL of the duplicate"
-msgstr ""
+msgstr "Insere le ID o le URL del duplicato"
 
 msgid "Select a reason for rejection"
-msgstr ""
+msgstr "Elige un ration pro le rejection"
 
 msgid "Describe your reason for rejection"
-msgstr ""
+msgstr "Describe tu ration pro le rejection"
 
 msgid "Ask a question to the artist"
-msgstr ""
+msgstr "Face un demanda al artista"
 
 msgid "Describe your reason for flagging"
-msgstr ""
+msgstr "Describe tu ration pro le signalation"
 
 msgid "Rejected or Unreviewed"
 msgstr ""
