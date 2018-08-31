@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-31 00:04+0000\n"
+"PO-Revision-Date: 2018-08-31 20:45+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3975,23 +3975,23 @@ msgid "Submit Your First Theme"
 msgstr "Tataqa' ri Nab'ey Awachinel"
 
 msgid "Add-on Developer Hub"
-msgstr ""
+msgstr "Tz'aqat Kochoch B'anonela'"
 
 msgid "Docs"
-msgstr ""
+msgstr "Wuj"
 
 msgid "Sign Out"
-msgstr ""
+msgstr "Titz'apïx Molojri'ïl"
 
 msgid "No Photo"
-msgstr ""
+msgstr "Majun Wachib'äl"
 
 msgid "User Photo"
-msgstr ""
+msgstr "Ruwachib'al Okisanel"
 
 #, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr ""
+msgstr "<a href=\"%(register)s\">Titz'ib'äx</a> o <a href=\"%(login)s\">Titikirisäx Molojri'ïl</a>"
 
 msgid "Customize Firefox"
 msgstr "Tawichinaj Firefox"
