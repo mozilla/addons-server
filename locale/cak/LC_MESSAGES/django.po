@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-31 22:21+0000\n"
+"PO-Revision-Date: 2018-08-31 22:51+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4100,42 +4100,42 @@ msgid "Pending Header"
 msgstr "Oyob'en Jub'i'aj"
 
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "Wawe' yatikïr nak'ëx ri ruwachib'enik awachinel, toq xtojtob'ëx yan."
 
 msgid "Header"
 msgstr "Jub'i'aj"
 
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "Ke'acha' taq rub'onil Awachinel."
 
 msgid "Foreground Text"
 msgstr ""
 
 msgid "This is the color of the tab text."
-msgstr ""
+msgstr "Ja rub'onil re' ri rutz'ib'anik ruwi'."
 
 msgid "Background"
 msgstr "Rupam"
 
 msgid "This is the color of the tabs."
-msgstr ""
+msgstr "Ja rub'onil re' ri ruwi'."
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Rub'i' Awachinel"
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
 msgstr "ruma <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
-msgstr ""
+msgstr "Titz'uk jun K'ak'a' Wachinel"
 
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
 msgstr ""
 
 msgid "Give your Theme a name."
-msgstr ""
+msgstr "Taya' jun Rub'i' ri Awachinel."
 
 #, python-format
 msgid ""
@@ -4144,16 +4144,16 @@ msgid ""
 msgstr ""
 
 msgid "Submit Theme"
-msgstr ""
+msgstr "Titaq Wachinel"
 
 msgid "You're done!"
-msgstr ""
+msgstr "¡Xk'achoj!"
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
 msgstr ""
 
 msgid "Next steps:"
-msgstr ""
+msgstr "Ch'aqa' chik xak:"
 
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
@@ -4168,29 +4168,29 @@ msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr ""
 
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "Tacha' jun jub'i'aj ruwachib'al Awachinel."
 
 msgid "3000 &times; 200 pixels"
-msgstr ""
+msgstr "3000 &times; 200 taq piksel"
 
 msgid "300 KB max"
-msgstr ""
+msgstr "300 KB nïm"
 
 msgid "PNG or JPG"
 msgstr "PNG o JPG"
 
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "Tinuk'samajïx Ruwäch {0}"
 
 #. {0} is an add-on name.
 msgid "Manage {0}"
-msgstr ""
+msgstr "Tinuk'samajïx {0}"
 
 msgid "Files"
 msgstr "Taq Yakb'äl"
 
 msgid "Upload Another File"
-msgstr ""
+msgstr "Tijotob'äx Jun Chik Yakb'äl"
 
 msgid "Version Notes"
 msgstr "Kich'utitzijol Ruwäch"
