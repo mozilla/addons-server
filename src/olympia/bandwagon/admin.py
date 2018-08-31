@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import admin
 
 from olympia import amo
@@ -41,7 +42,7 @@ class CollectionAdmin(admin.ModelAdmin):
             # Changelist, allowed for convenience, should be harmless.
             obj is None or
             # Mozilla collection or their own.
-            obj.author and obj.author.username in ('mozilla', user.username))
+            obj.author and obj.author.pk in (settings.TASK_USER_ID, user.pk))
 
         return (
             should_allow_curators and acl.action_allowed(

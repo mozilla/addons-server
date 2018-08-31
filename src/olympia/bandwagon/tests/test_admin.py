@@ -1,5 +1,7 @@
 from pyquery import PyQuery as pq
 
+from django.conf import settings
+
 from olympia import amo
 from olympia.amo.tests import TestCase, user_factory
 from olympia.amo.urlresolvers import reverse
@@ -133,7 +135,7 @@ class TestCollectionAdmin(TestCase):
         collection.reload()
         assert collection.slug == 'floob'
 
-    def test_can_do_limited_edition_with_admin_curation_permission(self):
+    def test_can_do_limited_editing_with_admin_curation_permission(self):
         collection = Collection.objects.create(slug='floob')
         self.detail_url = reverse(
             'admin:bandwagon_collection_change', args=(collection.pk,)
@@ -160,7 +162,7 @@ class TestCollectionAdmin(TestCase):
         assert collection.slug == 'floob'
 
         # Now, if it's a mozilla collection, you can edit it.
-        mozilla = user_factory(username='mozilla')
+        mozilla = user_factory(username='mozilla', id=settings.TASK_USER_ID)
         collection.update(author=mozilla)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
@@ -234,7 +236,7 @@ class TestCollectionAdmin(TestCase):
         assert Collection.objects.filter(pk=collection.pk).exists()
 
         # Even a mozilla one.
-        mozilla = user_factory(username='mozilla')
+        mozilla = user_factory(username='mozilla', id=settings.TASK_USER_ID)
         collection.update(author=mozilla)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 403
