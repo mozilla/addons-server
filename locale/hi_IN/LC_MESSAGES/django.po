@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-31 00:02+0000\n"
+"PO-Revision-Date: 2018-08-31 00:50+0000\n"
 "Last-Translator: Dhiraj Kumar Singh <Singhdhiraj255@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -1020,7 +1020,7 @@ msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual colle
 msgstr ""
 
 msgid "Create Collection"
-msgstr ""
+msgstr "संग्रह बनाएँ"
 
 msgid "View this collection"
 msgstr ""
@@ -1053,7 +1053,7 @@ msgid "Add-ons synced to my Mobile Firefox"
 msgstr ""
 
 msgid "Make this Collection Private"
-msgstr ""
+msgstr "इस संग्रह को निजी बनाएँ"
 
 msgid "Make this Collection Public"
 msgstr ""
@@ -1065,7 +1065,7 @@ msgid "Edit Collection"
 msgstr "संग्रह संपादित करें"
 
 msgid "Delete Collection"
-msgstr ""
+msgstr "संग्रह हटाएँ"
 
 #, python-format
 msgid "%(num)s Theme in this Collection"
@@ -1493,7 +1493,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "View all"
-msgstr ""
+msgstr "सभी देखें"
 
 msgid "Filter by Application"
 msgstr ""
@@ -1520,7 +1520,7 @@ msgid "e10s Compatible"
 msgstr ""
 
 msgid "Submitted"
-msgstr ""
+msgstr "दर्ज़"
 
 msgid "Success"
 msgstr ""
@@ -2225,16 +2225,16 @@ msgid "New Legacy Add-on Review"
 msgstr "नया लेगेसी ऐड-ऑन समीक्षा"
 
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "प्रारंभिक ऐड-ऑन समीक्षा"
 
 msgid "Updated Legacy Add-on Review"
 msgstr "अपडेटेड लेगेसी नियंत्रित ऐड-ऑन समीक्षा"
 
 msgid "New Dictionary Review"
-msgstr ""
+msgstr "नई शब्दकोश समीक्षा"
 
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "प्रारंभिक शब्दकोश समीक्षा"
 
 msgid "Updated Dictionary Review"
 msgstr ""
@@ -3142,7 +3142,7 @@ msgid "Hide messages present in previous version and ignored"
 msgstr ""
 
 msgid "Top"
-msgstr ""
+msgstr "सर्वोच्च"
 
 msgid "Delete Theme"
 msgstr ""
@@ -6289,7 +6289,7 @@ msgid "Write a Reply"
 msgstr ""
 
 msgid "Submit"
-msgstr ""
+msgstr "प्रस्तुत करें"
 
 #. this string is following a <button>.
 #, python-format
@@ -7604,7 +7604,7 @@ msgid "Find add-ons for other applications"
 msgstr ""
 
 msgid "Other Applications"
-msgstr ""
+msgstr "अन्य अनुप्रयोग"
 
 msgid "AMO is getting a new look. Would you like to see it?"
 msgstr ""
@@ -7800,9 +7800,8 @@ msgstr ""
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-#, fuzzy
 msgid "Firefox user {id}"
-msgstr "Android के लिए Firefox"
+msgstr "Firefox उपयोगकर्ता {id}"
 
 msgid "My Mobile Add-ons"
 msgstr ""
