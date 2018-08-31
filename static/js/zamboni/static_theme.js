@@ -2,6 +2,7 @@ $(document).ready(function() {
 
     $('#theme-wizard').each(initThemeWizard);
 
+    const MAX_STATICTHEME_SIZE = 7 * 1024 * 1024;
 
     function initThemeWizard() {
         var $wizard = $(this);
@@ -144,6 +145,11 @@ $(document).ready(function() {
                    .text($button.data('uploading-text'));
 
             zip.generateAsync({type: 'blob'}).then(function (blob) {
+                if (blob.size > MAX_STATICTHEME_SIZE) {
+                    throw format(gettext("Maximum upload size is {0} - choose a smaller background image."), fileSizeFormat(MAX_STATICTHEME_SIZE));
+                }
+                return blob;
+            }).then(function (blob) {
                 var formData = new FormData();
                 formData.append('upload', blob, 'upload.zip');
                 $.ajax({
@@ -157,7 +163,11 @@ $(document).ready(function() {
                     uploadDone(data);
                 });
             }, function (err) {
-                console.error(err);
+                // Fake the validation so we can display as an error.
+                uploadDone({validation:{
+                    errors:1,
+                    messages:[{message:err}]
+                }});
             });
         }));
 

@@ -29,8 +29,8 @@ def write_svg_to_png(svg_content, out):
                 os.makedirs(out)
             command = [
                 settings.RSVG_CONVERT_BIN,
-                '-o', out,
-                temporary_svg.name
+                '--output', out,
+                temporary_svg.name,
             ]
             subprocess.check_call(command)
         except IOError as io_error:
