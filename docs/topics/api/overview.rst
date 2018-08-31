@@ -99,14 +99,14 @@ write requests, this includes ``POST``, ``PATCH`` and ``DELETE`` requests.
 
 In case we are in read-only mode, the following behavior can be observed:
 
-  * ``GET`` requests behave normal
+  * ``GET`` requests behave normally
   * ``POST``, ``PUT`` and ``DELETE`` requests return 503 with a json response that contains a localized error message
   * A custom ``X-AMO-Read-Only`` header is set to ``true``
   * A ``Retry-After`` header may be set, it's not a requirement though and can be omitted
 
 In case we are not in read-only mode, the following (standard) behavior can be observed:
 
-  * ``GET``, ``POST``, ``PUT``, ``DELETE`` requests behave normal again
+  * ``GET``, ``POST``, ``PUT``, ``DELETE`` requests behave normally again
   * ``X-AMO-Read-Only`` header is set to ``false``
 
 So, in case of a ``503`` HTTP response you can always check the ``X-AMO-Read-Only`` header to behave appropriately.
