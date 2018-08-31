@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-31 21:32+0000\n"
+"PO-Revision-Date: 2018-08-31 21:51+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3943,7 +3943,7 @@ msgid ""
 msgstr ""
 
 msgid "View Resources for Publishers"
-msgstr ""
+msgstr "Ketz'et Tob'äl kichin Eltzijonela'"
 
 msgid "Welcome Back"
 msgstr "Ütz Apetik"
@@ -4046,19 +4046,19 @@ msgid "Supply a pretty URL for your detail page."
 msgstr "Tawokisaj jun jeb'ël URL pa rub'anikil ruxaq ak'amaya'l."
 
 msgid "Select the category that best describes your Theme."
-msgstr ""
+msgstr "Tacha' ri ruwäch ri ütz nuchöl Awachinel."
 
 msgid "Add some tags to describe your Theme."
-msgstr ""
+msgstr "Ke'atz'aqatisaj jujun taq etal richin nacholajij Awachinel."
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
 msgstr ""
 
 msgid "Theme License"
-msgstr ""
+msgstr "Ruya'oj Q'ij Wachinel"
 
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
+msgstr "¿La yetikïr nikikomonij ri Awachinel ri winaqi', toq ketaman chi ja rat xab'anon richin?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr ""
