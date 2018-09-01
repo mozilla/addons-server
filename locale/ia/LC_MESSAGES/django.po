@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-09-01 11:06+0000\n"
+"PO-Revision-Date: 2018-09-01 13:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5891,7 +5891,7 @@ msgid "Save on your favorite items from the comfort of your browser."
 msgstr ""
 
 msgid "Build the perfect website"
-msgstr ""
+msgstr "Crea le sito web perfecte"
 
 msgid "First time with Add-ons?"
 msgstr ""
@@ -6048,7 +6048,7 @@ msgid ""
 msgstr ""
 
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Qui creava iste additivos?"
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
@@ -6101,7 +6101,7 @@ msgstr ""
 
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Participa a nostre <a href=\"%(url)s\">foros</a>."
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
 msgstr ""
@@ -6118,7 +6118,7 @@ msgid "If you really need to contact someone from the Mozilla team, please see o
 msgstr ""
 
 msgid "Who works on this website?"
-msgstr ""
+msgstr "Qui labora sur iste sito web?"
 
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
 msgstr ""
@@ -6127,10 +6127,10 @@ msgid "Sections"
 msgstr "Sectiones"
 
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "Qualque astutias pro scriber un grande revision"
 
 msgid "Frequently Asked Questions about Reviews"
-msgstr ""
+msgstr "Demandas frequente re le revisiones"
 
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
@@ -7387,11 +7387,11 @@ msgstr ""
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
-msgstr ""
+msgstr "{0} :: Recerca"
 
 #. {0} is a search term, such as Firebug.
 msgid "Search Results for \"{0}\""
-msgstr ""
+msgstr "Resultatos de recerca pro \"{0}\""
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
@@ -7403,8 +7403,8 @@ msgstr ""
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> resultato concordante"
+msgstr[1] "<b>{0}</b> resultatos concordante"
 
 msgid "Filter Results"
 msgstr ""
