@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-09-01 16:13+0000\n"
+"PO-Revision-Date: 2018-09-01 16:14+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7713,7 +7713,7 @@ msgid "AMO is getting a new look. Would you like to see it?"
 msgstr ""
 
 msgid "Visit the new site"
-msgstr ""
+msgstr "Visita le nove sito"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr ""
@@ -7773,19 +7773,19 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr ""
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> Additivos"
 
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> Additivos"
 
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Additivos"
 
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"\" src=\"{0}\"> Additivos"
 
 msgid "My Account"
-msgstr ""
+msgstr "Mi conto"
 
 msgid "Welcome, {0}"
 msgstr "Benvenite, {0}"
