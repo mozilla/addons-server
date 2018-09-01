@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-09-01 13:32+0000\n"
+"PO-Revision-Date: 2018-09-01 13:35+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6153,16 +6153,16 @@ msgid "Did the add-on work as you expected it to?"
 msgstr ""
 
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "Que functionalitates te placeva o displaceva?"
 
 msgid "Was it useful?"
 msgstr "Esseva illo utile?"
 
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "Es illo facile a usar?"
 
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "Continuara tu a usar iste additivo?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
