@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-09-01 05:57+0000\n"
+"PO-Revision-Date: 2018-09-01 06:12+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7964,19 +7964,19 @@ msgid "There were errors in the changes you made. Please correct them and resubm
 msgstr ""
 
 msgid "User reported."
-msgstr ""
+msgstr "Usator denunciate."
 
 msgid "new"
-msgstr ""
+msgstr "nove"
 
 msgid "Ban"
 msgstr ""
 
 msgid "Delete picture"
-msgstr ""
+msgstr "Deler imagine"
 
 msgid "Delete User Account"
-msgstr ""
+msgstr "Deler conto de usator"
 
 #, python-format
 msgid ""
@@ -7995,25 +7995,25 @@ msgid "Your reviews and ratings will not be deleted, but they will no longer be 
 msgstr ""
 
 msgid "Confirm account deletion"
-msgstr ""
+msgstr "Confirma le deletion del conto"
 
 msgid "I understand this step cannot be undone."
-msgstr ""
+msgstr "Io comprende que iste grado non pote ser disfacite."
 
 msgid "Delete my user account now"
-msgstr ""
+msgstr "Deler subito mi conto de usator"
 
 msgid "Delete User Photo"
-msgstr ""
+msgstr "Deler photo de usator"
 
 msgid "Delete my user picture now"
-msgstr ""
+msgstr "Deler subito mi imagine"
 
 msgid "Please set your display name"
-msgstr ""
+msgstr "Per favor defini tu nomine a monstrar"
 
 msgid "Please set your display name or username to complete the registration process."
-msgstr ""
+msgstr "Per favor defini tu nomine a monstrar o tu nomine de usator pro completar le processo de registration."
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr ""
@@ -8047,13 +8047,13 @@ msgstr ""
 
 #, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr ""
+msgstr "HTML consentite: %(html)s. Le ligamines es prohibite."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr ""
 
 msgid "Display the collections I have created"
-msgstr ""
+msgstr "Monstrar le collection que io creava"
 
 msgid "Notifications"
 msgstr "Notificationes"
@@ -8205,20 +8205,20 @@ msgstr ""
 
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "alteres"
 
 #, python-format
 msgid "%s Version History"
 msgstr "Chronologia del versiones de %s"
 
 msgid "Version History with Changelogs"
-msgstr ""
+msgstr "Chronologia del versiones con lista del cambiamentos"
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} e plus recente"
 
 msgid "Permanent link to this version"
-msgstr ""
+msgstr "Ligamine permanente a iste version"
 
 #. {0} is a timestamp, such as September 28, 2011.
 msgid "Released {0}"
