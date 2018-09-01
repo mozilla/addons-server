@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-09-01 06:12+0000\n"
+"PO-Revision-Date: 2018-09-01 06:27+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7755,13 +7755,13 @@ msgid "Android Browser"
 msgstr ""
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "Navigator pro iOS"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Navigator pro Focus"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "Navigator pro scriptorio"
 
 msgid "Beta, Nightly, Developer Edition"
 msgstr ""
@@ -7788,11 +7788,11 @@ msgid "My Account"
 msgstr ""
 
 msgid "Welcome, {0}"
-msgstr ""
+msgstr "Benvenite, {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
+msgstr "<a href=\"%(reg)s\">Registra te</a> o <a href=\"%(login)s\">accede</a>"
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
@@ -7800,7 +7800,7 @@ msgstr ""
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "Benvenite in {0} Additivos."
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr ""
@@ -7816,25 +7816,25 @@ msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>
 msgstr ""
 
 msgid "Android Add-ons"
-msgstr ""
+msgstr "Additivos pro Android"
 
 msgid "Required fields"
-msgstr ""
+msgstr "Campos obligatori"
 
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Localisar pro: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "Linguas existente"
 
 msgid "New Locales"
-msgstr ""
+msgstr "Nove linguas"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
@@ -7848,7 +7848,7 @@ msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot 
 msgstr ""
 
 msgid "Delete Locale"
-msgstr ""
+msgstr "Deler le lingua"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
@@ -7866,31 +7866,31 @@ msgid "Ban selected users"
 msgstr ""
 
 msgid "Profile Photo"
-msgstr ""
+msgstr "Photo del profilo"
 
 msgid "Addons"
-msgstr ""
+msgstr "Additivos"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Valutationes"
 
 msgid "Activity Logs"
-msgstr ""
+msgstr "Registros del activitate"
 
 msgid "Email must be {email}."
-msgstr ""
+msgstr "Le email debe ser {email}."
 
 msgid "Display Name"
-msgstr ""
+msgstr "Nomine a monstrar"
 
 msgid "Location"
-msgstr ""
+msgstr "Position"
 
 msgid "Occupation"
-msgstr ""
+msgstr "Occupation"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "Tu pote cambiar tu adresse de email sur tu conto de Firefox."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr ""
@@ -7899,7 +7899,7 @@ msgid "To anonymize, enter a reason for the change but do not change any other f
 msgstr ""
 
 msgid "No user with that email."
-msgstr ""
+msgstr "Nulle usator con iste email."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
@@ -7907,13 +7907,13 @@ msgid "Firefox user {id}"
 msgstr "Usator de Firefox {id}"
 
 msgid "My Mobile Add-ons"
-msgstr ""
+msgstr "Mi additivos mobile"
 
 msgid "an add-on developer replies to my review"
 msgstr ""
 
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "nove additivos o functionalitates de Firefox es disponibile"
 
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr ""
@@ -7940,25 +7940,25 @@ msgid "Mozilla needs to contact me about my individual add-on"
 msgstr ""
 
 msgid "User Notifications"
-msgstr ""
+msgstr "Notificationes del usator"
 
 msgid "An email address is required."
-msgstr ""
+msgstr "Un adresse de email es obligatori."
 
 msgid "A user with that email address does not exist."
 msgstr ""
 
 msgid "Profile Deleted"
-msgstr ""
+msgstr "Profilo delite"
 
 msgid "Photo Deleted"
-msgstr ""
+msgstr "Photo delite"
 
 msgid "Profile Updated"
-msgstr ""
+msgstr "Profilo actualisate"
 
 msgid "Errors Found"
-msgstr ""
+msgstr "Errores trovate"
 
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr ""
@@ -8025,7 +8025,7 @@ msgid "Email Address"
 msgstr "Adresse de email"
 
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Gerer conto Firefox..."
 
 msgid "Profile"
 msgstr "Profilo"
@@ -8050,7 +8050,7 @@ msgid "Allowed HTML: %(html)s. Links are forbidden."
 msgstr "HTML consentite: %(html)s. Le ligamines es prohibite."
 
 msgid "Decide what collections should be shown in your profile."
-msgstr ""
+msgstr "Decide que collectiones debe ser monstrate in tu profilo."
 
 msgid "Display the collections I have created"
 msgstr "Monstrar le collection que io creava"
