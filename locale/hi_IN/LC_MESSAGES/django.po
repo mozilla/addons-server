@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-31 01:07+0000\n"
+"PO-Revision-Date: 2018-09-01 09:47+0000\n"
 "Last-Translator: Dhiraj Kumar Singh <Singhdhiraj255@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -2281,9 +2281,8 @@ msgstr "ऐड-ऑन समीक्षा संतुलन वापस क�
 msgid "Add-on Content Review"
 msgstr "ऐड-ऑन सामग्री समीक्षा"
 
-#, fuzzy
 msgid "Add-on Review (Highest Risk)"
-msgstr "ऐड-ऑन समीक्षा"
+msgstr "ऐड-ऑन समीक्षा (सर्वाधिक जोखिम)"
 
 #, fuzzy
 msgid "Add-on Review (High Risk)"
