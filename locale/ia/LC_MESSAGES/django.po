@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-09-01 15:53+0000\n"
+"PO-Revision-Date: 2018-09-01 16:13+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5503,11 +5503,11 @@ msgstr "Impedi re-directiones & traciamento {start_sub_heading}con {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Stoppa le re-directiones assi que tu pote acceder le sito que tu vole — plus velocemente."
 
 #. editorial content for the discovery pane.
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Revela le contrasignos scribite {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
@@ -6074,7 +6074,7 @@ msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the 
 msgstr ""
 
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Interessante. Como pote io collaborar?"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
 msgstr ""
@@ -6144,7 +6144,7 @@ msgid "Write like you are telling a friend about your experience with the add-on
 msgstr ""
 
 msgid "Keep reviews concise and easy to understand."
-msgstr ""
+msgstr "Scribe tu revisiones concise e facile a comprender."
 
 msgid "Give specific and helpful details. For example:"
 msgstr ""
@@ -6234,7 +6234,7 @@ msgid "What will happen next"
 msgstr "Que evenira pois"
 
 msgid "<strong>If you agree</strong> to participate:"
-msgstr ""
+msgstr "<strong>Si tu accepta</strong> de participar:"
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
 msgstr ""
@@ -6310,14 +6310,14 @@ msgid ""
 msgstr ""
 
 msgid "Brought to you by:"
-msgstr ""
+msgstr "Create pro te per:"
 
 #, python-format
 msgid "Reviews for %s"
 msgstr "Revisiones pro %s"
 
 msgid "Review History for this Addon"
-msgstr ""
+msgstr "Chronologia de revision per iste additivo"
 
 #. L10n: This describes the number of stars given out of 5
 #, python-format
@@ -6352,7 +6352,7 @@ msgid "You can't change the version of the add-on reviewed once the review has b
 msgstr ""
 
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Iste version del additivo non existe o non es public."
 
 msgid "You can't leave a review on your own add-on."
 msgstr ""
@@ -6762,10 +6762,10 @@ msgid "Lightweight Themes Review Log"
 msgstr ""
 
 msgid "Deleted Themes Log"
-msgstr ""
+msgstr "Registro del themas delite"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Moderation del valutationes del usatores"
 
 msgid "Ratings Awaiting Moderation ({0})"
 msgstr ""
@@ -6804,7 +6804,7 @@ msgid "Review lock limit reached"
 msgstr ""
 
 msgid "{addon} :: EULA"
-msgstr ""
+msgstr "{addon} :: EULA"
 
 msgid "{addon} :: Privacy Policy"
 msgstr "{addon} :: Politica de confidentialitate"
@@ -6818,14 +6818,14 @@ msgid "Your theme locks have successfully been released. Other reviewers may now
 msgstr ""
 
 msgid "{addon} :: Abuse Reports"
-msgstr ""
+msgstr "{addon} :: Reportos de abuso"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
-msgstr ""
+msgstr "Compatibile con"
 
 msgid "Visibility"
 msgstr "Visibilitate"
@@ -6907,7 +6907,7 @@ msgid "Log details"
 msgstr ""
 
 msgid "Review Author"
-msgstr ""
+msgstr "Autor del revision"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -6917,7 +6917,7 @@ msgid "Add-on Title"
 msgstr "Titulo del additivo"
 
 msgid "Review Text"
-msgstr ""
+msgstr "Testo del revision"
 
 msgid "Review was flagged prior to deletion."
 msgstr ""
@@ -7329,7 +7329,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Flagged"
-msgstr ""
+msgstr "Signalate"
 
 msgid "Updates"
 msgstr "Actualisationes"
@@ -7357,10 +7357,10 @@ msgstr "Cata {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 msgid "All Systems"
-msgstr ""
+msgstr "Tote le systemas"
 
 msgid "All Tags"
-msgstr ""
+msgstr "Tote le tags"
 
 #. {0} is the string the user was searching for
 msgid "Collection Search Results for {0}"
@@ -7456,7 +7456,7 @@ msgid "No uploaded file for that addon and version."
 msgstr ""
 
 msgid "Overview"
-msgstr ""
+msgstr "Panorama"
 
 msgid "by Source"
 msgstr "per fonte"
@@ -7557,16 +7557,16 @@ msgid "For last:"
 msgstr ""
 
 msgid "7 days"
-msgstr ""
+msgstr "7 dies"
 
 msgid "30 days"
-msgstr ""
+msgstr "30 dies"
 
 msgid "90 days"
-msgstr ""
+msgstr "90 dies"
 
 msgid "365 days"
-msgstr ""
+msgstr "365 dies"
 
 msgid "Custom..."
 msgstr "Personalisar..."
@@ -7578,7 +7578,7 @@ msgid "Loading the latest data&hellip;"
 msgstr ""
 
 msgid "No data available."
-msgstr ""
+msgstr "Nulle datos disponibile."
 
 msgid "This dashboard is currently <b>public</b>."
 msgstr ""
@@ -7701,7 +7701,7 @@ msgid "Application versions by Date"
 msgstr ""
 
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "Additivos de Mozilla"
 
 msgid "Find add-ons for other applications"
 msgstr ""
