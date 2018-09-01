@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-09-01 21:31+0000\n"
+"PO-Revision-Date: 2018-09-01 21:51+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4389,11 +4389,11 @@ msgstr "Kekanöx wachib'äl {start_sub_heading}rik'in {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Tab'ana' piskolin kikanoxik wachib'äl rik'in jalajöj taq kanob'äl."
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Kiq'atik eltzijonem & ruchajixik ichinanem {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
@@ -4401,7 +4401,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'atz'uku' chik taq ruwi' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
@@ -4409,7 +4409,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Taq'ata' rojqanik Facebook {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
@@ -4417,7 +4417,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Anin Kanoxïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
@@ -4473,7 +4473,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'aq'ata' eltzijol {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
