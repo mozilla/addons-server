@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-09-01 20:36+0000\n"
+"PO-Revision-Date: 2018-09-01 21:12+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4284,50 +4284,50 @@ msgid "Listed versions"
 msgstr "Cholajin ruwäch"
 
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Wakami pa AMO"
 
 msgid "Validation"
-msgstr ""
+msgstr "Jikib'anïk"
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "Tiyuj//Disable"
 
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Jun chik ruwäch re tz'aqat re'"
 
 msgid "Other versions"
-msgstr ""
+msgstr "Juley taq ruwäch"
 
 msgid "All versions"
-msgstr ""
+msgstr "Ronojel taq ruwäch"
 
 msgid "Upload a New Version"
-msgstr ""
+msgstr "Tijotob'äx jun K'ak'a' Ruwäch"
 
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "Tiyuj Ruwäch {version}"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Toq niyuj re ruwäch re', jumul xtiyuj el:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
 msgstr ""
 
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "¿At jikïl chi nawajo' nayüj el re ruwäch re'?"
 
 msgid "Delete Version"
-msgstr ""
+msgstr "Tiyuj Ruwäch"
 
 msgid "Disable Version"
-msgstr ""
+msgstr "Tichup Ruwäch"
 
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Tewäx Tz'aqat"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
@@ -4336,16 +4336,16 @@ msgid "The files awaiting review will be disabled and you will need to upload ne
 msgstr ""
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "¿La at jikïl chi nawajo' nawewaj ri atz'aqat?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
 msgstr ""
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "¿La at jikïl chi nawajo' naq'ät ri ruk'utuxik anik'oxik?"
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "Tz'aqat Wujinem :: Kochoch B'anonela'"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
