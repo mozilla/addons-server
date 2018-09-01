@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-31 23:00+0000\n"
+"PO-Revision-Date: 2018-09-01 20:31+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4220,7 +4220,7 @@ msgstr "Yakb'äl {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "Xtz'uk pa %(created)s chuqa' xjal rik'in %(status)s pa "
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
@@ -4248,31 +4248,31 @@ msgid "Validate now."
 msgstr "Tijikib'äx wakami."
 
 msgid "Request Review"
-msgstr ""
+msgstr "Tik'utüx Runik'oxik"
 
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "Tiq'at Ri Tik'utuüx Runuk'uxik"
 
 msgid "Loading Review History..."
-msgstr ""
+msgstr "Nisamajib'ëx Kinik'oxik Natab'äl..."
 
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "Xk'ulwachitäj jun k'ayewal toq yekol ri taq ruch'utitzijol nik'oxïk"
 
 msgid "Load older..."
-msgstr ""
+msgstr "Kesamajib'ëx e ojer..."
 
 msgid "Leave a reply"
-msgstr ""
+msgstr "Titzolïx tzij"
 
 msgid "Reply"
-msgstr ""
+msgstr "Titzolïx tzij"
 
 msgid "Listing visibility"
-msgstr ""
+msgstr "Kitz'etik cholb'äl"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr ""
+msgstr "{label_open} tz'etel:{label_close} Tz'etl chi ke konojel pa {site_url} chuqa' pa ri nilitäj toq k'o nikanöx chuqa' pa cholajin taq ruxaq."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
