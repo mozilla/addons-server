@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-31 20:58+0000\n"
+"PO-Revision-Date: 2018-09-01 05:57+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -8019,10 +8019,10 @@ msgid "Manage basic account information, such as your username and Firefox Accou
 msgstr ""
 
 msgid "Username"
-msgstr ""
+msgstr "Nomine del usator"
 
 msgid "Email Address"
-msgstr ""
+msgstr "Adresse de email"
 
 msgid "Manage Firefox Account..."
 msgstr ""
@@ -8037,10 +8037,10 @@ msgid "This URL will only be visible if you are a developer."
 msgstr ""
 
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "Elige photo&hellip;"
 
 msgid "Delete current photo"
-msgstr ""
+msgstr "Deler le photo actual"
 
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr ""
@@ -8056,7 +8056,7 @@ msgid "Display the collections I have created"
 msgstr ""
 
 msgid "Notifications"
-msgstr ""
+msgstr "Notificationes"
 
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
 msgstr ""
@@ -8209,7 +8209,7 @@ msgstr ""
 
 #, python-format
 msgid "%s Version History"
-msgstr ""
+msgstr "Chronologia del versiones de %s"
 
 msgid "Version History with Changelogs"
 msgstr ""
@@ -8222,24 +8222,24 @@ msgstr ""
 
 #. {0} is a timestamp, such as September 28, 2011.
 msgid "Released {0}"
-msgstr ""
+msgstr "Publicate le {0}"
 
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Codice fonte disponibile sub <a href=\"%(url)s\">%(name)s</a>"
 
 #. {0} is an add-on name.
 msgid "{0} Version History"
-msgstr ""
+msgstr "Chronologia del versiones de {0}"
 
 #. {0} is a number.
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> version"
+msgstr[1] "<b>{0}</b> versiones"
 
 msgid "Be careful with old versions!"
-msgstr ""
+msgstr "Attention al versiones vetule!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
