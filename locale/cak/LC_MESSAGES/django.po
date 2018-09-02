@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-09-02 23:31+0000\n"
+"PO-Revision-Date: 2018-09-02 23:40+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2316,21 +2316,17 @@ msgstr "Xchojmirisäx ri retch'owik Runik'oxik Tz'aqat"
 msgid "Add-on Content Review"
 msgstr "Runik'oxik Rupam Tz'aqat"
 
-#, fuzzy
 msgid "Add-on Review (Highest Risk)"
-msgstr "Runik'oxik Tz'aqat chi rij Rujuch'ik (Nïm Retal Ruk'ayewal)"
+msgstr "Runik'oxik Tz'aqat (Nïm Ruk'ayewal)"
 
-#, fuzzy
 msgid "Add-on Review (High Risk)"
-msgstr "Runik'oxik Tz'aqat chi rij Rujuch'ik (Nïm Ruk'ayewal)"
+msgstr "Runik'oxik Tz'aqat (Nïm Ruk'ayewal)"
 
-#, fuzzy
 msgid "Add-on Review (Medium Risk)"
-msgstr "Runik'oxik Tz'aqat chi rij Rujuch'ik (Loman Ruk'ayewal)"
+msgstr "Runik'oxik Tz'aqat(Loman Ruk'ayewal)"
 
-#, fuzzy
 msgid "Add-on Review (Low Risk)"
-msgstr "Runik'oxik Tz'aqat chi rij Rujuch'ik (Ko'öl Ruk'ayewal)"
+msgstr "Runik'oxik Tz'aqat (Ko'öl Ruk'ayewal)"
 
 msgid "Level 1"
 msgstr "Chojwi' 1"
@@ -2480,9 +2476,8 @@ msgstr "Ri ruwäch {version} k'o chik."
 msgid "Continue with existing upload instead?"
 msgstr "¿La k'a nasamajij ri rujotob'axik k'o?"
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "Man yatikïr ta ye'ajotob'a' ch'aqa' chik taq yakb'äl richin re ruwäch re'."
+msgstr "Man ajotob'an ta jun ruxe'el yakb'äl."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
@@ -3467,9 +3462,8 @@ msgstr "Tjotob'äx Yakb'äl"
 msgid "Go to My Submissions"
 msgstr "Kib'e pa Taq Nutaqoj"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "Xk'ex ri ruxe'el b'itz'ib'"
+msgstr "Tijotob'äx Ruxe'el B'itz'ib'"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
@@ -6770,9 +6764,8 @@ msgstr ""
 msgid "{addon} :: EULA"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} :: Privacy Policy"
-msgstr "Re tz'aqat re' k'o jun Runa'ojil Ichinanem"
+msgstr "{addon} :: Runa'ojil Ichinanem"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -7839,9 +7832,8 @@ msgstr ""
 msgid "Ratings"
 msgstr ""
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "Samaj"
+msgstr "Kitz'ib'axik Samaj"
 
 msgid "Email must be {email}."
 msgstr ""
@@ -7869,9 +7861,8 @@ msgstr ""
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-#, fuzzy
 msgid "Firefox user {id}"
-msgstr "Firefox richin Android"
+msgstr "Firefox okisanel {id}"
 
 msgid "My Mobile Add-ons"
 msgstr ""
@@ -7939,9 +7930,8 @@ msgstr ""
 msgid "Ban"
 msgstr ""
 
-#, fuzzy
 msgid "Delete picture"
-msgstr "Tiyuj re wachinel re'."
+msgstr "Tiyuj wachib'äl"
 
 msgid "Delete User Account"
 msgstr ""
