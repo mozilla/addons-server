@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-09-02 22:52+0000\n"
+"PO-Revision-Date: 2018-09-02 23:08+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1856,13 +1856,11 @@ msgstr "Xyuj ri etamab'äl xk'utüx"
 msgid "{addon} {version} admin add-on-review requested."
 msgstr "{addon} {version} xk'utüx runik'oxik nuk'samajel."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "Xk'utüx Nik'onïk"
+msgstr "Xk'utüx runuk'uxik tz'aqat ruma ri nuk'samajel"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} xk'utüx runik'oxik."
+msgstr "{addon} {version} xk'utüx runik'oxik retamab'al nuk'samajel."
 
 #, fuzzy
 msgid "Admin content-review requested"
