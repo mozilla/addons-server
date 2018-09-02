@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-09-02 12:34+0000\n"
+"PO-Revision-Date: 2018-09-02 13:04+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -5011,7 +5011,7 @@ msgstr "Upravljajte gesla {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Varno shranite gesla in dostopajte do njih z več naprav."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
