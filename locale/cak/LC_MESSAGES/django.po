@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-09-01 22:05+0000\n"
+"PO-Revision-Date: 2018-09-02 22:52+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -195,9 +195,8 @@ msgstr "Titz'et runa'ojil ichinanem"
 msgid "View End-User License Agreement"
 msgstr "Titz'et ri Rutununa'oj Ya'öl Q'ij richin K'isib'äl Okisanel"
 
-#, fuzzy
 msgid "This add-on has not been reviewed by Mozilla."
-msgstr "K'a man tzijon ta rij re tz'aqat re'."
+msgstr "K'a man nik'on ta re tz'aqat re' ruma Mozilla."
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Re tz'aqat re' xya' retal achi'el tojtob'enel kuma ri b'anonela'."
@@ -709,13 +708,11 @@ msgstr "Yechup jumej jujun taq b'anikil ruma yojsamäj richin niqachojmirisaj ri
 msgid "Not allowed"
 msgstr "Man ya'on ta q'ij chi re"
 
-#, fuzzy
 msgid "Oops! Not allowed."
-msgstr "Man ya'on ta q'ij chi re"
+msgstr "¡Uy! Man ya'on ta q'ij."
 
-#, fuzzy
 msgid "You tried to do something that you weren't allowed to."
-msgstr "<h1>¡Uuy! Man ya'on ta q'ij chi re.</h1> <p>K'o xatojtob'ej xab'än xa xe chi man ya'on ta q'ij chawe.</p>"
+msgstr "K'o xawajo' xab'än xa xe chi man ya'on ta q'ij chawe."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -1771,13 +1768,11 @@ msgstr "{rating} richin {addon} xk'ex."
 msgid "{addon} reviewed."
 msgstr "{addon} xnik'öx."
 
-#, fuzzy
 msgid "User {user} banned."
-msgstr "Okisaxel {user} xmeb'ina'äx."
+msgstr "Okisaxel {user} xelesäx."
 
-#, fuzzy
 msgid "User {user} picture deleted."
-msgstr "Okisanel {user} xq'at."
+msgstr "Okisanel {user} xyuj ruwachib'al."
 
 msgid "User {0.name} added to {group}."
 msgstr "Okisanel {0.name} xtz'aqatisäx pa {group}."
@@ -1858,9 +1853,8 @@ msgstr "Etamab'äl xk'utüx xsol ruma ri b'anonel pa {addon} {version}."
 msgid "Information request removed"
 msgstr "Xyuj ri etamab'äl xk'utüx"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} xk'utüx runik'oxik."
+msgstr "{addon} {version} xk'utüx runik'oxik nuk'samajel."
 
 #, fuzzy
 msgid "Admin add-on-review requested"
