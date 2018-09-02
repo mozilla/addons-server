@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-09-01 22:47+0000\n"
+"PO-Revision-Date: 2018-09-02 08:53+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5691,11 +5691,11 @@ msgstr "Coperi tu tracias {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
-msgstr ""
+msgstr "Recerca con plus securitate con le bloco del traciatores, un cryptographia plus intelligente, le recerca private, e altere cosas essential."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "File viewer es blocate, poterea esser in progresso le extraction pro %s. Per favor proba de novo post circa 5 minutas."
 
 #, python-format
 msgid "There was an error accessing file %s."
@@ -5796,10 +5796,10 @@ msgstr "Error inexpectate."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "<em:typo> in tu install.rdf (%s) non concorda con le typo de tu additivo sur AMO (%s)"
 
 msgid "Back to review"
-msgstr "Retro al revision"
+msgstr "Tornar al revision"
 
 msgid "Back to add-on"
 msgstr "Retro al additivo"
