@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-09-02 23:08+0000\n"
+"PO-Revision-Date: 2018-09-02 23:31+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1862,21 +1862,17 @@ msgstr "Xk'utüx runuk'uxik tz'aqat ruma ri nuk'samajel"
 msgid "{addon} {version} admin content-review requested."
 msgstr "{addon} {version} xk'utüx runik'oxik retamab'al nuk'samajel."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "Xk'utüx Nik'onïk"
+msgstr "Xk'utüx runik'oxik retamab'al nuk'samajel"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "{addon} {version} xk'utüx runik'oxik."
+msgstr "{addon} {version} xk'utüx runik'oxik ruwachinel nuk'samajel."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "Xk'utüx nik'oxïk"
+msgstr "Xk'utüx runik'oxik ruwachinel nuk'samajel"
 
-#, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "{addon} xb'e pa jun nab'ey ruwäch."
+msgstr "{addon} xb'e pa jun aninäq wachinel."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2245,9 +2241,8 @@ msgstr "Mesilon Wachinel"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "No Reputation"
-msgstr "Ejqalem"
+msgstr "Majun Rejqalem"
 
 msgid "Good (1)"
 msgstr "Ütz (1)"
@@ -2261,16 +2256,14 @@ msgstr "Jwi' (3)"
 msgid "Manual Reviewer Points"
 msgstr "Ketal Ajq'ab'aj Nik'onela'"
 
-#, fuzzy
 msgid "New Legacy Add-on Review"
-msgstr "K'ak'a' Rutzijoxik Tz'aqat"
+msgstr "K'ak'a' Rutzijoxik Ichinan Tz'aqat"
 
 msgid "Preliminary Add-on Review"
 msgstr "Nab'ey Rutzijoxik Tz'aqat"
 
-#, fuzzy
 msgid "Updated Legacy Add-on Review"
-msgstr "Xk'ex Rutzijoxik Tz'aqat"
+msgstr "Xk'ex Runik'oxik Ichinan Tz'aqat"
 
 msgid "New Dictionary Review"
 msgstr "K'ak'a' Rutzijoxik Sotzij"
