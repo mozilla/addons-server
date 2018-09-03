@@ -107,7 +107,7 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'discovery.change_discoveryitem': DISCOVERY_EDIT,
     'discovery.delete_discoveryitem': DISCOVERY_EDIT,
 
-    'files.change_file': ADMIN_TOOLS,
+    'files.change_file': ADMIN_ADVANCED,
 
     'reviewers.delete_reviewerscore': ADMIN_ADVANCED,
 
