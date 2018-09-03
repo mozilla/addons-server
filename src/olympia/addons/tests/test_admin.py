@@ -1,3 +1,5 @@
+from pyquery import PyQuery as pq
+
 from django.conf import settings
 from django.contrib import admin
 
@@ -68,10 +70,29 @@ class TestReplacementAddonForm(TestCase):
 
 class TestAddonAdmin(TestCase):
     def setUp(self):
+        self.admin_home_url = reverse('admin:index')
         self.list_url = reverse('admin:addons_addon_changelist')
 
     def test_can_see_addon_module_in_admin_with_addons_edit(self):
-        pass
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.admin_home_url, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        modules = [x.text for x in doc('a.section')]
+        assert modules == ['Addons']
+
+    def test_can_not_see_addon_module_in_admin_without_permissions(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+        response = self.client.get(self.admin_home_url, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        modules = [x.text for x in doc('a.section')]
+        assert modules == []
 
     def test_can_list_with_addons_edit_permission(self):
         addon = addon_factory()
