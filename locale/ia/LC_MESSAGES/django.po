@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-09-02 08:54+0000\n"
+"PO-Revision-Date: 2018-09-03 10:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5806,29 +5806,29 @@ msgstr "Tornar al additivo"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
+msgstr "Version: %(version)s &bull; Dimension: %(size)s &bull; hash SHA256: %(sha256)s &bull; Mimetype: %(mimetype)s"
 
 msgid "File Compare :: Reviewer tools"
-msgstr ""
+msgstr "Comparation de file :: Utensiles de revision"
 
 msgid "File Viewer :: Reviewer tools"
-msgstr ""
+msgstr "Visor de file :: Utensiles de revision"
 
 msgid "Validation failed:"
 msgstr "Validation faillite:"
 
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "Impossibile evidentiar le syntaxe de iste typo de file"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr ""
 
 msgid "Add-on file being processed, please wait."
-msgstr ""
+msgstr "Analyse del additivo in corso, attender per favor."
 
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Recuperation del resultatos de validation..."
 
 msgid "Files:"
 msgstr "Files:"
@@ -5846,10 +5846,10 @@ msgid "Tab stops:"
 msgstr "Punctos de tabulation:"
 
 msgid "Up file"
-msgstr ""
+msgstr "Cargar le file"
 
 msgid "Down file"
-msgstr ""
+msgstr "Discargar le file"
 
 msgid "Previous diff"
 msgstr "Differentia previe"
@@ -5873,13 +5873,13 @@ msgid "Wrap or unwrap text"
 msgstr ""
 
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "Nulle file in le archivo cargate."
 
 msgid "Fetching file."
 msgstr "Recuperante file."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "Le version del API, {0:.1f}, que tu usa non es valide. Per favor promove al currente version de API {1:.1f}."
 
 msgid "Not implemented yet."
 msgstr "Non ancora implementate."
