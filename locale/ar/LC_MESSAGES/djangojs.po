@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
 "PO-Revision-Date: 2018-08-18 18:51+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
@@ -835,6 +835,9 @@ msgid "Average Reviews"
 msgstr ""
 
 msgid "Number of Reviews"
+msgstr ""
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
 
 msgid "Requested Info"

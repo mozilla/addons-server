@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
 "PO-Revision-Date: 2018-08-20 17:22+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2511,6 +2511,9 @@ msgstr "Taggayint ur zmirent ara ad beddlent ticki azegrir-ik d itri."
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "Izegrar i Thunderbird akked SeaMonkey llan tura, daɣen ttwaseggmen deg izegrar di  addons.thunderbird.net. Tzemreḍ ad tesqedceḍ yiwen umiḍan i uleqqem n yizegrar-ik deg usmel amaynut."
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Si lqem 53 d asawen n Firefox, izegrar imaynuten n usmel-agi ad ilinkan WebExtensions. "
 
@@ -3581,8 +3584,12 @@ msgstr "isem n usentel"
 msgid "Select a header image for your theme"
 msgstr "Fren tugna n uqeṛṛu i usentel-ik."
 
-msgid "Image height should be 200 pixels"
+#, fuzzy
+msgid "Recommended height: 200 pixels"
 msgstr "Awrir n tugna yessef ad yili 200 n ipiksilen"
+
+msgid "6.9MB max"
+msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG neɣ GIF (ur ttḥerriken ara)"
@@ -5919,6 +5926,9 @@ msgstr ""
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Tuzna n isental s talɣa n WebExtension ur yettusefrak ara akka tura."
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr "Ur tezmireḍ ara ad tazneḍ anaw-agi n uzegrir"
 
@@ -6171,6 +6181,50 @@ msgstr "Rnu anekcum uzwir ar tmahilin tirmitantin n iminig."
 
 msgid "Get Started"
 msgstr "Bdu"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "Addad n usmel"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "Anaw n uneqqis"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "Azen-d abug"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Ur yettwasezmel ara"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "Lqem yettwazmel"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "Wali asmel amaynut"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "Azen afaylu amaynut"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "Azen afaylu amaynut"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "Ɣef izegrar n Mozilla"

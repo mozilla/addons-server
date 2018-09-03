@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -2652,6 +2652,9 @@ msgstr ""
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3734,7 +3737,10 @@ msgstr "ainm an téama"
 msgid "Select a header image for your theme"
 msgstr ""
 
-msgid "Image height should be 200 pixels"
+msgid "Recommended height: 200 pixels"
+msgstr ""
+
+msgid "6.9MB max"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
@@ -5953,6 +5959,9 @@ msgstr ""
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
@@ -6209,6 +6218,50 @@ msgstr ""
 # link title for http://en-US.www.mozilla.com/en-US/firefox/central/
 msgid "Get Started"
 msgstr "Tús Maith"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "Déan gearán faoi úsáideoir"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "Cineál Tuairisce"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "Déan Tuairisc ar Dhrochúsáid"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Gan rátáil fós"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "Síníodh an Leagan"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "Suíomh Soghluaiste"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "Seol Comhad Nua Chugainn"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "Seol Comhad Nua Chugainn"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr ""

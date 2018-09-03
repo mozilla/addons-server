@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
 "PO-Revision-Date: 2018-08-06 03:24+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -796,6 +796,9 @@ msgstr "Average Reviews"
 
 msgid "Number of Reviews"
 msgstr "Number of Reviews"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr ""
 
 msgid "Requested Info"
 msgstr "Requested Info"
