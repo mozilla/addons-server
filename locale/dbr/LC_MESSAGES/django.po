@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2506,6 +2506,9 @@ msgstr ".pǝɹnʇɐǝɟ sı uo-ppɐ ɹnoʎ ǝʅıɥʍ pǝƃuɐɥɔ ǝq ʇouuɐɔ
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ".ǝʇıs ʍǝu ǝɥʇ uo suo-ppɐ ɹnoʎ ǝʇɐpdn oʇ ʇunoɔɔɐ ǝɯɐs ǝɥʇ ǝsn uɐɔ no⅄ .ʇǝu.pɹıqɹǝpunɥʇ.suoppɐ uo pǝuıɐʇuıɐɯ puɐ pǝʇsıʅ ʍou ǝɹɐ ʎǝʞuoWɐǝS puɐ pɹıqɹǝpunɥ⊥ ɹoɟ suo-pp∀"
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ".xoɟǝɹıℲ uı pǝʇɹoddns ɹǝƃuoʅ ou ǝɹɐ suoısuǝʇxǝ ʎɔɐƃǝ⅂"
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ".suoısuǝʇxƎqǝＭ ǝq ʎʅuo uɐɔ ǝʇıs sıɥʇ uo suo-ppɐ ʍǝu ´35 xoɟǝɹıℲ ɥʇıʍ ƃuıʇɹɐʇS"
 
@@ -3575,8 +3578,11 @@ msgstr "ǝɯɐu ǝɯǝɥ⊥"
 msgid "Select a header image for your theme"
 msgstr "ǝɯǝɥʇ ɹnoʎ ɹoɟ ǝƃɐɯı ɹǝpɐǝɥ ɐ ʇɔǝʅǝS"
 
-msgid "Image height should be 200 pixels"
-msgstr "sʅǝxıd 002 ǝq pʅnoɥs ʇɥƃıǝɥ ǝƃɐɯI"
+msgid "Recommended height: 200 pixels"
+msgstr "sʅǝxıd 002 :ʇɥƃıǝɥ pǝpuǝɯɯoɔǝᴚ"
+
+msgid "6.9MB max"
+msgstr "xɐɯ ԐW9.6"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "(pǝʇɐɯıuɐ ʇou) ℲI⅁ ɹo ⅁ɅS ´⅁NԀ∀ ´⅁Ԁſ ´⅁NԀ"
@@ -5756,6 +5762,9 @@ msgstr "._-.⁎+ :sɹǝʇɔɐɹɐɥɔ uoıʇɐnʇɔund ǝsǝɥʇ puɐ ´sɹǝqɯ
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ".pǝʇɹoddns ʇou ʎʅʇuǝɹɹnɔ ǝɹɐ spɐoʅdn ǝɯǝɥʇ uoısuǝʇxƎqǝＭ"
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ".{0} sı sǝɯǝɥʇ uoısuǝʇxƎqǝＭ ɹoɟ ǝzıs ɯnɯıxɐW"
+
 msgid "You cannot submit this type of add-on"
 msgstr "uo-ppɐ ɟo ǝdʎʇ sıɥʇ ʇıɯqns ʇouuɐɔ no⅄"
 
@@ -6008,6 +6017,42 @@ msgstr ".sǝɹnʇɐǝɟ ɹǝsʍoɹq ʅɐʇuǝɯıɹǝdxǝ oʇ ssǝɔɔɐ ʎʅɹ�
 
 msgid "Get Started"
 msgstr "pǝʇɹɐʇS ʇǝ⅁"
+
+msgid "Reported Status"
+msgstr "snʇɐʇS pǝʇɹodǝᴚ"
+
+msgid "Reported Spam"
+msgstr "ɯɐdS pǝʇɹodǝᴚ"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Reported Ham"
+msgstr "ɯɐH pǝʇɹodǝᴚ"
+
+msgid "Not Reported"
+msgstr "pǝʇɹodǝᴚ ʇoN"
+
+msgid "Content Submitted"
+msgstr "pǝʇʇıɯqnS ʇuǝʇuoↃ"
+
+msgid "View Rating on site"
+msgstr "ǝʇıs uo ƃuıʇɐᴚ ʍǝıɅ"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Submit Ham to Akismet"
+msgstr "ʇǝɯsıʞ∀ oʇ ɯɐH ʇıɯqnS"
+
+msgid "Submit Spam to Akismet"
+msgstr "ʇǝɯsıʞ∀ oʇ ɯɐdS ʇıɯqnS"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr "ɯɐdS sɐ pǝʇʇıɯqns sʇɹodǝɹ ɯɐH %s"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr "ɯɐH sɐ pǝʇʇıɯqns sʇɹodǝɹ ɯɐdS %s"
 
 msgid "About Mozilla Add-ons"
 msgstr "suo-pp∀ ɐʅʅızoW ʇnoq∀"

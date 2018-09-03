@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 14:40+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"PO-Revision-Date: 2018-09-03 12:39+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -2481,6 +2481,9 @@ msgstr "您的附加元件成為精選元件時，無法更改分類。"
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "現在起，Thunderbird 與 SeaMonkey 的附加元件將上架於 addons.thunderbird.net。您可以在該網站上使用相同帳號登入更新您的附加元件。"
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr "Firefox 已不再支援傳統擴充套件。"
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "自 Firefox 53 起，新上架至此網站的附加元件僅能為 WebExtension。"
 
@@ -3523,8 +3526,11 @@ msgstr "佈景主題名稱"
 msgid "Select a header image for your theme"
 msgstr "為您的佈景主題選擇一個頂部標題圖案"
 
-msgid "Image height should be 200 pixels"
-msgstr "圖片高度應為 200px"
+msgid "Recommended height: 200 pixels"
+msgstr "建議高度: 200px"
+
+msgid "6.9MB max"
+msgstr "最大 6.9MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG、JPG、APNG、SVG、或 GIF（不接受動畫）"
@@ -5752,6 +5758,9 @@ msgstr "版本號碼只能含有英文字母、數字，以及這些標點符號
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "目前暫時不支援上傳 WebExtension 佈景主題。"
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr "您無法送出此類型的附加元件。"
 
@@ -6007,6 +6016,42 @@ msgstr "解開實驗中的瀏覽功能，搶先試用。"
 
 msgid "Get Started"
 msgstr "開始使用"
+
+msgid "Reported Status"
+msgstr "已回報狀態"
+
+msgid "Reported Spam"
+msgstr "已回報為垃圾留言"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Reported Ham"
+msgstr "已回報為正常留言"
+
+msgid "Not Reported"
+msgstr "未經回報"
+
+msgid "Content Submitted"
+msgstr "送出的內容"
+
+msgid "View Rating on site"
+msgstr "到網站檢視評分"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Submit Ham to Akismet"
+msgstr "到 Akismet 回報為正常留言"
+
+msgid "Submit Spam to Akismet"
+msgstr "到 Akismet 回報為垃圾留言"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr "已將 %s 非垃圾報告送出為垃圾留言"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr "已將 %s 垃圾報告送出為非垃圾留言"
 
 msgid "About Mozilla Add-ons"
 msgstr "關於 Mozilla 附加元件站"
@@ -7871,9 +7916,8 @@ msgstr "無使用者使用此信箱。"
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-#, fuzzy
 msgid "Firefox user {id}"
-msgstr "Firefox for Android"
+msgstr "Firefox 使用者 {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "我的 Mobile 附加元件"

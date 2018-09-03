@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-29 05:34+0000\n"
-"Last-Translator: jimidar <jimidar@gmail.com>\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"PO-Revision-Date: 2018-09-03 14:27+0000\n"
+"Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -88,10 +88,9 @@ msgstr "ਡਾਓਨਲੋਡ"
 msgid "Featured"
 msgstr "ਪੇਸ਼ ਕੀਤਾ"
 
-#, fuzzy
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr "ਪੁਨਰ ਵਿਚਾਰ ਨਹੀਂ"
+msgstr ""
 
 msgctxt "install_button"
 msgid "Experimental"
@@ -271,7 +270,7 @@ msgid "Requires Restart"
 msgstr "ਮੁੜ ਤੋਂ ਚਾਲੂ ਕਰਨ ਦੀ ਲੋੜ ਹੈ"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
+msgstr "ਇਹ ਐਡ-ਆਨ ਨਵੀਂ ਤਕਨੀਕ ਨਾਲ ਬਣੀ ਹੈ ਜੋ Firefox 57 ਅਤੇ ਇਸ ਤੋਂ ਬਾਅਦ ਦੇ ਅਨੁਕੂਲ ਹੈ।"
 
 msgid "Compatible with Firefox 57+"
 msgstr "ਫਾਇਰਫਾਕਸ 57+ ਨਾਲ ਅਨੁਕੂਲ"
@@ -1328,6 +1327,8 @@ msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
 msgstr ""
+"ਡਿਕਸ਼ਨਰੀ ਐਡ-ਆਨ ਨੂੰ ਇੰਸਟਾਲ ਕਰਨ ਨਾਲ ਤੁਹਾਡੇ %(app_name)s ਸ਼ਬਦ-ਜੋੜਕ ਲਈ ਨਵੀਂ ਭਾਸ਼ਾ ਚੋਣ ਜੋੜ ਦਿੱਤੀ ਜਾਵੇਗੀ, ਜੋ ਕਿ ਵੈਬ ਫਾਰਮ ਭਰਨ ਵੇਲੇ ਤੁਹਾਡੀ ਸ਼ਬਦ-ਜੋੜਾਂ ਦੀ ਜਾਂਚ ਕਰਦੀ ਹੈ। ਭਾਸ਼ਾ ਪੈਕ ਐਡ-ਆਨ ਪੂਰੀ ਐਪਲੀਕੇਸ਼ਨ ਦੀ ਭਾਸ਼ਾ "
+"ਬਦਲਦੀ ਹੈ।\n"
 
 msgid "Available in your locale"
 msgstr "ਤੁਹਾਡੀ ਬੋਲੀ ਵਿੱਚ ਮੁਹੱਈਆ"
@@ -1384,7 +1385,7 @@ msgstr ""
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)s ਆਪਣਾ ਖੁਦ ਦਾ %(amo_mdn_link_close)s ਖੋਜ ਸੰਦ ਬਣਾਓ"
 
 msgid "Most Popular Extensions"
 msgstr "ਸੱਭ ਤੋਂ ਮਕਬੂਲ ਵਾਧਰੇ"
@@ -2086,7 +2087,7 @@ msgid "Film and TV"
 msgstr "ਫਿਲਮ ਅਤੇ ਟੀਵੀ"
 
 msgid "Foxkeh"
-msgstr ""
+msgstr "ਫੌਕਸਕੇਹ"
 
 msgid "Holiday"
 msgstr "ਛੁੱਟੀ"
@@ -2146,7 +2147,7 @@ msgid "Experimental"
 msgstr "ਪ੍ਰਯੋਗੀ"
 
 msgid "Feeds, News, & Blogging"
-msgstr ""
+msgstr "ਫੀਡ, ਖ਼ਬਰਾਂ ਅਤੇ ਬਲੌਗ"
 
 msgid "Performance"
 msgstr "ਕਾਰਗੁਜ਼ਾਰੀ"
@@ -2195,10 +2196,10 @@ msgid "Privacy and Security"
 msgstr "ਪਰਦੇਦਾਰੀ ਅਤੇ ਸੁਰੱਖਿਆ"
 
 msgid "Downloading and File Management"
-msgstr ""
+msgstr "ਡਾਊਨਲੋਡ ਕਰਨਾ ਅਤੇ ਫ਼ਾਈਲ ਇੰਤਜ਼ਾਮ"
 
 msgid "Interface Customizations"
-msgstr ""
+msgstr "ਇੰਟਰਫੇਸ ਕਸਟਮਾਈਜ਼ੇਸ਼ਨ"
 
 msgid "Language Support and Translation"
 msgstr "ਬੋਲੀ ਸਮਰਥਨ ਅਤੇ ਲਿਪੀਅੰਤਰ"
@@ -2433,7 +2434,7 @@ msgid "Header image alignment problem"
 msgstr "ਹੈਡਰ ਈਮੇਜ ਅਲਾਈਨਮੈੰਟ ਸਮੱਸਿਆ"
 
 msgid "Core"
-msgstr ""
+msgstr "ਕੋਰ"
 
 #, python-format
 msgid "Recent Changes for %s"
@@ -2452,7 +2453,7 @@ msgid "An author can only be listed once."
 msgstr "ਇੱਕ ਲੇਖਕ ਕੇਵਲ ਇੱਕ ਵਾਰ ਸੂਚੀਬੱਧ ਹੋ ਸਕਦਾ।"
 
 msgid "Slug incorrect."
-msgstr ""
+msgstr "ਸਲਗ ਗਲਤ ਹੈ।"
 
 msgid "Details"
 msgstr "ਵੇਰਵੇ"
@@ -2546,6 +2547,9 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr "ਵਰਗ ਬਦਲੇ ਨਹੀਂਂ ਜਾ ਸਕਦੇ ਜਦ ਕਿ ਤੁਹਾਡਾ ਐਡਓਨ ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਲਈ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਹੈ।"
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
+msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
@@ -3669,7 +3673,10 @@ msgstr "ਥੀਮ ਨਾਂ"
 msgid "Select a header image for your theme"
 msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਇੱਕ ਸਿਰਲੇਖ ਤਸਵੀਰ ਚੁਣੋ।"
 
-msgid "Image height should be 200 pixels"
+msgid "Recommended height: 200 pixels"
+msgstr ""
+
+msgid "6.9MB max"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
@@ -5227,7 +5234,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
-msgstr ""
+msgstr "ਇਸ਼ਤਿਹਾਰ ਹਟਾਓ ਅਤੇ VK ਤੋਂ ਆਡੀਓ ਡਾਊਨਲੋਡ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5651,7 +5658,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "ਪਾਸਵਰਡ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੂਪ ਵਿੱਚ ਸਟੋਰ ਕਰੋ ਅਤੇ ਜਾਣੀਆਂ ਪਛਾਣੀਆਂ ਵੈਬਸਾਈਟਾਂ ਤੇ ਆਪਣੇ ਆਪ ਸਾਈਨ ਇਨ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
@@ -5897,6 +5904,9 @@ msgstr "ਵਰਜਨ ਨੰਬਰਾਂ ਵਿੱਚ ਕੇਵਲ ਅੱਖਰ,�
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
@@ -5908,7 +5918,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "ਅਚਾਨਕ ਗਲਤੀ।"
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -6076,7 +6086,7 @@ msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about any
 msgstr "ਕੰਮ, ਮਜ਼ੇ, ਪਰਦੇਦਾਰੀ, ਉਤਪਾਦਨ&hellip ਲਈ ਵਧੀਆ ਐਡ-ਆਨ; ਕਿਸੇ ਵੀ ਚੀਜ਼ ਬਾਰੇ!"
 
 msgid "Games!"
-msgstr ""
+msgstr "ਖੇਡਾਂ!"
 
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
 msgstr ""
@@ -6153,6 +6163,50 @@ msgstr ""
 #, fuzzy
 msgid "Get Started"
 msgstr "ਸ਼ੁਰੂ ਕਰ ਰਿਹਾ"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "ਉਪਭੋਗੀ ਦੀ ਸੂਚਨਾ ਦਿਓ"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "ਸੂਚਨਾ ਕਿਸਮ"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾ"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "ਅਜੇ ਤੱਕ ਦਰਜਾਬੰਦੀ ਨਹੀਂ ਕੀਤੀ"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "ਵਰਜਨ ਨੋਟ"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "ਮੋਬਾਈਲ ਸਾਈਟ ਵੇਖੋ"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਭੇਜੋ"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਭੇਜੋ"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "ਮੌਜੀਲਾ ਐਡ-ਆਨਾਂ ਬਾਰੇ"
@@ -6741,7 +6795,7 @@ msgid "Sources provided"
 msgstr "ਸੋਰਸ ਮੁਹੱਇਆ ਕਰਵਾਏ"
 
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 #, fuzzy
 msgid "Is locked by a reviewer."
@@ -7104,7 +7158,7 @@ msgstr "ਸਮੀਖਿਆ ਇਤਿਹਾਸ"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "ਐਡ-ਆਨ ਸਿਰਲੇਖ"
@@ -7291,7 +7345,7 @@ msgid "Force-enable add-on"
 msgstr "ਮੋਬਾਈਲ ਐਡ-ਆਨ"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਓ"
 
 #, fuzzy
 msgid "Enable Auto-Approval"
@@ -7948,7 +8002,7 @@ msgid "or <a href=\"%(login)s\">log in to your current account</a>"
 msgstr "ਜਾਂ <a href=\"%(login)s\">ਆਪਣੇ ਮੌਜੂਦਾ ਖਾਤੇ ਤੇ ਲਾਗ ਇਨ ਕਰੋ </a>"
 
 msgid "Footer logo"
-msgstr ""
+msgstr "ਫੁਟਰ ਲੋਗੋ"
 
 msgid "Choose a category"
 msgstr "ਇੱਕ ਸੰਗ੍ਰਹਿ ਚੁਣੋ"
@@ -8098,7 +8152,7 @@ msgid "Profile Photo"
 msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੋਟੋ"
 
 msgid "Addons"
-msgstr ""
+msgstr "ਐਡਆਨ"
 
 msgid "Ratings"
 msgstr "ਰੇਟਿੰਗਾਂ"
@@ -8249,7 +8303,7 @@ msgid "Please set your display name"
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਵਿਖਾਇਆ ਜਾਣ ਵਾਲਾ ਨਾਮ ਪੱਕਾ ਕਰੋ"
 
 msgid "Please set your display name or username to complete the registration process."
-msgstr ""
+msgstr "ਰਜਿਸਟਰੇਸ਼ਨ ਕਾਰਵਾਈ ਨੂੰ ਪੂਰਾ ਕਰਨ ਲਈ ਆਪਣਾ ਨਾਂ ਜਾਂ ਵਰਤੋਂਕਾਰ-ਨਾਂ ਨਿਯਤ ਕਰੋ।"
 
 #, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
@@ -8317,7 +8371,7 @@ msgid "all"
 msgstr "ਸਾਰੇ"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
+msgstr "ਲਾਗਇਨ ਵਾਸਤੇ Mozilla ਐਡ-ਆਨ Firefox ਖਾਤੇ ਵਿੱਚ ਤਬਦੀਲ ਹੋ ਗਿਆ ਹੈ। ਸਧਾਰਨ ਲਾਗਇਨ ਕਾਰਵਾਈ ਪੂਰੀ ਕਰਨ ਲਈ ਜਾਰੀ ਰੱਖੋ।"
 
 msgid "User Login"
 msgstr "ਉਪਭੋਗੀ ਲਾਗਇਨ"

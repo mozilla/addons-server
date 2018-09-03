@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2017-08-10 19:22+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"PO-Revision-Date: 2018-09-03 13:12+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -133,8 +133,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Kompilowane binarne dataje kaž tež skrótšene abo skomolene skripty (nimo znatych bibliotekow) dyrbja so separatnje za přepruwowanje zapodać. Wužiwajće na kóždy pad polo za nahrawanje žórłoweho "
-"koda, zo njeby so waše zapodaće wotpokazało."
+"Kompilowane binarne dataje kaž tež skrótšene abo skomolene skripty (nimo znatych bibliotekow) dyrbja so separatnje za přepruwowanje zapodać. Wužiwajće na kóždy pad polo za nahrawanje žórłoweho koda,"
+" zo njeby so waše zapodaće wotpokazało."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Přepruwowanski proces je slědowace problemy namakał, kotrež móhli k wotpokazanjam wjesć:"
@@ -816,6 +816,9 @@ msgstr "Přerězne pohódnoćenja"
 
 msgid "Number of Reviews"
 msgstr "Ličba pohódnoćenjow"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr "Maksimalna nahraćowa wulkosć je {0} - wubjerće mjeńši pozadkowy wobraz."
 
 msgid "Requested Info"
 msgstr "Informacije požadane"

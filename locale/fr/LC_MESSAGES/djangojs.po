@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
 "PO-Revision-Date: 2018-02-19 22:22+0000\n"
 "Last-Translator: mail <mail@ad5001.eu>\n"
 "Language-Team: français <>\n"
@@ -803,6 +803,9 @@ msgstr "Critiques moyennes"
 
 msgid "Number of Reviews"
 msgstr "Nombre de critiques"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr ""
 
 msgid "Requested Info"
 msgstr "Infos demandées"

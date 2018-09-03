@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-28 13:38+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"PO-Revision-Date: 2018-09-03 13:25+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2553,6 +2553,9 @@ msgstr "Kategorije njedadźa so změnić, mjeztym so waš přidatk předstaja."
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "Přidatki za Thunderbird a SeaMonkey so nětko na addons.thunderbird.net nalistuja a wothladuja. Móžeće samsne konto wužiwać, zo byšće swoje přidatki na nowym sydle aktualizował."
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr "Zestarjene rozšěrjenja so hižo w Firefox njepodpěruja."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Wot Firefox 53 móža nowe rozšěrjenja na tutym websydle jenož WebExtensions być."
 
@@ -3634,8 +3637,11 @@ msgstr "Mjeno drasty"
 msgid "Select a header image for your theme"
 msgstr "Wubjerće hłowowy wobraz za swoju drastu"
 
-msgid "Image height should be 200 pixels"
-msgstr "Wobrazowa wysokosć měła 200 pikselow być"
+msgid "Recommended height: 200 pixels"
+msgstr "Doporučona wysokosć: 200 pikselow"
+
+msgid "6.9MB max"
+msgstr "maks. 6,9 MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG abo GIF (njeaniměrowany)"
@@ -5825,6 +5831,9 @@ msgstr "Wersijowe čisła měli jenož pismiki, ličby a slědowace interpunkcis
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Nahraća drastow WebExtension so tuchwilu njepodpěruja."
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr "Maksimalna wulkosć za drasty Webextension je {0}."
+
 msgid "You cannot submit this type of add-on"
 msgstr "Njemóžeće tutón přidatkowy typ zapodać"
 
@@ -6079,6 +6088,42 @@ msgstr "Dowolće zažny přistup k eksperimentelnym funkcijam wobhladowaka."
 
 msgid "Get Started"
 msgstr "Prěnje kroki"
+
+msgid "Reported Status"
+msgstr "Zdźěleny status"
+
+msgid "Reported Spam"
+msgstr "Zdźěleny spam"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Reported Ham"
+msgstr "Zdźěleny njespam"
+
+msgid "Not Reported"
+msgstr "Njezdźěleny"
+
+msgid "Content Submitted"
+msgstr "Wobsah wotpósłany"
+
+msgid "View Rating on site"
+msgstr "Pohódnoćenje na websydle pokazać"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Submit Ham to Akismet"
+msgstr "Njespam na Akismet pósłać"
+
+msgid "Submit Spam to Akismet"
+msgstr "Spam na Akismet pósłać"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr "%s njespamowych rozprawow je so jako spam pósłało"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr "%s spamowych rozprawow je so jako njespam pósłało"
 
 msgid "About Mozilla Add-ons"
 msgstr "Wo Mozilla Add-ons"

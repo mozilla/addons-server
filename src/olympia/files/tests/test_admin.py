@@ -13,17 +13,18 @@ class TestFileAdmin(TestCase):
     def setUp(self):
         self.list_url = reverse('admin:files_file_changelist')
 
-    def test_can_list_files_with_admin_tools_permission(self):
+    def test_can_list_files_with_admin_advanced_permission(self):
         addon = addon_factory()
         file_ = addon.current_version.all_files[0]
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
         assert str(file_.pk) in force_text(response.content)
 
-    def test_can_edit_with_admin_tools_permission(self):
+    def test_can_edit_with_admin_advanced_permission(self):
         addon = addon_factory()
         file_ = addon.current_version.all_files[0]
         detail_url = reverse(
@@ -31,6 +32,7 @@ class TestFileAdmin(TestCase):
         )
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
@@ -54,16 +56,16 @@ class TestFileAdmin(TestCase):
         file_.refresh_from_db()
         assert file_.is_webextension
 
-    def test_can_not_list_without_admin_tools_permission(self):
+    def test_can_not_list_without_admin_advanced_permission(self):
         user = user_factory()
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, 'Admin:Tools')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 403
 
         # Just checking that simply changing the permission resolves
         # as wanted
-        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Admin:Advanced')
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
 
@@ -75,6 +77,7 @@ class TestFileAdmin(TestCase):
         )
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
@@ -88,6 +91,7 @@ class TestFileAdmin(TestCase):
         file_ = addon.current_version.all_files[0]
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
 
         download_url = reverse('admin:files_file_download', args=(file_.pk,))
@@ -109,6 +113,7 @@ class TestFileAdmin(TestCase):
         file_.update(status=amo.STATUS_DISABLED)
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Admin:Advanced')
 
         # The default add-on  created by `addon_factory` is listed
         # and we still require proper reviewers permission
@@ -129,7 +134,7 @@ class TestFileAdmin(TestCase):
         file_ = addon.current_version.all_files[0]
         file_.update(status=amo.STATUS_DISABLED)
         user = user_factory()
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, 'Admin:Tools')
 
         self.client.login(email=user.email)
 
@@ -143,7 +148,7 @@ class TestFileAdmin(TestCase):
         file_ = addon.current_version.all_files[0]
         file_.update()
         user = user_factory()
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, 'Admin:Tools')
 
         self.client.login(email=user.email)
 

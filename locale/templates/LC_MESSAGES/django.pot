@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,12 +81,12 @@ msgid ""
 "users."
 msgstr ""
 
-#: src/olympia/activity/models.py:394
+#: src/olympia/activity/models.py:395
 #: src/olympia/ratings/templates/ratings/add.html:53
 msgid "Review"
 msgstr ""
 
-#: src/olympia/activity/models.py:397
+#: src/olympia/activity/models.py:398
 #: src/olympia/addons/templates/addons/impala/details.html:198
 #: src/olympia/devhub/templates/devhub/versions/list.html:36
 #: src/olympia/versions/templates/versions/version.html:6
@@ -1160,7 +1160,7 @@ msgstr ""
 msgid "This must be a valid hex color code, such as #000000."
 msgstr ""
 
-#: src/olympia/amo/middleware.py:199 src/olympia/templates/base.html:66
+#: src/olympia/amo/middleware.py:204 src/olympia/templates/base.html:66
 #: src/olympia/templates/impala/base.html:98
 msgid ""
 "Some features are temporarily disabled while we perform website maintenance. "
@@ -1414,7 +1414,7 @@ msgstr ""
 #: src/olympia/amo/templates/amo/site_nav.html:67
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:10
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:9
-#: src/olympia/users/models.py:514
+#: src/olympia/users/models.py:518
 msgid "My Favorite Add-ons"
 msgstr ""
 
@@ -3798,64 +3798,68 @@ msgid ""
 "on the new site."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:380
+#: src/olympia/devhub/tasks.py:375
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
+#: src/olympia/devhub/tasks.py:389
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:394
+#: src/olympia/devhub/tasks.py:403
 msgid ""
 "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion"
 " of 56.* or lower."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:427
+#: src/olympia/devhub/tasks.py:436
 msgid ""
 "Legacy language packs for Firefox are no longer supported. A WebExtensions "
 "install manifest is required. See {mdn_link} for more details."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:466
+#: src/olympia/devhub/tasks.py:475
 msgid ""
 "We allow and encourage an upgrade but you cannot reverse this process. Once "
 "your users have the WebExtension installed, they will not be able to install "
 "a legacy add-on."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:481
+#: src/olympia/devhub/tasks.py:490
 msgid ""
 "You cannot update a WebExtensions add-on with a legacy add-on. Your users "
 "would not be able to use your new version because Firefox does not support "
 "this type of update."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:529
+#: src/olympia/devhub/tasks.py:538
 msgid ""
 "Your developer API key was found in the submitted file. To protect your "
 "account, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:534
+#: src/olympia/devhub/tasks.py:543
 msgid ""
 "The developer API key of a coauthor was found in the submitted file. To "
 "protect your add-on, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:941
+#: src/olympia/devhub/tasks.py:950
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:945
+#: src/olympia/devhub/tasks.py:954
 #, python-format
 msgid "Connection to \"%s\" timed out."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:947
+#: src/olympia/devhub/tasks.py:956
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:989
+#: src/olympia/devhub/tasks.py:998
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
@@ -5049,7 +5053,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:97
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:13
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:24
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:60
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:61
 #: src/olympia/templates/includes/forms.html:2
 #: src/olympia/templates/includes/forms.html:6
 msgid "required"
@@ -5434,105 +5438,109 @@ msgid "Select a header image for your theme"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:29
-msgid "Image height should be 200 pixels"
+msgid "Recommended height: 200 pixels"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:30
-msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgid "6.9MB max"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:31
+msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:32
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:11
 msgid "Aligned to top-right"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:36
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:37
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:16
 msgid "Select a different header image"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:39
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:40
 msgid "Select colors for your theme"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:41
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:42
 msgid "Header area background"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:41
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:42
 msgid ""
 "The color of the header area background, displayed in the part of the header "
 "not covered or visible through the header image. Manifest field:  "
 "accentcolor."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:42
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:43
 msgid "Header area text and icons"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:42
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:43
 msgid ""
 "The color of the text and icons in the header area, except the active tab. "
 "Manifest field:  textcolor."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:43
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:44
 msgid "Toolbar area background"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:43
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:44
 msgid ""
 "The background color for the navigation bar, the bookmarks bar, and the "
 "selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:44
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:45
 msgid "Toolbar area text and icons"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:44
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:45
 msgid ""
 "The color of the text and icons in the toolbar and the active tab. Manifest "
 "field:  toolbar_text."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:45
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:46
 msgid "Toolbar field area background"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:45
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:46
 msgid ""
 "The background color for fields in the toolbar, such as the URL bar. Manifest"
 " field:  toolbar_field."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:46
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:47
 msgid "Toolbar field area text"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:46
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:47
 msgid ""
 "The color of text in fields in the toolbar, such as the URL bar. Manifest "
 "field:  toolbar_field_text."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:62
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:63
 msgid "optional"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:74
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:75
 msgid "Browser preview"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:100
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:101
 msgid "Back"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:111
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:112
 msgid "Uploading Theme"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:111
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:112
 msgid "Finish Theme"
 msgstr ""
 
@@ -8462,100 +8470,104 @@ msgstr ""
 msgid "Access your data for all websites"
 msgstr ""
 
-#: src/olympia/files/utils.py:449
+#: src/olympia/files/utils.py:450
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
-#: src/olympia/files/utils.py:460
+#: src/olympia/files/utils.py:461
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
-#: src/olympia/files/utils.py:497
+#: src/olympia/files/utils.py:498
 msgid ""
 "Cannot find min/max version. Maybe \"strict_min_version\" or "
 "\"strict_max_version\" contains an unsupported version?"
 msgstr ""
 
-#: src/olympia/files/utils.py:567
+#: src/olympia/files/utils.py:568
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
-#: src/olympia/files/utils.py:583
+#: src/olympia/files/utils.py:584
 msgid "Could not parse uploaded file."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:623
+#: src/olympia/files/utils.py:624
 msgid ""
 "Invalid file name in archive. Please make sure all filenames are utf-8 or "
 "latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:632
+#: src/olympia/files/utils.py:633
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:640
+#: src/olympia/files/utils.py:641
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:690
+#: src/olympia/files/utils.py:691
 msgid "Invalid archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:854 src/olympia/files/utils.py:858
+#: src/olympia/files/utils.py:855 src/olympia/files/utils.py:859
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#: src/olympia/files/utils.py:879
+#: src/olympia/files/utils.py:880
 msgid "Could not find an add-on ID."
 msgstr ""
 
-#: src/olympia/files/utils.py:890
+#: src/olympia/files/utils.py:891
 #, python-format
 msgid ""
 "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID"
 " of your add-on on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/utils.py:901
+#: src/olympia/files/utils.py:902
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:904
+#: src/olympia/files/utils.py:905
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:907
+#: src/olympia/files/utils.py:908
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
 
-#: src/olympia/files/utils.py:912
+#: src/olympia/files/utils.py:913
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
-#: src/olympia/files/utils.py:925
+#: src/olympia/files/utils.py:918
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
+#: src/olympia/files/utils.py:931
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#: src/olympia/files/utils.py:932
+#: src/olympia/files/utils.py:938
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
-#: src/olympia/files/utils.py:937
+#: src/olympia/files/utils.py:943
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-#: src/olympia/files/utils.py:971
+#: src/olympia/files/utils.py:977
 msgid "Unexpected error."
 msgstr ""
 
-#: src/olympia/files/utils.py:976
+#: src/olympia/files/utils.py:982
 #, python-format
 msgid ""
 "<em:type> in your install.rdf (%s) does not match the type of your add-on on "
@@ -8905,6 +8917,52 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html:7
 msgid "Get Started"
+msgstr ""
+
+#: src/olympia/lib/akismet/admin.py:12
+msgid "Reported Status"
+msgstr ""
+
+#: src/olympia/lib/akismet/admin.py:27
+msgid "Reported Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#: src/olympia/lib/akismet/admin.py:29
+msgid "Reported Ham"
+msgstr ""
+
+#: src/olympia/lib/akismet/admin.py:30
+msgid "Not Reported"
+msgstr ""
+
+#: src/olympia/lib/akismet/admin.py:48
+msgid "Content Submitted"
+msgstr ""
+
+#: src/olympia/lib/akismet/admin.py:90
+msgid "View Rating on site"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#: src/olympia/lib/akismet/admin.py:101
+msgid "Submit Ham to Akismet"
+msgstr ""
+
+#: src/olympia/lib/akismet/admin.py:105
+msgid "Submit Spam to Akismet"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#: src/olympia/lib/akismet/admin.py:116
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#: src/olympia/lib/akismet/admin.py:124
+#, python-format
+msgid "%s Spam reports submitted as Ham"
 msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml:3
@@ -11562,11 +11620,11 @@ msgstr ""
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-#: src/olympia/users/models.py:373
+#: src/olympia/users/models.py:377
 msgid "Firefox user {id}"
 msgstr ""
 
-#: src/olympia/users/models.py:508
+#: src/olympia/users/models.py:512
 msgid "My Mobile Add-ons"
 msgstr ""
 

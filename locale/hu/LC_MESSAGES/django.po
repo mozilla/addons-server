@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-28 14:41+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"PO-Revision-Date: 2018-09-03 12:49+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2528,6 +2528,9 @@ msgstr ""
 "A Thunderbird és SeaMonkey kiegészítők mostantól az addons.thunderbird.net oldalon szerepelnek és vannak karban tartva. Ugyanazt a felhasználói fiókot használhatja a kiegészítők frissítésére az új "
 "oldalon is."
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr "A hagyományos bővítményeket már nem támogatja a Firefox."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "A Firefox 53-tól kezdve, az oldalon lévő új kiegészítők csak WebExtensionök lehetnek."
 
@@ -3605,8 +3608,11 @@ msgstr "Téma neve"
 msgid "Select a header image for your theme"
 msgstr "Válasszon fejlécképet a témájához"
 
-msgid "Image height should be 200 pixels"
-msgstr "A kép magassága 200 pixel kell legyen"
+msgid "Recommended height: 200 pixels"
+msgstr "Ajánlott magasság: 200 képpont"
+
+msgid "6.9MB max"
+msgstr "max. 6.9 MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG vagy GIF (nem animált)"
@@ -5800,6 +5806,9 @@ msgstr "A verziószámok kizárólag betűket, számokat és a következő karak
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "A WebExtension téma feltöltések jelenleg nem támogatottak."
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr "A WebExtension témák maximális mérete {0}."
+
 msgid "You cannot submit this type of add-on"
 msgstr "Ilyen típusú kiegészítőt nem küldhet be"
 
@@ -6056,6 +6065,48 @@ msgstr "Kapjon korai hozzáférést a kísérleti böngészőfunkciókhoz."
 
 msgid "Get Started"
 msgstr "Első lépések"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "Oldal állapota"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "Jelentés típusa"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "Hiba jelentése"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Még nem osztályozott"
+
+msgid "Content Submitted"
+msgstr "Tartalom beküldve"
+
+msgid "View Rating on site"
+msgstr "Értékelés megtekintése az oldalon"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "Új fájl beküldése"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "Új fájl beküldése"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla kiegészítőkről"

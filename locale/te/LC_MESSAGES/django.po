@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-29 17:44+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"PO-Revision-Date: 2018-09-03 16:07+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2483,6 +2483,9 @@ msgstr ""
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3520,7 +3523,10 @@ msgstr "అలంకారం పేరు"
 msgid "Select a header image for your theme"
 msgstr ""
 
-msgid "Image height should be 200 pixels"
+msgid "Recommended height: 200 pixels"
+msgstr ""
+
+msgid "6.9MB max"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
@@ -5686,6 +5692,9 @@ msgstr ""
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr "మీరు ఈ పొడిగింతపు రకాన్ని సమర్పించలేరు"
 
@@ -5938,6 +5947,48 @@ msgstr ""
 
 msgid "Get Started"
 msgstr "మొదలుపెట్టండి"
+
+msgid "Reported Status"
+msgstr "నివేదిత స్థితి"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "నివేదిక రకం"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "బగ్ ఫిర్యాదు"
+
+msgid "Not Reported"
+msgstr "నివేదించబడలేదు"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "వెర్షను సమర్పించబడింది"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "కొత్త సైటును చూడండి"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "క్రొత్త ఫైల్ను సమర్పించండి"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "క్రొత్త ఫైల్ను సమర్పించండి"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "మొజిల్లా పొడగింతల గురించి"

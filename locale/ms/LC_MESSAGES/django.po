@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-28 21:39+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"PO-Revision-Date: 2018-09-03 11:28+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2485,6 +2485,9 @@ msgstr "Kategori tidak boleh ditukar semasa add-on anda ini menjadi ciri."
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "Add-ons untuk Thunderbird dan SeaMonkey kini disenarai dan dikekalkan di addons.thunderbird.net. Anda boleh gunakan akaun yang sama untuk mengemaskini add-ons di laman yang baru."
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr "Ekstensi legasi tidak lagi disokong di Firefox."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Bermula dengan Firefox 53, add-ons baru dalam laman ini hanya WebExtensions."
 
@@ -3546,8 +3549,11 @@ msgstr "Nama tema"
 msgid "Select a header image for your theme"
 msgstr "Pilih imej pengepala untuk tema anda"
 
-msgid "Image height should be 200 pixels"
-msgstr "Tinggi imej hendaklah 200 piksel"
+msgid "Recommended height: 200 pixels"
+msgstr "Ketinggian disyorkan: 200 piksel"
+
+msgid "6.9MB max"
+msgstr "6.9MB maksimum"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG atau GIF (bukan animasi)"
@@ -5730,6 +5736,9 @@ msgstr "Nombor versi perlu mengandungi hanya huruf, nombor, dan karakter tanda b
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Tema WebExtension yang dimuat tidak disokong buat masa ini."
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr "Saiz maksimum bagi tema WebExtension ialah {0}."
+
 msgid "You cannot submit this type of add-on"
 msgstr "Anda tidak boleh kemukakan add-on jenis ini"
 
@@ -5984,6 +5993,42 @@ msgstr "Dapatkan akses awal kepada ciri eksperimen pelayar."
 
 msgid "Get Started"
 msgstr "Memulakan"
+
+msgid "Reported Status"
+msgstr "Status Dilaporkan"
+
+msgid "Reported Spam"
+msgstr "Spam Dilaporkan"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Reported Ham"
+msgstr "Ham Dilaporkan"
+
+msgid "Not Reported"
+msgstr "Tidak Dilaporkan"
+
+msgid "Content Submitted"
+msgstr "Kandungan Dihantar"
+
+msgid "View Rating on site"
+msgstr "Lihat Kadar di laman"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Submit Ham to Akismet"
+msgstr "Hantar Ham ke Akismet"
+
+msgid "Submit Spam to Akismet"
+msgstr "Hantar Spam ke Akismet"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr "%s Laporan Ham dikemukakan sebagai Spam"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr "%s Laporan Spam dikemukakan sebagai Ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "Perihal Add-ons Mozilla"

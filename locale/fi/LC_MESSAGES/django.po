@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
 "PO-Revision-Date: 2018-07-21 17:44+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -2610,6 +2610,9 @@ msgstr ""
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3705,8 +3708,12 @@ msgstr "Teeman nimi"
 msgid "Select a header image for your theme"
 msgstr ""
 
-msgid "Image height should be 200 pixels"
+#, fuzzy
+msgid "Recommended height: 200 pixels"
 msgstr "Kuvan korkeus tulisi olla 200 pikseliä"
+
+msgid "6.9MB max"
+msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG tai GIF (ei animoitu)"
@@ -5923,6 +5930,9 @@ msgstr ""
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
@@ -6181,6 +6191,50 @@ msgstr ""
 #, fuzzy
 msgid "Get Started"
 msgstr "Aloittaminen"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "Sivuston tila"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "Ilmoita viasta"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "Ilmoita viasta"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Ei vielä pisteytetty"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "Versiokommentit"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "Näytä uusi sivusto"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "Lisää uusi tiedosto"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "Lisää uusi tiedosto"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr ""

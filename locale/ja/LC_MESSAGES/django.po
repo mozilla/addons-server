@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
 "PO-Revision-Date: 2018-08-24 17:09+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -2505,6 +2505,9 @@ msgstr "アドオンがおすすめに設定されている間はカテゴリー
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "Thunderbird と SeaMonkey のアドオンは現在、addons.thunderbird.net に掲載され、維持されています。新しいサイトでアドオンを更新するには、同じアカウントを使えます。"
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Firefox 53 以降、当サイトに登録可能な新規拡張機能は WebExtensions のみとなります。"
 
@@ -3568,8 +3571,12 @@ msgstr "テーマの名前"
 msgid "Select a header image for your theme"
 msgstr "テーマのヘッダー画像を選択"
 
-msgid "Image height should be 200 pixels"
+#, fuzzy
+msgid "Recommended height: 200 pixels"
 msgstr "画像の高さは 200 ピクセルにしてください"
+
+msgid "6.9MB max"
+msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG、JPG、APNG、SVG または GIF (アニメーションなし)"
@@ -5752,6 +5759,9 @@ msgstr "バージョン番号に英数字もしくは記号「+*.-_.」以外の
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "WebExtension テーマのアップロードには現時点では対応していません。"
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr "この種類のアドオンを送信することはできません"
 
@@ -6006,6 +6016,50 @@ msgstr "実験的なブラウザー機能をいち早く試してみましょう
 
 msgid "Get Started"
 msgstr "ここからスタート"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "サイトステータス"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "レポートの種類"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "バグを報告"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "まだ評価されていません"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "登録済みバージョン"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "新しいサイトを見る"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "新しいファイルを登録"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "新しいファイルを登録"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla アドオンサイトについて"

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 12:28+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"PO-Revision-Date: 2018-09-03 14:21+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2525,6 +2525,9 @@ msgstr "As categorias não podem ser alteradas enquanto o seu extra estiver em d
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "Os extras para Thunderbird e SeaMonkey são agora listados e mantidos em addons.thunderbird.net. Pode utilizar a mesma conta para atualizar os seus extras no novo site."
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr "As extensões de legado já não são suportadas no Firefox."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "A partir do Firefox 53, os novos extras neste site só podem ser WebExtensions."
 
@@ -3603,8 +3606,11 @@ msgstr "Nome do tema"
 msgid "Select a header image for your theme"
 msgstr "Selecione uma imagem de cabeçalho para o seu tema"
 
-msgid "Image height should be 200 pixels"
-msgstr "A altura da imagem deverá ter 200 pixels"
+msgid "Recommended height: 200 pixels"
+msgstr "Altura recomendada: 200 pixeis"
+
+msgid "6.9MB max"
+msgstr "6.9MB máx"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG ou GIF (sem animações)"
@@ -5806,6 +5812,9 @@ msgstr "Os números de versão deve conter apenas letras, números e estes carac
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Os carregamentos de temas WebExtension não são suportados atualmente."
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr "Tamanho máximo para temas WebExtension é de {0}."
+
 msgid "You cannot submit this type of add-on"
 msgstr "Não pode submeter este tipo de extras"
 
@@ -6060,6 +6069,42 @@ msgstr "Desbloqueie o acesso antecipado a funcionalidades experimentais do naveg
 
 msgid "Get Started"
 msgstr "Começar"
+
+msgid "Reported Status"
+msgstr "Estado reportado"
+
+msgid "Reported Spam"
+msgstr "Spam reportado"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Reported Ham"
+msgstr "Ham reportado"
+
+msgid "Not Reported"
+msgstr "Não reportado"
+
+msgid "Content Submitted"
+msgstr "Conteúdo submetido"
+
+msgid "View Rating on site"
+msgstr "Ver avaliação no site"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Submit Ham to Akismet"
+msgstr "Submeter Ham para Akismet"
+
+msgid "Submit Spam to Akismet"
+msgstr "Submeter Spam para Akismet"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr "%s relatórios Ham submetidos como Spam"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr "%s relatórios Spam submetidos como Spam"
 
 msgid "About Mozilla Add-ons"
 msgstr "Acerca dos Extras da Mozilla"

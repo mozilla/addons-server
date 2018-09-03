@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-23 19:41+0000\n"
-"Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"PO-Revision-Date: 2018-08-31 19:18+0000\n"
+"Last-Translator: Jobava <jobaval10n@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -16,13 +16,13 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "No links are allowed."
-msgstr ""
+msgstr "Linkurile nu sunt permise."
 
 msgid "This display name cannot be used."
 msgstr ""
 
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Numele de utilizator nu pot conține doar cifre."
 
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -37,11 +37,11 @@ msgid "Images must be either PNG or JPG."
 msgstr ""
 
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Imaginile nu pot fi animate."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "Te rugăm folosește imagini mai mici de %dMB."
 
 msgid "You are already logged in."
 msgstr "Ești deja autentificat."
@@ -97,7 +97,7 @@ msgid "Experimental"
 msgstr "Experimental"
 
 msgid "Add to {0}"
-msgstr ""
+msgstr "Adaugă la {0}"
 
 msgid "This slug is already in use. Please choose another."
 msgstr ""
@@ -179,7 +179,7 @@ msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
 msgid "Abuse reported."
-msgstr ""
+msgstr "Abuzul a fost raportat."
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr ""
@@ -258,7 +258,7 @@ msgstr "Actualizată {0}"
 
 #. {0} is a date.
 msgid "Added {0}"
-msgstr ""
+msgstr "Adăugat {0}"
 
 #, python-format
 msgid "%(num)s weekly download"
@@ -377,7 +377,7 @@ msgstr[2] "{0} de utilizatori zilnici"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
-msgstr ""
+msgstr "Politica de confidențialitate pentru {0}"
 
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
@@ -504,7 +504,7 @@ msgid "View statistics"
 msgstr "Afișează statisticile"
 
 msgid "Manage"
-msgstr ""
+msgstr "Gestionează"
 
 msgid "Add-on Review"
 msgstr "Recenzie supliment"
@@ -565,7 +565,7 @@ msgid "See complete version history"
 msgstr ""
 
 msgid "close"
-msgstr ""
+msgstr "închide"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
 msgstr ""
@@ -2528,6 +2528,9 @@ msgstr ""
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3577,7 +3580,10 @@ msgstr "Teme"
 msgid "Select a header image for your theme"
 msgstr ""
 
-msgid "Image height should be 200 pixels"
+msgid "Recommended height: 200 pixels"
+msgstr ""
+
+msgid "6.9MB max"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
@@ -5914,6 +5920,9 @@ msgstr ""
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
@@ -6165,6 +6174,49 @@ msgid "Unlock early access to experimental browser features."
 msgstr ""
 
 msgid "Get Started"
+msgstr ""
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "Raportează utilizatorul"
+
+msgid "Reported Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "Raportează utilizatorul"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Neevaluat încă"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "Versiune trimisă"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "Vezi noul site"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "Trimite un fișier nou"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "Trimite un fișier nou"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
 msgstr ""
 
 msgid "About Mozilla Add-ons"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-29 06:03+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"PO-Revision-Date: 2018-09-03 12:45+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -2537,6 +2537,9 @@ msgstr "Categorieën kunnen niet worden gewijzigd terwijl uw add-on wordt aanbev
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "Add-ons voor Thunderbird en SeaMonkey worden nu vermeld en onderhouden op addons.thunderbird.net. Voor het bijwerken van uw add-ons op de nieuwe website kunt u dezelfde account gebruiken."
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr "Verouderde extensies worden in Firefox niet meer ondersteund."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Met ingang van Firefox 53 kunnen nieuwe add-ons op deze website alleen WebExtensions zijn."
 
@@ -3613,8 +3616,11 @@ msgstr "Themanaam"
 msgid "Select a header image for your theme"
 msgstr "Selecteer een headerafbeelding voor uw thema"
 
-msgid "Image height should be 200 pixels"
-msgstr "Afbeeldingshoogte dient 200 pixels te zijn"
+msgid "Recommended height: 200 pixels"
+msgstr "Aanbevolen hoogte: 200 pixels"
+
+msgid "6.9MB max"
+msgstr "Maximaal 6.9 MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG of GIF (niet geanimeerd)"
@@ -5808,6 +5814,9 @@ msgstr "Versienummers mogen alleen letters, cijfers en deze interpunctietekens b
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Uploads van WebExtension-thema’s worden momenteel niet ondersteund."
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr "De maximale grootte voor WebExtension-thema’s is {0}."
+
 msgid "You cannot submit this type of add-on"
 msgstr "U kunt dit type add-on niet indienen"
 
@@ -6062,6 +6071,42 @@ msgstr "Verkrijg vroege toegang tot experimentele browserfuncties."
 
 msgid "Get Started"
 msgstr "Beginnen"
+
+msgid "Reported Status"
+msgstr "Gemelde status"
+
+msgid "Reported Spam"
+msgstr "Gemelde spam"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Reported Ham"
+msgstr "Gemelde Ham"
+
+msgid "Not Reported"
+msgstr "Niet gemeld"
+
+msgid "Content Submitted"
+msgstr "Inhoud ingediend"
+
+msgid "View Rating on site"
+msgstr "Waardering op website bekijken"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Submit Ham to Akismet"
+msgstr "Ham bij Akismet indienen"
+
+msgid "Submit Spam to Akismet"
+msgstr "Spam bij Akismet indienen"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr "%s Ham-meldingen ingediend als Spam"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr "%s Spam-meldingen ingediend als Ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "Over Mozilla Add-ons"

@@ -100,15 +100,15 @@ billiard==3.5.0.4 \
 bleach==1.5.0 \
     --hash=sha256:e67f46adcec78dbc3c04462f3aba3213a673d5652eba2609ed1ef15492a44b8d \
     --hash=sha256:978e758599b54cd3caa2e160d74102879b230ea8dc93871d0783721eef58bc65 # pyup: ==1.5.0
-boto3==1.8.4 \
-    --hash=sha256:16f0bb2cc55f9c8c96549a7211c3e5b7242c60ba186eee3d7e737210c76fd221 \
-    --hash=sha256:06ecdf57cc4a44ed2f7d555390aca2f3bab6b244abd000ee2d55bfb408ff90c8
+boto3==1.8.6 \
+    --hash=sha256:03067dc8ac0b16cf7ef1e016a08135c82a75e330bdbddea970e4c60ea9e4f699 \
+    --hash=sha256:061595d40ea97e4aae8beb9a2eebfe7b1851f40c3c779529d43ad4f8abe5b3d7
 celery==4.1.1 \
     --hash=sha256:6fc4678d1692af97e137b2a9f1c04efd8e7e2fb7134c5c5ad60738cdd927762f \
     --hash=sha256:d1f2a3359bdbdfb344edce98b8e891f5fe64f8a11c5a45538ec20ac237c971f5 # pyup: <4.2
-botocore==1.11.4 \
-    --hash=sha256:8d0b64bfa0043b93cd779c8bf960bb0a8d763b6b803310b6bd49c62f564cc2af \
-    --hash=sha256:284f25a67fa3470314ce78a53e57df8591549652ae31dce1097acefec195b694
+botocore==1.11.6 \
+    --hash=sha256:dc28453285802c1a2db0be8085e99631394fd1e833265d53a4071ef8c7c2415a \
+    --hash=sha256:bd85f6491207b632c76fc6ca3e74b5d75a48c7f06f68ae5e98e794e6be10bc06
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -158,9 +158,9 @@ django-extensions==2.1.2 \
 django-mozilla-product-details==0.13 \
     --hash=sha256:ce97fc2533aa06560d9b438ebba2522dc0b2ada86d6e0537cfb5ac06db1a6aa2 \
     --hash=sha256:4ffa5a104f53645460a50c9342a41e3ea02d432851becf56e820d42faa94839f
-django-multidb-router==0.7 \
-    --hash=sha256:8e802c09ed69a1f4ce5716524a1dc1668a8a2e25d9112369dc92c2b963e70332 \
-    --hash=sha256:682d2be38ca1e2a12bc33528b3d4ccddf9775c926a5667b53f840df620094a86
+django-multidb-router==0.8 \
+    --hash=sha256:a5ed680454811b9e4fb6937e51c959f537147e4bd474597f7ab172352016d963 \
+    --hash=sha256:3b1f460a8eea5a696bcad681e5c48f8331c934f734bdab24a72dea54ace6c4dd
 django-post-request-task==0.2.0 \
     --hash=sha256:b761beed705c18d6ee85642049d07ca9d7f936e3392c6d56a58c36a39e5e9803 \
     --hash=sha256:7afe4c7418db8592a7b56391cbfe56a86008bc1b4622dd923573b6981ba1562c

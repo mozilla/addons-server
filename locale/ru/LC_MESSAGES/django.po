@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-26 12:19+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"PO-Revision-Date: 2018-09-02 15:01+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -2552,6 +2552,9 @@ msgstr "Категории не могут быть изменены, пока �
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "Дополнения для Thunderbird и SeaMonkey теперь размещены на сайте addons.thunderbird.net. Для обновления своих дополнений на новом сайте вы можете использовать эту же учетную запись."
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Начиная с Firefox 53, новыми дополнениями на этом сайте могут быть только WebExtensions."
 
@@ -3648,8 +3651,12 @@ msgstr "Имя темы"
 msgid "Select a header image for your theme"
 msgstr "Выберите верхнее изображение для вашей темы"
 
-msgid "Image height should be 200 pixels"
+#, fuzzy
+msgid "Recommended height: 200 pixels"
 msgstr "Высота изображения должна быть 200 пикселей"
+
+msgid "6.9MB max"
+msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG или GIF (не анимированный)"
@@ -5854,6 +5861,9 @@ msgstr "Номера версий могут состоять только из 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Загрузка тем WebExtension в настоящее время не поддерживается."
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr "Вы не можете загрузить этот тип дополнения"
 
@@ -6108,6 +6118,50 @@ msgstr "Разблокируйте ранний доступ к эксперим
 
 msgid "Get Started"
 msgstr "Начать"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "Статус сайта "
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "Тип отчёта"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "Сообщить об ошибке"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Пока не оценено"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "Версия представлена"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "Посетить новый сайт"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "Отправить новый файл"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "Отправить новый файл"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "О дополнениях Mozilla"
@@ -8042,9 +8096,8 @@ msgstr "Нет пользователя с таким почтовым адре�
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-#, fuzzy
 msgid "Firefox user {id}"
-msgstr "Firefox для Android"
+msgstr "Пользователь Firefox {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Мои мобильные дополнения"

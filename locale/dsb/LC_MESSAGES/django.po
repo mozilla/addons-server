@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-28 13:38+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"PO-Revision-Date: 2018-09-03 13:34+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2555,6 +2555,9 @@ msgstr "Kategorije njedaju se změniś, mjaztym až se waš dodank pśedstaja."
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "Dodanki za Thunderbird a SeaMonkey se něnto na addons.thunderbird.net nalicyju a wówarduju. Móžośo to samske konto wužywaś, aby swóje dodanki na nowem sedle aktualizěrował."
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr "Zestarjone rozšyrjenja se wěcej w Firefox njepódpěraju."
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Wót Firefox 53 mógu nowe rozšyrjenja na toś tom sedle jano WebExtensions byś."
 
@@ -3636,8 +3639,11 @@ msgstr "Mě drastwy"
 msgid "Select a header image for your theme"
 msgstr "Wubjeŕśo głowowy wobraz za swóju drastwu"
 
-msgid "Image height should be 200 pixels"
-msgstr "Wobrazowa wusokosć měła 200 pikselow byś"
+msgid "Recommended height: 200 pixels"
+msgstr "Dopórucona wusokosć: 200 pikselow"
+
+msgid "6.9MB max"
+msgstr "maks. 6,9 MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG abo GIF (njeaniměrowany)"
@@ -5827,6 +5833,9 @@ msgstr "Wersijowe numery měli jano pismiki, licby a slědujuce interpunkciske z
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Nagraśa drastwow WebExtension se tuchylu njepódpěraju."
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr "Maksimalna wjelikosć za drastwy Webextension jo {0}."
+
 msgid "You cannot submit this type of add-on"
 msgstr "Njamóžośo toś ten dodankowy typ zapódaś"
 
@@ -6081,6 +6090,42 @@ msgstr "Dowólśo rany pśistup k eksperimentelnym funkcijam wobglědowaka."
 
 msgid "Get Started"
 msgstr "Prědne kšace"
+
+msgid "Reported Status"
+msgstr "Pśizjawjony status"
+
+msgid "Reported Spam"
+msgstr "Pśizjawjony spam"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Reported Ham"
+msgstr "Pśizjawjony njespam"
+
+msgid "Not Reported"
+msgstr "Njepśizjawjony"
+
+msgid "Content Submitted"
+msgstr "Wopśimjeśe jo se wótpósłało"
+
+msgid "View Rating on site"
+msgstr "Pógódnośenje na websedle pokazaś"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Submit Ham to Akismet"
+msgstr "Njespam na Akismet pósłaś"
+
+msgid "Submit Spam to Akismet"
+msgstr "Spam na Akismet pósłaś"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr "%s njespamowych rozpšawow jo se ako spam pósłało"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr "%s spamowych rozpšawow jo se ako njespam pósłało"
 
 msgid "About Mozilla Add-ons"
 msgstr "Wó dodankach Mozilla"

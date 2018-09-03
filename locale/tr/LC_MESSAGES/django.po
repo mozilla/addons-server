@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
 "PO-Revision-Date: 2018-08-15 18:03+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -2605,6 +2605,9 @@ msgstr "Eklentiniz öne çıkanlardayken kategoriler değiştirilemez."
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3685,8 +3688,12 @@ msgstr "Tema adı"
 msgid "Select a header image for your theme"
 msgstr "Temanız için üstbilgi resmi seçin."
 
-msgid "Image height should be 200 pixels"
+#, fuzzy
+msgid "Recommended height: 200 pixels"
 msgstr "Resim yüksekliği 200 piksel olmalıdır"
+
+msgid "6.9MB max"
+msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG veya GIF (animasyonsuz)"
@@ -5876,6 +5883,9 @@ msgstr "Sürüm numaralarında sadece harfler, numaralar ve bu noktalama işaret
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "WebExtension tema yüklemeleri şu anda desteklenmiyor."
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr "Bu türden eklenti gönderemezsiniz"
 
@@ -6140,6 +6150,50 @@ msgstr "Deneysel tarayıcı özelliklerine erken erişimin kilidini açın."
 
 msgid "Get Started"
 msgstr "Başlarken"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "Site durumu"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "Rapor Türü"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "Hata bildir"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Henüz puanlanmamış"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "Sürüm gönderildi"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "Yeni siteye bak"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "Yeni dosya gönder"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "Yeni dosya gönder"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla Eklentileri Hakkında"

@@ -1,12 +1,12 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-28 12:31+0000\n"
-"Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"PO-Revision-Date: 2018-05-14 11:59+0000\n"
+"Last-Translator: pratikmdabhi <pratikmdabhi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
 "MIME-Version: 1.0\n"
@@ -123,8 +123,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"સંકલિત દ્વિસંગીઓ, તેમજ minified અથવા obfuscated સ્ક્રિપ્ટો(જાણીતા લાઈબ્રેરીઓ સિવાય) તેમના સ્રોતો સમીક્ષા માટે અલગ સબમિટ કરવાની જરૂર છે. તમારી રજૂઆત નકારવાથી ટાળવા માટે તમે સ્ત્રોત કોડ અપલોડ ફીલ્ડનો "
-"ઉપયોગ કરો છો તેની ખાતરી કરો."
+"સંકલિત દ્વિસંગીઓ, તેમજ minified અથવા obfuscated સ્ક્રિપ્ટો(જાણીતા લાઈબ્રેરીઓ સિવાય) તેમના સ્રોતો સમીક્ષા માટે અલગ સબમિટ કરવાની જરૂર છે. તમારી રજૂઆત નકારવાથી ટાળવા માટે તમે સ્ત્રોત કોડ અપલોડ ફીલ્ડનો ઉપયોગ કરો છો તેની "
+"ખાતરી કરો."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "માન્યતા પ્રક્રિયાએ આ મુદ્દાઓ શોધી કાઢ્યાં છે જે અસ્વીકાર તરફ દોરી શકે છે:"
@@ -426,7 +426,7 @@ msgid "Fennec"
 msgstr ""
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
@@ -795,6 +795,9 @@ msgid "Average Reviews"
 msgstr ""
 
 msgid "Number of Reviews"
+msgstr ""
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
 
 msgid "Requested Info"

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-04 21:11+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"PO-Revision-Date: 2018-09-02 17:18+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -2511,9 +2511,8 @@ msgstr "Verze {version} už existuje."
 msgid "Continue with existing upload instead?"
 msgstr "Pokračovat místo toho se současným nahráváním?"
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "Nepodařilo se zpracovat nahrávaný soubor."
+msgstr "Nenahráli jste soubor se zdrojovými kódy."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
@@ -2552,6 +2551,9 @@ msgstr "Dokud je váš doplněk veden jako doporučený, nemůžete měnit jeho 
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "Doplňky pro Thunderbird a SeaMonkey jsou nyní na samostatném serveru addons.thunderbird.net. Pro aktualizaci svého doplňku na nové stránce můžete použít svůj stávající účet."
+
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Počínaje Firefoxem 53, nové doplňky na této stránce mohou být pouze typu WebExtensions."
@@ -3512,9 +3514,8 @@ msgstr "Nahrát soubor"
 msgid "Go to My Submissions"
 msgstr "Přejít k mým příspěvkům"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "Zdrojový kód nahrán"
+msgstr "Nahrání zdrojového kódu"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
@@ -3568,9 +3569,8 @@ msgstr ""
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
 
-#, fuzzy
 msgid "How to Submit:"
-msgstr "Odeslat"
+msgstr "Jak odeslat:"
 
 msgid "Include instructions in a README file in the source code,"
 msgstr ""
@@ -3578,9 +3578,8 @@ msgstr ""
 msgid "or in reviewer notes on the next page (if applicable)."
 msgstr ""
 
-#, fuzzy
 msgid "Upload source code:"
-msgstr "Zdrojový kód"
+msgstr "Nahrání zdrojového kódu:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "Dohoda o distribuci doplňků"
@@ -3630,8 +3629,12 @@ msgstr "Název motivu vzhledu"
 msgid "Select a header image for your theme"
 msgstr "Vyberte obrázek záhlaví pro váš motiv vzhledu"
 
-msgid "Image height should be 200 pixels"
+#, fuzzy
+msgid "Recommended height: 200 pixels"
 msgstr "Výška obrázku by měla být 200 pixelů"
+
+msgid "6.9MB max"
+msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG nebo GIF (neanimovaný)"
@@ -5820,6 +5823,9 @@ msgstr "Čísla verzí by měla obsahovat pouze základní znaky, čísla a nás
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Nahrávání vhledů WebExtension momentálně není podporováno."
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr "Přidávání tohoto typu doplňku není povoleno"
 
@@ -6074,6 +6080,50 @@ msgstr "Objevte experimentální funkce prohlížeče jako první."
 
 msgid "Get Started"
 msgstr "Začínáme"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "Stav stránky "
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "Typ hlášení"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "Nahlásit chybu"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Nehodnoceno"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "Verze odeslána"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "Zobrazit novou verzi"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "Odeslat nový soubor"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "Odeslat nový soubor"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "O serveru Doplňky Mozilly"
@@ -6867,13 +6917,11 @@ msgstr "Kontrola úspěšně provedena."
 msgid "Review lock limit reached"
 msgstr "Dosažen limit recenzí"
 
-#, fuzzy
 msgid "{addon} :: EULA"
-msgstr "{addon} :: Nahlášená zneužití"
+msgstr "{addon} :: EULA"
 
-#, fuzzy
 msgid "{addon} :: Privacy Policy"
-msgstr "Doplněk má zásady ochrany osobních údajů"
+msgstr "{addon} :: Zásady ochrany osobních údajů"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -7998,9 +8046,8 @@ msgstr "Nebyl nalezen uživatel, který by měl tento e-mail."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-#, fuzzy
 msgid "Firefox user {id}"
-msgstr "Firefox pro Android"
+msgstr "Uživatel Firefoxu - {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Mé mobilní doplňky"

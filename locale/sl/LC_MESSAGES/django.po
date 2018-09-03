@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-30 19:31+0000\n"
-"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"PO-Revision-Date: 2018-09-03 13:31+0000\n"
+"Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -2568,6 +2568,9 @@ msgstr "Kategorij ni mogoče spreminjati, ko je vaš dodatek izbran."
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "Dodatki za Thunderbird in SeaMonkey so sedaj objavljeni in vzdrževani na addons.thunderbird.net. Za posodabljanje dodatkov na novi strani lahko uporabite isti račun."
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Dodatki za Firefox 53 in novejše so lahko samo WebExtensions."
 
@@ -3654,8 +3657,11 @@ msgstr "Ime teme"
 msgid "Select a header image for your theme"
 msgstr "Izberite sliko glave za svojo temo"
 
-msgid "Image height should be 200 pixels"
-msgstr "Višina slike mora biti 200 pik"
+msgid "Recommended height: 200 pixels"
+msgstr "Priporočena višina: 200 pik"
+
+msgid "6.9MB max"
+msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG ali GIF (neanimiran)"
@@ -4859,7 +4865,7 @@ msgstr "Nakupujte in prihranite {start_sub_heading}z {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "Ob plačilu v spletni trgovini samodejno uveljavite najboljše kupone."
 
 #. editorial content for the discovery pane.
 msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4939,7 +4945,7 @@ msgstr "Zajemajte spletno vsebino {start_sub_heading}z {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Shranite informacije z interneta v OneNote, kjer jih lahko urejate, opremite z opombami in več."
 
 #. editorial content for the discovery pane.
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4971,7 +4977,7 @@ msgstr "Zmanjšajte obremenjenost oči {start_sub_heading}z {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Napravite splet prijetnejši za oči in ga zatemnite."
 
 #. editorial content for the discovery pane.
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4995,7 +5001,7 @@ msgstr "Prilagodite si nov zavihek {start_sub_heading}z {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Prilagodite si stran novega zavihka – določite število vrstic ploščic, sliko ozadja in drugo."
 
 #. editorial content for the discovery pane.
 msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5011,7 +5017,7 @@ msgstr "Upravljajte gesla {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Varno shranite gesla in dostopajte do njih z več naprav."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5148,7 +5154,7 @@ msgstr "Prenašajte slike {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
-msgstr ""
+msgstr "Izberite slike na katerikoli spletni strani in jih prenesite."
 
 #. editorial content for the discovery pane.
 msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5204,7 +5210,7 @@ msgstr "Takojšnji prevodi {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "V trenutku prevedite besedilo – preprosto označite ga in kliknite gumb, ki se pojavi."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5433,7 +5439,7 @@ msgstr "Izbrišite zgodovino brskanja {start_sub_heading}s {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Določite, koliko dni naj se zgodovina brskanja obdrži v brskalniku, preden se samodejno izbriše."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5634,7 +5640,7 @@ msgstr "Sledite spreminjanju cen na Amazonu {start_sub_heading}z {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Make informed decisions by tracking the price of a product listed on Amazon."
-msgstr ""
+msgstr "Sprejemajte pametne odločitve in sledite cenam izdelkov, objavljenih na Amazonu."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5645,13 +5651,12 @@ msgid "An extra check to ensure you're shopping on a site that's been vetted for
 msgstr "Dodatno preverjanje, ali je stran, na kateri nakupujete, vredna zaupanja."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Spremljajte svojo produktivnost {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Merite čas, ki ga preživite za računalnikom oziroma na določenih straneh, kot so Trello, JIRA, Basecamp, GitHub in številne druge."
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
@@ -5663,7 +5668,7 @@ msgstr "Brskajte varno {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
-msgstr ""
+msgstr "Dovolite zagon spletne vsebine samo s spletnih mest, ki jim zaupate."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5780,7 +5785,7 @@ msgstr "Zakrijte svoje sledi {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
-msgstr ""
+msgstr "Iskanje z dodatno varnostjo – zavračanjem sledilcev, pametnim šifriranjem, zasebnim iskanjem in drugimi pomembnimi funkcijami."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5869,6 +5874,9 @@ msgstr "Številke različice smejo vsebovati le črke, številke in naslednja lo
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Nalaganje tem WebExtension trenutno ni podprto."
+
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
 
 msgid "You cannot submit this type of add-on"
 msgstr "Te vrste dodatka ne morete oddati"
@@ -6126,6 +6134,49 @@ msgstr "Odklenite zgodnji dostop do preskusnih lastnosti brskalnika."
 
 msgid "Get Started"
 msgstr "Začnite"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "Stanje strani "
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "Vrsta poročila"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "Prijavi hrošča"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Še ni ocenjeno"
+
+msgid "Content Submitted"
+msgstr "Vsebina potrjena"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "Obišči novo stran"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "Pošlji novo datoteko"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "Pošlji novo datoteko"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "O Mozillinih dodatkih"

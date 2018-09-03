@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-08-09 12:39+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"PO-Revision-Date: 2018-09-03 12:38+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -783,6 +783,9 @@ msgstr "平均評等"
 
 msgid "Number of Reviews"
 msgstr "留言數量"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr "最大上傳大小為 {0} - 請縮小背景圖片。"
 
 msgid "Requested Info"
 msgstr "已要求資訊"
