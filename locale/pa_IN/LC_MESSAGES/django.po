@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-08-26 12:07+0000\n"
-"Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
+"PO-Revision-Date: 2018-09-03 13:53+0000\n"
+"Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -1327,6 +1327,8 @@ msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
 msgstr ""
+"ਡਿਕਸ਼ਨਰੀ ਐਡ-ਆਨ ਨੂੰ ਇੰਸਟਾਲ ਕਰਨ ਨਾਲ ਤੁਹਾਡੇ %(app_name)s ਸ਼ਬਦ-ਜੋੜਕ ਲਈ ਨਵੀਂ ਭਾਸ਼ਾ ਚੋਣ ਜੋੜ ਦਿੱਤੀ ਜਾਵੇਗੀ, ਜੋ ਕਿ ਵੈਬ ਫਾਰਮ ਭਰਨ ਵੇਲੇ ਤੁਹਾਡੀ ਸ਼ਬਦ-ਜੋੜਾਂ ਦੀ ਜਾਂਚ ਕਰਦੀ ਹੈ। ਭਾਸ਼ਾ ਪੈਕ ਐਡ-ਆਨ ਪੂਰੀ ਐਪਲੀਕੇਸ਼ਨ ਦੀ ਭਾਸ਼ਾ "
+"ਬਦਲਦੀ ਹੈ।\n"
 
 msgid "Available in your locale"
 msgstr "ਤੁਹਾਡੀ ਬੋਲੀ ਵਿੱਚ ਮੁਹੱਈਆ"
@@ -7156,7 +7158,7 @@ msgstr "ਸਮੀਖਿਆ ਇਤਿਹਾਸ"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "ਐਡ-ਆਨ ਸਿਰਲੇਖ"
@@ -7343,7 +7345,7 @@ msgid "Force-enable add-on"
 msgstr "ਮੋਬਾਈਲ ਐਡ-ਆਨ"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਓ"
 
 #, fuzzy
 msgid "Enable Auto-Approval"
@@ -8000,7 +8002,7 @@ msgid "or <a href=\"%(login)s\">log in to your current account</a>"
 msgstr "ਜਾਂ <a href=\"%(login)s\">ਆਪਣੇ ਮੌਜੂਦਾ ਖਾਤੇ ਤੇ ਲਾਗ ਇਨ ਕਰੋ </a>"
 
 msgid "Footer logo"
-msgstr ""
+msgstr "ਫੁਟਰ ਲੋਗੋ"
 
 msgid "Choose a category"
 msgstr "ਇੱਕ ਸੰਗ੍ਰਹਿ ਚੁਣੋ"
@@ -8150,7 +8152,7 @@ msgid "Profile Photo"
 msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੋਟੋ"
 
 msgid "Addons"
-msgstr ""
+msgstr "ਐਡਆਨ"
 
 msgid "Ratings"
 msgstr "ਰੇਟਿੰਗਾਂ"
