@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2017-08-14 21:59+0000\n"
+"PO-Revision-Date: 2018-09-03 17:12+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -797,7 +797,7 @@ msgid "Number of Reviews"
 msgstr "Antal recensioner"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "Maximal uppladdningsstorlek är {0} - välj en mindre bakgrundsbild."
 
 msgid "Requested Info"
 msgstr "Begärd info"
