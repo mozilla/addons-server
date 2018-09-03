@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
 "PO-Revision-Date: 2018-08-15 12:35+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -793,6 +793,9 @@ msgstr "ממוצע הסקירות"
 
 msgid "Number of Reviews"
 msgstr "מספר הסקירות"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr ""
 
 msgid "Requested Info"
 msgstr "נדרש מידע"

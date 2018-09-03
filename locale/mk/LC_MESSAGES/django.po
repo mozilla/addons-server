@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2483,6 +2483,9 @@ msgstr ""
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
 
@@ -3526,7 +3529,10 @@ msgstr ""
 msgid "Select a header image for your theme"
 msgstr ""
 
-msgid "Image height should be 200 pixels"
+msgid "Recommended height: 200 pixels"
+msgstr ""
+
+msgid "6.9MB max"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
@@ -5693,6 +5699,9 @@ msgstr ""
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
@@ -5944,6 +5953,42 @@ msgid "Unlock early access to experimental browser features."
 msgstr ""
 
 msgid "Get Started"
+msgstr ""
+
+msgid "Reported Status"
+msgstr ""
+
+msgid "Reported Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Reported Ham"
+msgstr ""
+
+msgid "Not Reported"
+msgstr ""
+
+msgid "Content Submitted"
+msgstr ""
+
+msgid "View Rating on site"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Submit Ham to Akismet"
+msgstr ""
+
+msgid "Submit Spam to Akismet"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
 msgstr ""
 
 msgid "About Mozilla Add-ons"

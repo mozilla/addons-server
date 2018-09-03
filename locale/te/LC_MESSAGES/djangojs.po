@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
 "PO-Revision-Date: 2018-07-26 08:54+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -793,6 +793,9 @@ msgstr "సగటు సమీక్షలు"
 
 msgid "Number of Reviews"
 msgstr "సమీక్షల సంఖ్య"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr ""
 
 msgid "Requested Info"
 msgstr "అభ్యర్థించిన సమాచారం"

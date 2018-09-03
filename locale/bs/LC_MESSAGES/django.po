@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2518,6 +2518,9 @@ msgstr "Kategorije ne mogu biti promijenjene dok je vaš dodatak prikazan."
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Počevši sa Firefox 53, novi dodaci na ovoj stranici mogu biti samo WebExtensions."
 
@@ -3584,8 +3587,12 @@ msgstr ""
 msgid "Select a header image for your theme"
 msgstr "Odaberite sliku zaglavlja za vašu temu"
 
-msgid "Image height should be 200 pixels"
+#, fuzzy
+msgid "Recommended height: 200 pixels"
 msgstr "Visina slike treba biti 200 piksela"
+
+msgid "6.9MB max"
+msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG ili GIF (neanimiran)"
@@ -5923,6 +5930,9 @@ msgstr ""
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
@@ -6175,6 +6185,49 @@ msgstr ""
 
 msgid "Get Started"
 msgstr "Započnite"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "Status stranice"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "Prijavi grešku"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "Prijavi grešku"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Nije pregledano"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "Verzija poslana"
+
+msgid "View Rating on site"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "Pošaljite novu datoteku"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "Pošaljite novu datoteku"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr ""

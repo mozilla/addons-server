@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-28 07:16+0000\n"
+"POT-Creation-Date: 2018-09-03 08:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,131 +32,131 @@ msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:108
+#: static/js/common/upload-addon.js:101
 #, python-format
 msgid "{0}% complete"
 msgstr ""
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js:111
+#: static/js/common/upload-addon.js:104
 msgid "{0} of {1}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:148
+#: static/js/common/upload-addon.js:141
 msgid "Cancel"
 msgstr ""
 
-#: static/js/common/upload-addon.js:170
+#: static/js/common/upload-addon.js:163
 msgid "Uploading {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:198
+#: static/js/common/upload-addon.js:191
 msgid "Error with {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:204
+#: static/js/common/upload-addon.js:197
 msgid ""
 "We have enabled a new linter to process your Add-on. Please make sure to "
 "report any issues on GitHub"
 msgstr ""
 
-#: static/js/common/upload-addon.js:212
+#: static/js/common/upload-addon.js:205
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:226
+#: static/js/common/upload-addon.js:219
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:241 static/js/common/upload-addon.js:528
+#: static/js/common/upload-addon.js:234 static/js/common/upload-addon.js:521
 msgid "See full validation report"
 msgstr ""
 
-#: static/js/common/upload-addon.js:251
+#: static/js/common/upload-addon.js:244
 msgid "Validating {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:291
+#: static/js/common/upload-addon.js:284
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr ""
 
-#: static/js/common/upload-addon.js:297
+#: static/js/common/upload-addon.js:290
 msgid "Received an empty response from the server; status: {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:368
+#: static/js/common/upload-addon.js:361
 msgid "Unexpected server error while validating."
 msgstr ""
 
-#: static/js/common/upload-addon.js:416
+#: static/js/common/upload-addon.js:409
 msgid "Finished validating {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:422
+#: static/js/common/upload-addon.js:415
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:425
+#: static/js/common/upload-addon.js:418
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:430
+#: static/js/common/upload-addon.js:423
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:435
+#: static/js/common/upload-addon.js:428
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js:450
+#: static/js/common/upload-addon.js:443
 msgid "Your submission will be automatically signed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:456
+#: static/js/common/upload-addon.js:449
 msgid "WebExtension upgrade"
 msgstr ""
 
-#: static/js/common/upload-addon.js:457
+#: static/js/common/upload-addon.js:450
 msgid ""
 "We allow and encourage an upgrade but you cannot reverse this process. Once "
 "your users have the WebExtension installed, they will not be able to install "
 "a legacy add-on."
 msgstr ""
 
-#: static/js/common/upload-addon.js:461
+#: static/js/common/upload-addon.js:454
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr ""
 
-#: static/js/common/upload-addon.js:472
+#: static/js/common/upload-addon.js:465
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:473
+#: static/js/common/upload-addon.js:466
 msgid ""
 "If your add-on requires an account to a website in order to be fully tested, "
 "include a test username and password in the Notes to Reviewer (this can be "
 "done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:492
+#: static/js/common/upload-addon.js:485
 msgid "Add-on submission checklist"
 msgstr ""
 
-#: static/js/common/upload-addon.js:493
+#: static/js/common/upload-addon.js:486
 msgid ""
 "Please verify the following points before finalizing your submission. This "
 "will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:495
+#: static/js/common/upload-addon.js:488
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known"
 " libraries) need to have their sources submitted separately for review. Make "
@@ -164,11 +164,11 @@ msgid ""
 "submission rejected."
 msgstr ""
 
-#: static/js/common/upload-addon.js:513
+#: static/js/common/upload-addon.js:506
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:566
+#: static/js/common/upload-addon.js:559
 msgid "Sorry, no supported platform has been found."
 msgstr ""
 
@@ -1044,6 +1044,10 @@ msgstr ""
 
 #: static/js/zamboni/reviewers.js:500
 msgid "Number of Reviews"
+msgstr ""
+
+#: static/js/zamboni/static_theme.js:149
+msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
 
 #: static/js/zamboni/themes_review.js:176
