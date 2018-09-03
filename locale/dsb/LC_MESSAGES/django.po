@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-03 13:33+0000\n"
+"PO-Revision-Date: 2018-09-03 13:34+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6107,18 +6107,15 @@ msgstr "Njepśizjawjony"
 msgid "Content Submitted"
 msgstr "Wopśimjeśe jo se wótpósłało"
 
-#, fuzzy
 msgid "View Rating on site"
-msgstr "Woglědajśo se k nowemu sedłoju"
+msgstr "Pógódnośenje na websedle pokazaś"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Nowu dataju zapódaś"
+msgstr "Njespam na Akismet pósłaś"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Nowu dataju zapódaś"
+msgstr "Spam na Akismet pósłaś"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
