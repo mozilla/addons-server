@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-03 13:53+0000\n"
+"PO-Revision-Date: 2018-09-03 14:27+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -2087,7 +2087,7 @@ msgid "Film and TV"
 msgstr "ਫਿਲਮ ਅਤੇ ਟੀਵੀ"
 
 msgid "Foxkeh"
-msgstr ""
+msgstr "ਫੌਕਸਕੇਹ"
 
 msgid "Holiday"
 msgstr "ਛੁੱਟੀ"
@@ -2147,7 +2147,7 @@ msgid "Experimental"
 msgstr "ਪ੍ਰਯੋਗੀ"
 
 msgid "Feeds, News, & Blogging"
-msgstr ""
+msgstr "ਫੀਡ, ਖ਼ਬਰਾਂ ਅਤੇ ਬਲੌਗ"
 
 msgid "Performance"
 msgstr "ਕਾਰਗੁਜ਼ਾਰੀ"
@@ -2196,10 +2196,10 @@ msgid "Privacy and Security"
 msgstr "ਪਰਦੇਦਾਰੀ ਅਤੇ ਸੁਰੱਖਿਆ"
 
 msgid "Downloading and File Management"
-msgstr ""
+msgstr "ਡਾਊਨਲੋਡ ਕਰਨਾ ਅਤੇ ਫ਼ਾਈਲ ਇੰਤਜ਼ਾਮ"
 
 msgid "Interface Customizations"
-msgstr ""
+msgstr "ਇੰਟਰਫੇਸ ਕਸਟਮਾਈਜ਼ੇਸ਼ਨ"
 
 msgid "Language Support and Translation"
 msgstr "ਬੋਲੀ ਸਮਰਥਨ ਅਤੇ ਲਿਪੀਅੰਤਰ"
@@ -5234,7 +5234,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
-msgstr ""
+msgstr "ਇਸ਼ਤਿਹਾਰ ਹਟਾਓ ਅਤੇ VK ਤੋਂ ਆਡੀਓ ਡਾਊਨਲੋਡ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5658,7 +5658,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "ਪਾਸਵਰਡ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੂਪ ਵਿੱਚ ਸਟੋਰ ਕਰੋ ਅਤੇ ਜਾਣੀਆਂ ਪਛਾਣੀਆਂ ਵੈਬਸਾਈਟਾਂ ਤੇ ਆਪਣੇ ਆਪ ਸਾਈਨ ਇਨ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
@@ -5918,7 +5918,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "ਅਚਾਨਕ ਗਲਤੀ।"
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -6086,7 +6086,7 @@ msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about any
 msgstr "ਕੰਮ, ਮਜ਼ੇ, ਪਰਦੇਦਾਰੀ, ਉਤਪਾਦਨ&hellip ਲਈ ਵਧੀਆ ਐਡ-ਆਨ; ਕਿਸੇ ਵੀ ਚੀਜ਼ ਬਾਰੇ!"
 
 msgid "Games!"
-msgstr ""
+msgstr "ਖੇਡਾਂ!"
 
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
 msgstr ""
@@ -6795,7 +6795,7 @@ msgid "Sources provided"
 msgstr "ਸੋਰਸ ਮੁਹੱਇਆ ਕਰਵਾਏ"
 
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 #, fuzzy
 msgid "Is locked by a reviewer."
@@ -8303,7 +8303,7 @@ msgid "Please set your display name"
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਵਿਖਾਇਆ ਜਾਣ ਵਾਲਾ ਨਾਮ ਪੱਕਾ ਕਰੋ"
 
 msgid "Please set your display name or username to complete the registration process."
-msgstr ""
+msgstr "ਰਜਿਸਟਰੇਸ਼ਨ ਕਾਰਵਾਈ ਨੂੰ ਪੂਰਾ ਕਰਨ ਲਈ ਆਪਣਾ ਨਾਂ ਜਾਂ ਵਰਤੋਂਕਾਰ-ਨਾਂ ਨਿਯਤ ਕਰੋ।"
 
 #, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
@@ -8371,7 +8371,7 @@ msgid "all"
 msgstr "ਸਾਰੇ"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
+msgstr "ਲਾਗਇਨ ਵਾਸਤੇ Mozilla ਐਡ-ਆਨ Firefox ਖਾਤੇ ਵਿੱਚ ਤਬਦੀਲ ਹੋ ਗਿਆ ਹੈ। ਸਧਾਰਨ ਲਾਗਇਨ ਕਾਰਵਾਈ ਪੂਰੀ ਕਰਨ ਲਈ ਜਾਰੀ ਰੱਖੋ।"
 
 msgid "User Login"
 msgstr "ਉਪਭੋਗੀ ਲਾਗਇਨ"
