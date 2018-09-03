@@ -20,8 +20,6 @@ from django.utils.translation import activate, ugettext_lazy as _
 
 import MySQLdb as mysql
 from corsheaders.middleware import CorsMiddleware as _CorsMiddleware
-from multidb.middleware import (
-    PinningRouterMiddleware as _PinningRouterMiddleware)
 
 from olympia import amo
 from olympia.amo.utils import render
@@ -323,14 +321,6 @@ class RequestIdMiddleware(MiddlewareMixin):
             response['X-AMO-Request-ID'] = request.request_id
 
         return response
-
-
-class PinningRouterMiddleware(_PinningRouterMiddleware, MiddlewareMixin):
-    """Wrapper to allow old style Middleware to work with django 1.10+.
-    Will be unneeded once
-    https://github.com/jbalogh/django-multidb-router/pull/41 is merged and a
-    new release of django-multidb-router is available."""
-    pass
 
 
 class CorsMiddleware(_CorsMiddleware, MiddlewareMixin):

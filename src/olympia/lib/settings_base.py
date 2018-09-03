@@ -478,7 +478,7 @@ MIDDLEWARE = (
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'olympia.amo.middleware.PinningRouterMiddleware',
+    'multidb.middleware.PinningRouterMiddleware',
     'waffle.middleware.WaffleMiddleware',
 
     # CSP and CORS need to come before CommonMiddleware because they might
