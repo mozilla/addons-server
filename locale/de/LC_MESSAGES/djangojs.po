@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2015-10-19 21:10+0000\n"
+"PO-Revision-Date: 2018-09-03 13:09+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -801,7 +801,7 @@ msgid "Number of Reviews"
 msgstr "Anzahl der Bewertungen"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "Maximale Upload-Größe ist {0} – wählen Sie eine kleinere Hintergrundgrafik."
 
 msgid "Requested Info"
 msgstr "Informationen angefordert"
