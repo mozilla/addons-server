@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-28 07:16+0000\n"
-"PO-Revision-Date: 2018-09-02 23:40+0000\n"
+"PO-Revision-Date: 2018-09-02 23:55+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -682,7 +682,7 @@ msgid "Submit a New Theme"
 msgstr "Titaq jun K'ak'a' Wachinïk"
 
 msgid "Developer Hub"
-msgstr "B'anonela' Jay"
+msgstr "Kochoch B'anonela'"
 
 msgid "Manage API Keys"
 msgstr "Kenuk'samajïx API Kik'u'x Tzij"
@@ -2686,7 +2686,7 @@ msgstr "Titzolin pa ri DevHub tikirib'äl ruxaq"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "<small>Tz'aqat</small> B'anonel Jay"
+msgstr "<small>Tz'aqat</small> Rochoch B'anonel"
 
 msgid "more add-ons..."
 msgstr "ch'aqa' chik tz'aqat..."
@@ -3954,7 +3954,7 @@ msgid "Submit Your First Theme"
 msgstr "Tataqa' ri Nab'ey Awachinel"
 
 msgid "Add-on Developer Hub"
-msgstr "Tz'aqat Kochoch B'anonela'"
+msgstr "Tz'aqat Rochoch B'anonel"
 
 msgid "Docs"
 msgstr "Wuj"
@@ -4324,7 +4324,7 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "¿La at jikïl chi nawajo' naq'ät ri ruk'utuxik anik'oxik?"
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr "Tz'aqat Wujinem :: Kochoch B'anonela'"
+msgstr "Tz'aqat Wujinem :: Rochoch B'anonel"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
