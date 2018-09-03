@@ -3502,9 +3502,8 @@ msgstr "主题名称"
 msgid "Select a header image for your theme"
 msgstr "为您的主题选择一个标题图片"
 
-#, fuzzy
 msgid "Recommended height: 200 pixels"
-msgstr "图像高度应为 200 像素"
+msgstr ""
 
 msgid "6.9MB max"
 msgstr ""
@@ -5931,9 +5930,8 @@ msgstr "更早的体验实验性的浏览器功能。"
 msgid "Get Started"
 msgstr "入门指南"
 
-#, fuzzy
 msgid "Reported Status"
-msgstr "网站状态"
+msgstr ""
 
 #, fuzzy
 msgid "Reported Spam"
@@ -5943,26 +5941,21 @@ msgstr "报告类型"
 msgid "Reported Ham"
 msgstr ""
 
-#, fuzzy
 msgid "Not Reported"
-msgstr "尚无评分"
+msgstr ""
 
-#, fuzzy
 msgid "Content Submitted"
-msgstr "版本已提交"
+msgstr ""
 
-#, fuzzy
 msgid "View Rating on site"
-msgstr "查看新版网站"
+msgstr ""
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "提交新文件"
+msgstr ""
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "提交新文件"
+msgstr ""
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
