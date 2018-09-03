@@ -6,13 +6,7 @@
 {% set svg_scale = svg_render_size.height / amo.THEME_PREVIEW_TOOLBAR_HEIGHT %}
 {% set browser_width = (svg_render_size.width / svg_scale)|round|int %}
 
-{# additional_backgrounds_height is set to the height Firefox currently (wrongly)
-uses to position backgrounds.  If it's fixed it can be changed back to
-amo.THEME_PREVIEW_TOOLBAR_HEIGHT
-See https://github.com/mozilla/addons-server/issues/9163 and
-https://bugzilla.mozilla.org/show_bug.cgi?id=1443561 #}
-
-{% set additional_backgrounds_height = (browser_width / (4 / 3))|round|int %}
+{% set additional_backgrounds_height = amo.THEME_PREVIEW_TOOLBAR_HEIGHT %}
 {% set preserve_aspect_ratio = '%s %s' % ('xMaxYMin', 'meet' if header_width|d(1000000) < browser_width else 'slice') %}
 
 <svg id="preview-svg-root" width="{{ svg_render_size.width }}" height="{{ svg_render_size.height }}" xmlns="http://www.w3.org/2000/svg"
@@ -32,11 +26,11 @@ https://bugzilla.mozilla.org/show_bug.cgi?id=1443561 #}
     <g transform="scale({{ svg_scale }})">
         <rect width="{{ browser_width }}" height="{{ amo.THEME_PREVIEW_TOOLBAR_HEIGHT }}"
               class="accentcolor" fill="{{ accentcolor|d(amo.THEME_ACCENTCOLOR_DEFAULT) }}" data-fill="amo.THEME_ACCENTCOLOR_DEFAULT"></rect>
+        <image id="svg-header-img" width="{{ browser_width }}" height="{{ header_src_height|d(amo.THEME_PREVIEW_TOOLBAR_HEIGHT) }}" preserveAspectRatio="{{ preserve_aspect_ratio|d('xMaxYMin slice') }}"
+               xlink:href="{{ header_src|d }}"></image>
         {% for background in additional_backgrounds %}
             <rect width="100%" height="100%" fill="url(#AdditionalBackground{{ loop.revindex }})"></rect>
         {% endfor %}
-        <image id="svg-header-img" width="{{ browser_width }}" height="{{ header_src_height|d(amo.THEME_PREVIEW_TOOLBAR_HEIGHT) }}" preserveAspectRatio="{{ preserve_aspect_ratio|d('xMaxYMin slice') }}"
-               xlink:href="{{ header_src|d }}"></image>
 
         <path d="M28,36 L28,0 L156,0 L156,36 L{{ browser_width }},36 L{{ browser_width }},92 L0,92 L0,36 L28,36 Z"
               class="toolbar" fill="{{ toolbar|d('rgba(255,255,255,0.6)') }}" data-fill="rgba(255,255,255,0.6)" />
