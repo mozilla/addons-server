@@ -5933,9 +5933,8 @@ msgstr "入门指南"
 msgid "Reported Status"
 msgstr ""
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "报告类型"
+msgstr ""
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 msgid "Reported Ham"
