@@ -855,7 +855,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def current_version(self):
-        """Return the latest public listed version of an addon
+        """Return the latest public listed version of an addon.
 
         If the add-on is not public, it can return a listed version awaiting
         review (since non-public add-ons should not have public versions).

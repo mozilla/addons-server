@@ -60,6 +60,23 @@ class VersionManager(ManagerBase):
         return self.filter(
             files__status__in=amo.VALID_FILE_STATUSES).distinct()
 
+    def latest_public_compatible_with(self, application, appversions):
+        """Return a queryset filtering the versions so that they are public,
+        listed, and compatible with the application and appversions parameters
+        passed. The queryset is ordered by creation date descending, allowing
+        the caller to get the latest compatible version available.
+
+        application is an application id
+        appversions is a dict containing min and max values, as version ints.
+        """
+        return Version.objects.filter(
+            apps__application=application,
+            apps__min__version_int__lte=appversions['min'],
+            apps__max__version_int__gte=appversions['max'],
+            channel=amo.RELEASE_CHANNEL_LISTED,
+            files__status=amo.STATUS_PUBLIC,
+        ).order_by('-created')
+
 
 def source_upload_path(instance, filename):
     # At this point we already know that ext is one of VALID_SOURCE_EXTENSIONS

@@ -28,11 +28,115 @@ from olympia.files.utils import parse_addon
 from olympia.reviewers.models import (
     AutoApprovalSummary, ViewFullReviewQueue, ViewPendingQueue)
 from olympia.users.models import UserProfile
+from olympia.versions.compare import version_int
 from olympia.versions.models import (
     ApplicationsVersions, source_upload_path, Version, VersionPreview)
 
 
 pytestmark = pytest.mark.django_db
+
+
+class TestVersionManager(TestCase):
+    def test_latest_public_compatible_with(self):
+        # Add compatible add-ons. We're going to request versions compatible
+        # with 58.0.
+        compatible_pack1 = addon_factory(
+            name='Spanish Language Pack',
+            type=amo.ADDON_LPAPP, target_locale='es',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
+        compatible_pack1.current_version.update(created=self.days_ago(2))
+        compatible_version1 = version_factory(
+            addon=compatible_pack1, file_kw={'strict_compatibility': True},
+            min_app_version='58.0', max_app_version='58.*')
+        compatible_version1.update(created=self.days_ago(1))
+        compatible_pack2 = addon_factory(
+            name='French Language Pack',
+            type=amo.ADDON_LPAPP, target_locale='fr',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '58.0', 'max_app_version': '58.*'})
+        compatible_version2 = compatible_pack2.current_version
+        compatible_version2.update(created=self.days_ago(2))
+        version_factory(
+            addon=compatible_pack2, file_kw={'strict_compatibility': True},
+            min_app_version='59.0', max_app_version='59.*')
+        # Add a more recent version for both add-ons, that would be compatible
+        # with 58.0, but is not public/listed so should not be returned.
+        version_factory(
+            addon=compatible_pack1, file_kw={'strict_compatibility': True},
+            min_app_version='58.0', max_app_version='58.*',
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version_factory(
+            addon=compatible_pack2,
+            file_kw={'strict_compatibility': True,
+                     'status': amo.STATUS_DISABLED},
+            min_app_version='58.0', max_app_version='58.*')
+        # And for the first pack, add a couple of versions that are also
+        # compatible. They are older so should appear after.
+        extra_compatible_version_1 = version_factory(
+            addon=compatible_pack1, file_kw={'strict_compatibility': True},
+            min_app_version='58.0', max_app_version='58.*')
+        extra_compatible_version_1.update(created=self.days_ago(3))
+        extra_compatible_version_2 = version_factory(
+            addon=compatible_pack1, file_kw={'strict_compatibility': True},
+            min_app_version='58.0', max_app_version='58.*')
+        extra_compatible_version_2.update(created=self.days_ago(4))
+
+        # Add a few of incompatible add-ons.
+        incompatible_pack1 = addon_factory(
+            name='German Language Pack (incompatible with 58.0)',
+            type=amo.ADDON_LPAPP, target_locale='fr',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '56.0', 'max_app_version': '56.*'})
+        version_factory(
+            addon=incompatible_pack1, file_kw={'strict_compatibility': True},
+            min_app_version='59.0', max_app_version='59.*')
+        addon_factory(
+            name='Italian Language Pack (incompatible with 58.0)',
+            type=amo.ADDON_LPAPP, target_locale='it',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '59.0', 'max_app_version': '59.*'})
+        addon_factory(
+            name='Thunderbird Polish Language Pack',
+            type=amo.ADDON_LPAPP, target_locale='pl',
+            file_kw={'strict_compatibility': True},
+            version_kw={
+                'application': amo.THUNDERBIRD.id,
+                'min_app_version': '58.0', 'max_app_version': '58.*'})
+        # Even add a pack with a compatible version... not public. And another
+        # one with a compatible version... not listed.
+        incompatible_pack2 = addon_factory(
+            name='Japanese Language Pack (public, but 58.0 version is not)',
+            type=amo.ADDON_LPAPP, target_locale='ja',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
+        version_factory(
+            addon=incompatible_pack2,
+            min_app_version='58.0', max_app_version='58.*',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW,
+                     'strict_compatibility': True})
+        incompatible_pack3 = addon_factory(
+            name='Nederlands Language Pack (58.0 version is unlisted)',
+            type=amo.ADDON_LPAPP, target_locale='ja',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
+        version_factory(
+            addon=incompatible_pack3,
+            min_app_version='58.0', max_app_version='58.*',
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'strict_compatibility': True})
+
+        appversions = {
+            'min': version_int('58.0'),
+            'max': version_int('58.0a'),
+        }
+        qs = Version.objects.latest_public_compatible_with(
+            amo.FIREFOX.id, appversions)
+
+        expected_versions = [
+            compatible_version1, compatible_version2,
+            extra_compatible_version_1, extra_compatible_version_2]
+        assert list(qs) == expected_versions
 
 
 class TestVersion(TestCase):
