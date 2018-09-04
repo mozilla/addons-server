@@ -237,17 +237,13 @@ class CurrentVersionSerializer(SimpleVersionSerializer):
         """
         request = self.context.get('request')
         try:
-            application = AddonAppQueryParam(request).get_value()
-        except ValueError:
-            raise exceptions.ParseError('Invalid or missing app parameter.')
-        try:
             # AddonAppVersionQueryParam.get_values() returns (app_id, min, max)
             # but we want {'min': min, 'max': max}.
-            appversions = dict(
-                zip(('min', 'max'),
-                    AddonAppVersionQueryParam(request).get_values()[1:]))
-        except ValueError:
-            raise exceptions.ParseError('Invalid appversion parameter.')
+            value = AddonAppVersionQueryParam(request).get_values()
+            application = value[0]
+            appversions = dict(zip(('min', 'max'), value[1:]))
+        except ValueError as exc:
+            raise exceptions.ParseError(exc.message)
 
         version_qs = Version.objects.latest_public_compatible_with(
             application, appversions).filter(addon=addon)

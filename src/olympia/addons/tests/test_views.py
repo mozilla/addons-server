@@ -1823,21 +1823,21 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         response = self.client.get(self.url, {'appversion': '58.0'})
         assert response.status_code == 400
         data = json.loads(response.content)
-        assert data == {'detail': 'Invalid or missing app parameter.'}
+        assert data == {'detail': 'Invalid "app" parameter.'}
 
         # Invalid appversion
         response = self.client.get(
             self.url, {'appversion': 'fr', 'app': 'firefox'})
         assert response.status_code == 400
         data = json.loads(response.content)
-        assert data == {'detail': 'Invalid appversion parameter.'}
+        assert data == {'detail': 'Invalid "appversion" parameter.'}
 
         # Invalid app
         response = self.client.get(
             self.url, {'appversion': '58.0', 'app': 'fr'})
         assert response.status_code == 400
         data = json.loads(response.content)
-        assert data == {'detail': 'Invalid or missing app parameter.'}
+        assert data == {'detail': 'Invalid "app" parameter.'}
 
 
 class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
