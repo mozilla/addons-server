@@ -57,7 +57,8 @@ class TestAutoCreateUsername(TestCase):
 
 
 system_guids = pytest.mark.parametrize('guid', [
-    'foo@mozilla.org', 'baa@shield.mozilla.org', 'moo@pioneer.mozilla.org'])
+    u'foø@mozilla.org', u'baa@shield.mozilla.org', u'moo@pioneer.mozilla.org',
+    u'blâh@mozilla.com'])
 
 
 @system_guids

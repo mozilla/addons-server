@@ -1208,7 +1208,7 @@ class TestUploadDetail(BaseUploadTest):
             {u'tier': 1,
              u'message': u'You cannot submit an add-on with a guid ending '
                          u'"@mozilla.org" or "@shield.mozilla.org" or '
-                         u'"@pioneer.mozilla.org"',
+                         u'"@pioneer.mozilla.org" or "@mozilla.com"',
              u'fatal': True, u'type': u'error'}]
 
     @mock.patch('olympia.devhub.tasks.run_validator')
