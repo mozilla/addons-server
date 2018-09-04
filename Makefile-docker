@@ -1,5 +1,5 @@
-python_version_full := $(wordlist 2,4,$(subst ., ,$(shell python --version 2>&1)))
-python_version_major := $(word 1,${python_version_full})
+# Determine the python version (2 or 3) so we can load the correct requirements
+python_version_major := $(shell python -c 'import sys; print sys.version_info.major')
 
 # FXA username and password for ui-tests
 export FXA_EMAIL=uitest-$(shell uuid)@restmail.net
