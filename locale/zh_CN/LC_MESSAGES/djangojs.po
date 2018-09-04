@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-08-23 14:41+0000\n"
-"Last-Translator: RainSlide <RainSlide@outlook.com>\n"
+"PO-Revision-Date: 2018-09-03 16:46+0000\n"
+"Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -785,7 +785,7 @@ msgid "Number of Reviews"
 msgstr "评价数量"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "最大上传大小为 {0} - 请选择较小的背景图片。"
 
 msgid "Requested Info"
 msgstr "已请求信息"

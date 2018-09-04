@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-02 15:41+0000\n"
-"Last-Translator: xcffl <xcffl@outlook.com>\n"
+"PO-Revision-Date: 2018-09-04 05:47+0000\n"
+"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -2467,7 +2467,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "即日起，Thunderbird 与 SeaMonkey 的附加组件将上架于 addons.thunderbird.net 。您可以在该网站上使用相同账号登录更新您的附加组件。"
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Firefox 已不再支持旧式扩展。"
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "从 Firefox 53 开始，新上架至此网站的扩展仅能为 WebExtension。"
@@ -3503,10 +3503,10 @@ msgid "Select a header image for your theme"
 msgstr "为您的主题选择一个标题图片"
 
 msgid "Recommended height: 200 pixels"
-msgstr ""
+msgstr "建议高度：200px"
 
 msgid "6.9MB max"
-msgstr ""
+msgstr "最大 6.9MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG、JPG、APNG、SVG 或 GIF (无动画)"
@@ -5675,7 +5675,7 @@ msgid "WebExtension theme uploads are currently not supported."
 msgstr "目前暂不支持 WebExtension 主题的上传。"
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "WebExtension 主题的大小限制为 {0}。"
 
 msgid "You cannot submit this type of add-on"
 msgstr "您不能提交此类型的附加组件"
@@ -5931,30 +5931,30 @@ msgid "Get Started"
 msgstr "入门指南"
 
 msgid "Reported Status"
-msgstr ""
+msgstr "回报状态"
 
 msgid "Reported Spam"
-msgstr ""
+msgstr "已回报为垃圾留言"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 msgid "Reported Ham"
-msgstr ""
+msgstr "已回报为正常留言"
 
 msgid "Not Reported"
-msgstr ""
+msgstr "尚未回报"
 
 msgid "Content Submitted"
-msgstr ""
+msgstr "提交的内容"
 
 msgid "View Rating on site"
-msgstr ""
+msgstr "查看网站上的评分"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 msgid "Submit Ham to Akismet"
-msgstr ""
+msgstr "向 Akismet 回报为正常留言"
 
 msgid "Submit Spam to Akismet"
-msgstr ""
+msgstr "向 Akismet 回报为垃圾留言"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
