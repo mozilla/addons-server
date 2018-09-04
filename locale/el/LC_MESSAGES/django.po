@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-04 13:20+0000\n"
+"PO-Revision-Date: 2018-09-04 14:03+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2546,7 +2546,7 @@ msgstr ""
 "ιστοσελίδα."
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Οι επεκτάσεις παλαιού τύπου δεν υποστηρίζονται πλέον στο Firefox."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Ξεκινώντας από το Firefox 53, τα νέα πρόσθετα σε αυτή την ιστοσελίδα μπορούν μόνο να είναι WebExtensions."
@@ -2663,7 +2663,7 @@ msgstr "Η έκδοση %s απενεργοποιήθηκε."
 
 #, python-format
 msgid "Version %s deleted."
-msgstr "Διαγράφηκε η έκδοση %s."
+msgstr "Η έκδοση %s διαγράφηκε."
 
 #, python-format
 msgid "Version %s re-enabled."
@@ -3417,6 +3417,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
+"Αν υποβάλλατε πηγαίο κώδικα, αλλά δεν συμπεριλάβατε οδηγίες, πρέπει να τις παρέχετε εδώ. Εισάγετε αναλυτικές οδηγίες ανάπτυξης για τη δημιουργία ενός ακριβούς αντιγράφου του κώδικα του προσθέτου, "
+"βάσει των %(policy_requirements_open)sαπαιτήσεων της πολιτικής%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Αυτές οι σημειώσεις είναι ορατές μόνος σε εσάς και τους αξιολογητές μας."
@@ -3534,7 +3536,7 @@ msgid "Web template engines, both for HTML and CSS"
 msgstr "Μηχανές διαδικτυακών προτύπων, για HTML και CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr ""
+msgstr "Κάθε άλλο εργαλείο που παίρνει κώδικα ή αρχεία, εφαρμόζει επεξεργασία και παράγει κώδικα ή αρχείο(α) προς συμπερίληψη στο πρόσθετο"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "Δεν χρειάζεται να υποβάλετε πηγαίο κώδικα και είστε έτοιμοι για το επόμενο βήμα."
