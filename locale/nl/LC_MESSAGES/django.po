@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-03 18:16+0000\n"
+"PO-Revision-Date: 2018-09-04 13:04+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -6106,7 +6106,7 @@ msgstr "%s ham-meldingen ingediend als Spam"
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr "%s Spam-meldingen ingediend als Ham"
+msgstr "%s spam-meldingen ingediend als Ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "Over Mozilla Add-ons"
