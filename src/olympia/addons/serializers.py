@@ -16,8 +16,7 @@ from olympia.constants.applications import APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.files.models import File
-from olympia.search.filters import (
-    AddonAppQueryParam, AddonAppVersionQueryParam)
+from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
     ApplicationsVersions, License, Version, VersionPreview)
