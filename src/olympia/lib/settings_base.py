@@ -456,7 +456,7 @@ SECURE_HSTS_SECONDS = 31536000
 # to using `Port` if `X-Forwarded-Port` isn't set.
 USE_X_FORWARDED_PORT = True
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     # Test if it's an API request first so later middlewares don't need to.
     'olympia.api.middleware.IdentifyAPIRequestMiddleware',
     # Gzip (for API only) middleware needs to be executed after every
@@ -484,11 +484,7 @@ MIDDLEWARE_CLASSES = (
     # CSP and CORS need to come before CommonMiddleware because they might
     # need to add headers to 304 responses returned by CommonMiddleware.
     'csp.middleware.CSPMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-
-    # This middleware does nothing, it's there for backwards-compatibility.
-    # Django < 1.10 checks for its presence to make session key rotation work.
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'olympia.amo.middleware.CorsMiddleware',
 
     # Enable conditional processing, e.g ETags.
     'django.middleware.http.ConditionalGetMiddleware',

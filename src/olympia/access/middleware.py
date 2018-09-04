@@ -4,8 +4,9 @@ their ACLs into the request.
 """
 from functools import partial
 
-import olympia.core.logger
+from django.utils.deprecation import MiddlewareMixin
 
+import olympia.core.logger
 from olympia import core
 from olympia.access import acl
 
@@ -13,7 +14,7 @@ from olympia.access import acl
 log = olympia.core.logger.getLogger('z.access')
 
 
-class UserAndAddrMiddleware(object):
+class UserAndAddrMiddleware(MiddlewareMixin):
 
     def process_request(self, request):
         """Attach authentication/permission helpers to request, and persist
