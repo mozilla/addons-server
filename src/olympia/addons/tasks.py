@@ -18,7 +18,8 @@ from olympia.addons.models import (
     Addon, AddonCategory, AppSupport, Category, CompatOverride,
     IncompatibleVersions, MigratedLWT, Persona, Preview, attach_tags,
     attach_translations)
-from olympia.addons.utils import build_static_theme_xpi_from_lwt
+from olympia.addons.utils import (
+    build_static_theme_xpi_from_lwt, build_webext_dictionary_from_legacy)
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.storage_utils import rm_stored_dir
@@ -684,3 +685,47 @@ def delete_obsolete_applicationsversions(**kw):
         application__in=(amo.FIREFOX.id, amo.ANDROID.id))
     for av in qs.iterator():
         av.delete()
+
+
+@task
+@use_primary_db
+def migrate_legacy_dictionaries_to_webextension(ids, **kw):
+    """Migrate a chunk of legacy dictionaries to webextension format.
+    Used by process_addons command."""
+    log.info(
+        'Migrating legacy dictionaries to webextension %d-%d [%d].',
+        ids[0], ids[-1], len(ids))
+    addons = list(Addon.objects.filter(id__in=ids))
+    for addon in addons:
+        migrate_legacy_dictionary_to_webextension(addon)
+    index_addons.delay(addons)
+
+
+@transaction.atomic()
+def migrate_legacy_dictionary_to_webextension(addon):
+    """Migrate a single legacy dictionary to webextension format, creating a
+    new package from the current_version, faking an upload to create a new
+    Version instance."""
+    user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
+    now = datetime.now()
+
+    # Wrap zip in FileUpload for Version.from_upload() to consume.
+    upload = FileUpload.objects.create(
+        user=user, valid=True)
+    destination = os.path.join(
+        user_media_path('addons'), 'temp', uuid.uuid4().hex + '.xpi')
+    build_webext_dictionary_from_legacy(addon, destination)
+    upload.update(path=destination)
+
+    parsed_data = parse_addon(upload, user=user)
+    # Create version.
+    version = Version.from_upload(
+        upload, addon, platforms=[amo.PLATFORM_ALL.id],
+        channel=amo.RELEASE_CHANNEL_LISTED, parsed_data=parsed_data)
+    activity.log_create(amo.LOG.ADD_VERSION, version, addon, user=user)
+
+    # Sign the file, and set it to public. That should automatically set
+    # current_version to the version we created.
+    file_ = version.all_files[0]
+    sign_file(file_)
+    file_.update(datestatuschanged=now, reviewed=now, status=amo.STATUS_PUBLIC)

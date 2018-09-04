@@ -9,7 +9,9 @@ from olympia.addons.tasks import (
     add_dynamic_theme_tag, add_firefox57_tag, bump_appver_for_legacy_addons,
     delete_addon_not_compatible_with_firefoxes,
     delete_obsolete_applicationsversions,
-    find_inconsistencies_between_es_and_db, migrate_lwts_to_static_themes)
+    find_inconsistencies_between_es_and_db,
+    migrate_legacy_dictionaries_to_webextension,
+    migrate_lwts_to_static_themes)
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
@@ -77,7 +79,19 @@ tasks = {
         'qs': [
             Q(status=amo.STATUS_PUBLIC,
               _current_version__files__is_webextension=True)
-        ]},
+        ]
+    },
+    'migrate_legacy_dictionaries_to_webextension': {
+        'method': migrate_legacy_dictionaries_to_webextension,
+        'qs': [
+            Q(type=amo.ADDON_DICT,
+              status=amo.STATUS_PUBLIC,
+              disabled_by_user=False,
+              _current_version__files__is_webextension=False,
+              target_locale__isnull=False),
+            ~Q(target_locale=''),
+        ],
+    },
 }
 
 

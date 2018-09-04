@@ -7,6 +7,7 @@ from datetime import datetime
 from django.conf import settings
 from django.test.utils import override_settings
 
+from freezegun import freeze_time
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -15,7 +16,8 @@ from olympia.addons import cron
 from olympia.addons.models import AddonCategory, MigratedLWT
 from olympia.addons.tasks import (
     add_static_theme_from_lwt, create_persona_preview_images,
-    migrate_lwts_to_static_themes, save_persona_image)
+    migrate_legacy_dictionary_to_webextension, migrate_lwts_to_static_themes,
+    save_persona_image)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.amo.tests.test_helpers import get_image_path
@@ -23,6 +25,7 @@ from olympia.amo.utils import image_size
 from olympia.applications.models import AppVersion
 from olympia.constants import licenses
 from olympia.constants.categories import CATEGORIES
+from olympia.files.models import FileUpload
 from olympia.ratings.models import Rating
 from olympia.stats.models import ThemeUpdateCount, UpdateCount
 from olympia.tags.models import Tag
@@ -249,3 +252,64 @@ class TestAddStaticThemeFromLwt(TestCase):
             licenses.LICENSE_COPYRIGHT_AR.builtin, [rating])
         # Double check its the exact category we want.
         assert static_theme.all_categories == [default_category]
+
+
+@override_settings(ENABLE_ADDON_SIGNING=True)
+class TestMigrateLegacyDictionaryToWebextension(TestCase):
+    def setUp(self):
+        self.user = user_factory(
+            id=settings.TASK_USER_ID, username='taskuser',
+            email='taskuser@mozilla.com')
+        with freeze_time('2017-07-27 07:00'):
+            self.addon = addon_factory(
+                type=amo.ADDON_DICT, target_locale='fr',
+                version_kw={'version': '6.3'})
+
+        AppVersion.objects.get_or_create(
+            application=amo.FIREFOX.id, version='61.0')
+        AppVersion.objects.get_or_create(
+            application=amo.FIREFOX.id, version='*')
+
+        self.call_signing_mock = self.patch(
+            'olympia.lib.crypto.packaged.call_signing')
+        self.call_signing_mock.return_value = 'abcdefg1234'
+
+        self.build_mock = self.patch(
+            'olympia.addons.tasks.build_webext_dictionary_from_legacy')
+        self.build_mock.side_effect = self._mock_xpi_side_effect
+
+    def _mock_xpi_side_effect(self, addon, destination):
+        xpi_path = os.path.join(
+            settings.ROOT, 'src/olympia/files/fixtures/files/dict-webext.xpi')
+        copy_stored_file(xpi_path, destination)
+        assert not os.path.isdir(destination)
+        return mock.DEFAULT
+
+    def test_basic(self):
+        assert not FileUpload.objects.exists()
+        assert not ActivityLog.objects.filter(
+            action=amo.LOG.ADD_VERSION.id).exists()
+        old_version = self.addon.current_version
+
+        with freeze_time('2018-08-28 08:00'):
+            self.migration_date = datetime.now()
+            migrate_legacy_dictionary_to_webextension(self.addon)
+
+        self.build_mock.assert_called_once_with(self.addon, mock.ANY)
+        assert FileUpload.objects.exists()
+        self.addon.reload()
+        assert self.addon.current_version != old_version
+        activity_log = ActivityLog.objects.filter(
+            action=amo.LOG.ADD_VERSION.id).get()
+        assert activity_log.arguments == [
+            self.addon.current_version, self.addon
+        ]
+
+        assert self.addon.last_updated == self.migration_date
+
+        current_file = self.addon.current_version.all_files[0]
+        assert current_file.datestatuschanged == self.migration_date
+        assert current_file.status == amo.STATUS_PUBLIC
+
+        self.call_signing_mock.assert_called_with(current_file)
+        assert current_file.cert_serial_num == 'abcdefg1234'
