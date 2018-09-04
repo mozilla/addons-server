@@ -670,7 +670,7 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
 
     def setUp(self):
         super(TestAddonSerializerOutput, self).setUp()
-        self.action = 'detail'
+        self.action = 'retrieve'
 
     def serialize(self):
         self.serializer = self.serializer_class(context={
