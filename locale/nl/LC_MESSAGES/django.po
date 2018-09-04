@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-03 12:45+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2018-09-03 18:16+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -3620,7 +3620,7 @@ msgid "Recommended height: 200 pixels"
 msgstr "Aanbevolen hoogte: 200 pixels"
 
 msgid "6.9MB max"
-msgstr "Maximaal 6.9 MB"
+msgstr "Maximaal 6,9 MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG of GIF (niet geanimeerd)"
@@ -6101,7 +6101,7 @@ msgstr "Spam bij Akismet indienen"
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr "%s Ham-meldingen ingediend als Spam"
+msgstr "%s ham-meldingen ingediend als Spam"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
