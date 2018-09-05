@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-05 22:42+0000\n"
+"PO-Revision-Date: 2018-09-05 23:07+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -651,7 +651,7 @@ msgid "Other"
 msgstr "أخرى"
 
 msgid "Select an application first"
-msgstr ""
+msgstr "اختر تطبيقًا أولًا"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
@@ -680,18 +680,17 @@ msgstr "أضِف إلى {0}"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "ثبّت على {0} بأي حال"
 
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "نزّل على {0} بأي حال"
 
 msgid "Not available for your platform"
 msgstr "غير متوفّر لمنصتك"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "هذه السِمة غير متوافقة مع إصدارتك من {0}"
+msgstr "هذه الإضافة غير متوافقة مع إصدارة {0} الحالية."
 
 msgid "View other versions"
 msgstr "اعرض الإصدارات الأخرى"
@@ -699,12 +698,11 @@ msgstr "اعرض الإصدارات الأخرى"
 msgid "Works with {app} {min} - {max}"
 msgstr ""
 
-#, fuzzy
 msgid "Works with {app}"
-msgstr "تعمل مع {app} {min} - {max}"
+msgstr "تعمل مع {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "فقط في فَيَرفُكس — نزّله الآن!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "نأسف، تحتاجُ متفصحًا من موزيلا (مثل متصفح فَيَرفُكس) لتثبيت ملحقات البحث."
@@ -746,13 +744,13 @@ msgid "Stop following"
 msgstr "أوقِف المتابعة"
 
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "لا يدعم المتصفح لديك وسم الڤديوهات"
 
 msgid "Changes Saved"
 msgstr "حُفظت التغييرات"
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "أدخِل عنوان البريد الجديد للمؤلف"
 
 msgid "There was an error uploading your file."
 msgstr "حدث خطأ أثناء رفع الملف."
@@ -776,7 +774,7 @@ msgstr[4] ""
 msgstr[5] ""
 
 msgid "Image changes being processed"
-msgstr ""
+msgstr "يُعالج التغييرات على الصورة"
 
 msgid "No results found."
 msgstr "لم يُعثر على نتائج."
@@ -787,18 +785,18 @@ msgstr "يُحمّل…"
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "لا حروف متبقية"
-msgstr[1] "حرف واحد متبقي"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "لم يبقَ <b>أي</b> حرف."
+msgstr[1] "بقيَ حرف <b>واحد</b>."
+msgstr[2] "بقيَ <b>حرفين</b>."
+msgstr[3] "بقيت <b>{0}</b> أحرف."
+msgstr[4] "بقيَ <b>{0}</b> حرفًا."
+msgstr[5] "بقيَ <b>{0}</b> حرف."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "هذه الميزة معطلة مؤقتًا بينما نقوم بصيانة الموقع. رجاءً أعِد المحاولة بعد بعض الوقت."
 
 msgid "Remove this localization"
-msgstr ""
+msgstr "أزِل هذا التوطين"
 
 msgid "{name} was viewing this page first."
 msgstr ""
