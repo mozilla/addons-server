@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-05 09:12+0000\n"
+"PO-Revision-Date: 2018-09-05 09:15+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6980,7 +6980,7 @@ msgid "Add-on Reviewer Performance"
 msgstr "Rendimento del revisor del additivo"
 
 msgid "View statistics for user"
-msgstr ""
+msgstr "Vider le statistica del usator"
 
 msgid "Range"
 msgstr "Campo"
@@ -7129,19 +7129,19 @@ msgid "More Actions"
 msgstr "Altere actiones"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "Notifica me circa nove versiones listate"
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Fortiar disactivation de additivo"
 
 msgid "Force-enable add-on"
-msgstr ""
+msgstr "Fortiar activation de additivo"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "Disactivar auto-approbation"
 
 msgid "Enable Auto-Approval"
-msgstr ""
+msgstr "Activar auto-approbation"
 
 msgid "Clear information request"
 msgstr ""
