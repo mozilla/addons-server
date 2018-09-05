@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-05 17:48+0000\n"
+"PO-Revision-Date: 2018-09-05 18:00+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6105,16 +6105,18 @@ msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
+"Le additivos in le lista de presentation ci ha essite create per milles de disveloppatores ex nostre communitate, in le gammas ab le singule hobbyistas al grande corporationes. Tote le additivos in "
+"le lista de presentation es revidite per un equipa de revisores ante que ser publicate. Le additivos marcate como experimental non ha essite revidite e debe ser installate solo con attention."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "Como pote io retener lo que eveni in AMO?"
 
 msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr "Il ha plure manieras de trovar le ultima novas ex le mundo del additivos:"
+msgstr "Il ha plure manieras pro discoperir le ultime novas ex le mundo del additivos:"
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr ""
+msgstr "Nostre <a href=\"%(url)s\">Blog del additivos</a> es actualisate regularmente con informationes pro ambe enthusiastas e disveloppatores de additivos."
 
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
