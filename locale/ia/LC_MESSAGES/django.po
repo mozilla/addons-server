@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-05 18:00+0000\n"
+"PO-Revision-Date: 2018-09-05 21:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6120,21 +6120,21 @@ msgstr "Nostre <a href=\"%(url)s\">Blog del additivos</a> es actualisate regular
 
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
-msgstr ""
+msgstr "Nos sovente posta novas, suggestiones e astutias in nostre conto de Twitter, <a href=\"%(url)s\">mozamo</a>"
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
-msgstr ""
+msgstr "Nostre <a href=\"%(url)s\">foros</a> es un bon loco pro interager con le communitate del additivos e discuter re le cambiamentos approchante pro AMO."
 
 msgid "This sounds great! How can I get involved?"
-msgstr "Interessante. Como pote io collaborar?"
+msgstr "Interessante! Como pote io contribuer?"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "Il ha plure manieras pro contribuer. Si tu es sur le latere technic:"
 
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Crea tu proprie additivo</a>. Nos forni servicios hospite e de actualisation libere e te pote adjutar a attinger un grande auditorio de usatores."
 
 #, python-format
 msgid ""
