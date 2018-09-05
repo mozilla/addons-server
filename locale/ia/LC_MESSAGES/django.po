@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-05 16:32+0000\n"
+"PO-Revision-Date: 2018-09-05 17:48+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6077,12 +6077,12 @@ msgstr "Inviar un nove file"
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s reportos de ham inviate como spam"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s reportos de spam inviate como ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "A proposito del additivos de Mozilla"
@@ -6094,9 +6094,12 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, communmente note como \"AMO\", es le sito official de Mozilla pro le additivos del software de Mozilla, tal como Firefox, Thunderbird, e SeaMonkey. Le additivos te consenti de "
+"adder nove functionalitates e de cambiar le maniera de functionar de tu navigator o de tu applicationes. Da un reguardo circum e explora le milles de modos pro personalisar le maniera que tu opera "
+"online."
 
 msgid "Who creates these add-ons?"
-msgstr "Qui creava iste additivos?"
+msgstr "Qui crea iste additivos?"
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
