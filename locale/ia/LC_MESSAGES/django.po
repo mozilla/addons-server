@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-05 06:37+0000\n"
+"PO-Revision-Date: 2018-09-05 07:52+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6306,7 +6306,7 @@ msgid "Type about:addons into the location bar, and press enter."
 msgstr ""
 
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "Trova \"Plugin Safety\" in le lista del additivos."
 
 msgid "Click the remove button."
 msgstr "Cliccar le button Remover."
@@ -6328,7 +6328,7 @@ msgstr "Cata studio de Shield collige datos circa importante eventos de studio, 
 
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "Iste datos es associate con le <a href=\"%(url)s\">collection de telemetria de Firefox</a>."
 
 msgid "This particular Study"
 msgstr "Iste studio particular"
@@ -6376,13 +6376,13 @@ msgid "A short explanation must be provided when selecting \"Other\" as a flag r
 msgstr ""
 
 msgid "Spam or otherwise non-review content"
-msgstr ""
+msgstr "Spam o contento alteremente non-revidite"
 
 msgid "Inappropriate language/dialog"
 msgstr "Lingua/dialogo inappropriate"
 
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Reporto de defecto o requesta de supporto mal ponite"
 
 msgid "Other (please specify)"
 msgstr "Altero (specificar)"
@@ -6391,10 +6391,10 @@ msgid "This field is required."
 msgstr "Campo obligatori."
 
 msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
+msgstr "Tu non pote cambiar le additivo de un revision un vice que illo ha essite create."
 
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Tu non pote replicar a un revision que es jam un replica."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
 msgstr ""
@@ -6897,10 +6897,10 @@ msgid "Last Approval Date"
 msgstr ""
 
 msgid "Abuse Reports ({num})"
-msgstr ""
+msgstr "Reportos de abuso ({num})"
 
 msgid "Bad User Ratings ({num})"
-msgstr ""
+msgstr "Valutationes de usator negative ({num})"
 
 msgid "Theme Images"
 msgstr "Imagines del thema"
