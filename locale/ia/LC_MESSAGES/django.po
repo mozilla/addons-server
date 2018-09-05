@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-05 08:51+0000\n"
+"PO-Revision-Date: 2018-09-05 09:12+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2517,7 +2517,7 @@ msgstr ""
 "Tu pote usar le mesme conto pro actualisar tu additivos sur le nove sito."
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Le extensiones legate non es plus supportate in Firefox."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "A initiar con Firefox 53, le nove additivos sur iste sito pote solmente esser WebExtensions."
@@ -5788,7 +5788,7 @@ msgid "WebExtension theme uploads are currently not supported."
 msgstr "Le cargamento de themas de WebExtension non es actualmente supportate."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Le dimension maxime pro le themas de WebExtension es {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Tu non pote inviar iste typo de additivo"
@@ -5831,7 +5831,7 @@ msgstr "Impossibile evidentiar le syntaxe de iste typo de file"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "Le exito pote ser rupte, per favor attention e %(link_start)s reporta un problema %(link_end)s subito!"
 
 msgid "Add-on file being processed, please wait."
 msgstr "Analyse del additivo in corso, attender per favor."
@@ -6104,10 +6104,10 @@ msgid ""
 msgstr ""
 
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Como pote io retener lo que eveni in AMO?"
 
 msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr ""
+msgstr "Il ha plure manieras de trovar le ultima novas ex le mundo del additivos:"
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
@@ -6195,10 +6195,10 @@ msgid "Keep reviews concise and easy to understand."
 msgstr "Scribe tu revisiones concise e facile a comprender."
 
 msgid "Give specific and helpful details. For example:"
-msgstr ""
+msgstr "Da detalios specific e utile. Per exemplo:"
 
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "Functiona le additivo como tu sperava?"
 
 msgid "What features did you like or dislike?"
 msgstr "Que functionalitates te placeva o displaceva?"
@@ -6250,7 +6250,7 @@ msgid ""
 msgstr ""
 
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "Cono pote io reportar un revision problematic?"
 
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
@@ -6258,14 +6258,14 @@ msgid ""
 msgstr ""
 
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
+msgstr "Io es un autor de additivos, pote io responder al revisiones?"
 
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
 msgstr ""
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr ""
+msgstr "Io es un autor de additivos, pote io deler revisiones o valutationes non favorabile?"
 
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
@@ -6403,7 +6403,7 @@ msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "Iste version del additivo non existe o non es public."
 
 msgid "You can't leave a review on your own add-on."
-msgstr ""
+msgstr "Tu non pote lassar un revision sur tu proprie additivo."
 
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
@@ -6816,10 +6816,10 @@ msgid "User Ratings Moderation"
 msgstr "Moderation del valutationes del usatores"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "Valutationes attendente moderation ({0})"
 
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Registro del revisiones moderate"
 
 msgid "Moderation Guide"
 msgstr "Guida al moderation"
@@ -6849,7 +6849,7 @@ msgid "Review successfully processed."
 msgstr "Revision processate con successo."
 
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "Attingite le limite de bloco del revisiones"
 
 msgid "{addon} :: EULA"
 msgstr "{addon} :: EULA"
@@ -6952,14 +6952,14 @@ msgid "No events found for this period."
 msgstr ""
 
 msgid "Log details"
-msgstr ""
+msgstr "Registrar le detalios"
 
 msgid "Review Author"
 msgstr "Autor del revision"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "Titulo del additivo"
@@ -6968,7 +6968,7 @@ msgid "Review Text"
 msgstr "Testo del revision"
 
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "Le revision esseva signalate ante le deletion."
 
 msgid "Undelete"
 msgstr "Restaurar"
@@ -6977,7 +6977,7 @@ msgid "Save"
 msgstr "Salvar"
 
 msgid "Add-on Reviewer Performance"
-msgstr ""
+msgstr "Rendimento del revisor del additivo"
 
 msgid "View statistics for user"
 msgstr ""
