@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-05 08:12+0000\n"
+"PO-Revision-Date: 2018-09-05 08:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7412,10 +7412,10 @@ msgstr "Tote le tags"
 
 #. {0} is the string the user was searching for
 msgid "Collection Search Results for {0}"
-msgstr ""
+msgstr "Resultatos de recerca del collection pro {0}"
 
 msgid "Collection Search Results"
-msgstr ""
+msgstr "Resultatos de recerca del collection"
 
 msgid "Search Results"
 msgstr "Resultatos del recerca"
@@ -7424,14 +7424,14 @@ msgid "Search Unavailable"
 msgstr "Recerca non disponibile"
 
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
+msgstr "Le recerca es temporarimente indisponibile. Per favor reproba post poc minutas."
 
 #. {0} is the string the user was searching for
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "Resultatos de recerca del themas pro {0}"
 
 msgid "Themes Search Results"
-msgstr ""
+msgstr "Resultatos de recerca del themas"
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
@@ -7447,7 +7447,7 @@ msgstr "{0} :: Tag"
 
 #. {0} is a tag, such as jetpack.
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "Resultatos de recerca pro le tag \"{0}\""
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
@@ -7473,7 +7473,7 @@ msgid "Could not find add-on with id \"{}\"."
 msgstr "Impossibile trovar additivo con id \"{}\"."
 
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Tu non comprava iste additivo."
 
 msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
@@ -7483,19 +7483,19 @@ msgid "You cannot add versions to an addon that has status: %s."
 msgstr ""
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Le version non concorda con le file manifesto."
 
 msgid "Version already exists."
 msgstr "Le version existe jam."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Solo WebExtensions pote omitter le GUID"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
 msgstr ""
 
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "GUID in URL non valide"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr ""
@@ -7525,31 +7525,31 @@ msgid "by Add-on Status"
 msgstr ""
 
 msgid "Add-on Statistics"
-msgstr ""
+msgstr "Statistica del additivo"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Additivos in uso"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Additivos create"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Additivos discargate"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Additivos actualisate"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "Collectiones create"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "Revisiones scribite"
 
 msgid "User Signups"
-msgstr ""
+msgstr "Registrationes de usatores"
 
 msgid "Archived Data"
-msgstr ""
+msgstr "Datos archivate"
 
 msgid "Custom Date Range"
 msgstr ""
@@ -7578,31 +7578,31 @@ msgstr ""
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
-msgstr ""
+msgstr "Statistica pro {0}"
 
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Pannello de statistica"
 
 msgid "Controls:"
 msgstr "Controlos:"
 
 msgid "reset zoom"
-msgstr ""
+msgstr "restabilir le zoom"
 
 msgid "Group by:"
-msgstr ""
+msgstr "Regruppar per:"
 
 msgid "day"
 msgstr "die"
 
 msgid "week"
-msgstr ""
+msgstr "septimana"
 
 msgid "month"
 msgstr "mense"
 
 msgid "For last:"
-msgstr ""
+msgstr "Per ultime:"
 
 msgid "7 days"
 msgstr "7 dies"
@@ -7783,10 +7783,10 @@ msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
 msgid "View the new site"
-msgstr ""
+msgstr "Vide le nove sito"
 
 msgid "Report a bug"
-msgstr ""
+msgstr "Reportar un defecto"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
@@ -7797,10 +7797,10 @@ msgid "get to know <b>add-ons</b>"
 msgstr ""
 
 msgid "Download Firefox"
-msgstr ""
+msgstr "Discargar Firefox"
 
 msgid "Android Browser"
-msgstr ""
+msgstr "Navigator pro Android"
 
 msgid "iOS Browser"
 msgstr "Navigator pro iOS"
@@ -7812,13 +7812,13 @@ msgid "Desktop Browser"
 msgstr "Navigator pro scriptorio"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "Beta, Nightly, Edition de disveloppator"
 
 msgid "Other languages"
-msgstr ""
+msgstr "Altere linguas"
 
 msgid "Return to the {0} Add-ons homepage"
-msgstr ""
+msgstr "Retornar al {0} pagina principal del additivos"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Additivos"
@@ -8018,7 +8018,7 @@ msgid "new"
 msgstr "nove"
 
 msgid "Ban"
-msgstr ""
+msgstr "Blocar"
 
 msgid "Delete picture"
 msgstr "Deler imagine"
