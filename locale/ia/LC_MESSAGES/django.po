@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-05 21:32+0000\n"
+"PO-Revision-Date: 2018-09-05 21:51+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6141,23 +6141,27 @@ msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
 msgstr ""
+"Si tu ha experientia de disveloppamento de additivos, <a href=\"%(url)s\"> deveni un revisor de additivo</a>! Nostre revisores es admiratores del additivos con un fundo technic, qui revide additivos"
+" pro qualitate e stabilitate del codice."
 
 #, python-format
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
+"Adjuta a meliorar iste sito web. Il es open-source, e tu pote indicar defectos e inviar pecias. <a href=\"%(url)s\">GitHub</a> contine tote nostre actual defectos, defectos legate pote ancora ser "
+"trovate in Bugzilla."
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr ""
+msgstr "Si tu es interessate in additivos ma non bastante como technic, il ha ancora manieras pro adjutar:"
 
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr "Conta lo a tu amicos! Lassa saper al personas que additivos tu usa."
+msgstr "Conta lo a tu amicos! Lassa le personas saper que additivos tu usa."
 
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
 msgstr "Participa a nostre <a href=\"%(url)s\">foros</a>."
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr ""
+msgstr "Revide additivos sur le sito. Le autores de additivos es plus probabile pro meliorar lor additivos e scriber alteros nove quando illes sape que le personas apprecia lor labor."
 
 msgid "I have a question"
 msgstr "Io ha un question"
