@@ -4,21 +4,36 @@ sudo: false
 python:
   - 2.7
 
+jobs:
+  fast_finish: true
+  allow_failures:
+    - python: 3.6
+  include:
+    - { stage: python2, env: TOXENV=codestyle }
+    - { stage: python2, env: TOXENV=docs }
+    - { stage: python2, env: TOXENV=assets }
+    - { stage: python2, env: TOXENV=es }
+    - { stage: python2, env: TOXENV=addons }
+    - { stage: python2, env: TOXENV=devhub }
+    - { stage: python2, env: TOXENV=reviewers }
+    - { stage: python2, env: TOXENV=amo-locales-and-signing }
+    - { stage: python2, env: TOXENV=users-and-accounts }
+    - { stage: python2, env: TOXENV=main }
+    - { stage: python3, python: 3.6, env: TOXENV=codestyle}
+    - { stage: python3, python: 3.6, env: TOXENV=docs }
+    - { stage: python3, python: 3.6, env: TOXENV=assets }
+    - { stage: python3, python: 3.6, env: TOXENV=es }
+    - { stage: python3, python: 3.6, env: TOXENV=addons }
+    - { stage: python3, python: 3.6, env: TOXENV=devhub }
+    - { stage: python3, python: 3.6, env: TOXENV=reviewers }
+    - { stage: python3, python: 3.6, env: TOXENV=amo-locales-and-signing }
+    - { stage: python3, python: 3.6, env: TOXENV=users-and-accounts }
+    - { stage: python3, python: 3.6, env: TOXENV=main }
+
 env:
   global:
     - secure: "bYe6WOTAnlS8Ru4ODWSSOnHffxcN23NkKZh4M0eO510HvZGCMB4zZn8afiVKGXd1YqsoRfMXTBZJ0yBcFEvWnyH7S4kd+7d1PpNS4kgLVKtLCW5d7Wc5GA6uh1jWLS+zKFBNN5sZ8OVc7rCsLCBRDEoI94wBKYwDX2Kk1WKylz8="
     - AUTOGRAPH_SERVER_URL: http://localhost:5500
-  matrix:
-  - TOXENV=codestyle
-  - TOXENV=docs
-  - TOXENV=assets
-  - TOXENV=es
-  - TOXENV=addons
-  - TOXENV=devhub
-  - TOXENV=reviewers
-  - TOXENV=amo-locales-and-signing
-  - TOXENV=users-and-accounts
-  - TOXENV=main
 
 cache:
   pip: true
@@ -53,7 +68,7 @@ install:
   - nvm deactivate
   - nvm install 8
   - nvm use 8
-  - pip install --upgrade pip wheel setuptools tox==2.9.1
+  - pip install --upgrade pip wheel setuptools tox==3.2.1 tox-travis==0.10
 
 before_script:
   - mysql --version
