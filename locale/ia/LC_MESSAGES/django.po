@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-05 07:52+0000\n"
+"PO-Revision-Date: 2018-09-05 08:12+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6846,7 +6846,7 @@ msgid "Self-reviews are not allowed."
 msgstr ""
 
 msgid "Review successfully processed."
-msgstr ""
+msgstr "Revision processate con successo."
 
 msgid "Review lock limit reached"
 msgstr ""
@@ -6882,7 +6882,7 @@ msgid "Visible"
 msgstr "Visibile"
 
 msgid "Average Daily Users"
-msgstr ""
+msgstr "Usatores medie per die"
 
 msgid "Abuse Reports"
 msgstr "Reportos de abuso"
@@ -6894,7 +6894,7 @@ msgid "EULA"
 msgstr "EULA"
 
 msgid "Last Approval Date"
-msgstr ""
+msgstr "Ultime data de approbation"
 
 msgid "Abuse Reports ({num})"
 msgstr "Reportos de abuso ({num})"
@@ -6906,13 +6906,13 @@ msgid "Theme Images"
 msgstr "Imagines del thema"
 
 msgid "Rendered Preview"
-msgstr ""
+msgstr "Vision preliminar rendite"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "File de fundo {0} de {1} - {2}"
 
 msgid "More about this add-on"
-msgstr ""
+msgstr "Altero re iste additivo"
 
 msgid "Image Gallery"
 msgstr "Galeria de imagine"
@@ -6971,7 +6971,7 @@ msgid "Review was flagged prior to deletion."
 msgstr ""
 
 msgid "Undelete"
-msgstr ""
+msgstr "Restaurar"
 
 msgid "Save"
 msgstr "Salvar"
@@ -7004,7 +7004,7 @@ msgid "This Year"
 msgstr "Iste anno"
 
 msgid "Monthly Performance"
-msgstr ""
+msgstr "Prestationes mensual"
 
 msgid "All-time Point Breakdown by Type"
 msgstr ""
@@ -7111,7 +7111,7 @@ msgid "Insert canned response..."
 msgstr "Inserer le responsa predefinite..."
 
 msgid "Tested on:"
-msgstr ""
+msgstr "Testate sur:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
@@ -7215,39 +7215,39 @@ msgid "Newer"
 msgstr "Plus recente"
 
 msgid "Recent Points"
-msgstr ""
+msgstr "Punctos recente"
 
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Nulle punctos ancora ganiate."
 
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Revisores principal (ultime septimana)"
 
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Nulle revisores principal ancora."
 
 msgid "All Time"
-msgstr ""
+msgstr "De sempre"
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "Tu ha <span>{0}</span> punctos."
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s sur %(date)s [%(ip_address)s]"
 
 msgid "Date Deleted"
-msgstr ""
+msgstr "Data de deletion"
 
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "Nulle themas delite trovate pro iste periodo."
 
 msgid "Theme Review History for {0}"
-msgstr ""
+msgstr "Chronologia de revision del thema pro {0}"
 
 msgid "Review Date"
-msgstr ""
+msgstr "Data de revision"
 
 msgid "Action"
 msgstr "Action"
@@ -7256,7 +7256,7 @@ msgid "Reason"
 msgstr "Ration"
 
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "Il ha actualmente nulle revisiones."
 
 msgid "Flagged Themes"
 msgstr "Themas signalate"
@@ -7316,7 +7316,7 @@ msgid "Theme Review for {0}"
 msgstr "Thema revidite pro {0}"
 
 msgid "(Probable Duplicate Submission)"
-msgstr ""
+msgstr "(Probabile submission duplicate)"
 
 msgid "Past Review Notes"
 msgstr "Notas del revision passate"
@@ -7354,7 +7354,7 @@ msgstr "Rejectate o non revidite"
 
 #, python-format
 msgid "[status:%s]"
-msgstr ""
+msgstr "[stato:%s]"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
@@ -7373,8 +7373,8 @@ msgstr[1] "Auto approbate ({0})"
 
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Requesta de informationes expirate ({0})"
+msgstr[1] "Requestas de informationes expirate ({0})"
 
 msgid "Flagged"
 msgstr "Signalate"
@@ -7386,13 +7386,13 @@ msgid "Maximum query length exceeded."
 msgstr ""
 
 msgid "search for add-ons"
-msgstr ""
+msgstr "cercar additivos"
 
 msgid "search for themes"
-msgstr ""
+msgstr "cercar themas"
 
 msgid "search for apps"
-msgstr ""
+msgstr "cercar applicationes"
 
 msgid "Relevance"
 msgstr "Relevantia"
@@ -7455,7 +7455,7 @@ msgstr[0] "<b>{0}</b> resultato concordante"
 msgstr[1] "<b>{0}</b> resultatos concordante"
 
 msgid "Filter Results"
-msgstr ""
+msgstr "Resultatos del filtro"
 
 msgid "Category"
 msgstr "Categoria"
@@ -7464,13 +7464,13 @@ msgid "Tag"
 msgstr "Tag"
 
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr ""
+msgstr "Monstra de {0} - {1} de {2} resultatos pro <strong>{3}</strong>"
 
 msgid "Showing {0} - {1} of {2} results"
-msgstr ""
+msgstr "Monstra de {0} - {1} de {2} resultatos"
 
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "Impossibile trovar additivo con id \"{}\"."
 
 msgid "You do not own this addon."
 msgstr ""
