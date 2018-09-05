@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-05 08:32+0000\n"
+"PO-Revision-Date: 2018-09-05 08:51+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5879,7 +5879,7 @@ msgid "Hide or unhide tree"
 msgstr "Celar o disvelar arbore"
 
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "Incassar le texto o non"
 
 msgid "No files in the uploaded file."
 msgstr "Nulle file in le archivo cargate."
@@ -5936,7 +5936,7 @@ msgid "Xmarks is the #1 bookmarking add-on."
 msgstr "Xmarks es le additivo #1 del marcapaginas."
 
 msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
+msgstr "Traductor de texto e paginas web, dictionario e altero ancora!"
 
 msgid "Love is in the Air"
 msgstr "Le amor es in le aere"
@@ -6063,7 +6063,7 @@ msgid "Content Submitted"
 msgstr "Contento inviate"
 
 msgid "View Rating on site"
-msgstr ""
+msgstr "Vide le valutation sur le sito"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, fuzzy
@@ -6145,7 +6145,7 @@ msgid "If you're interested in add-ons but not quite as technical, there are sti
 msgstr ""
 
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Conta lo a tu amicos! Lassa saper al personas que additivos tu usa."
 
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
@@ -7858,10 +7858,10 @@ msgid "Add extra features and styles to make %(app)s your own."
 msgstr ""
 
 msgid "On the go?"
-msgstr ""
+msgstr "In movimento?"
 
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr ""
+msgstr "Controla nostre <a class=\"mobile-link\" href=\"#\">sito del additivos pro mobile</a>."
 
 msgid "Android Add-ons"
 msgstr "Additivos pro Android"
@@ -7889,18 +7889,18 @@ msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save
 msgstr ""
 
 msgid "Discard Changes"
-msgstr ""
+msgstr "Eliminar le modificationes"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "Desira tu vermente remover tote le <b>{0}</b> traductiones? Isto non pote ser disfacite."
 
 msgid "Delete Locale"
 msgstr "Deler le lingua"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "Le usator \"%(user)s\" ha essite blocate."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
@@ -7908,10 +7908,10 @@ msgstr ""
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "Le usatores \"%(users)s\" ha essite blocate."
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "Blocar le usatores eligite"
 
 msgid "Profile Photo"
 msgstr "Photo del profilo"
@@ -7958,31 +7958,31 @@ msgid "My Mobile Add-ons"
 msgstr "Mi additivos mobile"
 
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "un disveloppator de additivos replica a mi revision"
 
 msgid "new add-ons or Firefox features are available"
 msgstr "nove additivos o functionalitates de Firefox es disponibile"
 
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "le compatibilitate de mi additivo es promovite con successo"
 
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "mi additivo basate sur sdk esseva promovite con successo"
 
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "alicuno scribe un revision de mi additivo"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "le compatibilitate de mi additivo non pote ser promovite"
 
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "mi additivo basate sur sdk non pote ser promovite"
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr ""
+msgstr "mi additivos es revidite per un revisor"
 
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr ""
@@ -7994,7 +7994,7 @@ msgid "An email address is required."
 msgstr "Un adresse de email es obligatori."
 
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Non existe usator con iste adresse de email."
 
 msgid "Profile Deleted"
 msgstr "Profilo delite"
@@ -8249,7 +8249,7 @@ msgstr[0] "%(num)s additivo"
 msgstr[1] "%(num)s additivos"
 
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "Valutationes medie del additivos del usator"
 
 msgctxt "user_list_others"
 msgid "others"
@@ -8294,7 +8294,7 @@ msgid "These versions are displayed for reference and testing purposes. You shou
 msgstr ""
 
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "Le versiones delite non pote plus esser modificate."
 
 msgid "Binary"
 msgstr "Compilate"
