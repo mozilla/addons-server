@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-03 22:00+0000\n"
+"PO-Revision-Date: 2018-09-05 06:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3593,9 +3593,8 @@ msgstr "Nomine del thema"
 msgid "Select a header image for your theme"
 msgstr "Elige un imagine del titulo pro tu thema"
 
-#, fuzzy
 msgid "Recommended height: 200 pixels"
-msgstr "Le altitude del imagine debe ser 200 pixels"
+msgstr "Altitude recommendate: 200 pixels"
 
 msgid "6.9MB max"
 msgstr "6.9MB max"
@@ -6046,26 +6045,22 @@ msgstr ""
 msgid "Get Started"
 msgstr "Comenciar"
 
-#, fuzzy
 msgid "Reported Status"
-msgstr "Stato del sito"
+msgstr "Stato reportate"
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "Typo de reporto"
+msgstr "Spam reportate"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, fuzzy
 msgid "Reported Ham"
 msgstr "Reportar un defecto"
 
-#, fuzzy
 msgid "Not Reported"
-msgstr "Nondum valutate"
+msgstr "Non reportate"
 
-#, fuzzy
 msgid "Content Submitted"
-msgstr "Version inviate"
+msgstr "Contento inviate"
 
 msgid "View Rating on site"
 msgstr ""
@@ -7640,28 +7635,28 @@ msgid "This dashboard is currently <b>private</b>."
 msgstr ""
 
 msgid "Change settings."
-msgstr ""
+msgstr "Cambiar le parametros."
 
 msgid "Add-ons Created by Date"
-msgstr ""
+msgstr "Additivos per data de creation"
 
 msgid "Add-ons Downloaded by Date"
-msgstr ""
+msgstr "Additivos per data de discargamento"
 
 msgid "Add-ons in Use by Date"
-msgstr ""
+msgstr "Additivos per data de uso"
 
 msgid "Add-ons Updated by Date"
-msgstr ""
+msgstr "Additivos per data de actualisation"
 
 msgid "Application usage by Date"
-msgstr ""
+msgstr "Application per data de uso"
 
 msgid "Collections Created by Date"
-msgstr ""
+msgstr "Collectiones per data de creation"
 
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Discargate per data"
 
 msgid "How are downloads counted?"
 msgstr ""
@@ -7672,46 +7667,46 @@ msgid ""
 msgstr ""
 
 msgid "User languages by Date"
-msgstr ""
+msgstr "Linguas del usator per data"
 
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Systema operative per data"
 
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> Discargamentos"
 
 msgid "Loading..."
 msgstr "Cargamento..."
 
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> Usatores medie quotidian"
 
 msgid "Top Applications"
-msgstr ""
+msgstr "Applicationes principal"
 
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "Vide altere applicationes&hellip;"
 
 msgid "Top Languages"
-msgstr ""
+msgstr "Linguas principal"
 
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Vide altere linguas&hellip;"
 
 msgid "Top Platforms"
-msgstr ""
+msgstr "Systemas operative principal"
 
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "Vide altere systemas operative&hellip;"
 
 msgid "Ratings by Date"
-msgstr ""
+msgstr "Valutationes per data"
 
 msgid "Reviews Created by Date"
-msgstr ""
+msgstr "Revisiones per data de creation"
 
 msgid "Download sources by Date"
-msgstr ""
+msgstr "Fontes de discargamentos per data"
 
 msgid "About tracking external sources..."
 msgstr ""
@@ -7726,13 +7721,13 @@ msgid ""
 msgstr ""
 
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "Stato del additivos per data"
 
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "Subscriptores per data"
 
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "Usatores quotidian per data"
 
 msgid "What are daily users?"
 msgstr ""
@@ -7748,19 +7743,19 @@ msgid ""
 msgstr ""
 
 msgid "User Signups by Date"
-msgstr ""
+msgstr "Signaturas de usatores per data"
 
 msgid "Application versions by Date"
-msgstr ""
+msgstr "Application per data de version"
 
 msgid "Mozilla Add-ons"
 msgstr "Additivos de Mozilla"
 
 msgid "Find add-ons for other applications"
-msgstr ""
+msgstr "Trovar additivos pro altere applicationes"
 
 msgid "Other Applications"
-msgstr ""
+msgstr "Altere applicationes"
 
 msgid "AMO is getting a new look. Would you like to see it?"
 msgstr ""
