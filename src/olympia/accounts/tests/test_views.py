@@ -266,6 +266,14 @@ class TestFindUser(TestCase):
         with self.assertRaises(PermissionDenied):
             views.find_user({'uid': 'abc', 'email': 'you@amo.ca'})
 
+    def test_find_user_mozilla(self):
+        task_user = user_factory(
+            id=settings.TASK_USER_ID, fxa_id='abc')
+        with self.assertRaises(PermissionDenied):
+            views.find_user({'uid': '123456', 'email': task_user.email})
+        with self.assertRaises(PermissionDenied):
+            views.find_user({'uid': task_user.fxa_id, 'email': 'doesnt@matta'})
+
 
 class TestRenderErrorHTML(TestCase):
 
