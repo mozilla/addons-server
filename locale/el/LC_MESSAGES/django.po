@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-04 14:03+0000\n"
+"PO-Revision-Date: 2018-09-05 10:05+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -6137,12 +6137,12 @@ msgstr "Υποβολή ανεπιθύμητου στο Akismet"
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s αναφορές επιθυμητών υποβλήθηκαν ως ανεπιθύμητα"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s αναφορές ανεπιθύμητων υποβλήθηκαν ως επιθυμητά"
 
 msgid "About Mozilla Add-ons"
 msgstr "Σχετικά με τα Πρόσθετα Mozilla"
