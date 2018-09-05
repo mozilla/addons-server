@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-08-18 18:51+0000\n"
+"PO-Revision-Date: 2018-09-05 22:30+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -30,14 +30,13 @@ msgstr "هناك مشكلة ما في الاتصال بالخادوم."
 msgid "Select a file..."
 msgstr "اختر ملفًا…"
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "إضافتك ينبغي أن تنتهي بـ xpi. أو jar. أو xml."
+msgstr "يجب أن ينتهي اسم الإضافة بأحد الآتي: ‎.zip أو ‎.xpi أو ‎.crx أو ‎.jar أو ‎.xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#, fuzzy, python-format
+#, python-format
 msgid "{0}% complete"
-msgstr "اكتمل {0}%"
+msgstr "اكتمل بنسبة {0}%"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
@@ -92,28 +91,28 @@ msgid "Finished validating {0}"
 msgstr "انتهى التثبّت من {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "انتهت مهلة التحقق من إضافتك، سيكون التحقق منها يدويا."
+msgstr "انتهت مهلة التثبّت من إضافتك، سيكون التحقق منها يدوي."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] "تم التحقق من إضافتك بدون أي أخطاء أو تحذيرات."
-msgstr[1] "تم التحقق من إضافتك بدون أي أخطاء، ومع تحذير واحد."
-msgstr[2] "تم التحقق من إضافتك بدون أي أخطاء، ومع تحذيرين."
-msgstr[3] "تم التحقق من إضافتك بدون أي أخطاء، ومع {0} تحذيرات."
-msgstr[4] "تم التحقق من إضافتك بدون أي أخطاء، ومع {0} تحذيرًا."
-msgstr[5] "تم التحقق من إضافتك بدون أي أخطاء، ومع {0} تحذير."
+msgstr[0] "اكتمل التثبّت من إضافتك بدون أي أخطاء أو تحذيرات."
+msgstr[1] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع تحذير واحد."
+msgstr[2] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع تحذيرين."
+msgstr[3] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} تحذيرات."
+msgstr[4] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} تحذيرًا."
+msgstr[5] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} تحذير."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] "تم التحقق من الإضافة الخاصة بك بدون أخطاء و {0} رسائل."
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "اكتمل التثبّت من إضافتك بدون أي أخطاء أو رسائل."
+msgstr[1] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع رسالة واحدة."
+msgstr[2] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع رسالتين."
+msgstr[3] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} رسائل."
+msgstr[4] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} رسالةً."
+msgstr[5] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} رسالة."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "اكتمل التثبّت من إضافتك بدون أي أخطاء أو رسائل."
 
 msgid "Your submission will be automatically signed."
 msgstr ""
@@ -145,7 +144,7 @@ msgid ""
 msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "وجدت عملية التثبّت المشكلات الآتية والتي قد تؤدّي بالرفض:"
 
 msgid "Sorry, no supported platform has been found."
 msgstr "نعتذر، لم يُعثر على منصة مدعومة."
@@ -893,10 +892,10 @@ msgid "Compatibility Tests"
 msgstr ""
 
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "فشل التثبّت من الإضافة."
 
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "نجح التثبّت من الإضافة."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
@@ -926,7 +925,7 @@ msgstr[4] ""
 msgstr[5] ""
 
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "تعذّر اكتمال مهمة التثبّت أو أنها اكتملت مع أخطاء."
 
 msgid "Internal server error"
 msgstr "خطأ داخلي في الخادوم"
