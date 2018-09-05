@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-05 21:51+0000\n"
+"PO-Revision-Date: 2018-09-05 22:00+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6168,11 +6168,11 @@ msgstr "Io ha un question"
 
 #, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr ""
+msgstr "Un bon loco pro initiar es <a href=\"%(sumo_url)s\">Supporto</a> Mozilla. Si tu non trova un responsa ibi, tu pote <a href=\"%(forum_url)s\"> demandar sur nostre foros</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr ""
+msgstr "Si tu realmente debe continger alcuno ex le equipa de Mozilla, per favor vide nostre pagina de<a href=\"%(url)s\"> informationes de contacto</a>."
 
 msgid "Who works on this website?"
 msgstr "Qui labora sur iste sito web?"
@@ -6184,10 +6184,10 @@ msgid "Sections"
 msgstr "Sectiones"
 
 msgid "Some tips for writing a great review"
-msgstr "Qualque astutias pro scriber un grande revision"
+msgstr "Alcun suggestiones pro scriber un grande revision"
 
 msgid "Frequently Asked Questions about Reviews"
-msgstr "Demandas frequente re le revisiones"
+msgstr "Questiones frequente circa le revisiones"
 
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
