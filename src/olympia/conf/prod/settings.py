@@ -115,7 +115,6 @@ FXA_CONFIG = {
         'redirect_url':
             'https://addons.mozilla.org/api/v3/accounts/authenticate/',
         'scope': 'profile',
-        'skip_register_redirect': True,
     },
 }
 DEFAULT_FXA_CONFIG_NAME = 'default'

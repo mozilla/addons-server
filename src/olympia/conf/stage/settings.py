@@ -133,7 +133,6 @@ FXA_CONFIG = {
         'redirect_url':
             'https://addons.allizom.org/api/v3/accounts/authenticate/',
         'scope': 'profile',
-        'skip_register_redirect': True,
     },
     'local': {
         'client_id': env('DEVELOPMENT_FXA_CLIENT_ID'),
