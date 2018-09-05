@@ -307,7 +307,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         self.auto_sign_version.assert_called_with(latest_version)
 
     def test_system_addon_not_allowed_not_mozilla(self):
-        guid = 'systemaddon@mozilla.org'
+        guid = 'systemaddon@mozilla.com'
         self.user.update(email='yellowpanda@notzilla.com')
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
@@ -319,7 +319,8 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 400
         assert response.data['error'] == (
             u'You cannot submit an add-on with a guid ending "@mozilla.org" '
-            u'or "@shield.mozilla.org" or "@pioneer.mozilla.org"')
+            u'or "@shield.mozilla.org" or "@pioneer.mozilla.org" '
+            u'or "@mozilla.com"')
 
     def test_system_addon_update_allowed(self):
         """Updates to system addons are allowed from anyone."""
