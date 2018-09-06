@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 08:32+0000\n"
+"PO-Revision-Date: 2018-09-06 08:37+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -130,7 +130,7 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "إن كانت إضافتك تحتاج حسابًا في موقع معين لتُختبر كما ينبغي، فضمّن اسم مستخدم وكلمة سر اختباريّين في قسم الملاحظات للمراجعين (يمكن إجراء هذا في الخطوة التالية)."
 
 msgid "Add-on submission checklist"
 msgstr ""
@@ -171,7 +171,7 @@ msgid "Stop Following"
 msgstr "أوقِف المتابعة"
 
 msgid "Following"
-msgstr ""
+msgstr "مُتابعة"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -202,13 +202,13 @@ msgid "Your Theme's Name"
 msgstr "اسم السمة"
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "عليه علامة لمراجعته"
 
 msgid "Your input is required"
 msgstr "الدخل مطلوب"
 
 msgid "Marked for deletion"
-msgstr ""
+msgstr "عليه علامة لحذفه"
 
 msgid "Updating results&hellip;"
 msgstr "يُحدّث النتائج&hellip;"
