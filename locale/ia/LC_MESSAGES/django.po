@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 19:11+0000\n"
+"PO-Revision-Date: 2018-09-06 19:24+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7535,22 +7535,22 @@ msgid "by Source"
 msgstr "per fonte"
 
 msgid "by Add-on Version"
-msgstr ""
+msgstr "per version del additivo"
 
 msgid "by Application"
-msgstr ""
+msgstr "per application"
 
 msgid "by Language"
 msgstr "per lingua"
 
 msgid "by Platform"
-msgstr ""
+msgstr "per systema operative"
 
 msgid "by Add-on Status"
-msgstr ""
+msgstr "per stato del additivo"
 
 msgid "Add-on Statistics"
-msgstr "Statistica del additivo"
+msgstr "Statistica del additivos"
 
 msgid "Add-ons in Use"
 msgstr "Additivos in uso"
@@ -7577,7 +7577,7 @@ msgid "Archived Data"
 msgstr "Datos archivate"
 
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Intervallo de datas personalisate"
 
 msgid "From"
 msgstr "De"
@@ -7593,13 +7593,13 @@ msgstr "Exportar"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Pannello de statistica :: Additivos pro {1}"
 
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Pannello de statistica"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Pannello de statistica :: Additivos pro {0}"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
@@ -7627,7 +7627,7 @@ msgid "month"
 msgstr "mense"
 
 msgid "For last:"
-msgstr "Per ultime:"
+msgstr "Pro ultime:"
 
 msgid "7 days"
 msgstr "7 dies"
@@ -7642,7 +7642,7 @@ msgid "365 days"
 msgstr "365 dies"
 
 msgid "Custom..."
-msgstr "Personalisar..."
+msgstr "Personalisate..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
