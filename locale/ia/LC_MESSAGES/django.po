@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-05 23:04+0000\n"
+"PO-Revision-Date: 2018-09-06 06:54+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6178,7 +6178,7 @@ msgid "Who works on this website?"
 msgstr "Qui labora sur iste sito web?"
 
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
-msgstr ""
+msgstr "Durante le annos, plure personas ha contribuite a iste sito web, sia voluntarios del communitate que un equipa dedicate de AMO."
 
 msgid "Sections"
 msgstr "Sectiones"
@@ -6218,7 +6218,7 @@ msgid "Was it useful?"
 msgstr "Esseva illo utile?"
 
 msgid "Was it easy to use?"
-msgstr "Es illo facile a usar?"
+msgstr "Esseva illo facile a usar?"
 
 msgid "Will you continue to use this add-on?"
 msgstr "Continuara tu a usar iste additivo?"
@@ -6227,7 +6227,7 @@ msgid "Take a moment to read your review before submitting it to minimize typos.
 msgstr "Prende un momento pro leger tu revision ante lo inviar pro minimisar le errores."
 
 msgid "Don’t:"
-msgstr "Non:"
+msgstr "Non facer:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr "Inviar revisiones de un sol parola tal como \"Grande!\", \"meraviliose,\" o \"mal.\""
