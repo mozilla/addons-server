@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 17:30+0000\n"
+"PO-Revision-Date: 2018-09-06 17:43+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7311,7 +7311,7 @@ msgid "Previous Theme"
 msgstr "Thema previe"
 
 msgid "Your Review History"
-msgstr "Chronologia de tu revision"
+msgstr "Chronologia de tu revisiones"
 
 msgid "Commit Review"
 msgstr "Inviar revision"
@@ -7323,32 +7323,32 @@ msgid "{0} out of {1} reviewed"
 msgstr "{0} de {1} revidite"
 
 msgid "There are currently no Themes to review."
-msgstr "Il ha actualmente nulle thema a revider."
+msgstr "Il ha actualmente nulle themas al revision."
 
 msgid "Clear Search"
-msgstr "Clarar le recerca"
+msgstr "Clarar recerca"
 
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "Disblocar mi thema"
 
 msgid "Interactive Theme Queue"
 msgstr "Cauda de themas interactive"
 
 msgid "Reviewers' Guide"
-msgstr "Guida del revisor"
+msgstr "Guida del revisores"
 
 msgid "Theme Review for {0}"
-msgstr "Thema revidite pro {0}"
+msgstr "Revision de thema pro {0}"
 
 msgid "(Probable Duplicate Submission)"
-msgstr "(Probabile submission duplicate)"
+msgstr "(Probabile invio duplicate)"
 
 msgid "Past Review Notes"
 msgstr "Notas del revision passate"
 
 #. {previous review action taken on theme}: {comment about review action}
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "Altere informationes demandate: {0}"
 
 msgid "Flagged: {0}"
 msgstr "Signalate: {0}"
