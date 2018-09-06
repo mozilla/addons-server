@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 11:32+0000\n"
+"PO-Revision-Date: 2018-09-06 12:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6888,12 +6888,13 @@ msgstr[1] "{0} revisiones de thema elaborate con successo (+{1} punctos, {2} tot
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
+"Tu thema ha essite disblocate con successo. Altere revisores pote ora revider ille themas disblocate. Tu pote deber refrescar le pagina pro vider le cambiamentos reflectite in le tabella infra."
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Reportos de abuso"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
+msgstr "Reportos de abuso pro {addon} e su disveloppatores ({num})"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -6912,13 +6913,13 @@ msgid "Abuse Reports"
 msgstr "Reportos de abuso"
 
 msgid "Requires Payment"
-msgstr "Require pagamento"
+msgstr "Il necesse un pagamento"
 
 msgid "EULA"
 msgstr "EULA"
 
 msgid "Last Approval Date"
-msgstr "Ultime data de approbation"
+msgstr "Data del ultime approbation"
 
 msgid "Abuse Reports ({num})"
 msgstr "Reportos de abuso ({num})"
