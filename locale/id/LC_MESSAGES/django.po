@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 11:03+0000\n"
+"PO-Revision-Date: 2018-09-06 11:44+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -6085,9 +6085,8 @@ msgstr "Laporkan masalah"
 msgid "Not Reported"
 msgstr "Tidak Dilaporkan"
 
-#, fuzzy
 msgid "Content Submitted"
-msgstr "Pengajuan Versi"
+msgstr "Konten Diajukan"
 
 #, fuzzy
 msgid "View Rating on site"
