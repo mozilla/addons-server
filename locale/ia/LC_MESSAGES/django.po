@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 12:32+0000\n"
+"PO-Revision-Date: 2018-09-06 12:50+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6931,7 +6931,7 @@ msgid "Theme Images"
 msgstr "Imagines del thema"
 
 msgid "Rendered Preview"
-msgstr "Vision preliminar rendite"
+msgstr "Ante-prima rendite"
 
 msgid "Background file {0} of {1} - {2}"
 msgstr "File de fundo {0} de {1} - {2}"
@@ -6940,22 +6940,22 @@ msgid "More about this add-on"
 msgstr "Altero re iste additivo"
 
 msgid "Image Gallery"
-msgstr "Galeria de imagine"
+msgstr "Galeria de imagines"
 
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "Nihil a vider ci!  Le disveloppator non includeva ulle detalios."
 
 msgid "Return to the Reviewer Tools dashboard"
-msgstr ""
+msgstr "Retornar al pannello de utensiles del revisor"
 
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Classifica del revisores"
 
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Nulle punctos de revision ancora adjudicate."
 
 msgid "Rank"
-msgstr "Classification"
+msgstr "Classifica"
 
 msgid "Score"
 msgstr "Punctuation"
@@ -6971,13 +6971,13 @@ msgid "Event"
 msgstr "Evento"
 
 msgid "More details."
-msgstr "Plus de detalios."
+msgstr "Altere detalios."
 
 msgid "No events found for this period."
-msgstr ""
+msgstr "Nulle eventos trovate pro iste periodo."
 
 msgid "Log details"
-msgstr "Registrar le detalios"
+msgstr "Detalios del registro"
 
 msgid "Review Author"
 msgstr "Autor del revision"
@@ -6996,7 +6996,7 @@ msgid "Review was flagged prior to deletion."
 msgstr "Le revision esseva signalate ante le deletion."
 
 msgid "Undelete"
-msgstr "Restaurar"
+msgstr "Restabilir"
 
 msgid "Save"
 msgstr "Salvar"
