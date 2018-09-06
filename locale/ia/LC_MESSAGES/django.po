@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 07:48+0000\n"
+"PO-Revision-Date: 2018-09-06 08:10+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6334,10 +6334,10 @@ msgid "Click the remove button."
 msgstr "Clicca le button Remover."
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
+msgstr "Si tu refusara precocemente de studiar, nos te demandara de plenar un questionario. Nos es interessate a audir circa tu experientia, mesmo si tu non ha participate al integre studio."
 
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "Le option de refusar un studio non te impedi de participar a futur studios."
 
 msgid "Your privacy"
 msgstr "Tu confidentialitate"
@@ -6346,33 +6346,33 @@ msgid "All Shield Studies"
 msgstr "Tote le studios de Shield"
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr "Cata studio de Shield collige datos circa importante eventos de studio, tal como installation, disinstallation, uso quotidian, e fin de studio. Le studios include alsi un sondage optional."
+msgstr "Cata studio de Shield collige datos circa importante eventos de studio, tal como installation, disinstallation, uso quotidian, e fin de studio. Studios include alsi un questionario optional."
 
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr "Iste datos es associate con le <a href=\"%(url)s\">collection de telemetria de Firefox</a>."
+msgstr "Iste datos es associate con le <a href=\"%(url)s\">Collection de telemetria de Firefox</a>."
 
 msgid "This particular Study"
 msgstr "Iste studio particular"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "In addition al datos colligite per tote le studios de Shield, Mozilla colligera informationes circa:"
 
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
+msgstr "Sitos web que tu visita que prova a usar plugins e qual contento sur le sito necessita le plugin;"
 
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
+msgstr "Como tu interage con le contento del plugin sur ille sitos, includite si e como tu elige de consenti a facer fluer le plugin."
 
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
+msgstr "Mozilla mantenera iste informationes private; ulle datos sera compartite solo in forma aggregate o anonyme."
 
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "Tu pote apprender altero circa le collection de datos pro iste studio <a href=\"%(url)s\">ci</a>."
 
 msgid "You Help Make Firefox Better"
-msgstr "Tu auxilio rende Firefox melior"
+msgstr "Tu adjuta a render Firefox melior"
 
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
