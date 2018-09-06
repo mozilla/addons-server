@@ -43,6 +43,15 @@ def firefox_notifications(notifications):
     return notifications
 
 
+@pytest.fixture(scope='session')
+def django_db_setup():
+    settings.DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': 'mysqld',
+        'NAME': 'olympia',
+    }
+
+
 @pytest.fixture(
     scope='function',
     params=[DESKTOP, MOBILE],

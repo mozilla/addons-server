@@ -1,3 +1,4 @@
+from django.core.management import call_command
 from pypom import Region
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as expected
@@ -90,6 +91,7 @@ class DevHub(Base):
             self.selenium, self.base_url
         ).wait_for_page_to_load()
         devhub_source.dont_submit_source_code()
+
         from pages.desktop.devhub_submission import DevhubSubmission
 
         devhub = DevhubSubmission(self.selenium, self.base_url)
