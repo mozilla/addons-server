@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 12:50+0000\n"
+"PO-Revision-Date: 2018-09-06 13:11+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7029,7 +7029,7 @@ msgid "This Year"
 msgstr "Iste anno"
 
 msgid "Monthly Performance"
-msgstr "Prestationes mensual"
+msgstr "Rendimento mensual"
 
 msgid "All-time Point Breakdown by Type"
 msgstr ""
@@ -7073,7 +7073,7 @@ msgid "There are currently no add-ons of this type to review."
 msgstr "Il ha actualmente nulle additivos de iste typo pro revision."
 
 msgid "Helpful Links:"
-msgstr "Utile ligamines:"
+msgstr "Ligamines utile:"
 
 msgid "Add-on Policy"
 msgstr "Politica del additivos"
@@ -7124,28 +7124,28 @@ msgid "Auto-Approval script has not run yet on this version."
 msgstr "Le script pro le approbation automatic non ha ancora analysate iste version."
 
 msgid "This version has not been reviewed."
-msgstr "Iste version ha non essite revidite."
+msgstr "Iste version non ha essite revidite."
 
 msgid "Please select one or more versions in the list above."
-msgstr "Per favor eliger un o plus versiones in le lista supra."
+msgstr "Per favor elige un o plus versiones in le lista supra."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Tu pote ancora inviar iste forma, totevia face assi solo si tu sape que illo non confligera."
 
 msgid "Insert canned response..."
-msgstr "Inserer le responsa predefinite..."
+msgstr "Insere le responsa predefinite..."
 
 msgid "Tested on:"
 msgstr "Testate sur:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>ATTENTION!</strong> Un altere usator videva iste pagina ante te."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
+msgstr "Le tabula blanc es le loco pro excambiar informationes pertinente pro iste additivo (qualcunque version), inter le disveloppator e le revisor. Isto es visibile e modificabile per ambe."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "Le tabula blanc private es usate pro excambiar informationes inter revisores, que es independente del version. Per favor mantene un linguage objective. Illo es visibile solo al revisores."
 
 msgid "Update whiteboards"
 msgstr "Actualisar le tabulas blanc"
@@ -7154,7 +7154,7 @@ msgid "More Actions"
 msgstr "Altere actiones"
 
 msgid "Notify me about new listed versions"
-msgstr "Notifica me circa nove versiones listate"
+msgstr "Notifica me circa nove versiones in le lista de presentation"
 
 msgid "Force-disable add-on"
 msgstr "Fortiar disactivation de additivo"
@@ -7169,16 +7169,16 @@ msgid "Enable Auto-Approval"
 msgstr "Activar auto-approbation"
 
 msgid "Clear information request"
-msgstr "Clarar le requesta de informationes"
+msgstr "Clarar requesta de informationes"
 
 msgid "Clear Admin Code Review Flag"
-msgstr ""
+msgstr "Clarar le flag de revision del codice de administrator"
 
 msgid "Clear Admin Content Review Flag"
-msgstr ""
+msgstr "Clarar le flag de revision del contento de administrator"
 
 msgid "Clear Admin Static Theme Review Flag"
-msgstr ""
+msgstr "Clarar le flag de revision del thema static de administrator"
 
 msgid "(admin)"
 msgstr "(administrator)"
