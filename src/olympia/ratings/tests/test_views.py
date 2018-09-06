@@ -835,7 +835,7 @@ class TestRatingViewSetGet(TestCase):
 
         cache.clear()
         with self.assertNumQueries(5):
-            # 6 queries:
+            # 5 queries:
             # - One for the ratings count (pagination)
             # - One for the ratings themselves
             # - One for the replies (there aren't any, but we don't know
@@ -848,15 +848,19 @@ class TestRatingViewSetGet(TestCase):
             with mock.patch('olympia.ratings.views.RatingViewSet'
                             '.get_addon_object') as get_addon_object:
                 get_addon_object.return_value = self.addon
-                response = self.client.get(self.url, {'addon': self.addon.pk})
+                response = self.client.get(
+                    self.url, {'addon': self.addon.pk, 'lang': 'en-US'})
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['count'] == 3
         assert data['results']
         assert len(data['results']) == 3
         assert data['results'][0]['body'] == review3.body
+        assert data['results'][0]['addon']['slug'] == self.addon.slug
         assert data['results'][1]['body'] == review2.body
+        assert data['results'][1]['addon']['slug'] == self.addon.slug
         assert data['results'][2]['body'] == review1.body
+        assert data['results'][2]['addon']['slug'] == self.addon.slug
 
     def test_list_addon_queries_with_replies(self):
         version1 = self.addon.current_version
@@ -883,10 +887,10 @@ class TestRatingViewSetGet(TestCase):
 
         cache.clear()
         with self.assertNumQueries(5):
-            # 9 queries:
+            # 5 queries:
             # - One for the ratings count
             # - One for the ratings
-            # - One for the ratings fields
+            # - One for the replies (using prefetch_related())
             # - Two for opening and closing a transaction/savepoint
             #   (https://github.com/mozilla/addons-server/issues/3610)
             #
@@ -896,7 +900,8 @@ class TestRatingViewSetGet(TestCase):
             with mock.patch('olympia.ratings.views.RatingViewSet'
                             '.get_addon_object') as get_addon_object:
                 get_addon_object.return_value = self.addon
-                response = self.client.get(self.url, {'addon': self.addon.pk})
+                response = self.client.get(
+                    self.url, {'addon': self.addon.pk, 'lang': 'en-US'})
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['count'] == 3
@@ -904,10 +909,13 @@ class TestRatingViewSetGet(TestCase):
         assert len(data['results']) == 3
         assert data['results'][0]['body'] == review3.body
         assert data['results'][0]['reply'] is None
+        assert data['results'][0]['addon']['slug'] == self.addon.slug
         assert data['results'][1]['body'] == review2.body
         assert data['results'][1]['reply']['body'] == reply2.body
+        assert data['results'][1]['addon']['slug'] == self.addon.slug
         assert data['results'][2]['body'] == review1.body
         assert data['results'][2]['reply']['body'] == reply1.body
+        assert data['results'][2]['addon']['slug'] == self.addon.slug
 
     def test_list_addon_grouped_ratings(self):
         data = self.test_list_addon(show_grouped_ratings='true')
