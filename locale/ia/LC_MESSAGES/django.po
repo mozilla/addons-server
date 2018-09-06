@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 19:24+0000\n"
+"PO-Revision-Date: 2018-09-06 19:50+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7646,18 +7646,20 @@ msgstr "Personalisate..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
+"Le elaboration del statistica es actualmente disactivate, assi le datos recente es indisponibile. Le datos statistic es tam ben ancora colligite e iste pagina sera actualisate tosto con le datos "
+"mancante."
 
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Cargamento del ultime datos&hellip;"
 
 msgid "No data available."
 msgstr "Nulle datos disponibile."
 
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Iste pannello de controlo es actualmente <b>public</b>."
 
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Iste pannello de controlo es actualmente <b>private</b>."
 
 msgid "Change settings."
 msgstr "Cambiar le parametros."
@@ -7684,12 +7686,14 @@ msgid "Downloaded by Date"
 msgstr "Discargate per data"
 
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "Como es contate le discargamentos?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
+"<h2>Como es contate le discargamentos?</h2> <p> Le contatores de discargamento es actualisate cata vespere e illos include solo le discargamentos del additivo original, non le actualisationes. Le "
+"discargamentos pote ser dividite per fonte specific. </p>"
 
 msgid "User languages by Date"
 msgstr "Linguas del usator per data"
