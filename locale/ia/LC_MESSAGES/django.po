@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 19:50+0000\n"
+"PO-Revision-Date: 2018-09-06 20:00+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7699,7 +7699,7 @@ msgid "User languages by Date"
 msgstr "Linguas del usator per data"
 
 msgid "Platform usage by Date"
-msgstr "Systema operative per data"
+msgstr "Uso del systema operative per Data"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> Discargamentos"
@@ -7735,10 +7735,10 @@ msgid "Reviews Created by Date"
 msgstr "Revisiones per data de creation"
 
 msgid "Download sources by Date"
-msgstr "Fontes de discargamentos per data"
+msgstr "Fontes de discargamento per data"
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Circa le traciamento del fontes externe..."
 
 #, python-format
 msgid ""
