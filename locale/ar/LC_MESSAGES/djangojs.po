@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-05 23:07+0000\n"
+"PO-Revision-Date: 2018-09-06 08:32+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -115,7 +115,7 @@ msgid "Your add-on was validated with no errors or warnings."
 msgstr "اكتمل التثبّت من إضافتك بدون أي أخطاء أو رسائل."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "سيُوقّع ما تُرسله تلقائيًا."
 
 msgid "WebExtension upgrade"
 msgstr "الترقية إلى WebExtension"
@@ -124,7 +124,7 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr "نتيح ونشجّع على إجراء ترقية إلا أنك لا تستطيع عكس العملية. ما إن يُثبّت المستخدمون WebExtension، لن يقدروا على تثبيت إضافة عتيقة بعد الآن."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "”نقل إضافة فَيَرفُكس عتيقة“ على MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
