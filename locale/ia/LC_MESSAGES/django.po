@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 18:08+0000\n"
+"PO-Revision-Date: 2018-09-06 18:16+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7498,14 +7498,14 @@ msgid "Could not find add-on with id \"{}\"."
 msgstr "Impossibile trovar additivo con id \"{}\"."
 
 msgid "You do not own this addon."
-msgstr "Tu non comprava iste additivo."
+msgstr "Tu non es proprietario de iste additivo."
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Clave de cargamento mancante in le file de datos multipart."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Tu non pote adder versiones a un additivo in stato: %s."
 
 msgid "Version does not match the manifest file."
 msgstr "Le version non concorda con le file manifesto."
