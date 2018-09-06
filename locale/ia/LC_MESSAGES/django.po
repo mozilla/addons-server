@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 20:00+0000\n"
+"PO-Revision-Date: 2018-09-06 20:29+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7759,7 +7759,7 @@ msgid "Daily Users by Date"
 msgstr "Usatores quotidian per data"
 
 msgid "What are daily users?"
-msgstr ""
+msgstr "Que es le usatores quotidian?"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
@@ -7809,7 +7809,7 @@ msgid "Choose a category"
 msgstr "Eliger un categoria"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr ""
+msgstr "Le nove sito web supporta clientes de mobile e de scriptorio"
 
 msgid "View the new site"
 msgstr "Vide le nove sito"
@@ -7823,7 +7823,7 @@ msgid ""
 msgstr ""
 
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "discoperi le <b>additivos</b>"
 
 msgid "Download Firefox"
 msgstr "Discargar Firefox"
@@ -7873,18 +7873,18 @@ msgstr "<a href=\"%(reg)s\">Registra te</a> o <a href=\"%(login)s\">accede</a>"
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr ""
+msgstr "Pro provar le milles de additivos disponibile ci, discargar <a href=\"%(url)s\">Mozilla Firefox</a>, un rapide, libere maniera pro navigar trans le web!"
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
 msgstr "Benvenite in {0} Additivos."
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr ""
+msgstr "Elige ex milles de extra functionalitates e stilos pro facer Firefox tu proprie."
 
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
+msgstr "Adde extra functionalitates e stilos pro render tu proprie %(app)s."
 
 msgid "On the go?"
 msgstr "In movimento?"
