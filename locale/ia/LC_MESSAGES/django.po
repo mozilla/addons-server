@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 10:50+0000\n"
+"PO-Revision-Date: 2018-09-06 11:08+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6652,7 +6652,7 @@ msgid "Needs Admin Content Review"
 msgstr "Il es necesse revision de contento per administrator"
 
 msgid "Needs Admin Static Theme Review"
-msgstr "Necessita revision de thema static per administrator"
+msgstr "Il es necesse revision de thema static per administrator"
 
 msgid "Jetpack Add-on"
 msgstr "Additivo de Jetpack"
@@ -6769,22 +6769,22 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr "Si tu ha anxietates circa iste additivo que un administrator revisor debe reguardar, insere tu commentos in le area infra. Illos non sera inviate al disveloppator."
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
+msgstr "Face un commento sur iste version. The disveloppator non potera vider lo."
 
 msgid "Approve Content"
 msgstr "Approbar le contento"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
+msgstr "Isto registra tu approbation del contento del ultime version public, sin notificar le disveloppator."
 
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Themas static e additivos legate"
+msgstr "Themas static e additivos obsolete"
 
 msgid "Static Themes"
 msgstr "Themas static"
 
 msgid "Legacy Add-ons"
-msgstr "Additivos legate"
+msgstr "Additivos obsolete"
 
 msgid "New ({0})"
 msgstr "Nove ({0})"
@@ -6793,7 +6793,7 @@ msgid "Updates ({0})"
 msgstr "Actualisate ({0})"
 
 msgid "Review Log"
-msgstr "Registration de revision"
+msgstr "Registro del revisiones"
 
 msgid "Add-on Review Guide"
 msgstr "Guida al revision del additivos"
