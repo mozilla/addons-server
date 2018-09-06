@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 17:43+0000\n"
+"PO-Revision-Date: 2018-09-06 18:08+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7388,8 +7388,8 @@ msgstr[1] "Actualisate ({0})"
 
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Revision de valutation ({0})"
+msgstr[1] "Revision de valutationes ({0})"
 
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
@@ -7408,7 +7408,7 @@ msgid "Updates"
 msgstr "Actualisationes"
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Maxime longitude del consulta excedite."
 
 msgid "search for add-ons"
 msgstr "cercar additivos"
@@ -7426,7 +7426,7 @@ msgid "All Add-ons"
 msgstr "Tote le additivos"
 
 msgid "Any {0}"
-msgstr "Cata {0}"
+msgstr "Ulle {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 msgid "All Systems"
@@ -7449,7 +7449,7 @@ msgid "Search Unavailable"
 msgstr "Recerca non disponibile"
 
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr "Le recerca es temporarimente indisponibile. Per favor reproba post poc minutas."
+msgstr "Le recerca es temporarimente indisponibile. Per favor prova de novo post poc minutas."
 
 #. {0} is the string the user was searching for
 msgid "Themes Search Results for {0}"
@@ -7480,7 +7480,7 @@ msgstr[0] "<b>{0}</b> resultato concordante"
 msgstr[1] "<b>{0}</b> resultatos concordante"
 
 msgid "Filter Results"
-msgstr "Resultatos del filtro"
+msgstr "Filtrar le resultatos"
 
 msgid "Category"
 msgstr "Categoria"
