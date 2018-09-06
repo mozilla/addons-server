@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 10:32+0000\n"
+"PO-Revision-Date: 2018-09-06 10:50+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6430,13 +6430,13 @@ msgid "You can't leave a review on your own add-on."
 msgstr "Tu non pote lassar un revision sur tu proprie additivo."
 
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr ""
+msgstr "Tu non pote lassar plus del un revision pro le mesme version de un additivo."
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "Iste classification non pote ser signalate pois que il ha nulle texto de revision."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr ""
+msgstr "Gratias; iste revision ha essite signalate pro le approbation del revisor."
 
 msgid "Add a review for {0}"
 msgstr "Adder un revision pro {0}"
@@ -6469,14 +6469,14 @@ msgstr "Submitter"
 #. this string is following a <button>.
 #, python-format
 msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "o <a href=\"%(url)s\">Cancella</a>"
+msgstr "o <a href=\"%(url)s\">Cancellar</a>"
 
 msgid "Please select a reason:"
 msgstr "Per favor elige un ration:"
 
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "per %(user)s <b>(Disveloppator)</b> on %(date)s"
+msgstr "per %(user)s <b>(Disveloppator)</b> le %(date)s"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
@@ -6493,7 +6493,7 @@ msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this a
 msgstr "Iste usator ha <a href=\"%(user_review_url)s\">altere revisiones</a> de iste additivo."
 
 msgid "Flagged for review"
-msgstr "Marcate pro le revision"
+msgstr "Signalate pro le revision"
 
 msgid "Report this review"
 msgstr "Reportar iste revision"
@@ -6593,7 +6593,7 @@ msgid "Search by add-on name / author email"
 msgstr "Recercar per nomine de additivo / email de autor"
 
 msgid "Needs Admin Code Review"
-msgstr "Necessita revision del codice per un administrator"
+msgstr "Il es necesse revision del codice per un administrator"
 
 msgid "yes"
 msgstr "si"
@@ -6649,7 +6649,7 @@ msgid "Skip for now"
 msgstr "Saltar pro iste momento"
 
 msgid "Needs Admin Content Review"
-msgstr "Necessita revision de contento per administrator"
+msgstr "Il es necesse revision de contento per administrator"
 
 msgid "Needs Admin Static Theme Review"
 msgstr "Necessita revision de thema static per administrator"
