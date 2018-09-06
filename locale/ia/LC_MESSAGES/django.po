@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 07:11+0000\n"
+"PO-Revision-Date: 2018-09-06 07:28+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6298,15 +6298,16 @@ msgstr "Initia ora"
 
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
+"Mozilla vole imaginar le melior maniera pro mantener nostre usatores secur si illes elige de usar software de tertie-parte tal como plugins. Participar a iste studios nos adjutara al discoperta!"
 
 msgid "What will happen next"
-msgstr "Que evenira pois"
+msgstr "Lo que sera le proxime evento"
 
 msgid "<strong>If you agree</strong> to participate:"
 msgstr "<strong>Si tu accepta</strong> de participar:"
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr ""
+msgstr "Nos pote adder a Firefox functionalitates de securitate e controlo de plugins pro adjutar con securitate online e performance."
 
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
 msgstr "Continua a usar Firefox como tu normalmente vole. In base a como tu usa le web, tu pote non advertir ulle cambiamentos."
