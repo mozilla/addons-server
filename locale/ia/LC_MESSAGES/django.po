@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 07:28+0000\n"
+"PO-Revision-Date: 2018-09-06 07:48+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6313,25 +6313,25 @@ msgid "Continue using Firefox as you normally would. Depending on how you use th
 msgstr "Continua a usar Firefox como tu normalmente vole. In base a como tu usa le web, tu pote non advertir ulle cambiamentos."
 
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "Post alcun septimanas, le studio finira spontaneemente. Tu Firefox recedera a normal."
 
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "Nos te demandara de plenar un rapide questionario optional pro contar nos circa tu experientia. Pro completar le questionario tu debe emplear minus que 5 minutas."
 
 msgid "Leaving the study"
 msgstr "Lassar le studio"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "Le studio expirara spontaneemente in alcun septimanas. Tu pote lassar le studio precocemente. Pro facer assi, seque iste grados:"
 
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "Scribe about:addons in le barra del position, e pulsa Inserer."
 
 msgid "Find Plugin Safety in the addons list."
-msgstr "Trova \"Plugin Safety\" in le lista del additivos."
+msgstr "Trova Securitate del plugin in le lista del additivos."
 
 msgid "Click the remove button."
-msgstr "Cliccar le button Remover."
+msgstr "Clicca le button Remover."
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
 msgstr ""
