@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 13:11+0000\n"
+"PO-Revision-Date: 2018-09-06 13:23+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7208,17 +7208,17 @@ msgid "Hide Comments"
 msgstr "Celar le commentos"
 
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "Nulle revisiones trovate pro iste periodo."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] reportava %(object)s le %(date)s"
 
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Dimitte iste annuncio"
 
 msgid "Files in this version:"
-msgstr ""
+msgstr "Files in iste version:"
 
 msgid "Contents"
 msgstr "Contentos"
@@ -7234,7 +7234,7 @@ msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Per %(user)s le %(date)s</div>"
 
 msgid "Older"
-msgstr "Plus ancian"
+msgstr "Plus vetere"
 
 msgid "Newer"
 msgstr "Plus recente"
@@ -7243,10 +7243,10 @@ msgid "Recent Points"
 msgstr "Punctos recente"
 
 msgid "No points awarded yet."
-msgstr "Nulle punctos ancora ganiate."
+msgstr "Nulle punctos ancora adjudicate."
 
 msgid "Top Reviewers (past 7 days)"
-msgstr "Revisores principal (ultime septimana)"
+msgstr "Le melior revisores (ultime 7 dies)"
 
 msgid "No top reviewers yet."
 msgstr "Nulle revisores principal ancora."
@@ -7260,7 +7260,7 @@ msgstr "Tu ha <span>{0}</span> punctos."
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s sur %(date)s [%(ip_address)s]"
+msgstr "%(user)s le %(date)s [%(ip_address)s]"
 
 msgid "Date Deleted"
 msgstr "Data de deletion"
