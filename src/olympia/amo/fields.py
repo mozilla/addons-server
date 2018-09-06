@@ -2,12 +2,23 @@ import re
 
 from django.core import exceptions
 from django.core.validators import URLValidator
+from django.db import models
 from django.forms import fields
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 from nobot.fields import HumanCaptchaField
 
 from olympia.amo.widgets import ColorWidget
+
+
+class PositiveAutoField(models.AutoField):
+    description = _("Positive integer")
+
+    def get_internal_type(self):
+        return "PositiveAutoField"
+
+    def rel_db_type(self, connection):
+        return models.PositiveIntegerField().db_type(connection=connection)
 
 
 class URLValidatorBackport(URLValidator):

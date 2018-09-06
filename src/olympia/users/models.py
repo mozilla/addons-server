@@ -23,6 +23,7 @@ import olympia.core.logger
 from olympia import amo, core
 from olympia.access.models import Group, GroupUser
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.query import order_by_translation
@@ -116,6 +117,7 @@ class UserManager(BaseUserManager, ManagerBase):
 
 
 class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
+    id = PositiveAutoField(primary_key=True)
     objects = UserManager()
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']

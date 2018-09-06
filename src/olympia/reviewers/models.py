@@ -746,6 +746,7 @@ class AutoApprovalNoValidationResultError(Exception):
 
 class AutoApprovalSummary(ModelBase):
     """Model holding the results of an auto-approval attempt on a Version."""
+    id = None
     version = models.OneToOneField(
         Version, on_delete=models.CASCADE, primary_key=True)
     is_locked = models.BooleanField(default=False)
@@ -1164,6 +1165,7 @@ class ThemeLock(ModelBase):
 
 
 class Whiteboard(ModelBase):
+    id = None
     addon = models.OneToOneField(
         Addon, on_delete=models.CASCADE, primary_key=True)
     private = models.TextField(blank=True)

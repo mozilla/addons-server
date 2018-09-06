@@ -5,8 +5,8 @@ import time
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models
-from django.utils import timezone, translation
 from django.db.models.query import ModelIterable
+from django.utils import timezone, translation
 
 import elasticsearch
 import multidb.pinning
@@ -16,6 +16,7 @@ import olympia.core.logger
 from olympia.translations.hold import save_translations
 
 from . import search
+from .fields import PositiveAutoField
 
 
 log = olympia.core.logger.getLogger('z.addons')
@@ -348,6 +349,7 @@ class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
     * Fetches all translations in one subsequent query during initialization.
     """
 
+    id = PositiveAutoField(primary_key=True)
     created = models.DateTimeField(
         default=timezone.now, editable=False, blank=True)
     modified = models.DateTimeField(auto_now=True)

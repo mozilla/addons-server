@@ -1562,6 +1562,7 @@ def attach_tags(addons):
 
 
 class AddonReviewerFlags(ModelBase):
+    id = None
     addon = models.OneToOneField(
         Addon, primary_key=True, on_delete=models.CASCADE)
     needs_admin_code_review = models.BooleanField(default=False)
@@ -1820,6 +1821,7 @@ class AddonDependency(models.Model):
 
 
 class AddonFeatureCompatibility(ModelBase):
+    id = None
     addon = models.OneToOneField(
         Addon, primary_key=True, on_delete=models.CASCADE)
     e10s = models.PositiveSmallIntegerField(
@@ -1843,6 +1845,7 @@ class AddonApprovalsCounter(ModelBase):
     - last_content_review, the date of the last time a human fully reviewed the
       add-on content (not code).
     """
+    id = None
     addon = models.OneToOneField(
         Addon, primary_key=True, on_delete=models.CASCADE)
     counter = models.PositiveIntegerField(default=0)
