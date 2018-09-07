@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-07 10:48+0000\n"
+"PO-Revision-Date: 2018-09-07 11:00+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7804,14 +7804,14 @@ msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Pro crear tu proprie collectiones, tu debe haber un del additivos de Mozilla."
 
 msgid "Create an Add-ons Account"
-msgstr "Crea un conto de additivos"
+msgstr "Crea un Conto del additivos"
 
 #, python-format
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
 msgstr "o <a href=\"%(login)s\">connecte te a tu conto actual</a>"
 
 msgid "Footer logo"
-msgstr "Logo al pede"
+msgstr "Logo de pede de pagina"
 
 msgid "Choose a category"
 msgstr "Eliger un categoria"
