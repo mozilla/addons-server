@@ -24,51 +24,6 @@ import olympia.core.logger
 # Go configure the log.
 log_configure()
 
-good_rdf = """<?xml version="1.0"?>
-<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-         xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-    <RDF:Description about="urn:mozilla:%(type)s:%(guid)s">
-        <em:updates>
-            <RDF:Seq>
-                <RDF:li resource="urn:mozilla:%(type)s:%(guid)s:%(version)s"/>
-            </RDF:Seq>
-        </em:updates>
-    </RDF:Description>
-
-    <RDF:Description about="urn:mozilla:%(type)s:%(guid)s:%(version)s">
-        <em:version>%(version)s</em:version>
-        <em:targetApplication>
-            <RDF:Description>
-                <em:id>%(appguid)s</em:id>
-                <em:minVersion>%(min)s</em:minVersion>
-                <em:maxVersion>%(max)s</em:maxVersion>
-                <em:updateLink>%(url)s</em:updateLink>
-                %(if_update)s
-                %(if_hash)s
-            </RDF:Description>
-        </em:targetApplication>
-    </RDF:Description>
-</RDF:RDF>"""
-
-
-bad_rdf = """<?xml version="1.0"?>
-<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-         xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-</RDF:RDF>"""
-
-
-no_updates_rdf = """<?xml version="1.0"?>
-<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-         xmlns:em="http://www.mozilla.org/2004/em-rdf#">
-    <RDF:Description about="urn:mozilla:%(type)s:%(guid)s">
-        <em:updates>
-            <RDF:Seq>
-            </RDF:Seq>
-        </em:updates>
-    </RDF:Description>
-</RDF:RDF>"""
-
-
 error_log = olympia.core.logger.getLogger('z.services')
 
 
@@ -80,15 +35,6 @@ class Update(object):
         self.data['row'] = {}
         self.version_int = 0
         self.compat_mode = compat_mode
-        self.use_json = self.should_use_json()
-
-    def should_use_json(self):
-        # We serve JSON manifests to Firefox and Firefox for Android only,
-        # because we've seen issues with Seamonkey and Thunderbird.
-        # https://github.com/mozilla/addons-server/issues/7223
-        app = applications.APP_GUIDS.get(self.data.get('appID'))
-        return app and app.id in (applications.FIREFOX.id,
-                                  applications.ANDROID.id)
 
     def is_valid(self):
         # If you accessing this from unit tests, then before calling
@@ -251,31 +197,21 @@ class Update(object):
         self.cursor.close()
         if self.conn:
             self.conn.close()
-        return json.dumps(contents) if self.use_json else contents
+        return json.dumps(contents)
 
     def get_error_output(self):
-        return {} if self.use_json else bad_rdf
+        return {}
 
     def get_no_updates_output(self):
-        if self.use_json:
-            return {
-                'addons': {
-                    self.data['guid']: {
-                        'updates': []
-                    }
+        return {
+            'addons': {
+                self.data['guid']: {
+                    'updates': []
                 }
             }
-        else:
-            name = base.ADDON_SLUGS_UPDATE[self.data['type']]
-            return no_updates_rdf % ({'guid': self.data['guid'], 'type': name})
+        }
 
     def get_success_output(self):
-        if self.use_json:
-            return self.get_success_output_json()
-        else:
-            return self.get_success_output_rdf()
-
-    def get_success_output_json(self):
         data = self.data['row']
         update = {
             'version': data['version'],
@@ -301,27 +237,11 @@ class Update(object):
             }
         }
 
-    def get_success_output_rdf(self):
-        data = self.data['row']
-        data['if_hash'] = ''
-        if data['hash']:
-            data['if_hash'] = ('<em:updateHash>%s</em:updateHash>' %
-                               data['hash'])
-
-        data['if_update'] = ''
-        if data['releasenotes']:
-            data['if_update'] = ('<em:updateInfoURL>%s%s%s/%%APP_LOCALE%%/'
-                                 '</em:updateInfoURL>' %
-                                 (settings.SITE_URL, '/versions/updateInfo/',
-                                  data['version_id']))
-
-        return good_rdf % data
-
     def format_date(self, secs):
         return '%s GMT' % formatdate(time() + secs)[:25]
 
     def get_headers(self, length):
-        content_type = 'application/json' if self.use_json else 'text/xml'
+        content_type = 'application/json'
         return [('Content-Type', content_type),
                 ('Cache-Control', 'public, max-age=3600'),
                 ('Last-Modified', self.format_date(0)),
