@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-07 14:28+0000\n"
+"PO-Revision-Date: 2018-09-07 14:40+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7029,7 +7029,7 @@ msgid "Monthly Performance"
 msgstr "Rendimento mensual"
 
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "Punctuationes maxime per typo"
 
 msgid "Total"
 msgstr "Total"
@@ -8077,7 +8077,7 @@ msgstr "Cliccante \"deler\" tu conto va ser <strong>permanentemente removite</st
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "Le nove connexion con iste adresse de email in %(site)s creara un nove conto que es in nulle maniera associate con iste conto."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "Tu revisiones e valutationes non sera delite, ma illos non sera plus associate con tu."
