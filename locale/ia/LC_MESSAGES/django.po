@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-07 13:52+0000\n"
+"PO-Revision-Date: 2018-09-07 14:28+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -8104,7 +8104,7 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Per favor defini tu nomine a monstrar o tu nomine de usator pro completar le processo de registration."
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
+msgstr "Gerer informationes basic del conto, tal como tu nomine de usator e le parametros de contos de Firefox."
 
 msgid "Username"
 msgstr "Nomine del usator"
@@ -8113,16 +8113,16 @@ msgid "Email Address"
 msgstr "Adresse de email"
 
 msgid "Manage Firefox Account..."
-msgstr "Gerer conto Firefox..."
+msgstr "Gestion de conto de Firefox..."
 
 msgid "Profile"
 msgstr "Profilo"
 
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr ""
+msgstr "Da nos poc altere informationes circa te mesme. Tote iste campos es optional, ma illos adjutara altere usatores a te discoperir melio."
 
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Iste URL essera visibile solo si tu es un disveloppator."
 
 msgid "Choose Photo&hellip;"
 msgstr "Elige photo&hellip;"
@@ -8131,26 +8131,26 @@ msgid "Delete current photo"
 msgstr "Deler le photo actual"
 
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr ""
+msgstr "Presenta te mesme al communitate, si il te place! Iste texto parera publicamente sur tu pagina de informationes del usator."
 
 #, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
 msgstr "HTML consentite: %(html)s. Le ligamines es prohibite."
 
 msgid "Decide what collections should be shown in your profile."
-msgstr "Decide que collectiones debe ser monstrate in tu profilo."
+msgstr "Decide qual collectiones debe esser monstrate in tu profilo."
 
 msgid "Display the collections I have created"
-msgstr "Monstrar le collection que io creava"
+msgstr "Monstrar le collectiones io ha create"
 
 msgid "Notifications"
 msgstr "Notificationes"
 
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr ""
+msgstr "De tempore in tempore, Mozilla pote mitter te email circa versiones approchante e eventos del additivo. Per favor elige le topicos al qual tu es interessate."
 
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr ""
+msgstr "Mozilla se reserva le derecto de continger te individualmente circa specific problemas con tu additivos hospite."
 
 msgid "Admin"
 msgstr "Administrator"
@@ -8168,10 +8168,10 @@ msgid "all"
 msgstr "toto"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
+msgstr "Le additivos de Mozilla ha transite al contos de Firefox pro connexion. Continuar pro completar le processo de connexion simple."
 
 msgid "User Login"
-msgstr "Apertura de session del usator"
+msgstr "Connexion del usator"
 
 msgid "Log in with Firefox Accounts"
 msgstr "Connecte te con le contos de Firefox"
@@ -8213,7 +8213,7 @@ msgid "Themes I've created"
 msgstr "Themas que io ha create"
 
 msgid "Created by Me"
-msgstr "Create per io"
+msgstr "Create per me"
 
 msgid "My Reviews"
 msgstr "Mi revisiones"
@@ -8225,7 +8225,7 @@ msgid "Report User"
 msgstr "Denunciar usator"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr "Per favor describe perque tu denuncia iste usator, tal como pro SPAM o un imagine inappropriate."
+msgstr "Per favor describe perque tu denuncia iste usator, tal como pro SPAM o pro un imagine inappropriate."
 
 msgid "Report user {0}"
 msgstr "Denunciar usator {0}"
