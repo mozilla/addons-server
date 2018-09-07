@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-07 10:33+0000\n"
+"PO-Revision-Date: 2018-09-07 10:48+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -359,8 +359,8 @@ msgstr "<b>{0}</b> usatores"
 #. {0} is the number of users.
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] "{0} Usator quotidian"
-msgstr[1] "{0} Usatores quotidian"
+msgstr[0] "{0} Usator per die"
+msgstr[1] "{0} Usatores per die"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -3261,7 +3261,7 @@ msgid "New Version"
 msgstr "Nove version"
 
 msgid "Daily statistics on downloads and users."
-msgstr "Statistica quotidiad sur discargamentos e usatores."
+msgstr "Statistica quotidian sur discargamentos e usatores."
 
 msgid "Statistics"
 msgstr "Statistica"
@@ -7706,7 +7706,7 @@ msgid "Loading..."
 msgstr "Cargamento..."
 
 msgid "<b>{0}</b> Average Daily Users"
-msgstr "<b>{0}</b> Usatores medie quotidian"
+msgstr "<b>{0}</b> Usatores medie per die"
 
 msgid "Top Applications"
 msgstr "Applicationes principal"
@@ -7760,10 +7760,10 @@ msgid "Subscribers by Date"
 msgstr "Subscriptores per data"
 
 msgid "Daily Users by Date"
-msgstr "Usatores quotidian per data"
+msgstr "Usatores per die per data"
 
 msgid "What are daily users?"
-msgstr "Que es le usatores quotidian?"
+msgstr "Que es le Usatores per die?"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
@@ -7776,12 +7776,14 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>Que es le Usatores per die?</h2> <p> Le additivos discargate ex iste sito es controlate pro lor actualisationes un vice per die. Le numero total de iste test de actualisation es note como "
+"Usatores active per die. Le Usatores per die pote ser subdividite per version del additivo, systema operative, stato del additivo, application e localisation. </p>"
 
 msgid "User Signups by Date"
-msgstr "Signaturas de usatores per data"
+msgstr "Registrationes de usatores per data"
 
 msgid "Application versions by Date"
-msgstr "Application per data de version"
+msgstr "Versiones del application per data"
 
 msgid "Mozilla Add-ons"
 msgstr "Additivos de Mozilla"
