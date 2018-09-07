@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-07 12:10+0000\n"
+"PO-Revision-Date: 2018-09-07 12:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5909,7 +5909,7 @@ msgid "Not to worry, here are three to get started."
 msgstr "Nulle anxietate, ecce tres pro comenciar."
 
 msgid "Translate content on the web from and into over 40 languages."
-msgstr "Traduce le contento del web ab e in ultra 40 linguas."
+msgstr "Traduce le contento del web ab e in plus de 40 linguas."
 
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
 msgstr "Connecte te facilemente tu retes social, e comparti o commenta re le pagina que tu visita."
@@ -6052,9 +6052,8 @@ msgid "Reported Spam"
 msgstr "Spam reportate"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Reportar un defecto"
+msgstr "Reportate un Ham"
 
 msgid "Not Reported"
 msgstr "Non reportate"
@@ -7890,11 +7889,11 @@ msgid "Welcome to {0} Add-ons."
 msgstr "Benvenite in {0} Additivos."
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "Elige ex milles de extra functionalitates e stilos pro facer Firefox tu proprie."
+msgstr "Elige ex milles de functionalitates e stilos extra pro personalisar Firefox."
 
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr "Adde extra functionalitates e stilos pro render tu proprie %(app)s."
+msgstr "Adde functionalitates e stilos extra pro personalisar %(app)s."
 
 msgid "On the go?"
 msgstr "In movimento?"
@@ -7918,17 +7917,17 @@ msgid "%(title)s <em>&middot; %(lang)s</em>"
 msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr "Linguas existente"
+msgstr "Localisationes existente"
 
 msgid "New Locales"
-msgstr "Nove linguas"
+msgstr "Nove localisationes"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "Tu ha cambiamentos non salvate in le <b>{0}</b> localisation. Vole tu salvar tu cambiamentos ante que cambiar localisationes?"
 
 msgid "Discard Changes"
-msgstr "Eliminar le modificationes"
+msgstr "Refusar le modificationes"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
