@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-07 12:45+0000\n"
+"PO-Revision-Date: 2018-09-07 13:03+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -8011,7 +8011,7 @@ msgid "someone writes a review of my add-on"
 msgstr "alicuno scribe un revision de mi additivo"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "remane ajornate con novas e eventos pertinente al disveloppatores de additivos (anque le littera de novas about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "le compatibilitate de mi additivo non pote ser promovite"
@@ -8023,16 +8023,16 @@ msgid "my add-on is reviewed by a reviewer"
 msgstr "mi additivos es revidite per un revisor"
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla debe continger me circa mi additivo personal"
 
 msgid "User Notifications"
 msgstr "Notificationes del usator"
 
 msgid "An email address is required."
-msgstr "Un adresse de email es obligatori."
+msgstr "Un adresse de email es necesse."
 
 msgid "A user with that email address does not exist."
-msgstr "Non existe usator con iste adresse de email."
+msgstr "Non existe usator con ille adresse de email."
 
 msgid "Profile Deleted"
 msgstr "Profilo delite"
@@ -8047,7 +8047,7 @@ msgid "Errors Found"
 msgstr "Errores trovate"
 
 msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr ""
+msgstr "Il habeva errores in le modificationes que tu ha facite. Per favor corrige los e reinvia."
 
 msgid "User reported."
 msgstr "Usator denunciate."
@@ -8069,16 +8069,18 @@ msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
+"Tu non pote deler tu conto si tu es in le lista de presentation como un <a href=\"%(link)s\"> autor de ulle additivos</a>. Pro deler tu conto, per favor habe un altere persona in tu gruppo "
+"disveloppamento qui te deler ex le lista de autores pro tu additivos. Postea tu potera deler tu conto ci."
 
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
+msgstr "Cliccante \"deler\" tu conto va ser <strong>permanentemente removite</strong>. Illo significa:"
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
 msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
+msgstr "Tu revisiones e valutationes non sera delite, ma illos non sera plus associate con tu."
 
 msgid "Confirm account deletion"
 msgstr "Confirma le deletion del conto"
