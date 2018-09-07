@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-07 09:43+0000\n"
+"PO-Revision-Date: 2018-09-07 10:33+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -316,7 +316,7 @@ msgid "Rating"
 msgstr "Valutation"
 
 msgid "Daily Users"
-msgstr "Usatores quotidian"
+msgstr "Usatores per die"
 
 msgid "License"
 msgstr "Licentias"
@@ -6066,13 +6066,11 @@ msgid "View Rating on site"
 msgstr "Vide le valutation sur le sito"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Inviar un nove file"
+msgstr "Inviar Ham a Akismet"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Inviar un nove file"
+msgstr "Inviar Spam a Akismet"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
@@ -7771,6 +7769,8 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
+"<h2>Que es le Usatores per die?</h2> <p> Le themas installate per iste sito es controlate pro lor actualisationes un vice per die. Le numero total de iste tests de actualisation es note como "
+"Usatores active per die o le numero de personas total qui usa tu thema cata die. </p>"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
@@ -8326,7 +8326,7 @@ msgstr "Attention al versiones vetule!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr ""
+msgstr "Iste versiones es monstrate pro propositos de referentia e test. Tu debe sempre usar le <a href=\"%(url)s\">ultime version</a> de un additivo."
 
 msgid "Deleted versions can`t be changed."
 msgstr "Le versiones delite non pote plus esser modificate."
