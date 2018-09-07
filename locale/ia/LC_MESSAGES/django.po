@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-07 11:40+0000\n"
+"PO-Revision-Date: 2018-09-07 12:10+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -7851,7 +7851,7 @@ msgid "Desktop Browser"
 msgstr "Navigator de scriptorio"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr "Beta, Nightly, Edition de disveloppator"
+msgstr "Beta, Nightly, Edition pro disveloppatores"
 
 msgid "Other languages"
 msgstr "Altere linguas"
@@ -7860,16 +7860,16 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr "Retornar al {0} pagina principal del additivos"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Additivos"
+msgstr "Additivos de <img alt=\"Firefox\" src=\"{0}\">"
 
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> Additivos"
+msgstr "Additivos de <img alt=\"Thunderbird\" src=\"{0}\">"
 
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Additivos"
+msgstr "Additivos de <img alt=\"SeaMonkey\" src=\"{0}\">"
 
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Additivos"
+msgstr "Additivos <img alt=\"\" src=\"{0}\">"
 
 msgid "My Account"
 msgstr "Mi conto"
