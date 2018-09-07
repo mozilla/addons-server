@@ -30,7 +30,7 @@ from olympia.amo.tests import (
     reverse_ns, user_factory)
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.api.authentication import WebTokenAuthentication
-from olympia.api.tests.utils import APIKeyAuthTestCase
+from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.users.models import UserNotification, UserProfile
 from olympia.users.notifications import (
     NOTIFICATIONS_BY_ID, REMOTE_NOTIFICATIONS_BY_BASKET_ID)
@@ -897,7 +897,7 @@ class TestAccountViewSet(TestCase):
             self.random_user.get_url_path())
 
 
-class TestProfileViewWithJWT(APIKeyAuthTestCase):
+class TestProfileViewWithJWT(APIKeyAuthTestMixin, TestCase):
     """This just tests JWT Auth (external) on the profile endpoint.
 
     See TestAccountViewSet for internal auth test.
@@ -1172,7 +1172,7 @@ class TestAccountViewSetDelete(TestCase):
         assert self.user.reload().deleted
 
 
-class TestAccountSuperCreate(APIKeyAuthTestCase):
+class TestAccountSuperCreate(APIKeyAuthTestMixin, TestCase):
 
     def setUp(self):
         super(TestAccountSuperCreate, self).setUp()

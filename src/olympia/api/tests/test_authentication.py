@@ -1,5 +1,5 @@
 import json
-
+import time
 from calendar import timegm
 from datetime import datetime, timedelta
 
@@ -41,7 +41,7 @@ class JWTKeyAuthTestView(APIView):
         return Response({'user_pk': request.user.pk})
 
 
-class TestJWTKeyAuthentication(JWTAuthKeyTester):
+class TestJWTKeyAuthentication(JWTAuthKeyTester, TestCase):
     client_class = APITestClient
 
     def setUp(self):
@@ -65,6 +65,25 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester):
         assert user == self.user
         assert user.last_login_ip == '15.16.23.42'
         self.assertCloseToNow(user.last_login)
+
+    def test_wrong_type_for_iat(self):
+        api_key = self.create_api_key(self.user)
+        # Manually create a broken payload where 'iat' is a string containing
+        # a timestamp..
+        issued_at = int(time.mktime(datetime.utcnow().timetuple()))
+        payload = {
+            'iss': api_key.key,
+            'iat': unicode(issued_at),
+            'exp': unicode(
+                issued_at + settings.MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME),
+        }
+        token = self.encode_token_payload(payload, api_key.secret)
+        core.set_remote_addr('1.2.3.4')
+
+        with self.assertRaises(AuthenticationFailed) as ctx:
+            self.auth.authenticate(self.request(token))
+        assert ctx.exception.detail == (
+            'Wrong type for one or more keys in payload')
 
     def test_unknown_issuer(self):
         api_key = self.create_api_key(self.user)
@@ -158,7 +177,8 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester):
         assert data == {'non_field_errors': ['Error decoding signature.']}
 
 
-class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester):
+class TestJWTKeyAuthProtectedView(
+        WithDynamicEndpoints, JWTAuthKeyTester, TestCase):
     client_class = APITestClient
 
     def setUp(self):
