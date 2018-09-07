@@ -69,7 +69,7 @@ This endpoint allows you to fetch a rating by its id.
     .. _rating-detail-object:
 
     :>json int id: The rating id.
-    :>json object addon: An object included for convenience that contains only two properties: ``id`` and ``slug``, corresponding to the add-on id and slug.
+    :>json object addon: A simplified :ref:`add-on <addon-detail-object>` object that contains only a few properties: ``id``, ``name``, ``icon_url`` and ``slug``.
     :>json string|null body: The text of the rating.
     :>json boolean is_latest: Boolean indicating whether the rating is the latest posted by the user on the same add-on.
     :>json int previous_count: The number of ratings posted by the user on the same add-on before this one.

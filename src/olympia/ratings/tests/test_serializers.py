@@ -14,6 +14,7 @@ class TestBaseRatingSerializer(TestCase):
     def setUp(self):
         self.request = APIRequestFactory().get('/')
         self.view = Mock(spec=['get_addon_object'])
+        self.view.get_addon_object.return_value = None
         self.user = user_factory()
 
     def serialize(self, **extra_context):
@@ -38,6 +39,8 @@ class TestBaseRatingSerializer(TestCase):
         assert result['addon'] == {
             'id': addon.pk,
             'slug': addon.slug,
+            'name': {'en-US': addon.name},
+            'icon_url': absolutify(addon.get_icon_url(64)),
         }
         assert result['body'] == unicode(self.rating.body)
         assert result['created'] == (
@@ -117,7 +120,6 @@ class TestBaseRatingSerializer(TestCase):
 
     def test_addon_slug_even_if_view_doesnt_return_addon_object(self):
         addon = addon_factory()
-        self.view.get_addon_object.return_value = None
         self.rating = Rating.objects.create(
             addon=addon, user=self.user, rating=4,
             version=addon.current_version, body=u'This is my rëview. Like ît?')
@@ -128,6 +130,8 @@ class TestBaseRatingSerializer(TestCase):
         assert result['addon'] == {
             'id': addon.pk,
             'slug': addon.slug,
+            'name': {'en-US': addon.name},
+            'icon_url': absolutify(addon.get_icon_url(64)),
         }
 
     def test_with_previous_count(self):
