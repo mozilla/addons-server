@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-08 22:26+0000\n"
+"PO-Revision-Date: 2018-09-08 22:52+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4145,15 +4145,15 @@ msgstr "Ch'aqa' chik xak:"
 
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr ""
+msgstr "Tacholo' chik jub'a' chi rij ri awachinel <a href=\"%(edit_url)s\">ninuk' ri cholb'äl</a>."
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr ""
+msgstr "Tatz'eta' chuqa' tatz'ib'aj rub'i' pa <a href=\"%(feed_url)s\">taq ruk'exoj</a> awachinel richin man nasäch ta kib'anikil taq runik'oxik, molaj chuqa' ch'aqa' chik."
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
+msgstr "Kojawak'axaj pa <a href=\"%(forum_url)s\">qach'ob'omoloj</a>."
 
 msgid "Select a header image for your Theme."
 msgstr "Tacha' jun jub'i'aj ruwachib'al Awachinel."
