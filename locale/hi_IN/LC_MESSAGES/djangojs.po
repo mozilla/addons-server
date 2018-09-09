@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-09 13:29+0000\n"
+"PO-Revision-Date: 2018-09-09 13:44+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -760,13 +760,13 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
+msgstr "यह सुविधा अस्थायी रुप से अक्षम है जब तक की हम वेबसाइट रखरखाव कर रहे हैं। कृपया कुछ देर बाद पुनः जाँचे करें।"
 
 msgid "Remove this localization"
 msgstr "इस स्थानीयकरण को निकालें"
 
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} इस पेज को पहले देख रहे थे।"
 
 msgid "Receipt checked by app."
 msgstr "ऐप द्वारा रसीद की जाँच की गयी।"
@@ -775,7 +775,7 @@ msgid "Receipt was not checked by app."
 msgstr "ऐप द्वारा रसीद की जाँच नही की गयी थी।"
 
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} पहले यह ऐड-ऑन देख रहे थे।"
 
 msgid "Loading&hellip;"
 msgstr "&hellip;लोड हो रहा है"
@@ -835,7 +835,7 @@ msgid "All tests passed successfully."
 msgstr "सभी परीक्षण सफलतापूर्वक पारित किये गए।"
 
 msgid "These tests were not run."
-msgstr ""
+msgstr "इन परीक्षणों को नहीं चलाया गया।"
 
 msgid "Tests"
 msgstr "परीक्षण"
@@ -856,28 +856,28 @@ msgid "Compatibility Tests"
 msgstr "अनुकूलता परीक्षण"
 
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "ऐड-ऑन असफल सत्यापन।"
 
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "एड-ऑन असफल सत्यापन।"
 
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} त्रुटि"
-msgstr[1] ""
+msgstr[1] "{0} त्रुटियाँ"
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} चेतावनी"
-msgstr[1] ""
+msgstr[1] "{0} चेतावनी"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} नोटिस"
+msgstr[1] "{0} नोटिसें"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "सत्यापन कार्य पूर्ण ना हो सका या त्रुटियों के साथ पूर्ण हुआ"
 
 msgid "Internal server error"
 msgstr "आंतरिक सर्वर त्रुटि"
