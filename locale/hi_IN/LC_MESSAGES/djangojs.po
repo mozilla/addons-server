@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-09 13:10+0000\n"
+"PO-Revision-Date: 2018-09-09 13:29+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -602,15 +602,15 @@ msgstr "{0} से {1} तक मिले रेटिंग्स"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनों में, हुयी बिक्री"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} तक हुयी बिक्री"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनों में, हुए इनस्टॉल"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
@@ -618,15 +618,15 @@ msgstr "{0} से {1} तक हुए इंस्टॉल"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> पिछले {1} दिनों में"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> {1} से {2} तक"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "अंतिम {1} दिनों में <b>{0}</b> औसत"
 
 msgid "No data available."
 msgstr "कोई आँकड़ा उपलब्ध नहीं."
@@ -659,32 +659,32 @@ msgstr "{0} में जोड़ें"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "{0} के लिए किसी भी तौर पर इनस्टॉल करें"
 
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "{0} के लिए किसी भी तौर पर डाउनलोड करें"
 
 msgid "Not available for your platform"
-msgstr ""
+msgstr "अपने प्लेटफार्म के लिए उपलब्ध नहीं है"
 
 #. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
-msgstr ""
+msgstr "यह ऐड-ऑन {0} के आपके संस्करण के साथ अनुकूल नहीं है।"
 
 msgid "View other versions"
-msgstr ""
+msgstr "अन्य संस्करण देखें"
 
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "{app} {min} - {max} के साथ काम करता है"
 
 msgid "Works with {app}"
-msgstr ""
+msgstr "{app} के साथ काम करता है"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "केवल Firefox के साथ - Firefox अभी प्राप्त करें!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
+msgstr "क्षमा करें, आपको एक खोज प्लगइन स्थापित करने के लिए Mozilla-आधारित ब्राउज़र (जैसे Firefox) की आवश्यकता है।"
 
 msgid "Adding to Favorites&hellip;"
 msgstr ""
@@ -699,7 +699,7 @@ msgid "Remove from Favorites"
 msgstr "पसंदीदा से हटाएँ"
 
 msgid "Pending"
-msgstr ""
+msgstr "अपूर्ण"
 
 msgid "Add a comment"
 msgstr "टिप्पणी जोड़ें"
@@ -723,7 +723,7 @@ msgid "Stop following"
 msgstr ""
 
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "आपके ब्राउज़र में वीडियो टैग समर्थित नहीं है"
 
 msgid "Changes Saved"
 msgstr "परिवर्तन सहेजे गए"
@@ -732,7 +732,7 @@ msgid "Enter a new author's email address"
 msgstr "एक नया लेखक का ईमेल पता दर्ज करें"
 
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "आपकी फ़ाइल अपलोड करने में त्रुटि हुई."
 
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -741,14 +741,14 @@ msgstr[1] "{files} फ़ाइलें"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} उपयोगकर्ता समीक्षा"
+msgstr[1] "{reviews} उपयोगकर्ता समीक्षायें"
 
 msgid "Image changes being processed"
-msgstr ""
+msgstr "छवि परिवर्तनो को संसाधित किया जा रहा है"
 
 msgid "No results found."
-msgstr ""
+msgstr "कोई परिणाम नही मिला।"
 
 msgid "Loading..."
 msgstr "लोड हो रहा है..."
