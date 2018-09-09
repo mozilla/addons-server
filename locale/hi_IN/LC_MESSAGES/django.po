@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-08-11 18:20+0000\n"
-"Last-Translator: Shristi Tyagi <shristit00@gmail.com>\n"
+"PO-Revision-Date: 2018-09-09 14:09+0000\n"
+"Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -35,20 +35,20 @@ msgid "This username is already in use."
 msgstr "यह उपयोक्तानाम पहले से उपयोग में हैं।"
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "चित्र या तो PNG या JPG होनी चाहिए।"
 
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "चित्रों को एनिमेट नहीं किया जा सकता।"
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "कृपया %d MB से छोटे चित्रों का उपयोग करें।"
 
 msgid "You are already logged in."
-msgstr "आपने पहले से ही लॉग-इन किया है।"
+msgstr "आपने पहले से ही लॉग इन किया है।"
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr ""
+msgstr "आपके लॉगिन प्रयास को पूरा नहीं किया जा सका। कृपया पुन: प्रयास करें।"
 
 msgid "Your Firefox Account could not be found. Please try again."
 msgstr "आपका Firefox खाता नहीं मिल सका। कृपया पुन: प्रयास करें।"
@@ -60,7 +60,7 @@ msgid "Need help?"
 msgstr "मदद चाहिए?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "एड-ऑन या थीम के डेवलपर अपने खाते को हटा नहीं सकते हैं। आपको इस खाते से जुड़े सभी ऐड-ऑन और थीम को हटाना होगा, या उन्हें अन्य उपयोगकर्ताओं को स्थानांतरित करना होगा।"
 
 msgid "Review"
 msgstr "समीक्षा"
@@ -72,13 +72,13 @@ msgid "Review note"
 msgstr "समीक्षा नोट"
 
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "ऐडऑनो के केवल नवीनतम संस्करणों में नोट जोड़ा जा सकता है।"
 
 msgid "Status"
 msgstr "स्थिति"
 
 msgid "- Add-on not on AMO -"
-msgstr ""
+msgstr "- AMO पर एड-ऑन नहीं है -"
 
 msgid "Download Now"
 msgstr "अभी डाउनलोड करें"
@@ -91,7 +91,7 @@ msgstr "चुनिंदा"
 
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr ""
+msgstr "असमीक्षित"
 
 msgctxt "install_button"
 msgid "Experimental"
@@ -101,7 +101,7 @@ msgid "Add to {0}"
 msgstr "{0} में जोड़ें"
 
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "यह स्लग पहले से ही उपयोग में है। कृपया दूसरा चुनें।"
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
@@ -130,8 +130,8 @@ msgstr "अमान्य वर्णों के निकाले जा�
 
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "सभी टैग में कम से कम {0} वर्ण होना चाहिए."
-msgstr[1] ""
+msgstr[0] "सभी टैगों में कम से कम {0} वर्ण होने चाहिए।"
+msgstr[1] "सभी टैगों में कम से कम {0} वर्ण होने चाहिए।"
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -143,8 +143,8 @@ msgstr ""
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "आपके पास केवल {0} श्रेणी हो सकती है।"
+msgstr[1] "आपके पास केवल {0} श्रेणी हो सकती हैं।"
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr ""
