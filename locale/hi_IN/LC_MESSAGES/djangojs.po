@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-08-02 08:40+0000\n"
-"Last-Translator: Mohit Bansal <philomath@disroot.org>\n"
+"PO-Revision-Date: 2018-09-09 13:10+0000\n"
+"Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -403,7 +403,7 @@ msgid "Browse Listing Up and Coming Sort"
 msgstr ""
 
 msgid "Total Amount Contributed"
-msgstr "कुल राशि योगदान दी गई"
+msgstr "कुल योगदान राशी"
 
 msgid "Average Contribution"
 msgstr "औसत योगदान"
@@ -534,51 +534,51 @@ msgstr "उपयोग हो रहे गए ऐड-ऑन, पिछले {
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} तक उपयोग में ऐड-ऑन"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनो में, डाउनलोड किए गए ऐड-ऑन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} में डाउनलोड किए गए ऐड-ऑन"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनों में, बनाये गए ऐड-ऑन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} में बनाए गए एड-ऑन"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनों में, अपडेट किये ऐड-ऑन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} में अद्यतित किए गए ऐड-ऑन"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनों में, लिखी समीक्षाएं"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} में लिखी गई समीक्षाएं"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "उपयोगकर्ता पंजीकरण, पिछले {0} दिनों में"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} तक हुए उपयोगकर्ता साइन अप"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनों में, बनाये गए संग्रह"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
@@ -586,19 +586,19 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनों में, जुड़े सदस्य"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} तक जुड़े सदस्य"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनों में, मिले रेटिंग्स"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} तक मिले रेटिंग्स"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
