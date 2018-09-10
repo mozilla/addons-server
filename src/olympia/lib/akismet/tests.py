@@ -10,15 +10,17 @@ from django.test.utils import override_settings
 import mock
 import pytest
 import responses
+from freezegun import freeze_time
 from pyquery import PyQuery as pq
 
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.amo.urlresolvers import reverse
+from olympia.files.models import FileUpload
 from olympia.ratings.models import Rating
 
 from .admin import AkismetAdmin
 from .models import AkismetReport
-from .tasks import submit_to_akismet
+from .tasks import comment_check, submit_to_akismet
 
 
 class BaseAkismetReportsModelTest(object):
@@ -188,11 +190,15 @@ class TestAkismetReportsAddon(BaseAkismetReportsModelTest, TestCase):
     def test_create(self):
         user = user_factory(homepage='https://spam.spam/')
         addon = addon_factory(name=u'100% génuine spamm')
+        upload = FileUpload.objects.create(addon=addon)
         ua = 'foo/baa'
         referrer = 'https://mozilla.org/'
-        report = AkismetReport.create_for_addon(
-            addon, user, 'name', addon.name, ua, referrer)
+        with freeze_time('2017-07-27 07:00'):
+            time_now = datetime.now()
+            report = AkismetReport.create_for_upload(
+                upload, user, 'name', addon.name, ua, referrer)
 
+        assert report.upload_instance == upload
         assert report.addon_instance == addon
         assert report.user == user
         data = report._get_data()
@@ -206,7 +212,7 @@ class TestAkismetReportsAddon(BaseAkismetReportsModelTest, TestCase):
             'comment_author_email': user.email,
             'comment_author_url': user.homepage,
             'comment_content': unicode(addon.name),
-            'comment_date_gmt': addon.modified,
+            'comment_date_gmt': time_now,
             'blog_charset': 'utf-8',
             'is_test': not settings.AKISMET_REAL_SUBMIT,
         }
@@ -430,3 +436,15 @@ def test_submit_to_akismet_task(submit_spam_mock, submit_ham_mock):
 
     submit_to_akismet([report_a.id, report_b.id], False)
     assert submit_ham_mock.call_count == 2
+
+
+@mock.patch('olympia.lib.akismet.models.AkismetReport._post')
+@pytest.mark.django_db
+def test_comment_check_task(_post_mock):
+    upload = FileUpload.objects.create(addon=addon_factory())
+    user = user_factory()
+    report = AkismetReport.create_for_upload(
+        upload, user, 'foo', 'baa', '', '')
+    comment_check([report.id])
+    _post_mock.assert_called_once()
+    _post_mock.assert_called_with('comment-check')

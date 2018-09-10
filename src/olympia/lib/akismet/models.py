@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 
 from django.conf import settings
 from django.db import models
@@ -55,6 +56,9 @@ class AkismetReport(ModelBase):
         on_delete=models.SET_NULL)
     addon_instance = models.ForeignKey(
         'addons.Addon', related_name='+', null=True,
+        on_delete=models.SET_NULL)
+    upload_instance = models.ForeignKey(
+        'files.FileUpload', related_name='+', null=True,
         on_delete=models.SET_NULL)
     collection_instance = models.ForeignKey(
         'bandwagon.Collection', related_name='+', null=True,
@@ -172,10 +176,11 @@ class AkismetReport(ModelBase):
         return instance
 
     @classmethod
-    def create_for_addon(cls, addon, user, property_name, property_value,
-                         user_agent, referrer):
+    def create_for_upload(cls, upload, user, property_name, property_value,
+                          user_agent, referrer):
         instance = cls.objects.create(
-            addon_instance=addon,
+            upload_instance=upload,
+            addon_instance=upload.addon,
             comment_type='product-' + property_name,
             user_ip=user.last_login_ip or '',
             user_agent=user_agent or '',
@@ -185,6 +190,6 @@ class AkismetReport(ModelBase):
             user_email=user.email,
             user_homepage=user.homepage or '',
             comment=property_value,
-            comment_modified=addon.modified,
+            comment_modified=datetime.now(),
         )
         return instance

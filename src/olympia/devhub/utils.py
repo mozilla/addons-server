@@ -11,6 +11,7 @@ from celery import chain
 import olympia.core.logger
 
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
@@ -311,12 +312,14 @@ def add_dynamic_theme_tag(version):
         Tag(tag_text='dynamic theme').save_tag(version.addon)
 
 
-def akismet_is_addon_submission_spammy(addon, user, parsed_data, user_agent,
-                                       referrer):
+def get_submission_akismet_reports(upload, user, user_agent, referrer):
     if not waffle.switch_is_active('akismet-spam-check'):
-        return False
+        return []
     properties = ('name', 'summary', 'description')
     reports = []
+    parsed_data = Addon.resolve_webext_translations(
+        parse_addon(upload, upload.addon, user), upload)
+
     for prop in properties:
         locales = parsed_data.get(prop, [])
         if not isinstance(locales, dict):
@@ -326,9 +329,7 @@ def akismet_is_addon_submission_spammy(addon, user, parsed_data, user_agent,
             if not comment:
                 # We don't want to submit empty content
                 continue
-            reports.append(AkismetReport.create_for_addon(
-                addon, user, prop, comment, user_agent,
+            reports.append(AkismetReport.create_for_upload(
+                upload, user, prop, comment, user_agent,
                 referrer))
-
-    return any(
-        (report.comment_check() != AkismetReport.HAM for report in reports))
+    return reports

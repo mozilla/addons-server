@@ -6,11 +6,13 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.forms import ValidationError
+from django.test.utils import override_settings
 from django.utils import translation
 
 import mock
-
+import responses
 from rest_framework.response import Response
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
@@ -21,7 +23,7 @@ from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.applications.models import AppVersion
 from olympia.devhub import tasks
 from olympia.files.models import File, FileUpload
-from olympia.files.utils import parse_addon
+from olympia.lib.akismet.models import AkismetReport
 from olympia.signing.views import VersionView
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
@@ -191,55 +193,6 @@ class TestUploadVersion(BaseUploadVersionCase):
         self.auto_sign_version.assert_called_with(version)
         assert not version.all_files[0].is_mozilla_signed_extension
         assert not version.addon.tags.filter(tag_text='dynamic theme').exists()
-
-    @mock.patch('olympia.signing.views.akismet_is_addon_submission_spammy',
-                return_value=True)
-    def test_spam_rejection(self, spammy_mock):
-        def parse_addon_wrapper(*args, **kw):
-            self.parsed_data = parse_addon(*args, **kw)
-            return self.parsed_data
-
-        assert not Version.objects.filter(
-            addon__guid=self.guid, version='3.0').exists()
-
-        with mock.patch('olympia.signing.views.parse_addon',
-                        wraps=parse_addon_wrapper):
-            response = self.request(
-                'PUT', self.url(self.guid, '3.0'), channel='listed',
-                extra_kwargs={
-                    'HTTP_USER_AGENT': 'bob/bob',
-                    'HTTP_REFERER': 'https://winr/'})
-
-        assert not Version.objects.filter(
-            addon__guid=self.guid, version='3.0').exists()
-        assert response.status_code == 400
-        error_msg = 'The text entered has been flagged as spam.'
-        assert error_msg in response.data['error']
-
-        spammy_mock.assert_called_once()
-        spammy_mock.assert_called_with(
-            addon=Addon.objects.get(guid=self.guid),
-            user=self.user,
-            parsed_data=self.parsed_data,
-            user_agent='bob/bob',
-            referrer='https://winr/')
-
-        spammy_mock.return_value = False
-        self.request('PUT', self.url(self.guid, '3.0'), channel='listed')
-        assert Version.objects.filter(
-            addon__guid=self.guid, version='3.0').exists()
-
-    @mock.patch('olympia.signing.views.akismet_is_addon_submission_spammy')
-    def test_no_akismet_check_for_unlisted(self, spammy_mock):
-        assert not Version.objects.filter(
-            addon__guid=self.guid, version='3.0').exists()
-
-        response = self.request(
-            'PUT', self.url(self.guid, '3.0'), channel='unlisted')
-        assert response.status_code == 202
-        spammy_mock.assert_not_called()
-        assert Version.objects.filter(
-            addon__guid=self.guid, version='3.0').exists()
 
     def test_version_already_uploaded(self):
         response = self.request('PUT', self.url(self.guid, '3.0'))
@@ -493,6 +446,63 @@ class TestUploadVersion(BaseUploadVersionCase):
         error_msg = (
             'You cannot add a listed version to this addon via the API')
         assert error_msg in response.data['error']
+
+    @override_switch('akismet-spam-check', active=False)
+    def test_akismet_waffle_off(self):
+        addon = Addon.objects.get(guid=self.guid)
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), channel='listed')
+
+        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
+        assert AkismetReport.objects.count() == 0
+        assert response.status_code == 202
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_reports_created_ham_outcome(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+        addon = Addon.objects.get(guid=self.guid)
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), channel='listed')
+
+        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
+        assert response.status_code == 202
+        comment_check_mock.assert_called_once()
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get()
+        assert report.comment_type == 'product-name'
+        assert report.comment == 'Upload Version Test XPI'  # the addon's name
+
+        validation_response = self.get(self.url(self.guid, '3.0'))
+        assert validation_response.status_code == 200
+        assert 'spam' not in validation_response.content
+
+    @override_switch('akismet-spam-check', active=True)
+    @responses.activate
+    @override_settings(AKISMET_API_KEY=None)
+    def test_akismet_reports_created_spam_outcome(self):
+        akismet_url = settings.AKISMET_API_URL.format(
+            api_key='none', action='comment-check')
+        responses.add(responses.POST, akismet_url, json=True)
+        addon = Addon.objects.get(guid=self.guid)
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), channel='listed')
+
+        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
+        assert response.status_code == 202
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get()
+        assert report.comment_type == 'product-name'
+        assert report.comment == 'Upload Version Test XPI'  # the addon's name
+        assert report.result == AkismetReport.MAYBE_SPAM
+
+        validation_response = self.get(self.url(self.guid, '3.0'))
+        assert validation_response.status_code == 200
+        assert 'spam' in validation_response.content
+        data = json.loads(validation_response.content)
+        assert data['validation_results']['messages'][0]['id'] == [
+            u'validation', u'messages', u'akismet_is_spam'
+        ]
 
 
 class TestUploadVersionWebextension(BaseUploadVersionCase):

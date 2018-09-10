@@ -24,6 +24,7 @@ from django.db import transaction
 from django.template import loader
 from django.utils.translation import ugettext
 
+import celery
 import validator
 import waffle
 
@@ -46,6 +47,7 @@ from olympia.applications.management.commands import dump_apps
 from olympia.applications.models import AppVersion
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon, SafeZip
+from olympia.lib.akismet.models import AkismetReport
 from olympia.versions.compare import version_int
 from olympia.versions.models import Version
 
@@ -53,7 +55,8 @@ from olympia.versions.models import Version
 log = olympia.core.logger.getLogger('z.devhub.task')
 
 
-def validate(file_, listed=None, subtask=None, synchronous=False):
+def validate(file_, listed=None, subtask=None, synchronous=False,
+             pretask=None):
     """Run the validator on the given File or FileUpload object. If a task has
     already begun for this file, instead return an AsyncResult object for that
     task.
@@ -69,7 +72,10 @@ def validate(file_, listed=None, subtask=None, synchronous=False):
     if not synchronous and task_id:
         return AsyncResult(task_id)
     else:
-        chain = validator.task
+        # There has to be a task before validator.task or @validation_task will
+        # get too few arguments - the result of pretask is passed along.
+        chain = celery.group() if pretask is None else pretask
+        chain |= validator.task
         if subtask is not None:
             chain |= subtask
 
@@ -82,10 +88,10 @@ def validate(file_, listed=None, subtask=None, synchronous=False):
         return result
 
 
-def validate_and_submit(addon, file_, channel):
+def validate_and_submit(addon, file_, channel, pretask=None):
     return validate(
         file_, listed=(channel == amo.RELEASE_CHANNEL_LISTED),
-        subtask=submit_file.si(addon.pk, file_.pk, channel))
+        subtask=submit_file.si(addon.pk, file_.pk, channel), pretask=pretask)
 
 
 @task
@@ -141,12 +147,13 @@ validator.ValidationTimeout = SoftTimeLimitExceeded
 
 def validation_task(fn):
     """Wrap a validation task so that it runs with the correct flags, then
-    parse and annotate the results before returning."""
+    parse and annotate the results before returning.
+    akismet_results is the return from the previous task."""
 
     @task(bind=True, ignore_result=False,  # Required for groups/chains.
           soft_time_limit=settings.VALIDATOR_TIMEOUT)
     @wraps(fn)
-    def wrapper(task, id_, hash_, *args, **kw):
+    def wrapper(task, akismet_results, id_, hash_, *args, **kw):
         # This is necessary to prevent timeout exceptions from being set
         # as our result, and replacing the partial validation results we'd
         # prefer to return.
@@ -154,6 +161,8 @@ def validation_task(fn):
         try:
             data = fn(id_, hash_, *args, **kw)
             result = json.loads(data)
+            if akismet_results:
+                annotate_akismet_spam_check(result, akismet_results)
             return result
         except Exception as e:
             log.exception('Unhandled error during validation: %r' % e)
@@ -509,6 +518,15 @@ def annotate_webext_incompatibilities(results, file_, addon, version_string,
     return results
 
 
+def annotate_akismet_spam_check(results, akismet_results):
+    msg = ugettext('The text entered has been flagged as spam.')
+    for report_result in akismet_results:
+        if report_result in (
+                AkismetReport.MAYBE_SPAM, AkismetReport.DEFINITE_SPAM):
+            insert_validation_message(
+                results, message=msg, msg_id='akismet_is_spam')
+
+
 def check_for_api_keys_in_file(results, upload):
     if upload.addon:
         users = upload.addon.authors.all()
@@ -648,7 +666,7 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
     Not all application versions will have a set of registered
     compatibility tests.
     """
-    from validator.validate import validate
+    from validator.validate import validate as validator_validate
 
     apps = dump_apps.Command.get_json_path()
 
@@ -665,7 +683,7 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
             path = temp.name
 
         with statsd.timer('devhub.validator'):
-            json_result = validate(
+            json_result = validator_validate(
                 path,
                 for_appversions=for_appversions,
                 format='json',

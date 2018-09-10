@@ -511,7 +511,7 @@ class TestValidateFilePath(ValidatorTestCase):
 
     def test_amo_validator_success(self):
         result = tasks.validate_file_path(
-            get_addon_file('valid_firefox_addon.xpi'),
+            None, get_addon_file('valid_firefox_addon.xpi'),
             hash_=None, listed=True)
         assert result['success']
         assert not result['errors']
@@ -519,7 +519,7 @@ class TestValidateFilePath(ValidatorTestCase):
 
     def test_amo_validator_fail_warning(self):
         result = tasks.validate_file_path(
-            get_addon_file('invalid_firefox_addon_warning.xpi'),
+            None, get_addon_file('invalid_firefox_addon_warning.xpi'),
             hash_=None, listed=True)
         assert not result['success']
         assert not result['errors']
@@ -527,7 +527,7 @@ class TestValidateFilePath(ValidatorTestCase):
 
     def test_amo_validator_fail_error(self):
         result = tasks.validate_file_path(
-            get_addon_file('invalid_firefox_addon_error.xpi'),
+            None, get_addon_file('invalid_firefox_addon_error.xpi'),
             hash_=None, listed=True)
         assert not result['success']
         assert result['errors']
@@ -535,7 +535,7 @@ class TestValidateFilePath(ValidatorTestCase):
 
     def test_amo_validator_addons_linter_success(self):
         result = tasks.validate_file_path(
-            get_addon_file('valid_webextension.xpi'),
+            None, get_addon_file('valid_webextension.xpi'),
             hash_=None, listed=True, is_webextension=True)
         assert result['success']
         assert not result['errors']
@@ -545,7 +545,7 @@ class TestValidateFilePath(ValidatorTestCase):
         # This test assumes that `amo-validator` doesn't correctly
         # validate a invalid id in manifest.json
         result = tasks.validate_file_path(
-            get_addon_file('invalid_webextension_invalid_id.xpi'),
+            None, get_addon_file('invalid_webextension_invalid_id.xpi'),
             hash_=None, listed=True, is_webextension=True)
         assert not result['success']
         assert result['errors']

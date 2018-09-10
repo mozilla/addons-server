@@ -102,14 +102,16 @@ class TestValidatorBase(TestCase):
 
 
 class TestValidatorListed(TestValidatorBase):
-    @mock.patch('olympia.devhub.utils.chain')
-    def test_run_once_per_file(self, chain):
+    @mock.patch('celery.Signature.__or__')
+    def test_run_once_per_file(self, chain_mock):
         """Tests that only a single validation task is run for a given file."""
         task = mock.Mock()
-        chain.return_value = task
+        chain_mock.return_value = task
         task.delay.return_value = mock.Mock(task_id='42')
 
-        assert isinstance(tasks.validate(self.file), mock.Mock)
+        v = tasks.validate(self.file)
+        print v
+        assert isinstance(v, mock.Mock)
         assert task.delay.call_count == 1
 
         assert isinstance(tasks.validate(self.file), AsyncResult)
@@ -118,12 +120,12 @@ class TestValidatorListed(TestValidatorBase):
         assert isinstance(tasks.validate(self.file_1_1), mock.Mock)
         assert task.delay.call_count == 2
 
-    @mock.patch('olympia.devhub.utils.chain')
-    def test_run_once_file_upload(self, chain):
+    @mock.patch('celery.Signature.__or__')
+    def test_run_once_file_upload(self, chain_mock):
         """Tests that only a single validation task is run for a given file
         upload."""
         task = mock.Mock()
-        chain.return_value = task
+        chain_mock.return_value = task
         task.delay.return_value = mock.Mock(task_id='42')
 
         assert isinstance(
@@ -281,45 +283,42 @@ class TestFixAddonsLinterOutput(TestCase):
 
 
 @override_switch('akismet-spam-check', active=True)
-class TestAkismetIsAddonSubmissionSpammy(TestCase):
+class TestGetSubmissionAkismetReports(TestCase):
     def setUp(self):
-        super(TestAkismetIsAddonSubmissionSpammy, self).setUp()
-
-        self.akismet_report_mock = mock.MagicMock(
-            **{'comment_check.return_value': 0})
+        super(TestGetSubmissionAkismetReports, self).setUp()
 
         patcher = mock.patch.object(
-            AkismetReport, 'create_for_addon',
-            return_value=self.akismet_report_mock)
+            AkismetReport, 'create_for_upload')
         self.addCleanup(patcher.stop)
-        self.create_for_addon_mock = patcher.start()
+        self.create_for_upload_mock = patcher.start()
+        self.parse_addon_mock = self.patch('olympia.devhub.utils.parse_addon')
 
     @override_switch('akismet-spam-check', active=False)
     def test_waffle_off(self):
-        result = utils.akismet_is_addon_submission_spammy(
-            None, None, {}, '', '')
-        assert result is False
-        self.create_for_addon_mock.assert_not_called()
-        self.akismet_report_mock.comment_check.assert_not_called()
+        reports = utils.get_submission_akismet_reports(
+            None, None, '', '')
+        assert reports == []
+        self.create_for_upload_mock.assert_not_called()
 
     def test_basic(self):
         addon = addon_factory()
         user = user_factory()
-        parsed_data = {'description': u'fóó'}
+        upload = FileUpload.objects.create(addon=addon)
+        self.parse_addon_mock.return_value = {'description': u'fóó'}
         user_agent = 'Mr User/Agent'
         referrer = 'http://foo.baa/'
-        result = utils.akismet_is_addon_submission_spammy(
-            addon, user, parsed_data, user_agent, referrer)
-        self.create_for_addon_mock.assert_called_with(
-            addon, user, 'description', u'fóó', user_agent, referrer)
-        self.create_for_addon_mock.assert_called_once()
-        self.akismet_report_mock.comment_check.assert_called_once()
-        assert result is False
+        reports = utils.get_submission_akismet_reports(
+            upload, user, user_agent, referrer)
+        assert len(reports) == 1
+        self.create_for_upload_mock.assert_called_with(
+            upload, user, 'description', u'fóó', user_agent, referrer)
+        self.create_for_upload_mock.assert_called_once()
 
     def test_locales(self):
         addon = addon_factory()
         user = user_factory()
-        parsed_data = {
+        upload = FileUpload.objects.create(addon=addon)
+        self.parse_addon_mock.return_value = {
             'description': {
                 'en-US': u'fóó',
                 'fr': u'lé foo',
@@ -332,48 +331,15 @@ class TestAkismetIsAddonSubmissionSpammy(TestCase):
         }
         user_agent = 'Mr User/Agent'
         referrer = 'http://foo.baa/'
-        result = utils.akismet_is_addon_submission_spammy(
-            addon, user, parsed_data, user_agent, referrer)
-        assert self.create_for_addon_mock.call_count == 3
+        reports = utils.get_submission_akismet_reports(
+            upload, user, user_agent, referrer)
+        assert len(reports) == 3
+        assert self.create_for_upload_mock.call_count == 3
         calls = [
             mock.call(
-                addon, user, 'name', u'just one name', user_agent, referrer),
+                upload, user, 'name', u'just one name', user_agent, referrer),
             mock.call(
-                addon, user, 'description', u'fóó', user_agent, referrer),
+                upload, user, 'description', u'fóó', user_agent, referrer),
             mock.call(
-                addon, user, 'description', u'lé foo', user_agent, referrer)]
-        self.create_for_addon_mock.assert_has_calls(calls, any_order=True)
-        assert self.akismet_report_mock.comment_check.call_count == 3
-        assert result is False
-
-    def test_spam_response(self):
-        addon = addon_factory()
-        user = user_factory()
-        parsed_data = {
-            'description': {
-                'en-US': u'fóó',
-                'fr': u'lé foo',
-                'de': u'ick bin foo',
-            }
-        }
-        user_agent = 'Mr User/Agent'
-        referrer = 'http://foo.baa/'
-
-        self.akismet_report_mock.comment_check.side_effect = [
-            AkismetReport.HAM, AkismetReport.HAM, AkismetReport.MAYBE_SPAM]
-        result = utils.akismet_is_addon_submission_spammy(
-            addon, user, parsed_data, user_agent, referrer)
-        assert self.create_for_addon_mock.call_count == 3
-        assert self.akismet_report_mock.comment_check.call_count == 3
-        assert result is True
-
-        self.create_for_addon_mock.reset_mock()
-        self.akismet_report_mock.comment_check.reset_mock()
-        # Remaining checks are skipped if the first piece of content is spammy.
-        self.akismet_report_mock.comment_check.side_effect = [
-            AkismetReport.MAYBE_SPAM, AkismetReport.HAM, AkismetReport.HAM]
-        result = utils.akismet_is_addon_submission_spammy(
-            addon, user, parsed_data, user_agent, referrer)
-        assert self.create_for_addon_mock.call_count == 3
-        assert self.akismet_report_mock.comment_check.call_count == 1
-        assert result is True
+                upload, user, 'description', u'lé foo', user_agent, referrer)]
+        self.create_for_upload_mock.assert_has_calls(calls, any_order=True)

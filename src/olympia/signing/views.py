@@ -16,7 +16,6 @@ from olympia.addons.models import Addon
 from olympia.amo.decorators import use_primary_db
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.devhub.views import handle_upload as devhub_handle_upload
-from olympia.devhub.utils import akismet_is_addon_submission_spammy
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
 from olympia.signing.serializers import FileUploadSerializer
@@ -165,8 +164,10 @@ class VersionView(APIView):
         # channel will be ignored for new addons.
         if addon is None:
             channel = amo.RELEASE_CHANNEL_UNLISTED  # New is always unlisted.
+            addon = Addon.initialize_addon_from_upload(
+                data=parsed_data, upload=filedata, channel=channel,
+                user=request.user)
             created = True
-            will_have_listed = False
         else:
             created = False
             channel_param = request.POST.get('channel')
@@ -187,21 +188,6 @@ class VersionView(APIView):
                              'via the API due to missing metadata. '
                              'Please submit via the website'),
                     status.HTTP_400_BAD_REQUEST)
-
-        parsed_data = Addon.resolve_webext_translations(parsed_data, filedata)
-        if will_have_listed and akismet_is_addon_submission_spammy(
-                addon=addon,
-                user=request.user,
-                parsed_data=parsed_data,
-                user_agent=request.META.get('HTTP_USER_AGENT'),
-                referrer=request.META.get('HTTP_REFERER')):
-            raise forms.ValidationError(
-                ugettext('The text entered has been flagged as spam.'))
-
-        if created:
-            addon = Addon.initialize_addon_from_upload(
-                data=parsed_data, upload=filedata, channel=channel,
-                user=request.user)
 
         file_upload = devhub_handle_upload(
             filedata=filedata, request=request, addon=addon, submit=True,
