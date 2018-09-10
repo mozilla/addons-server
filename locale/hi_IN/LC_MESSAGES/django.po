@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-09 14:09+0000\n"
-"Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
+"PO-Revision-Date: 2018-08-14 07:45+0000\n"
+"Last-Translator: Mohit Bansal <philomath@disroot.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -147,7 +147,7 @@ msgstr[0] "आपके पास केवल {0} श्रेणी हो स
 msgstr[1] "आपके पास केवल {0} श्रेणी हो सकती हैं।"
 
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr ""
+msgstr "विविध श्रेणी को अतिरिक्त श्रेणियों के साथ जोड़ा नहीं जा सकता है."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
