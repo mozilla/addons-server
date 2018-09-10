@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-06 07:11+0000\n"
+"PO-Revision-Date: 2018-09-07 14:40+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -316,7 +316,7 @@ msgid "Rating"
 msgstr "Valutation"
 
 msgid "Daily Users"
-msgstr "Usatores quotidian"
+msgstr "Usatores per die"
 
 msgid "License"
 msgstr "Licentias"
@@ -359,8 +359,8 @@ msgstr "<b>{0}</b> usatores"
 #. {0} is the number of users.
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] "{0} Usator quotidian"
-msgstr[1] "{0} Usatores quotidian"
+msgstr[0] "{0} Usator per die"
+msgstr[1] "{0} Usatores per die"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -3261,7 +3261,7 @@ msgid "New Version"
 msgstr "Nove version"
 
 msgid "Daily statistics on downloads and users."
-msgstr "Statistica quotidiad sur discargamentos e usatores."
+msgstr "Statistica quotidian sur discargamentos e usatores."
 
 msgid "Statistics"
 msgstr "Statistica"
@@ -5909,7 +5909,7 @@ msgid "Not to worry, here are three to get started."
 msgstr "Nulle anxietate, ecce tres pro comenciar."
 
 msgid "Translate content on the web from and into over 40 languages."
-msgstr "Traduce le contento del web ab e in ultra 40 linguas."
+msgstr "Traduce le contento del web ab e in plus de 40 linguas."
 
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
 msgstr "Connecte te facilemente tu retes social, e comparti o commenta re le pagina que tu visita."
@@ -6052,9 +6052,8 @@ msgid "Reported Spam"
 msgstr "Spam reportate"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Reportar un defecto"
+msgstr "Reportate un Ham"
 
 msgid "Not Reported"
 msgstr "Non reportate"
@@ -6066,13 +6065,11 @@ msgid "View Rating on site"
 msgstr "Vide le valutation sur le sito"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Inviar un nove file"
+msgstr "Inviar Ham a Akismet"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Inviar un nove file"
+msgstr "Inviar Spam a Akismet"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
@@ -6298,45 +6295,46 @@ msgstr "Initia ora"
 
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
+"Mozilla vole imaginar le melior maniera pro mantener nostre usatores secur si illes elige de usar software de tertie-parte tal como plugins. Participar a iste studios nos adjutara al discoperta!"
 
 msgid "What will happen next"
-msgstr "Que evenira pois"
+msgstr "Lo que sera le proxime evento"
 
 msgid "<strong>If you agree</strong> to participate:"
 msgstr "<strong>Si tu accepta</strong> de participar:"
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr ""
+msgstr "Nos pote adder a Firefox functionalitates de securitate e controlo de plugins pro adjutar con securitate online e performance."
 
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
 msgstr "Continua a usar Firefox como tu normalmente vole. In base a como tu usa le web, tu pote non advertir ulle cambiamentos."
 
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "Post alcun septimanas, le studio finira spontaneemente. Tu Firefox recedera a normal."
 
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "Nos te demandara de plenar un rapide questionario optional pro contar nos circa tu experientia. Pro completar le questionario tu debe emplear minus que 5 minutas."
 
 msgid "Leaving the study"
 msgstr "Lassar le studio"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "Le studio expirara spontaneemente in alcun septimanas. Tu pote lassar le studio precocemente. Pro facer assi, seque iste grados:"
 
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "Scribe about:addons in le barra del position, e pulsa Inserer."
 
 msgid "Find Plugin Safety in the addons list."
-msgstr "Trova \"Plugin Safety\" in le lista del additivos."
+msgstr "Trova Securitate del plugin in le lista del additivos."
 
 msgid "Click the remove button."
-msgstr "Cliccar le button Remover."
+msgstr "Clicca le button Remover."
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
+msgstr "Si tu refusara precocemente de studiar, nos te demandara de plenar un questionario. Nos es interessate a audir circa tu experientia, mesmo si tu non ha participate al integre studio."
 
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "Le option de refusar un studio non te impedi de participar a futur studios."
 
 msgid "Your privacy"
 msgstr "Tu confidentialitate"
@@ -6345,38 +6343,40 @@ msgid "All Shield Studies"
 msgstr "Tote le studios de Shield"
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr "Cata studio de Shield collige datos circa importante eventos de studio, tal como installation, disinstallation, uso quotidian, e fin de studio. Le studios include alsi un sondage optional."
+msgstr "Cata studio de Shield collige datos circa importante eventos de studio, tal como installation, disinstallation, uso quotidian, e fin de studio. Studios include alsi un questionario optional."
 
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr "Iste datos es associate con le <a href=\"%(url)s\">collection de telemetria de Firefox</a>."
+msgstr "Iste datos es associate con le <a href=\"%(url)s\">Collection de telemetria de Firefox</a>."
 
 msgid "This particular Study"
 msgstr "Iste studio particular"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "In addition al datos colligite per tote le studios de Shield, Mozilla colligera informationes circa:"
 
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
+msgstr "Sitos web que tu visita que prova a usar plugins e qual contento sur le sito necessita le plugin;"
 
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
+msgstr "Como tu interage con le contento del plugin sur ille sitos, includite si e como tu elige de consenti a facer fluer le plugin."
 
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
+msgstr "Mozilla mantenera iste informationes private; ulle datos sera compartite solo in forma aggregate o anonyme."
 
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "Tu pote apprender altero circa le collection de datos pro iste studio <a href=\"%(url)s\">ci</a>."
 
 msgid "You Help Make Firefox Better"
-msgstr "Tu auxilio rende Firefox melior"
+msgstr "Tu adjuta a render Firefox melior"
 
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
+"A Mozilla nos nos honora de producer pro te: le usator! Id es perque nos besonia de tu auxilio. Tu participation in iste studio adjutara nos a meliorar decisiones in tu nomine e a formar "
+"directemente le futuro de Firefox!"
 
 msgid "Brought to you by:"
 msgstr "Create pro te per:"
@@ -6394,7 +6394,7 @@ msgid "Rated %d out of 5 stars"
 msgstr "Valutate %d de 5 stellas"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "Un breve explication debe ser fornite quando tu selige \"Altero\" como ration del signal."
 
 msgid "Spam or otherwise non-review content"
 msgstr "Spam o contento alteremente non-revidite"
@@ -6412,13 +6412,13 @@ msgid "This field is required."
 msgstr "Campo obligatori."
 
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "Tu non pote cambiar le additivo de un revision un vice que illo ha essite create."
+msgstr "Tu non pote cambiar le additivo de un revision un vice que isto ha essite create."
 
 msgid "You can't reply to a review that is already a reply."
-msgstr "Tu non pote replicar a un revision que es jam un replica."
+msgstr "Tu non pote responder a un revision que es ja un replica."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Tu non pote cambiar le version del additivo revidite un vice que su revision ha essite create."
 
 msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "Iste version del additivo non existe o non es public."
@@ -6427,13 +6427,13 @@ msgid "You can't leave a review on your own add-on."
 msgstr "Tu non pote lassar un revision sur tu proprie additivo."
 
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr ""
+msgstr "Tu non pote lassar plus del un revision pro le mesme version de un additivo."
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "Iste classification non pote ser signalate pois que il ha nulle texto de revision."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr ""
+msgstr "Gratias; iste revision ha essite signalate pro le approbation del revisor."
 
 msgid "Add a review for {0}"
 msgstr "Adder un revision pro {0}"
@@ -6466,14 +6466,14 @@ msgstr "Submitter"
 #. this string is following a <button>.
 #, python-format
 msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr "o <a href=\"%(url)s\">Cancella</a>"
+msgstr "o <a href=\"%(url)s\">Cancellar</a>"
 
 msgid "Please select a reason:"
 msgstr "Per favor elige un ration:"
 
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr "per %(user)s <b>(Disveloppator)</b> on %(date)s"
+msgstr "per %(user)s <b>(Disveloppator)</b> le %(date)s"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
@@ -6490,7 +6490,7 @@ msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this a
 msgstr "Iste usator ha <a href=\"%(user_review_url)s\">altere revisiones</a> de iste additivo."
 
 msgid "Flagged for review"
-msgstr "Marcate pro le revision"
+msgstr "Signalate pro le revision"
 
 msgid "Report this review"
 msgstr "Reportar iste revision"
@@ -6590,7 +6590,7 @@ msgid "Search by add-on name / author email"
 msgstr "Recercar per nomine de additivo / email de autor"
 
 msgid "Needs Admin Code Review"
-msgstr "Necessita revision del codice per un administrator"
+msgstr "Il es necesse revision del codice per un administrator"
 
 msgid "yes"
 msgstr "si"
@@ -6646,10 +6646,10 @@ msgid "Skip for now"
 msgstr "Saltar pro iste momento"
 
 msgid "Needs Admin Content Review"
-msgstr "Necessita revision de contento per administrator"
+msgstr "Il es necesse revision de contento per administrator"
 
 msgid "Needs Admin Static Theme Review"
-msgstr "Necessita revision de thema static per administrator"
+msgstr "Il es necesse revision de thema static per administrator"
 
 msgid "Jetpack Add-on"
 msgstr "Additivo de Jetpack"
@@ -6766,22 +6766,22 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr "Si tu ha anxietates circa iste additivo que un administrator revisor debe reguardar, insere tu commentos in le area infra. Illos non sera inviate al disveloppator."
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
+msgstr "Face un commento sur iste version. The disveloppator non potera vider lo."
 
 msgid "Approve Content"
 msgstr "Approbar le contento"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
+msgstr "Isto registra tu approbation del contento del ultime version public, sin notificar le disveloppator."
 
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Themas static e additivos legate"
+msgstr "Themas static e additivos obsolete"
 
 msgid "Static Themes"
 msgstr "Themas static"
 
 msgid "Legacy Add-ons"
-msgstr "Additivos legate"
+msgstr "Additivos obsolete"
 
 msgid "New ({0})"
 msgstr "Nove ({0})"
@@ -6790,7 +6790,7 @@ msgid "Updates ({0})"
 msgstr "Actualisate ({0})"
 
 msgid "Review Log"
-msgstr "Registration de revision"
+msgstr "Registro del revisiones"
 
 msgid "Add-on Review Guide"
 msgstr "Guida al revision del additivos"
@@ -6808,7 +6808,7 @@ msgid "Add-on Review Log"
 msgstr "Registro de revision de additivo"
 
 msgid "Review Guide"
-msgstr "Guida de revision"
+msgstr "Guida al revision"
 
 msgid "Content Review"
 msgstr "Revision de contento"
@@ -6828,7 +6828,7 @@ msgid "Flagged Themes ({0})"
 msgstr "Themas signalate ({0})"
 
 msgid "Lightweight Themes Review Log"
-msgstr ""
+msgstr "Registro de revision del themas legier"
 
 msgid "Deleted Themes Log"
 msgstr "Registro del themas delite"
@@ -6864,13 +6864,13 @@ msgid "An unknown error occurred"
 msgstr "Un error incognite occurreva"
 
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "Le revisiones del proprie additivos non es consentite."
 
 msgid "Review successfully processed."
-msgstr "Revision processate con successo."
+msgstr "Revision elaborate con successo."
 
 msgid "Review lock limit reached"
-msgstr "Attingite le limite de bloco del revisiones"
+msgstr "Limite de bloco del revisiones attingite"
 
 msgid "{addon} :: EULA"
 msgstr "{addon} :: EULA"
@@ -6880,17 +6880,18 @@ msgstr "{addon} :: Politica de confidentialitate"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} revision de thema elaborate con successo (+{1} punctos, {2} total)."
+msgstr[1] "{0} revisiones de thema elaborate con successo (+{1} punctos, {2} total)."
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
+"Tu thema ha essite disblocate con successo. Altere revisores pote ora revider ille themas disblocate. Tu pote deber refrescar le pagina pro vider le cambiamentos reflectite in le tabella infra."
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Reportos de abuso"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
+msgstr "Reportos de abuso pro {addon} e su disveloppatores ({num})"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -6909,13 +6910,13 @@ msgid "Abuse Reports"
 msgstr "Reportos de abuso"
 
 msgid "Requires Payment"
-msgstr "Require pagamento"
+msgstr "Il necesse un pagamento"
 
 msgid "EULA"
 msgstr "EULA"
 
 msgid "Last Approval Date"
-msgstr "Ultime data de approbation"
+msgstr "Data del ultime approbation"
 
 msgid "Abuse Reports ({num})"
 msgstr "Reportos de abuso ({num})"
@@ -6927,7 +6928,7 @@ msgid "Theme Images"
 msgstr "Imagines del thema"
 
 msgid "Rendered Preview"
-msgstr "Vision preliminar rendite"
+msgstr "Ante-prima rendite"
 
 msgid "Background file {0} of {1} - {2}"
 msgstr "File de fundo {0} de {1} - {2}"
@@ -6936,22 +6937,22 @@ msgid "More about this add-on"
 msgstr "Altero re iste additivo"
 
 msgid "Image Gallery"
-msgstr "Galeria de imagine"
+msgstr "Galeria de imagines"
 
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "Nihil a vider ci!  Le disveloppator non includeva ulle detalios."
 
 msgid "Return to the Reviewer Tools dashboard"
-msgstr ""
+msgstr "Retornar al pannello de utensiles del revisor"
 
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Classifica del revisores"
 
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Nulle punctos de revision ancora adjudicate."
 
 msgid "Rank"
-msgstr "Classification"
+msgstr "Classifica"
 
 msgid "Score"
 msgstr "Punctuation"
@@ -6967,13 +6968,13 @@ msgid "Event"
 msgstr "Evento"
 
 msgid "More details."
-msgstr "Plus de detalios."
+msgstr "Altere detalios."
 
 msgid "No events found for this period."
-msgstr ""
+msgstr "Nulle eventos trovate pro iste periodo."
 
 msgid "Log details"
-msgstr "Registrar le detalios"
+msgstr "Detalios del registro"
 
 msgid "Review Author"
 msgstr "Autor del revision"
@@ -6992,7 +6993,7 @@ msgid "Review was flagged prior to deletion."
 msgstr "Le revision esseva signalate ante le deletion."
 
 msgid "Undelete"
-msgstr "Restaurar"
+msgstr "Restabilir"
 
 msgid "Save"
 msgstr "Salvar"
@@ -7025,10 +7026,10 @@ msgid "This Year"
 msgstr "Iste anno"
 
 msgid "Monthly Performance"
-msgstr "Prestationes mensual"
+msgstr "Rendimento mensual"
 
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "Punctuationes maxime per typo"
 
 msgid "Total"
 msgstr "Total"
@@ -7069,7 +7070,7 @@ msgid "There are currently no add-ons of this type to review."
 msgstr "Il ha actualmente nulle additivos de iste typo pro revision."
 
 msgid "Helpful Links:"
-msgstr "Utile ligamines:"
+msgstr "Ligamines utile:"
 
 msgid "Add-on Policy"
 msgstr "Politica del additivos"
@@ -7120,28 +7121,28 @@ msgid "Auto-Approval script has not run yet on this version."
 msgstr "Le script pro le approbation automatic non ha ancora analysate iste version."
 
 msgid "This version has not been reviewed."
-msgstr "Iste version ha non essite revidite."
+msgstr "Iste version non ha essite revidite."
 
 msgid "Please select one or more versions in the list above."
-msgstr "Per favor eliger un o plus versiones in le lista supra."
+msgstr "Per favor elige un o plus versiones in le lista supra."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Tu pote ancora inviar iste forma, totevia face assi solo si tu sape que illo non confligera."
 
 msgid "Insert canned response..."
-msgstr "Inserer le responsa predefinite..."
+msgstr "Insere le responsa predefinite..."
 
 msgid "Tested on:"
 msgstr "Testate sur:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>ATTENTION!</strong> Un altere usator videva iste pagina ante te."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
+msgstr "Le tabula blanc es le loco pro excambiar informationes pertinente pro iste additivo (qualcunque version), inter le disveloppator e le revisor. Isto es visibile e modificabile per ambe."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "Le tabula blanc private es usate pro excambiar informationes inter revisores, que es independente del version. Per favor mantene un linguage objective. Illo es visibile solo al revisores."
 
 msgid "Update whiteboards"
 msgstr "Actualisar le tabulas blanc"
@@ -7150,7 +7151,7 @@ msgid "More Actions"
 msgstr "Altere actiones"
 
 msgid "Notify me about new listed versions"
-msgstr "Notifica me circa nove versiones listate"
+msgstr "Notifica me circa nove versiones in le lista de presentation"
 
 msgid "Force-disable add-on"
 msgstr "Fortiar disactivation de additivo"
@@ -7165,16 +7166,16 @@ msgid "Enable Auto-Approval"
 msgstr "Activar auto-approbation"
 
 msgid "Clear information request"
-msgstr "Clarar le requesta de informationes"
+msgstr "Clarar requesta de informationes"
 
 msgid "Clear Admin Code Review Flag"
-msgstr ""
+msgstr "Clarar le flag de revision del codice de administrator"
 
 msgid "Clear Admin Content Review Flag"
-msgstr ""
+msgstr "Clarar le flag de revision del contento de administrator"
 
 msgid "Clear Admin Static Theme Review Flag"
-msgstr ""
+msgstr "Clarar le flag de revision del thema static de administrator"
 
 msgid "(admin)"
 msgstr "(administrator)"
@@ -7204,17 +7205,17 @@ msgid "Hide Comments"
 msgstr "Celar le commentos"
 
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "Nulle revisiones trovate pro iste periodo."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] reportava %(object)s le %(date)s"
 
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Dimitte iste annuncio"
 
 msgid "Files in this version:"
-msgstr ""
+msgstr "Files in iste version:"
 
 msgid "Contents"
 msgstr "Contentos"
@@ -7230,7 +7231,7 @@ msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Per %(user)s le %(date)s</div>"
 
 msgid "Older"
-msgstr "Plus ancian"
+msgstr "Plus vetere"
 
 msgid "Newer"
 msgstr "Plus recente"
@@ -7239,10 +7240,10 @@ msgid "Recent Points"
 msgstr "Punctos recente"
 
 msgid "No points awarded yet."
-msgstr "Nulle punctos ancora ganiate."
+msgstr "Nulle punctos ancora adjudicate."
 
 msgid "Top Reviewers (past 7 days)"
-msgstr "Revisores principal (ultime septimana)"
+msgstr "Le melior revisores (ultime 7 dies)"
 
 msgid "No top reviewers yet."
 msgstr "Nulle revisores principal ancora."
@@ -7256,13 +7257,13 @@ msgstr "Tu ha <span>{0}</span> punctos."
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s sur %(date)s [%(ip_address)s]"
+msgstr "%(user)s le %(date)s [%(ip_address)s]"
 
 msgid "Date Deleted"
 msgstr "Data de deletion"
 
 msgid "No deleted themes found for this period."
-msgstr "Nulle themas delite trovate pro iste periodo."
+msgstr "Nulle themas delite trovate in iste periodo."
 
 msgid "Theme Review History for {0}"
 msgstr "Chronologia de revision del thema pro {0}"
@@ -7292,10 +7293,10 @@ msgid "Review Options"
 msgstr "Optiones de revision"
 
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "Avantiamento automatic post revision"
 
 msgid "Enable keyboard shortcuts"
-msgstr "Activar le vias breve de claviero"
+msgstr "Activar vias breve de claviero"
 
 msgid "Keyboard Shortcuts"
 msgstr "Vias breve de claviero"
@@ -7307,7 +7308,7 @@ msgid "Previous Theme"
 msgstr "Thema previe"
 
 msgid "Your Review History"
-msgstr "Chronologia de tu revision"
+msgstr "Chronologia de tu revisiones"
 
 msgid "Commit Review"
 msgstr "Inviar revision"
@@ -7319,32 +7320,32 @@ msgid "{0} out of {1} reviewed"
 msgstr "{0} de {1} revidite"
 
 msgid "There are currently no Themes to review."
-msgstr "Il ha actualmente nulle thema a revider."
+msgstr "Il ha actualmente nulle themas al revision."
 
 msgid "Clear Search"
-msgstr "Clarar le recerca"
+msgstr "Clarar recerca"
 
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "Disblocar mi thema"
 
 msgid "Interactive Theme Queue"
 msgstr "Cauda de themas interactive"
 
 msgid "Reviewers' Guide"
-msgstr "Guida del revisor"
+msgstr "Guida del revisores"
 
 msgid "Theme Review for {0}"
-msgstr "Thema revidite pro {0}"
+msgstr "Revision de thema pro {0}"
 
 msgid "(Probable Duplicate Submission)"
-msgstr "(Probabile submission duplicate)"
+msgstr "(Probabile invio duplicate)"
 
 msgid "Past Review Notes"
 msgstr "Notas del revision passate"
 
 #. {previous review action taken on theme}: {comment about review action}
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "Altere informationes demandate: {0}"
 
 msgid "Flagged: {0}"
 msgstr "Signalate: {0}"
@@ -7384,8 +7385,8 @@ msgstr[1] "Actualisate ({0})"
 
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Revision de valutation ({0})"
+msgstr[1] "Revision de valutationes ({0})"
 
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
@@ -7404,7 +7405,7 @@ msgid "Updates"
 msgstr "Actualisationes"
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Maxime longitude del consulta excedite."
 
 msgid "search for add-ons"
 msgstr "cercar additivos"
@@ -7422,7 +7423,7 @@ msgid "All Add-ons"
 msgstr "Tote le additivos"
 
 msgid "Any {0}"
-msgstr "Cata {0}"
+msgstr "Ulle {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 msgid "All Systems"
@@ -7445,7 +7446,7 @@ msgid "Search Unavailable"
 msgstr "Recerca non disponibile"
 
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr "Le recerca es temporarimente indisponibile. Per favor reproba post poc minutas."
+msgstr "Le recerca es temporarimente indisponibile. Per favor prova de novo post poc minutas."
 
 #. {0} is the string the user was searching for
 msgid "Themes Search Results for {0}"
@@ -7476,7 +7477,7 @@ msgstr[0] "<b>{0}</b> resultato concordante"
 msgstr[1] "<b>{0}</b> resultatos concordante"
 
 msgid "Filter Results"
-msgstr "Resultatos del filtro"
+msgstr "Filtrar le resultatos"
 
 msgid "Category"
 msgstr "Categoria"
@@ -7494,14 +7495,14 @@ msgid "Could not find add-on with id \"{}\"."
 msgstr "Impossibile trovar additivo con id \"{}\"."
 
 msgid "You do not own this addon."
-msgstr "Tu non comprava iste additivo."
+msgstr "Tu non es proprietario de iste additivo."
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Clave de cargamento mancante in le file de datos multipart."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Tu non pote adder versiones a un additivo in stato: %s."
 
 msgid "Version does not match the manifest file."
 msgstr "Le version non concorda con le file manifesto."
@@ -7513,16 +7514,16 @@ msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Solo WebExtensions pote omitter le GUID"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Per favor specifica le GUID de tu additivo in le file manifesto si illo es plus longe que 64 characteres."
 
 msgid "Invalid GUID in URL"
-msgstr "GUID in URL non valide"
+msgstr "GUID non valide in URL"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Tu non pote usar le API pro adder un version jam in lista de presentation pro iste additivo, perque il ha metadatos mancante. Per favor invia lo per le sito web"
 
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "Nulle file cargate pro ille additivo e version."
 
 msgid "Overview"
 msgstr "Panorama"
@@ -7531,22 +7532,22 @@ msgid "by Source"
 msgstr "per fonte"
 
 msgid "by Add-on Version"
-msgstr ""
+msgstr "per version del additivo"
 
 msgid "by Application"
-msgstr ""
+msgstr "per application"
 
 msgid "by Language"
 msgstr "per lingua"
 
 msgid "by Platform"
-msgstr ""
+msgstr "per systema operative"
 
 msgid "by Add-on Status"
-msgstr ""
+msgstr "per stato del additivo"
 
 msgid "Add-on Statistics"
-msgstr "Statistica del additivo"
+msgstr "Statistica del additivos"
 
 msgid "Add-ons in Use"
 msgstr "Additivos in uso"
@@ -7573,7 +7574,7 @@ msgid "Archived Data"
 msgstr "Datos archivate"
 
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Intervallo de datas personalisate"
 
 msgid "From"
 msgstr "De"
@@ -7589,13 +7590,13 @@ msgstr "Exportar"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Pannello de statistica :: Additivos pro {1}"
 
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Pannello de statistica"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Pannello de statistica :: Additivos pro {0}"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
@@ -7623,7 +7624,7 @@ msgid "month"
 msgstr "mense"
 
 msgid "For last:"
-msgstr "Per ultime:"
+msgstr "Pro ultime:"
 
 msgid "7 days"
 msgstr "7 dies"
@@ -7638,22 +7639,24 @@ msgid "365 days"
 msgstr "365 dies"
 
 msgid "Custom..."
-msgstr "Personalisar..."
+msgstr "Personalisate..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
+"Le elaboration del statistica es actualmente disactivate, assi le datos recente es indisponibile. Le datos statistic es tam ben ancora colligite e iste pagina sera actualisate tosto con le datos "
+"mancante."
 
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Cargamento del ultime datos&hellip;"
 
 msgid "No data available."
 msgstr "Nulle datos disponibile."
 
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Iste pannello de controlo es actualmente <b>public</b>."
 
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Iste pannello de controlo es actualmente <b>private</b>."
 
 msgid "Change settings."
 msgstr "Cambiar le parametros."
@@ -7680,18 +7683,20 @@ msgid "Downloaded by Date"
 msgstr "Discargate per data"
 
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "Como es contate le discargamentos?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
+"<h2>Como es contate le discargamentos?</h2> <p> Le contatores de discargamento es actualisate cata vespere e illos include solo le discargamentos del additivo original, non le actualisationes. Le "
+"discargamentos pote ser dividite per fonte specific. </p>"
 
 msgid "User languages by Date"
 msgstr "Linguas del usator per data"
 
 msgid "Platform usage by Date"
-msgstr "Systema operative per data"
+msgstr "Uso del systema operative per Data"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> Discargamentos"
@@ -7700,7 +7705,7 @@ msgid "Loading..."
 msgstr "Cargamento..."
 
 msgid "<b>{0}</b> Average Daily Users"
-msgstr "<b>{0}</b> Usatores medie quotidian"
+msgstr "<b>{0}</b> Usatores medie per die"
 
 msgid "Top Applications"
 msgstr "Applicationes principal"
@@ -7727,10 +7732,10 @@ msgid "Reviews Created by Date"
 msgstr "Revisiones per data de creation"
 
 msgid "Download sources by Date"
-msgstr "Fontes de discargamentos per data"
+msgstr "Fontes de discargamento per data"
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Circa le traciamento del fontes externe..."
 
 #, python-format
 msgid ""
@@ -7740,6 +7745,12 @@ msgid ""
 "blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
 "\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
+"<h2>Traciamento del fontes externe</h2> <p> Si tu liga a tu pagina de detalios del additivos o directemente a su file ex un sito externe, tal como tu blog o tu sito web, tu pote appender un "
+"parametro pro esser traciate como un altere fonte de discargamento sur iste pagina. Per exemplo, le sequente ligamines apparerea como surgente per tu blog: <dl> <dt>Pagina de detalios del "
+"additivos</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Ligamine directe al file</dt> "
+"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Solo le parametros src que initia con \"external-\" sera traciate, non plus de "
+"61 characteres additional. Ulle texto post \"external-\" pote ser usate pro describer le fonte, tal como \"external-blog\", \"external-sidebar\", \"external-campaign225\", et cetera. Le sequente "
+"URL-safe characteres es consentite: <code>a-z A-Z - .  _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Stato del additivos per data"
@@ -7748,26 +7759,30 @@ msgid "Subscribers by Date"
 msgstr "Subscriptores per data"
 
 msgid "Daily Users by Date"
-msgstr "Usatores quotidian per data"
+msgstr "Usatores per die per data"
 
 msgid "What are daily users?"
-msgstr ""
+msgstr "Que es le Usatores per die?"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
+"<h2>Que es le Usatores per die?</h2> <p> Le themas installate per iste sito es controlate pro lor actualisationes un vice per die. Le numero total de iste tests de actualisation es note como "
+"Usatores active per die o le numero de personas total qui usa tu thema cata die. </p>"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>Que es le Usatores per die?</h2> <p> Le additivos discargate ex iste sito es controlate pro lor actualisationes un vice per die. Le numero total de iste test de actualisation es note como "
+"Usatores active per die. Le Usatores per die pote ser subdividite per version del additivo, systema operative, stato del additivo, application e localisation. </p>"
 
 msgid "User Signups by Date"
-msgstr "Signaturas de usatores per data"
+msgstr "Registrationes de usatores per data"
 
 msgid "Application versions by Date"
-msgstr "Application per data de version"
+msgstr "Versiones del application per data"
 
 msgid "Mozilla Add-ons"
 msgstr "Additivos de Mozilla"
@@ -7779,29 +7794,29 @@ msgid "Other Applications"
 msgstr "Altere applicationes"
 
 msgid "AMO is getting a new look. Would you like to see it?"
-msgstr ""
+msgstr "AMO va crear se un nove apparentia. Desira tu vider lo?"
 
 msgid "Visit the new site"
 msgstr "Visita le nove sito"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr ""
+msgstr "Pro crear tu proprie collectiones, tu debe haber un del additivos de Mozilla."
 
 msgid "Create an Add-ons Account"
-msgstr "Crea un conto de additivos"
+msgstr "Crea un Conto del additivos"
 
 #, python-format
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
 msgstr "o <a href=\"%(login)s\">connecte te a tu conto actual</a>"
 
 msgid "Footer logo"
-msgstr "Logo al pede"
+msgstr "Logo de pede de pagina"
 
 msgid "Choose a category"
 msgstr "Eliger un categoria"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr ""
+msgstr "Le nove sito web supporta clientes de mobile e de scriptorio"
 
 msgid "View the new site"
 msgstr "Vide le nove sito"
@@ -7813,12 +7828,14 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
+"Excepte ubi alteremente <a href=\"https://www.mozilla.org/about/legal/\">indicate</a>, le contento de iste sito es licentiate sub le <br /> <a href=\"https://creativecommons.org/licenses/by-"
+"sa/3.0/\"> Creative Commons Attribution Share-Alike License v3.0 </a> o ulle version plus recente."
 
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "discoperi le <b>additivos</b>"
 
 msgid "Download Firefox"
-msgstr "Discargar Firefox"
+msgstr "Discarga Firefox"
 
 msgid "Android Browser"
 msgstr "Navigator pro Android"
@@ -7827,13 +7844,13 @@ msgid "iOS Browser"
 msgstr "Navigator pro iOS"
 
 msgid "Focus Browser"
-msgstr "Navigator pro Focus"
+msgstr "Navigator Focus"
 
 msgid "Desktop Browser"
-msgstr "Navigator pro scriptorio"
+msgstr "Navigator de scriptorio"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr "Beta, Nightly, Edition de disveloppator"
+msgstr "Beta, Nightly, Edition pro disveloppatores"
 
 msgid "Other languages"
 msgstr "Altere linguas"
@@ -7842,16 +7859,16 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr "Retornar al {0} pagina principal del additivos"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Additivos"
+msgstr "Additivos de <img alt=\"Firefox\" src=\"{0}\">"
 
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> Additivos"
+msgstr "Additivos de <img alt=\"Thunderbird\" src=\"{0}\">"
 
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Additivos"
+msgstr "Additivos de <img alt=\"SeaMonkey\" src=\"{0}\">"
 
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Additivos"
+msgstr "Additivos <img alt=\"\" src=\"{0}\">"
 
 msgid "My Account"
 msgstr "Mi conto"
@@ -7865,18 +7882,18 @@ msgstr "<a href=\"%(reg)s\">Registra te</a> o <a href=\"%(login)s\">accede</a>"
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr ""
+msgstr "Pro provar le milles de additivos disponibile ci, discargar <a href=\"%(url)s\">Mozilla Firefox</a>, un rapide, libere maniera pro navigar trans le web!"
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
 msgstr "Benvenite in {0} Additivos."
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr ""
+msgstr "Elige ex milles de functionalitates e stilos extra pro personalisar Firefox."
 
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
+msgstr "Adde functionalitates e stilos extra pro personalisar %(app)s."
 
 msgid "On the go?"
 msgstr "In movimento?"
@@ -7900,24 +7917,24 @@ msgid "%(title)s <em>&middot; %(lang)s</em>"
 msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr "Linguas existente"
+msgstr "Localisationes existente"
 
 msgid "New Locales"
-msgstr "Nove linguas"
+msgstr "Nove localisationes"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "Tu ha cambiamentos non salvate in le <b>{0}</b> localisation. Vole tu salvar tu cambiamentos ante que cambiar localisationes?"
 
 msgid "Discard Changes"
-msgstr "Eliminar le modificationes"
+msgstr "Refusar le modificationes"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
 msgstr "Desira tu vermente remover tote le <b>{0}</b> traductiones? Isto non pote ser disfacite."
 
 msgid "Delete Locale"
-msgstr "Deler le lingua"
+msgstr "Deler le localisation"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
@@ -7925,7 +7942,7 @@ msgstr "Le usator \"%(user)s\" ha essite blocate."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "Le imagine pertinente al usator \"%(user)s\" ha essite delite."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
@@ -7950,7 +7967,7 @@ msgid "Email must be {email}."
 msgstr "Le email debe ser {email}."
 
 msgid "Display Name"
-msgstr "Nomine a monstrar"
+msgstr "Nomine monstrate"
 
 msgid "Location"
 msgstr "Position"
@@ -7959,16 +7976,16 @@ msgid "Occupation"
 msgstr "Occupation"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr "Tu pote cambiar tu adresse de email sur tu conto de Firefox."
+msgstr "Tu pote cambiar tu adresse de email sur tu contos de Firefox."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr ""
+msgstr "Iste URL ha un formato non valide. Le URLs valide pare como http://example.com/my_page."
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr ""
+msgstr "Pro render lo anonyme, insere un ration pro le cambio, sin cambiar ulle altere campo."
 
 msgid "No user with that email."
-msgstr "Nulle usator con iste email."
+msgstr "Nulle usator con ille email."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
@@ -7994,7 +8011,7 @@ msgid "someone writes a review of my add-on"
 msgstr "alicuno scribe un revision de mi additivo"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "remane ajornate con novas e eventos pertinente al disveloppatores de additivos (anque le littera de novas about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "le compatibilitate de mi additivo non pote ser promovite"
@@ -8006,16 +8023,16 @@ msgid "my add-on is reviewed by a reviewer"
 msgstr "mi additivos es revidite per un revisor"
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla debe continger me circa mi additivo personal"
 
 msgid "User Notifications"
 msgstr "Notificationes del usator"
 
 msgid "An email address is required."
-msgstr "Un adresse de email es obligatori."
+msgstr "Un adresse de email es necesse."
 
 msgid "A user with that email address does not exist."
-msgstr "Non existe usator con iste adresse de email."
+msgstr "Non existe usator con ille adresse de email."
 
 msgid "Profile Deleted"
 msgstr "Profilo delite"
@@ -8030,7 +8047,7 @@ msgid "Errors Found"
 msgstr "Errores trovate"
 
 msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr ""
+msgstr "Il habeva errores in le modificationes que tu ha facite. Per favor corrige los e reinvia."
 
 msgid "User reported."
 msgstr "Usator denunciate."
@@ -8052,16 +8069,18 @@ msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
+"Tu non pote deler tu conto si tu es in le lista de presentation como un <a href=\"%(link)s\"> autor de ulle additivos</a>. Pro deler tu conto, per favor habe un altere persona in tu gruppo "
+"disveloppamento qui te deler ex le lista de autores pro tu additivos. Postea tu potera deler tu conto ci."
 
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
+msgstr "Cliccante \"deler\" tu conto va ser <strong>permanentemente removite</strong>. Illo significa:"
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "Le nove connexion con iste adresse de email in %(site)s creara un nove conto que es in nulle maniera associate con iste conto."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
+msgstr "Tu revisiones e valutationes non sera delite, ma illos non sera plus associate con tu."
 
 msgid "Confirm account deletion"
 msgstr "Confirma le deletion del conto"
@@ -8076,7 +8095,7 @@ msgid "Delete User Photo"
 msgstr "Deler photo de usator"
 
 msgid "Delete my user picture now"
-msgstr "Deler subito mi imagine"
+msgstr "Deler subito mi imagine de usator"
 
 msgid "Please set your display name"
 msgstr "Per favor defini tu nomine a monstrar"
@@ -8085,7 +8104,7 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Per favor defini tu nomine a monstrar o tu nomine de usator pro completar le processo de registration."
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
+msgstr "Gerer informationes basic del conto, tal como tu nomine de usator e le parametros de contos de Firefox."
 
 msgid "Username"
 msgstr "Nomine del usator"
@@ -8094,16 +8113,16 @@ msgid "Email Address"
 msgstr "Adresse de email"
 
 msgid "Manage Firefox Account..."
-msgstr "Gerer conto Firefox..."
+msgstr "Gestion de conto de Firefox..."
 
 msgid "Profile"
 msgstr "Profilo"
 
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr ""
+msgstr "Da nos poc altere informationes circa te mesme. Tote iste campos es optional, ma illos adjutara altere usatores a te discoperir melio."
 
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Iste URL essera visibile solo si tu es un disveloppator."
 
 msgid "Choose Photo&hellip;"
 msgstr "Elige photo&hellip;"
@@ -8112,26 +8131,26 @@ msgid "Delete current photo"
 msgstr "Deler le photo actual"
 
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr ""
+msgstr "Presenta te mesme al communitate, si il te place! Iste texto parera publicamente sur tu pagina de informationes del usator."
 
 #, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
 msgstr "HTML consentite: %(html)s. Le ligamines es prohibite."
 
 msgid "Decide what collections should be shown in your profile."
-msgstr "Decide que collectiones debe ser monstrate in tu profilo."
+msgstr "Decide qual collectiones debe esser monstrate in tu profilo."
 
 msgid "Display the collections I have created"
-msgstr "Monstrar le collection que io creava"
+msgstr "Monstrar le collectiones io ha create"
 
 msgid "Notifications"
 msgstr "Notificationes"
 
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr ""
+msgstr "De tempore in tempore, Mozilla pote mitter te email circa versiones approchante e eventos del additivo. Per favor elige le topicos al qual tu es interessate."
 
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr ""
+msgstr "Mozilla se reserva le derecto de continger te individualmente circa specific problemas con tu additivos hospite."
 
 msgid "Admin"
 msgstr "Administrator"
@@ -8149,10 +8168,10 @@ msgid "all"
 msgstr "toto"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
+msgstr "Le additivos de Mozilla ha transite al contos de Firefox pro connexion. Continuar pro completar le processo de connexion simple."
 
 msgid "User Login"
-msgstr "Apertura de session del usator"
+msgstr "Connexion del usator"
 
 msgid "Log in with Firefox Accounts"
 msgstr "Connecte te con le contos de Firefox"
@@ -8194,7 +8213,7 @@ msgid "Themes I've created"
 msgstr "Themas que io ha create"
 
 msgid "Created by Me"
-msgstr "Create per io"
+msgstr "Create per me"
 
 msgid "My Reviews"
 msgstr "Mi revisiones"
@@ -8206,7 +8225,7 @@ msgid "Report User"
 msgstr "Denunciar usator"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr "Per favor describe perque tu denuncia iste usator, tal como pro SPAM o un imagine inappropriate."
+msgstr "Per favor describe perque tu denuncia iste usator, tal como pro SPAM o pro un imagine inappropriate."
 
 msgid "Report user {0}"
 msgstr "Denunciar usator {0}"
@@ -8312,7 +8331,7 @@ msgstr "Attention al versiones vetule!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr ""
+msgstr "Iste versiones es monstrate pro propositos de referentia e test. Tu debe sempre usar le <a href=\"%(url)s\">ultime version</a> de un additivo."
 
 msgid "Deleted versions can`t be changed."
 msgstr "Le versiones delite non pote plus esser modificate."

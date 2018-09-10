@@ -479,6 +479,12 @@ class AddonSerializerWithUnlistedData(AddonSerializer):
         fields = AddonSerializer.Meta.fields + ('latest_unlisted_version',)
 
 
+class SimpleAddonSerializer(AddonSerializer):
+    class Meta:
+        model = Addon
+        fields = ('id', 'slug', 'name', 'icon_url')
+
+
 class ESAddonSerializer(BaseESSerializer, AddonSerializer):
     # Override various fields for related objects which we don't want to expose
     # data the same way than the regular serializer does (usually because we

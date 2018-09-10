@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-03 12:49+0000\n"
+"PO-Revision-Date: 2018-09-08 14:32+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -6066,22 +6066,18 @@ msgstr "Kapjon korai hozzáférést a kísérleti böngészőfunkciókhoz."
 msgid "Get Started"
 msgstr "Első lépések"
 
-#, fuzzy
 msgid "Reported Status"
-msgstr "Oldal állapota"
+msgstr "Bejelentett állapot"
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "Jelentés típusa"
+msgstr "Spamként jelenve"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Hiba jelentése"
+msgstr "Nem spamként jelentve"
 
-#, fuzzy
 msgid "Not Reported"
-msgstr "Még nem osztályozott"
+msgstr "Nem osztályozott"
 
 msgid "Content Submitted"
 msgstr "Tartalom beküldve"
@@ -6090,23 +6086,21 @@ msgid "View Rating on site"
 msgstr "Értékelés megtekintése az oldalon"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Új fájl beküldése"
+msgstr "Nem spam beküldése az Akismetnek"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Új fájl beküldése"
+msgstr "Spam beküldése az Akismetnek"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s nem spam spamként bejelentve"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s spam nem spamként bejelentve"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla kiegészítőkről"

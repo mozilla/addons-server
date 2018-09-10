@@ -104,10 +104,14 @@ def find_user(identity):
     try:
         user = UserProfile.objects.get(
             Q(fxa_id=identity['uid']) | Q(email=identity['email']))
-        if user.deleted:
+        is_task_user = user.id == settings.TASK_USER_ID
+        if user.deleted or is_task_user:
             # If the user was found through its email/fxa_id but is deleted, it
             # means we wanted to ban them. Raise a 403, it's not the prettiest
             # but should be enough.
+            # Alternatively if someone tried to log in as the task user then
+            # prevent that because that user "owns" a number of important
+            # addons and collections, and it's actions are special cased.
             raise PermissionDenied()
         return user
     except UserProfile.DoesNotExist:

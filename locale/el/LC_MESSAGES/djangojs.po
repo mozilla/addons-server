@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-08-17 08:58+0000\n"
+"PO-Revision-Date: 2018-09-06 08:15+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -185,10 +185,10 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Your Theme's Name"
-msgstr "Όνομα Θέματος"
+msgstr "Όνομα θέματος"
 
 msgid "Flagged for review"
-msgstr "Σημειώθηκε για αξιολόγηση"
+msgstr "Επισημάνθηκε για αξιολόγηση"
 
 msgid "Your input is required"
 msgstr "Απαιτείται η εισαγωγή"
@@ -801,7 +801,7 @@ msgid "Number of Reviews"
 msgstr "Αριθμός αξιολογήσεων"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "Το μέγιστο μέγεθος μεταφόρτωσης είναι {0} - επιλέξτε μια μικρότερη εικόνα φόντου."
 
 msgid "Requested Info"
 msgstr "Ζητούμενες πληροφορίες"

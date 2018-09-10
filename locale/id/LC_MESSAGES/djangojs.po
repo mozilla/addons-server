@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-06-09 10:29+0000\n"
+"PO-Revision-Date: 2018-09-07 13:07+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -26,7 +26,7 @@ msgid "Select a file..."
 msgstr "Pilih berkas..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Pengaya anda harus diakhiri dengan .zip, .xpi, .crx, .jar atau .xml"
+msgstr "Pengaya Anda harus diakhiri dengan .zip, .xpi, .crx, .jar atau .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -61,7 +61,7 @@ msgid "See full validation report"
 msgstr "Lihat laporan validasi lengkap"
 
 msgid "Validating {0}"
-msgstr "Mengvalidasi {0}"
+msgstr "Memvalidasi {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Penggaya anda melebihi ukuran maksimum {0}."
@@ -119,11 +119,11 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"File Biner Hasil Kompilasi, dan juga skrip yang dikecilkan atau dikaburkan (tidak termasuk pustaka dikenal) , sumbernya harus dikirim terpisah untuk diulas. Pastikan anda menggunakan bidang "
-"pengunggah kode sumber untuk menghindari penolakan pengiriman Anda."
+"Digit Biner terkompilasi, sekaligus skrip yang dikecilkan atau dikaburkan (tidak termasuk pustaka yang dikenali) , sumbernya harus diajukan terpisah untuk peninjauan. Pastikan Anda menggunakan "
+"bidang pengunggah kode sumber agar pengajuan Anda tidak ditolak."
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "Proses pengsahan menemukan masalah yang dapat mengakibatkan penolakan:"
+msgstr "Proses validasi menemukan sejumlah masalah yang dapat mengakibatkan penolakan:"
 
 msgid "Sorry, no supported platform has been found."
 msgstr "Maaf, tidak ditemukan platform yang didukung."
@@ -144,7 +144,7 @@ msgid "Videos must be in WebM."
 msgstr "Video harus dalam WebM."
 
 msgid "Follow this Collection"
-msgstr "Ikuti Koleksi"
+msgstr "Ikuti Koleksi Ini"
 
 msgid "Stop Following"
 msgstr "Berhenti mengikuti"
@@ -154,7 +154,7 @@ msgstr "Mengikuti"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr "Tema ini tidak kompatibel dengan versi {0} Anda"
+msgstr "Tema ini tidak selaras dengan versi {0} Anda"
 
 msgid "All Rights Reserved"
 msgstr "Dilindungi Hak Cipta"

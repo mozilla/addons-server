@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-05-06 20:17+0000\n"
-"Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
+"PO-Revision-Date: 2018-09-06 10:55+0000\n"
+"Last-Translator: Liudmyla <forworkfest@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -807,7 +807,7 @@ msgid "Number of Reviews"
 msgstr "Кількість відгуків"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "Максимальний розмір завантаження {0} - виберіть зображення меншого розміру."
 
 msgid "Requested Info"
 msgstr "Запитана інформація"

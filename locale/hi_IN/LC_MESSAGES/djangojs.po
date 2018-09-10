@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-08-29 12:47+0000\n"
+"PO-Revision-Date: 2018-09-09 13:44+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -102,7 +102,9 @@ msgid "WebExtension upgrade"
 msgstr "WebExtension अपग्रेड"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "हम एक अपग्रेड कि अनुमति तथा प्रोत्साहन दे सकते हैं लेकिन आप इस प्रक्रिया को उलट नहीं सकते हैं. एक बार आपके उपयोगकर्ताओं के पास WebExtension स्थापित हो जाने बाद, वो कोई लीगेसी ऐड-ऑन इंस्टॉल नहीं कर पाएंगे."
+msgstr ""
+"हम एक अपग्रेड कि अनुमति तथा प्रोत्साहन दे सकते हैं लेकिन आप इस प्रक्रिया को उलट नहीं सकते हैं. एक बार आपके उपयोगकर्ताओं के पास WebExtension स्थापित हो जाने बाद, वो कोई लीगेसी ऐड-ऑन इंस्टॉल नहीं कर "
+"पाएंगे."
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr ""
@@ -111,7 +113,9 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "विस्तृत संस्करण नोट्स शामिल करें (यह अगले चरण में किया जा सकता है)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "यदि आपके ऐड-ऑन को पूरी तरह से परीक्षण करने के लिए किसी वेबसाइट पर एक खाता की आवश्यकता होती है, तो रिव्यूर हेतु नोट्स में एक टेस्ट उपयोगकर्ता नाम और पासवर्ड शामिल करें (यह अगले चरण में किया जा सकता है)."
+msgstr ""
+"यदि आपके ऐड-ऑन को पूरी तरह से परीक्षण करने के लिए किसी वेबसाइट पर एक खाता की आवश्यकता होती है, तो रिव्यूर हेतु नोट्स में एक टेस्ट उपयोगकर्ता नाम और पासवर्ड शामिल करें (यह अगले चरण में किया जा सकता "
+"है)."
 
 msgid "Add-on submission checklist"
 msgstr "ऐड-ऑन सबमिशन चेकलिस्ट"
@@ -123,8 +127,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"संकलित बाइनरी, साथ ही minified या obfuscated स्क्रिप्ट (ज्ञात पुस्तकालयों को छोड़कर) को अपने स्रोतों को समीक्षा के लिए अलग से सबमिट करने की आवश्यकता है. सुनिश्चित करें कि आप अपना सबमिशन अस्वीकार होने से बचने के लिए सोर्स कोड "
-"अपलोड फ़ील्ड का उपयोग करते हैं."
+"संकलित बाइनरी, साथ ही minified या obfuscated स्क्रिप्ट (ज्ञात पुस्तकालयों को छोड़कर) को अपने स्रोतों को समीक्षा के लिए अलग से सबमिट करने की आवश्यकता है. सुनिश्चित करें कि आप अपना सबमिशन अस्वीकार "
+"होने से बचने के लिए सोर्स कोड अपलोड फ़ील्ड का उपयोग करते हैं."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "सत्यापन प्रक्रिया को ये मुद्दे मिले जो अस्वीकृति का कारण बन सकते हैं:"
@@ -369,7 +373,7 @@ msgid "Category Landing Top Rated"
 msgstr ""
 
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "श्रेणी लैंडिंग सबसे लोकप्रिय"
 
 msgid "Category Landing Recently Added"
 msgstr ""
@@ -399,7 +403,7 @@ msgid "Browse Listing Up and Coming Sort"
 msgstr ""
 
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "कुल योगदान राशी"
 
 msgid "Average Contribution"
 msgstr "औसत योगदान"
@@ -530,51 +534,51 @@ msgstr "उपयोग हो रहे गए ऐड-ऑन, पिछले {
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} तक उपयोग में ऐड-ऑन"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनो में, डाउनलोड किए गए ऐड-ऑन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} में डाउनलोड किए गए ऐड-ऑन"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनों में, बनाये गए ऐड-ऑन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} में बनाए गए एड-ऑन"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनों में, अपडेट किये ऐड-ऑन"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} में अद्यतित किए गए ऐड-ऑन"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनों में, लिखी समीक्षाएं"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} में लिखी गई समीक्षाएं"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "उपयोगकर्ता पंजीकरण, पिछले {0} दिनों में"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} तक हुए उपयोगकर्ता साइन अप"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनों में, बनाये गए संग्रह"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
@@ -582,31 +586,31 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनों में, जुड़े सदस्य"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} तक जुड़े सदस्य"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनों में, मिले रेटिंग्स"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} तक मिले रेटिंग्स"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनों में, हुयी बिक्री"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} तक हुयी बिक्री"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "पिछले {0} दिनों में, हुए इनस्टॉल"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
@@ -614,15 +618,15 @@ msgstr "{0} से {1} तक हुए इंस्टॉल"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> पिछले {1} दिनों में"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> {1} से {2} तक"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "अंतिम {1} दिनों में <b>{0}</b> औसत"
 
 msgid "No data available."
 msgstr "कोई आँकड़ा उपलब्ध नहीं."
@@ -655,32 +659,32 @@ msgstr "{0} में जोड़ें"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "{0} के लिए किसी भी तौर पर इनस्टॉल करें"
 
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "{0} के लिए किसी भी तौर पर डाउनलोड करें"
 
 msgid "Not available for your platform"
-msgstr ""
+msgstr "अपने प्लेटफार्म के लिए उपलब्ध नहीं है"
 
 #. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
-msgstr ""
+msgstr "यह ऐड-ऑन {0} के आपके संस्करण के साथ अनुकूल नहीं है।"
 
 msgid "View other versions"
-msgstr ""
+msgstr "अन्य संस्करण देखें"
 
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "{app} {min} - {max} के साथ काम करता है"
 
 msgid "Works with {app}"
-msgstr ""
+msgstr "{app} के साथ काम करता है"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "केवल Firefox के साथ - Firefox अभी प्राप्त करें!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
+msgstr "क्षमा करें, आपको एक खोज प्लगइन स्थापित करने के लिए Mozilla-आधारित ब्राउज़र (जैसे Firefox) की आवश्यकता है।"
 
 msgid "Adding to Favorites&hellip;"
 msgstr ""
@@ -695,7 +699,7 @@ msgid "Remove from Favorites"
 msgstr "पसंदीदा से हटाएँ"
 
 msgid "Pending"
-msgstr ""
+msgstr "अपूर्ण"
 
 msgid "Add a comment"
 msgstr "टिप्पणी जोड़ें"
@@ -719,7 +723,7 @@ msgid "Stop following"
 msgstr ""
 
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "आपके ब्राउज़र में वीडियो टैग समर्थित नहीं है"
 
 msgid "Changes Saved"
 msgstr "परिवर्तन सहेजे गए"
@@ -728,7 +732,7 @@ msgid "Enter a new author's email address"
 msgstr "एक नया लेखक का ईमेल पता दर्ज करें"
 
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "आपकी फ़ाइल अपलोड करने में त्रुटि हुई."
 
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -737,14 +741,14 @@ msgstr[1] "{files} फ़ाइलें"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} उपयोगकर्ता समीक्षा"
+msgstr[1] "{reviews} उपयोगकर्ता समीक्षायें"
 
 msgid "Image changes being processed"
-msgstr ""
+msgstr "छवि परिवर्तनो को संसाधित किया जा रहा है"
 
 msgid "No results found."
-msgstr ""
+msgstr "कोई परिणाम नही मिला।"
 
 msgid "Loading..."
 msgstr "लोड हो रहा है..."
@@ -756,13 +760,13 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
+msgstr "यह सुविधा अस्थायी रुप से अक्षम है जब तक की हम वेबसाइट रखरखाव कर रहे हैं। कृपया कुछ देर बाद पुनः जाँचे करें।"
 
 msgid "Remove this localization"
 msgstr "इस स्थानीयकरण को निकालें"
 
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} इस पेज को पहले देख रहे थे।"
 
 msgid "Receipt checked by app."
 msgstr "ऐप द्वारा रसीद की जाँच की गयी।"
@@ -771,7 +775,7 @@ msgid "Receipt was not checked by app."
 msgstr "ऐप द्वारा रसीद की जाँच नही की गयी थी।"
 
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} पहले यह ऐड-ऑन देख रहे थे।"
 
 msgid "Loading&hellip;"
 msgstr "&hellip;लोड हो रहा है"
@@ -831,7 +835,7 @@ msgid "All tests passed successfully."
 msgstr "सभी परीक्षण सफलतापूर्वक पारित किये गए।"
 
 msgid "These tests were not run."
-msgstr ""
+msgstr "इन परीक्षणों को नहीं चलाया गया।"
 
 msgid "Tests"
 msgstr "परीक्षण"
@@ -852,28 +856,28 @@ msgid "Compatibility Tests"
 msgstr "अनुकूलता परीक्षण"
 
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "ऐड-ऑन असफल सत्यापन।"
 
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "एड-ऑन असफल सत्यापन।"
 
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} त्रुटि"
-msgstr[1] ""
+msgstr[1] "{0} त्रुटियाँ"
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} चेतावनी"
-msgstr[1] ""
+msgstr[1] "{0} चेतावनी"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} नोटिस"
+msgstr[1] "{0} नोटिसें"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "सत्यापन कार्य पूर्ण ना हो सका या त्रुटियों के साथ पूर्ण हुआ"
 
 msgid "Internal server error"
 msgstr "आंतरिक सर्वर त्रुटि"

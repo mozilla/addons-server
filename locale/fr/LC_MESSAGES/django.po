@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-03 15:57+0000\n"
+"PO-Revision-Date: 2018-09-03 15:59+0000\n"
 "Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -2545,7 +2545,7 @@ msgstr ""
 "ce nouveau site."
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Les extensions obsolètes ne sont plus gérées par Firefox."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "À partir de la version 53 de Firefox, les nouveaux modules de ce site ne peuvent être que des WebExtensions."
@@ -6097,49 +6097,41 @@ msgstr "Débloquez un accès anticipé à des fonctionnalités expérimentales d
 msgid "Get Started"
 msgstr "Lancez-vous"
 
-#, fuzzy
 msgid "Reported Status"
-msgstr "État du site"
+msgstr "État signalé"
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "Type de rapport"
+msgstr "Spam signalé"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Signaler un problème"
+msgstr "Ham signalé"
 
-#, fuzzy
 msgid "Not Reported"
-msgstr "Pas encore évalué"
+msgstr "Non signalé"
 
-#, fuzzy
 msgid "Content Submitted"
-msgstr "Version soumise"
+msgstr "Contenu soumis"
 
-#, fuzzy
 msgid "View Rating on site"
-msgstr "Voir la nouvelle version du site"
+msgstr "Voir la note sur le site"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Envoyer un nouveau fichier"
+msgstr "Envoyer les données Ham à Akismet"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Envoyer un nouveau fichier"
+msgstr "Envoyer les données Spam à Akismet"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s rapports Ham envoyés comme Spam"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s rapports Spam envoyés comme Ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "À propos de Mozilla Add-ons"

@@ -7,7 +7,7 @@ from olympia.api.tests.test_jwt_auth import JWTAuthKeyTester
 from olympia.users.models import UserProfile
 
 
-class APIKeyAuthTestCase(APITestCase, JWTAuthKeyTester):
+class APIKeyAuthTestMixin(APITestCase, JWTAuthKeyTester):
 
     def create_api_user(self):
         self.user = UserProfile.objects.create(
