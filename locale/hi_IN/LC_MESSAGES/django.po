@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-08-14 07:45+0000\n"
-"Last-Translator: Mohit Bansal <philomath@disroot.org>\n"
+"PO-Revision-Date: 2018-09-10 13:24+0000\n"
+"Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -151,34 +151,34 @@ msgstr "विविध श्रेणी को अतिरिक्त श�
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr ""
+msgstr "अपनी स्थानीय भाषा को रूपान्तरित करने से पहले आपके पास सामान भाषा मैं नाम, सारांश तथा विवरण होना अनिवार्य है। आप %s को चूक रहे हैं।"
 
 msgid "A license must be selected."
-msgstr ""
+msgstr "एक लाइसेंस का चयन अवश्य होना चाहिए।"
 
 msgid "Give Your Theme a Name."
-msgstr ""
+msgstr "अपनी थीम को एक नाम दें।"
 
 msgid "Describe your Theme."
-msgstr ""
+msgstr "अपनी थीम का वर्णन करें।"
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "एक नया लेखक ईमेल पता दर्ज करें"
 
 msgid "Listed"
 msgstr "सूचीबद्ध"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "ऐड-ऑन और संग्रह पथ \"/\" के साथ समाप्त होनी चाहिए"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "ऐड-ऑन नामों में Mozilla या Firefox ट्रेडमार्कों को शामिल नहीं किया जा सकता है."
 
 msgid "Abuse reported."
 msgstr "दुर्व्यवहार की रिपोर्ट की गयी।"
 
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "मेरे ऐड-ऑन श्रेणियों में से किसी में फिट नहीं हैं"
 
 msgid "No compatible versions"
 msgstr "कोई संगत संस्करण नहीं"
@@ -191,13 +191,13 @@ msgid "View privacy policy"
 msgstr "गोपनीयता नीति देखें"
 
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "एंड-यूज़र लायसेंस एग्रीमेंट देखें"
 
 msgid "This add-on has not been reviewed by Mozilla."
 msgstr "इस ऐड-ऑन की समीक्षा Mozilla द्वारा नहीं की गई है।"
 
 msgid "This add-on has been marked as experimental by its developers."
-msgstr ""
+msgstr "इस ऐड-ऑन को इसके डेवलपर्स द्वारा प्रयोगात्मक के रूप में चिह्नित किया गया है।"
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
