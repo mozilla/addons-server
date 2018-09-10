@@ -332,7 +332,3 @@ def akismet_is_addon_submission_spammy(addon, user, parsed_data, user_agent,
 
     return any(
         (report.comment_check() != AkismetReport.HAM for report in reports))
-
-
-def akismet_is_addon_update_spammy(addon, user, data, user_agent, referrer):
-    pass

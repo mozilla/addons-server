@@ -377,7 +377,3 @@ class TestAkismetIsAddonSubmissionSpammy(TestCase):
         assert self.create_for_addon_mock.call_count == 3
         assert self.akismet_report_mock.comment_check.call_count == 1
         assert result is True
-
-
-def test_akismet_is_addon_update_spammy():
-    pass

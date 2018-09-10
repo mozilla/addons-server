@@ -188,7 +188,3 @@ class AkismetReport(ModelBase):
             comment_modified=addon.modified,
         )
         return instance
-
-    @classmethod
-    def create_for_collection(cls, rating, user_agent, referrer):
-        raise NotImplementedError()
