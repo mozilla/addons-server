@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-05 06:13+0000\n"
+"PO-Revision-Date: 2018-09-11 12:59+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -386,7 +386,7 @@ msgstr "留下您的意見？"
 
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr "請先 <a href=\"%(login)s\">登入</a> 以留下評論"
+msgstr "請先<a href=\"%(login)s\">登入</a>以留下評論"
 
 msgid "Review:"
 msgstr "評論:"
@@ -657,10 +657,10 @@ msgid "Manage My Submissions"
 msgstr "管理我上架的套件"
 
 msgid "Submit a New Add-on"
-msgstr "上傳新的附加元件"
+msgstr "上架新的附加元件"
 
 msgid "Submit a New Theme"
-msgstr "提交一個新的佈景主題"
+msgstr "上架新的佈景主題"
 
 msgid "Developer Hub"
 msgstr "開發者交流中心"
@@ -910,7 +910,7 @@ msgid "Valid Application Versions"
 msgstr "有效應用程式版本"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "送交到 Mozilla 附加元件站上架的附加元件的安裝資訊檔當中必須支援下列任一種以上的應用程式。僅接受下列版本號碼。"
+msgstr "要上架到 Mozilla 附加元件站的附加元件，安裝資訊檔中必須支援下列任一種以上的應用程式。僅接受下列版本號碼。"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
@@ -1508,7 +1508,7 @@ msgid "e10s Compatible"
 msgstr "相容 e10s"
 
 msgid "Submitted"
-msgstr "提交日期"
+msgstr "送出日期"
 
 msgid "Success"
 msgstr "完成"
@@ -3256,10 +3256,10 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> 位活躍的使用者"
 
 msgid "Submit a New File"
-msgstr "提交新檔案"
+msgstr "送出新檔案"
 
 msgid "Submit a New Version"
-msgstr "上傳新版本"
+msgstr "送出新版本"
 
 msgid "Describe Add-on"
 msgstr "描述附加元件"
@@ -3325,7 +3325,7 @@ msgid "Cancel and Disable Version"
 msgstr "取消並停用此版本"
 
 msgid "Submit Version"
-msgstr "上傳版本"
+msgstr "送出版本"
 
 msgid "Describe Version"
 msgstr "描述此版本"
@@ -3900,10 +3900,10 @@ msgid "This is where you view and manage your add-ons and themes. To publish you
 msgstr "這是您可以檢視並管理附加元件及佈景主題的地方。若要發布您的第一套附加元件，請點擊「發布您的第一套附加元件」或「發布您的第一套佈景主題」。"
 
 msgid "Submit Your First Add-on"
-msgstr "送出您的第一套附加元件"
+msgstr "上架您的第一套附加元件"
 
 msgid "Submit Your First Theme"
-msgstr "送出您的第一套佈景主題"
+msgstr "上架您的第一套佈景主題"
 
 # The title for a user if they are a developer
 msgid "Add-on Developer Hub"
@@ -3948,7 +3948,7 @@ msgid "Publish Your Add-on"
 msgstr "發布您的附加元件"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "寫好附加元件了嗎？請送出您的附加元件或佈景主題，上架到 addons.mozilla.org，也可以經簽署後自行發布。"
+msgstr "寫好附加元件了嗎？請將您的附加元件或佈景主題上架到 addons.mozilla.org，也可以簽署後自行發布。"
 
 msgid "Sign In"
 msgstr "登入"
@@ -4081,13 +4081,13 @@ msgid ""
 msgstr "我同意 %(agreement_link_open)sFirefox 附加元件發行協議%(link_close)s，並可依照 %(privacy_notice_link_open)s網站、通訊及 Cookie 隱私權公告%(link_close)s 當中描述的方式處理我的資訊。"
 
 msgid "Submit Theme"
-msgstr "提交佈景主題"
+msgstr "送出佈景主題"
 
 msgid "You're done!"
 msgstr "完成了！"
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr "您的佈景主題已經提交至待審區。在審核後會以電子郵件通知您(通常在24小時內)。"
+msgstr "您的佈景主題已經送出至待審區。在審核後會以電子郵件通知您（通常在 24 小時內）。"
 
 msgid "Next steps:"
 msgstr "接下來可以做的事:"
@@ -6405,7 +6405,7 @@ msgid "Write a Reply"
 msgstr "寫下回覆"
 
 msgid "Submit"
-msgstr "提交"
+msgstr "送出"
 
 #. this string is following a <button>.
 #, python-format
@@ -6616,7 +6616,7 @@ msgid "Duplicate Submission"
 msgstr "重複的提交"
 
 msgid "Thanks for submitting your Theme"
-msgstr "感謝您提交佈景主題"
+msgstr "感謝您送出佈景主題"
 
 msgid "A problem with your Theme submission"
 msgstr "您提交的佈景主題發現問題"
