@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-11 16:01+0000\n"
+"PO-Revision-Date: 2018-09-11 16:17+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -936,7 +936,7 @@ msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_versi
 msgstr ""
 
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 msgid "Versions"
 msgstr "संस्करण"
@@ -951,10 +951,10 @@ msgid "Only I can view this collection."
 msgstr ""
 
 msgid "Anybody can view this collection."
-msgstr ""
+msgstr "कोई भी इस संग्रह को देख सकता है.।"
 
 msgid "Give your collection a name."
-msgstr ""
+msgstr "अपने संग्रह को एक नाम दें।"
 
 msgid "URL:"
 msgstr "यूआरएल:"
@@ -972,7 +972,7 @@ msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
 
 msgid "This name cannot be used."
-msgstr ""
+msgstr "इस नाम का उपयोग नहीं किया जा सकता है।"
 
 msgid "This url is already in use by another collection"
 msgstr ""
