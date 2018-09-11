@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-11 15:41+0000\n"
+"PO-Revision-Date: 2018-09-11 16:01+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -898,19 +898,19 @@ msgid "Invalid Authorization header. Credentials string should not contain space
 msgstr ""
 
 msgid "Signature has expired."
-msgstr ""
+msgstr "हस्ताक्षर की अवधी समाप्त हो गई है।"
 
 msgid "Error decoding signature."
-msgstr ""
+msgstr "हस्ताक्षर डीकोड करने में त्रुटि।"
 
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "अमान्य JWT टोकन।"
 
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "इस क्षेत्र में कम से कम एक {num} वर्णों की लंबाई होना चाहिए।"
 
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "{lang_code} भाषा कोड अमान्य है।"
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr ""
@@ -923,7 +923,7 @@ msgid "Application Versions"
 msgstr "आवेदन संस्करण"
 
 msgid "Acceptable versions for all applications on AMO."
-msgstr ""
+msgstr "AMO पर सभी अनुप्रयोगों के लिए स्वीकार्य संस्करण।"
 
 msgid "Valid Application Versions"
 msgstr "वैध अनुप्रयोग संस्करण"
