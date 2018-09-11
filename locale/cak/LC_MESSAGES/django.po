@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-11 21:50+0000\n"
+"PO-Revision-Date: 2018-09-11 22:35+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3947,7 +3947,7 @@ msgstr "Tetamäx Achike Rub'eyal"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "¿La nawajo' chi tiya' rutzijol ri ak'amal pa %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Xtawïl ronojel ri k'atzinel awetaman pa ri runa'ojil kitaluxik taq k'amal."
 
 msgid "Learn More"
 msgstr "Tetamäx Ch'aqa' Chik"
