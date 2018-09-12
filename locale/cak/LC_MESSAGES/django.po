@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-12 22:31+0000\n"
+"PO-Revision-Date: 2018-09-12 22:41+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4473,7 +4473,7 @@ msgstr "Ke'aq'ata' eltzijol {start_sub_heading}rik'in {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Jun aninäq chuqa' jeb'ël q'atöy eltzijol. uBlock Origin yerusamajij janila chi chayub'äl rupam, man k'ïy ta rupam rujolom nunojisaj."
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4481,19 +4481,19 @@ msgstr "Ke'awutzilaj taq silowäch {start_sub_heading}rik'in {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "Tak'owisaj ak'u'x rik'in jutanaj k'ak'a' taq rusamaj ri YouTube, achi'el ri rub'anikil wilowäch, kiq'atik eltzijol, ruchajixik ruyonil tzijoj chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Aninäq ke'awila' taq wachib'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Tacha' xab'achike tz'ib'anïk k'a ri' tapitz'a' ri ajkiq'a' pitz'b'äl richin aninäq ye'akanoj taq wachib'äl."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tak'owisaj ak'u'x chi kij ri tz'etel taq ruyaketal {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites from a tile layout."
