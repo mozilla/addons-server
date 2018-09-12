@@ -202,6 +202,7 @@ AMO_LANGUAGES = (
     'nb-NO',  # Norwegian (Bokmål)
     'nl',  # Dutch
     'nn-NO',  # Norwegian (Nynorsk)
+    'pa-IN', # Punjabi
     'pl',  # Polish
     'pt-BR',  # Portuguese (Brazilian)
     'pt-PT',  # Portuguese (Portugal)
