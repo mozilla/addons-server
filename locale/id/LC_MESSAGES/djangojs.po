@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-07 13:07+0000\n"
+"PO-Revision-Date: 2018-09-12 04:28+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -184,7 +184,7 @@ msgid "Flagged for review"
 msgstr "Ditandai untuk ulasan"
 
 msgid "Your input is required"
-msgstr "Dibutuhkan masukan Anda"
+msgstr "Masukan Anda dibutuhkan"
 
 msgid "Marked for deletion"
 msgstr "Ditandai untuk dihapus"
@@ -332,13 +332,13 @@ msgid "Often Used With"
 msgstr "Sering Digunakan Dengan"
 
 msgid "Others By Author"
-msgstr "Yang Lain Oleh Penyusun"
+msgstr "Pengaya lain oleh Penyusun"
 
 msgid "Dependencies"
 msgstr "Ketergantungan"
 
 msgid "Upsell"
-msgstr "Upsell"
+msgstr "Opsi berbayar"
 
 msgid "Meet the Developer"
 msgstr "Temui Pengembang"
