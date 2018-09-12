@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-12 23:09+0000\n"
+"PO-Revision-Date: 2018-09-12 23:29+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3580,9 +3580,8 @@ msgstr "Rub'i' wachinel"
 msgid "Select a header image for your theme"
 msgstr "Tacha' jun ruwachib'al jub'i'aj richin ri awachinel"
 
-#, fuzzy
 msgid "Recommended height: 200 pixels"
-msgstr "Ri rupalem wachib'äl k'o ta chi 200 rupiksel"
+msgstr "Rupalem chilab'en: 200 rupiksel"
 
 msgid "6.9MB max"
 msgstr "6.9MB nïm"
@@ -4525,11 +4524,11 @@ msgstr "Ke'ataqa' kicholna'oj rutzijol, taq b'anob'äl, okem pan ichinya'l chuqa
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'acholajij ri taq ruwi' chi b'onil {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Ke'acholajij ri taq ruwi' rik'in kitzob'axik pa b'onil rik'in ri URL taq b'anikil."
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6020,38 +6019,31 @@ msgstr ""
 msgid "Get Started"
 msgstr ""
 
-#, fuzzy
 msgid "Reported Status"
-msgstr "Rub'anikil Ruxaq K'amaya'l"
+msgstr "Xsik'ïx Rub'anikil"
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "Ruwäch Rutzijol"
+msgstr "Xsik'ïx Rub'anikil Seq'tzijol"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Tiya' Rutzijol Sachoj"
+msgstr "Xsik'ïx Ham"
 
-#, fuzzy
 msgid "Not Reported"
-msgstr "K'a man ya'on ta rejqalem"
+msgstr "Man Sik'in ta"
 
-#, fuzzy
 msgid "Content Submitted"
-msgstr "Ruwäch Xtaq"
+msgstr "Rupam Xtaq"
 
 msgid "View Rating on site"
 msgstr ""
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Titaq jun K'ak'a' Yakb'äl"
+msgstr "Titaq Ham pan Akismet"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Titaq jun K'ak'a' Yakb'äl"
+msgstr "Titaq Seq'tzijol pan Akismet"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
