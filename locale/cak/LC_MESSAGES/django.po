@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-11 23:08+0000\n"
+"PO-Revision-Date: 2018-09-12 21:33+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4054,10 +4054,10 @@ msgid "Can others share your Theme, as long as you're given credit?"
 msgstr "¿La yetikïr nikikomonij ri Awachinel ri winaqi', toq ketaman chi ja rat xab'anon richin?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
+msgstr "Ri rajaw ya'oj q'ij nuya' q'ij chi ri ch'aqa' chik nikiwachib'ej, nikitaluj chuqa' nikib'än ri samaj, ke ri' chuqa' richin ch'akoj."
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
+msgstr "Ri rajaw ya'oj q'ij nuya' q'ij chi ri ch'aqa' chik nikiwachib'ej, nikitaluj, nikik'üt chuqa' nikib'än ri samaj, ke ri' chuqa' man richin ta ch'akoj."
 
 msgid "Can others make commercial use of your Theme?"
 msgstr "¿La yetikïr ch'aqa' chik yetzijok'ayin rik'in ri Awachinel?"
@@ -4066,10 +4066,10 @@ msgid "Can others create derivative works from your Theme?"
 msgstr "¿La yetikïr ch'aqa' chik nikokisaj ri Awachinel richin yekitz'ük taq samaj?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
+msgstr "Ri rajaw ya'oj q'ij nuya' q'ij chi ri ch'aqa' chik nikiwachib'ej, nikitaluj, nikik'üt chuqa' nikib'än ri samaj, chuqa' kekitz'uku' ch'aqa' chik taq samaj."
 
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
+msgstr "Ri rajaw ya'oj q'ij nuya' q'ij chi ri ch'aqa' chik nikiwachib'ej, nikitaluj chuqa' nikik'üt xa xe taq wachib'enïk ri majun rujaloj samaj — man samaj ta petenäq chi rij."
 
 msgid "Your Theme will be released under the following license:"
 msgstr "Ri Awachinel xtitalüx rutzijol rik'in re ya'öl q'ij re':"
@@ -4084,7 +4084,7 @@ msgid "Upload New Design"
 msgstr "Tijotob'äx K'ak'a' Wachib'enïk"
 
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr ""
+msgstr "Chi rij nijotob'äx ri yakb'äl chuqa' nitaq ri nojwuj, ri AMO Molaj xtunik'oj ri awachib'enik xajäl. Ja ri awachib'enik k'o wakami k'a xtikitz'ët na ri winaqi'."
 
 msgid "Your previously resubmitted design, which is under pending review."
 msgstr "Ri wachib'enïk ataqon, ri k'a narajo' na runik'oxik."
