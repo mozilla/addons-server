@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-12 21:57+0000\n"
+"PO-Revision-Date: 2018-09-12 22:31+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4409,7 +4409,7 @@ msgstr "Taq'ata' rojqanik Facebook {start_sub_heading}rik'in {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "Tajech'ej ri ab'anikil pa Facebook pa jun “k'wayöl” ri k'ayew tub'ana' chi re ri Facebook yerojqaj asilonik pa ajk'amaya'l."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4417,15 +4417,15 @@ msgstr "Anin Kanoxïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Xa xe tacha' jun tz'ib'anïk pa xab'achike ajk'amaya'l ruxaq richin nakanoj ri rucholajem tzij pa jutanaj kanob'äl."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Anin taq kik'exoj rub'anikil q'ijul {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
-msgstr ""
+msgstr "Xtak'ül aninäq ri etamab'äl pa ruwi' ri kaq'iq'al chijun ruwach'ulew pa Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4465,7 +4465,7 @@ msgstr "Kinuk'samajixik ewan taq tzij {start_sub_heading}rik'in {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Tach'utinisaj chuqa' ke'axima' ri tikirib'äl amolojri'ïl pa ri jalajöj ajk'amaya'l ruxaq pa ronojel ri taq awokisab'al rik'in xa jun ewan tzij richin ye'achajij konojel."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
