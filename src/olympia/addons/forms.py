@@ -25,6 +25,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     remove_icons, slug_validator, slugify, sorted_groupby)
 from olympia.devhub import tasks as devhub_tasks
+from olympia.devhub.utils import get_addon_akismet_reports
 from olympia.tags.models import Tag
 from olympia.translations import LOCALES
 from olympia.translations.fields import TransField, TransTextarea
@@ -135,6 +136,23 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
         else:
             return list(addon.tags.filter(restricted=False)
                         .values_list('tag_text', flat=True))
+
+    def clean(self):
+        data = self.cleaned_data
+        if not self.instance.has_listed_versions():
+            # We only care about listed add-ons.
+            return data
+        reports = get_addon_akismet_reports(
+            user=getattr(self.request, 'user', None),
+            user_agent=getattr(
+                self.request, 'META', {}).get('HTTP_USER_AGENT'),
+            referrer=getattr(self.request, 'META', {}).get('HTTP_REFERER'),
+            addon=self.instance,
+            data=data)
+        if any((report.comment_check() for report in reports)):
+            raise forms.ValidationError(ugettext(
+                'The text entered has been flagged as spam.'))
+        return data
 
 
 class AddonFormBasic(AddonFormBase):
@@ -374,7 +392,7 @@ class AddonFormDetails(AddonFormBase):
                     'Before changing your default locale you must have a '
                     'name, summary, and description in that locale. '
                     'You are missing %s.') % ', '.join(map(repr, missing)))
-        return data
+        return super(AddonFormDetails, self).clean()
 
 
 class AddonFormDetailsUnlisted(AddonFormDetails):

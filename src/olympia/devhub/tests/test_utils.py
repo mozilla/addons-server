@@ -283,63 +283,114 @@ class TestFixAddonsLinterOutput(TestCase):
 
 
 @override_switch('akismet-spam-check', active=True)
-class TestGetSubmissionAkismetReports(TestCase):
+class TestGetAddonAkismetReports(TestCase):
     def setUp(self):
-        super(TestGetSubmissionAkismetReports, self).setUp()
+        super(TestGetAddonAkismetReports, self).setUp()
 
         patcher = mock.patch.object(
-            AkismetReport, 'create_for_upload')
+            AkismetReport, 'create_for_addon')
         self.addCleanup(patcher.stop)
-        self.create_for_upload_mock = patcher.start()
+        self.create_for_addon_mock = patcher.start()
         self.parse_addon_mock = self.patch('olympia.devhub.utils.parse_addon')
 
     @override_switch('akismet-spam-check', active=False)
     def test_waffle_off(self):
-        reports = utils.get_submission_akismet_reports(
-            None, None, '', '')
+        reports = utils.get_addon_akismet_reports(
+            None, '', '')
         assert reports == []
-        self.create_for_upload_mock.assert_not_called()
+        self.create_for_addon_mock.assert_not_called()
 
-    def test_basic(self):
-        addon = addon_factory()
+    def test_upload(self):
         user = user_factory()
-        upload = FileUpload.objects.create(addon=addon)
+        upload = FileUpload.objects.create()
         self.parse_addon_mock.return_value = {'description': u'fóó'}
         user_agent = 'Mr User/Agent'
         referrer = 'http://foo.baa/'
-        reports = utils.get_submission_akismet_reports(
-            upload, user, user_agent, referrer)
+        reports = utils.get_addon_akismet_reports(
+            user, user_agent, referrer, upload=upload)
         assert len(reports) == 1
-        self.create_for_upload_mock.assert_called_with(
-            upload, user, 'description', u'fóó', user_agent, referrer)
-        self.create_for_upload_mock.assert_called_once()
+        self.create_for_addon_mock.assert_called_with(
+            upload, None, user, 'description', u'fóó', user_agent, referrer)
+        self.create_for_addon_mock.assert_called_once()
 
-    def test_locales(self):
-        addon = addon_factory()
+    def test_upload_with_addon(self):
+        # Give addon some existing metadata.
+        addon = addon_factory(summary=u'summáry')
+        user = user_factory()
+        upload = FileUpload.objects.create(addon=addon)
+        # description is parsed but should have spam checked it so will ignore
+        self.parse_addon_mock.return_value = {
+            'name': u'fóó', 'description': u'summáry'}
+        user_agent = 'Mr User/Agent'
+        referrer = 'http://foo.baa/'
+        reports = utils.get_addon_akismet_reports(
+            user, user_agent, referrer, upload=upload)
+        assert len(reports) == 1  # only one, no description
+        self.create_for_addon_mock.assert_called_with(
+            upload, addon, user, 'name', u'fóó', user_agent, referrer)
+        self.create_for_addon_mock.assert_called_once()
+
+    def test_upload_locales(self):
+        addon = addon_factory(summary=u'¡Ochó!', default_locale='es-AR')
         user = user_factory()
         upload = FileUpload.objects.create(addon=addon)
         self.parse_addon_mock.return_value = {
             'description': {
                 'en-US': u'fóó',
                 'fr': u'lé foo',
-                'de': '',  # should be ignored
+                'de': '',  # should be ignored because empty
+                'es-ES': u'¡Ochó!'  # should be ignored because exists already
             },
-            'name': {
-                'en-US': u'just one name',
-            },
-            'summary': None,  # should also be ignored
+            'name': u'just one name',
+            'summary': None,  # should also be ignored because None
         }
         user_agent = 'Mr User/Agent'
         referrer = 'http://foo.baa/'
-        reports = utils.get_submission_akismet_reports(
-            upload, user, user_agent, referrer)
+        reports = utils.get_addon_akismet_reports(
+            user, user_agent, referrer, upload=upload)
         assert len(reports) == 3
-        assert self.create_for_upload_mock.call_count == 3
+        assert self.create_for_addon_mock.call_count == 3
         calls = [
             mock.call(
-                upload, user, 'name', u'just one name', user_agent, referrer),
+                upload, addon, user, 'name', u'just one name', user_agent,
+                referrer),
             mock.call(
-                upload, user, 'description', u'fóó', user_agent, referrer),
+                upload, addon, user, 'description', u'fóó', user_agent,
+                referrer),
             mock.call(
-                upload, user, 'description', u'lé foo', user_agent, referrer)]
-        self.create_for_upload_mock.assert_has_calls(calls, any_order=True)
+                upload, addon, user, 'description', u'lé foo', user_agent,
+                referrer)]
+        self.create_for_addon_mock.assert_has_calls(calls, any_order=True)
+
+    def test_addon_update(self):
+        addon = addon_factory(summary=u'¡Ochó!', default_locale='es-AR')
+        user = user_factory()
+        cleaned_data = {
+            'description': {
+                'en-US': u'fóó',
+                'fr': u'lé foo',
+                'de': '',  # should be ignored because empty
+                'es-ES': u'¡Ochó!'  # should be ignored because exists already
+            },
+            'name': {
+                'en-GB': u'just one name',
+                'fr': None,
+            },
+        }
+        user_agent = 'Mr User/Agent'
+        referrer = 'http://foo.baa/'
+        reports = utils.get_addon_akismet_reports(
+            user, user_agent, referrer, addon=addon, data=cleaned_data)
+        assert len(reports) == 3
+        assert self.create_for_addon_mock.call_count == 3
+        calls = [
+            mock.call(
+                None, addon, user, 'name', u'just one name', user_agent,
+                referrer),
+            mock.call(
+                None, addon, user, 'description', u'fóó', user_agent,
+                referrer),
+            mock.call(
+                None, addon, user, 'description', u'lé foo', user_agent,
+                referrer)]
+        self.create_for_addon_mock.assert_has_calls(calls, any_order=True)

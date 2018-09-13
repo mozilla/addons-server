@@ -7,6 +7,7 @@ from django.utils.translation import ugettext
 
 import waffle
 from celery import chain
+from six import text_type
 
 import olympia.core.logger
 
@@ -17,6 +18,7 @@ from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
 from olympia.lib.akismet.models import AkismetReport
 from olympia.tags.models import Tag
+from olympia.translations.models import Translation
 from olympia.versions.compare import version_int
 
 from . import tasks
@@ -312,24 +314,43 @@ def add_dynamic_theme_tag(version):
         Tag(tag_text='dynamic theme').save_tag(version.addon)
 
 
-def get_submission_akismet_reports(upload, user, user_agent, referrer):
+def get_addon_akismet_reports(user, user_agent, referrer, upload=None,
+                              addon=None, data=None):
     if not waffle.switch_is_active('akismet-spam-check'):
         return []
+    assert addon or upload
     properties = ('name', 'summary', 'description')
-    reports = []
-    parsed_data = Addon.resolve_webext_translations(
-        parse_addon(upload, upload.addon, user), upload)
 
+    if upload:
+        addon = addon or upload.addon
+        data = data or Addon.resolve_webext_translations(
+            parse_addon(upload, addon, user), upload)
+        existing_data = ()
+    if not data:
+            return []  # bail early if no data to skip Translation lookups
+    if addon:
+        translation_ids = (
+            getattr(addon, prop + '_id', -1) for prop in properties)
+        # Just get all the values together to make it simplier
+        existing_data = {
+            text_type(value)
+            for value in Translation.objects.filter(id__in=translation_ids)}
+    reports = []
     for prop in properties:
-        locales = parsed_data.get(prop, [])
-        if not isinstance(locales, dict):
-            # It's not a localized dict, it's a flat string; so wrap it.
-            locales = {'': locales}
-        for comment in locales.values():
-            if not comment:
-                # We don't want to submit empty content
+        locales = data.get(prop)
+        if not locales:
+            continue
+        if isinstance(locales, dict):
+            # Avoid spam checking the same value more than once by using a set.
+            locale_values = set(locales.values())
+        else:
+            # It's not a localized dict, it's a flat string; wrap it anyway.
+            locale_values = {locales}
+        for comment in locale_values:
+            if not comment or comment in existing_data:
+                # We don't want to submit empty or unchanged content
                 continue
-            reports.append(AkismetReport.create_for_upload(
-                upload, user, prop, comment, user_agent,
+            reports.append(AkismetReport.create_for_addon(
+                upload, addon, user, prop, comment, user_agent,
                 referrer))
     return reports

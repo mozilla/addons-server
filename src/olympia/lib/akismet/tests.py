@@ -195,8 +195,8 @@ class TestAkismetReportsAddon(BaseAkismetReportsModelTest, TestCase):
         referrer = 'https://mozilla.org/'
         with freeze_time('2017-07-27 07:00'):
             time_now = datetime.now()
-            report = AkismetReport.create_for_upload(
-                upload, user, 'name', addon.name, ua, referrer)
+            report = AkismetReport.create_for_addon(
+                upload, addon, user, 'name', addon.name, ua, referrer)
 
         assert report.upload_instance == upload
         assert report.addon_instance == addon
@@ -443,8 +443,8 @@ def test_submit_to_akismet_task(submit_spam_mock, submit_ham_mock):
 def test_comment_check_task(_post_mock):
     upload = FileUpload.objects.create(addon=addon_factory())
     user = user_factory()
-    report = AkismetReport.create_for_upload(
-        upload, user, 'foo', 'baa', '', '')
+    report = AkismetReport.create_for_addon(
+        upload, None, user, 'foo', 'baa', '', '')
     comment_check([report.id])
     _post_mock.assert_called_once()
     _post_mock.assert_called_with('comment-check')

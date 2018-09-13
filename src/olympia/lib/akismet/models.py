@@ -176,11 +176,12 @@ class AkismetReport(ModelBase):
         return instance
 
     @classmethod
-    def create_for_upload(cls, upload, user, property_name, property_value,
-                          user_agent, referrer):
+    def create_for_addon(cls, upload, addon, user, property_name,
+                         property_value, user_agent, referrer):
+        assert addon or upload  # require either the addon or upload fk
         instance = cls.objects.create(
             upload_instance=upload,
-            addon_instance=upload.addon,
+            addon_instance=addon,
             comment_type='product-' + property_name,
             user_ip=user.last_login_ip or '',
             user_agent=user_agent or '',
