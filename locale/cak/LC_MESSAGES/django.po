@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-12 23:29+0000\n"
+"PO-Revision-Date: 2018-09-13 23:21+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3524,7 +3524,7 @@ msgid "How to Submit:"
 msgstr ""
 
 msgid "Include instructions in a README file in the source code,"
-msgstr ""
+msgstr "Tatz'aqatisaj ri k'utunem taq tzij pa jun README yakb'äl pa ri ruxe'el b'itz'ib',"
 
 msgid "or in reviewer notes on the next page (if applicable)."
 msgstr ""
@@ -4540,11 +4540,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ruyonil runik'oxik kemchi' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Tak'ulu' ato'ik pa ruwi' kemchi' xab'akuchi' yatz'ib'an pan ajk'amaya'l—winaqil taq k'amaya'l, taqoya'l, wujilem chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
