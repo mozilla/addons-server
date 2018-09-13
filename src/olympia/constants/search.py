@@ -82,7 +82,6 @@ STEMMER_MAP = {
     'hungarian': 'light_hungarian',
     'indonesian': 'indonesian',
     'italian': 'light_italian',
-    'punjabi': 'punjabi',
     'portuguese': 'light_portuguese',
     'romanian': 'romanian',
     'russian': 'russian',
