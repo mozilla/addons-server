@@ -16,6 +16,7 @@ from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.addons.models import Addon, Persona
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
@@ -69,6 +70,7 @@ def set_reviewing_cache(addon_id, user_id):
 
 
 class CannedResponse(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     name = models.CharField(max_length=255)
     response = models.TextField()
     sort_group = models.CharField(max_length=255)
@@ -371,6 +373,7 @@ version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')
 
 
 class ReviewerScore(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     user = models.ForeignKey(UserProfile, related_name='_reviewer_scores')
     addon = models.ForeignKey(Addon, blank=True, null=True, related_name='+')
     version = models.ForeignKey(Version, blank=True, null=True,
@@ -746,7 +749,6 @@ class AutoApprovalNoValidationResultError(Exception):
 
 class AutoApprovalSummary(ModelBase):
     """Model holding the results of an auto-approval attempt on a Version."""
-    id = None
     version = models.OneToOneField(
         Version, on_delete=models.CASCADE, primary_key=True)
     is_locked = models.BooleanField(default=False)
@@ -1111,6 +1113,7 @@ class RereviewQueueThemeManager(ManagerBase):
 
 
 class RereviewQueueTheme(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     theme = models.ForeignKey(Persona)
     header = models.CharField(max_length=72, blank=True, default='')
 
@@ -1156,6 +1159,7 @@ class RereviewQueueTheme(ModelBase):
 
 
 class ThemeLock(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     theme = models.OneToOneField('addons.Persona')
     reviewer = UserForeignKey()
     expiry = models.DateTimeField()
@@ -1165,7 +1169,6 @@ class ThemeLock(ModelBase):
 
 
 class Whiteboard(ModelBase):
-    id = None
     addon = models.OneToOneField(
         Addon, on_delete=models.CASCADE, primary_key=True)
     private = models.TextField(blank=True)

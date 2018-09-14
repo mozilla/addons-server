@@ -1,6 +1,7 @@
 from django.db import models
 
 from olympia import amo
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase
 
 
@@ -11,6 +12,7 @@ class DiscoveryModule(ModelBase):
     The modules are defined statically in modules.py and linked to a database
     row through the module's name.
     """
+    id = PositiveAutoField(primary_key=True)
     app = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                       db_column='app_id')
     module = models.CharField(max_length=255)

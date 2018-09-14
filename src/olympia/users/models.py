@@ -117,7 +117,6 @@ class UserManager(BaseUserManager, ManagerBase):
 
 
 class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
-    id = PositiveAutoField(primary_key=True)
     objects = UserManager()
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
@@ -597,6 +596,7 @@ class DeniedName(ModelBase):
 
 
 class UserHistory(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     email = models.EmailField(max_length=75)
     user = models.ForeignKey(UserProfile, related_name='history')
 

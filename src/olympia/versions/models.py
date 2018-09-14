@@ -18,6 +18,7 @@ from django_statsd.clients import statsd
 import olympia.core.logger
 
 from olympia import activity, amo
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.models import (
     BasePreview, ManagerBase, ModelBase, OnChangeMixin)
@@ -101,6 +102,7 @@ class VersionCreateError(ValueError):
 
 
 class Version(OnChangeMixin, ModelBase):
+    id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(
         'addons.Addon', related_name='versions', on_delete=models.CASCADE)
     license = models.ForeignKey('License', null=True)
@@ -778,6 +780,7 @@ class LicenseManager(ManagerBase):
 class License(ModelBase):
     OTHER = 0
 
+    id = PositiveAutoField(primary_key=True)
     name = TranslatedField()
     url = models.URLField(null=True)
     builtin = models.PositiveIntegerField(default=OTHER)
@@ -811,7 +814,7 @@ models.signals.pre_save.connect(
 
 
 class ApplicationsVersions(models.Model):
-
+    id = PositiveAutoField(primary_key=True)
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                               db_column='application_id')
     version = models.ForeignKey(
