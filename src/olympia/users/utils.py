@@ -87,9 +87,9 @@ def autocreate_username(candidate, tries=1):
 
 
 def system_addon_submission_allowed(user, parsed_addon_data):
-    guid = parsed_addon_data.get('guid').lower() or ''
+    guid = parsed_addon_data.get('guid') or ''
     return (
-        not guid.endswith(amo.SYSTEM_ADDON_GUIDS) or
+        not guid.lower().endswith(amo.SYSTEM_ADDON_GUIDS) or
         user.email.endswith(u'@mozilla.com'))
 
 
