@@ -1,13 +1,7 @@
 from django.db.backends.mysql.base import (
-    CursorWrapper as MySQLCursorWrapper,
     DatabaseWrapper as MySQLDBWrapper,
     DatabaseIntrospection as MySQLDBIntrospection,
     DatabaseSchemaEditor as MySQLDBSchemeEditor)
-
-
-class CursorWrapper(MySQLCursorWrapper):
-    def execute(self, query, args=None):
-        return super(CursorWrapper, self).execute(query, args)
 
 
 class DatabaseIntrospection(MySQLDBIntrospection):
@@ -23,17 +17,13 @@ class DatabaseIntrospection(MySQLDBIntrospection):
 class DatabaseSchemaEditor(MySQLDBSchemeEditor):
     def create_model(self, model):
         for field in model._meta.local_fields:
-            # Autoincrement SQL
+            # Autoincrement SQL for backends with post table definition variant
             if field.get_internal_type() == "PositiveAutoField":
                 autoinc_sql = self.connection.ops.autoinc_sql(
                     model._meta.db_table, field.column)
                 if autoinc_sql:
                     self.deferred_sql.extend(autoinc_sql)
         super(DatabaseSchemaEditor, self).create_model(model)
-
-    def column_sql(self, model, field, include_default=False):
-        return super(DatabaseSchemaEditor, self).column_sql(
-            model, field, include_default)
 
 
 class DatabaseWrapper(MySQLDBWrapper):
@@ -43,7 +33,3 @@ class DatabaseWrapper(MySQLDBWrapper):
     _data_types = dict(
         MySQLDBWrapper._data_types,
         PositiveAutoField='integer UNSIGNED AUTO_INCREMENT')
-
-    def create_cursor(self, name=None):
-        cursor = self.connection.cursor()
-        return CursorWrapper(cursor)
