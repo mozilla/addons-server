@@ -13,6 +13,7 @@ log = olympia.core.logger.getLogger('z.users')
 
 
 class Group(ModelBase):
+    # If `id` is changed from PositiveAutoField, update TestPositiveAutoField.
     id = PositiveAutoField(primary_key=True)
     name = models.CharField(max_length=255, default='')
     rules = models.TextField()
