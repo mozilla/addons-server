@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-15 07:07+0000\n"
+"PO-Revision-Date: 2018-09-15 07:21+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -779,10 +779,10 @@ msgstr "ओह"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgstr "<h1>ओह!  हमें एक समस्या हुई थी।</h1> <p> हम जल्द ही इसे ठीक कर देंगे।</p> <p> आप पृष्ठ को रीफ्रेश करने का प्रयास कर सकते हैं, या <a href=\"%(home)s\">एड-ऑन होमपेज</a> पर वापस जाएँ।</p>"
 
 msgid "Some rights reserved"
-msgstr ""
+msgstr "कुछ अधिकार सुरक्षित"
 
 msgid "No results found"
 msgstr "कोई परिणाम नहीं मिला"
@@ -796,10 +796,10 @@ msgstr "अगला"
 
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
-msgstr ""
+msgstr "<strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong>के<strong>%(count)s</strong> परिणाम"
 
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "रखरखाव प्रगति पर है"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
 msgstr ""
