@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-11 13:41+0000\n"
+"PO-Revision-Date: 2018-09-15 13:56+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4534,7 +4534,7 @@ msgstr "{addon_name} {start_sub_heading}改善影片播放功能{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "將頁面中，視訊播放器的附近暗化，加強影片觀賞體驗。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4705,7 +4705,7 @@ msgstr "{addon_name} {start_sub_heading}安全上網{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
-msgstr ""
+msgstr "為所有支援 HTTPS 的網站加密，增加安全性。"
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4860,7 +4860,7 @@ msgstr "{addon_name} {start_sub_heading}取得快速翻譯{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
+msgstr "反白任何網站上的文字，點擊右鍵，立刻翻譯。"
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
