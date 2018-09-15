@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-14 14:03+0000\n"
+"PO-Revision-Date: 2018-09-15 06:11+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -337,7 +337,7 @@ msgstr[0] "<strong>{0}</strong> उपयोगकर्ता"
 msgstr[1] "<strong>{0}</strong> उपयोगकर्ता"
 
 msgid "Hover to Preview"
-msgstr ""
+msgstr "पूर्वावलोकन के लिए होवर करें"
 
 msgid "Add"
 msgstr "जोड़ें"
@@ -348,7 +348,7 @@ msgstr "संपादन"
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 msgid "by {0} on {1}"
-msgstr ""
+msgstr "{0} द्वारा {1} पर"
 
 msgid "Not yet rated"
 msgstr "अब तक रेट नही किया गया"
@@ -364,7 +364,7 @@ msgstr[1] "{0} दैनिक उपयोगकर्ता"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
-msgstr ""
+msgstr "{0} के लिए गोपनीयता नीति"
 
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
@@ -378,6 +378,8 @@ msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
 msgstr ""
+"यदि आपको संदेह है कि यह ऐड-ऑन %(amo_policy_link_open)s हमारी नीतियों %(link_close)s का उल्लंघन करता है या इसमें सुरक्षा या गोपनीयता समस्याएं हैं, तो कृपया अपनी चिंताओं का वर्णन करने के लिए नीचे दिए "
+"गए फॉर्म का उपयोग करें। कृपया किसी भी अन्य कारण हेतु इस फॉर्म का उपयोग न करें।"
 
 msgid "Send Report"
 msgstr "रिपोर्ट भेजें"
@@ -405,13 +407,15 @@ msgid "Submit review"
 msgstr "समीक्षा दर्ज़ करें"
 
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr ""
+msgstr "कृपया यहाँ बग रिपोर्ट पोस्ट न करें. हम एड-ऑन डेवलपर्स के लिए आपका ईमेल पता उपलब्ध नहीं कराते हैं, इसलिए वे आपकी समस्या का समाधान करने के लिए आप से संपर्क नहीं कर सकते हैं।"
 
 #, python-format
 msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
+"सहायता उपलब्ध है या नहीं, यह पता लगाने के लिए इस ऐड-ऑन का <a href=\"%(support)s\">समर्थन अनुभाग</a> देखें। आप सहायता के लिए <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support"
+"\">ऐड-ऑन समुदाय</a> से पूछने का भी प्रयास कर सकते हैं।"
 
 msgid "Review Guidelines"
 msgstr ""
@@ -421,7 +425,7 @@ msgstr "समीक्षाएँ"
 
 #, python-format
 msgid "by %(user)s on %(date)s"
-msgstr ""
+msgstr "%(date)s पर %(user)s द्वारा"
 
 msgid "Show the developer's reply to this review"
 msgstr ""
