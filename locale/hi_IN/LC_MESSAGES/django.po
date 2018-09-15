@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-15 06:11+0000\n"
+"PO-Revision-Date: 2018-09-15 06:31+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -269,7 +269,7 @@ msgid "Requires Restart"
 msgstr "पुनः प्रारंभ की आवश्यकता है"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
+msgstr "यह ऐड-ऑन नई तकनीक के साथ बनाया गया है जो Firefox 57 और उसके बाद के संस्करण के साथ अनुकूल है।"
 
 msgid "Compatible with Firefox 57+"
 msgstr "Firefox 57+ के साथ संगत"
@@ -428,23 +428,23 @@ msgid "by %(user)s on %(date)s"
 msgstr "%(date)s पर %(user)s द्वारा"
 
 msgid "Show the developer's reply to this review"
-msgstr ""
+msgstr "इस समीक्षा के लिए डेवलपर का जवाब दिखाएं"
 
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "इस ऐड-ऑन की सभी समीक्षाएं देखें"
+msgstr[1] "इस ऐड-ऑन की सभी %(cnt)s समीक्षाएं देखें"
 
 msgid "Tags"
 msgstr "टैग"
 
 msgid "Icon for {0}"
-msgstr ""
+msgstr "{0} के लिए चिह्न"
 
 #, python-format
 msgid "by %(users)s"
-msgstr ""
+msgstr "%(users)s के द्वारा"
 
 msgid "Download Anyway"
 msgstr "वैसे भी डाउनलोड करें"
@@ -456,10 +456,10 @@ msgid "Permissions"
 msgstr "अनुमति‌"
 
 msgid "This add-on has been marked as experimental by its developers"
-msgstr ""
+msgstr "इस ऐड-ऑन को इसके डेवलपर्स द्वारा प्रयोगात्मक के रूप में चिह्नित किया गया है"
 
 msgid "This add-on requires the following add-ons to work properly:"
-msgstr ""
+msgstr "इस ऐड-ऑन को ठीक से काम करने हेतु निम्नलिखित ऐड-ऑन की आवश्यकता है:"
 
 msgid "Average"
 msgstr "औसत"
@@ -476,14 +476,14 @@ msgstr "इन संग्रहों का हिस्सा"
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(author)s द्वारा अन्य ऐड-ऑन"
+msgstr[1] "इन निर्माताओं द्वारा निर्मित अन्य ऐड-ऑन"
 
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> उपयोगकर्ता समीक्षा"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> उपयोगकर्ता समीक्षाएं"
 
 msgid "View statistics"
 msgstr "आंकड़े देखें"
@@ -508,7 +508,7 @@ msgid "Enjoy this add-on?"
 msgstr "इस ऐड-ऑन का आनंद लें?"
 
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr ""
+msgstr "इस ऐड-ऑन के डेवलेपर ने आग्रह किया है कि आप अपने छोटे योगदान से इसके लगातार विकास में अपना समर्थन दें।"
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
@@ -532,7 +532,7 @@ msgstr "अंतिम अद्यतन:"
 
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\">%(name)s </a> के तहत जारी"
 
 msgid "Custom License"
 msgstr "अनुकूलित लाइसेंस"
@@ -559,10 +559,12 @@ msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"चूँकि आप अपने Firefox के नियंत्रण में हैं, इसलिए इन अनुरोधों को देने या इनकार करने का विकल्प आपका है। अनुमतियों को स्वीकार करने से आपके ब्राउज़र के प्रदर्शन या सुरक्षा के साथ मूल रूप से समझौता नहीं "
+"किया जाता है, लेकिन कुछ दुर्लभ मामलों में जोखिम शामिल हो सकते हैं।"
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
-msgstr ""
+msgstr "यह ऐड-ऑन कर सकते हैं:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
 msgstr ""
