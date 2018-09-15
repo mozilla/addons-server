@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-15 06:31+0000\n"
+"PO-Revision-Date: 2018-09-15 06:49+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -564,26 +564,26 @@ msgstr ""
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
-msgstr "यह ऐड-ऑन कर सकते हैं:"
+msgstr "यह ऐड-ऑन समर्थित करता है:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr ""
+msgstr "कुछ एड-ऑन कुछ फ़ंक्शंस करने की अनुमति मांगते हैं। चूँकि आप अपने Firefox के नियंत्रण में हैं, इसलिए इन अनुरोधों को देने या इनकार करने का विकल्प आपका है।"
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr ""
 
 msgid "This add-on has been removed by its author."
-msgstr ""
+msgstr "इस ऐड-ऑन को इसके निर्माता द्वारा हटा दिया गया।"
 
 msgid "This add-on has been disabled by an administrator."
-msgstr ""
+msgstr "यह ऐड-ऑन को इसके किसी प्रबंधक द्वारा अक्षम कर दिया गया है।"
 
 msgid "Source Code License for {addon}"
-msgstr ""
+msgstr "{addon} के लिए सोर्स कोड लाइसेंस"
 
 #. The License for this add-on.
 msgid "Source Code License"
-msgstr ""
+msgstr "सोर्स कोड लाइसेंस"
 
 msgid "support section"
 msgstr "सहायता अनुभाग"
@@ -592,7 +592,7 @@ msgid "support email"
 msgstr "समर्थन ईमेल"
 
 msgid "permalink"
-msgstr ""
+msgstr "स्थायी लिंक"
 
 #, python-format
 msgid "See all user reviews"
@@ -641,13 +641,13 @@ msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "यह थीम लंबित है. यह सभी के लिए अदृश्य है लेकिन आप."
 
 msgid "Collector's Note"
-msgstr ""
+msgstr "संग्राहक नोट"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> साप्ताहिक डाउनलोड"
+msgstr[1] "<strong>{0}</strong> साप्ताहिक डाउनलोड"
 
 msgid "Not Reviewed"
 msgstr "असमीक्षित"
@@ -671,7 +671,7 @@ msgid "Log out"
 msgstr "लॉग आउट"
 
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "मेरे सबमिशन प्रबंधित करें"
 
 msgid "Submit a New Add-on"
 msgstr ""
