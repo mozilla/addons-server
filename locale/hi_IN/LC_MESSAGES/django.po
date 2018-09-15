@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-15 06:49+0000\n"
+"PO-Revision-Date: 2018-09-15 07:07+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -671,13 +671,13 @@ msgid "Log out"
 msgstr "लॉग आउट"
 
 msgid "Manage My Submissions"
-msgstr "मेरे सबमिशन प्रबंधित करें"
+msgstr "मेरी प्रस्तुतियाँ प्रबंधित करें"
 
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "एक नया ऐड-ऑन प्रस्तुत करें"
 
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "एक नई थीम प्रस्तुत करें"
 
 msgid "Developer Hub"
 msgstr "डेवलपर हब"
@@ -775,7 +775,7 @@ msgstr ""
 "ऑन फ्रंट पेज</a> पर जाएं। </li> </ul>"
 
 msgid "Oops"
-msgstr ""
+msgstr "ओह"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
