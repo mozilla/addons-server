@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-16 09:05+0000\n"
+"PO-Revision-Date: 2018-09-16 09:21+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -921,7 +921,7 @@ msgid "The language code {lang_code} is invalid."
 msgstr "{lang_code} भाषा कोड अमान्य है।"
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "आपको {lang-code:value} का कोई ऑब्जेक्ट प्रदान करना होगा।"
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
