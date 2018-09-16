@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-08-13 08:00+0000\n"
-"Last-Translator: Shivam Singhal <shivams2799@gmail.com>\n"
+"PO-Revision-Date: 2018-09-16 09:05+0000\n"
+"Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -570,7 +570,7 @@ msgid "Some add-ons ask for permission to perform certain functions. Since you�
 msgstr "कुछ एड-ऑन कुछ फ़ंक्शंस करने की अनुमति मांगते हैं। चूँकि आप अपने Firefox के नियंत्रण में हैं, इसलिए इन अनुरोधों को देने या इनकार करने का विकल्प आपका है।"
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "कृपया ध्यान दें कि यह ऐड-ऑन पुरानी तकनीक का उपयोग करता है, जो इसे आपकी अनुमति के अनुरोध किये बिना सभी ब्राउज़र फ़ंक्शंस और डेटा तक पहुंच प्रदान करता है।"
 
 msgid "This add-on has been removed by its author."
 msgstr "इस ऐड-ऑन को इसके निर्माता द्वारा हटा दिया गया।"
@@ -805,7 +805,7 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr ""
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
+msgstr "वेबसाइट की देखरेख के समय कुछ विशेषताओं को अस्थायी तौर पर अक्षम कर दिया गया है। कृपया कुछ समय बाद पुनः प्रयास करें।"
 
 msgid "Are you human?"
 msgstr "क्या आप इंसान हो?"
@@ -817,6 +817,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> यदि <strong>आवश्यक हो तो एक स्थान से अलग</strong>, कृप्या नीचे दिए गए <strong>सभी शब्द</strong> दर्ज करें।</p><p> यदि इसे पढ़ना मुश्किल है, तो आप <a href=\"#\" id=\"recaptcha_different\">अलग-अलग"
+" शब्दों को आजमा सकते हैं</a> या इसके बजाय एक <a href=\"#\" id=\"recaptcha_audio\">अलग प्रकार की चुनौती का प्रयास कर सकते हैं</a>।</p>"
 
 msgid "Top Rated"
 msgstr ""
@@ -847,7 +849,7 @@ msgid "My Favorite Add-ons"
 msgstr "मेरा पसंदीदा ऐड-ऑन"
 
 msgid "More&hellip;"
-msgstr ""
+msgstr "अधिक&hellip;"
 
 msgid "Add-ons for Mobile"
 msgstr "मोबाइल के लिए ऐड-ऑन"
@@ -901,7 +903,7 @@ msgid "Invalid Authorization header. No credentials provided."
 msgstr ""
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "अमान्य प्रमाणीकरण हेडर। क्रेडेंशियल्स स्ट्रिंग में रिक्त स्थान नहीं होना चाहिए।"
 
 msgid "Signature has expired."
 msgstr "हस्ताक्षर की अवधी समाप्त हो गई है।"
