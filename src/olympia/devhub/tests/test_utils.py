@@ -109,9 +109,7 @@ class TestValidatorListed(TestValidatorBase):
         chain_mock.return_value = task
         task.delay.return_value = mock.Mock(task_id='42')
 
-        v = tasks.validate(self.file)
-        print v
-        assert isinstance(v, mock.Mock)
+        assert isinstance(tasks.validate(self.file), mock.Mock)
         assert task.delay.call_count == 1
 
         assert isinstance(tasks.validate(self.file), AsyncResult)

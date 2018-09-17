@@ -625,12 +625,6 @@ class Addon(OnChangeMixin, ModelBase):
         This returns a modified `data` dictionary accordingly with proper
         translations filled in.
         """
-        # If we've already done this then data[xxx] will be dict already.
-        fields = ('name', 'homepage', 'summary')
-        if any((isinstance(data.get(field, None), dict) for field in fields)):
-            # If so not only redundant but also will break resolve_i18n_message
-            return data
-
         default_locale = find_language(data.get('default_locale'))
 
         if not data.get('is_webextension') or not default_locale:
@@ -640,6 +634,7 @@ class Addon(OnChangeMixin, ModelBase):
         # find_language might have expanded short to full locale, so update it.
         data['default_locale'] = default_locale
 
+        fields = ('name', 'homepage', 'summary')
         messages = extract_translations(upload)
 
         for field in fields:

@@ -2577,31 +2577,6 @@ class TestAddonFromUpload(UploadTest):
         # Normalized from `en` to `en-US`
         assert addon.default_locale == 'en-US'
 
-    @patch('olympia.addons.models.extract_translations')
-    def test_webext_resolve_translations_doesnt_run_twice(self, extract_mock):
-        """If we've already resolved translations to dicts, don't do it again.
-        """
-        parsed_data = {
-            'default_locale': u'sv',
-            'e10s_compatibility': 2,
-            'guid': u'notify-link-clicks-i18n@notzilla.org',
-            'name': {'en-US': u'foo-de-baa', 'sv-SE': u'fóó'},
-            'is_webextension': True,
-            'type': 1,
-            'apps': [],
-            'summary': {'en-US': u'summary', 'sv-SE': u'súmmáry'},
-            'version': u'1.0',
-            'homepage': '...'
-        }
-
-        addon = Addon.from_upload(
-            self.get_upload('notify-link-clicks-i18n.xpi'),
-            [self.platform], parsed_data=parsed_data)
-        extract_mock.assert_not_called()
-
-        assert addon.name == u'foo-de-baa'
-        assert addon.summary == u'summary'
-
 
 REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
 
