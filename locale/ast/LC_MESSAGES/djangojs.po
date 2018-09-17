@@ -1,4 +1,4 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -212,53 +212,45 @@ msgstr ""
 msgid "Week of {0}"
 msgstr "Selmana de {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " descargues"
-msgstr[1] " descargues"
+msgstr[0] ""
+msgstr[1] ""
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} usuarios"
-msgstr[1] "{0} usuarios"
+msgstr[0] ""
+msgstr[1] ""
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons, n"
-msgstr[0] "{0} add-ons"
-msgstr[1] "{0} add-ons"
+msgstr[0] ""
+msgstr[1] ""
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} coleiciones"
-msgstr[1] "{0} coleiciones"
+msgstr[0] ""
+msgstr[1] ""
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} reseñes"
-msgstr[1] "{0} reseñes"
+msgstr[0] ""
+msgstr[1] ""
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} ventes"
-msgstr[1] "{0} ventes"
+msgstr[0] ""
+msgstr[1] ""
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} reembolsos"
-msgstr[1] "{0} reembolsos"
+msgstr[0] ""
+msgstr[1] ""
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} instalaciones"
-msgstr[1] "{0} instalaciones"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Downloads"
 msgstr "Descargues"
