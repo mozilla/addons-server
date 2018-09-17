@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
 "PO-Revision-Date: 2018-09-16 17:11+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -210,29 +210,45 @@ msgstr "Gunakan yang asli"
 msgid "Week of {0}"
 msgstr "Minggu ke {0}"
 
-msgid " downloads"
-msgstr " unduhan"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " unduhan"
 
-msgid "{0} users"
-msgstr "{0} pengguna"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} pengguna"
 
-msgid "{0} add-ons"
-msgstr "{0} pengaya"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} pengaya"
 
-msgid "{0} collections"
-msgstr "{0} koleksi"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} koleksi"
 
-msgid "{0} reviews"
-msgstr "{0} ulasan"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} ulasan"
 
-msgid "{0} sales"
-msgstr "{0} penjualan"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} penjualan"
 
-msgid "{0} refunds"
-msgstr "{0} pembayaran kembali"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} pembayaran kembali"
 
-msgid "{0} installs"
-msgstr "{0} pemasangan"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} pemasangan"
 
 msgid "Downloads"
 msgstr "Unggahan"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -971,6 +971,9 @@ msgstr ""
 
 msgid "Error decoding signature."
 msgstr "Earráid agus an síniú á dhíchódú."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "Ceadchomhartha neamhbhailí JWT."
@@ -4210,6 +4213,13 @@ msgid "Compatibility Test"
 msgstr "Comhoiriúnacht"
 
 msgid "Check to see if your extension is compatible with Firefox."
+msgstr ""
+
+#, fuzzy
+msgid "Live Testing"
+msgstr "Féach ar Leathanach an Bhreiseáin"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
 msgid "Transfer ownership"

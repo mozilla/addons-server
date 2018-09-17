@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
 "PO-Revision-Date: 2018-08-21 11:20+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -918,6 +918,9 @@ msgstr "Signaturen har utgått."
 
 msgid "Error decoding signature."
 msgstr "Feil ved dekoding av signatur."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr ""
@@ -4136,6 +4139,12 @@ msgid "Compatibility Test"
 msgstr "Utvidelseskompatibilitetsrapporter"
 
 msgid "Check to see if your extension is compatible with Firefox."
+msgstr ""
+
+msgid "Live Testing"
+msgstr ""
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
 msgid "Transfer ownership"

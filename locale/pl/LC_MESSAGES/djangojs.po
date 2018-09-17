@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
 "PO-Revision-Date: 2018-08-10 17:55+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -220,29 +220,61 @@ msgstr "Użyj oryginału"
 msgid "Week of {0}"
 msgstr "Tydzień: {0}"
 
-msgid " downloads"
-msgstr " pobrań"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " pobrań"
+msgstr[1] " pobrań"
+msgstr[2] " pobrań"
 
-msgid "{0} users"
-msgstr "użytkownicy: {0}"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "użytkownicy: {0}"
+msgstr[1] "użytkownicy: {0}"
+msgstr[2] "użytkownicy: {0}"
 
-msgid "{0} add-ons"
-msgstr "Dodatki: {0}"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "Dodatki: {0}"
+msgstr[1] "Dodatki: {0}"
+msgstr[2] "Dodatki: {0}"
 
-msgid "{0} collections"
-msgstr "kolekcje: {0}"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "kolekcje: {0}"
+msgstr[1] "kolekcje: {0}"
+msgstr[2] "kolekcje: {0}"
 
-msgid "{0} reviews"
-msgstr "opinie: {0}"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "opinie: {0}"
+msgstr[1] "opinie: {0}"
+msgstr[2] "opinie: {0}"
 
-msgid "{0} sales"
-msgstr "sprzedaże: {0}"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "sprzedaże: {0}"
+msgstr[1] "sprzedaże: {0}"
+msgstr[2] "sprzedaże: {0}"
 
-msgid "{0} refunds"
-msgstr "zwroty: {0}"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "zwroty: {0}"
+msgstr[1] "zwroty: {0}"
+msgstr[2] "zwroty: {0}"
 
-msgid "{0} installs"
-msgstr "Instalacje: {0}"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "Instalacje: {0}"
+msgstr[1] "Instalacje: {0}"
+msgstr[2] "Instalacje: {0}"
 
 msgid "Downloads"
 msgstr "Pobrania"

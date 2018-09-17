@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
 "PO-Revision-Date: 2018-07-27 10:37+0000\n"
 "Last-Translator: Jakob Kappel <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
@@ -913,6 +913,9 @@ msgid "Signature has expired."
 msgstr ""
 
 msgid "Error decoding signature."
+msgstr ""
+
+msgid "Wrong type for one or more keys in payload"
 msgstr ""
 
 msgid "Invalid JWT Token."
@@ -4031,6 +4034,13 @@ msgstr "Kompatibilitetstest"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Kontrollér om din udvidelse er kompatibel med Firefox."
+
+#, fuzzy
+msgid "Live Testing"
+msgstr "View Listing"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
 
 msgid "Transfer ownership"
 msgstr "Overfør ejerskab"

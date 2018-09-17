@@ -2,12 +2,12 @@
 # Pascal Chevrel <pascal.chevrel@free.fr>, 2006-2009.
 # Jean-Bernard Marcon <goofy@babelzilla.org>, 2009-2010.
 # Alexandre Lissy <lissyx@mozfr.org>, 2009, 2010, 2011, 2012, 2013.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
 "PO-Revision-Date: 2018-09-03 12:09+0000\n"
 "Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -117,8 +117,8 @@ msgstr "Ajouter des notes de version détaillées (cela peut être effectué lor
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"S’il est nécessaire d’avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d’utilisateur et un mot de passe d’un compte de test dans les notes pour le réviseur (cela peut"
-" être effectué à la prochaine étape)."
+"S’il est nécessaire d’avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d’utilisateur et un mot de passe d’un compte de test dans les notes pour le réviseur (cela "
+"peut être effectué à la prochaine étape)."
 
 msgid "Add-on submission checklist"
 msgstr "Liste de points à vérifier pour l’envoi d’un module"
@@ -221,29 +221,53 @@ msgstr "Utiliser l’original"
 msgid "Week of {0}"
 msgstr "Semaine de {0}"
 
-msgid " downloads"
-msgstr " téléchargements"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " téléchargements"
+msgstr[1] " téléchargements"
 
-msgid "{0} users"
-msgstr "{0} utilisateurs"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} utilisateurs"
+msgstr[1] "{0} utilisateurs"
 
-msgid "{0} add-ons"
-msgstr "{0} modules"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} modules"
+msgstr[1] "{0} modules"
 
-msgid "{0} collections"
-msgstr "{0} collections"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} collections"
+msgstr[1] "{0} collections"
 
-msgid "{0} reviews"
-msgstr "{0} critiques"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} critiques"
+msgstr[1] "{0} critiques"
 
-msgid "{0} sales"
-msgstr "{0} ventes"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} ventes"
+msgstr[1] "{0} ventes"
 
-msgid "{0} refunds"
-msgstr "{0} remboursements"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} remboursements"
+msgstr[1] "{0} remboursements"
 
-msgid "{0} installs"
-msgstr "{0} installations"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} installations"
+msgstr[1] "{0} installations"
 
 msgid "Downloads"
 msgstr "Téléchargements"
