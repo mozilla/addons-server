@@ -22,7 +22,6 @@ SEARCH_ANALYZER_MAP = {
     'german': ['de'],
     'greek': ['el'],
     'english': ['en-us', 'en-ca', 'en-gb'],
-    'punjabi': ['pa-IN'],
     'spanish': ['es'],
     'basque': ['eu'],
     'persian': ['fa'],
