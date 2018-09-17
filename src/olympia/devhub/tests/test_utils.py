@@ -308,7 +308,8 @@ class TestGetAddonAkismetReports(TestCase):
             user, user_agent, referrer, upload=upload)
         assert len(reports) == 1
         self.create_for_addon_mock.assert_called_with(
-            upload, None, user, 'description', u'fóó', user_agent, referrer)
+            upload=upload, addon=None, user=user, property_name='description',
+            property_value=u'fóó', user_agent=user_agent, referrer=referrer)
         self.create_for_addon_mock.assert_called_once()
 
     def test_upload_with_addon(self):
@@ -325,7 +326,8 @@ class TestGetAddonAkismetReports(TestCase):
             user, user_agent, referrer, upload=upload)
         assert len(reports) == 1  # only one, no description
         self.create_for_addon_mock.assert_called_with(
-            upload, addon, user, 'name', u'fóó', user_agent, referrer)
+            upload=upload, addon=addon, user=user, property_name='name',
+            property_value=u'fóó', user_agent=user_agent, referrer=referrer)
         self.create_for_addon_mock.assert_called_once()
 
     def test_upload_locales(self):
@@ -350,14 +352,17 @@ class TestGetAddonAkismetReports(TestCase):
         assert self.create_for_addon_mock.call_count == 3
         calls = [
             mock.call(
-                upload, addon, user, 'name', u'just one name', user_agent,
-                referrer),
+                upload=upload, addon=addon, user=user,
+                property_name='name', property_value=u'just one name',
+                user_agent=user_agent, referrer=referrer),
             mock.call(
-                upload, addon, user, 'description', u'fóó', user_agent,
-                referrer),
+                upload=upload, addon=addon, user=user,
+                property_name='description', property_value=u'fóó',
+                user_agent=user_agent, referrer=referrer),
             mock.call(
-                upload, addon, user, 'description', u'lé foo', user_agent,
-                referrer)]
+                upload=upload, addon=addon, user=user,
+                property_name='description', property_value=u'lé foo',
+                user_agent=user_agent, referrer=referrer)]
         self.create_for_addon_mock.assert_has_calls(calls, any_order=True)
 
     def test_addon_update(self):
@@ -383,12 +388,15 @@ class TestGetAddonAkismetReports(TestCase):
         assert self.create_for_addon_mock.call_count == 3
         calls = [
             mock.call(
-                None, addon, user, 'name', u'just one name', user_agent,
-                referrer),
+                upload=None, addon=addon, user=user,
+                property_name='name', property_value=u'just one name',
+                user_agent=user_agent, referrer=referrer),
             mock.call(
-                None, addon, user, 'description', u'fóó', user_agent,
-                referrer),
+                upload=None, addon=addon, user=user,
+                property_name='description', property_value=u'fóó',
+                user_agent=user_agent, referrer=referrer),
             mock.call(
-                None, addon, user, 'description', u'lé foo', user_agent,
-                referrer)]
+                upload=None, addon=addon, user=user,
+                property_name='description', property_value=u'lé foo',
+                user_agent=user_agent, referrer=referrer)]
         self.create_for_addon_mock.assert_has_calls(calls, any_order=True)

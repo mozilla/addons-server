@@ -330,7 +330,8 @@ def get_addon_akismet_reports(user, user_agent, referrer, upload=None,
         return []  # bail early if no data to skip Translation lookups
     if addon and addon.has_listed_versions():
         translation_ids = (
-            getattr(addon, prop + '_id', -1) for prop in properties)
+            getattr(addon, prop + '_id', None) for prop in properties)
+        translation_ids = (id_ for id_ in translation_ids if id_)
         # Just get all the values together to make it simplier
         existing_data = {
             text_type(value)
@@ -354,6 +355,7 @@ def get_addon_akismet_reports(user, user_agent, referrer, upload=None,
                 # We don't want to submit empty or unchanged content
                 continue
             reports.append(AkismetReport.create_for_addon(
-                upload, addon, user, prop, comment, user_agent,
-                referrer))
+                upload=upload, addon=addon, user=user, property_name=prop,
+                property_value=comment, user_agent=user_agent,
+                referrer=referrer))
     return reports
