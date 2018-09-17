@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2015-10-28 17:23+0000\n"
-"Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
+"PO-Revision-Date: 2018-09-11 17:39+0000\n"
+"Last-Translator: RickieES <rpmdisguise-nave@yahoo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -101,10 +101,10 @@ msgid "WebExtension upgrade"
 msgstr "Actualización de WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Permitimos y alentamos las actualizaciones, pero no se puede invertir. Cuando los usuarios tengan la WebExtension instalada, no podrán instalar un complemento de alfabetización."
+msgstr "Permitimos y alentamos las actualizaciones, pero no se puede invertir. Cuando los usuarios tengan la WebExtension instalada, no podrán instalar un complemento clásico."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Trasladar un complemento de alfabetización de Firefox a MDN"
+msgstr "Portar un complemento clásico de Firefox en MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Incluye notas detalladas de la versión (esto puede hacerse en el siguiente paso)."
@@ -123,8 +123,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de "
-"subir código fuente para evitar que tu envío sea rechazado."
+"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de subir"
+" código fuente para evitar que tu envío sea rechazado."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "El proceso de validación encontró estos problemas que pueden llevar a rechazos:"
@@ -798,7 +798,7 @@ msgid "Number of Reviews"
 msgstr "Número de revisiones"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "El tamaño máximo de carga es de {0} - elige una imagen de fondo más pequeña."
 
 msgid "Requested Info"
 msgstr "Información solicitada"

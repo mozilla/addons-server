@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-05 10:05+0000\n"
-"Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
+"PO-Revision-Date: 2018-09-12 12:10+0000\n"
+"Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -3785,7 +3785,7 @@ msgid "%(position)s of %(total)s"
 msgstr "%(position)s από %(total)s"
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Υπεγράφη για αυτό-διανομή. Εσείς χειρίζεστε τις ενημερώσεις."
 
 msgid "Latest Version:"
 msgstr "Τελευταία έκδοση"
@@ -4719,9 +4719,8 @@ msgid "Manage your open tabs in a tidy sidebar."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Αποφυγή ύπουλων ιχνηλατών και περιορισμών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
@@ -4757,7 +4756,7 @@ msgstr "Ανάγνωση αρχείων ePub {start_sub_heading}με το {addon
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "Απολαύστε αρχεία ePub απευθείας στο Firefox—μεγέθυνση γραμματοσειράς, διαστάσεις σελίδας και άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4824,22 +4823,20 @@ msgid "Change the way you surf Reddit by using tags and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Στιγμιότυπα στο διαδίκτυο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Στιγμιότυπα ιστοσελίδων, επεξεργασία και κοινοποίηση."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
 msgstr "Ένα υπερέχον εργαλείο λήψεων μόνο για Windows."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Ενημερωθείτε για τους ιχνηλάτες {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
@@ -4866,9 +4863,8 @@ msgid "Designate a custom home page for your new tabs."
 msgstr "Ορίστε μια προσαρμοσμένη αρχική σελίδα για τις νέες καρτέλες."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Προβολή καρτελών σε λίστα {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
@@ -4883,18 +4879,16 @@ msgid "Check the state of your downloads through a status bar, download history 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Κάντε λήψη στιγμιότυπων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Στιγμιότυπα περιεχομένου στο διαδίκτυο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Εξατομίκευση καρτελών {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Προστασία από καταγραφή αναζήτησης {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
@@ -4917,9 +4911,8 @@ msgid "Enjoy thumbnail images alongside your search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Κάντε λήψη στιγμιότυπων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Ανακούφιση ματιών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -5130,9 +5123,8 @@ msgid "Open a new tab to the right of your current tab, not at the end of the ro
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Περιορισμός spam {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
@@ -5171,9 +5163,8 @@ msgid "Get creative and customize your new tab page by displaying your favorite 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Τέρμα οι ανακατευθύνσεις {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
@@ -5654,9 +5645,8 @@ msgid "Automatically delete browser history for websites you select."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Προφύλαξη σελιδοδεικτών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
@@ -6637,7 +6627,7 @@ msgid "Add-on Types"
 msgstr "Τύποι πρόσθετων"
 
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "Αναζήτηση με όνομα προσθέτου/email δημιουργού/GUID"
 
 msgid "Max. Version"
 msgstr "Μέγιστη έκδοση"

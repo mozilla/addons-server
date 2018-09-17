@@ -100,15 +100,15 @@ billiard==3.5.0.4 \
 bleach==1.5.0 \
     --hash=sha256:e67f46adcec78dbc3c04462f3aba3213a673d5652eba2609ed1ef15492a44b8d \
     --hash=sha256:978e758599b54cd3caa2e160d74102879b230ea8dc93871d0783721eef58bc65 # pyup: ==1.5.0
-boto3==1.8.9 \
-    --hash=sha256:3937eaba7cc429d1593824397f1d7dda4c9565c1269e8d3f665cee3c1b1b955c \
-    --hash=sha256:ae1bc72a3921807ef8c0daa6c4bd147e6caa630df263e5ea5e8c36535e17ee73
+boto3==1.9.4 \
+    --hash=sha256:323660fd1aa9c95fe90003f44c5fc37cbb891a8b506fa346967d14edcbcb90a4 \
+    --hash=sha256:2152e0da8098665e6a03bbbde1de1b4fafdef7151010d1f0e53693a3f2a1deb0
 celery==4.1.1 \
     --hash=sha256:6fc4678d1692af97e137b2a9f1c04efd8e7e2fb7134c5c5ad60738cdd927762f \
     --hash=sha256:d1f2a3359bdbdfb344edce98b8e891f5fe64f8a11c5a45538ec20ac237c971f5 # pyup: <4.2
-botocore==1.11.9 \
-    --hash=sha256:1294d1422b278dac28869d5b96156171dd8d5b609da28fec006add8a81a31dfa \
-    --hash=sha256:91c32b97dd2f1046b1de3ce5c8bc19cf4993bc631864c9fcbf51f261bc3a7aab
+botocore==1.12.4 \
+    --hash=sha256:3b2cab368572ee987a6236321ddea491e4253c819009c87ebc9e42e60371e3ae \
+    --hash=sha256:7834eba53c6bedea21eb76f25a39e477dede3a24aeb51ff19c0248ea8348f007
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -262,11 +262,11 @@ mock==2.0.0 \
     --hash=sha256:5ce3c71c5545b472da17b72268978914d0252980348636840bd34a00b5cc96c1 \
     --hash=sha256:b158b6df76edd239b8208d481dc46b6afd45a846b7812ff0ce58971cf5bc8bba
 # natsort is required by amo-validator
-natsort==5.4.0 \
-    --hash=sha256:77ec07a0c76864992c31e8504a299e19474ff572ef18ef5c101b8e0120f8fc11 \
-    --hash=sha256:9130c8954f9437a0401d4e451b4b90a874b51ce47d91ede0f2cce4db762717f9
-newrelic==4.2.0.100 \
-    --hash=sha256:da56df90005b233466d81424a0478dcea2b00bf5a6853d9a1a1451f03e07f41e
+natsort==5.4.1 \
+    --hash=sha256:ea0bbac61fbc2511607f667a3e1adead7e65f75dd59bf8a429298d56c506db34 \
+    --hash=sha256:ae73b005135dc152e7b282b2d4cf19380d8cab4c4026461ee9f37bf3aa12e344
+newrelic==4.4.0.103 \
+    --hash=sha256:2e5f6423a2b781c07df4e6d8a48ca5b375bacd495503f634657c9ea09231d321
 nobot==0.5 \
     --hash=sha256:fa0582d81f562cd5b61e241005feb3f51548fe3fc165aed292952ff78676e28a \
     --hash=sha256:0a1c43a74f1c55f06cf2eb98cb472762dbdd7df5eb693d438c9fb42cfcfe79e5

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-03 14:21+0000\n"
+"PO-Revision-Date: 2018-09-11 17:38+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4910,7 +4910,7 @@ msgstr "Adicione imagens aos resultados das pesquisas {start_sub_heading}com {ad
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
-msgstr "Desfrute de miniaturas ao lado dos resultados de pesquisas."
+msgstr "Desfrute de miniaturas ao lado dos seus resultados de pesquisas."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
