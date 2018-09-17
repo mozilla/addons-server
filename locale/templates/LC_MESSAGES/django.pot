@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,11 +70,11 @@ msgstr ""
 msgid "You could not be logged in. Please try again."
 msgstr ""
 
-#: src/olympia/accounts/views.py:157
+#: src/olympia/accounts/views.py:161
 msgid "Need help?"
 msgstr ""
 
-#: src/olympia/accounts/views.py:440
+#: src/olympia/accounts/views.py:444
 msgid ""
 "Developers of add-ons or themes cannot delete their account. You must delete "
 "all add-ons and themes linked to this account, or transfer them to other "
@@ -246,7 +246,7 @@ msgstr ""
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
 
-#: src/olympia/addons/utils.py:118
+#: src/olympia/addons/utils.py:119
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
@@ -1160,7 +1160,7 @@ msgstr ""
 msgid "This must be a valid hex color code, such as #000000."
 msgstr ""
 
-#: src/olympia/amo/middleware.py:204 src/olympia/templates/base.html:66
+#: src/olympia/amo/middleware.py:201 src/olympia/templates/base.html:66
 #: src/olympia/templates/impala/base.html:98
 msgid ""
 "Some features are temporarily disabled while we perform website maintenance. "
@@ -1504,23 +1504,27 @@ msgstr ""
 msgid "Another Body"
 msgstr ""
 
-#: src/olympia/api/authentication.py:59 src/olympia/api/authentication.py:243
+#: src/olympia/api/authentication.py:59 src/olympia/api/authentication.py:246
 msgid "Invalid Authorization header. No credentials provided."
 msgstr ""
 
-#: src/olympia/api/authentication.py:66 src/olympia/api/authentication.py:247
+#: src/olympia/api/authentication.py:66 src/olympia/api/authentication.py:250
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
 
-#: src/olympia/api/authentication.py:96 src/olympia/api/authentication.py:185
+#: src/olympia/api/authentication.py:96 src/olympia/api/authentication.py:188
 msgid "Signature has expired."
 msgstr ""
 
-#: src/olympia/api/authentication.py:102 src/olympia/api/authentication.py:188
+#: src/olympia/api/authentication.py:102 src/olympia/api/authentication.py:191
 msgid "Error decoding signature."
 msgstr ""
 
-#: src/olympia/api/authentication.py:191
+#: src/olympia/api/authentication.py:185
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
+
+#: src/olympia/api/authentication.py:194
 msgid "Invalid JWT Token."
 msgstr ""
 
@@ -6106,6 +6110,14 @@ msgstr ""
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr ""
 
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html:17
+msgid "Live Testing"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html:18
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
+
 #: src/olympia/devhub/templates/devhub/personas/edit.html:27
 msgid "Transfer ownership"
 msgstr ""
@@ -9442,33 +9454,33 @@ msgstr ""
 msgid "Other (please specify)"
 msgstr ""
 
-#: src/olympia/ratings/serializers.py:67
+#: src/olympia/ratings/serializers.py:63
 msgid "This field is required."
 msgstr ""
 
-#: src/olympia/ratings/serializers.py:79
+#: src/olympia/ratings/serializers.py:75
 msgid "You can't change the add-on of a review once it has been created."
 msgstr ""
 
-#: src/olympia/ratings/serializers.py:126
+#: src/olympia/ratings/serializers.py:122
 msgid "You can't reply to a review that is already a reply."
 msgstr ""
 
-#: src/olympia/ratings/serializers.py:172
+#: src/olympia/ratings/serializers.py:168
 msgid ""
 "You can't change the version of the add-on reviewed once the review has been "
 "created."
 msgstr ""
 
-#: src/olympia/ratings/serializers.py:183
+#: src/olympia/ratings/serializers.py:179
 msgid "This version of the add-on doesn't exist or isn't public."
 msgstr ""
 
-#: src/olympia/ratings/serializers.py:192
+#: src/olympia/ratings/serializers.py:188
 msgid "You can't leave a review on your own add-on."
 msgstr ""
 
-#: src/olympia/ratings/serializers.py:199
+#: src/olympia/ratings/serializers.py:195
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
@@ -10790,7 +10802,7 @@ msgid "Rejected or Unreviewed"
 msgstr ""
 
 #: src/olympia/reviewers/templatetags/jinja_helpers.py:44
-#: src/olympia/versions/models.py:451
+#: src/olympia/versions/models.py:468
 #, python-format
 msgid "[status:%s]"
 msgstr ""
@@ -12057,7 +12069,7 @@ msgstr ""
 msgid "Version History with Changelogs"
 msgstr ""
 
-#: src/olympia/versions/models.py:859
+#: src/olympia/versions/models.py:876
 msgid "{app} {min} and later"
 msgstr ""
 

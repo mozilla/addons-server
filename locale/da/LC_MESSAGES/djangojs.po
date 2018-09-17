@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
 "PO-Revision-Date: 2018-06-10 04:40+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
@@ -211,29 +211,53 @@ msgstr ""
 msgid "Week of {0}"
 msgstr "Uge {0}"
 
-msgid " downloads"
-msgstr " filhentninger"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " filhentninger"
+msgstr[1] " filhentninger"
 
-msgid "{0} users"
-msgstr "{0} brugere"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} brugere"
+msgstr[1] "{0} brugere"
 
-msgid "{0} add-ons"
-msgstr "{0} tilføjelser"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} tilføjelser"
+msgstr[1] "{0} tilføjelser"
 
-msgid "{0} collections"
-msgstr "{0} samlinger"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} samlinger"
+msgstr[1] "{0} samlinger"
 
-msgid "{0} reviews"
-msgstr "{0} anmeldelser"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} anmeldelser"
+msgstr[1] "{0} anmeldelser"
 
-msgid "{0} sales"
-msgstr "{0} salg"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} salg"
+msgstr[1] "{0} salg"
 
-msgid "{0} refunds"
-msgstr "{0} refunderinger"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} refunderinger"
+msgstr[1] "{0} refunderinger"
 
-msgid "{0} installs"
-msgstr "{0} installeringer"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} installeringer"
+msgstr[1] "{0} installeringer"
 
 msgid "Downloads"
 msgstr "Filhentninger"

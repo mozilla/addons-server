@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
 "PO-Revision-Date: 2016-11-23 15:22+0000\n"
 "Last-Translator: malditoastur <malditoastur@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -212,29 +212,53 @@ msgstr ""
 msgid "Week of {0}"
 msgstr "Selmana de {0}"
 
-msgid " downloads"
-msgstr " descargues"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " descargues"
+msgstr[1] " descargues"
 
-msgid "{0} users"
-msgstr "{0} usuarios"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} usuarios"
+msgstr[1] "{0} usuarios"
 
-msgid "{0} add-ons"
-msgstr "{0} add-ons"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} add-ons"
+msgstr[1] "{0} add-ons"
 
-msgid "{0} collections"
-msgstr "{0} coleiciones"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} coleiciones"
+msgstr[1] "{0} coleiciones"
 
-msgid "{0} reviews"
-msgstr "{0} reseñes"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} reseñes"
+msgstr[1] "{0} reseñes"
 
-msgid "{0} sales"
-msgstr "{0} ventes"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} ventes"
+msgstr[1] "{0} ventes"
 
-msgid "{0} refunds"
-msgstr "{0} reembolsos"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} reembolsos"
+msgstr[1] "{0} reembolsos"
 
-msgid "{0} installs"
-msgstr "{0} instalaciones"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} instalaciones"
+msgstr[1] "{0} instalaciones"
 
 msgid "Downloads"
 msgstr "Descargues"

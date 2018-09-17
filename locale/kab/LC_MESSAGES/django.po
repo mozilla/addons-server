@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
 "PO-Revision-Date: 2018-08-20 17:22+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -904,6 +904,9 @@ msgstr "Azmul yemmut."
 
 msgid "Error decoding signature."
 msgstr "Tuccḍa deg uzmek n uzmul."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "Ajiṭun JWT mačči d ameɣtu."
@@ -4031,6 +4034,13 @@ msgstr "Akayad n umṣada"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Senqed akken ad twaliḍ ma yella azegrir imsaḍa akked Firefox."
+
+#, fuzzy
+msgid "Live Testing"
+msgstr "Asebter n usnas"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
 
 msgid "Transfer ownership"
 msgstr "Beddel imawlan n uzegrir"

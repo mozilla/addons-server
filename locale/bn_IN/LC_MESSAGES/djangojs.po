@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
 "PO-Revision-Date: 2017-10-19 19:03+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -211,29 +211,53 @@ msgstr "আসল ব্যবহার করুন"
 msgid "Week of {0}"
 msgstr "{0} সপ্তাহে"
 
-msgid " downloads"
-msgstr " ডাউনলোডসমূহ"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " ডাউনলোডসমূহ"
+msgstr[1] " ডাউনলোডসমূহ"
 
-msgid "{0} users"
-msgstr "{0} ব্যবহারকারী"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} ব্যবহারকারী"
+msgstr[1] "{0} ব্যবহারকারী"
 
-msgid "{0} add-ons"
-msgstr "{0} অ্যাড-অন"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} অ্যাড-অন"
+msgstr[1] "{0} অ্যাড-অন"
 
-msgid "{0} collections"
-msgstr "{0} সংকলন"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} সংকলন"
+msgstr[1] "{0} সংকলন"
 
-msgid "{0} reviews"
-msgstr "{0} পর্যালোচনা"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} পর্যালোচনা"
+msgstr[1] "{0} পর্যালোচনা"
 
-msgid "{0} sales"
-msgstr "{0} টি বিক্রি"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} টি বিক্রি"
+msgstr[1] "{0} টি বিক্রি"
 
-msgid "{0} refunds"
-msgstr "{0} প্রত্যর্পণ"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} প্রত্যর্পণ"
+msgstr[1] "{0} প্রত্যর্পণ"
 
-msgid "{0} installs"
-msgstr "{0} টি ইন্সটল"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} টি ইন্সটল"
+msgstr[1] "{0} টি ইন্সটল"
 
 msgid "Downloads"
 msgstr "ডাউনলোডসমূহ"

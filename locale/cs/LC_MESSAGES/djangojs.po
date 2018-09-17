@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
 "PO-Revision-Date: 2018-04-28 12:30+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -220,29 +220,61 @@ msgstr "Použít původní"
 msgid "Week of {0}"
 msgstr "Týden {0}"
 
-msgid " downloads"
-msgstr " stažení"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " stažení"
+msgstr[1] " stažení"
+msgstr[2] " stažení"
 
-msgid "{0} users"
-msgstr "{0} uživatelů"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} uživatelů"
+msgstr[1] "{0} uživatelů"
+msgstr[2] "{0} uživatelů"
 
-msgid "{0} add-ons"
-msgstr "{0} doplňků"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} doplňků"
+msgstr[1] "{0} doplňků"
+msgstr[2] "{0} doplňků"
 
-msgid "{0} collections"
-msgstr "{0} sbírek"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} sbírek"
+msgstr[1] "{0} sbírek"
+msgstr[2] "{0} sbírek"
 
-msgid "{0} reviews"
-msgstr "{0} recenzí"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} recenzí"
+msgstr[1] "{0} recenzí"
+msgstr[2] "{0} recenzí"
 
-msgid "{0} sales"
-msgstr "{0} prodejů"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} prodejů"
+msgstr[1] "{0} prodejů"
+msgstr[2] "{0} prodejů"
 
-msgid "{0} refunds"
-msgstr "{0} vrácení plateb"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} vrácení plateb"
+msgstr[1] "{0} vrácení plateb"
+msgstr[2] "{0} vrácení plateb"
 
-msgid "{0} installs"
-msgstr "{0} instalací"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} instalací"
+msgstr[1] "{0} instalací"
+msgstr[2] "{0} instalací"
 
 msgid "Downloads"
 msgstr "Stažení"

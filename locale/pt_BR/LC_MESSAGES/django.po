@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
 "PO-Revision-Date: 2018-08-16 15:03+0000\n"
 "Last-Translator: Wolfgang Marcos <eusou@olobo.me>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -943,6 +943,9 @@ msgstr "A assinatura expirou."
 
 msgid "Error decoding signature."
 msgstr "Erro ao decodificar assinatura."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "Token JWT inválido."
@@ -4151,6 +4154,13 @@ msgstr "Teste de compatibilidade"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Marque para verificar se sua extensão é compatível com o Firefox."
+
+#, fuzzy
+msgid "Live Testing"
+msgstr "Ver listagem"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
 
 msgid "Transfer ownership"
 msgstr "Transferir propriedade"
