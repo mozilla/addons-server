@@ -16,6 +16,23 @@ class CollectionAddonInline(admin.TabularInline):
     # some reason, even though it's picked up as a translated fields correctly.
     readonly_fields = ('comments',)
 
+    # Permission checks:
+    # We use the implementation for CollectionAdmin permission checks: if you
+    # can edit a collection, you can edit/remove the add-ons inside it.
+    def has_change_permission(self, request, obj=None):
+        return CollectionAdmin(
+            Collection, self.admin_site).has_change_permission(
+                request, obj=getattr(obj, 'collection', None))
+
+    def has_delete_permission(self, request, obj=None):
+        # For deletion we use the *change* permission to allow curators to
+        # remove an add-on from a collection (they can't delete a collection).
+        return self.has_change_permission(request, obj=obj)
+
+    def has_add_permission(self, request):
+        return CollectionAdmin(Collection, self.admin_site).has_add_permission(
+            request)
+
 
 class CollectionAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug', 'addon_count',)
