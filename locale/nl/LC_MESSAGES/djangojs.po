@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2018-09-03 12:41+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -217,29 +217,53 @@ msgstr "Oorspronkelijke gebruiken"
 msgid "Week of {0}"
 msgstr "Week van {0}"
 
-msgid " downloads"
-msgstr " downloads"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " downloads"
+msgstr[1] " downloads"
 
-msgid "{0} users"
-msgstr "{0} gebruikers"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} gebruikers"
+msgstr[1] "{0} gebruikers"
 
-msgid "{0} add-ons"
-msgstr "{0} add-ons"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} add-ons"
+msgstr[1] "{0} add-ons"
 
-msgid "{0} collections"
-msgstr "{0} collecties"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} collecties"
+msgstr[1] "{0} collecties"
 
-msgid "{0} reviews"
-msgstr "{0} beoordelingen"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} beoordelingen"
+msgstr[1] "{0} beoordelingen"
 
-msgid "{0} sales"
-msgstr "{0} verkopen"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} verkopen"
+msgstr[1] "{0} verkopen"
 
-msgid "{0} refunds"
-msgstr "{0} restituties"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} restituties"
+msgstr[1] "{0} restituties"
 
-msgid "{0} installs"
-msgstr "{0} installaties"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} installaties"
+msgstr[1] "{0} installaties"
 
 msgid "Downloads"
 msgstr "Downloads"
@@ -443,8 +467,8 @@ msgstr "Downloads en dagelijkse gebruikers van {0} tot {1}"
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Installaties en dagelijkse gebruikers, laatste {0} dagen"
 
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 # why not localize the date format?
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Installaties en dagelijkse gebruikers van {0} tot {1}"
 
@@ -524,8 +548,8 @@ msgstr "Bijdragen van {0} tot {1}"
 msgid "Site Metrics, last {0} days"
 msgstr "Websitegegevens, laatste {0} dagen"
 
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 # why not localize the date format?
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
 msgstr "Websitegegevens van {0} tot {1}"
 

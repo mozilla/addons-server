@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2018-09-11 17:39+0000\n"
 "Last-Translator: RickieES <rpmdisguise-nave@yahoo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,8 +123,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de subir"
-" código fuente para evitar que tu envío sea rechazado."
+"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de "
+"subir código fuente para evitar que tu envío sea rechazado."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "El proceso de validación encontró estos problemas que pueden llevar a rechazos:"
@@ -214,29 +214,53 @@ msgstr "Usar original"
 msgid "Week of {0}"
 msgstr "Semana de {0}"
 
-msgid " downloads"
-msgstr " descargas"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " descargas"
+msgstr[1] " descargas"
 
-msgid "{0} users"
-msgstr "{0} usuarios"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} usuarios"
+msgstr[1] "{0} usuarios"
 
-msgid "{0} add-ons"
-msgstr "{0} complementos"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} complementos"
+msgstr[1] "{0} complementos"
 
-msgid "{0} collections"
-msgstr "{0} colecciones"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} colecciones"
+msgstr[1] "{0} colecciones"
 
-msgid "{0} reviews"
-msgstr "{0} valoraciones"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} valoraciones"
+msgstr[1] "{0} valoraciones"
 
-msgid "{0} sales"
-msgstr "{0} ventas"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} ventas"
+msgstr[1] "{0} ventas"
 
-msgid "{0} refunds"
-msgstr "{0} reembolsos"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} reembolsos"
+msgstr[1] "{0} reembolsos"
 
-msgid "{0} installs"
-msgstr "{0} instalaciones"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} instalaciones"
+msgstr[1] "{0} instalaciones"
 
 msgid "Downloads"
 msgstr "Descargas"

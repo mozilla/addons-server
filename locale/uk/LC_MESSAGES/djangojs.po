@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2018-09-06 10:55+0000\n"
 "Last-Translator: Liudmyla <forworkfest@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -218,29 +218,61 @@ msgstr "Використовувати оригінальний"
 msgid "Week of {0}"
 msgstr "Тиждень {0}"
 
-msgid " downloads"
-msgstr " завантажень"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " завантажень"
+msgstr[1] " завантажень"
+msgstr[2] " завантажень"
 
-msgid "{0} users"
-msgstr "{0} користувачів"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} користувачів"
+msgstr[1] "{0} користувачів"
+msgstr[2] "{0} користувачів"
 
-msgid "{0} add-ons"
-msgstr "{0} додатків"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} додатків"
+msgstr[1] "{0} додатків"
+msgstr[2] "{0} додатків"
 
-msgid "{0} collections"
-msgstr "{0} збірок"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} збірок"
+msgstr[1] "{0} збірок"
+msgstr[2] "{0} збірок"
 
-msgid "{0} reviews"
-msgstr "{0} оглядів"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} оглядів"
+msgstr[1] "{0} оглядів"
+msgstr[2] "{0} оглядів"
 
-msgid "{0} sales"
-msgstr "{0} продаж"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} продаж"
+msgstr[1] "{0} продаж"
+msgstr[2] "{0} продаж"
 
-msgid "{0} refunds"
-msgstr "{0} повернень"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} повернень"
+msgstr[1] "{0} повернень"
+msgstr[2] "{0} повернень"
 
-msgid "{0} installs"
-msgstr "{0} встановлень"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} встановлень"
+msgstr[1] "{0} встановлень"
+msgstr[2] "{0} встановлень"
 
 msgid "Downloads"
 msgstr "Завантажень"

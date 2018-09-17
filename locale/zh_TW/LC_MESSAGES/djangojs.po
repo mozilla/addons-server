@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2018-09-11 13:38+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -206,29 +206,45 @@ msgstr "使用原始的"
 msgid "Week of {0}"
 msgstr "第 {0} 週"
 
-msgid " downloads"
-msgstr " 次下載"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " 次下載"
 
-msgid "{0} users"
-msgstr "{0} 位使用者"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} 位使用者"
 
-msgid "{0} add-ons"
-msgstr "{0} 個附加元件"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} 個附加元件"
 
-msgid "{0} collections"
-msgstr "{0} 個收藏集"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} 個收藏集"
 
-msgid "{0} reviews"
-msgstr "{0} 個評論"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} 個評論"
 
-msgid "{0} sales"
-msgstr "{0} 筆銷售"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} 筆銷售"
 
-msgid "{0} refunds"
-msgstr "{0} 筆退費"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} 筆退費"
 
-msgid "{0} installs"
-msgstr "{0} 個安裝數"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} 個安裝數"
 
 msgid "Downloads"
 msgstr "下載數"

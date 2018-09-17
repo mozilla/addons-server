@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2018-07-26 08:54+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -211,29 +211,53 @@ msgstr "అసలుది వాడు"
 msgid "Week of {0}"
 msgstr "వారం {0}"
 
-msgid " downloads"
-msgstr " దింపుకోళ్ళు"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " దింపుకోళ్ళు"
+msgstr[1] " దింపుకోళ్ళు"
 
-msgid "{0} users"
-msgstr "{0} వాడుకరులు"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} వాడుకరులు"
+msgstr[1] "{0} వాడుకరులు"
 
-msgid "{0} add-ons"
-msgstr "{0} పొడిగింతలు"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} పొడిగింతలు"
+msgstr[1] "{0} పొడిగింతలు"
 
-msgid "{0} collections"
-msgstr "{0} సేకరణలు"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} సేకరణలు"
+msgstr[1] "{0} సేకరణలు"
 
-msgid "{0} reviews"
-msgstr "{0} సమీక్షలు"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} సమీక్షలు"
+msgstr[1] "{0} సమీక్షలు"
 
-msgid "{0} sales"
-msgstr "{0} అమ్మకాలు"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} అమ్మకాలు"
+msgstr[1] "{0} అమ్మకాలు"
 
-msgid "{0} refunds"
-msgstr "{0} వాపసులు"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} వాపసులు"
+msgstr[1] "{0} వాపసులు"
 
-msgid "{0} installs"
-msgstr "{0} స్థాపనలు"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} స్థాపనలు"
+msgstr[1] "{0} స్థాపనలు"
 
 msgid "Downloads"
 msgstr "దింపుకోళ్ళు"

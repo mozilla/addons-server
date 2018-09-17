@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2018-03-04 16:16+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -897,6 +897,9 @@ msgstr "স্বাক্ষর মেয়াদ উত্তীর্ণ হ
 
 msgid "Error decoding signature."
 msgstr "ভুল ডিকোডিং স্বাক্ষর।"
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "অবৈধ JWT টোকেন।"
@@ -4065,6 +4068,12 @@ msgid "Compatibility Test"
 msgstr "উপযুক্ত"
 
 msgid "Check to see if your extension is compatible with Firefox."
+msgstr ""
+
+msgid "Live Testing"
+msgstr ""
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging.."
 msgstr ""
 
 msgid "Transfer ownership"

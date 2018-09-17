@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -906,6 +906,9 @@ msgstr ".pǝɹıdxǝ sɐɥ ǝɹnʇɐuƃıS"
 
 msgid "Error decoding signature."
 msgstr ".ǝɹnʇɐuƃıs ƃuıpoɔǝp ɹoɹɹƎ"
+
+msgid "Wrong type for one or more keys in payload"
+msgstr "pɐoʅʎɐd uı sʎǝʞ ǝɹoɯ ɹo ǝuo ɹoɟ ǝdʎʇ ƃuoɹＭ"
 
 msgid "Invalid JWT Token."
 msgstr ".uǝʞo⊥ ⊥Ｍſ pıʅɐʌuI"
@@ -4025,6 +4028,12 @@ msgstr "ʇsǝ⊥ ʎʇıʅıqıʇɐdɯoↃ"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr ".xoɟǝɹıℲ ɥʇıʍ ǝʅqıʇɐdɯoɔ sı uoısuǝʇxǝ ɹnoʎ ɟı ǝǝs oʇ ʞɔǝɥↃ"
+
+msgid "Live Testing"
+msgstr "ƃuıʇsǝ⊥ ǝʌı⅂"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging.."
+msgstr "..ƃuıƃƃnqǝp puɐ ƃuıʇsǝʇ ǝʌıʅ ɹoɟ xoɟǝɹıℲ uı uoısuǝʇxǝ ɹnoʎ ʅʅɐʇsuı ʎʅıɹɐɹodɯǝ⊥"
 
 msgid "Transfer ownership"
 msgstr "dıɥsɹǝuʍo ɹǝɟsuɐɹ⊥"

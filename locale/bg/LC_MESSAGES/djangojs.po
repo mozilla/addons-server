@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2018-07-12 10:19+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -214,29 +214,53 @@ msgstr "Използване на оригинала"
 msgid "Week of {0}"
 msgstr "Седмица от {0}"
 
-msgid " downloads"
-msgstr " изтегляния"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " изтегляния"
+msgstr[1] " изтегляния"
 
-msgid "{0} users"
-msgstr "{0} потребители"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} потребители"
+msgstr[1] "{0} потребители"
 
-msgid "{0} add-ons"
-msgstr "{0} добавки"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} добавки"
+msgstr[1] "{0} добавки"
 
-msgid "{0} collections"
-msgstr "{0} списъци"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} списъци"
+msgstr[1] "{0} списъци"
 
-msgid "{0} reviews"
-msgstr "{0} отзива"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} отзива"
+msgstr[1] "{0} отзива"
 
-msgid "{0} sales"
-msgstr "{0} продажби"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} продажби"
+msgstr[1] "{0} продажби"
 
-msgid "{0} refunds"
-msgstr "{0} възстановявания"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} възстановявания"
+msgstr[1] "{0} възстановявания"
 
-msgid "{0} installs"
-msgstr "{0} инсталации"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} инсталации"
+msgstr[1] "{0} инсталации"
 
 msgid "Downloads"
 msgstr "Изтегляния"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2018-08-28 20:37+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -934,6 +934,9 @@ msgstr "Platnosť podpisu vypršala."
 
 msgid "Error decoding signature."
 msgstr "Chyba pri čítaní podpisu."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "Neplatný token JWT."
@@ -4158,6 +4161,13 @@ msgstr "Testy kompatibility"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Overte si, či je vaše rozšírenie kompatibilné s Firefoxom."
+
+#, fuzzy
+msgid "Live Testing"
+msgstr "Zobraziť doplnok"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging.."
+msgstr ""
 
 msgid "Transfer ownership"
 msgstr "Presun vlastníctva"
