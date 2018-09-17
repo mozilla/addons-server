@@ -105,6 +105,26 @@ def clean_tags(request, tags):
     return target
 
 
+class AkismetSpamCheckFormMixin(object):
+    fields_to_akismet_comment_check = []
+
+    def clean(self):
+        data = {
+            prop: value for prop, value in self.cleaned_data.items()
+            if prop in self.fields_to_akismet_comment_check}
+        request_meta = getattr(self.request, 'META', {})
+        reports = get_addon_akismet_reports(
+            user=getattr(self.request, 'user', None),
+            user_agent=request_meta.get('HTTP_USER_AGENT'),
+            referrer=request_meta.get('HTTP_REFERER'),
+            addon=self.instance,
+            data=data)
+        if any((report.comment_check() for report in reports)):
+            raise forms.ValidationError(ugettext(
+                'The text entered has been flagged as spam.'))
+        return super(AkismetSpamCheckFormMixin, self).clean()
+
+
 class AddonFormBase(TranslationFormMixin, forms.ModelForm):
 
     def __init__(self, *args, **kw):
@@ -137,22 +157,8 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
             return list(addon.tags.filter(restricted=False)
                         .values_list('tag_text', flat=True))
 
-    def clean(self):
-        data = self.cleaned_data
-        reports = get_addon_akismet_reports(
-            user=getattr(self.request, 'user', None),
-            user_agent=getattr(
-                self.request, 'META', {}).get('HTTP_USER_AGENT'),
-            referrer=getattr(self.request, 'META', {}).get('HTTP_REFERER'),
-            addon=self.instance,
-            data=data)
-        if any((report.comment_check() for report in reports)):
-            raise forms.ValidationError(ugettext(
-                'The text entered has been flagged as spam.'))
-        return data
 
-
-class AddonFormBasic(AddonFormBase):
+class AddonFormBasic(AkismetSpamCheckFormMixin, AddonFormBase):
     name = TransField(max_length=50)
     slug = forms.CharField(max_length=30)
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
@@ -161,6 +167,8 @@ class AddonFormBasic(AddonFormBase):
     contributions = HttpHttpsOnlyURLField(required=False, max_length=255)
     is_experimental = forms.BooleanField(required=False)
     requires_payment = forms.BooleanField(required=False)
+
+    fields_to_akismet_comment_check = ['name', 'summary']
 
     class Meta:
         model = Addon
@@ -204,11 +212,13 @@ class AddonFormBasic(AddonFormBase):
         return addonform
 
 
-class AddonFormBasicUnlisted(AddonFormBase):
+class AddonFormBasicUnlisted(AkismetSpamCheckFormMixin, AddonFormBase):
     name = TransField(max_length=50)
     slug = forms.CharField(max_length=30)
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
                          max_length=250)
+
+    fields_to_akismet_comment_check = ['name', 'summary']
 
     class Meta:
         model = Addon
@@ -360,9 +370,11 @@ class AddonFormMedia(AddonFormBase):
         return super(AddonFormMedia, self).save(commit)
 
 
-class AddonFormDetails(AddonFormBase):
+class AddonFormDetails(AkismetSpamCheckFormMixin, AddonFormBase):
     default_locale = forms.TypedChoiceField(choices=LOCALES)
     homepage = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
+
+    fields_to_akismet_comment_check = ['description']
 
     class Meta:
         model = Addon
