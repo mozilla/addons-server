@@ -607,9 +607,17 @@ class Addon(OnChangeMixin, ModelBase):
         addon = cls.initialize_addon_from_upload(
             parsed_data, upload, channel, user)
 
+        reviewer_flags_defaults = {}
         if upload.validation_timeout:
+            reviewer_flags_defaults['needs_admin_code_review'] = True
+        elif parsed_data.get('is_mozilla_signed_extension'):
+            reviewer_flags_defaults['needs_admin_code_review'] = True
+            reviewer_flags_defaults['auto_approval_disabled'] = True
+
+        if reviewer_flags_defaults:
             AddonReviewerFlags.objects.update_or_create(
-                addon=addon, defaults={'needs_admin_code_review': True})
+                addon=addon, defaults=reviewer_flags_defaults)
+
         Version.from_upload(
             upload, addon, platforms, channel=channel, parsed_data=parsed_data)
 

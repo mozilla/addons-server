@@ -2413,6 +2413,7 @@ class TestAddonFromUpload(UploadTest):
         addon = Addon.from_upload(
             upload, [self.platform], parsed_data=self.dummy_parsed_data)
         assert not addon.needs_admin_code_review
+        assert not addon.auto_approval_disabled
 
     def test_validation_timeout(self):
         upload = self.get_upload('extension.xpi')
@@ -2426,6 +2427,16 @@ class TestAddonFromUpload(UploadTest):
         addon = Addon.from_upload(
             upload, [self.platform], parsed_data=self.dummy_parsed_data)
         assert addon.needs_admin_code_review
+        assert not addon.auto_approval_disabled
+
+    def test_mozilla_signed(self):
+        upload = self.get_upload('extension.xpi')
+        assert not upload.validation_timeout
+        self.dummy_parsed_data['is_mozilla_signed_extension'] = True
+        addon = Addon.from_upload(
+            upload, [self.platform], parsed_data=self.dummy_parsed_data)
+        assert addon.needs_admin_code_review
+        assert addon.auto_approval_disabled
 
     def test_webextension_generate_guid(self):
         self.upload = self.get_upload('webextension_no_id.xpi')
