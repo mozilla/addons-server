@@ -325,16 +325,19 @@ def get_addon_akismet_reports(user, user_agent, referrer, upload=None,
         addon = addon or upload.addon
         data = data or Addon.resolve_webext_translations(
             parse_addon(upload, addon, user), upload)
-        existing_data = ()
+
     if not data:
-            return []  # bail early if no data to skip Translation lookups
-    if addon:
+        return []  # bail early if no data to skip Translation lookups
+    if addon and addon.has_listed_versions():
         translation_ids = (
             getattr(addon, prop + '_id', -1) for prop in properties)
         # Just get all the values together to make it simplier
         existing_data = {
             text_type(value)
             for value in Translation.objects.filter(id__in=translation_ids)}
+    else:
+        existing_data = ()
+
     reports = []
     for prop in properties:
         locales = data.get(prop)

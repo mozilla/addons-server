@@ -962,12 +962,12 @@ class TestUploadDetail(BaseUploadTest):
             'rejected': False,
             'metadata': {}}
 
-    def upload_file(self, file):
+    def upload_file(self, file, url='devhub.upload'):
         addon = os.path.join(
             settings.ROOT, 'src', 'olympia', 'devhub', 'tests', 'addons', file)
         with open(addon, 'rb') as f:
             response = self.client.post(
-                reverse('devhub.upload'), {'upload': f})
+                reverse(url), {'upload': f})
         assert response.status_code == 302
 
     def test_detail_json(self):
@@ -1368,6 +1368,16 @@ class TestUploadDetail(BaseUploadTest):
         assert data['validation']['messages'][0]['id'] == [
             u'validation', u'messages', u'akismet_is_spam'
         ]
+
+    @override_switch('akismet-spam-check', active=True)
+    def test_akismet_reports_not_created_for_unlisted(self):
+        self.upload_file('valid_webextension.xpi', 'devhub.upload_unlisted')
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+        assert response.status_code == 200
+        assert AkismetReport.objects.count() == 0
 
 
 def assert_json_error(request, field, msg):

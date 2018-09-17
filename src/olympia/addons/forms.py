@@ -139,9 +139,6 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
 
     def clean(self):
         data = self.cleaned_data
-        if not self.instance.has_listed_versions():
-            # We only care about listed add-ons.
-            return data
         reports = get_addon_akismet_reports(
             user=getattr(self.request, 'user', None),
             user_agent=getattr(

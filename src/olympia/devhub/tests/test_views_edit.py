@@ -280,6 +280,70 @@ class BaseTestEditBasic(BaseTestEdit):
                                           application=amo.FIREFOX.id)
         cache.clear()
 
+    @override_switch('akismet-spam-check', active=False)
+    def test_akismet_waffle_off(self):
+        data = self.get_dict()
+
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+        assert AkismetReport.objects.count() == 0
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
+    def test_akismet_edit_is_ham(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+        data = self.get_dict()
+
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+
+        # Akismet check is there
+        assert AkismetReport.objects.count() == 2
+        name_report = AkismetReport.objects.first()
+        assert name_report.comment_type == 'product-name'
+        assert name_report.comment == data['name']
+        summary_report = AkismetReport.objects.last()
+        assert summary_report.comment_type == 'product-summary'
+        assert summary_report.comment == data['summary']
+
+        assert comment_check_mock.call_count == 2
+        assert 'spam' not in response.content
+
+        # And metadata was updated
+        addon = self.get_addon()
+        assert unicode(addon.name) == data['name']
+        assert unicode(addon.summary) == data['summary']
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
+    def test_akismet_edit_is_spam(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
+        old_name = self.addon.name
+        old_summary = self.addon.summary
+        data = self.get_dict()
+
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+
+        # Akismet check is there
+        assert AkismetReport.objects.count() == 2
+        name_report = AkismetReport.objects.first()
+        assert name_report.comment_type == 'product-name'
+        assert name_report.comment == data['name']
+        summary_report = AkismetReport.objects.last()
+        assert summary_report.comment_type == 'product-summary'
+        assert summary_report.comment == data['summary']
+
+        comment_check_mock.assert_called_once()  # won't check twice if 1 spam
+        self.assertFormError(
+            response, 'form', '__all__',
+            'The text entered has been flagged as spam.')
+
+        # And metadata was NOT updated
+        addon = self.get_addon()
+        assert unicode(addon.name) == unicode(old_name)
+        assert unicode(addon.summary) == unicode(old_summary)
+
 
 class TagTestsMixin(object):
     def test_edit_add_tag(self):
@@ -663,70 +727,6 @@ class TestEditBasicListed(BaseTestEditBasic, TagTestsMixin,
         assert doc('#requires-payment-edit').text() == (
             'This add-on requires payment, non-free services or '
             'software, or additional hardware.')
-
-    @override_switch('akismet-spam-check', active=False)
-    def test_akismet_waffle_off(self):
-        data = self.get_dict()
-
-        response = self.client.post(self.basic_edit_url, data)
-        assert response.status_code == 200
-        assert AkismetReport.objects.count() == 0
-
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_akismet_edit_is_ham(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.HAM
-        data = self.get_dict()
-
-        response = self.client.post(self.basic_edit_url, data)
-        assert response.status_code == 200
-
-        # Akismet check is there
-        assert AkismetReport.objects.count() == 2
-        name_report = AkismetReport.objects.first()
-        assert name_report.comment_type == 'product-name'
-        assert name_report.comment == data['name']
-        summary_report = AkismetReport.objects.last()
-        assert summary_report.comment_type == 'product-summary'
-        assert summary_report.comment == data['summary']
-
-        assert comment_check_mock.call_count == 2
-        assert 'spam' not in response.content
-
-        # And metadata was updated
-        addon = self.get_addon()
-        assert unicode(addon.name) == data['name']
-        assert unicode(addon.summary) == data['summary']
-
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_akismet_edit_is_spam(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
-        old_name = self.addon.name
-        old_summary = self.addon.summary
-        data = self.get_dict()
-
-        response = self.client.post(self.basic_edit_url, data)
-        assert response.status_code == 200
-
-        # Akismet check is there
-        assert AkismetReport.objects.count() == 2
-        name_report = AkismetReport.objects.first()
-        assert name_report.comment_type == 'product-name'
-        assert name_report.comment == data['name']
-        summary_report = AkismetReport.objects.last()
-        assert summary_report.comment_type == 'product-summary'
-        assert summary_report.comment == data['summary']
-
-        comment_check_mock.assert_called_once()  # won't check twice if 1 spam
-        self.assertFormError(
-            response, 'form', '__all__',
-            'The text entered has been flagged as spam.')
-
-        # And metadata was NOT updated
-        addon = self.get_addon()
-        assert unicode(addon.name) == unicode(old_name)
-        assert unicode(addon.summary) == unicode(old_summary)
 
 
 class TestEditMedia(BaseTestEdit):
@@ -1158,72 +1158,6 @@ class BaseTestEditDetails(BaseTestEdit):
         for k in data:
             assert unicode(getattr(addon, k)) == data[k]
 
-
-class TestEditDetailsListed(BaseTestEditDetails):
-    __test__ = True
-
-    def test_edit_default_locale_required_trans(self):
-        # name, summary, and description are required in the new locale.
-        description, homepage = map(unicode, [self.addon.description,
-                                              self.addon.homepage])
-        # TODO: description should get fixed up with the form.
-        error = ('Before changing your default locale you must have a name, '
-                 'summary, and description in that locale. '
-                 'You are missing ')
-
-        data = {
-            'description': description,
-            'homepage': homepage,
-            'default_locale': 'fr'
-        }
-        response = self.client.post(self.details_edit_url, data)
-        # We can't use assertFormError here, because the missing fields are
-        # stored in a dict, which isn't ordered.
-        form_error = response.context['form'].non_field_errors()[0]
-        assert form_error.startswith(error)
-        assert "'description'" in form_error
-        assert "'name'" in form_error
-        assert "'summary'" in form_error
-
-        # Now we have a name.
-        self.addon.name = {'fr': 'fr name'}
-        self.addon.save()
-        response = self.client.post(self.details_edit_url, data)
-        form_error = response.context['form'].non_field_errors()[0]
-        assert form_error.startswith(error)
-        assert "'description'" in form_error
-        assert "'summary'" in form_error
-
-        # Now we have a summary.
-        self.addon.summary = {'fr': 'fr summary'}
-        self.addon.save()
-        response = self.client.post(self.details_edit_url, data)
-        form_error = response.context['form'].non_field_errors()[0]
-        assert form_error.startswith(error)
-        assert "'description'" in form_error
-
-        # Now we're sending an fr description with the form.
-        data['description_fr'] = 'fr description'
-        response = self.client.post(self.details_edit_url, data)
-        assert response.context['form'].errors == {}
-
-    def test_edit_default_locale_frontend_error(self):
-        data = {
-            'description': 'xx',
-            'homepage': 'https://staticfil.es/',
-            'default_locale': 'fr'
-        }
-        response = self.client.post(self.details_edit_url, data)
-        self.assertContains(
-            response, 'Before changing your default locale you must')
-
-    def test_edit_locale(self):
-        addon = self.get_addon()
-        addon.update(default_locale='en-US')
-        response = self.client.get(self.details_url)
-        assert pq(response.content)('.addon_edit_locale').eq(0).text() == (
-            'English (US)')
-
     @override_switch('akismet-spam-check', active=False)
     def test_akismet_waffle_off(self):
         data = {
@@ -1292,6 +1226,72 @@ class TestEditDetailsListed(BaseTestEditDetails):
         # And metadata was NOT updated
         addon = self.get_addon()
         assert unicode(addon.description) == unicode(old_description)
+
+
+class TestEditDetailsListed(BaseTestEditDetails):
+    __test__ = True
+
+    def test_edit_default_locale_required_trans(self):
+        # name, summary, and description are required in the new locale.
+        description, homepage = map(unicode, [self.addon.description,
+                                              self.addon.homepage])
+        # TODO: description should get fixed up with the form.
+        error = ('Before changing your default locale you must have a name, '
+                 'summary, and description in that locale. '
+                 'You are missing ')
+
+        data = {
+            'description': description,
+            'homepage': homepage,
+            'default_locale': 'fr'
+        }
+        response = self.client.post(self.details_edit_url, data)
+        # We can't use assertFormError here, because the missing fields are
+        # stored in a dict, which isn't ordered.
+        form_error = response.context['form'].non_field_errors()[0]
+        assert form_error.startswith(error)
+        assert "'description'" in form_error
+        assert "'name'" in form_error
+        assert "'summary'" in form_error
+
+        # Now we have a name.
+        self.addon.name = {'fr': 'fr name'}
+        self.addon.save()
+        response = self.client.post(self.details_edit_url, data)
+        form_error = response.context['form'].non_field_errors()[0]
+        assert form_error.startswith(error)
+        assert "'description'" in form_error
+        assert "'summary'" in form_error
+
+        # Now we have a summary.
+        self.addon.summary = {'fr': 'fr summary'}
+        self.addon.save()
+        response = self.client.post(self.details_edit_url, data)
+        form_error = response.context['form'].non_field_errors()[0]
+        assert form_error.startswith(error)
+        assert "'description'" in form_error
+
+        # Now we're sending an fr description with the form.
+        data['description_fr'] = 'fr description'
+        response = self.client.post(self.details_edit_url, data)
+        assert response.context['form'].errors == {}
+
+    def test_edit_default_locale_frontend_error(self):
+        data = {
+            'description': 'xx',
+            'homepage': 'https://staticfil.es/',
+            'default_locale': 'fr'
+        }
+        response = self.client.post(self.details_edit_url, data)
+        self.assertContains(
+            response, 'Before changing your default locale you must')
+
+    def test_edit_locale(self):
+        addon = self.get_addon()
+        addon.update(default_locale='en-US')
+        response = self.client.get(self.details_url)
+        assert pq(response.content)('.addon_edit_locale').eq(0).text() == (
+            'English (US)')
 
 
 class TestEditSupport(BaseTestEdit):
