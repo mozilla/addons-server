@@ -36,7 +36,7 @@ def action_allowed_user(user, permission):
     Note: relies in user.groups_list, which is cached on the user instance the
     first time it's accessed.
     """
-    if not user.is_authenticated():
+    if not user.is_authenticated:
         return False
 
     assert permission in amo.permissions.PERMISSIONS_LIST  # constants only.
@@ -70,7 +70,7 @@ def check_ownership(request, obj, require_owner=False, require_author=False,
 
 
 def check_collection_ownership(request, collection, require_owner=False):
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return False
 
     if request.user.id == collection.author_id:
@@ -97,7 +97,7 @@ def check_addon_ownership(request, addon, dev=False, admin=True,
     If they're an add-on owner they can do anything.
     dev=True checks that the user has an owner or developer role.
     """
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return False
     # Deleted addons can't be edited at all.
     if addon.is_deleted:

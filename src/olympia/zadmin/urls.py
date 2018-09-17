@@ -13,7 +13,7 @@ from . import views
 def login(request):
     # If someone is already auth'd then they're getting directed to login()
     # because they don't have sufficient permissions.
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         raise PermissionDenied
     else:
         return redirect_for_login(request)

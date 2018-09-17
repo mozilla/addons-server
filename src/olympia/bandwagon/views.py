@@ -52,7 +52,7 @@ log = olympia.core.logger.getLogger('z.collections')
 
 @non_atomic_requests
 def get_collection(request, username, slug):
-    if (slug in SPECIAL_SLUGS.values() and request.user.is_authenticated() and
+    if (slug in SPECIAL_SLUGS.values() and request.user.is_authenticated and
             request.user.username == username):
         return getattr(request.user, slug + '_collection')()
     else:
@@ -98,7 +98,7 @@ def legacy_directory_redirects(request, page):
     loc = base = reverse('collections.list')
     if page in sorts:
         loc = urlparams(base, sort=sorts[page])
-    elif request.user.is_authenticated():
+    elif request.user.is_authenticated:
         if page == 'mine':
             loc = reverse('collections.user', args=[request.user.username])
     return http.HttpResponseRedirect(loc)
@@ -141,7 +141,7 @@ def user_listing(request, username):
     author = get_object_or_404(UserProfile, username=username)
     qs = (Collection.objects.filter(author__username=username)
           .order_by('-created'))
-    mine = (request.user.is_authenticated() and
+    mine = (request.user.is_authenticated and
             request.user.username == username)
     if mine:
         page = 'mine'
@@ -174,7 +174,7 @@ class CollectionAddonFilter(BaseFilter):
 def collection_detail(request, username, slug):
     collection = get_collection(request, username, slug)
     if not collection.listed:
-        if not request.user.is_authenticated():
+        if not request.user.is_authenticated:
             return redirect_for_login(request)
         if not acl.check_collection_ownership(request, collection):
             raise PermissionDenied

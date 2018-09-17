@@ -14,7 +14,7 @@ import waffle
 
 from elasticsearch_dsl import Q, query, Search
 from rest_framework import exceptions, serializers
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import action
 from rest_framework.generics import GenericAPIView, ListAPIView
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
@@ -454,7 +454,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         # Special case: admins - and only admins - can see deleted add-ons.
         # This is handled outside a permission class because that condition
         # would pollute all other classes otherwise.
-        if (self.request.user.is_authenticated() and
+        if (self.request.user.is_authenticated and
                 acl.action_allowed(self.request,
                                    amo.permissions.ADDONS_VIEW_DELETED)):
             return Addon.unfiltered.all()
@@ -469,7 +469,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         obj = getattr(self, 'instance')
         request = self.request
         if (acl.check_unlisted_addons_reviewer(request) or
-                (obj and request.user.is_authenticated() and
+                (obj and request.user.is_authenticated and
                  obj.authors.filter(pk=request.user.pk).exists())):
             return self.serializer_class_with_unlisted_data
         return self.serializer_class
@@ -513,7 +513,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
             }
             raise exc
 
-    @detail_route()
+    @action(detail=True)
     def feature_compatibility(self, request, pk=None):
         obj = self.get_object()
         serializer = AddonFeatureCompatibilitySerializer(
@@ -521,7 +521,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
             context=self.get_serializer_context())
         return Response(serializer.data)
 
-    @detail_route()
+    @action(detail=True)
     def eula_policy(self, request, pk=None):
         obj = self.get_object()
         serializer = AddonEulaPolicySerializer(

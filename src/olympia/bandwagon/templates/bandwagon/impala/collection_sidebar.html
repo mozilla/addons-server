@@ -1,7 +1,7 @@
 {% set base_url = url('collections.list') %}
 <nav id="side-nav" class="c">
   <h2><a href="{{ base_url }}">{{ _('Collections') }}</a></h2>
-  {% if request.user.is_authenticated() %}
+  {% if request.user.is_authenticated %}
     <ul>
       <li id="p-mine">
         <a href="{{ url('collections.user', user.username) }}">

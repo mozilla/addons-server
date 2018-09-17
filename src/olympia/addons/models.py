@@ -1296,7 +1296,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     def has_author(self, user):
         """True if ``user`` is an author of the add-on."""
-        if user is None or user.is_anonymous():
+        if user is None or user.is_anonymous:
             return False
         return AddonUser.objects.filter(addon=self, user=user).exists()
 
@@ -1382,7 +1382,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     def can_review(self, user):
         """Check whether the user should be prompted to add a review or not."""
-        return not user.is_authenticated() or not self.has_author(user)
+        return not user.is_authenticated or not self.has_author(user)
 
     @property
     def all_dependencies(self):

@@ -8,7 +8,7 @@
 </h1>
 <nav id="site-nav" class="menu-nav no-img c">
   <ul>
-    {% if request.user.is_authenticated() and request.user.is_developer %}
+    {% if request.user.is_authenticated and request.user.is_developer %}
       <li class="top">
         <a href="{{ url('devhub.addons') }}" class="controller">
             {{ _('My Add-ons') }}</a>

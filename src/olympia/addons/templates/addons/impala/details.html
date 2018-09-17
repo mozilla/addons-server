@@ -322,7 +322,7 @@
       </div>
     </div>
   {% endif %}
-  {% if review_form and request.user.is_authenticated() %}
+  {% if review_form and request.user.is_authenticated %}
       {{ impala_review_add_box(addon=addon) }}
   {% endif %}
   {% if abuse_form %}
