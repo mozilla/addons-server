@@ -18,7 +18,7 @@ import waffle
 
 from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import action
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.mixins import (
     DestroyModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin)
@@ -239,7 +239,7 @@ def with_user(format, config=None):
                 return render_error(
                     request, ERROR_STATE_MISMATCH, next_path=next_path,
                     format=format)
-            elif request.user.is_authenticated():
+            elif request.user.is_authenticated:
                 response = render_error(
                     request, ERROR_AUTHENTICATED, next_path=next_path,
                     format=format)
@@ -372,7 +372,7 @@ class AllowSelf(BasePermission):
         return True
 
     def has_object_permission(self, request, view, obj):
-        return request.user.is_authenticated() and obj == request.user
+        return request.user.is_authenticated and obj == request.user
 
 
 class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
@@ -425,7 +425,7 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
     @property
     def self_view(self):
         return (
-            self.request.user.is_authenticated() and
+            self.request.user.is_authenticated and
             self.get_object() == self.request.user)
 
     @property
@@ -455,7 +455,8 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
             logout_user(request, response)
         return response
 
-    @detail_route(
+    @action(
+        detail=True,
         methods=['delete'], permission_classes=[
             AnyOf(AllowSelf, GroupPermission(amo.permissions.USERS_EDIT))])
     def picture(self, request, pk=None):

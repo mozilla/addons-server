@@ -56,7 +56,7 @@ class ButtonTest(TestCase):
         self.request.GET = {}
         user = self.request.user
         user.get_and_delete_messages.__dict__['__name__'] = 'f'
-        user.is_authenticated.return_value = False
+        user.is_authenticated = False
         self.context = {
             'APP': amo.FIREFOX,
             'LANG': 'en-US',

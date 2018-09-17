@@ -1,6 +1,6 @@
 {% from "devhub/addons/listing/macros.html" import dev_heading, dev_item_info %}
 {% set collection = collection or None %}
-{% set username = request.user.username if request.user.is_authenticated() else '' %}
+{% set username = request.user.username if request.user.is_authenticated else '' %}
 {% for addon in addons %}
   <div class="item addon ignore-compatibility" data-addonid="{{ addon.id }}">
     <div class="info {{ amo.ADDON_TYPE_CHOICES_API.get(addon.type) }}">

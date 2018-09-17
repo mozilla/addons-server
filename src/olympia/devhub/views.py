@@ -110,7 +110,7 @@ def addon_listing(request, theme=False):
 
 def index(request):
     ctx = {'blog_posts': _get_posts()}
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         user_addons = Addon.objects.filter(authors=request.user)
         recent_addons = user_addons.order_by('-modified')[:3]
         ctx['recent_addons'] = []
@@ -269,7 +269,7 @@ def feed(request, addon_id=None):
 
     addon_selected = None
 
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return redirect_for_login(request)
     else:
         addons_all = Addon.objects.filter(authors=request.user)
@@ -554,7 +554,7 @@ def handle_upload(filedata, request, channel, app_id=None, version_id=None,
                   addon=None, is_standalone=False, submit=False):
     automated_signing = channel == amo.RELEASE_CHANNEL_UNLISTED
 
-    user = request.user if request.user.is_authenticated() else None
+    user = request.user if request.user.is_authenticated else None
     upload = FileUpload.from_post(
         filedata, filedata.name, filedata.size,
         automated_signing=automated_signing, addon=addon, user=user)
@@ -789,7 +789,7 @@ def upload_validation_context(request, upload, addon=None, url=None):
 
 def upload_detail(request, uuid, format='html'):
     upload = get_fileupload_by_uuid_or_404(uuid)
-    if upload.user_id and not request.user.is_authenticated():
+    if upload.user_id and not request.user.is_authenticated:
         return redirect_for_login(request)
 
     if format == 'json' or request.is_ajax():

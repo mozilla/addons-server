@@ -126,7 +126,7 @@ def test_pre_setup(request, tmpdir, settings):
     # Reset the prefixer and urlconf after updating media root
     default_prefixer(settings)
 
-    from django.core.urlresolvers import clear_url_caches, set_urlconf
+    from django.urls import clear_url_caches, set_urlconf
 
     def _clear_urlconf():
         clear_url_caches()

@@ -7,7 +7,7 @@ from django.utils.encoding import force_text
 from django.utils.translation import ugettext
 
 from rest_framework import serializers
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import action
 from rest_framework.exceptions import ParseError
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
@@ -72,12 +72,12 @@ def review_list(request, addon, review_id=None, user_id=None):
         if not is_admin:
             # But otherwise, filter out everyone elses empty reviews.
             user_filter = (Q(user=request.user.pk)
-                           if request.user.is_authenticated() else Q())
+                           if request.user.is_authenticated else Q())
             qs = qs.filter(~Q(body=None) | user_filter)
 
     ctx['reviews'] = reviews = paginate(request, qs)
     ctx['replies'] = Rating.get_replies(reviews.object_list)
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         ctx['review_perms'] = {
             'is_admin': is_admin,
             'is_reviewer': acl.action_allowed(
@@ -393,7 +393,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         if not hasattr(self, 'should_access_deleted_ratings'):
             self.should_access_deleted_ratings = (
                 ('with_deleted' in requested or self.action != 'list') and
-                self.request.user.is_authenticated() and
+                self.request.user.is_authenticated and
                 has_addons_edit)
 
         should_access_only_top_level_ratings = (
@@ -419,7 +419,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
 
         # Filter out empty ratings if specified.
         # Should the users own empty ratings be filtered back in?
-        if 'with_yours' in requested and self.request.user.is_authenticated():
+        if 'with_yours' in requested and self.request.user.is_authenticated:
             user_filter = Q(user=self.request.user.pk)
         else:
             user_filter = Q()
@@ -437,8 +437,9 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         return queryset.prefetch_related(
             Prefetch('reply', queryset=replies_qs))
 
-    @detail_route(
-        methods=['post'], permission_classes=reply_permission_classes,
+    @action(
+        detail=True, methods=['post'],
+        permission_classes=reply_permission_classes,
         serializer_class=reply_serializer_class,
         throttle_classes=[RatingReplyThrottle])
     def reply(self, *args, **kwargs):
@@ -456,7 +457,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             return self.partial_update(*args, **kwargs)
         return self.create(*args, **kwargs)
 
-    @detail_route(methods=['post'], throttle_classes=[])
+    @action(detail=True, methods=['post'], throttle_classes=[])
     def flag(self, request, *args, **kwargs):
         # We load the add-on object from the rating to trigger permission
         # checks.

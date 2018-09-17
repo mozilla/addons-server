@@ -510,7 +510,7 @@ class TestWithUser(TestCase):
         }
         self.user = UserProfile()
         self.request.user = self.user
-        assert self.user.is_authenticated()
+        assert self.user.is_authenticated
         self.request.COOKIES = {views.API_TOKEN_COOKIE: 'foobar'}
         self.fn(self.request)
         self.render_error.assert_called_with(
@@ -528,7 +528,7 @@ class TestWithUser(TestCase):
         }
         self.user = UserProfile()
         self.request.user = self.user
-        assert self.user.is_authenticated()
+        assert self.user.is_authenticated
         self.request.COOKIES = {}
         self.fn(self.request)
         self.render_error.assert_called_with(

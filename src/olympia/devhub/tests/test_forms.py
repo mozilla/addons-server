@@ -313,7 +313,7 @@ class TestThemeForm(TestCase):
         self.request = mock.Mock()
         self.request.user = mock.Mock()
         self.request.user.groups_list = []
-        self.request.user.is_authenticated.return_value = True
+        self.request.user.is_authenticated = True
 
     def populate(self):
         self.cat = Category.objects.create(
@@ -533,7 +533,7 @@ class TestEditThemeForm(TestCase):
         self.request.user.groups_list = []
         self.request.user.username = 'swagyismymiddlename'
         self.request.user.name = 'Sir Swag A Lot'
-        self.request.user.is_authenticated.return_value = True
+        self.request.user.is_authenticated = True
 
     def populate(self):
         self.instance = Addon.objects.create(

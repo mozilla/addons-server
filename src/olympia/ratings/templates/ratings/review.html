@@ -60,7 +60,7 @@
     {% endwith %}
   </span>
   {% endif %}
-  {% if request.user.is_authenticated() %}
+  {% if request.user.is_authenticated %}
   <ul class="item-actions">
     {% if is_flagged %}
       <li class="flagged">{{ _('Flagged for review') }}</li>

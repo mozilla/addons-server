@@ -74,7 +74,7 @@ class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
             # get_guid() must be called first or addons not in our DB will 404.
             'guid': self.get_guid(),
             'addon': self.get_addon_object()}
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             abuse_kwargs['reporter'] = request.user
 
         report = AbuseReport.objects.create(**abuse_kwargs)
@@ -115,7 +115,7 @@ class UserAbuseViewSet(CreateModelMixin, GenericViewSet):
             'ip_address': request.META.get('REMOTE_ADDR'),
             'message': message,
             'user': self.get_user_object(user_id)}
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             abuse_kwargs['reporter'] = request.user
 
         report = AbuseReport.objects.create(**abuse_kwargs)
