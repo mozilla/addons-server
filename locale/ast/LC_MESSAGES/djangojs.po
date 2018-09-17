@@ -1,4 +1,4 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -206,9 +206,8 @@ msgstr "Guetar aplicaciones pa <b>{0}</b>"
 msgid "Search add-ons for <b>{0}</b>"
 msgstr ""
 
-#, fuzzy
 msgid "Use original"
-msgstr "usar orixinal"
+msgstr ""
 
 msgid "Week of {0}"
 msgstr "Selmana de {0}"
@@ -663,9 +662,8 @@ msgid "Not available for your platform"
 msgstr "Nun ta disponible pa la to plataforma"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Esti tema nun ye compatible cola to versión de {0}"
+msgstr ""
 
 msgid "View other versions"
 msgstr "Ver otres versiones"
@@ -845,9 +843,8 @@ msgstr "Alvertencia"
 msgid "{0} line {1} column {2}"
 msgstr ""
 
-#, fuzzy
 msgid "{0} line {1}"
-msgstr "{0} de {1}"
+msgstr ""
 
 msgid "Compatibility Tests"
 msgstr "Pruebes de compatibilidá"
