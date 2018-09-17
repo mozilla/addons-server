@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2018-09-03 12:15+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -211,29 +211,53 @@ msgstr "שימוש במקור"
 msgid "Week of {0}"
 msgstr "שבוע {0}"
 
-msgid " downloads"
-msgstr " הורדות"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " הורדות"
+msgstr[1] " הורדות"
 
-msgid "{0} users"
-msgstr "{0} משתמשים"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} משתמשים"
+msgstr[1] "{0} משתמשים"
 
-msgid "{0} add-ons"
-msgstr "{0} תוספות"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} תוספות"
+msgstr[1] "{0} תוספות"
 
-msgid "{0} collections"
-msgstr "{0} אוספים"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} אוספים"
+msgstr[1] "{0} אוספים"
 
-msgid "{0} reviews"
-msgstr "{0} סקירות"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} סקירות"
+msgstr[1] "{0} סקירות"
 
-msgid "{0} sales"
-msgstr "{0} מכירות"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} מכירות"
+msgstr[1] "{0} מכירות"
 
-msgid "{0} refunds"
-msgstr "{0} החזרים כספיים"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} החזרים כספיים"
+msgstr[1] "{0} החזרים כספיים"
 
-msgid "{0} installs"
-msgstr "{0} התקנות"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} התקנות"
+msgstr[1] "{0} התקנות"
 
 msgid "Downloads"
 msgstr "הורדות"

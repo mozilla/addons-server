@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2017-11-18 23:35+0000\n"
 "Last-Translator: yoonggunx <yoonggunx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -206,29 +206,44 @@ msgstr "Sử dụng bản gốc"
 msgid "Week of {0}"
 msgstr "Tuần {0}"
 
-msgid " downloads"
-msgstr " tải xuống"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " tải xuống"
 
-msgid "{0} users"
-msgstr "{0} người dùng"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} người dùng"
 
-msgid "{0} add-ons"
-msgstr "{0} tiện ích"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} tiện ích"
 
-msgid "{0} collections"
-msgstr "{0} bộ sưu tập"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} bộ sưu tập"
 
-msgid "{0} reviews"
-msgstr "{0} đánh giá"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} đánh giá"
 
-msgid "{0} sales"
-msgstr ""
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} sao{0} sao"
 
-msgid "{0} refunds"
-msgstr ""
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] ""
 
-msgid "{0} installs"
-msgstr "{0} lần cài đặt"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} lần cài đặt"
 
 msgid "Downloads"
 msgstr "Tải xuống"

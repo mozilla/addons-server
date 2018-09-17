@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2017-08-22 07:03+0000\n"
 "Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -212,29 +212,53 @@ msgstr ""
 msgid "Week of {0}"
 msgstr ""
 
-msgid " downloads"
-msgstr " بارگیری‌ها"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " بارگیری‌ها"
+msgstr[1] " بارگیری‌ها"
 
-msgid "{0} users"
-msgstr "{0} کاربر"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} کاربر"
+msgstr[1] "{0} کاربر"
 
-msgid "{0} add-ons"
-msgstr "{0} افزونه"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} افزونه"
+msgstr[1] "{0} افزونه"
 
-msgid "{0} collections"
-msgstr "{0} مجموعه"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} مجموعه"
+msgstr[1] "{0} مجموعه"
 
-msgid "{0} reviews"
-msgstr "{0} بررسی"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} بررسی"
+msgstr[1] "{0} بررسی"
 
-msgid "{0} sales"
-msgstr "{0} فروش"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} فروش"
+msgstr[1] "{0} فروش"
 
-msgid "{0} refunds"
-msgstr "{0} بازپرداخت"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} بازپرداخت"
+msgstr[1] "{0} بازپرداخت"
 
-msgid "{0} installs"
-msgstr "{0} نصب"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} نصب"
+msgstr[1] "{0} نصب"
 
 msgid "Downloads"
 msgstr "بارگیری‌ها"

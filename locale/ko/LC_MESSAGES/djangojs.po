@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2018-08-23 01:19+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -208,29 +208,45 @@ msgstr "원본 사용"
 msgid "Week of {0}"
 msgstr "{0}번째 주"
 
-msgid " downloads"
-msgstr " 다운로드"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " 다운로드"
 
-msgid "{0} users"
-msgstr "사용자 {0}명"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "사용자 {0}명"
 
-msgid "{0} add-ons"
-msgstr "부가 기능 {0}개"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "부가 기능 {0}개"
 
-msgid "{0} collections"
-msgstr "모음집 {0}개"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "모음집 {0}개"
 
-msgid "{0} reviews"
-msgstr "검토 {0}개"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "검토 {0}개"
 
-msgid "{0} sales"
-msgstr "판매 {0}회"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "판매 {0}회"
 
-msgid "{0} refunds"
-msgstr "환불 {0}회"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "환불 {0}회"
 
-msgid "{0} installs"
-msgstr "설치 {0}회"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "설치 {0}회"
 
 msgid "Downloads"
 msgstr "다운로드 횟수"

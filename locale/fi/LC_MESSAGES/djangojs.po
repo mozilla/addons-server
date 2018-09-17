@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2018-08-12 10:20+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -213,29 +213,52 @@ msgstr "Käytä alkuperäistä"
 msgid "Week of {0}"
 msgstr ""
 
-msgid " downloads"
-msgstr " latausta"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " latausta"
+msgstr[1] " latausta"
 
-msgid "{0} users"
-msgstr "{0} käyttäjää"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} käyttäjää"
+msgstr[1] "{0} käyttäjää"
 
-msgid "{0} add-ons"
-msgstr "{0} lisäosaa"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} lisäosaa"
+msgstr[1] "{0} lisäosaa"
 
-msgid "{0} collections"
-msgstr "{0} kokoelmaa"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} kokoelmaa"
+msgstr[1] "{0} kokoelmaa"
 
-msgid "{0} reviews"
-msgstr ""
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] ""
+msgstr[1] ""
 
-msgid "{0} sales"
-msgstr "{0} myyntiä"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} myyntiä"
+msgstr[1] "{0} myyntiä"
 
-msgid "{0} refunds"
-msgstr "{0} palautusta"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} palautusta"
+msgstr[1] "{0} palautusta"
 
-msgid "{0} installs"
-msgstr "{0} asennusta"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} asennusta"
+msgstr[1] "{0} asennusta"
 
 msgid "Downloads"
 msgstr "Lataukset"

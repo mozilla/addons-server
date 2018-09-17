@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2018-03-25 14:57+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -905,6 +905,9 @@ msgstr "Signature has expired."
 
 msgid "Error decoding signature."
 msgstr "Error decoding signature."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "Invalid JWT Token."
@@ -4089,6 +4092,13 @@ msgstr "Compatibility Test"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Check to see if your extension is compatible with Firefox."
+
+#, fuzzy
+msgid "Live Testing"
+msgstr "View Listing"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging.."
+msgstr ""
 
 msgid "Transfer ownership"
 msgstr "Transfer ownership"

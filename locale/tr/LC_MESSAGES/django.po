@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2018-08-15 18:03+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -933,6 +933,9 @@ msgstr "İmza zaman aşımına uğramış."
 
 msgid "Error decoding signature."
 msgstr "İmza çözümleme hatası."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "Geçersiz JWT jetonu."
@@ -4142,6 +4145,13 @@ msgstr "Uyumluluk testi"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Eklentinizin Firefox ile uyumlu olup olmadığını kontrol edin."
+
+#, fuzzy
+msgid "Live Testing"
+msgstr "Listelemeyi gör"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging.."
+msgstr ""
 
 msgid "Transfer ownership"
 msgstr "Sahipliği aktar"

@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2018-09-03 14:20+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
@@ -215,29 +215,53 @@ msgstr "Usar original"
 msgid "Week of {0}"
 msgstr "Semana de {0}"
 
-msgid " downloads"
-msgstr " transferências"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " transferências"
+msgstr[1] " transferências"
 
-msgid "{0} users"
-msgstr "{0} utilizadores"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} utilizadores"
+msgstr[1] "{0} utilizadores"
 
-msgid "{0} add-ons"
-msgstr "{0} extras"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} extras"
+msgstr[1] "{0} extras"
 
-msgid "{0} collections"
-msgstr "{0} coleções"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} coleções"
+msgstr[1] "{0} coleções"
 
-msgid "{0} reviews"
-msgstr "{0} revisões"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} revisões"
+msgstr[1] "{0} revisões"
 
-msgid "{0} sales"
-msgstr "{0} vendas"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} vendas"
+msgstr[1] "{0} vendas"
 
-msgid "{0} refunds"
-msgstr "{0} devoluções"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} devoluções"
+msgstr[1] "{0} devoluções"
 
-msgid "{0} installs"
-msgstr "{0} instalações"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} instalações"
+msgstr[1] "{0} instalações"
 
 msgid "Downloads"
 msgstr "Transferências"

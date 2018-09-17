@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -938,6 +938,9 @@ msgstr "Podpis wygasł."
 
 msgid "Error decoding signature."
 msgstr "Błąd podczas dekodowania podpisu."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "Nieprawidłowy token JWT."
@@ -4095,6 +4098,13 @@ msgstr "Test kompatybilności"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Sprawdź, czy Twoje rozszerzenie jest zgodne z Firefoksem."
+
+#, fuzzy
+msgid "Live Testing"
+msgstr "Strona dodatku"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging.."
+msgstr ""
 
 msgid "Transfer ownership"
 msgstr "Zmiana właściciela"

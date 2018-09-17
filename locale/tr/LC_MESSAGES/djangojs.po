@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
+"POT-Creation-Date: 2018-09-17 09:38+0000\n"
 "PO-Revision-Date: 2015-11-03 11:55+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -213,29 +213,53 @@ msgstr "Orijinalini kullan"
 msgid "Week of {0}"
 msgstr "{0} haftası"
 
-msgid " downloads"
-msgstr " indirme"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " indirme"
+msgstr[1] " indirme"
 
-msgid "{0} users"
-msgstr "{0} kullanıcı"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} kullanıcı"
+msgstr[1] "{0} kullanıcı"
 
-msgid "{0} add-ons"
-msgstr "{0} eklenti"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} eklenti"
+msgstr[1] "{0} eklenti"
 
-msgid "{0} collections"
-msgstr "{0} koleksiyon"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} koleksiyon"
+msgstr[1] "{0} koleksiyon"
 
-msgid "{0} reviews"
-msgstr "{0} inceleme"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} inceleme"
+msgstr[1] "{0} inceleme"
 
-msgid "{0} sales"
-msgstr "{0} satış"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} satış"
+msgstr[1] "{0} satış"
 
-msgid "{0} refunds"
-msgstr "{0} iade"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} iade"
+msgstr[1] "{0} iade"
 
-msgid "{0} installs"
-msgstr "{0} kurulum"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} kurulum"
+msgstr[1] "{0} kurulum"
 
 msgid "Downloads"
 msgstr "İndirme"
