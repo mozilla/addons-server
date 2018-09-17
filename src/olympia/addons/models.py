@@ -608,9 +608,10 @@ class Addon(OnChangeMixin, ModelBase):
             parsed_data, upload, channel, user)
 
         reviewer_flags_defaults = {}
+        is_mozilla_signed = parsed_data.get('is_mozilla_signed_extension')
         if upload.validation_timeout:
             reviewer_flags_defaults['needs_admin_code_review'] = True
-        elif parsed_data.get('is_mozilla_signed_extension'):
+        if is_mozilla_signed and addon.type != amo.ADDON_LPAPP:
             reviewer_flags_defaults['needs_admin_code_review'] = True
             reviewer_flags_defaults['auto_approval_disabled'] = True
 
