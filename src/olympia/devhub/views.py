@@ -582,6 +582,9 @@ def handle_upload(filedata, request, channel, app_id=None, version_id=None,
                 upload=upload)
         else:
             akismet_reports = []
+        # We HAVE to have a pretask here that returns a result, so we're always
+        # doing a comment_check task call even when it's pointless because
+        # there are no report ids in the list.  See tasks.validate for more.
         akismet_checks = comment_check.si(
             [report.id for report in akismet_reports])
         if submit:
