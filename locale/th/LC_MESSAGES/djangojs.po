@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-05-26 06:43+0000\n"
-"Last-Translator: Top <teerapatxtop@yahoo.com>\n"
+"PO-Revision-Date: 2016-10-17 14:08+0000\n"
+"Last-Translator: Googleโครม! <tamisun32646@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -824,7 +824,7 @@ msgid "Theme"
 msgstr "ชุดตกแต่ง"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "ผู้รีวิว"
 
 msgid "Status"
 msgstr "สถานะ"
