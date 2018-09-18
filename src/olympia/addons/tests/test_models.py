@@ -2449,7 +2449,7 @@ class TestAddonFromUpload(UploadTest):
         assert not upload.validation_timeout
         self.dummy_parsed_data['is_mozilla_signed_extension'] = True
         addon = Addon.from_upload(
-            upload, [self.platform], parsed_data=self.dummy_parsed_data)
+            upload, [self.selected_app], parsed_data=self.dummy_parsed_data)
         assert addon.needs_admin_code_review
         assert addon.auto_approval_disabled
 
@@ -2459,7 +2459,7 @@ class TestAddonFromUpload(UploadTest):
         self.dummy_parsed_data['is_mozilla_signed_extension'] = True
         self.dummy_parsed_data['type'] = amo.ADDON_LPAPP
         addon = Addon.from_upload(
-            upload, [self.platform], parsed_data=self.dummy_parsed_data)
+            upload, [self.selected_app], parsed_data=self.dummy_parsed_data)
         assert not addon.needs_admin_code_review
         assert not addon.auto_approval_disabled
 

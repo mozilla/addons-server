@@ -625,9 +625,9 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     def test_mozilla_signed_extension(self):
         self.dummy_parsed_data['is_mozilla_signed_extension'] = True
-        version = Version.from_upload(self.upload, self.addon, [self.platform],
-                                      amo.RELEASE_CHANNEL_LISTED,
-                                      parsed_data=self.dummy_parsed_data)
+        version = Version.from_upload(
+            self.upload, self.addon, [self.selected_app],
+            amo.RELEASE_CHANNEL_LISTED, parsed_data=self.dummy_parsed_data)
         assert version.is_mozilla_signed
         assert version.approvalnotes == (u'This version has been signed with '
                                          u'Mozilla internal certificate.')
