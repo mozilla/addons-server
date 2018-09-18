@@ -854,6 +854,19 @@ pre.email_comment {
     margin-top: 1em;
 }
 
+#upload-file .compatible-apps ul {
+    margin-top: 0.5em;
+}
+
+#upload-file .compatible-apps li {
+    float: none;
+}
+
+#upload-file .compatible-apps label.app {
+    padding-left: 35px;
+    padding-top: 6px;
+}
+
 #upload-status-bar {
     background-color: #F2F2F2;
     -moz-border-radius: 5px;

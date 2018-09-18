@@ -27,7 +27,7 @@ class TestWebextExtractPermissions(UploadTest):
         super(TestWebextExtractPermissions, self).setUp()
         for version in ('3.0', '3.6', '3.6.*', '4.0b6'):
             AppVersion(application=amo.FIREFOX.id, version=version).save()
-        self.platform = amo.PLATFORM_MAC.id
+        self.platform = amo.PLATFORM_ALL.id
         self.addon = Addon.objects.create(guid='guid@jetpack',
                                           type=amo.ADDON_EXTENSION,
                                           name='xxx')

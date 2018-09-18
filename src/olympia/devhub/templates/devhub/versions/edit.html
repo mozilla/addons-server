@@ -22,19 +22,13 @@
           <tr>
             <th>{{ _("Files") }}</th>
             <td>
-              {{ file_form.management_form }}
-              {{ file_form.non_form_errors() }}
               <table id="file-list">
                 <tbody>
-                  {% for form in file_form.forms %}
+                  {% for file in files %}
                     {% include "devhub/includes/version_file.html" %}
                   {% endfor %}
                 </tbody>
               </table>
-              {% if version.is_allowed_upload() %}
-                {% set version_upload_url = url('devhub.submit.file', addon.slug, version.id) %}
-                <a href="{{ version_upload_url }}" class="add-file button">{{ _('Upload Another File') }}</a>
-              {% endif %}
             </td>
           </tr>
           {% if compat_form %}

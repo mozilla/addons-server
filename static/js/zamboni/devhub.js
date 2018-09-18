@@ -62,45 +62,6 @@ $(document).ready(function() {
         $uploadAddon.addonUploader(opt);
     }
 
-    if ($(".add-file-modal").length) {
-        $modalFile = $(".add-file-modal").modal(".version-upload", {
-            width: '450px',
-            hideme: false,
-            callback: function() {
-                $('.upload-status').remove();
-                $('.binary-source').hide();
-                return true;
-            }
-        });
-
-        $('.upload-file-cancel').click(_pd($modalFile.hideMe));
-        $('#upload-file').submit(_pd(function(e) {
-            $('#upload-file-finish').prop('disabled', true);
-            $.ajax({
-                url: $(this).attr('action'),
-                type: 'post',
-                data: new FormData(this),
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    if (response.url) {
-                        window.location = response.url;
-                    }
-                },
-                error: function(xhr) {
-                    var errors = JSON.parse(xhr.responseText);
-                    $("#upload-file").find(".errorlist").remove();
-                    $("#upload-file").find(".upload-status").before(generateErrorList(errors));
-                    $('#upload-file-finish').prop('disabled', false);
-                    $modalFile.setPos();
-                }
-            });
-        }));
-        if (window.location.hash === '#version-upload') {
-            $modalFile.render();
-        }
-    }
-
     // Jetpack
     if($('#jetpack').exists()) {
         $('a[rel="video-lightbox"]').click(_pd(function() {
@@ -137,11 +98,6 @@ $(document).ready(function() {
     }
 
     $(".invisible-upload a").click(_pd(function() {}));
-
-    // Choosing platform when submitting an Addon and/or files.
-    if ($('input.platform').length) {
-        initPlatformChooser();
-    }
 
     // when to start and stop image polling
     if ($('#edit-addon-media').length &&
@@ -227,30 +183,6 @@ $(document).ready(function() {
         $(this).find('button').addClass('disabled');
     });
 });
-
-function initPlatformChooser() {
-    $(document).on('change', 'input.platform', function(e) {
-        var form = $(this).parents('form'),
-            platform = false,
-            parent = form,
-            val = $(this).val(),
-            container = $(this).parents('div:eq(0)');
-        if (val == '1') {
-            // Platform=ALL
-            if ($(this).prop('checked')) {
-                // Uncheck all other platforms:
-                $(format('input.platform:not([value="{0}"])', val),
-                  parent).prop('checked', false);
-            }
-        } else {
-            if ($(this).prop('checked')) {
-                // Any other platform was checked so uncheck Platform=ALL
-                $('input.platform[value="1"]',
-                  parent).prop('checked', false);
-            }
-        }
-    });
-}
 
 $(document).ready(function() {
     $.ajaxSetup({cache: false});
@@ -856,46 +788,6 @@ function generateErrorList(o) {
 
 function initEditVersions() {
     if (z.noEdit) return;
-    // Modal box
-    if ($(".add-file-modal").length) {
-        var $modal = $(".add-file-modal").modal(".add-file", {
-            width: '450px',
-            hideme: false,
-            callback: function() {
-                $('.upload-status').remove();
-                return true;
-            }
-        });
-
-        $('.upload-file-cancel').click(_pd($modal.hideMe));
-
-        $("#upload-file-finish").click(function (e) {
-            e.preventDefault();
-            $tgt = $(this);
-            if ($tgt.prop("disabled")) return;
-            $.ajax({
-                url: $("#upload-file").attr("action"),
-                type: 'post',
-                data: new FormData($("#upload-file")[0]),
-                processData: false,
-                contentType: false,
-                success: function (resp) {
-                    $("#file-list tbody").append(resp);
-                    var new_total = $("#file-list tr").length / 2;
-                    $("#id_files-TOTAL_FORMS").val(new_total);
-                    $("#id_files-INITIAL_FORMS").val(new_total);
-                    $modal.hideMe();
-                },
-                error: function(xhr) {
-                    var errors = JSON.parse(xhr.responseText);
-                    $("#upload-file").find(".errorlist").remove();
-                    $("#upload-file").find(".upload-status").before(generateErrorList(errors));
-                    $modal.setPos();
-                }
-            });
-        });
-    }
-
     $("#file-list").on("click", "a.remove", function() {
         var row = $(this).closest("tr");
         $("input:first", row).prop("checked", true);
