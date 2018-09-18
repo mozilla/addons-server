@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-18 00:42+0000\n"
+"PO-Revision-Date: 2018-09-18 00:55+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -162,22 +162,22 @@ msgid "All Rights Reserved"
 msgstr "Tolos drechos reservaos"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Reconocencia 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Reconocencia-NonComercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Reconocencia-NonComercial-EnsinObresDerivaes 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Reconocencia-NonComercial-CompartirIgual 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Reconocencia-EnsinObresDerivaes 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Reconocencia-CompartirIgual 3.0"
 
 msgid "Your Theme's Name"
 msgstr "El nome del tema"
@@ -192,7 +192,7 @@ msgid "Marked for deletion"
 msgstr ""
 
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Anovando resultaos&hellip;"
 
 msgid "Category"
 msgstr "Estaya"
@@ -368,7 +368,7 @@ msgid "Version History"
 msgstr "Historial de versiones"
 
 msgid "Sharing"
-msgstr ""
+msgstr "Compartición"
 
 msgid "Category Pages"
 msgstr ""
