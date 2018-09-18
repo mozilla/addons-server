@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-18 15:33+0000\n"
+"PO-Revision-Date: 2018-09-18 15:34+0000\n"
 "Last-Translator: nuttapong2539 <nuttapong2539@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -2399,19 +2399,19 @@ msgid "Inappropriate or offensive content"
 msgstr ""
 
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "เนื้อหาความรุนแรง, สงคราม หรืออาวุธ"
 
 msgid "Nazi or other hate content"
 msgstr "นาซีหรือเนื้อหาด้านความเกลียดชังอื่น ๆ"
 
 msgid "Defamatory content"
-msgstr ""
+msgstr "เนื้อหาใส่ร้าย"
 
 msgid "Online gambling"
 msgstr "การพนันออนไลน์"
 
 msgid "Spam content"
-msgstr ""
+msgstr "เนื้อหาสแปม"
 
 msgid "Low-quality, stretched, or blank image"
 msgstr ""
@@ -3071,7 +3071,7 @@ msgid "Universally unique identifier"
 msgstr ""
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
 msgstr ""
