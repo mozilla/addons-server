@@ -874,7 +874,7 @@ class TestFileUpload(UploadTest):
         addon.update(guid='guid@xpi')
         parsed_data = parse_addon(upload, addon=addon, user=user_factory())
         file_ = File.from_upload(
-            upload, addon.current_version, amo.PLATFORM_LINUX.id,
+            upload, addon.current_version, amo.PLATFORM_ALL.id,
             parsed_data=parsed_data)
         assert file_.binary
 
@@ -899,7 +899,7 @@ class TestFileUpload(UploadTest):
         addon.update(guid='guid@xpi')
         parsed_data = parse_addon(upload, addon=addon, user=user_factory())
         file_ = File.from_upload(
-            upload, addon.current_version, amo.PLATFORM_LINUX.id,
+            upload, addon.current_version, amo.PLATFORM_ALL.id,
             parsed_data=parsed_data)
         assert file_.binary
 
@@ -924,7 +924,7 @@ class TestFileUpload(UploadTest):
         addon.update(guid='guid@xpi')
         parsed_data = parse_addon(upload, addon=addon, user=user_factory())
         file_ = File.from_upload(
-            upload, addon.current_version, amo.PLATFORM_LINUX.id,
+            upload, addon.current_version, amo.PLATFORM_ALL.id,
             parsed_data=parsed_data)
         assert file_.requires_chrome
 
@@ -1086,7 +1086,7 @@ class TestFileFromUpload(UploadTest):
         super(TestFileFromUpload, self).setUp()
         for version in ('3.0', '3.6', '3.6.*', '4.0b6'):
             AppVersion(application=amo.FIREFOX.id, version=version).save()
-        self.platform = amo.PLATFORM_MAC.id
+        self.platform = amo.PLATFORM_ALL.id
         self.addon = Addon.objects.create(guid='guid@xpi',
                                           type=amo.ADDON_EXTENSION,
                                           name='xxx')
@@ -1133,7 +1133,7 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('jetpack')
         file_ = File.from_upload(
             upload, self.version, self.platform, parsed_data={})
-        assert file_.filename == 'xxx-0.1-mac.xpi'
+        assert file_.filename == 'xxx-0.1.xpi'
 
     def test_filename_no_extension(self):
         upload = self.upload('jetpack')
@@ -1141,7 +1141,7 @@ class TestFileFromUpload(UploadTest):
         upload.name = upload.name.rsplit('.', 1)[0]
         file_ = File.from_upload(
             upload, self.version, self.platform, parsed_data={})
-        assert file_.filename == 'xxx-0.1-mac.xpi'
+        assert file_.filename == 'xxx-0.1.xpi'
 
     def test_file_validation(self):
         upload = self.upload('jetpack')
@@ -1180,7 +1180,7 @@ class TestFileFromUpload(UploadTest):
         self.version.addon.name = u'jéts!'
         file_ = File.from_upload(
             upload, self.version, self.platform, parsed_data={})
-        assert file_.filename == u'jets-0.1-mac.xpi'
+        assert file_.filename == u'jets-0.1.xpi'
 
     def test_size(self):
         upload = self.upload('extension')

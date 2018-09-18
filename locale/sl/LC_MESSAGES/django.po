@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-15 20:17+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"PO-Revision-Date: 2018-09-17 13:30+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2519,11 +2519,9 @@ msgstr "Prišlo je do napake med nalaganjem. Prosimo, poskusite znova."
 msgid "Override failed validation"
 msgstr "Preglasi neuspešno preverjanje veljavnosti"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Za to različico ne morete naložiti še več datotek."
-
-msgid "Version doesn't match"
-msgstr "Različica se ne ujema"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Potrebujem vsaj eno združljivo aplikacijo."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Različica {version} je bila v preteklosti že naložena in izbrisana."
@@ -2539,12 +2537,6 @@ msgstr "Niste naložili izvorne datoteke."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Izvorna datoteka naložena, vendar ste označili, da vir ni potreben."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Platforme Vse ni mogoče kombinirati s posebnimi platformami."
-
-msgid "A platform can only be chosen once."
-msgstr "Platformo se lahko izbere samo enkrat."
 
 msgid "Application"
 msgstr "Program"
@@ -3387,9 +3379,6 @@ msgstr[1] "<strong>{0}</strong> aktivna uporabnika"
 msgstr[2] "<strong>{0}</strong> aktivni uporabniki"
 msgstr[3] "<strong>{0}</strong> aktivnih uporabnikov"
 
-msgid "Submit a New File"
-msgstr "Pošlji novo datoteko"
-
 msgid "Submit a New Version"
 msgstr "Pošlji novo različico"
 
@@ -3483,9 +3472,6 @@ msgstr "Več podatkov o razširjanju in podpisovanju dodatkov"
 msgid "Submission Complete"
 msgstr "Predložitev je končana"
 
-msgid "You’re done!"
-msgstr "Končali ste!"
-
 msgid "Version Submitted for Review"
 msgstr "Različica poslana za pregled"
 
@@ -3519,12 +3505,6 @@ msgstr "Različici, ki ste jo poslali, lahko tudi dodate opombe ob izdaji ali iz
 msgid "Edit version {0}"
 msgstr "Uredi različico {0}"
 
-msgid "File Signed"
-msgstr "Datoteka podpisana"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Končali ste! Ta datoteka je bila podpisana in je pripravljena za razpošiljanje. Lahko jo prenesete s klikom na spodnji gumb."
-
 msgid "Version Signed"
 msgstr "Različica podpisana"
 
@@ -3535,12 +3515,6 @@ msgstr "Končali ste! Ta različica je bila podpisana in je pripravljena za raz�
 # 100%
 msgid "Download {0}"
 msgstr "Prenesi {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Za ta prispevek ste izbrali samo nekatere od možnih platform. Naložite lahko več datotek za različne platforme:"
-
-msgid "Upload File"
-msgstr "Naloži datoteko"
 
 msgid "Go to My Submissions"
 msgstr "Moji prispevki"
@@ -3622,9 +3596,6 @@ msgstr "Sporazum o razširjanju dodatkov"
 msgid "Upload Add-on"
 msgstr "Naloži dodatek"
 
-msgid "Where to Host File"
-msgstr "Kje gostiti datoteko"
-
 msgid "Where to Host Version"
 msgstr "Kje bo različica objavljena"
 
@@ -3635,7 +3606,8 @@ msgstr "Naloži različico"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Uporabite spodnja polja, da naložite paket dodatka. Po zaključenem prenosu bo veljavnost vaše datoteke preverjena z nizom samodejnih preskusov."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "S katerimi okolji je združljiva ta datoteka?"
 
 msgid "Administrative overrides"
@@ -3646,9 +3618,6 @@ msgstr "Ustvarite različico teme"
 
 msgid "Create a Theme"
 msgstr "Ustvarite temo"
-
-msgid "Submit File"
-msgstr "Pošlji datoteko"
 
 msgid "Sign Add-on"
 msgstr "Podpiši dodatek"
@@ -4126,12 +4095,11 @@ msgstr "Preizkus združljivosti"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Preverite, ali je vaša razširitev združljiva s Firefoxom."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Prikaži stran"
+msgstr "Preskušanje v živo"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Začasno namestite razširitev v Firefox za preizkušanje v živo in odpravljanje napak."
 
 msgid "Transfer ownership"
 msgstr "Prenos lastništva"
@@ -4299,9 +4267,6 @@ msgstr "Upravljanje {0}"
 
 msgid "Files"
 msgstr "Datoteke"
-
-msgid "Upload Another File"
-msgstr "Naloži še eno datoteko"
 
 msgid "Version Notes"
 msgstr "Opombe o različici"
@@ -5402,13 +5367,12 @@ msgid "Clear your browser cache with a click or keystroke."
 msgstr "Počistite predpomnilnik brskalnika s klikom ali pritiskom tipke."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Razširite svoj nabor smeškov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Ne pozabite ničesar več {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
-msgstr ""
+msgstr "Ustvarite in upravljajte seznam opravkov v brskalniku."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6156,44 +6120,38 @@ msgstr "Začnite"
 msgid "Reported Status"
 msgstr "Stanje strani "
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "Vrsta poročila"
+msgstr "Prijavljeno kot neželena vsebina"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Prijavi hrošča"
+msgstr "Prijavljeno kot ne-neželena vsebina"
 
-#, fuzzy
 msgid "Not Reported"
-msgstr "Še ni ocenjeno"
+msgstr "Ni prijavljeno"
 
 msgid "Content Submitted"
 msgstr "Vsebina potrjena"
 
-#, fuzzy
 msgid "View Rating on site"
-msgstr "Obišči novo stran"
+msgstr "Ogled ocene na strani"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Pošlji novo datoteko"
+msgstr "Pošlji ne-neželeno vsebino Akismetu"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Pošlji novo datoteko"
+msgstr "Pošlji neželeno vsebino Akismetu"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s poročil o ne-neželeni vsebini poslanih kot neželena vsebina"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s poročil o neželeni vsebini poslanih kot ne-neželena vsebina"
 
 msgid "About Mozilla Add-ons"
 msgstr "O Mozillinih dodatkih"

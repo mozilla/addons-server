@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2018-08-28 20:37+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -2533,11 +2533,9 @@ msgstr "Pri odosielaní sa vyskytla chyba. Skúste to znova."
 msgid "Override failed validation"
 msgstr "Prepísať neúspešnú kontrolu"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Pre túto verziu nemôžete odoslať žiadne ďalšie súbory."
-
-msgid "Version doesn't match"
-msgstr "Verzia sa nezhoduje"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Vyžaduje aspoň jednu kompatibilnú aplikáciu."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verzia {version} už bola v minulosti nahraná a odstránená."
@@ -2554,12 +2552,6 @@ msgstr "Odoslaný súbor nebolo možné spracovať."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Platformu Všetky nie je možné kombinovať s inou platformou."
-
-msgid "A platform can only be chosen once."
-msgstr "Platformu je možné zvoliť len raz."
 
 msgid "Application"
 msgstr "Aplikácia"
@@ -3395,9 +3387,6 @@ msgstr[0] "<strong>{0}</strong> aktívny používateľ"
 msgstr[1] "<strong>{0}</strong> aktívni používatelia"
 msgstr[2] "<strong>{0}</strong> aktívnych používateľov"
 
-msgid "Submit a New File"
-msgstr "Odoslať nový súbor"
-
 msgid "Submit a New Version"
 msgstr "Odoslať novú verziu"
 
@@ -3494,9 +3483,6 @@ msgstr "Ďalšie informácie o distribúcii a podpisovaní doplnkov"
 msgid "Submission Complete"
 msgstr "Odoslanie dokončené"
 
-msgid "You’re done!"
-msgstr "Hotovo!"
-
 #, fuzzy
 msgid "Version Submitted for Review"
 msgstr "Poznámky k verzii / Poznámky pre redaktora"
@@ -3534,13 +3520,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "Upraviť verziu {0}"
 
-#, fuzzy
-msgid "File Signed"
-msgstr "Poznámky k verzii"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
 msgid "Version Signed"
 msgstr "Verzia bola podpísaná"
 
@@ -3549,12 +3528,6 @@ msgstr ""
 
 msgid "Download {0}"
 msgstr "Prevziať {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr "Nahrať súbor"
 
 #, fuzzy
 msgid "Go to My Submissions"
@@ -3637,10 +3610,6 @@ msgid "Upload Add-on"
 msgstr "Nahrať doplnok"
 
 #, fuzzy
-msgid "Where to Host File"
-msgstr "Cieľová verzia"
-
-#, fuzzy
 msgid "Where to Host Version"
 msgstr "Cieľová verzia"
 
@@ -3651,7 +3620,8 @@ msgstr "Nahrať verziu"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Pre načítanie balíčka so svojim doplnkom a výber cieľových platforiem použite pole nižšie. Po načítaní bude spustená sada automatizovaných testov, ktoré váš balíček skontrolujú."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "S ktorými platformami je tento súbor kompatibilný?"
 
 msgid "Administrative overrides"
@@ -3664,9 +3634,6 @@ msgstr "Vytvorenie novej témy"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Vytvorenie novej témy"
-
-msgid "Submit File"
-msgstr "Odoslať súbor"
 
 msgid "Sign Add-on"
 msgstr "Podpísať doplnok"
@@ -4324,9 +4291,6 @@ msgstr "Spravovať kolekciu {0}"
 
 msgid "Files"
 msgstr "Súbory"
-
-msgid "Upload Another File"
-msgstr "Odoslať ďalší súbor"
 
 msgid "Version Notes"
 msgstr "Poznámky k verzii"

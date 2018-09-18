@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-06 16:16+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"PO-Revision-Date: 2018-09-17 15:53+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -911,7 +911,7 @@ msgid "Error decoding signature."
 msgstr "Fel vid avkodning av signaturen."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Fel typ för en eller flera nycklar i nyttolast"
 
 msgid "Invalid JWT Token."
 msgstr "Ogiltig JWT-token."
@@ -2460,11 +2460,9 @@ msgstr "Det uppstod ett fel med din uppladdning. Försök igen."
 msgid "Override failed validation"
 msgstr "Åsidosätt misslyckad validering"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Du kan inte ladda upp några fler filer för denna version."
-
-msgid "Version doesn't match"
-msgstr "Version matchar inte"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Behöver minst en kompatibel applikation."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Version {version} har laddats upp innan och tas bort."
@@ -2480,12 +2478,6 @@ msgstr "Du har inte laddat upp en källfil."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Källfilen laddades upp men du angav att ingen källa behövdes."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Plattformen Alla kan inte kombineras med specifika plattformar."
-
-msgid "A platform can only be chosen once."
-msgstr "En plattform kan endast väljas en gång."
 
 msgid "Application"
 msgstr "Applikation"
@@ -3347,9 +3339,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktiv användare"
 msgstr[1] "<strong>{0}</strong> aktiva användare"
 
-msgid "Submit a New File"
-msgstr "Skicka in en ny fil"
-
 msgid "Submit a New Version"
 msgstr "Skicka in en ny version"
 
@@ -3444,9 +3433,6 @@ msgstr "Mer information om distribution och signering av tillägg"
 msgid "Submission Complete"
 msgstr "Inskickning komplett"
 
-msgid "You’re done!"
-msgstr "Du är klar!"
-
 msgid "Version Submitted for Review"
 msgstr "Version som skickats in för granskning"
 
@@ -3480,12 +3466,6 @@ msgstr "Du kan också redigera den här versionen för att lägga till versionsa
 msgid "Edit version {0}"
 msgstr "Redigera version {0}"
 
-msgid "File Signed"
-msgstr "Fil som har signerats"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Du är klar! Denna fil är signerad och klar för egen distribution. Du kan hämta den genom att klicka på knappen nedan."
-
 msgid "Version Signed"
 msgstr "Version som signerats"
 
@@ -3494,12 +3474,6 @@ msgstr "Du är klar! Denna version är signerad och klar för egen distribution.
 
 msgid "Download {0}"
 msgstr "Hämta {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Du har valt ut några av de tillgängliga plattformar för detta bidrag. Du kan ladda upp flera filer som riktar sig mot andra plattformar:"
-
-msgid "Upload File"
-msgstr "Ladda upp fil"
 
 msgid "Go to My Submissions"
 msgstr "Gå till mina bidrag"
@@ -3580,9 +3554,6 @@ msgstr "Distributionsavtal för tillägg"
 msgid "Upload Add-on"
 msgstr "Ladda upp tillägg"
 
-msgid "Where to Host File"
-msgstr "Var filen ska hysas"
-
 msgid "Where to Host Version"
 msgstr "Var ska versionen hysas"
 
@@ -3592,7 +3563,8 @@ msgstr "Ladda upp version"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Använd fälten nedan för att ladda upp ditt tilläggspaket. Efter uppladdning, kommer en rad automatiserade valideringsprov köras på din fil."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "Vilka plattformar är denna fil kompatibel med?"
 
 msgid "Administrative overrides"
@@ -3603,9 +3575,6 @@ msgstr "Skapa ett temaversion"
 
 msgid "Create a Theme"
 msgstr "Skapa ett tema"
-
-msgid "Submit File"
-msgstr "Skicka in fil"
 
 msgid "Sign Add-on"
 msgstr "Signera tillägg"
@@ -4082,12 +4051,11 @@ msgstr "Kompatibilitetstest"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Kontrollera om din utökning är kompatibel med Firefox."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Visa listning"
+msgstr "Live Testing"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Installera tillfälligt ditt tillägg i Firefox för live testning och felsökning."
 
 msgid "Transfer ownership"
 msgstr "Överför ägarskapet"
@@ -4247,9 +4215,6 @@ msgstr "Hantera {0}"
 
 msgid "Files"
 msgstr "Filer"
-
-msgid "Upload Another File"
-msgstr "Ladda upp en annan fil"
 
 msgid "Version Notes"
 msgstr "Versionsanteckningar"

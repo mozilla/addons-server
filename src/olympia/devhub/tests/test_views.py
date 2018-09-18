@@ -1061,69 +1061,6 @@ class TestUploadDetail(BaseUploadTest):
         response = self.client.get(url)
         assert response.status_code == 404
 
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def check_excluded_platforms(self, xpi, platforms, v):
-        v.return_value = json.dumps(self.validation_ok())
-        self.upload_file(xpi)
-        upload = FileUpload.objects.get()
-        response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
-        assert response.status_code == 200
-        data = json.loads(response.content)
-        assert sorted(data['platforms_to_exclude']) == sorted(platforms)
-
-    def test_multi_app_addon_can_have_all_platforms(self):
-        self.check_excluded_platforms('mobile-2.9.10-fx+fn.xpi', [])
-
-    def test_android_excludes_desktop_platforms(self):
-        self.check_excluded_platforms('android-phone.xpi', [
-            str(p) for p in amo.DESKTOP_PLATFORMS])
-
-    def test_search_tool_excludes_all_platforms(self):
-        self.check_excluded_platforms('searchgeek-20090701.xml', [
-            str(p) for p in amo.SUPPORTED_PLATFORMS])
-
-    def test_desktop_excludes_mobile(self):
-        self.check_excluded_platforms('desktop.xpi', [
-            str(p) for p in amo.MOBILE_PLATFORMS])
-
-    def test_webextension_supports_all_platforms(self):
-        self.create_appversion('firefox', '42.0')
-
-        # Android is only supported 48+
-        self.create_appversion('android', '48.0')
-        self.create_appversion('android', '*')
-
-        self.check_excluded_platforms('valid_webextension.xpi', [])
-
-    def test_webextension_android_excluded_if_no_48_support(self):
-        self.create_appversion('firefox', '42.*')
-        self.create_appversion('firefox', '47.*')
-        self.create_appversion('firefox', '48.*')
-        self.create_appversion('android', '42.*')
-        self.create_appversion('android', '47.*')
-        self.create_appversion('android', '48.*')
-        self.create_appversion('android', '*')
-
-        self.check_excluded_platforms('valid_webextension_max_47.xpi', [
-            str(amo.PLATFORM_ANDROID.id)
-        ])
-
-    @override_switch('allow-static-theme-uploads', active=True)
-    def test_static_theme_supports_all_desktop_platforms(self):
-        # Support was added in 53
-        self.create_appversion('firefox', '53.0')
-
-        # No Android support yet, but make sure.
-        self.create_appversion('android', '53.0')
-        self.create_appversion('android', '42.*')
-        self.create_appversion('android', '47.*')
-        self.create_appversion('android', '48.*')
-        self.create_appversion('android', '*')
-
-        self.check_excluded_platforms('static_theme.zip', [
-            str(amo.PLATFORM_ANDROID.id)])
-
     def test_no_servererror_on_missing_version(self):
         """https://github.com/mozilla/addons-server/issues/3779
 

@@ -790,6 +790,18 @@ def user_factory(**kw):
     return user
 
 
+def create_default_webext_appversion():
+    AppVersion.objects.get_or_create(
+        application=amo.ANDROID.id, version='48.0')
+    AppVersion.objects.get_or_create(
+        application=amo.ANDROID.id, version='*')
+
+    AppVersion.objects.get_or_create(
+        application=amo.FIREFOX.id, version='48.0')
+    AppVersion.objects.get_or_create(
+        application=amo.FIREFOX.id, version='*')
+
+
 def version_factory(file_kw=None, **kw):
     # We can't create duplicates of AppVersions, so make sure the versions are
     # not already created in fixtures (use fake versions).

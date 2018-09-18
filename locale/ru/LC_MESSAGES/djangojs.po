@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2018-02-18 14:30+0000\n"
 "Last-Translator: SagePtr <sageptr@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -133,9 +133,6 @@ msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Процесс валидации нашёл следующие проблемы, которые могут привести к отклонению:"
-
-msgid "Sorry, no supported platform has been found."
-msgstr "К сожалению поддерживаемых платформ не найдено."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Тип загруженного вами файла не распознан."

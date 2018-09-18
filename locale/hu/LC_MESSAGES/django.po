@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-08 14:32+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"PO-Revision-Date: 2018-09-17 17:43+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -921,7 +921,7 @@ msgid "Error decoding signature."
 msgstr "Hiba az aláírás dekódolásakor."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Hibás típus az adatokban egy vagy több kulcs esetén"
 
 msgid "Invalid JWT Token."
 msgstr "Érvénytelen JWT jelsor."
@@ -2475,11 +2475,9 @@ msgstr "Hiba történt a feltöltés közben, próbálja újra."
 msgid "Override failed validation"
 msgstr "Sikertelen vizsgálat felülbírálása"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Ehhez a verzióhoz több fájl nem tölthető fel."
-
-msgid "Version doesn't match"
-msgstr "Nem egyeznek a verziók"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Legalább egy kompatibilis alkalmazásra szükség van."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "A(z) {version} verzió már korábban fel lett töltve, és törölve lett."
@@ -2495,12 +2493,6 @@ msgstr "Nem töltött fel forrásfájlt."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "A forrásfájl feltöltésre került, de azt jelezte, hogy nincs szükség forrásra."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Az Összes platform nem vonható össze más platformokkal."
-
-msgid "A platform can only be chosen once."
-msgstr "Egy platform csak egyszer választható ki."
 
 msgid "Application"
 msgstr "Alkalmazás"
@@ -3337,9 +3329,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktív felhasználó"
 msgstr[1] "<strong>{0}</strong> aktív felhasználó"
 
-msgid "Submit a New File"
-msgstr "Új fájl beküldése"
-
 msgid "Submit a New Version"
 msgstr "Új verzió beküldése"
 
@@ -3434,9 +3423,6 @@ msgstr "További információk a kiegészítők terjesztéséről és aláírás
 msgid "Submission Complete"
 msgstr "A benyújtási folyamat kész"
 
-msgid "You’re done!"
-msgstr "Kész is van!"
-
 msgid "Version Submitted for Review"
 msgstr "Verzió értékelésre benyújtva"
 
@@ -3470,12 +3456,6 @@ msgstr "Ezt a verziót is szerkesztheti: adhat hozzá verziómegjegyzéseket vag
 msgid "Edit version {0}"
 msgstr "{0} verzió szerkesztése"
 
-msgid "File Signed"
-msgstr "Fájl aláírva"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Elkészült! Ez a fájl alá lett írva, és saját terjesztésre kész. A lenti gombra kattintva töltheti le."
-
 msgid "Version Signed"
 msgstr "Verzió aláírva"
 
@@ -3486,12 +3466,6 @@ msgstr "Elkészült! Ez a verzió aláírva, és saját terjesztésre kész. A l
 # 100%
 msgid "Download {0}"
 msgstr "Letöltés: {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "A beküldéshez csak néhány elérhető platformot választott ki. Több fájl is feltölthet, amelyek más platformokat céloznak:"
-
-msgid "Upload File"
-msgstr "Fájl feltöltése"
 
 msgid "Go to My Submissions"
 msgstr "Ugrás a beküldésekhez"
@@ -3573,9 +3547,6 @@ msgstr "Kiegészítő terjesztési megállapodás"
 msgid "Upload Add-on"
 msgstr "Kiegészítő feltöltése"
 
-msgid "Where to Host File"
-msgstr "Hol terjeszti a fájlt"
-
 msgid "Where to Host Version"
 msgstr "Hol terjeszti a verziót"
 
@@ -3585,7 +3556,8 @@ msgstr "Verzió feltöltése"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Használja az alábbi mezőket a kiegészítő feltöltéséhez. A feltöltés után egy sor automatikus ellenőrzési mechanizmus indul el, és vizsgálja meg a fájlt."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "Mely platformokkal kompatibilis a fájl?"
 
 msgid "Administrative overrides"
@@ -3596,9 +3568,6 @@ msgstr "Téma verzió létrehozása"
 
 msgid "Create a Theme"
 msgstr "Téma létrehozása"
-
-msgid "Submit File"
-msgstr "Fájl beküldése"
 
 msgid "Sign Add-on"
 msgstr "Kiegészítő aláírása"
@@ -4071,12 +4040,11 @@ msgstr "Kompatibilitási teszt"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Ellenőrizze, hogy a kiegészítője kompatibilis-e a Firefoxszal."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Megjelenés megtekintése"
+msgstr "Élő tesztelés"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "A kiegészítő ideiglenes telepítése a Firefoxba élő tesztelési és hibakeresési célokkal."
 
 msgid "Transfer ownership"
 msgstr "Tulajdonjog átadása"
@@ -4233,9 +4201,6 @@ msgstr "{0} kezelése"
 
 msgid "Files"
 msgstr "Fájlok"
-
-msgid "Upload Another File"
-msgstr "Másik fájl feltöltése"
 
 msgid "Version Notes"
 msgstr "Megjegyzések a verzióhoz"

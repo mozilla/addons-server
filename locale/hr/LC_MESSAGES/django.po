@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2015-12-01 12:24+0000\n"
 "Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
 "Language-Team: Croatian\n"
@@ -2559,11 +2559,9 @@ msgstr "Dogodila se greška prilikom Vašeg učitavanja. Molimo, pokušajte pono
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr ""
-
-msgid "Version doesn't match"
-msgstr "Inačica se ne podudara"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Potrebna je barem jedna kompatibilna aplikacija."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2580,12 +2578,6 @@ msgid "You have not uploaded a source file."
 msgstr "Nema datoteka u učitanoj datoteci."
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Platforma Sve ne može se kombinirati s određenim platformama."
-
-msgid "A platform can only be chosen once."
 msgstr ""
 
 msgid "Application"
@@ -3405,10 +3397,6 @@ msgstr[1] "<strong>{0}</strong> aktivni korisnici"
 msgstr[2] "<strong>{0}</strong> aktivnih korisnika"
 
 #, fuzzy
-msgid "Submit a New File"
-msgstr "Dodaj novu inačicu"
-
-#, fuzzy
 msgid "Submit a New Version"
 msgstr "Dodaj novu inačicu"
 
@@ -3510,10 +3498,6 @@ msgstr ""
 msgid "Submission Complete"
 msgstr ""
 
-#, fuzzy
-msgid "You’re done!"
-msgstr "Gotov si!"
-
 msgid "Version Submitted for Review"
 msgstr ""
 
@@ -3552,13 +3536,6 @@ msgid "Edit version {0}"
 msgstr "Inačica {0}"
 
 #, fuzzy
-msgid "File Signed"
-msgstr "Inačica"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
-#, fuzzy
 msgid "Version Signed"
 msgstr "Inačica"
 
@@ -3568,13 +3545,6 @@ msgstr ""
 # 75%
 msgid "Download {0}"
 msgstr "Preuzimanje {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-#, fuzzy
-msgid "Upload File"
-msgstr "Dodaj novu datoteku"
 
 msgid "Go to My Submissions"
 msgstr ""
@@ -3655,9 +3625,6 @@ msgstr ""
 msgid "Upload Add-on"
 msgstr "Dodaj svoj dodatak"
 
-msgid "Where to Host File"
-msgstr ""
-
 msgid "Where to Host Version"
 msgstr ""
 
@@ -3668,7 +3635,7 @@ msgstr "Dodaj inačicu"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3681,10 +3648,6 @@ msgstr "Kompletna tema"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Kompletna tema"
-
-#, fuzzy
-msgid "Submit File"
-msgstr "Dodaj novu inačicu"
 
 # 80%
 #, fuzzy
@@ -4335,9 +4298,6 @@ msgid "Manage {0}"
 msgstr "Upravljaj {0}"
 
 msgid "Files"
-msgstr ""
-
-msgid "Upload Another File"
 msgstr ""
 
 msgid "Version Notes"

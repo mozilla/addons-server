@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,9 +126,6 @@ msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Процес валидације је нашао проблеме које могу довести до:"
-
-msgid "Sorry, no supported platform has been found."
-msgstr "Нажалост није нађена ни једна подржана платформа."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Тип датотеке коју сте послали није препознат."

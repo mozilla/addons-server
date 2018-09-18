@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-04 16:14+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"PO-Revision-Date: 2018-09-17 14:52+0000\n"
 "Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -889,7 +889,7 @@ msgid "Error decoding signature."
 msgstr "解码签名出错。"
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "有效载荷（payload）中的一个或多个密钥类型错误"
 
 msgid "Invalid JWT Token."
 msgstr "无效的 JWT 令牌。"
@@ -2422,11 +2422,9 @@ msgstr "您的上传过程中发生错误，请重试。"
 msgid "Override failed validation"
 msgstr "无视验证失败"
 
-msgid "You cannot upload any more files for this version."
-msgstr "您不能再为此版本上传文件。"
-
-msgid "Version doesn't match"
-msgstr "版本不匹配"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "需要至少一个兼容的应用程序。"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "版本 {version} 此前已上传并已删除。"
@@ -2442,12 +2440,6 @@ msgstr "您尚未上传源文件。"
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "源文件已上传，但您标明无需源文件。"
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "不能既选择所有平台又指定特定平台。"
-
-msgid "A platform can only be chosen once."
-msgstr "一个平台只能被选择一次。"
 
 msgid "Application"
 msgstr "应用程序"
@@ -3249,9 +3241,6 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> 位活跃用户"
 
-msgid "Submit a New File"
-msgstr "提交新文件"
-
 msgid "Submit a New Version"
 msgstr "提交新版本"
 
@@ -3342,9 +3331,6 @@ msgstr "附加组件分发和签名的更多信息"
 msgid "Submission Complete"
 msgstr "提交完成"
 
-msgid "You’re done!"
-msgstr "完成了！"
-
 msgid "Version Submitted for Review"
 msgstr "版本已提交供审核"
 
@@ -3378,12 +3364,6 @@ msgstr "您还可以编辑此版本，为您刚刚的提交添加版本说明、
 msgid "Edit version {0}"
 msgstr "编辑版本 {0}"
 
-msgid "File Signed"
-msgstr "文件已签名"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "完成了！此文件已经签名并准备好自行分发。您可以点击下面的按钮下载它。"
-
 msgid "Version Signed"
 msgstr "版本已签名"
 
@@ -3392,12 +3372,6 @@ msgstr "完成了！此版本已经签名并准备好自行分发。您可以点
 
 msgid "Download {0}"
 msgstr "下载 {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "您的此次提交仅选择了部分可用的平台。您可以上传更多适用于其他平台的文件："
-
-msgid "Upload File"
-msgstr "上传文件"
 
 msgid "Go to My Submissions"
 msgstr "转至我的提交"
@@ -3475,9 +3449,6 @@ msgstr "附加组件分发协议"
 msgid "Upload Add-on"
 msgstr "上传附加组件"
 
-msgid "Where to Host File"
-msgstr "文件托管位置"
-
 msgid "Where to Host Version"
 msgstr "版本托管位置"
 
@@ -3487,7 +3458,8 @@ msgstr "上传版本"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "使用下面的按钮上传您的附加组件包。在上传完成后，将会对您的文件执行一系列自动化验证测试。"
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "此文件与哪个平台兼容？"
 
 msgid "Administrative overrides"
@@ -3498,9 +3470,6 @@ msgstr "创建新版主题"
 
 msgid "Create a Theme"
 msgstr "创建一个主题"
-
-msgid "Submit File"
-msgstr "提交文件"
 
 msgid "Sign Add-on"
 msgstr "签名附加组件"
@@ -3961,12 +3930,11 @@ msgstr "兼容性测试"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "检查您的扩展是否兼容 Firefox。"
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "查看公开页面"
+msgstr "实时测试"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "在 Firefox 中临时安装您的扩展以进行实时测试和调试。"
 
 msgid "Transfer ownership"
 msgstr "变更所有权"
@@ -4121,9 +4089,6 @@ msgstr "管理 {0}"
 
 msgid "Files"
 msgstr "文件"
-
-msgid "Upload Another File"
-msgstr "上传其他文件"
 
 msgid "Version Notes"
 msgstr "版本说明"

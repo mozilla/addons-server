@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2018-09-06 08:15+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -131,9 +131,6 @@ msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Η διαδικασία επικύρωσης βρήκε προβλήματα που μπορούν να οδηγήσουν σε απόρριψη."
-
-msgid "Sorry, no supported platform has been found."
-msgstr "Συγνώμη, δεν βρέθηκε υποστηριζόμενη πλατφόρμα."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Δεν αναγνωρίζεται η μορφή αρχείου που αποστείλατε."

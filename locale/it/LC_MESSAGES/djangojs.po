@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2018-09-08 20:50+0000\n"
 "Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
 "Language-Team: Mozilla Italia\n"
@@ -132,9 +132,6 @@ msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Durante il processo di validazione sono stati rilevati i seguenti problemi, che potrebbero portare al rifiuto del componente aggiuntivo:"
-
-msgid "Sorry, no supported platform has been found."
-msgstr "Spiacenti, non è stato possibile trovare alcuna piattaforma compatibile."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Impossibile determinare il tipo di file caricato."

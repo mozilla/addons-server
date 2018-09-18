@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-11 17:38+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"PO-Revision-Date: 2018-09-17 17:04+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -916,7 +916,7 @@ msgid "Error decoding signature."
 msgstr "Erro ao descodificar a assinatura."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Tipo errado para uma ou mais chaves na payload"
 
 msgid "Invalid JWT Token."
 msgstr "Token JWT inválido."
@@ -2474,11 +2474,9 @@ msgstr "Houve um erro com o seu carregamento. Por favor, tente novamente."
 msgid "Override failed validation"
 msgstr "Sobrepor validação falhada"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Não pode carregar mais ficheiros para esta versão."
-
-msgid "Version doesn't match"
-msgstr "A versão não corresponde."
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Necessita de pelo menos uma aplicação compatível."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "A versão {version} foi anteriormente carregada e eliminada."
@@ -2494,12 +2492,6 @@ msgstr "Não enviou um ficheiro de código."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Ficheiro fonte enviado mas indicou que não era necessária nenhuma fonte."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "A plataforma todos não pode ser combinada com plataformas específicas."
-
-msgid "A platform can only be chosen once."
-msgstr "Apenas pode escolher a plataforma uma vez."
 
 msgid "Application"
 msgstr "Aplicação"
@@ -3338,9 +3330,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> utilizador ativo"
 msgstr[1] "<strong>{0}</strong> utilizadores ativos"
 
-msgid "Submit a New File"
-msgstr "Submeter um novo ficheiro"
-
 msgid "Submit a New Version"
 msgstr "Submeter uma nova versão"
 
@@ -3433,9 +3422,6 @@ msgstr "Mais informação sobre a distribuição e assinatura de extras"
 msgid "Submission Complete"
 msgstr "Submissão finalizada."
 
-msgid "You’re done!"
-msgstr "Está feito!"
-
 msgid "Version Submitted for Review"
 msgstr "Versão submetida para revisão"
 
@@ -3469,12 +3455,6 @@ msgstr "Pode também editar esta versão para adicionar notas da versão, ou có
 msgid "Edit version {0}"
 msgstr "Editar versão {0}"
 
-msgid "File Signed"
-msgstr "Ficheiro assinado"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Está feito! Este ficheiro foi assinado e está pronto para distribuição própria. Pode transferi-lo clicando no botão abaixo."
-
 msgid "Version Signed"
 msgstr "Versão assinada"
 
@@ -3483,12 +3463,6 @@ msgstr "Está feito! Esta versão foi assinada e está pronta para distribuiçã
 
 msgid "Download {0}"
 msgstr "Transferir {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Selecionou apenas algumas das plataformas disponíveis para esta submissão.Pode carregar mais ficheiros, indicados outras plataformas:"
-
-msgid "Upload File"
-msgstr "Carregar ficheiro"
 
 msgid "Go to My Submissions"
 msgstr "Ir para as minhas submissões"
@@ -3569,9 +3543,6 @@ msgstr "Acordo de distribuição de extras"
 msgid "Upload Add-on"
 msgstr "Carregar extra"
 
-msgid "Where to Host File"
-msgstr "Onde alojar o ficheiro"
-
 msgid "Where to Host Version"
 msgstr "Onde hospedar a versão"
 
@@ -3582,7 +3553,8 @@ msgstr "Carregar versão"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Utilize os campos abaixo para carregar o pacote do seu extra. Após carregar, uma série de testes automatizados irão ser executados no seu ficheiro."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "Com que plataformas é este ficheiro compatível?"
 
 msgid "Administrative overrides"
@@ -3593,9 +3565,6 @@ msgstr "Criar uma versão de tema"
 
 msgid "Create a Theme"
 msgstr "Criar um tema"
-
-msgid "Submit File"
-msgstr "Submeter ficheiro"
 
 msgid "Sign Add-on"
 msgstr "Assinar extra"
@@ -4071,12 +4040,11 @@ msgstr "Teste de compatibilidade"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Verifique para ver se a sua extensão é compatível com o Firefox."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Ver listagem"
+msgstr "Testes ao vivo"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Instale a sua extensão temporariamente no Firefox para testes ao vivo e depuração."
 
 msgid "Transfer ownership"
 msgstr "Transferir propriedade"
@@ -4239,9 +4207,6 @@ msgstr "Gerir {0}"
 
 msgid "Files"
 msgstr "Ficheiros"
-
-msgid "Upload Another File"
-msgstr "Carregar outro ficheiro"
 
 msgid "Version Notes"
 msgstr "Notas da versão"

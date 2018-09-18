@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2018-08-15 18:03+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -2555,11 +2555,9 @@ msgstr "Yüklemenizde bir sorun oluştu. Lütfen tekrar deneyin."
 msgid "Override failed validation"
 msgstr "Başarısız doğrulamayı geçersiz kıl"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Bu sürüm için daha fazla dosya yükleyemezsiniz."
-
-msgid "Version doesn't match"
-msgstr "Sürüm eşleşmedi"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "En az bir uyumlu uygulamaya ihtiyaç var."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "{version} sürümü daha önce yüklenip silinmiş."
@@ -2576,13 +2574,6 @@ msgstr "Yüklenen dosya çözümlenemedi."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-#, fuzzy
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Diğer kategorisi ekstra kategorilerle birlikte kullanılamaz."
-
-msgid "A platform can only be chosen once."
-msgstr "Bir platform sadece bir kez seçilebilir."
 
 msgid "Application"
 msgstr "Uygulama"
@@ -3415,9 +3406,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> etkin kullanıcı"
 msgstr[1] "<strong>{0}</strong> etkin kullanıcı"
 
-msgid "Submit a New File"
-msgstr "Yeni dosya gönder"
-
 msgid "Submit a New Version"
 msgstr "Yeni sürüm gönder"
 
@@ -3510,9 +3498,6 @@ msgstr "Eklenti Dağıtımı ve İmzalama hakkında daha fazla bilgi"
 msgid "Submission Complete"
 msgstr "Gönderim tamamlandı"
 
-msgid "You’re done!"
-msgstr "İşlem tamam!"
-
 msgid "Version Submitted for Review"
 msgstr "Sürüm incelemeye gönderildi"
 
@@ -3546,12 +3531,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "{0} sürümünü düzenle"
 
-msgid "File Signed"
-msgstr "Dosya imzalandı"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
 msgid "Version Signed"
 msgstr "Sürüm imzalandı"
 
@@ -3562,12 +3541,6 @@ msgstr ""
 # 100%
 msgid "Download {0}"
 msgstr "İndir: {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr "Dosya yükle"
 
 msgid "Go to My Submissions"
 msgstr "Gönderilerime git"
@@ -3648,9 +3621,6 @@ msgstr "Eklenti Dağıtım Sözleşmesi"
 msgid "Upload Add-on"
 msgstr "Eklenti yükle"
 
-msgid "Where to Host File"
-msgstr "Dosya nerede barındırılsın"
-
 msgid "Where to Host Version"
 msgstr ""
 
@@ -3660,7 +3630,8 @@ msgstr "Sürüm yükle"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Eklenti paketinizi göndermek için aşağıdaki alanları kullanın. Karşıya yüklemeden sonra dosya üzerinde bir dizi doğrulama testi uygulanacak."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "Bu dosya hangi platformlarla uyumlu?"
 
 msgid "Administrative overrides"
@@ -3671,9 +3642,6 @@ msgstr "Tema sürümü oluştur"
 
 msgid "Create a Theme"
 msgstr "Tema oluştur"
-
-msgid "Submit File"
-msgstr "Dosyayı gönder"
 
 msgid "Sign Add-on"
 msgstr "Eklentiyi imzala"
@@ -4308,9 +4276,6 @@ msgstr "{0} eklentisini yönet"
 
 msgid "Files"
 msgstr "Dosyalar"
-
-msgid "Upload Another File"
-msgstr "Başka bir dosya yükle"
 
 msgid "Version Notes"
 msgstr "Sürüm Notları"

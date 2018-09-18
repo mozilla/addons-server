@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2018-09-13 01:48+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -2441,11 +2441,9 @@ msgstr "업로드 도중 오류가 있었습니다. 다시 해주세요."
 msgid "Override failed validation"
 msgstr "Override failed validation"
 
-msgid "You cannot upload any more files for this version."
-msgstr "이 버전엔 이이상 많은 파일을 업로드 할 수 없습니다."
-
-msgid "Version doesn't match"
-msgstr "버전이 일치하지 않습니다"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "호환되는 애플리케이션이 최소 한개는 있어야 합니다."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "{version} 버전이 이전에 업로드 되고 삭제된적이 있습니다."
@@ -2461,14 +2459,6 @@ msgstr "소스 파일을 업로드 하지 않았습니다."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-# 98%
-# 100%
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "모든 플랫폼을 특정 플랫폼과 합칠 수는 없습니다. "
-
-msgid "A platform can only be chosen once."
-msgstr "플랫폼은 한번에 한개만 선택할 수 있습니다."
 
 msgid "Application"
 msgstr "애플리케이션"
@@ -3285,9 +3275,6 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "현재 사용자 <strong>{0}</strong>명"
 
-msgid "Submit a New File"
-msgstr "새로운 파일 올리기"
-
 msgid "Submit a New Version"
 msgstr "새 버전 올리기"
 
@@ -3378,9 +3365,6 @@ msgstr "부가 기능 배포와 등록에 대한 더 많은 정보"
 msgid "Submission Complete"
 msgstr "등록 완료"
 
-msgid "You’re done!"
-msgstr "완료하셨습니다!"
-
 msgid "Version Submitted for Review"
 msgstr "검토를 위해 제출된 버전"
 
@@ -3415,12 +3399,6 @@ msgstr "압축되거나 난독화, 컴파일된 코드를 포함하고 있다면
 msgid "Edit version {0}"
 msgstr "버전 {0} 수정"
 
-msgid "File Signed"
-msgstr "파일 사인됨"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
 msgid "Version Signed"
 msgstr "버전 사인됨"
 
@@ -3431,12 +3409,6 @@ msgstr ""
 # 100%
 msgid "Download {0}"
 msgstr "다운로드 {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr "파일 업로드"
 
 msgid "Go to My Submissions"
 msgstr "나의 제출로 이동"
@@ -3515,10 +3487,6 @@ msgid "Upload Add-on"
 msgstr "부가 기능 업로드"
 
 #, fuzzy
-msgid "Where to Host File"
-msgstr "대상 버전"
-
-#, fuzzy
 msgid "Where to Host Version"
 msgstr "대상 버전"
 
@@ -3529,7 +3497,8 @@ msgstr "버전 업로드"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "부가 기능 패키지를 업로드 하시려면 아래 항목을 이용하신 후 플랫폼 제한 사항을 선택해 주세요. 업로드가 끝나면 파일들에 대한 몇가지 검사가 자동으로 이루어질 것입니다."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "이 파일과 호환되는 플랫폼은 무엇인가요?"
 
 msgid "Administrative overrides"
@@ -3540,9 +3509,6 @@ msgstr "테마 버전 만들기"
 
 msgid "Create a Theme"
 msgstr "테마 만들기"
-
-msgid "Submit File"
-msgstr "파일 제출"
 
 msgid "Sign Add-on"
 msgstr "부가 기능 사인"
@@ -4193,9 +4159,6 @@ msgstr "{0} 관리"
 
 msgid "Files"
 msgstr "파일"
-
-msgid "Upload Another File"
-msgstr "다른 파일 업로드"
 
 msgid "Version Notes"
 msgstr "버전 기록"

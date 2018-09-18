@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-03 11:28+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"PO-Revision-Date: 2018-09-17 12:11+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -894,7 +894,7 @@ msgid "Error decoding signature."
 msgstr "Ralat penyahkodan tandatangan."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Satu atau lebih jenis kekunci yang salah dalam muatan"
 
 msgid "Invalid JWT Token."
 msgstr "Token JWT Tidak Sah."
@@ -2435,11 +2435,9 @@ msgstr "Ada ralat dengan muat naik anda. Sila cuba lagi."
 msgid "Override failed validation"
 msgstr "Pembatalan gagal pengesahan"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Anda tidak boleh memuat naik lagi fail versi ini."
-
-msgid "Version doesn't match"
-msgstr "Versi tidak sepadan"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Perlu sekurang-kurangnya satu aplikasi yang serasi."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versi {version} telah dimuat naik sebelum ini dan dibuang."
@@ -2455,12 +2453,6 @@ msgstr "Anda masih belum memuat naik fail sumber."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Fail sumber dimuat naik tapi anda menyatakan tiada sumber diperlukan."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Platform All tidak boleh digabungkan dengan platform khusus."
-
-msgid "A platform can only be chosen once."
-msgstr "Platform boleh dipilih sekali sahaja."
 
 msgid "Application"
 msgstr "Aplikasi"
@@ -3283,9 +3275,6 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> pengguna aktif"
 
-msgid "Submit a New File"
-msgstr "Hantar Fail Baru"
-
 msgid "Submit a New Version"
 msgstr "Hantar Versi Baru"
 
@@ -3379,9 +3368,6 @@ msgstr "Maklumat lanjut perihal Distribusi dan Tandatangan Add-on"
 msgid "Submission Complete"
 msgstr "Serahan Siap"
 
-msgid "You’re done!"
-msgstr "Sudah siap!"
-
 msgid "Version Submitted for Review"
 msgstr "Versi Dihantar untuk Semakan"
 
@@ -3415,12 +3401,6 @@ msgstr "Anda juga boleh edit versi ini untuk menambah nota, atau kod sumber vers
 msgid "Edit version {0}"
 msgstr "Edit versi {0}"
 
-msgid "File Signed"
-msgstr "Fail Bertandatangan"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Siap! Fail ini telah ditandatangani dan sedia untuk diedarkan sendiri. Anda boleh muat turun dengan mengklik butang di bawah."
-
 msgid "Version Signed"
 msgstr "Versi Ditandatangani"
 
@@ -3429,12 +3409,6 @@ msgstr "Siap! Versi ini telah ditandatangani dan sedia untuk diedarkan sendiri. 
 
 msgid "Download {0}"
 msgstr "Muat turun {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Anda pilih hanya beberapa platform yang tersedia untuk serahan ini. Anda boleh muat naik lebih banyak fail yang mensasarkan platform lain:"
-
-msgid "Upload File"
-msgstr "Muat naik Fail"
 
 msgid "Go to My Submissions"
 msgstr "Pergi ke Serahan Saya"
@@ -3514,9 +3488,6 @@ msgstr "Perjanjian Distribusi Add-on"
 msgid "Upload Add-on"
 msgstr "Muat naik Add-on"
 
-msgid "Where to Host File"
-msgstr "Di mana untuk Hos fail"
-
 msgid "Where to Host Version"
 msgstr "Di mana untuk Host Versi"
 
@@ -3526,7 +3497,8 @@ msgstr "Muat naik Versi"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Gunakan medan di bawah untuk memuat naik pakej add-on anda. Selepas dimuat naik, satu siri ujian pengesahan automatik akan dijalankan kepada fail anda."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "Platform mana yang serasi dengan fail ini?"
 
 msgid "Administrative overrides"
@@ -3537,9 +3509,6 @@ msgstr "Cipta Versi Tema"
 
 msgid "Create a Theme"
 msgstr "Cipta Tema"
-
-msgid "Submit File"
-msgstr "Hantar Fail"
 
 msgid "Sign Add-on"
 msgstr "Tandatangan Add-on"
@@ -4007,12 +3976,11 @@ msgstr "Ujian Keserasian"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Semak untuk melihat samada ekstensi anda serasi dengan Firefox."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Papar Senarai"
+msgstr "Ujian Langsung"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Pasang ekstensi sementara dalam Firefox untuk ujian dan menyahpepijat secara langsung."
 
 msgid "Transfer ownership"
 msgstr "Pindah pemilikan"
@@ -4168,9 +4136,6 @@ msgstr "Urus {0}"
 
 msgid "Files"
 msgstr "Fail"
-
-msgid "Upload Another File"
-msgstr "Muat naik Fail Lain"
 
 msgid "Version Notes"
 msgstr "Nota Versi"

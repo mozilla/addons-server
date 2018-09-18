@@ -597,38 +597,25 @@ class TestVersionEditBase(TestVersionEditMixin, TestCase):
             application=amo.FIREFOX.id, version='5.0')
 
 
-class TestVersionEditMobile(TestVersionEditBase):
-
-    def setUp(self):
-        super(TestVersionEditMobile, self).setUp()
-        self.version.apps.all().delete()
-        app_vr = AppVersion.objects.create(application=amo.ANDROID.id,
-                                           version='1.0')
-        ApplicationsVersions.objects.create(version=self.version,
-                                            application=amo.ANDROID.id,
-                                            min=app_vr, max=app_vr)
-        self.version.files.update(platform=amo.PLATFORM_ANDROID.id)
-
-    def test_mobile_platform_options(self):
-        ctx = self.client.get(self.url).context
-        fld = ctx['file_form'].forms[0]['platform'].field
-        assert sorted(amo.PLATFORMS[p[0]].shortname for p in fld.choices) == (
-            ['android'])
-
-
 class TestVersionEditDetails(TestVersionEditBase):
 
     def setUp(self):
         super(TestVersionEditDetails, self).setUp()
         ctx = self.client.get(self.url).context
         compat = initial(ctx['compat_form'].forms[0])
-        files = initial(ctx['file_form'].forms[0])
-        self.initial = formset(compat, **formset(files, prefix='files'))
+        self.initial = formset(compat)
 
     def formset(self, *args, **kw):
         defaults = dict(self.initial)
         defaults.update(kw)
         return super(TestVersionEditDetails, self).formset(*args, **defaults)
+
+    def test_files_platform_not_editable(self):
+        # https://github.com/mozilla/addons-server/issues/8752
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert 'file_form' not in response.context
+        assert not doc('#id_files-0-platform')
 
     def test_edit_notes(self):
         data = self.formset(releasenotes='xx', approvalnotes='yy')
@@ -652,19 +639,15 @@ class TestVersionEditDetails(TestVersionEditBase):
         response = self.client.post(self.url, data)
         assert response.status_code == 404
 
-    def test_can_upload(self):
-        self.version.files.all().delete()
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('a.add-file')
-
-    def test_not_upload(self):
+    def test_cant_upload(self):
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert not doc('a.add-file')
-        # Make sure the files form is present.
-        assert doc('#id_files-0-id').val() == str(
-            self.version.files.all()[0].pk)
+
+        self.version.files.all().delete()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc('a.add-file')
 
     def test_add(self):
         response = self.client.get(self.url)
@@ -828,176 +811,6 @@ class TestVersionEditSearchEngine(TestVersionEditMixin, TestCase):
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert not doc('a.add-file')
-
-    @mock.patch('olympia.versions.models.Version.is_allowed_upload')
-    def test_can_upload(self, allowed):
-        allowed.return_value = True
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('a.add-file')
-
-
-class TestVersionEditFiles(TestVersionEditBase):
-
-    def setUp(self):
-        super(TestVersionEditFiles, self).setUp()
-        form = self.client.get(
-            self.url).context['compat_form'].initial_forms[0]
-        self.compat = initial(form)
-
-    def formset(self, *args, **kw):
-        compat = formset(self.compat, initial_count=1)
-        compat.update(kw)
-        return super(TestVersionEditFiles, self).formset(*args, **compat)
-
-    def test_unique_platforms(self):
-        # Move the existing file to Linux.
-        file_ = self.version.files.get()
-        file_.update(platform=amo.PLATFORM_LINUX.id)
-        # And make a new file for Mac.
-        File.objects.create(version=self.version,
-                            platform=amo.PLATFORM_MAC.id)
-
-        forms = map(initial,
-                    self.client.get(self.url).context['file_form'].forms)
-        forms[1]['platform'] = forms[0]['platform']
-        response = self.client.post(
-            self.url, self.formset(*forms, prefix='files'))
-        doc = pq(response.content)
-        assert doc('#id_files-0-platform')
-        assert response.status_code == 200
-        assert response.context['file_form'].non_form_errors() == (
-            ['A platform can only be chosen once.'])
-
-    def test_all_platforms(self):
-        version = self.addon.current_version
-        version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
-
-        File.objects.create(version=self.version,
-                            platform=amo.PLATFORM_MAC.id)
-        forms = self.client.get(self.url).context['file_form'].forms
-        forms = map(initial, forms)
-        response = self.client.post(
-            self.url, self.formset(*forms, prefix='files'))
-        assert response.context['file_form'].non_form_errors()[0] == (
-            'The platform All cannot be combined with specific platforms.')
-
-    def add_in_bsd(self):
-        file_ = self.version.files.get()
-        # The default file is All, which prevents the addition of more files.
-        file_.update(platform=amo.PLATFORM_MAC.id)
-        return File.objects.create(version=self.version,
-                                   platform=amo.PLATFORM_BSD.id)
-
-    def get_platforms(self, form):
-        return [amo.PLATFORMS[i[0]].shortname
-                for i in form.fields['platform'].choices]
-
-    # The unsupported platform tests are for legacy addons.  We don't
-    # want new addons uploaded with unsupported platforms but the old files can
-    # still be edited.
-
-    def test_all_unsupported_platforms(self):
-        self.add_in_bsd()
-        forms = self.client.get(self.url).context['file_form'].forms
-        choices = self.get_platforms(forms[1])
-        assert 'bsd' in choices, (
-            'After adding a BSD file, expected its platform to be '
-            'available  in: %r' % choices)
-
-    def test_all_unsupported_platforms_unchange(self):
-        bsd = self.add_in_bsd()
-        forms = self.client.get(self.url).context['file_form'].forms
-        forms = map(initial, forms)
-        self.client.post(self.url, self.formset(*forms, prefix='files'))
-        assert File.objects.get(pk=bsd.pk).platform == (
-            amo.PLATFORM_BSD.id)
-
-    def test_all_unsupported_platforms_change(self):
-        bsd = self.add_in_bsd()
-        forms = self.client.get(self.url).context['file_form'].forms
-        forms = map(initial, forms)
-        # Update the file platform to Linux:
-        forms[1]['platform'] = amo.PLATFORM_LINUX.id
-        self.client.post(self.url, self.formset(*forms, prefix='files'))
-        assert File.objects.get(pk=bsd.pk).platform == (
-            amo.PLATFORM_LINUX.id)
-        forms = self.client.get(self.url).context['file_form'].forms
-        choices = self.get_platforms(forms[1])
-        assert 'bsd' not in choices, (
-            'After changing BSD file to Linux, BSD should no longer be a '
-            'platform choice in: %r' % choices)
-
-    def test_mobile_addon_supports_only_mobile_platforms(self):
-        for a in self.version.apps.all():
-            a.application = amo.ANDROID.id
-            a.save()
-        self.version.files.all().update(platform=amo.PLATFORM_ANDROID.id)
-        forms = self.client.get(self.url).context['file_form'].forms
-        choices = self.get_platforms(forms[0])
-        assert sorted(choices) == (
-            sorted([p.shortname for p in amo.MOBILE_PLATFORMS.values()]))
-
-
-class TestPlatformSearchEngine(TestVersionEditMixin, TestCase):
-    fixtures = ['base/users', 'base/thunderbird', 'base/addon_4594_a9.json']
-
-    def setUp(self):
-        super(TestPlatformSearchEngine, self).setUp()
-        self.client.login(email='admin@mozilla.com')
-        self.url = reverse('devhub.versions.edit',
-                           args=['a4594', 42352])
-        self.version = Version.objects.get(id=42352)
-        self.file = self.version.files.all()[0]
-
-    def test_no_platform_search_engine(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert not doc('#id_files-0-platform')
-
-    def test_changing_platform_search_engine(self):
-        dd = self.formset({'id': int(self.file.pk),
-                           'platform': amo.PLATFORM_LINUX.id},
-                          prefix='files', releasenotes='xx',
-                          approvalnotes='yy')
-        response = self.client.post(self.url, dd)
-        assert response.status_code == 302
-        file_ = Version.objects.get(id=42352).files.all()[0]
-        assert amo.PLATFORM_ALL.id == file_.platform
-
-
-class TestPlatformStaticTheme(TestVersionEditMixin, TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
-
-    def setUp(self):
-        self.get_addon().update(type=amo.ADDON_STATICTHEME)
-        super(TestPlatformStaticTheme, self).setUp()
-        self.client.login(email='admin@mozilla.com')
-        self.version = self.get_version()
-        self.file = self.version.files.all()[0]
-        self.url = reverse('devhub.versions.edit',
-                           args=[self.version.addon.slug, self.version.id])
-
-    def formset(self, *args, **kw):
-        defaults = dict(self.initial)
-        defaults.update(kw)
-        return super(TestPlatformStaticTheme, self).formset(*args, **defaults)
-
-    def test_no_platform_selector(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert not doc('#id_files-0-platform')
-
-    def test_no_changing_platform(self):
-        ctx = self.client.get(self.url).context
-        compat = initial(ctx['compat_form'].forms[0])
-        files = initial(ctx['file_form'].forms[0])
-        files['platform'] = amo.PLATFORM_LINUX.id
-        self.initial = formset(compat, **formset(files, prefix='files'))
-        response = self.client.post(self.url, self.formset())
-        assert response.status_code == 302
-        file_ = self.get_version().files.all()[0]
-        assert amo.PLATFORM_ALL.id == file_.platform
 
 
 class TestVersionEditCompat(TestVersionEditBase):

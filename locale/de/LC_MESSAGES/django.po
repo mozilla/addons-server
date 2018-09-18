@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-03 13:11+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"PO-Revision-Date: 2018-09-17 17:50+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -926,7 +926,7 @@ msgid "Error decoding signature."
 msgstr "Fehler beim Entschlüsseln der Signatur."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Falscher Typ für einen oder mehrere Schlüssel in Inhalt"
 
 msgid "Invalid JWT Token."
 msgstr "Ungültiger JWT-Token."
@@ -2486,11 +2486,9 @@ msgstr "Beim Hochladen ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut
 msgid "Override failed validation"
 msgstr "Fehlgeschlagene Validierung außer Kraft setzen"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Sie können für diese Version keine weiteren Dateien hochladen."
-
-msgid "Version doesn't match"
-msgstr "Version passt nicht"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Mindestens eine kompatible Anwendung erforderlich."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Version {version} wurde zuvor schon hochgeladen und gelöscht."
@@ -2506,12 +2504,6 @@ msgstr "Sie haben keine Quelltextdatei hochgeladen."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Quelltextdatei hochgeladen, aber Sie hatten angegeben, dass kein Quelltext benötigt würde."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Die Plattform Alle kann nicht mit bestimmten Plattformen kombiniert werden."
-
-msgid "A platform can only be chosen once."
-msgstr "Eine Plattform kann nur ein einziges Mal gewählt werden."
 
 msgid "Application"
 msgstr "Anwendung"
@@ -3349,9 +3341,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktiver Benutzer"
 msgstr[1] "<strong>{0}</strong> aktive Benutzer"
 
-msgid "Submit a New File"
-msgstr "Neue Datei übermitteln"
-
 msgid "Submit a New Version"
 msgstr "Eine neue Version übermitteln"
 
@@ -3446,9 +3435,6 @@ msgstr "Weitere Informationen zum Verteilen und Signieren von Add-ons"
 msgid "Submission Complete"
 msgstr "Übermittlung abgeschlossen"
 
-msgid "You’re done!"
-msgstr "Sie sind fertig!"
-
 msgid "Version Submitted for Review"
 msgstr "Version zur Überprüfung eingereicht"
 
@@ -3483,12 +3469,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "Version bearbeiten {0}"
 
-msgid "File Signed"
-msgstr "Datei signiert"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Fertig! Diese Datei wurde signiert und kann selbst verteilt werden. Sie können sie per Klick auf die folgende Schaltfläche herunterladen."
-
 msgid "Version Signed"
 msgstr "Version signiert"
 
@@ -3497,12 +3477,6 @@ msgstr "Fertig! Diese Version wurde signiert und kann selbst verteilt werden. Si
 
 msgid "Download {0}"
 msgstr "{0} herunterladen"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Sie haben nicht alle der verfügbaren Plattformen für diese Einreichung ausgewählt. Sie können weitere Dateien hochladen, die sich an andere Plattformen richten:"
-
-msgid "Upload File"
-msgstr "Datei hochladen"
 
 msgid "Go to My Submissions"
 msgstr "Meine Einreichungen ansehen"
@@ -3584,9 +3558,6 @@ msgstr "Add-on-Verteilungsvereinbarung"
 msgid "Upload Add-on"
 msgstr "Add-on hochladen"
 
-msgid "Where to Host File"
-msgstr "Wo die Datei gehostet wird"
-
 msgid "Where to Host Version"
 msgstr "Wo die Version gehostet wird"
 
@@ -3596,7 +3567,8 @@ msgstr "Version hochladen"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Verwenden Sie die folgenden Felder, um Ihr Add-on-Paket hochzuladen. Nach dem Hochladen wird Ihre Datei mehreren automatischen Validierungstests unterzogen."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "Mit welchen Plattformen ist diese Datei kompatibel?"
 
 msgid "Administrative overrides"
@@ -3607,9 +3579,6 @@ msgstr "Eine Theme-Version erstellen"
 
 msgid "Create a Theme"
 msgstr "Ein Theme erstellen"
-
-msgid "Submit File"
-msgstr "Datei übermitteln"
 
 msgid "Sign Add-on"
 msgstr "Add-on signieren"
@@ -4083,12 +4052,11 @@ msgstr "Compatibility Test"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Überprüfen Sie, ob Ihre Erweiterung mit Firefox kompatibel ist."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Listeneintrag anzeigen"
+msgstr "Live-Test"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Installieren Sie Ihre Erweiterung temporär in Firefox, um sie live zu testen und Fehler zu beheben."
 
 msgid "Transfer ownership"
 msgstr "Besitz übertragen"
@@ -4247,9 +4215,6 @@ msgstr "{0} bearbeiten"
 
 msgid "Files"
 msgstr "Dateien"
-
-msgid "Upload Another File"
-msgstr "Eine weitere Datei hochladen"
 
 msgid "Version Notes"
 msgstr "Anmerkungen zur Version"

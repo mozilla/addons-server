@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -2564,10 +2564,7 @@ msgstr ""
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr ""
-
-msgid "Version doesn't match"
+msgid "Need to select at least one application."
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -2583,12 +2580,6 @@ msgid "You have not uploaded a source file."
 msgstr ""
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
-
-msgid "A platform can only be chosen once."
 msgstr ""
 
 msgid "Application"
@@ -3406,10 +3397,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, fuzzy
-msgid "Submit a New File"
-msgstr "Dien 'n nuwe tema in"
-
-#, fuzzy
 msgid "Submit a New Version"
 msgstr "Dien nuwe byvoeging in"
 
@@ -3512,9 +3499,6 @@ msgstr ""
 msgid "Submission Complete"
 msgstr ""
 
-msgid "You’re done!"
-msgstr ""
-
 #, fuzzy
 msgid "Version Submitted for Review"
 msgstr "Dien resensie in"
@@ -3554,13 +3538,6 @@ msgid "Edit version {0}"
 msgstr "Beta-weergawe {0}"
 
 #, fuzzy
-msgid "File Signed"
-msgstr "Weergawe"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
-#, fuzzy
 msgid "Version Signed"
 msgstr "Weergawe"
 
@@ -3568,12 +3545,6 @@ msgid "You’re done! This version is signed and ready to for self-distribution.
 msgstr ""
 
 msgid "Download {0}"
-msgstr ""
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
 msgstr ""
 
 msgid "Go to My Submissions"
@@ -3655,9 +3626,6 @@ msgstr ""
 msgid "Upload Add-on"
 msgstr "Geblokkeerde byvoegings"
 
-msgid "Where to Host File"
-msgstr ""
-
 msgid "Where to Host Version"
 msgstr ""
 
@@ -3668,7 +3636,7 @@ msgstr "Toepassingweergawes"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3681,10 +3649,6 @@ msgstr "Skep u eie tema"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Skep u eie tema"
-
-#, fuzzy
-msgid "Submit File"
-msgstr "Dien 'n nuwe tema in"
 
 #, fuzzy
 msgid "Sign Add-on"
@@ -4339,9 +4303,6 @@ msgid "Manage {0}"
 msgstr "Bestuur {0}"
 
 msgid "Files"
-msgstr ""
-
-msgid "Upload Another File"
 msgstr ""
 
 msgid "Version Notes"
