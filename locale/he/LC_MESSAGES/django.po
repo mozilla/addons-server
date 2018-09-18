@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-18 08:22+0000\n"
+"PO-Revision-Date: 2018-09-18 08:36+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -3485,9 +3485,8 @@ msgstr "הורדת {0}"
 msgid "Go to My Submissions"
 msgstr "מעבר להגשות שלי"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "קוד מקור הועלה"
+msgstr "העלאת קוד מקור"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr "האם עליך להגיש קוד מקור?"
@@ -3574,9 +3573,8 @@ msgstr "העלאת גרסה"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "יש להשתמש בשדות שלהלן כדי להעלות את חבילת התוספת. לאחר ההעלאה, תורץ סדרה של בדיקות אימות אוטומטיות על הקובץ שלך."
 
-#, fuzzy
 msgid "Which applications is this version compatible with?"
-msgstr "אילו פלטפורמות נתמכות ע״י קובץ זה?"
+msgstr "אילו יישומים נתמכים על־ידי גרסה זו?"
 
 msgid "Administrative overrides"
 msgstr "מעקפים מנהליים"
