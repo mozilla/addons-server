@@ -1,4 +1,5 @@
 import json
+import os.path
 import random
 import uuid
 import zipfile
@@ -12,7 +13,7 @@ from django.utils.translation import ugettext
 
 from olympia import amo
 from olympia.lib.cache import memoize, memoize_key
-from olympia.amo.utils import normalize_string
+from olympia.amo.utils import normalize_string, to_language
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.discovery.utils import call_recommendation_server
 from olympia.translations.fields import LocaleErrorMessage
@@ -218,9 +219,6 @@ def build_webext_dictionary_from_legacy(addon, destination):
     if not old_zip.is_valid():
         raise ValidationError('Current dictionary xpi is not valid')
 
-    if not addon.target_locale:
-        raise ValidationError('Addon has no target_locale')
-
     dictionary_path = ''
 
     with zipfile.ZipFile(destination, 'w', zipfile.ZIP_DEFLATED) as new_zip:
@@ -251,6 +249,22 @@ def build_webext_dictionary_from_legacy(addon, destination):
             # chrome/ directory for some reason. Abort!
             raise ValidationError('Current dictionary xpi has no .dic file')
 
+        if addon.target_locale:
+            target_language = addon.target_locale
+        else:
+            # Guess target_locale since we don't have one already. Note that
+            # for extra confusion, target_locale is a language, not a locale.
+            target_language = to_language(os.path.splitext(
+                os.path.basename(dictionary_path))[0])
+            if target_language not in settings.AMO_LANGUAGES:
+                # We couldn't find that language in the list we support. Let's
+                # try with just the prefix.
+                target_language = target_language.split('-')[0]
+                if target_language not in settings.AMO_LANGUAGES:
+                    # We tried our best.
+                    raise ValidationError(u'Addon has no target_locale and we'
+                                          u' could not guess one from the xpi')
+
         # Dumb version number increment. This will be invalid in some cases,
         # but some of the dictionaries we have currently already have wild
         # version numbers anyway.
@@ -264,7 +278,7 @@ def build_webext_dictionary_from_legacy(addon, destination):
             'manifest_version': 2,
             'name': unicode(addon.name),
             'version': version_number,
-            'dictionaries': {addon.target_locale: dictionary_path},
+            'dictionaries': {target_language: dictionary_path},
         }
 
         # Write manifest.json we just build.

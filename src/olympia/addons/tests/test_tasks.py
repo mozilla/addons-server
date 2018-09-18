@@ -262,8 +262,7 @@ class TestMigrateLegacyDictionaryToWebextension(TestCase):
             email='taskuser@mozilla.com')
         with freeze_time('2017-07-27 07:00'):
             self.addon = addon_factory(
-                type=amo.ADDON_DICT, target_locale='fr',
-                version_kw={'version': '6.3'})
+                type=amo.ADDON_DICT, version_kw={'version': '6.3'})
 
         AppVersion.objects.get_or_create(
             application=amo.FIREFOX.id, version='61.0')
@@ -291,6 +290,8 @@ class TestMigrateLegacyDictionaryToWebextension(TestCase):
             action=amo.LOG.ADD_VERSION.id).exists()
         old_version = self.addon.current_version
 
+        self.build_mock.return_value = 'fake-locale'
+
         with freeze_time('2018-08-28 08:00'):
             self.migration_date = datetime.now()
             migrate_legacy_dictionary_to_webextension(self.addon)
@@ -298,6 +299,7 @@ class TestMigrateLegacyDictionaryToWebextension(TestCase):
         self.build_mock.assert_called_once_with(self.addon, mock.ANY)
         assert FileUpload.objects.exists()
         self.addon.reload()
+        assert self.addon.target_locale == 'fake-locale'
         assert self.addon.current_version != old_version
         activity_log = ActivityLog.objects.filter(
             action=amo.LOG.ADD_VERSION.id).get()

@@ -87,9 +87,7 @@ tasks = {
             Q(type=amo.ADDON_DICT,
               status=amo.STATUS_PUBLIC,
               disabled_by_user=False,
-              _current_version__files__is_webextension=False,
-              target_locale__isnull=False),
-            ~Q(target_locale=''),
+              _current_version__files__is_webextension=False),
         ],
     },
 }
