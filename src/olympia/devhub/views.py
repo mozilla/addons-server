@@ -580,10 +580,10 @@ def handle_upload(filedata, request, channel, app_id=None, version_id=None,
                 user_agent=request.META.get('HTTP_USER_AGENT'),
                 referrer=request.META.get('HTTP_REFERER'),
                 upload=upload)
-            akismet_checks = comment_check.si(
-                [report.id for report in akismet_reports])
         else:
-            akismet_checks = None
+            akismet_reports = []
+        akismet_checks = comment_check.si(
+            [report.id for report in akismet_reports])
         if submit:
             tasks.validate_and_submit(
                 addon, upload, channel=channel, pretask=akismet_checks)
