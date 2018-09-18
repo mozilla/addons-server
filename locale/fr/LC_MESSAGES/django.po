@@ -2490,9 +2490,8 @@ msgstr "Il y a eu une erreur avec votre envoi. Merci de réessayer."
 msgid "Override failed validation"
 msgstr "Passer outre la validation échouée"
 
-#, fuzzy
 msgid "Need to select at least one application."
-msgstr "Au moins une application compatible est nécessaire."
+msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "La version {version} a déjà été envoyée et supprimée."
@@ -3580,9 +3579,8 @@ msgstr "Envoyer cette version"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Utilisez les champs ci-dessous pour envoyer le paquet de votre module. Après envoi, une série de tests de validation automatisés seront exécutés sur votre fichier."
 
-#, fuzzy
 msgid "Which applications is this version compatible with?"
-msgstr "Quelles sont les plateformes avec lesquelles le fichier est compatible ?"
+msgstr ""
 
 msgid "Administrative overrides"
 msgstr "Dérogations administratives"
@@ -4065,9 +4063,8 @@ msgstr "Test de compatibilité"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Vérifiez que votre extension est compatible avec Firefox."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Page de l’application"
+msgstr ""
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
