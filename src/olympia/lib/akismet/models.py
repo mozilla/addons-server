@@ -194,3 +194,21 @@ class AkismetReport(ModelBase):
             comment_modified=datetime.now(),
         )
         return instance
+
+    @classmethod
+    def create_for_collection(cls, collection, user, property_name,
+                              property_value, user_agent, referrer):
+        instance = cls.objects.create(
+            collection_instance=collection,
+            comment_type='collection-' + property_name,
+            user_ip=user.last_login_ip or '',
+            user_agent=user_agent or '',
+            referrer=referrer or '',
+            user=user,
+            user_name=user.name or '',
+            user_email=user.email,
+            user_homepage=user.homepage or '',
+            comment=property_value,
+            comment_modified=datetime.now(),
+        )
+        return instance
