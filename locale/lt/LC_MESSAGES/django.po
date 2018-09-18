@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2500,10 +2500,7 @@ msgstr ""
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr ""
-
-msgid "Version doesn't match"
+msgid "Need to select at least one application."
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -2519,12 +2516,6 @@ msgid "You have not uploaded a source file."
 msgstr ""
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
-
-msgid "A platform can only be chosen once."
 msgstr ""
 
 msgid "Application"
@@ -3339,9 +3330,6 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-msgid "Submit a New File"
-msgstr ""
-
 msgid "Submit a New Version"
 msgstr ""
 
@@ -3439,9 +3427,6 @@ msgstr ""
 msgid "Submission Complete"
 msgstr ""
 
-msgid "You’re done!"
-msgstr ""
-
 msgid "Version Submitted for Review"
 msgstr ""
 
@@ -3479,13 +3464,6 @@ msgid "Edit version {0}"
 msgstr "Versija {0}:"
 
 #, fuzzy
-msgid "File Signed"
-msgstr "Versijos pastabos"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
-#, fuzzy
 msgid "Version Signed"
 msgstr "Versijos pastabos"
 
@@ -3493,12 +3471,6 @@ msgid "You’re done! This version is signed and ready to for self-distribution.
 msgstr ""
 
 msgid "Download {0}"
-msgstr ""
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
 msgstr ""
 
 msgid "Go to My Submissions"
@@ -3578,9 +3550,6 @@ msgstr ""
 msgid "Upload Add-on"
 msgstr "Daugiau priedų"
 
-msgid "Where to Host File"
-msgstr ""
-
 msgid "Where to Host Version"
 msgstr ""
 
@@ -3591,7 +3560,7 @@ msgstr "Versija"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3603,10 +3572,6 @@ msgstr "Populiarūs plėtiniai"
 
 msgid "Create a Theme"
 msgstr ""
-
-#, fuzzy
-msgid "Submit File"
-msgstr "Neperžiūrėtas"
 
 #, fuzzy
 msgid "Sign Add-on"
@@ -4242,9 +4207,6 @@ msgid "Manage {0}"
 msgstr ""
 
 msgid "Files"
-msgstr ""
-
-msgid "Upload Another File"
 msgstr ""
 
 msgid "Version Notes"

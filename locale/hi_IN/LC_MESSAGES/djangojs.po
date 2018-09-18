@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2018-09-16 08:56+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,9 +128,6 @@ msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "सत्यापन प्रक्रिया को ये मुद्दे मिले जो अस्वीकृति का कारण बन सकते हैं:"
-
-msgid "Sorry, no supported platform has been found."
-msgstr "क्षमा करें, कोई समर्थित प्लेटफ़ॉर्म नहीं पाया गया है."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "आपने जो फाइलटाइप अपलोड किया वह मान्य नहीं है."

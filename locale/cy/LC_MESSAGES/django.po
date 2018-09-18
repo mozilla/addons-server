@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2018-06-29 16:27+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2582,10 +2582,7 @@ msgstr ""
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr ""
-
-msgid "Version doesn't match"
+msgid "Need to select at least one application."
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -2601,12 +2598,6 @@ msgid "You have not uploaded a source file."
 msgstr ""
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
-
-msgid "A platform can only be chosen once."
 msgstr ""
 
 msgid "Application"
@@ -3431,10 +3422,6 @@ msgstr[4] ""
 msgstr[5] ""
 
 #, fuzzy
-msgid "Submit a New File"
-msgstr "New Version"
-
-#, fuzzy
 msgid "Submit a New Version"
 msgstr "New Version"
 
@@ -3533,9 +3520,6 @@ msgstr ""
 msgid "Submission Complete"
 msgstr ""
 
-msgid "You’re done!"
-msgstr ""
-
 msgid "Version Submitted for Review"
 msgstr ""
 
@@ -3573,13 +3557,6 @@ msgid "Edit version {0}"
 msgstr ""
 
 #, fuzzy
-msgid "File Signed"
-msgstr "Version"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
-#, fuzzy
 msgid "Version Signed"
 msgstr "Version"
 
@@ -3587,12 +3564,6 @@ msgid "You’re done! This version is signed and ready to for self-distribution.
 msgstr ""
 
 msgid "Download {0}"
-msgstr ""
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
 msgstr ""
 
 msgid "Go to My Submissions"
@@ -3673,9 +3644,6 @@ msgstr ""
 msgid "Upload Add-on"
 msgstr "Fy Ychwanegion"
 
-msgid "Where to Host File"
-msgstr ""
-
 msgid "Where to Host Version"
 msgstr ""
 
@@ -3686,7 +3654,7 @@ msgstr "Application Versions"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3701,10 +3669,6 @@ msgstr "Created by Me"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Created by Me"
-
-#, fuzzy
-msgid "Submit File"
-msgstr "New Version"
 
 #, fuzzy
 msgid "Sign Add-on"
@@ -4335,9 +4299,6 @@ msgid "Manage {0}"
 msgstr "Manage {0}"
 
 msgid "Files"
-msgstr ""
-
-msgid "Upload Another File"
 msgstr ""
 
 msgid "Version Notes"

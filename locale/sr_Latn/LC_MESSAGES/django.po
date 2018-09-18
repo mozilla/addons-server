@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -2768,11 +2768,9 @@ msgstr "Došlo je do greške tokom otpremanja. Molimo Vas, pokušajte ponovo."
 msgid "Override failed validation"
 msgstr "Prepis nije prešao validaciju"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Ne možete više datoteka otpremiti za ovu verziju."
-
-msgid "Version doesn't match"
-msgstr "Verzije se ne poklapaju"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Potrebna je najmanje jedna kompatibilna aplikacija."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2790,12 +2788,6 @@ msgstr "Nije moguće raščlaniti otpremljenu datoteku."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Platforma Sve ne može se ukombinovati sa određenim platformama."
-
-msgid "A platform can only be chosen once."
-msgstr "Platforma se može samo jednom izabrati."
 
 msgid "Application"
 msgstr "Aplikacija"
@@ -3761,10 +3753,6 @@ msgstr[0] "<strong>{0}</strong> korisnik"
 msgstr[1] "<strong>{0}</strong> korisnika"
 
 #, fuzzy
-msgid "Submit a New File"
-msgstr "Podnesi novu temu"
-
-#, fuzzy
 msgid "Submit a New Version"
 msgstr "Podnesi novi dodatak"
 
@@ -3882,10 +3870,6 @@ msgid "Submission Complete"
 msgstr "Podnošenje završeno"
 
 #, fuzzy
-msgid "You’re done!"
-msgstr "Gotovi ste!"
-
-#, fuzzy
 msgid "Version Submitted for Review"
 msgstr "Beleške o verziji / Beleške za recenzenta"
 
@@ -3935,15 +3919,6 @@ msgid "Edit version {0}"
 msgstr "Beta verzija {0}"
 
 #, fuzzy
-msgid "File Signed"
-msgstr "Beleške o verziji"
-
-msgid ""
-"You’re done! This file is signed and ready to for self-distribution. You can "
-"download it by clicking the button below."
-msgstr ""
-
-#, fuzzy
 msgid "Version Signed"
 msgstr "Beleške o verziji"
 
@@ -3954,15 +3929,6 @@ msgstr ""
 
 msgid "Download {0}"
 msgstr "Preuzmi {0}"
-
-msgid ""
-"You selected only some of the available platforms for this submission. You "
-"can upload more files that target other platforms:"
-msgstr ""
-
-#, fuzzy
-msgid "Upload File"
-msgstr "Postavi još jednu datoteku"
 
 #, fuzzy
 msgid "Go to My Submissions"
@@ -4060,10 +4026,6 @@ msgid "Upload Add-on"
 msgstr "Postavite Vaš dodatak"
 
 #, fuzzy
-msgid "Where to Host File"
-msgstr "Ciljana verzija"
-
-#, fuzzy
 msgid "Where to Host Version"
 msgstr "Ciljana verzija"
 
@@ -4080,7 +4042,7 @@ msgstr ""
 "bilo koja ograničenja platforme. Nakon postavljanja, niz automatizovanih "
 "testova za proveru valjanosti će biti pokrenuti na Vašoj datoteci."
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -4093,10 +4055,6 @@ msgstr "Napravi novu temu"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Napravi novu temu"
-
-#, fuzzy
-msgid "Submit File"
-msgstr "Podnesi novu temu"
 
 #, fuzzy
 msgid "Sign Add-on"
@@ -4881,9 +4839,6 @@ msgstr "Upravljaj sa {0}"
 
 msgid "Files"
 msgstr "Datoteke"
-
-msgid "Upload Another File"
-msgstr "Postavi još jednu datoteku"
 
 msgid "Version Notes"
 msgstr "Beleške o verziji"

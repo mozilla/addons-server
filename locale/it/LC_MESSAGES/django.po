@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2018-09-09 09:22+0000\n"
 "Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
 "Language-Team: Mozilla Italia\n"
@@ -2490,11 +2490,9 @@ msgstr "Si è verificato un errore durante il caricamento. Riprovare."
 msgid "Override failed validation"
 msgstr "Il tentativo di sostituzione forzata è fallito"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Non è possibile caricare ulteriori file per questa versione."
-
-msgid "Version doesn't match"
-msgstr "La versione non corrisponde"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "È necessaria almeno un’applicazione compatibile."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "La versione {version} è stata già caricata e poi eliminata."
@@ -2510,12 +2508,6 @@ msgstr "Non hai caricato un file sorgente."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "È stato caricato un file sorgente ma non stato specificato che il sorgente era necessario."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Non è possibile selezionare Tutti e contemporaneamente uno specifico sistema operativo."
-
-msgid "A platform can only be chosen once."
-msgstr "Una piattaforma può essere selezionata una sola volta."
 
 msgid "Application"
 msgstr "Applicazione"
@@ -3376,9 +3368,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> utente attivo"
 msgstr[1] "<strong>{0}</strong> utenti attivi"
 
-msgid "Submit a New File"
-msgstr "Carica un nuovo file"
-
 msgid "Submit a New Version"
 msgstr "Carica una nuova versione"
 
@@ -3475,9 +3464,6 @@ msgstr "Ulteriori informazioni riguardo alla distribuzione e alla firma digitale
 msgid "Submission Complete"
 msgstr "Invio completato"
 
-msgid "You’re done!"
-msgstr "Hai finito!"
-
 msgid "Version Submitted for Review"
 msgstr "La versione caricata è stata inclusa tra i componenti da revisionare"
 
@@ -3515,12 +3501,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "Modifica versione {0}"
 
-msgid "File Signed"
-msgstr "Versione firmata"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Il componente aggiuntivo è stato firmato digitalmente e ed è pronto per la distribuzione. Scaricalo da qui:"
-
 msgid "Version Signed"
 msgstr "Versione firmata"
 
@@ -3529,12 +3509,6 @@ msgstr "Il componente aggiuntivo è stato firmato digitalmente e ed è pronto pe
 
 msgid "Download {0}"
 msgstr "Download {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Per il file appena caricato sono state selezionate solo alcune delle piattaforme presenti. Ricorda che puoi caricare altri file per le altre piattaforme:"
-
-msgid "Upload File"
-msgstr "Carica file"
 
 msgid "Go to My Submissions"
 msgstr "Vai ai miei progetti"
@@ -3616,9 +3590,6 @@ msgstr "Contratto di distribuzione per i componenti aggiuntivi"
 msgid "Upload Add-on"
 msgstr "Carica componente aggiuntivo"
 
-msgid "Where to Host File"
-msgstr "Il server da cui distribuire questo file"
-
 msgid "Where to Host Version"
 msgstr "Il server da cui distribuire questa versione"
 
@@ -3628,7 +3599,8 @@ msgstr "Carica versione"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Utilizza i seguenti campi per caricare il pacchetto del tuo componente aggiuntivo. Successivamente il file verrà sottoposto una serie di test automatici di validazione."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "Con quali piattaforme è compatibile il file?"
 
 msgid "Administrative overrides"
@@ -3639,9 +3611,6 @@ msgstr "Crea una versione del tema"
 
 msgid "Create a Theme"
 msgstr "Crea un nuovo tema"
-
-msgid "Submit File"
-msgstr "Carica un nuovo file"
 
 msgid "Sign Add-on"
 msgstr "Firma digitalmente il componente aggiuntivo"
@@ -4287,9 +4256,6 @@ msgstr "Gestione {0}"
 
 msgid "Files"
 msgstr "File"
-
-msgid "Upload Another File"
-msgstr "Carica un altro file"
 
 msgid "Version Notes"
 msgstr "Note di versione"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2018-09-10 12:22+0000\n"
 "Last-Translator: Lobodzets <Lobodzets@meta.ua>\n"
 "Language-Team: \n"
@@ -2489,11 +2489,9 @@ msgstr "У процесі Вашого завантаження сталася �
 msgid "Override failed validation"
 msgstr "Ігнорувати невдалу валідацію"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Ви більше не можете вивантажувати файли для цієї версії."
-
-msgid "Version doesn't match"
-msgstr "Версія не підходить"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Потрібен, принаймні, один сумісний додаток."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Версія {version} була раніше завантажена і видалена."
@@ -2509,12 +2507,6 @@ msgstr "Ви не вивантажили вихідний файл."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Вихідний файл вивантажено, але ви зазначили, що джерело не потрібне."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Платформа Все не може бути об'єднана з конкретними платформами."
-
-msgid "A platform can only be chosen once."
-msgstr "Платформа може бути вибрана тільки один раз."
 
 msgid "Application"
 msgstr "Програма"
@@ -3361,9 +3353,6 @@ msgstr[0] "<strong>{0}</strong> активний користувач"
 msgstr[1] "<strong>{0}</strong> активних користувача"
 msgstr[2] "<strong>{0}</strong> активних користувачів"
 
-msgid "Submit a New File"
-msgstr "Відправити новий файл"
-
 msgid "Submit a New Version"
 msgstr "Відправити нову версію"
 
@@ -3458,9 +3447,6 @@ msgstr "Більше інформації про розповсюдження т
 msgid "Submission Complete"
 msgstr "Відправлення завершене"
 
-msgid "You’re done!"
-msgstr "Все готово!"
-
 msgid "Version Submitted for Review"
 msgstr "Версія подана для перевірки"
 
@@ -3494,12 +3480,6 @@ msgstr "Ви також можете змінювати цю версію з д�
 msgid "Edit version {0}"
 msgstr "Змінити версію {0}"
 
-msgid "File Signed"
-msgstr "Файл підписано"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Готово! Цей файл підписано і він готовий до розповсюдження. Ви можете завантажити його, натиснувши кнопку внизу."
-
 msgid "Version Signed"
 msgstr "Версія підписана"
 
@@ -3508,12 +3488,6 @@ msgstr "Готово! Цю версію підписано і вона гото�
 
 msgid "Download {0}"
 msgstr "Завантажити {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Ви обрали лише деякі з доступних платформ для цього подання. Ви можете вивантажити більше файлів, призначених для інших платформ:"
-
-msgid "Upload File"
-msgstr "Вивантажити файл"
 
 msgid "Go to My Submissions"
 msgstr "Перейти в мої подання"
@@ -3595,9 +3569,6 @@ msgstr "Угода про розповсюдження додатків"
 msgid "Upload Add-on"
 msgstr "Вивантажити додаток"
 
-msgid "Where to Host File"
-msgstr "Де розмістити файл"
-
 msgid "Where to Host Version"
 msgstr "Де розмістити версію"
 
@@ -3607,7 +3578,8 @@ msgstr "Вивантажити версію"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Для вивантаження пакунку свого додатка, скористайтеся полями нижче. Після вивантаження ваш файл буде перевірено з використанням серії автоматичних тестів."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "З якими платформами сумісний цей файл?"
 
 msgid "Administrative overrides"
@@ -3618,9 +3590,6 @@ msgstr "Створити версію теми"
 
 msgid "Create a Theme"
 msgstr "Створити тему"
-
-msgid "Submit File"
-msgstr "Надіслати файл"
 
 msgid "Sign Add-on"
 msgstr "Підписати додаток"
@@ -4255,9 +4224,6 @@ msgstr "Впорядкувати {0}"
 
 msgid "Files"
 msgstr "Файли"
-
-msgid "Upload Another File"
-msgstr "Завантажити інший файл"
 
 msgid "Version Notes"
 msgstr "Примітки до версії"
