@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-18 00:29+0000\n"
+"PO-Revision-Date: 2018-09-18 00:42+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -28,7 +28,7 @@ msgid "Select a file..."
 msgstr "Esbillar un ficheru..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr ""
+msgstr "El complementu debería terminar per .zip, .xpi, .crx, .jar o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -53,8 +53,8 @@ msgstr ""
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "El complementu falló la validación con {0} fallu."
+msgstr[1] "El complementu falló la validación con {0} fallos."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -65,7 +65,7 @@ msgid "See full validation report"
 msgstr ""
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "Validando {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "El complementu perpasa'l tamañu máximu de {0}."
@@ -84,19 +84,19 @@ msgstr ""
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "El complementu validóse ensin fallos y con {0} alvertencia."
+msgstr[1] "El complementu validóse ensin fallos y con {0} alvertencies."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "El complementu validóse ensin fallos y con {0} mensaxe."
+msgstr[1] "El complementu validóse ensin fallos y con {0} mensaxes."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "El complementu validóse ensin fallos o alvertencies."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "La xuba va roblase automáticamente."
 
 msgid "WebExtension upgrade"
 msgstr ""
@@ -137,10 +137,10 @@ msgid "Your file exceeds the maximum size of {0}."
 msgstr ""
 
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Encaboxesti la xuba."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Les imáxenes han ser PNG o JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Los vídeos han tar en WebM."
@@ -156,7 +156,7 @@ msgstr "Siguiendo"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Esti tema ye incompatible cola to versión de {0}"
 
 msgid "All Rights Reserved"
 msgstr "Tolos drechos reservaos"
@@ -180,7 +180,7 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr ""
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "El nome del tema"
 
 msgid "Flagged for review"
 msgstr ""
@@ -214,33 +214,33 @@ msgstr ""
 
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} descarga"
+msgstr[1] "{0} descargues"
 
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} usuariu"
+msgstr[1] "{0} usuarios"
 
 msgid "{0} add-on"
 msgid_plural "{0} add-ons, n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} complementu"
+msgstr[1] "{0} complementos"
 
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} coleición"
+msgstr[1] "{0} coleiciones"
 
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} reseña"
+msgstr[1] "{0} reseñes"
 
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} venta"
+msgstr[1] "{0} ventes"
 
 msgid "{0} refund"
 msgid_plural "{0} refunds"
@@ -249,8 +249,8 @@ msgstr[1] ""
 
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} instalación"
+msgstr[1] "{0} instalaciones"
 
 msgid "Downloads"
 msgstr "Descargues"
@@ -833,10 +833,10 @@ msgid "No results found"
 msgstr "Nun s'alcontraron resultaos"
 
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Reseñador"
 
 msgid "Status"
 msgstr "Estáu"
