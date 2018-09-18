@@ -44,7 +44,8 @@ from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.forms import (
     AgreementForm, CheckCompatibilityForm, SourceForm)
 from olympia.devhub.models import BlogPost, RssKey
-from olympia.devhub.utils import add_dynamic_theme_tag, process_validation
+from olympia.devhub.utils import (
+    add_dynamic_theme_tag, get_addon_akismet_reports, process_validation)
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon
 from olympia.lib.crypto.packaged import sign_file
@@ -570,10 +571,26 @@ def handle_upload(filedata, request, channel, app_id=None, version_id=None,
             raise http.Http404()
         ver = get_object_or_404(AppVersion, pk=version_id)
         tasks.compatibility_check.delay(upload.pk, app.guid, ver.version)
-    elif submit:
-        tasks.validate_and_submit(addon, upload, channel=channel)
     else:
-        tasks.validate(upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED))
+        from olympia.lib.akismet.tasks import comment_check   # circular import
+
+        if (channel == amo.RELEASE_CHANNEL_LISTED):
+            akismet_reports = get_addon_akismet_reports(
+                user=user,
+                user_agent=request.META.get('HTTP_USER_AGENT'),
+                referrer=request.META.get('HTTP_REFERER'),
+                upload=upload)
+            akismet_checks = comment_check.si(
+                [report.id for report in akismet_reports])
+        else:
+            akismet_checks = None
+        if submit:
+            tasks.validate_and_submit(
+                addon, upload, channel=channel, pretask=akismet_checks)
+        else:
+            tasks.validate(
+                upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED),
+                pretask=akismet_checks)
 
     return upload
 

@@ -9,10 +9,12 @@ from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 from django.test import RequestFactory
+from django.test.utils import override_settings
 from django.utils.translation import trim_whitespace
 
 import mock
 import pytest
+import responses
 import waffle
 
 from pyquery import PyQuery as pq
@@ -35,6 +37,7 @@ from olympia.devhub.models import BlogPost
 from olympia.devhub.views import get_next_version_number
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
+from olympia.lib.akismet.models import AkismetReport
 from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
 from olympia.users.models import UserProfile
@@ -959,12 +962,12 @@ class TestUploadDetail(BaseUploadTest):
             'rejected': False,
             'metadata': {}}
 
-    def upload_file(self, file):
+    def upload_file(self, file, url='devhub.upload'):
         addon = os.path.join(
             settings.ROOT, 'src', 'olympia', 'devhub', 'tests', 'addons', file)
         with open(addon, 'rb') as f:
             response = self.client.post(
-                reverse('devhub.upload'), {'upload': f})
+                reverse(url), {'upload': f})
         assert response.status_code == 302
 
     def test_detail_json(self):
@@ -1251,6 +1254,67 @@ class TestUploadDetail(BaseUploadTest):
         response = self.client.get(reverse('devhub.upload_detail_for_version',
                                            args=[addon.slug, upload.uuid.hex]))
         assert response.status_code == 200
+
+    @override_switch('akismet-spam-check', active=False)
+    def test_akismet_waffle_off(self):
+        self.upload_file('valid_webextension.xpi')
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+        assert response.status_code == 200
+        assert AkismetReport.objects.count() == 0
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_reports_created_ham_outcome(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+        self.upload_file('valid_webextension.xpi')
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+        assert response.status_code == 200
+        comment_check_mock.assert_called_once()
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get(upload_instance=upload)
+        assert report.comment_type == 'product-name'
+        assert report.comment == 'Beastify'  # the addon's name
+        assert 'spam' not in response.content
+
+    @override_switch('akismet-spam-check', active=True)
+    @responses.activate
+    @override_settings(AKISMET_API_KEY=None)
+    def test_akismet_reports_created_spam_outcome(self):
+        akismet_url = settings.AKISMET_API_URL.format(
+            api_key='none', action='comment-check')
+        responses.add(responses.POST, akismet_url, json=True)
+        self.upload_file('valid_webextension.xpi')
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+        assert response.status_code == 200
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get(upload_instance=upload)
+        assert report.comment_type == 'product-name'
+        assert report.comment == 'Beastify'  # the addon's name
+        assert 'spam' in response.content
+        assert report.result == AkismetReport.MAYBE_SPAM
+        data = json.loads(response.content)
+        assert data['validation']['messages'][0]['id'] == [
+            u'validation', u'messages', u'akismet_is_spam'
+        ]
+
+    @override_switch('akismet-spam-check', active=True)
+    def test_akismet_reports_not_created_for_unlisted(self):
+        self.upload_file('valid_webextension.xpi', 'devhub.upload_unlisted')
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+        assert response.status_code == 200
+        assert AkismetReport.objects.count() == 0
 
 
 def assert_json_error(request, field, msg):

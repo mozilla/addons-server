@@ -312,7 +312,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         self.client.post(reverse('devhub.submit.agreement'))
 
     def post(self, compatible_apps=None, expect_errors=False,
-             listed=True, status_code=200, url=None):
+             listed=True, status_code=200, url=None, extra_kwargs=None):
         if compatible_apps is None:
             compatible_apps = [amo.FIREFOX, amo.ANDROID]
         data = {
@@ -321,7 +321,8 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         }
         url = url or reverse('devhub.submit.upload',
                              args=['listed' if listed else 'unlisted'])
-        response = self.client.post(url, data, follow=True)
+        response = self.client.post(
+            url, data, follow=True, **(extra_kwargs or {}))
         assert response.status_code == status_code
         if not expect_errors:
             # Show any unexpected form errors.
@@ -1443,7 +1444,8 @@ class VersionSubmitUploadMixin(object):
         self.version.save()
 
     def post(self, compatible_apps=None,
-             override_validation=False, expected_status=302, source=None):
+             override_validation=False, expected_status=302, source=None,
+             extra_kwargs=None):
         if compatible_apps is None:
             compatible_apps = [amo.FIREFOX]
         data = {
@@ -1452,7 +1454,7 @@ class VersionSubmitUploadMixin(object):
             'compatible_apps': [p.id for p in compatible_apps],
             'admin_override_validation': override_validation
         }
-        response = self.client.post(self.url, data)
+        response = self.client.post(self.url, data, **(extra_kwargs or {}))
         assert response.status_code == expected_status
         return response
 
