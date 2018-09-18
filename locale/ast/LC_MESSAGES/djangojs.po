@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-18 00:55+0000\n"
+"PO-Revision-Date: 2018-09-18 21:09+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -80,7 +80,7 @@ msgid "Finished validating {0}"
 msgstr ""
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Escosó'l tiempu d'espera de la validación del complementu, va revisase a mano."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
@@ -131,7 +131,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "Nun se reconoz la triba del ficheru que xubiesti."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "El ficheru perpasa'l tamañu máximu de {0}."
 
 msgid "You cancelled the upload."
 msgstr "Encaboxesti la xuba."
@@ -241,8 +241,8 @@ msgstr[1] "{0} ventes"
 
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} reembolsu"
+msgstr[1] "{0} reembolsos"
 
 msgid "{0} install"
 msgid_plural "{0} installs"
@@ -441,7 +441,7 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Descargues y usuarios diarios nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
@@ -449,7 +449,7 @@ msgstr "Descargues y usuarios diarios dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Instalaciones y usuarios diarios nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
@@ -457,7 +457,7 @@ msgstr "Instalaciones y usuarios diarios dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Descargues nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
@@ -465,7 +465,7 @@ msgstr "Descargues dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Usuarios diarios nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
@@ -473,7 +473,7 @@ msgstr "Usuarios diarios dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Aplicaciones nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
@@ -481,7 +481,7 @@ msgstr "Aplicaciones dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Plataformes nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
@@ -489,7 +489,7 @@ msgstr "Plataformes dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Llingües nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
@@ -497,7 +497,7 @@ msgstr "Llingües dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Versiones del complementu nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
@@ -505,7 +505,7 @@ msgstr "Versiones del complementu dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Estáu del complementu nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
@@ -513,7 +513,7 @@ msgstr "Estáu del complementu dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Descarga de les fontes nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
@@ -521,7 +521,7 @@ msgstr "Fontes baxaes dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Collaboraciones nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
@@ -529,7 +529,7 @@ msgstr "Collaboraciones dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Métriques del sitiu nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
@@ -537,7 +537,7 @@ msgstr "Métriques del sitiu dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Complementos n'usu nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
@@ -545,7 +545,7 @@ msgstr "Complementos n'usu dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Complementos baxaos nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
@@ -553,7 +553,7 @@ msgstr "Complementos baxaos dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Complementos creaos nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
@@ -561,7 +561,7 @@ msgstr "Complementos creaos dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Complementos anovaos nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
@@ -569,7 +569,7 @@ msgstr "Complementos anovaos dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Reseñes escrites nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
@@ -577,7 +577,7 @@ msgstr "Reseñes escrites dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Anicios de sesión d'usuarios nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
@@ -585,7 +585,7 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Coleiciones creaes nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
@@ -593,7 +593,7 @@ msgstr "Coleiciones creaes dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Sosciptores nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
@@ -601,7 +601,7 @@ msgstr "Soscriptores dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Valoraciones nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
@@ -609,7 +609,7 @@ msgstr "Valoraciones dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Ventes nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
@@ -617,7 +617,7 @@ msgstr "Ventes dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Instalaciones nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
@@ -730,7 +730,7 @@ msgid "Stop following"
 msgstr ""
 
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "El to restolador nun sofita la etiqueta video"
 
 msgid "Changes Saved"
 msgstr ""
@@ -773,7 +773,7 @@ msgid "Remove this localization"
 msgstr ""
 
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} tuvo viendo esta páxina primero."
 
 msgid "Receipt checked by app."
 msgstr ""
@@ -782,7 +782,7 @@ msgid "Receipt was not checked by app."
 msgstr ""
 
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} tuvo viendo esti complementu primero."
 
 msgid "Loading&hellip;"
 msgstr "Cargando&hellip;"
