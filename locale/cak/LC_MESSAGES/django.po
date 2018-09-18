@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2018-09-14 21:53+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2465,11 +2465,9 @@ msgstr "K'o jun sachoj rik'in ri ataqoj. Tatojtob'ej chik."
 msgid "Override failed validation"
 msgstr "Tirepüx rusachoj jikib'anem"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Man yatikïr ta ye'ajotob'a' ch'aqa' chik taq yakb'äl richin re ruwäch re'."
-
-msgid "Version doesn't match"
-msgstr "Man nuxïm ta ri' ri ruwäch"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "K'atzinel jun k'amonel chokoy."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Ri ruwäch {version} xjotob'äx chuqa' xyuj el."
@@ -2485,12 +2483,6 @@ msgstr "Man ajotob'an ta jun ruxe'el yakb'äl."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Ri nuk'uche'el Ronojel man tikirel ta nitun kik'in jikïl taq nuk'uche'el."
-
-msgid "A platform can only be chosen once."
-msgstr "Jun nuk'uche'el xa xe tikirel nicha' jumul."
 
 msgid "Application"
 msgstr "Chokoy"
@@ -3319,9 +3311,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> titzij okisanel"
 msgstr[1] "<strong>{0}</strong> ketzij okisanela'"
 
-msgid "Submit a New File"
-msgstr "Titaq jun K'ak'a' Yakb'äl"
-
 msgid "Submit a New Version"
 msgstr "Titaq jun K'ak'a' Ruwäch"
 
@@ -3413,9 +3402,6 @@ msgstr "Ch'aqa' chik Etamab'äl chi rij ri Juch' chuqa' Rutaluxik Tz'aqat"
 msgid "Submission Complete"
 msgstr "Xtaq Ronojel"
 
-msgid "You’re done!"
-msgstr "¡Xk'achoj!"
-
 msgid "Version Submitted for Review"
 msgstr "Xtaq Ruwäch richin Ninik'öx"
 
@@ -3449,12 +3435,6 @@ msgstr "Yatikïr nanük' ri ruwäch xatäq rik'in ye'atz'aqatisaj ruch'utitzijol
 msgid "Edit version {0}"
 msgstr "Tinuk' ruwäch {0}"
 
-msgid "File Signed"
-msgstr "Yakb'äl Juch'un"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "¡Xk'achoj! Xjuch' re yakb'äl re' chuqa' ütz chik richin nitalüx. Yatikïr naqasaj rik'in napïtz ri pitz'b'äl k'o ikim."
-
 msgid "Version Signed"
 msgstr "Ruwäch Juch'un"
 
@@ -3463,12 +3443,6 @@ msgstr "¡Xk'achoj! Xjuch' re ruwäch re' chuqa' ütz chik richin nitalüx. Yati
 
 msgid "Download {0}"
 msgstr "Qasanïk {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "E'acha'on jujun ok taq nuk'uche'el richin re taqoj re'. Yatikïr ye'ajotob'a' ch'aqa' chik taq yakb'äl kichin ch'aqa' chik taq nuk'uche'el:"
-
-msgid "Upload File"
-msgstr "Tjotob'äx Yakb'äl"
 
 msgid "Go to My Submissions"
 msgstr "Kib'e pa Taq Nutaqoj"
@@ -3546,9 +3520,6 @@ msgstr "Ruch'ob'otzij Kijachik Rutz'aqat"
 msgid "Upload Add-on"
 msgstr "Tijotob'äx Tz'aqat"
 
-msgid "Where to Host File"
-msgstr "Akuchi' Nojqanëx Yakb'äl"
-
 msgid "Where to Host Version"
 msgstr "Akuchi' Nojqanëx Ruwäch"
 
@@ -3558,7 +3529,8 @@ msgstr "Tijotob'äx Ruwäch"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Ke'awokisaj re taq k'ojlib'äl re' richin najotob'a' ri tz'aqat. Toq xjotob'äx yan, xtisamajib'ëx jutanaj rutojtob'enik yonil jikib'anem pan ayakb'al."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "¿Achike nuk'che'el nunäm ri' re yakb'äl re'?"
 
 msgid "Administrative overrides"
@@ -3569,9 +3541,6 @@ msgstr "Titz'uk jun Ruwäch Wachinel"
 
 msgid "Create a Theme"
 msgstr "Titz'uk jun Wachinel"
-
-msgid "Submit File"
-msgstr "Titaq Yakb'äl"
 
 msgid "Sign Add-on"
 msgstr "Tijux Tz'aqat"
@@ -4196,9 +4165,6 @@ msgstr "Tinuk'samajïx {0}"
 
 msgid "Files"
 msgstr "Taq Yakb'äl"
-
-msgid "Upload Another File"
-msgstr "Tijotob'äx Jun Chik Yakb'äl"
 
 msgid "Version Notes"
 msgstr "Kich'utitzijol Ruwäch"

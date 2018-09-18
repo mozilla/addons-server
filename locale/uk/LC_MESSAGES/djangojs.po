@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2018-09-06 10:55+0000\n"
 "Last-Translator: Liudmyla <forworkfest@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,9 +132,6 @@ msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Під час процесу перевірки було знайдено наступні проблеми, які можуть призвести до відхилення:"
-
-msgid "Sorry, no supported platform has been found."
-msgstr "На жаль, не знайдено підтримуваних платформ."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Тип вивантаженого вами файлу нерозпізнаний."

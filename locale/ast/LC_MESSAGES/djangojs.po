@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2018-09-18 00:55+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,9 +126,6 @@ msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "El procesu de validación alcontró estos problemes que puen orixinar refugos:"
-
-msgid "Sorry, no supported platform has been found."
-msgstr "Perdona pero nun s'alcontró denguna plataforma sofitada."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Nun se reconoz la triba del ficheru que xubiesti."

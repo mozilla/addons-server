@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2018-08-12 10:20+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -127,9 +127,6 @@ msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
-
-msgid "Sorry, no supported platform has been found."
-msgstr "Olemmme pahoillamme, tuettuja alustoja ei löydy."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Siirtämääsi tidostotyyppiä ei tunnisteta."

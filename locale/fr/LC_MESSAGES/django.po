@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2018-09-03 15:59+0000\n"
 "Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -2490,11 +2490,9 @@ msgstr "Il y a eu une erreur avec votre envoi. Merci de réessayer."
 msgid "Override failed validation"
 msgstr "Passer outre la validation échouée"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Vous ne pouvez plus envoyer de fichier pour cette version."
-
-msgid "Version doesn't match"
-msgstr "Version ne correspondant pas"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Au moins une application compatible est nécessaire."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "La version {version} a déjà été envoyée et supprimée."
@@ -2510,12 +2508,6 @@ msgstr "Vous n’avez pas envoyé de fichier source."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Vous avez indiqué que le fichier source n’était pas nécessaire, cependant un fichier source a été soumis."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "La plateforme « Toutes » ne peut être combinée avec des plateformes spécifiques."
-
-msgid "A platform can only be chosen once."
-msgstr "Une plateforme ne peut être choisie qu’une fois."
 
 msgid "Application"
 msgstr "Application"
@@ -3365,9 +3357,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> utilisateur actif"
 msgstr[1] "<strong>{0}</strong> utilisateurs actifs"
 
-msgid "Submit a New File"
-msgstr "Envoyer un nouveau fichier"
-
 msgid "Submit a New Version"
 msgstr "Envoyer une nouvelle version"
 
@@ -3464,9 +3453,6 @@ msgstr "Informations supplémentaires sur la distribution et la signature des mo
 msgid "Submission Complete"
 msgstr "Envoi terminé"
 
-msgid "You’re done!"
-msgstr "C’est fait !"
-
 msgid "Version Submitted for Review"
 msgstr "Revue demandée pour cette version"
 
@@ -3500,12 +3486,6 @@ msgstr "Vous pouvez également modifier la version que vous venez de proposer en
 msgid "Edit version {0}"
 msgstr "Modifier la version {0}"
 
-msgid "File Signed"
-msgstr "Fichier signé"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "C’est fait ! Cette version a été signée et peut maintenant être distribuée personnellement. Vous pouvez la télécharger en cliquant sur le bouton ci-dessous."
-
 msgid "Version Signed"
 msgstr "Version signée"
 
@@ -3514,12 +3494,6 @@ msgstr "C’est fait ! Cette version a été signée et peut maintenant être d
 
 msgid "Download {0}"
 msgstr "Télécharger {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Vous n’avez sélectionné que certaines des plateformes disponibles pour cet envoi. Vous pouvez soumettre d’autres fichiers ciblant les autres plateformes :"
-
-msgid "Upload File"
-msgstr "Envoyer un fichier"
 
 msgid "Go to My Submissions"
 msgstr "Accéder à mes propositions"
@@ -3601,9 +3575,6 @@ msgstr "Accord de distribution des modules complémentaires"
 msgid "Upload Add-on"
 msgstr "Envoyer votre module"
 
-msgid "Where to Host File"
-msgstr "Hébergement de ce fichier"
-
 msgid "Where to Host Version"
 msgstr "Hébergement de cette version"
 
@@ -3613,7 +3584,8 @@ msgstr "Envoyer cette version"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Utilisez les champs ci-dessous pour envoyer le paquet de votre module. Après envoi, une série de tests de validation automatisés seront exécutés sur votre fichier."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "Quelles sont les plateformes avec lesquelles le fichier est compatible ?"
 
 msgid "Administrative overrides"
@@ -3624,9 +3596,6 @@ msgstr "Créer une version de thème"
 
 msgid "Create a Theme"
 msgstr "Créer un thème"
-
-msgid "Submit File"
-msgstr "Envoyer un fichier"
 
 msgid "Sign Add-on"
 msgstr "Signer le module"
@@ -4263,9 +4232,6 @@ msgstr "Gérer {0}"
 
 msgid "Files"
 msgstr "Fichiers"
-
-msgid "Upload Another File"
-msgstr "Envoyer un autre fichier"
 
 msgid "Version Notes"
 msgstr "Notes de version"

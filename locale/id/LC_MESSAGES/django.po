@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2018-09-16 17:15+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -2458,11 +2458,9 @@ msgstr "Ada masalah dengan unggahan anda. Silakan coba lagi."
 msgid "Override failed validation"
 msgstr "Validasi gagal dikesampingkan"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Anda tidak bisa mengunggah lebih banyak file untuk versi ini."
-
-msgid "Version doesn't match"
-msgstr "Versi tidak cocok"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Membutuhkan setidaknya satu aplikasi yang kompatibel."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versi {version} sudah diunggah sebelumnya dan dihapus."
@@ -2478,12 +2476,6 @@ msgstr "Anda tidak mengunggah berkas sumber."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "File sumber telah diunggah tetapi Anda menyatakan tidak ada sumber yang diperlukan."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Platform Semua tidak bisa digabungkan dengan platform yang spesifik."
-
-msgid "A platform can only be chosen once."
-msgstr "Sebuah platform hanya bisa dipilih sekali."
 
 msgid "Application"
 msgstr "Програма"
@@ -3345,9 +3337,6 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> pengguna aktif"
 
-msgid "Submit a New File"
-msgstr "Mengajukan berkas baru"
-
 msgid "Submit a New Version"
 msgstr "Mengajukan Versi Baru"
 
@@ -3440,9 +3429,6 @@ msgstr "Informasi lebih lanjut tentang Penandatanganan dan Distribusi Pengaya"
 msgid "Submission Complete"
 msgstr "Penyerahan Lengkap"
 
-msgid "You’re done!"
-msgstr "Selesai!"
-
 msgid "Version Submitted for Review"
 msgstr "Versi Diajukan untuk Peninjauan"
 
@@ -3476,12 +3462,6 @@ msgstr "Anda juga dapat menyunting versi ini untuk menambahkan versi catatan, at
 msgid "Edit version {0}"
 msgstr "Ubah versi {0}"
 
-msgid "File Signed"
-msgstr "File Ditandatangani"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Selesai! File ini telah ditandatangani dan siap untuk didistribusikan mandiri. Anda dapat mengunduhnya dengan mengklik tombol di bawah ini."
-
 msgid "Version Signed"
 msgstr "Versi Bertandatangan"
 
@@ -3490,12 +3470,6 @@ msgstr "Selesai! Versi ini telah ditandatangani dan siap untuk didistribusikan m
 
 msgid "Download {0}"
 msgstr "Unduh {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Anda hanya memilih sebagian platform yang tersedia untuk pengajuan ini. Anda dapat mengunggah lebih banyak berkas yang menarget platform lain:"
-
-msgid "Upload File"
-msgstr "Unggah Berkas"
 
 msgid "Go to My Submissions"
 msgstr "Menuju Pengajuan Saya"
@@ -3573,9 +3547,6 @@ msgstr "Perjanjian Distribusi Pengaya"
 msgid "Upload Add-on"
 msgstr "Unggah Pengaya"
 
-msgid "Where to Host File"
-msgstr "Di Mana Berkas Ditampung"
-
 msgid "Where to Host Version"
 msgstr "Di Mana Versi Ditampung"
 
@@ -3585,7 +3556,8 @@ msgstr "Unggah Versi"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Gunakan bidang di bawah ini untuk mengungggah paket pengaya Anda. Setelah menggunggah, serangkaian pengujian validasi otomatis akan dijalankan pada berkas Anda."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "Platform manakah yang kompatibel dengan berkas ini?"
 
 msgid "Administrative overrides"
@@ -3596,9 +3568,6 @@ msgstr "Membuat Tema Versi"
 
 msgid "Create a Theme"
 msgstr "Membuat Tema"
-
-msgid "Submit File"
-msgstr "Mengajukan Berkas"
 
 msgid "Sign Add-on"
 msgstr "Tandai Pengaya"
@@ -4243,9 +4212,6 @@ msgstr "Kelola {0}"
 
 msgid "Files"
 msgstr "Berkas"
-
-msgid "Upload Another File"
-msgstr "Unggah Berkas Lainnya"
 
 msgid "Version Notes"
 msgstr "Catatan Versi"

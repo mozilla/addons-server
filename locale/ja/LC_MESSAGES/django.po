@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-09-18 07:16+0000\n"
 "PO-Revision-Date: 2018-08-24 17:09+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -2454,11 +2454,9 @@ msgstr "アップロードした内容にエラーがあります。もう一度
 msgid "Override failed validation"
 msgstr "失敗した検証を上書き"
 
-msgid "You cannot upload any more files for this version."
-msgstr "このバージョンにはこれ以上ファイルをアップロードできません。"
-
-msgid "Version doesn't match"
-msgstr "バージョンが一致しません"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "対応アプリケーションが少なくともひとつは必要です。"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "バージョン {version} は以前アップロードされ、削除されています。"
@@ -2474,12 +2472,6 @@ msgstr "ソースファイルをアップロードしていません。"
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "ソースファイルがアップロードされましたが、あなたはソースが必要ないと示しています。"
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "「すべて」の OS は、特定の OS と組み合わせることができません。"
-
-msgid "A platform can only be chosen once."
-msgstr "OS は一度だけ選択することができます。"
 
 msgid "Application"
 msgstr "アプリケーション"
@@ -3301,9 +3293,6 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "アクティブユーザー <strong>{0}</strong> 名"
 
-msgid "Submit a New File"
-msgstr "新しいファイルを登録"
-
 msgid "Submit a New Version"
 msgstr "新しいバージョンを登録"
 
@@ -3397,9 +3386,6 @@ msgstr "アドオンの配布と署名に関する詳しい情報"
 msgid "Submission Complete"
 msgstr "登録完了"
 
-msgid "You’re done!"
-msgstr "完了！"
-
 msgid "Version Submitted for Review"
 msgstr "審査が申請されているバージョン"
 
@@ -3433,12 +3419,6 @@ msgstr "このバージョンを編集して、バージョンノートを追加
 msgid "Edit version {0}"
 msgstr "バージョン {0}を編集"
 
-msgid "File Signed"
-msgstr "ファイルが署名されました"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "完了！ このファイルは署名され、自主配布可能となりました。ダウンロードするには下のボタンをクリックしてください。"
-
 msgid "Version Signed"
 msgstr "署名済みバージョン"
 
@@ -3447,12 +3427,6 @@ msgstr "完了！ このバージョンは署名され、自主配布可能と�
 
 msgid "Download {0}"
 msgstr "{0}をダウンロード"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "このアドオンでは提供可能なプラットフォームの一部しか選択されていません。他のプラットフォームを対象としたファイルを追加でアップロードすることもできます。"
-
-msgid "Upload File"
-msgstr "ファイルをアップロード"
 
 msgid "Go to My Submissions"
 msgstr "自分の登録アイテムを見る"
@@ -3532,9 +3506,6 @@ msgstr "アドオン配布規約"
 msgid "Upload Add-on"
 msgstr "アドオンをアップロード"
 
-msgid "Where to Host File"
-msgstr "ファイルの配布場所"
-
 msgid "Where to Host Version"
 msgstr "バージョンの配布場所"
 
@@ -3544,7 +3515,8 @@ msgstr "バージョンをアップロード"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "下のフォームを使ってアドオンのパッケージをアップロードしてください。アップロードが完了すると、そのファイルに対して一連の自動検証テストが実施されます。"
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "このファイルの対応プラットフォーム"
 
 msgid "Administrative overrides"
@@ -3555,9 +3527,6 @@ msgstr "テーマのバージョンを作成"
 
 msgid "Create a Theme"
 msgstr "テーマを作成"
-
-msgid "Submit File"
-msgstr "ファイルを登録"
 
 msgid "Sign Add-on"
 msgstr "アドオンを署名"
@@ -4188,9 +4157,6 @@ msgstr "{0}を管理"
 
 msgid "Files"
 msgstr "ファイル"
-
-msgid "Upload Another File"
-msgstr "他のファイルをアップロード"
 
 msgid "Version Notes"
 msgstr "バージョンノート"
