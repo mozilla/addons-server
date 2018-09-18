@@ -1,9 +1,9 @@
 ALTER TABLE `akismet_reports`
   MODIFY `content_link` varchar(255) DEFAULT NULL,
   MODIFY `content_modified` datetime(6) DEFAULT NULL,
-  ADD COLUMN `user_id` int(11) unsigned DEFAULT NULL,
+  ADD COLUMN `user_id` int(11) DEFAULT NULL,
   ADD COLUMN `addon_instance_id` int(11) unsigned DEFAULT NULL,
-  ADD COLUMN `upload_instance_id` int(11) unsigned DEFAULT NULL,
+  ADD COLUMN `upload_instance_id` int(11) DEFAULT NULL,
   ADD COLUMN`collection_instance_id` int(11) unsigned DEFAULT NULL,
 
   ADD KEY `akismet_reports_user_id_fk_users_id` (`user_id`),
