@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2016-11-23 15:22+0000\n"
-"Last-Translator: malditoastur <malditoastur@gmail.com>\n"
+"PO-Revision-Date: 2016-11-10 12:40+0000\n"
+"Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
 "MIME-Version: 1.0\n"
@@ -18,63 +18,63 @@ msgstr ""
 
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] "{0} estrella"
-msgstr[1] "{0} estrelles"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "There was a problem contacting the server."
-msgstr "Hebo un problema contautando col sirvidor."
+msgstr ""
 
 msgid "Select a file..."
-msgstr "Esbilla un ficheru..."
+msgstr ""
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "El to add-on debería finar en .zip, .xpi, .crx, .jar o .xml"
+msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr "{0}% completáu"
+msgstr ""
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
-msgstr "{0} de {1}"
+msgstr ""
 
 msgid "Cancel"
-msgstr "Encaboxar"
+msgstr ""
 
 msgid "Uploading {0}"
-msgstr "Xubiendo {0}"
+msgstr ""
 
 msgid "Error with {0}"
-msgstr "Fallu con {0}"
+msgstr ""
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr ""
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "El to add-on falló la validación col fallu {0}."
+msgstr[0] ""
 msgstr[1] "El to add-on falló la validación colos fallos {0}."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip;y {0} más"
+msgstr[0] ""
 msgstr[1] "&hellip;y {0} más"
 
 msgid "See full validation report"
-msgstr "Ver informe de validación completu"
+msgstr ""
 
 msgid "Validating {0}"
-msgstr "Validando {0}"
+msgstr ""
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr ""
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr "Recibióse una rempuesta balera del sirividor; estáu: {0}"
+msgstr ""
 
 msgid "Unexpected server error while validating."
-msgstr "Fallu inesperáu del sirvidor entrín se validaba."
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Finóse la validación de {0}"
