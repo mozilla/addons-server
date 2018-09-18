@@ -111,7 +111,7 @@ def addon_listing(request, theme=False):
 
 def index(request):
     ctx = {'blog_posts': _get_posts()}
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         user_addons = Addon.objects.filter(authors=request.user)
         recent_addons = user_addons.order_by('-modified')[:3]
         ctx['recent_addons'] = []
@@ -270,7 +270,7 @@ def feed(request, addon_id=None):
 
     addon_selected = None
 
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return redirect_for_login(request)
     else:
         addons_all = Addon.objects.filter(authors=request.user)
@@ -555,7 +555,7 @@ def handle_upload(filedata, request, channel, app_id=None, version_id=None,
                   addon=None, is_standalone=False, submit=False):
     automated_signing = channel == amo.RELEASE_CHANNEL_UNLISTED
 
-    user = request.user if request.user.is_authenticated() else None
+    user = request.user if request.user.is_authenticated else None
     upload = FileUpload.from_post(
         filedata, filedata.name, filedata.size,
         automated_signing=automated_signing, addon=addon, user=user)
@@ -735,7 +735,6 @@ def json_upload_detail(request, upload, addon_slug=None):
     if addon_slug:
         addon = get_object_or_404(Addon.objects, slug=addon_slug)
     result = upload_validation_context(request, upload, addon=addon)
-    plat_exclude = []
     if result['validation']:
         try:
             pkg = parse_addon(upload, addon=addon, user=request.user)
@@ -760,21 +759,7 @@ def json_upload_detail(request, upload, addon_slug=None):
             if not errors_before:
                 return json_view.error(result)
         else:
-            app_ids = set([a.id for a in pkg.get('apps', [])])
-            supported_platforms = []
-            if amo.ANDROID.id in app_ids:
-                supported_platforms.extend((amo.PLATFORM_ANDROID.id,))
-                app_ids.remove(amo.ANDROID.id)
-            if len(app_ids):
-                # Targets any other non-mobile app:
-                supported_platforms.extend(amo.DESKTOP_PLATFORMS.keys())
-            plat_exclude = (
-                set(amo.SUPPORTED_PLATFORMS.keys()) - set(supported_platforms))
-            plat_exclude = [str(p) for p in plat_exclude]
-
             result['addon_type'] = pkg.get('type', '')
-
-    result['platforms_to_exclude'] = plat_exclude
     return result
 
 
@@ -806,7 +791,7 @@ def upload_validation_context(request, upload, addon=None, url=None):
 
 def upload_detail(request, uuid, format='html'):
     upload = get_fileupload_by_uuid_or_404(uuid)
-    if upload.user_id and not request.user.is_authenticated():
+    if upload.user_id and not request.user.is_authenticated:
         return redirect_for_login(request)
 
     if format == 'json' or request.is_ajax():
@@ -1074,10 +1059,8 @@ def version_edit(request, addon_id, addon, version_id):
         request=request,
     ) if not static_theme else None
 
-    file_form = forms.FileFormSet(request.POST or None, prefix='files',
-                                  queryset=version.files.all())
+    data = {}
 
-    data = {'file_form': file_form}
     if version_form:
         data['version_form'] = version_form
 
@@ -1093,8 +1076,6 @@ def version_edit(request, addon_id, addon, version_id):
 
     if (request.method == 'POST' and
             all([form.is_valid() for form in data.values()])):
-        data['file_form'].save()
-
         if 'compat_form' in data:
             for compat in data['compat_form'].save(commit=False):
                 compat.version = version
@@ -1137,8 +1118,13 @@ def version_edit(request, addon_id, addon, version_id):
         messages.success(request, ugettext('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)
 
-    data.update(addon=addon, version=version,
-                is_admin=is_admin, choices=File.STATUS_CHOICES)
+    data.update({
+        'addon': addon,
+        'version': version,
+        'is_admin': is_admin,
+        'choices': File.STATUS_CHOICES,
+        'files': version.files.all()})
+
     return render(request, 'devhub/versions/edit.html', data)
 
 
@@ -1333,11 +1319,8 @@ def submit_version_distribution(request, addon_id, addon):
 
 
 @transaction.atomic
-def _submit_upload(request, addon, channel, next_view, version=None,
-                   wizard=False):
-    """ If this is a new addon upload `addon` will be None (and `version`);
-    if this is a new version upload `version` will be None; a new file for a
-    version will need both an addon and a version supplied.
+def _submit_upload(request, addon, channel, next_view, wizard=False):
+    """ If this is a new addon upload `addon` will be None.
 
     next_view is the view that will be redirected to.
     """
@@ -1345,33 +1328,24 @@ def _submit_upload(request, addon, channel, next_view, version=None,
         request.POST or None,
         request.FILES or None,
         addon=addon,
-        version=version,
         request=request
     )
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
 
-        if version:
-            for platform in data.get('supported_platforms', []):
-                File.from_upload(
-                    upload=data['upload'],
-                    version=version,
-                    platform=platform,
-                    parsed_data=data['parsed_data'])
-            url_args = [addon.slug, version.id]
-        elif addon:
+        if addon:
             version = Version.from_upload(
                 upload=data['upload'],
                 addon=addon,
-                platforms=data.get('supported_platforms', []),
+                selected_apps=data['compatible_apps'],
                 channel=channel,
                 parsed_data=data['parsed_data'])
             url_args = [addon.slug, version.id]
         else:
             addon = Addon.from_upload(
                 upload=data['upload'],
-                platforms=data.get('supported_platforms', []),
                 channel=channel,
+                selected_apps=data['compatible_apps'],
                 parsed_data=data['parsed_data'],
                 user=request.user)
             version = addon.find_latest_version(channel=channel)
@@ -1394,7 +1368,8 @@ def _submit_upload(request, addon, channel, next_view, version=None,
                                forms.DistributionChoiceForm().UNLISTED_LABEL)
     else:
         channel_choice_text = ''  # We only need this for Version upload.
-    submit_page = 'file' if version else 'version' if addon else 'addon'
+
+    submit_page = 'version' if addon else 'addon'
     template = ('devhub/addons/submit/upload.html' if not wizard else
                 'devhub/addons/submit/wizard.html')
     return render(request, template,
@@ -1455,14 +1430,6 @@ def submit_version_theme_wizard(request, addon_id, addon, channel):
     return _submit_upload(
         request, addon, channel_id, 'devhub.submit.version.source',
         wizard=True)
-
-
-@dev_required
-def submit_file(request, addon_id, addon, version_id):
-    version = get_object_or_404(Version, id=version_id)
-    return _submit_upload(
-        request, addon, version.channel, 'devhub.submit.file.finish',
-        version=version)
 
 
 def _submit_source(request, addon, version, next_view):
@@ -1597,7 +1564,7 @@ def submit_version_details(request, addon_id, addon, version_id):
     return _submit_details(request, addon, version)
 
 
-def _submit_finish(request, addon, version, is_file=False):
+def _submit_finish(request, addon, version):
     uploaded_version = version or addon.versions.latest()
 
     try:
@@ -1627,7 +1594,7 @@ def _submit_finish(request, addon, version, is_file=False):
         }
         tasks.send_welcome_email.delay(addon.id, [author.email], context)
 
-    submit_page = 'file' if is_file else 'version' if version else 'addon'
+    submit_page = 'version' if version else 'addon'
     return render(request, 'devhub/addons/submit/done.html',
                   {'addon': addon,
                    'uploaded_version': uploaded_version,
@@ -1651,12 +1618,6 @@ def submit_addon_finish(request, addon_id, addon):
 def submit_version_finish(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, id=version_id)
     return _submit_finish(request, addon, version)
-
-
-@dev_required
-def submit_file_finish(request, addon_id, addon, version_id):
-    version = get_object_or_404(Version, id=version_id)
-    return _submit_finish(request, addon, version, is_file=True)
 
 
 @login_required

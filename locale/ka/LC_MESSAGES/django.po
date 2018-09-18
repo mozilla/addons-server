@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-01 20:15+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-07 05:01+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -908,6 +908,9 @@ msgstr "ხელმოწერა ამოიწურა."
 
 msgid "Error decoding signature."
 msgstr "ხელმოწერის გაშიფვრის შეცდომა."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "არასწორი JWT ჟეტონი."
@@ -2513,7 +2516,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "დამატებები Thunderbird და SeaMonkey პროგრამებისთვის, ახლა უკვე განთავსებულია addons.thunderbird.net საიტზე. თქვენი დამატებებისთვის, შეგიძლიათ იგივე ანგარიში გამოიყენოთ ახალ საიტზეც."
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "მოძველებული სახის გაფართოებები აღარაა მხარდაჭერილი Firefox-ში."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Firefox 53 ვერსიიდან დაწყებული, ამ საიტზე ნებადართულია მხოლოდ ახალი, WebExtensions დამატებების გამოქვეყნება."
@@ -3586,12 +3589,11 @@ msgstr "თემის სახელი"
 msgid "Select a header image for your theme"
 msgstr "თემის ზედა სურათის არჩევა"
 
-#, fuzzy
 msgid "Recommended height: 200 pixels"
-msgstr "სურათის სიმაღლე უნდა იყოს 200 პიქსელი"
+msgstr "სურათის სასურველი სიმაღლე: 200 პიქსელი"
 
 msgid "6.9MB max"
-msgstr ""
+msgstr "არაუმეტეს 6.9 მბაიტი"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG ან GIF (უმოძრაო)"
@@ -4039,6 +4041,13 @@ msgstr "თავსებადობის შემოწმება"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "შეამოწმეთ, არის თუ არა თქვენი გაფართოება Firefox-სთან თავსებადი."
+
+#, fuzzy
+msgid "Live Testing"
+msgstr "იხილეთ საიტზე"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
 
 msgid "Transfer ownership"
 msgstr "საკუთრების გადაცემა"
@@ -5779,7 +5788,7 @@ msgid "WebExtension theme uploads are currently not supported."
 msgstr "WebExtension თემის ატვირთვები დროებით შეზღუდულია."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "უმაღლესი დასაშვები ზომა WebExtension-თემებისთვის არის {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "ამ სახის დამატების წარდგენა, არ შეგიძლიათ"
@@ -6037,49 +6046,41 @@ msgstr "მიიღეთ წვდომა ბრაუზერის უა
 msgid "Get Started"
 msgstr "მუშაობის დაწყება"
 
-#, fuzzy
 msgid "Reported Status"
-msgstr "საიტის მდგომარეობა"
+msgstr "მოხსენების მდგომარეობა"
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "მოხსენების სახე"
+msgstr "მოხსენება არასასურველ შიგთავსზე"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "მოხსენება ხარვეზის შესახებ"
+msgstr "მოხსენება დასაშვებ შიგთავსზე"
 
-#, fuzzy
 msgid "Not Reported"
-msgstr "ჯერ არაა შეფასებული"
+msgstr "მოხსენება არაა"
 
-#, fuzzy
 msgid "Content Submitted"
-msgstr "ვერსია გადაგზავნილია"
+msgstr "შიგთავსი წარდგენილია"
 
-#, fuzzy
 msgid "View Rating on site"
-msgstr "ახალ საიტზე გადასვლა"
+msgstr "შეფასების ნახვა საიტზე"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "ახალი ფაილის წარდგენა"
+msgstr "დასაშვები შიგთავსის გადაგზავნა Akismet-ზე"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "ახალი ფაილის წარდგენა"
+msgstr "არასასურველი შიგთავსის გადაგზავნა Akismet-ზე"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s მოხსენება დასაშვებ შიგთავსზე წარდგენილია, როგორც არასასურველი"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s მოხსენება არასასურველ შიგთავსზე წარდგენილია, როგორც დასაშვები"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla-ს დამატების შესახებ"

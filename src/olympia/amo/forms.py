@@ -18,7 +18,7 @@ class AbuseForm(forms.Form):
 
         super(AbuseForm, self).__init__(*args, **kwargs)
 
-        if (not self.request.user.is_anonymous() or
+        if (not self.request.user.is_anonymous or
                 not settings.NOBOT_RECAPTCHA_PRIVATE_KEY):
             del self.fields['recaptcha']
             self.has_recaptcha = False

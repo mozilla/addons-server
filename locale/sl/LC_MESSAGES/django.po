@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-03 13:31+0000\n"
-"Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-17 13:30+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -947,6 +947,9 @@ msgstr "Podpis je potekel."
 
 msgid "Error decoding signature."
 msgstr "Napaka pri dekodiranju podpisa."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "Neveljaven žeton JWT."
@@ -2569,7 +2572,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "Dodatki za Thunderbird in SeaMonkey so sedaj objavljeni in vzdrževani na addons.thunderbird.net. Za posodabljanje dodatkov na novi strani lahko uporabite isti račun."
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Stare razširitve niso več podprte v Firefoxu."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Dodatki za Firefox 53 in novejše so lahko samo WebExtensions."
@@ -3661,7 +3664,7 @@ msgid "Recommended height: 200 pixels"
 msgstr "Priporočena višina: 200 pik"
 
 msgid "6.9MB max"
-msgstr ""
+msgstr "največ 6,9 MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG ali GIF (neanimiran)"
@@ -4116,6 +4119,12 @@ msgstr "Preizkus združljivosti"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Preverite, ali je vaša razširitev združljiva s Firefoxom."
+
+msgid "Live Testing"
+msgstr "Preskušanje v živo"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr "Začasno namestite razširitev v Firefox za preizkušanje v živo in odpravljanje napak."
 
 msgid "Transfer ownership"
 msgstr "Prenos lastništva"
@@ -5385,13 +5394,12 @@ msgid "Clear your browser cache with a click or keystroke."
 msgstr "Počistite predpomnilnik brskalnika s klikom ali pritiskom tipke."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Razširite svoj nabor smeškov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Ne pozabite ničesar več {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
-msgstr ""
+msgstr "Ustvarite in upravljajte seznam opravkov v brskalniku."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6139,44 +6147,38 @@ msgstr "Začnite"
 msgid "Reported Status"
 msgstr "Stanje strani "
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "Vrsta poročila"
+msgstr "Prijavljeno kot neželena vsebina"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Prijavi hrošča"
+msgstr "Prijavljeno kot ne-neželena vsebina"
 
-#, fuzzy
 msgid "Not Reported"
-msgstr "Še ni ocenjeno"
+msgstr "Ni prijavljeno"
 
 msgid "Content Submitted"
 msgstr "Vsebina potrjena"
 
-#, fuzzy
 msgid "View Rating on site"
-msgstr "Obišči novo stran"
+msgstr "Ogled ocene na strani"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Pošlji novo datoteko"
+msgstr "Pošlji ne-neželeno vsebino Akismetu"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Pošlji novo datoteko"
+msgstr "Pošlji neželeno vsebino Akismetu"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s poročil o ne-neželeni vsebini poslanih kot neželena vsebina"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s poročil o neželeni vsebini poslanih kot ne-neželena vsebina"
 
 msgid "About Mozilla Add-ons"
 msgstr "O Mozillinih dodatkih"

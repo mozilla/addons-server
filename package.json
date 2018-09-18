@@ -22,7 +22,7 @@
     "jszip": "3.1.4",
     "less": "3.8.1",
     "source-map": "0.7.3",
-    "raven-js": "3.26.4",
+    "raven-js": "3.27.0",
     "timeago": "1.6.2",
     "uglify-js": "3.4.9",
     "underscore": "1.9.1"

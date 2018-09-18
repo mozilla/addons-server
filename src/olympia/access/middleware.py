@@ -23,7 +23,7 @@ class UserAndAddrMiddleware(MiddlewareMixin):
 
         # Persist the user and remote addr in the thread to make it accessible
         # in log() statements etc.
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             core.set_user(request.user)
         core.set_remote_addr(request.META.get('REMOTE_ADDR'))
 

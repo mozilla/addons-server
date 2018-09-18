@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-08-29 08:44+0000\n"
-"Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-10 12:22+0000\n"
+"Last-Translator: Lobodzets <Lobodzets@meta.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -932,6 +932,9 @@ msgstr "Підпис прострочений."
 
 msgid "Error decoding signature."
 msgstr "Помилка декодування підпису."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "Невірний JWT токен."
@@ -2543,7 +2546,7 @@ msgstr ""
 "Додатки для Thunderbird і SeaMonkey тепер знаходяться й оновлюються на addons.thunderbird.net. Ви можете використовувати той самий обліковий запис для оновлення своїх додатків на новому сайті."
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Застарілі розширення більше не підтримуються в Firefox."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Починаючи з Firefox 53, нові додатки на цьому сайті можуть бути лише типу WebExtensions."
@@ -4090,6 +4093,13 @@ msgstr "Тест сумісності"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Перевірте, чи ваше розширення сумісне з Firefox."
+
+#, fuzzy
+msgid "Live Testing"
+msgstr "Переглянути"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
 
 msgid "Transfer ownership"
 msgstr "Передача володіння"
@@ -5827,7 +5837,7 @@ msgid "WebExtension theme uploads are currently not supported."
 msgstr "Вивантаження тем у вигляді WebExtension зараз не підтримується."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Максимальний розмір для тем WebExtension {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Не можна подавати додаток такого типу"

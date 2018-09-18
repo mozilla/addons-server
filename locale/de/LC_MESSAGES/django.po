@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-03 13:11+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-17 17:50+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -924,6 +924,9 @@ msgstr "Signatur ist abgelaufen."
 
 msgid "Error decoding signature."
 msgstr "Fehler beim Entschlüsseln der Signatur."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr "Falscher Typ für einen oder mehrere Schlüssel in Inhalt"
 
 msgid "Invalid JWT Token."
 msgstr "Ungültiger JWT-Token."
@@ -4075,6 +4078,12 @@ msgstr "Compatibility Test"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Überprüfen Sie, ob Ihre Erweiterung mit Firefox kompatibel ist."
+
+msgid "Live Testing"
+msgstr "Live-Test"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr "Installieren Sie Ihre Erweiterung temporär in Firefox, um sie live zu testen und Fehler zu beheben."
 
 msgid "Transfer ownership"
 msgstr "Besitz übertragen"

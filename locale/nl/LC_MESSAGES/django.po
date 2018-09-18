@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-04 13:04+0000\n"
-"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-17 11:03+0000\n"
+"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -923,6 +923,9 @@ msgstr "Ondertekening is verlopen."
 
 msgid "Error decoding signature."
 msgstr "Fout bij decoderen van ondertekening."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr "Eén of meer sleutels in de payload zijn van het verkeerde type"
 
 msgid "Invalid JWT Token."
 msgstr "Ongeldig JWT-token."
@@ -4071,6 +4074,12 @@ msgstr "Compatibiliteitstest"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Controleren of uw extensie compatibel is met Firefox."
+
+msgid "Live Testing"
+msgstr "Live testen"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr "Installeer tijdelijk uw extensie in Firefox voor live testen en debuggen."
 
 msgid "Transfer ownership"
 msgstr "Eigendom overdragen"

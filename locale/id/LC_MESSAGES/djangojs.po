@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-06-09 10:29+0000\n"
-"Last-Translator: alamanda <dian.ina@gmail.com>\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-16 17:11+0000\n"
+"Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgid "Select a file..."
 msgstr "Pilih berkas..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Pengaya anda harus diakhiri dengan .zip, .xpi, .crx, .jar atau .xml"
+msgstr "Pengaya Anda harus diakhiri dengan .zip, .xpi, .crx, .jar atau .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -61,7 +61,7 @@ msgid "See full validation report"
 msgstr "Lihat laporan validasi lengkap"
 
 msgid "Validating {0}"
-msgstr "Mengvalidasi {0}"
+msgstr "Memvalidasi {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Penggaya anda melebihi ukuran maksimum {0}."
@@ -119,11 +119,11 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"File Biner Hasil Kompilasi, dan juga skrip yang dikecilkan atau dikaburkan (tidak termasuk pustaka dikenal) , sumbernya harus dikirim terpisah untuk diulas. Pastikan anda menggunakan bidang "
-"pengunggah kode sumber untuk menghindari penolakan pengiriman Anda."
+"Digit Biner terkompilasi, sekaligus skrip yang dikecilkan atau dikaburkan (tidak termasuk pustaka yang dikenali) , sumbernya harus diajukan terpisah untuk peninjauan. Pastikan Anda menggunakan "
+"bidang pengunggah kode sumber agar pengajuan Anda tidak ditolak."
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "Proses pengsahan menemukan masalah yang dapat mengakibatkan penolakan:"
+msgstr "Proses validasi menemukan sejumlah masalah yang dapat mengakibatkan penolakan:"
 
 msgid "Sorry, no supported platform has been found."
 msgstr "Maaf, tidak ditemukan platform yang didukung."
@@ -144,7 +144,7 @@ msgid "Videos must be in WebM."
 msgstr "Video harus dalam WebM."
 
 msgid "Follow this Collection"
-msgstr "Ikuti Koleksi"
+msgstr "Ikuti Koleksi Ini"
 
 msgid "Stop Following"
 msgstr "Berhenti mengikuti"
@@ -154,7 +154,7 @@ msgstr "Mengikuti"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr "Tema ini tidak kompatibel dengan versi {0} Anda"
+msgstr "Tema ini tidak selaras dengan versi {0} Anda"
 
 msgid "All Rights Reserved"
 msgstr "Dilindungi Hak Cipta"
@@ -184,7 +184,7 @@ msgid "Flagged for review"
 msgstr "Ditandai untuk ulasan"
 
 msgid "Your input is required"
-msgstr "Dibutuhkan masukan Anda"
+msgstr "Masukan Anda dibutuhkan"
 
 msgid "Marked for deletion"
 msgstr "Ditandai untuk dihapus"
@@ -210,29 +210,45 @@ msgstr "Gunakan yang asli"
 msgid "Week of {0}"
 msgstr "Minggu ke {0}"
 
-msgid " downloads"
-msgstr " unduhan"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " unduhan"
 
-msgid "{0} users"
-msgstr "{0} pengguna"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} pengguna"
 
-msgid "{0} add-ons"
-msgstr "{0} pengaya"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} pengaya"
 
-msgid "{0} collections"
-msgstr "{0} koleksi"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} koleksi"
 
-msgid "{0} reviews"
-msgstr "{0} ulasan"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} ulasan"
 
-msgid "{0} sales"
-msgstr "{0} penjualan"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} penjualan"
 
-msgid "{0} refunds"
-msgstr "{0} pembayaran kembali"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} pembayaran kembali"
 
-msgid "{0} installs"
-msgstr "{0} pemasangan"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} pemasangan"
 
 msgid "Downloads"
 msgstr "Unggahan"
@@ -332,13 +348,13 @@ msgid "Often Used With"
 msgstr "Sering Digunakan Dengan"
 
 msgid "Others By Author"
-msgstr "Yang Lain Oleh Penyusun"
+msgstr "Pengaya lain oleh Penyusun"
 
 msgid "Dependencies"
 msgstr "Ketergantungan"
 
 msgid "Upsell"
-msgstr "Upsell"
+msgstr "Opsi berbayar"
 
 msgid "Meet the Developer"
 msgstr "Temui Pengembang"
@@ -789,7 +805,7 @@ msgid "Number of Reviews"
 msgstr "Jumlah Ulasan"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "Ukuran unggahan maksimum adalah {0} - pilih gambar latar dengan ukuran lebih kecil."
 
 msgid "Requested Info"
 msgstr "Info yang Diminta"

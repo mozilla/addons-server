@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-08-28 15:20+0000\n"
-"Last-Translator: Francesco Lodolo <francesco.lodolo@mozillaitalia.org>\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-09 09:22+0000\n"
+"Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -930,6 +930,9 @@ msgstr "La firma è scaduta."
 
 msgid "Error decoding signature."
 msgstr "Errore nella decodifica della firma."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "Token JWT non valido."
@@ -2546,7 +2549,7 @@ msgstr ""
 "sul nuovo sito."
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Le estensioni obsolete non sono più supportate in Firefox."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "A partire dalla versione 53 di Firefox, su questo sito verranno accettati solo componenti aggiuntivi realizzati con WebExtensions."
@@ -3655,12 +3658,11 @@ msgstr "Nome del tema"
 msgid "Select a header image for your theme"
 msgstr "Seleziona un’immagine di testata per il tema"
 
-#, fuzzy
 msgid "Recommended height: 200 pixels"
-msgstr "L’altezza dell’immagine deve essere 200 pixel"
+msgstr "Altezza consigliata: 200 pixel"
 
 msgid "6.9MB max"
-msgstr ""
+msgstr "6.9 MB max"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG o GIF (senza animazione)"
@@ -4120,6 +4122,13 @@ msgstr "Test di compatibilità"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Verifica se la tua estensione è compatibile con Firefox."
+
+#, fuzzy
+msgid "Live Testing"
+msgstr "Visualizza elenco"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
 
 msgid "Transfer ownership"
 msgstr "Trasferisci la proprietà"
@@ -5866,7 +5875,7 @@ msgid "WebExtension theme uploads are currently not supported."
 msgstr "I temi WebExtension non sono supportati al momento."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "La dimensione massima consentita per i temi WebExtension è {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Non è possibile caricare questo tipo di componente aggiuntivo."
@@ -6123,49 +6132,41 @@ msgstr "Spalanca le porte a nuove caratteristiche sperimentali del browser."
 msgid "Get Started"
 msgstr "Per iniziare"
 
-#, fuzzy
 msgid "Reported Status"
-msgstr "Stato del sito"
+msgstr "Stato segnalazione"
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "Tipo report"
+msgstr "Segnalazione spam"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Segnala problemi"
+msgstr "Segnalazione ham"
 
-#, fuzzy
 msgid "Not Reported"
-msgstr "Nessun voto"
+msgstr "Nessuna segnalazione"
 
-#, fuzzy
 msgid "Content Submitted"
-msgstr "La versione è stata caricata"
+msgstr "Contenuto inviato"
 
-#, fuzzy
 msgid "View Rating on site"
-msgstr "Visita il nuovo sito"
+msgstr "Visualizza valutazione sul sito"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Carica un nuovo file"
+msgstr "Invia ham a Akismet"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Carica un nuovo file"
+msgstr "Invia Spam a Akismet"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s segnalazioni ham inviate come spam"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s segnalazioni spam inviate come ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "Informazioni su Mozilla Add-ons"

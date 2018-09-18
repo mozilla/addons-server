@@ -18,7 +18,7 @@ def fxa_config(request):
     config = {camel_case(key): value
               for key, value in settings.FXA_CONFIG['default'].iteritems()
               if key != 'client_secret'}
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         config['email'] = request.user.email
     request.session.setdefault('fxa_state', generate_fxa_state())
     config['state'] = request.session['fxa_state']

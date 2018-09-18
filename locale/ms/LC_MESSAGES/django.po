@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-03 11:28+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-17 12:11+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -892,6 +892,9 @@ msgstr "Tandatangan telah tamat tempoh."
 
 msgid "Error decoding signature."
 msgstr "Ralat penyahkodan tandatangan."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr "Satu atau lebih jenis kekunci yang salah dalam muatan"
 
 msgid "Invalid JWT Token."
 msgstr "Token JWT Tidak Sah."
@@ -3999,6 +4002,12 @@ msgstr "Ujian Keserasian"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Semak untuk melihat samada ekstensi anda serasi dengan Firefox."
+
+msgid "Live Testing"
+msgstr "Ujian Langsung"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr "Pasang ekstensi sementara dalam Firefox untuk ujian dan menyahpepijat secara langsung."
 
 msgid "Transfer ownership"
 msgstr "Pindah pemilikan"

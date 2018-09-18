@@ -1,4 +1,4 @@
-{% if user.is_authenticated() %}
+{% if user.is_authenticated %}
   <li class="account">
     <a href="{{ user.get_url_path() }}" class="user" title="{{ user.email }}">
       {{ user.welcome_name }}</a>
@@ -27,7 +27,7 @@
   </li>
 {% endif %}
 
-{% if user.is_authenticated() %}
+{% if user.is_authenticated %}
   {% if tools_links|count > 1 %}
     <li class="tools">
       <a href="#">{{ tools_title }}</a>

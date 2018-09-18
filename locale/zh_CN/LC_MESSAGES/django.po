@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-04 05:47+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-17 14:52+0000\n"
+"Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -884,6 +884,9 @@ msgstr "签名已过期。"
 
 msgid "Error decoding signature."
 msgstr "解码签名出错。"
+
+msgid "Wrong type for one or more keys in payload"
+msgstr "有效载荷（payload）中的一个或多个密钥类型错误"
 
 msgid "Invalid JWT Token."
 msgstr "无效的 JWT 令牌。"
@@ -3942,6 +3945,12 @@ msgstr "兼容性测试"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "检查您的扩展是否兼容 Firefox。"
 
+msgid "Live Testing"
+msgstr "实时测试"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr "在 Firefox 中临时安装您的扩展以进行实时测试和调试。"
+
 msgid "Transfer ownership"
 msgstr "变更所有权"
 
@@ -5959,12 +5968,12 @@ msgstr "向 Akismet 回报为垃圾留言"
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "已将 %s 正常留言回报提交为垃圾留言"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "已将 %s 垃圾留言回报提交为正常留言"
 
 msgid "About Mozilla Add-ons"
 msgstr "关于 Mozilla 附加组件"

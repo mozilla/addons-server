@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-03 13:34+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-17 15:44+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -942,6 +942,9 @@ msgstr "Signatura jo pśepadnyła."
 
 msgid "Error decoding signature."
 msgstr "Zmólka pśi dekoděrowanju signatury."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr "Wopacny typ za jaden kluc abo někotare kluce w nakładnej śěžy"
 
 msgid "Invalid JWT Token."
 msgstr "Njepłaśiwy JWT-token."
@@ -4090,6 +4093,12 @@ msgstr "Test kompatibelnosći"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Pśeglědajśo, lěc wašo rozšyrjenje jo kompatibelne z Firefox."
+
+msgid "Live Testing"
+msgstr "Testowanje live"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr "Instalěrujśo swójo rozšyrjenje nachylu w Firefox, a by jo live testował a za zmólkami pśespytował."
 
 msgid "Transfer ownership"
 msgstr "Wobsejźeństwo pśenosowaś"

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-05 06:13+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-17 12:19+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -386,7 +386,7 @@ msgstr "留下您的意見？"
 
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr "請先 <a href=\"%(login)s\">登入</a> 以留下評論"
+msgstr "請先<a href=\"%(login)s\">登入</a>以留下評論"
 
 msgid "Review:"
 msgstr "評論:"
@@ -657,10 +657,10 @@ msgid "Manage My Submissions"
 msgstr "管理我上架的套件"
 
 msgid "Submit a New Add-on"
-msgstr "上傳新的附加元件"
+msgstr "上架新的附加元件"
 
 msgid "Submit a New Theme"
-msgstr "提交一個新的佈景主題"
+msgstr "上架新的佈景主題"
 
 msgid "Developer Hub"
 msgstr "開發者交流中心"
@@ -884,6 +884,9 @@ msgstr "簽章已過期。"
 msgid "Error decoding signature."
 msgstr "解碼簽章時發生錯誤。"
 
+msgid "Wrong type for one or more keys in payload"
+msgstr "Payload 中的一或多組金鑰類型錯誤"
+
 msgid "Invalid JWT Token."
 msgstr "JWT Token 無效。"
 
@@ -910,7 +913,7 @@ msgid "Valid Application Versions"
 msgstr "有效應用程式版本"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "送交到 Mozilla 附加元件站上架的附加元件的安裝資訊檔當中必須支援下列任一種以上的應用程式。僅接受下列版本號碼。"
+msgstr "要上架到 Mozilla 附加元件站的附加元件，安裝資訊檔中必須支援下列任一種以上的應用程式。僅接受下列版本號碼。"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
@@ -1508,7 +1511,7 @@ msgid "e10s Compatible"
 msgstr "相容 e10s"
 
 msgid "Submitted"
-msgstr "提交日期"
+msgstr "送出日期"
 
 msgid "Success"
 msgstr "完成"
@@ -3256,10 +3259,10 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> 位活躍的使用者"
 
 msgid "Submit a New File"
-msgstr "提交新檔案"
+msgstr "送出新檔案"
 
 msgid "Submit a New Version"
-msgstr "上傳新版本"
+msgstr "送出新版本"
 
 msgid "Describe Add-on"
 msgstr "描述附加元件"
@@ -3325,7 +3328,7 @@ msgid "Cancel and Disable Version"
 msgstr "取消並停用此版本"
 
 msgid "Submit Version"
-msgstr "上傳版本"
+msgstr "送出版本"
 
 msgid "Describe Version"
 msgstr "描述此版本"
@@ -3346,7 +3349,7 @@ msgid "More information on Add-on Distribution and Signing"
 msgstr "關於附加元件發行與簽署的更多資訊"
 
 msgid "Submission Complete"
-msgstr "上傳完成"
+msgstr "送出完成"
 
 msgid "You’re done!"
 msgstr "完成了！"
@@ -3408,7 +3411,7 @@ msgid "Upload File"
 msgstr "上傳檔案"
 
 msgid "Go to My Submissions"
-msgstr "前往我的提交"
+msgstr "前往我上架的項目"
 
 msgid "Source Code Upload"
 msgstr "上傳原始碼"
@@ -3894,16 +3897,16 @@ msgstr "更多資訊"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
-msgstr "檢視所有送出的元件"
+msgstr "檢視所有上架的項目"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr "這是您可以檢視並管理附加元件及佈景主題的地方。若要發布您的第一套附加元件，請點擊「發布您的第一套附加元件」或「發布您的第一套佈景主題」。"
 
 msgid "Submit Your First Add-on"
-msgstr "送出您的第一套附加元件"
+msgstr "上架您的第一套附加元件"
 
 msgid "Submit Your First Theme"
-msgstr "送出您的第一套佈景主題"
+msgstr "上架您的第一套佈景主題"
 
 # The title for a user if they are a developer
 msgid "Add-on Developer Hub"
@@ -3948,7 +3951,7 @@ msgid "Publish Your Add-on"
 msgstr "發布您的附加元件"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "寫好附加元件了嗎？請送出您的附加元件或佈景主題，上架到 addons.mozilla.org，也可以經簽署後自行發布。"
+msgstr "寫好附加元件了嗎？請將您的附加元件或佈景主題上架到 addons.mozilla.org，也可以簽署後自行發布。"
 
 msgid "Sign In"
 msgstr "登入"
@@ -3967,6 +3970,12 @@ msgstr "相容性測試"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "看看您的擴充套件是否與 Firefox 相容。"
+
+msgid "Live Testing"
+msgstr "測試中"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr "在 Firefox 暫時安裝您的擴充套件，進行測試與除錯。"
 
 msgid "Transfer ownership"
 msgstr "移轉擁有權"
@@ -4028,7 +4037,7 @@ msgid "Upload New Design"
 msgstr "上傳新的設計"
 
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "在您上傳設計與提交表格後，AMO團隊將審核您已更新的設計。在此期間，公眾仍可存取您現有的設計。"
+msgstr "在您上傳設計與送出表單後，AMO 團隊就會審核您更新的設計。在此期間，大眾仍會存取您現有的設計。"
 
 msgid "Your previously resubmitted design, which is under pending review."
 msgstr "您先前重新送出的設計，還在審核當中。"
@@ -4081,13 +4090,13 @@ msgid ""
 msgstr "我同意 %(agreement_link_open)sFirefox 附加元件發行協議%(link_close)s，並可依照 %(privacy_notice_link_open)s網站、通訊及 Cookie 隱私權公告%(link_close)s 當中描述的方式處理我的資訊。"
 
 msgid "Submit Theme"
-msgstr "提交佈景主題"
+msgstr "送出佈景主題"
 
 msgid "You're done!"
 msgstr "完成了！"
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr "您的佈景主題已經提交至待審區。在審核後會以電子郵件通知您(通常在24小時內)。"
+msgstr "您的佈景主題已經送出至待審區。在審核後會以電子郵件通知您（通常在 24 小時內）。"
 
 msgid "Next steps:"
 msgstr "接下來可以做的事:"
@@ -4534,7 +4543,7 @@ msgstr "{addon_name} {start_sub_heading}改善影片播放功能{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "將頁面中，視訊播放器的附近暗化，加強影片觀賞體驗。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4705,7 +4714,7 @@ msgstr "{addon_name} {start_sub_heading}安全上網{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
-msgstr ""
+msgstr "為所有支援 HTTPS 的網站加密，增加安全性。"
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4860,7 +4869,7 @@ msgstr "{addon_name} {start_sub_heading}取得快速翻譯{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
+msgstr "反白任何網站上的文字，點擊右鍵，立刻翻譯。"
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6405,7 +6414,7 @@ msgid "Write a Reply"
 msgstr "寫下回覆"
 
 msgid "Submit"
-msgstr "提交"
+msgstr "送出"
 
 #. this string is following a <button>.
 #, python-format
@@ -6613,19 +6622,19 @@ msgid "Has auto-approval disabled flag set."
 msgstr "設定了「關閉自動通過審核」旗標。"
 
 msgid "Duplicate Submission"
-msgstr "重複的提交"
+msgstr "重複送出的項目"
 
 msgid "Thanks for submitting your Theme"
-msgstr "感謝您提交佈景主題"
+msgstr "感謝您送出佈景主題"
 
 msgid "A problem with your Theme submission"
-msgstr "您提交的佈景主題發現問題"
+msgstr "您送出的佈景主題發現問題"
 
 msgid "Theme submission flagged for review"
 msgstr "已將送出的佈景主題加上旗標以供審核"
 
 msgid "A question about your Theme submission"
-msgstr "關於您送出佈景主題的問題"
+msgstr "關於您送出的佈景主題的問題"
 
 msgid "Type"
 msgstr "類型"
@@ -7273,7 +7282,7 @@ msgid "Theme Review for {0}"
 msgstr "{0} 的佈景主題審核"
 
 msgid "(Probable Duplicate Submission)"
-msgstr "(很可能是重複的提交)"
+msgstr "（可能重複送出的項目）"
 
 msgid "Past Review Notes"
 msgstr "過去的審核筆記"

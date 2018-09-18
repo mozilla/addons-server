@@ -18,8 +18,8 @@ from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import addon_factory, reverse_ns
-from olympia.api.tests.utils import APIKeyAuthTestCase
+from olympia.amo.tests import addon_factory, reverse_ns, TestCase
+from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.applications.models import AppVersion
 from olympia.devhub import tasks
 from olympia.files.models import File, FileUpload
@@ -29,7 +29,7 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
 
-class SigningAPITestCase(APIKeyAuthTestCase):
+class SigningAPITestMixin(APIKeyAuthTestMixin):
     fixtures = ['base/addon_3615', 'base/user_4043307']
 
     def setUp(self):
@@ -37,10 +37,10 @@ class SigningAPITestCase(APIKeyAuthTestCase):
         self.api_key = self.create_api_key(self.user, str(self.user.pk) + ':f')
 
 
-class BaseUploadVersionCase(SigningAPITestCase):
+class BaseUploadVersionTestMixin(SigningAPITestMixin):
 
     def setUp(self):
-        super(BaseUploadVersionCase, self).setUp()
+        super(BaseUploadVersionTestMixin, self).setUp()
         self.guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
         self.view = VersionView.as_view()
         create_version_patcher = mock.patch(
@@ -96,7 +96,7 @@ class BaseUploadVersionCase(SigningAPITestCase):
         GroupUser.objects.create(group=admin_group, user=user)
 
 
-class TestUploadVersion(BaseUploadVersionCase):
+class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_not_authenticated(self):
         # Use self.client.put so that we don't add the authorization header.
@@ -505,7 +505,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         ]
 
 
-class TestUploadVersionWebextension(BaseUploadVersionCase):
+class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
     def setUp(self):
         super(TestUploadVersionWebextension, self).setUp()
         AppVersion.objects.create(application=amo.FIREFOX.id, version='42.0')
@@ -726,7 +726,7 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
             assert addon.tags.filter(tag_text='dynamic theme').exists()
 
 
-class TestCheckVersion(BaseUploadVersionCase):
+class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_not_authenticated(self):
         # Use self.client.get so that we don't add the authorization header.
@@ -851,7 +851,7 @@ class TestCheckVersion(BaseUploadVersionCase):
         assert 'processed' in response.data
 
 
-class TestSignedFile(SigningAPITestCase):
+class TestSignedFile(SigningAPITestMixin, TestCase):
 
     def setUp(self):
         super(TestSignedFile, self).setUp()

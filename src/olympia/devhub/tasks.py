@@ -128,7 +128,8 @@ def create_version_for_upload(addon, upload, channel):
         # loudly in sentry.
         parsed_data = parse_addon(upload, addon, user=upload.user)
         version = Version.from_upload(
-            upload, addon, [amo.PLATFORM_ALL.id], channel,
+            upload, addon, [x[0] for x in amo.APPS_FIREFOXES_ONLY_CHOICES],
+            channel,
             parsed_data=parsed_data)
         # The add-on's status will be STATUS_NULL when its first version is
         # created because the version has no files when it gets added and it

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-03 14:21+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-17 17:04+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -914,6 +914,9 @@ msgstr "A assinatura expirou."
 
 msgid "Error decoding signature."
 msgstr "Erro ao descodificar a assinatura."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr "Tipo errado para uma ou mais chaves na payload"
 
 msgid "Invalid JWT Token."
 msgstr "Token JWT inválido."
@@ -4064,6 +4067,12 @@ msgstr "Teste de compatibilidade"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Verifique para ver se a sua extensão é compatível com o Firefox."
 
+msgid "Live Testing"
+msgstr "Testes ao vivo"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr "Instale a sua extensão temporariamente no Firefox para testes ao vivo e depuração."
+
 msgid "Transfer ownership"
 msgstr "Transferir propriedade"
 
@@ -4910,7 +4919,7 @@ msgstr "Adicione imagens aos resultados das pesquisas {start_sub_heading}com {ad
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
-msgstr "Desfrute de miniaturas ao lado dos resultados de pesquisas."
+msgstr "Desfrute de miniaturas ao lado dos seus resultados de pesquisas."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"

@@ -3,7 +3,7 @@
   <a class="close" href="#">{{ _('close') }}</a>
   <h2>{{ _('What do you think?') }}</h2>
   <div id="review-box" class="c">
-    {% if not user.is_authenticated() %}
+    {% if not user.is_authenticated %}
       <p>
         {% trans login=login_link() %}
           Please <a href="{{ login }}">log in</a> to submit a review
@@ -12,7 +12,7 @@
     {% endif %}
 
     <form method="post" action="{{ url('addons.ratings.add', addon.slug) }}">
-      {% set attrs = {} if user.is_authenticated() else {'disabled': 'disabled'} %}
+      {% set attrs = {} if user.is_authenticated else {'disabled': 'disabled'} %}
       {% csrf_token %}
       {{ field(review_form.body, _('Review:'), **attrs) }}
       {{ field(review_form.rating, _('Rating:'), **attrs) }}
@@ -29,7 +29,7 @@
       </p>
       {% if addon.support_url or addon.support_email %}
         <p>
-          See this add-on's 
+          See this add-on's
           {% if addon.support_url %}
             <a class="support" href="{{ addon.support_url|external_url }}">{{ _('support section') }}</a>
           {% elif addon.support_email %}

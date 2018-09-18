@@ -17,7 +17,7 @@ class GroupPermission(BasePermission):
         self.permission = permission
 
     def has_permission(self, request, view):
-        if not request.user.is_authenticated():
+        if not request.user.is_authenticated:
             return False
         return acl.action_allowed_user(request.user, self.permission)
 
@@ -95,7 +95,7 @@ class AllowNone(BasePermission):
 class AllowAddonAuthor(BasePermission):
     """Allow access if the user is in the object authors."""
     def has_permission(self, request, view):
-        return request.user.is_authenticated()
+        return request.user.is_authenticated
 
     def has_object_permission(self, request, view, obj):
         return obj.authors.filter(pk=request.user.pk).exists()
@@ -108,7 +108,7 @@ class AllowOwner(BasePermission):
     user to be able to access your instance.
     """
     def has_permission(self, request, view):
-        return request.user.is_authenticated()
+        return request.user.is_authenticated
 
     def has_object_permission(self, request, view, obj):
         return ((obj == request.user) or
@@ -129,7 +129,7 @@ class AllowReviewer(BasePermission):
       permission.
     """
     def has_permission(self, request, view):
-        return request.user.is_authenticated()
+        return request.user.is_authenticated
 
     def has_object_permission(self, request, view, obj):
         can_access_because_viewer = (

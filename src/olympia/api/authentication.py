@@ -181,6 +181,9 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
                          'it raised %s (%s)', exc.__class__.__name__, exc)
                 # Re-raise to deal with them properly.
                 raise exc
+            except TypeError:
+                msg = ugettext('Wrong type for one or more keys in payload')
+                raise exceptions.AuthenticationFailed(msg)
             except jwt.ExpiredSignature:
                 msg = ugettext('Signature has expired.')
                 raise exceptions.AuthenticationFailed(msg)

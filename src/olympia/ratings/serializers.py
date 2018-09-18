@@ -9,7 +9,8 @@ from rest_framework import serializers
 from rest_framework.relations import PrimaryKeyRelatedField
 
 from olympia.accounts.serializers import BaseUserSerializer
-from olympia.addons.serializers import SimpleVersionSerializer
+from olympia.addons.serializers import (
+    SimpleAddonSerializer, SimpleVersionSerializer)
 from olympia.api.utils import is_gate_active
 from olympia.ratings.forms import RatingForm
 from olympia.ratings.models import Rating
@@ -17,8 +18,15 @@ from olympia.ratings.utils import maybe_check_with_akismet
 from olympia.versions.models import Version
 
 
+class RatingAddonSerializer(SimpleAddonSerializer):
+    def get_attribute(self, obj):
+        # Avoid database queries if possible by re-using the addon object from
+        # the view if there is one.
+        return self.context['view'].get_addon_object() or obj.addon
+
+
 class BaseRatingSerializer(serializers.ModelSerializer):
-    addon = serializers.SerializerMethodField()
+    addon = RatingAddonSerializer(read_only=True)
     body = serializers.CharField(allow_null=True, required=False)
     is_developer_reply = serializers.SerializerMethodField()
     is_latest = serializers.BooleanField(read_only=True)
@@ -33,18 +41,6 @@ class BaseRatingSerializer(serializers.ModelSerializer):
     def __init__(self, *args, **kwargs):
         super(BaseRatingSerializer, self).__init__(*args, **kwargs)
         self.request = kwargs.get('context', {}).get('request')
-
-    def get_addon(self, obj):
-        # We only return the addon id and slug for convenience, so just return
-        # them directly to avoid instantiating a full serializer. Also avoid
-        # database queries if possible by re-using the addon object from the
-        # view if there is one.
-        addon = self.context['view'].get_addon_object() or obj.addon
-
-        return {
-            'id': addon.id,
-            'slug': addon.slug
-        }
 
     def get_is_developer_reply(self, obj):
         return obj.reply_to_id is not None

@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-03 08:31+0000\n"
-"PO-Revision-Date: 2018-09-04 04:40+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-17 15:53+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -908,6 +908,9 @@ msgstr "Signaturen har upphört."
 
 msgid "Error decoding signature."
 msgstr "Fel vid avkodning av signaturen."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr "Fel typ för en eller flera nycklar i nyttolast"
 
 msgid "Invalid JWT Token."
 msgstr "Ogiltig JWT-token."
@@ -4073,6 +4076,12 @@ msgstr "Kompatibilitetstest"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Kontrollera om din utökning är kompatibel med Firefox."
 
+msgid "Live Testing"
+msgstr "Live Testing"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr "Installera tillfälligt ditt tillägg i Firefox för live testning och felsökning."
+
 msgid "Transfer ownership"
 msgstr "Överför ägarskapet"
 
@@ -6076,44 +6085,40 @@ msgid "Get Started"
 msgstr "Kom igång"
 
 msgid "Reported Status"
-msgstr "Rapporterad Status"
+msgstr "Rapporterad status"
 
 msgid "Reported Spam"
-msgstr "Rapporterat Spam"
+msgstr "Spam rapporterad"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Rapportera en bugg"
+msgstr "Ham rapporterad"
 
 msgid "Not Reported"
 msgstr "Inte rapporterad"
 
-#, fuzzy
 msgid "Content Submitted"
-msgstr "Version inskickad"
+msgstr "Inskickat innehåll"
 
 msgid "View Rating on site"
-msgstr "Visa betyg på sida"
+msgstr "Visa betyg på webbplatsen"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Skicka in en ny fil"
+msgstr "Skicka in ham till Akismet"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Skicka in en ny fil"
+msgstr "Skicka in spam till Akismet"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s ham-rapporter som skickats in som spam"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s spam-rapporter som skickats in som ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "Om Mozilla tillägg"
