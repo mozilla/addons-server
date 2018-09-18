@@ -180,8 +180,13 @@ class Version(OnChangeMixin, ModelBase):
                 channel=channel, exclude=())
             if previous_version and previous_version.license_id:
                 license_id = previous_version.license_id
+        approvalnotes = None
+        if parsed_data.get('is_mozilla_signed_extension'):
+            approvalnotes = (u'This version has been signed with '
+                             u'Mozilla internal certificate.')
         version = cls.objects.create(
             addon=addon,
+            approvalnotes=approvalnotes,
             version=parsed_data['version'],
             license_id=license_id,
             channel=channel,
