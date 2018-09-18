@@ -72,8 +72,21 @@ def validate(file_, listed=None, subtask=None, synchronous=False,
     if not synchronous and task_id:
         return AsyncResult(task_id)
     else:
-        # There has to be a task before validator.task or @validation_task will
-        # get too few arguments - the result of pretask is passed along.
+        # celery.group() | validator.task returns a celery.chord - which works
+        # great in tests (meaning we don't have to rewrite existing tests) but
+        # in non-eager mode celery does nothing and just hangs the validation.
+        #
+        # Thankfully devhub.views.handle_upload now always passes along a value
+        # for pretask but if this is changed it WILL break on dev/stage/prod.
+        #
+        # We HAVE to have a task at the start of the chain that returns a
+        # result (ignore_result=False) as the result from pretask is passed
+        # down to the next task in the chain, validation.task, which is wrapped
+        # in validation_task.  If there no task then validation_task fails with
+        # mismatched arguments (same with something like an empty celery.group)
+        #
+        # In a ideal world this would all be rewritten with chords and
+        # parallel tasks in groups and magic.
         chain = celery.group() if pretask is None else pretask
         chain |= validator.task
         if subtask is not None:
