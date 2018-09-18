@@ -329,9 +329,9 @@ def get_addon_akismet_reports(user, user_agent, referrer, upload=None,
     if not data:
         return []  # bail early if no data to skip Translation lookups
     if addon and addon.has_listed_versions():
-        translation_ids = (
+        translation_ids_gen = (
             getattr(addon, prop + '_id', None) for prop in properties)
-        translation_ids = (id_ for id_ in translation_ids if id_)
+        translation_ids = [id_ for id_ in translation_ids_gen if id_]
         # Just get all the values together to make it simplier
         existing_data = {
             text_type(value)
