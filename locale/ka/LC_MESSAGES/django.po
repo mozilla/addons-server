@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-19 05:31+0000\n"
+"PO-Revision-Date: 2018-09-19 05:43+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -910,7 +910,7 @@ msgid "Error decoding signature."
 msgstr "ხელმოწერის გაშიფვრის შეცდომა."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "არამართებული, ერთი ან რამდენიმე გასაღებისთვის შიგთავსში"
 
 msgid "Invalid JWT Token."
 msgstr "არასწორი JWT ჟეტონი."
@@ -3525,9 +3525,8 @@ msgstr "ვერსიის ატვირთვა"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "გამოიყენეთ ქვემოთ მოცემული ველები დამატების პაკეტის ასატვირთად. ატვირთვის შემდეგ, ავტომატურად დაიწყება თქვენი ფაილის შემოწმება."
 
-#, fuzzy
 msgid "Which applications is this version compatible with?"
-msgstr "რომელ სისტემებთანაა თავსებადი?"
+msgstr "რომელ პროგრამებთანაა თავსებადი ეს ვერსია?"
 
 msgid "Administrative overrides"
 msgstr "ადმინისტრაციის მოქმედებები"
@@ -4006,12 +4005,11 @@ msgstr "თავსებადობის შემოწმება"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "შეამოწმეთ, არის თუ არა თქვენი გაფართოება Firefox-სთან თავსებადი."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "იხილეთ საიტზე"
+msgstr "პირდაპირი შემოწმება"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "გაფართოების დროებით დაყენება Firefox-ში, პირდაპირ რეჟიმში შესამოწმებლად და გასამართად."
 
 msgid "Transfer ownership"
 msgstr "საკუთრების გადაცემა"
