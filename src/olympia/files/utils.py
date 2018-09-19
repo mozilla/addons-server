@@ -203,17 +203,14 @@ class RDFExtractor(object):
             'type': self.find_type(),
             'version': self.find('version'),
             'is_webextension': False,
+            'name': self.find('name'),
+            'summary': self.find('description'),
         }
 
         # Populate certificate information (e.g signed by mozilla or not)
         # early on to be able to verify compatibility based on it
         if self.certinfo is not None:
             data.update(self.certinfo.parse())
-
-        data.update({
-                'name': self.find('name'),
-                'summary': self.find('description'),
-        })
 
         if not minimal:
             data.update({
@@ -510,6 +507,8 @@ class ManifestJSONExtractor(object):
             'type': self.type,
             'version': self.get('version', ''),
             'is_webextension': True,
+            'name': self.get('name'),
+            'summary': self.get('description'),
         }
 
         # Populate certificate information (e.g signed by mozilla or not)
@@ -517,10 +516,6 @@ class ManifestJSONExtractor(object):
         if self.certinfo is not None:
             data.update(self.certinfo.parse())
 
-        data.update({
-            'name': self.get('name'),
-            'summary': self.get('description'),
-         })
         if not minimal:
             data.update({
                 'homepage': self.get('homepage_url'),
