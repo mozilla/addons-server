@@ -296,6 +296,9 @@ class TestBuildWebextDictionaryFromLegacy(AMOPaths, TestCase):
             # dictionaries properties.
             manifest = xpi.read('manifest.json')
             manifest_json = json.loads(manifest)
+            assert (
+                manifest_json['applications']['gecko']['id'] ==
+                self.addon.guid)
             assert manifest_json['version'] == expected_version
             expected_dict_obj = {addon.target_locale: 'dictionaries/ar.dic'}
             assert manifest_json['dictionaries'] == expected_dict_obj
