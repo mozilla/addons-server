@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-17 14:52+0000\n"
-"Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
+"PO-Revision-Date: 2018-09-19 16:56+0000\n"
+"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -2420,7 +2420,7 @@ msgid "Override failed validation"
 msgstr "无视验证失败"
 
 msgid "Need to select at least one application."
-msgstr ""
+msgstr "需要选择至少一个应用程序。"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "版本 {version} 此前已上传并已删除。"
@@ -3446,7 +3446,7 @@ msgid "Use the fields below to upload your add-on package. After upload, a serie
 msgstr "使用下面的按钮上传您的附加组件包。在上传完成后，将会对您的文件执行一系列自动化验证测试。"
 
 msgid "Which applications is this version compatible with?"
-msgstr ""
+msgstr "此版本与哪个（些）应用程序兼容？"
 
 msgid "Administrative overrides"
 msgstr "管理覆盖"
