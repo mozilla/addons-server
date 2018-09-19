@@ -863,8 +863,10 @@ pre.email_comment {
 }
 
 #upload-file .compatible-apps label.app {
-    padding-left: 35px;
-    padding-top: 6px;
+    padding-left: 25px;
+
+    background-repeat: no-repeat;
+    background-size: 20px;
 }
 
 #upload-status-bar {
