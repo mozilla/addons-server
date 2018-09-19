@@ -615,15 +615,11 @@ class TestMigrateLegacyDictionariesToWebextension(TestCase):
     @mock.patch(
         'olympia.addons.tasks.migrate_legacy_dictionary_to_webextension',
         autospec=True)
-    def test_basic(
-            self, migrate_legacy_dictionary_to_webextension_mock,
-            index_addons_mock):
+    def test_basic(self, migrate_legacy_dictionarymock, index_addons_mock):
         addon_factory()
         addon_factory(type=amo.ADDON_LPAPP)
         addon_factory(type=amo.ADDON_STATICTHEME)
         addon_factory(type=amo.ADDON_DICT, file_kw={'is_webextension': True})
-        addon_factory(type=amo.ADDON_DICT, target_locale=None)
-        addon_factory(type=amo.ADDON_DICT, target_locale='')
         addon_factory(
             type=amo.ADDON_DICT, target_locale='es',
             status=amo.STATUS_DISABLED)
@@ -631,8 +627,17 @@ class TestMigrateLegacyDictionariesToWebextension(TestCase):
             type=amo.ADDON_DICT, target_locale='it',
             disabled_by_user=True)
         self.addon = addon_factory(type=amo.ADDON_DICT, target_locale='fr')
+        self.addon2 = addon_factory(type=amo.ADDON_DICT, target_locale=None)
+        self.addon3 = addon_factory(type=amo.ADDON_DICT, target_locale='')
         call_command('process_addons',
                      task='migrate_legacy_dictionaries_to_webextension')
-        migrate_legacy_dictionary_to_webextension_mock.assert_called_once_with(
-            self.addon)
-        index_addons_mock.assert_called_once_with([self.addon])
+        assert migrate_legacy_dictionarymock.call_count == 3
+        actual_calls = (
+            migrate_legacy_dictionarymock.call_args_list[0][0][0],
+            migrate_legacy_dictionarymock.call_args_list[1][0][0],
+            migrate_legacy_dictionarymock.call_args_list[2][0][0]
+        )
+        expected_calls = (self.addon, self.addon2, self.addon3)
+        assert actual_calls == expected_calls
+        index_addons_mock.assert_called_once_with(
+            [self.addon, self.addon2, self.addon3])

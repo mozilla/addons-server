@@ -290,7 +290,6 @@ class TestBuildWebextDictionaryFromLegacy(AMOPaths, TestCase):
             self.addon.current_version.all_files[0], 'dictionary-test.xpi')
 
     def check_xpi_file_contents(self, xpi_file_path, expected_version):
-        addon = self.addon
         with zipfile.ZipFile(xpi_file_path, 'r', zipfile.ZIP_DEFLATED) as xpi:
             # Check that manifest is present, contains proper version and
             # dictionaries properties.
@@ -300,7 +299,7 @@ class TestBuildWebextDictionaryFromLegacy(AMOPaths, TestCase):
                 manifest_json['applications']['gecko']['id'] ==
                 self.addon.guid)
             assert manifest_json['version'] == expected_version
-            expected_dict_obj = {addon.target_locale: 'dictionaries/ar.dic'}
+            expected_dict_obj = {'ar': 'dictionaries/ar.dic'}
             assert manifest_json['dictionaries'] == expected_dict_obj
 
             # Check that we haven't included any useless files.
@@ -329,8 +328,9 @@ class TestBuildWebextDictionaryFromLegacy(AMOPaths, TestCase):
     def test_addon_has_no_target_locale(self):
         self.addon.update(target_locale=None)
         with tempfile.NamedTemporaryFile(suffix='.xpi') as destination:
-            with self.assertRaises(ValidationError):
-                build_webext_dictionary_from_legacy(self.addon, destination)
+            build_webext_dictionary_from_legacy(self.addon, destination)
+            self.check_xpi_file_contents(destination, '1.0.1webext')
+        self.addon.reload()
 
     def test_invalid_dictionary_path_raises(self):
         self.xpi_copy_over(
