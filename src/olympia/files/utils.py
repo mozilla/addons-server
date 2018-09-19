@@ -210,11 +210,14 @@ class RDFExtractor(object):
         if self.certinfo is not None:
             data.update(self.certinfo.parse())
 
+        data.update({
+                'name': self.find('name'),
+                'summary': self.find('description'),
+        })
+
         if not minimal:
             data.update({
-                'name': self.find('name'),
                 'homepage': self.find('homepageURL'),
-                'summary': self.find('description'),
                 'is_restart_required': (
                     self.find('bootstrap') != 'true' and
                     self.find('type') not in self.ALWAYS_RESTARTLESS_TYPES),
@@ -514,11 +517,13 @@ class ManifestJSONExtractor(object):
         if self.certinfo is not None:
             data.update(self.certinfo.parse())
 
+        data.update({
+            'name': self.get('name'),
+            'summary': self.get('description'),
+         })
         if not minimal:
             data.update({
-                'name': self.get('name'),
                 'homepage': self.get('homepage_url'),
-                'summary': self.get('description'),
                 'is_restart_required': False,
                 'apps': list(self.apps()),
                 'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,
