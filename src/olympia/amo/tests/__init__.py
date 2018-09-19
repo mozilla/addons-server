@@ -750,9 +750,7 @@ def file_factory(**kw):
         filename)
 
     if os.path.exists(fixture_path):
-        copy_stored_file(
-            fixture_path,
-            os.path.join(version.path_prefix, file_.filename))
+        copy_stored_file(fixture_path, file_.current_file_path)
 
     return file_
 

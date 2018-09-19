@@ -273,10 +273,6 @@ class Version(OnChangeMixin, ModelBase):
 
         return version
 
-    @property
-    def path_prefix(self):
-        return os.path.join(user_media_path('addons'), str(self.addon_id))
-
     def license_url(self, impala=False):
         return reverse('addons.license', args=[self.addon.slug, self.version])
 
