@@ -203,6 +203,8 @@ class RDFExtractor(object):
             'type': self.find_type(),
             'version': self.find('version'),
             'is_webextension': False,
+            'name': self.find('name'),
+            'summary': self.find('description'),
         }
 
         # Populate certificate information (e.g signed by mozilla or not)
@@ -212,9 +214,7 @@ class RDFExtractor(object):
 
         if not minimal:
             data.update({
-                'name': self.find('name'),
                 'homepage': self.find('homepageURL'),
-                'summary': self.find('description'),
                 'is_restart_required': (
                     self.find('bootstrap') != 'true' and
                     self.find('type') not in self.ALWAYS_RESTARTLESS_TYPES),
@@ -507,6 +507,8 @@ class ManifestJSONExtractor(object):
             'type': self.type,
             'version': self.get('version', ''),
             'is_webextension': True,
+            'name': self.get('name'),
+            'summary': self.get('description'),
         }
 
         # Populate certificate information (e.g signed by mozilla or not)
@@ -516,9 +518,7 @@ class ManifestJSONExtractor(object):
 
         if not minimal:
             data.update({
-                'name': self.get('name'),
                 'homepage': self.get('homepage_url'),
-                'summary': self.get('description'),
                 'is_restart_required': False,
                 'apps': list(self.apps()),
                 'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,

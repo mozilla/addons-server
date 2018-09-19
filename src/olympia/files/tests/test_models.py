@@ -464,6 +464,8 @@ class TestParseXpi(TestCase):
             'version': '0.1',
             'type': amo.ADDON_EXTENSION,
             'is_webextension': False,
+            'name': 'xpi name',
+            'summary': 'xpi description',
         }
         parsed = self.parse(minimal=True)
         assert parsed == expected
@@ -480,6 +482,8 @@ class TestParseXpi(TestCase):
             'version': '0.1',
             'type': amo.ADDON_EXTENSION,
             'is_webextension': False,
+            'name': 'xpi name',
+            'summary': 'xpi description',
         }
         parsed = self.parse(minimal=True, user=None)
         assert parsed == expected
@@ -516,6 +520,8 @@ class TestParseXpi(TestCase):
             'type': amo.ADDON_EXTENSION,
             'version': '1.0',
             'is_webextension': True,
+            'name': 'Beastify',
+            'summary': None,
         }
         parsed = self.parse(
             filename='webextension_with_apps_targets.xpi',
