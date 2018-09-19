@@ -451,12 +451,12 @@ def extract_strict_compatibility_value_for_addon(addon):
         zip_file = SafeZip(get_file(path))
         parser = RDFExtractor(zip_file)
         strict_compatibility = parser.find('strictCompatibility') == 'true'
-    except Exception as exp:
+    except Exception as exc:
         # A number of things can go wrong: missing file, path somehow not
         # existing, etc. In any case, that means the add-on is in a weird
         # state and should be ignored (this is a one off task).
         log.exception(u'bump_appver_for_legacy_addons: ignoring addon %d, '
-                      u'received %s when extracting.', addon.pk, unicode(exp))
+                      u'received %s when extracting.', addon.pk, unicode(exc))
     return strict_compatibility
 
 
@@ -700,10 +700,10 @@ def migrate_legacy_dictionaries_to_webextension(ids, **kw):
     for addon in addons:
         try:
             migrate_legacy_dictionary_to_webextension(addon)
-        except ValidationError as exp:
+        except ValidationError as exc:
             # Ignore broken dictionaries, just log and continue. The function
             # is decorated by @atomic so it will rollback the transaction.
-            log('Migrating dictionary %d raised %s', addon.pk, exp.message)
+            log('Migrating dictionary %d raised %s', addon.pk, exc.message)
             continue
     index_addons.delay(addons)
 
