@@ -6,6 +6,7 @@ from datetime import datetime
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
+from django.forms import ValidationError
 from django.utils import translation
 
 from elasticsearch_dsl import Search
@@ -450,12 +451,12 @@ def extract_strict_compatibility_value_for_addon(addon):
         zip_file = SafeZip(get_file(path))
         parser = RDFExtractor(zip_file)
         strict_compatibility = parser.find('strictCompatibility') == 'true'
-    except Exception as exp:
+    except Exception as exc:
         # A number of things can go wrong: missing file, path somehow not
         # existing, etc. In any case, that means the add-on is in a weird
         # state and should be ignored (this is a one off task).
         log.exception(u'bump_appver_for_legacy_addons: ignoring addon %d, '
-                      u'received %s when extracting.', addon.pk, unicode(exp))
+                      u'received %s when extracting.', addon.pk, unicode(exc))
     return strict_compatibility
 
 
@@ -699,7 +700,13 @@ def migrate_legacy_dictionaries_to_webextension(ids, **kw):
         ids[0], ids[-1], len(ids))
     addons = list(Addon.objects.filter(id__in=ids))
     for addon in addons:
-        migrate_legacy_dictionary_to_webextension(addon)
+        try:
+            migrate_legacy_dictionary_to_webextension(addon)
+        except ValidationError as exc:
+            # Ignore broken dictionaries, just log and continue. The function
+            # is decorated by @atomic so it will rollback the transaction.
+            log('Migrating dictionary %d raised %s', addon.pk, exc.message)
+            continue
     index_addons.delay(addons)
 
 
@@ -716,7 +723,10 @@ def migrate_legacy_dictionary_to_webextension(addon):
         user=user, valid=True)
     destination = os.path.join(
         user_media_path('addons'), 'temp', uuid.uuid4().hex + '.xpi')
-    build_webext_dictionary_from_legacy(addon, destination)
+    target_language = build_webext_dictionary_from_legacy(addon, destination)
+    if not addon.target_locale:
+        addon.update(target_locale=target_language)
+
     upload.update(path=destination)
 
     parsed_data = parse_addon(upload, user=user)
