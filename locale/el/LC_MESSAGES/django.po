@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-20 13:30+0000\n"
+"PO-Revision-Date: 2018-09-20 13:46+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3704,7 +3704,7 @@ msgid "Invisible"
 msgstr "Αόρατο"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Παρακαλούμε ολοκληρώστε το πρόσθετό σας προσθέτοντας μια έκδοση ή τα μεταδεδομένα που λείπουν."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr "Θα λάβετε ένα email όταν ολοκληρωθεί η αξιολόγηση. Μέχρι τότε, το πρόσθετο σας δεν θα εμφανίζεται γενικά στις σελίδες μας αλλά θα μπορείτε να το δείτε μόνο απευθείας στη σελίδα προβολής του. "
@@ -4382,7 +4382,7 @@ msgstr "Αποτροπή ύπουλων ιχνηλατών {start_sub_heading}μ
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Φραγή αόρατων ιχνηλατών και κατασκοπευτικών διαφημίσεων που σάς ακολουθούν στο διαδίκτυο."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7705,6 +7705,8 @@ msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
+"<h2>Πώς μετρούνται οι λήψεις;</h2> <p>Οι μετρήσεις λήψεων ενημερώνονται κάθε απόγευμα και περιλαμβάνουν μόνο τις αρχικές λήψεις του προσθέτου, όχι τις ενημερώσεις. Οι λήψεις μπορούν να αναλυθούν "
+"βάσει της συγκεκριμένης πηγής που αναφέρει τη λήψη. </p>"
 
 msgid "User languages by Date"
 msgstr "Γλώσσες χρηστών κατά ημερομηνία"
