@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-18 12:11+0000\n"
+"PO-Revision-Date: 2018-09-20 09:47+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -934,7 +934,7 @@ msgid "Error decoding signature."
 msgstr "Erreur de décodage de la signature."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Type incorrect pour une ou plusieurs clés dans la charge utile"
 
 msgid "Invalid JWT Token."
 msgstr "Jeton JWT non valide."
@@ -3580,7 +3580,7 @@ msgid "Use the fields below to upload your add-on package. After upload, a serie
 msgstr "Utilisez les champs ci-dessous pour envoyer le paquet de votre module. Après envoi, une série de tests de validation automatisés seront exécutés sur votre fichier."
 
 msgid "Which applications is this version compatible with?"
-msgstr ""
+msgstr "Avec quelles applications cette version est-elle compatible ?"
 
 msgid "Administrative overrides"
 msgstr "Dérogations administratives"
@@ -4064,10 +4064,10 @@ msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Vérifiez que votre extension est compatible avec Firefox."
 
 msgid "Live Testing"
-msgstr ""
+msgstr "Tests en direct"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Installez temporairement votre extension dans Firefox pour tester en conditions réelles et déboguer."
 
 msgid "Transfer ownership"
 msgstr "Transférer la propriété"
