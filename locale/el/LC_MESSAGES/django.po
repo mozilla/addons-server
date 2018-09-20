@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-20 13:46+0000\n"
+"PO-Revision-Date: 2018-09-20 14:07+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4934,9 +4934,8 @@ msgid "Store passwords securely and access them across multiple devices."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Μάθετε που πηγαίνετε στο διαδίκτυο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
@@ -4967,9 +4966,8 @@ msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Έμπνευση παραγωγικότητας {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
@@ -5024,18 +5022,16 @@ msgid "Track historical pricing, find competing products, know the seller's rati
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Κάντε το YouTube δικό σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Εξερεύνηση της κυκλοφορίας των ιστοσελίδων {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
@@ -5162,9 +5158,8 @@ msgid "Get expert German translations between English, French, Spanish, and othe
 msgstr "Επαγγελματικές μεταφράσεις ανάμεσα σε Γερμανικά και Αγγλικά, Γαλλικά, Ισπανικά και άλλες γλώσσες."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Δημιουργία λίστας φραγής ιστοσελίδων {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
@@ -5203,18 +5198,16 @@ msgid "Reverse image search by leveraging the power of multiple search providers
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Αποθήκευση για αργότερα {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store web pages to access across devices."
 msgstr "Αποθήκευση ιστοσελίδων για πρόσβαση από όλες τις συσκευές."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Εξατομίκευση καρτελών {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Εύκολη επιλογή τοποθεσιών σελιδοδεικτών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
@@ -5250,18 +5243,16 @@ msgid "Access PDFs using your preferred PDF application."
 msgstr "Πρόσβαση σε PDFs με την προτιμώμενη εφαρμογή PDF σας."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Κάντε λήψη στιγμιότυπων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Παράλειψη ανακατευθύνσεων & ιχνηλατών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Διακοπή ιχνηλατών αναζήτησης {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
@@ -5292,9 +5283,8 @@ msgid "Create general and website-specific notes to review later."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Κάντε λήψη στιγμιότυπων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Κύλιση όπως στο τηλέφωνο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
