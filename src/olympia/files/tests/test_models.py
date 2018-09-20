@@ -1371,6 +1371,25 @@ class TestFileFromUpload(UploadTest):
         assert permissions_list[5:8] == [x for y in [
             cs['matches'] for cs in parsed_data['content_scripts']] for x in y]
 
+    def test_file_is_copied_to_current_path_at_upload(self):
+        upload = self.upload('webextension')
+        file_ = File.from_upload(
+            upload, self.version, self.platform,
+            parsed_data={'is_webextension': True})
+        assert os.path.exists(file_.file_path)
+        assert not os.path.exists(file_.guarded_file_path)
+        assert os.path.exists(file_.current_file_path)
+
+    def test_file_is_copied_to_current_path_at_upload_if_disabled(self):
+        self.addon.update(disabled_by_user=True)
+        upload = self.upload('webextension')
+        file_ = File.from_upload(
+            upload, self.version, self.platform,
+            parsed_data={'is_webextension': True})
+        assert not os.path.exists(file_.file_path)
+        assert os.path.exists(file_.guarded_file_path)
+        assert os.path.exists(file_.current_file_path)
+
 
 class TestZip(TestCase, amo.tests.AMOPaths):
 
