@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2016-04-28 15:29+0000\n"
+"PO-Revision-Date: 2018-09-17 12:34+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -2207,7 +2207,7 @@ msgid "Static Theme"
 msgstr ""
 
 msgid "Persona"
-msgstr "Persona"
+msgstr ""
 
 msgid "No Reputation"
 msgstr ""
@@ -2297,31 +2297,31 @@ msgid "Add-on Review (Low Risk)"
 msgstr ""
 
 msgid "Level 1"
-msgstr "Nivel 1"
+msgstr ""
 
 msgid "Level 2"
-msgstr "Nivel 2"
+msgstr ""
 
 msgid "Level 3"
-msgstr "Nivel 3"
+msgstr ""
 
 msgid "Level 4"
-msgstr "Nivel 4"
+msgstr ""
 
 msgid "Level 5"
-msgstr "Nivel 5"
+msgstr ""
 
 msgid "Level 6"
-msgstr "Nivel 6"
+msgstr ""
 
 msgid "Level 7"
-msgstr "Nivel 7"
+msgstr ""
 
 msgid "Level 8"
-msgstr "Nivel 8"
+msgstr ""
 
 msgid "Level 9"
-msgstr "Nivel 9"
+msgstr ""
 
 msgid "Request More Info"
 msgstr ""
@@ -2379,7 +2379,7 @@ msgid "Must have at least one owner."
 msgstr ""
 
 msgid "At least one author must be listed."
-msgstr "Has llistase polo menos un autor."
+msgstr ""
 
 msgid "An author can only be listed once."
 msgstr ""
@@ -2406,7 +2406,7 @@ msgid "Please specify your add-on's End-User License Agreement:"
 msgstr ""
 
 msgid "This add-on has a Privacy Policy"
-msgstr "Esti complementu tien una política de privacidá"
+msgstr ""
 
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr ""
@@ -2424,7 +2424,7 @@ msgid "Need at least one compatible application."
 msgstr ""
 
 msgid "There was an error with your upload. Please try again."
-msgstr "Hebo un fallu cola xuba. Volvi tentalo, por favor."
+msgstr ""
 
 msgid "Override failed validation"
 msgstr ""
@@ -2569,14 +2569,14 @@ msgstr ""
 
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr "Les imáxenes nun puen ser másdes de %dKB."
+msgstr ""
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr ""
 
 msgid "There was an error uploading your preview."
-msgstr "Hebo un fallu xubiendo la previsualización."
+msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
@@ -2655,7 +2655,7 @@ msgid "Extension Development"
 msgstr ""
 
 msgid "Lightweight Themes"
-msgstr "Temes llixeros"
+msgstr ""
 
 msgid "Add-on Policies"
 msgstr ""
@@ -2679,7 +2679,7 @@ msgid "Add-ons Forum"
 msgstr ""
 
 msgid "More Resources"
-msgstr "Más recursos"
+msgstr ""
 
 msgid "Search Developer Docs"
 msgstr ""
@@ -2717,7 +2717,7 @@ msgid "Tested for compatibility against:"
 msgstr ""
 
 msgid "Recent Activity for My Add-ons"
-msgstr "Actividá recién de los mios complementos"
+msgstr ""
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
@@ -2734,7 +2734,7 @@ msgid "Refine Activity"
 msgstr ""
 
 msgid "Activity"
-msgstr "Actividá"
+msgstr ""
 
 msgid "Subscribe to this feed"
 msgstr ""
@@ -2771,7 +2771,7 @@ msgid "Close"
 msgstr ""
 
 msgid "Recent Activity"
-msgstr "Actividá recién"
+msgstr ""
 
 #, python-format
 msgid "%(ago)s by %(user)s"
@@ -2805,7 +2805,7 @@ msgid "Manage Authors & License"
 msgstr ""
 
 msgid "Authors"
-msgstr "Autores"
+msgstr ""
 
 msgid "About author roles"
 msgstr ""
@@ -2816,11 +2816,11 @@ msgid ""
 msgstr ""
 
 msgid "Basic Information"
-msgstr "Información básica"
+msgstr ""
 
 #. {0} is the addon name
 msgid "Basic Information for {0}"
-msgstr "Información básica de {0}"
+msgstr ""
 
 msgid "Add-on URL"
 msgstr ""
@@ -2832,7 +2832,7 @@ msgid "View Listing"
 msgstr ""
 
 msgid "Summary"
-msgstr "Sumariu"
+msgstr ""
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -2844,7 +2844,7 @@ msgid "If your add-on on is experimental or otherwise not ready for general use.
 msgstr ""
 
 msgid "This add-on is experimental."
-msgstr "Esti complementu ye esperimental."
+msgstr ""
 
 msgid "This add-on is ready for general use."
 msgstr ""
@@ -2910,7 +2910,7 @@ msgid "Information about your add-on is displayed in this locale unless you over
 msgstr ""
 
 msgid "Homepage"
-msgstr "Páxina d'aniciu"
+msgstr ""
 
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
@@ -2918,7 +2918,7 @@ msgid ""
 msgstr ""
 
 msgid "Images"
-msgstr "Imáxenes"
+msgstr ""
 
 msgid "Support Information"
 msgstr ""
@@ -2936,7 +2936,7 @@ msgid ""
 msgstr ""
 
 msgid "Website"
-msgstr "Sitiu web"
+msgstr ""
 
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
@@ -2944,7 +2944,7 @@ msgid ""
 msgstr ""
 
 msgid "Technical Details"
-msgstr "Detalles téunicos"
+msgstr ""
 
 #. {0} is an addon name
 msgid "Technical Details for {0}"
@@ -2968,10 +2968,10 @@ msgid "Add-on Flags"
 msgstr ""
 
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "Estes banderes úsense pa clasificar los complementos. Namái son relevantes pa los que tán llistaos."
+msgstr ""
 
 msgid "This add-on requires external software."
-msgstr "Esti complementu rique de software esternu."
+msgstr ""
 
 msgid "View Source?"
 msgstr ""
@@ -2998,13 +2998,13 @@ msgid "No, this add-on's stats are not publicly viewable."
 msgstr ""
 
 msgid "Upgrade SDK?"
-msgstr "¿Anovar SDK?"
+msgstr ""
 
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
 msgstr ""
 
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Esti complementu va anovase automáticamente a la versión nueva del SDK del complementu."
+msgstr ""
 
 msgid "No, this add-on will be upgraded manually."
 msgstr ""
@@ -3013,7 +3013,7 @@ msgid "Universally unique identifier"
 msgstr ""
 
 msgid "UUID"
-msgstr "UUID"
+msgstr ""
 
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
 msgstr ""
@@ -3048,14 +3048,14 @@ msgstr ""
 
 #. The size of the icon
 msgid "32x32px"
-msgstr "32x32px"
+msgstr ""
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
 msgstr ""
 
 #. The size of the icon
 msgid "64x64px"
-msgstr "64x64px"
+msgstr ""
 
 msgid "Used in add-on detail pages."
 msgstr ""
@@ -3067,7 +3067,7 @@ msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr ""
 
 msgid "Screenshots"
-msgstr "Captures de pantalla"
+msgstr ""
 
 msgid "Please provide at least one screen shot of your add-on:"
 msgstr ""
@@ -3108,7 +3108,7 @@ msgid "Select a different license."
 msgstr ""
 
 msgid "More information on Creative Commons licenses"
-msgstr "Más información tocante a les llicencies de Creative Commons"
+msgstr ""
 
 msgid "Tests"
 msgstr ""
@@ -3117,7 +3117,7 @@ msgid "General Tests"
 msgstr ""
 
 msgid "Security Tests"
-msgstr "Pruebes de seguranza"
+msgstr ""
 
 msgid "Extension Tests"
 msgstr ""
@@ -3161,7 +3161,7 @@ msgid "Please tell us why you are deleting your add-on:"
 msgstr ""
 
 msgid "Actions"
-msgstr "Aiciones"
+msgstr ""
 
 msgid "Resume the submission process for this add-on."
 msgstr ""
@@ -3221,13 +3221,13 @@ msgid "Delete this theme."
 msgstr ""
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr "A esti complementu fálta-y dalguna información riquida enantes de que puea unviase pa la espublización."
+msgstr ""
 
 msgid "This add-on doesn't have any versions."
-msgstr "Esti complementu nun tien denguna versión."
+msgstr ""
 
 msgid "Status:"
-msgstr "Estáu:"
+msgstr ""
 
 msgid "Disabled"
 msgstr ""
@@ -3258,13 +3258,13 @@ msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
 
 msgid "Summary:"
-msgstr "Sumariu:"
+msgstr ""
 
 msgid "required"
-msgstr "ríquese"
+msgstr ""
 
 msgid "This add-on is experimental"
-msgstr "Esti complementu ye esperimental"
+msgstr ""
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
@@ -3279,7 +3279,7 @@ msgid "Support website:"
 msgstr ""
 
 msgid "License:"
-msgstr "Llicencia:"
+msgstr ""
 
 msgid "Please choose a license appropriate for the rights you grant."
 msgstr ""
@@ -3321,13 +3321,13 @@ msgid "Let your users know what's new and what's changed in this version."
 msgstr ""
 
 msgid "These notes will appear on the detail page."
-msgstr "Estes notes van apaecer na páxina de detalles."
+msgstr ""
 
 msgid "How to Distribute this Version"
 msgstr ""
 
 msgid "More information on Add-on Distribution and Signing"
-msgstr "Más información tocante a la distribución y robláu de complementos"
+msgstr ""
 
 msgid "Submission Complete"
 msgstr ""
@@ -3409,7 +3409,7 @@ msgid "You do not need to submit Source Code, and you’re ready for the next st
 msgstr ""
 
 msgid "Your Submission Requires Source Code."
-msgstr "L'unviu rique'l códigu fonte."
+msgstr ""
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
@@ -3541,7 +3541,7 @@ msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest
 msgstr ""
 
 msgid "optional"
-msgstr "opcional"
+msgstr ""
 
 msgid "Browser preview"
 msgstr ""
@@ -3581,7 +3581,7 @@ msgid "You don't have any API credentials."
 msgstr ""
 
 msgid "Revoke"
-msgstr "Revocar"
+msgstr ""
 
 msgid "Revoke and regenerate credentials"
 msgstr ""
@@ -3590,7 +3590,7 @@ msgid "Generate new credentials"
 msgstr ""
 
 msgid "Invisible"
-msgstr "Invisible"
+msgstr ""
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
@@ -3733,7 +3733,7 @@ msgid "Read more in our Blog"
 msgstr ""
 
 msgid "Resources"
-msgstr "Recursos"
+msgstr ""
 
 msgid "Porting"
 msgstr ""
@@ -3748,7 +3748,7 @@ msgid "Forum"
 msgstr ""
 
 msgid "Blog"
-msgstr "Blogue"
+msgstr ""
 
 msgid "Contact Us"
 msgstr ""
@@ -3757,7 +3757,7 @@ msgid "Support"
 msgstr ""
 
 msgid "Policies"
-msgstr "Polítiques"
+msgstr ""
 
 msgid "Report Bug"
 msgstr ""
@@ -3796,7 +3796,7 @@ msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjo
 msgstr ""
 
 msgid "Join us!"
-msgstr "¡Xúnite a nós!"
+msgstr ""
 
 msgid "Write Some Code"
 msgstr ""
@@ -3808,7 +3808,7 @@ msgid "Get started"
 msgstr ""
 
 msgid "More Ways to Participate"
-msgstr "Más formes de participar"
+msgstr ""
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
 msgstr ""
@@ -3835,7 +3835,7 @@ msgid "View Resources for Publishers"
 msgstr ""
 
 msgid "Welcome Back"
-msgstr "Volvi afayate"
+msgstr ""
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr ""
@@ -3911,7 +3911,7 @@ msgid "Sign In"
 msgstr ""
 
 msgid "Web-Ext"
-msgstr "Web-Ext"
+msgstr ""
 
 msgid "A command line tool to build, run, and test extensions."
 msgstr ""
@@ -4042,7 +4042,7 @@ msgid "Submit Theme"
 msgstr ""
 
 msgid "You're done!"
-msgstr "¡Acabesti!"
+msgstr ""
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
 msgstr ""
@@ -4085,7 +4085,7 @@ msgid "Files"
 msgstr ""
 
 msgid "Version Notes"
-msgstr "Notes de la versión"
+msgstr ""
 
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
@@ -4102,7 +4102,7 @@ msgid "Optionally, enter any information that may be useful to the Reviewer of t
 msgstr ""
 
 msgid "Source code"
-msgstr "Códigu fonte"
+msgstr ""
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 msgstr ""
@@ -4119,13 +4119,13 @@ msgid "Created on %(created)s and changed to %(status)s"
 msgstr ""
 
 msgid "Status & Versions"
-msgstr "Estáu y versiones"
+msgstr ""
 
 msgid "Edit this version"
 msgstr ""
 
 msgid "0 files"
-msgstr "0 ficheros"
+msgstr ""
 
 msgid "Re-enable Version"
 msgstr ""
@@ -4240,13 +4240,13 @@ msgstr ""
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] "{0} fallu"
+msgstr[0] ""
 msgstr[1] "{0} fallos"
 
 #. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] "{0} alvertencia"
+msgstr[0] ""
 msgstr[1] "{0} alvertencies"
 
 #. editorial content for the discovery pane.
@@ -4343,7 +4343,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Funciona con YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds y otros sitios de videu."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4512,7 +4512,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Fai que les cookies desapaezan {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
@@ -4540,7 +4540,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Fai que Firefox escaeza los datos de sitios web como cookies y almacenamientu llocal, pero namái de los dominios qu'escueyas"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5016,7 +5016,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "WhatsApp na web {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
@@ -5576,10 +5576,10 @@ msgstr ""
 
 #, python-format
 msgid "There was an error accessing file %s."
-msgstr "Hebo un fallu accediendo al ficheru %s."
+msgstr ""
 
 msgid "That file no longer exists."
-msgstr "Esi ficheru yá nun esiste."
+msgstr ""
 
 #. L10n: {0} is the file size limit of the file viewer.
 msgid "File size is over the limit of {0}."
@@ -5662,7 +5662,7 @@ msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
 msgid "You cannot submit this type of add-on"
-msgstr "Nun pues unviar esta triba de complementu"
+msgstr ""
 
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
@@ -5672,7 +5672,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 msgid "Unexpected error."
-msgstr "Fallu inesperáu."
+msgstr ""
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -5852,7 +5852,7 @@ msgid "Discover Add-ons"
 msgstr ""
 
 msgid "What are Add-ons?"
-msgstr "¿Qué son los complementos?"
+msgstr ""
 
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
@@ -5865,7 +5865,7 @@ msgid "See all"
 msgstr ""
 
 msgid "More ways to customize"
-msgstr "Más formes de personalizar"
+msgstr ""
 
 msgid "Browse all add-ons"
 msgstr ""
@@ -5881,11 +5881,11 @@ msgstr ""
 
 #. {0} is the user's login name.
 msgid "Hi, {0}"
-msgstr "Hola, {0}"
+msgstr ""
 
 #, python-format
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr "¡Gracies por usar %(app)s y sofitar <a href=\"%(url)s\">la misión de Mozilla</a>!"
+msgstr ""
 
 msgid "Add-ons downloaded:"
 msgstr ""
@@ -5894,7 +5894,7 @@ msgid "View Privacy Policy"
 msgstr ""
 
 msgid "Active Users"
-msgstr "Usuarios activos"
+msgstr ""
 
 msgid "Last Updated"
 msgstr ""
@@ -5962,7 +5962,7 @@ msgid ""
 msgstr ""
 
 msgid "Who creates these add-ons?"
-msgstr "¿Quién crea estos complementos?"
+msgstr ""
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
@@ -5970,7 +5970,7 @@ msgid ""
 msgstr ""
 
 msgid "How do I keep up with what's happening at AMO?"
-msgstr "¿Cómo toi al día colo qu'asocede n'AMO?"
+msgstr ""
 
 msgid "There are several ways to find out the latest news from the world of add-ons:"
 msgstr ""
@@ -6032,16 +6032,16 @@ msgid "If you really need to contact someone from the Mozilla team, please see o
 msgstr ""
 
 msgid "Who works on this website?"
-msgstr "¿Quién trabaya nel sitiu web?"
+msgstr ""
 
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
 msgstr ""
 
 msgid "Sections"
-msgstr "Seiciones"
+msgstr ""
 
 msgid "Some tips for writing a great review"
-msgstr "Dalgunos conseyos pa escribir una reseña perbona"
+msgstr ""
 
 msgid "Frequently Asked Questions about Reviews"
 msgstr ""
@@ -6067,7 +6067,7 @@ msgid "Did the add-on work as you expected it to?"
 msgstr ""
 
 msgid "What features did you like or dislike?"
-msgstr "¿Qué carauterístiques te presten o nun te presten?"
+msgstr ""
 
 msgid "Was it useful?"
 msgstr ""
@@ -6076,7 +6076,7 @@ msgid "Was it easy to use?"
 msgstr ""
 
 msgid "Will you continue to use this add-on?"
-msgstr "¿Vas siguir usando esti complementu?"
+msgstr ""
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
@@ -6116,7 +6116,7 @@ msgid ""
 msgstr ""
 
 msgid "How can I report a problematic review?"
-msgstr "¿Cómo informar d'una reseña problemática?"
+msgstr ""
 
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
@@ -6145,7 +6145,7 @@ msgid "Mozilla wants to figure out the best way to keep our users safe if they c
 msgstr ""
 
 msgid "What will happen next"
-msgstr "Qué va asoceder darréu"
+msgstr ""
 
 msgid "<strong>If you agree</strong> to participate:"
 msgstr ""
@@ -6216,7 +6216,7 @@ msgid "You can learn more about the data collection for this study <a href=\"%(u
 msgstr ""
 
 msgid "You Help Make Firefox Better"
-msgstr "Ayudes a ameyorar Firefox"
+msgstr ""
 
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
@@ -6260,7 +6260,7 @@ msgid "You can't change the add-on of a review once it has been created."
 msgstr ""
 
 msgid "You can't reply to a review that is already a reply."
-msgstr "Nun pues responder a una reseña que yá ye una rempuesta."
+msgstr ""
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
 msgstr ""
@@ -6351,7 +6351,7 @@ msgstr ""
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
-msgstr "{0} :: Reseñes"
+msgstr ""
 
 msgid "Reviews for {0}"
 msgstr ""
@@ -6383,11 +6383,11 @@ msgid "Write a New Review"
 msgstr ""
 
 msgid "Be the first to write a review."
-msgstr "Sé'l primeru n'escribir una reseña."
+msgstr ""
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] "{num} reseña"
+msgstr[0] ""
 msgstr[1] "{num} reseñes"
 
 msgid "Rated {0} out of 5 stars"
@@ -6407,7 +6407,7 @@ msgid "View entries between"
 msgstr ""
 
 msgid "and"
-msgstr "y"
+msgstr ""
 
 msgid "Filter by type/action"
 msgstr ""
@@ -6432,10 +6432,10 @@ msgid "Needs Admin Code Review"
 msgstr ""
 
 msgid "yes"
-msgstr "sí"
+msgstr ""
 
 msgid "no"
-msgstr "non"
+msgstr ""
 
 msgid "Add-on Types"
 msgstr ""
@@ -6450,7 +6450,7 @@ msgid "Comments:"
 msgstr ""
 
 msgid "Operating systems:"
-msgstr "Sistemes operativos:"
+msgstr ""
 
 msgid "Applications:"
 msgstr ""
@@ -6459,7 +6459,7 @@ msgid "Require developer to respond in less than…"
 msgstr ""
 
 msgid "days"
-msgstr "díes"
+msgstr ""
 
 msgid "Choose a canned response..."
 msgstr ""
@@ -6469,7 +6469,7 @@ msgid "theme name"
 msgstr ""
 
 msgid "Someone else is reviewing this theme."
-msgstr "Daquién más ta reseñando esti tema."
+msgstr ""
 
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
@@ -6503,7 +6503,7 @@ msgid "Sources provided"
 msgstr ""
 
 msgid "WebExtension"
-msgstr "WebExtension"
+msgstr ""
 
 msgid "Is locked by a reviewer."
 msgstr ""
@@ -6515,7 +6515,7 @@ msgid "Duplicate Submission"
 msgstr ""
 
 msgid "Thanks for submitting your Theme"
-msgstr "Gracies por unviar el tema"
+msgstr ""
 
 msgid "A problem with your Theme submission"
 msgstr ""
@@ -6530,7 +6530,7 @@ msgid "Type"
 msgstr ""
 
 msgid "Waiting Time"
-msgstr "Tiempu d'espera"
+msgstr ""
 
 msgid "Flags"
 msgstr ""
@@ -6541,19 +6541,19 @@ msgstr ""
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] "{0} minutu"
+msgstr[0] ""
 msgstr[1] "{0} minutos"
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] "{0} hora"
+msgstr[0] ""
 msgstr[1] "{0} hores"
 
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] "{0} día"
+msgstr[0] ""
 msgstr[1] "{0} díes"
 
 msgid "Last Review"
@@ -6605,7 +6605,7 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr ""
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Fai un comentariu tocante a esta versión. El desendolcador nun va ser a ver esto."
+msgstr ""
 
 msgid "Approve Content"
 msgstr ""
@@ -6712,10 +6712,10 @@ msgid "Review lock limit reached"
 msgstr ""
 
 msgid "{addon} :: EULA"
-msgstr "{addon} :: EULA"
+msgstr ""
 
 msgid "{addon} :: Privacy Policy"
-msgstr "{addon} :: Política de privacidá"
+msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -6733,13 +6733,13 @@ msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
-msgstr "Funciona con"
+msgstr ""
 
 msgid "Visibility"
-msgstr "Visibilidá"
+msgstr ""
 
 msgid "Visible"
-msgstr "Visible"
+msgstr ""
 
 msgid "Average Daily Users"
 msgstr ""
@@ -6772,10 +6772,10 @@ msgid "Background file {0} of {1} - {2}"
 msgstr ""
 
 msgid "More about this add-on"
-msgstr "Más tocante a esti complementu"
+msgstr ""
 
 msgid "Image Gallery"
-msgstr "Galería d'imáxenes"
+msgstr ""
 
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
@@ -6806,7 +6806,7 @@ msgid "Event"
 msgstr ""
 
 msgid "More details."
-msgstr "Más detalles."
+msgstr ""
 
 msgid "No events found for this period."
 msgstr ""
@@ -6834,7 +6834,7 @@ msgid "Undelete"
 msgstr ""
 
 msgid "Save"
-msgstr "Guardar"
+msgstr ""
 
 msgid "Add-on Reviewer Performance"
 msgstr ""
@@ -6852,31 +6852,31 @@ msgid "By {user_name}"
 msgstr ""
 
 msgid "Total Reviews"
-msgstr "Reseñes totales"
+msgstr ""
 
 msgid "Active Contributors"
-msgstr "Collaboradores activos"
+msgstr ""
 
 msgid "This Month"
-msgstr "Esti mes"
+msgstr ""
 
 msgid "This Year"
 msgstr ""
 
 msgid "Monthly Performance"
-msgstr "Rindimientu mensual"
+msgstr ""
 
 msgid "All-time Point Breakdown by Type"
 msgstr ""
 
 msgid "Total"
-msgstr "Total"
+msgstr ""
 
 msgid "Month"
-msgstr "Mes"
+msgstr ""
 
 msgid "Year"
-msgstr "Añu"
+msgstr ""
 
 msgid "All-Time"
 msgstr ""
@@ -6986,7 +6986,7 @@ msgid "Update whiteboards"
 msgstr ""
 
 msgid "More Actions"
-msgstr "Más aiciones"
+msgstr ""
 
 msgid "Notify me about new listed versions"
 msgstr ""
@@ -7025,10 +7025,10 @@ msgid "Review This Add-on"
 msgstr ""
 
 msgid "More Information"
-msgstr "Más información"
+msgstr ""
 
 msgid "Resolution"
-msgstr "Resolución"
+msgstr ""
 
 msgid "Reviewer"
 msgstr ""
@@ -7062,7 +7062,7 @@ msgid "Compare"
 msgstr ""
 
 msgid "Permissions:"
-msgstr "Permisos:"
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -7075,7 +7075,7 @@ msgid "Newer"
 msgstr ""
 
 msgid "Recent Points"
-msgstr "Puntos recientes"
+msgstr ""
 
 msgid "No points awarded yet."
 msgstr ""
@@ -7110,13 +7110,13 @@ msgid "Review Date"
 msgstr ""
 
 msgid "Action"
-msgstr "Aición"
+msgstr ""
 
 msgid "Reason"
 msgstr ""
 
 msgid "There are currently no reviews."
-msgstr "Anguaño nun hai reseñes."
+msgstr ""
 
 msgid "Flagged Themes"
 msgstr ""
@@ -7318,7 +7318,7 @@ msgid "Filter Results"
 msgstr ""
 
 msgid "Category"
-msgstr "Estayes"
+msgstr ""
 
 msgid "Tag"
 msgstr ""
@@ -7340,13 +7340,13 @@ msgstr ""
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr "Nun pues amestar versiones a un complementu que tien l'estáu: %s."
+msgstr ""
 
 msgid "Version does not match the manifest file."
 msgstr ""
 
 msgid "Version already exists."
-msgstr "La versión yá esiste."
+msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr ""
@@ -7453,28 +7453,28 @@ msgid "Group by:"
 msgstr ""
 
 msgid "day"
-msgstr "día"
+msgstr ""
 
 msgid "week"
-msgstr "selmana"
+msgstr ""
 
 msgid "month"
-msgstr "mes"
+msgstr ""
 
 msgid "For last:"
 msgstr ""
 
 msgid "7 days"
-msgstr "7 díes"
+msgstr ""
 
 msgid "30 days"
-msgstr "30 díes"
+msgstr ""
 
 msgid "90 days"
-msgstr "90 díes"
+msgstr ""
 
 msgid "365 days"
-msgstr "365 díes"
+msgstr ""
 
 msgid "Custom..."
 msgstr ""
@@ -7519,7 +7519,7 @@ msgid "Downloaded by Date"
 msgstr ""
 
 msgid "How are downloads counted?"
-msgstr "¿Cómo se cuenten les descargues?"
+msgstr ""
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
@@ -7590,7 +7590,7 @@ msgid "Daily Users by Date"
 msgstr ""
 
 msgid "What are daily users?"
-msgstr "¿Qué son los usuarios diarios?"
+msgstr ""
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
@@ -7609,7 +7609,7 @@ msgid "Application versions by Date"
 msgstr ""
 
 msgid "Mozilla Add-ons"
-msgstr "Complementos de Mozilla"
+msgstr ""
 
 msgid "Find add-ons for other applications"
 msgstr ""
@@ -7672,7 +7672,7 @@ msgid "Desktop Browser"
 msgstr ""
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr "Beta, Nightly y Developer Edition"
+msgstr ""
 
 msgid "Other languages"
 msgstr ""
@@ -7693,10 +7693,10 @@ msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr ""
 
 msgid "My Account"
-msgstr "La mio cuenta"
+msgstr ""
 
 msgid "Welcome, {0}"
-msgstr "Afáyate, {0}"
+msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -7783,7 +7783,7 @@ msgid "Ratings"
 msgstr ""
 
 msgid "Activity Logs"
-msgstr "Rexistros d'actividá"
+msgstr ""
 
 msgid "Email must be {email}."
 msgstr ""
@@ -7795,7 +7795,7 @@ msgid "Location"
 msgstr ""
 
 msgid "Occupation"
-msgstr "Ocupación"
+msgstr ""
 
 msgid "You can change your email address on Firefox Accounts."
 msgstr ""
@@ -7869,7 +7869,7 @@ msgid "Errors Found"
 msgstr ""
 
 msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr "Hebo fallos nos cambeos que fixesti. Corríxilos y volvi xubilos, por favor."
+msgstr ""
 
 msgid "User reported."
 msgstr ""
@@ -7906,7 +7906,7 @@ msgid "Confirm account deletion"
 msgstr ""
 
 msgid "I understand this step cannot be undone."
-msgstr "Entiendo qu'esti pasu nun pue desfacese."
+msgstr ""
 
 msgid "Delete my user account now"
 msgstr ""
@@ -7964,7 +7964,7 @@ msgid "Display the collections I have created"
 msgstr ""
 
 msgid "Notifications"
-msgstr "Avisos"
+msgstr ""
 
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
 msgstr ""
@@ -8027,7 +8027,7 @@ msgid "Add-ons I've created"
 msgstr ""
 
 msgid "My Most Popular Themes"
-msgstr "Los mios temes populares"
+msgstr ""
 
 msgid "Themes I've created"
 msgstr ""
@@ -8036,7 +8036,7 @@ msgid "Created by Me"
 msgstr ""
 
 msgid "My Reviews"
-msgstr "Les mios reseñes"
+msgstr ""
 
 msgid "No add-on reviews yet."
 msgstr ""
@@ -8089,7 +8089,7 @@ msgid "IP address of last login"
 msgstr ""
 
 msgid "Number of add-ons developed"
-msgstr "Númberu de complementos desendolcaos"
+msgstr ""
 
 msgid "{0} add-ons"
 msgstr ""
@@ -8124,7 +8124,7 @@ msgid "{app} {min} and later"
 msgstr ""
 
 msgid "Permanent link to this version"
-msgstr "Enllaz permanente a esta versión"
+msgstr ""
 
 #. {0} is a timestamp, such as September 28, 2011.
 msgid "Released {0}"
@@ -8145,7 +8145,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Be careful with old versions!"
-msgstr "¡Ten curiáu coles versiones vieyes!"
+msgstr ""
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
@@ -8155,7 +8155,7 @@ msgid "Deleted versions can`t be changed."
 msgstr ""
 
 msgid "Binary"
-msgstr "Binariu"
+msgstr ""
 
 msgid "Non-binary"
 msgstr ""
