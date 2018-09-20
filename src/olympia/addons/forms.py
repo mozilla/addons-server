@@ -25,7 +25,8 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     remove_icons, slug_validator, slugify, sorted_groupby)
 from olympia.devhub import tasks as devhub_tasks
-from olympia.devhub.utils import get_addon_akismet_reports
+from olympia.devhub.utils import (
+    collect_existing_translations_from_addon, get_addon_akismet_reports)
 from olympia.tags.models import Tag
 from olympia.translations import LOCALES
 from olympia.translations.fields import TransField, TransTextarea
@@ -113,12 +114,26 @@ class AkismetSpamCheckFormMixin(object):
             prop: value for prop, value in self.cleaned_data.items()
             if prop in self.fields_to_akismet_comment_check}
         request_meta = getattr(self.request, 'META', {})
+
+        # Find out if there is existing metadata that's been spam checked.
+        addon_listed_versions = self.instance.versions.filter(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        if self.version:
+            # If this is in the submission flow, exclude version in progress.
+            addon_listed_versions = addon_listed_versions.exclude(
+                id=self.version.id)
+        existing_data = (
+            collect_existing_translations_from_addon(
+                self.instance, self.fields_to_akismet_comment_check)
+            if addon_listed_versions.exists() else ())
+
         reports = get_addon_akismet_reports(
             user=getattr(self.request, 'user', None),
             user_agent=request_meta.get('HTTP_USER_AGENT'),
             referrer=request_meta.get('HTTP_REFERER'),
             addon=self.instance,
-            data=data)
+            data=data,
+            existing_data=existing_data)
         if any((report.is_spam for report in reports)):
             raise forms.ValidationError(ugettext(
                 'The text entered has been flagged as spam.'))
@@ -129,6 +144,7 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
+        self.version = kw.pop('version', None)
         super(AddonFormBase, self).__init__(*args, **kw)
 
     class Meta:

@@ -8,6 +8,7 @@ import mock
 from waffle.testutils import override_switch
 
 from celery.result import AsyncResult
+from six import text_type
 
 from olympia import amo
 from olympia.amo.tests import (
@@ -314,17 +315,20 @@ class TestGetAddonAkismetReports(TestCase):
 
     def test_upload_with_addon(self):
         # Give addon some existing metadata.
-        addon = addon_factory(summary=u'summáry')
+        addon = addon_factory()
         user = user_factory()
         upload = FileUpload.objects.create(addon=addon)
-        # description is parsed but should have spam checked it so will ignore
+        # summary is parsed but it's in existing_data - i.e. should have
+        # been spam checked previous it so will be ignored.
         self.parse_addon_mock.return_value = {
-            'name': u'fóó', 'description': u'summáry'}
+            'name': u'fóó', 'summary': u'summáry'}
         user_agent = 'Mr User/Agent'
         referrer = 'http://foo.baa/'
         reports = utils.get_addon_akismet_reports(
-            user, user_agent, referrer, upload=upload)
-        assert len(reports) == 1  # only one, no description
+            user, user_agent, referrer, upload=upload,
+            existing_data=[u'summáry'])
+        # only one, no summary because it's in existing data
+        assert len(reports) == 1
         self.create_for_addon_mock.assert_called_with(
             upload=upload, addon=addon, user=user, property_name='name',
             property_value=u'fóó', user_agent=user_agent, referrer=referrer)
@@ -334,12 +338,16 @@ class TestGetAddonAkismetReports(TestCase):
         addon = addon_factory(summary=u'¡Ochó!', default_locale='es-AR')
         user = user_factory()
         upload = FileUpload.objects.create(addon=addon)
+        existing_data = utils.collect_existing_translations_from_addon(
+            addon, ('summary', 'name', 'description'))
+        # check collect_existing_translations_from_addon worked okay
+        assert existing_data == {text_type(addon.name), u'¡Ochó!'}
         self.parse_addon_mock.return_value = {
             'description': {
                 'en-US': u'fóó',
                 'fr': u'lé foo',
                 'de': '',  # should be ignored because empty
-                'es-ES': u'¡Ochó!'  # should be ignored because exists already
+                'es-ES': u'¡Ochó!'  # ignored because in existing_data
             },
             'name': u'just one name',
             'summary': None,  # should also be ignored because None
@@ -347,7 +355,8 @@ class TestGetAddonAkismetReports(TestCase):
         user_agent = 'Mr User/Agent'
         referrer = 'http://foo.baa/'
         reports = utils.get_addon_akismet_reports(
-            user, user_agent, referrer, upload=upload)
+            user, user_agent, referrer, upload=upload,
+            existing_data=existing_data)
         assert len(reports) == 3
         assert self.create_for_addon_mock.call_count == 3
         calls = [
@@ -368,12 +377,16 @@ class TestGetAddonAkismetReports(TestCase):
     def test_addon_update(self):
         addon = addon_factory(summary=u'¡Ochó!', default_locale='es-AR')
         user = user_factory()
+        existing_data = utils.collect_existing_translations_from_addon(
+            addon, ('summary', 'name', 'description'))
+        # check collect_existing_translations_from_addon worked okay
+        assert existing_data == {text_type(addon.name), u'¡Ochó!'}
         cleaned_data = {
             'description': {
                 'en-US': u'fóó',
                 'fr': u'lé foo',
                 'de': '',  # should be ignored because empty
-                'es-ES': u'¡Ochó!'  # should be ignored because exists already
+                'es-ES': u'¡Ochó!'  # ignored because in exist_data
             },
             'name': {
                 'en-GB': u'just one name',
@@ -383,7 +396,8 @@ class TestGetAddonAkismetReports(TestCase):
         user_agent = 'Mr User/Agent'
         referrer = 'http://foo.baa/'
         reports = utils.get_addon_akismet_reports(
-            user, user_agent, referrer, addon=addon, data=cleaned_data)
+            user, user_agent, referrer, addon=addon, data=cleaned_data,
+            existing_data=existing_data)
         assert len(reports) == 3
         assert self.create_for_addon_mock.call_count == 3
         calls = [
