@@ -119,7 +119,7 @@ class AkismetSpamCheckFormMixin(object):
             referrer=request_meta.get('HTTP_REFERER'),
             addon=self.instance,
             data=data)
-        if any((report.comment_check() for report in reports)):
+        if any((report.is_spam for report in reports)):
             raise forms.ValidationError(ugettext(
                 'The text entered has been flagged as spam.'))
         return super(AkismetSpamCheckFormMixin, self).clean()
