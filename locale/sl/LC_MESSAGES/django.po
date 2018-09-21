@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-19 13:31+0000\n"
-"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
+"PO-Revision-Date: 2018-09-21 09:58+0000\n"
+"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -5025,9 +5025,8 @@ msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
 msgstr "Znova odprite nedavno zaprte zavihke z desnim klikom ikone v orodni vrstici."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Prenašajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Navdihnite produktivnost {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
@@ -5486,9 +5485,8 @@ msgid "Highlight text from any website and right-click to search YouTube for rel
 msgstr "Označite besedilo na katerikoli spletni strani in z desnim klikom poiščite povezano predstavnost na YouTubu."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Razširite svoj nabor smeškov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Zagotovite si ugodnosti na Amazonu {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
@@ -5691,9 +5689,8 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Ste na spletu našli zanimivo sliko? Uporabite TinEye in raziščite njen izvor."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Poenostavite stvari {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -6107,9 +6104,8 @@ msgstr "Odklenite zgodnji dostop do preskusnih lastnosti brskalnika."
 msgid "Get Started"
 msgstr "Začnite"
 
-#, fuzzy
 msgid "Reported Status"
-msgstr "Stanje strani "
+msgstr "Sporočeno stanje"
 
 msgid "Reported Spam"
 msgstr "Prijavljeno kot neželena vsebina"
