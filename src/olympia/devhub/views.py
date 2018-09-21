@@ -45,7 +45,8 @@ from olympia.devhub.forms import (
     AgreementForm, CheckCompatibilityForm, SourceForm)
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
-    add_dynamic_theme_tag, get_addon_akismet_reports, process_validation)
+    add_dynamic_theme_tag, fetch_existing_translations_from_addon,
+    get_addon_akismet_reports, process_validation)
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon
 from olympia.lib.crypto.packaged import sign_file
@@ -575,11 +576,16 @@ def handle_upload(filedata, request, channel, app_id=None, version_id=None,
         from olympia.lib.akismet.tasks import comment_check   # circular import
 
         if (channel == amo.RELEASE_CHANNEL_LISTED):
+            existing_data = (
+                fetch_existing_translations_from_addon(
+                    upload.addon, ('name', 'summary', 'description'))
+                if addon and addon.has_listed_versions() else ())
             akismet_reports = get_addon_akismet_reports(
                 user=user,
                 user_agent=request.META.get('HTTP_USER_AGENT'),
                 referrer=request.META.get('HTTP_REFERER'),
-                upload=upload)
+                upload=upload,
+                existing_data=existing_data)
         else:
             akismet_reports = []
         # We HAVE to have a pretask here that returns a result, so we're always
@@ -1516,7 +1522,7 @@ def _submit_details(request, addon, version):
 
     if show_all_fields:
         describe_form = forms.DescribeForm(
-            post_data, instance=addon, request=request)
+            post_data, instance=addon, request=request, version=version)
         cat_form_class = (addon_forms.CategoryFormSet if not static_theme
                           else forms.SingleCategoryForm)
         cat_form = cat_form_class(post_data, addon=addon, request=request)

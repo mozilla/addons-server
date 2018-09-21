@@ -31,6 +31,20 @@ class BaseAkismetReportsModelTest(object):
     def _create_report(self, kws=None):
         raise NotImplementedError()
 
+    @mock.patch.object(AkismetReport, 'comment_check',
+                       return_value=AkismetReport.MAYBE_SPAM)
+    def test_is_spam(self, comment_check_mock):
+        report = self._create_report()
+        assert report.is_spam is True
+        comment_check_mock.assert_called_once()
+        # once self.result is set though, no further calls should be made
+        report.update(result=AkismetReport.DEFINITE_SPAM)
+        assert report.is_spam is True
+        report.update(result=AkismetReport.HAM)
+        assert report.is_spam is False
+        # check still one call.
+        comment_check_mock.assert_called_once()
+
     @responses.activate
     @override_settings(AKISMET_API_KEY=None)
     def test_comment_check(self):

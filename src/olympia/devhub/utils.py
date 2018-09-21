@@ -314,8 +314,18 @@ def add_dynamic_theme_tag(version):
         Tag(tag_text='dynamic theme').save_tag(version.addon)
 
 
+def fetch_existing_translations_from_addon(addon, properties):
+    translation_ids_gen = (
+        getattr(addon, prop + '_id', None) for prop in properties)
+    translation_ids = [id_ for id_ in translation_ids_gen if id_]
+    # Just get all the values together to make it simplier
+    return {
+        text_type(value)
+        for value in Translation.objects.filter(id__in=translation_ids)}
+
+
 def get_addon_akismet_reports(user, user_agent, referrer, upload=None,
-                              addon=None, data=None):
+                              addon=None, data=None, existing_data=()):
     if not waffle.switch_is_active('akismet-spam-check'):
         return []
     assert addon or upload
@@ -325,19 +335,6 @@ def get_addon_akismet_reports(user, user_agent, referrer, upload=None,
         addon = addon or upload.addon
         data = data or Addon.resolve_webext_translations(
             parse_addon(upload, addon, user, minimal=True), upload)
-
-    if not data:
-        return []  # bail early if no data to skip Translation lookups
-    if addon and addon.has_listed_versions():
-        translation_ids_gen = (
-            getattr(addon, prop + '_id', None) for prop in properties)
-        translation_ids = [id_ for id_ in translation_ids_gen if id_]
-        # Just get all the values together to make it simplier
-        existing_data = {
-            text_type(value)
-            for value in Translation.objects.filter(id__in=translation_ids)}
-    else:
-        existing_data = ()
 
     reports = []
     for prop in properties:

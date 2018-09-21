@@ -132,6 +132,14 @@ class AkismetReport(ModelBase):
         self._statsd_incr()
         return self.result
 
+    @property
+    def is_spam(self):
+        """Wrapper around comment_check that executes the comment_check, or
+        uses the existing result, and returns:
+        True if result in (DEFINITE_SPAM, MAYBE_SPAM), False otherwise."""
+        result = self.comment_check() if self.result is None else self.result
+        return result in (self.DEFINITE_SPAM, self.MAYBE_SPAM)
+
     def _submit(self, spam_or_ham):
         assert spam_or_ham in ('ham', 'spam')
         response = self._post('submit-%s' % spam_or_ham)

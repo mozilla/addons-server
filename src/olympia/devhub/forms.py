@@ -16,7 +16,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import log_and_notify
-from olympia.addons.forms import AddonFormBase
+from olympia.addons.forms import AddonFormBase, AkismetSpamCheckFormMixin
 from olympia.addons.models import (
     Addon, AddonCategory, AddonDependency, AddonReviewerFlags, AddonUser,
     Preview)
@@ -577,7 +577,7 @@ class SourceForm(WithSourceMixin, forms.ModelForm):
                          u'was needed.'))
 
 
-class DescribeForm(AddonFormBase):
+class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
     name = TransField(max_length=50)
     slug = forms.CharField(max_length=30)
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
@@ -592,6 +592,8 @@ class DescribeForm(AddonFormBase):
     privacy_policy = TransField(
         widget=TransTextarea(), required=False,
         label=_(u'Please specify your add-on\'s Privacy Policy:'))
+
+    fields_to_akismet_comment_check = ['name', 'summary']
 
     class Meta:
         model = Addon

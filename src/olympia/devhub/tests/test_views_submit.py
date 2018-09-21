@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import urllib
 import json
 import os
@@ -14,6 +15,7 @@ import mock
 import responses
 
 from pyquery import PyQuery as pq
+from six import text_type
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -30,6 +32,7 @@ from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.devhub import views
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
+from olympia.lib.akismet.models import AkismetReport
 from olympia.users.models import UserProfile
 from olympia.versions.models import License, VersionPreview
 from olympia.zadmin.models import Config, set_config
@@ -816,6 +819,61 @@ class DetailsPageMixin(object):
         del version.all_files
         assert version.statuses == [
             (version.all_files[0].id, amo.STATUS_DISABLED)]
+
+    @override_switch('akismet-spam-check', active=False)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_spam_check_waffle_off(self, comment_check_mock):
+        data = self.get_dict(name=u'spám')
+        self.is_success(data)
+        comment_check_mock.assert_not_called()
+        assert AkismetReport.objects.count() == 0
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_spam_check_spam(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
+        data = self.get_dict(name=u'spám', summary=self.addon.summary)
+        response = self.client.post(self.url, data)
+
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', '__all__',
+            'The text entered has been flagged as spam.')
+
+        # the summary won't be comment_check'd because it didn't change.
+        self.addon = self.addon.reload()
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get()
+        assert report.comment_type == 'product-name'
+        assert report.comment == u'spám'
+        assert text_type(self.addon.name) != u'spám'
+
+        comment_check_mock.assert_called_once()
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_spam_check_ham(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+        data = self.get_dict(name=u'spám', summary=self.addon.summary)
+
+        response = self.is_success(data)
+
+        # the summary won't be comment_check'd because it didn't change.
+        assert comment_check_mock.call_count == 1
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get()
+        assert report.comment_type == 'product-name'
+        assert report.comment == u'spám'
+        assert 'spam' not in response.content
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_spam_check_no_changes(self, comment_check_mock):
+        # Don't change either name or summary from the upload.
+        data = self.get_dict(name=self.addon.name, summary=self.addon.summary)
+        self.is_success(data)
+        comment_check_mock.assert_not_called()
+        assert AkismetReport.objects.count() == 0
 
 
 class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
@@ -1949,6 +2007,71 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
                            args=['a3615', self.version.pk])
         self.next_step = reverse('devhub.submit.version.finish',
                                  args=['a3615', self.version.pk])
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_spam_check_spam(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
+        data = self.get_dict(name=u'spám', summary=self.addon.summary)
+        response = self.client.post(self.url, data)
+
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', '__all__',
+            'The text entered has been flagged as spam.')
+
+        # The summary WILL be comment_check'd, even though it didn't change,
+        # because we don't trust existing metadata when the previous versions
+        # were unlisted.
+        self.addon = self.addon.reload()
+        assert AkismetReport.objects.count() == 2
+        report = AkismetReport.objects.first()
+        assert report.comment_type == 'product-name'
+        assert report.comment == u'spám'
+        assert text_type(self.addon.name) != u'spám'
+        report = AkismetReport.objects.last()
+        assert report.comment_type == 'product-summary'
+        assert report.comment == u'Delicious Bookmarks is the official'
+
+        # After the first check was spam the second wasn't carried out.
+        comment_check_mock.assert_called_once()
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_spam_check_ham(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+        data = self.get_dict(name=u'spám', summary=self.addon.summary)
+
+        response = self.is_success(data)
+
+        # The summary WILL be comment_check'd, even though it didn't change,
+        # because we don't trust existing metadata when the previous versions
+        # were unlisted.
+        self.addon = self.addon.reload()
+        assert AkismetReport.objects.count() == 2
+        report = AkismetReport.objects.first()
+        assert report.comment_type == 'product-name'
+        assert report.comment == u'spám'
+        assert text_type(self.addon.name) == u'spám'  # It changed
+        report = AkismetReport.objects.last()
+        assert report.comment_type == 'product-summary'
+        assert report.comment == u'Delicious Bookmarks is the official'
+        assert 'spam' not in response.content
+
+        assert comment_check_mock.call_count == 2
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_spam_check_no_changes(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+        # Don't change either name or summary from the upload.
+        data = self.get_dict(name=self.addon.name, summary=self.addon.summary)
+        response = self.is_success(data)
+
+        # No changes but both values were spam checked.
+        assert AkismetReport.objects.count() == 2
+        assert 'spam' not in response.content
+        assert comment_check_mock.call_count == 2
 
 
 class TestVersionSubmitFinish(TestAddonSubmitFinish):
