@@ -338,9 +338,9 @@ class TestGetAddonAkismetReports(TestCase):
         addon = addon_factory(summary=u'¡Ochó!', default_locale='es-AR')
         user = user_factory()
         upload = FileUpload.objects.create(addon=addon)
-        existing_data = utils.collect_existing_translations_from_addon(
+        existing_data = utils.fetch_existing_translations_from_addon(
             addon, ('summary', 'name', 'description'))
-        # check collect_existing_translations_from_addon worked okay
+        # check fetch_existing_translations_from_addon worked okay
         assert existing_data == {text_type(addon.name), u'¡Ochó!'}
         self.parse_addon_mock.return_value = {
             'description': {
@@ -377,9 +377,9 @@ class TestGetAddonAkismetReports(TestCase):
     def test_addon_update(self):
         addon = addon_factory(summary=u'¡Ochó!', default_locale='es-AR')
         user = user_factory()
-        existing_data = utils.collect_existing_translations_from_addon(
+        existing_data = utils.fetch_existing_translations_from_addon(
             addon, ('summary', 'name', 'description'))
-        # check collect_existing_translations_from_addon worked okay
+        # check fetch_existing_translations_from_addon worked okay
         assert existing_data == {text_type(addon.name), u'¡Ochó!'}
         cleaned_data = {
             'description': {

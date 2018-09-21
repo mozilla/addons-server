@@ -26,7 +26,7 @@ from olympia.amo.utils import (
     remove_icons, slug_validator, slugify, sorted_groupby)
 from olympia.devhub import tasks as devhub_tasks
 from olympia.devhub.utils import (
-    collect_existing_translations_from_addon, get_addon_akismet_reports)
+    fetch_existing_translations_from_addon, get_addon_akismet_reports)
 from olympia.tags.models import Tag
 from olympia.translations import LOCALES
 from olympia.translations.fields import TransField, TransTextarea
@@ -123,7 +123,7 @@ class AkismetSpamCheckFormMixin(object):
             addon_listed_versions = addon_listed_versions.exclude(
                 id=self.version.id)
         existing_data = (
-            collect_existing_translations_from_addon(
+            fetch_existing_translations_from_addon(
                 self.instance, self.fields_to_akismet_comment_check)
             if addon_listed_versions.exists() else ())
 

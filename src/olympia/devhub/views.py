@@ -45,7 +45,7 @@ from olympia.devhub.forms import (
     AgreementForm, CheckCompatibilityForm, SourceForm)
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
-    add_dynamic_theme_tag, collect_existing_translations_from_addon,
+    add_dynamic_theme_tag, fetch_existing_translations_from_addon,
     get_addon_akismet_reports, process_validation)
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon
@@ -577,7 +577,7 @@ def handle_upload(filedata, request, channel, app_id=None, version_id=None,
 
         if (channel == amo.RELEASE_CHANNEL_LISTED):
             existing_data = (
-                collect_existing_translations_from_addon(
+                fetch_existing_translations_from_addon(
                     upload.addon, ('name', 'summary', 'description'))
                 if addon and addon.has_listed_versions() else ())
             akismet_reports = get_addon_akismet_reports(

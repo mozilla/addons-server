@@ -314,7 +314,7 @@ def add_dynamic_theme_tag(version):
         Tag(tag_text='dynamic theme').save_tag(version.addon)
 
 
-def collect_existing_translations_from_addon(addon, properties):
+def fetch_existing_translations_from_addon(addon, properties):
     translation_ids_gen = (
         getattr(addon, prop + '_id', None) for prop in properties)
     translation_ids = [id_ for id_ in translation_ids_gen if id_]
