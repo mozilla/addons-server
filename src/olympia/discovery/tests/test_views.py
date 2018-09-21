@@ -2,7 +2,6 @@
 from django.test.utils import override_settings
 
 import mock
-from rest_framework.settings import api_settings
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -46,7 +45,7 @@ class DiscoveryTestMixin(object):
 class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
     def setUp(self):
         super(TestDiscoveryViewList, self).setUp()
-        self.url = reverse_ns('discovery-list')
+        self.url = reverse_ns('discovery-list', api_version='v4dev')
         self.addons = []
 
         # This one should not appear anywhere, position isn't set.
@@ -68,10 +67,6 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
                 type_ = amo.ADDON_EXTENSION
             addon = addon_factory(type=type_)
             DiscoveryItem.objects.create(addon=addon, position_china=i)
-
-    def test_reverse(self):
-        assert self.url.endswith(
-            '/api/%s/discovery/' % api_settings.DEFAULT_VERSION)
 
     def test_list(self):
         with self.assertNumQueries(12):
@@ -105,7 +100,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
                 self._check_disco_addon(result, discopane_items[i])
 
     @override_settings(DRF_API_GATES={
-        api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)})
+        'v4dev': ('l10n_flat_input_output',)})
     def test_list_flat_output(self):
         response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.data
@@ -245,7 +240,7 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
         # If no recommendations then results should be as before - tests from
         # the parent class check this.
         self.get_recommendations.return_value = []
-        self.url = reverse_ns('discovery-list')
+        self.url = reverse_ns('discovery-list', api_version='v4dev')
 
     def test_recommendations(self):
         author = user_factory()

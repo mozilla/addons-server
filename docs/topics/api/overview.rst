@@ -140,7 +140,7 @@ Translated Fields
 ~~~~~~~~~~~~~~~~~
 
 Fields that can be translated by users (typically name, description) have a
-special behaviour. They are returned as an object, with languages as keys and
+special behaviour. They are returned as an object, by default, with languages as keys and
 translations as values, and by default all languages are returned:
 
 .. code-block:: json
@@ -157,6 +157,34 @@ However, for performance, if you pass the ``lang`` parameter to a ``GET``
 request, then only the most relevant translation (the specified language or the
 fallback, depending on whether a translation is available in the requested
 language) will be returned.
+
+^^^^^^^^^^^^^^^^^^^^
+Default API behavior
+^^^^^^^^^^^^^^^^^^^^
+
+In API version 4 the response if the ``lang`` parameter is passed a single string
+is returned.
+
+.. code-block:: json
+
+    {
+        "name": "Games"
+    }
+
+This behaviour also applies to ``POST``, ``PATCH`` and ``PUT`` requests: you
+can either submit an object containing several translations, or just a string.
+If only a string is supplied, it will only be used to translate the field in
+the current language.
+
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Alternate API (v4dev) behavior
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+On the addons-dev.allizom.org (dev) and addons.allizom.org servers (stage) servers
+an additional API version, `v4dev` is available. `v4dev` is not available on
+production AMO (addons.mozilla.org). In `4dev` the response if the ``lang``
+parameter is passed is an object only containing that translation is returned.
 
 .. code-block:: json
 
@@ -247,3 +275,6 @@ v4 API changelog
 * 2018-07-20: dropped ``downloads`` property from the collection add-ons results. https://github.com/mozilla/addons-server/issues/8944
 * 2018-08-16: added ``is_developer_reply`` property to ratings. This changed was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/8993
 * 2018-09-13: added ``name`` and ``icon_url`` properties to the ``addon`` object in ratings. This changed was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/9357
+* 2018-09-27: backed out "localised field values are always returned as objects" change from 2018-07-19 from `v4` API.  This is intended to be temporary change while addons-frontend upgrades.
+  On addons-dev and addons stage enviroments the previous behavior is available as `api/v4dev`. The `v4dev` api is not available on AMO production server.
+  https://github.com/mozilla/addons-server/issues/9467
