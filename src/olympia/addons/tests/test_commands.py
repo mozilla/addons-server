@@ -3,6 +3,7 @@ from contextlib import contextmanager
 from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
+from django.forms import ValidationError
 
 import mock
 import pytest
@@ -616,6 +617,13 @@ class TestMigrateLegacyDictionariesToWebextension(TestCase):
         'olympia.addons.tasks.migrate_legacy_dictionary_to_webextension',
         autospec=True)
     def test_basic(self, migrate_legacy_dictionarymock, index_addons_mock):
+        self.counter = 0
+
+        def side_effect(*args, **kwargs):
+            self.counter += 1
+            if self.counter == 2:
+                raise ValidationError('Dummy validation error')
+
         addon_factory()
         addon_factory(type=amo.ADDON_LPAPP)
         addon_factory(type=amo.ADDON_STATICTHEME)
@@ -629,6 +637,9 @@ class TestMigrateLegacyDictionariesToWebextension(TestCase):
         self.addon = addon_factory(type=amo.ADDON_DICT, target_locale='fr')
         self.addon2 = addon_factory(type=amo.ADDON_DICT, target_locale=None)
         self.addon3 = addon_factory(type=amo.ADDON_DICT, target_locale='')
+        migrate_legacy_dictionarymock.side_effect = side_effect
+        index_addons_mock.reset_mock()
+
         call_command('process_addons',
                      task='migrate_legacy_dictionaries_to_webextension')
         assert migrate_legacy_dictionarymock.call_count == 3
@@ -639,5 +650,6 @@ class TestMigrateLegacyDictionariesToWebextension(TestCase):
         )
         expected_calls = (self.addon, self.addon2, self.addon3)
         assert actual_calls == expected_calls
-        index_addons_mock.assert_called_once_with(
-            [self.addon, self.addon2, self.addon3])
+        # self.addon2 will raise a ValidationError because of the side_effect
+        # above, so we should only reindex 1 and 3.
+        assert index_addons_mock.call_args[0][0] == [self.addon, self.addon3]
