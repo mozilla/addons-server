@@ -229,7 +229,7 @@ class File(OnChangeMixin, ModelBase):
     def generate_hash(self, filename=None):
         """Generate a hash for a file."""
         hash = hashlib.sha256()
-        with open(filename or self.file_path, 'rb') as obj:
+        with open(filename or self.current_file_path, 'rb') as obj:
             for chunk in iter(lambda: obj.read(1024), ''):
                 hash.update(chunk)
         return 'sha256:%s' % hash.hexdigest()
