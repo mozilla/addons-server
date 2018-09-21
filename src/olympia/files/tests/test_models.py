@@ -226,16 +226,23 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         f.version.addon = Addon(name=u' フォクすけ  といっしょ')
         assert f.generate_filename() == 'addon-0.1.7-fx.xpi'
 
-    def clean_files(self, f):
-        if not storage.exists(f.file_path):
-            with storage.open(f.file_path, 'w') as fp:
-                fp.write('sample data\n')
-
     def test_generate_hash(self):
-        f = File()
-        f.version = Version.objects.get(pk=81551)
-        fn = self.xpi_path('delicious_bookmarks-2.1.106-fx')
-        assert f.generate_hash(fn).startswith('sha256:fd277d45ab44f6240e')
+        file_ = File()
+        file_.version = Version.objects.get(pk=81551)
+        filename = self.xpi_path('delicious_bookmarks-2.1.106-fx')
+        assert file_.generate_hash(
+            filename).startswith('sha256:fd277d45ab44f6240e')
+
+        file_ = File.objects.get(pk=67442)
+        with storage.open(file_.file_path, 'wb') as fp:
+            fp.write('some data\n')
+        with storage.open(file_.guarded_file_path, 'wb') as fp:
+            fp.write('some data guarded\n')
+        assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
+        file_.status = amo.STATUS_DISABLED
+        assert file_.generate_hash().startswith('sha256:6524f7791a35ef4dd4c6f')
+        file_.status = amo.STATUS_PUBLIC
+        assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
 
     def test_addon(self):
         f = File.objects.get(pk=67442)

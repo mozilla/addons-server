@@ -55,7 +55,7 @@ def get_id(addon):
 def call_signing(file_obj):
     """Get the jar signature and send it to the signing server to be signed."""
     # Extract jar signature.
-    jar = JarExtractor(path=storage.open(file_obj.file_path))
+    jar = JarExtractor(path=storage.open(file_obj.current_file_path))
 
     log.debug(u'File signature contents: {0}'.format(jar.signatures))
 
@@ -100,7 +100,7 @@ def call_signing(file_obj):
         signature=pkcs7,
         sigpath=u'mozilla',
         outpath=temp_filename)
-    shutil.move(temp_filename, file_obj.file_path)
+    shutil.move(temp_filename, file_obj.current_file_path)
     return cert_serial_num
 
 
@@ -118,8 +118,9 @@ def sign_file(file_obj):
         return
 
     # No file? No signature.
-    if not os.path.exists(file_obj.file_path):
-        log.info(u'File {0} doesn\'t exist on disk'.format(file_obj.file_path))
+    if not os.path.exists(file_obj.current_file_path):
+        log.info(u'File {0} doesn\'t exist on disk'.format(
+            file_obj.current_file_path))
         return
 
     # Don't sign Mozilla signed extensions (they're already signed).
@@ -144,7 +145,7 @@ def sign_file(file_obj):
     # Sign the file. If there's any exception, we skip the rest.
     cert_serial_num = unicode(call_signing(file_obj))
 
-    size = storage.size(file_obj.file_path)
+    size = storage.size(file_obj.current_file_path)
 
     # Save the certificate serial number for revocation if needed, and re-hash
     # the file now that it's been signed.
