@@ -771,25 +771,25 @@ def get_email_backend(real_email=False):
     return django.core.mail.get_connection(backend)
 
 
-def escape_all(v, linkify_only_full=False):
+def escape_all(value):
     """Escape html in JSON value, including nested items.
 
     Only linkify full urls, including a scheme, if "linkify_only_full" is True.
 
     """
-    if isinstance(v, basestring):
-        v = jinja2.escape(force_text(v))
-        v = linkify_with_outgoing(v, only_full=linkify_only_full)
-        return v
-    elif isinstance(v, list):
-        for i, lv in enumerate(v):
-            v[i] = escape_all(lv, linkify_only_full=linkify_only_full)
-    elif isinstance(v, dict):
-        for k, lv in v.iteritems():
-            v[k] = escape_all(lv, linkify_only_full=linkify_only_full)
-    elif isinstance(v, Translation):
-        v = jinja2.escape(force_text(v))
-    return v
+    if isinstance(value, basestring):
+        value = jinja2.escape(force_text(value))
+        value = linkify_with_outgoing(value)
+        return value
+    elif isinstance(value, list):
+        for i, lv in enumerate(value):
+            value[i] = escape_all(lv)
+    elif isinstance(value, dict):
+        for k, lv in value.iteritems():
+            value[k] = escape_all(lv)
+    elif isinstance(value, Translation):
+        value = jinja2.escape(force_text(value))
+    return value
 
 
 class LocalFileStorage(FileSystemStorage):
