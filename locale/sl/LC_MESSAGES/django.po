@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-21 09:58+0000\n"
-"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
+"PO-Revision-Date: 2018-09-21 12:58+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -5030,7 +5030,7 @@ msgstr "Navdihnite produktivnost {start_sub_heading}z {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Polepšajte svojo stran novega zavihka s slikovitim ozadjem, nastavite si dnevni cilj in več."
 
 #. editorial content for the discovery pane.
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5086,7 +5086,7 @@ msgstr "Naredite YouTube povsem svoj {start_sub_heading}z {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "Predvajajte videoposnetke v ločenem okencu, skrijte oglase povsod razen v naročenih kanalih, zajemajte sličice videov in veliko več."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5254,7 +5254,7 @@ msgstr "Iščite slike {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "Obrnjeno slikovno iskanje z uporabo več iskalnikov."
 
 #. editorial content for the discovery pane.
 msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5845,7 +5845,7 @@ msgid "WebExtension theme uploads are currently not supported."
 msgstr "Nalaganje tem WebExtension trenutno ni podprto."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Največja možna velikost za teme WebExtension je {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Te vrste dodatka ne morete oddati"
