@@ -697,15 +697,18 @@ def migrate_legacy_dictionaries_to_webextension(ids, **kw):
         'Migrating legacy dictionaries to webextension %d-%d [%d].',
         ids[0], ids[-1], len(ids))
     addons = list(Addon.objects.filter(id__in=ids))
+    migrated = []
     for addon in addons:
         try:
             migrate_legacy_dictionary_to_webextension(addon)
+            migrated.append(addon)
         except ValidationError as exc:
             # Ignore broken dictionaries, just log and continue. The function
             # is decorated by @atomic so it will rollback the transaction.
-            log('Migrating dictionary %d raised %s', addon.pk, exc.message)
+            log.warning(
+                'Migrating dictionary %d raised %s', addon.pk, exc.message)
             continue
-    index_addons.delay(addons)
+    index_addons.delay(migrated)
 
 
 @transaction.atomic()
