@@ -12,6 +12,13 @@ from olympia.amo.widgets import ColorWidget
 
 
 class PositiveAutoField(models.AutoField):
+    """An AutoField that's based on unsigned int instead of a signed int
+    allowing twice as many positive values to be used for the primary key.
+
+    Influenced by https://github.com/django/django/pull/8183
+
+    Because AutoFields are special we need a custom database backend to support
+    using them.  See olympia.core.db.base for that."""
     description = _("Positive integer")
 
     def get_internal_type(self):
