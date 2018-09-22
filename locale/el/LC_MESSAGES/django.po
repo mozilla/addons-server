@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-22 17:31+0000\n"
+"PO-Revision-Date: 2018-09-22 17:33+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4795,7 +4795,7 @@ msgstr "Βελτίωση Reddit {start_sub_heading}με το {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Αλλάξτε τον τρόπο με τον οποίο περιηγείστε στο Reddit με τη χρήση ετικετών και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5487,7 +5487,7 @@ msgstr "Μείωση παραγωγικότητας {start_sub_heading}με το
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "Για εκείνες τις στιγμές που χρειάζεστε μια γάτα με λέιζερ."
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
