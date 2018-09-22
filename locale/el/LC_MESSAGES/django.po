@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-20 14:07+0000\n"
+"PO-Revision-Date: 2018-09-22 17:31+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4615,7 +4615,7 @@ msgstr "Αναζήτηση με καθαρή συνείδηση {start_sub_headi
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "Το Ecosia χρησιμοποιεί το 80% των κερδών από αναζητήσεις για τη χρηματοδότηση προγραμμάτων δεντροφύτευσης σε όλο τον κόσμο. Ενσωματώστε το Ecosia στην αναζήτηση του Firefox"
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4707,7 +4707,7 @@ msgstr "Ανανέωση καρτελών {start_sub_heading}με το {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "Αυτόματη ανανέωση καρτελών βάσει των χρονικών διαστημάτων που έχετε ορίσει."
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5147,7 +5147,7 @@ msgstr "WhatsApp στο διαδίκτυο {start_sub_heading}με το {addon_n
 
 #. editorial content for the discovery pane.
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "Πρόσβαση στο WhatsApp από τη γραμμή εργαλείων του Firefox για ειδοποιήσεις μη αναγνωσμένων νημάτων."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5179,7 +5179,7 @@ msgstr "Εύκολη ανάγνωση {start_sub_heading}με το {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "Δείτε τις αγαπημένες ροές RSS σας, όλες σε μία μόνο σελίδα."
 
 #. editorial content for the discovery pane.
 msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5395,7 +5395,7 @@ msgstr "Ιδιωτική περιήγηση {start_sub_heading}με το {addon_
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
-msgstr ""
+msgstr "Μετάβαση στη λειτουργία ιδιωτικής περιήγησης με ένα κλικ."
 
 #. editorial content for the discovery pane.
 #, fuzzy
