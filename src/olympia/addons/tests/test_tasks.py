@@ -262,7 +262,9 @@ class TestMigrateLegacyDictionaryToWebextension(TestCase):
             email='taskuser@mozilla.com')
         with freeze_time('2017-07-27 07:00'):
             self.addon = addon_factory(
-                type=amo.ADDON_DICT, version_kw={'version': '6.3'})
+                type=amo.ADDON_DICT,
+                guid='@my-dict',  # Same id used in dict-webext.xpi.
+                version_kw={'version': '6.3'})
 
         AppVersion.objects.get_or_create(
             application=amo.FIREFOX.id, version='61.0')
