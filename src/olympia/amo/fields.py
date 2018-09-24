@@ -18,7 +18,7 @@ class PositiveAutoField(models.AutoField):
     Influenced by https://github.com/django/django/pull/8183
 
     Because AutoFields are special we need a custom database backend to support
-    using them.  See olympia.core.db.base for that."""
+    using them.  See olympia.core.db.sql.base for that."""
     description = _("Positive integer")
 
     def get_internal_type(self):
