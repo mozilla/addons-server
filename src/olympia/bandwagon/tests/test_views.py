@@ -14,6 +14,7 @@ from mock import Mock, patch
 from pyquery import PyQuery as pq
 from rest_framework.fields import empty
 from rest_framework.settings import api_settings
+from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
@@ -26,6 +27,7 @@ from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.amo.utils import urlparams
 from olympia.bandwagon import forms
 from olympia.bandwagon.models import Collection, CollectionAddon
+from olympia.lib.akismet.models import AkismetReport
 from olympia.users.models import UserProfile
 
 
@@ -1344,6 +1346,44 @@ class CollectionViewSetDataMixin(object):
         assert response.status_code == 400
         assert u'This custom URL is already in use' in (
             ','.join(json.loads(response.content)['non_field_errors']))
+
+    @override_switch('akismet-spam-check', active=False)
+    @patch('olympia.lib.akismet.models.AkismetReport.comment_check')
+    def test_akismet_waffle_off(self, comment_check_mock):
+        self.client.login_api(self.user)
+        response = self.send(data=self.data)
+        assert response.status_code in [200, 201]
+
+        # No AkismetReports
+        assert AkismetReport.objects.count() == 0
+        comment_check_mock.assert_not_called()
+
+    @override_switch('akismet-spam-check', active=True)
+    @patch('olympia.lib.akismet.models.AkismetReport.comment_check')
+    def test_akismet_is_ham(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+        self.client.login_api(self.user)
+        response = self.send(data=self.data)
+        assert response.status_code in [200, 201]
+
+        # AkismetReports are there
+        assert AkismetReport.objects.count() == 4
+        assert comment_check_mock.call_count == 4
+
+    @override_switch('akismet-spam-check', active=True)
+    @patch('olympia.lib.akismet.models.AkismetReport.comment_check')
+    def test_akismet_is_spam(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
+        self.client.login_api(self.user)
+        response = self.send(data=self.data)
+        assert response.status_code == 400
+        assert json.loads(response.content)['non_field_errors'] == (
+            ['The text entered has been flagged as spam.'])
+
+        # AkismetReports are there
+        assert AkismetReport.objects.count() == 4
+        # After the first comment_check was spam, additional ones are skipped.
+        assert comment_check_mock.call_count == 1
 
 
 class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
