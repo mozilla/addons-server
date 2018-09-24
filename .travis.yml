@@ -64,8 +64,6 @@ before_install:
   - mysql -e 'create database olympia;'
   - export GOPATH=$HOME/go
   - export PATH=$HOME/usr/local/go/bin:$GOPATH/bin:$PATH
-  - export LIBGIT2=$(pwd)/libgit2/install/
-  - export LD_LIBRARY_PATH=$(pwd)/libgit2/install/lib
 
 install:
   - nvm current
@@ -73,7 +71,6 @@ install:
   - nvm install 8
   - nvm use 8
   - pip install --upgrade pip wheel setuptools tox==3.2.1 tox-travis==0.10
-  - ./scripts/travis-install-libgit2.sh
 
 before_script:
   - mysql --version
