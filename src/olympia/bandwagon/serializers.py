@@ -43,7 +43,7 @@ class CollectionAkismetSpamValidator(object):
         if any((report.comment_check() for report in reports)):
             # We have to serialize and send it off to a task because the DB
             # transaction will be rolled back because of the ValidationError.
-            save_akismet_report.delay(object_serialize("xml", reports))
+            save_akismet_report.delay(object_serialize("json", reports))
             raise serializers.ValidationError(ugettext(
                 'The text entered has been flagged as spam.'))
 

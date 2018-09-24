@@ -20,7 +20,7 @@ def comment_check(report_ids):
 
 
 @task
-def save_akismet_report(xml):
-    reports = object_deserialize("xml", smart_str(xml))
+def save_akismet_report(json):
+    reports = object_deserialize("json", smart_str(json))
     for report in reports:
         report.save()
