@@ -708,7 +708,8 @@ def migrate_legacy_dictionaries_to_webextension(ids, **kw):
             log.warning(
                 'Migrating dictionary %d raised %s', addon.pk, exc.message)
             continue
-    index_addons.delay(migrated)
+    if migrated:
+        index_addons.delay(migrated)
 
 
 @transaction.atomic()
@@ -730,7 +731,7 @@ def migrate_legacy_dictionary_to_webextension(addon):
 
     upload.update(path=destination)
 
-    parsed_data = parse_addon(upload, user=user)
+    parsed_data = parse_addon(upload, addon=addon, user=user)
     # Create version.
     version = Version.from_upload(
         upload, addon, platforms=[amo.PLATFORM_ALL.id],
