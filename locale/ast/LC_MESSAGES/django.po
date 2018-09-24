@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-24 01:06+0000\n"
+"PO-Revision-Date: 2018-09-24 01:25+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -564,7 +564,7 @@ msgid "Some add-ons ask for permission to perform certain functions. Since you�
 msgstr ""
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr "Decátate qu'esti complementu usa teunoloxía heredada que da accesu a toles funciones y datos del restoaldor ensin solicitar el to permisu."
+msgstr "Decátate qu'esti complementu usa teunoloxía heredada que da accesu a toles funciones y datos del restolador ensin solicitar el to permisu."
 
 msgid "This add-on has been removed by its author."
 msgstr "Esti complementu desaniciólu'l so autor."
@@ -3808,7 +3808,7 @@ msgid "Get started"
 msgstr ""
 
 msgid "More Ways to Participate"
-msgstr "Más formes pa participar"
+msgstr "Más formes de participar"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
 msgstr "¡Nun precises saber programar p'ayudar a que Firefox seya'l restolador más personalizable anguaño!"
@@ -5877,7 +5877,7 @@ msgid "Close Video"
 msgstr ""
 
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "Mentanto que'l videu se reproduz, los complementos mentaos van apaecer equí."
 
 #. {0} is the user's login name.
 msgid "Hi, {0}"
@@ -6658,7 +6658,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "New Themes ({0})"
-msgstr ""
+msgstr "Temes nuevos ({0})"
 
 msgid "Themes Updates ({0})"
 msgstr ""
@@ -6700,7 +6700,7 @@ msgid "Expired Information Requests ({0})"
 msgstr ""
 
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Asocedió un fallu desconocíu"
 
 msgid "Self-reviews are not allowed."
 msgstr ""
@@ -6852,10 +6852,10 @@ msgid "By {user_name}"
 msgstr "Por {user_name}"
 
 msgid "Total Reviews"
-msgstr ""
+msgstr "Reseñes totales"
 
 msgid "Active Contributors"
-msgstr ""
+msgstr "Collaboradores activos"
 
 msgid "This Month"
 msgstr "Esti mes"
