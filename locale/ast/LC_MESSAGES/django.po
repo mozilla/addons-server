@@ -143,8 +143,8 @@ msgstr ""
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] "Namái pues tener {1} estaya."
-msgstr[1] "Namái pues tener {1} estayes."
+msgstr[0] "Namái pues tener {0} estaya."
+msgstr[1] "Namái pues tener {0} estayes."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr ""
