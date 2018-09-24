@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-24 01:25+0000\n"
+"PO-Revision-Date: 2018-09-24 01:47+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -414,7 +414,7 @@ msgid ""
 msgstr ""
 
 msgid "Review Guidelines"
-msgstr ""
+msgstr "Guia pa reseñar"
 
 msgid "Reviews"
 msgstr ""
@@ -674,7 +674,7 @@ msgid "Submit a New Theme"
 msgstr ""
 
 msgid "Developer Hub"
-msgstr ""
+msgstr "Developer Hub"
 
 msgid "Manage API Keys"
 msgstr ""
@@ -6947,7 +6947,7 @@ msgid "Download files"
 msgstr ""
 
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "El desendolcador fornió'l códigu fonte."
 
 msgid "Weight:"
 msgstr ""
@@ -8132,7 +8132,7 @@ msgstr ""
 
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "El códigu fonte llanzóse so <a href=\"%(url)s\">%(name)s</a>"
 
 #. {0} is an add-on name.
 msgid "{0} Version History"
