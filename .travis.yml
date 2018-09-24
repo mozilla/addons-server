@@ -15,7 +15,7 @@ jobs:
     - { stage: python2, env: TOXENV=es }
     - { stage: python2, env: TOXENV=addons }
     - { stage: python2, env: TOXENV=devhub }
-    - { stage: python2, env: TOXENV=files-reviewers-and-zadmin }
+    - { stage: python2, env: TOXENV=reviewers-and-zadmin }
     - { stage: python2, env: TOXENV=amo-locales-and-signing }
     - { stage: python2, env: TOXENV=users-accounts-and-ratings }
     - { stage: python2, env: TOXENV=main }
@@ -25,7 +25,7 @@ jobs:
     - { stage: python3, python: 3.6, env: TOXENV=es }
     - { stage: python3, python: 3.6, env: TOXENV=addons }
     - { stage: python3, python: 3.6, env: TOXENV=devhub }
-    - { stage: python3, python: 3.6, env: TOXENV=files-reviewers-and-zadmin }
+    - { stage: python3, python: 3.6, env: TOXENV=reviewers-and-zadmin }
     - { stage: python3, python: 3.6, env: TOXENV=amo-locales-and-signing }
     - { stage: python3, python: 3.6, env: TOXENV=users-accounts-and-ratings }
     - { stage: python3, python: 3.6, env: TOXENV=main }
@@ -64,6 +64,8 @@ before_install:
   - mysql -e 'create database olympia;'
   - export GOPATH=$HOME/go
   - export PATH=$HOME/usr/local/go/bin:$GOPATH/bin:$PATH
+  - export LIBGIT2=$(pwd)/libgit2/install/
+  - export LD_LIBRARY_PATH=$(pwd)/libgit2/install/lib
 
 install:
   - nvm current
@@ -71,6 +73,7 @@ install:
   - nvm install 8
   - nvm use 8
   - pip install --upgrade pip wheel setuptools tox==3.2.1 tox-travis==0.10
+  - ./scripts/travis-install-libgit2.sh
 
 before_script:
   - mysql --version
