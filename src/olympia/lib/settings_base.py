@@ -120,7 +120,7 @@ def get_db_config(environ_var):
         'ATOMIC_REQUESTS': True,
         # Pool our database connections up for 300 seconds
         'CONN_MAX_AGE': 300,
-        'ENGINE': 'olympia.core.db.sql',
+        'ENGINE': 'olympia.core.db.mysql',
         'OPTIONS': {
             'sql_mode': 'STRICT_ALL_TABLES',
             'isolation_level': 'read committed'
