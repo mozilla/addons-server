@@ -1,6 +1,7 @@
 from django.db import models
 from django_extensions.db.fields.json import JSONField
 
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import SearchMixin
 
 
@@ -17,6 +18,7 @@ class StatsSearchMixin(SearchMixin):
 
 
 class DownloadCount(StatsSearchMixin, models.Model):
+    id = PositiveAutoField(primary_key=True)
     # has an index `addon_id` on this column...
     addon = models.ForeignKey('addons.Addon')
 
@@ -38,6 +40,7 @@ class DownloadCount(StatsSearchMixin, models.Model):
 
 
 class UpdateCount(StatsSearchMixin, models.Model):
+    id = PositiveAutoField(primary_key=True)
     # Has an index `addon_id` in our dev, stage and prod database
     addon = models.ForeignKey('addons.Addon')
     # Has an index named `count` in our dev, stage and prod database
@@ -74,6 +77,7 @@ class ThemeUpdateCountManager(models.Manager):
 
 class ThemeUpdateCount(StatsSearchMixin, models.Model):
     """Daily users taken from the ADI data (coming from Hive)."""
+    id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
     date = models.DateField()
@@ -92,6 +96,7 @@ class ThemeUpdateCountBulk(models.Model):
     per Persona).
 
     """
+    id = PositiveAutoField(primary_key=True)
     persona_id = models.PositiveIntegerField()
     popularity = models.PositiveIntegerField()
     movers = models.FloatField()
@@ -101,6 +106,7 @@ class ThemeUpdateCountBulk(models.Model):
 
 
 class GlobalStat(models.Model):
+    id = PositiveAutoField(primary_key=True)
     name = models.CharField(max_length=255)
     count = models.IntegerField()
     date = models.DateField()

@@ -6,6 +6,7 @@ import bleach
 import olympia.core.logger
 
 from olympia.amo import urlresolvers
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase
 
 from . import utils
@@ -32,8 +33,8 @@ class Translation(ModelBase):
     key to this model.
     """
 
-    autoid = models.AutoField(primary_key=True)
-    id = models.IntegerField()
+    autoid = PositiveAutoField(primary_key=True)
+    id = models.PositiveIntegerField()
     locale = models.CharField(max_length=10)
     localized_string = models.TextField(null=True)
     localized_string_clean = models.TextField(null=True)
