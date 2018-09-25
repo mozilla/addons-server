@@ -1307,6 +1307,33 @@ class TestUploadDetail(BaseUploadTest):
         ]
 
     @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_reports_created_l10n(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+        self.upload_file('notify-link-clicks-i18n-edited.xpi')
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+        assert response.status_code == 200
+        # there are 8 because 4 locales and name and summary in each.
+        assert comment_check_mock.call_count == 8
+        assert AkismetReport.objects.count() == 8
+        assert AkismetReport.objects.filter(
+            upload_instance=upload).count() == 8
+        report = AkismetReport.objects.filter(upload_instance=upload).first()
+        # Just check the first one
+        assert report.comment_type == 'product-name'
+        names = [
+            u'Meine Beispielerweiterung',  # de
+            u'Notify link clicks i18n',  # en
+            u'リンクを通知する',  # ja
+            u'Varsling ved trykk på lenke i18n',  # nb_NO
+        ]
+        assert report.comment in names
+        assert 'spam' not in response.content
+
+    @override_switch('akismet-spam-check', active=True)
     def test_akismet_reports_not_created_for_unlisted(self):
         self.upload_file('valid_webextension.xpi', 'devhub.upload_unlisted')
 
