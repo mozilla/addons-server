@@ -278,3 +278,4 @@ v4 API changelog
 * 2018-09-27: backed out "localised field values are always returned as objects" change from 2018-07-19 from `v4` API.  This is intended to be temporary change while addons-frontend upgrades.
   On addons-dev and addons stage enviroments the previous behavior is available as `api/v4dev`. The `v4dev` api is not available on AMO production server.
   https://github.com/mozilla/addons-server/issues/9467
+* 2018-10-04: added ``is_strict_compatibility_enabled`` so discovery API ``addons.current_version`` object. This change was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/9520
