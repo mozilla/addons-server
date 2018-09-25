@@ -234,7 +234,6 @@ msgstr[1] "{0} uporabnika"
 msgstr[2] "{0} uporabniki"
 msgstr[3] "{0} uporabnikov"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} dodatek"
