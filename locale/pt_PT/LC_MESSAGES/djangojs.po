@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2018-09-17 17:02+0000\n"
-"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
+"PO-Revision-Date: 2018-09-17 14:20+0000\n"
+"Last-Translator: Fabio M Caldas <fabiomcaldas@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -222,11 +222,10 @@ msgid_plural "{0} users"
 msgstr[0] "{0} utilizador"
 msgstr[1] "{0} utilizadores"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} extra"
-msgstr[1] "{0} extras, n"
+msgstr[1] "{0} extras"
 
 msgid "{0} collection"
 msgid_plural "{0} collections"
