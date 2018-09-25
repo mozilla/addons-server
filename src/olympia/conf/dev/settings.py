@@ -46,15 +46,15 @@ INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
                            default='addons-dev.allizom.org')
 
 NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
-NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
-GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + '/guarded-addons'
-MEDIA_ROOT = NETAPP_STORAGE + '/uploads'
+NETAPP_STORAGE = os.path.join(NETAPP_STORAGE_ROOT, 'shared_storage')
+GUARDED_ADDONS_PATH = os.path.join(NETAPP_STORAGE_ROOT, 'guarded-addons')
+MEDIA_ROOT = os.path.join(NETAPP_STORAGE, 'uploads')
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 
-ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
+ADDONS_PATH = os.path.join(NETAPP_STORAGE_ROOT, 'files')
 
-REVIEWER_ATTACHMENTS_PATH = MEDIA_ROOT + '/reviewer_attachment'
+REVIEWER_ATTACHMENTS_PATH = os.path.join(MEDIA_ROOT, 'reviewer_attachment')
 
 DATABASES = {
     'default': get_db_config('DATABASES_DEFAULT_URL'),

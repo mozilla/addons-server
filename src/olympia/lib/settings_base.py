@@ -1760,8 +1760,9 @@ STATICFILES_DIRS = (
 )
 
 NETAPP_STORAGE = TMP_PATH
-GUARDED_ADDONS_PATH = ROOT + '/guarded-addons'
+GUARDED_ADDONS_PATH = os.path.join(ROOT, 'guarded-addons')
 
+GIT_FILE_STORAGE_PATH = os.path.join(MEDIA_ROOT, 'git-storage')
 
 # These are key files that must be present on disk to encrypt/decrypt certain
 # database fields.
@@ -1771,6 +1772,7 @@ AES_KEYS = env.dict('AES_KEYS', default={})
 # Time in seconds for how long a JWT auth token created by developers with
 # their API key can live. When developers are creating auth tokens they cannot
 # set the expiration any longer than this.
+
 MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME = 5 * 60
 
 # django-rest-framework-jwt settings:

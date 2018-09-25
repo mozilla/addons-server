@@ -940,7 +940,6 @@ class TestXMLVulnerabilities(TestCase):
         zip_file = utils.SafeZip(os.path.join(
             os.path.dirname(__file__), '..', 'fixtures', 'files',
             'xxe-example-install.zip'))
-        zip_file.is_valid()
 
         # This asserts that the malicious install.rdf blows up with
         # a parse error. If it gets as far as this specific parse error
