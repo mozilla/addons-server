@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -148,6 +148,9 @@ msgstr[1] "Ní mór {0} charachtar ar a laghad a bheith i gclib."
 msgstr[2] "Ní mór {0} charachtar ar a laghad a bheith i gclib."
 msgstr[3] "Ní mór {0} gcarachtar ar a laghad a bheith i gclib."
 msgstr[4] "Ní mór {0} carachtar ar a laghad a bheith i gclib."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -758,6 +761,9 @@ msgstr "Eagarthóir"
 
 msgid "Admin Tools"
 msgstr "Uirlisí Riaracháin"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Mícheart, bain triail eile as."
@@ -5466,7 +5472,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.

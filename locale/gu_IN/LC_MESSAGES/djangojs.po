@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2018-05-14 11:59+0000\n"
 "Last-Translator: pratikmdabhi <pratikmdabhi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -225,7 +225,7 @@ msgstr[1] "{0} વપરાશકર્તાઓ"
 
 #, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "{0} એડ-ઑન્સ"
 msgstr[1] "{0} એડ-ઑન્સ"
 

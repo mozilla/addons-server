@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2018-09-02 15:01+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -141,6 +141,9 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Длина любой метки должна быть не менее {0} символа."
 msgstr[1] "Длина любой метки должна быть не менее {0} символов."
 msgstr[2] "Длина любой метки должна быть не менее {0} символов."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -718,6 +721,9 @@ msgstr "Инструменты проверяющего"
 
 msgid "Admin Tools"
 msgstr "Инструменты админа"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Некорректно, пожалуйста, попробуйте снова."
@@ -5370,7 +5376,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Наслаждайтесь музыкой со всего мира {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+#, fuzzy
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr "Слушайте более 20 000 радиостанций со всего мира."
 
 #. editorial content for the discovery pane.
