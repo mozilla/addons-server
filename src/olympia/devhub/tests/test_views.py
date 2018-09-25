@@ -1324,7 +1324,13 @@ class TestUploadDetail(BaseUploadTest):
         report = AkismetReport.objects.filter(upload_instance=upload).first()
         # Just check the first one
         assert report.comment_type == 'product-name'
-        assert report.comment == 'Meine Beispielerweiterung'  # name in de
+        names = [
+            u'Meine Beispielerweiterung',  # de
+            u'Notify link clicks i18n',  # en
+            u'リンクを通知する',  # ja
+            u'Varsling ved trykk på lenke i18n',  # nb_NO
+        ]
+        assert report.comment in names
         assert 'spam' not in response.content
 
     @override_switch('akismet-spam-check', active=True)
