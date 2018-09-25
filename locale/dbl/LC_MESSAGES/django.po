@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,6 +130,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Aŀŀ ŧȧɠş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗř."
 msgstr[1] "Aŀŀ ŧȧɠş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗřş."
+
+msgid "The text entered has been flagged as spam."
+msgstr "Ŧħḗ ŧḗẋŧ ḗƞŧḗřḗḓ ħȧş ƀḗḗƞ ƒŀȧɠɠḗḓ ȧş şƥȧḿ."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -688,6 +691,9 @@ msgstr "Řḗṽīḗẇḗř Ŧǿǿŀş"
 
 msgid "Admin Tools"
 msgstr "Aḓḿīƞ Ŧǿǿŀş"
+
+msgid "Positive integer"
+msgstr "Ƥǿşīŧīṽḗ īƞŧḗɠḗř"
 
 msgid "Incorrect, please try again."
 msgstr "Īƞƈǿřřḗƈŧ, ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ."
@@ -5267,8 +5273,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Ḗƞĵǿẏ ḿŭşīƈ ƒřǿḿ ȧřǿŭƞḓ ŧħḗ ẇǿřŀḓ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Aƈƈḗşş 20,000+ řȧḓīǿ şŧȧŧīǿƞş ƒřǿḿ ȧŀŀ ǿṽḗř ŧħḗ ɠŀǿƀḗ."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Aƈƈḗşş 30,000+ řȧḓīǿ şŧȧŧīǿƞş ƒřǿḿ ȧŀŀ ǿṽḗř ŧħḗ ɠŀǿƀḗ."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"

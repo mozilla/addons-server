@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2018-08-31 19:18+0000\n"
 "Last-Translator: Jobava <jobaval10n@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -135,6 +135,9 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -704,6 +707,9 @@ msgid "Reviewer Tools"
 msgstr "Instrumente pentru recenzori"
 
 msgid "Admin Tools"
+msgstr ""
+
+msgid "Positive integer"
 msgstr ""
 
 msgid "Incorrect, please try again."
@@ -5382,7 +5388,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Descarcă videoclipuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.

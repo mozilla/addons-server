@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2018-06-06 21:14+0000\n"
 "Last-Translator: Patrick CHEW <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -222,7 +222,7 @@ msgstr[1] "{0} од"
 
 #, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "{0} нэмэлт хэрэгсэл"
 msgstr[1] "{0} нэмэлт хэрэгсэл"
 

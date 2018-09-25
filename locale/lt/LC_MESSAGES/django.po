@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,6 +137,9 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Kiekvieną gairę turi sudaryti bent {0} simbolis."
 msgstr[1] "Kiekvieną gairę turi sudaryti bent {0} simboliai."
 msgstr[2] "Kiekvieną gairę turi sudaryti bent {0} simbolių."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -711,6 +714,9 @@ msgstr "Plėtojimo kanalas"
 
 msgid "Admin Tools"
 msgstr "Administratoriaus priemonės"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr ""
@@ -5325,7 +5331,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.

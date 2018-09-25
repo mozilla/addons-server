@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -143,6 +143,9 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Każda etykieta musi mieć przynajmniej {0} znak."
 msgstr[1] "Każda etykieta musi mieć przynajmniej {0} znaki."
 msgstr[2] "Każda etykieta musi mieć przynajmniej {0} znaków."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -719,6 +722,9 @@ msgstr "Strefa recenzenta"
 
 msgid "Admin Tools"
 msgstr "Strefa administratora"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Niepoprawnie, spróbuj ponownie."
@@ -5345,7 +5351,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Słuchaj muzyki z całego świata {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+#, fuzzy
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr "Uzyskaj dostęp do ponad 20 000 stacji radiowych na całym świecie."
 
 #. editorial content for the discovery pane.

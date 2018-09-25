@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2018-09-14 21:53+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -134,6 +134,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Ronojel etal k'o chi nik'o chi re {0} tz'ib'."
 msgstr[1] "Konojel taq etal k'o chi ye'ik'o chi re {0} taq tz'ib'."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -692,6 +695,9 @@ msgstr "Taq Rusamajib'al Nik'onel"
 
 msgid "Admin Tools"
 msgstr "Kisamajib'al Nuk'samajel"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Man ütz ta, tatojtob'ej chik."
@@ -5276,7 +5282,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
