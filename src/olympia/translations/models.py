@@ -208,12 +208,15 @@ class LinkifiedTranslation(PurifiedTranslation):
         proxy = True
 
 
-class NoLinksMixin(object):
-    """Mixin used to remove links (URLs and text) from localized_string."""
+class NoLinksNoMarkupTranslation(LinkifiedTranslation):
+    """Run the string through bleach, escape markup and strip all the links."""
+
+    class Meta:
+        proxy = True
 
     def clean_localized_string(self):
         # First pass: bleach everything, but leave links untouched.
-        cleaned = super(NoLinksMixin, self).clean_localized_string()
+        cleaned = super(LinkifiedTranslation, self).clean_localized_string()
 
         # Second pass: call linkify to empty the inner text of all links.
         emptied_links = bleach.linkify(
@@ -224,20 +227,6 @@ class NoLinksMixin(object):
         allowed_tags = self.allowed_tags[:]  # Make a copy.
         allowed_tags.remove('a')
         return bleach.clean(emptied_links, tags=allowed_tags, strip=True)
-
-
-class NoLinksTranslation(NoLinksMixin, PurifiedTranslation):
-    """Run the string through bleach, escape markup and strip all the links."""
-
-    class Meta:
-        proxy = True
-
-
-class NoLinksNoMarkupTranslation(NoLinksMixin, LinkifiedTranslation):
-    """Run the string through bleach, escape markup and strip all the links."""
-
-    class Meta:
-        proxy = True
 
 
 class TranslationSequence(models.Model):
