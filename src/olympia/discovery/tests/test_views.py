@@ -12,6 +12,35 @@ from olympia.discovery.utils import replace_extensions
 
 
 class DiscoveryTestMixin(object):
+    def _check_disco_addon_version(self, data, version):
+        assert data['compatibility']
+        assert len(data['compatibility']) == len(version.compatible_apps)
+        for app, compat in version.compatible_apps.items():
+            assert data['compatibility'][app.short] == {
+                'min': compat.min.version,
+                'max': compat.max.version
+            }
+        assert data['is_strict_compatibility_enabled'] is False
+        assert data['files']
+        assert len(data['files']) == 1
+
+        result_file = data['files'][0]
+        file_ = version.files.latest('pk')
+        assert result_file['id'] == file_.pk
+        assert result_file['created'] == (
+            file_.created.replace(microsecond=0).isoformat() + 'Z')
+        assert result_file['hash'] == file_.hash
+        assert result_file['is_restart_required'] == file_.is_restart_required
+        assert result_file['is_webextension'] == file_.is_webextension
+        assert (
+            result_file['is_mozilla_signed_extension'] ==
+            file_.is_mozilla_signed_extension)
+
+        assert result_file['size'] == file_.size
+        assert result_file['status'] == amo.STATUS_CHOICES_API[file_.status]
+        assert result_file['url'] == file_.get_url_path(src='')
+        assert result_file['permissions'] == file_.webext_permissions_list
+
     def _check_disco_addon(self, result, item, flat_name=False):
         addon = item.addon
         assert result['addon']['id'] == item.addon_id == addon.pk
@@ -27,6 +56,9 @@ class DiscoveryTestMixin(object):
 
         assert result['heading'] == item.heading
         assert result['description'] == item.description
+
+        self._check_disco_addon_version(
+            result['addon']['current_version'], addon.current_version)
 
     def _check_disco_theme(self, result, item, flat_name=False):
         addon = item.addon
