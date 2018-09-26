@@ -134,9 +134,10 @@ class AkismetSpamCheckFormMixin(object):
             addon=self.instance,
             data=data,
             existing_data=existing_data)
-        if any((report.is_spam for report in reports)):
-            raise forms.ValidationError(ugettext(
-                'The text entered has been flagged as spam.'))
+        error_msg = ugettext('The text entered has been flagged as spam.')
+        for prop, report in reports:
+            if report.is_spam:
+                self.add_error(prop, forms.ValidationError(error_msg))
         return super(AkismetSpamCheckFormMixin, self).clean()
 
 

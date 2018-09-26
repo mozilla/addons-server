@@ -351,8 +351,9 @@ def get_addon_akismet_reports(user, user_agent, referrer, upload=None,
             if not comment or comment in existing_data:
                 # We don't want to submit empty or unchanged content
                 continue
-            reports.append(AkismetReport.create_for_addon(
+            report = AkismetReport.create_for_addon(
                 upload=upload, addon=addon, user=user, property_name=prop,
                 property_value=comment, user_agent=user_agent,
-                referrer=referrer))
+                referrer=referrer)
+            reports.append((prop, report))
     return reports
