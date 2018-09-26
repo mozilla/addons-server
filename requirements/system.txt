@@ -92,8 +92,8 @@ pyOpenSSL==18.0.0 \
     --hash=sha256:26ff56a6b5ecaf3a2a59f132681e2a80afcc76b4f902f612f518f92c2a1bf854 \
     --hash=sha256:6488f1423b00f73b7ad5167885312bb0ce410d3312eb212393795b53c8caa580
 # pycparser is required by cffi
-pycparser==2.18 \
-    --hash=sha256:99a8ca03e29851d96616ad0404b4aad7d9ee16f25c9f9708a11faf2810f7b226
+pycparser==2.19 \
+    --hash=sha256:a988718abfad80b6b157acce7bf130a30876d27603738ac39f140993246b25b3
 pyasn1==0.4.4 \
     --hash=sha256:dea873d6c907c1cf1341fd88742a61efce33227d7743cb37564ab7d7e77dd9fd \
     --hash=sha256:13794d835643ee970b2c059dbfe4eb5d751e16c693c8baee61c526abd209e5c7 \
