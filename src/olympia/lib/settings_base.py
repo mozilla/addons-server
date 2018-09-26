@@ -110,16 +110,16 @@ def cors_endpoint_overrides(whitelist_endpoints):
 CORS_ENDPOINT_OVERRIDES = []
 
 
-def get_db_config(environ_var):
+def get_db_config(environ_var, atomic_requests=True):
     values = env.db(
         var=environ_var,
         default='mysql://root:@localhost/olympia')
 
     values.update({
         # Run all views in a transaction unless they are decorated not to.
-        # FIXME: only makes sense for the 'default' database, the write one.
-        # No need to do it for the other ones!
-        'ATOMIC_REQUESTS': True,
+        # `atomic_requests` should be `False` for database replicas where no
+        # write operations will ever happen.
+        'ATOMIC_REQUESTS': atomic_requests,
         # Pool our database connections up for 300 seconds
         'CONN_MAX_AGE': 300,
         'ENGINE': 'olympia.core.db',

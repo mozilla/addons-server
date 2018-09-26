@@ -58,7 +58,7 @@ REVIEWER_ATTACHMENTS_PATH = MEDIA_ROOT + '/reviewer_attachment'
 
 DATABASES = {
     'default': get_db_config('DATABASES_DEFAULT_URL'),
-    'slave': get_db_config('DATABASES_SLAVE_URL'),
+    'slave': get_db_config('DATABASES_SLAVE_URL', atomic_requests=False),
 }
 
 SERVICES_DATABASE = get_db_config('SERVICES_DATABASE_URL')
