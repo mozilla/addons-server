@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2018-09-16 09:39+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,6 +132,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "सभी टैगों में कम से कम {0} वर्ण होने चाहिए।"
 msgstr[1] "सभी टैगों में कम से कम {0} वर्ण होने चाहिए।"
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -690,6 +693,9 @@ msgstr "समीक्षक के उपकरण"
 
 msgid "Admin Tools"
 msgstr "व्यवस्थापक उपकरण"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "गलत, पुनः प्रयास करें।"
@@ -5217,7 +5223,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.

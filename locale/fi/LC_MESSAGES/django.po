@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2018-07-21 17:44+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -138,6 +138,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Kaikkien tagien tulee olla vähintään {0} merkki pitkä."
 msgstr[1] "Kaikkien tagien tulee olla vähintään {0} merkkiä pitkiä."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -704,6 +707,9 @@ msgstr "Tarkastajan työkalut"
 
 msgid "Admin Tools"
 msgstr "Ylläpitotyökalut"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Väärin. Yritä uudelleen."
@@ -5434,7 +5440,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.

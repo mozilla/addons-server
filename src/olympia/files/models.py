@@ -28,6 +28,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.lib.cache import memoize
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase, OnChangeMixin, ManagerBase
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
@@ -45,6 +46,7 @@ EXTENSIONS = ('.crx', '.xpi', '.jar', '.xml', '.json', '.zip')
 
 
 class File(OnChangeMixin, ModelBase):
+    id = PositiveAutoField(primary_key=True)
     STATUS_CHOICES = amo.STATUS_CHOICES_FILE
 
     version = models.ForeignKey(
@@ -714,6 +716,7 @@ class FileUpload(ModelBase):
 
 
 class FileValidation(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     file = models.OneToOneField(File, related_name='validation')
     valid = models.BooleanField(default=False)
     errors = models.IntegerField(default=0)

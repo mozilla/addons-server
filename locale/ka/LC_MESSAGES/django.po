@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-19 05:43+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-26 01:22+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -133,6 +133,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "ჭდეები, სულ მცირე {0} სიმბოლოსგან მაინც უნდა შედგებოდეს."
 msgstr[1] "ჭდეები, სულ მცირე {0} სიმბოლოსგან მაინც უნდა შედგებოდეს."
+
+msgid "The text entered has been flagged as spam."
+msgstr "შეყვანილი ტექსტი მონიშნულია არასასურველად."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -691,6 +694,9 @@ msgstr "მიმომხილველის ხელსაწყოებ�
 
 msgid "Admin Tools"
 msgstr "ადმინისტრატორის ხელსაწყოები"
+
+msgid "Positive integer"
+msgstr "დადებითი მთელი რიცხვი"
 
 msgid "Incorrect, please try again."
 msgstr "არასწორია, გთხოვთ სცადოთ ხელახლა."
@@ -5279,8 +5285,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "ისიამოვნეთ მუსიკით მთელი მსოფლიოდან {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "წვდომა 20,000-ზე მეტ რადიო სადგურთან მთელ მსოფლიოში."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "წვდომა 30,000-ზე მეტ რადიოსადგურთან მთელ მსოფლიოში."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"

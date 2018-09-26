@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-18 15:34+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-25 15:01+0000\n"
 "Last-Translator: nuttapong2539 <nuttapong2539@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -34,7 +34,7 @@ msgid "This username cannot be used."
 msgstr ""
 
 msgid "This username is already in use."
-msgstr ""
+msgstr "ชื่อผู้ใช้นี้ถูกใช้แล้ว"
 
 msgid "Images must be either PNG or JPG."
 msgstr "รูปภาพจะต้องเป็น PNG หรือ JPG"
@@ -57,7 +57,7 @@ msgid "Your Firefox Account could not be found. Please try again."
 msgstr "ไม่พบบัญชี Firefox ของคุณ โปรดลองอีกครั้ง"
 
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "คุณไม่สามารถเข้าสู่ระบบได้ โปรดลองใหม่อีกครั้ง"
 
 msgid "Need help?"
 msgstr "ต้องการความช่วยเหลือ?"
@@ -132,6 +132,9 @@ msgstr "ป้ายกำกับทั้งหมดต้องมี %s �
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "ป้ายกำกับทั้งหมดต้องมีอย่างน้อย {0} อักขระ"
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -660,7 +663,7 @@ msgid "Log out"
 msgstr "ออกจากระบบ"
 
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "จัดการรายการที่ส่งของฉัน"
 
 msgid "Submit a New Add-on"
 msgstr "ส่งส่วนเสริมใหม่"
@@ -680,6 +683,9 @@ msgstr "นักพัฒนา"
 
 msgid "Admin Tools"
 msgstr "เครื่องมือผู้ดูแล"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "ไม่ถูกต้อง โปรดลองอีกครั้ง"
@@ -767,7 +773,7 @@ msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p
 msgstr ""
 
 msgid "Some rights reserved"
-msgstr ""
+msgstr "สงวนลิขสิทธิ์บางส่วน"
 
 msgid "No results found"
 msgstr "ไม่พบ"
@@ -889,7 +895,7 @@ msgid "Invalid Authorization header. Credentials string should not contain space
 msgstr ""
 
 msgid "Signature has expired."
-msgstr ""
+msgstr "ลายเซ็นหมดอายุแล้ว"
 
 msgid "Error decoding signature."
 msgstr ""
@@ -898,7 +904,7 @@ msgid "Wrong type for one or more keys in payload"
 msgstr ""
 
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "โทเค็น JWT ไม่ถูกต้อง"
 
 msgid "The field must have a length of at least {num} characters."
 msgstr ""
@@ -1496,11 +1502,11 @@ msgstr "รายงานความเข้ากันได้ของ {a
 
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] ""
+msgstr[0] "{0} รายงานที่สำเร็จ"
 
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] ""
+msgstr[0] "{0} รายงานที่มีปัญหา"
 
 msgid "View all"
 msgstr "ดูทั้งหมด"
@@ -1754,7 +1760,7 @@ msgid "User {user} banned."
 msgstr ""
 
 msgid "User {user} picture deleted."
-msgstr ""
+msgstr "ภาพของผู้ใช้ {user} ถูกลบแล้ว"
 
 msgid "User {0.name} added to {group}."
 msgstr "ผู้ใช้ {0.name} ถูกเพิ่มเข้าสู่ {group}"
@@ -2430,7 +2436,7 @@ msgid "Recent Changes for My Add-ons"
 msgstr "การเปลี่ยนแปลงล่าสุดของส่วนเสริมของฉัน"
 
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "ต้องมีเจ้าของอย่างน้อยหนึ่งคน"
 
 msgid "At least one author must be listed."
 msgstr ""
@@ -2584,7 +2590,7 @@ msgid "User Collections"
 msgstr ""
 
 msgid "User Reviews"
-msgstr ""
+msgstr "บทวิจารณ์ของผู้ใช้"
 
 msgid "Changes successfully saved."
 msgstr "การเปลี่ยนแปลงถูกบันทึกเรียบร้อย"
@@ -3261,7 +3267,7 @@ msgid "Edit details about this theme's listing."
 msgstr ""
 
 msgid "Edit Listing"
-msgstr ""
+msgstr "แก้ไขรายการ"
 
 msgid "View the popularity of this theme over time."
 msgstr ""
@@ -3886,7 +3892,7 @@ msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjo
 msgstr ""
 
 msgid "Join us!"
-msgstr ""
+msgstr "มาร่วมกับเรา!"
 
 msgid "Write Some Code"
 msgstr ""
@@ -4745,7 +4751,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
-msgstr ""
+msgstr "เพิ่มความปลอดภัยโดยการเข้ารหัสกับเว็บไซต์ใด ๆ ที่รองรับ HTTPS"
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4761,7 +4767,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "แปลข้อความที่เน้นหรือทั้งหน้าเว็บ"
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4777,7 +4783,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "ถ่ายภาพหน้าจอหน้าเว็บ, ทำการแก้ไข และแบ่งปัน"
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
@@ -5237,7 +5243,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
-msgstr ""
+msgstr "ดาวน์โหลดวิดีโอและ/หรือเสียง"
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5292,7 +5298,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5317,7 +5323,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "นำทางไปยังรุ่นที่ปลอดภัยของเว็บไซต์ถ้ามีให้ใช้งาน"
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5333,7 +5339,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "หยุดการปรากฏของโฆษณาในผลการค้นหาของคุณ"
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5341,7 +5347,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "เก็บรหัสผ่านอย่างปลอดภัยและเข้าสู่ระบบเว็บไซต์ที่รู้จักโดยอัตโนมัติ"
 
 #. editorial content for the discovery pane.
 msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5357,7 +5363,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
-msgstr ""
+msgstr "บันทึกข้อมูลที่ป้อนเข้ามาครั้งเดียวและจะเติมให้อัตโนมัติในครั้งหน้า"
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5365,7 +5371,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
-msgstr ""
+msgstr "กระโดดไปยังการเรียกดูแบบเป็นส่วนตัวเพียงคลิกเดียว"
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5489,7 +5495,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "เพิ่มความสามารถในการแสดง/ซ่อนกับช่องใส่รหัสผ่านทุกช่อง"
 
 #. editorial content for the discovery pane.
 msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5577,7 +5583,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "ปกป้องที่คั่นหน้าส่วนตัวของคุณด้วยรหัสผ่าน"
 
 #. editorial content for the discovery pane.
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"

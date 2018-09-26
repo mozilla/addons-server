@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-18 10:41+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-25 08:54+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -128,6 +128,9 @@ msgstr "Semua tag mesti %s aksara atau kurang, selepas membuang aksara yang tida
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Semua tag mesti sekurang-kurangnya {0} aksara."
+
+msgid "The text entered has been flagged as spam."
+msgstr "Teks yang dimasukkan telah ditanda sebagai spam."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -674,6 +677,9 @@ msgstr "Alatan Pengulas"
 
 msgid "Admin Tools"
 msgstr "Alatan Pentadbir"
+
+msgid "Positive integer"
+msgstr "Integer positif"
 
 msgid "Incorrect, please try again."
 msgstr "Tidak betul, sila cuba lagi."
@@ -5242,8 +5248,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Nikmati muzik dari serata dunia {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Akses 20,000+ stesyen radio dari serata dunia."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Akses 30,000+ stesyen radio dari serata dunia."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"

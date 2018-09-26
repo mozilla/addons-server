@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-20 09:47+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-25 21:11+0000\n"
+"Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -138,6 +138,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Toutes les étiquettes doivent avoir au moins {0} caractère."
 msgstr[1] "Toutes les étiquettes doivent avoir au moins {0} caractères."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -705,6 +708,9 @@ msgstr "Outils des testeurs"
 
 msgid "Admin Tools"
 msgstr "Outils d’administration"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Incorrect, veuillez réessayer."
@@ -5343,8 +5349,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Profitez de musiques provenant du monde entier {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Écoutez plus de 20 000 stations de radio du monde entier."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Écoutez plus de 30 000 stations de radio du monde entier."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"

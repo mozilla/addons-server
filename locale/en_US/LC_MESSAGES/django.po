@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -136,6 +136,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "All tags must be at least {0} character."
 msgstr[1] "All tags must be at least {0} characters."
+
+msgid "The text entered has been flagged as spam."
+msgstr "The text entered has been flagged as spam."
 
 #, fuzzy, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -716,6 +719,9 @@ msgstr "Reviewers"
 
 msgid "Admin Tools"
 msgstr "Admin Tools"
+
+msgid "Positive integer"
+msgstr "Positive integer"
 
 msgid "Incorrect, please try again."
 msgstr "Incorrect, please try again."
@@ -5680,7 +5686,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+#, fuzzy
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr "Access 20,000+ radio stations from all over the globe."
 
 #. editorial content for the discovery pane.

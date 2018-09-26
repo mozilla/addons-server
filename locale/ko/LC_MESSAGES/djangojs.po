@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2018-08-23 01:19+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -217,7 +217,7 @@ msgstr[0] "사용자 {0}명"
 
 #, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "부가 기능 {0}개"
 
 #, fuzzy

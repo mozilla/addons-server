@@ -529,6 +529,8 @@ class TestParseXpi(TestCase):
             'is_webextension': True,
             'name': 'Beastify',
             'summary': None,
+            'default_locale': None,
+            'homepage': None,
         }
         parsed = self.parse(
             filename='webextension_with_apps_targets.xpi',

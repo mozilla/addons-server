@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-09 09:22+0000\n"
-"Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-24 09:25+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -137,6 +137,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Le etichette devono essere lunghe almeno {0} carattere."
 msgstr[1] "Le etichette devono essere lunghe almeno {0} caratteri."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -706,6 +709,9 @@ msgstr "Strumenti per i revisori"
 msgid "Admin Tools"
 msgstr "Strumenti di amministrazione"
 
+msgid "Positive integer"
+msgstr ""
+
 msgid "Incorrect, please try again."
 msgstr "Errore, riprova."
 
@@ -932,7 +938,7 @@ msgid "Error decoding signature."
 msgstr "Errore nella decodifica della firma."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Una o più chiavi nel payload sono di tipo errato"
 
 msgid "Invalid JWT Token."
 msgstr "Token JWT non valido."
@@ -2490,9 +2496,8 @@ msgstr "Si è verificato un errore durante il caricamento. Riprovare."
 msgid "Override failed validation"
 msgstr "Il tentativo di sostituzione forzata è fallito"
 
-#, fuzzy
 msgid "Need to select at least one application."
-msgstr "È necessaria almeno un’applicazione compatibile."
+msgstr "È necessario selezionare almeno un’applicazione."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "La versione {version} è stata già caricata e poi eliminata."
@@ -3599,9 +3604,8 @@ msgstr "Carica versione"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Utilizza i seguenti campi per caricare il pacchetto del tuo componente aggiuntivo. Successivamente il file verrà sottoposto una serie di test automatici di validazione."
 
-#, fuzzy
 msgid "Which applications is this version compatible with?"
-msgstr "Con quali piattaforme è compatibile il file?"
+msgstr "Con quali applicazioni è compatibile questa versione?"
 
 msgid "Administrative overrides"
 msgstr "Sostituzioni amministrative"
@@ -4092,12 +4096,11 @@ msgstr "Test di compatibilità"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Verifica se la tua estensione è compatibile con Firefox."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Visualizza elenco"
+msgstr "Test nel browser"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Installa temporaneamente la tua estensione in Firefox per effettuare test e debug."
 
 msgid "Transfer ownership"
 msgstr "Trasferisci la proprietà"
@@ -5371,7 +5374,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Goditi musica da tutto il mondo {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+#, fuzzy
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr "Accedi a più di 20.000 stazioni radio da tutto il globo."
 
 #. editorial content for the discovery pane.

@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 import olympia.core.logger
 
 from olympia import activity, amo
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.utils import send_mail_jinja
@@ -68,6 +69,7 @@ class WithoutRepliesRatingManager(ManagerBase):
 
 
 class Rating(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey('addons.Addon', related_name='_ratings')
     version = models.ForeignKey('versions.Version', related_name='ratings',
                                 null=True)

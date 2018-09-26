@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-19 16:56+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-25 09:01+0000\n"
+"Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -127,6 +127,9 @@ msgstr "移除无效字符后，所有标签都必须少于或等于 %s 字符�
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "所有标签至少要包含 {0} 个字符。"
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -674,6 +677,9 @@ msgstr "审核员工具"
 
 msgid "Admin Tools"
 msgstr "管理工具"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "不正确，请重试。"
@@ -5180,8 +5186,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "享受全球各地音乐 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "收听全球各地超过 20000 个广播电台。"
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "收听全球各地超过 30000 个广播电台。"
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2017-10-19 19:03+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -222,7 +222,7 @@ msgstr[1] "{0} ব্যবহারকারী"
 
 #, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "{0} অ্যাড-অন"
 msgstr[1] "{0} অ্যাড-অন"
 

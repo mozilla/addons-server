@@ -1,12 +1,85 @@
 # -*- coding: utf-8 -*-
 import mock
+from rest_framework import serializers
+from waffle.testutils import override_switch
 
 from olympia.amo.tests import (
-    BaseTestCase, addon_factory, collection_factory, user_factory)
+    BaseTestCase, addon_factory, collection_factory, TestCase, user_factory)
 from olympia.bandwagon.models import CollectionAddon
 from olympia.bandwagon.serializers import (
-    CollectionAddonSerializer, CollectionSerializer,
-    CollectionWithAddonsSerializer)
+    CollectionAddonSerializer, CollectionAkismetSpamValidator,
+    CollectionSerializer, CollectionWithAddonsSerializer)
+from olympia.lib.akismet.models import AkismetReport
+
+
+class TestCollectionAkismetSpamValidator(TestCase):
+    def setUp(self):
+        self.validator = CollectionAkismetSpamValidator(
+            ('name', 'description'))
+        serializer = mock.Mock()
+        serializer.instance = collection_factory(
+            name='name', description='Big Cheese')
+        request = mock.Mock()
+        request.user = user_factory()
+        request.META = {}
+        serializer.context = {'request': request}
+        self.validator.set_context(serializer)
+        self.data = {
+            'name': {'en-US': 'Collection', 'fr': u'Collection'},
+            'description': {'en-US': 'Big Cheese', 'fr': u'une gránd fromagé'},
+            'random_data': {'en-US': 'to ignore'},
+            'slug': 'cheese'}
+
+    @override_switch('akismet-spam-check', active=False)
+    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
+    def test_waffle_off(self, comment_check_mock):
+        self.validator(self.data)
+
+        # No Akismet checks
+        assert AkismetReport.objects.count() == 0
+        comment_check_mock.assert_not_called()
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
+    def test_ham(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+
+        self.validator(self.data)
+
+        # Akismet check is there
+        assert AkismetReport.objects.count() == 2
+        name_report = AkismetReport.objects.first()
+        # name will only be there once because it's duplicated.
+        assert name_report.comment_type == 'collection-name'
+        assert name_report.comment == self.data['name']['en-US']
+        summary_report = AkismetReport.objects.last()
+        # en-US description won't be there because it's an existing description
+        assert summary_report.comment_type == 'collection-description'
+        assert summary_report.comment == self.data['description']['fr']
+
+        assert comment_check_mock.call_count == 2
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
+    def test_spam(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
+
+        with self.assertRaises(serializers.ValidationError):
+            self.validator(self.data)
+
+        # Akismet check is there
+        assert AkismetReport.objects.count() == 2
+        name_report = AkismetReport.objects.first()
+        # name will only be there once because it's duplicated.
+        assert name_report.comment_type == 'collection-name'
+        assert name_report.comment == self.data['name']['en-US']
+        summary_report = AkismetReport.objects.last()
+        # en-US description won't be there because it's an existing description
+        assert summary_report.comment_type == 'collection-description'
+        assert summary_report.comment == self.data['description']['fr']
+
+        # After the first comment_check was spam, additinal ones are skipped.
+        assert comment_check_mock.call_count == 1
 
 
 class TestCollectionSerializer(BaseTestCase):

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2018-09-16 17:15+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -131,6 +131,9 @@ msgstr "Seluruh tag harus berjumlah %s karakter atau kurang setelah karakter yan
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Semua tag panjangnya paling sedikit harus {0} karakter."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -685,6 +688,9 @@ msgstr "Alat Peninjau"
 
 msgid "Admin Tools"
 msgstr "Адміністративні інструменти"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Salah, coba lagi."
@@ -5329,7 +5335,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Nikmati musik dari seluruh dunia {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+#, fuzzy
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr "Akses 20,000+ stasiun radio dari berbagai penjuru dunia."
 
 #. editorial content for the discovery pane.

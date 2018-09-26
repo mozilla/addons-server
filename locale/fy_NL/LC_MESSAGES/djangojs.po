@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2017-09-05 10:08+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -228,7 +228,7 @@ msgstr[1] "{0} brûkers"
 
 #, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "{0} add-ons"
 msgstr[1] "{0} add-ons"
 

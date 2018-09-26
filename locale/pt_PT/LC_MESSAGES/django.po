@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-21 14:50+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-25 14:43+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -131,6 +131,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Todas as etiquetas têm de ter pelo menos {0} caractere."
 msgstr[1] "Todas as etiquetas têm de ter pelo menos {0} caracteres."
+
+msgid "The text entered has been flagged as spam."
+msgstr "O texto introduzido foi marcado como spam."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -696,6 +699,9 @@ msgstr "Ferramentas de revisão"
 
 msgid "Admin Tools"
 msgstr "Ferramentas de administrador"
+
+msgid "Positive integer"
+msgstr "Inteiro positivo"
 
 msgid "Incorrect, please try again."
 msgstr "Incorreto, por favor, tente novamente."
@@ -5318,8 +5324,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Desfrute de música de todo o mundo {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Aceda a 20,000+ estações de rádio de todo o mundo."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Aceda a 30,000+ estações de rádio de todo o mundo."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"

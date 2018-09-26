@@ -32,6 +32,7 @@ from olympia.access import acl
 from olympia.addons.utils import (
     generate_addon_guid, get_creatured_ids, get_featured_ids)
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import (
     BasePreview, BaseQuerySet, ManagerBase, ModelBase, OnChangeMixin,
     SaveUpdateMixin, SlugField, manual_order)
@@ -269,6 +270,7 @@ class AddonManager(ManagerBase):
 
 
 class Addon(OnChangeMixin, ModelBase):
+    id = PositiveAutoField(primary_key=True)
     STATUS_CHOICES = amo.STATUS_CHOICES_ADDON
 
     guid = models.CharField(max_length=255, unique=True, null=True)
@@ -1576,6 +1578,7 @@ class Persona(models.Model):
     """Personas-specific additions to the add-on model."""
     STATUS_CHOICES = amo.STATUS_CHOICES_PERSONA
 
+    id = PositiveAutoField(primary_key=True)
     addon = models.OneToOneField(Addon, null=True)
     persona_id = models.PositiveIntegerField(db_index=True)
     # name: deprecated in favor of Addon model's name field
@@ -1771,6 +1774,7 @@ class MigratedLWT(OnChangeMixin, ModelBase):
 
 
 class AddonCategory(models.Model):
+    id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     category = models.ForeignKey('Category')
     feature = models.BooleanField(default=False)
@@ -1786,6 +1790,7 @@ class AddonCategory(models.Model):
 
 
 class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
+    id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     user = UserForeignKey()
     role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
@@ -1893,6 +1898,7 @@ class AddonApprovalsCounter(ModelBase):
 
 
 class DeniedGuid(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     guid = models.CharField(max_length=255, unique=True)
     comments = models.TextField(default='', blank=True)
 
@@ -1904,6 +1910,7 @@ class DeniedGuid(ModelBase):
 
 
 class Category(OnChangeMixin, ModelBase):
+    id = PositiveAutoField(primary_key=True)
     # Old name translations, we now have constants translated via gettext, but
     # this is for backwards-compatibility, for categories which have a weird
     # type/application/slug combo that is not in the constants.
@@ -1978,6 +1985,7 @@ dbsignals.pre_save.connect(save_signal, sender=Category,
 
 
 class Preview(BasePreview, ModelBase):
+    id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, related_name='previews')
     caption = TranslatedField()
     position = models.IntegerField(default=0)
@@ -1999,6 +2007,7 @@ models.signals.post_delete.connect(Preview.delete_preview_files,
 
 class AppSupport(ModelBase):
     """Cache to tell us if an add-on's current version supports an app."""
+    id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     app = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                       db_column='app_id')
@@ -2026,6 +2035,7 @@ class DeniedSlug(ModelBase):
 
 class FrozenAddon(models.Model):
     """Add-ons in this table never get a hotness score."""
+    id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon)
 
     class Meta:
@@ -2044,6 +2054,7 @@ def freezer(sender, instance, **kw):
 
 class CompatOverride(ModelBase):
     """Helps manage compat info for add-ons not hosted on AMO."""
+    id = PositiveAutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=True, null=True)
     guid = models.CharField(max_length=255, unique=True)
     addon = models.ForeignKey(Addon, blank=True, null=True,
@@ -2119,6 +2130,7 @@ OVERRIDE_TYPES = (
 
 class CompatOverrideRange(ModelBase):
     """App compatibility for a certain version range of a RemoteAddon."""
+    id = PositiveAutoField(primary_key=True)
     compat = models.ForeignKey(CompatOverride, related_name='_compat_ranges')
     type = models.SmallIntegerField(choices=OVERRIDE_TYPES, default=1)
     min_version = models.CharField(
@@ -2152,6 +2164,7 @@ class IncompatibleVersions(ModelBase):
     `version_int` in all cases.  So extra logic needed to be provided for when
     a particular version falls within the range of a compatibility override.
     """
+    id = PositiveAutoField(primary_key=True)
     version = models.ForeignKey(Version, related_name='+')
     app = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                       db_column='app_id')

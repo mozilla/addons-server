@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-21 21:53+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-25 16:56+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -139,6 +139,9 @@ msgstr[0] "Vse oznake morajo biti najmanj {0} znak."
 msgstr[1] "Vse oznake morajo imeti najmanj {0} znaka."
 msgstr[2] "Vse oznake morajo imeti najmanj {0} znake."
 msgstr[3] "Vse oznake morajo imeti najmanj {0} znakov."
+
+msgid "The text entered has been flagged as spam."
+msgstr "Vneseno besedilo je bilo označeno kot neželena vsebina."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -728,6 +731,9 @@ msgstr "Orodja za pregledovalce"
 
 msgid "Admin Tools"
 msgstr "Skrbniška orodja"
+
+msgid "Positive integer"
+msgstr "Pozitivno celo število"
 
 msgid "Incorrect, please try again."
 msgstr "Nepravilno, poskusite znova."
@@ -5377,8 +5383,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Uživajte v glasbi {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Dostopajte do preko 20&thinsp;000 radijskih postaj širom sveta."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Dostopajte do preko 30&thinsp;000 radijskih postaj širom sveta."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"

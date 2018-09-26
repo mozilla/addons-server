@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-18 15:50+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-25 15:41+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -131,6 +131,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Alla taggar måste minst vara {0} tecken."
 msgstr[1] "Alla taggar måste minst vara {0} tecken."
+
+msgid "The text entered has been flagged as spam."
+msgstr "Texten som angivits har flaggats som skräppost."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -689,6 +692,9 @@ msgstr "Granskningsverktyg"
 
 msgid "Admin Tools"
 msgstr "Adminverktyg"
+
+msgid "Positive integer"
+msgstr "Positivt heltal"
 
 msgid "Incorrect, please try again."
 msgstr "Felaktig, försök igen."
@@ -5323,8 +5329,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Njut av musik från hela världen {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Få tillgång till över 20 tusen radiostationer från hela världen."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Få tillgång till över 30 000 radiostationer från hela världen."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-18 08:50+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-25 17:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -140,6 +140,9 @@ msgstr[0] "Wšě znački dyrbja znajmjeńša {0} znamješko měć."
 msgstr[1] "Wšě znački dyrbja znajmjeńša {0} znamješce měć."
 msgstr[2] "Wšě znački dyrbja znajmjeńša {0} znamješka měć."
 msgstr[3] "Wšě znački dyrbja znajmjeńša {0} znamješkow měć."
+
+msgid "The text entered has been flagged as spam."
+msgstr "Tekst, kotryž sće zapodał, je so jako spam markěrował."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -722,6 +725,9 @@ msgstr "Nastroje za přepruwowarjow"
 
 msgid "Admin Tools"
 msgstr "Administratorowe nastroje"
+
+msgid "Positive integer"
+msgstr "Pozitiwna cyła ličba"
 
 msgid "Incorrect, please try again."
 msgstr "Wopak, prošu spytajće hišće raz."
@@ -5337,8 +5343,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Wužiwajće hudźbu z cyłeho swěta {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Poskajće 20.000 radijowych stacijow z cyłeho swěta."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Poskajće 30.000+ radijowych stacijow z cyłeho swěta."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"

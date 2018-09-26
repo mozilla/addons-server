@@ -509,6 +509,8 @@ class ManifestJSONExtractor(object):
             'is_webextension': True,
             'name': self.get('name'),
             'summary': self.get('description'),
+            'homepage': self.get('homepage_url'),
+            'default_locale': self.get('default_locale'),
         }
 
         # Populate certificate information (e.g signed by mozilla or not)
@@ -518,14 +520,12 @@ class ManifestJSONExtractor(object):
 
         if not minimal:
             data.update({
-                'homepage': self.get('homepage_url'),
                 'is_restart_required': False,
                 'apps': list(self.apps()),
                 'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,
                 # Langpacks have strict compatibility enabled, rest of
                 # webextensions don't.
                 'strict_compatibility': data['type'] == amo.ADDON_LPAPP,
-                'default_locale': self.get('default_locale'),
                 'is_experiment': self.is_experiment,
             })
             if self.type == amo.ADDON_EXTENSION:

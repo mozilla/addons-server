@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2018-09-12 21:57+0000\n"
 "Last-Translator: jlG <jlg.l10n.es@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -140,6 +140,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Todas las etiquetas deben tener al menos {0} carácter."
 msgstr[1] "Todas las etiquetas deben tener al menos {0} caracteres."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -705,6 +708,9 @@ msgstr "Herramientas de revisión"
 
 msgid "Admin Tools"
 msgstr "Herramientas de administrador"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Incorrecto, inténtelo de nuevo."
@@ -2504,9 +2510,8 @@ msgstr "La versión {version} ya existe."
 msgid "Continue with existing upload instead?"
 msgstr "¿Continuar con la carga ya existente?"
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "No se ha podido interpretar el archivo subido."
+msgstr "No has enviado un archivo de código fuente."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
@@ -3517,9 +3522,8 @@ msgstr "Descargar {0}"
 msgid "Go to My Submissions"
 msgstr "Ir a Mis envíos"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "Se ha actualizado el código fuente"
+msgstr "Envío de código fuente"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
@@ -3535,7 +3539,7 @@ msgid "Do you use any of the following?"
 msgstr "¿Usas alguno de los siguientes?"
 
 msgid "Code minifiers or obfuscators"
-msgstr ""
+msgstr "Compactadores u ofuscadores de código"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr ""
@@ -3580,11 +3584,10 @@ msgid "Include instructions in a README file in the source code,"
 msgstr "Incluye las instrucciones en un archivo README en el código fuente,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr ""
+msgstr "o en las notas del revisor en la página siguiente (si se aplica)."
 
-#, fuzzy
 msgid "Upload source code:"
-msgstr "Código fuente"
+msgstr "Enviar código fuente:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "Acuerdo de distribución de complementos"
@@ -5394,7 +5397,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Disfruta de música de diferentes partes del mundo {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+#, fuzzy
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr "Accede a más de 20.000 estaciones de radio de todo el mundo."
 
 #. editorial content for the discovery pane.

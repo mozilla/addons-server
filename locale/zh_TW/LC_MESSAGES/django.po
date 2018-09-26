@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-18 08:15+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-25 14:38+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -127,6 +127,9 @@ msgstr "移除無效的字元之後所有的標籤都必須少於或等於 %s �
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "所有的標籤至少為 {0} 字元。"
+
+msgid "The text entered has been flagged as spam."
+msgstr "輸入的文字已被標示為垃圾留言。"
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -673,6 +676,9 @@ msgstr "審核者工具"
 
 msgid "Admin Tools"
 msgstr "管理員工具"
+
+msgid "Positive integer"
+msgstr "正整數"
 
 msgid "Incorrect, please try again."
 msgstr "不正確，請再試一次。"
@@ -5251,7 +5257,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.

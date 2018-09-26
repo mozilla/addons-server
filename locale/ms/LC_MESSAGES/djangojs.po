@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-17 12:09+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-17 11:00+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -217,8 +217,8 @@ msgid_plural "{0} users"
 msgstr[0] "{0} pengguna"
 
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
-msgstr[0] "{0} add-ons"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} add-on"
 
 msgid "{0} collection"
 msgid_plural "{0} collections"

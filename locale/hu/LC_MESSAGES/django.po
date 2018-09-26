@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-18 07:16+0000\n"
-"PO-Revision-Date: 2018-09-18 09:40+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-25 08:28+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -139,6 +139,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "A címkéknek legalább {0} karakterből kell állnia."
 msgstr[1] "A címkéknek legalább {0} karakterből kell állnia."
+
+msgid "The text entered has been flagged as spam."
+msgstr "A megadott szöveg spamként lett megjelölve."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -703,6 +706,9 @@ msgstr "Szerkesztői eszközök"
 
 msgid "Admin Tools"
 msgstr "Admin eszközök"
+
+msgid "Positive integer"
+msgstr "Pozitív egész"
 
 msgid "Incorrect, please try again."
 msgstr "Helytelen, kérjük próbálja meg újra."
@@ -5312,8 +5318,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Élvezze a zenét a világ minden tájáról {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Érjen el több mint 20.000 rádióállomást szerte a világból."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Érjen el több mint 30.000 rádióállomást szerte a világból."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
