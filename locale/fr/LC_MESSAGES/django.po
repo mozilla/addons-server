@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2018-09-25 21:11+0000\n"
-"Last-Translator: goofy <goofy@babelzilla.org>\n"
+"PO-Revision-Date: 2018-09-26 13:01+0000\n"
+"Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -140,7 +140,7 @@ msgstr[0] "Toutes les étiquettes doivent avoir au moins {0} caractère."
 msgstr[1] "Toutes les étiquettes doivent avoir au moins {0} caractères."
 
 msgid "The text entered has been flagged as spam."
-msgstr ""
+msgstr "Le texte saisi a été marqué comme spam."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -710,7 +710,7 @@ msgid "Admin Tools"
 msgstr "Outils d’administration"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "Entier positif"
 
 msgid "Incorrect, please try again."
 msgstr "Incorrect, veuillez réessayer."
@@ -2497,7 +2497,7 @@ msgid "Override failed validation"
 msgstr "Passer outre la validation échouée"
 
 msgid "Need to select at least one application."
-msgstr ""
+msgstr "Choisissez au moins une application."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "La version {version} a déjà été envoyée et supprimée."
