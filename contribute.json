@@ -10,7 +10,16 @@
         "home": "https://wiki.mozilla.org/Add-ons/Contribute/AMO/Code",
         "docs": "http://addons-server.readthedocs.io/",
         "irc": "irc://irc.mozilla.org/#amo",
-        "irc-contacts": ["andym", "cgrebs", "kumar", "mat", "mstriemer", "muffinresearch", "tofumatt"]
+        "irc-contacts": [
+            "bsilverberg", 
+            "cgrebs", 
+            "eviljeff", 
+            "kumar", 
+            "mat", 
+            "muffinresearch", 
+            "rebm", 
+            "willdurand"
+        ]
     },
     "bugs": {
         "list": "https://github.com/mozilla/addons-server/issues",
