@@ -1,6 +1,6 @@
 {
     "name": "Olympia",
-    "description": "Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey.",
+    "description": "Mozilla's official site for add-ons for Firefox and Firefox for Android",
     "repository": {
         "url": "https://github.com/mozilla/addons-server",
         "license": "BSD 3-Clause",
@@ -10,7 +10,16 @@
         "home": "https://wiki.mozilla.org/Add-ons/Contribute/AMO/Code",
         "docs": "http://addons-server.readthedocs.io/",
         "irc": "irc://irc.mozilla.org/#amo",
-        "irc-contacts": ["andym", "cgrebs", "kumar", "mat", "mstriemer", "muffinresearch", "tofumatt"]
+        "irc-contacts": [
+            "bsilverberg", 
+            "cgrebs", 
+            "eviljeff", 
+            "kumar", 
+            "mat", 
+            "muffinresearch", 
+            "rebm", 
+            "willdurand"
+        ]
     },
     "bugs": {
         "list": "https://github.com/mozilla/addons-server/issues",
