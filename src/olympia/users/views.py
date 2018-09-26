@@ -4,7 +4,6 @@ from operator import attrgetter
 
 from django import http
 from django.conf import settings
-from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.http import is_safe_url
 from django.utils.translation import ugettext
@@ -61,7 +60,6 @@ def user_view(f):
 
 @login_required(redirect=False)
 @json_view
-@non_atomic_requests
 def ajax(request):
     """Query for a user matching a given email."""
 
@@ -223,7 +221,6 @@ def logout(request):
 
 
 @user_view
-@non_atomic_requests
 def profile(request, user):
     # Get user's own and favorite collections, if they allowed that.
     own_coll = fav_coll = []
@@ -266,7 +263,6 @@ def profile(request, user):
 
 
 @user_view
-@non_atomic_requests
 def themes(request, user, category=None):
     cats = Category.objects.filter(type=amo.ADDON_PERSONA)
 

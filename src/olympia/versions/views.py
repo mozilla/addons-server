@@ -1,7 +1,6 @@
 import os
 
 from django import http
-from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 
 import olympia.core.logger
@@ -38,7 +37,6 @@ def _version_list_qs(addon):
 
 
 @addon_view
-@non_atomic_requests
 def version_list(request, addon):
     qs = _version_list_qs(addon)
     versions = amo.utils.paginate(request, qs, PER_PAGE)
@@ -49,7 +47,6 @@ def version_list(request, addon):
 
 
 @addon_view
-@non_atomic_requests
 def version_detail(request, addon, version_num):
     # TODO: Does setting this in memcachd even make sense?
     # This is specific to an add-ons version so the chance of this hitting
@@ -74,7 +71,6 @@ def version_detail(request, addon, version_num):
 
 
 @addon_view
-@non_atomic_requests
 def update_info(request, addon, version_num):
     version = Version.objects.filter(addon=addon, version=version_num,
                                      files__status__in=amo.VALID_FILE_STATUSES,
@@ -86,7 +82,6 @@ def update_info(request, addon, version_num):
                   content_type='application/xhtml+xml')
 
 
-@non_atomic_requests
 def update_info_redirect(request, version_id):
     version = get_object_or_404(Version.objects, pk=version_id)
     return redirect(reverse('addons.versions.update_info',
@@ -95,7 +90,6 @@ def update_info_redirect(request, version_id):
 
 
 # Should accept junk at the end for filename goodness.
-@non_atomic_requests
 def download_file(request, file_id, type=None, file_=None, addon=None):
     def is_appropriate_reviewer(addon, channel):
         return (acl.is_reviewer(request, addon)
@@ -151,7 +145,6 @@ def guard():
 
 
 @addon_view_factory(guard)
-@non_atomic_requests
 def download_latest(request, addon, type='xpi', platform=None):
     platforms = [amo.PLATFORM_ALL.id]
     if platform is not None and int(platform) in amo.PLATFORMS:
@@ -168,7 +161,6 @@ def download_latest(request, addon, type='xpi', platform=None):
                          addon=addon)
 
 
-@non_atomic_requests
 def download_source(request, version_id):
     version = get_object_or_404(Version.objects, pk=version_id)
 

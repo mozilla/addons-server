@@ -117,6 +117,8 @@ def get_db_config(environ_var):
 
     values.update({
         # Run all views in a transaction unless they are decorated not to.
+        # FIXME: only makes sense for the 'default' database, the write one.
+        # No need to do it for the other ones!
         'ATOMIC_REQUESTS': True,
         # Pool our database connections up for 300 seconds
         'CONN_MAX_AGE': 300,
@@ -459,6 +461,8 @@ SECURE_HSTS_SECONDS = 31536000
 USE_X_FORWARDED_PORT = True
 
 MIDDLEWARE = (
+    # Our middleware to handle transactions needs to be at the top.
+    'olympia.amo.middleware.AtomicRequestsForUnsafeHttpMethodsMiddleware',
     # Test if it's an API request first so later middlewares don't need to.
     'olympia.api.middleware.IdentifyAPIRequestMiddleware',
     # Gzip (for API only) middleware needs to be executed after every

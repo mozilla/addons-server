@@ -1,6 +1,5 @@
 from django.conf.urls import include, url
 from django.urls import reverse
-from django.db.transaction import non_atomic_requests
 from django.shortcuts import redirect
 
 from olympia.addons.urls import ADDON_ID
@@ -19,7 +18,6 @@ browser_re = '(?P<version>[^/]+)/(?P<platform>[^/]+)'
 compat_mode_re = '(?:/(?P<compat_mode>strict|normal|ignore))?'
 
 
-@non_atomic_requests
 def pane_redirect(req, **kw):
     kw['compat_mode'] = views.get_compat_mode(kw.get('version'))
     return redirect(reverse('discovery.pane', kwargs=kw), permanent=False)

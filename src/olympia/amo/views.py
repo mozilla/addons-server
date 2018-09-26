@@ -3,7 +3,6 @@ import os
 
 from django import http
 from django.conf import settings
-from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.cache import never_cache
 
@@ -17,7 +16,6 @@ from . import monitors
 
 
 @never_cache
-@non_atomic_requests
 def monitor(request):
     # For each check, a boolean pass/fail status to show in the template
     status_summary = {}
@@ -41,7 +39,6 @@ def monitor(request):
     return http.HttpResponse(json.dumps(status_summary), status=status_code)
 
 
-@non_atomic_requests
 def robots(request):
     """Generate a robots.txt"""
     _service = (request.META['SERVER_NAME'] == settings.SERVICES_DOMAIN)
@@ -53,13 +50,11 @@ def robots(request):
     return HttpResponse(template, content_type="text/plain")
 
 
-@non_atomic_requests
 def contribute(request):
     path = os.path.join(settings.ROOT, 'contribute.json')
     return HttpResponse(open(path, 'rb'), content_type='application/json')
 
 
-@non_atomic_requests
 def handler403(request):
     if request.is_legacy_api:
         # Pass over to handler403 view in api if api was targeted.
@@ -68,7 +63,6 @@ def handler403(request):
         return render(request, 'amo/403.html', status=403)
 
 
-@non_atomic_requests
 def handler404(request):
     if request.is_api:
         # It's a v3+ api request
@@ -85,7 +79,6 @@ def handler404(request):
         return render(request, 'amo/404.html', status=404)
 
 
-@non_atomic_requests
 def handler500(request):
     if request.is_legacy_api:
         # Pass over to handler500 view in api if api was targeted.
@@ -94,7 +87,6 @@ def handler500(request):
         return render(request, 'amo/500.html', status=500)
 
 
-@non_atomic_requests
 def csrf_failure(request, reason=''):
     from django.middleware.csrf import REASON_NO_REFERER, REASON_NO_CSRF_COOKIE
     ctx = {
@@ -105,13 +97,11 @@ def csrf_failure(request, reason=''):
     return render(request, 'amo/403.html', ctx, status=403)
 
 
-@non_atomic_requests
 def loaded(request):
     return http.HttpResponse('%s' % request.META['wsgi.loaded'],
                              content_type='text/plain')
 
 
-@non_atomic_requests
 def version(request):
     path = os.path.join(settings.ROOT, 'version.json')
     return HttpResponse(open(path, 'rb'), content_type='application/json')

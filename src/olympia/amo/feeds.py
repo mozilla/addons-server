@@ -1,8 +1,6 @@
 import re
 
 from django.contrib.syndication.views import Feed
-from django.db.transaction import non_atomic_requests
-from django.utils.decorators import method_decorator
 
 
 class BaseFeed(Feed):
@@ -14,13 +12,6 @@ class BaseFeed(Feed):
     # would raise UnserializableContentError. Pretty much all control chars
     # except things like line feed, carriage return etc which are fine.
     CONTROL_CHARS_REGEXP = r'[\x00-\x08\x0B-\x0C\x0E-\x1F]'
-
-    # Feeds are special because they don't inherit from generic Django class
-    # views so you can't decorate dispatch() to add non_atomic_requests
-    # decorator.
-    @method_decorator(non_atomic_requests)
-    def __call__(self, *args, **kwargs):
-        return super(BaseFeed, self).__call__(*args, **kwargs)
 
     # When the feed is being built we go through this method for each attribute
     # we're returning, so we can use it to strip XML control chars before they

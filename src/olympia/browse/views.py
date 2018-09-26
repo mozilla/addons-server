@@ -3,7 +3,6 @@ import collections
 from operator import attrgetter
 
 from django.conf import settings
-from django.db.transaction import non_atomic_requests
 from django.http import (
     Http404, HttpResponsePermanentRedirect, HttpResponseRedirect)
 from django.shortcuts import get_object_or_404, redirect
@@ -122,7 +121,6 @@ def _get_locales(addons):
 
 # We never use the category, but this makes it
 # uniform with the other type listings.
-@non_atomic_requests
 def language_tools(request, category=None):
     types = (amo.ADDON_DICT, amo.ADDON_LPAPP)
     addons = (Addon.objects.public()
@@ -137,7 +135,6 @@ def language_tools(request, category=None):
                    'search_cat': '%s,0' % amo.ADDON_DICT})
 
 
-@non_atomic_requests
 def themes(request, category=None):
     TYPE = amo.ADDON_THEME
     if category is not None:
@@ -160,7 +157,6 @@ def themes(request, category=None):
                    'search_cat': '%s,0' % TYPE, 'src': src, 'dl_src': dl_src})
 
 
-@non_atomic_requests
 def extensions(request, category=None):
     TYPE = amo.ADDON_EXTENSION
 
@@ -207,7 +203,6 @@ class CategoryLandingFilter(BaseFilter):
         return manual_order(qs, self.ids, pk_name='addons.id')
 
 
-@non_atomic_requests
 def category_landing(request, category, addon_type=amo.ADDON_EXTENSION,
                      Filter=CategoryLandingFilter):
     base = (Addon.objects.listed(request.APP)
@@ -221,7 +216,6 @@ def category_landing(request, category, addon_type=amo.ADDON_EXTENSION,
                    'search_cat': '%s,0' % category.type})
 
 
-@non_atomic_requests
 def creatured(request, category):
     TYPE = amo.ADDON_EXTENSION
     q = Category.objects.filter(application=request.APP.id, type=TYPE)
@@ -294,7 +288,6 @@ def personas_listing(request, category_slug=None):
     return categories, filter_, base, cat
 
 
-@non_atomic_requests
 def personas(request, category=None):
     listing = personas_listing(request, category)
 
@@ -340,7 +333,6 @@ def personas(request, category=None):
     return render(request, template, ctx)
 
 
-@non_atomic_requests
 def legacy_theme_redirects(request, category=None, category_name=None):
     url = None
 
@@ -369,7 +361,6 @@ def legacy_theme_redirects(request, category=None, category_name=None):
         raise Http404
 
 
-@non_atomic_requests
 def legacy_fulltheme_redirects(request, category=None):
     """Full Themes have already been renamed to Complete Themes!"""
     url = request.get_full_path().replace('/full-themes',
@@ -378,7 +369,6 @@ def legacy_fulltheme_redirects(request, category=None):
 
 
 @cache_page(60 * 60 * 24 * 365)
-@non_atomic_requests
 def legacy_creatured_redirect(request, category):
     category = get_object_or_404(Category.objects, slug=category,
                                  application=request.APP.id)
@@ -386,7 +376,6 @@ def legacy_creatured_redirect(request, category):
 
 
 @cache_page(60 * 60 * 24 * 365)
-@non_atomic_requests
 def legacy_redirects(request, type_, category=None, sort=None, format=None):
     type_slug = amo.ADDON_SLUGS.get(int(type_), 'extensions')
     if not category or category == 'all':
@@ -438,7 +427,6 @@ class SearchExtensionsFilter(AddonFilter):
             ('created', _(u'Recently Added')),)
 
 
-@non_atomic_requests
 def search_tools(request, category=None):
     """View the search tools page."""
     APP, TYPE = request.APP, amo.ADDON_SEARCH
