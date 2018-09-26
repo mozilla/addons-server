@@ -1,6 +1,6 @@
 {
     "name": "Olympia",
-    "description": "Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey.",
+    "description": "Mozilla's official site for add-ons for Firefox and Firefox for Android",
     "repository": {
         "url": "https://github.com/mozilla/addons-server",
         "license": "BSD 3-Clause",
