@@ -4,8 +4,6 @@ import os.path
 
 from datetime import datetime, timedelta
 
-from waffle.testutils import override_switch
-
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
@@ -934,7 +932,6 @@ class TestStatusFromUpload(TestVersionFromUpload):
             amo.STATUS_DISABLED)
 
 
-@override_switch('allow-static-theme-uploads', active=True)
 class TestStaticThemeFromUpload(UploadTest):
 
     def setUp(self):

@@ -457,7 +457,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             mock.call(f)
             for f in latest_version.all_files])
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_button_shown(self):
         response = self.client.get(reverse(
             'devhub.submit.upload', args=['listed']), follow=True)
@@ -475,21 +474,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert doc('#wizardlink').attr('href') == (
             reverse('devhub.submit.wizard', args=['unlisted']))
 
-    @override_switch('allow-static-theme-uploads', active=False)
-    def test_static_theme_wizard_button_not_shown(self):
-        response = self.client.get(reverse(
-            'devhub.submit.upload', args=['listed']), follow=True)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#wizardlink')
-
-        response = self.client.get(reverse(
-            'devhub.submit.upload', args=['unlisted']), follow=True)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#wizardlink')
-
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_submit_listed(self):
         assert Addon.objects.count() == 0
         path = os.path.join(
@@ -507,7 +491,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert storage.exists(previews[0].image_path)
         assert storage.exists(previews[1].image_path)
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_submit_unlisted(self):
         assert Addon.unfiltered.count() == 0
         path = os.path.join(
@@ -525,7 +508,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_listed(self):
         # Check we get the correct template.
         url = reverse('devhub.submit.wizard', args=['listed'])
@@ -555,7 +537,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert storage.exists(previews[0].image_path)
         assert storage.exists(previews[1].image_path)
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_unlisted(self):
         # Check we get the correct template.
         url = reverse('devhub.submit.wizard', args=['unlisted'])
@@ -1584,15 +1565,6 @@ class VersionSubmitUploadMixin(object):
         response = self.client.get(self.url)
         assert response.status_code == 200
 
-    @override_switch('allow-static-theme-uploads', active=False)
-    def test_static_theme_wizard_button_not_shown(self):
-        self.addon.update(type=amo.ADDON_STATICTHEME)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#wizardlink')
-
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_button_not_shown_for_extensions(self):
         assert self.addon.type != amo.ADDON_STATICTHEME
         response = self.client.get(self.url)
@@ -1600,7 +1572,6 @@ class VersionSubmitUploadMixin(object):
         doc = pq(response.content)
         assert not doc('#wizardlink')
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_button_shown(self):
         channel = ('listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else
                    'unlisted')
@@ -1613,7 +1584,6 @@ class VersionSubmitUploadMixin(object):
             reverse('devhub.submit.version.wizard',
                     args=[self.addon.slug, channel]))
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard(self):
         channel = ('listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else
                    'unlisted')
