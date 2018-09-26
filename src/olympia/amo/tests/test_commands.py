@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import io
 from importlib import import_module
 
 from django.conf import settings
@@ -51,7 +52,10 @@ def test_compress_assets_command_without_git():
     settings.MINIFY_BUNDLES = {
         'css': {'zamboni/css': ['css/legacy/main.css']}}
 
-    call_command('compress_assets')
+    # Capture output to avoid it being logged and allow us to validate it
+    # later if needed
+    out = io.BytesIO()
+    call_command('compress_assets', stdout=out)
 
     build_id_file = os.path.realpath(os.path.join(settings.ROOT, 'build.py'))
     assert os.path.exists(build_id_file)
@@ -61,7 +65,7 @@ def test_compress_assets_command_without_git():
 
     # Call command a second time. We should get a different build id, since it
     # depends on a uuid.
-    call_command('compress_assets')
+    call_command('compress_assets', stdout=out)
     with open(build_id_file) as f:
         contents_after = f.read()
 
@@ -80,9 +84,13 @@ def test_compress_assets_correctly_fetches_static_images(settings, tmpdir):
     settings.MINIFY_BUNDLES = {
         'css': {'zamboni/css': ['css/legacy/main.css']}}
 
+    # Capture output to avoid it being logged and allow us to validate it
+    # later if needed
+    out = io.BytesIO()
+
     # Now run compress and collectstatic
-    call_command('compress_assets', force=True)
-    call_command('collectstatic', interactive=False)
+    call_command('compress_assets', force=True, stdout=out)
+    call_command('collectstatic', interactive=False, stdout=out)
 
     css_all = os.path.join(
         settings.STATIC_ROOT, 'css', 'zamboni', 'css-all.css')
