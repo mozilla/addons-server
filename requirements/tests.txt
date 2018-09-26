@@ -2,7 +2,7 @@
 apipkg==1.5 \
     --hash=sha256:58587dd4dc3daefad0487f6d9ae32b4542b185e1c36db6993290e7c41ca2b47c \
     --hash=sha256:37228cda29411948b422fae072f57e31d3396d2ee1c9783775980ee9c9990af6
-# execnet is required by pytest-cache, pytest-xdist
+# execnet is required by pytest-xdist
 execnet==1.5.0 \
     --hash=sha256:fc155a6b553c66c838d1a22dba1dc9f5f505c43285a878c6f74a79c024750b83 \
     --hash=sha256:a7a84d5fa07a089186a329528f127c9d73b9de57f1a1131b82bb5320ee651f6a
@@ -24,12 +24,10 @@ psutil==5.4.7 \
 py==1.6.0 \
     --hash=sha256:50402e9d1c9005d759426988a492e0edaadb7f4e68bcddfea586bc7432d009c6 \
     --hash=sha256:06a30435d058473046be836d3fc4f27167fd84c45b99704f2fb5509ef61f9af1
-# pytest is required by amo-validator, pytest-base-url, pytest-cache, pytest-cov, pytest-django, pytest-html, pytest-instafail, pytest-selenium, pytest-variables, pytest-xdist
+# pytest is required by amo-validator, pytest-base-url, pytest-cov, pytest-django, pytest-html, pytest-instafail, pytest-selenium, pytest-variables, pytest-xdist
 pytest==3.8.1 \
     --hash=sha256:0a72d8a9f559c006ba153e0c9b4838efd7b656cf1f993747ba7128770d6eb12c \
     --hash=sha256:95529588ff4e85114a0b0ad8e9cf0131ca47d46b28230e25366c5aba66b1d854
-pytest-cache==1.0 \
-    --hash=sha256:be7468edd4d3d83f1e844959fd6e3fd28e77a481440a7118d430130ea31b07a9
 pytest-django==3.4.3 \
     --hash=sha256:49e9ffc856bc6a1bec1c26c5c7b7213dff7cc8bc6b64d624c4d143d04aff0bcf \
     --hash=sha256:b379282feaf89069cb790775ab6bbbd2bd2038a68c7ef9b84a41898e0b551081
