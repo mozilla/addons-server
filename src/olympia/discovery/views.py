@@ -1,3 +1,6 @@
+from django.db.transaction import non_atomic_requests
+from django.utils.decorators import classonlymethod
+
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
@@ -68,6 +71,12 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
         serializer = self.get_serializer(queryset, many=True)
         return Response({'results': serializer.data, 'count': len(queryset)})
 
+    @classonlymethod
+    def as_view(cls, actions=None, **initkwargs):
+        view = super(DiscoveryViewSet, cls).as_view(
+            actions=actions, **initkwargs)
+        return non_atomic_requests(view)
+
 
 class DiscoveryItemViewSet(ListModelMixin, GenericViewSet):
     pagination_class = None
@@ -81,3 +90,9 @@ class DiscoveryItemViewSet(ListModelMixin, GenericViewSet):
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
         return Response({'results': serializer.data})
+
+    @classonlymethod
+    def as_view(cls, actions=None, **initkwargs):
+        view = super(DiscoveryItemViewSet, cls).as_view(
+            actions=actions, **initkwargs)
+        return non_atomic_requests(view)

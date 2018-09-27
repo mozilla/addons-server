@@ -1,4 +1,5 @@
 from django.conf.urls import include, url
+from django.db.transaction import non_atomic_requests
 
 from olympia.addons.urls import ADDON_ID
 from olympia.legacy_api import views
@@ -6,6 +7,7 @@ from olympia.legacy_api import views
 
 # Wrap class views in a lambda call so we get an fresh instance of the class
 # for thread-safety.
+@non_atomic_requests
 def api_view(cls):
     return lambda *args, **kw: cls()(*args, **kw)
 

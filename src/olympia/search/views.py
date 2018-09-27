@@ -1,5 +1,6 @@
 from django import http
 from django.db.models import Q
+from django.db.transaction import non_atomic_requests
 from django.utils.encoding import force_bytes
 from django.utils.translation import ugettext
 from django.views.decorators.vary import vary_on_headers
@@ -177,6 +178,7 @@ class PersonaSuggestionsAjax(SearchSuggestionsAjax):
 
 
 @json_view
+@non_atomic_requests
 def ajax_search(request):
     """This is currently used only to return add-ons for populating a
     new collection. Themes (formerly Personas) are included by default, so
@@ -189,6 +191,7 @@ def ajax_search(request):
 
 
 @json_view
+@non_atomic_requests
 def ajax_search_suggestions(request):
     cat = request.GET.get('cat', 'all')
     suggesterClass = {
@@ -298,6 +301,7 @@ def _filter_search(request, qs, query, filters, sorting,
 
 
 @vary_on_headers('X-PJAX')
+@non_atomic_requests
 def search(request, tag_name=None):
     APP = request.APP
     types = (amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,

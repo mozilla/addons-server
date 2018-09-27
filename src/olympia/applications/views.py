@@ -1,3 +1,4 @@
+from django.db.transaction import non_atomic_requests
 from django.utils.translation import ugettext
 
 import waffle
@@ -27,6 +28,7 @@ def get_versions(order=('application', 'version_int')):
     return cache_get_or_set('getv' + ':'.join(order), fetch_versions)
 
 
+@non_atomic_requests
 def appversions(request):
     apps, versions = get_versions()
     return render(request, 'applications/appversions.html',

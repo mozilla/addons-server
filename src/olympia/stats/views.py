@@ -13,6 +13,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.files.storage import get_storage_class
 from django.db import connection
 from django.db.models import Q
+from django.db.transaction import non_atomic_requests
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 
 from dateutil.parser import parse
@@ -49,6 +50,7 @@ GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
 storage = get_storage_class()()
 
 
+@non_atomic_requests
 def dashboard(request):
     stats_base_url = reverse('stats.dashboard')
     view = get_report_view(request)
@@ -141,6 +143,7 @@ def extract(dicts):
 
 
 @addon_view_stats
+@non_atomic_requests
 def overview_series(request, addon, group, start, end, format):
     """Combines downloads_series and updates_series into one payload."""
     date_range = check_series_params_or_404(group, start, end, format)
@@ -186,6 +189,7 @@ def zip_overview(downloads, updates):
 
 
 @addon_view_stats
+@non_atomic_requests
 def downloads_series(request, addon, group, start, end, format):
     """Generate download counts grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
@@ -200,6 +204,7 @@ def downloads_series(request, addon, group, start, end, format):
 
 
 @addon_view_stats
+@non_atomic_requests
 def sources_series(request, addon, group, start, end, format):
     """Generate download source breakdown."""
     date_range = check_series_params_or_404(group, start, end, format)
@@ -217,6 +222,7 @@ def sources_series(request, addon, group, start, end, format):
 
 
 @addon_view_stats
+@non_atomic_requests
 def usage_series(request, addon, group, start, end, format):
     """Generate ADU counts grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
@@ -233,6 +239,7 @@ def usage_series(request, addon, group, start, end, format):
 
 
 @addon_view_stats
+@non_atomic_requests
 def usage_breakdown_series(request, addon, group,
                            start, end, format, field):
     """Generate ADU breakdown of ``field``."""
@@ -317,6 +324,7 @@ def check_stats_permission(request, addon):
 
 
 @addon_view_stats
+@non_atomic_requests
 def stats_report(request, addon, report):
     check_stats_permission(request, addon)
     stats_base_url = reverse('stats.overview', args=[addon.slug])
@@ -326,6 +334,7 @@ def stats_report(request, addon, report):
                    'stats_base_url': stats_base_url})
 
 
+@non_atomic_requests
 def site_stats_report(request, report):
     stats_base_url = reverse('stats.dashboard')
     view = get_report_view(request)
@@ -372,6 +381,7 @@ def get_daterange_or_404(start, end):
 
 
 @json_view
+@non_atomic_requests
 def site_events(request, start, end):
     """Return site events in the given timeframe."""
     start, end = get_daterange_or_404(start, end)
@@ -458,6 +468,7 @@ def _site_query(period, start, end, field=None, request=None):
     return result.values(), _CACHED_KEYS
 
 
+@non_atomic_requests
 def site(request, format, group, start=None, end=None):
     """Site data from the global_stats table."""
     if not start and not end:
@@ -476,6 +487,7 @@ def site(request, format, group, start=None, end=None):
     return render_json(request, None, series)
 
 
+@non_atomic_requests
 def site_series(request, format, group, start, end, field):
     """Pull a single field from the site_query data"""
     start, end = get_daterange_or_404(start, end)
@@ -539,6 +551,7 @@ class UnicodeCSVDictWriter(csv.DictWriter):
 
 
 @allow_cross_site_request
+@non_atomic_requests
 def render_csv(request, addon, stats, fields,
                title=None, show_disclaimer=None):
     """Render a stats series in CSV."""
@@ -559,6 +572,7 @@ def render_csv(request, addon, stats, fields,
 
 
 @allow_cross_site_request
+@non_atomic_requests
 def render_json(request, addon, stats):
     """Render a stats series in JSON."""
     response = http.HttpResponse(content_type='text/json')

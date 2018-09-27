@@ -1,6 +1,7 @@
 import json
 
 from django import http
+from django.db.transaction import non_atomic_requests
 from django.forms.models import modelformset_factory
 from django.shortcuts import get_object_or_404, redirect
 
@@ -37,6 +38,7 @@ def get_compat_mode(version):
     return 'ignore' if vint >= version_int('10.0') else 'strict'
 
 
+@non_atomic_requests
 def pane(request, version, platform, compat_mode=None):
 
     if not compat_mode:
@@ -56,6 +58,7 @@ def pane(request, version, platform, compat_mode=None):
                    'promovideo': promovideo, 'compat_mode': compat_mode})
 
 
+@non_atomic_requests
 def pane_account(request):
     try:
         qs = GlobalStat.objects.filter(name='addon_total_downloads')
@@ -67,6 +70,7 @@ def pane_account(request):
                   {'addon_downloads': addon_downloads})
 
 
+@non_atomic_requests
 def promos(request, context, version, platform, compat_mode='strict'):
     if platform:
         platform = platform.lower()
@@ -76,6 +80,7 @@ def promos(request, context, version, platform, compat_mode='strict'):
                   {'modules': modules, 'module_context': context})
 
 
+@non_atomic_requests
 def pane_promos(request, version, platform, compat_mode=None):
     if not compat_mode:
         compat_mode = get_compat_mode(version)
@@ -83,6 +88,7 @@ def pane_promos(request, version, platform, compat_mode=None):
     return promos(request, 'discovery', version, platform, compat_mode)
 
 
+@non_atomic_requests
 def pane_more_addons(request, section, version, platform, compat_mode=None):
     if not compat_mode:
         compat_mode = get_compat_mode(version)
@@ -122,6 +128,7 @@ def get_featured_personas(request, category=None, num_personas=6):
     return manual_order(base, ids, 'addons.id')[:num_personas]
 
 
+@non_atomic_requests
 def api_view(request, platform, version, list_type, api_version=1.5,
              format='json', content_type='application/json',
              compat_mode='strict'):
@@ -135,6 +142,7 @@ def api_view(request, platform, version, list_type, api_version=1.5,
 
 
 @admin_required
+@non_atomic_requests
 def module_admin(request):
     APP = request.APP
     # Custom sorting to drop ordering=NULL objects to the bottom.
@@ -169,6 +177,7 @@ def _sync_db_and_registry(qs, app_id):
 
 
 @addon_view
+@non_atomic_requests
 def addon_detail(request, addon):
     reviews = Rating.without_replies.all().filter(addon=addon, is_latest=True)
     src = request.GET.get('src', 'discovery-details')
@@ -178,6 +187,7 @@ def addon_detail(request, addon):
 
 
 @addon_view
+@non_atomic_requests
 def addon_eula(request, addon, file_id):
     if not addon.eula:
         return http.HttpResponseRedirect(reverse('discovery.addons.detail',

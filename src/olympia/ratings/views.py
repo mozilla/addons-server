@@ -1,6 +1,7 @@
 from django import http
 from django.core.exceptions import PermissionDenied
 from django.db.models import Prefetch, Q
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.encoding import force_text
 from django.utils.translation import ugettext
@@ -40,6 +41,7 @@ addon_view = addon_view_factory(qs=Addon.objects.valid)
 
 
 @addon_view
+@non_atomic_requests
 def review_list(request, addon, review_id=None, user_id=None):
     qs = Rating.without_replies.all().filter(
         addon=addon).order_by('-created')

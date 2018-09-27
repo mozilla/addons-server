@@ -2,6 +2,7 @@ from collections import OrderedDict
 
 from django import http
 from django.db.models import Prefetch
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.cache import patch_cache_control
 from django.utils.decorators import method_decorator
@@ -68,6 +69,7 @@ addon_valid_disabled_pending_view = addon_view_factory(
 
 
 @addon_valid_disabled_pending_view
+@non_atomic_requests
 def addon_detail(request, addon):
     """Add-ons details page dispatcher."""
     if addon.is_deleted or (addon.is_pending() and not addon.is_persona()):
@@ -100,6 +102,7 @@ def addon_detail(request, addon):
 
 
 @vary_on_headers('X-Requested-With')
+@non_atomic_requests
 def extension_detail(request, addon):
     """Extensions details page."""
     # If current version is incompatible with this app, redirect.
@@ -144,6 +147,7 @@ def _category_personas(qs, limit):
     return cache_get_or_set(key, fetch_personas)
 
 
+@non_atomic_requests
 def persona_detail(request, addon):
     """Details page for Personas."""
     if not (addon.is_public() or addon.is_pending()):
@@ -290,6 +294,7 @@ class ESBaseFilter(BaseFilter):
         return self.base_queryset.order_by(sorts[field])
 
 
+@non_atomic_requests
 def home(request):
     addons = Addon.objects
 
@@ -322,6 +327,7 @@ def home(request):
                    'src': 'homepage', 'collections': collections})
 
 
+@non_atomic_requests
 def homepage_promos(request):
     from olympia.legacy_discovery.views import promos
     version, platform = request.GET.get('version'), request.GET.get('platform')
@@ -331,6 +337,7 @@ def homepage_promos(request):
 
 
 @addon_view
+@non_atomic_requests
 def eula(request, addon, file_id=None):
     if not addon.eula:
         return http.HttpResponseRedirect(addon.get_url_path())
@@ -343,6 +350,7 @@ def eula(request, addon, file_id=None):
 
 
 @addon_view
+@non_atomic_requests
 def privacy(request, addon):
     if not addon.privacy_policy:
         return http.HttpResponseRedirect(addon.get_url_path())
@@ -351,6 +359,7 @@ def privacy(request, addon):
 
 
 @addon_view
+@non_atomic_requests
 def license(request, addon, version=None):
     if version is not None:
         qs = addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED,
@@ -364,12 +373,14 @@ def license(request, addon, version=None):
                   dict(addon=addon, version=version))
 
 
+@non_atomic_requests
 def license_redirect(request, version):
     version = get_object_or_404(Version.objects, pk=version)
     return redirect(version.license_url(), permanent=True)
 
 
 @addon_view
+@non_atomic_requests
 def report_abuse(request, addon):
     form = AbuseForm(request.POST or None, request=request)
     if request.method == "POST" and form.is_valid():
@@ -382,6 +393,7 @@ def report_abuse(request, addon):
 
 
 @cache_control(max_age=60 * 60 * 24)
+@non_atomic_requests
 def persona_redirect(request, persona_id):
     if persona_id == 0:
         # Newer themes have persona_id == 0, doesn't mean anything.
@@ -398,6 +410,7 @@ def persona_redirect(request, persona_id):
     return http.HttpResponsePermanentRedirect(to)
 
 
+@non_atomic_requests
 def icloud_bookmarks_redirect(request):
     if (waffle.switch_is_active('icloud_bookmarks_redirect')):
         return redirect('/blocked/i1214/', permanent=False)
@@ -655,6 +668,11 @@ class AddonSearchView(ListAPIView):
 
         return qset
 
+    @classmethod
+    def as_view(cls, **kwargs):
+        view = super(AddonSearchView, cls).as_view(**kwargs)
+        return non_atomic_requests(view)
+
 
 class AddonAutoCompleteSearchView(AddonSearchView):
     pagination_class = None
@@ -707,6 +725,11 @@ class AddonFeaturedView(GenericAPIView):
 
         # Simulate pagination-like results, without actual pagination.
         return Response({'results': serializer.data})
+
+    @classmethod
+    def as_view(cls, **kwargs):
+        view = super(AddonFeaturedView, cls).as_view(**kwargs)
+        return non_atomic_requests(view)
 
     def get_queryset(self):
         return Addon.objects.valid()
@@ -766,6 +789,11 @@ class StaticCategoryView(ListAPIView):
     def get_queryset(self):
         return sorted(CATEGORIES_BY_ID.values(), key=lambda x: x.id)
 
+    @classmethod
+    def as_view(cls, **kwargs):
+        view = super(StaticCategoryView, cls).as_view(**kwargs)
+        return non_atomic_requests(view)
+
     def finalize_response(self, request, response, *args, **kwargs):
         response = super(StaticCategoryView, self).finalize_response(
             request, response, *args, **kwargs)
@@ -778,6 +806,12 @@ class LanguageToolsView(ListAPIView):
     pagination_class = None
     permission_classes = []
     serializer_class = LanguageToolsSerializer
+
+    @classmethod
+    def as_view(cls, **initkwargs):
+        """The API is read-only so we can turn off atomic requests."""
+        return non_atomic_requests(
+            super(LanguageToolsView, cls).as_view(**initkwargs))
 
     def get_query_params(self):
         """
@@ -945,6 +979,12 @@ class CompatOverrideView(ListAPIView):
 
     queryset = CompatOverride.objects.all()
     serializer_class = CompatOverrideSerializer
+
+    @classmethod
+    def as_view(cls, **initkwargs):
+        """The API is read-only so we can turn off atomic requests."""
+        return non_atomic_requests(
+            super(CompatOverrideView, cls).as_view(**initkwargs))
 
     def get_guids(self):
         # Use the same Filter we use for AddonSearchView for consistency.
