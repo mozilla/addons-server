@@ -45,6 +45,7 @@ class TestBaseRatingSerializer(TestCase):
         assert result['body'] == unicode(self.rating.body)
         assert result['created'] == (
             self.rating.created.replace(microsecond=0).isoformat() + 'Z')
+        assert result['is_deleted'] is False
         assert result['previous_count'] == int(self.rating.previous_count)
         assert result['is_developer_reply'] is False
         assert result['is_latest'] == self.rating.is_latest
@@ -66,6 +67,46 @@ class TestBaseRatingSerializer(TestCase):
         assert result['version'] is None
         # Check the default, when DRF_API_GATES['ratings-title-shim'] isn't set
         assert 'title' not in result
+
+    def test_deleted_rating_but_view_allowing_it_to_be_shown(self):
+        # We don't need to change self.view.should_access_deleted_ratings
+        # because the serializer is not fetching the rating itself, it's just
+        # serializing whatever instance we passed.
+        addon = addon_factory()
+        self.view.get_addon_object.return_value = addon
+        self.rating = Rating.objects.create(
+            addon=addon, user=self.user, rating=4,
+            version=addon.current_version, body=u'This is my rëview. Like ît?')
+
+        self.rating.delete()
+        result = self.serialize()
+
+        assert result['id'] == self.rating.pk
+        assert result['addon'] == {
+            'id': addon.pk,
+            'slug': addon.slug,
+            'name': {'en-US': addon.name},
+            'icon_url': absolutify(addon.get_icon_url(64)),
+        }
+        assert result['body'] == unicode(self.rating.body)
+        assert result['created'] == (
+            self.rating.created.replace(microsecond=0).isoformat() + 'Z')
+        assert result['is_deleted'] is True
+        assert result['previous_count'] == int(self.rating.previous_count)
+        assert result['is_developer_reply'] is False
+        assert result['is_latest'] == self.rating.is_latest
+        assert result['score'] == int(self.rating.rating)
+        assert result['reply'] is None
+        assert result['user'] == {
+            'id': self.user.pk,
+            'name': unicode(self.user.name),
+            'url': None,
+            'username': self.user.username,
+        }
+        assert result['version'] == {
+            'id': self.rating.version.id,
+            'version': self.rating.version.version
+        }
 
     @override_settings(DRF_API_GATES={None: ('ratings-rating-shim',)})
     def test_ratings_score_is_rating_with_gate(self):
@@ -152,6 +193,7 @@ class TestBaseRatingSerializer(TestCase):
             assert data['body'] == unicode(reply.body)
             assert data['created'] == (
                 reply.created.replace(microsecond=0).isoformat() + 'Z')
+            assert data['is_deleted'] is False
             assert data['is_developer_reply'] is True
             assert data['user'] == {
                 'id': reply_user.pk,
@@ -219,13 +261,14 @@ class TestBaseRatingSerializer(TestCase):
         reply_user = user_factory()
         addon = addon_factory(users=[reply_user])
         self.view.get_addon_object.return_value = addon
-        self.view.should_access_deleted_reviews = True
+        self.view.should_access_deleted_ratings = True
         self.rating = Rating.objects.create(
             addon=addon, user=self.user, version=addon.current_version,
             body=u'This is my rëview. Like ît ?')
         reply = Rating.objects.create(
             addon=addon, user=reply_user, version=addon.current_version,
             body=u'Thîs is a reply.', reply_to=self.rating)
+        reply.delete()
 
         result = self.serialize()
 
@@ -236,6 +279,7 @@ class TestBaseRatingSerializer(TestCase):
         assert result['reply']['body'] == unicode(reply.body)
         assert result['reply']['created'] == (
             reply.created.replace(microsecond=0).isoformat() + 'Z')
+        assert result['reply']['is_deleted'] is True
         assert result['reply']['user'] == {
             'id': reply_user.pk,
             'name': unicode(reply_user.name),

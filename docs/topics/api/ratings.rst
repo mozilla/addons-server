@@ -64,6 +64,13 @@ Detail
 
 This endpoint allows you to fetch a rating by its id.
 
+.. note::
+
+    Users with ``Addons:Edit`` permission will be able to see deleted ratings.
+    Use the ``is_deleted`` property to distinguish those from normal ratings
+    everyone is able to see.
+
+
 .. http:get:: /api/v4/ratings/rating/(int:id)/
 
     .. _rating-detail-object:
@@ -71,6 +78,7 @@ This endpoint allows you to fetch a rating by its id.
     :>json int id: The rating id.
     :>json object addon: A simplified :ref:`add-on <addon-detail-object>` object that contains only a few properties: ``id``, ``name``, ``icon_url`` and ``slug``.
     :>json string|null body: The text of the rating.
+    :>json boolean is_deleted: Boolean indicating whether the rating has been deleted or not.
     :>json boolean is_latest: Boolean indicating whether the rating is the latest posted by the user on the same add-on.
     :>json int previous_count: The number of ratings posted by the user on the same add-on before this one.
     :>json int score: The score the user gave as part of the rating.
