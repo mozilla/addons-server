@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2018-09-25 09:01+0000\n"
-"Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
+"PO-Revision-Date: 2018-09-27 00:54+0000\n"
+"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -129,7 +129,7 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "所有标签至少要包含 {0} 个字符。"
 
 msgid "The text entered has been flagged as spam."
-msgstr ""
+msgstr "输入的文本已被标记为垃圾留言。"
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -679,7 +679,7 @@ msgid "Admin Tools"
 msgstr "管理工具"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "正整数"
 
 msgid "Incorrect, please try again."
 msgstr "不正确，请重试。"
