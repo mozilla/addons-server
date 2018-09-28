@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2018-09-18 08:16+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2018-09-27 20:43+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -137,7 +137,7 @@ msgstr[0] "Alle labels dienen uit minstens {0} teken te bestaan."
 msgstr[1] "Alle labels dienen uit minstens {0} tekens te bestaan."
 
 msgid "The text entered has been flagged as spam."
-msgstr ""
+msgstr "De ingevoerde tekst is gemarkeerd als spam."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -704,7 +704,7 @@ msgid "Admin Tools"
 msgstr "Beheerhulpmiddelen"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "Positief geheel getal"
 
 msgid "Incorrect, please try again."
 msgstr "Onjuist, probeer het opnieuw."
@@ -5327,7 +5327,7 @@ msgstr "Geniet van muziek uit de hele wereld {start_sub_heading}met {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Access 30,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Benader meer dan 30.000 radiostations van over de hele wereld."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
