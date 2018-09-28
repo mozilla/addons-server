@@ -193,9 +193,9 @@ class CommonMiddleware(common.CommonMiddleware):
             return super(CommonMiddleware, self).process_request(request)
 
 
-class AtomicRequestsForUnsafeHttpMethodsMiddleware(MiddlewareMixin):
+class NonAtomicRequestsForSafeHttpMethodsMiddleware(MiddlewareMixin):
     """
-    Middleware to make the view non-atomic if the HTTP method used is safed,
+    Middleware to make the view non-atomic if the HTTP method used is safe,
     in order to avoid opening and closing a useless transaction.
     """
     def process_view(self, request, view_func, view_args, view_kwargs):
