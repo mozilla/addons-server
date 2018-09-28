@@ -799,8 +799,6 @@ class TestRatingViewSetGet(TestCase):
         assert review1.reload().is_latest is True
         assert older_review.reload().is_latest is False
 
-        assert Rating.unfiltered.count() == 6
-
         params = {'addon': self.addon.pk}
         params.update(kwargs)
         response = self.client.get(self.url, params)
@@ -1188,6 +1186,37 @@ class TestRatingViewSetGet(TestCase):
         assert data['results']
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == old_review.pk
+
+    def test_list_addon_exclude_ratings(self):
+        excluded_review1 = Rating.objects.create(
+            addon=self.addon, body='review excluded 1', user=user_factory(),
+            rating=5)
+        excluded_review2 = Rating.objects.create(
+            addon=self.addon, body='review excluded 2', user=user_factory(),
+            rating=4)
+        excluded_param = ','.join(
+            map(str, (excluded_review1.pk, excluded_review2.pk)))
+        self.test_list_addon(exclude_ratings=excluded_param)
+
+    def test_list_addon_exclude_ratings_single(self):
+        excluded_review1 = Rating.objects.create(
+            addon=self.addon, body='review excluded 1', user=user_factory(),
+            rating=5)
+        excluded_param = str(excluded_review1.pk)
+        self.test_list_addon(exclude_ratings=excluded_param)
+
+    def test_list_addon_exclude_ratings_invalid(self):
+        params = {
+            'addon': self.addon.pk,
+            'exclude_ratings': 'garbage,1'
+        }
+        response = self.client.get(self.url, params)
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data['detail'] == (
+            'exclude_ratings parameter should be an '
+            'integer or a list of integers (separated by a comma).'
+        )
 
     def test_list_user_grouped_ratings_not_present(self):
         return
