@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2018-09-28 17:52+0000\n"
+"PO-Revision-Date: 2018-09-28 18:25+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -3555,9 +3555,8 @@ msgstr "Unggah Versi"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Gunakan bidang di bawah ini untuk mengungggah paket pengaya Anda. Setelah menggunggah, serangkaian pengujian validasi otomatis akan dijalankan pada berkas Anda."
 
-#, fuzzy
 msgid "Which applications is this version compatible with?"
-msgstr "Platform manakah yang kompatibel dengan berkas ini?"
+msgstr "Aplikasi manakah yang kompatibel dengan versi ini?"
 
 msgid "Administrative overrides"
 msgstr "Mengesampingkan secara administratif"
@@ -4044,9 +4043,8 @@ msgstr "Uji Keselarasan"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Periksa apakah ekstensi Anda selaras dengan Firefox."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Tampilkan pada Daftar"
+msgstr "Pengujian Langsung"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
@@ -6059,9 +6057,8 @@ msgid "Reported Spam"
 msgstr "Spam yang Dilaporkan"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Laporkan masalah"
+msgstr "Ham yang Dilaporkan"
 
 msgid "Not Reported"
 msgstr "Tidak Dilaporkan"
