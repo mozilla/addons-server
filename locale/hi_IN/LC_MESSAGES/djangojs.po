@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2018-09-28 09:37+0000\n"
+"PO-Revision-Date: 2018-09-17 10:58+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -236,13 +236,11 @@ msgid_plural "{0} collections"
 msgstr[0] "{0} संग्रहित"
 msgstr[1] "{0} संग्रहित"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} समीक्षा"
 msgstr[1] "{0} समीक्षा"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} बिक्री"
