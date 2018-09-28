@@ -4,6 +4,8 @@ from selenium.webdriver.support import expected_conditions as expected
 from olympia.files.tests.test_file_viewer import get_file
 
 from pages.desktop.base import Base
+from pages.desktop.devhub_agreement import DevHubAgreement
+from pages.desktop.devhub_source_code import DevHubSource
 
 
 class DevHub(Base):
@@ -68,13 +70,24 @@ class DevHub(Base):
         """
         file_path = get_file(xpi)
         self.selenium.find_element(*self._submit_addon_btn_locator).click()
+        # Accept agreement
+        devhub_agreement = DevHubAgreement(
+            self.selenium, self.base_url
+        ).wait_for_page_to_load()
+        devhub_agreement.accept_agreement()
         self.selenium.find_element(*self._continue_sub_btn_locator).click()
+        # Upload
         upload = self.selenium.find_element(*self._upload_addon_locator)
         upload.send_keys(file_path)
         self.wait.until(
             expected.element_to_be_clickable(self._submit_upload_btn_locator)
         )
         self.selenium.find_element(*self._submit_upload_btn_locator).click()
+        # Submit no source code
+        devhub_source = DevHubSource(
+            self.selenium, self.base_url
+        ).wait_for_page_to_load()
+        devhub_source.dont_submit_source_code()
         from pages.desktop.devhub_submission import DevhubSubmission
 
         devhub = DevhubSubmission(self.selenium, self.base_url)

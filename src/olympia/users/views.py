@@ -191,7 +191,7 @@ def _clean_next_url(request):
 
 
 def login(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         request = _clean_next_url(request)
         return http.HttpResponseRedirect(request.GET['to'])
     else:
@@ -200,7 +200,7 @@ def login(request):
 
 def logout(request):
     user = request.user
-    if not user.is_anonymous():
+    if not user.is_anonymous:
         log.debug(u"User (%s) logged out" % user)
 
     if 'to' in request.GET:
@@ -232,7 +232,7 @@ def profile(request, user):
                     .order_by('-created'))[:10]
 
     edit_any_user = acl.action_allowed(request, amo.permissions.USERS_EDIT)
-    own_profile = (request.user.is_authenticated() and
+    own_profile = (request.user.is_authenticated and
                    request.user.id == user.id)
 
     addons = []

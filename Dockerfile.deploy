@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 RUN cat /etc/pki/gpg/GPG-KEY-nodesource | apt-key add -
 ADD docker/debian-stretch-nodesource-repo /etc/apt/sources.list.d/nodesource.list
+ADD docker/debian-stretch-backports-repo /etc/apt/sources.list.d/backports.list
 
 RUN apt-get update && apt-get install -y \
         # General (dev-) dependencies
@@ -52,6 +53,11 @@ RUN apt-get update && apt-get install -y \
         pngcrush                         \
     && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update && apt-get -t stretch-backports install -y \
+        # For git-based files storage backend
+        libgit2-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 # Compile required locale
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 ENV LANG en_US.UTF-8
@@ -71,7 +77,7 @@ WORKDIR /data/olympia
 
 # Install all python requires
 RUN pip install --no-cache-dir --exists-action=w --no-deps -r requirements/system.txt              \
-    && pip install --no-cache-dir --exists-action=w --no-deps -r requirements/prod.txt             \
+    && pip install --no-cache-dir --exists-action=w --no-deps -r requirements/prod_py2.txt         \
     && pip install --no-cache-dir --exists-action=w --no-deps -e .
 
 # Link /usr/sbin/uwsgi and /usr/bin/uwsgi to deal with migration from Centos -> Debian

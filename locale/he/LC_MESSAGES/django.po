@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-14 20:40+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-25 12:07+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -137,6 +137,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "כל התגים חייבים להכיל לפחות תו אחד."
 msgstr[1] "כל התגים חייבים להכיל לפחות {0} תווים."
+
+msgid "The text entered has been flagged as spam."
+msgstr "הטקסט שהוזן סומן בדגל כספאם."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -709,6 +712,9 @@ msgstr "כלי הסוקרים"
 msgid "Admin Tools"
 msgstr "כלי מנהל"
 
+msgid "Positive integer"
+msgstr "מספר שלם חיובי"
+
 msgid "Incorrect, please try again."
 msgstr "שגוי, נא לנסות שוב."
 
@@ -717,6 +723,9 @@ msgstr "אירעה שגיאה בעת אימות הקלט, נא לנסות שוב
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "הערך חייב להיות קוד צבע הקסדצימלי תקף, כגון #000000."
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "חלק מהתכונות מושבתות באופן זמני בעת ביצוע פעולות תחזוקה באתר. נשוב לפעילות מלאה בקרוב."
 
 msgid "Not allowed"
 msgstr "לא מורשה"
@@ -920,6 +929,9 @@ msgstr "החתימה פגה."
 
 msgid "Error decoding signature."
 msgstr "שגיאה בפענוח החתימה."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "אסימון JWT שגוי."
@@ -2310,14 +2322,14 @@ msgstr "מצויין (3)"
 msgid "Manual Reviewer Points"
 msgstr ""
 
-msgid "New Add-on Review"
-msgstr "סקירת תוספת חדשה"
+msgid "New Legacy Add-on Review"
+msgstr "סקירת תוספת חדשה מדור קודם"
 
 msgid "Preliminary Add-on Review"
 msgstr "סקירת תוספת ראשונית"
 
-msgid "Updated Add-on Review"
-msgstr "סקירת תוספת מעודכנת"
+msgid "Updated Legacy Add-on Review"
+msgstr "סקירת תוספת מעודכנת מדור קודם"
 
 # Plural in this context means many of the add-on type
 msgid "New Dictionary Review"
@@ -2372,17 +2384,17 @@ msgstr ""
 msgid "Add-on Content Review"
 msgstr "סקירת תוכן של תוספת"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+msgid "Add-on Review (Highest Risk)"
+msgstr "סקירת תוספת (סיכון הכי גבוה)"
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+msgid "Add-on Review (High Risk)"
+msgstr "סקירת תוספת (סיכון גבוה)"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+msgid "Add-on Review (Medium Risk)"
+msgstr "סקירת תוספת (סיכון בינוני)"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+msgid "Add-on Review (Low Risk)"
+msgstr "סקירת תוספת (סיכון נמוך)"
 
 msgid "Level 1"
 msgstr "רמה 1"
@@ -2517,11 +2529,8 @@ msgstr "אירעה שגיאה עם ההעלאה שלך. נא לנסות שוב."
 msgid "Override failed validation"
 msgstr "בדיקת האימות על המעקף נכשלה"
 
-msgid "You cannot upload any more files for this version."
-msgstr "לא ניתן להעלות קבצים נוספים לגרסה זו."
-
-msgid "Version doesn't match"
-msgstr "הגרסה אינה תואמת"
+msgid "Need to select at least one application."
+msgstr "יש לבחור יישום אחד לפחות."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "הגרסה {version} הועלתה בעבר ונמחקה."
@@ -2537,12 +2546,6 @@ msgstr "לא העלית קובץ מקור."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "אי אפשר לשלב את הפלטפורמה הכול עם פלטפורמה מסוימת."
-
-msgid "A platform can only be chosen once."
-msgstr "ניתן לבחור פלטפורמה רק פעם אחת."
 
 msgid "Application"
 msgstr "יישום"
@@ -2568,6 +2571,9 @@ msgstr "לא ניתן לשנות קטגוריות בזמן שהתוספת שלך
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "תוספות עבור Thunderbird ו־SeaMonkey כרגע מוצגות ומתוחזקות ב־addons.thunderbird.net. ניתן להשתמש באותו החשבון כדי לעדכן את התוספות שלך באתר החדש."
+
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "החל מ־Firefox 53, תוספות חדשות באתר זה יכולות להיות אך ורק בתבנית WebExtensions."
@@ -3346,9 +3352,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "משתמש פעיל <strong>אחד</strong>"
 msgstr[1] "<strong>{0}</strong> משתמשים פעילים"
 
-msgid "Submit a New File"
-msgstr "הגשת קובץ חדש"
-
 msgid "Submit a New Version"
 msgstr "הגשת גרסה חדשה"
 
@@ -3402,6 +3405,15 @@ msgstr "הערות לסוקר:"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "האם יש משהו שכדאי לסוקרים לשקול בעת סקירת תוספת זו?"
 
+msgid "Remember"
+msgstr "לזכור"
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "ההערות הללו תהיינה גלויות לך ולסוקרים שלנו בלבד."
 
@@ -3433,9 +3445,6 @@ msgstr "מידע נוסף על הפצת תוספות וחתימה"
 
 msgid "Submission Complete"
 msgstr "ההגשה הושלמה"
-
-msgid "You’re done!"
-msgstr "סיימת!"
 
 msgid "Version Submitted for Review"
 msgstr "הגרסה הוגשה לסקירה"
@@ -3470,12 +3479,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "עריכת גרסה {0}"
 
-msgid "File Signed"
-msgstr "קובץ חתום"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "סיימת! קובץ זה חתום ומוכן להפצה עצמית. ניתן להוריד אותו על ידי לחיצה על הכפתור שלהלן."
-
 msgid "Version Signed"
 msgstr "הגרסה נחתמה"
 
@@ -3485,23 +3488,16 @@ msgstr "סיימת! גרסה זו חתומה ומוכנה להפצה עצמית.
 msgid "Download {0}"
 msgstr "הורדת {0}"
 
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "בחרת רק חלק מהפלטפורמות הזמינות להגשה זו. ניתן להעלות קבצים נוספים שמיועדים לפלטפורמות אחרות:"
-
-msgid "Upload File"
-msgstr "העלאת קובץ"
-
 msgid "Go to My Submissions"
 msgstr "מעבר להגשות שלי"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "קוד מקור הועלה"
+msgstr "העלאת קוד מקור"
 
 msgid "Do You Need to Submit Source Code?"
-msgstr ""
+msgstr "האם עליך להגיש קוד מקור?"
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
 
 #, python-format
@@ -3509,16 +3505,16 @@ msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
 msgstr "נא לסקור את <a %(a_attrs)s>מדיניות ההגשה של קוד מקור</a>."
 
 msgid "Do you use any of the following?"
-msgstr ""
+msgstr "אחד מהבאים משמש אותך?"
 
 msgid "Code minifiers or obfuscators"
 msgstr ""
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
-msgstr ""
+msgstr "כלים שמשלבים מספר קבצים לקובץ אחד, כגון <span class=\"tech-emphasis\">webpack</span>"
 
 msgid "Web template engines, both for HTML and CSS"
-msgstr ""
+msgstr "מנועי תבניות אתרים, עבור HTML ו־CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
 msgstr ""
@@ -3540,7 +3536,7 @@ msgid "A build script that executes all necessary technical steps."
 msgstr ""
 
 msgid "Operating system and build environment requirements."
-msgstr ""
+msgstr "דרישות סביבת הידור קוד ומערכת הפעלה."
 
 msgid ""
 "Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
@@ -3572,9 +3568,6 @@ msgstr "הסכם הפצת תוספת"
 msgid "Upload Add-on"
 msgstr "העלאת תוספת"
 
-msgid "Where to Host File"
-msgstr "איפה לארח את הקובץ"
-
 msgid "Where to Host Version"
 msgstr "איפה לארח את הגרסה"
 
@@ -3586,8 +3579,8 @@ msgstr "העלאת גרסה"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "יש להשתמש בשדות שלהלן כדי להעלות את חבילת התוספת. לאחר ההעלאה, תורץ סדרה של בדיקות אימות אוטומטיות על הקובץ שלך."
 
-msgid "Which platforms is this file compatible with?"
-msgstr "אילו פלטפורמות נתמכות ע״י קובץ זה?"
+msgid "Which applications is this version compatible with?"
+msgstr "אילו יישומים נתמכים על־ידי גרסה זו?"
 
 msgid "Administrative overrides"
 msgstr "מעקפים מנהליים"
@@ -3597,9 +3590,6 @@ msgstr "יצירת גרסת ערכת נושא"
 
 msgid "Create a Theme"
 msgstr "יצירת ערכת נושא"
-
-msgid "Submit File"
-msgstr "הגשת קובץ"
 
 msgid "Sign Add-on"
 msgstr "חתימת תוספת"
@@ -3616,8 +3606,11 @@ msgstr "שם ערכת נושא"
 msgid "Select a header image for your theme"
 msgstr "נא לבחור בתמונת כותרת לערכת הנושא שלך"
 
-msgid "Image height should be 200 pixels"
-msgstr "גובה התמונה אמור להיות 200 פיקסלים"
+msgid "Recommended height: 200 pixels"
+msgstr "גובה מומלץ: 200 פיקסלים"
+
+msgid "6.9MB max"
+msgstr "6.9 מ״ב לכל היותר"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG,‏ JPG,‏ APNG,‏ SVG או GIF (ללא הנפשה)"
@@ -4077,6 +4070,13 @@ msgstr "בדיקת תאימות"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "כדאי לבדוק אם התוספת שלך נתמכת ב־Firefox."
 
+#, fuzzy
+msgid "Live Testing"
+msgstr "תצוגת רשימה"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
+
 msgid "Transfer ownership"
 msgstr "העברת בעלות"
 
@@ -4230,9 +4230,6 @@ msgstr "ניהול {0}"
 
 msgid "Files"
 msgstr "קבצים"
-
-msgid "Upload Another File"
-msgstr "העלאת קובץ אחר"
 
 msgid "Version Notes"
 msgstr "הערות גרסה"
@@ -4420,7 +4417,7 @@ msgstr "התאמה אישית של דף הלשונית החדשה {start_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "להנות מדף לשונית חדשה ססגוני עם רקעים מותאמים אישית, מידע על מזג אוויר מקומי ועוד."
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5396,7 +5393,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "להנות ממוזיקה מרחבי העולם {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+#, fuzzy
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr "קבלת גישה ללמעלה מ־20,000 תחנות רדיו מכל רחבי העולם."
 
 #. editorial content for the discovery pane.
@@ -5470,7 +5468,7 @@ msgstr "גלישה באופן פרטי {start_sub_heading}עם {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
-msgstr ""
+msgstr "קפיצה למצב גלישה פרטית בלחיצת כפתור."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5887,6 +5885,9 @@ msgstr "מספרי גרסאות אמורים להכיל אך ורק תווים, 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "בשלב זה אין תמיכה בהעלאת ערכות נושא בתבנית WebExtension."
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr "הגודל המירב עבור ערכות נושא WebExtension הוא {0}."
+
 msgid "You cannot submit this type of add-on"
 msgstr "לא ניתן להגיש תוספת מסוג זה"
 
@@ -6141,6 +6142,48 @@ msgstr "קבלת גישה מוקדמת לתכונות ניסיוניות בדפ�
 
 msgid "Get Started"
 msgstr "תחילת עבודה"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "מצב האתר"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "סוג דיווח"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "דיווח על תקלה"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "טרם דורג"
+
+msgid "Content Submitted"
+msgstr "התוכן הוגש"
+
+msgid "View Rating on site"
+msgstr "הצגת הדירוג באתר"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "הגשת קובץ חדש"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "הגשת קובץ חדש"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "על אודות Mozilla Add-ons"
@@ -7572,9 +7615,6 @@ msgstr "מוצגים {0} - {1} מתוך {2} תוצאות עבור <strong>{3}</s
 msgid "Showing {0} - {1} of {2} results"
 msgstr "מוצגים {0} - {1} מתוך {2} תוצאות"
 
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "חלק מהתכונות מושבתות באופן זמני בעת ביצוע פעולות תחזוקה באתר. נשוב לפעילות מלאה בקרוב."
-
 msgid "Could not find add-on with id \"{}\"."
 msgstr "לא ניתן למצוא תוספת עם המזהה ״{}״."
 
@@ -8019,7 +8059,7 @@ msgstr ""
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "התמונה השייכת למשתמש \"%(user)s\" נמחקה."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
@@ -8066,8 +8106,8 @@ msgstr "אין משתמש עם כתובת דוא״ל זו."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr "משתמש אנונימי {id}"
+msgid "Firefox user {id}"
+msgstr "משתמש Firefox‏ {id}"
 
 # 75%
 # 78%

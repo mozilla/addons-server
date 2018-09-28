@@ -1,11 +1,11 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2017-03-16 22:37+0000\n"
-"Last-Translator: ConaN <omar.nawaz2000@hotmail.com>\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-08-21 11:18+0000\n"
+"Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
@@ -102,12 +102,13 @@ msgstr "WebExtension-oppgradering"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
+"Vi tillater og oppmuntrer en oppgradering, men du kan ikke reversere denne prosessen. Når dine brukere har WebExtension installert, vill de ikke være i stand til å installere en foreldet utvidelse."
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Konverter en gammel Firefox-utvidelse på MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Inkluder detaljerte versjonsmerkander (dette kan gjøres i det neste steget)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Hvis din utvidelse krever en konto på et nettsted for å kunne bli ordentlig testet, legg med et brukernavn og passord i notatene for anmelderen (dette kan bli gjort i det neste trinnet)."
@@ -127,9 +128,6 @@ msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Valideringsprosessen oppdaget disse problemene som kan føre til avslag:"
-
-msgid "Sorry, no supported platform has been found."
-msgstr "Beklager, ingen støttet plattform har blitt funnet."
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Filtypen du lastet opp er ikke gjenkjent."
@@ -213,29 +211,53 @@ msgstr "Bruk original"
 msgid "Week of {0}"
 msgstr "Uke {0}"
 
-msgid " downloads"
-msgstr " nedlastinger"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " nedlastinger"
+msgstr[1] " nedlastinger"
 
-msgid "{0} users"
-msgstr "{0} brukere"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} brukere"
+msgstr[1] "{0} brukere"
 
-msgid "{0} add-ons"
-msgstr "{0} utvidelser"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} utvidelser"
+msgstr[1] "{0} utvidelser"
 
-msgid "{0} collections"
-msgstr "{0} samlinger"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} samlinger"
+msgstr[1] "{0} samlinger"
 
-msgid "{0} reviews"
-msgstr "{0} anmeldelser"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} anmeldelser"
+msgstr[1] "{0} anmeldelser"
 
-msgid "{0} sales"
-msgstr "{0} salg"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} salg"
+msgstr[1] "{0} salg"
 
-msgid "{0} refunds"
-msgstr "{0} tilbakebetalinger"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} tilbakebetalinger"
+msgstr[1] "{0} tilbakebetalinger"
 
-msgid "{0} installs"
-msgstr "{0} installeringer"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} installeringer"
+msgstr[1] "{0} installeringer"
 
 msgid "Downloads"
 msgstr "Nedlastinger"
@@ -672,9 +694,8 @@ msgstr "Vis andre versjoner"
 msgid "Works with {app} {min} - {max}"
 msgstr "Virker med {app} {min} - {max}"
 
-#, fuzzy
 msgid "Works with {app}"
-msgstr "Virker med {app} {min} - {max}"
+msgstr "Fungerer med {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Kun for Firefox — Last ned Firefox nå!"
@@ -796,6 +817,9 @@ msgstr "Gjennomsnittlige vurderinger"
 
 msgid "Number of Reviews"
 msgstr "Antall vurderinger"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr ""
 
 msgid "Requested Info"
 msgstr "Forespurt info"

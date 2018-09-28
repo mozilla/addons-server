@@ -437,6 +437,47 @@ class TestReviewLog(ReviewerTest):
         assert pq(response.content)(
             '#log-listing tr td a').eq(1).attr('href') == url
 
+    def test_reviewers_can_only_see_addon_types_they_have_perms_for(self):
+        def check_two_showing():
+            response = self.client.get(self.url)
+            assert response.status_code == 200
+            doc = pq(response .content)
+            assert doc('#log-filter button'), 'No filters.'
+            rows = doc('tbody tr')
+            assert rows.filter(':not(.hide)').length == 2
+            assert rows.filter('.hide').eq(0).text() == 'youwin'
+
+        def check_none_showing():
+            response = self.client.get(self.url)
+            assert response.status_code == 200
+            doc = pq(response.content)
+            assert not doc('tbody tr :not(.hide)')
+
+        self.make_approvals()
+        for perm in ['Review', 'ContentReview', 'PostReview']:
+            GroupUser.objects.filter(user=self.user).delete()
+            self.grant_permission(self.user, 'Addons:%s' % perm)
+            # Should have 2 showing.
+            check_two_showing()
+
+        # Should have none showing if the addons are static themes.
+        for addon in Addon.objects.all():
+            addon.update(type=amo.ADDON_STATICTHEME)
+        for perm in ['Review', 'ContentReview', 'PostReview']:
+            GroupUser.objects.filter(user=self.user).delete()
+            self.grant_permission(self.user, 'Addons:%s' % perm)
+            check_none_showing()
+
+        # But they should have 2 showing for someone with the right perms.
+        GroupUser.objects.filter(user=self.user).delete()
+        self.grant_permission(self.user, 'Addons:ThemeReview')
+        check_two_showing()
+
+        # Check if we set them back to extensions theme reviewers can't see 'em
+        for addon in Addon.objects.all():
+            addon.update(type=amo.ADDON_EXTENSION)
+        check_none_showing()
+
 
 class TestDashboard(TestCase):
     def setUp(self):

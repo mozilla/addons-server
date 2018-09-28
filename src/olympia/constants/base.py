@@ -249,7 +249,7 @@ THEME_PREVIEW_SIZES = {
         'position': 1},
 }
 THEME_ACCENTCOLOR_DEFAULT = 'rgba(229,230,232,1)'
-THEME_PREVIEW_HEIGHT = 92  # The template supports different widths only.
+THEME_PREVIEW_TOOLBAR_HEIGHT = 92  # The template toolbar is this height.
 
 # Persona image sizes [preview, full]
 PERSONA_IMAGE_SIZES = {
@@ -450,7 +450,8 @@ ADDON_GUID_PATTERN = re.compile(
     r'|[a-z0-9-\._]*\@[a-z0-9-\._]+)$', re.IGNORECASE)
 
 SYSTEM_ADDON_GUIDS = (
-    u'@mozilla.org', u'@shield.mozilla.org', u'@pioneer.mozilla.org')
+    u'@mozilla.org', u'@shield.mozilla.org', u'@pioneer.mozilla.org',
+    u'@mozilla.com')
 
 MOZILLA_TRADEMARK_SYMBOLS = (
     'mozilla', 'firefox')

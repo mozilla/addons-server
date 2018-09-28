@@ -4,9 +4,9 @@ import time
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.db import models, transaction
-from django.utils import translation
+from django.db import models
 from django.db.models.query import ModelIterable
+from django.utils import timezone, translation
 
 import elasticsearch
 import multidb.pinning
@@ -124,23 +124,6 @@ class ManagerBase(models.Manager):
     def raw(self, raw_query, params=None, *args, **kwargs):
         return RawQuerySet(raw_query, self.model, params=params,
                            using=self._db, *args, **kwargs)
-
-    def safer_get_or_create(self, defaults=None, **kw):
-        """
-        This is subjective, but I don't trust get_or_create until #13906
-        gets fixed. It's probably fine, but this makes me happy for the moment
-        and solved a get_or_create we've had in the past.
-
-        This should be replaced by "read committed" state:
-        https://github.com/mozilla/addons-server/issues/7158
-        """
-        with transaction.atomic():
-            try:
-                return self.get(**kw), False
-            except self.model.DoesNotExist:
-                if defaults is not None:
-                    kw.update(defaults)
-                return self.create(**kw), True
 
 
 class _NoChangeInstance(object):
@@ -365,7 +348,8 @@ class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
     * Fetches all translations in one subsequent query during initialization.
     """
 
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(
+        default=timezone.now, editable=False, blank=True)
     modified = models.DateTimeField(auto_now=True)
 
     objects = ManagerBase()

@@ -18,7 +18,7 @@ import waffle
 
 from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import action
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.mixins import (
     DestroyModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin)
@@ -104,10 +104,14 @@ def find_user(identity):
     try:
         user = UserProfile.objects.get(
             Q(fxa_id=identity['uid']) | Q(email=identity['email']))
-        if user.deleted:
+        is_task_user = user.id == settings.TASK_USER_ID
+        if user.deleted or is_task_user:
             # If the user was found through its email/fxa_id but is deleted, it
             # means we wanted to ban them. Raise a 403, it's not the prettiest
             # but should be enough.
+            # Alternatively if someone tried to log in as the task user then
+            # prevent that because that user "owns" a number of important
+            # addons and collections, and it's actions are special cased.
             raise PermissionDenied()
         return user
     except UserProfile.DoesNotExist:
@@ -235,7 +239,7 @@ def with_user(format, config=None):
                 return render_error(
                     request, ERROR_STATE_MISMATCH, next_path=next_path,
                     format=format)
-            elif request.user.is_authenticated():
+            elif request.user.is_authenticated:
                 response = render_error(
                     request, ERROR_AUTHENTICATED, next_path=next_path,
                     format=format)
@@ -368,7 +372,7 @@ class AllowSelf(BasePermission):
         return True
 
     def has_object_permission(self, request, view, obj):
-        return request.user.is_authenticated() and obj == request.user
+        return request.user.is_authenticated and obj == request.user
 
 
 class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
@@ -421,7 +425,7 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
     @property
     def self_view(self):
         return (
-            self.request.user.is_authenticated() and
+            self.request.user.is_authenticated and
             self.get_object() == self.request.user)
 
     @property
@@ -451,7 +455,8 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
             logout_user(request, response)
         return response
 
-    @detail_route(
+    @action(
+        detail=True,
         methods=['delete'], permission_classes=[
             AnyOf(AllowSelf, GroupPermission(amo.permissions.USERS_EDIT))])
     def picture(self, request, pk=None):

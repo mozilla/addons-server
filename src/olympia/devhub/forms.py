@@ -16,7 +16,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import log_and_notify
-from olympia.addons.forms import AddonFormBase
+from olympia.addons.forms import AddonFormBase, AkismetSpamCheckFormMixin
 from olympia.addons.models import (
     Addon, AddonCategory, AddonDependency, AddonReviewerFlags, AddonUser,
     Preview)
@@ -26,7 +26,7 @@ from olympia.amo.templatetags.jinja_helpers import mark_safe_lazy
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES
-from olympia.files.models import File, FileUpload
+from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
 from olympia.translations.fields import TransField, TransTextarea
 from olympia.translations.forms import TranslationFormMixin
@@ -465,6 +465,21 @@ CompatFormSet = modelformset_factory(
     form=CompatForm, can_delete=True, extra=0)
 
 
+class CompatAppSelectWidget(forms.CheckboxSelectMultiple):
+    option_template_name = 'devhub/forms/widgets/compat_app_input_option.html'
+
+    def create_option(self, name, value, label, selected, index, subindex=None,
+                      attrs=None):
+        data = super(CompatAppSelectWidget, self).create_option(
+            name=name, value=value, label=label, selected=selected,
+            index=index, subindex=subindex, attrs=attrs)
+
+        # Inject the short application name for easier styling
+        data['compat_app_short'] = amo.APPS_ALL[int(data['value'])].short
+
+        return data
+
+
 class NewUploadForm(forms.Form):
     upload = forms.ModelChoiceField(
         widget=forms.HiddenInput,
@@ -477,34 +492,22 @@ class NewUploadForm(forms.Form):
     )
     admin_override_validation = forms.BooleanField(
         required=False, label=_(u'Override failed validation'))
-    supported_platforms = forms.TypedMultipleChoiceField(
-        choices=amo.SUPPORTED_PLATFORMS_CHOICES,
-        widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
-        initial=[amo.PLATFORM_ALL.id],
+    compatible_apps = forms.TypedMultipleChoiceField(
+        choices=amo.APPS_FIREFOXES_ONLY_CHOICES,
+        # Pre-select only Desktop Firefox, most of the times developers
+        # don't develop their WebExtensions for Android.
+        # See this GitHub comment: https://bit.ly/2QaMicU
+        initial=[amo.FIREFOX.id],
         coerce=int,
-        error_messages={'required': 'Need at least one platform.'}
-    )
+        widget=CompatAppSelectWidget(),
+        error_messages={
+            'required': _('Need to select at least one application.')
+        })
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
         self.addon = kw.pop('addon', None)
-        self.version = kw.pop('version', None)
         super(NewUploadForm, self).__init__(*args, **kw)
-
-        # If we have a version reset platform choices to just those compatible.
-        if self.version:
-            platforms = self.fields['supported_platforms']
-            compat_platforms = self.version.compatible_platforms().values()
-            platforms.choices = sorted(
-                (p.id, p.name) for p in compat_platforms)
-            # Don't allow platforms we already have.
-            to_exclude = set(File.objects.filter(version=self.version)
-                                         .values_list('platform', flat=True))
-            # Don't allow platform=ALL if we already have platform files.
-            if to_exclude:
-                to_exclude.add(amo.PLATFORM_ALL.id)
-                platforms.choices = [p for p in platforms.choices
-                                     if p[0] not in to_exclude]
 
     def _clean_upload(self):
         if not (self.cleaned_data['upload'].valid or
@@ -517,21 +520,13 @@ class NewUploadForm(forms.Form):
                          u'Please try again.'))
 
     def clean(self):
-        if self.version and not self.version.is_allowed_upload():
-            raise forms.ValidationError(
-                ugettext('You cannot upload any more files for this version.'))
-
         if not self.errors:
             self._clean_upload()
             parsed_data = parse_addon(
                 self.cleaned_data['upload'], self.addon,
                 user=self.request.user)
 
-            if self.version:
-                if parsed_data['version'] != self.version.version:
-                    raise forms.ValidationError(
-                        ugettext('Version doesn\'t match'))
-            elif self.addon:
+            if self.addon:
                 # Make sure we don't already have this version.
                 existing_versions = Version.unfiltered.filter(
                     addon=self.addon, version=parsed_data['version'])
@@ -582,52 +577,7 @@ class SourceForm(WithSourceMixin, forms.ModelForm):
                          u'was needed.'))
 
 
-class FileForm(forms.ModelForm):
-    platform = File._meta.get_field('platform').formfield()
-
-    class Meta:
-        model = File
-        fields = ('platform',)
-
-    def __init__(self, *args, **kw):
-        super(FileForm, self).__init__(*args, **kw)
-        addon_type = kw['instance'].version.addon.type
-        if addon_type in [amo.ADDON_SEARCH, amo.ADDON_STATICTHEME]:
-            del self.fields['platform']
-        else:
-            compat = kw['instance'].version.compatible_platforms()
-            pid = int(kw['instance'].platform)
-            plats = [(p.id, p.name) for p in compat.values()]
-            if pid not in compat:
-                plats.append([pid, amo.PLATFORMS[pid].name])
-            self.fields['platform'].choices = plats
-
-
-class BaseFileFormSet(BaseModelFormSet):
-
-    def clean(self):
-        if any(self.errors):
-            return
-        files = [f.cleaned_data for f in self.forms]
-
-        if self.forms and 'platform' in self.forms[0].fields:
-            platforms = [f['platform'] for f in files]
-
-            if amo.PLATFORM_ALL.id in platforms and len(files) > 1:
-                raise forms.ValidationError(
-                    ugettext('The platform All cannot be combined '
-                             'with specific platforms.'))
-
-            if sorted(platforms) != sorted(set(platforms)):
-                raise forms.ValidationError(
-                    ugettext('A platform can only be chosen once.'))
-
-
-FileFormSet = modelformset_factory(File, formset=BaseFileFormSet,
-                                   form=FileForm, can_delete=False, extra=0)
-
-
-class DescribeForm(AddonFormBase):
+class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
     name = TransField(max_length=50)
     slug = forms.CharField(max_length=30)
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
@@ -642,6 +592,8 @@ class DescribeForm(AddonFormBase):
     privacy_policy = TransField(
         widget=TransTextarea(), required=False,
         label=_(u'Please specify your add-on\'s Privacy Policy:'))
+
+    fields_to_akismet_comment_check = ['name', 'summary']
 
     class Meta:
         model = Addon

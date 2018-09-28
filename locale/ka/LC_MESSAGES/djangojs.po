@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-09 17:11+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-17 10:57+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -131,9 +131,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "გადამოწმებისას აღმოჩენილია გარკვეული საკითხები, რაც შეიძლება უარყოფის საფუძველი გახდეს."
 
-msgid "Sorry, no supported platform has been found."
-msgstr "სამწუხაროდ, მხარდაჭერილი პლატფორმები არ მოიძებნა."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "ატვირთული ფაილის სახეობა, გაურკვეველია."
 
@@ -216,29 +213,45 @@ msgstr "ორიგინალის გამოყენება"
 msgid "Week of {0}"
 msgstr "{0} კვირა"
 
-msgid " downloads"
-msgstr " ჩამოტვირთვა"
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] "{0} ჩამოტვირთვა"
+msgstr[1] "{0} ჩამოტვირთვა"
 
-msgid "{0} users"
-msgstr "{0} მომხმარებელი"
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} მომხმარებელი"
+msgstr[1] "{0} მომხმარებელი"
 
-msgid "{0} add-ons"
-msgstr "{0} დამატება"
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} დამატება"
+msgstr[1] "{0} დამატება"
 
-msgid "{0} collections"
-msgstr "{0} კრებული"
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} კრებული"
+msgstr[1] "{0} კრებული"
 
-msgid "{0} reviews"
-msgstr "{0} მიმოხილვა"
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} მიმოხილვა"
+msgstr[1] "{0} მიმოხილვა"
 
-msgid "{0} sales"
-msgstr "{0} გაყიდვა"
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} გაყიდვა"
+msgstr[1] "{0} გაყიდვა"
 
-msgid "{0} refunds"
-msgstr "{0} ანაზღაურება"
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} ანაზღაურება"
+msgstr[1] "{0} ანაზღაურება"
 
-msgid "{0} installs"
-msgstr "{0} დაყენება"
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} დაყენება"
+msgstr[1] "{0} დაყენება"
 
 msgid "Downloads"
 msgstr "ჩამოტვირთვები"
@@ -798,6 +811,9 @@ msgstr "განხილვების საშუალო რაოდ."
 
 msgid "Number of Reviews"
 msgstr "განხილვების რაოდენობა:"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr "დასაშვები ასატვირთი ზომაა {0} – აირჩიეთ შედარებით მცირე ზომის ფონის სურათი."
 
 msgid "Requested Info"
 msgstr "მოთხოვნილი ინფორმაცია"

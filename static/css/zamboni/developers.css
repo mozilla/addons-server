@@ -854,6 +854,21 @@ pre.email_comment {
     margin-top: 1em;
 }
 
+#upload-file .compatible-apps ul {
+    margin-top: 0.5em;
+}
+
+#upload-file .compatible-apps li {
+    float: none;
+}
+
+#upload-file .compatible-apps label.app {
+    padding-left: 25px;
+
+    background-repeat: no-repeat;
+    background-size: 20px;
+}
+
 #upload-status-bar {
     background-color: #F2F2F2;
     -moz-border-radius: 5px;
@@ -1546,4 +1561,13 @@ span.distribution-tag-listed {
 
 span.distribution-tag-unlisted {
     background-color: #7A2F7A;
+}
+
+.source-submission-note p {
+    font-size: 0.9em;
+    margin-bottom: 0.2em;
+}
+
+.source-submission-note p:last-child {
+    margin-bottom: 1.5em;
 }

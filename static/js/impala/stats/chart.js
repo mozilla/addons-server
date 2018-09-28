@@ -266,15 +266,15 @@
             function dayFormatter(d) { return Highcharts.dateFormat('%a, %b %e, %Y', new Date(d)); }
             function weekFormatter(d) { return format(gettext('Week of {0}'), Highcharts.dateFormat('%b %e, %Y', new Date(d))); }
             function monthFormatter(d) { return Highcharts.dateFormat('%B %Y', new Date(d)); }
-            function downloadFormatter(n) { return gettext(Highcharts.numberFormat(n, 0) + ' downloads'); }
-            function userFormatter(n) { return format(gettext('{0} users'), Highcharts.numberFormat(n, 0)); }
-            function addonsFormatter(n) { return format(gettext('{0} add-ons'), Highcharts.numberFormat(n, 0)); }
-            function collectionsFormatter(n) { return format(gettext('{0} collections'), Highcharts.numberFormat(n, 0)); }
-            function reviewsFormatter(n) { return format(gettext('{0} reviews'), Highcharts.numberFormat(n, 0)); }
+            function downloadFormatter(n) { return format(ngettext('{0} download', '{0} downloads', n), Highcharts.numberFormat(n, 0)); }
+            function userFormatter(n) { return format(ngettext('{0} user', '{0} users', n), Highcharts.numberFormat(n, 0)); }
+            function addonsFormatter(n) { return format(ngettext('{0} add-on', '{0} add-ons', n), Highcharts.numberFormat(n, 0)); }
+            function collectionsFormatter(n) { return format(ngettext('{0} collection', '{0} collections', n), Highcharts.numberFormat(n, 0)); }
+            function reviewsFormatter(n) { return format(ngettext('{0} review', '{0} reviews', n), Highcharts.numberFormat(n, 0)); }
             function currencyFormatter(n) { return '$' + Highcharts.numberFormat(n, 2); }
-            function salesFormatter(n) { return format(gettext('{0} sales'), Highcharts.numberFormat(n, 0)); }
-            function refundsFormatter(n) { return format(gettext('{0} refunds'), Highcharts.numberFormat(n, 0)); }
-            function installsFormatter(n) { return format(gettext('{0} installs'), Highcharts.numberFormat(n, 0)); }
+            function salesFormatter(n) { return format(ngettext('{0} sale', '{0} sales', n), Highcharts.numberFormat(n, 0)); }
+            function refundsFormatter(n) { return format(ngettext('{0} refund', '{0} refunds', n), Highcharts.numberFormat(n, 0)); }
+            function installsFormatter(n) { return format(ngettext('{0} install', '{0} installs', n), Highcharts.numberFormat(n, 0)); }
             function addEventData(s, date) {
                 var e = events[date];
                 if (e) {

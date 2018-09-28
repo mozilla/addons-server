@@ -3,7 +3,7 @@ import uuid
 from django import http
 from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
-from django.utils.feedgenerator import Rss201rev2Feed as RSS
+from django.utils.feedgenerator import Rss201rev2Feed
 from django.utils.translation import ugettext
 
 from olympia import amo
@@ -15,7 +15,7 @@ from olympia.translations.templatetags.jinja_helpers import clean as clean_html
 
 
 class ActivityFeedRSS(Feed):
-    feed_type = RSS
+    feed_type = Rss201rev2Feed
 
     def get_object(self, request):
         try:

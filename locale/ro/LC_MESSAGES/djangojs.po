@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2017-01-29 19:47+0000\n"
-"Last-Translator: Lovegaming <contact@lovegaming.net>\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-08-30 21:49+0000\n"
+"Last-Translator: Henrietta Maior <hmaior@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -131,9 +131,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
-msgid "Sorry, no supported platform has been found."
-msgstr ""
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Tipul de fișier pe care l-ai încărcat nu e recunoscut."
 
@@ -216,29 +213,61 @@ msgstr "Folosește originalul"
 msgid "Week of {0}"
 msgstr "Săptămâna a {0}"
 
-msgid " downloads"
-msgstr " descărcări"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " descărcări"
+msgstr[1] " descărcări"
+msgstr[2] " descărcări"
 
-msgid "{0} users"
-msgstr "{0} utilizatori"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} utilizatori"
+msgstr[1] "{0} utilizatori"
+msgstr[2] "{0} utilizatori"
 
-msgid "{0} add-ons"
-msgstr "{0} suplimente"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} suplimente"
+msgstr[1] "{0} suplimente"
+msgstr[2] "{0} suplimente"
 
-msgid "{0} collections"
-msgstr "{0} colecții"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} colecții"
+msgstr[1] "{0} colecții"
+msgstr[2] "{0} colecții"
 
-msgid "{0} reviews"
-msgstr "{0} recenzii"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} recenzii"
+msgstr[1] "{0} recenzii"
+msgstr[2] "{0} recenzii"
 
-msgid "{0} sales"
-msgstr "{0} vânzări"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} vânzări"
+msgstr[1] "{0} vânzări"
+msgstr[2] "{0} vânzări"
 
-msgid "{0} refunds"
-msgstr "{0} rambursări"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} rambursări"
+msgstr[1] "{0} rambursări"
+msgstr[2] "{0} rambursări"
 
-msgid "{0} installs"
-msgstr "{0} instalări"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} instalări"
+msgstr[1] "{0} instalări"
+msgstr[2] "{0} instalări"
 
 msgid "Downloads"
 msgstr "Descărcări"
@@ -335,7 +364,7 @@ msgid "Detail Page (Development Channel)"
 msgstr ""
 
 msgid "Often Used With"
-msgstr ""
+msgstr "Adesea folosit cu"
 
 msgid "Others By Author"
 msgstr ""
@@ -627,13 +656,13 @@ msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> în medie în ultimele {1} zile"
 
 msgid "No data available."
-msgstr ""
+msgstr "Nu există date disponibile."
 
 msgid "Date"
 msgstr "Dată"
 
 msgid "Other"
-msgstr ""
+msgstr "Altele"
 
 msgid "Select an application first"
 msgstr "Selectează o aplicație mai întâi"
@@ -803,6 +832,9 @@ msgstr ""
 
 msgid "Number of Reviews"
 msgstr "Numărul de recenzii"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr ""
 
 msgid "Requested Info"
 msgstr "Informații solicitate"

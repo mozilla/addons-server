@@ -27,7 +27,7 @@ class TestGlobalStats(TestCase):
 
     def test_count_stats_for_date(self):
         # Add a listed add-on, it should show up in "addon_count_new".
-        listed_addon = addon_factory()
+        listed_addon = addon_factory(created=datetime.datetime.now())
 
         # Add an unlisted version to that add-on, it should *not* increase the
         # "version_count_new" count.
@@ -59,7 +59,7 @@ class TestGlobalStats(TestCase):
             yesterday = datetime.date.today()
 
             # Add a listed add-on, it should show up in "addon_count_new".
-            listed_addon = addon_factory()
+            listed_addon = addon_factory(created=datetime.datetime.now())
 
             # Add an unlisted version to that add-on, it should *not* increase
             # the "version_count_new" count.

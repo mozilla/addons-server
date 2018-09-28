@@ -1,4 +1,4 @@
-{% if user.is_authenticated() %}
+{% if user.is_authenticated %}
   {% if tools_links and tools_links|count > 1 %}
     <ul class="tools">
       <li>
@@ -31,7 +31,7 @@
 {% endif %}
 
 <p class="context">
-  {% if user.is_authenticated() %}
+  {% if user.is_authenticated %}
     <span class="greeting">
       {{ _('Welcome, {0}')|format_html(user.welcome_name) }}
     </span>

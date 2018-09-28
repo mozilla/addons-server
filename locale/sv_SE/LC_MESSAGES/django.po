@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 16:37+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-25 15:41+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -131,6 +131,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Alla taggar måste minst vara {0} tecken."
 msgstr[1] "Alla taggar måste minst vara {0} tecken."
+
+msgid "The text entered has been flagged as spam."
+msgstr "Texten som angivits har flaggats som skräppost."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -690,6 +693,9 @@ msgstr "Granskningsverktyg"
 msgid "Admin Tools"
 msgstr "Adminverktyg"
 
+msgid "Positive integer"
+msgstr "Positivt heltal"
+
 msgid "Incorrect, please try again."
 msgstr "Felaktig, försök igen."
 
@@ -698,6 +704,9 @@ msgstr "Fel vid kontroll av input, försök igen."
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Detta måste vara en giltig hexadecimal färgkod, till exempel #000000."
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "Vissa funktioner inaktiveras tillfälligt medan vi utför webbplatsunderhåll. Vi ska vara tillbaka till full kapacitet inom kort."
 
 msgid "Not allowed"
 msgstr "Inte tillåtet"
@@ -905,6 +914,9 @@ msgstr "Signaturen har upphört."
 
 msgid "Error decoding signature."
 msgstr "Fel vid avkodning av signaturen."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr "Fel typ för en eller flera nycklar i nyttolast"
 
 msgid "Invalid JWT Token."
 msgstr "Ogiltig JWT-token."
@@ -2248,14 +2260,14 @@ msgstr "Utmärkt (3)"
 msgid "Manual Reviewer Points"
 msgstr "Manuella granskningspoäng"
 
-msgid "New Add-on Review"
-msgstr "Ny granskning av tillägg"
+msgid "New Legacy Add-on Review"
+msgstr "Ny granskning av äldre tillägg"
 
 msgid "Preliminary Add-on Review"
 msgstr "Preliminär tilläggsgranskning"
 
-msgid "Updated Add-on Review"
-msgstr "Uppdaterad tilläggsgranskning"
+msgid "Updated Legacy Add-on Review"
+msgstr "Uppdaterad granskning av äldre tillägg"
 
 msgid "New Dictionary Review"
 msgstr "Ny granskning av ordlista"
@@ -2308,17 +2320,17 @@ msgstr "Återställd modererad tilläggsgranskning"
 msgid "Add-on Content Review"
 msgstr "Innehållsgranskning för tillägg"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr "Tilläggsgranskning efter godkännande (högst risk)"
+msgid "Add-on Review (Highest Risk)"
+msgstr "Tilläggsgranskning (högst risk)"
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr "Tilläggsgranskning efter godkännande (hög risk)"
+msgid "Add-on Review (High Risk)"
+msgstr "Tilläggsgranskning (hög risk)"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr "Tilläggsgranskning efter godkännande (medelhög risk)"
+msgid "Add-on Review (Medium Risk)"
+msgstr "Tilläggsgranskning (medelhög risk)"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr "Tilläggsgranskning efter godkännande (låg risk)"
+msgid "Add-on Review (Low Risk)"
+msgstr "Tilläggsgranskning (låg risk)"
 
 msgid "Level 1"
 msgstr "Nivå 1"
@@ -2453,11 +2465,8 @@ msgstr "Det uppstod ett fel med din uppladdning. Försök igen."
 msgid "Override failed validation"
 msgstr "Åsidosätt misslyckad validering"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Du kan inte ladda upp några fler filer för denna version."
-
-msgid "Version doesn't match"
-msgstr "Version matchar inte"
+msgid "Need to select at least one application."
+msgstr "Välj åtminstone ett program."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Version {version} har laddats upp innan och tas bort."
@@ -2473,12 +2482,6 @@ msgstr "Du har inte laddat upp en källfil."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Källfilen laddades upp men du angav att ingen källa behövdes."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Plattformen Alla kan inte kombineras med specifika plattformar."
-
-msgid "A platform can only be chosen once."
-msgstr "En plattform kan endast väljas en gång."
 
 msgid "Application"
 msgstr "Applikation"
@@ -2506,6 +2509,9 @@ msgstr "Kategorier kan inte ändras när tillägget är utvalt."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "Tillägg för Thunderbird och SeaMonkey är nu listade och underhållna på addons.thunderbird.net. Du kan använda samma konto för att uppdatera dina tillägg på den nya sajten."
+
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr "Äldre tillägg stöds inte längre i Firefox."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Från och med Firefox 53, kan nya tillägg på denna webbplats endast vara WebExtensions."
@@ -3333,9 +3339,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktiv användare"
 msgstr[1] "<strong>{0}</strong> aktiva användare"
 
-msgid "Submit a New File"
-msgstr "Skicka in en ny fil"
-
 msgid "Submit a New Version"
 msgstr "Skicka in en ny version"
 
@@ -3389,6 +3392,17 @@ msgstr "Anteckning för granskare:"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "Är det något våra granskare bör ha i åtanke när du granskar detta tillägg?"
 
+msgid "Remember"
+msgstr "Kom ihåg"
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+"Om du skickade in källkod, som inte innehåller instruktioner, måste du ange dem här. Ange bygginstruktioner steg-för-steg för att skapa en exakt kopia av tilläggskoden, "
+"per%(policy_requirements_open)spolicy krav%(policy_requirements_close)s."
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Dessa anteckningar visas endast för dig och våra granskare."
 
@@ -3418,9 +3432,6 @@ msgstr "Mer information om distribution och signering av tillägg"
 
 msgid "Submission Complete"
 msgstr "Inskickning komplett"
-
-msgid "You’re done!"
-msgstr "Du är klar!"
 
 msgid "Version Submitted for Review"
 msgstr "Version som skickats in för granskning"
@@ -3455,12 +3466,6 @@ msgstr "Du kan också redigera den här versionen för att lägga till versionsa
 msgid "Edit version {0}"
 msgstr "Redigera version {0}"
 
-msgid "File Signed"
-msgstr "Fil som har signerats"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Du är klar! Denna fil är signerad och klar för egen distribution. Du kan hämta den genom att klicka på knappen nedan."
-
 msgid "Version Signed"
 msgstr "Version som signerats"
 
@@ -3469,12 +3474,6 @@ msgstr "Du är klar! Denna version är signerad och klar för egen distribution.
 
 msgid "Download {0}"
 msgstr "Hämta {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Du har valt ut några av de tillgängliga plattformar för detta bidrag. Du kan ladda upp flera filer som riktar sig mot andra plattformar:"
-
-msgid "Upload File"
-msgstr "Ladda upp fil"
 
 msgid "Go to My Submissions"
 msgstr "Gå till mina bidrag"
@@ -3485,8 +3484,8 @@ msgstr "Källkodsuppladdning"
 msgid "Do You Need to Submit Source Code?"
 msgstr "Behöver du skicka in källkod?"
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
-msgstr "Du kan behöva skicka in källkod. Om du inte skickar in rätt källkod nu kan ditt tillägg tas bort från webbplatsen!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
+msgstr "Du kan behöva skicka in källkod. Om du inte gör det kan ditt tillägg tas bort från webbplatsen!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
@@ -3554,9 +3553,6 @@ msgstr "Distributionsavtal för tillägg"
 msgid "Upload Add-on"
 msgstr "Ladda upp tillägg"
 
-msgid "Where to Host File"
-msgstr "Var filen ska hysas"
-
 msgid "Where to Host Version"
 msgstr "Var ska versionen hysas"
 
@@ -3566,8 +3562,8 @@ msgstr "Ladda upp version"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Använd fälten nedan för att ladda upp ditt tilläggspaket. Efter uppladdning, kommer en rad automatiserade valideringsprov köras på din fil."
 
-msgid "Which platforms is this file compatible with?"
-msgstr "Vilka plattformar är denna fil kompatibel med?"
+msgid "Which applications is this version compatible with?"
+msgstr "Vilka program är den här versionen kompatibel med?"
 
 msgid "Administrative overrides"
 msgstr "Administrativa åsidosättningar"
@@ -3577,9 +3573,6 @@ msgstr "Skapa ett temaversion"
 
 msgid "Create a Theme"
 msgstr "Skapa ett tema"
-
-msgid "Submit File"
-msgstr "Skicka in fil"
 
 msgid "Sign Add-on"
 msgstr "Signera tillägg"
@@ -3596,8 +3589,11 @@ msgstr "Temanamn"
 msgid "Select a header image for your theme"
 msgstr "Välj en bild till sidhuvudet för ditt tema"
 
-msgid "Image height should be 200 pixels"
-msgstr "Bildhöjd bör vara 200 pixlar"
+msgid "Recommended height: 200 pixels"
+msgstr "Rekommenderad höjd: 200 pixlar"
+
+msgid "6.9MB max"
+msgstr "6,9 MB max"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG eller GIF (inte animerad)"
@@ -4053,6 +4049,12 @@ msgstr "Kompatibilitetstest"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Kontrollera om din utökning är kompatibel med Firefox."
 
+msgid "Live Testing"
+msgstr "Live Testing"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr "Installera tillfälligt ditt tillägg i Firefox för live testning och felsökning."
+
 msgid "Transfer ownership"
 msgstr "Överför ägarskapet"
 
@@ -4211,9 +4213,6 @@ msgstr "Hantera {0}"
 
 msgid "Files"
 msgstr "Filer"
-
-msgid "Upload Another File"
-msgstr "Ladda upp en annan fil"
 
 msgid "Version Notes"
 msgstr "Versionsanteckningar"
@@ -5330,8 +5329,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Njut av musik från hela världen {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Få tillgång till över 20 tusen radiostationer från hela världen."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Få tillgång till över 30 000 radiostationer från hela världen."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5797,6 +5796,9 @@ msgstr "Versionsnummer bör endast innehålla bokstäver, siffror och dessa skil
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Uppladdning av WebExtension teman stöds för närvarande inte."
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr "Maximal storlek för WebExtension-teman är {0}."
+
 msgid "You cannot submit this type of add-on"
 msgstr "Du kan inte skicka in denna typ av tillägg"
 
@@ -6051,6 +6053,42 @@ msgstr "Få tidig tillgång till experimentella webbläsarfunktioner."
 
 msgid "Get Started"
 msgstr "Kom igång"
+
+msgid "Reported Status"
+msgstr "Rapporterad status"
+
+msgid "Reported Spam"
+msgstr "Spam rapporterad"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Reported Ham"
+msgstr "Ham rapporterad"
+
+msgid "Not Reported"
+msgstr "Inte rapporterad"
+
+msgid "Content Submitted"
+msgstr "Inskickat innehåll"
+
+msgid "View Rating on site"
+msgstr "Visa betyg på webbplatsen"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Submit Ham to Akismet"
+msgstr "Skicka in ham till Akismet"
+
+msgid "Submit Spam to Akismet"
+msgstr "Skicka in spam till Akismet"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr "%s ham-rapporter som skickats in som spam"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr "%s spam-rapporter som skickats in som ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "Om Mozilla tillägg"
@@ -7458,9 +7496,6 @@ msgstr "Visar {0} - {1} av {2} resultat för <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Visar {0} - {1} av {2} resultat"
 
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Vissa funktioner inaktiveras tillfälligt medan vi utför webbplatsunderhåll. Vi ska vara tillbaka till full kapacitet inom kort."
-
 msgid "Could not find add-on with id \"{}\"."
 msgstr "Kunde inte hitta tillägg med id \"{}\"."
 
@@ -7956,8 +7991,8 @@ msgstr "Ingen användare med den e-postadressen."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr "Anonym användare {id}"
+msgid "Firefox user {id}"
+msgstr "Firefox-användare {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Mina Mobile-tillägg"

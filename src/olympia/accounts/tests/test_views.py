@@ -30,7 +30,7 @@ from olympia.amo.tests import (
     reverse_ns, user_factory)
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.api.authentication import WebTokenAuthentication
-from olympia.api.tests.utils import APIKeyAuthTestCase
+from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.users.models import UserNotification, UserProfile
 from olympia.users.notifications import (
     NOTIFICATIONS_BY_ID, REMOTE_NOTIFICATIONS_BY_BASKET_ID)
@@ -265,6 +265,14 @@ class TestFindUser(TestCase):
             fxa_id='abc', email='me@amo.ca', deleted=True)
         with self.assertRaises(PermissionDenied):
             views.find_user({'uid': 'abc', 'email': 'you@amo.ca'})
+
+    def test_find_user_mozilla(self):
+        task_user = user_factory(
+            id=settings.TASK_USER_ID, fxa_id='abc')
+        with self.assertRaises(PermissionDenied):
+            views.find_user({'uid': '123456', 'email': task_user.email})
+        with self.assertRaises(PermissionDenied):
+            views.find_user({'uid': task_user.fxa_id, 'email': 'doesnt@matta'})
 
 
 class TestRenderErrorHTML(TestCase):
@@ -502,7 +510,7 @@ class TestWithUser(TestCase):
         }
         self.user = UserProfile()
         self.request.user = self.user
-        assert self.user.is_authenticated()
+        assert self.user.is_authenticated
         self.request.COOKIES = {views.API_TOKEN_COOKIE: 'foobar'}
         self.fn(self.request)
         self.render_error.assert_called_with(
@@ -520,7 +528,7 @@ class TestWithUser(TestCase):
         }
         self.user = UserProfile()
         self.request.user = self.user
-        assert self.user.is_authenticated()
+        assert self.user.is_authenticated
         self.request.COOKIES = {}
         self.fn(self.request)
         self.render_error.assert_called_with(
@@ -897,7 +905,7 @@ class TestAccountViewSet(TestCase):
             self.random_user.get_url_path())
 
 
-class TestProfileViewWithJWT(APIKeyAuthTestCase):
+class TestProfileViewWithJWT(APIKeyAuthTestMixin, TestCase):
     """This just tests JWT Auth (external) on the profile endpoint.
 
     See TestAccountViewSet for internal auth test.
@@ -1172,7 +1180,7 @@ class TestAccountViewSetDelete(TestCase):
         assert self.user.reload().deleted
 
 
-class TestAccountSuperCreate(APIKeyAuthTestCase):
+class TestAccountSuperCreate(APIKeyAuthTestMixin, TestCase):
 
     def setUp(self):
         super(TestAccountSuperCreate, self).setUp()

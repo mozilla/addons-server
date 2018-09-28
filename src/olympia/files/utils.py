@@ -22,6 +22,7 @@ from django import forms
 from django.conf import settings
 from django.core.files.storage import (
     File as DjangoFile, default_storage as storage)
+from django.template.defaultfilters import filesizeformat
 from django.utils.encoding import force_text
 from django.utils.jslex import JsLexer
 from django.utils.translation import ugettext
@@ -202,6 +203,8 @@ class RDFExtractor(object):
             'type': self.find_type(),
             'version': self.find('version'),
             'is_webextension': False,
+            'name': self.find('name'),
+            'summary': self.find('description'),
         }
 
         # Populate certificate information (e.g signed by mozilla or not)
@@ -211,9 +214,7 @@ class RDFExtractor(object):
 
         if not minimal:
             data.update({
-                'name': self.find('name'),
                 'homepage': self.find('homepageURL'),
-                'summary': self.find('description'),
                 'is_restart_required': (
                     self.find('bootstrap') != 'true' and
                     self.find('type') not in self.ALWAYS_RESTARTLESS_TYPES),
@@ -506,6 +507,10 @@ class ManifestJSONExtractor(object):
             'type': self.type,
             'version': self.get('version', ''),
             'is_webextension': True,
+            'name': self.get('name'),
+            'summary': self.get('description'),
+            'homepage': self.get('homepage_url'),
+            'default_locale': self.get('default_locale'),
         }
 
         # Populate certificate information (e.g signed by mozilla or not)
@@ -515,16 +520,12 @@ class ManifestJSONExtractor(object):
 
         if not minimal:
             data.update({
-                'name': self.get('name'),
-                'homepage': self.get('homepage_url'),
-                'summary': self.get('description'),
                 'is_restart_required': False,
                 'apps': list(self.apps()),
                 'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,
                 # Langpacks have strict compatibility enabled, rest of
                 # webextensions don't.
                 'strict_compatibility': data['type'] == amo.ADDON_LPAPP,
-                'default_locale': self.get('default_locale'),
                 'is_experiment': self.is_experiment,
             })
             if self.type == amo.ADDON_EXTENSION:
@@ -911,6 +912,11 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
         if not waffle.switch_is_active('allow-static-theme-uploads'):
             raise forms.ValidationError(ugettext(
                 'WebExtension theme uploads are currently not supported.'))
+        max_size = settings.MAX_STATICTHEME_SIZE
+        if xpi_file and os.path.getsize(xpi_file.name) > max_size:
+            raise forms.ValidationError(
+                ugettext(u'Maximum size for WebExtension themes is {0}.')
+                .format(filesizeformat(max_size)))
 
     if xpi_file:
         # Make sure we pass in a copy of `xpi_info` since

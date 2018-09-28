@@ -8,19 +8,13 @@ For more information about the review process and policies, please visit https:/
 Attract Users, Stay Updated, & Get in Touch
 ********
 
-Add-ons help personalize the web experience for millions of users who have installed Firefox, and we want to help make your users happy! If you have not already done so, we recommend checking out these resources:
+Add-ons help personalize the web experience for millions of users who have installed Firefox, and we want to help make your users happy!
 
+To learn how to help users discover your extension, stay up-to-date with news from the add-ons community, or contact the add-ons team, please visit https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/Distribution/Resources_for_publishers
 
-* Help users discover and install your add-on by learning how to create an appealing listing: https://developer.mozilla.org/Add-ons/Listing
-* Want your add-on featured on AMO? Learn more: https://developer.mozilla.org/Add-ons/AMO/Policy/Featured
-* Join our mailing list to stay up-to-date with news and events relevant to add-on developers, including a subscription to our quarterly newsletter, about:addons: https://addons.mozilla.org/firefox/users/edit#acct-notify
-* Follow the Add-ons Blog to stay up-to-date on the latest news: https://blog.mozilla.org/addons/
-* For more add-on developer resources, please visit MDN web docs: https://developer.mozilla.org/Add-ons
-* Want to ask a question or file a bug report? These are the best ways to contact us: https://developer.mozilla.org/Add-ons#Contact_us
-
+If you are interested in getting more involved with Mozilla and want to help keep the add-ons ecosystem safe and healthy, please consider becoming a volunteer add-on reviewer. You can learn more at https://wiki.mozilla.org/Add-ons/Reviewers
 
 Happy developing!
-
 
 -- 
 Mozilla Add-ons

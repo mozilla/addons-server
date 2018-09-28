@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-02 08:38+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-06 08:37+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -30,14 +30,13 @@ msgstr "هناك مشكلة ما في الاتصال بالخادوم."
 msgid "Select a file..."
 msgstr "اختر ملفًا…"
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "إضافتك ينبغي أن تنتهي بـ xpi. أو jar. أو xml."
+msgstr "يجب أن ينتهي اسم الإضافة بأحد الآتي: ‎.zip أو ‎.xpi أو ‎.crx أو ‎.jar أو ‎.xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#, fuzzy, python-format
+#, python-format
 msgid "{0}% complete"
-msgstr "اكتمل {0}%"
+msgstr "اكتمل بنسبة {0}%"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
@@ -66,12 +65,12 @@ msgstr[5] "فشل التثبّت من الإضافة بِ‍ {0} خطأ."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "&hellip; ولا غيرها"
+msgstr[1] "&hellip;و واحد آخر"
+msgstr[2] "&hellip;و اثنين آخرين"
+msgstr[3] "&hellip;و {0} أخرى"
+msgstr[4] "&hellip;و {0} أخرى"
+msgstr[5] "&hellip;و {0} أخرى"
 
 msgid "See full validation report"
 msgstr "طالع تقرير التثبّت كاملًا"
@@ -80,7 +79,7 @@ msgid "Validating {0}"
 msgstr "يتثبّت من {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "تخطت إضافتك الحجم المسموح به بقيمة {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "استقبلتُ استجابة فارغة من الخادوم، الحالة: {0}"
@@ -92,46 +91,46 @@ msgid "Finished validating {0}"
 msgstr "انتهى التثبّت من {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "انتهت مهلة التثبّت من إضافتك، سيكون التحقق منها يدوي."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "اكتمل التثبّت من إضافتك بدون أي أخطاء أو تحذيرات."
+msgstr[1] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع تحذير واحد."
+msgstr[2] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع تحذيرين."
+msgstr[3] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} تحذيرات."
+msgstr[4] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} تحذيرًا."
+msgstr[5] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} تحذير."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "اكتمل التثبّت من إضافتك بدون أي أخطاء أو رسائل."
+msgstr[1] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع رسالة واحدة."
+msgstr[2] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع رسالتين."
+msgstr[3] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} رسائل."
+msgstr[4] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} رسالةً."
+msgstr[5] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} رسالة."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "اكتمل التثبّت من إضافتك بدون أي أخطاء أو رسائل."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "سيُوقّع ما تُرسله تلقائيًا."
 
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "الترقية إلى WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "نتيح ونشجّع على إجراء ترقية إلا أنك لا تستطيع عكس العملية. ما إن يُثبّت المستخدمون WebExtension، لن يقدروا على تثبيت إضافة عتيقة بعد الآن."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "”نقل إضافة فَيَرفُكس عتيقة“ على MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "إن كانت إضافتك تحتاج حسابًا في موقع معين لتُختبر كما ينبغي، فضمّن اسم مستخدم وكلمة سر اختباريّين في قسم الملاحظات للمراجعين (يمكن إجراء هذا في الخطوة التالية)."
 
 msgid "Add-on submission checklist"
 msgstr ""
@@ -145,16 +144,13 @@ msgid ""
 msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
-
-msgid "Sorry, no supported platform has been found."
-msgstr "نعتذر، لم يُعثر على منصة مدعومة."
+msgstr "وجدت عملية التثبّت المشكلات الآتية والتي قد تؤدّي بالرفض:"
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "لم يُتعرّف على نوع الملف الذي رفعته."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "تخطّى الملف الحجم الأقصى ({0})."
 
 msgid "You cancelled the upload."
 msgstr "لقد ألغيت الرفع."
@@ -172,7 +168,7 @@ msgid "Stop Following"
 msgstr "أوقِف المتابعة"
 
 msgid "Following"
-msgstr ""
+msgstr "مُتابعة"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -203,13 +199,13 @@ msgid "Your Theme's Name"
 msgstr "اسم السمة"
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "عليه علامة لمراجعته"
 
 msgid "Your input is required"
 msgstr "الدخل مطلوب"
 
 msgid "Marked for deletion"
-msgstr ""
+msgstr "عليه علامة لحذفه"
 
 msgid "Updating results&hellip;"
 msgstr "يُحدّث النتائج&hellip;"
@@ -232,29 +228,81 @@ msgstr ""
 msgid "Week of {0}"
 msgstr ""
 
-msgid " downloads"
-msgstr ""
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] "التنزيلات"
+msgstr[1] "التنزيلات"
+msgstr[2] "التنزيلات"
+msgstr[3] "التنزيلات"
+msgstr[4] "التنزيلات"
+msgstr[5] "التنزيلات"
 
-msgid "{0} users"
-msgstr ""
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "لا نجوم"
+msgstr[1] "نجمة واحدة"
+msgstr[2] "نجمتان اثنتان"
+msgstr[3] "{0} نجوم"
+msgstr[4] "{0} نجمة"
+msgstr[5] "{0} نجمة"
 
-msgid "{0} add-ons"
-msgstr ""
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
-msgid "{0} collections"
-msgstr ""
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
-msgid "{0} reviews"
-msgstr ""
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
-msgid "{0} sales"
-msgstr ""
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "لا نجوم"
+msgstr[1] "نجمة واحدة"
+msgstr[2] "نجمتان اثنتان"
+msgstr[3] "{0} نجوم"
+msgstr[4] "{0} نجمة"
+msgstr[5] "{0} نجمة"
 
-msgid "{0} refunds"
-msgstr ""
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
-msgid "{0} installs"
-msgstr ""
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "لا نجوم"
+msgstr[1] "نجمة واحدة"
+msgstr[2] "نجمتان اثنتان"
+msgstr[3] "{0} نجوم"
+msgstr[4] "{0} نجمة"
+msgstr[5] "{0} نجمة"
 
 msgid "Downloads"
 msgstr "التنزيلات"
@@ -652,7 +700,7 @@ msgid "Other"
 msgstr "أخرى"
 
 msgid "Select an application first"
-msgstr ""
+msgstr "اختر تطبيقًا أولًا"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
@@ -681,18 +729,17 @@ msgstr "أضِف إلى {0}"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "ثبّت على {0} بأي حال"
 
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "نزّل على {0} بأي حال"
 
 msgid "Not available for your platform"
 msgstr "غير متوفّر لمنصتك"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "هذه السِمة غير متوافقة مع إصدارتك من {0}"
+msgstr "هذه الإضافة غير متوافقة مع إصدارة {0} الحالية."
 
 msgid "View other versions"
 msgstr "اعرض الإصدارات الأخرى"
@@ -700,12 +747,11 @@ msgstr "اعرض الإصدارات الأخرى"
 msgid "Works with {app} {min} - {max}"
 msgstr ""
 
-#, fuzzy
 msgid "Works with {app}"
-msgstr "تعمل مع {app} {min} - {max}"
+msgstr "تعمل مع {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "فقط في فَيَرفُكس — نزّله الآن!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "نأسف، تحتاجُ متفصحًا من موزيلا (مثل متصفح فَيَرفُكس) لتثبيت ملحقات البحث."
@@ -747,13 +793,13 @@ msgid "Stop following"
 msgstr "أوقِف المتابعة"
 
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "لا يدعم المتصفح لديك وسم الڤديوهات"
 
 msgid "Changes Saved"
 msgstr "حُفظت التغييرات"
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "أدخِل عنوان البريد الجديد للمؤلف"
 
 msgid "There was an error uploading your file."
 msgstr "حدث خطأ أثناء رفع الملف."
@@ -777,7 +823,7 @@ msgstr[4] ""
 msgstr[5] ""
 
 msgid "Image changes being processed"
-msgstr ""
+msgstr "يُعالج التغييرات على الصورة"
 
 msgid "No results found."
 msgstr "لم يُعثر على نتائج."
@@ -788,18 +834,18 @@ msgstr "يُحمّل…"
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "لا حروف متبقية"
-msgstr[1] "حرف واحد متبقي"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "لم يبقَ <b>أي</b> حرف."
+msgstr[1] "بقيَ حرف <b>واحد</b>."
+msgstr[2] "بقيَ <b>حرفين</b>."
+msgstr[3] "بقيت <b>{0}</b> أحرف."
+msgstr[4] "بقيَ <b>{0}</b> حرفًا."
+msgstr[5] "بقيَ <b>{0}</b> حرف."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "هذه الميزة معطلة مؤقتًا بينما نقوم بصيانة الموقع. رجاءً أعِد المحاولة بعد بعض الوقت."
 
 msgid "Remove this localization"
-msgstr ""
+msgstr "أزِل هذا التوطين"
 
 msgid "{name} was viewing this page first."
 msgstr ""
@@ -835,6 +881,9 @@ msgid "Average Reviews"
 msgstr ""
 
 msgid "Number of Reviews"
+msgstr ""
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
 
 msgid "Requested Info"
@@ -890,10 +939,10 @@ msgid "Compatibility Tests"
 msgstr ""
 
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "فشل التثبّت من الإضافة."
 
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "نجح التثبّت من الإضافة."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
@@ -923,7 +972,7 @@ msgstr[4] ""
 msgstr[5] ""
 
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "تعذّر اكتمال مهمة التثبّت أو أنها اكتملت مع أخطاء."
 
 msgid "Internal server error"
 msgstr "خطأ داخلي في الخادوم"

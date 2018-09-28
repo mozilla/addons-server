@@ -1,11 +1,8 @@
--r flake8.txt
--r prod.txt
-
 # apipkg is required by execnet
 apipkg==1.5 \
     --hash=sha256:58587dd4dc3daefad0487f6d9ae32b4542b185e1c36db6993290e7c41ca2b47c \
     --hash=sha256:37228cda29411948b422fae072f57e31d3396d2ee1c9783775980ee9c9990af6
-# execnet is required by pytest-cache, pytest-xdist
+# execnet is required by pytest-xdist
 execnet==1.5.0 \
     --hash=sha256:fc155a6b553c66c838d1a22dba1dc9f5f505c43285a878c6f74a79c024750b83 \
     --hash=sha256:a7a84d5fa07a089186a329528f127c9d73b9de57f1a1131b82bb5320ee651f6a
@@ -24,21 +21,19 @@ psutil==5.4.7 \
     --hash=sha256:51057c03aea251ad6667c2bba259bc7ed3210222d3a74152c84e3ab06e1da0ba \
     --hash=sha256:5b6322b167a5ba0c5463b4d30dfd379cd4ce245a1162ebf8fc7ab5c5ffae4f3b
 # py is required by pytest, pytest-xdist
-py==1.5.4 \
-    --hash=sha256:e31fb2767eb657cbde86c454f02e99cb846d3cd9d61b318525140214fdc0e98e \
-    --hash=sha256:3fd59af7435864e1a243790d322d763925431213b6b8529c6ca71081ace3bbf7
-# pytest is required by amo-validator, pytest-base-url, pytest-cache, pytest-cov, pytest-django, pytest-html, pytest-instafail, pytest-selenium, pytest-variables, pytest-xdist
-pytest==3.7.1 \
-    --hash=sha256:e74466e97ac14582a8188ff4c53e6cc3810315f342f6096899332ae864c1d432 \
-    --hash=sha256:86a8dbf407e437351cef4dba46736e9c5a6e3c3ac71b2e942209748e76ff2086
-pytest-cache==1.0 \
-    --hash=sha256:be7468edd4d3d83f1e844959fd6e3fd28e77a481440a7118d430130ea31b07a9
-pytest-django==3.3.3 \
-    --hash=sha256:434abfd2afe61b69a58af41e7339617f3aa33dc9a05e3b77fa5955204a61b865 \
-    --hash=sha256:a73e355138675db8f535777ddf34bde28580b688be17dc21d0efa65e5c16927c
-pytest-xdist==1.22.5 \
-    --hash=sha256:3308c4f6221670432d01e0b393b333d77c1fd805532e1d64450e8140855eb51b \
-    --hash=sha256:cce08b4b7f56d34d43b365e2b3667ebb8edcf91d01c2a8fccf45c56d37e71bc1
+py==1.6.0 \
+    --hash=sha256:50402e9d1c9005d759426988a492e0edaadb7f4e68bcddfea586bc7432d009c6 \
+    --hash=sha256:06a30435d058473046be836d3fc4f27167fd84c45b99704f2fb5509ef61f9af1
+# pytest is required by amo-validator, pytest-base-url, pytest-cov, pytest-django, pytest-html, pytest-instafail, pytest-selenium, pytest-variables, pytest-xdist
+pytest==3.8.1 \
+    --hash=sha256:0a72d8a9f559c006ba153e0c9b4838efd7b656cf1f993747ba7128770d6eb12c \
+    --hash=sha256:95529588ff4e85114a0b0ad8e9cf0131ca47d46b28230e25366c5aba66b1d854
+pytest-django==3.4.3 \
+    --hash=sha256:49e9ffc856bc6a1bec1c26c5c7b7213dff7cc8bc6b64d624c4d143d04aff0bcf \
+    --hash=sha256:b379282feaf89069cb790775ab6bbbd2bd2038a68c7ef9b84a41898e0b551081
+pytest-xdist==1.23.1 \
+    --hash=sha256:7118027c5bb7178fc46db223e67e8dd123b4e3f892b555cf68a66a252b3dc348 \
+    --hash=sha256:029fbc816cee2887bf9ae6e0874256a8b707409eb54886e02df7cb1944ef101c
 pytest-forked==0.2 \
     --hash=sha256:f275cb48a73fc61a6710726348e1da6d68a978f0ec0c54ece5a5fae5977e5a08
 freezegun==0.3.10 \
@@ -72,12 +67,12 @@ pathtools==0.1.2 \
     --hash=sha256:7c35c5421a39bb82e58018febd90e3b6e5db34c5443aaaf742b3f33d4655f1c0
 pytest-responses==0.3.0 \
     --hash=sha256:4556395e4d1d69620027e618c302f0dbe16eef05b1037dc5955c921b6d3bc0ee
-attrs==18.1.0 \
-    --hash=sha256:4b90b09eeeb9b88c35bc642cbac057e45a5fd85367b985bd2809c62b7b939265 \
-    --hash=sha256:e0d0eb91441a3b53dab4d9b743eafc1ac44476296a2053b6ca3af0b139faf87b
+attrs==18.2.0 \
+    --hash=sha256:ca4be454458f9dec299268d472aaa5a11f67a4ff70093396e1ceae9c76cf4bbb \
+    --hash=sha256:10cbf6e27dbce8c30807caf056c8eb50917e0eaafe86347671b57254006c3e69
 pluggy==0.7.1 \
     --hash=sha256:6e3836e39f4d36ae72840833db137f7b7d35105079aee6ec4a62d9f80d594dd1 \
     --hash=sha256:95eb8364a4708392bae89035f45341871286a333f749c3141c20573d2b3876e1
-atomicwrites==1.1.5 \
-    --hash=sha256:240831ea22da9ab882b551b31d4225591e5e447a68c5e188db5b89ca1d487585 \
-    --hash=sha256:a24da68318b08ac9c9c45029f4a10371ab5b20e4226738e150e6e7c571630ae6
+atomicwrites==1.2.0 \
+    --hash=sha256:6b5282987b21cd79151f51caccead7a09d0a32e89c568bd9e3c4aaa7bbdf3f3a \
+    --hash=sha256:e16334d50fe0f90919ef7339c24b9b62e6abaa78cd2d226f3d94eb067eb89043

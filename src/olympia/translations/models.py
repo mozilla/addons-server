@@ -6,6 +6,7 @@ import bleach
 import olympia.core.logger
 
 from olympia.amo import urlresolvers
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase
 
 from . import utils
@@ -32,8 +33,8 @@ class Translation(ModelBase):
     key to this model.
     """
 
-    autoid = models.AutoField(primary_key=True)
-    id = models.IntegerField()
+    autoid = PositiveAutoField(primary_key=True)
+    id = models.PositiveIntegerField()
     locale = models.CharField(max_length=10)
     localized_string = models.TextField(null=True)
     localized_string_clean = models.TextField(null=True)
@@ -207,12 +208,15 @@ class LinkifiedTranslation(PurifiedTranslation):
         proxy = True
 
 
-class NoLinksMixin(object):
-    """Mixin used to remove links (URLs and text) from localized_string."""
+class NoLinksNoMarkupTranslation(LinkifiedTranslation):
+    """Run the string through bleach, escape markup and strip all the links."""
+
+    class Meta:
+        proxy = True
 
     def clean_localized_string(self):
         # First pass: bleach everything, but leave links untouched.
-        cleaned = super(NoLinksMixin, self).clean_localized_string()
+        cleaned = super(LinkifiedTranslation, self).clean_localized_string()
 
         # Second pass: call linkify to empty the inner text of all links.
         emptied_links = bleach.linkify(
@@ -223,20 +227,6 @@ class NoLinksMixin(object):
         allowed_tags = self.allowed_tags[:]  # Make a copy.
         allowed_tags.remove('a')
         return bleach.clean(emptied_links, tags=allowed_tags, strip=True)
-
-
-class NoLinksTranslation(NoLinksMixin, PurifiedTranslation):
-    """Run the string through bleach, escape markup and strip all the links."""
-
-    class Meta:
-        proxy = True
-
-
-class NoLinksNoMarkupTranslation(NoLinksMixin, LinkifiedTranslation):
-    """Run the string through bleach, escape markup and strip all the links."""
-
-    class Meta:
-        proxy = True
 
 
 class TranslationSequence(models.Model):

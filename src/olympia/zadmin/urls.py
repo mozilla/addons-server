@@ -13,7 +13,7 @@ from . import views
 def login(request):
     # If someone is already auth'd then they're getting directed to login()
     # because they don't have sufficient permissions.
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         raise PermissionDenied
     else:
         return redirect_for_login(request)
@@ -43,7 +43,7 @@ urlpatterns = [
     url(r'^compat$', views.compat, name='zadmin.compat'),
 
     url(r'^file-upload/(?P<uuid>[0-9a-f]{32})/download$',
-        views.download_file, name='zadmin.download_file'),
+        views.download_file_upload, name='zadmin.download_file_upload'),
 
     url('^features$', views.features, name='zadmin.features'),
     url('^features/collections\.json$', views.es_collections_json,

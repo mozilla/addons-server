@@ -26,7 +26,7 @@
     {% block extrahead %}{% endblock %}
     <noscript><link rel="stylesheet" href="{{ static('css/impala/nojs.css') }}"></noscript>
 
-    {% if request.user.is_authenticated() %}
+    {% if request.user.is_authenticated %}
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
 
@@ -36,7 +36,7 @@
         data-app="{{ request.APP.short }}"
         data-appname="{{ request.APP.pretty }}"
         data-appid="{{ request.APP.id }}"
-        data-anonymous="{{ (not request.user.is_authenticated())|json }}"
+        data-anonymous="{{ (not request.user.is_authenticated)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
         data-static-url="{{ STATIC_URL }}"

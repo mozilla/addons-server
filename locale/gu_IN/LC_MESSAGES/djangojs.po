@@ -1,12 +1,12 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-02-24 18:50+0000\n"
-"Last-Translator: Hariom Panchal <hariompanchal6079@gmail.com>\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-05-14 11:59+0000\n"
+"Last-Translator: pratikmdabhi <pratikmdabhi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgid "See full validation report"
 msgstr "સંપૂર્ણ માન્યતા અહેવાલ જુઓ"
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "માન્યતા {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "તમારા ઍડ-ઑન {0}ના મહત્તમ કદ કરતાં વધી ગયો છે."
@@ -74,7 +74,7 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "સર્વરમાંથી ખાલી પ્રતિભાવ મળ્યો; સ્થિતિ: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "માન્ય કરતી વખતે અનપેક્ષિત સર્વર ભૂલ."
 
 msgid "Finished validating {0}"
 msgstr ""
@@ -89,11 +89,11 @@ msgstr[1] "તમાર‍ા એડ-ઓન કોઈ ભૂલો અને {0}
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "તમારા ઍડ-ઑનને કોઈ ભૂલ અને {0} સંદેશા સાથે માન્ય કરવામાં આવ્યું ન હતું."
+msgstr[1] "તમારા ઍડ-ઑનને કોઈ ભૂલો અને {0} સંદેશા વિના માન્ય કરવામાં આવ્યું હતું."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "તમારા ઍડ-ઑનને કોઈ ભૂલો અથવા ચેતવણીઓ વગર માન્ય કરવામાં આવી હતી."
 
 msgid "Your submission will be automatically signed."
 msgstr ""
@@ -102,45 +102,44 @@ msgid "WebExtension upgrade"
 msgstr "WebExtension સુધારો"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "અમે અપગ્રેડ કરવાની મંજૂરી આપીએ છીએ, પરંતુ તમે આ પ્રક્રિયાને ઉલટાવી શકતા નથી. એકવાર તમારા વપરાશકર્તાઓ પાસે WebExtension ઇન્સ્ટોલ કરેલું હોય, તો તેઓ કોઈ લીગસી એડ-ઓન ઇન્સ્ટોલ કરી શકશે નહીં."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "MDN પર લેગસી Firefox ઍડ-ઑનને પોર્ટેંગ કરવું"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "વિગતવાર આવૃત્તિ નોંધો શામેલ કરો(આ આગળના પગલામાં કરી શકાય છે)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "જો તમારા ઍડ-ઑનને સંપૂર્ણ પરીક્ષણ માટે વેબસાઇટ પર કોઈ એકાઉન્ટની જરૂર હોય, તો સમીક્ષકોની નોંધો મા એક ટેસ્ટ વપરાશકર્તાનામ અને પાસવર્ડ શામેલ કરો(આ આગળના પગલામાં કરી શકાય છે)."
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "એડ-ઓન રજૂઆત તપાસ યાદી"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "તમારી રજૂઆતને અંતિમ રૂપ આપતા પહેલાં નીચેના મુદ્દાઓ ચકાસો. આ સમીક્ષા પ્રક્રિયા દરમિયાન વિલંબ અથવા ગેરસમજને ઘટાડેશે:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"સંકલિત દ્વિસંગીઓ, તેમજ minified અથવા obfuscated સ્ક્રિપ્ટો(જાણીતા લાઈબ્રેરીઓ સિવાય) તેમના સ્રોતો સમીક્ષા માટે અલગ સબમિટ કરવાની જરૂર છે. તમારી રજૂઆત નકારવાથી ટાળવા માટે તમે સ્ત્રોત કોડ અપલોડ ફીલ્ડનો ઉપયોગ કરો છો તેની "
+"ખાતરી કરો."
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
-
-msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "માન્યતા પ્રક્રિયાએ આ મુદ્દાઓ શોધી કાઢ્યાં છે જે અસ્વીકાર તરફ દોરી શકે છે:"
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr ""
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "તમારી ફાઇલ મહત્તમ {0}ના કદને ઓળંગે છે."
 
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "તમે અપલોડને રદ કર્યું."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "છબીઓ ક્યાં તો PNG અથવા JPG હોવી જોઈએ."
 
 msgid "Videos must be in WebM."
 msgstr ""
@@ -201,77 +200,100 @@ msgid "Search themes for <b>{0}</b>"
 msgstr "<b>{0}</b> માટે થીમ્સ શોધો"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "<b>{0}</b> માટે એપ્લિકેશન્સ શોધો"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "<b>{0}</b> માટે ઍડ-ઑન્સ શોધો"
 
 msgid "Use original"
-msgstr ""
+msgstr "મૂળ ઉપયોગ કરો"
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "{0} નું અઠવાડિયું"
 
-msgid " downloads"
-msgstr ""
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " ડાઉનલોડ્સ"
+msgstr[1] " ડાઉનલોડ્સ"
 
-msgid "{0} users"
-msgstr ""
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} વપરાશકર્તાઓ"
+msgstr[1] "{0} વપરાશકર્તાઓ"
 
-msgid "{0} add-ons"
-msgstr ""
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} એડ-ઑન્સ"
+msgstr[1] "{0} એડ-ઑન્સ"
 
-msgid "{0} collections"
-msgstr ""
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} સંગ્રહો"
+msgstr[1] "{0} સંગ્રહો"
 
-msgid "{0} reviews"
-msgstr ""
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} સમીક્ષાઓ"
+msgstr[1] "{0} સમીક્ષાઓ"
 
-msgid "{0} sales"
-msgstr ""
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} વેચાણ"
+msgstr[1] "{0} વેચાણ"
 
-msgid "{0} refunds"
-msgstr ""
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] ""
+msgstr[1] ""
 
-msgid "{0} installs"
-msgstr ""
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} તારો"
+msgstr[1] "{0} તારાઓ"
 
 msgid "Downloads"
-msgstr ""
+msgstr "ડાઉનલોડ્સ"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "દૈનિક વપરાશકર્તાઓ"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "રકમ, USD માં"
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "યોગદાનની સંખ્યા"
 
 msgid "More Info..."
-msgstr ""
+msgstr "વધુ માહિતી..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr ""
+msgstr "{0} માટે વિગતો"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "સંગ્રહો બનાવ્યાં"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "ઉપયોગમાં એડ-ઑન્સ"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "એડ-ઓન બનાવ્યું"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "એડ-ઓન ડાઉનલોડ કરેલ"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "એડ-ઓન અપડેટ"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "લખાયેલી સમીક્ષાઓ"
 
 msgid "User Signups"
 msgstr ""
@@ -280,16 +302,16 @@ msgid "Subscribers"
 msgstr ""
 
 msgid "Ratings"
-msgstr ""
+msgstr "રેટિંગ્સ"
 
 msgid "Sales"
-msgstr ""
+msgstr "વેચાણ"
 
 msgid "Installs"
 msgstr ""
 
 msgid "Unknown"
-msgstr ""
+msgstr "અજ્ઞાત"
 
 msgid "Add-ons Manager"
 msgstr ""
@@ -304,52 +326,52 @@ msgid "Add-ons Manager Learn More"
 msgstr ""
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "શોધ સૂચનો"
 
 msgid "Search Results"
-msgstr ""
+msgstr "શોધ પરિણામો"
 
 msgid "Homepage Promo"
-msgstr ""
+msgstr "મુખપૃષ્ઠ પ્રોમો"
 
 msgid "Homepage Featured"
 msgstr ""
 
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "મુખપૃષ્ઠ ઉપર અને આવતા"
 
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "મુખપૃષ્ઠ સૌથી વધુ લોકપ્રિય"
 
 msgid "Detail Page"
-msgstr ""
+msgstr "વિગતવાર પૃષ્ઠ"
 
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "વિગતવાર પૃષ્ઠ (નીચે)"
 
 msgid "Detail Page (Development Channel)"
 msgstr ""
 
 msgid "Often Used With"
-msgstr ""
+msgstr "વારંવાર સાથે વપરાય છે"
 
 msgid "Others By Author"
-msgstr ""
+msgstr "લેખક દ્વારા અન્ય"
 
 msgid "Dependencies"
-msgstr ""
+msgstr "નિર્ભરતા"
 
 msgid "Upsell"
 msgstr ""
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "વિકાસકર્તાને મળો"
 
 msgid "User Profile"
-msgstr ""
+msgstr "વપરાશકર્તા પ્રોફાઇલ"
 
 msgid "Version History"
-msgstr ""
+msgstr "આવૃત્તિ ઇતિહાસ"
 
 msgid "Sharing"
 msgstr ""
@@ -424,7 +446,7 @@ msgid "Fennec"
 msgstr ""
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
@@ -460,19 +482,19 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "એપ્લિકેશન્સ, છેલ્લા {0} દિવસ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "{0} થી {1} માટેના અરજી"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "પ્લેટફોર્મ્સ, છેલ્લા {0} દિવસ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "{0} થી {1} સુધીની પ્લેટફોર્મ્સ"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
@@ -500,11 +522,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "ડાઉનલોડ સ્ત્રોતો, છેલ્લા {0} દિવસો"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "{0} થી {1} માંથી સ્ત્રોતો ડાઉનલોડ કરો"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -516,11 +538,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "સાઇટ મેટ્રિક્સ, છેલ્લા {0} દિવસ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "સાઇટ મેટ્રિક્સ {0} થી {1} સુધી"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
@@ -532,23 +554,23 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "એડ-ઓન્સ ડાઉનલોડ કરેલ, છેલ્લા {0} દિવસ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "એડ-ઑન્સ {0} થી {1} સુધીની ડાઉનલોડ કરી"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "ઍડ-ઑન્સ બનાવ્યાં, છેલ્લા {0} દિવસ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "{0} થી {1} માંથી બનાવેલ એડ-ઓન્સ"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "એડ-ઓન સુધારાશે, છેલ્લા {0} દિવસ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
@@ -623,7 +645,7 @@ msgid "<b>{0}</b> average in last {1} days"
 msgstr ""
 
 msgid "No data available."
-msgstr ""
+msgstr "કોઈ ડેટા ઉપલબ્ધ નથી."
 
 msgid "Date"
 msgstr ""
@@ -632,38 +654,38 @@ msgid "Other"
 msgstr ""
 
 msgid "Select an application first"
-msgstr ""
+msgstr "પ્રથમ એપ્લિકેશન પસંદ કરો"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} ઍડ-ઑનને {1} ના મહત્તમ સંસ્કરણ પર સેટ કરો અને લેખકને ઇમેઇલ કરો."
+msgstr[1] "{0} ઍડ-ઑન્સને {1} ના મહત્તમ સંસ્કરણ પર સેટ કરો અને લેખકોને ઇમેઇલ કરો."
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{2} ઍડ-ઑનનું ઇમેઇલ લેખક જે માન્યતા નિષ્ફળ થયું."
+msgstr[1] "{2} ઍડ-ઑન્સના ઇમેઇલ લેખકો કે જેણે માન્યતાને નિષ્ફળ કરી."
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
-msgstr ""
+msgstr "સ્વીકારો અને સ્થાપિત કરો"
 
 msgid "Add to {0}"
 msgstr ""
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "કોઈપણ રીતે {0} માટે સ્થાપિત કરો"
 
 msgid "Download for {0} anyway"
 msgstr ""
 
 msgid "Not available for your platform"
-msgstr ""
+msgstr "તમારા પ્લેટફોર્મ માટે ઉપલબ્ધ નથી"
 
 #. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
-msgstr ""
+msgstr "આ ઍડ-ઑન {0}તમારી આવૃત્તિ સાથે સુસંગત નથી."
 
 msgid "View other versions"
 msgstr ""
@@ -678,7 +700,7 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
+msgstr "માફ કરશો, શોધ પ્લગઇન સ્થાપિત કરવા માટે તમને Mozilla-આધારિત બ્રાઉઝર (જેમ કે Firefox) ની જરૂર છે."
 
 msgid "Adding to Favorites&hellip;"
 msgstr ""
@@ -754,7 +776,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
+msgstr "અમે વેબસાઇટ જાળવણી કરતી વખતે આ સુવિધા અસ્થાયી રૂપે અક્ષમ કરેલી છે. થોડીવાર પછી ફરી તપાસો."
 
 msgid "Remove this localization"
 msgstr ""
@@ -766,7 +788,7 @@ msgid "Receipt checked by app."
 msgstr ""
 
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "એપ્લિકેશન દ્વારા રસીદની તપાસ કરવામાં આવી ન હતી."
 
 msgid "{name} was viewing this add-on first."
 msgstr ""
@@ -795,11 +817,14 @@ msgstr ""
 msgid "Number of Reviews"
 msgstr ""
 
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr ""
+
 msgid "Requested Info"
 msgstr ""
 
 msgid "Flagged"
-msgstr ""
+msgstr "ચિહ્નિત"
 
 msgid "Duplicate"
 msgstr ""

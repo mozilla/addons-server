@@ -15,7 +15,7 @@ from django.utils.translation import ugettext
 from django.views.decorators.cache import never_cache
 
 from rest_framework import status
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
@@ -1060,6 +1060,12 @@ def reviewlog(request):
         # right permission.
         list_channel = amo.RELEASE_CHANNEL_LISTED
         approvals = approvals.filter(versionlog__version__channel=list_channel)
+    if not acl.check_addons_reviewer(request):
+        approvals = approvals.exclude(
+            versionlog__version__addon__type__in=amo.GROUP_TYPE_ADDON)
+    if not acl.check_static_theme_reviewer(request):
+        approvals = approvals.exclude(
+            versionlog__version__addon__type=amo.ADDON_STATICTHEME)
 
     if form.is_valid():
         data = form.cleaned_data
@@ -1171,7 +1177,8 @@ def privacy(request, addon):
 class AddonReviewerViewSet(GenericViewSet):
     log = olympia.core.logger.getLogger('z.reviewers')
 
-    @detail_route(
+    @action(
+        detail=True,
         methods=['post'], permission_classes=[AllowAnyKindOfReviewer])
     def subscribe(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
@@ -1179,7 +1186,8 @@ class AddonReviewerViewSet(GenericViewSet):
             user=request.user, addon=addon)
         return Response(status=status.HTTP_202_ACCEPTED)
 
-    @detail_route(
+    @action(
+        detail=True,
         methods=['post'], permission_classes=[AllowAnyKindOfReviewer])
     def unsubscribe(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
@@ -1187,7 +1195,8 @@ class AddonReviewerViewSet(GenericViewSet):
             user=request.user, addon=addon).delete()
         return Response(status=status.HTTP_202_ACCEPTED)
 
-    @detail_route(
+    @action(
+        detail=True,
         methods=['post'],
         permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
     def disable(self, request, **kwargs):
@@ -1195,7 +1204,8 @@ class AddonReviewerViewSet(GenericViewSet):
         addon.force_disable()
         return Response(status=status.HTTP_202_ACCEPTED)
 
-    @detail_route(
+    @action(
+        detail=True,
         methods=['post'],
         permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
     def enable(self, request, **kwargs):
@@ -1203,7 +1213,8 @@ class AddonReviewerViewSet(GenericViewSet):
         addon.force_enable()
         return Response(status=status.HTTP_202_ACCEPTED)
 
-    @detail_route(
+    @action(
+        detail=True,
         methods=['patch'],
         permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
     def flags(self, request, **kwargs):

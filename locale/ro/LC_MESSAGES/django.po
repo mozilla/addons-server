@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-07-30 13:30+0000\n"
-"Last-Translator: siparon <siparon@gmail.com>\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-08-31 19:18+0000\n"
+"Last-Translator: Jobava <jobaval10n@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -16,13 +16,13 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "No links are allowed."
-msgstr ""
+msgstr "Linkurile nu sunt permise."
 
 msgid "This display name cannot be used."
 msgstr ""
 
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Numele de utilizator nu pot conține doar cifre."
 
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -37,11 +37,11 @@ msgid "Images must be either PNG or JPG."
 msgstr ""
 
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Imaginile nu pot fi animate."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "Te rugăm folosește imagini mai mici de %dMB."
 
 msgid "You are already logged in."
 msgstr "Ești deja autentificat."
@@ -97,7 +97,7 @@ msgid "Experimental"
 msgstr "Experimental"
 
 msgid "Add to {0}"
-msgstr ""
+msgstr "Adaugă la {0}"
 
 msgid "This slug is already in use. Please choose another."
 msgstr ""
@@ -135,6 +135,9 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -179,7 +182,7 @@ msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
 msgid "Abuse reported."
-msgstr ""
+msgstr "Abuzul a fost raportat."
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr ""
@@ -213,7 +216,7 @@ msgstr "Acord de licență cu utilizatorul final"
 
 #, python-format
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr ""
+msgstr "%(addon_name)s are nevoie de acordul tău privind următorul acord de licență pentru utilizatorul final înainte ca instalarea să poată continua:"
 
 msgid "Back to {0}…"
 msgstr "Înapoi la {0}…"
@@ -258,7 +261,7 @@ msgstr "Actualizată {0}"
 
 #. {0} is a date.
 msgid "Added {0}"
-msgstr ""
+msgstr "Adăugat {0}"
 
 #, python-format
 msgid "%(num)s weekly download"
@@ -377,7 +380,7 @@ msgstr[2] "{0} de utilizatori zilnici"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
-msgstr ""
+msgstr "Politica de confidențialitate pentru {0}"
 
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
@@ -393,7 +396,7 @@ msgid ""
 msgstr ""
 
 msgid "Send Report"
-msgstr ""
+msgstr "Trimite raportul"
 
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
@@ -504,7 +507,7 @@ msgid "View statistics"
 msgstr "Afișează statisticile"
 
 msgid "Manage"
-msgstr ""
+msgstr "Gestionează"
 
 msgid "Add-on Review"
 msgstr "Recenzie supliment"
@@ -565,7 +568,7 @@ msgid "See complete version history"
 msgstr ""
 
 msgid "close"
-msgstr ""
+msgstr "închide"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
 msgstr ""
@@ -706,6 +709,9 @@ msgstr "Instrumente pentru recenzori"
 msgid "Admin Tools"
 msgstr ""
 
+msgid "Positive integer"
+msgstr ""
+
 msgid "Incorrect, please try again."
 msgstr ""
 
@@ -713,6 +719,9 @@ msgid "Error verifying input, please try again."
 msgstr ""
 
 msgid "This must be a valid hex color code, such as #000000."
+msgstr ""
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
 
 msgid "Not allowed"
@@ -911,6 +920,9 @@ msgid "Signature has expired."
 msgstr ""
 
 msgid "Error decoding signature."
+msgstr ""
+
+msgid "Wrong type for one or more keys in payload"
 msgstr ""
 
 msgid "Invalid JWT Token."
@@ -2261,14 +2273,16 @@ msgstr ""
 msgid "Manual Reviewer Points"
 msgstr ""
 
-msgid "New Add-on Review"
+#, fuzzy
+msgid "New Legacy Add-on Review"
 msgstr "Recenzie de supliment nouă"
 
 msgid "Preliminary Add-on Review"
 msgstr ""
 
-msgid "Updated Add-on Review"
-msgstr ""
+#, fuzzy
+msgid "Updated Legacy Add-on Review"
+msgstr "Recenzie de supliment moderată"
 
 # Plural in this context means many of the add-on type
 msgid "New Dictionary Review"
@@ -2323,17 +2337,21 @@ msgstr ""
 msgid "Add-on Content Review"
 msgstr "Recenzie de conţinut supliment"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Highest Risk)"
+msgstr "Review"
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (High Risk)"
+msgstr "Recenzie supliment"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Medium Risk)"
+msgstr "Review"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Low Risk)"
+msgstr "Recenzie supliment"
 
 msgid "Level 1"
 msgstr ""
@@ -2468,10 +2486,7 @@ msgstr ""
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr ""
-
-msgid "Version doesn't match"
+msgid "Need to select at least one application."
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -2487,12 +2502,6 @@ msgid "You have not uploaded a source file."
 msgstr ""
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
-
-msgid "A platform can only be chosen once."
 msgstr ""
 
 msgid "Application"
@@ -2517,6 +2526,9 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
+msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
@@ -3296,9 +3308,6 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-msgid "Submit a New File"
-msgstr "Trimite un fișier nou"
-
 msgid "Submit a New Version"
 msgstr "Trimite o versiune nouă"
 
@@ -3350,6 +3359,15 @@ msgstr "Note pentru recenzent:"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
 
+msgid "Remember"
+msgstr ""
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
@@ -3378,9 +3396,6 @@ msgid "More information on Add-on Distribution and Signing"
 msgstr ""
 
 msgid "Submission Complete"
-msgstr ""
-
-msgid "You’re done!"
 msgstr ""
 
 msgid "Version Submitted for Review"
@@ -3417,12 +3432,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr ""
 
-msgid "File Signed"
-msgstr "Fişier autentificat"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
 msgid "Version Signed"
 msgstr "Versiune autentificată"
 
@@ -3431,12 +3440,6 @@ msgstr ""
 
 msgid "Download {0}"
 msgstr "Descarcă {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr ""
 
 msgid "Go to My Submissions"
 msgstr ""
@@ -3447,7 +3450,7 @@ msgstr ""
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
 
 #, python-format
@@ -3514,9 +3517,6 @@ msgstr ""
 msgid "Upload Add-on"
 msgstr "Încarcă supliment"
 
-msgid "Where to Host File"
-msgstr ""
-
 msgid "Where to Host Version"
 msgstr ""
 
@@ -3526,7 +3526,8 @@ msgstr "Încarcă versiune"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "Cu ce platforme este acest fișier compatibil?"
 
 msgid "Administrative overrides"
@@ -3539,9 +3540,6 @@ msgstr "Creează-ți propria temă"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Creează-ți propria temă"
-
-msgid "Submit File"
-msgstr "Trimite fişier"
 
 msgid "Sign Add-on"
 msgstr "Autentifică supliment"
@@ -3559,7 +3557,10 @@ msgstr "Teme"
 msgid "Select a header image for your theme"
 msgstr ""
 
-msgid "Image height should be 200 pixels"
+msgid "Recommended height: 200 pixels"
+msgstr ""
+
+msgid "6.9MB max"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
@@ -4000,6 +4001,12 @@ msgstr ""
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr ""
 
+msgid "Live Testing"
+msgstr ""
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
+
 msgid "Transfer ownership"
 msgstr ""
 
@@ -4152,9 +4159,6 @@ msgid "Manage {0}"
 msgstr "Gestionează {0}"
 
 msgid "Files"
-msgstr ""
-
-msgid "Upload Another File"
 msgstr ""
 
 msgid "Version Notes"
@@ -5384,7 +5388,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Descarcă videoclipuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5896,6 +5900,9 @@ msgstr ""
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
@@ -6147,6 +6154,49 @@ msgid "Unlock early access to experimental browser features."
 msgstr ""
 
 msgid "Get Started"
+msgstr ""
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "Raportează utilizatorul"
+
+msgid "Reported Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "Raportează utilizatorul"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Neevaluat încă"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "Versiune trimisă"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "Vezi noul site"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "Trimite un fișier nou"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "Trimite un fișier nou"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
 msgstr ""
 
 msgid "About Mozilla Add-ons"
@@ -7594,9 +7644,6 @@ msgstr "Se afișează {0} - {1} din {2} rezultate pentru <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Se afișează {0} - {1} din {2} rezultate"
 
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
-
 msgid "Could not find add-on with id \"{}\"."
 msgstr ""
 
@@ -8083,8 +8130,9 @@ msgstr ""
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr ""
+#, fuzzy
+msgid "Firefox user {id}"
+msgstr "Firefox pentru Android"
 
 msgid "My Mobile Add-ons"
 msgstr ""

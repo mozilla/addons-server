@@ -74,7 +74,8 @@ jobs:
       - restore_cache:
           keys:
             - uitest-cache-{{ checksum "requirements/docs.txt" }}
-            - uitest-cache-{{ checksum "requirements/prod.txt" }}
+            - uitest-cache-{{ checksum "requirements/prod_py2.txt" }}
+            - uitest-cache-{{ checksum "requirements/tests.txt" }}
             - uitest-cache-{{ checksum "requirements/dev.txt" }}
             - uitest-cache-{{ checksum "requirements/uitests.txt" }}
             - uitest-cache-
@@ -116,7 +117,11 @@ jobs:
           paths:
             - .tox
       - save_cache:
-          key: uitest-cache-{{ checksum "requirements/prod.txt" }}
+          key: uitest-cache-{{ checksum "requirements/prod_py2.txt" }}
+          paths:
+            - .tox
+      - save_cache:
+          key: uitest-cache-{{ checksum "requirements/tests.txt" }}
           paths:
             - .tox
       - save_cache:
@@ -146,10 +151,4 @@ workflows:
               only: /.*/
             branches:
               ignore: /.*/
-      # Temporarily disable integration tests because they have been failing
-      # for a long time and are hard to fix.
-      # Since we kinda rely on a proper CI-status and ignoring CircleCI
-      # failures is bad we disable them temporarily until
-      # we figure out a better solution.
-      # https://github.com/mozilla/addons-server/issues/9062
-      # - integration_test
+      - integration_test

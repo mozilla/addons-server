@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2018-06-28 15:50+0000\n"
 "Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,9 +126,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "ভ্যালিডেশন প্রসেসে এইসব সমস্যা পাওয়া গেছে যার কারণে বাতিল হতে পারে:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "দুঃখিত, কোন সাহায্যকারী প্লাটফরম খুঁজে পাওয়া যাইনি।"
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "আপনার আপলোড করা ফাইলটির ফাইলটাইপটি স্বীকৃত নয়।"
 
@@ -211,29 +208,53 @@ msgstr "আসল ব্যবহার করুন"
 msgid "Week of {0}"
 msgstr "সপ্তাহের {0}"
 
-msgid " downloads"
-msgstr " ডাউনলোডস"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " ডাউনলোডস"
+msgstr[1] " ডাউনলোডস"
 
-msgid "{0} users"
-msgstr "{0} ব্যবহারকারীরা"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} ব্যবহারকারীরা"
+msgstr[1] "{0} ব্যবহারকারীরা"
 
-msgid "{0} add-ons"
-msgstr "{0} এড-অনস"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} এড-অনস"
+msgstr[1] "{0} এড-অনস"
 
-msgid "{0} collections"
-msgstr "{0} টি সংগ্রহ"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} টি সংগ্রহ"
+msgstr[1] "{0} টি সংগ্রহ"
 
-msgid "{0} reviews"
-msgstr "{0} টি পর্যালোচনা"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} টি পর্যালোচনা"
+msgstr[1] "{0} টি পর্যালোচনা"
 
-msgid "{0} sales"
-msgstr "{0} টি বিক্রি"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} টি বিক্রি"
+msgstr[1] "{0} টি বিক্রি"
 
-msgid "{0} refunds"
-msgstr "{0} রিফান্ড"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} রিফান্ড"
+msgstr[1] "{0} রিফান্ড"
 
-msgid "{0} installs"
-msgstr "{0} টি ইন্সটল"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} টি ইন্সটল"
+msgstr[1] "{0} টি ইন্সটল"
 
 msgid "Downloads"
 msgstr "ডাউনলোডসমূহ"
@@ -793,6 +814,9 @@ msgid "Average Reviews"
 msgstr ""
 
 msgid "Number of Reviews"
+msgstr ""
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
 
 msgid "Requested Info"

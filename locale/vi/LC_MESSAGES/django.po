@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2018-06-14 02:08+0000\n"
 "Last-Translator: Cát Thành <catthanh192@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -127,6 +127,9 @@ msgstr "Tất cả nhãn phải có %s kí tự hoặc ít hơn sau khi kí tự
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Tất cả nhãn phải có ít nhất {0} kí tự."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -680,6 +683,9 @@ msgstr ""
 msgid "Admin Tools"
 msgstr "Công cụ Quản trị"
 
+msgid "Positive integer"
+msgstr ""
+
 msgid "Incorrect, please try again."
 msgstr ""
 
@@ -688,6 +694,9 @@ msgstr ""
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr ""
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "Một số tính năng tạm thời bị vô hiệu hóa trong khi chúng tôi bảo trì trang web. Chúng tôi sẽ hoạt động đầy đủ lại nhanh thôi."
 
 msgid "Not allowed"
 msgstr "Không cho phép"
@@ -892,6 +901,9 @@ msgid "Signature has expired."
 msgstr ""
 
 msgid "Error decoding signature."
+msgstr ""
+
+msgid "Wrong type for one or more keys in payload"
 msgstr ""
 
 msgid "Invalid JWT Token."
@@ -2279,14 +2291,15 @@ msgid "Manual Reviewer Points"
 msgstr ""
 
 #, fuzzy
-msgid "New Add-on Review"
+msgid "New Legacy Add-on Review"
 msgstr "Quản trị Xét duyệt"
 
 msgid "Preliminary Add-on Review"
 msgstr ""
 
-msgid "Updated Add-on Review"
-msgstr ""
+#, fuzzy
+msgid "Updated Legacy Add-on Review"
+msgstr "Xét duyệt Đã được Điều chỉnh"
 
 #, fuzzy
 msgid "New Dictionary Review"
@@ -2346,17 +2359,21 @@ msgstr ""
 msgid "Add-on Content Review"
 msgstr "Chưa duyệt"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Highest Risk)"
+msgstr "Quản trị Xét duyệt"
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (High Risk)"
+msgstr "Quản trị Xét duyệt"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Medium Risk)"
+msgstr "Quản trị Xét duyệt"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Low Risk)"
+msgstr "Quản trị Xét duyệt"
 
 msgid "Level 1"
 msgstr ""
@@ -2491,11 +2508,9 @@ msgstr "Có một lỗi với việc tải lên của bạn. Vui lòng thử l�
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr "Bạn không thể tải lên thêm tập tin cho phiên bản này."
-
-msgid "Version doesn't match"
-msgstr "Phiên bản không khớp"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Cần ít nhất một ứng dụng tương thích."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2513,12 +2528,6 @@ msgstr "Không có tập tin nào trong tập tin được tải lên."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
-
-msgid "A platform can only be chosen once."
-msgstr "Một nền tảng chỉ có thể được chọn một lần."
 
 msgid "Application"
 msgstr "Ứng dụng"
@@ -2542,6 +2551,9 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
+msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
@@ -3329,10 +3341,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> người dùng hoạt động"
 
 #, fuzzy
-msgid "Submit a New File"
-msgstr "Gửi lên một Giao diện Mới"
-
-#, fuzzy
 msgid "Submit a New Version"
 msgstr "Gửi lên một Tiện ích Mới"
 
@@ -3392,6 +3400,15 @@ msgstr "Lưu ý cho Người đánh giá"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
 
+msgid "Remember"
+msgstr ""
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
@@ -3425,10 +3442,6 @@ msgstr ""
 
 msgid "Submission Complete"
 msgstr "Việc gửi lên Hoàn tất"
-
-#, fuzzy
-msgid "You’re done!"
-msgstr "Bạn đã xong rồi!"
 
 #, fuzzy
 msgid "Version Submitted for Review"
@@ -3469,13 +3482,6 @@ msgid "Edit version {0}"
 msgstr "Phiên bản Beta {0}"
 
 #, fuzzy
-msgid "File Signed"
-msgstr "Ghi chú Phiên bản"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
-#, fuzzy
 msgid "Version Signed"
 msgstr "Ghi chú Phiên bản"
 
@@ -3484,12 +3490,6 @@ msgstr ""
 
 msgid "Download {0}"
 msgstr ""
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr "Tải lên tập tin"
 
 #, fuzzy
 msgid "Go to My Submissions"
@@ -3502,7 +3502,7 @@ msgstr "Giấy phép Mã nguồn"
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
 
 #, python-format
@@ -3573,10 +3573,6 @@ msgid "Upload Add-on"
 msgstr "Tải lên tiện ích của bạn"
 
 #, fuzzy
-msgid "Where to Host File"
-msgstr "Xóa phiên bản"
-
-#, fuzzy
 msgid "Where to Host Version"
 msgstr "Xóa phiên bản"
 
@@ -3588,7 +3584,7 @@ msgstr "Tải lên một Phiên bản Mới"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Dùng các trường bên dưới để tải lên gói tiện ích của bạn và chọn giới hạn nền tảng. Sau khi tải lên, một loạt bài kiểm định tự động sẽ được chạy trên tập tin của bạn."
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3603,10 +3599,6 @@ msgstr "Tạo bởi Tôi"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Tạo bởi Tôi"
-
-#, fuzzy
-msgid "Submit File"
-msgstr "Gửi lên một Giao diện Mới"
 
 #, fuzzy
 msgid "Sign Add-on"
@@ -3625,7 +3617,10 @@ msgstr "Giao diện"
 msgid "Select a header image for your theme"
 msgstr ""
 
-msgid "Image height should be 200 pixels"
+msgid "Recommended height: 200 pixels"
+msgstr ""
+
+msgid "6.9MB max"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
@@ -4096,6 +4091,13 @@ msgstr "Tính tương thích"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr ""
 
+#, fuzzy
+msgid "Live Testing"
+msgstr "Xem Liệt Kê"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
+
 msgid "Transfer ownership"
 msgstr ""
 
@@ -4249,9 +4251,6 @@ msgstr "Quản lí {0}"
 
 msgid "Files"
 msgstr "Tập tin"
-
-msgid "Upload Another File"
-msgstr "Tải lên Tập tin Khác"
 
 msgid "Version Notes"
 msgstr "Ghi chú Phiên bản"
@@ -5371,7 +5370,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5838,6 +5837,9 @@ msgstr "Số phiên bản chỉ được chứa chữ cái, chữ số, và các
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
@@ -6093,6 +6095,50 @@ msgstr ""
 
 msgid "Get Started"
 msgstr "Bắt đầu"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "Báo cáo người dùng"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "Báo cáo lỗi"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "Báo cáo lỗi"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Chưa được xếp hạng"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "Ghi chú Phiên bản"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "Xem trang Di động"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "Gửi lên một Giao diện Mới"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "Gửi lên một Giao diện Mới"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr ""
@@ -7541,9 +7587,6 @@ msgstr "Đang hiện {0} - {1} trên tổng {2} kết quả cho <strong>{3}</str
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Đang hiện {0} - {1} trên tổng {2} kết quả"
 
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Một số tính năng tạm thời bị vô hiệu hóa trong khi chúng tôi bảo trì trang web. Chúng tôi sẽ hoạt động đầy đủ lại nhanh thôi."
-
 msgid "Could not find add-on with id \"{}\"."
 msgstr ""
 
@@ -8029,8 +8072,9 @@ msgstr "Không người dùng nào có email đó."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr ""
+#, fuzzy
+msgid "Firefox user {id}"
+msgstr "Firefox cho Android"
 
 msgid "My Mobile Add-ons"
 msgstr "Tiện ích Di động của Tôi"

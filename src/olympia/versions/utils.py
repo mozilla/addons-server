@@ -16,7 +16,10 @@ log = olympia.core.logger.getLogger('z.versions.utils')
 
 
 def write_svg_to_png(svg_content, out):
-    tmp_args = {'dir': settings.TMP_PATH, 'mode': 'wb', 'suffix': '.svg'}
+    # when settings.DEBUG is on (i.e. locally) don't delete the svgs.
+    tmp_args = {
+        'dir': settings.TMP_PATH, 'mode': 'wb', 'suffix': '.svg',
+        'delete': not settings.DEBUG}
     with tempfile.NamedTemporaryFile(**tmp_args) as temporary_svg:
         temporary_svg.write(svg_content)
         temporary_svg.flush()
@@ -26,8 +29,8 @@ def write_svg_to_png(svg_content, out):
                 os.makedirs(out)
             command = [
                 settings.RSVG_CONVERT_BIN,
-                '-o', out,
-                temporary_svg.name
+                '--output', out,
+                temporary_svg.name,
             ]
             subprocess.check_call(command)
         except IOError as io_error:
@@ -74,17 +77,14 @@ class AdditionalBackground(object):
     def __init__(self, path, alignment, tiling, header_root):
         # If there an unequal number of alignments or tiling to srcs the value
         # will be None so use defaults.
-        self.alignment = (alignment or 'left top').lower()
-        tiling = (tiling or 'no-repeat').lower()
+        self.alignment = (alignment or 'right top').lower()
+        self.tiling = (tiling or 'no-repeat').lower()
         self.src, self.width, self.height = encode_header_image(
             os.path.join(header_root, path))
-        self.pattern_width = (self.width if tiling in ['repeat', 'repeat-x']
-                              else '100%')
-        self.pattern_height = (self.height if tiling in ['repeat', 'repeat-y']
-                               else '100%')
 
     def calculate_pattern_offsets(self, svg_width, svg_height):
         align_x, align_y = self.split_alignment(self.alignment)
+
         if align_x == 'right':
             self.pattern_x = svg_width - self.width
         elif align_x == 'center':
@@ -97,6 +97,15 @@ class AdditionalBackground(object):
             self.pattern_y = (svg_height - self.height) / 2
         else:
             self.pattern_y = 0
+
+        if self.tiling in ['repeat', 'repeat-x'] or self.width > svg_width:
+            self.pattern_width = self.width
+        else:
+            self.pattern_width = svg_width
+        if self.tiling in ['repeat', 'repeat-y'] or self.height > svg_height:
+            self.pattern_height = self.height
+        else:
+            self.pattern_height = svg_height
 
 
 CHROME_COLOR_TO_CSS = {

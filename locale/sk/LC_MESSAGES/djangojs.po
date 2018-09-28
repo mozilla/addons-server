@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2017-08-10 16:38+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -135,9 +135,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Proces kontroly zistil tieto možné nedostatky, ktoré môžu viesť k zamietnutiu kontroly:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Ospravedlňujeme sa, ale nebola nájdená podporovaná platforma."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Nebol rozpoznaný typ súboru, ktorý ste odoslali."
 
@@ -220,29 +217,61 @@ msgstr "Použiť originál"
 msgid "Week of {0}"
 msgstr "Týždeň {0}"
 
-msgid " downloads"
-msgstr " prevzatí"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " prevzatí"
+msgstr[1] " prevzatí"
+msgstr[2] " prevzatí"
 
-msgid "{0} users"
-msgstr "{0} používateľov"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} používateľov"
+msgstr[1] "{0} používateľov"
+msgstr[2] "{0} používateľov"
 
-msgid "{0} add-ons"
-msgstr "{0} doplnkov"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} doplnkov"
+msgstr[1] "{0} doplnkov"
+msgstr[2] "{0} doplnkov"
 
-msgid "{0} collections"
-msgstr "{0} kolekcií"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} kolekcií"
+msgstr[1] "{0} kolekcií"
+msgstr[2] "{0} kolekcií"
 
-msgid "{0} reviews"
-msgstr "{0} recenzií"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} recenzií"
+msgstr[1] "{0} recenzií"
+msgstr[2] "{0} recenzií"
 
-msgid "{0} sales"
-msgstr "{0} predaných"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} predaných"
+msgstr[1] "{0} predaných"
+msgstr[2] "{0} predaných"
 
-msgid "{0} refunds"
-msgstr "{0} vrátených platieb"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} vrátených platieb"
+msgstr[1] "{0} vrátených platieb"
+msgstr[2] "{0} vrátených platieb"
 
-msgid "{0} installs"
-msgstr "{0} inštalácií"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} inštalácií"
+msgstr[1] "{0} inštalácií"
+msgstr[2] "{0} inštalácií"
 
 msgid "Downloads"
 msgstr "Prevzatí"
@@ -807,6 +836,9 @@ msgstr "Priemerné hodnotenie"
 
 msgid "Number of Reviews"
 msgstr "Počet hodnotení"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr ""
 
 msgid "Requested Info"
 msgstr "Požadované informácie"

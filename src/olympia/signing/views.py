@@ -15,7 +15,7 @@ from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.decorators import use_primary_db
 from olympia.api.authentication import JWTKeyAuthentication
-from olympia.devhub.views import handle_upload
+from olympia.devhub.views import handle_upload as devhub_handle_upload
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
 from olympia.signing.serializers import FileUploadSerializer
@@ -113,7 +113,7 @@ class VersionView(APIView):
                 status.HTTP_400_BAD_REQUEST)
 
         # # Parse the file to get and validate package data with the addon.
-        pkg = parse_addon(filedata, addon, user=request.user)
+        parsed_data = parse_addon(filedata, addon, user=request.user)
 
         if addon is not None and addon.status == amo.STATUS_DISABLED:
             msg = ugettext(
@@ -121,9 +121,9 @@ class VersionView(APIView):
                 % amo.STATUS_CHOICES_ADDON[amo.STATUS_DISABLED])
             raise forms.ValidationError(msg, status.HTTP_400_BAD_REQUEST)
 
-        version_string = version_string or pkg['version']
+        version_string = version_string or parsed_data['version']
 
-        if version_string and pkg['version'] != version_string:
+        if version_string and parsed_data['version'] != version_string:
             raise forms.ValidationError(
                 ugettext('Version does not match the manifest file.'),
                 status.HTTP_400_BAD_REQUEST)
@@ -134,11 +134,11 @@ class VersionView(APIView):
                 ugettext('Version already exists.'),
                 status.HTTP_409_CONFLICT)
 
-        package_guid = pkg.get('guid', None)
+        package_guid = parsed_data.get('guid', None)
 
         dont_allow_no_guid = (
             not addon and not package_guid and
-            not pkg.get('is_webextension', False))
+            not parsed_data.get('is_webextension', False))
 
         if dont_allow_no_guid:
             raise forms.ValidationError(
@@ -159,13 +159,14 @@ class VersionView(APIView):
                 raise forms.ValidationError(
                     ugettext('Invalid GUID in URL'),
                     status.HTTP_400_BAD_REQUEST)
-            pkg['guid'] = guid
+            parsed_data['guid'] = guid
 
         # channel will be ignored for new addons.
         if addon is None:
             channel = amo.RELEASE_CHANNEL_UNLISTED  # New is always unlisted.
             addon = Addon.initialize_addon_from_upload(
-                data=pkg, upload=filedata, channel=channel, user=request.user)
+                data=parsed_data, upload=filedata, channel=channel,
+                user=request.user)
             created = True
         else:
             created = False
@@ -188,7 +189,7 @@ class VersionView(APIView):
                              'Please submit via the website'),
                     status.HTTP_400_BAD_REQUEST)
 
-        file_upload = handle_upload(
+        file_upload = devhub_handle_upload(
             filedata=filedata, request=request, addon=addon, submit=True,
             channel=channel)
 

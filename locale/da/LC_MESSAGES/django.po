@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-07-27 10:37+0000\n"
-"Last-Translator: Jakob Kappel <jakobkpetersen@gmail.com>\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-08-24 01:01+0000\n"
+"Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -134,6 +134,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] ""
 msgstr[1] ""
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -700,6 +703,9 @@ msgstr ""
 msgid "Admin Tools"
 msgstr "Admin-værktøjer"
 
+msgid "Positive integer"
+msgstr ""
+
 msgid "Incorrect, please try again."
 msgstr "Forkert, prøv igen."
 
@@ -708,6 +714,9 @@ msgstr ""
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr ""
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "Nogle funktioner er midlertidig deaktiveret mens vi udfører vedligeholdelse af webstedet. Vi vil være tilbage med fuld kapacitet om kort tid."
 
 msgid "Not allowed"
 msgstr "Ikke tilladt"
@@ -910,6 +919,9 @@ msgid "Signature has expired."
 msgstr ""
 
 msgid "Error decoding signature."
+msgstr ""
+
+msgid "Wrong type for one or more keys in payload"
 msgstr ""
 
 msgid "Invalid JWT Token."
@@ -2261,14 +2273,16 @@ msgstr "Fortræffelig (3)"
 msgid "Manual Reviewer Points"
 msgstr ""
 
-msgid "New Add-on Review"
-msgstr ""
+#, fuzzy
+msgid "New Legacy Add-on Review"
+msgstr "Anmeldelse af tilføjelse"
 
 msgid "Preliminary Add-on Review"
 msgstr ""
 
-msgid "Updated Add-on Review"
-msgstr ""
+#, fuzzy
+msgid "Updated Legacy Add-on Review"
+msgstr "Anmeldelse af tilføjelse"
 
 # Plural in this context means many of the add-on type
 msgid "New Dictionary Review"
@@ -2325,17 +2339,21 @@ msgstr ""
 msgid "Add-on Content Review"
 msgstr "Ikke godkendt"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Highest Risk)"
+msgstr "Anmeldelse af tilføjelse"
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (High Risk)"
+msgstr "Anmeldelse af tilføjelse"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Medium Risk)"
+msgstr "Anmeldelse af tilføjelse"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Low Risk)"
+msgstr "Anmeldelse af tilføjelse"
 
 msgid "Level 1"
 msgstr "Niveau 1"
@@ -2470,10 +2488,7 @@ msgstr ""
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr ""
-
-msgid "Version doesn't match"
+msgid "Need to select at least one application."
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -2489,12 +2504,6 @@ msgid "You have not uploaded a source file."
 msgstr ""
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
-
-msgid "A platform can only be chosen once."
 msgstr ""
 
 msgid "Application"
@@ -2519,6 +2528,9 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
+msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
@@ -3295,9 +3307,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktiv bruger"
 msgstr[1] "<strong>{0}</strong> aktive brugere"
 
-msgid "Submit a New File"
-msgstr ""
-
 msgid "Submit a New Version"
 msgstr ""
 
@@ -3349,6 +3358,15 @@ msgstr ""
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
 
+msgid "Remember"
+msgstr ""
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
@@ -3379,9 +3397,6 @@ msgstr ""
 
 msgid "Submission Complete"
 msgstr ""
-
-msgid "You’re done!"
-msgstr "Du er færdig!"
 
 msgid "Version Submitted for Review"
 msgstr ""
@@ -3416,12 +3431,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr ""
 
-msgid "File Signed"
-msgstr ""
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
 msgid "Version Signed"
 msgstr ""
 
@@ -3430,12 +3439,6 @@ msgstr ""
 
 msgid "Download {0}"
 msgstr "Hent {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr "Upload fil"
 
 msgid "Go to My Submissions"
 msgstr ""
@@ -3447,7 +3450,7 @@ msgstr "Kildekode uploaded"
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
 
 #, python-format
@@ -3516,9 +3519,6 @@ msgstr ""
 msgid "Upload Add-on"
 msgstr "Upload tilføjelse"
 
-msgid "Where to Host File"
-msgstr ""
-
 msgid "Where to Host Version"
 msgstr ""
 
@@ -3528,7 +3528,7 @@ msgstr "Upload version"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3540,9 +3540,6 @@ msgstr "Lav et tema"
 
 msgid "Create a Theme"
 msgstr "Lav et tema"
-
-msgid "Submit File"
-msgstr "Indsend fil"
 
 msgid "Sign Add-on"
 msgstr ""
@@ -3561,7 +3558,10 @@ msgstr "Tema-navn"
 msgid "Select a header image for your theme"
 msgstr "Vælg en licens til dit tema."
 
-msgid "Image height should be 200 pixels"
+msgid "Recommended height: 200 pixels"
+msgstr ""
+
+msgid "6.9MB max"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
@@ -4008,6 +4008,13 @@ msgstr "Kompatibilitetstest"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Kontrollér om din udvidelse er kompatibel med Firefox."
 
+#, fuzzy
+msgid "Live Testing"
+msgstr "View Listing"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
+
 msgid "Transfer ownership"
 msgstr "Overfør ejerskab"
 
@@ -4161,9 +4168,6 @@ msgstr "Administrer {0}"
 
 msgid "Files"
 msgstr "Filer"
-
-msgid "Upload Another File"
-msgstr ""
 
 msgid "Version Notes"
 msgstr "Versionsbemærkninger"
@@ -5385,7 +5389,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5896,6 +5900,9 @@ msgstr ""
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
@@ -6150,6 +6157,50 @@ msgstr "Få tidlig adgang til eksperimentelle browser-funktioner."
 
 msgid "Get Started"
 msgstr "Start"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "Webstedsstatus"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "Rapporttype"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "Rapportér en fejl"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Ikke bedømt endnu"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "Version indsendt"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "Se det nye websted"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "Indsend et nyt tema"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "Indsend et nyt tema"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "Om Mozilla-tilføjelser"
@@ -6968,9 +7019,8 @@ msgstr ""
 msgid "{addon} :: EULA"
 msgstr "{addon} :: Rapporter om misbrug"
 
-#, fuzzy
 msgid "{addon} :: Privacy Policy"
-msgstr "Denne tilføjelse har en privatlivspolitik"
+msgstr "{addon} :: Privatlivspolitik"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -7604,9 +7654,6 @@ msgstr "Viser {0} - {1} af {2} resultater af søgningen <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Viser {0} - {1} af {2} resultater"
 
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Nogle funktioner er midlertidig deaktiveret mens vi udfører vedligeholdelse af webstedet. Vi vil være tilbage med fuld kapacitet om kort tid."
-
 msgid "Could not find add-on with id \"{}\"."
 msgstr ""
 
@@ -8093,8 +8140,9 @@ msgstr "Ingen bruger med denne mailadresse."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr "Anonym bruger {id}"
+#, fuzzy
+msgid "Firefox user {id}"
+msgstr "Firefox til Android"
 
 msgid "My Mobile Add-ons"
 msgstr "Mine tilføjelser til Mobilen"

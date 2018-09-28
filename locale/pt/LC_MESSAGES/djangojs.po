@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2015-10-15 00:51+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,9 +126,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "O processo de validação encontrou estes problemas que podem levar a rejeições:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Lamentamos, mas não foi encontrada nenhuma plataforma suportada."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "O tipo de ficheiro que enviou não foi reconhecido."
 
@@ -212,29 +209,53 @@ msgstr "utilizar original"
 msgid "Week of {0}"
 msgstr "Semana de {0}"
 
-msgid " downloads"
-msgstr ""
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] "Transferências"
+msgstr[1] "Transferências"
 
-msgid "{0} users"
-msgstr "{0} utilizadores"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} utilizadores"
+msgstr[1] "{0} utilizadores"
 
-msgid "{0} add-ons"
-msgstr "{0} extras"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} extras"
+msgstr[1] "{0} extras"
 
-msgid "{0} collections"
-msgstr "{0} coleções"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} coleções"
+msgstr[1] "{0} coleções"
 
-msgid "{0} reviews"
-msgstr "{0} análises"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} análises"
+msgstr[1] "{0} análises"
 
-msgid "{0} sales"
-msgstr "{0} vendas"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} vendas"
+msgstr[1] "{0} vendas"
 
-msgid "{0} refunds"
-msgstr "{0} devoluções"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} devoluções"
+msgstr[1] "{0} devoluções"
 
-msgid "{0} installs"
-msgstr "{0} instalações"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} instalações"
+msgstr[1] "{0} instalações"
 
 msgid "Downloads"
 msgstr "Transferências"
@@ -795,6 +816,9 @@ msgid "Average Reviews"
 msgstr ""
 
 msgid "Number of Reviews"
+msgstr ""
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
 
 msgid "Requested Info"

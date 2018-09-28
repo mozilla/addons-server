@@ -2,7 +2,6 @@
 from django.test.utils import override_settings
 
 import mock
-from rest_framework.settings import api_settings
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -13,6 +12,35 @@ from olympia.discovery.utils import replace_extensions
 
 
 class DiscoveryTestMixin(object):
+    def _check_disco_addon_version(self, data, version):
+        assert data['compatibility']
+        assert len(data['compatibility']) == len(version.compatible_apps)
+        for app, compat in version.compatible_apps.items():
+            assert data['compatibility'][app.short] == {
+                'min': compat.min.version,
+                'max': compat.max.version
+            }
+        assert data['is_strict_compatibility_enabled'] is False
+        assert data['files']
+        assert len(data['files']) == 1
+
+        result_file = data['files'][0]
+        file_ = version.files.latest('pk')
+        assert result_file['id'] == file_.pk
+        assert result_file['created'] == (
+            file_.created.replace(microsecond=0).isoformat() + 'Z')
+        assert result_file['hash'] == file_.hash
+        assert result_file['is_restart_required'] == file_.is_restart_required
+        assert result_file['is_webextension'] == file_.is_webextension
+        assert (
+            result_file['is_mozilla_signed_extension'] ==
+            file_.is_mozilla_signed_extension)
+
+        assert result_file['size'] == file_.size
+        assert result_file['status'] == amo.STATUS_CHOICES_API[file_.status]
+        assert result_file['url'] == file_.get_url_path(src='')
+        assert result_file['permissions'] == file_.webext_permissions_list
+
     def _check_disco_addon(self, result, item, flat_name=False):
         addon = item.addon
         assert result['addon']['id'] == item.addon_id == addon.pk
@@ -28,6 +56,9 @@ class DiscoveryTestMixin(object):
 
         assert result['heading'] == item.heading
         assert result['description'] == item.description
+
+        self._check_disco_addon_version(
+            result['addon']['current_version'], addon.current_version)
 
     def _check_disco_theme(self, result, item, flat_name=False):
         addon = item.addon
@@ -46,7 +77,7 @@ class DiscoveryTestMixin(object):
 class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
     def setUp(self):
         super(TestDiscoveryViewList, self).setUp()
-        self.url = reverse_ns('discovery-list')
+        self.url = reverse_ns('discovery-list', api_version='v4dev')
         self.addons = []
 
         # This one should not appear anywhere, position isn't set.
@@ -68,10 +99,6 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
                 type_ = amo.ADDON_EXTENSION
             addon = addon_factory(type=type_)
             DiscoveryItem.objects.create(addon=addon, position_china=i)
-
-    def test_reverse(self):
-        assert self.url.endswith(
-            '/api/%s/discovery/' % api_settings.DEFAULT_VERSION)
 
     def test_list(self):
         with self.assertNumQueries(12):
@@ -105,7 +132,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
                 self._check_disco_addon(result, discopane_items[i])
 
     @override_settings(DRF_API_GATES={
-        api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)})
+        'v4dev': ('l10n_flat_input_output',)})
     def test_list_flat_output(self):
         response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.data
@@ -245,7 +272,7 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
         # If no recommendations then results should be as before - tests from
         # the parent class check this.
         self.get_recommendations.return_value = []
-        self.url = reverse_ns('discovery-list')
+        self.url = reverse_ns('discovery-list', api_version='v4dev')
 
     def test_recommendations(self):
         author = user_factory()

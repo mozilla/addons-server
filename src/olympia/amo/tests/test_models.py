@@ -117,11 +117,17 @@ class TestModelBase(TestCase):
         assert fn.called
         # No exception = pass
 
-    def test_safer_get_or_create(self):
+    def test_get_or_create_read_committed(self):
+        """Test get_or_create behavior.
+
+        This test originally tested our own `safer_get_or_create` method
+        but since we switched to using 'read committed' isolation level
+        Djangos builtin `get_or_create` works perfectly for us now.
+        """
         data = {'guid': '123', 'type': amo.ADDON_EXTENSION}
-        a, c = Addon.objects.safer_get_or_create(**data)
+        a, c = Addon.objects.get_or_create(**data)
         assert c
-        b, c = Addon.objects.safer_get_or_create(**data)
+        b, c = Addon.objects.get_or_create(**data)
         assert not c
         assert a == b
 

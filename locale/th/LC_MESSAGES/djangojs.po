@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-05-26 06:43+0000\n"
-"Last-Translator: Top <teerapatxtop@yahoo.com>\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2016-10-17 14:08+0000\n"
+"Last-Translator: Googleโครม! <tamisun32646@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -122,9 +122,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
-msgid "Sorry, no supported platform has been found."
-msgstr ""
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "ไม่รู้จักรูปแบบไฟล์ที่คุณอัปโหลด"
 
@@ -208,29 +205,45 @@ msgstr "ใช้ต้นฉบับ"
 msgid "Week of {0}"
 msgstr "สัปดาห์ที่ {0}"
 
-msgid " downloads"
-msgstr " การดาวน์โหลด"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " การดาวน์โหลด"
 
-msgid "{0} users"
-msgstr "{0} ผู้ใช้"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} ผู้ใช้"
 
-msgid "{0} add-ons"
-msgstr "{0} ส่วนเสริม"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} ส่วนเสริม"
 
-msgid "{0} collections"
-msgstr "{0} ชุดสะสม"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} ชุดสะสม"
 
-msgid "{0} reviews"
-msgstr "{0} บทวิจารณ์"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} บทวิจารณ์"
 
-msgid "{0} sales"
-msgstr "{0} การขาย"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} การขาย"
 
-msgid "{0} refunds"
-msgstr "{0} การคืนเงิน"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} การคืนเงิน"
 
-msgid "{0} installs"
-msgstr "{0} การติดตั้ง"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} การติดตั้ง"
 
 msgid "Downloads"
 msgstr "การดาวน์โหลด"
@@ -786,6 +799,9 @@ msgstr ""
 msgid "Number of Reviews"
 msgstr ""
 
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr ""
+
 msgid "Requested Info"
 msgstr "ข้อมูลที่ร้องขอ"
 
@@ -808,7 +824,7 @@ msgid "Theme"
 msgstr "ชุดตกแต่ง"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "ผู้รีวิว"
 
 msgid "Status"
 msgstr "สถานะ"

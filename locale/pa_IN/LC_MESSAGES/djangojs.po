@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-07-23 00:12+0000\n"
-"Last-Translator: jimidar <jimidar@gmail.com>\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-08-13 13:23+0000\n"
+"Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgid "Error with {0}"
 msgstr "{0} ਨਾਲ ਖਾਮੀ"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "ਅਸੀਂ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੇ ਅਮਲ ਲਈ ਇੱਕ ਨਵਾਂ ਲਿੰਟਰ ਯੋਗ ਕੀਤਾ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਕਿਸੇ ਵੀ ਮੁਸ਼ਕਲ ਦੀ ਸੂਚਨਾ GitHub ਤੇ ਦੇਣੀ ਯਕੀਨੀ ਬਣਾਉ"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -67,7 +67,7 @@ msgid "Validating {0}"
 msgstr "{0} ਵੈਧਤਾ"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "ਤੁਹਾਡਾ ਐਡ-ਔਨ {0} ਦੀ ਵੱਧੋ-ਵੱਧ ਹੱਦ ਤੋਂ ਵੱਡਾ ਹੈ।"
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "ਸਰਵਰ ਵੱਲੋਂ ਇੱਕ ਖਾਲੀ ਜਵਾਬ ਮਿਲਿਆ; ਸਥਿਤੀ: {0}"
@@ -79,12 +79,12 @@ msgid "Finished validating {0}"
 msgstr "{0} ਵੈਧਤਾ ਮੁੰਕਮਲ ਹੋਈ"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "ਤੁਹਾਡੀ ਐਡ-ਔਨ ਪ੍ਰਮਾਣਿਕਤਾ ਦੀ ਮਿਆਦ ਪੁੱਗ ਗਈ ਹੈ, ਇਸਦੀ ਸਮੀਖਿਆ ਦਸਤੀ ਕੀਤੀ ਜਾਵੇਗੀ।"
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ਤੁਹਾਡਾ ਐਡ-ਔਨ {0} ਚੇਤਾਵਨੀ ਅਤੇ ਬਿਨਾਂ ਕਿਸੇ ਗਲਤੀ ਦੇ ਪ੍ਰਮਾਣਿਤ ਕੀਤਾ ਗਿਆ ਸੀ।"
+msgstr[1] "ਤੁਹਾਡਾ ਐਡ-ਔਨ {0} ਚੇਤਾਵਨੀਆਂ ਅਤੇ ਬਿਨਾਂ ਕਿਸੇ ਗਲਤੀ ਦੇ ਪ੍ਰਮਾਣਿਤ ਕੀਤਾ ਗਿਆ ਸੀ।"
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
@@ -127,9 +127,6 @@ msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "ਵੈਧਤਾ ਕਾਰਜ ਨੂੰ ਇਹ ਮਸਲੇ ਲੱਭੇ ਹਨ ਜੋ ਰੱਦ ਹੋਣ ਦਾ ਕਾਰਨ ਬਣ ਸਕਦੇ ਹਨ:"
-
-msgid "Sorry, no supported platform has been found."
-msgstr "ਮੁਆਫ਼ੀ, ਕੋਈ ਸਹਾਇਕ ਪਲੇਟਫਾਰਮ ਨਹੀਂ ਲੱਭਿਆ।"
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "ਤੁਹਾਨੂੰ ਵੱਲੋਂ ਅੱਪਲੋਡ ਕੀਤੀ ਫ਼ਾਈਲ ਕਿਸਮ ਦੀ ਪਛਾਣ ਨਹੀਂ ਹੋਈ।"
@@ -213,29 +210,53 @@ msgstr "ਅਸਲ ਵਰਤੋ"
 msgid "Week of {0}"
 msgstr "{0} ਦਾ ਹਫਤਾ"
 
-msgid " downloads"
-msgstr " ਡਾਊਨਲੋਡ"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " ਡਾਊਨਲੋਡ"
+msgstr[1] " ਡਾਊਨਲੋਡ"
 
-msgid "{0} users"
-msgstr "{0} ਵਰਤੋਂਕਾਰ"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} ਵਰਤੋਂਕਾਰ"
+msgstr[1] "{0} ਵਰਤੋਂਕਾਰ"
 
-msgid "{0} add-ons"
-msgstr "{0} ਐਡ-ਆਨ"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} ਐਡ-ਆਨ"
+msgstr[1] "{0} ਐਡ-ਆਨ"
 
-msgid "{0} collections"
-msgstr "{0} ਭੰਡਾਰ"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} ਭੰਡਾਰ"
+msgstr[1] "{0} ਭੰਡਾਰ"
 
-msgid "{0} reviews"
-msgstr "{0} ਸਮੀਖਿਅਕ"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} ਸਮੀਖਿਅਕ"
+msgstr[1] "{0} ਸਮੀਖਿਅਕ"
 
-msgid "{0} sales"
-msgstr "{0} ਵਿਕਰੀ"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} ਵਿਕਰੀ"
+msgstr[1] "{0} ਵਿਕਰੀ"
 
-msgid "{0} refunds"
-msgstr "{0} ਮੁੜਾਈ"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} ਮੁੜਾਈ"
+msgstr[1] "{0} ਮੁੜਾਈ"
 
-msgid "{0} installs"
-msgstr "{0} ਇੰਸਟਾਲ"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} ਇੰਸਟਾਲ"
+msgstr[1] "{0} ਇੰਸਟਾਲ"
 
 msgid "Downloads"
 msgstr "ਡਾਊਨਲੋਡ"
@@ -296,13 +317,13 @@ msgid "Add-ons Manager"
 msgstr "ਐਡ-ਆਨ ਪ੍ਰਬੰਧਕ"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "ਐਡ-ਔਨ ਪ੍ਰਬੰਧਕ ਝਲਕ"
 
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "ਪੇਸ਼ ਕੀਤਾ ਐਡ-ਆਨ ਪ੍ਰਬੰਧਕ"
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "ਐਡ-ਆਨ ਮੈਨੇਜਰ ਵਧੇਰੇ ਸਿੱਖੋ"
 
 msgid "Search Suggestions"
 msgstr "ਖੋਜ ਸੁਝਾਅ"
@@ -796,6 +817,9 @@ msgstr "ਔਸਤ ਸਮੀਖਿਆਵਾਂ"
 msgid "Number of Reviews"
 msgstr "ਸਮੀਖਿਆਵਾਂ ਦੀ ਗਿਣਤੀ"
 
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr ""
+
 msgid "Requested Info"
 msgstr "ਜਾਣਕਾਰੀ ਲਈ ਬੇਨਤੀ"
 
@@ -815,7 +839,7 @@ msgid "No results found"
 msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਲੱਭਿਆ"
 
 msgid "Theme"
-msgstr ""
+msgstr "ਥੀਮ"
 
 msgid "Reviewer"
 msgstr "ਸਮੀਖਿਆ ਕਰਤਾ"

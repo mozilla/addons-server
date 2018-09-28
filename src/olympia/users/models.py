@@ -23,6 +23,7 @@ import olympia.core.logger
 from olympia import amo, core
 from olympia.access.models import Group, GroupUser
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.query import order_by_translation
@@ -87,13 +88,17 @@ class UserEmailField(forms.EmailField):
 
 class UserManager(BaseUserManager, ManagerBase):
 
-    def create_user(self, username, email, fxa_id=None):
+    def create_user(self, username, email, fxa_id=None, **kwargs):
         # We'll send username=None when registering through FxA to generate
         # an anonymous username.
         now = timezone.now()
         user = self.model(
-            username=username, email=email, fxa_id=fxa_id,
-            last_login=now)
+            username=username,
+            email=email,
+            fxa_id=fxa_id,
+            last_login=now,
+            **kwargs
+        )
         if username is None:
             user.anonymize_username()
         log.debug('Creating user with email {} and username {}'.format(
@@ -105,7 +110,7 @@ class UserManager(BaseUserManager, ManagerBase):
         """
         Creates and saves a superuser.
         """
-        user = self.create_user(username, email, fxa_id)
+        user = self.create_user(username=username, email=email, fxa_id=fxa_id)
         admins = Group.objects.get(name='Admins')
         GroupUser.objects.create(user=user, group=admins)
         return user
@@ -370,7 +375,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         elif self.has_anonymous_username:
             # L10n: {id} will be something like "13ad6a", just a random number
             # to differentiate this user from other anonymous users.
-            return ugettext('Anonymous user {id}').format(
+            return ugettext('Firefox user {id}').format(
                 id=self._anonymous_username_id())
         else:
             return force_text(self.username)
@@ -419,6 +424,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                     addon.delete()
                 else:
                     addon.force_disable()
+            else:
+                addon.addonuser_set.filter(user=self).delete()
         user_responsible = core.get_user()
         self._ratings_all.all().delete(user_responsible=user_responsible)
         self.delete_picture()
@@ -589,6 +596,7 @@ class DeniedName(ModelBase):
 
 
 class UserHistory(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     email = models.EmailField(max_length=75)
     user = models.ForeignKey(UserProfile, related_name='history')
 

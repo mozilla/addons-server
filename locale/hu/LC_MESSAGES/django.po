@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 12:19+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-25 08:28+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -139,6 +139,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "A címkéknek legalább {0} karakterből kell állnia."
 msgstr[1] "A címkéknek legalább {0} karakterből kell állnia."
+
+msgid "The text entered has been flagged as spam."
+msgstr "A megadott szöveg spamként lett megjelölve."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -704,6 +707,9 @@ msgstr "Szerkesztői eszközök"
 msgid "Admin Tools"
 msgstr "Admin eszközök"
 
+msgid "Positive integer"
+msgstr "Pozitív egész"
+
 msgid "Incorrect, please try again."
 msgstr "Helytelen, kérjük próbálja meg újra."
 
@@ -712,6 +718,9 @@ msgstr "Hiba a bemenet ellenőrzésekor, kérjük próbálja meg újra."
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Ennek érvényes hexakódnak kell lennie, mint például: #000000."
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "Néhány funkció a karbantartás ideje alatt átmenetileg le van tiltva. Hamarosan újra teljes kapacitással fog működni az oldal."
 
 msgid "Not allowed"
 msgstr "Nem engedélyezett"
@@ -916,6 +925,9 @@ msgstr "Az aláírás lejárt."
 
 msgid "Error decoding signature."
 msgstr "Hiba az aláírás dekódolásakor."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr "Hibás típus az adatokban egy vagy több kulcs esetén"
 
 msgid "Invalid JWT Token."
 msgstr "Érvénytelen JWT jelsor."
@@ -2264,14 +2276,14 @@ msgstr "Kiváló (3)"
 msgid "Manual Reviewer Points"
 msgstr "Kézi értékelői pontok"
 
-msgid "New Add-on Review"
-msgstr "Új kiegészítőértékelés"
+msgid "New Legacy Add-on Review"
+msgstr "Új örökölt kiegészítő értékelése"
 
 msgid "Preliminary Add-on Review"
 msgstr "Előzetes kiegészítőértékelés"
 
-msgid "Updated Add-on Review"
-msgstr "Frissített kiegészítőértékelés"
+msgid "Updated Legacy Add-on Review"
+msgstr "Frissített örökölt kiegészítő értékelése"
 
 msgid "New Dictionary Review"
 msgstr "Új szótárértékelés"
@@ -2324,17 +2336,17 @@ msgstr "Kiegészítő értékelés moderálás visszaállítva"
 msgid "Add-on Content Review"
 msgstr "Kiegészítő tartalmának értékelése"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr "Jóváhagyást követő kiegészítőértékelés (legmagasabb kockázat)"
+msgid "Add-on Review (Highest Risk)"
+msgstr "Kiegészítőértékelés (legmagasabb kockázat)"
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr "Jóváhagyást követő kiegészítőértékelés (magas kockázat)"
+msgid "Add-on Review (High Risk)"
+msgstr "Kiegészítőértékelés (magas kockázat)"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr "Jóváhagyást követő kiegészítőértékelés (közepes kockázat)"
+msgid "Add-on Review (Medium Risk)"
+msgstr "Kiegészítőértékelés (közepes kockázat)"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr "Jóváhagyást követő kiegészítőértékelés (alacsony kockázat)"
+msgid "Add-on Review (Low Risk)"
+msgstr "Kiegészítőértékelés (alacsony kockázat)"
 
 msgid "Level 1"
 msgstr "1. szint"
@@ -2469,11 +2481,8 @@ msgstr "Hiba történt a feltöltés közben, próbálja újra."
 msgid "Override failed validation"
 msgstr "Sikertelen vizsgálat felülbírálása"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Ehhez a verzióhoz több fájl nem tölthető fel."
-
-msgid "Version doesn't match"
-msgstr "Nem egyeznek a verziók"
+msgid "Need to select at least one application."
+msgstr "Legalább egy alkalmazást ki kell választania."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "A(z) {version} verzió már korábban fel lett töltve, és törölve lett."
@@ -2489,12 +2498,6 @@ msgstr "Nem töltött fel forrásfájlt."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "A forrásfájl feltöltésre került, de azt jelezte, hogy nincs szükség forrásra."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Az Összes platform nem vonható össze más platformokkal."
-
-msgid "A platform can only be chosen once."
-msgstr "Egy platform csak egyszer választható ki."
 
 msgid "Application"
 msgstr "Alkalmazás"
@@ -2524,6 +2527,9 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr ""
 "A Thunderbird és SeaMonkey kiegészítők mostantól az addons.thunderbird.net oldalon szerepelnek és vannak karban tartva. Ugyanazt a felhasználói fiókot használhatja a kiegészítők frissítésére az új "
 "oldalon is."
+
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr "A hagyományos bővítményeket már nem támogatja a Firefox."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "A Firefox 53-tól kezdve, az oldalon lévő új kiegészítők csak WebExtensionök lehetnek."
@@ -3324,9 +3330,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktív felhasználó"
 msgstr[1] "<strong>{0}</strong> aktív felhasználó"
 
-msgid "Submit a New File"
-msgstr "Új fájl beküldése"
-
 msgid "Submit a New Version"
 msgstr "Új verzió beküldése"
 
@@ -3380,6 +3383,17 @@ msgstr "Megjegyzés az értékelőnek:"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "Van valami, amit az értékelőknek tudniuk kell a kiegészítő értékelésekor?"
 
+msgid "Remember"
+msgstr "Megjegyzés"
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+"Ha beküldte a forráskódot, de az nem tartalmazta az utasításokat, akkor itt kell megadnia. Adja meg a lépésről lépesre szóló összeállításai utasításokat, hogy a kiegészítő kódjának pontos másolata "
+"álljon elő, ahogy azt az %(policy_requirements_open)sirányelvek megköveteleik%(policy_requirements_close)s."
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Ezeket a megjegyzéseket csak Ön és az értékelőink láthatják."
 
@@ -3409,9 +3423,6 @@ msgstr "További információk a kiegészítők terjesztéséről és aláírás
 
 msgid "Submission Complete"
 msgstr "A benyújtási folyamat kész"
-
-msgid "You’re done!"
-msgstr "Kész is van!"
 
 msgid "Version Submitted for Review"
 msgstr "Verzió értékelésre benyújtva"
@@ -3446,12 +3457,6 @@ msgstr "Ezt a verziót is szerkesztheti: adhat hozzá verziómegjegyzéseket vag
 msgid "Edit version {0}"
 msgstr "{0} verzió szerkesztése"
 
-msgid "File Signed"
-msgstr "Fájl aláírva"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Elkészült! Ez a fájl alá lett írva, és saját terjesztésre kész. A lenti gombra kattintva töltheti le."
-
 msgid "Version Signed"
 msgstr "Verzió aláírva"
 
@@ -3463,12 +3468,6 @@ msgstr "Elkészült! Ez a verzió aláírva, és saját terjesztésre kész. A l
 msgid "Download {0}"
 msgstr "Letöltés: {0}"
 
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "A beküldéshez csak néhány elérhető platformot választott ki. Több fájl is feltölthet, amelyek más platformokat céloznak:"
-
-msgid "Upload File"
-msgstr "Fájl feltöltése"
-
 msgid "Go to My Submissions"
 msgstr "Ugrás a beküldésekhez"
 
@@ -3478,8 +3477,8 @@ msgstr "Forráskód feltöltés"
 msgid "Do You Need to Submit Source Code?"
 msgstr "Be kell küldenie a forráskódot?"
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
-msgstr "Lehet hogy forráskódot kell beküldenie. Ha most nem küldi be a helyes forráskódot, akkor lehet hogy a kiegészítő eltávolításra kerül az oldalról."
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
+msgstr "Lehet hogy forráskódot kell beküldenie. Ha nem küldi be, akkor lehet hogy a kiegészítő eltávolításra kerül az oldalról."
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
@@ -3549,9 +3548,6 @@ msgstr "Kiegészítő terjesztési megállapodás"
 msgid "Upload Add-on"
 msgstr "Kiegészítő feltöltése"
 
-msgid "Where to Host File"
-msgstr "Hol terjeszti a fájlt"
-
 msgid "Where to Host Version"
 msgstr "Hol terjeszti a verziót"
 
@@ -3561,8 +3557,8 @@ msgstr "Verzió feltöltése"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Használja az alábbi mezőket a kiegészítő feltöltéséhez. A feltöltés után egy sor automatikus ellenőrzési mechanizmus indul el, és vizsgálja meg a fájlt."
 
-msgid "Which platforms is this file compatible with?"
-msgstr "Mely platformokkal kompatibilis a fájl?"
+msgid "Which applications is this version compatible with?"
+msgstr "Mely alkalmazásokkal kompatibilis ez a verzió?"
 
 msgid "Administrative overrides"
 msgstr "Adminisztrációs felülbírálások"
@@ -3572,9 +3568,6 @@ msgstr "Téma verzió létrehozása"
 
 msgid "Create a Theme"
 msgstr "Téma létrehozása"
-
-msgid "Submit File"
-msgstr "Fájl beküldése"
 
 msgid "Sign Add-on"
 msgstr "Kiegészítő aláírása"
@@ -3591,8 +3584,11 @@ msgstr "Téma neve"
 msgid "Select a header image for your theme"
 msgstr "Válasszon fejlécképet a témájához"
 
-msgid "Image height should be 200 pixels"
-msgstr "A kép magassága 200 pixel kell legyen"
+msgid "Recommended height: 200 pixels"
+msgstr "Ajánlott magasság: 200 képpont"
+
+msgid "6.9MB max"
+msgstr "max. 6.9 MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG vagy GIF (nem animált)"
@@ -4044,6 +4040,12 @@ msgstr "Kompatibilitási teszt"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Ellenőrizze, hogy a kiegészítője kompatibilis-e a Firefoxszal."
 
+msgid "Live Testing"
+msgstr "Élő tesztelés"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr "A kiegészítő ideiglenes telepítése a Firefoxba élő tesztelési és hibakeresési célokkal."
+
 msgid "Transfer ownership"
 msgstr "Tulajdonjog átadása"
 
@@ -4199,9 +4201,6 @@ msgstr "{0} kezelése"
 
 msgid "Files"
 msgstr "Fájlok"
-
-msgid "Upload Another File"
-msgstr "Másik fájl feltöltése"
 
 msgid "Version Notes"
 msgstr "Megjegyzések a verzióhoz"
@@ -5319,8 +5318,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Élvezze a zenét a világ minden tájáról {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Érjen el több mint 20.000 rádióállomást szerte a világból."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Érjen el több mint 30.000 rádióállomást szerte a világból."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5615,13 +5614,12 @@ msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabli
 msgstr "VPN-t használ? Az IP-címe így is kiderülhet. Állítsa ezt meg a WebRTC letiltásával."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Blokkolja a mindent lefedő felugrókat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply click a button to close annoying pop-up overlays."
-msgstr ""
+msgstr "Egyszerűen kattintson egy gombra, és zárja be a mindent lefedő felugrókat."
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5786,6 +5784,9 @@ msgstr "A verziószámok kizárólag betűket, számokat és a következő karak
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "A WebExtension téma feltöltések jelenleg nem támogatottak."
+
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr "A WebExtension témák maximális mérete {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Ilyen típusú kiegészítőt nem küldhet be"
@@ -6043,6 +6044,42 @@ msgstr "Kapjon korai hozzáférést a kísérleti böngészőfunkciókhoz."
 
 msgid "Get Started"
 msgstr "Első lépések"
+
+msgid "Reported Status"
+msgstr "Bejelentett állapot"
+
+msgid "Reported Spam"
+msgstr "Spamként jelenve"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Reported Ham"
+msgstr "Nem spamként jelentve"
+
+msgid "Not Reported"
+msgstr "Nem osztályozott"
+
+msgid "Content Submitted"
+msgstr "Tartalom beküldve"
+
+msgid "View Rating on site"
+msgstr "Értékelés megtekintése az oldalon"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Submit Ham to Akismet"
+msgstr "Nem spam beküldése az Akismetnek"
+
+msgid "Submit Spam to Akismet"
+msgstr "Spam beküldése az Akismetnek"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr "%s nem spam spamként bejelentve"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr "%s spam nem spamként bejelentve"
 
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla kiegészítőkről"
@@ -7464,9 +7501,6 @@ msgstr "{2} találat erre: <strong>{3}</strong>, megjelenítve {0} - {1}"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "{2} találat, megjelenítve {0} - {1}"
 
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Néhány funkció a karbantartás ideje alatt átmenetileg le van tiltva. Hamarosan újra teljes kapacitással fog működni az oldal."
-
 msgid "Could not find add-on with id \"{}\"."
 msgstr "A(z) „{}” azonosítójú kiegészítő nem található."
 
@@ -7963,8 +7997,8 @@ msgstr "Nincs ilyen felhasználó ilyen e-mail címmel."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr "Ismeretlen felhasználó {id}"
+msgid "Firefox user {id}"
+msgstr "Firefox felhasználó {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Saját Mobile kiegészítők"

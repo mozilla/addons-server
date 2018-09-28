@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2017-09-05 10:08+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,9 +132,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Het validatieproces heeft de folgjende problemen gevonden die tot afwijzing zouden kunnen leiden:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Sorry, gjin stipe platfoarm fûn."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "It troch jo oplade bestânstype is net bekend."
 
@@ -217,29 +214,53 @@ msgstr "Oarspronklike brûke"
 msgid "Week of {0}"
 msgstr "Wike fan {0}"
 
-msgid " downloads"
-msgstr " downloads"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " downloads"
+msgstr[1] " downloads"
 
-msgid "{0} users"
-msgstr "{0} brûkers"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} brûkers"
+msgstr[1] "{0} brûkers"
 
-msgid "{0} add-ons"
-msgstr "{0} add-ons"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} add-ons"
+msgstr[1] "{0} add-ons"
 
-msgid "{0} collections"
-msgstr "{0} kolleksjes"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} kolleksjes"
+msgstr[1] "{0} kolleksjes"
 
-msgid "{0} reviews"
-msgstr "{0} beoardielingen"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} beoardielingen"
+msgstr[1] "{0} beoardielingen"
 
-msgid "{0} sales"
-msgstr "{0} ferkeapje"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} ferkeapje"
+msgstr[1] "{0} ferkeapje"
 
-msgid "{0} refunds"
-msgstr "{0} restitúsjes"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} restitúsjes"
+msgstr[1] "{0} restitúsjes"
 
-msgid "{0} installs"
-msgstr "{0} ynstallaasjes"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} ynstallaasjes"
+msgstr[1] "{0} ynstallaasjes"
 
 msgid "Downloads"
 msgstr "Downloads"
@@ -799,6 +820,9 @@ msgstr "Gemiddelde beoardielingen"
 
 msgid "Number of Reviews"
 msgstr "Oantal beoardielingen"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr ""
 
 msgid "Requested Info"
 msgstr "Oanfrege ynformaasje"

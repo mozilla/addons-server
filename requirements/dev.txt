@@ -1,5 +1,3 @@
--r tests.txt
-
 pyinotify==0.9.6 \
     --hash=sha256:9c998a5d7606ca835065cdabc013ae6c66eb9ea76a00a1e3bc6e0cfe2b4f71f4
 # ipython / ipdb for easier debugging, supervisor to run services
@@ -11,8 +9,8 @@ ipython==5.8.0 \
     --hash=sha256:37101b8cbe072fe17bff100bc03d096404e4a9a0357097aeb5b61677c042cab1 \
     --hash=sha256:0371b7e4bd74954a35086eac949beeac5b1c9f5ce231e2e77df2286a293765e3 \
     --hash=sha256:4bac649857611baaaf76bc82c173aa542f7486446c335fe1a6c05d0d491c8906 # pyup: <6.0
-watchdog==0.8.3 \
-    --hash=sha256:7e65882adb7746039b6f3876ee174952f8eaaa34491ba34333ddf1fe35de4162
+watchdog==0.9.0 \
+    --hash=sha256:965f658d0732de3188211932aeb0bb457587f04f63ab4c1e33eab878e9de961d
 
 # Dependencies for IPython 5.5
 traitlets==4.3.2 \
@@ -30,13 +28,12 @@ decorator==4.2.1 \
 ptyprocess==0.6.0 \
     --hash=sha256:d7cc528d76e76342423ca640335bd3633420dc1366f258cb31d05e865ef5ca1f \
     --hash=sha256:923f299cc5ad920c68f2bc0bc98b75b9f838b93b599941a6b63ddbc2476394c0
-pickleshare==0.7.4 \
-    --hash=sha256:c9a2541f25aeabc070f12f452e1f2a8eae2abd51e1cd19e8430402bdf4c1d8b5 \
-    --hash=sha256:84a9257227dfdd6fe1b4be1319096c20eb85ff1e82c7932f36efccfe1b09737b
-prompt_toolkit==2.0.4 \
-    --hash=sha256:12e076b21178064b5627f74c4819559c125e31046b55a28d5e024b85fef5617e \
-    --hash=sha256:f2289fe9dd7f27c305421bffe880a543b04cc67660796a2a912595dbcd0d209f \
-    --hash=sha256:ff58ce8bb82c11c43416dd3eec7701dcbe8c576e2d7649f1d2b9d21a2fd93808
+pickleshare==0.7.5 \
+    --hash=sha256:9649af414d74d4df115d5d718f82acb59c9d418196b7b4290ed47a12ce62df56 \
+    --hash=sha256:87683d47965c1da65cdacaf31c8441d12b8044cdec9aca500cd78fc2c683afca
+prompt_toolkit==1.0.15 \
+    --hash=sha256:3f473ae040ddaa52b52f97f6b4a493cfa9f5920c255a12dc56a7d34397a398a4 \
+    --hash=sha256:858588f1983ca497f1cf4ffde01d978a3ea02b01c8a26a8bbc5cd2e66d816917 # pyup: <2.0.0
 wcwidth==0.1.7 \
     --hash=sha256:f4ebe71925af7b40a864553f761ed559b43544f8f71746c2d756c7fe788ade7c \
     --hash=sha256:3df37372226d6e63e1b1e1eda15c594bca98a22d33a23832a90998faa96bc65e

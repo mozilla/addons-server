@@ -2,12 +2,30 @@ import re
 
 from django.core import exceptions
 from django.core.validators import URLValidator
+from django.db import models
 from django.forms import fields
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 from nobot.fields import HumanCaptchaField
 
 from olympia.amo.widgets import ColorWidget
+
+
+class PositiveAutoField(models.AutoField):
+    """An AutoField that's based on unsigned int instead of a signed int
+    allowing twice as many positive values to be used for the primary key.
+
+    Influenced by https://github.com/django/django/pull/8183
+
+    Because AutoFields are special we need a custom database backend to support
+    using them.  See olympia.core.db.mysql.base for that."""
+    description = _("Positive integer")
+
+    def get_internal_type(self):
+        return "PositiveAutoField"
+
+    def rel_db_type(self, connection):
+        return models.PositiveIntegerField().db_type(connection=connection)
 
 
 class URLValidatorBackport(URLValidator):

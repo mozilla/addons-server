@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2018-03-04 16:16+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,6 +132,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "সকল ট্যাগ কমপক্ষে {0} অক্ষরের হতে হবে।"
 msgstr[1] "সকল ট্যাগ কমপক্ষে {0} অক্ষরের হতে হবে।"
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -690,6 +693,9 @@ msgstr "পর্যালোচনাকারীদের টুলস"
 msgid "Admin Tools"
 msgstr "অ্যাডমিন টুলস"
 
+msgid "Positive integer"
+msgstr ""
+
 msgid "Incorrect, please try again."
 msgstr "ভূল, অনুগ্রহ করে পুনরায় চেষ্টা করুন।"
 
@@ -698,6 +704,9 @@ msgstr "ইনপুট যাচাই করতে ব্যর্থ, অন�
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "অবশ্যই বৈধ হেক্স কালার কোড হতে হবে, যেমন #000000।"
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr ""
 
 msgid "Not allowed"
 msgstr "অনুমোদিত নয়"
@@ -894,6 +903,9 @@ msgstr "স্বাক্ষর মেয়াদ উত্তীর্ণ হ
 
 msgid "Error decoding signature."
 msgstr "ভুল ডিকোডিং স্বাক্ষর।"
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "অবৈধ JWT টোকেন।"
@@ -2268,13 +2280,15 @@ msgstr ""
 msgid "Manual Reviewer Points"
 msgstr "ম্যানুয়াল রিভিউয়ার পয়েন্ট সমূহ"
 
-msgid "New Add-on Review"
+#, fuzzy
+msgid "New Legacy Add-on Review"
 msgstr "নতুন অ্যাড-অন পর্যালোচনা"
 
 msgid "Preliminary Add-on Review"
 msgstr "প্রাথমিক অ্যাড-অন পর্যালোচনা"
 
-msgid "Updated Add-on Review"
+#, fuzzy
+msgid "Updated Legacy Add-on Review"
 msgstr "অ্যাড-অন পর্যালোচনা হালনাগাদ করা হয়েছে"
 
 msgid "New Dictionary Review"
@@ -2331,17 +2345,21 @@ msgstr ""
 msgid "Add-on Content Review"
 msgstr "পর্যালোচিত হয় নি"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Highest Risk)"
+msgstr "এডমিন পর্যালোচনা"
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (High Risk)"
+msgstr "এডমিন পর্যালোচনা"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Medium Risk)"
+msgstr "এডমিন পর্যালোচনা"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Low Risk)"
+msgstr "এডমিন পর্যালোচনা"
 
 msgid "Level 1"
 msgstr "লেভেল ১"
@@ -2476,11 +2494,9 @@ msgstr ""
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr "আপনি এই সংস্করণের জন্য আর কোন ফাইল আপলোড করতে পারবেন না।"
-
-msgid "Version doesn't match"
-msgstr "সংস্করণ মেলেনি"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "অন্তত একটি উপযুক্ত অ্যাপ্লিকেশন দরকার।"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2497,12 +2513,6 @@ msgid "You have not uploaded a source file."
 msgstr "আপনি এই সংস্করণের জন্য আর কোন ফাইল আপলোড করতে পারবেন না।"
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
-
-msgid "A platform can only be chosen once."
 msgstr ""
 
 msgid "Application"
@@ -2528,6 +2538,9 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr "যেহেতু আপনার অ্যাড-অন এই অ্যাপলিকেশনের জন্য নির্বাচিত হয়েছে তাই বিষয়শ্রেণী পরিবর্তন করা যাবে না।"
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
+msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
@@ -3305,9 +3318,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Submit a New File"
-msgstr "নতুন ফাইল জমা দিন"
-
 msgid "Submit a New Version"
 msgstr "নতুন সংস্করণ জমা দিন"
 
@@ -3360,6 +3370,15 @@ msgstr "পর্যালোকারীর নোট:"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
 
+msgid "Remember"
+msgstr ""
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
@@ -3391,9 +3410,6 @@ msgstr ""
 
 msgid "Submission Complete"
 msgstr ""
-
-msgid "You’re done!"
-msgstr "আপনি সম্পূর্ণ করেছেন!"
 
 msgid "Version Submitted for Review"
 msgstr "সংস্করণ জমা দেওয়া হয়েছে পর্যালোচনার জন্য"
@@ -3430,12 +3446,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "সংস্করণ সম্পাদনা করুন {0}"
 
-msgid "File Signed"
-msgstr "ফাইল সাইন করা হয়েছে"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
 msgid "Version Signed"
 msgstr "সংস্করণের সাইনড"
 
@@ -3444,12 +3454,6 @@ msgstr ""
 
 msgid "Download {0}"
 msgstr "{0} ডাউনলোড করুন"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr "ফাইল আপলোড করুন"
 
 msgid "Go to My Submissions"
 msgstr "আমার জমার দিকে যান"
@@ -3461,7 +3465,7 @@ msgstr "সোর্স কোড"
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
 
 #, python-format
@@ -3530,9 +3534,6 @@ msgstr ""
 msgid "Upload Add-on"
 msgstr "অ্যাড-অন আপলোড করুন"
 
-msgid "Where to Host File"
-msgstr "হোস্ট ফাইল কোথায়"
-
 msgid "Where to Host Version"
 msgstr "হোস্ট সংস্করণ কোথায়"
 
@@ -3542,7 +3543,7 @@ msgstr "সংস্করণ আপলোড করুন"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3554,9 +3555,6 @@ msgstr "একটি নতুন থিম তৈরী করুন"
 
 msgid "Create a Theme"
 msgstr "একটি থিম তৈরি করুন"
-
-msgid "Submit File"
-msgstr "ফাইল জমা দিন"
 
 msgid "Sign Add-on"
 msgstr "সাইন অ্যাড-অন"
@@ -3575,7 +3573,10 @@ msgstr "থিমের নাম"
 msgid "Select a header image for your theme"
 msgstr "আপনার থিমের জন্য রঙ নির্বাচন করুন।"
 
-msgid "Image height should be 200 pixels"
+msgid "Recommended height: 200 pixels"
+msgstr ""
+
+msgid "6.9MB max"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
@@ -4043,6 +4044,12 @@ msgstr "উপযুক্ত"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr ""
 
+msgid "Live Testing"
+msgstr ""
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
+
 msgid "Transfer ownership"
 msgstr ""
 
@@ -4195,9 +4202,6 @@ msgstr ""
 
 msgid "Files"
 msgstr "ফাইলগুলো"
-
-msgid "Upload Another File"
-msgstr ""
 
 msgid "Version Notes"
 msgstr "সংস্করণ নোটসমূহ"
@@ -5311,7 +5315,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5778,6 +5782,9 @@ msgstr ""
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
@@ -6030,6 +6037,50 @@ msgstr ""
 
 msgid "Get Started"
 msgstr "শুরু হয়েছে"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "সাইট এর অবস্থা"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "রিপোর্টের ধরন"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "বাগ রিপোর্ট করুন"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "এখনও রেট করা হয় নি"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "সংস্করণের সাইনড"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "মোবাইল সাইট দেখুন"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "নতুন ফাইল জমা দিন"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "নতুন ফাইল জমা দিন"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "মজিলা এড-অনস সমন্ধে"
@@ -7472,9 +7523,6 @@ msgstr ""
 msgid "Showing {0} - {1} of {2} results"
 msgstr ""
 
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
-
 msgid "Could not find add-on with id \"{}\"."
 msgstr ""
 
@@ -7961,8 +8009,9 @@ msgstr ""
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr ""
+#, fuzzy
+msgid "Firefox user {id}"
+msgstr "অ্যান্ড্রয়েড এর জন্য ফায়ারফক্স"
 
 msgid "My Mobile Add-ons"
 msgstr ""

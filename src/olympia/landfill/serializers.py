@@ -1,13 +1,20 @@
 # -*- coding: utf-8 -*-
 
+import collections
 import mimetypes
+import os
 import random
 
 from django.conf import settings
 from django.utils.translation import activate
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.client import RequestFactory
+from fxa.constants import ENVIRONMENT_URLS
+from fxa.core import Client
+from fxa.tests.utils import TestEmailAccount
 from rest_framework import serializers
+
+import olympia.core.logger
 
 from olympia.amo.tests import user_factory, addon_factory, copy_file_to_temp
 from olympia import amo
@@ -28,9 +35,49 @@ from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.devhub.tasks import create_version_for_upload
 
+log = olympia.core.logger.getLogger('z.users')
+
 
 class GenerateAddonsSerializer(serializers.Serializer):
     count = serializers.IntegerField(default=10)
+
+    def __init__(self):
+        self.fxa_email = os.environ['FXA_EMAIL']
+        self.fxa_password = os.environ['FXA_PASSWORD']
+        self.fxa_id = self._create_fxa_user()
+        self.user = self._create_addon_user()
+
+    def _create_fxa_user(self):
+        """Create fxa user for logging in."""
+        fxa_client = Client(ENVIRONMENT_URLS['stable']['authentication'])
+        account = TestEmailAccount(email=self.fxa_email)
+        password = self.fxa_password
+        FxAccount = collections.namedtuple('FxAccount', 'email password')
+        fxa_account = FxAccount(email=account.email, password=password)
+        session = fxa_client.create_account(fxa_account.email,
+                                            fxa_account.password)
+        account.fetch()
+        message = account.wait_for_email(
+            lambda m: 'x-verify-code' in m['headers'] and
+            session.uid == m['headers']['x-uid']
+        )
+        session.verify_email_code(message['headers']['x-verify-code'])
+        log.debug('fxa account created: {}'.format(fxa_account))
+        return session.uid
+
+    def _create_addon_user(self):
+        """Create addon user with fxa information assigned."""
+        try:
+            return UserProfile.objects.create_user(
+                username='uitest',
+                email=self.fxa_email,
+                fxa_id=self.fxa_id,
+                display_name='uitest'
+            )
+        except Exception as e:
+            log.debug('There was a problem creating the user: {}.'
+                      ' Returning user from database'.format(e))
+            return UserProfile.objects.get(username='uitest')
 
     def create_generic_featured_addons(self):
         """Creates 10 addons.
@@ -89,7 +136,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             status=STATUS_PUBLIC,
             type=ADDON_EXTENSION,
             average_daily_users=5000,
-            users=[UserProfile.objects.get(username='uitest')],
+            users=[self.user],
             average_rating=5,
             description=u'My Addon description',
             file_kw={
@@ -145,7 +192,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 type=ADDON_EXTENSION,
                 file_kw=False,
                 average_daily_users=5000,
-                users=[UserProfile.objects.get(username='uitest')],
+                users=[self.user],
                 average_rating=5,
                 description=u'My Addon description',
                 guid='@webextension-guid',
@@ -178,7 +225,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             status=STATUS_PUBLIC,
             type=ADDON_PERSONA,
             average_daily_users=4242,
-            users=[UserProfile.objects.get(username='uitest')],
+            users=[self.user],
             average_rating=5,
             description=u'My UI Theme description',
             file_kw={

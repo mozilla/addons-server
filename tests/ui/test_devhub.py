@@ -2,7 +2,8 @@ import pytest
 import requests
 
 
-@pytest.mark.desktoponly
+@pytest.mark.fxa_login
+@pytest.mark.desktop_only
 @pytest.mark.nondestructive
 @pytest.mark.withoutresponses
 def test_devhub_home_loads_addons(base_url, selenium, devhub_login):
@@ -13,7 +14,8 @@ def test_devhub_home_loads_addons(base_url, selenium, devhub_login):
     assert len(devhub.addons_list) == author_addons
 
 
-@pytest.mark.desktoponly
+@pytest.mark.fxa_login
+@pytest.mark.desktop_only
 @pytest.mark.nondestructive
 @pytest.mark.withoutresponses
 def test_devhub_addon_edit_link_works(base_url, selenium, devhub_login):
@@ -24,7 +26,8 @@ def test_devhub_addon_edit_link_works(base_url, selenium, devhub_login):
     assert addon_name == addon_editor.name
 
 
-@pytest.mark.desktoponly
+@pytest.mark.fxa_login
+@pytest.mark.desktop_only
 @pytest.mark.nondestructive
 @pytest.mark.withoutresponses
 def test_devhub_addon_upload(base_url, selenium, devhub_upload):

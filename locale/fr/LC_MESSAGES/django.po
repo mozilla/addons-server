@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 19:10+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-26 13:01+0000\n"
 "Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -138,6 +138,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Toutes les étiquettes doivent avoir au moins {0} caractère."
 msgstr[1] "Toutes les étiquettes doivent avoir au moins {0} caractères."
+
+msgid "The text entered has been flagged as spam."
+msgstr "Le texte saisi a été marqué comme spam."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -706,6 +709,9 @@ msgstr "Outils des testeurs"
 msgid "Admin Tools"
 msgstr "Outils d’administration"
 
+msgid "Positive integer"
+msgstr "Entier positif"
+
 msgid "Incorrect, please try again."
 msgstr "Incorrect, veuillez réessayer."
 
@@ -714,6 +720,9 @@ msgstr "Une erreur s’est produite lors de la vérification, veuillez réessaye
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Ceci doit être un code couleur hexadécimal valide, par exemple #000000."
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "Certaines fonctionnalités sont temporairement désactivées pendant que nous effectuons une maintenance du site web. Nous serons bientôt de retour à capacité maximale."
 
 msgid "Not allowed"
 msgstr "Non autorisé"
@@ -929,6 +938,9 @@ msgstr "La signature a expiré."
 
 msgid "Error decoding signature."
 msgstr "Erreur de décodage de la signature."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr "Type incorrect pour une ou plusieurs clés dans la charge utile"
 
 msgid "Invalid JWT Token."
 msgstr "Jeton JWT non valide."
@@ -2279,14 +2291,14 @@ msgstr "Excellent (3)"
 msgid "Manual Reviewer Points"
 msgstr "Points de vérification manuel"
 
-msgid "New Add-on Review"
-msgstr "Nouvelle revue du module"
+msgid "New Legacy Add-on Review"
+msgstr "Nouvelle révision des modules obsolètes"
 
 msgid "Preliminary Add-on Review"
 msgstr "Vérification préliminaire de module"
 
-msgid "Updated Add-on Review"
-msgstr "Vérification de module mis à jour"
+msgid "Updated Legacy Add-on Review"
+msgstr "Révision des modules obsolètes qui ont été mis à jour"
 
 msgid "New Dictionary Review"
 msgstr "Nouvelle revue du dictionnaire"
@@ -2339,17 +2351,17 @@ msgstr "Revue du module annulée lors de la modération"
 msgid "Add-on Content Review"
 msgstr "Validation du contenu du module"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr "Validation après approbation (risque le plus élevé)"
+msgid "Add-on Review (Highest Risk)"
+msgstr "Révision des modules (risque le plus élevé)"
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr "Validation après approbation (risque élevé)"
+msgid "Add-on Review (High Risk)"
+msgstr "Révision des modules (risque élevé)"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr "Validation après approbation (risque moyen)"
+msgid "Add-on Review (Medium Risk)"
+msgstr "Révision des modules (risque moyen)"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr "Validation après approbation (risque faible)"
+msgid "Add-on Review (Low Risk)"
+msgstr "Révision des modules (risque peu élevé)"
 
 msgid "Level 1"
 msgstr "Niveau 1"
@@ -2484,11 +2496,8 @@ msgstr "Il y a eu une erreur avec votre envoi. Merci de réessayer."
 msgid "Override failed validation"
 msgstr "Passer outre la validation échouée"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Vous ne pouvez plus envoyer de fichier pour cette version."
-
-msgid "Version doesn't match"
-msgstr "Version ne correspondant pas"
+msgid "Need to select at least one application."
+msgstr "Choisissez au moins une application."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "La version {version} a déjà été envoyée et supprimée."
@@ -2504,12 +2513,6 @@ msgstr "Vous n’avez pas envoyé de fichier source."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Vous avez indiqué que le fichier source n’était pas nécessaire, cependant un fichier source a été soumis."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "La plateforme « Toutes » ne peut être combinée avec des plateformes spécifiques."
-
-msgid "A platform can only be chosen once."
-msgstr "Une plateforme ne peut être choisie qu’une fois."
 
 msgid "Application"
 msgstr "Application"
@@ -2540,6 +2543,9 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr ""
 "Les modules pour Thunderbird et SeaMonkey sont dorénavant proposés (et seront mis à jour) sur le site addons.thunderbird.net. Vous pouvez utiliser le même compte pour mettre à jour vos modules sur "
 "ce nouveau site."
+
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr "Les extensions obsolètes ne sont plus gérées par Firefox."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "À partir de la version 53 de Firefox, les nouveaux modules de ce site ne peuvent être que des WebExtensions."
@@ -3352,9 +3358,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> utilisateur actif"
 msgstr[1] "<strong>{0}</strong> utilisateurs actifs"
 
-msgid "Submit a New File"
-msgstr "Envoyer un nouveau fichier"
-
 msgid "Submit a New Version"
 msgstr "Envoyer une nouvelle version"
 
@@ -3410,6 +3413,17 @@ msgstr "Notes aux testeurs :"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "Y a-t-il quoi que ce soit d’autre que nos testeurs devraient savoir pour la revue de ce module ?"
 
+msgid "Remember"
+msgstr "N’oubliez pas"
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+"Si vous avez communiqué votre code source, mais sans avoir joint les instructions, vous devez les fournir ici. Saisissez ici les étapes exactes nécessaires pour créer et extraire une copie du code "
+"source de votre module, conformément à %(policy_requirements_open)snos conditions d’utilisation%(policy_requirements_close)s."
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Ces notes seront uniquement visibles par vous-même et nos testeurs."
 
@@ -3439,9 +3453,6 @@ msgstr "Informations supplémentaires sur la distribution et la signature des mo
 
 msgid "Submission Complete"
 msgstr "Envoi terminé"
-
-msgid "You’re done!"
-msgstr "C’est fait !"
 
 msgid "Version Submitted for Review"
 msgstr "Revue demandée pour cette version"
@@ -3476,12 +3487,6 @@ msgstr "Vous pouvez également modifier la version que vous venez de proposer en
 msgid "Edit version {0}"
 msgstr "Modifier la version {0}"
 
-msgid "File Signed"
-msgstr "Fichier signé"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "C’est fait ! Cette version a été signée et peut maintenant être distribuée personnellement. Vous pouvez la télécharger en cliquant sur le bouton ci-dessous."
-
 msgid "Version Signed"
 msgstr "Version signée"
 
@@ -3490,12 +3495,6 @@ msgstr "C’est fait ! Cette version a été signée et peut maintenant être d
 
 msgid "Download {0}"
 msgstr "Télécharger {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Vous n’avez sélectionné que certaines des plateformes disponibles pour cet envoi. Vous pouvez soumettre d’autres fichiers ciblant les autres plateformes :"
-
-msgid "Upload File"
-msgstr "Envoyer un fichier"
 
 msgid "Go to My Submissions"
 msgstr "Accéder à mes propositions"
@@ -3506,8 +3505,8 @@ msgstr "Envoi du code source"
 msgid "Do You Need to Submit Source Code?"
 msgstr "Devez-vous communiquer votre code source ?"
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
-msgstr ""
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
+msgstr "Vous devez peut-être communiquer le code source. Sinon, votre module complémentaire pourrait être supprimé du site !"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
@@ -3542,7 +3541,7 @@ msgid "Step-by-step build instructions to create an exact copy of the add-on cod
 msgstr "Des instructions de construction détaillées permettant de créer une copie exacte du code du module."
 
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "Un script d’installation qui exécute l’ensemble des étapes techniques préalables."
 
 msgid "Operating system and build environment requirements."
 msgstr "Système d’exploitation et environnement d’installation requis."
@@ -3556,9 +3555,11 @@ msgstr ""
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
+"<span class=\"instruction-emphasis\">Note :</span> les fichiers source (sauf ceux des bibliothèques open-source tierces) ne peuvent pas être transcompilés, obscurcis, compactés ou générés "
+"automatiquement de quelque façon."
 
 msgid "How to Submit:"
-msgstr ""
+msgstr "Comment envoyer :"
 
 msgid "Include instructions in a README file in the source code,"
 msgstr "Incluez les instructions dans un fichier README à l’intérieur du code source,"
@@ -3575,9 +3576,6 @@ msgstr "Accord de distribution des modules complémentaires"
 msgid "Upload Add-on"
 msgstr "Envoyer votre module"
 
-msgid "Where to Host File"
-msgstr "Hébergement de ce fichier"
-
 msgid "Where to Host Version"
 msgstr "Hébergement de cette version"
 
@@ -3587,8 +3585,8 @@ msgstr "Envoyer cette version"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Utilisez les champs ci-dessous pour envoyer le paquet de votre module. Après envoi, une série de tests de validation automatisés seront exécutés sur votre fichier."
 
-msgid "Which platforms is this file compatible with?"
-msgstr "Quelles sont les plateformes avec lesquelles le fichier est compatible ?"
+msgid "Which applications is this version compatible with?"
+msgstr "Avec quelles applications cette version est-elle compatible ?"
 
 msgid "Administrative overrides"
 msgstr "Dérogations administratives"
@@ -3598,9 +3596,6 @@ msgstr "Créer une version de thème"
 
 msgid "Create a Theme"
 msgstr "Créer un thème"
-
-msgid "Submit File"
-msgstr "Envoyer un fichier"
 
 msgid "Sign Add-on"
 msgstr "Signer le module"
@@ -3617,8 +3612,11 @@ msgstr "Nom du thème"
 msgid "Select a header image for your theme"
 msgstr "Sélectionnez une image d’en-tête pour votre thème"
 
-msgid "Image height should be 200 pixels"
-msgstr "La hauteur de l’image devrait être de 200 pixels"
+msgid "Recommended height: 200 pixels"
+msgstr "Hauteur recommandée : 200 pixels"
+
+msgid "6.9MB max"
+msgstr "6,9 Mo max."
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG ou GIF (non animé)"
@@ -4071,6 +4069,12 @@ msgstr "Test de compatibilité"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Vérifiez que votre extension est compatible avec Firefox."
 
+msgid "Live Testing"
+msgstr "Tests en direct"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr "Installez temporairement votre extension dans Firefox pour tester en conditions réelles et déboguer."
+
 msgid "Transfer ownership"
 msgstr "Transférer la propriété"
 
@@ -4226,9 +4230,6 @@ msgstr "Gérer {0}"
 
 msgid "Files"
 msgstr "Fichiers"
-
-msgid "Upload Another File"
-msgstr "Envoyer un autre fichier"
 
 msgid "Version Notes"
 msgstr "Notes de version"
@@ -5341,15 +5342,15 @@ msgstr "Surlignez du texte {start_sub_heading}avec {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
-msgstr "Utilisez un surligneur de texte hautement personnalisable avec différentes couleurs et options d'enregistrement."
+msgstr "Utilisez un surligneur de texte hautement personnalisable avec différentes couleurs et options d’enregistrement."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Profitez de musiques provenant du monde entier {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Écoutez plus de 20 000 stations de radio du monde entier."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Écoutez plus de 30 000 stations de radio du monde entier."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5817,6 +5818,9 @@ msgstr "Les numéros de versions doivent uniquement contenir des lettres, des ch
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "L’envoi de thèmes sous forme de WebExtension n’est pas pris en charge pour l’instant."
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr "La taille maximale pour les thèmes WebExtension est de {0}."
+
 msgid "You cannot submit this type of add-on"
 msgstr "Vous ne pouvez pas envoyer ce type de module"
 
@@ -6071,6 +6075,42 @@ msgstr "Débloquez un accès anticipé à des fonctionnalités expérimentales d
 
 msgid "Get Started"
 msgstr "Lancez-vous"
+
+msgid "Reported Status"
+msgstr "État signalé"
+
+msgid "Reported Spam"
+msgstr "Spam signalé"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Reported Ham"
+msgstr "Ham signalé"
+
+msgid "Not Reported"
+msgstr "Non signalé"
+
+msgid "Content Submitted"
+msgstr "Contenu soumis"
+
+msgid "View Rating on site"
+msgstr "Voir la note sur le site"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Submit Ham to Akismet"
+msgstr "Envoyer les données Ham à Akismet"
+
+msgid "Submit Spam to Akismet"
+msgstr "Envoyer les données Spam à Akismet"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr "%s rapports Ham envoyés comme Spam"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr "%s rapports Spam envoyés comme Ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "À propos de Mozilla Add-ons"
@@ -6865,9 +6905,8 @@ msgstr "Revue complétée avec succès."
 msgid "Review lock limit reached"
 msgstr "Limite atteinte pour les revues"
 
-#, fuzzy
 msgid "{addon} :: EULA"
-msgstr "{addon} :: Rapport d’abus"
+msgstr "{addon} :: accord de licence"
 
 msgid "{addon} :: Privacy Policy"
 msgstr "{addon} :: Politique de confidentialité"
@@ -7495,9 +7534,6 @@ msgstr "Affichage de {0} - {1} sur {2} résultats pour <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Affichage de {0} - {1} sur {2} résultats"
 
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Certaines fonctionnalités sont temporairement désactivées pendant que nous effectuons une maintenance du site web. Nous serons bientôt de retour à capacité maximale."
-
 msgid "Could not find add-on with id \"{}\"."
 msgstr "Impossible de trouver le module dont l’identifiant est « {} »."
 
@@ -7997,8 +8033,8 @@ msgstr "Pas d’utilisateur ayant cette adresse courriel."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr "Utilisateur anonyme {id}"
+msgid "Firefox user {id}"
+msgstr "Utilisateur ou utilisatrice {id} de Firefox"
 
 msgid "My Mobile Add-ons"
 msgstr "Mes modules mobiles"

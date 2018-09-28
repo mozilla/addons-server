@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-13 01:51+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-13 01:48+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -65,13 +65,13 @@ msgid "Developers of add-ons or themes cannot delete their account. You must del
 msgstr ""
 
 msgid "Review"
-msgstr "평가"
+msgstr "검토"
 
 msgid "Version {0}"
 msgstr "버전 {0}"
 
 msgid "Review note"
-msgstr "심사 노트"
+msgstr "검토 노트"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "오직 최신 버젼의 부가 기능만 노트를 추가할 수 있습니다."
@@ -93,7 +93,7 @@ msgstr "추천"
 
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr "심사 안됨"
+msgstr "검토 안됨"
 
 msgctxt "install_button"
 msgid "Experimental"
@@ -130,6 +130,9 @@ msgstr "모든 태그는 유효하지 않은 글자 제거 후 %s자 이하여�
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "태그는 최소한 {0} 글자 이상이어야 합니다."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -192,7 +195,7 @@ msgid "View End-User License Agreement"
 msgstr "일반 사용자 계약서 보기"
 
 msgid "This add-on has not been reviewed by Mozilla."
-msgstr "이 부가 기능은 아직 Mozilla의 심사를 거치지 않았습니다."
+msgstr "이 부가 기능은 아직 Mozilla의 검토를 거치지 않았습니다."
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "이 부가 기능은 제작자에 의해 실험적인 부가 기능으로 표시되었습니다."
@@ -319,10 +322,10 @@ msgid "License"
 msgstr "라이선스"
 
 msgid "Awaiting Review"
-msgstr "심사 대기중"
+msgstr "검토 대기중"
 
 msgid "Rejected"
-msgstr "심사 거부됨"
+msgstr "거부됨"
 
 msgid "Approved"
 msgstr "승인됨"
@@ -392,16 +395,16 @@ msgstr "당신은 어떻게 생각하세요?"
 
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr "평가를 작성하려면 <a href=\"%(login)s\">로그인</a> 하세요"
+msgstr "검토를 작성하려면 <a href=\"%(login)s\">로그인</a> 하세요"
 
 msgid "Review:"
-msgstr "평가:"
+msgstr "검토:"
 
 msgid "Rating:"
 msgstr "별점:"
 
 msgid "Submit review"
-msgstr "평가 작성"
+msgstr "검토 제출"
 
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
 msgstr "여기에 버그 리포트를 올리지 마세요. 저희는 부가 기능 개발자가 여러분의 이메일 주소로 직접 연락해 문제를 해결하는 것을 허용하지 않습니다."
@@ -415,22 +418,22 @@ msgstr ""
 "을 요청하실수도 있습니다."
 
 msgid "Review Guidelines"
-msgstr "평가 지침"
+msgstr "검토 가이드"
 
 msgid "Reviews"
-msgstr "평가"
+msgstr "검토"
 
 #, python-format
 msgid "by %(user)s on %(date)s"
 msgstr "작성: %(user)s, 날짜: %(date)s"
 
 msgid "Show the developer's reply to this review"
-msgstr "이 평가에 달린 개발자 답변 보기"
+msgstr "이 검토에 달린 개발자 답변 보기"
 
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "이 부가 기능의 평가 %(cnt)s 개 모두 보기"
+msgstr[0] "이 부가 기능의 검토 %(cnt)s개 모두 보기"
 
 msgid "Tags"
 msgstr "태그"
@@ -462,7 +465,7 @@ msgid "Average"
 msgstr "평균"
 
 msgid "Write a review"
-msgstr "평가 작성하기"
+msgstr "검토 작성하기"
 
 msgid "Related Categories"
 msgstr "관련 분류"
@@ -478,7 +481,7 @@ msgstr[0] "이 제작자의 다른 부가 기능"
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "사용자 평가 <span itemprop=\"ratingCount\">%(num)s</span>개"
+msgstr[0] "사용자 검토 <span itemprop=\"ratingCount\">%(num)s</span>개"
 
 msgid "View statistics"
 msgstr "통계 보기"
@@ -487,7 +490,7 @@ msgid "Manage"
 msgstr "관리"
 
 msgid "Add-on Review"
-msgstr "부가 기능 심사"
+msgstr "부가 기능 검토"
 
 msgid "Admin Manage"
 msgstr "관리자 관리"
@@ -590,10 +593,10 @@ msgstr "고유 주소"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "모든 %(cnt)s 사용자 평가 보기"
+msgstr[0] "모든 %(cnt)s개 사용자 검토 보기"
 
 msgid "This add-on has not yet been reviewed."
-msgstr "이 부가 기능은 아직 심사를 거치지 않았습니다."
+msgstr "이 부가 기능은 아직 검토를 거치지 않았습니다."
 
 msgid "Be the first!"
 msgstr "1등으로 달아보세요!"
@@ -624,13 +627,13 @@ msgid "Approve / Reject"
 msgstr "승인 / 거부"
 
 msgid "Review History"
-msgstr "심사 기록"
+msgstr "검토 기록"
 
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr "죄송합니다. 이 테마는 현재 심사 대기중입니다. 나중에 다시 오세요."
+msgstr "죄송합니다. 이 테마는 현재 검토 대기중입니다. 나중에 다시 오세요."
 
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr "이 테마는 현재 심사 대기중입니다. 제작자 이외에는 노출되지 않습니다."
+msgstr "이 테마는 현재 검토 대기중입니다. 제작자 이외에는 노출되지 않습니다."
 
 msgid "Collector's Note"
 msgstr "모음집 제작자의 메모"
@@ -641,7 +644,7 @@ msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "주간 다운로드 <strong>{0}</strong>회"
 
 msgid "Not Reviewed"
-msgstr "미심사"
+msgstr "미 검토"
 
 msgid "Tools"
 msgstr "도구"
@@ -677,10 +680,13 @@ msgid "Manage API Keys"
 msgstr "API 키 관리"
 
 msgid "Reviewer Tools"
-msgstr "심사 도구"
+msgstr "검토 도구"
 
 msgid "Admin Tools"
 msgstr "관리자 도구"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "정확하지 않습니다. 다시 시도해 주세요."
@@ -690,6 +696,9 @@ msgstr "입력 검증에 실패하였습니다. 다시 시도해 주세요."
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "#000000 처럼 올바른 16진수 색상 코드를 입력해야 합니다."
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "웹사이트 점검 관계로 일부 기능을 잠시동안 사용할 수 없습니다. 최대한 빨리 사이트를 정상화 하도록 하겠습니다."
 
 msgid "Not allowed"
 msgstr "허가 안됨"
@@ -892,6 +901,9 @@ msgstr "서명이 만료 되었습니다."
 
 msgid "Error decoding signature."
 msgstr "서명을 푸는데 오류가 발생하였습니다."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "유효하지 않은 JWT 토큰입니다."
@@ -1585,13 +1597,13 @@ msgid "{addon} {version} approved."
 msgstr "{addon} {version}이(가) 승인되었습니다."
 
 msgid "{addon} {version} given preliminary review."
-msgstr "{addon} {version}에 예비 심사 등급이 주어졌습니다."
+msgstr "{addon} {version}에 예비 검토 등급이 주어졌습니다."
 
 msgid "Preliminarily approved"
-msgstr "예비 심사 등급 승인"
+msgstr "예비 검토 등급 승인"
 
 msgid "{addon} {version} rejected."
-msgstr "{addon} {version}이(가) 심사 거부 되었습니다."
+msgstr "{addon} {version}이 거부 되었습니다."
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version}의 등급이 종전 그대로 유지되었습니다."
@@ -1603,13 +1615,13 @@ msgid "{addon} {version} escalated."
 msgstr "{addon} {version}이(가) 검토 대상이 되었습니다."
 
 msgid "Super review requested"
-msgstr "상급 심사 요청됨"
+msgstr "상급 검토 요청됨"
 
 msgid "{addon} {version} review requested."
-msgstr "{addon} {version}의 심사가 요청되었습니다."
+msgstr "{addon} {version}의 검토가 요청되었습니다."
 
 msgid "Review requested"
-msgstr "심사 요청됨"
+msgstr "검토 요청됨"
 
 msgid "{addon} {version} more information requested."
 msgstr "{addon} {version}의 보다 자세한 정보가 필요합니다."
@@ -1620,7 +1632,7 @@ msgstr "추가 정보 필요"
 # 85%
 # 100%
 msgid "{addon} {version} super review requested."
-msgstr "{addon} {version}의 상급 심사가 요청되었습니다."
+msgstr "{addon} {version}의 상급 검토가 요청되었습니다."
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "부가 기능이 관리자 검토를 위해 마크되었습니다.  저희의 검토 목록에 있으며, 저희 관리 검토자중 한분에게 확인되어야 합니다. 검토는 평상시보다 더 오래걸릴 수 있습니다."
@@ -1735,7 +1747,7 @@ msgid "{rating} for {addon} updated."
 msgstr "{addon}의 {rating} 평가가 업데이트됐습니다."
 
 msgid "{addon} reviewed."
-msgstr "{addon}이(가) 심사를 받았습니다."
+msgstr "{addon}이 검토를 받았습니다."
 
 msgid "User {user} banned."
 msgstr "{user} 사용자가 차단되었습니다."
@@ -1760,7 +1772,7 @@ msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr "부가 기능 id {0}와 GUID {1}이 삭제됨"
 
 msgid "{addon} migrated from preliminary."
-msgstr "{addon} 이 예비 심사 등급으로부터 마이그레이션 되었습니다."
+msgstr "{addon} 이 예비 검토 등급으로부터 마이그레이션 되었습니다."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "{addon} {version}에 개발자의 코멘트가 달렸습니다."
@@ -1769,7 +1781,7 @@ msgid "Developer Reply"
 msgstr "개발자 코멘트"
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr "{addon} {version}에 심사원의 코멘트가 달렸습니다."
+msgstr "{addon} {version}에 검토자의 코멘트가 달렸습니다."
 
 msgid "Reviewer Reply"
 msgstr "검토자 코멘트"
@@ -1823,26 +1835,25 @@ msgid "Information request removed"
 msgstr "정보 요청 삭제됨"
 
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version}의 관리자 부가 기능 심사가 요청되었습니다."
+msgstr "{addon} {version}의 관리자 부가 기능 검토가 요청되었습니다."
 
 msgid "Admin add-on-review requested"
-msgstr "관리자 부가 기능 심사 요청됨"
+msgstr "관리자 부가 기능 검토 요청됨"
 
 msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version}의 관리자 내용 심사가 요청되었습니다."
+msgstr "{addon} {version}의 관리자 내용 검토가 요청되었습니다."
 
 msgid "Admin content-review requested"
-msgstr "관리자 내용 심사 요청됨"
+msgstr "관리자 내용 검토 요청됨"
 
 msgid "{addon} {version} admin theme-review requested."
-msgstr "{addon} {version}의 관리자 테마 심사가 요청되었습니다."
+msgstr "{addon} {version}의 관리자 테마 검토가 요청되었습니다."
 
 msgid "Admin theme-review requested"
-msgstr "관리자 테마 심사 요청됨"
+msgstr "관리자 테마 검토 요청됨"
 
-#, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "{addon} 이 예비 심사 등급으로부터 마이그레이션 되었습니다."
+msgstr "{addon} 부가 기능이 가벼운 테마에서 마이그레이션 되었습니다."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1881,7 +1892,7 @@ msgid "Pending approval"
 msgstr "승인 대기열"
 
 msgid "Flagged for further review"
-msgstr "향후 심사 대상으로 표시됨"
+msgstr "향후 검토 대상으로 표시됨"
 
 msgid "Unlisted"
 msgstr "목록에서 제거됨"
@@ -2227,82 +2238,79 @@ msgid "Excellent (3)"
 msgstr ""
 
 msgid "Manual Reviewer Points"
-msgstr "수동 심사 포인트"
+msgstr "수동 검토 포인트"
 
-msgid "New Add-on Review"
-msgstr "새로운 부가 기능 심사"
+msgid "New Legacy Add-on Review"
+msgstr "새로운 기존 부가 기능 검토"
 
 msgid "Preliminary Add-on Review"
-msgstr "부가 기능 예비 심사"
+msgstr "부가 기능 예비 검토"
 
-msgid "Updated Add-on Review"
-msgstr "업데이트된 부가 기능 심사"
+msgid "Updated Legacy Add-on Review"
+msgstr "업데이트된 기존 부가 기능 검토"
 
 msgid "New Dictionary Review"
-msgstr "새 사전 심사"
+msgstr "새 사전 검토"
 
 msgid "Preliminary Dictionary Review"
-msgstr "사전 예비 심사"
+msgstr "사전 예비 검토"
 
 msgid "Updated Dictionary Review"
-msgstr "업데이트된 사전 심사"
+msgstr "업데이트된 사전 검토"
 
 msgid "New Language Pack Review"
-msgstr "새 언어팩 심사"
+msgstr "새 언어팩 검토"
 
 msgid "Preliminary Language Pack Review"
-msgstr "언어팩 예비 심사"
+msgstr "언어팩 예비 검토"
 
 msgid "Updated Language Pack Review"
-msgstr "업데이트된 언어팩 심사"
+msgstr "업데이트된 언어팩 검토"
 
 msgid "Theme Review"
-msgstr "테마 심사"
+msgstr "테마 검토"
 
 msgid "Theme (Static) Review"
 msgstr "테마(정적) 검토"
 
 msgid "New Search Provider Review"
-msgstr "새 검색 도구 심사"
+msgstr "새 검색 도구 검토"
 
 msgid "Preliminary Search Provider Review"
-msgstr "검색 도구 예비 심사"
+msgstr "검색 도구 예비 검토"
 
 msgid "Updated Search Provider Review"
-msgstr "업데이트된 검색 도구 심사"
+msgstr "업데이트된 검색 도구 검토"
 
 msgid "New Complete Theme Review"
-msgstr "새 완전 테마 심사"
+msgstr "새 완전 테마 검토"
 
 msgid "Preliminary Complete Theme Review"
-msgstr "예비 완전 테마 심사"
+msgstr "예비 완전 테마 검토"
 
 msgid "Updated Complete Theme Review"
-msgstr "업데이트된 완전 테마 심사"
+msgstr "업데이트된 완전 테마 검토"
 
-#, fuzzy
 msgid "Moderated Add-on Review"
-msgstr "완화된 부가 기능 심사"
+msgstr "완화된 부가 기능 검토"
 
-#, fuzzy
 msgid "Add-on Review Moderation Reverted"
-msgstr "부가 기능 심사 과정"
+msgstr "부가 기능 검토 과정"
 
-#, fuzzy
 msgid "Add-on Content Review"
-msgstr "심사 완료하기"
+msgstr "검토 완료하기"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr "승인 후 부가 기능 검토 (가장 위험)"
+msgid "Add-on Review (Highest Risk)"
+msgstr "부가 기능 검토(가장 위험)"
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr "승인 후 부가 기능 검토 (고위험)"
+msgid "Add-on Review (High Risk)"
+msgstr "부가 기능 검토(고위험)"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr "승인 후 부가 기능 검토 (중간 위험)"
+msgid "Add-on Review (Medium Risk)"
+msgstr "부가 기능 검토(중간 위험)"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr "승인 후 부가 기능 검토 (낮은 위험)"
+msgid "Add-on Review (Low Risk)"
+msgstr "부가 기능 검토(저위험)"
 
 msgid "Level 1"
 msgstr "1단계"
@@ -2439,11 +2447,9 @@ msgstr "업로드 도중 오류가 있었습니다. 다시 해주세요."
 msgid "Override failed validation"
 msgstr "Override failed validation"
 
-msgid "You cannot upload any more files for this version."
-msgstr "이 버전엔 이이상 많은 파일을 업로드 할 수 없습니다."
-
-msgid "Version doesn't match"
-msgstr "버전이 일치하지 않습니다"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "호환되는 애플리케이션이 최소 한개는 있어야 합니다."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "{version} 버전이 이전에 업로드 되고 삭제된적이 있습니다."
@@ -2459,14 +2465,6 @@ msgstr "소스 파일을 업로드 하지 않았습니다."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-# 98%
-# 100%
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "모든 플랫폼을 특정 플랫폼과 합칠 수는 없습니다. "
-
-msgid "A platform can only be chosen once."
-msgstr "플랫폼은 한번에 한개만 선택할 수 있습니다."
 
 msgid "Application"
 msgstr "애플리케이션"
@@ -2490,6 +2488,9 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr "추천 부가 기능으로 선정되어 있는 동안은 분류를 변경할 수 없습니다."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
+msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
@@ -2548,7 +2549,7 @@ msgid "User Collections"
 msgstr "사용자 모음집"
 
 msgid "User Reviews"
-msgstr "사용자 평가"
+msgstr "사용자 검토"
 
 msgid "Changes successfully saved."
 msgstr "변경 내역이 성공적으로 저장되었습니다."
@@ -2610,10 +2611,10 @@ msgid "Version %s re-enabled."
 msgstr "%s 버전이 다시 활성화되었습니다."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr "업로드한 파일의 검사 작업에 실패했으므로 완전한 검사 결과가 누락되었을 수 있습니다. 심사시 이점에 유의해 주세요."
+msgstr "업로드한 파일의 검사 작업에 실패했으므로 완전한 검사 결과가 누락되었을 수 있습니다. 검토시 이점에 유의해 주세요."
 
 msgid "Review requested."
-msgstr "심사가 요청되었습니다."
+msgstr "검토가 요청되었습니다."
 
 msgid "You must provide further details to proceed."
 msgstr ""
@@ -2630,18 +2631,18 @@ msgstr "새 API 키가 생성됨"
 msgid "API key revoked"
 msgstr "API 키 폐기됨"
 
-#, fuzzy
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
 "Notice which explains how we handle your information."
-msgstr "사용하기 전에, Firefox 추가 기능의 배포 계약을 읽고 동의해주세요. 동의하시면 개인 정보 보호 정책도 승인한 것으로 간주합니다."
+msgstr ""
+"시작하기 전에 Firefox 부가 기능 배포 계약과 검토 정책과 규칙에 대해서 읽고 동의해주세요. Firefox 부가 기능 배포 계약은 사용자의 정보를 다루는 기준이 명시된 우리의 개인정보 보호 고지와 연결되어 있습"
+"니다."
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox 부가 기능 배포 계약"
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "심사 노트"
+msgstr "검토 정책과 규칙"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "본 계약과 규칙 및 정책을 읽고 동의합니다"
@@ -2865,9 +2866,8 @@ msgstr "요약 정보"
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
 
-#, fuzzy
 msgid "Experimental?"
-msgstr "테스트용"
+msgstr "시험용인가요?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
@@ -2879,9 +2879,8 @@ msgstr "이 부가 기능은 테스트용입니다."
 msgid "This add-on is ready for general use."
 msgstr "이 부가 기능은 외부 소프트웨어를 필요로 합니다."
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "다시 시작 필요"
+msgstr "결제가 필요한가요?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr ""
@@ -3282,9 +3281,6 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "현재 사용자 <strong>{0}</strong>명"
 
-msgid "Submit a New File"
-msgstr "새로운 파일 올리기"
-
 msgid "Submit a New Version"
 msgstr "새 버전 올리기"
 
@@ -3331,21 +3327,28 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr ""
 
 msgid "Notes to Reviewer:"
-msgstr "심사자 주의 사항:"
+msgstr "검토자 주의 사항:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr "저희 심사원들이 이 add-on을 평가할 때 고려해야 할 점이 있습니까?"
+msgstr "저희 검토자들이 이 부가기능을 검토할 때 고려해야 할 점이 있습니까?"
+
+msgid "Remember"
+msgstr ""
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "이 노트는 귀하와 저희 심사원들에게만 보여집니다."
+msgstr "이 노트는 귀하와 저희 검토자들에게만 보여집니다."
 
-#, fuzzy
 msgid "Cancel and Disable Version"
-msgstr "인쇄용 버전"
+msgstr "버전을 취소하고 비활성화"
 
-#, fuzzy
 msgid "Submit Version"
-msgstr "새 부가 기능 등록"
+msgstr "버전 제출"
 
 msgid "Describe Version"
 msgstr "버전 설명"
@@ -3368,15 +3371,11 @@ msgstr "부가 기능 배포와 등록에 대한 더 많은 정보"
 msgid "Submission Complete"
 msgstr "등록 완료"
 
-msgid "You’re done!"
-msgstr "완료하셨습니다!"
-
 msgid "Version Submitted for Review"
-msgstr "심사를 위해 제출된 버전"
+msgstr "검토를 위해 제출된 버전"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "버전 기록"
+msgstr "제출된 버전 미리보기"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
@@ -3388,7 +3387,7 @@ msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "다 되었습니다! 이 버전은 심사를 위해 제출되었으며, 심사가 끝난 뒤 혹은 심사원들이 당신의 제출물에 대해 질문이 있을 시 알려드리게 될 것입니다."
+msgstr "다 되었습니다! 이 버전은 검토를 위해 제출되었으며, 검토가 끝난 뒤 혹은 검토자들이 제출물에 대해 질문이 있을 시 알려드리게 될 것입니다."
 
 #, fuzzy
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
@@ -3406,16 +3405,8 @@ msgstr "압축되거나 난독화, 컴파일된 코드를 포함하고 있다면
 msgid "Edit version {0}"
 msgstr "버전 {0} 수정"
 
-#, fuzzy
-msgid "File Signed"
-msgstr "버전 기록"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
-#, fuzzy
 msgid "Version Signed"
-msgstr "버전 기록"
+msgstr "버전 사인됨"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
@@ -3425,23 +3416,16 @@ msgstr ""
 msgid "Download {0}"
 msgstr "다운로드 {0}"
 
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr "파일 업로드"
-
 msgid "Go to My Submissions"
 msgstr "나의 제출로 이동"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "소스 코드가 업로드 됨"
+msgstr "소스 코드 업로드"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
 
 #, python-format
@@ -3490,9 +3474,8 @@ msgstr ""
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
 
-#, fuzzy
 msgid "How to Submit:"
-msgstr "입력하기"
+msgstr "제출 방법:"
 
 msgid "Include instructions in a README file in the source code,"
 msgstr ""
@@ -3500,20 +3483,14 @@ msgstr ""
 msgid "or in reviewer notes on the next page (if applicable)."
 msgstr ""
 
-#, fuzzy
 msgid "Upload source code:"
-msgstr "소스 코드"
+msgstr "소스 코드 업로드:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "부가 기능 배포 계약"
 
-#, fuzzy
 msgid "Upload Add-on"
 msgstr "부가 기능 업로드"
-
-#, fuzzy
-msgid "Where to Host File"
-msgstr "대상 버전"
 
 #, fuzzy
 msgid "Where to Host Version"
@@ -3526,25 +3503,21 @@ msgstr "버전 업로드"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "부가 기능 패키지를 업로드 하시려면 아래 항목을 이용하신 후 플랫폼 제한 사항을 선택해 주세요. 업로드가 끝나면 파일들에 대한 몇가지 검사가 자동으로 이루어질 것입니다."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "이 파일과 호환되는 플랫폼은 무엇인가요?"
 
 msgid "Administrative overrides"
 msgstr "관리자 우선 작업내역"
 
-#, fuzzy
 msgid "Create a Theme Version"
-msgstr "새로운 테마 만들기"
+msgstr "테마 버전 만들기"
 
 msgid "Create a Theme"
 msgstr "테마 만들기"
 
-msgid "Submit File"
-msgstr "파일 제출"
-
-#, fuzzy
 msgid "Sign Add-on"
-msgstr "부가 기능 등록"
+msgstr "부가 기능 사인"
 
 msgid "Theme generate"
 msgstr "테마 생성"
@@ -3560,7 +3533,10 @@ msgstr "테마 이름"
 msgid "Select a header image for your theme"
 msgstr "테마의 상단 이미지를 선택하세요."
 
-msgid "Image height should be 200 pixels"
+msgid "Recommended height: 200 pixels"
+msgstr ""
+
+msgid "6.9MB max"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
@@ -3669,7 +3645,7 @@ msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "버전이나 누락된 메타데이터를 추가하여 부가 기능을 완성해주세요."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr "심사 완료시 이메일을 받아보게 됩니다. 그 전까지 부가 기능은 갤러리에 노출되지 않지만 해당 부가 기능의 상세 정보 페이지로 바로 접근은 가능합니다. "
+msgstr "검토 완료시 이메일을 받아보게 됩니다. 그 전까지 부가 기능은 갤러리에 노출되지 않지만 해당 부가 기능의 상세 정보 페이지로 바로 접근은 가능합니다. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "부가 기능이 갤러리에 노출되고 있고 사용자들은 자동으로 업데이트를 받아보게 됩니다."
@@ -3709,7 +3685,7 @@ msgid "This is the newest uploaded version, however it isn’t live on the site 
 msgstr "이 버전이 최신이지만 아직 사이트 상에 올라가지는 않았습니다."
 
 msgid "Queues are not reviewed strictly in order"
-msgstr "대기열 순서를 정확하게 지켜가며 심사되지는 않습니다."
+msgstr "대기열 순서를 정확하게 지켜가며 검토되지는 않습니다."
 
 msgid "Queue Position:"
 msgstr "현재 대기열:"
@@ -3735,13 +3711,11 @@ msgstr "전부 보기"
 
 # 80%
 # 100%
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "심사 조정 기록"
+msgstr "목록에 있는 검토 페이지"
 
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "사용자 평가"
+msgstr "목록에 없는 검토 페이지"
 
 msgid "View Statistics Dashboard"
 msgstr "통계 대시보드 보기"
@@ -3765,9 +3739,8 @@ msgstr "블로그 보기 &#9658;"
 msgid "Pending information request:"
 msgstr "추가 정보 필요"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "이 버전은 아직 심사를 거치지 않았습니다."
+msgstr "이 정보 요청은 처리됨"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
@@ -3801,14 +3774,13 @@ msgid "If your add-on contains binary or obfuscated code other than known librar
 msgstr ""
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr "README 파일, 혹은 심사원에게 알려줄 주의 사항으로 마지막 add-on파일을 어떻게 복사하는지의 설명을 포함시켜 주십시오."
+msgstr "README 파일, 혹은 검토자에게 알려줄 주의 사항으로 마지막 부가기능파일을 어떻게 복사하는지의 설명을 포함시켜 주십시오."
 
 msgid "Read more about the source code review policy."
 msgstr "소스 코드 검토 정책에 대해 자세히 읽어보세요."
 
-#, fuzzy
 msgid "Latest News"
-msgstr "최신 버전:"
+msgstr "최신 뉴스"
 
 # 79%
 # 100%
@@ -3816,9 +3788,8 @@ msgstr "최신 버전:"
 msgid "Read more in our Blog"
 msgstr "추가 정보 요구"
 
-#, fuzzy
 msgid "Resources"
-msgstr "그밖의 자원"
+msgstr "자원"
 
 #, fuzzy
 msgid "Porting"
@@ -3878,7 +3849,7 @@ msgid "Legal Notices"
 msgstr "법적 고지"
 
 msgid "Review Add-ons"
-msgstr "부가 기능 심사"
+msgstr "부가 기능 검토"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
 msgstr ""
@@ -3964,16 +3935,14 @@ msgstr "부가 기능 개발자"
 msgid "Docs"
 msgstr "문서"
 
-#, fuzzy
 msgid "Sign Out"
-msgstr "부가 기능 등록"
+msgstr "로그아웃"
 
 msgid "No Photo"
 msgstr "사진 없음"
 
-#, fuzzy
 msgid "User Photo"
-msgstr "사용자 사진 삭제"
+msgstr "사용자 사진"
 
 #, fuzzy, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
@@ -4008,9 +3977,8 @@ msgstr "부가 기능 관리하기"
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr ""
 
-#, fuzzy
 msgid "Sign In"
-msgstr "부가 기능 등록"
+msgstr "로그인"
 
 msgid "Web-Ext"
 msgstr ""
@@ -4029,6 +3997,13 @@ msgid "Compatibility Test"
 msgstr "호환성 테스트"
 
 msgid "Check to see if your extension is compatible with Firefox."
+msgstr ""
+
+#, fuzzy
+msgid "Live Testing"
+msgstr "목록 보기"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
 msgid "Transfer ownership"
@@ -4091,10 +4066,10 @@ msgid "Upload New Design"
 msgstr "새 디자인 업로드"
 
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "업로드 및 양식 제출시 AMO 팀이 업데이트한 디자인을 심사하게 됩니다. 현재 디자인은 심사가 끝날때까지는 계속 공개 상태일 것입니다."
+msgstr "업로드 및 양식 제출시 AMO 팀이 업데이트한 디자인을 검토하게 됩니다. 현재 디자인은 검토가 끝날때까지는 계속 공개 상태일 것입니다."
 
 msgid "Your previously resubmitted design, which is under pending review."
-msgstr "이전에 다시 제출했던 디자인으로 심사 대기중에 있습니다."
+msgstr "이전에 다시 제출했던 디자인으로 검토 대기중에 있습니다."
 
 msgid "Pending Header"
 msgstr "대기중 상단"
@@ -4150,7 +4125,7 @@ msgid "You're done!"
 msgstr "완료하셨습니다!"
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr "테마가 심사 대기열에 등록됐습니다. 심사가 끝나면 보통 24시간 안으로 이메일을 받아보게 됩니다."
+msgstr "테마가 검토 대기열에 등록됐습니다. 검토가 끝나면 보통 24시간 안으로 이메일을 받아보게 됩니다."
 
 msgid "Next steps:"
 msgstr "다음 단계:"
@@ -4161,7 +4136,7 @@ msgstr "<a href=\"%(edit_url)s\">등재 정보를 편집해서</a> 테마에 보
 
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "테마의 <a href=\"%(feed_url)s\">활동량 피드</a>를 보고 구독하세요. 사용자 평가, 모음집 등록 등의 정보가 지속적으로 업데이트됩니다."
+msgstr "테마의 <a href=\"%(feed_url)s\">활동량 피드</a>를 보고 구독하세요. 사용자 검토, 모음집 등록 등의 정보가 지속적으로 업데이트됩니다."
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
@@ -4191,9 +4166,6 @@ msgstr "{0} 관리"
 msgid "Files"
 msgstr "파일"
 
-msgid "Upload Another File"
-msgstr "다른 파일 업로드"
-
 msgid "Version Notes"
 msgstr "버전 기록"
 
@@ -4206,16 +4178,16 @@ msgid "Approval Status"
 msgstr "승인 상태"
 
 msgid "Notes for Reviewers"
-msgstr "심사원 주의 사항"
+msgstr "검토자 주의 사항"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr "선택적으로, 이 부가 기능을 심사할 심사자에게 도움이 될 테스트용 계정 정보 같은 정보를 입력해 주세요."
+msgstr "선택적으로, 이 부가 기능을 검토할 검토자에게 도움이 될 테스트용 계정 정보 같은 정보를 입력해 주세요."
 
 msgid "Source code"
 msgstr "소스 코드"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr "만약 애드온에 바이너리나 난독화된 코드가 포함되어 있다면 심사원들이 소스를 확인할 수 있도록 해 주세요."
+msgstr "만약 부가기능에 바이너리나 난독화된 코드가 포함되어 있다면 검토자들이 소스를 확인할 수 있도록 해 주세요."
 
 msgid "File {file_id} ({platform})"
 msgstr "파일 {file_id} ({platform})"
@@ -4241,9 +4213,8 @@ msgstr "파일 0개"
 msgid "Re-enable Version"
 msgstr "인쇄용 버전"
 
-#, fuzzy
 msgid "Close Review History"
-msgstr "심사 기록"
+msgstr "검토 기록 닫기"
 
 msgid "Not validated."
 msgstr "검사가 이루어지지 않았음."
@@ -4251,16 +4222,14 @@ msgstr "검사가 이루어지지 않았음."
 msgid "Validate now."
 msgstr "검사하기."
 
-#, fuzzy
 msgid "Request Review"
-msgstr "전체 심사 요청"
+msgstr "검토 요청"
 
 msgid "Cancel Review Request"
-msgstr "심사 요청 취소"
+msgstr "검토 요청 취소"
 
-#, fuzzy
 msgid "Loading Review History..."
-msgstr "당신의 심사 기록"
+msgstr "검토 기록 읽는중..."
 
 msgid "We had a problem retrieving review notes"
 msgstr ""
@@ -4305,13 +4274,11 @@ msgstr "번역 삭제"
 msgid "Next version of this add-on"
 msgstr "이 부가 기능의 차기 버전"
 
-#, fuzzy
 msgid "Other versions"
-msgstr "구버전"
+msgstr "다른 버전"
 
-#, fuzzy
 msgid "All versions"
-msgstr "구버전"
+msgstr "모든 버전"
 
 msgid "Upload a New Version"
 msgstr "새 버전 업로드"
@@ -4350,12 +4317,11 @@ msgstr ""
 msgid "Are you sure you wish to hide your add-on?"
 msgstr ""
 
-#, fuzzy
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr "심사 요청을 취소하면 부가 기능이 미완료 상태로 표시됩니다. 심사 재요청을 몇일 내로 하지 않으면 이 부가 기능은 삭제됩니다."
+msgstr "검토 요청을 취소하면 부가 기능이 미완료 상태로 표시되고 검토를 기다리는 모든 버전이 비활성화 됩니다."
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr "정말 심사 요청을 취소하시겠습니까?"
+msgstr "정말 검토 요청을 취소하시겠습니까?"
 
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "부가 기능 문서 자료 :: 개발자 허브"
@@ -4490,7 +4456,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "가볍고 효과적인 광고 차단기입니다. uBlock Origin은 메모리를 많이 소비 하지 않으면서 수천개의 필터를 적용합니다."
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5315,7 +5281,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5783,6 +5749,9 @@ msgstr "버전 번호엔 문자, 숫자, 다음의 특수 기호만 들어있어
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr "이런 종류의 부가 기능은 제출할 수 없음"
 
@@ -5801,7 +5770,7 @@ msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on
 msgstr ""
 
 msgid "Back to review"
-msgstr "평가로 돌아가기"
+msgstr "검토로 돌아가기"
 
 # 80%
 # 100%
@@ -5814,10 +5783,10 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s
 msgstr "버전: %(version)s &bull; 크기: %(size)s &bull; MD5 해쉬값: %(md5)s &bull; Mimetype: %(mimetype)s"
 
 msgid "File Compare :: Reviewer tools"
-msgstr "파일 비교 :: 심사자 도구"
+msgstr "파일 비교 :: 검토자 도구"
 
 msgid "File Viewer :: Reviewer tools"
-msgstr "파일 뷰어 :: 심사자 도구"
+msgstr "파일 뷰어 :: 검토자 도구"
 
 msgid "Validation failed:"
 msgstr "검사 실패:"
@@ -6044,6 +6013,50 @@ msgstr ""
 msgid "Get Started"
 msgstr "시작하기"
 
+#, fuzzy
+msgid "Reported Status"
+msgstr "사이트 상태"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "제보 종류"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "오류 보고"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "아직 별점 없음"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "버전 제출됨"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "모바일 사이트 보기"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "새로운 파일 올리기"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "새로운 파일 올리기"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
+
 msgid "About Mozilla Add-ons"
 msgstr "Mozilla 부가 기능 소개"
 
@@ -6064,8 +6077,8 @@ msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
-"이곳에 등록된 부가 기능은 커뮤니티의 수천명의 개발자가 제작한 것으로써, 개인의 취미 활동부터 큰 기업까지 범위가 넓습니다. 모든 공개 부가 기능은 출시에 앞서 심사자 팀에 의해 심사를 받습니다. 실험적으"
-"로 표시된 부가 기능은 심사를 받지 않았으므로 설치시 주의해야 합니다."
+"이곳에 등록된 부가 기능은 커뮤니티의 수천명의 개발자가 제작한 것으로써, 개인의 취미 활동부터 큰 기업까지 범위가 넓습니다. 모든 공개 부가 기능은 출시에 앞서 검토자 팀에 의해 검토를 받습니다. 실험적으"
+"로 표시된 부가 기능은 검토를 받지 않았으므로 설치시 주의해야 합니다."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr "AMO에 대한 소식을 계속 받아볼 수 있을까요?"
@@ -6099,7 +6112,7 @@ msgstr "<a href=\"%(url)s\">나만의 부가 기능을 만들어 보세요</a>. 
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
-msgstr "부가 기능 개발 경험이 있다면 <a href=\"%(url)s\">심사자가 되어보세요</a>! 심사자들은 기술적 배경 지식을 가진 부가 기능 팬 집단으로 부가 기능의 코드 품질과 안정성을 심사합니다."
+msgstr "부가 기능 개발 경험이 있다면 <a href=\"%(url)s\">검토자가 되어보세요</a>! 검토자들은 기술적 배경 지식을 가진 부가 기능 팬 집단으로 부가 기능의 코드 품질과 안정성을 검토합니다."
 
 #, python-format
 msgid ""
@@ -6117,7 +6130,7 @@ msgid "Participate in our <a href=\"%(url)s\">forums</a>."
 msgstr "<a href=\"%(url)s\">포럼</a>에도 참여해 보세요."
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr "부가 기능에 평가를 적어주세요. 제작자들은 사람들이 자기 작품을 쓰면서 기뻐한다는 걸 알면 좀 더 개선하거나 새 작품을 만들려고 하니까요."
+msgstr "사이트의 부가 기능을 검토해 주세요. 제작자들은 사람들이 자기 작품을 쓰면서 기뻐한다는 걸 알면 좀 더 개선하거나 새 작품을 만들려고 하니까요."
 
 msgid "I have a question"
 msgstr "질문이 있어요"
@@ -6143,10 +6156,10 @@ msgid "Sections"
 msgstr "항목"
 
 msgid "Some tips for writing a great review"
-msgstr "훌륭한 평가를 쓰기 위한 몇 가지 팁"
+msgstr "훌륭한 검토를 쓰기 위한 몇 가지 팁"
 
 msgid "Frequently Asked Questions about Reviews"
-msgstr "평가 작성에 관한 자주 묻는 질문들"
+msgstr "검토 작성에 관한 자주 묻는 질문들"
 
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
@@ -6160,7 +6173,7 @@ msgid "Write like you are telling a friend about your experience with the add-on
 msgstr "친구에게 부가 기능 사용 경험을 이야기하는 식으로 작성해 주세요."
 
 msgid "Keep reviews concise and easy to understand."
-msgstr "평가는 간결하고 읽기 쉽게 작성하세요."
+msgstr "검토는 간결하고 읽기 쉽게 작성하세요."
 
 msgid "Give specific and helpful details. For example:"
 msgstr "구체적이고 유용한 정보를 제공해 주세요. 예를 들면:"
@@ -6195,7 +6208,7 @@ msgid ""
 msgstr ""
 
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr "사용하고 있지도 않은 부가 기능에 대한 평가는 올리지 마세요."
+msgstr "사용하고 있지도 않은 부가 기능에 대한 검토는 올리지 마세요."
 
 msgid "Use profanity, sexual language or language that can be construed as hateful."
 msgstr "신성 모독, 외설적이거나 혐오감을 줄 수 있는 단어를 적지 마세요."
@@ -6210,7 +6223,7 @@ msgid "Include your own or anyone else’s email, phone number, or other persona
 msgstr ""
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "집단이나 조직 명의로 평가를 작성하거나 그들을 대표해서 작성하지 마세요."
+msgstr "집단이나 조직 명의로 검토를 작성하거나 그들을 대표해서 작성하지 마세요."
 
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
@@ -6218,7 +6231,7 @@ msgid ""
 msgstr ""
 
 msgid "How can I report a problematic review?"
-msgstr "문제성 평가는 어떻게 신고할 수 있나요?"
+msgstr "문제있는 검토는 어떻게 신고할 수 있나요?"
 
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
@@ -6226,14 +6239,14 @@ msgid ""
 msgstr ""
 
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "부가 기능 제작자입니다. 평가에 답변을 달 수 있나요?"
+msgstr "부가 기능 제작자인데 검토에 답변을 달 수 있나요?"
 
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
 msgstr ""
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "부가 기능 제작자입니다. 맘에 들지 않는 평가나 별점을 삭제할 수 있나요?"
+msgstr "부가 기능 제작자인데 맘에 들지 않는 검토나 별점을 삭제할 수 있나요?"
 
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
@@ -6332,10 +6345,10 @@ msgstr ""
 
 #, python-format
 msgid "Reviews for %s"
-msgstr "%s에 대한 평가"
+msgstr "%s에 대한 검토"
 
 msgid "Review History for this Addon"
-msgstr "이 부가 기능의 평가 내역"
+msgstr "이 부가 기능의 검토 내역"
 
 #. L10n: This describes the number of stars given out of 5
 #, python-format
@@ -6346,7 +6359,7 @@ msgid "A short explanation must be provided when selecting \"Other\" as a flag r
 msgstr ""
 
 msgid "Spam or otherwise non-review content"
-msgstr "스팸이거나 내용이 평가가 아닙니다"
+msgstr "스팸이거나 검토 내용이 아님"
 
 msgid "Inappropriate language/dialog"
 msgstr "부적절한 언어/대화입니다"
@@ -6374,9 +6387,8 @@ msgstr ""
 msgid "This version of the add-on doesn't exist or isn't public."
 msgstr ""
 
-#, fuzzy
 msgid "You can't leave a review on your own add-on."
-msgstr "누군가 부가 기능에 평가를 작성했습니다"
+msgstr "자신의 부가 기능에는 검토 의견을 남길 수 없습니다."
 
 #, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
@@ -6386,10 +6398,10 @@ msgid "This rating can't be flagged because it has no review text."
 msgstr ""
 
 msgid "Thanks; this review has been flagged for reviewer approval."
-msgstr "감사합니다. 심사가 심사자에게 전달되었습니다."
+msgstr "감사합니다. 검토 의견이 검토자에게 전달되었습니다."
 
 msgid "Add a review for {0}"
-msgstr "{0}에 대한 평가 작성"
+msgstr "{0}에 대한 검토 작성"
 
 #, python-format
 msgid ""
@@ -6402,7 +6414,7 @@ msgid ""
 msgstr ""
 
 msgid "Reply to review by {0}"
-msgstr "{0}님의 평가 답변"
+msgstr "{0}님의 검토에 답변"
 
 msgid "Write a Reply"
 msgstr "댓글 작성하기"
@@ -6424,49 +6436,49 @@ msgstr "작성: %(user)s <b>(개발자)</b>, 날짜: %(date)s"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
-msgstr "이 평가는 현재 부가 기능의 이전 버전 ({0})에 대한 것입니다."
+msgstr "이 검토는 현재 부가 기능의 이전 ({0}) 버전에 대한 것입니다."
 
-#, fuzzy, python-format
+#, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "이 사용자는 이 부가 기능에 <a href=\"%(user_review_url)s\">평가를 전에</a> 작성해 놓았습니다."
+msgstr[0] "전에 이 사용자는 이 부가 기능에 <a href=\"%(user_review_url)s\">%(cnt)s개 검토</a>를 했습니다."
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
 msgstr "이 사용자는 이 부가 기능의 <a href=\"%(user_review_url)s\">다른 평가</a>를 작성해 놓았습니다."
 
 msgid "Flagged for review"
-msgstr "표시된 평가"
+msgstr "검토를 위해 표시됨"
 
 msgid "Report this review"
-msgstr "평가 신고하기"
+msgstr "검토 신고"
 
 msgid "Reply to review"
-msgstr "평가에 답변 달기"
+msgstr "검토에 답변"
 
 msgid "Edit reply"
 msgstr "답글 수정"
 
 msgid "Edit review"
-msgstr "평가 편집"
+msgstr "검토 편집"
 
 msgid "Delete reply"
 msgstr "답글 삭제"
 
 msgid "Delete review"
-msgstr "심사 삭제"
+msgstr "검토 삭제"
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
-msgstr "{0} :: 평가"
+msgstr "{0} :: 검토"
 
 msgid "Reviews for {0}"
-msgstr "{0}에 대한 평가"
+msgstr "{0}에 대한 검토"
 
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "전체 평가: <b>{0}</b>개"
+msgstr[0] "전체 검토: <b>{0}</b>개"
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
@@ -6475,24 +6487,24 @@ msgstr "{0}님의 개발자 댓글"
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "%(user)s님의 %(addon)s 평가"
+msgstr[0] "%(user)s님의 %(addon)s 검토"
 
 msgid "No reviews found."
-msgstr "평가가 없습니다."
+msgstr "검토 의견이 없습니다."
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
 msgstr "<strong>평균</strong> (%(total)s)"
 
 msgid "Write a New Review"
-msgstr "새 평가 작성하기"
+msgstr "새 검토 의견 작성하기"
 
 msgid "Be the first to write a review."
-msgstr "1등으로 평가를 써 보세요."
+msgstr "첫번째로 검토 의견을 써보세요."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] "평가 {num}개"
+msgstr[0] "검토 {num}개"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "5점중 {0}점 받음"
@@ -6502,10 +6514,10 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "5점중 %(rating)s점 받음"
 
 msgid "Approved reviews"
-msgstr "승인된 심사"
+msgstr "승인된 검토"
 
 msgid "Deleted reviews"
-msgstr "삭제된 심사"
+msgstr "삭제된 검토"
 
 msgid "View entries between"
 msgstr "목록 보기"
@@ -6527,14 +6539,13 @@ msgstr "종료"
 
 #. L10n: Description of what can be searched for
 msgid "add-on, reviewer or comment"
-msgstr "부가 기능, 심사자나 의견"
+msgstr "부가 기능, 검토자나 의견"
 
 msgid "Search by add-on name / author email"
 msgstr "검색 (부가 기능 이름 / 제작자 이메일)"
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "관리자 심사"
+msgstr "관리자 코드 검토 필요"
 
 msgid "yes"
 msgstr "예"
@@ -6577,29 +6588,27 @@ msgid "theme name"
 msgstr "테마 이름"
 
 msgid "Someone else is reviewing this theme."
-msgstr "다른 사람이 이 테마를 심사중입니다."
+msgstr "다른 사람이 이 테마를 검토중입니다."
 
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
-msgstr "테마, 심사자, 의견"
+msgstr "테마, 검토자, 의견"
 
 #, fuzzy
 msgid "Private Whiteboard"
 msgstr "화이트보드"
 
 msgid "Keep review; remove flags"
-msgstr "계속 평가; 표시 삭제"
+msgstr "계속 검토; 표시 삭제"
 
 msgid "Skip for now"
 msgstr "지금은 접어두기"
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "심사 완료하기"
+msgstr "관리자 콘텐츠 검토가 필요"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "관리자 심사"
+msgstr "관리자 정적 테마 검토 필요"
 
 msgid "Jetpack Add-on"
 msgstr "Jetpack 부가 기능"
@@ -6618,7 +6627,7 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
-msgstr "심사자에 의해 잠겼습니다."
+msgstr "검토자에 의해 잠겼습니다."
 
 msgid "Has auto-approval disabled flag set."
 msgstr ""
@@ -6633,7 +6642,7 @@ msgid "A problem with your Theme submission"
 msgstr "테마 제출시 문제가 발생했습니다"
 
 msgid "Theme submission flagged for review"
-msgstr "제출된 테마가 심사 상태로 표시됐습니다"
+msgstr "제출된 테마가 검토 상태로 표시됐습니다"
 
 msgid "A question about your Theme submission"
 msgstr "제출된 테마에 대한 질문사항"
@@ -6681,16 +6690,14 @@ msgstr "무게"
 msgid "Information Request Deadline"
 msgstr "추가 정보 필요"
 
-#, fuzzy
 msgid "Last Content Review"
-msgstr "심사 완료하기"
+msgstr "마지막 콘텐츠 검토"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
-#, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "부가 기능 심사를 거부하며 심사 대기열에서 삭제합니다."
+msgstr "이 버전을 거부하고 대기열에서 삭제합니다. 의견이 개발자에게 보내집니다."
 
 #, fuzzy
 msgid "Confirm Approval"
@@ -6703,22 +6710,21 @@ msgstr ""
 msgid "Reject Multiple Versions"
 msgstr "인쇄용 버전"
 
-#, fuzzy
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "부가 기능 심사를 거부하며 심사 대기열에서 삭제합니다."
+msgstr "선택된 공개 버전을 거부하게 됩니다. 의견이 개발자에게 보내집니다."
 
 msgid "Reviewer reply"
-msgstr "심사자 답변"
+msgstr "검토자 답변"
 
 #, fuzzy
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr "제작자에게 추가 정보를 요청하려면 다음의 양식을 기입해 주세요. 제작자들은 이메일을 받은 후 이곳에 답변을 적을 수 있게 됩니다. 제작자의 답변이 오면 이메일로 알림 메시지를 받게 됩니다."
 
 msgid "Request super-review"
-msgstr "상급 심사 요구"
+msgstr "상급 검토 요구"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "이 부가 기능을 심사자가 봐야 한다고 생각되시면 아래에 의견을 입력해 주세요. 이 의견은 개발자에게는 보내지지 않습니다."
+msgstr "이 부가 기능을 검토자가 봐야 한다고 생각되시면 아래에 의견을 입력해 주세요. 이 의견은 개발자에게는 보내지지 않습니다."
 
 #, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
@@ -6735,9 +6741,8 @@ msgstr ""
 msgid "Static Themes and Legacy Add-ons"
 msgstr "나의 부가 기능"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "추천 테마"
+msgstr "정적 테마"
 
 #, fuzzy
 msgid "Legacy Add-ons"
@@ -6751,17 +6756,14 @@ msgstr "내가 제작한 모든 부가 기능"
 msgid "Updates ({0})"
 msgstr "업데이트 ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "심사 노트"
+msgstr "검토 기록"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "부가 기능 전체 심사"
+msgstr "부가 기능 검토 가이드"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "테마 심사 대기열"
+msgstr "테마 검토 가이드"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -6772,40 +6774,32 @@ msgid "Auto Approved Add-ons ({0})"
 msgstr "내가 제작한 모든 부가 기능"
 
 msgid "Add-on Review Log"
-msgstr "부가 기능 심사 기록"
+msgstr "부가 기능 검토 기록"
 
-#, fuzzy
 msgid "Review Guide"
-msgstr "심사원 지침사항"
+msgstr "검토 가이드"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "심사 완료하기"
+msgstr "콘텐츠 검토"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "심사 조정 ({0})"
+msgstr[0] "콘텐츠 검토({0})"
 
-#, fuzzy
 msgid "New Themes ({0})"
-msgstr "내가 제작한 모든 부가 기능"
+msgstr "새로운 테마 ({0})"
 
-#, fuzzy
 msgid "Themes Updates ({0})"
-msgstr "최근 업데이트: {0}"
+msgstr "테마 업데이트 ({0})"
 
-#, fuzzy
 msgid "Flagged Themes ({0})"
-msgstr "표시된 테마"
+msgstr "표시된 테마 ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "가벼운 테마"
+msgstr "가벼운 테마 검토 로그"
 
-#, fuzzy
 msgid "Deleted Themes Log"
-msgstr "테마 삭제"
+msgstr "삭제된 테마 로그"
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -6816,7 +6810,7 @@ msgstr ""
 # 80%
 # 100%
 msgid "Moderated Review Log"
-msgstr "심사 조정 기록"
+msgstr "검토 조정 기록"
 
 #, fuzzy
 msgid "Moderation Guide"
@@ -6844,10 +6838,10 @@ msgid "An unknown error occurred"
 msgstr "알 수 없는 오류 발생"
 
 msgid "Self-reviews are not allowed."
-msgstr "자신의 부가 기능은 심사할 수 없습니다."
+msgstr "자신의 부가 기능은 검토할 수 없습니다."
 
 msgid "Review successfully processed."
-msgstr "심사 작업을 진행 합니다."
+msgstr "검토가 성공적으로 진행되었습니다."
 
 msgid "Review lock limit reached"
 msgstr ""
@@ -6862,10 +6856,10 @@ msgstr "이 부가 기능은 개인 정보 보호 정책을 보유하고 있습�
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "테마 심사 {0}건이 처리되었습니다. (+{1} 포인트, 총 {2}건)"
+msgstr[0] "테마 검토 {0}건이 처리되었습니다(+{1} 포인트, 총 {2}건)."
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr "테마 잠금 상태가 해제되었습니다. 이제 다른 심사원이 해금된 테마를 심사합니다. 본 페이지를 새로고침하면 아래 테이블에 변경 내역이 반영됩니다."
+msgstr "테마 잠금 상태가 해제되었습니다. 이제 다른 검토자가 해제된 테마를 검토합니다. 본 페이지를 새로고침하면 아래 테이블에 변경 내역이 반영됩니다."
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: 정책 위반 신고"
@@ -6932,14 +6926,14 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "내용이 없습니다!  이 개발자는 세부 정보를 올려놓지 않았습니다."
 
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "심사자 도구 대시보드로 돌아가기"
+msgstr "검토자 도구 대시보드로 돌아가기"
 
 msgid "Reviewer Leaderboard"
-msgstr "심사원 현황판"
+msgstr "검토자 현황판"
 
 # 75%
 msgid "No review points awarded yet."
-msgstr "아직 받은 평가 점수가 없습니다."
+msgstr "아직 받은 검토 점수가 없습니다."
 
 msgid "Rank"
 msgstr "순위"
@@ -6966,9 +6960,8 @@ msgstr "이 기간 동안엔 이벤트가 없습니다."
 msgid "Log details"
 msgstr "자세한 기록"
 
-#, fuzzy
 msgid "Review Author"
-msgstr "심사 기록"
+msgstr "저자 검토"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -6990,7 +6983,7 @@ msgid "Save"
 msgstr "저장"
 
 msgid "Add-on Reviewer Performance"
-msgstr "부가 기능 심사자 성능"
+msgstr "부가 기능 검토자 활동 내역"
 
 msgid "View statistics for user"
 msgstr "사용자 통계 보기"
@@ -6999,13 +6992,13 @@ msgid "Range"
 msgstr "범위"
 
 msgid "Your Reviews"
-msgstr "내 심사 내역"
+msgstr "내 검토 내역"
 
 msgid "By {user_name}"
 msgstr "작성자: {user_name}"
 
 msgid "Total Reviews"
-msgstr "총 심사 수"
+msgstr "총 검토 수"
 
 # 81%
 # 100%
@@ -7043,7 +7036,7 @@ msgid "clear search"
 msgstr "검색 초기화"
 
 msgid "Process Reviews"
-msgstr "심사 처리하기"
+msgstr "검토 처리하기"
 
 msgid "Moderation actions:"
 msgstr "조정 행동:"
@@ -7057,11 +7050,11 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">표시자: %(user)s 날짜: %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
-msgstr "모든 심사가 처리되었습니다. 수고하셨습니다!"
+msgstr "모든 검토가 처리되었습니다. 수고하셨습니다!"
 
 # %1 is the queue mode
 msgid "There are currently no add-ons of this type to review."
-msgstr "현재 이러한 종류의 부가 기능에선 심사할 수 있는 것이 없습니다."
+msgstr "현재 이러한 종류의 부가 기능 중에 검토할 수 있는 것이 없습니다."
 
 msgid "Helpful Links:"
 msgstr "도움이 될만한 링크:"
@@ -7070,16 +7063,15 @@ msgid "Add-on Policy"
 msgstr "부가 기능 정책"
 
 msgid "Reviewer's Guide"
-msgstr "심사자 가이드"
+msgstr "검토자 가이드"
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "심사 {0}"
+msgstr "내용 검토 {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
-msgstr "심사 {0}"
+msgstr "검토 {0}"
 
 msgid "Add-on user change history"
 msgstr "부가 기능 사용자 변경 내역"
@@ -7117,7 +7109,7 @@ msgid "Auto-Approval script has not run yet on this version."
 msgstr ""
 
 msgid "This version has not been reviewed."
-msgstr "이 버전은 아직 심사를 거치지 않았습니다."
+msgstr "이 버전은 아직 검토를 거치지 않았습니다."
 
 msgid "Please select one or more versions in the list above."
 msgstr ""
@@ -7169,17 +7161,14 @@ msgstr "승인 상태"
 msgid "Clear information request"
 msgstr "추가 정보 필요"
 
-#, fuzzy
 msgid "Clear Admin Code Review Flag"
-msgstr "관리자 심사 플래그 지우기"
+msgstr "관리자 코드 검토 플래그 지우기"
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "관리자 심사 플래그 지우기"
+msgstr "관리자 콘텐츠 검토 플래그 지우기"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "관리자 심사 플래그 지우기"
+msgstr "관리자 정적 테마 검토 플래그 지우기"
 
 msgid "(admin)"
 msgstr "(관리자)"
@@ -7188,7 +7177,7 @@ msgid "Admin Page"
 msgstr "관리자 페이지"
 
 msgid "Review This Add-on"
-msgstr "부가 기능 심사"
+msgstr "부가 기능 검토"
 
 msgid "More Information"
 msgstr "자세한 정보"
@@ -7197,7 +7186,7 @@ msgid "Resolution"
 msgstr "해상도"
 
 msgid "Reviewer"
-msgstr "심사원"
+msgstr "검토자"
 
 msgid "Add-on has been deleted."
 msgstr "부가 기능이 삭제되었습니다."
@@ -7209,7 +7198,7 @@ msgid "Hide Comments"
 msgstr "코멘트 숨김"
 
 msgid "No reviews found for this period."
-msgstr "기간 내 제출된 심사 항목이 없습니다."
+msgstr "기간 내 제출된 검토 항목이 없습니다."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
@@ -7247,10 +7236,10 @@ msgid "No points awarded yet."
 msgstr "아직 받은 포인트가 없습니다."
 
 msgid "Top Reviewers (past 7 days)"
-msgstr "상위 평가자 (지난 7일간)"
+msgstr "상위 검토자 (지난 7일간)"
 
 msgid "No top reviewers yet."
-msgstr "아직 상위 평가자가 없습니다."
+msgstr "아직 상위 검토자가 없습니다."
 
 msgid "All Time"
 msgstr "전체 시간"
@@ -7270,10 +7259,10 @@ msgid "No deleted themes found for this period."
 msgstr "해당 기간 동안 삭제된 테마가 없습니다."
 
 msgid "Theme Review History for {0}"
-msgstr "{0}의 테마 심사 기록"
+msgstr "{0}의 테마 검토 기록"
 
 msgid "Review Date"
-msgstr "심사일"
+msgstr "검토일"
 
 msgid "Action"
 msgstr "작업"
@@ -7282,22 +7271,22 @@ msgid "Reason"
 msgstr "사유"
 
 msgid "There are currently no reviews."
-msgstr "심사중인 테마가 없습니다."
+msgstr "현재 검토가 없습니다."
 
 msgid "Flagged Themes"
 msgstr "표시된 테마"
 
 msgid "Theme Review Queue"
-msgstr "테마 심사 대기열"
+msgstr "테마 검토 대기열"
 
 msgid "Queues"
 msgstr "대기열"
 
 msgid "Review Options"
-msgstr "심사 옵션"
+msgstr "검토 옵션"
 
 msgid "Auto-advance after review"
-msgstr "심사 후 자동 승급"
+msgstr "검토 후 자동 승급"
 
 msgid "Enable keyboard shortcuts"
 msgstr "키보드 단축키 사용"
@@ -7312,19 +7301,19 @@ msgid "Previous Theme"
 msgstr "이전 테마"
 
 msgid "Your Review History"
-msgstr "당신의 심사 기록"
+msgstr "내 검토 기록"
 
 msgid "Commit Review"
-msgstr "심사 완료하기"
+msgstr "검토 완료하기"
 
 msgid "Commit Reviews"
-msgstr "심사 완료하기"
+msgstr "검토 완료하기"
 
 msgid "{0} out of {1} reviewed"
-msgstr "{0}건 심사 / {1}"
+msgstr "{1} 중 {0}건 검토됨"
 
 msgid "There are currently no Themes to review."
-msgstr "심사할 테마가 없습니다."
+msgstr "검토할 테마가 없습니다."
 
 msgid "Clear Search"
 msgstr "검색 내역 초기화"
@@ -7336,16 +7325,16 @@ msgid "Interactive Theme Queue"
 msgstr "테마 대기열 상호작용"
 
 msgid "Reviewers' Guide"
-msgstr "심사원 지침사항"
+msgstr "검토자 지침사항"
 
 msgid "Theme Review for {0}"
-msgstr "{0}의 테마 심사"
+msgstr "{0}의 테마 검토"
 
 msgid "(Probable Duplicate Submission)"
 msgstr "(제출 양식 복제 가능)"
 
 msgid "Past Review Notes"
-msgstr "과거의 심사 메모"
+msgstr "과거의 검토 메모"
 
 #. {previous review action taken on theme}: {comment about review action}
 msgid "More Info Requested: {0}"
@@ -7364,7 +7353,7 @@ msgid "Enter the ID or URL of the duplicate"
 msgstr "복사한 ID나 URL을 입력"
 
 msgid "Select a reason for rejection"
-msgstr "심사 거부 사유 선택"
+msgstr "거부 사유 선택"
 
 msgid "Describe your reason for rejection"
 msgstr "거부 사유를 기입해 주세요"
@@ -7376,7 +7365,7 @@ msgid "Describe your reason for flagging"
 msgstr "표시 사유를 기입해 주세요"
 
 msgid "Rejected or Unreviewed"
-msgstr "거부 또는 미심사"
+msgstr "거부 또는 미검토"
 
 #, python-format
 msgid "[status:%s]"
@@ -7501,9 +7490,6 @@ msgstr "<strong>{3}</strong>(으)로 {2}개 검색 / {0} - {1} 표시중"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "{2}개 검색 / {0} - {1} 표시중"
 
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "웹사이트 점검 관계로 일부 기능을 잠시동안 사용할 수 없습니다. 최대한 빨리 사이트를 정상화 하도록 하겠습니다."
-
 msgid "Could not find add-on with id \"{}\"."
 msgstr ""
 
@@ -7578,7 +7564,7 @@ msgid "Collections Created"
 msgstr "제작된 모음집"
 
 msgid "Reviews Written"
-msgstr "작성된 평가"
+msgstr "작성된 검토"
 
 msgid "User Signups"
 msgstr "등록한 사용자"
@@ -7751,7 +7737,7 @@ msgid "Ratings by Date"
 msgstr "날짜별 별점"
 
 msgid "Reviews Created by Date"
-msgstr "날짜별 작성된 평가"
+msgstr "날짜별 작성된 검토"
 
 msgid "Download sources by Date"
 msgstr "날짜별 다운로드 출처"
@@ -8013,14 +7999,15 @@ msgstr "해당 이메일로 등록된 사용자가 없습니다"
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr "익명 사용자 {id}"
+#, fuzzy
+msgid "Firefox user {id}"
+msgstr "Firefox 안드로이드"
 
 msgid "My Mobile Add-ons"
 msgstr "내 모바일 부가 기능"
 
 msgid "an add-on developer replies to my review"
-msgstr "부가 기능 개발자가 평가에 댓글을 달았습니다"
+msgstr "부가 기능 개발자가 검토에 댓글을 달았습니다"
 
 msgid "new add-ons or Firefox features are available"
 msgstr "신규 부가 기능이나 Firefox 기능을 사용할 수 있습니다"
@@ -8032,7 +8019,7 @@ msgid "my sdk-based add-on is upgraded successfully"
 msgstr "sdk 기반 부가 기능이 업그레이 되었습니다"
 
 msgid "someone writes a review of my add-on"
-msgstr "누군가 부가 기능에 평가를 작성했습니다"
+msgstr "누군가 부가 기능에 검토 의견을 작성했습니다"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
@@ -8044,7 +8031,7 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "sdk 기반 부가 기능을 업그레이드 할 수 없습니다"
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr "심사자의 심사를 거침"
+msgstr "검토자의 검토를 거침"
 
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr "Mozilla에서 개인적으로 사용중인 부가 기능에 관해 대화를 하길 원합니다"
@@ -8104,7 +8091,7 @@ msgid "Logging in with this email address into %(site)s again will create a new 
 msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr "당신이 작성한 평가와 별점은 삭제되지는 않지만 권한을 잃게 됩니다."
+msgstr "당신이 작성한 검토 의견과 별점이 삭제되지는 않지만 연결이 끊어지게 됩니다."
 
 msgid "Confirm account deletion"
 msgstr "계정 삭제 확인"
@@ -8244,10 +8231,10 @@ msgstr "나의 저작물"
 
 # "My" in this context is the logged in user who is reading the page
 msgid "My Reviews"
-msgstr "내가 쓴 평가"
+msgstr "내 검토"
 
 msgid "No add-on reviews yet."
-msgstr "작성한 부가 기능 평가가 없습니다."
+msgstr "부가기능 검토가 없습니다."
 
 msgid "Report User"
 msgstr "사용자 신고"

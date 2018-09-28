@@ -6,6 +6,7 @@ from datetime import datetime
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
+from django.forms import ValidationError
 from django.utils import translation
 
 from elasticsearch_dsl import Search
@@ -18,7 +19,8 @@ from olympia.addons.models import (
     Addon, AddonCategory, AppSupport, Category, CompatOverride,
     IncompatibleVersions, MigratedLWT, Persona, Preview, attach_tags,
     attach_translations)
-from olympia.addons.utils import build_static_theme_xpi_from_lwt
+from olympia.addons.utils import (
+    build_static_theme_xpi_from_lwt, build_webext_dictionary_from_legacy)
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.storage_utils import rm_stored_dir
@@ -449,12 +451,12 @@ def extract_strict_compatibility_value_for_addon(addon):
         zip_file = SafeZip(get_file(path))
         parser = RDFExtractor(zip_file)
         strict_compatibility = parser.find('strictCompatibility') == 'true'
-    except Exception as exp:
+    except Exception as exc:
         # A number of things can go wrong: missing file, path somehow not
         # existing, etc. In any case, that means the add-on is in a weird
         # state and should be ignored (this is a one off task).
         log.exception(u'bump_appver_for_legacy_addons: ignoring addon %d, '
-                      u'received %s when extracting.', addon.pk, unicode(exp))
+                      u'received %s when extracting.', addon.pk, unicode(exc))
     return strict_compatibility
 
 
@@ -554,9 +556,11 @@ def add_static_theme_from_lwt(lwt):
     addon = Addon.initialize_addon_from_upload(
         parsed_data, upload, amo.RELEASE_CHANNEL_LISTED, author)
     addon_updates = {}
-    # Version.from_upload sorts out platforms for us.
+    # static themes are only compatible with Firefox at the moment,
+    # not Android
     version = Version.from_upload(
-        upload, addon, platforms=None, channel=amo.RELEASE_CHANNEL_LISTED,
+        upload, addon, selected_apps=[amo.FIREFOX.id],
+        channel=amo.RELEASE_CHANNEL_LISTED,
         parsed_data=parsed_data)
 
     # Set category
@@ -684,3 +688,62 @@ def delete_obsolete_applicationsversions(**kw):
         application__in=(amo.FIREFOX.id, amo.ANDROID.id))
     for av in qs.iterator():
         av.delete()
+
+
+@task
+@use_primary_db
+def migrate_legacy_dictionaries_to_webextension(ids, **kw):
+    """Migrate a chunk of legacy dictionaries to webextension format.
+    Used by process_addons command."""
+    log.info(
+        'Migrating legacy dictionaries to webextension %d-%d [%d].',
+        ids[0], ids[-1], len(ids))
+    addons = list(Addon.objects.filter(id__in=ids))
+    migrated = []
+    for addon in addons:
+        try:
+            migrate_legacy_dictionary_to_webextension(addon)
+            migrated.append(addon)
+        except ValidationError as exc:
+            # Ignore broken dictionaries, just log and continue. The function
+            # is decorated by @atomic so it will rollback the transaction.
+            log.warning(
+                'Migrating dictionary %d raised %s', addon.pk, exc.message)
+            continue
+    if migrated:
+        index_addons.delay(migrated)
+
+
+@transaction.atomic()
+def migrate_legacy_dictionary_to_webextension(addon):
+    """Migrate a single legacy dictionary to webextension format, creating a
+    new package from the current_version, faking an upload to create a new
+    Version instance."""
+    user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
+    now = datetime.now()
+
+    # Wrap zip in FileUpload for Version.from_upload() to consume.
+    upload = FileUpload.objects.create(
+        user=user, valid=True)
+    destination = os.path.join(
+        user_media_path('addons'), 'temp', uuid.uuid4().hex + '.xpi')
+    target_language = build_webext_dictionary_from_legacy(addon, destination)
+    if not addon.target_locale:
+        addon.update(target_locale=target_language)
+
+    upload.update(path=destination)
+
+    parsed_data = parse_addon(upload, addon=addon, user=user)
+    # Create version.
+    # WebExtension dictionaries are only compatible with Firefox Desktop
+    # Firefox for Android uses the OS spellchecking.
+    version = Version.from_upload(
+        upload, addon, selected_apps=[amo.FIREFOX.id],
+        channel=amo.RELEASE_CHANNEL_LISTED, parsed_data=parsed_data)
+    activity.log_create(amo.LOG.ADD_VERSION, version, addon, user=user)
+
+    # Sign the file, and set it to public. That should automatically set
+    # current_version to the version we created.
+    file_ = version.all_files[0]
+    sign_file(file_)
+    file_.update(datestatuschanged=now, reviewed=now, status=amo.STATUS_PUBLIC)

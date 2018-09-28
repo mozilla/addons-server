@@ -3,6 +3,7 @@ from contextlib import contextmanager
 from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
+from django.forms import ValidationError
 
 import mock
 import pytest
@@ -608,3 +609,47 @@ class TestDeleteAddonsNotCompatibleWithFirefoxes(TestCase):
             addon__in=(addon, addon2, addon3), app=amo.SEAMONKEY.id).exists()
         assert not AppSupport.objects.filter(
             addon__in=(addon, addon2, addon3), app=amo.THUNDERBIRD.id).exists()
+
+
+class TestMigrateLegacyDictionariesToWebextension(TestCase):
+    @mock.patch('olympia.addons.tasks.index_addons.delay', autospec=True)
+    @mock.patch(
+        'olympia.addons.tasks.migrate_legacy_dictionary_to_webextension',
+        autospec=True)
+    def test_basic(self, migrate_legacy_dictionarymock, index_addons_mock):
+        self.counter = 0
+
+        def side_effect(*args, **kwargs):
+            self.counter += 1
+            if self.counter == 2:
+                raise ValidationError('Dummy validation error')
+
+        addon_factory()
+        addon_factory(type=amo.ADDON_LPAPP)
+        addon_factory(type=amo.ADDON_STATICTHEME)
+        addon_factory(type=amo.ADDON_DICT, file_kw={'is_webextension': True})
+        addon_factory(
+            type=amo.ADDON_DICT, target_locale='es',
+            status=amo.STATUS_DISABLED)
+        addon_factory(
+            type=amo.ADDON_DICT, target_locale='it',
+            disabled_by_user=True)
+        self.addon = addon_factory(type=amo.ADDON_DICT, target_locale='fr')
+        self.addon2 = addon_factory(type=amo.ADDON_DICT, target_locale=None)
+        self.addon3 = addon_factory(type=amo.ADDON_DICT, target_locale='')
+        migrate_legacy_dictionarymock.side_effect = side_effect
+        index_addons_mock.reset_mock()
+
+        call_command('process_addons',
+                     task='migrate_legacy_dictionaries_to_webextension')
+        assert migrate_legacy_dictionarymock.call_count == 3
+        actual_calls = (
+            migrate_legacy_dictionarymock.call_args_list[0][0][0],
+            migrate_legacy_dictionarymock.call_args_list[1][0][0],
+            migrate_legacy_dictionarymock.call_args_list[2][0][0]
+        )
+        expected_calls = (self.addon, self.addon2, self.addon3)
+        assert actual_calls == expected_calls
+        # self.addon2 will raise a ValidationError because of the side_effect
+        # above, so we should only reindex 1 and 3.
+        assert index_addons_mock.call_args[0][0] == [self.addon, self.addon3]

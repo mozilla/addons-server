@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-15 09:31+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-27 20:43+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -135,6 +135,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Alle labels dienen uit minstens {0} teken te bestaan."
 msgstr[1] "Alle labels dienen uit minstens {0} tekens te bestaan."
+
+msgid "The text entered has been flagged as spam."
+msgstr "De ingevoerde tekst is gemarkeerd als spam."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -700,6 +703,9 @@ msgstr "Hulpmiddelen voor beoordelaars"
 msgid "Admin Tools"
 msgstr "Beheerhulpmiddelen"
 
+msgid "Positive integer"
+msgstr "Positief geheel getal"
+
 msgid "Incorrect, please try again."
 msgstr "Onjuist, probeer het opnieuw."
 
@@ -708,6 +714,9 @@ msgstr "Fout bij controleren invoer, probeer het opnieuw."
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Dit dient een geldige hex-kleurcode te zijn, zoals #000000."
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "Enkele functies zijn tijdelijk uitgeschakeld vanwege onderhoud aan de website. Binnenkort zijn we weer volledig beschikbaar."
 
 msgid "Not allowed"
 msgstr "Niet toegestaan"
@@ -920,6 +929,9 @@ msgstr "Ondertekening is verlopen."
 
 msgid "Error decoding signature."
 msgstr "Fout bij decoderen van ondertekening."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr "Een of meer sleutels in de payload zijn van het verkeerde type"
 
 msgid "Invalid JWT Token."
 msgstr "Ongeldig JWT-token."
@@ -2272,14 +2284,14 @@ msgstr "Uitmuntend (3)"
 msgid "Manual Reviewer Points"
 msgstr "Handmatige beoordelaarspunten"
 
-msgid "New Add-on Review"
-msgstr "Nieuwe add-on-beoordeling"
+msgid "New Legacy Add-on Review"
+msgstr "Nieuwe beoordeling van verouderde add-on"
 
 msgid "Preliminary Add-on Review"
 msgstr "Voorlopige add-on-beoordeling"
 
-msgid "Updated Add-on Review"
-msgstr "Beoordeling van bijgewerkte add-on"
+msgid "Updated Legacy Add-on Review"
+msgstr "Beoordeling van bijgewerkte verouderde add-on"
 
 msgid "New Dictionary Review"
 msgstr "Beoordeling van nieuw woordenboek"
@@ -2334,17 +2346,17 @@ msgstr "Evaluatie van add-on-beoordeling ongedaan gemaakt"
 msgid "Add-on Content Review"
 msgstr "Beoordeling van add-on-inhoud"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr "Add-on-beoordeling na goedkeuring (Hoogste risico)"
+msgid "Add-on Review (Highest Risk)"
+msgstr "Add-on-beoordeling (Hoogste risico)"
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr "Add-on-beoordeling na goedkeuring (Hoog risico)"
+msgid "Add-on Review (High Risk)"
+msgstr "Add-on-beoordeling (Hoog risico)"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr "Add-on-beoordeling na goedkeuring (Middelgroot risico)"
+msgid "Add-on Review (Medium Risk)"
+msgstr "Add-on-beoordeling (Middelgroot risico)"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr "Add-on-beoordeling na goedkeuring (Laag risico)"
+msgid "Add-on Review (Low Risk)"
+msgstr "Add-on-beoordeling (Laag risico)"
 
 msgid "Level 1"
 msgstr "Niveau 1"
@@ -2479,11 +2491,8 @@ msgstr "Er is een fout opgetreden tijdens uw upload. Probeer het opnieuw."
 msgid "Override failed validation"
 msgstr "Mislukte validatie negeren"
 
-msgid "You cannot upload any more files for this version."
-msgstr "U kunt geen bestanden meer uploaden voor deze versie."
-
-msgid "Version doesn't match"
-msgstr "Versie komt niet overeen"
+msgid "Need to select at least one application."
+msgstr "U dient ten minste één toepassing te selecteren."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versie {version} is eerder geüpload en verwijderd."
@@ -2499,12 +2508,6 @@ msgstr "U hebt geen bronbestand geüpload."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Bronbestand geüpload, maar u hebt aangegeven dat er geen bron nodig was."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Het platform Alle kan niet met specifieke platformen worden gecombineerd."
-
-msgid "A platform can only be chosen once."
-msgstr "Een platform kan slechts één keer worden gekozen."
 
 msgid "Application"
 msgstr "Toepassing"
@@ -2533,6 +2536,9 @@ msgstr "Categorieën kunnen niet worden gewijzigd terwijl uw add-on wordt aanbev
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "Add-ons voor Thunderbird en SeaMonkey worden nu vermeld en onderhouden op addons.thunderbird.net. Voor het bijwerken van uw add-ons op de nieuwe website kunt u dezelfde account gebruiken."
+
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr "Verouderde extensies worden in Firefox niet meer ondersteund."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Met ingang van Firefox 53 kunnen nieuwe add-ons op deze website alleen WebExtensions zijn."
@@ -3334,9 +3340,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> actieve gebruiker"
 msgstr[1] "<strong>{0}</strong> actieve gebruikers"
 
-msgid "Submit a New File"
-msgstr "Een nieuw bestand indienen"
-
 msgid "Submit a New Version"
 msgstr "Een nieuwe versie indienen"
 
@@ -3390,6 +3393,17 @@ msgstr "Opmerkingen voor beoordelaar:"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "Is er iets wat onze beoordelaars in gedachten moeten houden bij de beoordeling van deze add-on?"
 
+msgid "Remember"
+msgstr "Onthoud"
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+"Als u broncode hebt ingediend maar geen instructies hebt bijgevoegd, moet u deze hier opgeven. Voer stap-voor-stap buildinstructies in om een exacte kopie van de add-oncode te genereren, zoals "
+"verwoord in de %(policy_requirements_open)sbeleidsvereisten%(policy_requirements_close)s."
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Deze opmerkingen zijn alleen voor u en onze beoordelaars zichtbaar."
 
@@ -3419,9 +3433,6 @@ msgstr "Meer informatie over distributie en ondertekening van add-ons"
 
 msgid "Submission Complete"
 msgstr "Indiening voltooid"
-
-msgid "You’re done!"
-msgstr "U bent klaar!"
 
 msgid "Version Submitted for Review"
 msgstr "Versie ingediend voor beoordeling"
@@ -3456,12 +3467,6 @@ msgstr "U kunt deze versie ook bewerken om versieopmerkingen toe te voegen, of b
 msgid "Edit version {0}"
 msgstr "Versie {0} bewerken"
 
-msgid "File Signed"
-msgstr "Bestand ondertekend"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "U bent klaar! Dit bestand is ondertekend en gereed voor eigen distributie. U kunt het downloaden door op de onderstaande knop te klikken."
-
 msgid "Version Signed"
 msgstr "Versie ondertekend"
 
@@ -3470,12 +3475,6 @@ msgstr "U bent klaar! Deze versie is ondertekend en gereed voor eigen distributi
 
 msgid "Download {0}"
 msgstr "{0} downloaden"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "U hebt slechts enkele van de beschikbare platformen voor deze inzending geselecteerd. U kunt meerdere bestanden uploaden die op andere platformen zijn gericht:"
-
-msgid "Upload File"
-msgstr "Bestand uploaden"
 
 msgid "Go to My Submissions"
 msgstr "Naar mijn bijdragen"
@@ -3486,8 +3485,8 @@ msgstr "Uploaden van broncode"
 msgid "Do You Need to Submit Source Code?"
 msgstr "Moet u broncode indienen?"
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
-msgstr "Mogelijk moet u broncode indienen. Als u niet nu de juiste broncode indient, kan uw add-on van de website worden verwijderd!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
+msgstr "Mogelijk moet u broncode indienen. Als u dat niet doet, kan uw add-on van de website worden verwijderd!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
@@ -3516,7 +3515,7 @@ msgstr "Uw inzending dient broncode te bevatten."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr "De broncode dient aan de <a %(a_attrs)s>eisen van ons beleid</a> te voldoen, waaronder:"
+msgstr "De broncode moet aan de <a %(a_attrs)s>beleidsvereisten</a> voldoen, waaronder:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
 msgstr "Stapsgewijze buildinstructies om een exacte kopie van de add-oncode te creëren."
@@ -3557,9 +3556,6 @@ msgstr "Add-on-distributieovereenkomst"
 msgid "Upload Add-on"
 msgstr "Add-on uploaden"
 
-msgid "Where to Host File"
-msgstr "Waar het bestand wordt gehost"
-
 msgid "Where to Host Version"
 msgstr "Waar de versie wordt gehost"
 
@@ -3569,8 +3565,8 @@ msgstr "Versie uploaden"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Gebruik onderstaande velden om uw add-onpakket te uploaden. Na de upload wordt een aantal geautomatiseerde validatietests op uw bestand uitgevoerd."
 
-msgid "Which platforms is this file compatible with?"
-msgstr "Met welke platformen is dit bestand compatibel?"
+msgid "Which applications is this version compatible with?"
+msgstr "Met welke toepassingen is deze versie compatibel?"
 
 msgid "Administrative overrides"
 msgstr "Negeerhandelingen van beheer"
@@ -3580,9 +3576,6 @@ msgstr "Een themaversie maken"
 
 msgid "Create a Theme"
 msgstr "Een thema maken"
-
-msgid "Submit File"
-msgstr "Bestand indienen"
 
 msgid "Sign Add-on"
 msgstr "Add-on ondertekenen"
@@ -3599,8 +3592,11 @@ msgstr "Themanaam"
 msgid "Select a header image for your theme"
 msgstr "Selecteer een headerafbeelding voor uw thema"
 
-msgid "Image height should be 200 pixels"
-msgstr "Afbeeldingshoogte dient 200 pixels te zijn"
+msgid "Recommended height: 200 pixels"
+msgstr "Aanbevolen hoogte: 200 pixels"
+
+msgid "6.9MB max"
+msgstr "Maximaal 6,9 MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG of GIF (niet geanimeerd)"
@@ -4052,6 +4048,12 @@ msgstr "Compatibiliteitstest"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Controleren of uw extensie compatibel is met Firefox."
 
+msgid "Live Testing"
+msgstr "Live testen"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr "Installeer uw extensie in Firefox tijdelijk voor live testen en debuggen."
+
 msgid "Transfer ownership"
 msgstr "Eigendom overdragen"
 
@@ -4207,9 +4209,6 @@ msgstr "{0} beheren"
 
 msgid "Files"
 msgstr "Bestanden"
-
-msgid "Upload Another File"
-msgstr "Nog een bestand uploaden"
 
 msgid "Version Notes"
 msgstr "Versieopmerkingen"
@@ -5327,8 +5326,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Geniet van muziek uit de hele wereld {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Benader meer dan 20.000 radiostations van over de hele wereld."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Benader meer dan 30.000 radiostations van over de hele wereld."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5794,6 +5793,9 @@ msgstr "Versienummers mogen alleen letters, cijfers en deze interpunctietekens b
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Uploads van WebExtension-thema’s worden momenteel niet ondersteund."
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr "De maximale grootte voor WebExtension-thema’s is {0}."
+
 msgid "You cannot submit this type of add-on"
 msgstr "U kunt dit type add-on niet indienen"
 
@@ -6048,6 +6050,42 @@ msgstr "Verkrijg vroege toegang tot experimentele browserfuncties."
 
 msgid "Get Started"
 msgstr "Beginnen"
+
+msgid "Reported Status"
+msgstr "Gemelde status"
+
+msgid "Reported Spam"
+msgstr "Gemelde spam"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Reported Ham"
+msgstr "Gemelde Ham"
+
+msgid "Not Reported"
+msgstr "Niet gemeld"
+
+msgid "Content Submitted"
+msgstr "Inhoud ingediend"
+
+msgid "View Rating on site"
+msgstr "Waardering op website bekijken"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Submit Ham to Akismet"
+msgstr "Ham bij Akismet indienen"
+
+msgid "Submit Spam to Akismet"
+msgstr "Spam bij Akismet indienen"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr "%s ham-meldingen ingediend als Spam"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr "%s spam-meldingen ingediend als Ham"
 
 msgid "About Mozilla Add-ons"
 msgstr "Over Mozilla Add-ons"
@@ -7469,9 +7507,6 @@ msgstr "Weergegeven: {0} - {1} van {2} resultaten voor <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Weergegeven: {0} - {1} van {2} resultaten"
 
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Enkele functies zijn tijdelijk uitgeschakeld vanwege onderhoud aan de website. Binnenkort zijn we weer volledig beschikbaar."
-
 msgid "Could not find add-on with id \"{}\"."
 msgstr "Kon geen add-on met id ‘{}’ vinden."
 
@@ -7974,8 +8009,8 @@ msgstr "Er is geen gebruiker met dat e-mailadres."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr "Anonieme gebruiker {id}"
+msgid "Firefox user {id}"
+msgstr "Firefox-gebruiker {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Mijn Mobiel-add-ons"

@@ -66,7 +66,7 @@ def reporter(request):
                     owner_or_unlisted_reviewer(request, addon)):
                 return redirect('compat.reporter_detail', guid)
     addons = (Addon.objects.filter(authors=request.user)
-              if request.user.is_authenticated() else [])
+              if request.user.is_authenticated else [])
     return render(request, 'compat/reporter.html',
                   dict(query=query, addons=addons))
 

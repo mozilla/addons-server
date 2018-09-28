@@ -1,12 +1,9 @@
-{% with file = form.instance %}
-  <tr>
-    <td>
-      {{ form.id }}
-      <a href="{{ file.get_url_path('devhub') }}">
-        {{ file.pretty_filename() }}</a>
-    </td>
-    <td>{{ file.size|filesizeformat(binary=True) }}</td>
-    <td>{{ form.platform or amo.PLATFORM_ALL.name }}</td>
-    <td>{{ choices[file.status] }}</td>
-  </tr>
-{% endwith %}
+<tr>
+  <td>
+    <a href="{{ file.get_url_path('devhub') }}">
+      {{ file.pretty_filename() }}</a>
+  </td>
+  <td>{{ file.size|filesizeformat(binary=True) }}</td>
+  <td>{{ amo.PLATFORMS[file.platform].name }}</td>
+  <td>{{ choices[file.status] }}</td>
+</tr>

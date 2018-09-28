@@ -6,27 +6,30 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.forms import ValidationError
+from django.test.utils import override_settings
 from django.utils import translation
 
 import mock
-
+import responses
 from rest_framework.response import Response
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import addon_factory, reverse_ns
-from olympia.api.tests.utils import APIKeyAuthTestCase
+from olympia.amo.tests import addon_factory, reverse_ns, TestCase
+from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.applications.models import AppVersion
 from olympia.devhub import tasks
 from olympia.files.models import File, FileUpload
+from olympia.lib.akismet.models import AkismetReport
 from olympia.signing.views import VersionView
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
 
-class SigningAPITestCase(APIKeyAuthTestCase):
+class SigningAPITestMixin(APIKeyAuthTestMixin):
     fixtures = ['base/addon_3615', 'base/user_4043307']
 
     def setUp(self):
@@ -34,10 +37,10 @@ class SigningAPITestCase(APIKeyAuthTestCase):
         self.api_key = self.create_api_key(self.user, str(self.user.pk) + ':f')
 
 
-class BaseUploadVersionCase(SigningAPITestCase):
+class BaseUploadVersionTestMixin(SigningAPITestMixin):
 
     def setUp(self):
-        super(BaseUploadVersionCase, self).setUp()
+        super(BaseUploadVersionTestMixin, self).setUp()
         self.guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
         self.view = VersionView.as_view()
         create_version_patcher = mock.patch(
@@ -70,7 +73,8 @@ class BaseUploadVersionCase(SigningAPITestCase):
             '{addon}-{version}.xpi'.format(addon=addon, version=version))
 
     def request(self, method='PUT', url=None, version='3.0',
-                addon='@upload-version', filename=None, channel=None):
+                addon='@upload-version', filename=None, channel=None,
+                extra_kwargs=None):
         if filename is None:
             filename = self.xpi_filepath(addon, version)
         if url is None:
@@ -85,14 +89,14 @@ class BaseUploadVersionCase(SigningAPITestCase):
             return getattr(self.client, method.lower())(
                 url, data,
                 HTTP_AUTHORIZATION=self.authorization(),
-                format='multipart')
+                format='multipart', **(extra_kwargs or {}))
 
     def make_admin(self, user):
         admin_group = Group.objects.create(name='Admin', rules='*:*')
         GroupUser.objects.create(group=admin_group, user=user)
 
 
-class TestUploadVersion(BaseUploadVersionCase):
+class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_not_authenticated(self):
         # Use self.client.put so that we don't add the authorization header.
@@ -307,7 +311,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         self.auto_sign_version.assert_called_with(latest_version)
 
     def test_system_addon_not_allowed_not_mozilla(self):
-        guid = 'systemaddon@mozilla.org'
+        guid = 'systemaddon@mozilla.com'
         self.user.update(email='yellowpanda@notzilla.com')
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
@@ -319,7 +323,8 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 400
         assert response.data['error'] == (
             u'You cannot submit an add-on with a guid ending "@mozilla.org" '
-            u'or "@shield.mozilla.org" or "@pioneer.mozilla.org"')
+            u'or "@shield.mozilla.org" or "@pioneer.mozilla.org" '
+            u'or "@mozilla.com"')
 
     def test_system_addon_update_allowed(self):
         """Updates to system addons are allowed from anyone."""
@@ -355,7 +360,7 @@ class TestUploadVersion(BaseUploadVersionCase):
 
     def test_raises_response_code(self):
         # A check that any bare error in handle_upload will return a 400.
-        with mock.patch('olympia.signing.views.handle_upload') as patch:
+        with mock.patch('olympia.signing.views.devhub_handle_upload') as patch:
             patch.side_effect = ValidationError(message='some error')
             response = self.request('PUT', self.url(self.guid, '1.0'))
             assert response.status_code == 400
@@ -442,8 +447,65 @@ class TestUploadVersion(BaseUploadVersionCase):
             'You cannot add a listed version to this addon via the API')
         assert error_msg in response.data['error']
 
+    @override_switch('akismet-spam-check', active=False)
+    def test_akismet_waffle_off(self):
+        addon = Addon.objects.get(guid=self.guid)
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), channel='listed')
 
-class TestUploadVersionWebextension(BaseUploadVersionCase):
+        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
+        assert AkismetReport.objects.count() == 0
+        assert response.status_code == 202
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_reports_created_ham_outcome(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+        addon = Addon.objects.get(guid=self.guid)
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), channel='listed')
+
+        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
+        assert response.status_code == 202
+        comment_check_mock.assert_called_once()
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get()
+        assert report.comment_type == 'product-name'
+        assert report.comment == 'Upload Version Test XPI'  # the addon's name
+
+        validation_response = self.get(self.url(self.guid, '3.0'))
+        assert validation_response.status_code == 200
+        assert 'spam' not in validation_response.content
+
+    @override_switch('akismet-spam-check', active=True)
+    @responses.activate
+    @override_settings(AKISMET_API_KEY=None)
+    def test_akismet_reports_created_spam_outcome(self):
+        akismet_url = settings.AKISMET_API_URL.format(
+            api_key='none', action='comment-check')
+        responses.add(responses.POST, akismet_url, json=True)
+        addon = Addon.objects.get(guid=self.guid)
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), channel='listed')
+
+        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
+        assert response.status_code == 202
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get()
+        assert report.comment_type == 'product-name'
+        assert report.comment == 'Upload Version Test XPI'  # the addon's name
+        assert report.result == AkismetReport.MAYBE_SPAM
+
+        validation_response = self.get(self.url(self.guid, '3.0'))
+        assert validation_response.status_code == 200
+        assert 'spam' in validation_response.content
+        data = json.loads(validation_response.content)
+        assert data['validation_results']['messages'][0]['id'] == [
+            u'validation', u'messages', u'akismet_is_spam'
+        ]
+
+
+class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
     def setUp(self):
         super(TestUploadVersionWebextension, self).setUp()
         AppVersion.objects.create(application=amo.FIREFOX.id, version='42.0')
@@ -664,7 +726,7 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
             assert addon.tags.filter(tag_text='dynamic theme').exists()
 
 
-class TestCheckVersion(BaseUploadVersionCase):
+class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_not_authenticated(self):
         # Use self.client.get so that we don't add the authorization header.
@@ -789,7 +851,7 @@ class TestCheckVersion(BaseUploadVersionCase):
         assert 'processed' in response.data
 
 
-class TestSignedFile(SigningAPITestCase):
+class TestSignedFile(SigningAPITestMixin, TestCase):
 
     def setUp(self):
         super(TestSignedFile, self).setUp()

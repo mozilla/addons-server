@@ -86,8 +86,9 @@ FLIGTAR = 'amo-admins+fligtar-rip@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
 ABUSE_EMAIL = 'amo-admins+ivebeenabused@mozilla.org'
 
-DRF_API_VERSIONS = ['v3', 'v4']
-DRF_API_REGEX = r'^/?api/(?:v3|v4)/'
+# prod conf overrides these settings to only have 'v3' and 'v4'.
+DRF_API_VERSIONS = ['v3', 'v4', 'v4dev']
+DRF_API_REGEX = r'^/?api/(?:v3|v4|v4dev)/'
 
 # Add Access-Control-Allow-Origin: * header for the new API with
 # django-cors-headers.
@@ -109,29 +110,40 @@ def cors_endpoint_overrides(whitelist_endpoints):
 
 CORS_ENDPOINT_OVERRIDES = []
 
+
+def get_db_config(environ_var):
+    values = env.db(
+        var=environ_var,
+        default='mysql://root:@localhost/olympia')
+
+    values.update({
+        # Run all views in a transaction unless they are decorated not to.
+        'ATOMIC_REQUESTS': True,
+        # Pool our database connections up for 300 seconds
+        'CONN_MAX_AGE': 300,
+        'ENGINE': 'olympia.core.db.mysql',
+        'OPTIONS': {
+            'sql_mode': 'STRICT_ALL_TABLES',
+            'isolation_level': 'read committed'
+        },
+        'TEST': {
+            'CHARSET': 'utf8',
+            'COLLATION': 'utf8_general_ci'
+        },
+    })
+
+    return values
+
+
 DATABASES = {
-    'default': env.db(default='mysql://root:@localhost/olympia')
+    'default': get_db_config('DATABASES_DEFAULT_URL'),
 }
-DATABASES['default']['OPTIONS'] = {'sql_mode': 'STRICT_ALL_TABLES'}
-DATABASES['default']['TEST'] = {
-    'CHARSET': 'utf8',
-    'COLLATION': 'utf8_general_ci'
-}
-# Run all views in a transaction unless they are decorated not to.
-DATABASES['default']['ATOMIC_REQUESTS'] = True
-# Pool our database connections up for 300 seconds
-DATABASES['default']['CONN_MAX_AGE'] = 300
 
 # A database to be used by the services scripts, which does not use Django.
-# The settings can be copied from DATABASES, but since its not a full Django
-# database connection, only some values are supported.
-SERVICES_DATABASE = {
-    'NAME': DATABASES['default']['NAME'],
-    'USER': DATABASES['default']['USER'],
-    'PASSWORD': DATABASES['default']['PASSWORD'],
-    'HOST': DATABASES['default']['HOST'],
-    'PORT': DATABASES['default']['PORT'],
-}
+# Please note that this is not a full Django database connection
+# so the amount of values supported are limited. By default we are using
+# the same connection as 'default' but that changes in prod/dev/stage.
+SERVICES_DATABASE = get_db_config('DATABASES_DEFAULT_URL')
 
 DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
 
@@ -149,13 +161,12 @@ TIME_ZONE = 'UTC'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-US'
 
-# Accepted locales
-# Note: If you update this list, don't forget to also update the locale
-# permissions in the database.
+# Accepted locales.
 AMO_LANGUAGES = (
     'af',  # Afrikaans
     'ar',  # Arabic
     'ast',  # Asturian
+    'az',  # Azerbaijani
     'bg',  # Bulgarian
     'bn-BD',  # Bengali (Bangladesh)
     'bs',  # Bosnian
@@ -180,6 +191,7 @@ AMO_LANGUAGES = (
     'he',  # Hebrew
     'hsb',  # Upper Sorbian
     'hu',  # Hungarian
+    # 'ia',  # Interlingua - doesn't exist in product_details yet.
     'id',  # Indonesian
     'it',  # Italian
     'ja',  # Japanese
@@ -192,6 +204,7 @@ AMO_LANGUAGES = (
     'nb-NO',  # Norwegian (Bokmål)
     'nl',  # Dutch
     'nn-NO',  # Norwegian (Nynorsk)
+    'pa-IN',  # Punjabi
     'pl',  # Polish
     'pt-BR',  # Portuguese (Brazilian)
     'pt-PT',  # Portuguese (Portugal)
@@ -446,7 +459,9 @@ SECURE_HSTS_SECONDS = 31536000
 # to using `Port` if `X-Forwarded-Port` isn't set.
 USE_X_FORWARDED_PORT = True
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
+    # Test if it's an API request first so later middlewares don't need to.
+    'olympia.api.middleware.IdentifyAPIRequestMiddleware',
     # Gzip (for API only) middleware needs to be executed after every
     # modification to the response, so it's placed at the top of the list.
     'olympia.api.middleware.GZipMiddlewareForAPIOnly',
@@ -472,11 +487,7 @@ MIDDLEWARE_CLASSES = (
     # CSP and CORS need to come before CommonMiddleware because they might
     # need to add headers to 304 responses returned by CommonMiddleware.
     'csp.middleware.CSPMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-
-    # This middleware does nothing, it's there for backwards-compatibility.
-    # Django < 1.10 checks for its presence to make session key rotation work.
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'olympia.amo.middleware.CorsMiddleware',
 
     # Enable conditional processing, e.g ETags.
     'django.middleware.http.ConditionalGetMiddleware',
@@ -1196,6 +1207,7 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.submit_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file_path': {'queue': 'devhub'},
+    'olympia.lib.akismet.tasks.comment_check': {'queue': 'devhub'},
 
     # Activity (goes to devhub queue).
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},
@@ -1560,7 +1572,7 @@ MAX_IMAGE_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_VIDEO_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
-MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
+MAX_STATICTHEME_SIZE = 7 * 1024 * 1024
 
 # File uploads should have -rw-r--r-- permissions in order to be served by
 # nginx later one. The 0o prefix is intentional, this is an octal value.
@@ -1777,10 +1789,13 @@ DRF_API_GATES = {
         'ratings-rating-shim',
         'ratings-title-shim',
         'l10n_flat_input_output',
-        'collections-downloads-shim'
+        'collections-downloads-shim',
     ),
     'v4': (
+        'l10n_flat_input_output',
     ),
+    'v4dev': (
+    )
 }
 
 REST_FRAMEWORK = {
@@ -1938,5 +1953,5 @@ BASKET_TIMEOUT = 5
 
 AKISMET_API_URL = 'https://{api_key}.rest.akismet.com/1.1/{action}'
 AKISMET_API_KEY = env('AKISMET_API_KEY', default=None)
-AKISMET_API_TIMEOUT = 100
+AKISMET_API_TIMEOUT = 5
 AKISMET_REAL_SUBMIT = False

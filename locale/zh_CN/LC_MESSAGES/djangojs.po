@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-01-20 15:23+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-17 10:54+0000\n"
+"Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -121,9 +121,6 @@ msgstr "编译后的二进制文件，以及压缩或混淆后的脚本（不含
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "在验证过程中发现下列问题可导致被退回："
 
-msgid "Sorry, no supported platform has been found."
-msgstr "抱歉，找不到支持的平台。"
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "无法识别您上传的文件格式。"
 
@@ -204,31 +201,39 @@ msgid "Use original"
 msgstr "使用原样"
 
 msgid "Week of {0}"
-msgstr "每周有{0}次"
+msgstr "每周有 {0} 次"
 
-msgid " downloads"
-msgstr " 次下载"
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] "{0} 次下载"
 
-msgid "{0} users"
-msgstr "{0} 位用户"
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} 位用户"
 
-msgid "{0} add-ons"
-msgstr "{0} 个附加组件"
+msgid "{0} add-on"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} 个附加组件"
 
-msgid "{0} collections"
-msgstr "{0} 个收藏集"
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} 个收藏集"
 
-msgid "{0} reviews"
-msgstr "{0} 条评价"
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} 条评价"
 
-msgid "{0} sales"
-msgstr "{0} 份售出"
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} 份售出"
 
-msgid "{0} refunds"
-msgstr "{0} 次退款"
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} 次退款"
 
-msgid "{0} installs"
-msgstr "{0} 次安装"
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} 次安装"
 
 msgid "Downloads"
 msgstr "下载量"
@@ -783,6 +788,9 @@ msgstr "平均评价"
 
 msgid "Number of Reviews"
 msgstr "评价数量"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr "最大上传大小为 {0} - 请选择较小的背景图片。"
 
 msgid "Requested Info"
 msgstr "已请求信息"

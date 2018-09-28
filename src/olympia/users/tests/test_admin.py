@@ -10,15 +10,16 @@ import mock
 
 from pyquery import PyQuery as pq
 
-
 from olympia import amo, core
 from olympia.abuse.models import AbuseReport
 from olympia.activity.models import ActivityLog
+from olympia.addons.models import AddonUser
 from olympia.amo.tests import (
-    addon_factory, TestCase, user_factory, version_factory)
+    addon_factory, collection_factory, TestCase, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
+from olympia.reviewers.models import ReviewerScore
 from olympia.users.admin import UserAdmin
 from olympia.users.models import UserProfile
 
@@ -95,6 +96,7 @@ class TestUserAdmin(TestCase):
         core.set_user(user)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 200
+        assert 'Cannot delete user' not in response.content
         response = self.client.post(self.delete_url, {'post': 'yes'},
                                     follow=True)
         assert response.status_code == 200
@@ -108,6 +110,63 @@ class TestUserAdmin(TestCase):
         alog = ActivityLog.objects.latest('pk')
         assert alog.action == amo.LOG.ADMIN_USER_ANONYMIZED.id
         assert alog.arguments == [self.user]
+
+    def test_can_delete_with_related_objects_with_admin_advanced_permission(
+            self):
+        # Add related instances...
+        addon = addon_factory()
+        addon_with_other_authors = addon_factory()
+        AddonUser.objects.create(
+            addon=addon_with_other_authors, user=user_factory())
+        relations_that_should_be_deleted = [
+            AddonUser.objects.create(
+                addon=addon_with_other_authors, user=self.user),
+            Rating.objects.create(
+                addon=addon_factory(), rating=5, user=self.user),
+            addon,  # Has no other author, should be deleted.
+            collection_factory(author=self.user)
+        ]
+        relations_that_should_survive = [
+            AbuseReport.objects.create(reporter=self.user),
+            AbuseReport.objects.create(user=self.user),
+            ActivityLog.create(user=self.user, action=amo.LOG.USER_EDITED),
+            ReviewerScore.objects.create(user=self.user, score=42),
+            addon_with_other_authors,  # Has other authors, should be kept.
+
+            # Bit of a weird case, but because the user was the only author of
+            # this add-on, the addonuser relation is kept, and both the add-on
+            # and the user are soft-deleted. This is in contrast with the case
+            # where the user is *not* the only author, in which case the
+            # addonuser relation is deleted, but the add-on is left intact.
+            AddonUser.objects.create(addon=addon, user=self.user),
+        ]
+
+        # Now test as normal.
+        user = user_factory()
+        assert not self.user.deleted
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Admin:Advanced')
+        self.client.login(email=user.email)
+        core.set_user(user)
+        response = self.client.get(self.delete_url, follow=True)
+        assert response.status_code == 200
+        assert 'Cannot delete user' not in response.content
+        response = self.client.post(self.delete_url, {'post': 'yes'},
+                                    follow=True)
+        assert response.status_code == 200
+        self.user.reload()
+        assert self.user.deleted
+        assert self.user.email is None
+        alog = ActivityLog.objects.filter(
+            action=amo.LOG.ADMIN_USER_ANONYMIZED.id).get()
+        assert alog.arguments == [self.user]
+
+        # Test the related instances we created earlier.
+        for obj in relations_that_should_be_deleted:
+            assert not obj.__class__.objects.filter(pk=obj.pk).exists()
+
+        for obj in relations_that_should_survive:
+            assert obj.__class__.objects.filter(pk=obj.pk).exists()
 
     def test_get_actions(self):
         user_admin = UserAdmin(UserProfile, admin.site)

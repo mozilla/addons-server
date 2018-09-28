@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import os
 
@@ -8,6 +9,7 @@ from django.db.models import Q
 import mock
 
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -24,6 +26,7 @@ from olympia.bandwagon.models import (
     Collection, CollectionAddon, FeaturedCollection)
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.devhub.views import edit_theme
+from olympia.lib.akismet.models import AkismetReport
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import VersionPreview
@@ -276,6 +279,70 @@ class BaseTestEditBasic(BaseTestEdit):
         FeaturedCollection.objects.create(collection=c_addon.collection,
                                           application=amo.FIREFOX.id)
         cache.clear()
+
+    @override_switch('akismet-spam-check', active=False)
+    def test_akismet_waffle_off(self):
+        data = self.get_dict()
+
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+        assert AkismetReport.objects.count() == 0
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
+    def test_akismet_edit_is_ham(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+        data = self.get_dict()
+
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+
+        # Akismet check is there
+        assert AkismetReport.objects.count() == 2
+        name_report = AkismetReport.objects.first()
+        assert name_report.comment_type == 'product-name'
+        assert name_report.comment == data['name']
+        summary_report = AkismetReport.objects.last()
+        assert summary_report.comment_type == 'product-summary'
+        assert summary_report.comment == data['summary']
+
+        assert comment_check_mock.call_count == 2
+        assert 'spam' not in response.content
+
+        # And metadata was updated
+        addon = self.get_addon()
+        assert unicode(addon.name) == data['name']
+        assert unicode(addon.summary) == data['summary']
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
+    def test_akismet_edit_is_spam(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
+        old_name = self.addon.name
+        old_summary = self.addon.summary
+        data = self.get_dict()
+
+        response = self.client.post(self.basic_edit_url, data)
+        assert response.status_code == 200
+
+        # Akismet check is there
+        assert AkismetReport.objects.count() == 2
+        name_report = AkismetReport.objects.first()
+        assert name_report.comment_type == 'product-name'
+        assert name_report.comment == data['name']
+        summary_report = AkismetReport.objects.last()
+        assert summary_report.comment_type == 'product-summary'
+        assert summary_report.comment == data['summary']
+
+        comment_check_mock.assert_called_once()  # won't check twice if 1 spam
+        self.assertFormError(
+            response, 'form', '__all__',
+            'The text entered has been flagged as spam.')
+
+        # And metadata was NOT updated
+        addon = self.get_addon()
+        assert unicode(addon.name) == unicode(old_name)
+        assert unicode(addon.summary) == unicode(old_summary)
 
 
 class TagTestsMixin(object):
@@ -1030,7 +1097,7 @@ class TestEditMedia(BaseTestEdit):
 
 
 class BaseTestEditDetails(BaseTestEdit):
-    __test__ = True
+    __test__ = False
 
     def setUp(self):
         super(BaseTestEditDetails, self).setUp()
@@ -1043,8 +1110,11 @@ class BaseTestEditDetails(BaseTestEdit):
             'default_locale': 'en-US',
             'homepage': 'http://twitter.com/fligtarsmom'
         }
+        response = self.client.get(self.details_edit_url)
+        assert response.status_code == 200
 
         response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
         assert response.context['form'].errors == {}
         addon = self.get_addon()
 
@@ -1060,10 +1130,18 @@ class BaseTestEditDetails(BaseTestEdit):
                                   "<script>alert('awesome')</script>")
         self.addon.save()
         response = self.client.get(self.url)
+        assert response.status_code == 200
         doc = pq(response.content)
 
         assert doc('#edit-addon-details span[lang]').html() == (
             "This<br/><b>IS</b>&lt;script&gt;alert('awesome')&lt;/script&gt;")
+
+        response = self.client.get(self.details_edit_url)
+        assert response.status_code == 200
+
+        assert '<script>' not in response.content
+        assert ('This\n&lt;b&gt;IS&lt;/b&gt;&lt;script&gt;alert(&#39;awesome'
+                '&#39;)&lt;/script&gt;</textarea>') in response.content
 
     def test_edit_homepage_optional(self):
         data = {
@@ -1073,14 +1151,85 @@ class BaseTestEditDetails(BaseTestEdit):
         }
 
         response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
         assert response.context['form'].errors == {}
         addon = self.get_addon()
 
         for k in data:
             assert unicode(getattr(addon, k)) == data[k]
 
+    @override_switch('akismet-spam-check', active=False)
+    def test_akismet_waffle_off(self):
+        data = {
+            'description': u'lé spam or un ham',
+            'homepage': 'https://staticfil.es/',
+            'default_locale': 'en-US'
+        }
+
+        response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
+        assert AkismetReport.objects.count() == 0
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
+    def test_akismet_edit_is_ham(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+        data = {
+            'description': u'lé ham',
+            'homepage': 'https://staticfil.es/',
+            'default_locale': 'en-US'
+        }
+
+        response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
+        assert 'spam' not in response.content
+        self.assertNoFormErrors(response)
+
+        # Akismet check is there
+        assert AkismetReport.objects.count() == 1
+        name_report = AkismetReport.objects.first()
+        assert name_report.comment_type == 'product-description'
+        assert name_report.comment == data['description']
+
+        comment_check_mock.assert_called_once()
+
+        # And metadata was updated
+        addon = self.get_addon()
+        assert unicode(addon.description) == data['description']
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
+    def test_akismet_edit_is_spam(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
+        old_description = self.addon.description
+        data = {
+            'description': u'lé spam',
+            'homepage': 'https://staticfil.es/',
+            'default_locale': 'en-US'
+        }
+
+        response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
+
+        self.assertFormError(
+            response, 'form', '__all__',
+            'The text entered has been flagged as spam.')
+
+        # Akismet check is there
+        assert AkismetReport.objects.count() == 1
+        name_report = AkismetReport.objects.first()
+        assert name_report.comment_type == 'product-description'
+        assert name_report.comment == data['description']
+
+        comment_check_mock.assert_called_once()  # won't check twice if 1 spam
+
+        # And metadata was NOT updated
+        addon = self.get_addon()
+        assert unicode(addon.description) == unicode(old_description)
+
 
 class TestEditDetailsListed(BaseTestEditDetails):
+    __test__ = True
 
     def test_edit_default_locale_required_trans(self):
         # name, summary, and description are required in the new locale.
@@ -1472,6 +1621,7 @@ class TestEditBasicUnlisted(BaseTestEditBasic, L10nTestsMixin):
 
 class TestEditDetailsUnlisted(BaseTestEditDetails):
     listed = False
+    __test__ = True
 
 
 class TestEditTechnicalUnlisted(BaseTestEdit):

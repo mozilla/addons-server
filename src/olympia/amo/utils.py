@@ -884,7 +884,7 @@ def attach_trans_dict(model, objs):
                 continue
 
             obj.translations[t_id] = [
-                get_locale_and_string(t, field.remote_field.to)
+                get_locale_and_string(t, field.remote_field.model)
                 for t in field_translations]
 
 

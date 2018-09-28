@@ -257,7 +257,7 @@ def create_flag(name=None, **kw):
 class PatchMixin(object):
 
     def patch(self, thing):
-        patcher = mock.patch(thing)
+        patcher = mock.patch(thing, autospec=True)
         self.addCleanup(patcher.stop)
         return patcher.start()
 
@@ -750,9 +750,7 @@ def file_factory(**kw):
         filename)
 
     if os.path.exists(fixture_path):
-        copy_stored_file(
-            fixture_path,
-            os.path.join(version.path_prefix, file_.filename))
+        copy_stored_file(fixture_path, file_.current_file_path)
 
     return file_
 
@@ -788,6 +786,18 @@ def user_factory(**kw):
     if 'username' not in kw:
         user_factory_counter = user.id + 1
     return user
+
+
+def create_default_webext_appversion():
+    AppVersion.objects.get_or_create(
+        application=amo.ANDROID.id, version='48.0')
+    AppVersion.objects.get_or_create(
+        application=amo.ANDROID.id, version='*')
+
+    AppVersion.objects.get_or_create(
+        application=amo.FIREFOX.id, version='48.0')
+    AppVersion.objects.get_or_create(
+        application=amo.FIREFOX.id, version='*')
 
 
 def version_factory(file_kw=None, **kw):

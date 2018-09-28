@@ -91,13 +91,6 @@
 
             $upload_field.fileUploader(settings);
 
-            function textSize(bytes) {
-                var s = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
-                if(bytes === 0) return bytes + " " + s[1];
-                var e = Math.floor( Math.log(bytes) / Math.log(1024) );
-                return (bytes / Math.pow(1024, Math.floor(e))).toFixed(2)+" "+s[e];
-            }
-
             function updateStatus(percentage, size) {
                 if (percentage) {
                     upload_status.show();
@@ -109,7 +102,7 @@
 
                     // L10n: "{bytes uploaded} of {total filesize}".
                     upload_status_progress.text(format(gettext('{0} of {1}'),
-                                [textSize(size), textSize(file.size)]));
+                                [fileSizeFormat(size), fileSizeFormat(file.size)]));
                 }
             }
 
@@ -289,7 +282,7 @@
                         errors.push(
                             format(
                                 gettext("Your add-on exceeds the maximum size of {0}."),
-                                [textSize(settings.maxSize)]));
+                                [fileSizeFormat(settings.maxSize)]));
                     } else {
                         // L10n: first argument is an HTTP status code
                         errors.push(
@@ -311,8 +304,6 @@
                         // bad idea, since failed validation might give us
                         // the wrong results, and admins overriding
                         // validation might need some additional leeway.
-                        $('.platform:hidden').show();
-                        $('.platform label').removeClass('platform-disabled');
                         $('.addon-upload-dependant').prop('disabled', false);
                     } else {
                         $('.addon-upload-dependant').prop('disabled', true);
@@ -390,12 +381,12 @@
                     }, 1000);
                 } else {
                     if (results.addon_type==10) {
-                        // No source or platform selection for static themes.
+                        // No source or compat app selection for static themes.
                         $('.binary-source').hide();
-                        $('.supported-platforms').hide();
+                        $('.compatible-apps').hide();
                     } else {
                         $('.binary-source').show();
-                        $('.supported-platforms').show();
+                        $('.compatible-apps').show();
                     }
                     var errors = getErrors(results),
                         v = results.validation,
@@ -530,42 +521,6 @@
                                     .attr('target', '_blank')
                                     .attr('rel', 'noopener noreferrer')
                                     .appendTo(checklist_box);
-                        }
-                    }
-
-                    $(".platform ul.error").empty();
-                    $(".platform ul.errorlist").empty();
-                    if (results.validation.detected_type == 'search') {
-                        $(".platform").hide();
-                    } else {
-                        $(".platform:hidden").show();
-                        $('.platform label').removeClass('platform-disabled');
-                        $('input.platform').prop('disabled', false);
-                        if (results.platforms_to_exclude &&
-                            results.platforms_to_exclude.length) {
-                            // e.g. after uploading a Mobile add-on
-                            var excluded = false;
-                            $('input.platform').each(function() {
-                                var $input = $(this);
-                                if ($.inArray($input.val(),
-                                              results.platforms_to_exclude) !== -1) {
-                                    excluded = true;
-                                    $('label[for=' + $input.attr('id') + ']').addClass('platform-disabled');
-                                    $input.prop('checked', false);
-                                    $input.prop('disabled', true);
-                                }
-                            });
-                            var platforms_selector = '.supported-platforms',
-                                disabled = $(platforms_selector + ' input:disabled').length,
-                                all = $(platforms_selector + ' input').length;
-                            if (disabled > 0 && disabled == all) {
-                                $(platforms_selector + ' label').addClass('platform-disabled');
-                            }
-                            if (excluded) {
-                                if ($('.platform input[type=checkbox]').length === $('.platform input[type=checkbox]:disabled').length) {
-                                    msg = gettext('Sorry, no supported platform has been found.');
-                                }
-                            }
                         }
                     }
                 }

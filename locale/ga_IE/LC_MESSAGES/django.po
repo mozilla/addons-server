@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -148,6 +148,9 @@ msgstr[1] "Ní mór {0} charachtar ar a laghad a bheith i gclib."
 msgstr[2] "Ní mór {0} charachtar ar a laghad a bheith i gclib."
 msgstr[3] "Ní mór {0} gcarachtar ar a laghad a bheith i gclib."
 msgstr[4] "Ní mór {0} carachtar ar a laghad a bheith i gclib."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -759,6 +762,9 @@ msgstr "Eagarthóir"
 msgid "Admin Tools"
 msgstr "Uirlisí Riaracháin"
 
+msgid "Positive integer"
+msgstr ""
+
 msgid "Incorrect, please try again."
 msgstr "Mícheart, bain triail eile as."
 
@@ -766,6 +772,9 @@ msgid "Error verifying input, please try again."
 msgstr "Earráid agus an t-ionchur á dheimhniú, bain triail eile as."
 
 msgid "This must be a valid hex color code, such as #000000."
+msgstr ""
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
 
 msgid "Not allowed"
@@ -968,6 +977,9 @@ msgstr ""
 
 msgid "Error decoding signature."
 msgstr "Earráid agus an síniú á dhíchódú."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "Ceadchomhartha neamhbhailí JWT."
@@ -2379,14 +2391,15 @@ msgid "Manual Reviewer Points"
 msgstr ""
 
 #, fuzzy
-msgid "New Add-on Review"
+msgid "New Legacy Add-on Review"
 msgstr "Níl aon léirmheasanna ar bhreiseáin fós."
 
 msgid "Preliminary Add-on Review"
 msgstr ""
 
-msgid "Updated Add-on Review"
-msgstr ""
+#, fuzzy
+msgid "Updated Legacy Add-on Review"
+msgstr "Scrúduithe le Ceannasaí"
 
 #, fuzzy
 msgid "New Dictionary Review"
@@ -2446,17 +2459,21 @@ msgstr ""
 msgid "Add-on Content Review"
 msgstr "Gan Léirmheas"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Highest Risk)"
+msgstr "Níl aon léirmheasanna ar bhreiseáin fós."
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (High Risk)"
+msgstr "Níl aon léirmheasanna ar bhreiseáin fós."
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Medium Risk)"
+msgstr "Níl aon léirmheasanna ar bhreiseáin fós."
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Low Risk)"
+msgstr "Níl aon léirmheasanna ar bhreiseáin fós."
 
 msgid "Level 1"
 msgstr "Leibhéal 1"
@@ -2591,11 +2608,9 @@ msgstr "Bhí earráid leis an uaslódáil. Bain triail eile as."
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr "Ní féidir leat tuilleadh comhad a uaslódáil le haghaidh an leagain seo."
-
-msgid "Version doesn't match"
-msgstr "Níl an leagan comhoiriúnach"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Feidhmchlár comhoiriúnach amháin de dhíth ar a laghad."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2613,12 +2628,6 @@ msgstr "Níorbh fhéidir an comhad uaslódáilte a pharsáil."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
-
-msgid "A platform can only be chosen once."
-msgstr "Ní féidir ardán a roghnú ach uair amháin."
 
 msgid "Application"
 msgstr "Feidhmchlár"
@@ -2642,6 +2651,9 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
+msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
@@ -3438,9 +3450,6 @@ msgstr[2] "<strong>{0}</strong> úsáideoir gníomhacha"
 msgstr[3] "<strong>{0}</strong> n-úsáideoir gníomhach"
 msgstr[4] "<strong>{0}</strong> úsáideoir gníomhach"
 
-msgid "Submit a New File"
-msgstr "Seol Comhad Nua Chugainn"
-
 msgid "Submit a New Version"
 msgstr "Seol Leagan Nua"
 
@@ -3494,6 +3503,15 @@ msgstr "Gan Léirmheas"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
 
+msgid "Remember"
+msgstr ""
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
@@ -3526,9 +3544,6 @@ msgstr ""
 
 msgid "Submission Complete"
 msgstr "Seolta"
-
-msgid "You’re done!"
-msgstr "Tá tú críochnaithe!"
 
 #, fuzzy
 msgid "Version Submitted for Review"
@@ -3567,12 +3582,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "Cuir leagan {0} in eagar"
 
-msgid "File Signed"
-msgstr "Síníodh an Comhad"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
 msgid "Version Signed"
 msgstr "Síníodh an Leagan"
 
@@ -3581,12 +3590,6 @@ msgstr ""
 
 msgid "Download {0}"
 msgstr "Íoslódáil {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr "Uaslódáil Comhad"
 
 #, fuzzy
 msgid "Go to My Submissions"
@@ -3599,7 +3602,7 @@ msgstr "Ceadúnas an Chóid Fhoinsigh"
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
 
 #, python-format
@@ -3669,10 +3672,6 @@ msgid "Upload Add-on"
 msgstr "Uaslódáil Breiseán"
 
 #, fuzzy
-msgid "Where to Host File"
-msgstr "Spriocleagan"
-
-#, fuzzy
 msgid "Where to Host Version"
 msgstr "Spriocleagan"
 
@@ -3682,7 +3681,7 @@ msgstr "Uaslódáil Leagan"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3695,9 +3694,6 @@ msgstr "Cruthaigh Do Théama Féin"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Cruthaigh Do Théama Féin"
-
-msgid "Submit File"
-msgstr "Seol Comhad"
 
 msgid "Sign Add-on"
 msgstr "Sínigh Breiseán"
@@ -3717,7 +3713,10 @@ msgstr "ainm an téama"
 msgid "Select a header image for your theme"
 msgstr ""
 
-msgid "Image height should be 200 pixels"
+msgid "Recommended height: 200 pixels"
+msgstr ""
+
+msgid "6.9MB max"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
@@ -4189,6 +4188,13 @@ msgstr "Comhoiriúnacht"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr ""
 
+#, fuzzy
+msgid "Live Testing"
+msgstr "Féach ar Leathanach an Bhreiseáin"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
+
 msgid "Transfer ownership"
 msgstr ""
 
@@ -4342,9 +4348,6 @@ msgstr "Bainistigh {0}"
 
 msgid "Files"
 msgstr "Comhaid:"
-
-msgid "Upload Another File"
-msgstr "Uaslódáil Comhad Eile"
 
 msgid "Version Notes"
 msgstr "Nótaí Eisiúna"
@@ -5469,7 +5472,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5936,6 +5939,9 @@ msgstr ""
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
@@ -6192,6 +6198,50 @@ msgstr ""
 # link title for http://en-US.www.mozilla.com/en-US/firefox/central/
 msgid "Get Started"
 msgstr "Tús Maith"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "Déan gearán faoi úsáideoir"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "Cineál Tuairisce"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "Déan Tuairisc ar Dhrochúsáid"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Gan rátáil fós"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "Síníodh an Leagan"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "Suíomh Soghluaiste"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "Seol Comhad Nua Chugainn"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "Seol Comhad Nua Chugainn"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr ""
@@ -7693,9 +7743,6 @@ msgstr "Torthaí {0} - {1} as {2} le haghaidh <strong>{3}</strong> ar taispeáin
 msgid "Showing {0} - {1} of {2} results"
 msgstr "{0} - {1} as {2} toradh ar taispeáint"
 
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
-
 msgid "Could not find add-on with id \"{}\"."
 msgstr ""
 
@@ -8188,8 +8235,9 @@ msgstr "Níl aon úsáideoir leis an seoladh ríomhphoist sin."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr ""
+#, fuzzy
+msgid "Firefox user {id}"
+msgstr "Firefox ar Android"
 
 msgid "My Mobile Add-ons"
 msgstr "Mo Chuid Breiseán Soghluaiste"

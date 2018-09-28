@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2018-03-25 14:57+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,6 +131,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "All tags must be at least {0} character."
 msgstr[1] "All tags must be at least {0} characters."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -691,6 +694,9 @@ msgstr "Reviewer Tools"
 msgid "Admin Tools"
 msgstr "Admin Tools"
 
+msgid "Positive integer"
+msgstr ""
+
 msgid "Incorrect, please try again."
 msgstr "Incorrect, please try again."
 
@@ -699,6 +705,9 @@ msgstr "Error verifying input, please try again."
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "This must be a valid hex colour code, such as #000000."
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "Some features are temporarily disabled while we perform web site maintenance. We'll be back to full capacity shortly."
 
 msgid "Not allowed"
 msgstr "Not allowed"
@@ -902,6 +911,9 @@ msgstr "Signature has expired."
 
 msgid "Error decoding signature."
 msgstr "Error decoding signature."
+
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "Invalid JWT Token."
@@ -2257,13 +2269,15 @@ msgstr ""
 msgid "Manual Reviewer Points"
 msgstr "Manual Reviewer Points"
 
-msgid "New Add-on Review"
+#, fuzzy
+msgid "New Legacy Add-on Review"
 msgstr "New Add-on Review"
 
 msgid "Preliminary Add-on Review"
 msgstr "Preliminary Add-on Review"
 
-msgid "Updated Add-on Review"
+#, fuzzy
+msgid "Updated Legacy Add-on Review"
 msgstr "Updated Add-on Review"
 
 msgid "New Dictionary Review"
@@ -2318,17 +2332,21 @@ msgstr "Add-on Review Moderation Reverted"
 msgid "Add-on Content Review"
 msgstr "Add-on Content Review"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
+#, fuzzy
+msgid "Add-on Review (Highest Risk)"
 msgstr "Post-Approval Add-on Review (Highest Risk)"
 
-msgid "Post-Approval Add-on Review (High Risk)"
+#, fuzzy
+msgid "Add-on Review (High Risk)"
 msgstr "Post-Approval Add-on Review (High Risk)"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
+#, fuzzy
+msgid "Add-on Review (Medium Risk)"
 msgstr "Post-Approval Add-on Review (Medium Risk)"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr "Post-Approval Add-on Review (Low Risk)"
+#, fuzzy
+msgid "Add-on Review (Low Risk)"
+msgstr "Add-on Review Log"
 
 msgid "Level 1"
 msgstr "Level 1"
@@ -2463,11 +2481,9 @@ msgstr "There was an error with your upload. Please try again."
 msgid "Override failed validation"
 msgstr "Override failed validation"
 
-msgid "You cannot upload any more files for this version."
-msgstr "You cannot upload any more files for this version."
-
-msgid "Version doesn't match"
-msgstr "Version doesn't match"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Need at least one compatible application."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Version {version} was uploaded before and deleted."
@@ -2484,12 +2500,6 @@ msgstr "Could not parse uploaded file."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "The platform All cannot be combined with specific platforms."
-
-msgid "A platform can only be chosen once."
-msgstr "A platform can only be chosen once."
 
 msgid "Application"
 msgstr "Application"
@@ -2516,6 +2526,9 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Categories cannot be changed while your add-on is featured."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
+msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
@@ -3345,9 +3358,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> active user"
 msgstr[1] "<strong>{0}</strong> active users"
 
-msgid "Submit a New File"
-msgstr "Submit a New File"
-
 msgid "Submit a New Version"
 msgstr "Submit a New Version"
 
@@ -3399,6 +3409,15 @@ msgstr "Notes to Reviewer:"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 
+msgid "Remember"
+msgstr ""
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "These notes will only be visible to you and our reviewers."
 
@@ -3428,9 +3447,6 @@ msgstr "More information on Add-on Distribution and Signing"
 
 msgid "Submission Complete"
 msgstr "Submission Complete"
-
-msgid "You’re done!"
-msgstr "You’re done!"
 
 msgid "Version Submitted for Review"
 msgstr "Version Submitted for Review"
@@ -3466,12 +3482,6 @@ msgstr "You can also edit this version to add version notes, or source code if y
 msgid "Edit version {0}"
 msgstr "Edit version {0}"
 
-msgid "File Signed"
-msgstr "File Signed"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-
 msgid "Version Signed"
 msgstr "Version Signed"
 
@@ -3480,12 +3490,6 @@ msgstr "You’re done! This version is signed and ready to for self-distribution
 
 msgid "Download {0}"
 msgstr "Download {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-
-msgid "Upload File"
-msgstr "Upload File"
 
 msgid "Go to My Submissions"
 msgstr "Go to My Submissions"
@@ -3497,7 +3501,7 @@ msgstr "Source code uploaded"
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
 
 #, python-format
@@ -3566,9 +3570,6 @@ msgstr "Add-on Distribution Agreement"
 msgid "Upload Add-on"
 msgstr "Upload Add-on"
 
-msgid "Where to Host File"
-msgstr "Where to Host File"
-
 msgid "Where to Host Version"
 msgstr "Where to Host Version"
 
@@ -3578,7 +3579,8 @@ msgstr "Upload Version"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "Which platforms is this file compatible with?"
 
 msgid "Administrative overrides"
@@ -3589,9 +3591,6 @@ msgstr "Create a Theme Version"
 
 msgid "Create a Theme"
 msgstr "Create a Theme"
-
-msgid "Submit File"
-msgstr "Submit File"
 
 msgid "Sign Add-on"
 msgstr "Sign Add-on"
@@ -3608,8 +3607,12 @@ msgstr "Theme name"
 msgid "Select a header image for your theme"
 msgstr "Select a header image for your theme"
 
-msgid "Image height should be 200 pixels"
+#, fuzzy
+msgid "Recommended height: 200 pixels"
 msgstr "Image height should be 200 pixels"
+
+msgid "6.9MB max"
+msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG or GIF (not animated)"
@@ -4065,6 +4068,13 @@ msgstr "Compatibility Test"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Check to see if your extension is compatible with Firefox."
 
+#, fuzzy
+msgid "Live Testing"
+msgstr "View Listing"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
+
 msgid "Transfer ownership"
 msgstr "Transfer ownership"
 
@@ -4223,9 +4233,6 @@ msgstr "Manage {0}"
 
 msgid "Files"
 msgstr "Files"
-
-msgid "Upload Another File"
-msgstr "Upload Another File"
 
 msgid "Version Notes"
 msgstr "Version Notes"
@@ -5457,7 +5464,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5970,6 +5977,9 @@ msgstr "Version numbers should only contain letters, numbers, and these punctuat
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "WebExtension theme uploads are currently not supported."
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr "You cannot submit this type of add-on"
 
@@ -6222,6 +6232,50 @@ msgstr "Unlock early access to experimental browser features."
 
 msgid "Get Started"
 msgstr "Get Started"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "Site Status "
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "Report Type"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "Report a bug"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Not yet rated"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "Version Submitted"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "View the new site"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "Submit a New File"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "Submit a New File"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "About Mozilla Add-ons"
@@ -7647,9 +7701,6 @@ msgstr "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Showing {0} - {1} of {2} results"
 
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Some features are temporarily disabled while we perform web site maintenance. We'll be back to full capacity shortly."
-
 msgid "Could not find add-on with id \"{}\"."
 msgstr "Could not find add-on with id \"{}\"."
 
@@ -8146,8 +8197,9 @@ msgstr "No user with that email."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr "Anonymous user {id}"
+#, fuzzy
+msgid "Firefox user {id}"
+msgstr "Firefox for Android"
 
 msgid "My Mobile Add-ons"
 msgstr "My Mobile Add-ons"

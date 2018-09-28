@@ -35,7 +35,7 @@ def test_legacy_extensions_do_not_load(base_url, selenium):
 @pytest.mark.parametrize('category, sort_attr', [
     ['Most Users', 'users'],
     ['Top Rated', 'rating']])
-def test_sorting_by(base_url, selenium, es_test, category, sort_attr):
+def test_sorting_by(base_url, selenium, category, sort_attr):
     """Test searching for an addon and sorting."""
     Home(selenium, base_url).open()
     addon_name = 'Ui-addon'

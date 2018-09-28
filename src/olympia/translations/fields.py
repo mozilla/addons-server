@@ -191,10 +191,6 @@ class LinkifiedField(TranslatedField):
     to = 'translations.LinkifiedTranslation'
 
 
-class NoLinksField(TranslatedField):
-    to = 'translations.NoLinksTranslation'
-
-
 class NoLinksNoMarkupField(TranslatedField):
     to = 'translations.NoLinksNoMarkupTranslation'
 

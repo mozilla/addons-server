@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2018-06-29 16:27+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -150,6 +150,9 @@ msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -766,6 +769,9 @@ msgstr "Developer"
 msgid "Admin Tools"
 msgstr ""
 
+msgid "Positive integer"
+msgstr ""
+
 msgid "Incorrect, please try again."
 msgstr ""
 
@@ -773,6 +779,9 @@ msgid "Error verifying input, please try again."
 msgstr ""
 
 msgid "This must be a valid hex color code, such as #000000."
+msgstr ""
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
 
 msgid "Not allowed"
@@ -973,6 +982,9 @@ msgid "Signature has expired."
 msgstr ""
 
 msgid "Error decoding signature."
+msgstr ""
+
+msgid "Wrong type for one or more keys in payload"
 msgstr ""
 
 msgid "Invalid JWT Token."
@@ -2360,14 +2372,15 @@ msgid "Manual Reviewer Points"
 msgstr ""
 
 #, fuzzy
-msgid "New Add-on Review"
+msgid "New Legacy Add-on Review"
 msgstr "Review"
 
 msgid "Preliminary Add-on Review"
 msgstr ""
 
-msgid "Updated Add-on Review"
-msgstr ""
+#, fuzzy
+msgid "Updated Legacy Add-on Review"
+msgstr "Review"
 
 # Plural in this context means many of the add-on type
 #, fuzzy
@@ -2426,17 +2439,21 @@ msgstr ""
 msgid "Add-on Content Review"
 msgstr "Review"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Highest Risk)"
+msgstr "Review"
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (High Risk)"
+msgstr "Review"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Medium Risk)"
+msgstr "Review"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Low Risk)"
+msgstr "Review"
 
 msgid "Level 1"
 msgstr ""
@@ -2571,10 +2588,7 @@ msgstr ""
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr ""
-
-msgid "Version doesn't match"
+msgid "Need to select at least one application."
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -2590,12 +2604,6 @@ msgid "You have not uploaded a source file."
 msgstr ""
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
-
-msgid "A platform can only be chosen once."
 msgstr ""
 
 msgid "Application"
@@ -2620,6 +2628,9 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
+msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
@@ -3417,10 +3428,6 @@ msgstr[4] ""
 msgstr[5] ""
 
 #, fuzzy
-msgid "Submit a New File"
-msgstr "New Version"
-
-#, fuzzy
 msgid "Submit a New Version"
 msgstr "New Version"
 
@@ -3477,6 +3484,15 @@ msgstr "Review"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
 
+msgid "Remember"
+msgstr ""
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
@@ -3508,9 +3524,6 @@ msgid "More information on Add-on Distribution and Signing"
 msgstr ""
 
 msgid "Submission Complete"
-msgstr ""
-
-msgid "You’re done!"
 msgstr ""
 
 msgid "Version Submitted for Review"
@@ -3550,13 +3563,6 @@ msgid "Edit version {0}"
 msgstr ""
 
 #, fuzzy
-msgid "File Signed"
-msgstr "Version"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
-#, fuzzy
 msgid "Version Signed"
 msgstr "Version"
 
@@ -3564,12 +3570,6 @@ msgid "You’re done! This version is signed and ready to for self-distribution.
 msgstr ""
 
 msgid "Download {0}"
-msgstr ""
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
 msgstr ""
 
 msgid "Go to My Submissions"
@@ -3582,7 +3582,7 @@ msgstr "Source Code License"
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
 
 #, python-format
@@ -3650,9 +3650,6 @@ msgstr ""
 msgid "Upload Add-on"
 msgstr "Fy Ychwanegion"
 
-msgid "Where to Host File"
-msgstr ""
-
 msgid "Where to Host Version"
 msgstr ""
 
@@ -3663,7 +3660,7 @@ msgstr "Application Versions"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3678,10 +3675,6 @@ msgstr "Created by Me"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Created by Me"
-
-#, fuzzy
-msgid "Submit File"
-msgstr "New Version"
 
 #, fuzzy
 msgid "Sign Add-on"
@@ -3699,7 +3692,10 @@ msgstr ""
 msgid "Select a header image for your theme"
 msgstr ""
 
-msgid "Image height should be 200 pixels"
+msgid "Recommended height: 200 pixels"
+msgstr ""
+
+msgid "6.9MB max"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
@@ -4150,6 +4146,13 @@ msgstr ""
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr ""
 
+#, fuzzy
+msgid "Live Testing"
+msgstr "View Listing"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
+
 msgid "Transfer ownership"
 msgstr ""
 
@@ -4302,9 +4305,6 @@ msgid "Manage {0}"
 msgstr "Manage {0}"
 
 msgid "Files"
-msgstr ""
-
-msgid "Upload Another File"
 msgstr ""
 
 msgid "Version Notes"
@@ -5429,7 +5429,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5896,6 +5896,9 @@ msgstr ""
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
@@ -6148,6 +6151,46 @@ msgid "Unlock early access to experimental browser features."
 msgstr ""
 
 msgid "Get Started"
+msgstr ""
+
+msgid "Reported Status"
+msgstr ""
+
+msgid "Reported Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Reported Ham"
+msgstr ""
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Heb ei raddio eto"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "Version"
+
+msgid "View Rating on site"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "New Version"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "New Version"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
 msgstr ""
 
 msgid "About Mozilla Add-ons"
@@ -7647,9 +7690,6 @@ msgstr "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Showing {0} - {1} of {2} results"
 
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
-
 msgid "Could not find add-on with id \"{}\"."
 msgstr ""
 
@@ -8134,7 +8174,7 @@ msgstr ""
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
+msgid "Firefox user {id}"
 msgstr ""
 
 msgid "My Mobile Add-ons"

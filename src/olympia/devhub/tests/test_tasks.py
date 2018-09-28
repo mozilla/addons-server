@@ -13,6 +13,7 @@ from django.core.files.storage import default_storage as storage
 
 import mock
 import pytest
+from waffle.testutils import override_switch
 
 from PIL import Image
 
@@ -510,7 +511,7 @@ class TestValidateFilePath(ValidatorTestCase):
 
     def test_amo_validator_success(self):
         result = tasks.validate_file_path(
-            get_addon_file('valid_firefox_addon.xpi'),
+            None, get_addon_file('valid_firefox_addon.xpi'),
             hash_=None, listed=True)
         assert result['success']
         assert not result['errors']
@@ -518,7 +519,7 @@ class TestValidateFilePath(ValidatorTestCase):
 
     def test_amo_validator_fail_warning(self):
         result = tasks.validate_file_path(
-            get_addon_file('invalid_firefox_addon_warning.xpi'),
+            None, get_addon_file('invalid_firefox_addon_warning.xpi'),
             hash_=None, listed=True)
         assert not result['success']
         assert not result['errors']
@@ -526,7 +527,7 @@ class TestValidateFilePath(ValidatorTestCase):
 
     def test_amo_validator_fail_error(self):
         result = tasks.validate_file_path(
-            get_addon_file('invalid_firefox_addon_error.xpi'),
+            None, get_addon_file('invalid_firefox_addon_error.xpi'),
             hash_=None, listed=True)
         assert not result['success']
         assert result['errors']
@@ -534,7 +535,7 @@ class TestValidateFilePath(ValidatorTestCase):
 
     def test_amo_validator_addons_linter_success(self):
         result = tasks.validate_file_path(
-            get_addon_file('valid_webextension.xpi'),
+            None, get_addon_file('valid_webextension.xpi'),
             hash_=None, listed=True, is_webextension=True)
         assert result['success']
         assert not result['errors']
@@ -544,7 +545,7 @@ class TestValidateFilePath(ValidatorTestCase):
         # This test assumes that `amo-validator` doesn't correctly
         # validate a invalid id in manifest.json
         result = tasks.validate_file_path(
-            get_addon_file('invalid_webextension_invalid_id.xpi'),
+            None, get_addon_file('invalid_webextension_invalid_id.xpi'),
             hash_=None, listed=True, is_webextension=True)
         assert not result['success']
         assert result['errors']
@@ -1080,6 +1081,41 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
             data.copy(), is_new_upload=True)
         assert results['errors'] == 0
 
+    @override_switch('disallow-legacy-submissions', active=True)
+    def test_legacy_submissions_disabled(self):
+        file_ = get_addon_file('valid_firefox_addon.xpi')
+        upload = FileUpload.objects.create(path=file_)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 1
+        expected = ['validation', 'messages', 'legacy_addons_unsupported']
+        assert upload.processed_validation['messages'][0]['id'] == expected
+        assert not upload.valid
+
+    @override_switch('disallow-legacy-submissions', active=True)
+    def test_legacy_updates_disabled(self):
+        file_ = get_addon_file('valid_firefox_addon.xpi')
+        addon = addon_factory(version_kw={'version': '0.1'})
+        upload = FileUpload.objects.create(path=file_, addon=addon)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 1
+        expected = ['validation', 'messages', 'legacy_addons_unsupported']
+        assert upload.processed_validation['messages'][0]['id'] == expected
+        assert not upload.valid
+
+    @override_switch('disallow-legacy-submissions', active=True)
+    def test_submit_webextension_okay_after_legacy_unsupported(self):
+        self.test_submit_webextension()
+
+    @override_switch('disallow-legacy-submissions', active=True)
+    def test_submit_non_extension_okay_after_legacy_unsupported(self):
+        self.test_submit_non_extension()
+
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
 def test_send_welcome_email(send_html_mail_jinja_mock):
@@ -1160,7 +1196,7 @@ class TestCreateVersionForUpload(TestCase):
         self.create_version_for_upload(self.addon, newer_upload,
                                        amo.RELEASE_CHANNEL_LISTED)
         self.mocks['Version.from_upload'].assert_called_with(
-            newer_upload, self.addon, [amo.PLATFORM_ALL.id],
+            newer_upload, self.addon, [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.mocks['parse_addon'].return_value)
 
@@ -1196,7 +1232,7 @@ class TestCreateVersionForUpload(TestCase):
         self.mocks['parse_addon'].assert_called_with(
             upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(
-            upload, self.addon, [amo.PLATFORM_ALL.id],
+            upload, self.addon, [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.mocks['parse_addon'].return_value)
 
@@ -1207,7 +1243,7 @@ class TestCreateVersionForUpload(TestCase):
         self.mocks['parse_addon'].assert_called_with(
             upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(
-            upload, self.addon, [amo.PLATFORM_ALL.id],
+            upload, self.addon, [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.mocks['parse_addon'].return_value)
 
@@ -1218,7 +1254,7 @@ class TestCreateVersionForUpload(TestCase):
         self.mocks['parse_addon'].assert_called_with(
             upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(
-            upload, self.addon, [amo.PLATFORM_ALL.id],
+            upload, self.addon, [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.mocks['parse_addon'].return_value)
 

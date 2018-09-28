@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
-"PO-Revision-Date: 2018-08-16 14:05+0000\n"
-"Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"PO-Revision-Date: 2018-09-27 00:54+0000\n"
+"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -127,6 +127,9 @@ msgstr "移除无效字符后，所有标签都必须少于或等于 %s 字符�
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "所有标签至少要包含 {0} 个字符。"
+
+msgid "The text entered has been flagged as spam."
+msgstr "输入的文本已被标记为垃圾留言。"
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -652,7 +655,7 @@ msgid "My Favorites"
 msgstr "我最喜爱"
 
 msgid "Log out"
-msgstr "退出登录"
+msgstr "退出"
 
 msgid "Manage My Submissions"
 msgstr "管理我的提交"
@@ -675,6 +678,9 @@ msgstr "审核员工具"
 msgid "Admin Tools"
 msgstr "管理工具"
 
+msgid "Positive integer"
+msgstr "正整数"
+
 msgid "Incorrect, please try again."
 msgstr "不正确，请重试。"
 
@@ -683,6 +689,9 @@ msgstr "验证输入出错，请重试。"
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "这里必须是一个有效的十六进制颜色代码，例如 #000000。"
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "在我们进行网站维护时，某些功能会被暂时禁用。我们将很快恢复全部功能。"
 
 msgid "Not allowed"
 msgstr "不被允许"
@@ -881,6 +890,9 @@ msgstr "签名已过期。"
 
 msgid "Error decoding signature."
 msgstr "解码签名出错。"
+
+msgid "Wrong type for one or more keys in payload"
+msgstr "有效载荷（payload）中的一个或多个密钥类型错误"
 
 msgid "Invalid JWT Token."
 msgstr "无效的 JWT 令牌。"
@@ -1118,7 +1130,7 @@ msgid "Yes"
 msgstr "是"
 
 msgid "No"
-msgstr "取消"
+msgstr "否"
 
 #. {0} is the name of the collection.
 msgid "Edit {0}"
@@ -2208,14 +2220,14 @@ msgstr "极好 (3)"
 msgid "Manual Reviewer Points"
 msgstr "人工审核员点数"
 
-msgid "New Add-on Review"
-msgstr "新附加组件审核"
+msgid "New Legacy Add-on Review"
+msgstr "传统附加组件新增审核"
 
 msgid "Preliminary Add-on Review"
 msgstr "初步附加组件审核"
 
-msgid "Updated Add-on Review"
-msgstr "已更新附加组件审核"
+msgid "Updated Legacy Add-on Review"
+msgstr "传统附加组件更新审核"
 
 msgid "New Dictionary Review"
 msgstr "新字典审核"
@@ -2268,17 +2280,17 @@ msgstr "已还原附加组件评价仲裁"
 msgid "Add-on Content Review"
 msgstr "附加组件内容审核"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr "先发后审附加组件审核 (最高风险)"
+msgid "Add-on Review (Highest Risk)"
+msgstr "附加组件审核 (最高风险)"
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr "先发后审附加组件审核 (高风险)"
+msgid "Add-on Review (High Risk)"
+msgstr "附加组件审核 (高风险)"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr "先发后审附加组件审核 (中风险)"
+msgid "Add-on Review (Medium Risk)"
+msgstr "附加组件审核 (中风险)"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr "先发后审附加组件审核 (低风险)"
+msgid "Add-on Review (Low Risk)"
+msgstr "附加组件审核 (低风险)"
 
 msgid "Level 1"
 msgstr "第1级"
@@ -2413,11 +2425,8 @@ msgstr "您的上传过程中发生错误，请重试。"
 msgid "Override failed validation"
 msgstr "无视验证失败"
 
-msgid "You cannot upload any more files for this version."
-msgstr "您不能再为此版本上传文件。"
-
-msgid "Version doesn't match"
-msgstr "版本不匹配"
+msgid "Need to select at least one application."
+msgstr "需要选择至少一个应用程序。"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "版本 {version} 此前已上传并已删除。"
@@ -2433,12 +2442,6 @@ msgstr "您尚未上传源文件。"
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "源文件已上传，但您标明无需源文件。"
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "不能既选择所有平台又指定特定平台。"
-
-msgid "A platform can only be chosen once."
-msgstr "一个平台只能被选择一次。"
 
 msgid "Application"
 msgstr "应用程序"
@@ -2462,6 +2465,9 @@ msgstr "您的附加组件列入精选时，不能更改分类。"
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "即日起，Thunderbird 与 SeaMonkey 的附加组件将上架于 addons.thunderbird.net 。您可以在该网站上使用相同账号登录更新您的附加组件。"
+
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr "Firefox 已不再支持旧式扩展。"
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "从 Firefox 53 开始，新上架至此网站的扩展仅能为 WebExtension。"
@@ -3228,9 +3234,6 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> 位活跃用户"
 
-msgid "Submit a New File"
-msgstr "提交新文件"
-
 msgid "Submit a New Version"
 msgstr "提交新版本"
 
@@ -3282,6 +3285,15 @@ msgstr "给审核员的备注："
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "对我们审核此附加组件，有什么备注说明吗？"
 
+msgid "Remember"
+msgstr "记住"
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr "根据%(policy_requirements_open)s政策要求%(policy_requirements_close)s，若您提交了源代码但未包含操作说明，则必须在此处提供。请在此输入创建附加组件精确副本的代码逐步构建说明。"
+
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "此备注只有您和我们的审核员能看到。"
 
@@ -3311,9 +3323,6 @@ msgstr "附加组件分发和签名的更多信息"
 
 msgid "Submission Complete"
 msgstr "提交完成"
-
-msgid "You’re done!"
-msgstr "完成了！"
 
 msgid "Version Submitted for Review"
 msgstr "版本已提交供审核"
@@ -3348,12 +3357,6 @@ msgstr "您还可以编辑此版本，为您刚刚的提交添加版本说明、
 msgid "Edit version {0}"
 msgstr "编辑版本 {0}"
 
-msgid "File Signed"
-msgstr "文件已签名"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "完成了！此文件已经签名并准备好自行分发。您可以点击下面的按钮下载它。"
-
 msgid "Version Signed"
 msgstr "版本已签名"
 
@@ -3362,12 +3365,6 @@ msgstr "完成了！此版本已经签名并准备好自行分发。您可以点
 
 msgid "Download {0}"
 msgstr "下载 {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "您的此次提交仅选择了部分可用的平台。您可以上传更多适用于其他平台的文件："
-
-msgid "Upload File"
-msgstr "上传文件"
 
 msgid "Go to My Submissions"
 msgstr "转至我的提交"
@@ -3378,7 +3375,7 @@ msgstr "源代码上传"
 msgid "Do You Need to Submit Source Code?"
 msgstr "您需要提交源代码吗？"
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr "您可能需要提交源代码。如果您不提交正确的源代码，您的附加组件可能在本网站上下架！"
 
 #, python-format
@@ -3411,7 +3408,7 @@ msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which i
 msgstr "源代码必须符合<a %(a_attrs)s>政策的要求</a>，包含下列项目："
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
-msgstr "创建附加组件精确副本的逐步构建说明。"
+msgstr "创建附加组件精确副本的代码逐步构建说明。"
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "一个可以执行所有必要技术步骤的构建脚本。"
@@ -3431,7 +3428,7 @@ msgid "How to Submit:"
 msgstr "如何提交："
 
 msgid "Include instructions in a README file in the source code,"
-msgstr "在源代码中的 README 文件包含用法说明，"
+msgstr "在源代码中的 README 文件包含操作说明，"
 
 msgid "or in reviewer notes on the next page (if applicable)."
 msgstr "或者写在下一页给审核者的留言中（若可行）。"
@@ -3445,9 +3442,6 @@ msgstr "附加组件分发协议"
 msgid "Upload Add-on"
 msgstr "上传附加组件"
 
-msgid "Where to Host File"
-msgstr "文件托管位置"
-
 msgid "Where to Host Version"
 msgstr "版本托管位置"
 
@@ -3457,8 +3451,8 @@ msgstr "上传版本"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "使用下面的按钮上传您的附加组件包。在上传完成后，将会对您的文件执行一系列自动化验证测试。"
 
-msgid "Which platforms is this file compatible with?"
-msgstr "此文件与哪个平台兼容？"
+msgid "Which applications is this version compatible with?"
+msgstr "此版本与哪个（些）应用程序兼容？"
 
 msgid "Administrative overrides"
 msgstr "管理覆盖"
@@ -3468,9 +3462,6 @@ msgstr "创建新版主题"
 
 msgid "Create a Theme"
 msgstr "创建一个主题"
-
-msgid "Submit File"
-msgstr "提交文件"
 
 msgid "Sign Add-on"
 msgstr "签名附加组件"
@@ -3487,8 +3478,11 @@ msgstr "主题名称"
 msgid "Select a header image for your theme"
 msgstr "为您的主题选择一个标题图片"
 
-msgid "Image height should be 200 pixels"
-msgstr "图像高度应为 200 像素"
+msgid "Recommended height: 200 pixels"
+msgstr "建议高度：200px"
+
+msgid "6.9MB max"
+msgstr "最大 6.9MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG、JPG、APNG、SVG 或 GIF (无动画)"
@@ -3869,7 +3863,7 @@ msgid "Docs"
 msgstr "文档"
 
 msgid "Sign Out"
-msgstr "退出登录"
+msgstr "退出"
 
 msgid "No Photo"
 msgstr "无照片"
@@ -3923,6 +3917,12 @@ msgstr "兼容性测试"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "检查您的扩展是否兼容 Firefox。"
+
+msgid "Live Testing"
+msgstr "实时测试"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr "在 Firefox 中临时安装您的扩展以进行实时测试和调试。"
 
 msgid "Transfer ownership"
 msgstr "变更所有权"
@@ -4077,9 +4077,6 @@ msgstr "管理 {0}"
 
 msgid "Files"
 msgstr "文件"
-
-msgid "Upload Another File"
-msgstr "上传其他文件"
 
 msgid "Version Notes"
 msgstr "版本说明"
@@ -5189,8 +5186,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "享受全球各地音乐 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "收听全球各地超过 20000 个广播电台。"
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "收听全球各地超过 30000 个广播电台。"
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5656,6 +5653,9 @@ msgstr "版本号只能包含英文字母、数字以及这些标点符号：+*.
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "目前暂不支持 WebExtension 主题的上传。"
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr "WebExtension 主题的大小限制为 {0}。"
+
 msgid "You cannot submit this type of add-on"
 msgstr "您不能提交此类型的附加组件"
 
@@ -5908,6 +5908,42 @@ msgstr "更早的体验实验性的浏览器功能。"
 
 msgid "Get Started"
 msgstr "入门指南"
+
+msgid "Reported Status"
+msgstr "回报状态"
+
+msgid "Reported Spam"
+msgstr "已回报为垃圾留言"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Reported Ham"
+msgstr "已回报为正常留言"
+
+msgid "Not Reported"
+msgstr "尚未回报"
+
+msgid "Content Submitted"
+msgstr "提交的内容"
+
+msgid "View Rating on site"
+msgstr "查看网站上的评分"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+msgid "Submit Ham to Akismet"
+msgstr "向 Akismet 回报为正常留言"
+
+msgid "Submit Spam to Akismet"
+msgstr "向 Akismet 回报为垃圾留言"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr "已将 %s 正常留言回报提交为垃圾留言"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr "已将 %s 垃圾留言回报提交为正常留言"
 
 msgid "About Mozilla Add-ons"
 msgstr "关于 Mozilla 附加组件"
@@ -7284,9 +7320,6 @@ msgstr "包含 <strong>{3}</strong> 的结果共有 {2} 项，显示第 {0} - {1
 msgid "Showing {0} - {1} of {2} results"
 msgstr "共有 {2} 项结果，显示 {0} - {1} 项"
 
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "在我们进行网站维护时，某些功能会被暂时禁用。我们将很快恢复全部功能。"
-
 msgid "Could not find add-on with id \"{}\"."
 msgstr "未能找到 ID 为 \"{}\" 的附加组件。"
 
@@ -7774,8 +7807,8 @@ msgstr "那个邮件地址没有用户。"
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr "匿名用户 {id}"
+msgid "Firefox user {id}"
+msgstr "Firefox 用户 {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "我的移动版附加组件"

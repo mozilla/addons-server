@@ -27,7 +27,7 @@ def login_required(f=None, redirect=True):
         def wrapper(request, *args, **kw):
             # Prevent circular ref in accounts.utils
             from olympia.accounts.utils import redirect_for_login
-            if request.user.is_authenticated():
+            if request.user.is_authenticated:
                 return func(request, *args, **kw)
             else:
                 if redirect:
@@ -172,7 +172,7 @@ def allow_mine(f):
         # Prevent circular ref in accounts.utils
         from olympia.accounts.utils import redirect_for_login
         if username == 'mine':
-            if not request.user.is_authenticated():
+            if not request.user.is_authenticated:
                 return redirect_for_login(request)
             username = request.user.username
         return f(request, username, *args, **kw)

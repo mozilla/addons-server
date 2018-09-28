@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-14 15:24+0000\n"
+"POT-Creation-Date: 2018-09-25 06:38+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -133,6 +133,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Све ознаке морају садржати најмање {0} карактер."
 msgstr[1] "Све ознаке морају садржати најмање {0} карактера."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -708,6 +711,9 @@ msgstr "Рецензенти"
 msgid "Admin Tools"
 msgstr "Алати администратора"
 
+msgid "Positive integer"
+msgstr ""
+
 msgid "Incorrect, please try again."
 msgstr ""
 
@@ -716,6 +722,9 @@ msgstr ""
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Морате унети исправну хексадецималну шифру боје, као што је #000000."
+
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "Неке функције су привремено онемогућене док вршимо одржавање веб сајта. Ми ћемо се вратити у пуном капацитету ускоро."
 
 msgid "Not allowed"
 msgstr "Није допуштено"
@@ -925,6 +934,9 @@ msgid "Signature has expired."
 msgstr ""
 
 msgid "Error decoding signature."
+msgstr ""
+
+msgid "Wrong type for one or more keys in payload"
 msgstr ""
 
 msgid "Invalid JWT Token."
@@ -2352,13 +2364,14 @@ msgid "Manual Reviewer Points"
 msgstr "Поени самосталног рецензента"
 
 #, fuzzy
-msgid "New Add-on Review"
+msgid "New Legacy Add-on Review"
 msgstr "Пуна рецензија додатка"
 
 msgid "Preliminary Add-on Review"
 msgstr "Прелиминарна рецензија додатка"
 
-msgid "Updated Add-on Review"
+#, fuzzy
+msgid "Updated Legacy Add-on Review"
 msgstr "Ажурирана рецензија додатка"
 
 #, fuzzy
@@ -2420,17 +2433,21 @@ msgstr "Модерација рецензије додатка је поништ
 msgid "Add-on Content Review"
 msgstr "Извршити рецензију"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Highest Risk)"
+msgstr "Пуна рецензија додатка"
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (High Risk)"
+msgstr "Дневник рецензија додатка"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Medium Risk)"
+msgstr "Пуна рецензија додатка"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr ""
+#, fuzzy
+msgid "Add-on Review (Low Risk)"
+msgstr "Дневник рецензија додатка"
 
 msgid "Level 1"
 msgstr "Ниво 1"
@@ -2565,11 +2582,9 @@ msgstr "Дошло је до грешке током отпремања. Мол�
 msgid "Override failed validation"
 msgstr "Препис није прешао валидацију"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Не можете више датотека отпремити за ову верзију."
-
-msgid "Version doesn't match"
-msgstr "Верзије се не поклапају"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Потребна је најмање једна компатибилна апликација."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2587,12 +2602,6 @@ msgstr "Није могуће рашчланити отпремљену дато
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Платформа Све не може се укомбиновати са одређеним платформама."
-
-msgid "A platform can only be chosen once."
-msgstr "Платформа се може само једном изабрати."
 
 msgid "Application"
 msgstr "Апликација"
@@ -2617,6 +2626,9 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Категорије се не могу изменити док је Ваш додатак издвојен за ову апликацију."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
+msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
@@ -3419,10 +3431,6 @@ msgstr[0] "<strong>{0}</strong> корисник"
 msgstr[1] "<strong>{0}</strong> корисника"
 
 #, fuzzy
-msgid "Submit a New File"
-msgstr "Поднеси нову тему"
-
-#, fuzzy
 msgid "Submit a New Version"
 msgstr "Поднеси нови додатак"
 
@@ -3483,6 +3491,15 @@ msgstr "Подаци за прегледаче"
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
 
+msgid "Remember"
+msgstr ""
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
+
 #, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "URL ће бити само видљив ако сте програмер."
@@ -3517,10 +3534,6 @@ msgstr ""
 
 msgid "Submission Complete"
 msgstr "Подношење завршено"
-
-#, fuzzy
-msgid "You’re done!"
-msgstr "Готови сте!"
 
 #, fuzzy
 msgid "Version Submitted for Review"
@@ -3561,13 +3574,6 @@ msgid "Edit version {0}"
 msgstr "Бета верзија {0}"
 
 #, fuzzy
-msgid "File Signed"
-msgstr "Белешке о верзији"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
-#, fuzzy
 msgid "Version Signed"
 msgstr "Белешке о верзији"
 
@@ -3576,13 +3582,6 @@ msgstr ""
 
 msgid "Download {0}"
 msgstr "Преузми {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-#, fuzzy
-msgid "Upload File"
-msgstr "Постави још једну датотеку"
 
 #, fuzzy
 msgid "Go to My Submissions"
@@ -3595,7 +3594,7 @@ msgstr "Изворни код"
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
 
-msgid "You may need to submit source code. If you don’t submit the correct source code now, your add-on may be removed from the site!"
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
 
 #, python-format
@@ -3666,10 +3665,6 @@ msgid "Upload Add-on"
 msgstr "Поставите Ваш додатак"
 
 #, fuzzy
-msgid "Where to Host File"
-msgstr "Циљана верзија"
-
-#, fuzzy
 msgid "Where to Host Version"
 msgstr "Циљана верзија"
 
@@ -3683,7 +3678,7 @@ msgstr ""
 "Искористите поља испод да бисте отпремили Ваш пакет са додатком и одаберите било која ограничења платформе. Након постављања, низ аутоматизованих тестова за проверу ваљаности ће бити покренути на "
 "Вашој датотеци."
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3696,10 +3691,6 @@ msgstr "Направи нову тему"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Направи нову тему"
-
-#, fuzzy
-msgid "Submit File"
-msgstr "Поднеси нову тему"
 
 #, fuzzy
 msgid "Sign Add-on"
@@ -3721,7 +3712,10 @@ msgstr "назив теме"
 msgid "Select a header image for your theme"
 msgstr "Изаберите слику заглавља за Вашу тему."
 
-msgid "Image height should be 200 pixels"
+msgid "Recommended height: 200 pixels"
+msgstr ""
+
+msgid "6.9MB max"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
@@ -4206,6 +4200,13 @@ msgstr "Тестови компатибилности"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr ""
 
+#, fuzzy
+msgid "Live Testing"
+msgstr "Погледај листинг"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
+
 msgid "Transfer ownership"
 msgstr "Пренеси власништво"
 
@@ -4359,9 +4360,6 @@ msgstr "Управљај са {0}"
 
 msgid "Files"
 msgstr "Датотеке"
-
-msgid "Upload Another File"
-msgstr "Постави још једну датотеку"
 
 msgid "Version Notes"
 msgstr "Белешке о верзији"
@@ -5488,7 +5486,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5955,6 +5953,9 @@ msgstr "Број верзије ви требало да садржи само �
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
+
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
@@ -6213,6 +6214,50 @@ msgstr ""
 #, fuzzy
 msgid "Get Started"
 msgstr "Како почети"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "Пријавите корисника"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "Тип извештаја"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "Пријави злоупотребу"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Није још оцењено"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "Белешке о верзији"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "Сајт за мобилне уређаје"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "Поднеси нову тему"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "Поднеси нову тему"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "О Mozilla додацима"
@@ -7694,9 +7739,6 @@ msgstr "Приказано је {0} - {1} од {2} резултата за <stro
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Приказано је {0} - {1} од {2} резултата"
 
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Неке функције су привремено онемогућене док вршимо одржавање веб сајта. Ми ћемо се вратити у пуном капацитету ускоро."
-
 msgid "Could not find add-on with id \"{}\"."
 msgstr ""
 
@@ -8194,8 +8236,9 @@ msgstr "Нема корисника са том адресом е-поште."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr ""
+#, fuzzy
+msgid "Firefox user {id}"
+msgstr "Firefox за Android"
 
 msgid "My Mobile Add-ons"
 msgstr "Моји додаци за мобилне"

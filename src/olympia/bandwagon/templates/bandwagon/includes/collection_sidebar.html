@@ -1,6 +1,6 @@
 <div class="other-categories highlight">
   <h3><a href="{{ url('collections.list') }}">{{ _('Collections') }}</a></h3>
-  {% if request.user.is_authenticated() %}
+  {% if request.user.is_authenticated %}
     <ul>
       <li id="p-mine">
         <a href="{{ url('collections.user', user.username) }}">
