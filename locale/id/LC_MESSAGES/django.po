@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2018-09-28 18:25+0000\n"
+"PO-Revision-Date: 2018-09-29 08:51+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4714,7 +4714,7 @@ msgstr "Memuat ulang tab {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "Mulai ulang tab secara otomatis berdasarkan interval waktu yang Anda atur."
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4794,7 +4794,7 @@ msgstr "Penerjemahan kilat {start_sub_heading}dengan {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "Terjemahkan teks yang disorot atau seluruh bagian laman"
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4802,7 +4802,7 @@ msgstr "Tingkatkan Reddit {start_sub_heading}dengan {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Ubah cara Anda berselancar di Reddit dengan menggunakan tag dan yang lainnya."
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4830,11 +4830,11 @@ msgstr "Selancar secara anonim {start_sub_heading}dengan {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Jelajahi web dengan identitas tersembunyi—bahkan tampak seakan-akan Anda menjelajah dari negara lain."
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Akses situs favorit Anda, tab yang baru saja ditutup, dan lainnya—semuanya dari tata letak serupa ubin yang cantik."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4866,7 +4866,7 @@ msgstr "Tangkap konten web {start_sub_heading}dengan {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Simpan informasi dari internet ke OneNote sehingga Anda bisa mengedit, membubuhi keterangan, dan yang lainnya."
 
 #. editorial content for the discovery pane.
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5082,7 +5082,7 @@ msgstr "Tutup lokasi Anda {start_sub_heading}dengan {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr ""
+msgstr "Sembunyikan lokasi Anda untuk menanggalkan pelacak dan melindungi privasi Anda."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
