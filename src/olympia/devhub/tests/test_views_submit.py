@@ -503,9 +503,10 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
-        assert len(previews) == 2
+        assert len(previews) == 3
         assert storage.exists(previews[0].image_path)
         assert storage.exists(previews[1].image_path)
+        assert storage.exists(previews[2].image_path)
 
     @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_submit_unlisted(self):
@@ -551,9 +552,10 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
-        assert len(previews) == 2
+        assert len(previews) == 3
         assert storage.exists(previews[0].image_path)
         assert storage.exists(previews[1].image_path)
+        assert storage.exists(previews[2].image_path)
 
     @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_unlisted(self):
@@ -1647,8 +1649,9 @@ class VersionSubmitUploadMixin(object):
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
         if self.channel == amo.RELEASE_CHANNEL_LISTED:
             previews = list(version.previews.all())
-            assert len(previews) == 2
+            assert len(previews) == 3
             assert storage.exists(previews[0].image_path)
+            assert storage.exists(previews[1].image_path)
             assert storage.exists(previews[1].image_path)
         else:
             assert version.previews.all().count() == 0
