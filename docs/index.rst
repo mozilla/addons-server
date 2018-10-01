@@ -19,3 +19,12 @@ Contents
    topics/install/index
    topics/development/index
    topics/third-party
+
+Archived Contents
+-----------------
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   topics/api/v3_legacy/index
