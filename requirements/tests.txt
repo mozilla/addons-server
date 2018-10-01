@@ -31,9 +31,9 @@ pytest==3.8.1 \
 pytest-django==3.4.3 \
     --hash=sha256:49e9ffc856bc6a1bec1c26c5c7b7213dff7cc8bc6b64d624c4d143d04aff0bcf \
     --hash=sha256:b379282feaf89069cb790775ab6bbbd2bd2038a68c7ef9b84a41898e0b551081
-pytest-xdist==1.23.1 \
-    --hash=sha256:7118027c5bb7178fc46db223e67e8dd123b4e3f892b555cf68a66a252b3dc348 \
-    --hash=sha256:029fbc816cee2887bf9ae6e0874256a8b707409eb54886e02df7cb1944ef101c
+pytest-xdist==1.23.2 \
+    --hash=sha256:06aa39361694c9365baaa03bec71159b59ad06c9826c6279ebba368cb3571561 \
+    --hash=sha256:1ef0d05c905cfa0c5442c90e9e350e65c6ada120e33a00a066ca51c89f5f869a
 pytest-forked==0.2 \
     --hash=sha256:f275cb48a73fc61a6710726348e1da6d68a978f0ec0c54ece5a5fae5977e5a08
 freezegun==0.3.10 \
