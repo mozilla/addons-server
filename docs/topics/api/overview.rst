@@ -257,7 +257,7 @@ guarantee 100% stability).  The `v3` API will be maintained for as long as Firef
 ESR60 is supported by Mozilla, i.e. at least June 30th 2019.
 The downside of using the `v3` API is, of course, no new cool features!
 
-The documentation for `v3` can be accessed at: http://addons-server.readthedocs.io/en/2018.05.17/topics/api/
+The documentation for `v3` can be accessed at: :ref:`v3-api-index`
 
 
 ----------------
