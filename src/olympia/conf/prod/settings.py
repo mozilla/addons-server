@@ -17,7 +17,7 @@ SEND_REAL_EMAIL = True
 
 ENV = env('ENV')
 
-API_THROTTLE = False
+API_THROTTLE = True
 
 CDN_HOST = 'https://addons.cdn.mozilla.net'
 DOMAIN = env('DOMAIN', default='addons.mozilla.org')

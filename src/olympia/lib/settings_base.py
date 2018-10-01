@@ -1798,6 +1798,10 @@ DRF_API_GATES = {
     )
 }
 
+# Change this to deactivate API throttling for views using a throttling class
+# depending on the one defined in olympia.api.throttling.
+API_THROTTLING = True
+
 REST_FRAMEWORK = {
     # Set this because the default is to also include:
     #   'rest_framework.renderers.BrowsableAPIRenderer'
