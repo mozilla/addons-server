@@ -839,7 +839,7 @@ class DetailsPageMixin(object):
 
         assert response.status_code == 200
         self.assertFormError(
-            response, 'form', '__all__',
+            response, 'form', 'name',
             'The text entered has been flagged as spam.')
 
         # the summary won't be comment_check'd because it didn't change.
@@ -2020,7 +2020,10 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
 
         assert response.status_code == 200
         self.assertFormError(
-            response, 'form', '__all__',
+            response, 'form', 'name',
+            'The text entered has been flagged as spam.')
+        self.assertFormError(
+            response, 'form', 'summary',
             'The text entered has been flagged as spam.')
 
         # The summary WILL be comment_check'd, even though it didn't change,
@@ -2036,8 +2039,7 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
         assert report.comment_type == 'product-summary'
         assert report.comment == u'Delicious Bookmarks is the official'
 
-        # After the first check was spam the second wasn't carried out.
-        comment_check_mock.assert_called_once()
+        assert comment_check_mock.call_count == 2
 
     @override_switch('akismet-spam-check', active=True)
     @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')

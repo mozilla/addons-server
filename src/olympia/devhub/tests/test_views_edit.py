@@ -334,9 +334,12 @@ class BaseTestEditBasic(BaseTestEdit):
         assert summary_report.comment_type == 'product-summary'
         assert summary_report.comment == data['summary']
 
-        comment_check_mock.assert_called_once()  # won't check twice if 1 spam
+        assert comment_check_mock.call_count == 2
         self.assertFormError(
-            response, 'form', '__all__',
+            response, 'form', 'name',
+            'The text entered has been flagged as spam.')
+        self.assertFormError(
+            response, 'form', 'summary',
             'The text entered has been flagged as spam.')
 
         # And metadata was NOT updated
@@ -1212,7 +1215,7 @@ class BaseTestEditDetails(BaseTestEdit):
         assert response.status_code == 200
 
         self.assertFormError(
-            response, 'form', '__all__',
+            response, 'form', 'description',
             'The text entered has been flagged as spam.')
 
         # Akismet check is there

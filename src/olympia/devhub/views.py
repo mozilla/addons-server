@@ -592,7 +592,7 @@ def handle_upload(filedata, request, channel, app_id=None, version_id=None,
         # doing a comment_check task call even when it's pointless because
         # there are no report ids in the list.  See tasks.validate for more.
         akismet_checks = comment_check.si(
-            [report.id for report in akismet_reports])
+            [report.id for _, report in akismet_reports])
         if submit:
             tasks.validate_and_submit(
                 addon, upload, channel=channel, pretask=akismet_checks)
