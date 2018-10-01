@@ -279,3 +279,4 @@ v4 API changelog
   On addons-dev and addons stage enviroments the previous behavior is available as `api/v4dev`. The `v4dev` api is not available on AMO production server.
   https://github.com/mozilla/addons-server/issues/9467
 * 2018-10-04: added ``is_strict_compatibility_enabled`` to discovery API ``addons.current_version`` object. This change was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/9520
+* 2018-10-04: added ``is_deleted`` to the ratings API. This change was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/9371
