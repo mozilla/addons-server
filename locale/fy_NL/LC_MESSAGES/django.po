@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"POT-Creation-Date: 2018-10-01 13:10+0000\n"
 "PO-Revision-Date: 2018-09-03 12:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5779,9 +5779,6 @@ msgstr "Ferzjenûmers meie út net mear as 32 tekens befetsje."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Ferzjenûmers meie allinnich letters, sifers en dizze ynterpunksjetekens befetsje: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "Oplaads fan WebExtension-tema’s wurde op dit stuit net stipe."
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""

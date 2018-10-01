@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"POT-Creation-Date: 2018-10-01 13:10+0000\n"
 "PO-Revision-Date: 2018-08-28 20:37+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -6047,9 +6047,6 @@ msgstr "Číslo verzie musí mať menej ako 32 znakov."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Číslo verzie môže obsahovať len čísla, písmená a nasledovné znaky: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""

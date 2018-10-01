@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"POT-Creation-Date: 2018-10-01 13:10+0000\n"
 "PO-Revision-Date: 2018-06-20 17:05+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -5928,9 +5928,6 @@ msgstr "Els números de versió haurien de tenir menys de 32 caràcters."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "El número de versió només permet lletres, números i els següents signes de puntuació: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""

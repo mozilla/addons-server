@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"POT-Creation-Date: 2018-10-01 13:10+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -5815,9 +5815,6 @@ msgstr "Numer wersji powinien zawierać mniej niż 32 znaki."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Numer wersji powinien zawierać tylko litery, cyfry i następujące znaki interpunkcyjne: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "Przesyłanie motywów WebExtension nie jest obecnie obsługiwane."
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""

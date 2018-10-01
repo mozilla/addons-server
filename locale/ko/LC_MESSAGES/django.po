@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"POT-Creation-Date: 2018-10-01 13:10+0000\n"
 "PO-Revision-Date: 2018-09-13 01:48+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -5745,9 +5745,6 @@ msgstr "버전 번호는 32 글자 미만이어야 합니다."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "버전 번호엔 문자, 숫자, 다음의 특수 기호만 들어있어야 합니다: +*.-_"
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""

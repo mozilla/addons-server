@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"POT-Creation-Date: 2018-10-01 13:10+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -5949,9 +5949,6 @@ msgstr "Број верзије би требало да буде мањи од 
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Број верзије ви требало да садржи само слова, бројеве, и ове карактере: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
