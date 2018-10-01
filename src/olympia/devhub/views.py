@@ -1424,7 +1424,6 @@ def submit_version_auto(request, addon_id, addon):
 
 
 @login_required
-@waffle.decorators.waffle_switch('allow-static-theme-uploads')
 def submit_addon_theme_wizard(request, channel):
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(
@@ -1433,7 +1432,6 @@ def submit_addon_theme_wizard(request, channel):
 
 @dev_required
 @no_admin_disabled
-@waffle.decorators.waffle_switch('allow-static-theme-uploads')
 def submit_version_theme_wizard(request, addon_id, addon, channel):
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(

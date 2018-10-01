@@ -29,7 +29,6 @@ from django.utils.translation import ugettext
 
 import flufl.lock
 import rdflib
-import waffle
 
 from signing_clients.apps import get_signer_organizational_unit_name
 
@@ -909,9 +908,6 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
                      'and these punctuation characters: +*.-_.'))
 
     if is_webextension and xpi_info.get('type') == amo.ADDON_STATICTHEME:
-        if not waffle.switch_is_active('allow-static-theme-uploads'):
-            raise forms.ValidationError(ugettext(
-                'WebExtension theme uploads are currently not supported.'))
         max_size = settings.MAX_STATICTHEME_SIZE
         if xpi_file and os.path.getsize(xpi_file.name) > max_size:
             raise forms.ValidationError(
