@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 import json
-import random
 
 from datetime import datetime, timedelta
 
 from django import test
 from django.conf import settings
-from django.test.testcases import TransactionTestCase
 from django.test.utils import override_settings
 
 import mock
@@ -20,9 +18,9 @@ from waffle.testutils import override_switch
 from olympia import amo, core
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
-from olympia.addons.models import Addon, AddonUser
+from olympia.addons.models import Addon, AddonUser, get_random_slug
 from olympia.amo.tests import (
-    TestCase, WithDynamicEndpoints, check_links, reverse_ns)
+    TestCase, WithDynamicEndpointsAndTransactions, check_links, reverse_ns)
 from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
 
@@ -435,26 +433,47 @@ class TestRobots(TestCase):
         assert 'Disallow: %s' % url in response.content
 
 
-class TestAtomicRequests(WithDynamicEndpoints, TransactionTestCase):
+class TestAtomicRequests(WithDynamicEndpointsAndTransactions):
 
     def setUp(self):
         super(TestAtomicRequests, self).setUp()
-        self.slug = 'slug-{}'.format(random.randint(1, 1000))
-        self.endpoint(self.view)
+        self.slug = get_random_slug()
 
-    def view(self, request):
-        Addon.objects.create(slug=self.slug)
-        raise RuntimeError(
-            'pretend this is an error that would roll back the transaction')
+    def _generate_view(self, method_that_will_be_tested):
+        # A view should *not* be an instancemethod of a class, it prevents
+        # attributes from being added, which in turns breaks
+        # non_atomic_requests() silently.
+        # So we generate one by returning a regular function instead.
+        def actual_view(request):
+            Addon.objects.create(slug=self.slug)
+            raise RuntimeError(
+                'pretend this is an unhandled exception happening in a view.')
+        return actual_view
 
-    def test_exception_rolls_back_transaction(self):
+    def test_post_requests_are_wrapped_in_a_transaction(self):
+        self.endpoint(self._generate_view('POST'))
         qs = Addon.objects.filter(slug=self.slug)
+        assert not qs.exists()
+        url = reverse('test-dynamic-endpoint')
         try:
             with self.assertRaises(RuntimeError):
-                self.client.get('/dynamic-endpoint', follow=True)
+                self.client.post(url)
+        finally:
             # Make sure the transaction was rolled back.
             assert qs.count() == 0
+            qs.all().delete()
+
+    def test_get_requests_are_not_wrapped_in_a_transaction(self):
+        self.endpoint(self._generate_view('GET'))
+        qs = Addon.objects.filter(slug=self.slug)
+        assert not qs.exists()
+        url = reverse('test-dynamic-endpoint')
+        try:
+            with self.assertRaises(RuntimeError):
+                self.client.get(url)
         finally:
+            # Make sure the transaction wasn't rolled back.
+            assert qs.count() == 1
             qs.all().delete()
 
 

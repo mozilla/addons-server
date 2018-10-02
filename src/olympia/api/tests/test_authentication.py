@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core import signing
+from django.urls import reverse
 from django.test import RequestFactory
 
 import jwt
@@ -189,7 +190,7 @@ class TestJWTKeyAuthProtectedView(
 
     def request(self, method, *args, **kw):
         handler = getattr(self.client, method)
-        return handler('/en-US/firefox/dynamic-endpoint', *args, **kw)
+        return handler(reverse('test-dynamic-endpoint'), *args, **kw)
 
     def jwt_request(self, token, method, *args, **kw):
         return self.request(method,

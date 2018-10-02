@@ -8,6 +8,7 @@ from django.conf import settings
 from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
+from django.db import transaction
 from django.urls import is_valid_path
 from django.http import (
     HttpResponsePermanentRedirect, HttpResponseRedirect,
@@ -190,6 +191,28 @@ class CommonMiddleware(common.CommonMiddleware):
     def process_request(self, request):
         with safe_query_string(request):
             return super(CommonMiddleware, self).process_request(request)
+
+
+class NonAtomicRequestsForSafeHttpMethodsMiddleware(MiddlewareMixin):
+    """
+    Middleware to make the view non-atomic if the HTTP method used is safe,
+    in order to avoid opening and closing a useless transaction.
+    """
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        # This uses undocumented django APIS:
+        # - transaction.get_connection() followed by in_atomic_block property,
+        #   which we need to make sure we're not messing with a transaction
+        #   that has already started (which happens in tests using the regular
+        #   TestCase class)
+        # - _non_atomic_requests(), which set the property to prevent the
+        #   transaction on the view itself. We can't use non_atomic_requests
+        #   (without the '_') as it returns a *new* view, and we can't do that
+        #   in a middleware, we need to modify it in place and return None so
+        #   that the rest of the middlewares are run.
+        is_method_safe = request.method in ('HEAD', 'GET', 'OPTIONS', 'TRACE')
+        if is_method_safe and not transaction.get_connection().in_atomic_block:
+            transaction._non_atomic_requests(view_func, using='default')
+        return None
 
 
 class ReadOnlyMiddleware(MiddlewareMixin):

@@ -834,12 +834,12 @@ class TestRatingViewSetGet(TestCase):
         cache.clear()
         with self.assertNumQueries(5):
             # 5 queries:
+            # - Two for opening and releasing a savepoint. Those only happen in
+            #   tests, because TransactionTestCase wraps things in atomic().
             # - One for the ratings count (pagination)
             # - One for the ratings themselves
             # - One for the replies (there aren't any, but we don't know
             #   that without making a query)
-            # - Two for opening and closing a transaction/savepoint
-            #   (https://github.com/mozilla/addons-server/issues/3610)
             #
             # We patch get_addon_object() to avoid the add-on related queries,
             # which would pollute the result.
@@ -886,11 +886,11 @@ class TestRatingViewSetGet(TestCase):
         cache.clear()
         with self.assertNumQueries(5):
             # 5 queries:
+            # - Two for opening and releasing a savepoint. Those only happen in
+            #   tests, because TransactionTestCase wraps things in atomic().
             # - One for the ratings count
             # - One for the ratings
             # - One for the replies (using prefetch_related())
-            # - Two for opening and closing a transaction/savepoint
-            #   (https://github.com/mozilla/addons-server/issues/3610)
             #
             # We patch get_addon_object() to avoid the add-on related queries,
             # which would pollute the result. In the real world those queries

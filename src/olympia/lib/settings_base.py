@@ -111,14 +111,16 @@ def cors_endpoint_overrides(whitelist_endpoints):
 CORS_ENDPOINT_OVERRIDES = []
 
 
-def get_db_config(environ_var):
+def get_db_config(environ_var, atomic_requests=True):
     values = env.db(
         var=environ_var,
         default='mysql://root:@localhost/olympia')
 
     values.update({
         # Run all views in a transaction unless they are decorated not to.
-        'ATOMIC_REQUESTS': True,
+        # `atomic_requests` should be `False` for database replicas where no
+        # write operations will ever happen.
+        'ATOMIC_REQUESTS': atomic_requests,
         # Pool our database connections up for 300 seconds
         'CONN_MAX_AGE': 300,
         'ENGINE': 'olympia.core.db.mysql',
@@ -460,6 +462,8 @@ SECURE_HSTS_SECONDS = 31536000
 USE_X_FORWARDED_PORT = True
 
 MIDDLEWARE = (
+    # Our middleware to make safe requests non-atomic needs to be at the top.
+    'olympia.amo.middleware.NonAtomicRequestsForSafeHttpMethodsMiddleware',
     # Test if it's an API request first so later middlewares don't need to.
     'olympia.api.middleware.IdentifyAPIRequestMiddleware',
     # Gzip (for API only) middleware needs to be executed after every
