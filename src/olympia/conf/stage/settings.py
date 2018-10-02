@@ -27,7 +27,7 @@ EMAIL_HOST_PASSWORD = EMAIL_URL['EMAIL_HOST_PASSWORD']
 
 ENV = env('ENV')
 
-API_THROTTLE = False
+API_THROTTLING = True
 
 DOMAIN = env('DOMAIN', default='addons.allizom.org')
 SERVER_EMAIL = 'zstage@addons.mozilla.org'
