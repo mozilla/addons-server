@@ -378,6 +378,12 @@ class TestDetailPage(TestCase):
         assert response.status_code == 200
         assert response.context['addon'].id == 15663
 
+    def test_broken_persona(self):
+        persona = Persona.objects.get(addon_id=15663)
+        persona.delete()
+        response = self.client.get(reverse('addons.detail', args=['a15663']))
+        assert response.status_code == 404
+
     def test_review_microdata_personas(self):
         a = Addon.objects.get(id=15663)
         a.name = '<script>alert("fff")</script>'
