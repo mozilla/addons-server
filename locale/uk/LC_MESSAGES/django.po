@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"POT-Creation-Date: 2018-10-01 13:10+0000\n"
 "PO-Revision-Date: 2018-09-20 11:12+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
@@ -5804,9 +5804,6 @@ msgstr "Номери версій повинні мати менше, ніж 32 
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Номери версій повинні містити лише літери, цифри та наступні знаки: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "Вивантаження тем у вигляді WebExtension зараз не підтримується."
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "Максимальний розмір для тем WebExtension {0}."
