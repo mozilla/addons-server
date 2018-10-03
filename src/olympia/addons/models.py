@@ -571,7 +571,7 @@ class Addon(OnChangeMixin, ModelBase):
         if channel == amo.RELEASE_CHANNEL_UNLISTED:
             data['slug'] = get_random_slug()
 
-        addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
+        addon = Addon(**{k: v for k, v in data.items() if k in fields})
 
         addon.status = amo.STATUS_NULL
         locale_is_set = (addon.default_locale and
