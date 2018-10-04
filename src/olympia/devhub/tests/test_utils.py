@@ -5,12 +5,14 @@ from django.conf import settings
 from django.test.utils import override_settings
 
 import mock
+import pytest
 from waffle.testutils import override_switch
 
 from celery.result import AsyncResult
 from six import text_type
 
 from olympia import amo
+from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import (
     addon_factory, TestCase, user_factory, version_factory)
 from olympia.devhub import tasks, utils
@@ -414,3 +416,22 @@ class TestGetAddonAkismetReports(TestCase):
                 property_name='description', property_value=u'lé foo',
                 user_agent=user_agent, referrer=referrer)]
         self.create_for_addon_mock.assert_has_calls(calls, any_order=True)
+
+
+@pytest.mark.django_db
+def test_extract_theme_properties():
+    addon = addon_factory(type=amo.ADDON_STATICTHEME)
+    result = utils.extract_theme_properties(
+        addon, addon.current_version.channel)
+    assert result == {}  # There's no file, but it be should safely handled.
+
+    # Add the zip in the right place
+    zip_file = os.path.join(
+        settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+    copy_stored_file(zip_file, addon.current_version.all_files[0].file_path)
+    result = utils.extract_theme_properties(
+        addon, addon.current_version.channel)
+    assert result['colors'] == {
+        "accentcolor": "#adb09f",
+        "textcolor": "#000"
+    }

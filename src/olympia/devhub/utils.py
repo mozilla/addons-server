@@ -11,15 +11,16 @@ from six import text_type
 
 import olympia.core.logger
 
-from olympia import amo
+from olympia import amo, core
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload
-from olympia.files.utils import parse_addon
+from olympia.files.utils import parse_addon, parse_xpi
 from olympia.lib.akismet.models import AkismetReport
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
 from olympia.versions.compare import version_int
+from olympia.versions.utils import process_color_value
 
 from . import tasks
 
@@ -357,3 +358,21 @@ def get_addon_akismet_reports(user, user_agent, referrer, upload=None,
                 referrer=referrer)
             reports.append((prop, report))
     return reports
+
+
+def extract_theme_properties(addon, channel):
+    version = addon.find_latest_version(channel)
+    if not version or not version.all_files:
+        return {}
+    try:
+        parsed_data = parse_xpi(
+            version.all_files[0].file_path, addon=addon, user=core.get_user())
+    except Exception:
+        # If we can't parse the existing manifest safely return.
+        return {}
+    theme_properties = parsed_data.get('theme', {})
+    # pre-process colors to convert chrome style colors and strip spaces
+    theme_properties['colors'] = dict(
+        process_color_value(prop, color)
+        for prop, color in theme_properties.get('colors', {}).items())
+    return theme_properties

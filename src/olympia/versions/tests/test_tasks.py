@@ -210,7 +210,7 @@ def test_generate_static_theme_preview_with_chrome_properties(
     }
     for (chrome_prop, firefox_prop) in chrome_colors.items():
         color_list = theme_manifest['colors'][chrome_prop]
-        color = 'rgb(%s, %s, %s)' % tuple(color_list)
+        color = 'rgb(%s,%s,%s)' % tuple(color_list)
         colors.append('class="%s" fill="%s"' % (firefox_prop, color))
 
     header_svg = write_svg_to_png_mock.call_args_list[0][0][0]

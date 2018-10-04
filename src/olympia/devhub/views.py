@@ -45,7 +45,8 @@ from olympia.devhub.forms import (
     AgreementForm, CheckCompatibilityForm, SourceForm)
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
-    add_dynamic_theme_tag, fetch_existing_translations_from_addon,
+    add_dynamic_theme_tag, extract_theme_properties,
+    fetch_existing_translations_from_addon,
     get_addon_akismet_reports, process_validation)
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon
@@ -1381,6 +1382,8 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
     submit_page = 'version' if addon else 'addon'
     template = ('devhub/addons/submit/upload.html' if not wizard else
                 'devhub/addons/submit/wizard.html')
+    existing_properties = (
+        extract_theme_properties(addon, channel) if wizard and addon else {})
     return render(request, template,
                   {'new_addon_form': form,
                    'is_admin': is_admin,
@@ -1390,6 +1393,7 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
                    'submit_page': submit_page,
                    'channel': channel,
                    'channel_choice_text': channel_choice_text,
+                   'existing_properties': existing_properties,
                    'version_number':
                        get_next_version_number(addon) if wizard else None})
 

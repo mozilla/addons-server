@@ -1590,10 +1590,18 @@ class VersionSubmitUploadMixin(object):
         channel = ('listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else
                    'unlisted')
         self.addon.update(type=amo.ADDON_STATICTHEME)
-        # Check we get the correct template.
+        # Get the correct template.
         self.url = reverse('devhub.submit.version.wizard',
                            args=[self.addon.slug, channel])
-        response = self.client.get(self.url)
+        mock_point = 'olympia.devhub.views.extract_theme_properties'
+        with mock.patch(mock_point) as extract_theme_properties_mock:
+            extract_theme_properties_mock.return_value = {
+                'colors': {
+                    'accentcolor': '#123456',
+                    'textcolor': 'rgba(1,2,3,0.4)',
+                }
+            }
+            response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#theme-wizard')
@@ -1601,6 +1609,9 @@ class VersionSubmitUploadMixin(object):
         assert doc('input#theme-name').attr('type') == 'hidden'
         assert doc('input#theme-name').attr('value') == (
             unicode(self.addon.name))
+        # Existing colors should be the default values for the fields
+        assert doc('#accentcolor').attr('value') == '#123456'
+        assert doc('#textcolor').attr('value') == 'rgba(1,2,3,0.4)'
 
         # And then check the upload works.
         path = os.path.join(
