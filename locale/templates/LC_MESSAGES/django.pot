@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-01 13:10+0000\n"
+"POT-Creation-Date: 2018-10-04 07:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -255,7 +255,7 @@ msgstr ""
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
-#: src/olympia/addons/views.py:388
+#: src/olympia/addons/views.py:391
 msgid "Abuse reported."
 msgstr ""
 
@@ -1169,7 +1169,7 @@ msgstr ""
 msgid "This must be a valid hex color code, such as #000000."
 msgstr ""
 
-#: src/olympia/amo/middleware.py:201 src/olympia/templates/base.html:66
+#: src/olympia/amo/middleware.py:224 src/olympia/templates/base.html:66
 #: src/olympia/templates/impala/base.html:98
 msgid ""
 "Some features are temporarily disabled while we perform website maintenance. "
