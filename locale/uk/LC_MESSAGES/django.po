@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-01 13:10+0000\n"
-"PO-Revision-Date: 2018-10-01 10:03+0000\n"
-"Last-Translator: Lobodzets <Lobodzets@meta.ua>\n"
+"PO-Revision-Date: 2018-10-04 05:48+0000\n"
+"Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -144,7 +144,7 @@ msgstr[1] "Довжина всіх міток повинна бути не ме�
 msgstr[2] "Довжина всіх міток повинна бути не меншою {0} символів."
 
 msgid "The text entered has been flagged as spam."
-msgstr ""
+msgstr "Введений текст було позначено як спам."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -717,7 +717,7 @@ msgid "Admin Tools"
 msgstr "Адміністративні інструменти"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "Позитивне ціле число"
 
 msgid "Incorrect, please try again."
 msgstr "Неправильно, спробуйте знову."
@@ -2495,9 +2495,8 @@ msgstr "У процесі Вашого завантаження сталася �
 msgid "Override failed validation"
 msgstr "Ігнорувати невдалу валідацію"
 
-#, fuzzy
 msgid "Need to select at least one application."
-msgstr "Потрібен, принаймні, один сумісний додаток."
+msgstr "Необхідно обрати принаймні одну програму."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Версія {version} була раніше завантажена і видалена."
@@ -3580,9 +3579,8 @@ msgstr "Вивантажити версію"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Для вивантаження пакунку свого додатка, скористайтеся полями нижче. Після вивантаження ваш файл буде перевірено з використанням серії автоматичних тестів."
 
-#, fuzzy
 msgid "Which applications is this version compatible with?"
-msgstr "З якими платформами сумісний цей файл?"
+msgstr "З якими програмами сумісна ця версія?"
 
 msgid "Administrative overrides"
 msgstr "Адміністративні дії"
@@ -4064,12 +4062,11 @@ msgstr "Тест сумісності"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Перевірте, чи ваше розширення сумісне з Firefox."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Переглянути"
+msgstr "Живе тестування"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Тимчасово встановіть ваше розширення в Firefox для живого тестування і зневадження."
 
 msgid "Transfer ownership"
 msgstr "Передача володіння"
@@ -5336,9 +5333,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Насолоджуйтеся музикою з усього світу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Access 30,000+ radio stations from all over the globe."
-msgstr "Отримайте доступ до понад 20 тисяч радіостанцій з усього світу."
+msgstr "Отримайте доступ до понад 30 тисяч радіостанцій з усього світу."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6059,18 +6055,15 @@ msgstr "Розблокуйте доступ до експериментальн�
 msgid "Get Started"
 msgstr "Початок роботи"
 
-#, fuzzy
 msgid "Reported Status"
-msgstr "Статус сайту "
+msgstr "Статус звіту"
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "Тип звіту"
+msgstr "Звіт про спам відправлено"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Повідомити про помилку"
+msgstr "Звіт про \"не спам\" відправлено"
 
 msgid "Not Reported"
 msgstr "Не повідомлено"
@@ -6082,9 +6075,8 @@ msgid "View Rating on site"
 msgstr "Переглянути рейтинг на сайті"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Відправити новий файл"
+msgstr "Повідомити про \"не спам\" Akismet"
 
 msgid "Submit Spam to Akismet"
 msgstr "Повідомити Akismet про спам"
@@ -6092,12 +6084,12 @@ msgstr "Повідомити Akismet про спам"
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s звітів про \"не спам\", відправлених як спам"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s звітів про спам, відправлених як \"не спам\""
 
 msgid "About Mozilla Add-ons"
 msgstr "Про додатки Mozilla"
