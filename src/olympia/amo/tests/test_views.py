@@ -432,6 +432,14 @@ class TestRobots(TestCase):
         assert response.status_code == 200
         assert 'Disallow: %s' % url in response.content
 
+    @override_settings(ENGAGE_ROBOTS=True)
+    def test_allow_mozilla_collections(self):
+        """Make sure /en-US/firefox/collections/mozilla/ get allowed"""
+        url = '{}mozilla/'.format(reverse('collections.list'))
+        response = self.client.get('/robots.txt')
+        assert response.status_code == 200
+        assert 'Allow: {}'.format(url) in response.content
+
 
 class TestAtomicRequests(WithDynamicEndpointsAndTransactions):
 

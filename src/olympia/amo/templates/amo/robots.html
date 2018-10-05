@@ -11,9 +11,10 @@ Disallow: /{{ a.short }}/downloads/
 {% endfor %}
 
 {# Spacing is a little weird because it makes the output prettier #}
-{% for l in settings.AMO_LANGUAGES %}
-{% for a in apps -%}
+{% for l in settings.AMO_LANGUAGES -%}
 
+Allow: /{{ l }}/firefox{{ url('collections.list', add_prefix=False) }}mozilla/
+{% for a in apps %}
 Disallow: /{{ l }}/{{ a.short }}{{ url('search.search', add_prefix=False) }}
 Disallow: /{{ l }}/{{ a.short }}{{ url('collections.list', add_prefix=False) }}
 {% endfor %}
