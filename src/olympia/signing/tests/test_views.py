@@ -160,7 +160,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         response = self.request(
             'PUT', self.url(self.guid, '2.1.072'), version='2.1.072')
         assert response.status_code == 409
-        assert response.data['error'] == 'Version already exists.'
+        assert response.data['error'] == ('Version already exists. '
+                                          'Latest version is: 2.1.072.')
 
     @mock.patch('olympia.devhub.views.Version.from_upload')
     def test_no_version_yet(self, from_upload):
@@ -201,7 +202,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 409
-        assert response.data['error'] == 'Version already exists.'
+        assert response.data['error'] == ('Version already exists. '
+                                          'Latest version is: 3.0.')
 
     def test_version_failed_review(self):
         self.create_version('3.0')
@@ -212,7 +214,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 409
-        assert response.data['error'] == 'Version already exists.'
+        assert response.data['error'] == ('Version already exists. '
+                                          'Latest version is: 3.0.')
 
         # Verify that you can check the status after upload (#953).
         response = self.get(self.url(self.guid, '3.0'))
