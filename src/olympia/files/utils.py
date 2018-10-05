@@ -501,6 +501,18 @@ class ManifestJSONExtractor(object):
                 'contains an unsupported version?')
             raise forms.ValidationError(msg)
 
+    def target_locale(self):
+        """Guess target_locale for a dictionary from manifest contents."""
+        try:
+            dictionaries = self.get('dictionaries', {})
+            key = force_text(dictionaries.keys()[0])
+            return key[:255]
+        except (IndexError, UnicodeDecodeError):
+            # This shouldn't happen: the linter should prevent it, but
+            # just in case, handle the error (without bothering with
+            # translations as users should never see this).
+            raise forms.ValidationError('Invalid dictionaries object.')
+
     def parse(self, minimal=False):
         data = {
             'guid': self.guid,
@@ -535,7 +547,9 @@ class ManifestJSONExtractor(object):
                     'content_scripts': self.get('content_scripts', []),
                 })
             elif self.type == amo.ADDON_STATICTHEME:
-                data.update(theme=self.get('theme', {}))
+                data['theme'] = self.get('theme', {})
+            elif self.type == amo.ADDON_DICT:
+                data['target_locale'] = self.target_locale()
         return data
 
 
