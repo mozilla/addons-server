@@ -7,6 +7,7 @@ import tempfile
 import pygit2
 
 from django.conf import settings
+from django.utils import translation
 
 import olympia.core.logger
 
@@ -99,11 +100,45 @@ class AddonGitRepository(object):
         * Extract the zip behind `file_obj` into the worktree
         * Commit all files
 
-        Kinda like doing...
+        Kinda like doing::
 
-        * rm -rf worktree/*
-        * unzip file.zip -d worktree/
-        * git commit -a worktree/*
+            $ workdir_name=$(uuid)
+            $ mkdir /tmp/$workdir_name
+            $ git worktree add /tmp/$workdir_name
+            Preparing worktree (new branch 'af4172e4-d8c7…')
+            HEAD is now at 8c5223e Initial commit
+
+            $ git worktree list
+            /tmp/addon-repository                      8c5223e [master]
+            /tmp/af4172e4-d8c7-4486-a5f2-316458da91ff  8c5223e [af4172e4-d8c7…]
+
+            $ unzip dingrafowl-falcockalo-lockapionk.zip -d /tmp/$workdir_name
+            Archive:  dingrafowl-falcockalo-lockapionk.zip
+             extracting: /tmp/af4172e4-d8c7…/manifest.json
+
+            $ pushd /tmp/$workdir_name
+            /tmp/af4172e4-d8c7-4486-a5f2-316458da91ff /tmp/addon-repository
+
+            $ git status
+            On branch af4172e4-d8c7-4486-a5f2-316458da91ff
+            Untracked files:
+              (use "git add <file>..." to include in what will be committed)
+
+                    manifest.json
+
+            $ git add *
+            $ git commit -a -m "Creating new version"
+            [af4172e4-d8c7-4486-a5f2-316458da91ff c4285f8] Creating new version
+            …
+            $ cd addon-repository
+            $ git checkout -b listed
+            Switched to a new branch 'listed'
+
+            # We don't technically do a full cherry-pick but it's close enough
+            # and does almost what we do. We are technically only forcing
+            # the branches HEAD to be the commit we committed in the worktree
+            $ git cherry-pick c4285f8
+            [listed a4d0f63] Creating new version…
 
         This ignores the fact that there may be a race-condition of two
         versions being created at the same time. Since all relevant file based
@@ -116,17 +151,25 @@ class AddonGitRepository(object):
         addon = file_obj.version.addon
         repo = cls(addon.id)
 
+        # Create a temporary worktree that we can use to unpack the zip
+        # without disturbing the current git workdir since it creates a new
+        # temporary directory where we extract to.
         with TemporaryWorktree(repo.git_repository) as worktree:
             # Now extract the zip to the workdir
             zip_file = SafeZip(file_obj.current_file_path, force_fsync=True)
             zip_file.extract_to_dest(worktree.path)
 
-            # Stage changes
+            # Stage changes, `TemporaryWorktree` always cleans the whole
+            # directory so we can simply add all changes and have the correct
+            # state.
             worktree.repo.index.add_all()
             worktree.repo.index.write()
             tree = worktree.repo.index.write_tree()
 
-            # Create an orphaned commit
+            # Create an orphaned commit, we're going to set that commit
+            # as HEAD of the relevant branch. Make sure we're always
+            # using the en-US locale by default
+            translation.activate('en-US')
             message = (
                 'Create new version {version} ({version_id}) for '
                 '{addon} from {file_obj}'.format(
@@ -145,6 +188,8 @@ class AddonGitRepository(object):
 
             commit = repo.git_repository.get(oid)
 
+        # Set the commit we just created as HEAD of the relevant branch,
+        # and updates the reflog. This does not do any merges
         branch = repo.find_or_create_branch(BRANCHES[channel])
         branch.set_target(commit.hex)
 

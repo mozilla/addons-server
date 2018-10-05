@@ -616,10 +616,10 @@ class FsyncedZipFile(zipfile.ZipFile):
         descriptor = os.open(path, os.O_DIRECTORY)
         try:
             os.fsync(descriptor)
-        except OSError, e:
+        except OSError as exc:
             # On some filesystem doing a fsync on a directory
             # raises an EINVAL error. Ignoring it is usually safe.
-            if e.errno != errno.EINVAL:
+            if exc.errno != errno.EINVAL:
                 raise
         os.close(descriptor)
 

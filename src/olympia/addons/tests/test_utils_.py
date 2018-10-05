@@ -319,8 +319,8 @@ class TestBuildWebextDictionaryFromLegacy(AMOPaths, TestCase):
 
     def test_current_not_valid_raises(self):
         mod = 'olympia.files.utils.SafeZip.initialize_and_validate'
-        with mock.patch(mod) as initialize_and_validate:
-            initialize_and_validate.return_value = False
+        with mock.patch(mod) as is_valid:
+            is_valid.return_value = False
             with tempfile.NamedTemporaryFile(suffix='.xpi') as destination:
                 with self.assertRaises(ValidationError):
                     build_webext_dictionary_from_legacy(
