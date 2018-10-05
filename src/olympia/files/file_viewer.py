@@ -104,7 +104,7 @@ class FileViewer(object):
 
     def extract(self):
         """
-        Will make all the directories and expand the files.
+        Will make all the directories and extract the files.
         Raises error on nasty files.
 
         :returns: `True` if successfully extracted,
@@ -139,8 +139,7 @@ class FileViewer(object):
                         open(os.path.join(self.dest, self.file.filename), 'w'))
                 else:
                     try:
-                        extracted_files = extract_xpi(
-                            self.src, self.dest, expand=True)
+                        extracted_files = extract_xpi(self.src, self.dest)
                         self._verify_files(extracted_files)
                     except Exception as err:
                         task_log.error(

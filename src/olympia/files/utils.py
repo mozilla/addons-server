@@ -1,5 +1,6 @@
 import collections
 import contextlib
+import errno
 import hashlib
 import json
 import os
@@ -605,24 +606,72 @@ def parse_search(fileorpath, addon=None):
             'version': datetime.now().strftime('%Y%m%d')}
 
 
+class FsyncedZipFile(zipfile.ZipFile):
+    """Subclass of ZipFile that calls `fsync` for file extractions.
+
+    We need this to make sure that on EFS / NFS all data is immediately
+    written to avoid any data loss on the way.
+    """
+    def _fsync_dir(self, path):
+        descriptor = os.open(path, os.O_DIRECTORY)
+        try:
+            os.fsync(descriptor)
+        except OSError as exc:
+            # On some filesystem doing a fsync on a directory
+            # raises an EINVAL error. Ignoring it is usually safe.
+            if exc.errno != errno.EINVAL:
+                raise
+        os.close(descriptor)
+
+    def _fsync_file(self, path):
+        descriptor = os.open(path, os.O_RDONLY)
+        os.fsync(descriptor)
+        os.close(descriptor)
+
+    def _extract_member(self, member, targetpath, pwd):
+        """Extends `ZipFile._extract_member` to call fsync().
+
+        For every extracted file we are ensuring that it's data has been
+        written to disk. We are doing this to avoid any data inconsistencies
+        that we have seen in the past.
+
+        To do this correctly we are fsync()ing all directories as well
+        only that will ensure we have a durable write for that specific file.
+
+        This is inspired by https://github.com/2ndquadrant-it/barman/
+        (see backup.py -> backup_fsync_and_set_sizes and utils.py)
+        """
+        targetpath = super(FsyncedZipFile, self)._extract_member(
+            member, targetpath, pwd)
+
+        parent_dir = os.path.dirname(targetpath)
+        if parent_dir:
+            self._fsync_dir(parent_dir)
+
+        self._fsync_file(targetpath)
+
+
 class SafeZip(object):
-    def __init__(self, source, mode='r', validate=True):
+    def __init__(self, source, mode='r', force_fsync=False):
         self.source = source
         self.info_list = None
         self.mode = mode
+        self.force_fsync = force_fsync
+        self.is_valid = self.initialize_and_validate()
 
-        if validate:
-            self._is_valid = self.is_valid()
-
-    def is_valid(self):
+    def initialize_and_validate(self):
         """
         Runs some overall archive checks.
         """
         # Shortcut to avoid expensive check over and over again
-        if getattr(self, '_is_valid', False):
+        if getattr(self, 'is_valid', False):
             return True
 
-        zip_file = zipfile.ZipFile(self.source, self.mode)
+        if self.force_fsync:
+            zip_file = FsyncedZipFile(self.source, self.mode)
+        else:
+            zip_file = zipfile.ZipFile(self.source, self.mode)
+
         info_list = zip_file.infolist()
 
         for info in info_list:
@@ -685,13 +734,11 @@ class SafeZip(object):
             for part in parts[:-1]:
                 jar = self.__class__(
                     StringIO.StringIO(jar.zip_file.read(part)))
-                jar.is_valid()
             path = parts[-1]
         return jar.read(path[1:] if path.startswith('/') else path)
 
     def extract_info_to_dest(self, info, dest):
         """Extracts the given info to a directory and checks the file size."""
-        self.is_valid()
         self.zip_file.extract(info, dest)
         dest = os.path.join(dest, info.filename)
 
@@ -720,25 +767,22 @@ class SafeZip(object):
         return self.zip_file.namelist
 
     def exists(self, path):
-        self.is_valid()
         try:
             return self.zip_file.getinfo(path)
         except KeyError:
             return False
 
     def read(self, path):
-        self.is_valid()
         return self.zip_file.read(path)
 
 
-def extract_zip(source, remove=False):
+def extract_zip(source, remove=False, force_fsync=False):
     """Extracts the zip file. If remove is given, removes the source file."""
     tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
 
-    zip_file = SafeZip(source)
     try:
-        if zip_file.is_valid():
-            zip_file.extract_to_dest(tempdir)
+        zip_file = SafeZip(source, force_fsync=force_fsync)
+        zip_file.extract_to_dest(tempdir)
     except Exception:
         rm_local_tmp_dir(tempdir)
         raise
@@ -799,45 +843,14 @@ def get_all_files(folder, strip_prefix='', prefix=None):
     return all_files
 
 
-def extract_xpi(xpi, path, expand=False, verify=True):
-    """
-    If expand is given, will look inside the expanded file
-    and find anything in the allow list and try and expand it as well.
-    It will do up to 10 iterations, after that you are on your own.
+def extract_xpi(xpi, path):
+    """Extract all files from `xpi` to `path`.
 
-    It will replace the expanded file with a directory and the expanded
-    contents. If you have 'foo.jar', that contains 'some-image.jpg', then
-    it will create a folder, foo.jar, with an image inside.
+    This can be removed in favour of our already extracted git-repositories
+    once we land and tested them in production.
     """
-    expand_allow_list = ['.crx', '.jar', '.xpi', '.zip']
     tempdir = extract_zip(xpi)
     all_files = get_all_files(tempdir)
-
-    if expand:
-        for x in xrange(0, 10):
-            flag = False
-            for root, dirs, files in scandir.walk(tempdir):
-                for name in files:
-                    if os.path.splitext(name)[1] in expand_allow_list:
-                        src = os.path.join(root, name)
-                        if not os.path.isdir(src):
-                            try:
-                                dest = extract_zip(src, remove=True)
-                            except zipfile.BadZipfile:
-                                # We can safely ignore this here, this is
-                                # only for recursive .zip/.jar extractions
-                                log.exception(
-                                    'Exception during recursive XPI expansion.'
-                                )
-                                continue
-
-                            all_files.extend(get_all_files(
-                                dest, strip_prefix=tempdir, prefix=src))
-                            if dest:
-                                copy_over(dest, src)
-                                flag = True
-            if not flag:
-                break
 
     copy_over(tempdir, path)
     return all_files
@@ -861,10 +874,10 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None):
         raise
     except IOError as e:
         if len(e.args) < 2:
-            errno, strerror = None, e[0]
+            err, strerror = None, e[0]
         else:
-            errno, strerror = e
-        log.error('I/O error({0}): {1}'.format(errno, strerror))
+            err, strerror = e
+        log.error('I/O error({0}): {1}'.format(err, strerror))
         raise forms.ValidationError(ugettext(
             'Could not parse the manifest file.'))
     except Exception:

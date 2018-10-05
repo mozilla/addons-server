@@ -1760,8 +1760,9 @@ STATICFILES_DIRS = (
 )
 
 NETAPP_STORAGE = TMP_PATH
-GUARDED_ADDONS_PATH = ROOT + '/guarded-addons'
+GUARDED_ADDONS_PATH = os.path.join(ROOT, 'guarded-addons')
 
+GIT_FILE_STORAGE_PATH = os.path.join(MEDIA_ROOT, 'git-storage')
 
 # These are key files that must be present on disk to encrypt/decrypt certain
 # database fields.
