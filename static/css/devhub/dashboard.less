@@ -9,19 +9,23 @@
     }
 }
 
+.island {
+    padding: 0px;
+    margin-top: -5px;
+}
+
 .submission-type-tabs {
     margin-bottom: 8px;
+    margin-left: -5px;
     padding-top: 10px;
-
+    padding-left: 0px;
+    font-size: 16px;
     a {
-        .box-shadow(0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1));
         .gradient-two-color(#fcfdfe, #f4f8fc);
         background: #fcfdfe;
-        border-radius: 5px 5px 0 0;
-        border: 1px solid @border-blue;
-        padding: 8px 14px;
+        padding: 8px 5px;
         position: relative;
-        top: -1px;
+        top: 0px;
         z-index: 0;
         &:hover {
             background: #f4f8fc;
@@ -29,7 +33,6 @@
     }
     a.active {
         .gradient-two-color(#fff, #fcfdfe);
-        border-bottom: 0;
         box-shadow: none;
         color: @orange;
         cursor: default;
