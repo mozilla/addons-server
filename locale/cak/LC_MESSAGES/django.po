@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-04 07:10+0000\n"
-"PO-Revision-Date: 2018-10-06 22:28+0000\n"
+"PO-Revision-Date: 2018-10-06 22:49+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4719,11 +4719,11 @@ msgstr "Katok pan ajk'amaya'l rik'in runuk'ulem proxi nuk'un awuma rat."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tachajij kitzijoxik taq silowäch {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "Tawutzilaj awetamab'al rik'in ri tz'etoj akuchi' nanuk'ub'ej ranin silowäch chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
