@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-04 07:10+0000\n"
-"PO-Revision-Date: 2018-10-05 23:41+0000\n"
+"PO-Revision-Date: 2018-10-06 20:51+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4615,15 +4615,15 @@ msgstr "Jun aninäq rub'eyal nib'an runuk'ulem runimilem jun tz'ib'anïk pa xab'
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'aq'ata' ri ewan taq ojqanïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "Ke'aq'ata' ri ojqanela' chuqa' tawetamaj  na'oj chi kij."
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Majun retal ruwi' q'ab'aj taya' kan {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
