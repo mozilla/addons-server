@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-04 07:10+0000\n"
-"PO-Revision-Date: 2018-10-06 20:51+0000\n"
+"PO-Revision-Date: 2018-10-06 21:11+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4627,35 +4627,35 @@ msgstr "Majun retal ruwi' q'ab'aj taya' kan {start_sub_heading}rik'in {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Tab'ana' chi re ri Firefox chi kerumestaj kitzij ajk'amaya'l ruxaq achi'el taq kaxlanwäy chuqa' yakoj rupam, xa xe pa ri taq ajk'amal ye'acha'."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tayaka' jun tz'ib'anïk richin pa jumej {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
-msgstr ""
+msgstr "¡Man tatz'ib'aj chik junam jutaqil! We jutaqil ye'awokisaj taq pajtzij pan asamaj o ch'aqa' chik ch'owen, ke'ayaka' pa Clippings richin chanin ye'atz'ajb'a' qa toq nik'atzin pe chawe."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'aq'a' ri taq eltzijol pan ri taqoya'l {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Tijame' rupam ruwäch rik'in ye'ayüj taq eltzijol pa ataqob'al richin ajk'amaya'l."
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'awila' ri taq ruwi' awichin {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr ""
+msgstr "Ke'anuk'samajij ri taq ruwi' ye'ajaqon pa rucholajem pa jun rukajtz'ik ruchi'."
 
 #. editorial content for the discovery pane.
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tachajij awi' chi kiwäch ri ewan taq ojaqanela' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
