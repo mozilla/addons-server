@@ -93,6 +93,10 @@ jobs:
           command: |
             set -x
             sudo sysctl -w vm.max_map_count=262144
+            sudo useradd --groups circleci seluser
+            # chown to change permissions of olympia.egg* and all folders/file
+            # This is done because cirlceci has permissions do not allow the user `circleci` to remove or add files create by the root, even if it is part of the root group.
+            sudo chown -R seluser:circleci .
             docker-compose pull --quiet
             docker-compose up -d
             sleep 20
@@ -103,10 +107,6 @@ jobs:
             docker-compose restart worker
             docker-compose exec web make -f Makefile-docker update_deps
             docker-compose restart web
-            sudo useradd --groups circleci seluser
-            # chown to change permissions of olympia.egg* and all folders/file
-            # This is done because cirlceci has permissions do not allow the user `circleci` to remove or add files create by the root, even if it is part of the root group.
-            sudo chown -R seluser:circleci .
             # Delete any existing uitest users within restmail. TEMP FIX: https://github.com/mozilla/addons-server/issues/8980
             wget --method=DELETE http://restmail.net/mail/uitest
             docker-compose exec selenium-firefox sudo chown -R seluser .
