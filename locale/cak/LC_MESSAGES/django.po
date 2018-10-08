@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2018-10-08 14:51+0000\n"
+"PO-Revision-Date: 2018-10-08 15:05+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4755,23 +4755,23 @@ msgstr "Tutzilaj Reddit {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Tajala' rub'anikil yatok pa Reddit rik'in rokisaxik taq yaketal chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tawelesaj taq wachib'äl pan ajk'amaya'l {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Tawelesaj chapoj kiwäch ajk'amaya'l ruxaq, ke'ab'ana' taq nuk'uj, chuqa' kakomonin."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Jun nïm samajib'äl richin niqasäx xa xe richin Windows."
 
 #. editorial content for the discovery pane.
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tawetamaj kiwäch ri awojqanela' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
