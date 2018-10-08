@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-04 07:10+0000\n"
-"PO-Revision-Date: 2018-10-03 11:09+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-10-06 10:57+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -1789,9 +1789,8 @@ msgstr "{addon} u shqyrtua."
 msgid "User {user} banned."
 msgstr "Përdoruesi {user} u dëbua."
 
-#, fuzzy
 msgid "User {user} picture deleted."
-msgstr "Përdoruesi {user} u kufizua."
+msgstr "Fotoja e përdoruesit {user} u fshi."
 
 msgid "User {0.name} added to {group}."
 msgstr "Përdoruesi {0.name} u shtua te {group}."
@@ -1890,9 +1889,8 @@ msgstr "Për {addon} {version} u kërkua shqyrtim teme nga përgjegjësi."
 msgid "Admin theme-review requested"
 msgstr "Është kërkuar shqyrtim teme nga përgjegjësi"
 
-#, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "{addon} migroi nga gjendja paraprake."
+msgstr "{addon} u migrua nga një temë e peshës së lehtë."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2279,16 +2277,14 @@ msgstr ""
 msgid "Manual Reviewer Points"
 msgstr "Pikë Shqyrtuesi Dorazi"
 
-#, fuzzy
 msgid "New Legacy Add-on Review"
-msgstr "Shqyrtim Shtese të Re"
+msgstr ""
 
 msgid "Preliminary Add-on Review"
 msgstr "Shqyrtim Paraprak Shtese"
 
-#, fuzzy
 msgid "Updated Legacy Add-on Review"
-msgstr "Shqyrtimi i Shtesës u Përditësua"
+msgstr ""
 
 msgid "New Dictionary Review"
 msgstr "Shqyrtim Fjalori të Ri"
@@ -2486,9 +2482,8 @@ msgstr "Pati një gabim me ngarkimin tuaj. Ju lutemi, riprovoni."
 msgid "Override failed validation"
 msgstr "Anashkaloje vleftësimin e dështuar"
 
-#, fuzzy
 msgid "Need to select at least one application."
-msgstr "Lyp të paktën një aplikacion të përputhshëm."
+msgstr "Lypset të përzgjidhet të paktën një aplikacion."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versioni {version} qe ngarkuar më herët dhe është fshirë."
@@ -2499,9 +2494,8 @@ msgstr "Ka tashmë një version {version}."
 msgid "Continue with existing upload instead?"
 msgstr "Të vazhdohet me ngarkimin ekzistues?"
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "S’u përtyp dot kartela e ngarkuar."
+msgstr "S’keni ngarkuar kartelë burim."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
@@ -3558,9 +3552,8 @@ msgstr "Ngarkojeni Versionin"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Për ngarkimin e paketës së shtesës suaj përdorni fushat më poshtë. Pas ngarkimit, mbi kartelën tuaj do të xhirohen një varg provash të automatizuara vleftësimi."
 
-#, fuzzy
 msgid "Which applications is this version compatible with?"
-msgstr "Me cilat platforma është e përputhshme kjo kartelë?"
+msgstr "Me cilat aplikacione është i përputhshëm ky version?"
 
 msgid "Administrative overrides"
 msgstr "Anashkalime administrative"
@@ -4038,9 +4031,8 @@ msgstr "Provë Përputhshmërie"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Kontrolloni për të parë nëse zgjerimi juaj është i përputhshëm me Firefox-in."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Shihni Listën"
+msgstr ""
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
@@ -4480,9 +4472,8 @@ msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "Dhjetra emoji mahnitës, për çfarëdo nevoje - vetëm një klik larg."
+msgstr "Dhjetëra emoji mahnitës, për çfarëdo rasti - vetëm një klik larg."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"

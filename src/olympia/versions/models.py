@@ -122,6 +122,8 @@ class Version(OnChangeMixin, ModelBase):
     channel = models.IntegerField(choices=amo.RELEASE_CHANNEL_CHOICES,
                                   default=amo.RELEASE_CHANNEL_LISTED)
 
+    git_hash = models.CharField(max_length=40, blank=True)
+
     # The order of those managers is very important: please read the lengthy
     # comment above the Addon managers declaration/instantiation.
     unfiltered = VersionManager(include_deleted=True)
@@ -232,15 +234,12 @@ class Version(OnChangeMixin, ModelBase):
         # files for each platform. Cleaning that up is another step.
         # Given the timing on this, we don't care about updates to legacy
         # add-ons as well.
-        platforms = [amo.PLATFORM_ALL.id]
-
-        # Create as many files as we have platforms. Update the all_files
-        # cached property on the Version while we're at it, because we might
-        # need it afterwards.
-        version.all_files = [
-            File.from_upload(
-                upload, version, platform, parsed_data=parsed_data)
-            for platform in platforms]
+        # Create relevant file and update the all_files cached property on the
+        # Version, because we might need it afterwards.
+        version.all_files = [File.from_upload(
+            upload=upload, version=version, platform=amo.PLATFORM_ALL.id,
+            parsed_data=parsed_data
+        )]
 
         version.inherit_nomination(from_statuses=[amo.STATUS_AWAITING_REVIEW])
         version.disable_old_files()

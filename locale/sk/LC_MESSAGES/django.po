@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-04 07:10+0000\n"
-"PO-Revision-Date: 2018-08-28 20:37+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-10-06 21:01+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -7184,13 +7184,11 @@ msgstr "Recenzia úspešne spracovaná."
 msgid "Review lock limit reached"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} :: EULA"
-msgstr "{addon} :: Nahlášená zneužití"
+msgstr "{addon} :: EULA"
 
-#, fuzzy
 msgid "{addon} :: Privacy Policy"
-msgstr "Tento doplnok má Zásady ochrany súkromia"
+msgstr "{addon} :: Zásady ochrany súkromia"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."

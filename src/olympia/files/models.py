@@ -198,6 +198,7 @@ class File(OnChangeMixin, ModelBase):
                                                 file=file_)
 
         log.debug('New file: %r from %r' % (file_, upload))
+
         # Move the uploaded file from the temp location.
         copy_stored_file(upload.path, file_.current_file_path)
 
@@ -360,14 +361,10 @@ class File(OnChangeMixin, ModelBase):
         a string.
         """
         start = time.time()
-        zip = SafeZip(self.file_path, validate=False)
 
         try:
-            is_valid = zip.is_valid()
+            zip = SafeZip(self.file_path)
         except (zipfile.BadZipfile, IOError):
-            is_valid = False
-
-        if not is_valid:
             return ''
 
         try:
