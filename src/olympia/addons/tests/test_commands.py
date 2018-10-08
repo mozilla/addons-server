@@ -653,3 +653,61 @@ class TestMigrateLegacyDictionariesToWebextension(TestCase):
         # self.addon2 will raise a ValidationError because of the side_effect
         # above, so we should only reindex 1 and 3.
         assert index_addons_mock.call_args[0][0] == [self.addon, self.addon3]
+
+
+class TestDisableLegacyAddons(TestCase):
+    def test_basic(self):
+        # These add-ons should be disabled completely since they only have a
+        # single legacy file.
+        should_be_fully_disabled = [
+            addon_factory(),
+            addon_factory(type=amo.ADDON_LPAPP),
+            addon_factory(type=amo.ADDON_THEME),
+        ]
+
+        # This one has a legacy and a non-legacy version, so only the legacy
+        # File & Version should be disabled.
+        should_have_old_version_disabled = [
+            addon_factory(created=self.days_ago(42),
+                          version_kw={'created': self.days_ago(42)}),
+        ]
+        version_factory(
+            addon=should_have_old_version_disabled[0],
+            file_kw={'is_webextension': True})
+
+        # These should *not* have any File instance disabled, they should be
+        # kept intact.
+        should_be_kept_intact = [
+            addon_factory(file_kw={'is_webextension': True}),
+            addon_factory(file_kw={'is_mozilla_signed_extension': True}),
+            addon_factory(file_kw={'is_mozilla_signed_extension': True,
+                                   'is_webextension': True}),
+            addon_factory(type=amo.ADDON_DICT),
+            addon_factory(type=amo.ADDON_SEARCH),
+        ]
+
+        call_command('process_addons', task='disable_legacy_files')
+
+        for addon in should_be_fully_disabled:
+            addon.reload()
+            assert addon.status == amo.STATUS_NULL  # No public version left.
+            assert addon.current_version is None
+            file_ = addon.versions.all()[0].files.all()[0]
+            assert file_.status == amo.STATUS_DISABLED
+
+        for addon in should_have_old_version_disabled:
+            addon.reload()
+            assert addon.status == amo.STATUS_PUBLIC
+            assert addon.current_version
+            file_ = addon.current_version.files.all()[0]
+            assert file_.status == amo.STATUS_PUBLIC
+            file_ = addon.versions.exclude(
+                pk=addon.current_version.pk)[0].files.all()[0]
+            assert file_.status == amo.STATUS_DISABLED
+
+        for addon in should_be_kept_intact:
+            addon.reload()
+            assert addon.status == amo.STATUS_PUBLIC
+            assert addon.current_version
+            file_ = addon.versions.all()[0].all_files[0]
+            assert file_.status == amo.STATUS_PUBLIC
