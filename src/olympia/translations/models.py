@@ -1,3 +1,5 @@
+from functools import partial
+
 from django.db import connections, models, router
 from django.db.models.deletion import Collector
 
@@ -5,9 +7,9 @@ import bleach
 
 import olympia.core.logger
 
-from olympia.amo import urlresolvers
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase
+from olympia.amo.urlresolvers import linkify_bounce_url_callback
 
 from . import utils
 
@@ -194,10 +196,15 @@ class PurifiedTranslation(Translation):
 
     def clean_localized_string(self):
         # All links (text and markup) are normalized.
-        linkified = urlresolvers.linkify_with_outgoing(self.localized_string)
+        linkify_filter = partial(
+            bleach.linkifier.LinkifyFilter,
+            callbacks=[linkify_bounce_url_callback, bleach.callbacks.nofollow])
         # Keep only the allowed tags and attributes, escape the rest.
-        return bleach.clean(linkified, tags=self.allowed_tags,
-                            attributes=self.allowed_attributes)
+        cleaner = bleach.Cleaner(
+            tags=self.allowed_tags, attributes=self.allowed_attributes,
+            filters=[linkify_filter])
+
+        return cleaner.clean(unicode(self.localized_string))
 
 
 class LinkifiedTranslation(PurifiedTranslation):
