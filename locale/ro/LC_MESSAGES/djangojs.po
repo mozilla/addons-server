@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2018-08-30 21:49+0000\n"
-"Last-Translator: Henrietta Maior <hmaior@mozilla.com>\n"
+"PO-Revision-Date: 2018-10-08 14:06+0000\n"
+"Last-Translator: siparon <siparon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -213,12 +213,11 @@ msgstr "Folosește originalul"
 msgid "Week of {0}"
 msgstr "Săptămâna a {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " descărcări"
-msgstr[1] " descărcări"
-msgstr[2] " descărcări"
+msgstr[0] "{0} descărcare"
+msgstr[1] "{0} descărcări"
+msgstr[2] "{0} de descărcări"
 
 #, fuzzy
 msgid "{0} user"
@@ -481,7 +480,7 @@ msgstr "Descărcări, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Descărcări de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
@@ -537,7 +536,7 @@ msgstr "Sursele de descărcare, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Sursele de descărcare de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
