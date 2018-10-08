@@ -653,3 +653,29 @@ class TestMigrateLegacyDictionariesToWebextension(TestCase):
         # self.addon2 will raise a ValidationError because of the side_effect
         # above, so we should only reindex 1 and 3.
         assert index_addons_mock.call_args[0][0] == [self.addon, self.addon3]
+
+
+class TestExtractWebextensionsToGitStorage(TestCase):
+    @mock.patch('olympia.addons.tasks.index_addons.delay', autospec=True)
+    @mock.patch(
+        'olympia.addons.tasks.extract_file_obj_to_git', autospec=True)
+    def test_basic(self, extract_file_obj_to_git_mock, index_addons_mock):
+        addon_factory(file_kw={'is_webextension': True})
+        addon_factory(file_kw={'is_webextension': True})
+        addon_factory(
+            type=amo.ADDON_STATICTHEME, file_kw={'is_webextension': True})
+        addon_factory(
+            file_kw={'is_webextension': True}, status=amo.STATUS_DISABLED)
+        addon_factory(type=amo.ADDON_LPAPP, file_kw={'is_webextension': True})
+        addon_factory(type=amo.ADDON_DICT, file_kw={'is_webextension': True})
+
+        # Not supported, we focus entirely on WebExtensions
+        addon_factory(type=amo.ADDON_THEME)
+        addon_factory()
+        addon_factory()
+        addon_factory(type=amo.ADDON_LPAPP, file_kw={'is_webextension': False})
+        addon_factory(type=amo.ADDON_DICT, file_kw={'is_webextension': False})
+
+        call_command('process_addons',
+                     task='extract_webextensions_to_git_storage')
+        assert extract_file_obj_to_git_mock.call_count == 6
