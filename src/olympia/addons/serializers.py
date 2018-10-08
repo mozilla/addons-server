@@ -716,14 +716,12 @@ class StaticCategorySerializer(serializers.Serializer):
 
 class LanguageToolsSerializer(AddonSerializer):
     target_locale = serializers.CharField()
-    locale_disambiguation = serializers.CharField()
     current_compatible_version = serializers.SerializerMethodField()
 
     class Meta:
         model = Addon
         fields = ('id', 'current_compatible_version', 'default_locale', 'guid',
-                  'locale_disambiguation', 'name', 'slug', 'target_locale',
-                  'type', 'url', )
+                  'name', 'slug', 'target_locale', 'type', 'url', )
 
     def get_current_compatible_version(self, obj):
         compatible_versions = getattr(obj, 'compatible_versions', None)
@@ -749,6 +747,9 @@ class LanguageToolsSerializer(AddonSerializer):
         if (AddonAppVersionQueryParam.query_param not in request.GET and
                 'current_compatible_version' in data):
             data.pop('current_compatible_version')
+        if request and is_gate_active(
+                request, 'addons-locale_disambiguation-shim'):
+            data['locale_disambiguation'] = None
         return data
 
 

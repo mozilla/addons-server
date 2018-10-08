@@ -1793,6 +1793,7 @@ DRF_API_GATES = {
         'ratings-title-shim',
         'l10n_flat_input_output',
         'collections-downloads-shim',
+        'addons-locale_disambiguation-shim',
         'del-addons-created-field',
         'del-accounts-fxa-edit-email-url',
     ),
