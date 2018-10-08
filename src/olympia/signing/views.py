@@ -130,9 +130,10 @@ class VersionView(APIView):
 
         if (addon is not None and
                 addon.versions.filter(version=version_string).exists()):
-            raise forms.ValidationError(
-                ugettext('Version already exists.'),
-                status.HTTP_409_CONFLICT)
+            latest_version = addon.find_latest_version(None, exclude=())
+            msg = ugettext('Version already exists. Latest version is: %s.'
+                           % latest_version.version)
+            raise forms.ValidationError(msg, status.HTTP_409_CONFLICT)
 
         package_guid = parsed_data.get('guid', None)
 
