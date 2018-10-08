@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2018-10-08 15:05+0000\n"
+"PO-Revision-Date: 2018-10-08 15:32+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4775,23 +4775,23 @@ msgstr "Tawetamaj kiwäch ri awojqanela' {start_sub_heading}rik'in {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "Tawila' achike nojqan awichin chuqa' akuchi' rik'in jub'a' nakomonij ri awetamab'al."
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Katok akuchi' man niketamaj ta awäch {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Katok pan ajk'amaya'l rik'in jun k'exoj b'anikil—chuqa' achi'el yatokik'amayin pa jun chik amaq'."
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Katok pa ri jeb'ël taq ruxaq, k'ab'a' ketz'apïx taq ruwi' chuqa' ch'aqa' chik—rik'in silonel jeb'ël taq wachib'äl."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tab'ana' runuk'ulem ri tikirib'äl ruxaq {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
