@@ -17,7 +17,6 @@ form .char-count:after,
     width: 100%;
     overflow: hidden;
     word-wrap: break-word;
-    word-break: break-all;
 }
 
 #edit-addon h3 a {
