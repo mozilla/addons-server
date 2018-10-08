@@ -7,6 +7,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_dynamic_theme_tag, add_firefox57_tag, bump_appver_for_legacy_addons,
+    disable_legacy_files,
     delete_addon_not_compatible_with_thunderbird,
     delete_personas,
     output_personas,
@@ -83,6 +84,14 @@ tasks = {
               disabled_by_user=False,
               _current_version__files__is_webextension=False),
         ],
+    },
+    'disable_legacy_files': {
+        'method': disable_legacy_files,
+        'qs': [
+            Q(type__in=(amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_LPAPP),
+              versions__files__is_webextension=False,
+              versions__files__is_mozilla_signed_extension=False)
+        ]
     },
     'migrate_addons_that_require_sensitive_data_access': {
         'method': migrate_addons_that_require_sensitive_data_access,
