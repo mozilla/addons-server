@@ -10,6 +10,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.api.fields import ReverseChoiceField, TranslationSerializerField
 from olympia.api.serializers import BaseESSerializer
+from olympia.api.utils import is_gate_active
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APPS_ALL
@@ -700,14 +701,12 @@ class StaticCategorySerializer(serializers.Serializer):
 
 class LanguageToolsSerializer(AddonSerializer):
     target_locale = serializers.CharField()
-    locale_disambiguation = serializers.CharField()
     current_compatible_version = serializers.SerializerMethodField()
 
     class Meta:
         model = Addon
         fields = ('id', 'current_compatible_version', 'default_locale', 'guid',
-                  'locale_disambiguation', 'name', 'slug', 'target_locale',
-                  'type', 'url', )
+                  'name', 'slug', 'target_locale', 'type', 'url', )
 
     def get_current_compatible_version(self, obj):
         compatible_versions = getattr(obj, 'compatible_versions', None)
@@ -733,6 +732,9 @@ class LanguageToolsSerializer(AddonSerializer):
         if (AddonAppVersionQueryParam.query_param not in request.GET and
                 'current_compatible_version' in data):
             data.pop('current_compatible_version')
+        if request and is_gate_active(
+                request, 'addons-locale_disambiguation-shim'):
+            data['locale_disambiguation'] = None
         return data
 
 

@@ -333,12 +333,6 @@ class Addon(OnChangeMixin, ModelBase):
         help_text='For dictionaries and language packs. Identifies the '
                   'language and, optionally, region that this add-on is '
                   'written for. Examples: en-US, fr, and de-AT')
-    locale_disambiguation = models.CharField(
-        max_length=255, blank=True, null=True,
-        help_text='For dictionaries and language packs. A short identifier to '
-                  'differentiate this add-on from other similar add-ons (for '
-                  'example, different dialects). This field is not required. '
-                  'Please limit the length of the field to a few short words.')
 
     contributions = models.URLField(max_length=255, blank=True)
 
