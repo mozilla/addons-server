@@ -434,8 +434,8 @@ class TestRobots(TestCase):
 
     @override_settings(ENGAGE_ROBOTS=True)
     def test_allow_mozilla_collections(self):
-        """Make sure /en-US/firefox/collections/mozilla/ get allowed"""
-        url = '{}mozilla/'.format(reverse('collections.list'))
+        """Make sure Mozilla collections are allowed"""
+        url = '{}{}/'.format(reverse('collections.list'), settings.TASK_USER_ID)
         response = self.client.get('/robots.txt')
         assert response.status_code == 200
         assert 'Allow: {}'.format(url) in response.content
