@@ -1121,20 +1121,26 @@ class TestLanguageToolsSerializerOutput(TestCase):
 
     def test_basic(self):
         self.addon = addon_factory(
-            type=amo.ADDON_LPAPP, target_locale='fr',
-            locale_disambiguation=u'lolé')
+            type=amo.ADDON_LPAPP, target_locale='fr')
         result = self.serialize()
         assert result['id'] == self.addon.pk
         assert result['default_locale'] == self.addon.default_locale
         assert result['guid'] == self.addon.guid
-        assert result['locale_disambiguation'] == (
-            self.addon.locale_disambiguation)
         assert result['name'] == {'en-US': self.addon.name}
         assert result['slug'] == self.addon.slug
         assert result['target_locale'] == self.addon.target_locale
         assert result['type'] == 'language'
         assert result['url'] == absolutify(self.addon.get_url_path())
         assert 'current_compatible_version' not in result
+        assert 'locale_disambiguation' not in result
+
+    @override_settings(
+        DRF_API_GATES={None: ('addons-locale_disambiguation-shim',)})
+    def test_locale_disambiguation_in_v3(self):
+        self.addon = addon_factory(
+            type=amo.ADDON_LPAPP, target_locale='fr')
+        result = self.serialize()
+        assert result['locale_disambiguation'] is None
 
     def test_basic_dict(self):
         self.addon = addon_factory(type=amo.ADDON_DICT)

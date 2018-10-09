@@ -103,9 +103,10 @@ def _get_locales(addons):
 
     # We don't need the whole add-on so only store the parts in use.
     def slim(addon):
-        return {'slug': addon.slug,
-                'file_size': addon.current_version.all_files[0].size,
-                'locale_disambiguation': addon.locale_disambiguation}
+        return {
+            'slug': addon.slug,
+            'file_size': addon.current_version.all_files[0].size,
+        }
 
     locales = {}
     for locale, addons in amo.utils.sorted_groupby(addons, 'target_locale'):

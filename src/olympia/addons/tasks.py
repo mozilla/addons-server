@@ -31,7 +31,7 @@ from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import (
     LICENSE_COPYRIGHT_AR, PERSONA_LICENSES_IDS)
-from olympia.files.models import FileUpload
+from olympia.files.models import File, FileUpload
 from olympia.files.utils import RDFExtractor, get_file, parse_addon, SafeZip
 from olympia.files.tasks import extract_file_obj_to_git
 from olympia.amo.celery import pause_all_tasks, resume_all_tasks
@@ -809,3 +809,22 @@ def migrate_webextensions_to_git_storage(ids, **kw):
                         version=repr(version),
                         addon=repr(addon)))
                 continue
+
+
+@use_primary_db
+def disable_legacy_files(ids, **kw):
+    """Delete legacy files from the specified add-on ids."""
+    log.info(
+        'Disabling legacy files from addons %d-%d [%d].',
+        ids[0], ids[-1], len(ids))
+    qs = Addon.unfiltered.filter(id__in=ids)
+    for addon in qs:
+        with transaction.atomic():
+            # We're dealing with an addon that has the type we care about, and
+            # that we've identified as containing legacy File instances.
+            files = File.objects.filter(
+                is_webextension=False, is_mozilla_signed_extension=False,
+                version__addon=addon)
+            for file_ in files:
+                file_.update(status=amo.STATUS_DISABLED)
+    index_addons.delay(ids)

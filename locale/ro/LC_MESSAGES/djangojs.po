@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2018-08-30 21:49+0000\n"
-"Last-Translator: Henrietta Maior <hmaior@mozilla.com>\n"
+"PO-Revision-Date: 2018-10-09 13:16+0000\n"
+"Last-Translator: siparon <siparon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -213,61 +213,53 @@ msgstr "Folosește originalul"
 msgid "Week of {0}"
 msgstr "Săptămâna a {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " descărcări"
-msgstr[1] " descărcări"
-msgstr[2] " descărcări"
+msgstr[0] "{0} descărcare"
+msgstr[1] "{0} descărcări"
+msgstr[2] "{0} de descărcări"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} utilizatori"
+msgstr[0] "{0} utilizator"
 msgstr[1] "{0} utilizatori"
-msgstr[2] "{0} utilizatori"
+msgstr[2] "{0} de utilizatori"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} suplimente"
+msgstr[0] "{0} supliment"
 msgstr[1] "{0} suplimente"
-msgstr[2] "{0} suplimente"
+msgstr[2] "{0} de suplimente"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} colecții"
+msgstr[0] "{0} colecție"
 msgstr[1] "{0} colecții"
-msgstr[2] "{0} colecții"
+msgstr[2] "{0} de colecții"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} recenzii"
+msgstr[0] "{0} recenzie"
 msgstr[1] "{0} recenzii"
-msgstr[2] "{0} recenzii"
+msgstr[2] "{0} de recenzii"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} vânzări"
+msgstr[0] "{0} vânzare"
 msgstr[1] "{0} vânzări"
-msgstr[2] "{0} vânzări"
+msgstr[2] "{0} de vânzări"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} rambursări"
+msgstr[0] "{0} rambursare"
 msgstr[1] "{0} rambursări"
-msgstr[2] "{0} rambursări"
+msgstr[2] "{0} de rambursări"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} instalări"
+msgstr[0] "{0} instalare"
 msgstr[1] "{0} instalări"
-msgstr[2] "{0} instalări"
+msgstr[2] "{0} de instalări"
 
 msgid "Downloads"
 msgstr "Descărcări"
@@ -473,7 +465,7 @@ msgstr "Instalări și utilizatori zilnici, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Instalări și utilizatori zilnici de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
@@ -481,7 +473,7 @@ msgstr "Descărcări, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Descărcări de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
@@ -497,7 +489,7 @@ msgstr "Aplicații, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Aplicații de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
@@ -505,7 +497,7 @@ msgstr "Platforme, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Platforme de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
@@ -513,7 +505,7 @@ msgstr "Limbi, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Limbi de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
@@ -521,7 +513,7 @@ msgstr "Versiunile suplimentului, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Versiunile supliment de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
@@ -529,7 +521,7 @@ msgstr "Starea suplimentului, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Stare supliment de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
@@ -537,7 +529,7 @@ msgstr "Sursele de descărcare, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Sursele de descărcare de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -545,7 +537,7 @@ msgstr "Contribuții, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Contribuții de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
@@ -561,7 +553,7 @@ msgstr "Suplimente în uz, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Suplimente în uz de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
@@ -577,7 +569,7 @@ msgstr "Suplimente create, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Suplimente create de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
@@ -585,7 +577,7 @@ msgstr "Suplimente actualizate, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Suplimente actualizate de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
@@ -593,7 +585,7 @@ msgstr "Recenzii scrise, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Recenzii scrise de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
@@ -601,7 +593,7 @@ msgstr "Înscrieri de utilizatori, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Înscrieri de utilizatori de al {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
@@ -609,7 +601,7 @@ msgstr "Colecții create, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Colecții create de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
@@ -617,7 +609,7 @@ msgstr "Abonați, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Abonați de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
@@ -625,7 +617,7 @@ msgstr "Evaluări, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr "Evaluări din {0} până în {1}"
+msgstr "Evaluări de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
@@ -633,7 +625,7 @@ msgstr "Vânzări, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Vânzări de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
@@ -641,7 +633,7 @@ msgstr "Instalări, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Instalări de la {0} până la {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
@@ -649,7 +641,7 @@ msgstr "<b>{0}</b> în ultimele {1} zile"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> de la {1} până la {2}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
@@ -669,9 +661,9 @@ msgstr "Selectează o aplicație mai întâi"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Setează {0} supliment la o versiune maximă de {1} şi trimite e-mail autorului."
+msgstr[1] "Setează {0} suplimente la o versiune maximă de {1} şi trimite e-mail autorului."
+msgstr[2] "Setează {0} de suplimente la o versiune maximă de {1} şi trimite e-mail autorului."
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."

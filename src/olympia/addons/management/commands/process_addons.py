@@ -8,6 +8,7 @@ from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_dynamic_theme_tag, add_firefox57_tag, bump_appver_for_legacy_addons,
     delete_addon_not_compatible_with_firefoxes,
+    disable_legacy_files,
     delete_obsolete_applicationsversions,
     find_inconsistencies_between_es_and_db,
     migrate_legacy_dictionaries_to_webextension,
@@ -99,7 +100,15 @@ tasks = {
                   amo.ADDON_EXTENSION, amo.ADDON_STATICTHEME,
                   amo.ADDON_DICT, amo.ADDON_LPAPP)),
         ]
-    }
+    },
+    'disable_legacy_files': {
+        'method': disable_legacy_files,
+        'qs': [
+            Q(type__in=(amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_LPAPP),
+              versions__files__is_webextension=False,
+              versions__files__is_mozilla_signed_extension=False)
+        ]
+    },
 }
 
 

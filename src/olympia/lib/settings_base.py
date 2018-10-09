@@ -1795,6 +1795,7 @@ DRF_API_GATES = {
         'ratings-title-shim',
         'l10n_flat_input_output',
         'collections-downloads-shim',
+        'addons-locale_disambiguation-shim'
     ),
     'v4': (
         'l10n_flat_input_output',

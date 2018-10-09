@@ -3453,8 +3453,7 @@ class TestLanguageToolsView(TestCase):
     def test_basic(self):
         dictionary = addon_factory(type=amo.ADDON_DICT, target_locale='fr')
         dictionary_spelling_variant = addon_factory(
-            type=amo.ADDON_DICT, target_locale='fr',
-            locale_disambiguation='For spelling reform')
+            type=amo.ADDON_DICT, target_locale='fr')
         language_pack = addon_factory(
             type=amo.ADDON_LPAPP, target_locale='es',
             file_kw={'strict_compatibility': True},
@@ -3487,7 +3486,7 @@ class TestLanguageToolsView(TestCase):
             set(item['id'] for item in data['results']) ==
             set(item.pk for item in expected))
 
-        assert 'locale_disambiguation' in data['results'][0]
+        assert 'locale_disambiguation' not in data['results'][0]
         assert 'target_locale' in data['results'][0]
         # We were not filtering by appversion, so we do not get the
         # current_compatible_version property.
@@ -3685,8 +3684,7 @@ class TestLanguageToolsView(TestCase):
     def test_memoize(self):
         addon_factory(type=amo.ADDON_DICT, target_locale='fr')
         addon_factory(
-            type=amo.ADDON_DICT, target_locale='fr',
-            locale_disambiguation='For spelling reform')
+            type=amo.ADDON_DICT, target_locale='fr')
         addon_factory(type=amo.ADDON_LPAPP, target_locale='es')
         addon_factory(
             type=amo.ADDON_LPAPP, target_locale='de',
