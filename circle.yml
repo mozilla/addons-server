@@ -93,9 +93,6 @@ jobs:
           command: |
             set -x
             sudo sysctl -w vm.max_map_count=262144
-            sudo useradd --groups root seluser
-            # chown to change permissions of olympia.egg* and all folders/file
-            # This is done because cirlceci has permissions do not allow the user `circleci` to remove or add files create by the root, even if it is part of the root group.
             docker-compose pull --quiet
             docker-compose up -d
             sleep 20
@@ -108,7 +105,10 @@ jobs:
             docker-compose restart web
             # Delete any existing uitest users within restmail. TEMP FIX: https://github.com/mozilla/addons-server/issues/8980
             wget --method=DELETE http://restmail.net/mail/uitest
-            sudo chown -R seluser .
+            # mod user in firefox container
+            docker-compose exec selenium-firefox sudo usermod -u 1001 seluser
+            # proper chown
+            chown -R $USER .
             # Start Test in Firefox docker container
             docker-compose exec selenium-firefox tox -e ui-tests
       - store_artifacts:
