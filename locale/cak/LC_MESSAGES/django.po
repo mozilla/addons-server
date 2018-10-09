@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2018-10-09 21:42+0000\n"
+"PO-Revision-Date: 2018-10-09 22:10+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4887,15 +4887,15 @@ msgstr "Tacha' xab'achike tz'ib'anïk pa xab'achike ajk'amaya'l ruxaq, tapitz'a'
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'anuk'samajij ri ewan taq atzij {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Ke'ayaka' ütz ewan taq tzij chuqa' ke'atz'eta' pa xab'achike okisab'äl."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tik'oje' pan ak'u'x akuchi' at k'o pan ajk'amaya'l {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
