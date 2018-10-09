@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2018-10-09 15:50+0000\n"
+"PO-Revision-Date: 2018-10-09 16:10+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4815,19 +4815,19 @@ msgstr "Ke'anik'oj ri kib'anikil taq aqasanik rik'in jun rukajtz'ik b'anikil, ru
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tachapa' ajk'amaya'l rupam {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Tayaka' retamab'al k'amaya'l pa OneNote richin ninuk', nitz'ib'äx pa ruwi' chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tachajij awi' chi kiwäch ojqanem pa taq kanoxïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Man taya' q'ij richin yatojqäx toq napïtz' pa ruwi' ri nawïl toq yakanon pa Google chuqa' Yandex"
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
