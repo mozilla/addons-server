@@ -371,11 +371,12 @@ class TestMigrateWebextensionsToGitStorage(TestCase):
     @mock.patch('olympia.addons.tasks.extract_file_obj_to_git')
     def test_migrate_versions_from_old_to_new(self, extract_mock):
         addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
-        old_version = version_factory(
+        oldest_version = addon.current_version
+        oldest_version.update(created=self.days_ago(6))
+        older_version = version_factory(
             created=self.days_ago(5),
             addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
-
-        newer_version = version_factory(
+        most_recent = version_factory(
             created=self.days_ago(2),
             addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
 
@@ -385,7 +386,10 @@ class TestMigrateWebextensionsToGitStorage(TestCase):
         assert extract_mock.call_count == 3
         assert (
             extract_mock.call_args_list[0][0][0] ==
-            old_version.all_files[0].pk)
+            oldest_version.all_files[0].pk)
         assert (
-            extract_mock.call_args_list[0][0][0] ==
-            newer_version.all_files[0].pk)
+            extract_mock.call_args_list[1][0][0] ==
+            older_version.all_files[0].pk)
+        assert (
+            extract_mock.call_args_list[2][0][0] ==
+            most_recent.all_files[0].pk)
