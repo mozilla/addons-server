@@ -85,7 +85,8 @@ def test_generate_static_theme_preview(
             "textcolor": "#3deb60",
             "toolbar_text": "#b5ba5b",
             "toolbar_field": "#cc29cc",
-            "toolbar_field_text": "#17747d"
+            "toolbar_field_text": "#17747d",
+            "tab_line": "#00db12",
         }
     }
     if header_url is not None:
