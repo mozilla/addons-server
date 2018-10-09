@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2018-10-09 15:29+0000\n"
+"PO-Revision-Date: 2018-10-09 15:50+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4803,15 +4803,15 @@ msgstr "Ke'acholajij ri taq ruwi' awichin {start_sub_heading}rik'in {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "Ke'acholajij ri jaqäl taq ruwi' awichin richin yenuk'samajïx aninäq chuqa' nipararëx ri Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tak'ulu' jun nïm ruchuq'a' runuk'samajel qasanïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Ke'anik'oj ri kib'anikil taq aqasanik rik'in jun rukajtz'ik b'anikil, ruxaq kinatab'al qasanïk chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
