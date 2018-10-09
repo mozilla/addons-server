@@ -108,7 +108,7 @@ jobs:
             # mod user in firefox container
             docker-compose exec selenium-firefox sudo usermod -u 1001 seluser
             # proper chown
-            chown -R $USER .
+            sudo chown -R $USER .
             # Start Test in Firefox docker container
             docker-compose exec selenium-firefox tox -e ui-tests
       - store_artifacts:
