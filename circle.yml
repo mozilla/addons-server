@@ -103,13 +103,14 @@ jobs:
             docker-compose restart worker
             docker-compose exec web make -f Makefile-docker update_deps
             docker-compose restart web
-            # chown to change permissions of olympia.egg* and all folders/file
-            # This is done because cirlceci has permissions do not allow the user `circleci` to remove or add files create by the root, even if it is part of the root group.
-            sudo chown -R circleci:circleci .
             # Delete any existing uitest users within restmail. TEMP FIX: https://github.com/mozilla/addons-server/issues/8980
             wget --method=DELETE http://restmail.net/mail/uitest
+            # mod user in firefox container
+            docker-compose exec selenium-firefox sudo usermod -u 1001 seluser
+            # proper chown
+            sudo chown -R $USER .
             # Start Test in Firefox docker container
-            docker-compose exec --user circleci selenium-firefox tox -e ui-tests
+            docker-compose exec selenium-firefox tox -e ui-tests
       - store_artifacts:
           path: ui-test.html
       - save_cache:
