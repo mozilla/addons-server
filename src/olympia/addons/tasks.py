@@ -750,7 +750,11 @@ def migrate_legacy_dictionary_to_webextension(addon):
     file_.update(datestatuschanged=now, reviewed=now, status=amo.STATUS_PUBLIC)
 
 
-@task
+# Rate limiting to 1 per minute to not overload our networking filesystem
+# and block our celery workers. Extraction to our git backend doesn't have
+# to be fast. Each instance processes 100 add-ons so we'll process
+# 6000 add-ons per hour which is fine.
+@task(rate_limit='1/m')
 def migrate_webextensions_to_git_storage(ids, **kw):
     log.info(
         'Migrating add-ons to git storage %d-%d [%d].',
