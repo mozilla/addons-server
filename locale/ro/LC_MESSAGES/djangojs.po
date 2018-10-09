@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2018-10-09 13:14+0000\n"
+"PO-Revision-Date: 2018-10-09 13:16+0000\n"
 "Last-Translator: siparon <siparon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
@@ -641,7 +641,7 @@ msgstr "<b>{0}</b> în ultimele {1} zile"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> de la {1} până la {2}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
@@ -661,9 +661,9 @@ msgstr "Selectează o aplicație mai întâi"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Setează {0} supliment la o versiune maximă de {1} şi trimite e-mail autorului."
+msgstr[1] "Setează {0} suplimente la o versiune maximă de {1} şi trimite e-mail autorului."
+msgstr[2] "Setează {0} de suplimente la o versiune maximă de {1} şi trimite e-mail autorului."
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
