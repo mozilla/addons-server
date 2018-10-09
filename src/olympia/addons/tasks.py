@@ -791,7 +791,7 @@ def migrate_webextensions_to_git_storage(ids, **kw):
 
             # Don't call the task as a task but do the extraction in process
             # this makes sure we don't overwhelm the storage and also makes
-            # sure we don't end up with tasks comitting at random times but
+            # sure we don't end up with tasks committing at random times but
             # correctly in-order instead.
             try:
                 file_id = version.all_files[0].pk
