@@ -1741,6 +1741,25 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
 
         assert mock_sign_file.call_count == 0
 
+    @mock.patch('olympia.devhub.views.sign_file')
+    def test_theme_experiment_inside_webext_upload_without_permission(
+            self, mock_sign_file):
+        self.upload = self.get_upload(
+            'theme_experiment_inside_webextension.xpi',
+            validation=json.dumps({
+                "notices": 2, "errors": 0, "messages": [],
+                "metadata": {}, "warnings": 1,
+            }))
+        self.addon.update(
+            guid='@theme–experiment-inside-webextension-guid',
+            status=amo.STATUS_PUBLIC)
+
+        response = self.post(expected_status=200)
+        assert pq(response.content)('ul.errorlist').text() == (
+            'You cannot submit this type of add-on')
+
+        assert mock_sign_file.call_count == 0
+
     def test_incomplete_addon_now_nominated(self):
         """Uploading a new version for an incomplete addon should set it to
         nominated."""
