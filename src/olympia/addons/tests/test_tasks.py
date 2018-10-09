@@ -20,7 +20,7 @@ from olympia.addons.tasks import (
     migrate_webextensions_to_git_storage)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import (
-    addon_factory, TestCase, user_factory, file_factory)
+    addon_factory, TestCase, user_factory, file_factory, version_factory)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
 from olympia.applications.models import AppVersion
@@ -320,40 +320,72 @@ class TestMigrateLegacyDictionaryToWebextension(TestCase):
         assert current_file.cert_serial_num == 'abcdefg1234'
 
 
-@pytest.mark.django_db
-def test_migrate_webextensions_to_git_storage():
-    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+class TestMigrateWebextensionsToGitStorage(TestCase):
+    def test_basic(self):
+        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
 
-    migrate_webextensions_to_git_storage([addon.pk])
+        migrate_webextensions_to_git_storage([addon.pk])
 
-    repo = AddonGitRepository(addon.pk)
+        repo = AddonGitRepository(addon.pk)
 
-    assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, str(addon.id), 'package')
-    assert os.listdir(repo.git_repository_path) == ['.git']
+        assert repo.git_repository_path == os.path.join(
+            settings.GIT_FILE_STORAGE_PATH, str(addon.id), 'package')
+        assert os.listdir(repo.git_repository_path) == ['.git']
 
+    @mock.patch('olympia.addons.tasks.extract_file_obj_to_git')
+    def test_only_first_file(self, extract_mock):
+        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+        version = addon.current_version
+        first_file = version.all_files[0]
+        file_factory(version=version)
+        file_factory(version=version)
 
-@mock.patch('olympia.addons.tasks.extract_file_obj_to_git')
-@pytest.mark.django_db
-def test_migrate_webextensions_to_git_storage_only_first_file(extract_mock):
-    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
-    version = addon.current_version
-    first_file = version.all_files[0]
-    file_factory(version=version)
-    file_factory(version=version)
+        migrate_webextensions_to_git_storage([addon.pk])
 
-    migrate_webextensions_to_git_storage([addon.pk])
+        extract_mock.assert_called_once_with(
+            first_file.pk, amo.RELEASE_CHANNEL_LISTED)
 
-    extract_mock.assert_called_once_with(
-        first_file.pk, amo.RELEASE_CHANNEL_LISTED)
+    @mock.patch('olympia.addons.tasks.extract_file_obj_to_git')
+    def test_no_files(self, extract_mock):
+        addon = addon_factory()
+        addon.current_version.files.all().delete()
 
+        migrate_webextensions_to_git_storage([addon.pk])
 
-@mock.patch('olympia.addons.tasks.extract_file_obj_to_git')
-@pytest.mark.django_db
-def test_migrate_webextensions_to_git_storage_no_files(extract_mock):
-    addon = addon_factory()
-    addon.current_version.files.all().delete()
+        extract_mock.assert_not_called()
 
-    migrate_webextensions_to_git_storage([addon.pk])
+    @mock.patch('olympia.addons.tasks.extract_file_obj_to_git')
+    def test_skip_already_migrated_versions(self, extract_mock):
+        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+        version_to_migrate = addon.current_version
+        already_migrated_version = version_factory(
+            addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+        already_migrated_version.update(git_hash='already migrated...')
 
-    extract_mock.assert_not_called()
+        migrate_webextensions_to_git_storage([addon.pk])
+
+        # Only once instead of twice
+        extract_mock.assert_called_once_with(
+            version_to_migrate.all_files[0].pk, amo.RELEASE_CHANNEL_LISTED)
+
+    @mock.patch('olympia.addons.tasks.extract_file_obj_to_git')
+    def test_migrate_versions_from_old_to_new(self, extract_mock):
+        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+        old_version = version_factory(
+            created=self.days_ago(5),
+            addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+        newer_version = version_factory(
+            created=self.days_ago(2),
+            addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+        migrate_webextensions_to_git_storage([addon.pk])
+
+        # Only once instead of twice
+        assert extract_mock.call_count == 3
+        assert (
+            extract_mock.call_args_list[0][0][0] ==
+            old_version.all_files[0].pk)
+        assert (
+            extract_mock.call_args_list[0][0][0] ==
+            newer_version.all_files[0].pk)

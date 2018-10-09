@@ -765,7 +765,7 @@ def migrate_webextensions_to_git_storage(ids, **kw):
     for addon in addons:
         # Filter out versions that are already present in the git
         # storage.
-        versions = addon.versions.filter(git_hash='').order_by('id')
+        versions = addon.versions.filter(git_hash='').order_by('created')
 
         for version in versions:
             # Back in the days an add-on was able to have multiple files
