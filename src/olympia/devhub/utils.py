@@ -376,3 +376,17 @@ def extract_theme_properties(addon, channel):
         process_color_value(prop, color)
         for prop, color in theme_properties.get('colors', {}).items())
     return theme_properties
+
+
+def wizard_unsupported_properties(data, wizard_fields):
+    # collect any 'theme' level unsupported properties
+    unsupported = [
+        key for key in data.keys() if key not in ['colors', 'images']]
+    # and any unsupported 'colors' properties
+    unsupported += [
+        key for key in data.get('colors', {}) if key not in wizard_fields]
+    # and finally any 'images' properties (wizard only supports the background)
+    unsupported += [
+        key for key in data.get('images', {}) if key != 'headerURL']
+
+    return unsupported

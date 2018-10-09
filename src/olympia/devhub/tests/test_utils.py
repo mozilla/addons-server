@@ -435,3 +435,25 @@ def test_extract_theme_properties():
         "accentcolor": "#adb09f",
         "textcolor": "#000"
     }
+
+
+@pytest.mark.django_db
+def test_wizard_unsupported_properties():
+    data = {
+        'colors': {
+            'foo': '#111111',
+            'baa': '#222222',
+            'extracolor': 'rgb(1,2,3,0)',
+        },
+        'images': {
+            'headerURL': 'png.png',
+            'additionalBackground': 'somethingelse.png',
+        },
+        'extrathing': {
+            'doesnt': 'matter',
+        },
+    }
+    fields = ['foo', 'baa']
+    properties = utils.wizard_unsupported_properties(
+        data, fields)
+    assert properties == ['extrathing', 'extracolor', 'additionalBackground']

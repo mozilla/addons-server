@@ -9,6 +9,18 @@
 {% block primary %}
   <h3>{{ _('Theme generator') }}</h3>
   <div id="theme-wizard" data-version="{{ version_number }}">
+    {% if unsupported_properties %}
+      <div class="notification-box error">
+          {{ _('Warning: the following manifest properties that your most recent version '
+               'upload used in it\'s manifest are unsupported in this wizard and will be ignored:') }}
+          <ul class="note">
+            {% for prop in unsupported_properties %}
+              <li>{{ prop }}</li>
+            {% endfor %}
+          </ul>
+      </div>
+    {% endif %}
+
     <div>
         <h3>{{ _('Theme name') }}<span class="req" title="{{ _('required') }}">*</span></h3>
         {% if addon %}
@@ -38,14 +50,6 @@
     </div>
     <div class="colors">
       <h3>{{ _('Select colors for your theme') }}</h3>
-      {% set colors = [
-        ('accentcolor', _('Header area background'), _('The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor.'), 'rgba(229,230,232,1)'),
-        ('textcolor', _('Header area text and icons'), _('The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor.'), 'rgba(0,0,0,1'),
-        ('toolbar', _('Toolbar area background'), _('The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar.'), false),
-        ('toolbar_text', _('Toolbar area text and icons'), _('The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text.'), false),
-        ('toolbar_field', _('Toolbar field area background'), _('The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field.'), false),
-        ('toolbar_field_text', _('Toolbar field area text'), _('The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text.'), false)] %}
-
       <ul class="colors">
         {% set property_list_left = ['textcolor','toolbar_text', 'toolbar_field_text'] %}
         {% set existing_colors = existing_properties['colors'] or {} %}

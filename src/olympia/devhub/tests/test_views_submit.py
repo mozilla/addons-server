@@ -1612,6 +1612,71 @@ class VersionSubmitUploadMixin(object):
         # Existing colors should be the default values for the fields
         assert doc('#accentcolor').attr('value') == '#123456'
         assert doc('#textcolor').attr('value') == 'rgba(1,2,3,0.4)'
+        # No warning about extra properties
+        assert 'are unsupported in this wizard' not in response.content
+
+        # And then check the upload works.
+        path = os.path.join(
+            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+        self.upload = self.get_upload(abspath=path)
+        response = self.post()
+
+        version = self.addon.find_latest_version(channel=self.channel)
+        assert version.channel == self.channel
+        assert version.all_files[0].status == (
+            amo.STATUS_AWAITING_REVIEW
+            if self.channel == amo.RELEASE_CHANNEL_LISTED else
+            amo.STATUS_PUBLIC)
+        self.assert3xx(response, self.get_next_url(version))
+        log_items = ActivityLog.objects.for_addons(self.addon)
+        assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
+        if self.channel == amo.RELEASE_CHANNEL_LISTED:
+            previews = list(version.previews.all())
+            assert len(previews) == 3
+            assert storage.exists(previews[0].image_path)
+            assert storage.exists(previews[1].image_path)
+            assert storage.exists(previews[1].image_path)
+        else:
+            assert version.previews.all().count() == 0
+
+    def test_static_theme_wizard_unsupported_properties(self):
+        channel = ('listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else
+                   'unlisted')
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        # Get the correct template.
+        self.url = reverse('devhub.submit.version.wizard',
+                           args=[self.addon.slug, channel])
+        mock_point = 'olympia.devhub.views.extract_theme_properties'
+        with mock.patch(mock_point) as extract_theme_properties_mock:
+            extract_theme_properties_mock.return_value = {
+                'colors': {
+                    'accentcolor': '#123456',
+                    'textcolor': 'rgba(1,2,3,0.4)',
+                    'tab_line': '#123',
+                },
+                'images': {
+                    'additional_backgrounds': [],
+                },
+                'something_extra': {},
+            }
+            response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#theme-wizard')
+        assert doc('#theme-wizard').attr('data-version') == '3.0'
+        assert doc('input#theme-name').attr('type') == 'hidden'
+        assert doc('input#theme-name').attr('value') == (
+            unicode(self.addon.name))
+        # Existing colors should be the default values for the fields
+        assert doc('#accentcolor').attr('value') == '#123456'
+        assert doc('#textcolor').attr('value') == 'rgba(1,2,3,0.4)'
+        # Warning about extra properties this time:
+        assert 'are unsupported in this wizard' in response.content
+        unsupported_list = doc('.notification-box.error ul.note li')
+        assert unsupported_list.length == 3
+        assert 'tab_line' in unsupported_list.text()
+        assert 'additional_backgrounds' in unsupported_list.text()
+        assert 'something_extra' in unsupported_list.text()
 
         # And then check the upload works.
         path = os.path.join(
