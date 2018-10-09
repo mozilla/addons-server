@@ -83,7 +83,7 @@ def test_devhub_addon_upload(base_url, selenium, devhub_upload):
     print(settings.DATABASES)
 
     selenium.get('{}/addon/{}'.format(base_url, 'ui-test_devhub_ext/'))
-    time.sleep(300)
+    # time.sleep(300)
     addon = Detail(selenium, base_url)
     assert 'UI-Test_devhub_ext' in addon.name
     addon.install()
