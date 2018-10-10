@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2017-11-18 23:35+0000\n"
-"Last-Translator: yoonggunx <yoonggunx@gmail.com>\n"
+"PO-Revision-Date: 2018-10-10 12:03+0000\n"
+"Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -203,22 +203,19 @@ msgstr "Sử dụng bản gốc"
 msgid "Week of {0}"
 msgstr "Tuần {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " tải xuống"
+msgstr[0] "{0} tải xuống"
 
 #, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} người dùng"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} tiện ích"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] "{0} bộ sưu tập"
@@ -237,7 +234,6 @@ msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] ""
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
 msgstr[0] "{0} lần cài đặt"
