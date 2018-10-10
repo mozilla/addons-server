@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2018-10-10 18:38+0000\n"
+"PO-Revision-Date: 2018-10-10 20:26+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4907,15 +4907,15 @@ msgstr "Tawutzilaj awetamab'al richin nasik'ij wuj {start_sub_heading}rik'in {ad
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Tab'ana' jeb'ël chi re ri tz'ib'anïk nasik'ij rik'in ruyujik ruwi' taq ch'akulaj e k'o chuchi'."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'ajaqa' jalajöj taq simonel {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
-msgstr ""
+msgstr "Tapitz'a' ri ajkiq'a' pitz'b'äl k'a ri' taqirirej ri retal ch'oy pa kiwi' ri taq ximonel nawajo' najäq pa k'ak'a' ruwi'."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
