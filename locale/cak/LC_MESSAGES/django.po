@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2018-10-10 21:20+0000\n"
+"PO-Revision-Date: 2018-10-10 22:49+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4967,11 +4967,11 @@ msgstr "Tawila' chuqa' ke'ayuju' ri taq k'ayewal pa ri k'apinäq, ekamulun taq y
 
 #. editorial content for the discovery pane.
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Man kakös {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Ke'anataj ri asamaj k'a man e tz'aqät ta rik'in jun jeb'ël kicholb'al samaj, ri nuxïm ri' pa ronojel awokisab'äl."
 
 #. editorial content for the discovery pane.
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
