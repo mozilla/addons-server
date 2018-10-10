@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2018-10-10 12:11+0000\n"
+"PO-Revision-Date: 2018-10-10 12:12+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -6860,9 +6860,8 @@ msgstr[0] "Xét duyệt Đã được Điều chỉnh ({0})"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
-#, fuzzy
 msgid "New Themes ({0})"
-msgstr "Tiện ích {0}"
+msgstr "Chủ đề mới ({0})"
 
 #, fuzzy
 msgid "Themes Updates ({0})"
