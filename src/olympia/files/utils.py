@@ -380,11 +380,13 @@ class ManifestJSONExtractor(object):
 
     @property
     def is_experiment(self):
-        """Return whether or not the webextension uses experiments API.
+        """Return whether or not the webextension uses
+        experiments or theme experiments API.
 
         In legacy extensions this is a different type, but for webextensions
         we just look at the manifest."""
-        return bool(self.get('experiment_apis', False))
+        experiment_keys = ('experiment_apis', 'theme_experiment')
+        return any(bool(self.get(key)) for key in experiment_keys)
 
     @property
     def gecko(self):

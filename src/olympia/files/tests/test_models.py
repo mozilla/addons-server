@@ -655,6 +655,15 @@ class TestParseXpi(TestCase):
         assert not parsed['is_restart_required']
         assert parsed['is_experiment']
 
+    def test_theme_experiment_inside_webextension(self):
+        self.grant_permission(self.user, 'Experiments:submit')
+        parsed = self.parse(
+            filename='theme_experiment_inside_webextension.xpi')
+        assert parsed['type'] == amo.ADDON_STATICTHEME
+        assert parsed['is_webextension']
+        assert not parsed['is_restart_required']
+        assert parsed['is_experiment']
+
     def test_match_mozilla_signed_extension(self):
         self.user.update(email='foo@mozilla.com')
         parsed = self.parse(filename='webextension_signed_already.xpi')
