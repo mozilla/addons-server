@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2018-10-09 22:10+0000\n"
+"PO-Revision-Date: 2018-10-10 15:25+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4875,7 +4875,7 @@ msgstr "Tawichinaj ri k'ak'a' ruwi' awichin {start_sub_heading}rik'in {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Tanuk'u' ri ruxaq k'ak'a' ruwi' richin ye'ak'üt pe ri taq awajowab'al rik'in ri kajilab'al silonel taq wachib'äl, ri ruwachib'al rupam chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
 msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
