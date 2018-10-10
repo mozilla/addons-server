@@ -107,7 +107,8 @@ tasks = {
             Q(type__in=(amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_LPAPP),
               versions__files__is_webextension=False,
               versions__files__is_mozilla_signed_extension=False)
-        ]
+        ],
+        'pre': lambda values_qs: values_qs.distinct(),
     },
 }
 
