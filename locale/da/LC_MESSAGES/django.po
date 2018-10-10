@@ -2717,7 +2717,7 @@ msgid "Lightweight Themes"
 msgstr "Letvægtstemaer"
 
 msgid "Add-on Policies"
-msgstr "Add-on Policies"
+msgstr ""
 
 msgid "Add-on Validator"
 msgstr "Add-on Validator"
