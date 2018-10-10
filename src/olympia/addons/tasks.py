@@ -815,6 +815,7 @@ def migrate_webextensions_to_git_storage(ids, **kw):
                 continue
 
 
+@task
 @use_primary_db
 def disable_legacy_files(ids, **kw):
     """Delete legacy files from the specified add-on ids."""
