@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2018-10-10 15:25+0000\n"
+"PO-Revision-Date: 2018-10-10 18:38+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4899,11 +4899,11 @@ msgstr "Tik'oje' pan ak'u'x akuchi' at k'o pan ajk'amaya'l {start_sub_heading}ri
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Tatz'eta' ri amaq' kik'ojlib'al ri ajk'amaya'l ruxaq ye'atz'ët. Katok jun etamanel ajk'amaya'l b'yajinel."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tawutzilaj awetamab'al richin nasik'ij wuj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
