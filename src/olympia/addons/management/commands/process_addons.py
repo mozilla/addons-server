@@ -12,7 +12,8 @@ from olympia.addons.tasks import (
     delete_obsolete_applicationsversions,
     find_inconsistencies_between_es_and_db,
     migrate_legacy_dictionaries_to_webextension,
-    migrate_lwts_to_static_themes)
+    migrate_lwts_to_static_themes,
+    migrate_webextensions_to_git_storage)
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
@@ -90,6 +91,15 @@ tasks = {
               disabled_by_user=False,
               _current_version__files__is_webextension=False),
         ],
+    },
+    'extract_webextensions_to_git_storage': {
+        'method': migrate_webextensions_to_git_storage,
+        'qs': [
+            Q(_current_version__files__is_webextension=True,
+              type__in=(
+                  amo.ADDON_EXTENSION, amo.ADDON_STATICTHEME,
+                  amo.ADDON_DICT, amo.ADDON_LPAPP)),
+        ]
     },
     'disable_legacy_files': {
         'method': disable_legacy_files,

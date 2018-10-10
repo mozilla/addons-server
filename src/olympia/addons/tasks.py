@@ -33,6 +33,7 @@ from olympia.constants.licenses import (
     LICENSE_COPYRIGHT_AR, PERSONA_LICENSES_IDS)
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import RDFExtractor, get_file, parse_addon, SafeZip
+from olympia.files.tasks import extract_file_obj_to_git
 from olympia.amo.celery import pause_all_tasks, resume_all_tasks
 from olympia.lib.crypto.packaged import sign_file
 from olympia.lib.es.utils import index_objects
@@ -747,6 +748,71 @@ def migrate_legacy_dictionary_to_webextension(addon):
     file_ = version.all_files[0]
     sign_file(file_)
     file_.update(datestatuschanged=now, reviewed=now, status=amo.STATUS_PUBLIC)
+
+
+# Rate limiting to 1 per minute to not overload our networking filesystem
+# and block our celery workers. Extraction to our git backend doesn't have
+# to be fast. Each instance processes 100 add-ons so we'll process
+# 6000 add-ons per hour which is fine.
+@task(rate_limit='1/m')
+def migrate_webextensions_to_git_storage(ids, **kw):
+    log.info(
+        'Migrating add-ons to git storage %d-%d [%d].',
+        ids[0], ids[-1], len(ids))
+
+    addons = Addon.unfiltered.filter(id__in=ids)
+
+    for addon in addons:
+        # Filter out versions that are already present in the git
+        # storage.
+        versions = addon.versions.filter(git_hash='').order_by('created')
+
+        for version in versions:
+            # Back in the days an add-on was able to have multiple files
+            # per version. That changed, we are very naive here and extracting
+            # simply the first file in the list. For WebExtensions there is
+            # only a very very small number that have different files for
+            # a single version.
+            unique_file_hashes = set([
+                x.original_hash for x in version.all_files
+            ])
+
+            if len(unique_file_hashes) > 1:
+                # Log actually different hashes so that we can clean them
+                # up manually and work together with developers later.
+                log.info(
+                    'Version {version} of {addon} has more than one uploaded '
+                    'file'.format(version=repr(version), addon=repr(addon)))
+
+            if not unique_file_hashes:
+                log.info('No files found for {version} from {addon}'.format(
+                    version=repr(version), addon=repr(addon)))
+                continue
+
+            # Don't call the task as a task but do the extraction in process
+            # this makes sure we don't overwhelm the storage and also makes
+            # sure we don't end up with tasks committing at random times but
+            # correctly in-order instead.
+            try:
+                file_id = version.all_files[0].pk
+                channel = version.channel
+
+                log.info('Extracting file {file_id} to git storage'.format(
+                    file_id=file_id))
+
+                extract_file_obj_to_git(file_id, channel)
+
+                log.info(
+                    'Extraction of file {file_id} into git storage succeeded'
+                    .format(file_id=file_id))
+            except Exception:
+                log.exception(
+                    'Extraction of file {file_id} from {version} '
+                    '({addon}) failed'.format(
+                        file_id=version.all_files[0],
+                        version=repr(version),
+                        addon=repr(addon)))
+                continue
 
 
 @task
