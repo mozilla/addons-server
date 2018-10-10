@@ -33,8 +33,8 @@
     </div>
   {% endif %}
 
-  <div class="edit-addon-section" id="edit-addon-basic">
-    {% include 'devhub/addons/edit/basic.html' %}
+  <div class="edit-addon-section" id="edit-addon-describe">
+    {% include 'devhub/addons/edit/describe.html' %}
   </div>
 
   {% if show_listed_fields and addon.type != amo.ADDON_STATICTHEME%}
@@ -45,7 +45,7 @@
   {% endif %}
 
   <div class="edit-addon-section" id="edit-addon-details">
-    {% include 'devhub/addons/edit/details.html' %}
+    {% include 'devhub/addons/edit/additional_details.html' %}
   </div>
 
   {% if show_listed_fields %}

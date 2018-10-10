@@ -320,7 +320,7 @@ class AddonFormMedia(AddonFormBase):
         return super(AddonFormMedia, self).save(commit)
 
 
-class AddonFormDetails(AkismetSpamCheckFormMixin, AddonFormBase):
+class AdditionalDetailsForm(AkismetSpamCheckFormMixin, AddonFormBase):
     default_locale = forms.TypedChoiceField(choices=LOCALES)
     homepage = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
     tags = forms.CharField(required=False)
@@ -334,7 +334,7 @@ class AddonFormDetails(AkismetSpamCheckFormMixin, AddonFormBase):
                   'contributions')
 
     def __init__(self, *args, **kw):
-        super(AddonFormDetails, self).__init__(*args, **kw)
+        super(AdditionalDetailsForm, self).__init__(*args, **kw)
 
         if self.fields.get('tags'):
             self.fields['tags'].initial = ', '.join(
@@ -370,7 +370,7 @@ class AddonFormDetails(AkismetSpamCheckFormMixin, AddonFormBase):
                     'Before changing your default locale you must have a '
                     'name, summary, and description in that locale. '
                     'You are missing %s.') % ', '.join(map(repr, missing)))
-        return super(AddonFormDetails, self).clean()
+        return super(AdditionalDetailsForm, self).clean()
 
     def save(self, addon, commit=False):
         if self.fields.get('tags'):
@@ -387,13 +387,13 @@ class AddonFormDetails(AkismetSpamCheckFormMixin, AddonFormBase):
 
         # We ignore `commit`, since we need it to be `False` so we can save
         # the ManyToMany fields on our own.
-        addonform = super(AddonFormDetails, self).save(commit=False)
+        addonform = super(AdditionalDetailsForm, self).save(commit=False)
         addonform.save()
 
         return addonform
 
 
-class AddonFormDetailsUnlisted(AddonFormDetails):
+class AdditionalDetailsFormUnlisted(AdditionalDetailsForm):
     # We want the same fields as the listed version. In particular,
     # default_locale is referenced in the template and needs to exist.
     pass

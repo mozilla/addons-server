@@ -1,12 +1,12 @@
 {% from "devhub/includes/macros.html" import tip, empty_unless, select_cats, trans_readonly, flags %}
 
-<form method="post" action="{{ url('devhub.addons.section', valid_slug, 'basic', 'edit') }}"
-      id="addon-edit-basic"
+<form method="post" action="{{ url('devhub.addons.section', valid_slug, 'describe', 'edit') }}"
+      id="addon-edit-describe"
       data-baseurl="{{ url('devhub.addons.edit', valid_slug) }}">
   <h3>
-    {{ _('Basic Information') }}
+    {{ _('Describe Add-on') }}
     {% if not editable %}
-      <a href="#" data-editurl="{{ url('devhub.addons.section', valid_slug, 'basic', 'edit') }}" class="button">
+      <a href="#" data-editurl="{{ url('devhub.addons.section', valid_slug, 'describe', 'edit') }}" class="button">
         {{ _('Edit') }}</a>
     {% endif %}
   </h3>
@@ -15,7 +15,7 @@
       {% if editable %}{{ form.non_field_errors() }}{% endif %}
       <table>
         {# L10n: {0} is the addon name #}
-        <caption>{{ _('Basic Information for {0}')|format_html(addon.name) }}</caption>
+        <caption>{{ _('Describe {0}')|format_html(addon.name) }}</caption>
         <tbody>
           <tr>
             <th><label data-for="name">{{ _("Name") }}</label></th>
@@ -165,7 +165,7 @@
     {{ form.non_field_errors() }}
     <div class="listing-footer">
       <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
-      <a href="{{ url('devhub.addons.section', addon.slug, 'basic') }}"
+      <a href="{{ url('devhub.addons.section', addon.slug, 'describe') }}"
         class="addon-edit-cancel">
         {{ _('Cancel') }}</a>
     </div>

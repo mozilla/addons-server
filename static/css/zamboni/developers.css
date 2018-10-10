@@ -202,17 +202,17 @@ form .char-count b {
     margin: 0 0 1.5em;
 }
 
-#edit-addon-basic p {
+#edit-addon-describe p {
     margin: 0;
 }
 
-#edit-addon-basic .addon-app-cats {
+#edit-addon-describe .addon-app-cats {
     border-top: 1px dotted #add0dc;
     margin: 8px 0 0;
     padding-top: 8px;
 }
-#edit-addon-basic input + .addon-app-cats,
-#edit-addon-basic p.addon-app-cats:first-child {
+#edit-addon-describe input + .addon-app-cats,
+#edit-addon-describe p.addon-app-cats:first-child {
     border-top-width: 0;
     margin-top: 0;
     padding-top: 0;
@@ -418,7 +418,7 @@ form .char-count b {
 }
 
 form.new-addon-file label,
-#edit-addon-basic .addon-app-cats label {
+#edit-addon-describe .addon-app-cats label {
     display: block;
     padding-bottom: 3px;
 }

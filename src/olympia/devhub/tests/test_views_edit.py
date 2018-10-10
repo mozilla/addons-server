@@ -73,14 +73,14 @@ class BaseTestEdit(TestCase):
         return reverse('devhub.addons.section', args=args)
 
 
-class BaseTestEditBasic(BaseTestEdit):
+class BaseTestEditDescribe(BaseTestEdit):
     __test__ = False  # this is an abstract test case
 
     def setUp(self):
-        super(BaseTestEditBasic, self).setUp()
-        self.basic_edit_url = self.get_url('basic', edit=True)
+        super(BaseTestEditDescribe, self).setUp()
+        self.describe_edit_url = self.get_url('describe', edit=True)
         if self.listed:
-            ctx = self.client.get(self.basic_edit_url).context
+            ctx = self.client.get(self.describe_edit_url).context
             self.cat_initial = initial(ctx['cat_form'].initial_forms[0])
 
     def get_dict(self, **kw):
@@ -113,7 +113,7 @@ class BaseTestEditBasic(BaseTestEdit):
         old_name = self.addon.name
         data = self.get_dict()
 
-        response = self.client.post(self.basic_edit_url, data)
+        response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         addon = self.get_addon()
 
@@ -131,30 +131,30 @@ class BaseTestEditBasic(BaseTestEdit):
         old_desc = self.addon.description
         data = self.get_dict()
 
-        response = self.client.post(self.basic_edit_url, data)
+        response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         addon = self.get_addon()
 
         assert addon.description == old_desc
 
     def test_edit_slug_invalid(self):
-        old_edit = self.basic_edit_url
+        old_edit = self.describe_edit_url
         data = self.get_dict(name='', slug='invalid')
-        response = self.client.post(self.basic_edit_url, data)
+        response = self.client.post(self.describe_edit_url, data)
         doc = pq(response.content)
         assert doc('form').attr('action') == old_edit
 
     def test_edit_slug_valid(self):
-        old_edit = self.basic_edit_url
+        old_edit = self.describe_edit_url
         data = self.get_dict(slug='valid')
-        response = self.client.post(self.basic_edit_url, data)
+        response = self.client.post(self.describe_edit_url, data)
         doc = pq(response.content)
         assert doc('form').attr('action') != old_edit
 
     def test_edit_summary_escaping(self):
         data = self.get_dict()
         data['summary'] = '<b>oh my</b>'
-        response = self.client.post(self.basic_edit_url, data)
+        response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
 
         addon = self.get_addon()
@@ -173,14 +173,14 @@ class BaseTestEditBasic(BaseTestEdit):
     def test_edit_as_developer(self):
         self.login('regular@mozilla.com')
         data = self.get_dict()
-        response = self.client.post(self.basic_edit_url, data)
+        response = self.client.post(self.describe_edit_url, data)
         # Make sure we get errors when they are just regular users.
         assert response.status_code == 403 if self.listed else 404
 
         devuser = UserProfile.objects.get(pk=999)
         self.get_addon().addonuser_set.create(
             user=devuser, role=amo.AUTHOR_ROLE_DEV)
-        response = self.client.post(self.basic_edit_url, data)
+        response = self.client.post(self.describe_edit_url, data)
 
         assert response.status_code == 200
         addon = self.get_addon()
@@ -194,7 +194,7 @@ class BaseTestEditBasic(BaseTestEdit):
 
     def test_edit_name_required(self):
         data = self.get_dict(name='', slug='test_addon')
-        response = self.client.post(self.basic_edit_url, data)
+        response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         self.assertFormError(
             response, 'form', 'name', 'This field is required.')
@@ -202,7 +202,7 @@ class BaseTestEditBasic(BaseTestEdit):
 
     def test_edit_name_spaces(self):
         data = self.get_dict(name='    ', slug='test_addon')
-        response = self.client.post(self.basic_edit_url, data)
+        response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         self.assertFormError(
             response, 'form', 'name', 'This field is required.')
@@ -210,7 +210,7 @@ class BaseTestEditBasic(BaseTestEdit):
     def test_edit_slugs_unique(self):
         Addon.objects.get(id=5579).update(slug='test_slug')
         data = self.get_dict()
-        response = self.client.post(self.basic_edit_url, data)
+        response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         self.assertFormError(
             response, 'form', 'slug',
@@ -219,14 +219,14 @@ class BaseTestEditBasic(BaseTestEdit):
     def test_edit_name_not_empty(self):
         data = self.get_dict(name='', slug=self.addon.slug,
                              summary=self.addon.summary)
-        response = self.client.post(self.basic_edit_url, data)
+        response = self.client.post(self.describe_edit_url, data)
         self.assertFormError(
             response, 'form', 'name', 'This field is required.')
 
     def test_edit_name_max_length(self):
         data = self.get_dict(name='xx' * 70, slug=self.addon.slug,
                              summary=self.addon.summary)
-        response = self.client.post(self.basic_edit_url, data)
+        response = self.client.post(self.describe_edit_url, data)
         self.assertFormError(response, 'form', 'name',
                              'Ensure this value has at most 50 '
                              'characters (it has 140).')
@@ -234,7 +234,7 @@ class BaseTestEditBasic(BaseTestEdit):
     def test_edit_summary_max_length(self):
         data = self.get_dict(name=self.addon.name, slug=self.addon.slug,
                              summary='x' * 251)
-        response = self.client.post(self.basic_edit_url, data)
+        response = self.client.post(self.describe_edit_url, data)
         self.assertFormError(response, 'form', 'summary',
                              'Ensure this value has at most 250 '
                              'characters (it has 251).')
@@ -283,7 +283,7 @@ class BaseTestEditBasic(BaseTestEdit):
     def test_akismet_waffle_off(self):
         data = self.get_dict()
 
-        response = self.client.post(self.basic_edit_url, data)
+        response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         assert AkismetReport.objects.count() == 0
 
@@ -293,7 +293,7 @@ class BaseTestEditBasic(BaseTestEdit):
         comment_check_mock.return_value = AkismetReport.HAM
         data = self.get_dict()
 
-        response = self.client.post(self.basic_edit_url, data)
+        response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
 
         # Akismet check is there
@@ -321,7 +321,7 @@ class BaseTestEditBasic(BaseTestEdit):
         old_summary = self.addon.summary
         data = self.get_dict()
 
-        response = self.client.post(self.basic_edit_url, data)
+        response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
 
         # Akismet check is there
@@ -375,14 +375,14 @@ class L10nTestsMixin(object):
                 response.content)('#l10n-menu').attr('data-default') == 'fr'
 
 
-class TestEditBasicListed(BaseTestEditBasic, L10nTestsMixin):
+class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
     __test__ = True
 
     def test_edit_categories_add(self):
         assert [c.id for c in self.get_addon().all_categories] == [22]
         self.cat_initial['categories'] = [22, 1]
 
-        self.client.post(self.basic_edit_url, self.get_dict())
+        self.client.post(self.describe_edit_url, self.get_dict())
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
         assert sorted(addon_cats) == [1, 22]
@@ -392,7 +392,7 @@ class TestEditBasicListed(BaseTestEditBasic, L10nTestsMixin):
         self._feature_addon()
 
         self.cat_initial['categories'] = [22, 1]
-        response = self.client.post(self.basic_edit_url, self.get_dict())
+        response = self.client.post(self.describe_edit_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
 
         assert response.context['cat_form'].errors[0]['categories'] == (
@@ -405,12 +405,12 @@ class TestEditBasicListed(BaseTestEditBasic, L10nTestsMixin):
         """Ensure that admins can change categories for creatured add-ons."""
         assert self.client.login(email='admin@mozilla.com')
         self._feature_addon()
-        response = self.client.get(self.basic_edit_url)
+        response = self.client.get(self.describe_edit_url)
         doc = pq(response.content)
         assert doc('#addon-categories-edit div.addon-app-cats').length == 1
         assert doc('#addon-categories-edit > p').length == 0
         self.cat_initial['categories'] = [22, 1]
-        response = self.client.post(self.basic_edit_url, self.get_dict())
+        response = self.client.post(self.describe_edit_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
         assert 'categories' not in response.context['cat_form'].errors[0]
         # This add-on's categories should change.
@@ -421,23 +421,23 @@ class TestEditBasicListed(BaseTestEditBasic, L10nTestsMixin):
         self._feature_addon()
         self.cat_initial['categories'] = [22, 1]
         data = self.get_dict()
-        self.client.post(self.basic_edit_url, data)
+        self.client.post(self.describe_edit_url, data)
         assert unicode(self.get_addon().name) == data['name']
 
     def test_edit_categories_no_disclaimer(self):
         """Ensure that there is a not disclaimer for non-creatured add-ons."""
-        response = self.client.get(self.basic_edit_url)
+        response = self.client.get(self.describe_edit_url)
         doc = pq(response.content)
         assert doc('#addon-categories-edit div.addon-app-cats').length == 1
         assert doc('#addon-categories-edit > p').length == 0
 
     def test_edit_no_previous_categories(self):
         AddonCategory.objects.filter(addon=self.addon).delete()
-        response = self.client.get(self.basic_edit_url)
+        response = self.client.get(self.describe_edit_url)
         assert response.status_code == 200
 
         self.cat_initial['categories'] = [22, 71]
-        response = self.client.post(self.basic_edit_url, self.get_dict())
+        response = self.client.post(self.describe_edit_url, self.get_dict())
         self.addon = self.get_addon()
         addon_cats = self.addon.categories.values_list('id', flat=True)
         assert sorted(addon_cats) == [22, 71]
@@ -453,7 +453,7 @@ class TestEditBasicListed(BaseTestEditBasic, L10nTestsMixin):
             [c.id for c in self.get_addon().all_categories]) == [1, 22]
 
         self.cat_initial['categories'] = [22, 71]
-        response = self.client.post(self.basic_edit_url, self.get_dict())
+        response = self.client.post(self.describe_edit_url, self.get_dict())
         self.addon = self.get_addon()
         addon_cats = self.addon.categories.values_list('id', flat=True)
         assert sorted(addon_cats) == [22, 71]
@@ -471,7 +471,7 @@ class TestEditBasicListed(BaseTestEditBasic, L10nTestsMixin):
 
         self.cat_initial['categories'] = [22, 71]
         response = self.client.post(
-            self.basic_edit_url, formset(self.cat_initial, initial_count=1))
+            self.describe_edit_url, formset(self.cat_initial, initial_count=1))
 
         assert '<script>alert' not in response.content
         assert '&lt;script&gt;alert' in response.content
@@ -483,7 +483,7 @@ class TestEditBasicListed(BaseTestEditBasic, L10nTestsMixin):
             [cat.id for cat in self.get_addon().all_categories]) == [1, 22]
 
         self.cat_initial['categories'] = [22]
-        response = self.client.post(self.basic_edit_url, self.get_dict())
+        response = self.client.post(self.describe_edit_url, self.get_dict())
 
         self.addon = self.get_addon()
         addon_cats = self.addon.categories.values_list('id', flat=True)
@@ -497,7 +497,7 @@ class TestEditBasicListed(BaseTestEditBasic, L10nTestsMixin):
     def test_edit_categories_required(self):
         del self.cat_initial['categories']
         response = self.client.post(
-            self.basic_edit_url, formset(self.cat_initial, initial_count=1))
+            self.describe_edit_url, formset(self.cat_initial, initial_count=1))
         assert response.context['cat_form'].errors[0]['categories'] == (
             ['This field is required.'])
 
@@ -505,7 +505,7 @@ class TestEditBasicListed(BaseTestEditBasic, L10nTestsMixin):
         assert amo.MAX_CATEGORIES == 2
         self.cat_initial['categories'] = [22, 1, 71]
         response = self.client.post(
-            self.basic_edit_url, formset(self.cat_initial, initial_count=1))
+            self.describe_edit_url, formset(self.cat_initial, initial_count=1))
         assert response.context['cat_form'].errors[0]['categories'] == (
             ['You can have only 2 categories.'])
 
@@ -513,7 +513,7 @@ class TestEditBasicListed(BaseTestEditBasic, L10nTestsMixin):
         Category.objects.get(id=22).update(misc=True)
         self.cat_initial['categories'] = [22, 1]
         response = self.client.post(
-            self.basic_edit_url, formset(self.cat_initial, initial_count=1))
+            self.describe_edit_url, formset(self.cat_initial, initial_count=1))
         assert response.context['cat_form'].errors[0]['categories'] == (
             ['The miscellaneous category cannot be combined with additional '
              'categories.'])
@@ -521,7 +521,7 @@ class TestEditBasicListed(BaseTestEditBasic, L10nTestsMixin):
     def test_edit_categories_nonexistent(self):
         self.cat_initial['categories'] = [100]
         response = self.client.post(
-            self.basic_edit_url, formset(self.cat_initial, initial_count=1))
+            self.describe_edit_url, formset(self.cat_initial, initial_count=1))
         assert response.context['cat_form'].errors[0]['categories'] == (
             ['Select a valid choice. 100 is not one of the available '
              'choices.'])
@@ -580,7 +580,7 @@ class TestEditBasicListed(BaseTestEditBasic, L10nTestsMixin):
             'software, or additional hardware.')
 
 
-class TestEditBasicUnlisted(BaseTestEditBasic, L10nTestsMixin):
+class TestEditDescribeUnlisted(BaseTestEditDescribe, L10nTestsMixin):
     listed = False
     __test__ = True
 
@@ -1119,8 +1119,8 @@ class BaseTestEditDetails(BaseTestEdit):
 
     def setUp(self):
         super(BaseTestEditDetails, self).setUp()
-        self.details_url = self.get_url('details')
-        self.details_edit_url = self.get_url('details', edit=True)
+        self.details_url = self.get_url('additional_details')
+        self.details_edit_url = self.get_url('additional_details', edit=True)
 
     def test_edit(self):
         data = {
@@ -1676,8 +1676,8 @@ class StaticMixin(object):
             VersionPreview.objects.create(version=addon.current_version)
 
 
-class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
-                                     L10nTestsMixin):
+class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
+                                        L10nTestsMixin):
     __test__ = True
 
     def get_dict(self, **kw):
@@ -1689,7 +1689,7 @@ class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
     def test_edit_categories_set(self):
         assert [cat.id for cat in self.get_addon().all_categories] == []
         response = self.client.post(
-            self.basic_edit_url, self.get_dict(category=308))
+            self.describe_edit_url, self.get_dict(category=308))
         assert set(response.context['addon'].all_categories) == set(
             self.get_addon().all_categories)
 
@@ -1702,7 +1702,7 @@ class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
         assert sorted(
             [cat.id for cat in self.get_addon().all_categories]) == [300]
 
-        self.client.post(self.basic_edit_url, self.get_dict(category=308))
+        self.client.post(self.describe_edit_url, self.get_dict(category=308))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         # Only ever one category for Static Themes
         assert category_ids_new == [308]
@@ -1711,7 +1711,7 @@ class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
 
     def test_edit_categories_required(self):
         data = self.get_dict(category='')
-        response = self.client.post(self.basic_edit_url, data)
+        response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         self.assertFormError(
             response, 'cat_form', 'category', 'This field is required.')
@@ -1722,7 +1722,7 @@ class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
         AddonCategory(addon=self.addon, category=category).save()
         self._feature_addon(self.addon.id)
 
-        response = self.client.post(self.basic_edit_url, self.get_dict())
+        response = self.client.post(self.describe_edit_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
 
         # This add-on's categories should not change.
@@ -1738,11 +1738,11 @@ class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
         AddonCategory(addon=self.addon, category=category).save()
         self._feature_addon(self.addon.id)
 
-        response = self.client.get(self.basic_edit_url)
+        response = self.client.get(self.describe_edit_url)
         doc = pq(response.content)
         assert doc('#addon-categories-edit').length == 1
         assert doc('#addon-categories-edit > p').length == 0
-        response = self.client.post(self.basic_edit_url, self.get_dict())
+        response = self.client.post(self.describe_edit_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
         assert 'category' not in response.context['cat_form'].errors
         # This add-on's categories should change.
@@ -1752,7 +1752,7 @@ class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
         """Ensure that other forms are okay when disabling category changes."""
         self._feature_addon()
         data = self.get_dict()
-        self.client.post(self.basic_edit_url, data)
+        self.client.post(self.describe_edit_url, data)
         assert unicode(self.get_addon().name) == data['name']
 
     def test_theme_preview_shown(self):
@@ -1764,7 +1764,8 @@ class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
         assert len(doc('div.edit-addon-section img')) == 1  # Just one preview.
 
 
-class TestEditBasicStaticThemeUnlisted(StaticMixin, TestEditBasicUnlisted):
+class TestEditDescribeStaticThemeUnlisted(StaticMixin,
+                                          TestEditDescribeUnlisted):
     def get_dict(self, **kw):
         result = {'name': 'new name', 'slug': 'test_slug',
                   'summary': 'new summary'}

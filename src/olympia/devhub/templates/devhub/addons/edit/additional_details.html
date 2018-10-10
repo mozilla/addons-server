@@ -1,10 +1,10 @@
 {% from "devhub/includes/macros.html" import tip, some_html_tip, empty_unless %}
 
-<form method="post" action="{{ url('devhub.addons.section', addon.slug, 'details', 'edit') }}">
+<form method="post" action="{{ url('devhub.addons.section', addon.slug, 'additional_details', 'edit') }}">
   <h3>
-    {{ _('Additional Information') }}
+    {{ _('Additional Details') }}
     {% if not editable %}
-      <a href="#" data-editurl="{{ url('devhub.addons.section', addon.slug, 'details', 'edit') }}" class="button">
+      <a href="#" data-editurl="{{ url('devhub.addons.section', addon.slug, 'additional_details', 'edit') }}" class="button">
       {{ _('Edit') }}</a>
     {% endif %}
   </h3>
@@ -12,7 +12,7 @@
     <div class="item_wrapper">
       {% if editable %}{{ form.non_field_errors() }}{% endif %}
       <table>
-        <caption>{{ _('Add-on Details for {0}')|format_html(addon.name) }}</caption>
+        <caption>{{ _('Additional Details for {0}')|format_html(addon.name) }}</caption>
         <tbody>
           <tr>
             <th>
@@ -129,7 +129,7 @@
     {% if editable %}
     <div class="listing-footer">
       <button>{{ _('Save Changes') }}</button> {{ _('or') }}
-        <a href="{{ url('devhub.addons.section', addon.slug, 'details') }}"
+        <a href="{{ url('devhub.addons.section', addon.slug, 'additional_details') }}"
           class="addon-edit-cancel">
           {{ _('Cancel') }}</a>
     </div>
