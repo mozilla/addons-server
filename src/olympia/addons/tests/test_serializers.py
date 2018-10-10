@@ -663,6 +663,19 @@ class AddonSerializerOutputTestMixin(object):
         assert result['current_version'] is None
         assert result['previews'] == []
 
+    def test_created(self):
+        self.addon = addon_factory()
+        result = self.serialize()
+
+        assert result['created'] == (
+            self.addon.created.replace(microsecond=0).isoformat() + 'Z')
+
+        # And to make sure it's not present in v3
+        gates = {None: ('del-addons-created-field',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+            assert 'created' not in result
+
 
 class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
     serializer_class = AddonSerializer
