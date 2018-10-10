@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2018-09-11 21:12+0000\n"
+"PO-Revision-Date: 2018-10-10 15:41+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -112,8 +112,8 @@ msgstr "Ruk'wan ruch'utitzijol ruwäch (re re' tikirel nib'an pa ri jun chik xak
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"We ri atz'aqat nrajo' jun rub'i' taqoya'l pa jun ruxaq k'amaya'l richin nitojtob'ëx ütz, tatz'aqatisaj jun tojtob'enel okisaxel chuqa' ewan tzij pa ri Ch'utitzijol richin ri Nik'onel (re re' "
-"tikirel nib'an pa ri jun chik xak)."
+"We ri atz'aqat nrajo' jun rub'i' taqoya'l pa jun ruxaq k'amaya'l richin nitojtob'ëx ütz, tatz'aqatisaj jun tojtob'enel okisaxel chuqa' ewan tzij pa ri Ch'utitzijol richin ri Nik'onel (re re' tikirel"
+" nib'an pa ri jun chik xak)."
 
 msgid "Add-on submission checklist"
 msgstr "Rucholb'al kijikib'anem kitaqik taq tz'aqat"
@@ -213,52 +213,44 @@ msgstr "Tokisäx qitzij"
 msgid "Week of {0}"
 msgstr "Ruwuqq'ij {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " taq qasanïk"
-msgstr[1] " taq qasanïk"
+msgstr[0] "{0} qasanïk"
+msgstr[1] "{0} taq qasanïk"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} okisanela'"
+msgstr[0] "{0} okisanel"
 msgstr[1] "{0} okisanela'"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} taq tz'aqat"
+msgstr[0] "{0} tz'aqat"
 msgstr[1] "{0} taq tz'aqat"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} taq mol"
+msgstr[0] "{0} mol"
 msgstr[1] "{0} taq mol"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} taq tzijoxïk"
+msgstr[0] "{0} tzijoxïk"
 msgstr[1] "{0} taq tzijoxïk"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} taq k'ayij"
+msgstr[0] "{0} k'ayij"
 msgstr[1] "{0} taq k'ayij"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} tzolin taq pwäq"
-msgstr[1] "{0} tzolin taq pwäq"
+msgstr[0] "{0} tzolin pwäq"
+msgstr[1] "{0} taq tzolin pwäq"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} taq yakoj"
+msgstr[0] "{0} yakoj"
 msgstr[1] "{0} taq yakoj"
 
 msgid "Downloads"
