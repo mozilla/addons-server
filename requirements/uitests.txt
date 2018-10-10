@@ -50,6 +50,8 @@ WebOb==1.8.2 \
 zope.component==4.5 \
     --hash=sha256:984a06ba3def0b02b1117fa4c45b56e772e8c29c0340820fbf367e440a93a3a4 \
     --hash=sha256:6edfd626c3b593b72895a8cfcf79bff41f4619194ce996a85bce31ac02b94e55
+zope.deferredimport==4.3 \
+    --hash==sha256:4aae9cbacb2146cca58e62be0a914f0cec034d3b2d41135ea212ca8a96f4b5ec
 zope.event==4.4 \
     --hash=sha256:d8e97d165fd5a0997b45f5303ae11ea3338becfe68c401dd88ffd2113fe5cae7 \
     --hash=sha256:69c27debad9bdacd9ce9b735dad382142281ac770c4a432b533d6d65c4614bcf
