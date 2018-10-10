@@ -1599,6 +1599,9 @@ class VersionSubmitUploadMixin(object):
                 'colors': {
                     'accentcolor': '#123456',
                     'textcolor': 'rgba(1,2,3,0.4)',
+                },
+                'images': {
+                    'headerURL': 'header.png',
                 }
             }
             response = self.client.get(self.url)
@@ -1612,6 +1615,9 @@ class VersionSubmitUploadMixin(object):
         # Existing colors should be the default values for the fields
         assert doc('#accentcolor').attr('value') == '#123456'
         assert doc('#textcolor').attr('value') == 'rgba(1,2,3,0.4)'
+        # And the theme header url is there for the JS to load
+        assert doc('#theme-header').attr('data-existing-header') == (
+            'header.png')
         # No warning about extra properties
         assert 'are unsupported in this wizard' not in response.content
 

@@ -435,6 +435,11 @@ def test_extract_theme_properties():
         "accentcolor": "#adb09f",
         "textcolor": "#000"
     }
+    assert result['images'] == {
+        "headerURL": '%s%s//%s/%s/%s' % (
+            settings.MEDIA_URL, 'addons', text_type(addon.id),
+            text_type(addon.current_version.id), 'weta.png')
+    }
 
 
 @pytest.mark.django_db

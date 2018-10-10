@@ -13,6 +13,7 @@ import olympia.core.logger
 
 from olympia import amo, core
 from olympia.addons.models import Addon
+from olympia.amo.templatetags.jinja_helpers import user_media_url
 from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon, parse_xpi
@@ -370,12 +371,22 @@ def extract_theme_properties(addon, channel):
     except Exception:
         # If we can't parse the existing manifest safely return.
         return {}
-    theme_properties = parsed_data.get('theme', {})
+    theme_props = parsed_data.get('theme', {})
     # pre-process colors to convert chrome style colors and strip spaces
-    theme_properties['colors'] = dict(
+    theme_props['colors'] = dict(
         process_color_value(prop, color)
-        for prop, color in theme_properties.get('colors', {}).items())
-    return theme_properties
+        for prop, color in theme_props.get('colors', {}).items())
+    # replace headerURL with path to existing background
+    if 'images' in theme_props:
+        if 'theme_frame' in theme_props['images']:
+            header_url = theme_props['images'].pop('theme_frame')
+        if 'headerURL' in theme_props['images']:
+            header_url = theme_props['images'].pop('headerURL')
+        if header_url:
+            theme_props['images']['headerURL'] = '/'.join((
+                user_media_url('addons'), text_type(addon.id),
+                text_type(version.id), header_url))
+    return theme_props
 
 
 def wizard_unsupported_properties(data, wizard_fields):
