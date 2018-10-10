@@ -100,9 +100,9 @@ argparse==1.4.0 \
 # billiard is required by celery
 billiard==3.5.0.4 \
     --hash=sha256:ed65448da5877b5558f19d2f7f11f8355ea76b3e63e1c0a6059f47cfae5f1c84
-bleach==3.0.0 \
-    --hash=sha256:9c471c0dd9c820f6bf4ee5ca3e348ceccefbc1475d9a40c397ed5d04e0b42c54 \
-    --hash=sha256:b407b2612b37e6cdc6704f84cec18c1f140b78e6c625652a844e89d6b9855f6b
+bleach==3.0.1 \
+    --hash=sha256:f680cc08e2eea821f3173b875f68763960006f1e764c92b5d2b8354af3a47468 \
+    --hash=sha256:c39d25d9ada62009853b0281efdc35a792db8cdee89465433e6d0aaaf5defc3f
 boto3==1.9.20 \
     --hash=sha256:3e31a82b3739e44dc47ab99f514ff9ef9b230f38ecf4dbe04a90edc53b284468 \
     --hash=sha256:0409ee2b927a8767ca629c5d2f09799e937636ec0f0123842b63f526ec170c0c
