@@ -13,7 +13,6 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.forms import AddonFormBasic
 from olympia.addons.models import (
     Addon, AddonCategory, AddonDependency, Category)
 from olympia.amo.templatetags.jinja_helpers import user_media_path
@@ -25,6 +24,7 @@ from olympia.amo.utils import image_size
 from olympia.bandwagon.models import (
     Collection, CollectionAddon, FeaturedCollection)
 from olympia.constants.categories import CATEGORIES_BY_ID
+from olympia.devhub.forms import DescribeForm
 from olympia.devhub.views import edit_theme
 from olympia.lib.akismet.models import AkismetReport
 from olympia.tags.models import AddonTag, Tag
@@ -89,8 +89,7 @@ class BaseTestEditBasic(BaseTestEdit):
         if self.listed:
             fs = formset(self.cat_initial, initial_count=1)
             result.update({'is_experimental': True,
-                           'requires_payment': True,
-                           'tags': ', '.join(self.tags)})
+                           'requires_payment': True})
             result.update(fs)
 
         result.update(**kw)
@@ -167,7 +166,7 @@ class BaseTestEditBasic(BaseTestEdit):
             '<span lang="en-us">&lt;b&gt;oh my&lt;/b&gt;</span>')
 
         # Now make sure we don't have escaped content in the rendered form.
-        form = AddonFormBasic(instance=addon, request=req_factory_factory('/'))
+        form = DescribeForm(instance=addon, request=req_factory_factory('/'))
         html = pq('<body>%s</body>' % form['summary'])('[lang="en-us"]').html()
         assert html.strip() == '<b>oh my</b>'
 
@@ -348,156 +347,6 @@ class BaseTestEditBasic(BaseTestEdit):
         assert unicode(addon.summary) == unicode(old_summary)
 
 
-class TagTestsMixin(object):
-    def test_edit_add_tag(self):
-        count = ActivityLog.objects.all().count()
-        self.tags.insert(0, 'tag4')
-        data = self.get_dict()
-        response = self.client.post(self.basic_edit_url, data)
-        assert response.status_code == 200
-
-        result = pq(response.content)('#addon_tags_edit').eq(0).text()
-
-        assert result == ', '.join(sorted(self.tags))
-        html = ('<a href="/en-US/firefox/tag/tag4">tag4</a> added to '
-                '<a href="/en-US/firefox/addon/test_slug/">new name</a>.')
-        assert ActivityLog.objects.for_addons(self.addon).get(
-            action=amo.LOG.ADD_TAG.id).to_string() == html
-        assert ActivityLog.objects.filter(
-            action=amo.LOG.ADD_TAG.id).count() == count + 1
-
-    def test_edit_denied_tag(self):
-        Tag.objects.get_or_create(tag_text='blue', denied=True)
-        data = self.get_dict(tags='blue')
-        response = self.client.post(self.basic_edit_url, data)
-        assert response.status_code == 200
-
-        error = 'Invalid tag: blue'
-        self.assertFormError(response, 'form', 'tags', error)
-
-    def test_edit_denied_tags_2(self):
-        Tag.objects.get_or_create(tag_text='blue', denied=True)
-        Tag.objects.get_or_create(tag_text='darn', denied=True)
-        data = self.get_dict(tags='blue, darn, swearword')
-        response = self.client.post(self.basic_edit_url, data)
-        assert response.status_code == 200
-
-        error = 'Invalid tags: blue, darn'
-        self.assertFormError(response, 'form', 'tags', error)
-
-    def test_edit_denied_tags_3(self):
-        Tag.objects.get_or_create(tag_text='blue', denied=True)
-        Tag.objects.get_or_create(tag_text='darn', denied=True)
-        Tag.objects.get_or_create(tag_text='swearword', denied=True)
-        data = self.get_dict(tags='blue, darn, swearword')
-        response = self.client.post(self.basic_edit_url, data)
-        assert response.status_code == 200
-
-        error = 'Invalid tags: blue, darn, swearword'
-        self.assertFormError(response, 'form', 'tags', error)
-
-    def test_edit_remove_tag(self):
-        self.tags.remove('tag2')
-
-        count = ActivityLog.objects.all().count()
-        data = self.get_dict()
-        response = self.client.post(self.basic_edit_url, data)
-        assert response.status_code == 200
-
-        result = pq(response.content)('#addon_tags_edit').eq(0).text()
-
-        assert result == ', '.join(sorted(self.tags))
-
-        assert ActivityLog.objects.filter(
-            action=amo.LOG.REMOVE_TAG.id).count() == count + 1
-
-    def test_edit_minlength_tags(self):
-        tags = self.tags
-        tags.append('a' * (amo.MIN_TAG_LENGTH - 1))
-        data = self.get_dict()
-        response = self.client.post(self.basic_edit_url, data)
-        assert response.status_code == 200
-
-        self.assertFormError(response, 'form', 'tags',
-                             'All tags must be at least %d characters.' %
-                             amo.MIN_TAG_LENGTH)
-
-    def test_edit_max_tags(self):
-        tags = self.tags
-
-        for i in range(amo.MAX_TAGS + 1):
-            tags.append('test%d' % i)
-
-        data = self.get_dict()
-        response = self.client.post(self.basic_edit_url, data)
-        self.assertFormError(
-            response, 'form', 'tags',
-            'You have %d too many tags.' % (len(tags) - amo.MAX_TAGS))
-
-    def test_edit_tag_empty_after_slug(self):
-        start = Tag.objects.all().count()
-        data = self.get_dict(tags='>>')
-        self.client.post(self.basic_edit_url, data)
-
-        # Check that the tag did not get created.
-        assert start == Tag.objects.all().count()
-
-    def test_edit_tag_slugified(self):
-        data = self.get_dict(tags='<script>alert("foo")</script>')
-        self.client.post(self.basic_edit_url, data)
-        tag = Tag.objects.all().order_by('-pk')[0]
-        assert tag.tag_text == 'scriptalertfooscript'
-
-    def test_edit_restricted_tags(self):
-        addon = self.get_addon()
-        tag = Tag.objects.create(
-            tag_text='i_am_a_restricted_tag', restricted=True)
-        AddonTag.objects.create(tag=tag, addon=addon)
-
-        res = self.client.get(self.basic_edit_url)
-        divs = pq(res.content)('#addon_tags_edit .edit-addon-details')
-        assert len(divs) == 2
-        assert 'i_am_a_restricted_tag' in divs.eq(1).text()
-
-
-class ContributionsTestsMixin(object):
-    def test_contributions_url_not_url(self):
-        data = self.get_dict(name='blah', slug='test_addon',
-                             contributions='foooo')
-        response = self.client.post(self.basic_edit_url, data)
-        assert response.status_code == 200
-        self.assertFormError(
-            response, 'form', 'contributions', 'Enter a valid URL.')
-
-    def test_contributions_url_not_valid_domain(self):
-        data = self.get_dict(name='blah', slug='test_addon',
-                             contributions='http://foo.baa/')
-        response = self.client.post(self.basic_edit_url, data)
-        assert response.status_code == 200
-        self.assertFormError(
-            response, 'form', 'contributions',
-            'URL domain must be one of [%s], or a subdomain.' %
-            ', '.join(amo.VALID_CONTRIBUTION_DOMAINS))
-
-    def test_contributions_url_valid_domain(self):
-        assert 'paypal.me' in amo.VALID_CONTRIBUTION_DOMAINS
-        data = self.get_dict(name='blah', slug='test_addon',
-                             contributions='http://paypal.me/')
-        response = self.client.post(self.basic_edit_url, data)
-        assert response.status_code == 200
-        assert self.addon.reload().contributions == 'http://paypal.me/'
-
-    def test_contributions_url_valid_domain_sub(self):
-        assert 'paypal.me' in amo.VALID_CONTRIBUTION_DOMAINS
-        assert 'sub,paypal.me' not in amo.VALID_CONTRIBUTION_DOMAINS
-        data = self.get_dict(name='blah', slug='test_addon',
-                             contributions='http://sub.paypal.me/random/?path')
-        response = self.client.post(self.basic_edit_url, data)
-        assert response.status_code == 200
-        assert self.addon.reload().contributions == (
-            'http://sub.paypal.me/random/?path')
-
-
 class L10nTestsMixin(object):
     def get_l10n_urls(self):
         paths = ('devhub.addons.edit', 'devhub.addons.owner')
@@ -526,8 +375,7 @@ class L10nTestsMixin(object):
                 response.content)('#l10n-menu').attr('data-default') == 'fr'
 
 
-class TestEditBasicListed(BaseTestEditBasic, TagTestsMixin,
-                          ContributionsTestsMixin, L10nTestsMixin):
+class TestEditBasicListed(BaseTestEditBasic, L10nTestsMixin):
     __test__ = True
 
     def test_edit_categories_add(self):
@@ -730,6 +578,11 @@ class TestEditBasicListed(BaseTestEditBasic, TagTestsMixin,
         assert doc('#requires-payment-edit').text() == (
             'This add-on requires payment, non-free services or '
             'software, or additional hardware.')
+
+
+class TestEditBasicUnlisted(BaseTestEditBasic, L10nTestsMixin):
+    listed = False
+    __test__ = True
 
 
 class TestEditMedia(BaseTestEdit):
@@ -1099,6 +952,168 @@ class TestEditMedia(BaseTestEdit):
         assert len(self.get_addon().previews.all()) == 2
 
 
+class TagTestsMixin(object):
+    def get_dict(self, **kw):
+        result = {'default_locale': 'en-US', 'tags': ', '.join(self.tags)}
+        result.update(**kw)
+        return result
+
+    def test_edit_add_tag(self):
+        count = ActivityLog.objects.all().count()
+        self.tags.insert(0, 'tag4')
+        data = self.get_dict()
+        response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
+        self.assertNoFormErrors(response)
+
+        result = pq(response.content)('#addon_tags_edit').eq(0).text()
+
+        assert result == ', '.join(sorted(self.tags))
+        html = ('<a href="/en-US/firefox/tag/tag4">tag4</a> added to '
+                '<a href="/en-US/firefox/addon/a3615/">Delicious Bookmarks</a>'
+                '.')
+        assert ActivityLog.objects.for_addons(self.addon).get(
+            action=amo.LOG.ADD_TAG.id).to_string() == html
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.ADD_TAG.id).count() == count + 1
+
+    def test_edit_denied_tag(self):
+        Tag.objects.get_or_create(tag_text='blue', denied=True)
+        data = self.get_dict(tags='blue')
+        response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
+
+        error = 'Invalid tag: blue'
+        self.assertFormError(response, 'form', 'tags', error)
+
+    def test_edit_denied_tags_2(self):
+        Tag.objects.get_or_create(tag_text='blue', denied=True)
+        Tag.objects.get_or_create(tag_text='darn', denied=True)
+        data = self.get_dict(tags='blue, darn, swearword')
+        response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
+
+        error = 'Invalid tags: blue, darn'
+        self.assertFormError(response, 'form', 'tags', error)
+
+    def test_edit_denied_tags_3(self):
+        Tag.objects.get_or_create(tag_text='blue', denied=True)
+        Tag.objects.get_or_create(tag_text='darn', denied=True)
+        Tag.objects.get_or_create(tag_text='swearword', denied=True)
+        data = self.get_dict(tags='blue, darn, swearword')
+        response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
+
+        error = 'Invalid tags: blue, darn, swearword'
+        self.assertFormError(response, 'form', 'tags', error)
+
+    def test_edit_remove_tag(self):
+        self.tags.remove('tag2')
+
+        count = ActivityLog.objects.all().count()
+        data = self.get_dict()
+        response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
+        self.assertNoFormErrors(response)
+
+        result = pq(response.content)('#addon_tags_edit').eq(0).text()
+
+        assert result == ', '.join(sorted(self.tags))
+
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.REMOVE_TAG.id).count() == count + 1
+
+    def test_edit_minlength_tags(self):
+        tags = self.tags
+        tags.append('a' * (amo.MIN_TAG_LENGTH - 1))
+        data = self.get_dict()
+        response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
+
+        self.assertFormError(response, 'form', 'tags',
+                             'All tags must be at least %d characters.' %
+                             amo.MIN_TAG_LENGTH)
+
+    def test_edit_max_tags(self):
+        tags = self.tags
+
+        for i in range(amo.MAX_TAGS + 1):
+            tags.append('test%d' % i)
+
+        data = self.get_dict()
+        response = self.client.post(self.details_edit_url, data)
+        self.assertFormError(
+            response, 'form', 'tags',
+            'You have %d too many tags.' % (len(tags) - amo.MAX_TAGS))
+
+    def test_edit_tag_empty_after_slug(self):
+        start = Tag.objects.all().count()
+        data = self.get_dict(tags='>>')
+        response = self.client.post(self.details_edit_url, data)
+        self.assertNoFormErrors(response)
+
+        # Check that the tag did not get created.
+        assert start == Tag.objects.all().count()
+
+    def test_edit_tag_slugified(self):
+        data = self.get_dict(tags='<script>alert("foo")</script>')
+        response = self.client.post(self.details_edit_url, data)
+        self.assertNoFormErrors(response)
+        tag = Tag.objects.all().order_by('-pk')[0]
+        assert tag.tag_text == 'scriptalertfooscript'
+
+    def test_edit_restricted_tags(self):
+        addon = self.get_addon()
+        tag = Tag.objects.create(
+            tag_text='i_am_a_restricted_tag', restricted=True)
+        AddonTag.objects.create(tag=tag, addon=addon)
+
+        response = self.client.get(self.details_edit_url)
+        divs = pq(response.content)('#addon_tags_edit .edit-addon-details')
+        assert len(divs) == 2
+        assert 'i_am_a_restricted_tag' in divs.eq(1).text()
+
+
+class ContributionsTestsMixin(object):
+    def test_contributions_url_not_url(self):
+        data = self.get_dict(default_locale='en-US', contributions='foooo')
+        response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'contributions', 'Enter a valid URL.')
+
+    def test_contributions_url_not_valid_domain(self):
+        data = self.get_dict(
+            default_locale='en-US', contributions='http://foo.baa/')
+        response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'contributions',
+            'URL domain must be one of [%s], or a subdomain.' %
+            ', '.join(amo.VALID_CONTRIBUTION_DOMAINS))
+
+    def test_contributions_url_valid_domain(self):
+        assert 'paypal.me' in amo.VALID_CONTRIBUTION_DOMAINS
+        data = self.get_dict(
+            default_locale='en-US', contributions='http://paypal.me/')
+        response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
+        self.assertNoFormErrors(response)
+        assert self.addon.reload().contributions == 'http://paypal.me/'
+
+    def test_contributions_url_valid_domain_sub(self):
+        assert 'paypal.me' in amo.VALID_CONTRIBUTION_DOMAINS
+        assert 'sub,paypal.me' not in amo.VALID_CONTRIBUTION_DOMAINS
+        data = self.get_dict(
+            default_locale='en-US',
+            contributions='http://sub.paypal.me/random/?path')
+        response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
+        self.assertNoFormErrors(response)
+        assert self.addon.reload().contributions == (
+            'http://sub.paypal.me/random/?path')
+
+
 class BaseTestEditDetails(BaseTestEdit):
     __test__ = False
 
@@ -1231,7 +1246,8 @@ class BaseTestEditDetails(BaseTestEdit):
         assert unicode(addon.description) == unicode(old_description)
 
 
-class TestEditDetailsListed(BaseTestEditDetails):
+class TestEditDetailsListed(BaseTestEditDetails, TagTestsMixin,
+                            ContributionsTestsMixin,):
     __test__ = True
 
     def test_edit_default_locale_required_trans(self):
@@ -1295,6 +1311,11 @@ class TestEditDetailsListed(BaseTestEditDetails):
         response = self.client.get(self.details_url)
         assert pq(response.content)('.addon_edit_locale').eq(0).text() == (
             'English (US)')
+
+
+class TestEditDetailsUnlisted(BaseTestEditDetails):
+    listed = False
+    __test__ = True
 
 
 class TestEditSupport(BaseTestEdit):
@@ -1617,16 +1638,6 @@ class TestEditTechnical(BaseTestEdit):
         self.check_dep_ids([5299])
 
 
-class TestEditBasicUnlisted(BaseTestEditBasic, L10nTestsMixin):
-    listed = False
-    __test__ = True
-
-
-class TestEditDetailsUnlisted(BaseTestEditDetails):
-    listed = False
-    __test__ = True
-
-
 class TestEditTechnicalUnlisted(BaseTestEdit):
     __test__ = True
     listed = False
@@ -1666,14 +1677,12 @@ class StaticMixin(object):
 
 
 class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
-                                     TagTestsMixin, ContributionsTestsMixin,
                                      L10nTestsMixin):
     __test__ = True
 
     def get_dict(self, **kw):
         result = {'name': 'new name', 'slug': 'test_slug',
-                  'summary': 'new summary', 'category': 300,
-                  'tags': ', '.join(self.tags)}
+                  'summary': 'new summary', 'category': 300}
         result.update(**kw)
         return result
 

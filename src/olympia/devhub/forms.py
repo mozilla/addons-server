@@ -615,6 +615,19 @@ class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
         return obj
 
 
+class DescribeFormUnlisted(AkismetSpamCheckFormMixin, AddonFormBase):
+    name = TransField(max_length=50)
+    slug = forms.CharField(max_length=30)
+    summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
+                         max_length=250)
+
+    fields_to_akismet_comment_check = ['name', 'summary']
+
+    class Meta:
+        model = Addon
+        fields = ('name', 'slug', 'summary')
+
+
 class PreviewForm(forms.ModelForm):
     caption = TransField(widget=TransTextarea, required=False)
     file_upload = forms.FileField(required=False)

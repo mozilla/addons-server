@@ -157,52 +157,6 @@
               {% endif %}
             </td>
           </tr>
-          <tr>
-            <th>
-              {{ tip(_("Tags"),
-                     _("Tags help users find your add-on and should be short "
-                       "descriptors such as tabs, toolbar, or twitter. You "
-                       "may have a maximum of {0} tags.").format(amo.MAX_TAGS)) }}
-            </th>
-            <td id="addon_tags_edit">
-              {% if editable %}
-                {{ form.tags }}
-                {{ form.tags.errors }}
-                <div class="edit-addon-details">
-                  {{ ngettext('Comma-separated, minimum of {0} character.',
-                              'Comma-separated, minimum of {0} characters.',
-                              amo.MIN_TAG_LENGTH)|format_html(amo.MIN_TAG_LENGTH) }}
-                  {{ _('Example: dark, cinema, noir. Limit 20.') }}
-                </div>
-                {% if restricted_tags %}
-                <div class="edit-addon-details">
-                    {{ ngettext('Reserved tag:', 'Reserved tags:', restricted_tags|length) }}
-                    {{ restricted_tags|join(', ') }}
-                </div>
-                {% endif %}
-              {% else %}
-                {% call empty_unless(tags) %}
-                  {{ tags|join(', ') }}
-                {% endcall %}
-              {% endif %}
-            </td>
-          </tr>
-          <tr>
-            <th>
-              {{ tip(_("Contributions URL"),
-                     _("If you would like to request monetary contributions "
-                       "from your users, set this to a page where they can do so.")) }}
-            </th>
-            <td>
-              {% if editable %}
-                <p>{{ _('Supported domains: %s'|format(', '.join(amo.VALID_CONTRIBUTION_DOMAINS))) }}</p>
-                <p>{{ form.contributions }}</p>
-                {{ form.contributions.errors }}
-              {% else %}
-                <a href="{{ addon.contributions }}" target="_blank" rel="noopener noreferrer">{{ addon.contributions }}</a>
-              {% endif %}
-            </td>
-          </tr>
           {% endif %}
         </tbody>
       </table>

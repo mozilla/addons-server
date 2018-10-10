@@ -39,121 +39,35 @@ class TestAddonFormSupport(TestCase):
         assert form.is_valid()
 
 
-class FormsTest(TestCase):
-    fixtures = ('base/addon_3615', 'base/addon_3615_categories',
-                'addons/denied')
-
-    def setUp(self):
-        super(FormsTest, self).setUp()
-        self.existing_name = 'Delicious Bookmarks'
-        self.non_existing_name = 'Does Not Exist'
-        self.error_msg = 'This name is already in use. Please choose another.'
-        self.request = req_factory_factory('/')
-
-    def test_locales(self):
-        form = forms.AddonFormDetails(request=self.request)
-        assert form.fields['default_locale'].choices[0][0] == 'af'
-
-    def test_slug_deny(self):
-        delicious = Addon.objects.get()
-        form = forms.AddonFormBasic({'slug': 'submit'}, request=self.request,
-                                    instance=delicious)
-        assert not form.is_valid()
-        assert form.errors['slug'] == (
-            [u'The slug cannot be "submit". Please choose another.'])
-
-    def test_name_trademark_mozilla(self):
-        delicious = Addon.objects.get()
-        form = forms.AddonFormBasic(
-            {'name': 'Delicious Mozilla', 'summary': 'foo', 'slug': 'bar'},
-            request=self.request,
-            instance=delicious)
-
-        assert not form.is_valid()
-        assert form.errors['name'].data[0].message.startswith(
-            u'Add-on names cannot contain the Mozilla or Firefox trademarks.')
-
-    def test_name_trademark_firefox(self):
-        delicious = Addon.objects.get()
-        form = forms.AddonFormBasic(
-            {'name': 'Delicious Firefox', 'summary': 'foo', 'slug': 'bar'},
-            request=self.request,
-            instance=delicious)
-        assert not form.is_valid()
-        assert form.errors['name'].data[0].message.startswith(
-            u'Add-on names cannot contain the Mozilla or Firefox trademarks.')
-
-    def test_name_trademark_allowed_for_prefix(self):
-        delicious = Addon.objects.get()
-        form = forms.AddonFormBasic(
-            {'name': 'Delicious for Mozilla', 'summary': 'foo', 'slug': 'bar'},
-            request=self.request,
-            instance=delicious)
-
-        assert form.is_valid()
-
-    def test_name_no_trademark(self):
-        delicious = Addon.objects.get()
-        form = forms.AddonFormBasic(
-            {'name': 'Delicious Dumdidum', 'summary': 'foo', 'slug': 'bar'},
-            request=self.request,
-            instance=delicious)
-
-        assert form.is_valid()
-
-    def test_bogus_homepage(self):
-        form = forms.AddonFormDetails(
-            {'homepage': 'javascript://something.com'}, request=self.request)
-        assert not form.is_valid()
-        assert form.errors['homepage'] == [u'Enter a valid URL.']
-
-    def test_ftp_homepage(self):
-        form = forms.AddonFormDetails(
-            {'homepage': 'ftp://foo.com'}, request=self.request)
-        assert not form.is_valid()
-        assert form.errors['homepage'] == [u'Enter a valid URL.']
-
-    def test_homepage_is_not_required(self):
-        delicious = Addon.objects.get()
-        form = forms.AddonFormDetails(
-            {'default_locale': 'en-US'},
-            request=self.request, instance=delicious)
-        assert form.is_valid()
-
-    def test_slug_isdigit(self):
-        delicious = Addon.objects.get()
-        form = forms.AddonFormBasic({'slug': '123'}, request=self.request,
-                                    instance=delicious)
-        assert not form.is_valid()
-        assert form.errors['slug'] == (
-            [u'The slug cannot be "123". Please choose another.'])
-
-
-class TestTagsForm(TestCase):
+class TestDetailsForm(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
-        super(TestTagsForm, self).setUp()
+        super(TestDetailsForm, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         category = Category.objects.get(pk=22)
         category.db_name = 'test'
         category.save()
 
         self.data = {
-            'summary': str(self.addon.summary),
-            'name': str(self.addon.name),
-            'slug': self.addon.slug,
+            'default_locale': 'en-US',
+            'description': str(self.addon.description),
         }
 
         self.user = self.addon.authors.all()[0]
         core.set_user(self.user)
         self.request = req_factory_factory('/')
 
+    def test_locales(self):
+        form = forms.AddonFormDetails(
+            request=self.request, instance=self.addon)
+        assert form.fields['default_locale'].choices[0][0] == 'af'
+
     def add_tags(self, tags):
         data = self.data.copy()
         data.update({'tags': tags})
-        form = forms.AddonFormBasic(data=data, request=self.request,
-                                    instance=self.addon)
+        form = forms.AddonFormDetails(
+            data=data, request=self.request, instance=self.addon)
         assert form.is_valid()
         form.save(self.addon)
         return form
@@ -192,8 +106,8 @@ class TestTagsForm(TestCase):
     def test_tags_restricted(self):
         self.add_restricted()
         self.add_tags('foo, bar')
-        form = forms.AddonFormBasic(data=self.data, request=self.request,
-                                    instance=self.addon)
+        form = forms.AddonFormDetails(data=self.data, request=self.request,
+                                      instance=self.addon)
 
         assert form.fields['tags'].initial == 'bar, foo'
         assert self.get_tag_text() == ['bar', 'foo', 'i_am_a_restricted_tag']
@@ -204,13 +118,13 @@ class TestTagsForm(TestCase):
         self.add_restricted('i_am_a_restricted_tag', 'sdk')
         data = self.data.copy()
         data.update({'tags': 'i_am_a_restricted_tag'})
-        form = forms.AddonFormBasic(data=data, request=self.request,
-                                    instance=self.addon)
+        form = forms.AddonFormDetails(data=data, request=self.request,
+                                      instance=self.addon)
         assert form.errors['tags'][0] == (
             '"i_am_a_restricted_tag" is a reserved tag and cannot be used.')
         data.update({'tags': 'i_am_a_restricted_tag, sdk'})
-        form = forms.AddonFormBasic(data=data, request=self.request,
-                                    instance=self.addon)
+        form = forms.AddonFormDetails(data=data, request=self.request,
+                                      instance=self.addon)
         assert form.errors['tags'][0] == (
             '"i_am_a_restricted_tag", "sdk" are reserved tags and'
             ' cannot be used.')
@@ -224,8 +138,8 @@ class TestTagsForm(TestCase):
         self.add_tags('foo, bar, i_am_a_restricted_tag')
 
         assert self.get_tag_text() == ['bar', 'foo', 'i_am_a_restricted_tag']
-        form = forms.AddonFormBasic(data=self.data, request=self.request,
-                                    instance=self.addon)
+        form = forms.AddonFormDetails(data=self.data, request=self.request,
+                                      instance=self.addon)
         assert form.fields['tags'].initial == 'bar, foo, i_am_a_restricted_tag'
 
     @patch('olympia.access.acl.action_allowed')
@@ -250,12 +164,32 @@ class TestTagsForm(TestCase):
         tag = ' -%s' % ('t' * 128)
         data = self.data.copy()
         data.update({"tags": tag})
-        form = forms.AddonFormBasic(data=data, request=self.request,
-                                    instance=self.addon)
+        form = forms.AddonFormDetails(data=data, request=self.request,
+                                      instance=self.addon)
         assert not form.is_valid()
         assert form.errors['tags'] == [
             'All tags must be 128 characters or less after invalid characters'
             ' are removed.']
+
+    def test_bogus_homepage(self):
+        form = forms.AddonFormDetails(
+            {'homepage': 'javascript://something.com'}, request=self.request,
+            instance=self.addon)
+        assert not form.is_valid()
+        assert form.errors['homepage'] == [u'Enter a valid URL.']
+
+    def test_ftp_homepage(self):
+        form = forms.AddonFormDetails(
+            {'homepage': 'ftp://foo.com'}, request=self.request,
+            instance=self.addon)
+        assert not form.is_valid()
+        assert form.errors['homepage'] == [u'Enter a valid URL.']
+
+    def test_homepage_is_not_required(self):
+        form = forms.AddonFormDetails(
+            {'default_locale': 'en-US'},
+            request=self.request, instance=self.addon)
+        assert form.is_valid()
 
 
 class TestIconForm(TestCase):
