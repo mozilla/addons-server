@@ -829,7 +829,7 @@ def disable_legacy_files(ids, **kw):
             # that we've identified as containing legacy File instances.
             files = File.objects.filter(
                 is_webextension=False, is_mozilla_signed_extension=False,
-                version__addon=addon)
+                version__addon=addon).exclude(status=amo.STATUS_DISABLED)
             for file_ in files:
+                log.info('Disabling file %d from addon %s', file_.pk, addon.pk)
                 file_.update(status=amo.STATUS_DISABLED)
-    index_addons.delay(ids)
