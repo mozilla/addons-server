@@ -21,13 +21,13 @@ class TestCanDeleteRatingPermission(TestCase):
         self.request.user = UserProfile()
         assert self.perm.has_permission(self.request, None)
 
-    @mock.patch('olympia.ratings.permissions.user_can_delete_review')
-    def test_has_object_permission(self, user_can_delete_review_mock):
-        user_can_delete_review_mock.return_value = True
+    @mock.patch('olympia.ratings.permissions.user_can_delete_rating')
+    def test_has_object_permission(self, user_can_delete_rating_mock):
+        user_can_delete_rating_mock.return_value = True
         assert self.perm.has_object_permission(self.request, None, object())
 
-    @mock.patch('olympia.ratings.permissions.user_can_delete_review')
-    def test_has_object_permission_false(self, user_can_delete_review_mock):
-        user_can_delete_review_mock.return_value = False
+    @mock.patch('olympia.ratings.permissions.user_can_delete_rating')
+    def test_has_object_permission_false(self, user_can_delete_rating_mock):
+        user_can_delete_rating_mock.return_value = False
         assert not self.perm.has_object_permission(
             self.request, None, object())

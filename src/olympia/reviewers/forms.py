@@ -20,7 +20,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import raise_required
 from olympia.applications.models import AppVersion
 from olympia.ratings.models import Rating
-from olympia.ratings.templatetags.jinja_helpers import user_can_delete_review
+from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.models import (
     CannedResponse, ReviewerScore, ThemeLock, Whiteboard)
 from olympia.reviewers.tasks import (
@@ -569,7 +569,7 @@ class BaseRatingFlagFormSet(BaseModelFormSet):
 
     def save(self):
         for form in self.forms:
-            if form.cleaned_data and user_can_delete_review(self.request,
+            if form.cleaned_data and user_can_delete_rating(self.request,
                                                             form.instance):
                 action = int(form.cleaned_data['action'])
 
