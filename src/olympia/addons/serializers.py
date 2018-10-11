@@ -675,8 +675,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
     def to_representation(self, obj):
         data = super(ESAddonSerializer, self).to_representation(obj)
         request = self.context.get('request')
-        if request and '_score' in data and is_gate_active(
-                request, 'del-addons-search-_score-field'):
+        if request and '_score' in data and not is_gate_active(
+                request, 'addons-search-_score-field'):
             data.pop('_score')
         return data
 

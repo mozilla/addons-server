@@ -880,13 +880,13 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         assert 'release_notes' not in data
 
     def test_score(self):
+        self.request.version = 'v4'
         self.addon = addon_factory()
         result = self.serialize()
         assert result['_score'] == 1.0  # No query, we get ConstantScoring(1.0)
 
-    @override_settings(
-        DRF_API_GATES={None: ('del-addons-search-_score-field',)})
-    def test_no_score_if_gate_is_active(self):
+    def test_no_score_in_v3(self):
+        self.request.version = 'v3'
         self.addon = addon_factory()
         result = self.serialize()
         assert '_score' not in result
