@@ -85,7 +85,8 @@ class BaseTestEditDescribe(BaseTestEdit):
 
     def get_dict(self, **kw):
         result = {'name': 'new name', 'slug': 'test_slug',
-                  'summary': 'new summary'}
+                  'summary': 'new summary',
+                  'description': 'new description'}
         if self.listed:
             fs = formset(self.cat_initial, initial_count=1)
             result.update({'is_experimental': True,
@@ -125,17 +126,6 @@ class BaseTestEditDescribe(BaseTestEdit):
 
         if self.listed:
             assert [unicode(t) for t in addon.tags.all()] == sorted(self.tags)
-
-    def test_edit_check_description(self):
-        # Make sure bug 629779 doesn't return.
-        old_desc = self.addon.description
-        data = self.get_dict()
-
-        response = self.client.post(self.describe_edit_url, data)
-        assert response.status_code == 200
-        addon = self.get_addon()
-
-        assert addon.description == old_desc
 
     def test_edit_slug_invalid(self):
         old_edit = self.describe_edit_url
@@ -297,21 +287,25 @@ class BaseTestEditDescribe(BaseTestEdit):
         assert response.status_code == 200
 
         # Akismet check is there
-        assert AkismetReport.objects.count() == 2
+        assert AkismetReport.objects.count() == 3
         name_report = AkismetReport.objects.first()
         assert name_report.comment_type == 'product-name'
         assert name_report.comment == data['name']
-        summary_report = AkismetReport.objects.last()
+        summary_report = AkismetReport.objects.all()[1]
         assert summary_report.comment_type == 'product-summary'
         assert summary_report.comment == data['summary']
+        description_report = AkismetReport.objects.all()[2]
+        assert description_report.comment_type == 'product-description'
+        assert description_report.comment == data['description']
 
-        assert comment_check_mock.call_count == 2
+        assert comment_check_mock.call_count == 3
         assert 'spam' not in response.content
 
         # And metadata was updated
         addon = self.get_addon()
         assert unicode(addon.name) == data['name']
         assert unicode(addon.summary) == data['summary']
+        assert unicode(addon.description) == data['description']
 
     @override_switch('akismet-spam-check', active=True)
     @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
@@ -319,23 +313,30 @@ class BaseTestEditDescribe(BaseTestEdit):
         comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
         old_name = self.addon.name
         old_summary = self.addon.summary
+        old_description = self.addon.description
         data = self.get_dict()
 
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
 
         # Akismet check is there
-        assert AkismetReport.objects.count() == 2
+        assert AkismetReport.objects.count() == 3
         name_report = AkismetReport.objects.first()
         assert name_report.comment_type == 'product-name'
         assert name_report.comment == data['name']
-        summary_report = AkismetReport.objects.last()
+        summary_report = AkismetReport.objects.all()[1]
         assert summary_report.comment_type == 'product-summary'
         assert summary_report.comment == data['summary']
+        description_report = AkismetReport.objects.all()[2]
+        assert description_report.comment_type == 'product-description'
+        assert description_report.comment == data['description']
 
-        assert comment_check_mock.call_count == 2
+        assert comment_check_mock.call_count == 3
         self.assertFormError(
             response, 'form', 'name',
+            'The text entered has been flagged as spam.')
+        self.assertFormError(
+            response, 'form', 'description',
             'The text entered has been flagged as spam.')
         self.assertFormError(
             response, 'form', 'summary',
@@ -345,6 +346,41 @@ class BaseTestEditDescribe(BaseTestEdit):
         addon = self.get_addon()
         assert unicode(addon.name) == unicode(old_name)
         assert unicode(addon.summary) == unicode(old_summary)
+        assert unicode(addon.description) == unicode(old_description)
+
+    def test_edit_xss(self):
+        """
+        Let's try to put xss in our description, and safe html, and verify
+        that we are playing safe.
+        """
+        self.addon.description = ("This\n<b>IS</b>"
+                                  "<script>alert('awesome')</script>")
+        self.addon.save()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        assert doc('#addon-description span[lang]').html() == (
+            "This<br/><b>IS</b>&lt;script&gt;alert('awesome')&lt;/script&gt;")
+
+        response = self.client.get(self.describe_edit_url)
+        assert response.status_code == 200
+
+        assert '<script>' not in response.content
+        assert ('This\n&lt;b&gt;IS&lt;/b&gt;&lt;script&gt;alert(&#39;awesome'
+                '&#39;)&lt;/script&gt;</textarea>') in response.content
+
+    def test_description_optional(self):
+        """Description is optional by default - so confirm that here and
+        selectively override in listed test sub classes.
+        Will need re-working once `content-optimization` switch is removed."""
+        addon = self.get_addon()
+        addon.description = 'something!'
+        addon.save()
+        data = self.get_dict(description='')
+        self.client.post(self.describe_edit_url, data)
+        addon = self.get_addon()
+        assert addon.description == ''
 
 
 class L10nTestsMixin(object):
@@ -614,6 +650,31 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
 
         for k in data:
             assert unicode(getattr(addon, k)) == data[k]
+
+    @override_switch('content-optimization', active=True)
+    def test_description_not_optional(self):
+        addon = self.get_addon()
+        addon.description = 'something!'
+        addon.save()
+        data = self.get_dict(description='')
+        response = self.client.post(self.describe_edit_url, data)
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'description', 'This field is required.')
+        assert self.get_addon().description != ''
+
+        data['description'] = '123456789'
+        response = self.client.post(self.describe_edit_url, data)
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'description',
+            'Ensure this value has at least 10 characters (it has 9).')
+        assert self.get_addon().description != ''
+
+        # Finally, test success - a description of 10+ characters.
+        data['description'] = '1234567890'
+        self.client.post(self.describe_edit_url, data)
+        assert self.get_addon().description == '1234567890'
 
 
 class TestEditDescribeUnlisted(BaseTestEditDescribe, L10nTestsMixin):
@@ -1150,17 +1211,16 @@ class ContributionsTestsMixin(object):
             'http://sub.paypal.me/random/?path')
 
 
-class BaseTestEditDetails(BaseTestEdit):
+class BaseTestEditAdditionalDetails(BaseTestEdit):
     __test__ = False
 
     def setUp(self):
-        super(BaseTestEditDetails, self).setUp()
+        super(BaseTestEditAdditionalDetails, self).setUp()
         self.details_url = self.get_url('additional_details')
         self.details_edit_url = self.get_url('additional_details', edit=True)
 
     def test_edit(self):
         data = {
-            'description': 'New description with <em>html</em>!',
             'default_locale': 'en-US',
             'homepage': 'http://twitter.com/fligtarsmom'
         }
@@ -1175,31 +1235,8 @@ class BaseTestEditDetails(BaseTestEdit):
         for k in data:
             assert unicode(getattr(addon, k)) == data[k]
 
-    def test_edit_xss(self):
-        """
-        Let's try to put xss in our description, and safe html, and verify
-        that we are playing safe.
-        """
-        self.addon.description = ("This\n<b>IS</b>"
-                                  "<script>alert('awesome')</script>")
-        self.addon.save()
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-
-        assert doc('#edit-addon-details span[lang]').html() == (
-            "This<br/><b>IS</b>&lt;script&gt;alert('awesome')&lt;/script&gt;")
-
-        response = self.client.get(self.details_edit_url)
-        assert response.status_code == 200
-
-        assert '<script>' not in response.content
-        assert ('This\n&lt;b&gt;IS&lt;/b&gt;&lt;script&gt;alert(&#39;awesome'
-                '&#39;)&lt;/script&gt;</textarea>') in response.content
-
     def test_edit_homepage_optional(self):
         data = {
-            'description': 'New description with <em>html</em>!',
             'default_locale': 'en-US',
             'homepage': ''
         }
@@ -1212,92 +1249,19 @@ class BaseTestEditDetails(BaseTestEdit):
         for k in data:
             assert unicode(getattr(addon, k)) == data[k]
 
-    @override_switch('akismet-spam-check', active=False)
-    def test_akismet_waffle_off(self):
-        data = {
-            'description': u'lé spam or un ham',
-            'homepage': 'https://staticfil.es/',
-            'default_locale': 'en-US'
-        }
 
-        response = self.client.post(self.details_edit_url, data)
-        assert response.status_code == 200
-        assert AkismetReport.objects.count() == 0
-
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_akismet_edit_is_ham(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.HAM
-        data = {
-            'description': u'lé ham',
-            'homepage': 'https://staticfil.es/',
-            'default_locale': 'en-US'
-        }
-
-        response = self.client.post(self.details_edit_url, data)
-        assert response.status_code == 200
-        assert 'spam' not in response.content
-        self.assertNoFormErrors(response)
-
-        # Akismet check is there
-        assert AkismetReport.objects.count() == 1
-        name_report = AkismetReport.objects.first()
-        assert name_report.comment_type == 'product-description'
-        assert name_report.comment == data['description']
-
-        comment_check_mock.assert_called_once()
-
-        # And metadata was updated
-        addon = self.get_addon()
-        assert unicode(addon.description) == data['description']
-
-    @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_akismet_edit_is_spam(self, comment_check_mock):
-        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
-        old_description = self.addon.description
-        data = {
-            'description': u'lé spam',
-            'homepage': 'https://staticfil.es/',
-            'default_locale': 'en-US'
-        }
-
-        response = self.client.post(self.details_edit_url, data)
-        assert response.status_code == 200
-
-        self.assertFormError(
-            response, 'form', 'description',
-            'The text entered has been flagged as spam.')
-
-        # Akismet check is there
-        assert AkismetReport.objects.count() == 1
-        name_report = AkismetReport.objects.first()
-        assert name_report.comment_type == 'product-description'
-        assert name_report.comment == data['description']
-
-        comment_check_mock.assert_called_once()  # won't check twice if 1 spam
-
-        # And metadata was NOT updated
-        addon = self.get_addon()
-        assert unicode(addon.description) == unicode(old_description)
-
-
-class TestEditDetailsListed(BaseTestEditDetails, TagTestsMixin,
-                            ContributionsTestsMixin,):
+class TestEditAdditionalDetailsListed(BaseTestEditAdditionalDetails,
+                                      TagTestsMixin, ContributionsTestsMixin):
     __test__ = True
 
     def test_edit_default_locale_required_trans(self):
         # name, summary, and description are required in the new locale.
-        description, homepage = map(unicode, [self.addon.description,
-                                              self.addon.homepage])
-        # TODO: description should get fixed up with the form.
         error = ('Before changing your default locale you must have a name, '
                  'summary, and description in that locale. '
                  'You are missing ')
 
         data = {
-            'description': description,
-            'homepage': homepage,
+            'homepage': unicode(self.addon.homepage),
             'default_locale': 'fr'
         }
         response = self.client.post(self.details_edit_url, data)
@@ -1326,14 +1290,14 @@ class TestEditDetailsListed(BaseTestEditDetails, TagTestsMixin,
         assert form_error.startswith(error)
         assert "'description'" in form_error
 
-        # Now we're sending an fr description with the form.
-        data['description_fr'] = 'fr description'
+        # And finally a description.
+        self.addon.description = {'fr': 'fr description'}
+        self.addon.save()
         response = self.client.post(self.details_edit_url, data)
         assert response.context['form'].errors == {}
 
     def test_edit_default_locale_frontend_error(self):
         data = {
-            'description': 'xx',
             'homepage': 'https://staticfil.es/',
             'default_locale': 'fr'
         }
@@ -1349,7 +1313,7 @@ class TestEditDetailsListed(BaseTestEditDetails, TagTestsMixin,
             'English (US)')
 
 
-class TestEditDetailsUnlisted(BaseTestEditDetails):
+class TestEditAdditionalDetailsUnlisted(BaseTestEditAdditionalDetails):
     listed = False
     __test__ = True
 
@@ -1670,7 +1634,8 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
 
     def get_dict(self, **kw):
         result = {'name': 'new name', 'slug': 'test_slug',
-                  'summary': 'new summary', 'category': 300}
+                  'summary': 'new summary', 'description': 'new description',
+                  'category': 300}
         result.update(**kw)
         return result
 
@@ -1754,11 +1719,6 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
 
 class TestEditDescribeStaticThemeUnlisted(StaticMixin,
                                           TestEditDescribeUnlisted):
-    def get_dict(self, **kw):
-        result = {'name': 'new name', 'slug': 'test_slug',
-                  'summary': 'new summary'}
-        result.update(**kw)
-        return result
 
     def test_theme_preview_not_shown(self):
         response = self.client.get(self.url)
@@ -1766,11 +1726,13 @@ class TestEditDescribeStaticThemeUnlisted(StaticMixin,
         assert 'Preview' not in doc('h3').text()
 
 
-class TestEditDetailsStaticThemeListed(StaticMixin, TestEditDetailsListed):
+class TestEditAdditionalDetailsStaticThemeListed(
+        StaticMixin, TestEditAdditionalDetailsListed):
     pass
 
 
-class TestEditDetailsStaticThemeUnlisted(StaticMixin, TestEditDetailsUnlisted):
+class TestEditAdditionalDetailsStaticThemeUnlisted(
+        StaticMixin, TestEditAdditionalDetailsUnlisted):
     pass
 
 

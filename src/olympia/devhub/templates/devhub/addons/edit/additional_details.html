@@ -16,31 +16,6 @@
         <tbody>
           <tr>
             <th>
-              <label data-for="description">
-                {{ _('Description') }}
-                {{ tip(None,
-                       _("A longer explanation of features, "
-                         "functionality, and other relevant information. This "
-                         "field is only displayed on the add-on's details "
-                         "page. It is only relevant for listed add-ons.")) }}
-              </label>
-            </th>
-            <td>
-              {% if editable %}
-                {{ form.description }}
-                {{ form.description.errors }}
-                {{ some_html_tip() }}
-              {% else %}
-                {% call empty_unless(addon.description) %}
-                  <div id="addon-description" class="prose">
-                    {{ addon|all_locales('description', nl2br=True) }}
-                  </div>
-                {% endcall %}
-              {% endif %}
-            </td>
-          </tr>
-          <tr>
-            <th>
               {{ tip(_("Tags"),
                      _("Tags help users find your add-on and should be short "
                        "descriptors such as tabs, toolbar, or twitter. You "

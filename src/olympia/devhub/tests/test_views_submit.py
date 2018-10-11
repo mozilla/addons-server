@@ -884,7 +884,8 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
                          'summary': 'Hello!', 'is_experimental': True,
                          'requires_payment': True}
         if not minimal:
-            describe_form.update({'support_url': 'http://stackoverflow.com',
+            describe_form.update({'description': 'its a description',
+                                  'support_url': 'http://stackoverflow.com',
                                   'support_email': 'black@hole.org'})
         cat_initial = kw.pop('cat_initial', self.cat_initial)
         cat_form = formset(cat_initial, initial_count=1)
@@ -900,6 +901,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         result.update(**kw)
         return result
 
+    @override_switch('content-optimization', active=False)
     def test_submit_success_required(self):
         # Set/change the required fields only
         response = self.client.get(self.url)
@@ -930,7 +932,57 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         assert not log_items.filter(action=amo.LOG.EDIT_PROPERTIES.id), (
             "Setting properties on submit needn't be logged.")
 
+    @override_switch('content-optimization', active=False)
     def test_submit_success_optional_fields(self):
+        # Set/change the optional fields too
+        # Post and be redirected
+        data = self.get_dict(minimal=False)
+        self.is_success(data)
+
+        addon = self.get_addon()
+
+        # These are the fields that are expected to be edited here.
+        assert addon.description == 'its a description'
+        assert addon.support_url == 'http://stackoverflow.com'
+        assert addon.support_email == 'black@hole.org'
+        assert addon.privacy_policy == 'Ur data belongs to us now.'
+        assert addon.current_version.approvalnotes == 'approove plz'
+
+    @override_switch('content-optimization', active=True)
+    def test_submit_success_required_with_content_optimization(self):
+        # Set/change the required fields only
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        # Post and be redirected - trying to sneak
+        # in fields that shouldn't be modified via this form.
+        data = self.get_dict(
+            description='its a description', homepage='foo.com',
+            tags='whatevs, whatever')
+        self.is_success(data)
+
+        addon = self.get_addon()
+
+        # This fields should not have been modified.
+        assert addon.homepage != 'foo.com'
+        assert len(addon.tags.values_list()) == 0
+
+        # These are the fields that are expected to be edited here.
+        assert addon.name == 'Test name'
+        assert addon.slug == 'testname'
+        assert addon.summary == 'Hello!'
+        assert addon.description == 'its a description'
+        assert addon.is_experimental
+        assert addon.requires_payment
+        assert addon.all_categories[0].id == 22
+
+        # Test add-on log activity.
+        log_items = ActivityLog.objects.for_addons(addon)
+        assert not log_items.filter(action=amo.LOG.EDIT_PROPERTIES.id), (
+            "Setting properties on submit needn't be logged.")
+
+    @override_switch('content-optimization', active=True)
+    def test_submit_success_optional_fields_with_content_optimization(self):
         # Set/change the optional fields too
         # Post and be redirected
         data = self.get_dict(minimal=False)

@@ -11,6 +11,7 @@ import mock
 import pytest
 
 from PIL import Image
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.forms import EditThemeForm, EditThemeOwnerForm, ThemeForm
@@ -849,3 +850,73 @@ class TestDescribeForm(TestCase):
              'support_url': 'http://foo.com'},
             request=self.request, instance=Addon.objects.get())
         assert form.is_valid(), form.errors
+
+    def test_summary_optional(self):
+        delicious = Addon.objects.get()
+        assert delicious.type == amo.ADDON_EXTENSION
+
+        with override_switch('content-optimization', active=False):
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar'},
+                request=self.request, instance=delicious)
+            assert form.is_valid(), form.errors
+
+        with override_switch('content-optimization', active=True):
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar'},
+                request=self.request, instance=delicious)
+            assert not form.is_valid()
+
+            # But only extensions are required to have a description
+            delicious.update(type=amo.ADDON_STATICTHEME)
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar'},
+                request=self.request, instance=delicious)
+            assert form.is_valid(), form.errors
+
+            #  Do it again, but this time with a description
+            delicious.update(type=amo.ADDON_EXTENSION)
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar', 'description': 'its a description'},
+                request=self.request,
+                instance=delicious)
+            assert form.is_valid(), form.errors
+
+    def test_summary_min_length(self):
+        delicious = Addon.objects.get()
+        assert delicious.type == amo.ADDON_EXTENSION
+
+        with override_switch('content-optimization', active=False):
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar', 'description': '123456789'},
+                request=self.request, instance=delicious)
+            assert form.is_valid(), form.errors
+
+        with override_switch('content-optimization', active=True):
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar', 'description': '123456789'},
+                request=self.request, instance=delicious)
+            assert not form.is_valid()
+
+            # But only extensions have a minimum length
+            delicious.update(type=amo.ADDON_STATICTHEME)
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar', 'description': '123456789'},
+                request=self.request, instance=delicious)
+            assert form.is_valid()
+
+            #  Do it again, but this time with a description
+            delicious.update(type=amo.ADDON_EXTENSION)
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar', 'description': '1234567890'},
+                request=self.request,
+                instance=delicious)
+            assert form.is_valid(), form.errors

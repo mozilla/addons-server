@@ -326,12 +326,9 @@ class AdditionalDetailsForm(AkismetSpamCheckFormMixin, AddonFormBase):
     tags = forms.CharField(required=False)
     contributions = HttpHttpsOnlyURLField(required=False, max_length=255)
 
-    fields_to_akismet_comment_check = ['description']
-
     class Meta:
         model = Addon
-        fields = ('description', 'default_locale', 'homepage', 'tags',
-                  'contributions')
+        fields = ('default_locale', 'homepage', 'tags', 'contributions')
 
     def __init__(self, *args, **kw):
         super(AdditionalDetailsForm, self).__init__(*args, **kw)
@@ -352,7 +349,6 @@ class AdditionalDetailsForm(AkismetSpamCheckFormMixin, AddonFormBase):
     def clean(self):
         # Make sure we have the required translations in the new locale.
         required = 'name', 'summary', 'description'
-        data = self.cleaned_data
         if not self.errors and 'default_locale' in self.changed_data:
             fields = dict((k, getattr(self.instance, k + '_id'))
                           for k in required)
@@ -362,9 +358,6 @@ class AdditionalDetailsForm(AkismetSpamCheckFormMixin, AddonFormBase):
                                              localized_string__isnull=False)
                   .values_list('id', flat=True))
             missing = [k for k, v in fields.items() if v not in qs]
-            # They might be setting description right now.
-            if 'description' in missing and locale in data['description']:
-                missing.remove('description')
             if missing:
                 raise forms.ValidationError(ugettext(
                     'Before changing your default locale you must have a '

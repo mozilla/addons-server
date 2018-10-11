@@ -1,4 +1,4 @@
-{% from "devhub/includes/macros.html" import tip, empty_unless, select_cats, trans_readonly, flags %}
+{% from "devhub/includes/macros.html" import tip, empty_unless, flags, select_cats, some_html_tip, trans_readonly %}
 
 <form method="post" action="{{ url('devhub.addons.section', valid_slug, 'describe', 'edit') }}"
       id="addon-edit-describe"
@@ -64,6 +64,35 @@
                      data-maxlength="{{ form.summary.field.max_length }}"></div>
               {% else %}
                 {{ addon|all_locales('summary') }}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label data-for="description">
+                {{ _("Description") }}
+                {{ tip(None,
+                       _('A longer explanation of features, functionality, and other relevant information. '
+                         "This field is only displayed on the add-on's listing. " +
+                         ('Minimum length: 10 characters; ' if editable and form.description.field.min_length else '') +
+                         'Recommended length: 250 characters. '
+                         'If you need a longer description, make sure the first 250 characters contain the most important description points.')) }}
+              </label>
+            </th>
+            <td>
+              {% if editable %}
+                {{ form.description }}
+                {{ form.description.errors }}
+                <div class="char-count"
+                     data-for-startswith="{{ form.description.auto_id }}_"
+                     data-minlength="{{ form.description.field.min_length }}"></div>
+                {{ some_html_tip() }}
+              {% else %}
+                {% call empty_unless(addon.description) %}
+                  <div id="addon-description" class="prose">
+                    {{ addon|all_locales('description', nl2br=True) }}
+                  </div>
+                {% endcall %}
               {% endif %}
             </td>
           </tr>

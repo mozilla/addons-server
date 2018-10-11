@@ -31,7 +31,7 @@ class TestAdditionalDetailsForm(TestCase):
 
         self.data = {
             'default_locale': 'en-US',
-            'description': str(self.addon.description),
+            'homepage': str(self.addon.homepage),
         }
 
         self.user = self.addon.authors.all()[0]
