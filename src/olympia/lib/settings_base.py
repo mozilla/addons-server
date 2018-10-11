@@ -306,17 +306,10 @@ INBOUND_EMAIL_VALIDATION_KEY = env('INBOUND_EMAIL_VALIDATION_KEY', default='')
 # Domain emails should be sent to.
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN', default=DOMAIN)
 
-# Absolute path to the directory that holds media.
-# Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = path('user-media')
-
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = '/user-media/'
-
-# Absolute path to a temporary storage area
-TMP_PATH = path('tmp')
 
 # Tarballs in DUMPED_APPS_PATH deleted 30 days after they have been written.
 DUMPED_APPS_DAYS_DELETE = 3600 * 24 * 30
@@ -1759,9 +1752,18 @@ STATICFILES_DIRS = (
     path('static'),
 )
 
-NETAPP_STORAGE = TMP_PATH
-GUARDED_ADDONS_PATH = os.path.join(ROOT, 'guarded-addons')
+# Path related settings. In dev/stage/prod `NETAPP_STORAGE_ROOT` will
+# be set and point to our NFS/EFS storage
+NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT', default=path('storage'))
 
+NETAPP_STORAGE = os.path.join(NETAPP_STORAGE_ROOT, 'shared_storage')
+ADDONS_PATH = os.path.join(NETAPP_STORAGE_ROOT, 'files')
+GUARDED_ADDONS_PATH = os.path.join(NETAPP_STORAGE_ROOT, 'guarded-addons')
+
+MEDIA_ROOT = os.path.join(NETAPP_STORAGE, 'uploads')
+TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
+
+REVIEWER_ATTACHMENTS_PATH = os.path.join(MEDIA_ROOT, 'reviewer_attachment')
 GIT_FILE_STORAGE_PATH = os.path.join(MEDIA_ROOT, 'git-storage')
 
 # These are key files that must be present on disk to encrypt/decrypt certain
