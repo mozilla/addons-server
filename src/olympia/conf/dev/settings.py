@@ -1,5 +1,4 @@
 import logging
-import os
 
 from olympia.lib.settings_base import *  # noqa
 
