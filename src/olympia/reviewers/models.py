@@ -429,7 +429,7 @@ class ReviewerScore(ModelBase):
                 log.exception(
                     'No such version/auto approval summary when determining '
                     'event type to award points: %r', exception)
-                weight = 0
+                return None
             if weight > amo.POST_REVIEW_WEIGHT_HIGHEST_RISK:
                 reviewed_score_name = 'REVIEWED_EXTENSION_HIGHEST_RISK'
             elif weight > amo.POST_REVIEW_WEIGHT_HIGH_RISK:
@@ -499,7 +499,7 @@ class ReviewerScore(ModelBase):
                 bonus = days_over * amo.REVIEWED_OVERDUE_BONUS
                 score = score + bonus
 
-        if score:
+        if score is not None:
             cls.objects.create(user=user, addon=addon, score=score,
                                note_key=event, note=extra_note,
                                version=version)
