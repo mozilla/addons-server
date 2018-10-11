@@ -226,35 +226,17 @@ class ReadOnlyMiddleware(MiddlewareMixin):
         u'perform website maintenance. We\'ll be back to '
         u'full capacity shortly.')
 
-    READ_ONLY_HEADER = 'X-AMO-Read-Only'
-
-    def _render_api_error(self):
-        response = JsonResponse({'error': self.ERROR_MSG}, status=503)
-        response[self.READ_ONLY_HEADER] = 'true'
-        if settings.READ_ONLY_RETRY_AFTER is not None:
-            response['Retry-After'] = settings.READ_ONLY_RETRY_AFTER.seconds
-        return response
-
     def process_request(self, request):
         if not settings.READ_ONLY:
             return
 
         if request.is_api:
-            writable_method = request.method in ('POST', 'PUT', 'DELETE')
+            writable_method = request.method in (
+                'POST', 'PUT', 'DELETE', 'PATCH')
             if writable_method:
-                return self._render_api_error()
+                return JsonResponse({'error': self.ERROR_MSG}, status=503)
         elif request.method == 'POST':
             return render(request, 'amo/read-only.html', status=503)
-
-    def process_response(self, request, response):
-        # We haven't set the header yet so it's not an error response
-        # set by this middleware so we should default to setting it to
-        # `false`
-        header_name = self.READ_ONLY_HEADER
-
-        if header_name not in response:
-            response[self.READ_ONLY_HEADER] = 'false'
-        return response
 
     def process_exception(self, request, exception):
         if not settings.READ_ONLY:
