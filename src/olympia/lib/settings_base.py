@@ -1787,10 +1787,12 @@ DRF_API_GATES = {
     'v4': (
         'l10n_flat_input_output',
         'addons-search-_score-field',
+        'ratings-can_reply',
     ),
     'v4dev': (
         'addons-search-_score-field',
-    )
+        'ratings-can_reply',
+    ),
 }
 
 # Change this to deactivate API throttling for views using a throttling class

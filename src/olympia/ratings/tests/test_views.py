@@ -809,10 +809,31 @@ class TestRatingViewSetGet(TestCase):
         assert len(data['results']) == 2
         assert data['results'][0]['id'] == review2.pk
         assert data['results'][1]['id'] == review1.pk
+        if 'expected_can_reply' in kwargs:
+            assert data['can_reply'] is kwargs['expected_can_reply']
 
         if 'show_grouped_ratings' not in kwargs:
             assert 'grouped_ratings' not in data
         return data
+
+    def test_list_can_reply(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        self.addon.addonuser_set.create(user=self.user, listed=False)
+        self.test_list_addon(expected_can_reply=True)
+
+    def test_list_can_not_reply_anonymous(self):
+        self.test_list_addon(expected_can_reply=False)
+
+    def test_list_can_not_reply(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        self.test_list_addon(expected_can_reply=False)
+
+    def test_list_can_reply_field_absent_in_v3(self):
+        self.url = reverse_ns('rating-list', api_version='v3')
+        data = self.test_list_addon()
+        assert 'can_reply' not in data
 
     def test_list_addon_queries(self):
         version1 = self.addon.current_version
@@ -1020,6 +1041,7 @@ class TestRatingViewSetGet(TestCase):
         assert data['results'][0]['id'] == reply.pk
         assert data['results'][1]['id'] == review1.pk
         assert data['results'][2]['id'] == review2.pk
+        assert 'can_reply' not in data  # Not enough information to show this.
         return data
 
     def test_list_addon_and_user(self):
