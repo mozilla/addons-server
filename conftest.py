@@ -119,18 +119,22 @@ def test_pre_setup(request, tmpdir, settings):
     translation.trans_real._translations = {}
     translation.trans_real.activate(settings.LANGUAGE_CODE)
 
-    _join = os.path.join
+    def _path(*args):
+        path = str(os.path.join(*args))
+        if not os.path.exists(path):
+            os.makedirs(path)
+        return path
 
-    settings.STORAGE_ROOT = storage_root = str(tmpdir.mkdir('storage'))
-    settings.SHARED_STORAGE = shared_storage = _join(
-        settings.STORAGE_ROOT, 'shared_storage')
+    settings.STORAGE_ROOT = storage_root = _path(tmpdir.mkdir('storage'))
+    settings.SHARED_STORAGE = shared_storage = _path(
+        storage_root, 'shared_storage')
 
-    settings.ADDONS_PATH = _join(storage_root, 'files')
-    settings.GUARDED_ADDONS_PATH = _join(storage_root, 'guarded-addons')
-    settings.GIT_FILE_STORAGE_PATH = _join(storage_root, 'git-storage')
-    settings.MEDIA_ROOT = _join(shared_storage, 'uploads')
-    settings.TMP_PATH = _join(shared_storage, 'tmp')
-    settings.REVIEWER_ATTACHMENTS_PATH = _join(
+    settings.ADDONS_PATH = _path(storage_root, 'files')
+    settings.GUARDED_ADDONS_PATH = _path(storage_root, 'guarded-addons')
+    settings.GIT_FILE_STORAGE_PATH = _path(storage_root, 'git-storage')
+    settings.MEDIA_ROOT = _path(shared_storage, 'uploads')
+    settings.TMP_PATH = _path(shared_storage, 'tmp')
+    settings.REVIEWER_ATTACHMENTS_PATH = _path(
         settings.MEDIA_ROOT, 'reviewer_attachment')
 
     # Reset the prefixer and urlconf after updating media root
