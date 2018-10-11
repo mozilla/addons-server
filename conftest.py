@@ -4,6 +4,7 @@ pytest hooks and fixtures used for our unittests.
 Please note that there should not be any Django/Olympia related imports
 on module-level, they should instead be added to hooks or fixtures directly.
 """
+import os
 
 import responses
 import pytest
@@ -118,11 +119,19 @@ def test_pre_setup(request, tmpdir, settings):
     translation.trans_real._translations = {}
     translation.trans_real.activate(settings.LANGUAGE_CODE)
 
-    settings.MEDIA_ROOT = str(tmpdir.mkdir('media'))
-    settings.TMP_PATH = str(tmpdir.mkdir('tmp'))
-    settings.STATIC_ROOT = str(tmpdir.mkdir('site-static'))
-    settings.NETAPP_STORAGE = settings.TMP_PATH
-    settings.GIT_FILE_STORAGE_PATH = str(tmpdir.mkdir('git-storage'))
+    _join = os.path.join
+
+    settings.STORAGE_ROOT = storage_root = str(tmpdir.mkdir('storage'))
+    settings.SHARED_STORAGE = shared_storage = _join(
+        settings.STORAGE_ROOT, 'shared_storage')
+
+    settings.ADDONS_PATH = _join(storage_root, 'files')
+    settings.GUARDED_ADDONS_PATH = _join(storage_root, 'guarded-addons')
+    settings.GIT_FILE_STORAGE_PATH = _join(storage_root, 'git-storage')
+    settings.MEDIA_ROOT = _join(shared_storage, 'uploads')
+    settings.TMP_PATH = _join(shared_storage, 'tmp')
+    settings.REVIEWER_ATTACHMENTS_PATH = _join(
+        settings.MEDIA_ROOT, 'reviewer_attachment')
 
     # Reset the prefixer and urlconf after updating media root
     default_prefixer(settings)

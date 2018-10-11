@@ -1754,6 +1754,8 @@ STATICFILES_DIRS = (
 
 # Path related settings. In dev/stage/prod `NETAPP_STORAGE_ROOT` environment
 # variable will be set and point to our NFS/EFS storage
+# Make sure to check overwrites in conftest.py if new settings are added
+# or changed.
 STORAGE_ROOT = env('NETAPP_STORAGE_ROOT', default=path('storage'))
 
 ADDONS_PATH = os.path.join(STORAGE_ROOT, 'files')
