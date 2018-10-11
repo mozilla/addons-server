@@ -849,7 +849,7 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         qs = view.get_queryset()
 
         # We don't even filter - there should only be one addon in the index
-        # at this point, and that allows us to get a constant score that we.
+        # at this point, and that allows us to get a constant score that we
         # can test for in test_score()
         return qs.execute()[0]
 
