@@ -1752,19 +1752,20 @@ STATICFILES_DIRS = (
     path('static'),
 )
 
-# Path related settings. In dev/stage/prod `NETAPP_STORAGE_ROOT` will
-# be set and point to our NFS/EFS storage
-NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT', default=path('storage'))
+# Path related settings. In dev/stage/prod `NETAPP_STORAGE_ROOT` environment
+# variable will be set and point to our NFS/EFS storage
+STORAGE_ROOT = env('NETAPP_STORAGE_ROOT', default=path('storage'))
 
-NETAPP_STORAGE = os.path.join(NETAPP_STORAGE_ROOT, 'shared_storage')
-ADDONS_PATH = os.path.join(NETAPP_STORAGE_ROOT, 'files')
-GUARDED_ADDONS_PATH = os.path.join(NETAPP_STORAGE_ROOT, 'guarded-addons')
+ADDONS_PATH = os.path.join(STORAGE_ROOT, 'files')
+GUARDED_ADDONS_PATH = os.path.join(STORAGE_ROOT, 'guarded-addons')
+GIT_FILE_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'git-storage')
 
-MEDIA_ROOT = os.path.join(NETAPP_STORAGE, 'uploads')
-TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
+SHARED_STORAGE = os.path.join(STORAGE_ROOT, 'shared_storage')
+
+MEDIA_ROOT = os.path.join(SHARED_STORAGE, 'uploads')
+TMP_PATH = os.path.join(SHARED_STORAGE, 'tmp')
 
 REVIEWER_ATTACHMENTS_PATH = os.path.join(MEDIA_ROOT, 'reviewer_attachment')
-GIT_FILE_STORAGE_PATH = os.path.join(MEDIA_ROOT, 'git-storage')
 
 # These are key files that must be present on disk to encrypt/decrypt certain
 # database fields.

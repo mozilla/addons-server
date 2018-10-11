@@ -41,7 +41,7 @@ class Command(BaseCommand):
 
     If stats_source is file:
         If not folder is specified, the default is `hive_results/YYYY-MM-DD/`.
-        This folder will be located in `<settings.NETAPP_STORAGE>/tmp`.
+        This folder will be located in `<settings.SHARED_STORAGE>/tmp`.
 
     If stats_source is s3:
         This file will be located in
