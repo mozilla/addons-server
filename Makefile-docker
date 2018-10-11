@@ -138,6 +138,7 @@ update_db:
 	schematic src/olympia/migrations
 
 update_assets:
+	# If changing this here, make sure to adapt tests in amo/test_commands.py
 	python manage.py compress_assets
 	python manage.py collectstatic --noinput
 
