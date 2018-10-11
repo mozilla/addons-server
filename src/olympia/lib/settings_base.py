@@ -1543,8 +1543,6 @@ READ_ONLY = env.bool('READ_ONLY', default=False)
 
 # Turn on read-only mode in local_settings.py by putting this line
 # at the VERY BOTTOM: read_only_mode(globals())
-# Please also consider setting `retry_after` like this:
-# read_only_mode(globals())
 def read_only_mode(env):
     env['READ_ONLY'] = True
 

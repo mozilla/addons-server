@@ -19,6 +19,8 @@ from django.utils.deprecation import MiddlewareMixin
 from django.utils.encoding import force_bytes, iri_to_uri
 from django.utils.translation import activate, ugettext_lazy as _
 
+from rest_framework import permissions
+
 import MySQLdb as mysql
 from corsheaders.middleware import CorsMiddleware as _CorsMiddleware
 
@@ -231,8 +233,7 @@ class ReadOnlyMiddleware(MiddlewareMixin):
             return
 
         if request.is_api:
-            writable_method = request.method in (
-                'POST', 'PUT', 'DELETE', 'PATCH')
+            writable_method = request.method not in permissions.SAFE_METHODS
             if writable_method:
                 return JsonResponse({'error': self.ERROR_MSG}, status=503)
         elif request.method == 'POST':
