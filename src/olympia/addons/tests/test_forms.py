@@ -19,26 +19,6 @@ from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 
 
-class TestAddonFormSupport(TestCase):
-
-    def test_bogus_support_url(self):
-        form = forms.AddonFormSupport(
-            {'support_url': 'javascript://something.com'}, request=None)
-        assert not form.is_valid()
-        assert form.errors['support_url'] == [u'Enter a valid URL.']
-
-    def test_ftp_support_url(self):
-        form = forms.AddonFormSupport(
-            {'support_url': 'ftp://foo.com'}, request=None)
-        assert not form.is_valid()
-        assert form.errors['support_url'] == [u'Enter a valid URL.']
-
-    def test_http_support_url(self):
-        form = forms.AddonFormSupport(
-            {'support_url': 'http://foo.com'}, request=None)
-        assert form.is_valid()
-
-
 class TestAdditionalDetailsForm(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 

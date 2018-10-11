@@ -399,21 +399,6 @@ class AdditionalDetailsFormUnlisted(AdditionalDetailsForm):
     pass
 
 
-class AddonFormSupport(AddonFormBase):
-    support_url = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
-    support_email = TransField.adapt(forms.EmailField)(required=False)
-
-    class Meta:
-        model = Addon
-        fields = ('support_email', 'support_url')
-
-    def __init__(self, *args, **kw):
-        super(AddonFormSupport, self).__init__(*args, **kw)
-
-    def save(self, addon, commit=True):
-        return super(AddonFormSupport, self).save(commit)
-
-
 class AddonFormTechnical(AddonFormBase):
     developer_comments = TransField(widget=TransTextarea, required=False)
 

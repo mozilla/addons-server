@@ -766,14 +766,13 @@ def addons_section(request, addon_id, addon, section, editable=False):
         models.update({
             'describe': forms.DescribeForm,
             'additional_details': addon_forms.AdditionalDetailsForm,
-            'support': addon_forms.AddonFormSupport,
             'technical': addon_forms.AddonFormTechnical
         })
         if not static_theme:
             models.update({'media': addon_forms.AddonFormMedia})
     else:
         models.update({
-            'describe': forms.DescribeForm,
+            'describe': forms.DescribeFormUnlisted,
             'additional_details': addon_forms.AdditionalDetailsFormUnlisted,
             'technical': addon_forms.AddonFormTechnicalUnlisted
         })

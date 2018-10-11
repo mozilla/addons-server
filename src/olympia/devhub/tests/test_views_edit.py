@@ -579,6 +579,42 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
             'This add-on requires payment, non-free services or '
             'software, or additional hardware.')
 
+    def test_edit_support(self):
+        data = {
+            'support_email': 'sjobs@apple.com',
+            'support_url': 'http://apple.com/'
+        }
+
+        self.client.post(self.describe_edit_url, self.get_dict(**data))
+        addon = self.get_addon()
+
+        for k in data:
+            assert unicode(getattr(addon, k)) == data[k]
+
+    def test_edit_support_optional_url(self):
+        data = {
+            'support_email': 'sjobs@apple.com',
+            'support_url': ''
+        }
+
+        self.client.post(self.describe_edit_url, self.get_dict(**data))
+        addon = self.get_addon()
+
+        for k in data:
+            assert unicode(getattr(addon, k)) == data[k]
+
+    def test_edit_support_optional_email(self):
+        data = {
+            'support_email': '',
+            'support_url': 'http://apple.com/'
+        }
+
+        self.client.post(self.describe_edit_url, self.get_dict(**data))
+        addon = self.get_addon()
+
+        for k in data:
+            assert unicode(getattr(addon, k)) == data[k]
+
 
 class TestEditDescribeUnlisted(BaseTestEditDescribe, L10nTestsMixin):
     listed = False
@@ -1316,54 +1352,6 @@ class TestEditDetailsListed(BaseTestEditDetails, TagTestsMixin,
 class TestEditDetailsUnlisted(BaseTestEditDetails):
     listed = False
     __test__ = True
-
-
-class TestEditSupport(BaseTestEdit):
-    __test__ = True
-
-    def setUp(self):
-        super(TestEditSupport, self).setUp()
-        self.support_url = self.get_url('support')
-        self.support_edit_url = self.get_url('support', edit=True)
-
-    def test_edit_support(self):
-        data = {
-            'support_email': 'sjobs@apple.com',
-            'support_url': 'http://apple.com/'
-        }
-
-        response = self.client.post(self.support_edit_url, data)
-        assert response.context['form'].errors == {}
-        addon = self.get_addon()
-
-        for k in data:
-            assert unicode(getattr(addon, k)) == data[k]
-
-    def test_edit_support_optional_url(self):
-        data = {
-            'support_email': 'sjobs@apple.com',
-            'support_url': ''
-        }
-
-        response = self.client.post(self.support_edit_url, data)
-        assert response.context['form'].errors == {}
-        addon = self.get_addon()
-
-        for k in data:
-            assert unicode(getattr(addon, k)) == data[k]
-
-    def test_edit_support_optional_email(self):
-        data = {
-            'support_email': '',
-            'support_url': 'http://apple.com/'
-        }
-
-        response = self.client.post(self.support_edit_url, data)
-        assert response.context['form'].errors == {}
-        addon = self.get_addon()
-
-        for k in data:
-            assert unicode(getattr(addon, k)) == data[k]
 
 
 class TestEditTechnical(BaseTestEdit):

@@ -828,3 +828,24 @@ class TestDescribeForm(TestCase):
         assert not form.is_valid()
         assert form.errors['slug'] == (
             [u'The slug cannot be "123". Please choose another.'])
+
+    def test_bogus_support_url(self):
+        form = forms.DescribeForm(
+            {'support_url': 'javascript://something.com'},
+            request=self.request, instance=Addon.objects.get())
+        assert not form.is_valid()
+        assert form.errors['support_url'] == [u'Enter a valid URL.']
+
+    def test_ftp_support_url(self):
+        form = forms.DescribeForm(
+            {'support_url': 'ftp://foo.com'}, request=self.request,
+            instance=Addon.objects.get())
+        assert not form.is_valid()
+        assert form.errors['support_url'] == [u'Enter a valid URL.']
+
+    def test_http_support_url(self):
+        form = forms.DescribeForm(
+            {'name': 'Delicious Dumdidum', 'summary': 'foo', 'slug': 'bar',
+             'support_url': 'http://foo.com'},
+            request=self.request, instance=Addon.objects.get())
+        assert form.is_valid(), form.errors
