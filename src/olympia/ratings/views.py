@@ -30,9 +30,8 @@ from olympia.api.throttling import GranularUserRateThrottle
 
 from . import forms
 from .models import GroupedRating, Rating, RatingFlag
-from .permissions import CanDeleteRatingPermission
+from .permissions import CanDeleteRatingPermission, user_can_delete_rating
 from .serializers import RatingSerializer, RatingSerializerReply
-from .templatetags.jinja_helpers import user_can_delete_review
 from .utils import maybe_check_with_akismet
 
 
@@ -128,7 +127,7 @@ def flag(request, addon, review_id):
 @login_required(redirect=False)
 def delete(request, addon, review_id):
     review = get_object_or_404(Rating.objects, pk=review_id, addon=addon)
-    if not user_can_delete_review(request, review):
+    if not user_can_delete_rating(request, review):
         raise PermissionDenied
     review.delete(user_responsible=request.user)
     return http.HttpResponse()
