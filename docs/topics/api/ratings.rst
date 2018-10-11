@@ -38,6 +38,7 @@ user has already posted a rating for the current version of an add-on.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
     :>json array results: An array of :ref:`ratings <rating-detail-object>`.
+    :>json boolean can_reply: Only present if the ``addon`` query parameter is present. A boolean indicating if the user that made the ratings list request can reply to ratings in that list.
     :>json object grouped_ratings: Only present if ``show_grouped_ratings`` query parameter is present. An object with 5 key-value pairs, the keys representing each possible rating (Though a number, it has to be converted to a string because of the JSON formatting) and the values being the number of times the corresponding rating has been posted for this add-on, e.g. ``{"1": 4, "2": 8, "3": 15, "4": 16: "5": 23}``.
 
 .. _rating-filtering-param:
