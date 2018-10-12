@@ -429,7 +429,7 @@ class ReviewerScore(ModelBase):
                 log.exception(
                     'No such version/auto approval summary when determining '
                     'event type to award points: %r', exception)
-                return None
+                weight = 0
             if weight > amo.POST_REVIEW_WEIGHT_HIGHEST_RISK:
                 reviewed_score_name = 'REVIEWED_EXTENSION_HIGHEST_RISK'
             elif weight > amo.POST_REVIEW_WEIGHT_HIGH_RISK:
