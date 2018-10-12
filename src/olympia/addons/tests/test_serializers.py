@@ -12,9 +12,8 @@ from olympia.addons.models import (
 from olympia.addons.serializers import (
     AddonDeveloperSerializer, AddonSerializer, AddonSerializerWithUnlistedData,
     CompatOverrideSerializer, ESAddonAutoCompleteSerializer, ESAddonSerializer,
-    ESAddonSerializerWithUnlistedData, LanguageToolsSerializer,
-    LicenseSerializer, ReplacementAddonSerializer, SimpleVersionSerializer,
-    VersionSerializer)
+    LanguageToolsSerializer, LicenseSerializer, ReplacementAddonSerializer,
+    SimpleVersionSerializer, VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import (
     AddonAutoCompleteSearchView, AddonSearchView, AddonViewSet)
@@ -355,23 +354,6 @@ class AddonSerializerOutputTestMixin(object):
         # is one, because it's limited to users with specific rights.
         assert 'latest_unlisted_version' not in result
 
-    def test_latest_unlisted_version_with_rights(self):
-        self.serializer_class = self.serializer_class_with_unlisted_data
-
-        self.addon = addon_factory()
-        version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
-            version='1.1')
-        assert self.addon.latest_unlisted_version
-
-        result = self.serialize()
-        # In this serializer latest_unlisted_version is present.
-        assert result['latest_unlisted_version']
-        self._test_version(
-            self.addon.latest_unlisted_version,
-            result['latest_unlisted_version'])
-        assert result['latest_unlisted_version']['url'] == absolutify('')
-
     def test_is_disabled(self):
         self.addon = addon_factory(disabled_by_user=True)
         result = self.serialize()
@@ -594,31 +576,24 @@ class AddonSerializerOutputTestMixin(object):
         }
         assert result_version['is_strict_compatibility_enabled'] is True
 
-        # Test an add-on with no compatibility info.
-        self.addon = addon_factory()
+        # Test with no compatibility info.
+        file_ = self.addon.current_version.all_files[0]
+        file_.update(strict_compatibility=False)
         ApplicationsVersions.objects.filter(
             version=self.addon.current_version).delete()
-        result_version = self.serialize()['current_version']
-        assert result_version['compatibility'] == {}
-        assert result_version['is_strict_compatibility_enabled'] is False
 
-        # Test an add-on with some compatibility info but that should be
-        # ignored because its type is in NO_COMPAT.
-        self.addon = addon_factory(type=amo.ADDON_SEARCH)
-        av_min = AppVersion.objects.get_or_create(
-            application=amo.THUNDERBIRD.id, version='2.0.99')[0]
-        av_max = AppVersion.objects.get_or_create(
-            application=amo.THUNDERBIRD.id, version='3.0.99')[0]
-        ApplicationsVersions.objects.get_or_create(
-            application=amo.THUNDERBIRD.id, version=self.addon.current_version,
-            min=av_min, max=av_max)
+        result_version = self.serialize()['current_version']
+        assert result_version['is_strict_compatibility_enabled'] is False
+        assert result_version['compatibility'] == {}
+
+        # Test with some compatibility info but that should be ignored because
+        # its type is in NO_COMPAT.
+        self.addon.update(type=amo.ADDON_SEARCH)
         result_version = self.serialize()['current_version']
         assert result_version['compatibility'] == {
             'android': {'max': '9999', 'min': '11.0'},
             'firefox': {'max': '9999', 'min': '4.0'},
             'seamonkey': {'max': '9999', 'min': '2.1'},
-            # No thunderbird: it does not support that type, and when we return
-            # fake compatibility data for NO_COMPAT add-ons we do obey that.
         }
         assert result_version['is_strict_compatibility_enabled'] is False
 
@@ -679,7 +654,6 @@ class AddonSerializerOutputTestMixin(object):
 
 class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
     serializer_class = AddonSerializer
-    serializer_class_with_unlisted_data = AddonSerializerWithUnlistedData
 
     def setUp(self):
         super(TestAddonSerializerOutput, self).setUp()
@@ -841,10 +815,26 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
         }
         assert result['current_version']['is_strict_compatibility_enabled']
 
+    def test_latest_unlisted_version_with_right_serializer(self):
+        self.serializer_class = AddonSerializerWithUnlistedData
+
+        self.addon = addon_factory()
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            version='1.1')
+        assert self.addon.latest_unlisted_version
+
+        result = self.serialize()
+        # In this serializer latest_unlisted_version is present.
+        assert result['latest_unlisted_version']
+        self._test_version(
+            self.addon.latest_unlisted_version,
+            result['latest_unlisted_version'])
+        assert result['latest_unlisted_version']['url'] == absolutify('')
+
 
 class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
     serializer_class = ESAddonSerializer
-    serializer_class_with_unlisted_data = ESAddonSerializerWithUnlistedData
 
     def tearDown(self):
         super(TestESAddonSerializerOutput, self).tearDown()
@@ -858,7 +848,10 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         view.request = self.request
         qs = view.get_queryset()
 
-        return qs.filter('term', id=self.addon.pk).execute()[0]
+        # We don't even filter - there should only be one addon in the index
+        # at this point, and that allows us to get a constant score that we
+        # can test for in test_score()
+        return qs.execute()[0]
 
     def serialize(self):
         self.serializer = self.serializer_class(context={
@@ -885,6 +878,18 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         """Override because the ES serializer doesn't include those fields."""
         assert 'license' not in data
         assert 'release_notes' not in data
+
+    def test_score(self):
+        self.request.version = 'v4'
+        self.addon = addon_factory()
+        result = self.serialize()
+        assert result['_score'] == 1.0  # No query, we get ConstantScoring(1.0)
+
+    def test_no_score_in_v3(self):
+        self.request.version = 'v3'
+        self.addon = addon_factory()
+        result = self.serialize()
+        assert '_score' not in result
 
 
 class TestVersionSerializerOutput(TestCase):
