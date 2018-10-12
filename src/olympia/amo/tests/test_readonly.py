@@ -6,6 +6,7 @@ import pytest
 from pyquery import PyQuery as pq
 
 from olympia.addons.models import Addon
+from olympia.amo.tests import reverse_ns
 
 
 @pytest.yield_fixture
@@ -40,7 +41,15 @@ def test_db_error(read_only_mode):
 
 
 def test_bail_on_post(read_only_mode, client):
-    r = client.post('/en-US/firefox/')
-    assert r.status_code == 503
-    title = pq(r.content)('title').text()
+    response = client.post('/en-US/firefox/')
+    assert response.status_code == 503
+    title = pq(response.content)('title').text()
     assert title.startswith('Maintenance in progress'), title
+
+
+@pytest.mark.parametrize('method', ('post', 'put', 'delete', 'patch'))
+def test_api_bail_on_write_method(read_only_mode, client, method):
+    response = getattr(client, method)(reverse_ns('abusereportuser-list'))
+
+    assert response.status_code == 503
+    assert 'website maintenance' in response.json()['error']
