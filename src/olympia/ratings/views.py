@@ -8,7 +8,8 @@ from django.utils.translation import ugettext
 
 from rest_framework import serializers
 from rest_framework.decorators import action
-from rest_framework.exceptions import ParseError, PermissionDenied
+from rest_framework.exceptions import (
+    NotAuthenticated, ParseError, PermissionDenied)
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
@@ -380,23 +381,40 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         return super(RatingViewSet, self).filter_queryset(qs)
 
     def get_paginated_response(self, data):
-        response = super(RatingViewSet, self).get_paginated_response(data)
-        if 'show_grouped_ratings' in self.request.GET:
+        request = self.request
+        extra_data = {}
+        if 'show_grouped_ratings' in request.GET:
             try:
                 show_grouped_ratings = (
                     serializers.BooleanField().to_internal_value(
-                        self.request.GET['show_grouped_ratings']))
+                        request.GET['show_grouped_ratings']))
             except serializers.ValidationError:
                 raise ParseError(
                     'show_grouped_ratings parameter should be a boolean')
             if show_grouped_ratings and self.get_addon_object():
-                response.data['grouped_ratings'] = dict(GroupedRating.get(
+                extra_data['grouped_ratings'] = dict(GroupedRating.get(
                     self.addon_object.id))
-        if 'addon' in self.request.GET and is_gate_active(
-                self.request, 'ratings-can_reply'):
-            response.data['can_reply'] = (
-                bool(self.request.user.is_authenticated) and
+        if ('show_permissions_for' in request.GET and
+                is_gate_active(self.request, 'ratings-can_reply')):
+            if 'addon' not in request.GET:
+                raise ParseError(
+                    'show_permissions_for parameter is only valid if the '
+                    'addon parameter is also present')
+            try:
+                show_permissions_for = (
+                    serializers.IntegerField().to_internal_value(
+                        request.GET['show_permissions_for']))
+                if show_permissions_for != request.user.pk:
+                    raise serializers.ValidationError
+            except serializers.ValidationError:
+                raise ParseError(
+                    'show_permissions_for parameter value should be equal to '
+                    'the user id of the authenticated user')
+            extra_data['can_reply'] = (
                 self.check_can_reply_permission_for_ratings_list())
+        response = super(RatingViewSet, self).get_paginated_response(data)
+        if extra_data:
+            response.data.update(extra_data)
         return response
 
     def check_can_reply_permission_for_ratings_list(self):
@@ -417,7 +435,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             viewset.check_permissions(self.request)
             viewset.check_object_permissions(self.request, dummy_rating)
             return True
-        except PermissionDenied:
+        except (PermissionDenied, NotAuthenticated):
             return False
 
     def get_queryset(self):
