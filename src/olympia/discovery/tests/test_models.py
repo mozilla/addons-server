@@ -20,8 +20,10 @@ class TestDiscoveryItem(TestCase):
                             u'{addon_name}{end_sub_heading}'))
         assert item.heading == (
             u'Fancy Héading <span>with '
-            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/">'
-            u'Sôme Name by Bàr, Fôo</a></span>')
+            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/'
+            u'?{}">'
+            u'Sôme Name by Bàr, Fôo</a></span>').format(
+                item.build_querystring())
 
     def test_heading_custom(self):
         addon = addon_factory(slug=u'somé-slug', name=u'Sôme Name')
@@ -33,8 +35,9 @@ class TestDiscoveryItem(TestCase):
                             u'{addon_name}{end_sub_heading}'))
         assert item.heading == (
             u'Fancy Héading <span>with '
-            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/">'
-            u'Sôme Name by Fløp</a></span>')
+            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/'
+            u'?{}">'
+            u'Sôme Name by Fløp</a></span>').format(item.build_querystring())
 
     def test_heading_custom_xss(self):
         # Custom heading itself should not contain HTML; only the special {xxx}
@@ -48,9 +51,11 @@ class TestDiscoveryItem(TestCase):
             custom_heading=u'<script>alert(0)</script>{addon_name}')
         assert item.heading == (
             u'&lt;script&gt;alert(0)&lt;/script&gt;'
-            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/">'
+            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/'
+            u'?{}">'
             u'&lt;script&gt;alert(42)&lt;/script&gt; '
-            'by &lt;script&gt;alert(666)&lt;/script&gt;</a>')
+            u'by &lt;script&gt;alert(666)&lt;/script&gt;</a>').format(
+                item.build_querystring())
 
     def test_heading_non_custom(self):
         addon = addon_factory(slug=u'somé-slug', name=u'Sôme Name')
@@ -58,8 +63,9 @@ class TestDiscoveryItem(TestCase):
         item = DiscoveryItem.objects.create(addon=addon)
         assert item.heading == (
             u'Sôme Name <span>by '
-            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/">'
-            u'Fløp</a></span>')
+            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/'
+            u'?{}">'
+            u'Fløp</a></span>').format(item.build_querystring())
 
     def test_heading_non_custom_xss(self):
         addon = addon_factory(
@@ -69,8 +75,10 @@ class TestDiscoveryItem(TestCase):
         item = DiscoveryItem.objects.create(addon=addon)
         assert item.heading == (
             u'&lt;script&gt;alert(43)&lt;/script&gt; <span>by '
-            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/">'
-            u'&lt;script&gt;alert(667)&lt;/script&gt;</a></span>')
+            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/'
+            u'?{}">'
+            u'&lt;script&gt;alert(667)&lt;/script&gt;</a></span>').format(
+                item.build_querystring())
 
     def test_heading_custom_with_custom_addon_name(self):
         addon = addon_factory(slug=u'somé-slug')
@@ -81,8 +89,9 @@ class TestDiscoveryItem(TestCase):
                             u'{addon_name}{end_sub_heading}'))
         assert item.heading == (
             u'Fancy Héading <span>with '
-            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/">'
-            u'Custôm Name by Fløp</a></span>')
+            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/'
+            u'?{}">'
+            u'Custôm Name by Fløp</a></span>').format(item.build_querystring())
 
     def test_heading_custom_with_custom_addon_name_xss(self):
         addon = addon_factory(slug=u'somé-slug')
@@ -96,9 +105,11 @@ class TestDiscoveryItem(TestCase):
         item.custom_heading = '<script>alert(2)</script>{addon_name}'
         assert item.heading == (
             u'&lt;script&gt;alert(2)&lt;/script&gt;'
-            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/">'
+            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/'
+            u'?{}">'
             u'&lt;script&gt;alert(2)&lt;/script&gt; '
-            u'by &lt;script&gt;alert(668)&lt;/script&gt;</a>')
+            u'by &lt;script&gt;alert(668)&lt;/script&gt;</a>').format(
+                item.build_querystring())
 
     def test_heading_non_custom_but_with_custom_addon_name(self):
         addon = addon_factory(slug=u'somé-slug')
@@ -107,8 +118,9 @@ class TestDiscoveryItem(TestCase):
             addon=addon, custom_addon_name=u'Custôm Name')
         assert item.heading == (
             u'Custôm Name <span>by '
-            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/">'
-            u'Fløp</a></span>')
+            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/'
+            u'?{}">'
+            u'Fløp</a></span>').format(item.build_querystring())
 
     def test_heading_non_custom_but_with_custom_addon_name_xss(self):
         addon = addon_factory(slug=u'somé-slug')
@@ -118,8 +130,10 @@ class TestDiscoveryItem(TestCase):
             addon=addon, custom_addon_name=u'<script>alert(3)</script>')
         assert item.heading == (
             u'&lt;script&gt;alert(3)&lt;/script&gt; <span>by '
-            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/">'
-            u'&lt;script&gt;alert(669)&lt;/script&gt;</a></span>')
+            u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/'
+            u'?{}">'
+            u'&lt;script&gt;alert(669)&lt;/script&gt;</a></span>').format(
+                item.build_querystring())
 
     def test_description_custom(self):
         addon = addon_factory(summary='Foo', description='Bar')
