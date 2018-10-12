@@ -499,7 +499,7 @@ class ReviewerScore(ModelBase):
                 bonus = days_over * amo.REVIEWED_OVERDUE_BONUS
                 score = score + bonus
 
-        if score:
+        if score is not None:
             cls.objects.create(user=user, addon=addon, score=score,
                                note_key=event, note=extra_note,
                                version=version)
