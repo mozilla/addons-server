@@ -333,20 +333,24 @@ class TestAwardPostReviewPoints(TestCase):
     def test_missing_auto_approval_summary(self):
         assert ReviewerScore.objects.count() == 0
         call_command('award_post_review_points')
-        # CONFIRM_AUTO_APPROVED was skipped since we can't determine its
-        # weight (has no AutoApprovalSummary).
-        assert ReviewerScore.objects.count() == 2
+        assert ReviewerScore.objects.count() == 3
         first_score = ReviewerScore.objects.filter(user=self.user1).get()
         assert first_score.addon == self.addon1
         assert first_score.note == (
             'Retroactively awarded for past post/content review approval.')
         assert first_score.note_key == amo.REVIEWED_CONTENT_REVIEW
 
-        second_score = ReviewerScore.objects.filter(user=self.user3).get()
+        second_score = ReviewerScore.objects.filter(user=self.user2).get()
         assert second_score.addon == self.addon2
         assert second_score.note == (
             'Retroactively awarded for past post/content review approval.')
-        assert second_score.note_key == amo.REVIEWED_CONTENT_REVIEW
+        assert second_score.note_key == amo.REVIEWED_EXTENSION_LOW_RISK
+
+        third_score = ReviewerScore.objects.filter(user=self.user3).get()
+        assert third_score.addon == self.addon2
+        assert third_score.note == (
+            'Retroactively awarded for past post/content review approval.')
+        assert third_score.note_key == amo.REVIEWED_CONTENT_REVIEW
 
     def test_full(self):
         AutoApprovalSummary.objects.create(
