@@ -13,10 +13,6 @@ from django.template.defaultfilters import filesizeformat
 from django.utils.encoding import force_text
 from django.utils.translation import ugettext
 
-# TODO (andym): change the validator variables.
-from validator.testcases.packagelayout import (
-    blacklisted_extensions, blacklisted_magic_numbers)
-
 import olympia.core.logger
 
 from olympia import amo
@@ -26,12 +22,22 @@ from olympia.lib.cache import cache_get_or_set, Message
 from olympia.files.utils import (
     atomic_lock, extract_xpi, get_all_files, get_sha256)
 
-
-# Allow files with a shebang through.
-denied_magic_numbers = [b for b in list(blacklisted_magic_numbers)
-                        if b != (0x23, 0x21)]
-denied_extensions = [b for b in list(blacklisted_extensions) if b != 'sh']
 task_log = olympia.core.logger.getLogger('z.task')
+
+# Detect blacklisted files based on their extension.
+denied_extensions = (
+    'dll', 'exe', 'dylib', 'so', 'class', 'swf')
+
+denied_magic_numbers = (
+    (0x4d, 0x5a),  # EXE/DLL
+    (0x5a, 0x4d),  # Alternative for EXE/DLL
+    (0x7f, 0x45, 0x4c, 0x46),  # UNIX elf
+    (0xca, 0xfe, 0xba, 0xbe),  # Java + Mach-O (dylib)
+    (0xca, 0xfe, 0xd0, 0x0d),  # Java (packed)
+    (0xfe, 0xed, 0xfa, 0xce),  # Mach-O
+    (0x46, 0x57, 0x53),  # Uncompressed SWF
+    (0x43, 0x57, 0x53),  # ZLIB compressed SWF
+)
 
 LOCKED_LIFETIME = 60 * 5
 

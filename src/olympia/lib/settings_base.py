@@ -68,19 +68,32 @@ SILENCED_SYSTEM_CHECKS = (
 # LESS CSS OPTIONS (Debug only).
 LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
-LESS_BIN = 'lessc'
+LESS_BIN = env(
+    'LESS_BIN', default='node_modules/less/bin/lessc')
 
 # Path to cleancss (our CSS minifier).
-CLEANCSS_BIN = 'cleancss'
+CLEANCSS_BIN = env(
+    'CLEANCSS_BIN', default='node_modules/less/bin/lessc')
 
 # Path to uglifyjs (our JS minifier).
-UGLIFY_BIN = 'uglifyjs'  # Set as None to use YUI instead (at your risk).
+# Set as None to use YUI instead (at your risk).
+UGLIFY_BIN = env(
+    'UGLIFY_BIN', default='node_modules/uglify-js/bin/uglifyjs')
 
 # rsvg-convert is used to save our svg static theme previews to png
-RSVG_CONVERT_BIN = 'rsvg-convert'
+RSVG_CONVERT_BIN = env('RSVG_CONVERT_BIN', default='rsvg-convert')
 
 # Path to pngcrush (to optimize the PNGs uploaded by developers).
-PNGCRUSH_BIN = 'pngcrush'
+PNGCRUSH_BIN = env('PNGCRUSH_BIN', default='pngcrush')
+
+# Path to our addons-linter binary
+ADDONS_LINTER_BIN = env(
+    'ADDONS_LINTER_BIN',
+    default='node_modules/addons-linter/bin/addons-linter')
+
+# Path to the amo-validator binary
+ADDONS_VALIDATOR_BIN = env(
+    'ADDONS_VALIDATOR_BIN', default='/usr/local/bin/addon-validator')
 
 FLIGTAR = 'amo-admins+fligtar-rip@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
@@ -1173,7 +1186,6 @@ CELERY_TASK_QUEUES = (
     Queue('default', routing_key='default'),
     Queue('devhub', routing_key='devhub'),
     Queue('images', routing_key='images'),
-    Queue('limited', routing_key='limited'),
     Queue('priority', routing_key='priority'),
     Queue('ratings', routing_key='ratings'),
     Queue('reviewers', routing_key='reviewers'),
@@ -1221,16 +1233,12 @@ CELERY_TASK_ROUTES = {
     # that uses chord() or group() must also be running in this queue or must
     # be on a worker that listens to the same queue.
     'celery.chord_unlock': {'queue': 'devhub'},
-    'olympia.devhub.tasks.compatibility_check': {'queue': 'devhub'},
 
     # Images.
     'olympia.bandwagon.tasks.resize_icon': {'queue': 'images'},
     'olympia.users.tasks.resize_photo': {'queue': 'images'},
     'olympia.devhub.tasks.resize_icon': {'queue': 'images'},
     'olympia.devhub.tasks.resize_preview': {'queue': 'images'},
-
-    # AMO validator.
-    'olympia.zadmin.tasks.bulk_validate_file': {'queue': 'limited'},
 
     # AMO
     'olympia.amo.tasks.delete_anonymous_collections': {'queue': 'amo'},
@@ -1378,11 +1386,6 @@ LOGGING = {
             'handlers': ['mozlog'],
             'level': logging.DEBUG,
             'propagate': False
-        },
-        'amo.validator': {
-            'handlers': ['mozlog'],
-            'level': logging.WARNING,
-            'propagate': False,
         },
         'amqplib': {
             'handlers': ['null'],

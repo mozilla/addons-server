@@ -659,37 +659,6 @@ PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
                                       extra=1)
 
 
-class CheckCompatibilityForm(forms.Form):
-    application = forms.ChoiceField(
-        label=_(u'Application'),
-        choices=[(a.id, a.pretty) for a in amo.APP_USAGE])
-    app_version = forms.ChoiceField(
-        label=_(u'Version'),
-        choices=[('', _(u'Select an application first'))])
-
-    def __init__(self, *args, **kw):
-        super(CheckCompatibilityForm, self).__init__(*args, **kw)
-        w = self.fields['application'].widget
-        # Get the URL after the urlconf has loaded.
-        w.attrs['data-url'] = reverse('devhub.compat_application_versions')
-
-    def version_choices_for_app_id(self, app_id):
-        versions = AppVersion.objects.filter(application=app_id)
-        return [(v.id, v.version) for v in versions]
-
-    def clean_application(self):
-        app_id = int(self.cleaned_data['application'])
-        app = amo.APPS_IDS.get(app_id)
-        self.cleaned_data['application'] = app
-        choices = self.version_choices_for_app_id(app_id)
-        self.fields['app_version'].choices = choices
-        return self.cleaned_data['application']
-
-    def clean_app_version(self):
-        v = self.cleaned_data['app_version']
-        return AppVersion.objects.get(pk=int(v))
-
-
 def DependencyFormSet(*args, **kw):
     addon_parent = kw.pop('addon')
 

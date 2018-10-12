@@ -1,5 +1,4 @@
 import datetime
-import json
 import os
 import time
 
@@ -39,14 +38,12 @@ from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import MenuItem, escape_all, render, send_mail
 from olympia.api.models import APIKey
-from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required, no_admin_disabled
-from olympia.devhub.forms import (
-    AgreementForm, CheckCompatibilityForm, SourceForm)
+from olympia.devhub.forms import AgreementForm, SourceForm
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
     add_dynamic_theme_tag, fetch_existing_translations_from_addon,
-    get_addon_akismet_reports, process_validation)
+    get_addon_akismet_reports)
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon
 from olympia.lib.crypto.packaged import sign_file
@@ -58,7 +55,7 @@ from olympia.search.views import BaseAjaxSearch
 from olympia.users.models import UserProfile
 from olympia.versions import compare
 from olympia.versions.models import Version
-from olympia.zadmin.models import ValidationResult, get_config
+from olympia.zadmin.models import get_config
 
 from . import feeds, forms, signals, tasks
 
@@ -528,32 +525,14 @@ def ownership(request, addon_id, addon):
 
 
 @login_required
-@post_required
-@json_view
-def compat_application_versions(request):
-    app_id = request.POST['application']
-    f = CheckCompatibilityForm()
-    return {'choices': f.version_choices_for_app_id(app_id)}
-
-
-@login_required
 def validate_addon(request):
     return render(request, 'devhub/validate_addon.html',
                   {'title': ugettext('Validate Add-on'),
                    'new_addon_form': forms.DistributionChoiceForm()})
 
 
-@login_required
-def check_addon_compatibility(request):
-    form = CheckCompatibilityForm()
-    return render(request, 'devhub/validate_addon.html',
-                  {'appversion_form': form,
-                   'title': ugettext('Check Add-on Compatibility'),
-                   'new_addon_form': forms.DistributionChoiceForm()})
-
-
-def handle_upload(filedata, request, channel, app_id=None, version_id=None,
-                  addon=None, is_standalone=False, submit=False):
+def handle_upload(filedata, request, channel, addon=None, is_standalone=False,
+                  submit=False):
     automated_signing = channel == amo.RELEASE_CHANNEL_UNLISTED
 
     user = request.user if request.user.is_authenticated else None
@@ -561,45 +540,34 @@ def handle_upload(filedata, request, channel, app_id=None, version_id=None,
         filedata, filedata.name, filedata.size,
         automated_signing=automated_signing, addon=addon, user=user)
     log.info('FileUpload created: %s' % upload.uuid.hex)
-    if app_id and version_id:
-        # If app_id and version_id are present, we are dealing with a
-        # compatibility check (i.e. this is not an upload meant for submission,
-        # we were called from check_addon_compatibility()), which essentially
-        # consists in running the addon uploaded against the legacy validator
-        # with a specific min/max appversion override.
-        app = amo.APPS_ALL.get(int(app_id))
-        if not app:
-            raise http.Http404()
-        ver = get_object_or_404(AppVersion, pk=version_id)
-        tasks.compatibility_check.delay(upload.pk, app.guid, ver.version)
-    else:
-        from olympia.lib.akismet.tasks import comment_check   # circular import
 
-        if (channel == amo.RELEASE_CHANNEL_LISTED):
-            existing_data = (
-                fetch_existing_translations_from_addon(
-                    upload.addon, ('name', 'summary', 'description'))
-                if addon and addon.has_listed_versions() else ())
-            akismet_reports = get_addon_akismet_reports(
-                user=user,
-                user_agent=request.META.get('HTTP_USER_AGENT'),
-                referrer=request.META.get('HTTP_REFERER'),
-                upload=upload,
-                existing_data=existing_data)
-        else:
-            akismet_reports = []
-        # We HAVE to have a pretask here that returns a result, so we're always
-        # doing a comment_check task call even when it's pointless because
-        # there are no report ids in the list.  See tasks.validate for more.
-        akismet_checks = comment_check.si(
-            [report.id for _, report in akismet_reports])
-        if submit:
-            tasks.validate_and_submit(
-                addon, upload, channel=channel, pretask=akismet_checks)
-        else:
-            tasks.validate(
-                upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED),
-                pretask=akismet_checks)
+    from olympia.lib.akismet.tasks import comment_check   # circular import
+
+    if (channel == amo.RELEASE_CHANNEL_LISTED):
+        existing_data = (
+            fetch_existing_translations_from_addon(
+                upload.addon, ('name', 'summary', 'description'))
+            if addon and addon.has_listed_versions() else ())
+        akismet_reports = get_addon_akismet_reports(
+            user=user,
+            user_agent=request.META.get('HTTP_USER_AGENT'),
+            referrer=request.META.get('HTTP_REFERER'),
+            upload=upload,
+            existing_data=existing_data)
+    else:
+        akismet_reports = []
+    # We HAVE to have a pretask here that returns a result, so we're always
+    # doing a comment_check task call even when it's pointless because
+    # there are no report ids in the list.  See tasks.validate for more.
+    akismet_checks = comment_check.si(
+        [report.id for _, report in akismet_reports])
+    if submit:
+        tasks.validate_and_submit(
+            addon, upload, channel=channel, pretask=akismet_checks)
+    else:
+        tasks.validate(
+            upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED),
+            pretask=akismet_checks)
 
     return upload
 
@@ -609,12 +577,9 @@ def handle_upload(filedata, request, channel, app_id=None, version_id=None,
 def upload(request, channel='listed', addon=None, is_standalone=False):
     channel = amo.CHANNEL_CHOICES_LOOKUP[channel]
     filedata = request.FILES['upload']
-    app_id = request.POST.get('app_id')
-    version_id = request.POST.get('version_id')
     upload = handle_upload(
-        filedata=filedata, request=request, app_id=app_id,
-        version_id=version_id, addon=addon, is_standalone=is_standalone,
-        channel=channel)
+        filedata=filedata, request=request, addon=addon,
+        is_standalone=is_standalone, channel=channel)
     if addon:
         return redirect('devhub.upload_detail_for_version',
                         addon.slug, upload.uuid.hex)
@@ -671,42 +636,6 @@ def file_validation(request, addon_id, addon, file_id):
     return render(request, 'devhub/validation.html', context)
 
 
-@dev_required(allow_reviewers=True)
-def bulk_compat_result(request, addon_id, addon, result_id):
-    qs = ValidationResult.objects.exclude(completed=None)
-    result = get_object_or_404(qs, pk=result_id)
-    job = result.validation_job
-    revalidate_url = reverse('devhub.json_bulk_compat_result',
-                             args=[addon.slug, result.id])
-    return _compat_result(request, revalidate_url,
-                          job.application, job.target_version,
-                          for_addon=result.file.version.addon,
-                          validated_filename=result.file.filename,
-                          validated_ts=result.completed)
-
-
-def _compat_result(request, revalidate_url, target_app, target_version,
-                   validated_filename=None, validated_ts=None,
-                   for_addon=None):
-    app_trans = dict((g, unicode(a.pretty)) for g, a in amo.APP_GUIDS.items())
-    ff_versions = (AppVersion.objects.filter(application=amo.FIREFOX.id,
-                                             version_int__gte=4000000000000)
-                   .values_list('application', 'version')
-                   .order_by('version_int'))
-    tpl = 'https://developer.mozilla.org/en/Firefox_%s_for_developers'
-    change_links = dict()
-    for app, ver in ff_versions:
-        major = ver.split('.')[0]  # 4.0b3 -> 4
-        change_links['%s %s' % (amo.APP_IDS[app].guid, ver)] = tpl % major
-
-    return render(request, 'devhub/validation.html',
-                  dict(validate_url=revalidate_url,
-                       filename=validated_filename, timestamp=validated_ts,
-                       target_app=target_app, target_version=target_version,
-                       addon=for_addon, result_type='compat',
-                       app_trans=app_trans, version_change_links=change_links))
-
-
 @json_view
 @csrf_exempt
 @dev_required(allow_reviewers=True)
@@ -724,18 +653,6 @@ def json_file_validation(request, addon_id, addon, file_id):
         result = FileValidation.objects.get(pk=pk)
 
     return {'validation': result.processed_validation, 'error': None}
-
-
-@json_view
-@csrf_exempt
-@post_required
-@dev_required(allow_reviewers=True)
-def json_bulk_compat_result(request, addon_id, addon, result_id):
-    result = get_object_or_404(ValidationResult, pk=result_id,
-                               completed__isnull=False)
-
-    validation = json.loads(result.validation)
-    return {'validation': process_validation(validation), 'error': None}
 
 
 @json_view
@@ -816,11 +733,6 @@ def upload_detail(request, uuid, format='html'):
 
     validate_url = reverse('devhub.standalone_upload_detail',
                            args=[upload.uuid.hex])
-
-    if upload.compat_with_app:
-        return _compat_result(request, validate_url,
-                              upload.compat_with_app,
-                              upload.compat_with_appver)
 
     context = {'validate_url': validate_url, 'filename': upload.pretty_name,
                'automated_signing': upload.automated_signing,
