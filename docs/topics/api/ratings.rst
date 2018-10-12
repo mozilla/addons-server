@@ -27,6 +27,7 @@ user has already posted a rating for the current version of an add-on.
 .. http:get:: /api/v4/ratings/rating/
 
     :query string addon: The :ref:`add-on <addon-detail>` id, slug, or guid to fetch ratings from. When passed, the ratings shown will always be the latest posted by each user on this particular add-on (which means there should only be one rating per user in the results), unless the ``version`` parameter is also passed.
+    :query string show_permissions_for: The user id to show permissions for. If the request is made with an authenticated user matching this parameter value, and the ``addon`` parameter is also present, a ``can_reply`` property will be added to the response as described below.
     :query string filter: The :ref:`filter(s) <rating-filtering-param>` to apply.
     :query int user: The user id to fetch ratings from.
     :query boolean show_grouped_ratings: Whether or not to show ratings aggregates for this add-on in the response (Use "true"/"1" as truthy values, "0"/"false" as falsy ones).
@@ -38,7 +39,7 @@ user has already posted a rating for the current version of an add-on.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
     :>json array results: An array of :ref:`ratings <rating-detail-object>`.
-    :>json boolean can_reply: Only present if the ``addon`` query parameter is present. A boolean indicating if the user that made the ratings list request can reply to ratings in that list.
+    :>json boolean can_reply: Only present if the ``addon`` query parameter and ``show_permissions_for`` parameters are present. A boolean indicating if the user that made the ratings list request can reply to ratings in that list.
     :>json object grouped_ratings: Only present if ``show_grouped_ratings`` query parameter is present. An object with 5 key-value pairs, the keys representing each possible rating (Though a number, it has to be converted to a string because of the JSON formatting) and the values being the number of times the corresponding rating has been posted for this add-on, e.g. ``{"1": 4, "2": 8, "3": 15, "4": 16: "5": 23}``.
 
 .. _rating-filtering-param:

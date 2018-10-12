@@ -809,30 +809,71 @@ class TestRatingViewSetGet(TestCase):
         assert len(data['results']) == 2
         assert data['results'][0]['id'] == review2.pk
         assert data['results'][1]['id'] == review1.pk
-        if 'expected_can_reply' in kwargs:
-            assert data['can_reply'] is kwargs['expected_can_reply']
+        if 'show_permissions_for' not in kwargs:
+            assert 'can_reply' not in data
 
         if 'show_grouped_ratings' not in kwargs:
             assert 'grouped_ratings' not in data
         return data
 
+    def test_list_show_permission_for_anonymous(self):
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk,
+                       'show_permissions_for': 666})
+        assert response.status_code == 400
+        assert response.data['detail'] == (
+            'show_permissions_for parameter value should be equal to the user '
+            'id of the authenticated user')
+
+    def test_list_show_permission_for_not_int(self):
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk,
+                       'show_permissions_for': 'nope'})
+        assert response.status_code == 400
+        assert response.data['detail'] == (
+            'show_permissions_for parameter value should be equal to the user '
+            'id of the authenticated user')
+
+    def test_list_show_permission_for_not_right_user(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk,
+                       'show_permissions_for': self.user.pk + 42})
+        assert response.status_code == 400
+        assert response.data['detail'] == (
+            'show_permissions_for parameter value should be equal to the user '
+            'id of the authenticated user')
+
+    def test_list_show_permissions_for_without_addon(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.get(
+            self.url, {'user': self.user.pk,
+                       'show_permissions_for': self.user.pk})
+        assert response.status_code == 400
+        assert response.data['detail'] == (
+            'show_permissions_for parameter is only valid if the addon '
+            'parameter is also present')
+
     def test_list_can_reply(self):
         self.user = user_factory()
         self.client.login_api(self.user)
         self.addon.addonuser_set.create(user=self.user, listed=False)
-        self.test_list_addon(expected_can_reply=True)
-
-    def test_list_can_not_reply_anonymous(self):
-        self.test_list_addon(expected_can_reply=False)
+        data = self.test_list_addon(show_permissions_for=self.user.pk)
+        assert data['can_reply'] is True
 
     def test_list_can_not_reply(self):
         self.user = user_factory()
         self.client.login_api(self.user)
-        self.test_list_addon(expected_can_reply=False)
+        data = self.test_list_addon(show_permissions_for=self.user.pk)
+        assert data['can_reply'] is False
 
     def test_list_can_reply_field_absent_in_v3(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
         self.url = reverse_ns('rating-list', api_version='v3')
-        data = self.test_list_addon()
+        data = self.test_list_addon(show_permissions_for=self.user.pk)
         assert 'can_reply' not in data
 
     def test_list_addon_queries(self):
