@@ -133,7 +133,7 @@ class TestGetCreaturedIds(TestCase):
         collection = collection_factory()
         collection.add_addon(extra_addon)
         FeaturedCollection.objects.create(
-            application=amo.THUNDERBIRD.id, collection=collection)
+            application=amo.ANDROID.id, collection=collection)
 
         assert set(get_creatured_ids(self.category_id, None)) == (
             set(self.no_locale))
@@ -150,7 +150,7 @@ class TestGetCreaturedIds(TestCase):
         collection = collection_factory()
         collection.add_addon(extra_addon)
         FeaturedCollection.objects.create(
-            application=amo.THUNDERBIRD.id, collection=collection,
+            application=amo.ANDROID.id, collection=collection,
             locale='en-US')
 
         assert set(get_creatured_ids(self.category_id, 'en-US')) == (

@@ -555,7 +555,7 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
 
 
 class TestResponse(VersionCheckMixin, TestCase):
-    fixtures = ['base/addon_3615', 'base/seamonkey']
+    fixtures = ['base/addon_3615']
 
     def setUp(self):
         super(TestResponse, self).setUp()

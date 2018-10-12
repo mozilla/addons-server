@@ -338,7 +338,7 @@ class TestThemeADICommand(FixturesFolderMixin, TestCase):
                 {u'Unknown': 3, u'userEnabled': 1259, u'userDisabled': 58})
         assert uc.oses == {u'WINNT': 1122, u'Darwin': 114, u'Linux': 84}
         assert uc.locales[u'es-ES'] == 20
-        assert (uc.applications[u'{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'] ==
+        assert (uc.applications[u'{aa3c5121-dab2-40e2-81ca-7ea25febc110}'] ==
                 {u'2.0': 3})
 
 

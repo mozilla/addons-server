@@ -7,7 +7,6 @@ import time
 import zipfile
 
 from datetime import timedelta
-from operator import attrgetter
 
 from django import forms
 from django.conf import settings
@@ -19,7 +18,6 @@ import mock
 import pytest
 
 from defusedxml.common import EntitiesForbidden, NotSupportedError
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import TestCase
@@ -116,27 +114,13 @@ class TestRDFExtractor(TestCase):
                                       version='43.0'),
         ]
         self.thunderbird_versions = [
-            AppVersion.objects.create(application=amo.APPS['thunderbird'].id,
+            AppVersion.objects.create(application=amo.APPS['android'].id,
                                       version='42.0'),
-            AppVersion.objects.create(application=amo.APPS['thunderbird'].id,
+            AppVersion.objects.create(application=amo.APPS['android'].id,
                                       version='45.0'),
         ]
 
-    def test_apps(self):
-        zip_file = utils.SafeZip(get_addon_file(
-            'valid_firefox_and_thunderbird_addon.xpi'))
-        extracted = utils.RDFExtractor(zip_file).parse()
-        apps = sorted(extracted['apps'], key=attrgetter('id'))
-        assert len(apps) == 2
-        assert apps[0].appdata == amo.FIREFOX
-        assert apps[0].min.version == '38.0a1'
-        assert apps[0].max.version == '43.0'
-        assert apps[1].appdata == amo.THUNDERBIRD
-        assert apps[1].min.version == '42.0'
-        assert apps[1].max.version == '45.0'
-
-    @override_switch('disallow-thunderbird-and-seamonkey', active=True)
-    def test_apps_disallow_thunderbird_and_seamonkey_waffle(self):
+    def test_apps_disallow_thunderbird_and_seamonkey(self):
         zip_file = utils.SafeZip(get_addon_file(
             'valid_firefox_and_thunderbird_addon.xpi'))
         extracted = utils.RDFExtractor(zip_file).parse()

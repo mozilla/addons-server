@@ -329,18 +329,18 @@ class TestSearchParameterFilter(FilterTestsBase):
         must = qs['query']['bool']['must']
         assert {'term': {'app': amo.FIREFOX.id}} in must
 
-        qs = self._filter(data={'app': unicode(amo.THUNDERBIRD.id)})
+        qs = self._filter(data={'app': unicode(amo.ANDROID.id)})
         must = qs['query']['bool']['must']
-        assert {'term': {'app': amo.THUNDERBIRD.id}} in must
+        assert {'term': {'app': amo.ANDROID.id}} in must
 
     def test_search_by_app_string(self):
         qs = self._filter(data={'app': 'firefox'})
         must = qs['query']['bool']['must']
         assert {'term': {'app': amo.FIREFOX.id}} in must
 
-        qs = self._filter(data={'app': 'thunderbird'})
+        qs = self._filter(data={'app': 'android'})
         must = qs['query']['bool']['must']
-        assert {'term': {'app': amo.THUNDERBIRD.id}} in must
+        assert {'term': {'app': amo.ANDROID.id}} in must
 
     def test_search_by_appversion_app_missing(self):
         with self.assertRaises(serializers.ValidationError) as context:

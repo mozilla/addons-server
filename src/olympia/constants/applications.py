@@ -157,29 +157,15 @@ class UNKNOWN_APP(App):
 
 
 # UAs will attempt to match in this order.
-APP_DETECT = (ANDROID, THUNDERBIRD, SEAMONKEY, FIREFOX)
-APP_USAGE = (FIREFOX, THUNDERBIRD, ANDROID, SEAMONKEY)
-# APP_USAGE_FIREFOXES_ONLY is a temporary constant while we have a waffle to
-# disable thunderbird and seamonkey support.
-# Since it's evaluated at import time, we can't change APP_USAGE through a
-# waffle, so to support the waffle disabling Thunderbird and Seamonkey support
-# we add a temporary constant that will be used by relevant code in place of
-# APP_USAGE while the waffle is still used. When the waffle is turned on
-# permanently and removed this constant can go away and APP_USAGE can be
-# changed to only (ANDROID, FIREFOX).
-APP_USAGE_FIREFOXES_ONLY = (ANDROID, FIREFOX)
+APP_DETECT = (ANDROID, FIREFOX)
+APP_USAGE = (FIREFOX, ANDROID)
 APP_USAGE_STATICTHEME = (FIREFOX,)
 APPS = {app.short: app for app in APP_USAGE}
-APPS_ALL = {app.id: app for app in APP_USAGE + (MOZILLA, SUNBIRD, MOBILE)}
+APP_OBSOLETE = (MOZILLA, SUNBIRD, MOBILE, THUNDERBIRD, SEAMONKEY)
+APPS_ALL = {app.id: app for app in APP_USAGE + APP_OBSOLETE}
 APP_IDS = {app.id: app for app in APP_USAGE}
 APP_GUIDS = {app.guid: app for app in APP_USAGE}
 APPS_CHOICES = tuple((app.id, app.pretty) for app in APP_USAGE)
-
-# Also temporary, can be removed and replaced by `APPS_CHOICES` together with
-# `APP_USAGE_FIREFOXES_ONLY`
-APPS_FIREFOXES_ONLY_CHOICES = sorted(tuple(
-    (app.id, app.pretty) for app in APP_USAGE_FIREFOXES_ONLY
-))
 
 APP_TYPE_SUPPORT = {}
 for _app in APP_USAGE:
@@ -192,8 +178,6 @@ FAKE_MAX_VERSION = '9999'
 # The lowest maxVersion an app has to support to allow default-to-compatible.
 D2C_MIN_VERSIONS = {
     FIREFOX.id: '4.0',
-    SEAMONKEY.id: '2.1',
-    THUNDERBIRD.id: '5.0',
     ANDROID.id: '11.0',
 }
 

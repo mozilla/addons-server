@@ -278,7 +278,6 @@ HAS_COMPAT = {t: t not in NO_COMPAT for t in ADDON_TYPES}
 # Personas
 PERSONAS_ADDON_ID = 10900  # Add-on ID of the Personas Plus Add-on
 PERSONAS_FIREFOX_MIN = '3.6'  # First Firefox version to support Personas
-PERSONAS_THUNDERBIRD_MIN = '3.1'  # Ditto for Thunderbird
 
 # Collections.
 COLLECTION_NORMAL = 0

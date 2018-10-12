@@ -237,8 +237,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     ==============  ==========================================================
            android  Firefox for Android
            firefox  Firefox
-         seamonkey  SeaMonkey
-       thunderbird  Thunderbird
     ==============  ==========================================================
 
     .. note::

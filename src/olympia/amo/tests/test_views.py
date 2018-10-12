@@ -45,7 +45,7 @@ class Test403(TestCase):
         self.assertTemplateUsed(response, 'amo/403.html')
 
     def test_403_app(self):
-        response = self.client.get('/en-US/thunderbird/admin/', follow=True)
+        response = self.client.get('/en-US/android/admin/', follow=True)
         assert response.status_code == 403
         self.assertTemplateUsed(response, 'amo/403.html')
 
@@ -61,10 +61,10 @@ class Test404(TestCase):
         self.assertTemplateUsed(response, 'amo/404.html')
 
     def test_404_app_links(self):
-        res = self.client.get('/en-US/thunderbird/xxxxxxx')
+        res = self.client.get('/en-US/android/xxxxxxx')
         assert res.status_code == 404
         self.assertTemplateUsed(res, 'amo/404.html')
-        links = pq(res.content)('[role=main] ul a[href^="/en-US/thunderbird"]')
+        links = pq(res.content)('[role=main] ul a[href^="/en-US/android"]')
         assert links.length == 4
 
     def test_404_api_v3(self):
@@ -260,15 +260,15 @@ class TestOtherStuff(TestCase):
         assert doc('#site-welcome').length == 1
 
     @mock.patch.object(settings, 'READ_ONLY', False)
-    def test_thunderbird_balloons_no_readonly(self):
-        response = self.client.get('/en-US/thunderbird/')
+    def test_android_balloons_no_readonly(self):
+        response = self.client.get('/en-US/android/')
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#site-notice').length == 0
 
     @mock.patch.object(settings, 'READ_ONLY', True)
-    def test_thunderbird_balloons_readonly(self):
-        response = self.client.get('/en-US/thunderbird/')
+    def test_android_balloons_readonly(self):
+        response = self.client.get('/en-US/android/')
         doc = pq(response.content)
         assert doc('#site-notice').length == 1
         assert doc('#site-nonfx').length == 0, (
@@ -283,7 +283,6 @@ class TestOtherStuff(TestCase):
             assert text == doc('.site-title').text()
 
         title_eq('/firefox/', 'Firefox', 'Add-ons')
-        title_eq('/thunderbird/', 'Thunderbird', 'Add-ons')
         title_eq('/android/', 'Firefox for Android', 'Android Add-ons')
 
     @patch('olympia.accounts.utils.default_fxa_login_url',
@@ -362,9 +361,8 @@ class TestOtherStuff(TestCase):
         assert doc('#site-nav #more .more-mobile a').length == 1
 
     def test_mobile_link_nonfirefox(self):
-        for app in ('thunderbird', 'android'):
-            doc = pq(test.Client().get('/' + app, follow=True).content)
-            assert doc('#site-nav #more .more-mobile').length == 0
+        doc = pq(test.Client().get('/android', follow=True).content)
+        assert doc('#site-nav #more .more-mobile').length == 0
 
     def test_opensearch(self):
         client = test.Client()

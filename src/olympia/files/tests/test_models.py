@@ -212,12 +212,12 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
     def test_generate_filename_many_apps(self):
         f = File.objects.get(id=67442)
-        f.version._compatible_apps = {amo.THUNDERBIRD: None, amo.FIREFOX: None}
+        f.version._compatible_apps = {amo.FIREFOX: None, amo.ANDROID: None}
         # After adding sorting for compatible_apps, above becomes
-        # (amo.FIREFOX, amo.THUNDERBIRD) so 'fx+tb' is appended to filename
-        # instead of 'tb+fx'
+        # (amo.ANDROID, amo.FIREFOX) so 'an+fx' is appended to filename
+        # instead of 'fx+an'
         # See: https://github.com/mozilla/addons-server/issues/3358
-        assert f.generate_filename() == 'delicious_bookmarks-2.1.072-fx+tb.xpi'
+        assert f.generate_filename() == 'delicious_bookmarks-2.1.072-an+fx.xpi'
 
     def test_generate_filename_ja(self):
         f = File()
