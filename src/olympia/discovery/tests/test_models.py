@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from django.http import QueryDict
+
 from olympia import amo
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.discovery.models import DiscoveryItem
@@ -181,3 +183,14 @@ class TestDiscoveryItem(TestCase):
         item = DiscoveryItem.objects.create(addon=addon_factory(
             type=amo.ADDON_DICT))
         assert item.description == u''
+
+    def test_build_querystring(self):
+        item = DiscoveryItem.objects.create(addon=addon_factory(
+            type=amo.ADDON_DICT))
+        # We do not use `urlencode()` and a string comparison because QueryDict
+        # does not preserve ordering.
+        q = QueryDict(item.build_querystring())
+        assert q.get('utm_source') == 'discovery.addons.mozilla.org'
+        assert q.get('utm_medium') == 'firefox-browser'
+        assert q.get('utm_content') == 'discopane-entry-link'
+        assert q.get('src') == 'api'
