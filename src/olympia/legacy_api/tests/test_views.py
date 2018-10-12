@@ -63,14 +63,6 @@ class UtilsTest(TestCase):
         assert d['learnmore'].endswith('/addon/a3615/?src=api'), (
             'Add-on details URL does not end with "?src=api"')
 
-    def test_dict_disco(self):
-        """Check for correct add-on detail URL for discovery pane."""
-        d = addon_to_dict(self.a, disco=True, src='discovery-personalrec')
-        u = '%s%s?src=discovery-personalrec' % (
-            settings.SERVICES_URL,
-            reverse('discovery.addons.detail', args=['a3615']))
-        assert d['learnmore'] == u
-
     def test_sanitize(self):
         """Check that tags are stripped for summary and description."""
         self.a.summary = self.a.description = 'i <3 <a href="">amo</a>!'
