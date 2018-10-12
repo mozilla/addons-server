@@ -481,10 +481,20 @@ class ReviewerScore(ModelBase):
                          auto-approved add-on.
 
         """
+
+        user_log.info(
+            (u'Determining award points for user %s for version %s of addon %s'
+             % (user, version.id, addon.id)).encode('utf-8'))
+
         event = cls.get_event(
             addon, status, version=version, post_review=post_review,
             content_review=content_review)
         score = amo.REVIEWED_SCORES.get(event)
+
+        user_log.info(
+            (u'Determined %s award points (event: %s) for user %s for version '
+             u'%s of addon %s' % (score, event, user, version.id, addon.id))
+            .encode('utf-8'))
 
         # Add bonus to reviews greater than our limit to encourage fixing
         # old reviews. Does not apply to content-review/post-review at the
