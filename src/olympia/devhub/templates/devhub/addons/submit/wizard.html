@@ -12,7 +12,7 @@
     {% if unsupported_properties %}
       <div class="notification-box error">
           {{ _('Warning: the following manifest properties that your most recent version '
-               'upload used in it\'s manifest are unsupported in this wizard and will be ignored:') }}
+               "upload used in it's manifest are unsupported in this wizard and will be ignored:") }}
           <ul class="note">
             {% for prop in unsupported_properties %}
               <li>{{ prop }}</li>
