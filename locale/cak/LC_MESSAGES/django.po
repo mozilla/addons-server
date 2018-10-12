@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2018-10-12 21:50+0000\n"
+"PO-Revision-Date: 2018-10-12 22:08+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5075,15 +5075,15 @@ msgstr "Tawutzilaj ri awetamab'al pa VK {start_sub_heading}rik'in {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
-msgstr ""
+msgstr "Ke'ayuju' taq eltzijol chuqa' taqasaj taq k'oxom pa VK."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Anin ke'ak'ulu' taq tzalq'omanïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Tak'ulu' jun anin tzalq'omanïk rik'in toq nacha' jun tz'ib'anïk chuqa' napïtz' pa ri pitz'b'äl niwachin pe."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
