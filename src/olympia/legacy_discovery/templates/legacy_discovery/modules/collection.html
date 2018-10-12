@@ -5,11 +5,7 @@
     <hgroup>
       {% if promo.linkify_title %}
         <h2>
-          {% if module_context == 'discovery' %}
-            <a href="{{ collection.get_url_path()|urlparams(src='discovery-promo') }}">{{ promo.title|safe }}</a>
-          {% else %}
-            <a href="{{ collection.get_url_path()|urlparams(src='hp-dl-promo') }}">{{ promo.title|safe }}</a>
-          {% endif %}
+          <a href="{{ collection.get_url_path()|urlparams(src='hp-dl-promo') }}">{{ promo.title|safe }}</a>
         </h2>
       {% else %}
         <h2>{{ promo.title|safe }}</h2>
@@ -20,17 +16,12 @@
     </hgroup>
     <ul class="addons">
       {% for addon in addons %}
-        <li data-guid="{{ addon.guid }}" data-ctx="{{ module_context }}"
+        <li data-guid="{{ addon.guid }}"
             {% if addon.type == amo.ADDON_PERSONA %}class="persona-feature"{% endif %}>
-          {% if module_context == 'discovery' %}
-          <a href="{{ services_url('discovery.addons.detail', addon.slug,
-                                   src='discovery-promo') }}" target="_self">
-          {% else %}
           <a href="{{ addon.get_url_path()|urlparams(src='hp-dl-promo') }}" target="_self">
-          {% endif %}
             {% if addon.type == amo.ADDON_PERSONA %}
               <h3 class="htruncate">{{ addon.name }}</h3>
-              {{ disco_persona_preview(addon.persona, linked=False) }}
+              {{ persona_preview(addon.persona, linked=False) }}
             {% else %}
               <img src="{{ addon.icon_url }}" width="32" height="32" alt="">
               <h3 class="htruncate">{{ addon.name }}</h3>

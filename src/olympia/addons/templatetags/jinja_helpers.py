@@ -44,7 +44,7 @@ def flag(context, addon):
 @library.global_function
 @library.render_with('addons/impala/dependencies_note.html')
 @jinja2.contextfunction
-def dependencies_note(context, addon, module_context='impala'):
+def dependencies_note(context, addon):
     return new_context(**locals())
 
 

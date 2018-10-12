@@ -83,7 +83,7 @@ class MonthlyPick(TemplatePromo):
                 monthly_pick = self.get_pick('')
             except IndexError:
                 monthly_pick = None
-        return {'pick': monthly_pick, 'module_context': 'discovery'}
+        return {'pick': monthly_pick}
 
 
 class CollectionPromo(PromoModule):
@@ -129,13 +129,11 @@ class CollectionPromo(PromoModule):
             normalize=True)
         return cache_get_or_set(cache_key, fetch_and_filter_addons)
 
-    def render(self, module_context='discovery'):
-        if module_context == 'home':
-            self.platform = 'ALL'
-            self.version = None
+    def render(self):
+        self.platform = 'ALL'
+        self.version = None
         context = {
             'promo': self,
-            'module_context': module_context,
             'descriptions': self.get_descriptions()
         }
         if self.collection:
@@ -164,9 +162,6 @@ class TestPilot(TemplatePromo):
     slug = 'Test Pilot'
     cls = 'promo promo-test-pilot'
     template = 'legacy_discovery/modules/testpilot.html'
-
-    def context(self, **kwargs):
-        return {'module_context': 'discovery'}
 
 
 class StarterPack(CollectionPromo):

@@ -2,17 +2,6 @@
 {% if deps %}
   <div class="notice dependencies">
     <h3>{{ _('This add-on requires the following add-ons to work properly:') }}</h3>
-    {% if module_context == 'discovery' %}
-      <ul>
-        {% for dep in deps %}
-          <li>
-            <a href="{{ services_url('discovery.addons.detail', dep.slug, src='discovery-dependencies') }}">
-              <img src="{{ dep.icon }}" alt="">{{ dep.name }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      {{ deps|addon_grid(cols=3, src='dp-hc-dependencies', dl_src='dp-dl-dependencies') }}
-    {% endif %}
+    {{ deps|addon_grid(cols=3, src='dp-hc-dependencies', dl_src='dp-dl-dependencies') }}
   </div>
 {% endif %}
