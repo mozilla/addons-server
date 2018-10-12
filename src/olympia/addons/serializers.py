@@ -496,10 +496,15 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
     authors = BaseUserSerializer(many=True, source='listed_authors')
     current_version = SimpleESVersionSerializer()
     previews = ESPreviewSerializer(many=True, source='current_previews')
+    _score = serializers.SerializerMethodField()
 
     datetime_fields = ('created', 'last_updated', 'modified')
     translated_fields = ('name', 'description', 'developer_comments',
                          'homepage', 'summary', 'support_email', 'support_url')
+
+    class Meta:
+        model = Addon
+        fields = AddonSerializer.Meta.fields + ('_score', )
 
     def fake_preview_object(self, obj, data, model_class=Preview):
         # This is what ESPreviewSerializer.fake_object() would do, but we do
@@ -634,6 +639,10 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
         obj._is_featured = data.get('is_featured', False)
 
+        # Elasticsearch score for this document. Useful for debugging relevancy
+        # issues.
+        obj._score = data.get('_score', None)
+
         if data['type'] == amo.ADDON_PERSONA:
             persona_data = data.get('persona')
             if persona_data:
@@ -659,15 +668,16 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
         return obj
 
+    def get__score(self, obj):
+        return obj._es_meta['score']
 
-class ESAddonSerializerWithUnlistedData(
-        ESAddonSerializer, AddonSerializerWithUnlistedData):
-    # Because we're inheriting from ESAddonSerializer which does set its own
-    # Meta class already, we have to repeat this from
-    # AddonSerializerWithUnlistedData, but it beats having to redeclare the
-    # fields...
-    class Meta(AddonSerializerWithUnlistedData.Meta):
-        fields = AddonSerializerWithUnlistedData.Meta.fields
+    def to_representation(self, obj):
+        data = super(ESAddonSerializer, self).to_representation(obj)
+        request = self.context.get('request')
+        if request and '_score' in data and not is_gate_active(
+                request, 'addons-search-_score-field'):
+            data.pop('_score')
+        return data
 
 
 class ESAddonAutoCompleteSerializer(ESAddonSerializer):
