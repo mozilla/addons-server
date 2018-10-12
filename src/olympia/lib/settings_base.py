@@ -1540,25 +1540,11 @@ ENGAGE_ROBOTS = True
 # Read-only mode setup.
 READ_ONLY = env.bool('READ_ONLY', default=False)
 
-# Expected retry-time that can be respected by clients. This will
-# be set as `Retry-After` header.
-# Please set this to a `datetime.timedelta()` instance that is
-# reasonable for clients to try again.
-# We don't support hard dates as these are usually quite hard to
-# adhere anyway.
-# Will be ignored if `None`
-READ_ONLY_RETRY_AFTER = None
-
 
 # Turn on read-only mode in local_settings.py by putting this line
 # at the VERY BOTTOM: read_only_mode(globals())
-# Please also consider setting `retry_after` like this
-# import datetime
-# read_only_mode(globals(), retry_after=datetime.timedelta(minutes=10))
-# See `READ_ONLY_RETRY_AFTER` comment for more details
-def read_only_mode(env, retry_after=None):
+def read_only_mode(env):
     env['READ_ONLY'] = True
-    env['READ_ONLY_RETRY_AFTER'] = retry_after
 
     # Replace the default (master) db with a slave connection.
     if not env.get('SLAVE_DATABASES'):

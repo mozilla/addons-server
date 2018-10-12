@@ -95,21 +95,22 @@ Maintainance Mode
 
 When returning ``HTTP 503 Service Unavailable`` responses the API may be in
 read-only mode. This means that for a short period of time we do not allow any
-write requests, this includes ``POST``, ``PATCH`` and ``DELETE`` requests.
+write requests, this includes ``POST``, ``PATCH``, ``PUT`` and ``DELETE`` requests.
 
 In case we are in read-only mode, the following behavior can be observed:
 
   * ``GET`` requests behave normally
-  * ``POST``, ``PUT`` and ``DELETE`` requests return 503 with a json response that contains a localized error message
-  * A custom ``X-AMO-Read-Only`` header is set to ``true``
-  * A ``Retry-After`` header may be set, it's not a requirement though and can be omitted
+  * ``POST``, ``PUT``, ``PATCH``, and ``DELETE`` requests return 503 with a json response that contains a localized error message
 
-In case we are not in read-only mode, the following (standard) behavior can be observed:
+The response when returning ``HTTP 503 Service Unavailable`` in case of read-only mode looks like this:
 
-  * ``GET``, ``POST``, ``PUT``, ``DELETE`` requests behave normally again
-  * ``X-AMO-Read-Only`` header is set to ``false``
+.. code-block:: json
 
-So, in case of a ``503`` HTTP response you can always check the ``X-AMO-Read-Only`` header to behave appropriately.
+    {
+        "error": "Some features are temporarily disabled while we perform websi…"
+    }
+
+In case we are not in read-only mode everything should be back working as normal.
 
 ~~~~~~~~~~
 Pagination
