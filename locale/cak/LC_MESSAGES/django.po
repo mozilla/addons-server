@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2018-10-12 22:15+0000\n"
+"PO-Revision-Date: 2018-10-14 16:50+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5091,7 +5091,7 @@ msgstr "Ke'awichinaj ri k'ak'a' taq ruwi' {start_sub_heading}rik'in {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
-msgstr ""
+msgstr "Katok na'onel chuqa' tawichinaj ri ruxaq ri k'ak'a' ruwi' akuchi' nak'üt ri ajowanel ruxaq chuqa' akuchi' nacha' jun retal wachinel."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5691,7 +5691,7 @@ msgid "Access your data on the following websites:"
 msgstr ""
 
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Katok pa ri taq atzij pa ronojel ri taq ruxaq k'amaya'l"
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
@@ -5756,7 +5756,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Man yatikïr ta natäq jun Juch'un Ruk'amal Mozilla"
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "Man oyob'en ta re sachoj."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -5766,7 +5766,7 @@ msgid "Back to review"
 msgstr ""
 
 msgid "Back to add-on"
-msgstr ""
+msgstr "Titzolin pa Tz'aqat"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
@@ -5795,10 +5795,10 @@ msgid "Fetching validation results..."
 msgstr ""
 
 msgid "Files:"
-msgstr ""
+msgstr "Taq yakb'äl:"
 
 msgid "Deleted files:"
-msgstr ""
+msgstr "Keyuj taq yakb'äl:"
 
 msgid "Hide known files"
 msgstr ""
@@ -5933,10 +5933,10 @@ msgid "Take better screenshots, improve your online video experience, finally le
 msgstr ""
 
 msgid "Discover Add-ons"
-msgstr ""
+msgstr "Ke'ilitäj taq Tz'aqat"
 
 msgid "What are Add-ons?"
-msgstr ""
+msgstr "¿Atux ri taq tz'aqat?"
 
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
@@ -5981,7 +5981,7 @@ msgid "Active Users"
 msgstr ""
 
 msgid "Last Updated"
-msgstr ""
+msgstr "Ruk'isib'äl K'exoj"
 
 msgid "Cancel Installation"
 msgstr ""
@@ -6136,7 +6136,7 @@ msgid ""
 msgstr ""
 
 msgid "Do:"
-msgstr ""
+msgstr "Tib'an:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr ""
