@@ -134,8 +134,6 @@ def test_pre_setup(request, tmpdir, settings):
     settings.GIT_FILE_STORAGE_PATH = _path(storage_root, 'git-storage')
     settings.MEDIA_ROOT = _path(shared_storage, 'uploads')
     settings.TMP_PATH = _path(shared_storage, 'tmp')
-    settings.REVIEWER_ATTACHMENTS_PATH = _path(
-        settings.MEDIA_ROOT, 'reviewer_attachment')
 
     # Reset the prefixer and urlconf after updating media root
     default_prefixer(settings)
