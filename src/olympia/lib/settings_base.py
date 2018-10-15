@@ -1753,8 +1753,6 @@ SHARED_STORAGE = os.path.join(STORAGE_ROOT, 'shared_storage')
 MEDIA_ROOT = os.path.join(SHARED_STORAGE, 'uploads')
 TMP_PATH = os.path.join(SHARED_STORAGE, 'tmp')
 
-REVIEWER_ATTACHMENTS_PATH = os.path.join(MEDIA_ROOT, 'reviewer_attachment')
-
 # These are key files that must be present on disk to encrypt/decrypt certain
 # database fields.
 # {'api_key:secret': os.path.join(ROOT, 'path', 'to', 'file.key'),}
