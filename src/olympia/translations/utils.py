@@ -77,7 +77,7 @@ def truncate(html, length, killwords=False, end='...'):
         walker = html5lib.treewalkers.getTreeWalker('etree')
         stream = walker(short)
         serializer = html5lib.serializer.HTMLSerializer(
-            quote_attr_values=True, omit_optional_tags=False)
+            quote_attr_values='always', omit_optional_tags=False)
         return jinja2.Markup(force_text(serializer.render(stream)))
 
 

@@ -537,7 +537,7 @@ def clean_nl(string):
     # Serialize the parsed tree back to html.
     walker = html5lib.treewalkers.getTreeWalker('etree')
     stream = walker(parse)
-    serializer = HTMLSerializer(quote_attr_values=True,
+    serializer = HTMLSerializer(quote_attr_values='always',
                                 omit_optional_tags=False)
     return serializer.render(stream)
 
