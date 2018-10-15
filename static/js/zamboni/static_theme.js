@@ -6,6 +6,13 @@ $(document).ready(function() {
 
     function initThemeWizard() {
         var $wizard = $(this);
+        var preLoadBlob = null;
+
+        function getFile() {
+            file_selector = $wizard.find('#header-img')[0];
+            file = file_selector.files[0];
+            return file ? file : preLoadBlob;
+        }
 
         $wizard.on('click', '.reset', _pd(function() {
             var $this = $(this),
@@ -16,25 +23,24 @@ $(document).ready(function() {
         $wizard.on('change', 'input[type="file"]', function() {
             var $row = $(this).closest('.row');
             var reader = new FileReader(),
-                file = getFile($row.find('input[type=file]'));
+                file = getFile();
             if (!file) return;  // don't do anything if no file selected.
-            $row.find('input[type=file], .note').hide();
-
             var $preview_img = $row.find('.preview');
+
             reader.onload = function(e) {
                 $preview_img.attr('src', e.target.result);
                 $preview_img.show().addClass('loaded');
                 $row.find('.reset').show().css('display', 'block');
                 updateManifest();
+                $row.find('input[type=file], .note').hide();
+                var filename = file.name.replace(/\.[^/.]+$/, "");
+                $wizard.find('a.download').attr('download', filename + ".zip");
+                var name_input = $wizard.find('#theme-name');
+                if (!name_input.val()) {
+                    name_input.val(filename);
+                }
             };
             reader.readAsDataURL(file);
-
-            var filename = file.name.replace(/\.[^/.]+$/, "");
-            $wizard.find('a.download').attr('download', filename + ".zip");
-            var name_input = $wizard.find('#theme-name');
-            if (!name_input.val()) {
-                name_input.val(filename);
-            }
         });
         $wizard.find('input[type="file"]').trigger('change');
 
@@ -47,6 +53,22 @@ $(document).ready(function() {
             $svg_img.attr('preserveAspectRatio', 'xMaxYMin '+ meetOrSlice);
         });
 
+        $wizard.find('#theme-header').each(function(index, element) {
+            var img_src = $(element).data('existing-header');
+            // If we already have a preview from a selected file don't overwrite it.
+            if (getFile() || !img_src) return;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", img_src);
+            xhr.responseType = "blob";
+            // load the image as a blob so we can treat it as a File
+            xhr.onload = function() {
+                preLoadBlob = xhr.response;
+                preLoadBlob.name = img_src.split('/').slice(-1)[0];
+                $wizard.find('input[type="file"]').trigger('change');
+            };
+            xhr.send();
+        });
+
         function updateManifest() {
             textarea = $wizard.find('#manifest').val(generateManifest());
             toggleSubmitIfNeeded();
@@ -56,13 +78,8 @@ $(document).ready(function() {
             $wizard.find('button.upload').attr('disabled', ! required_fields_present());
         }
 
-        function getFile($input) {
-            file_selector = $input[0];
-            return file_selector.files[0];
-        }
-
         function generateManifest() {
-            var headerFile = getFile($wizard.find('#header-img')),
+            var headerFile = getFile(),
                 headerURL = headerFile ? headerFile.name : "";
 
             function colVal(id) {
@@ -96,7 +113,7 @@ $(document).ready(function() {
         function buildZip() {
             var zip = new JSZip();
             zip.file('manifest.json', generateManifest());
-            var header_img = getFile($wizard.find('#header-img'));
+            var header_img = getFile();
             if (header_img) {
                 zip.file(header_img.name, header_img);
             }
@@ -203,7 +220,7 @@ $(document).ready(function() {
 
         function required_fields_present() {
             return $wizard.find('#theme-name').val() !== "" &&
-                   $wizard.find('#header-img')[0].files.length > 0 &&
+                   getFile() &&
                    $wizard.find('#accentcolor').val() !== "" &&
                    $wizard.find('#textcolor').val() !== "";
         }

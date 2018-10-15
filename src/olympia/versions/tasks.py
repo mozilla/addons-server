@@ -19,9 +19,9 @@ from .utils import (
 def _build_static_theme_preview_context(theme_manifest, header_root):
     # First build the context shared by both the main preview and the thumb
     context = {'amo': amo}
-    context.update(
-        {process_color_value(prop, color)
-         for prop, color in theme_manifest.get('colors', {}).items()})
+    context.update(dict(
+        process_color_value(prop, color)
+        for prop, color in theme_manifest.get('colors', {}).items()))
     images_dict = theme_manifest.get('images', {})
     header_url = images_dict.get(
         'headerURL', images_dict.get('theme_frame', ''))
