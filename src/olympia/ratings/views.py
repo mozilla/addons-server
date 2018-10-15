@@ -1,5 +1,5 @@
 from django import http
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied as DjangoPermissionDenied
 from django.db.models import Prefetch, Q
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
@@ -8,7 +8,8 @@ from django.utils.translation import ugettext
 
 from rest_framework import serializers
 from rest_framework.decorators import action
-from rest_framework.exceptions import ParseError
+from rest_framework.exceptions import (
+    NotAuthenticated, ParseError, PermissionDenied)
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
@@ -27,12 +28,12 @@ from olympia.api.permissions import (
     AllowAddonAuthor, AllowIfPublic, AllowOwner, AllowRelatedObjectPermissions,
     AnyOf, ByHttpMethod, GroupPermission)
 from olympia.api.throttling import GranularUserRateThrottle
+from olympia.api.utils import is_gate_active
 
 from . import forms
 from .models import GroupedRating, Rating, RatingFlag
-from .permissions import CanDeleteRatingPermission
+from .permissions import CanDeleteRatingPermission, user_can_delete_rating
 from .serializers import RatingSerializer, RatingSerializerReply
-from .templatetags.jinja_helpers import user_can_delete_review
 from .utils import maybe_check_with_akismet
 
 
@@ -103,7 +104,7 @@ def get_flags(request, reviews):
 def flag(request, addon, review_id):
     review = get_object_or_404(Rating.objects, pk=review_id, addon=addon)
     if review.user_id == request.user.id:
-        raise PermissionDenied
+        raise DjangoPermissionDenied
     if not review.body:
         return {'msg': ugettext('This rating can\'t be flagged because it has '
                                 'no review text.')}
@@ -128,8 +129,8 @@ def flag(request, addon, review_id):
 @login_required(redirect=False)
 def delete(request, addon, review_id):
     review = get_object_or_404(Rating.objects, pk=review_id, addon=addon)
-    if not user_can_delete_review(request, review):
-        raise PermissionDenied
+    if not user_can_delete_rating(request, review):
+        raise DjangoPermissionDenied
     review.delete(user_responsible=request.user)
     return http.HttpResponse()
 
@@ -161,7 +162,7 @@ def reply(request, addon, review_id):
     is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
     is_author = acl.check_addon_ownership(request, addon, dev=True)
     if not (is_admin or is_author):
-        raise PermissionDenied
+        raise DjangoPermissionDenied
 
     rating = get_object_or_404(Rating.objects, pk=review_id, addon=addon)
     form = forms.RatingReplyForm(request.POST or None)
@@ -186,7 +187,7 @@ def reply(request, addon, review_id):
 @login_required
 def add(request, addon):
     if addon.has_author(request.user):
-        raise PermissionDenied
+        raise DjangoPermissionDenied
     form = forms.RatingForm(request.POST or None)
     if (request.method == 'POST' and form.is_valid() and
             not request.POST.get('detailed')):
@@ -211,7 +212,7 @@ def edit(request, addon, review_id):
     rating = get_object_or_404(Rating.objects, pk=review_id, addon=addon)
     is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
     if not (request.user.id == rating.user.id or is_admin):
-        raise PermissionDenied
+        raise DjangoPermissionDenied
     cls = forms.RatingReplyForm if rating.reply_to else forms.RatingForm
     form = cls(request.POST)
     if form.is_valid():
@@ -380,19 +381,62 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         return super(RatingViewSet, self).filter_queryset(qs)
 
     def get_paginated_response(self, data):
-        response = super(RatingViewSet, self).get_paginated_response(data)
-        if 'show_grouped_ratings' in self.request.GET:
+        request = self.request
+        extra_data = {}
+        if 'show_grouped_ratings' in request.GET:
             try:
                 show_grouped_ratings = (
                     serializers.BooleanField().to_internal_value(
-                        self.request.GET['show_grouped_ratings']))
+                        request.GET['show_grouped_ratings']))
             except serializers.ValidationError:
                 raise ParseError(
                     'show_grouped_ratings parameter should be a boolean')
             if show_grouped_ratings and self.get_addon_object():
-                response.data['grouped_ratings'] = dict(GroupedRating.get(
+                extra_data['grouped_ratings'] = dict(GroupedRating.get(
                     self.addon_object.id))
+        if ('show_permissions_for' in request.GET and
+                is_gate_active(self.request, 'ratings-can_reply')):
+            if 'addon' not in request.GET:
+                raise ParseError(
+                    'show_permissions_for parameter is only valid if the '
+                    'addon parameter is also present')
+            try:
+                show_permissions_for = (
+                    serializers.IntegerField().to_internal_value(
+                        request.GET['show_permissions_for']))
+                if show_permissions_for != request.user.pk:
+                    raise serializers.ValidationError
+            except serializers.ValidationError:
+                raise ParseError(
+                    'show_permissions_for parameter value should be equal to '
+                    'the user id of the authenticated user')
+            extra_data['can_reply'] = (
+                self.check_can_reply_permission_for_ratings_list())
+        response = super(RatingViewSet, self).get_paginated_response(data)
+        if extra_data:
+            response.data.update(extra_data)
         return response
+
+    def check_can_reply_permission_for_ratings_list(self):
+        """Check whether or not the current request contains an user that can
+        reply to ratings we're about to return.
+
+        Used to populate the `can_reply` property in ratings list, when an
+        addon is passed."""
+        # Clone the current viewset, but change permission_classes.
+        viewset = self.__class__(**self.__dict__)
+        viewset.permission_classes = self.reply_permission_classes
+
+        # Create a fake rating with the addon object attached, to be passed to
+        # check_object_permissions().
+        dummy_rating = Rating(addon=self.get_addon_object())
+
+        try:
+            viewset.check_permissions(self.request)
+            viewset.check_object_permissions(self.request, dummy_rating)
+            return True
+        except (PermissionDenied, NotAuthenticated):
+            return False
 
     def get_queryset(self):
         requested = self.request.GET.get('filter', '').split(',')
