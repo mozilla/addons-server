@@ -586,7 +586,7 @@ class TestReviewerScore(TestCase):
             amo.REVIEWED_EXTENSION_MEDIUM_RISK]
         assert score.version == self.addon.current_version
 
-    def test_award_points_disabled_auto_approval(self):
+    def test_award_points_extension_disabled_autoapproval(self):
         self.version = version_factory(
             addon=self.addon, version='1.1', file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
@@ -602,6 +602,86 @@ class TestReviewerScore(TestCase):
         assert score.score == amo.REVIEWED_SCORES[
             amo.REVIEWED_EXTENSION_MEDIUM_RISK]
         assert score.version == self.addon.current_version
+
+    def test_award_points_langpack_post_review(self):
+        search_provider = amo.tests.addon_factory(
+            status=amo.STATUS_PUBLIC, type=amo.ADDON_LPAPP)
+        self.version = version_factory(
+            addon=search_provider, version='1.1', file_kw={
+                'status': amo.STATUS_PUBLIC,
+                'is_webextension': True})
+        AutoApprovalSummary.objects.create(
+            version=search_provider.current_version,
+            verdict=amo.AUTO_APPROVED,
+            weight=101)
+        ReviewerScore.award_points(
+            self.user, search_provider, search_provider.status,
+            version=search_provider.current_version,
+            post_review=True, content_review=False)
+        score = ReviewerScore.objects.get(user=self.user)
+        assert score.score == amo.REVIEWED_SCORES[
+            amo.REVIEWED_LP_FULL]
+        assert score.version == search_provider.current_version
+
+    def test_award_points_langpack_disabled_auto_approval(self):
+        search_provider = amo.tests.addon_factory(
+            status=amo.STATUS_NOMINATED, type=amo.ADDON_LPAPP)
+        self.version = version_factory(
+            addon=search_provider, version='1.1', file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True})
+        AutoApprovalSummary.objects.create(
+            version=search_provider.current_version,
+            verdict=amo.NOT_AUTO_APPROVED,
+            weight=101)
+        ReviewerScore.award_points(
+            self.user, search_provider, search_provider.status,
+            version=search_provider.current_version,
+            post_review=False, content_review=False)
+        score = ReviewerScore.objects.get(user=self.user)
+        assert score.score == amo.REVIEWED_SCORES[
+            amo.REVIEWED_LP_FULL]
+        assert score.version == search_provider.current_version
+
+    def test_award_points_dict_post_review(self):
+        dictionary = amo.tests.addon_factory(
+            status=amo.STATUS_PUBLIC, type=amo.ADDON_DICT)
+        self.version = version_factory(
+            addon=dictionary, version='1.1', file_kw={
+                'status': amo.STATUS_PUBLIC,
+                'is_webextension': True})
+        AutoApprovalSummary.objects.create(
+            version=dictionary.current_version,
+            verdict=amo.AUTO_APPROVED,
+            weight=101)
+        ReviewerScore.award_points(
+            self.user, dictionary, dictionary.status,
+            version=dictionary.current_version,
+            post_review=True, content_review=False)
+        score = ReviewerScore.objects.get(user=self.user)
+        assert score.score == amo.REVIEWED_SCORES[
+            amo.REVIEWED_DICT_FULL]
+        assert score.version == dictionary.current_version
+
+    def test_award_points_dict_disabled_auto_approval(self):
+        dictionary = amo.tests.addon_factory(
+            status=amo.STATUS_NOMINATED, type=amo.ADDON_DICT)
+        self.version = version_factory(
+            addon=dictionary, version='1.1', file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True})
+        AutoApprovalSummary.objects.create(
+            version=dictionary.current_version,
+            verdict=amo.NOT_AUTO_APPROVED,
+            weight=101)
+        ReviewerScore.award_points(
+            self.user, dictionary, dictionary.status,
+            version=dictionary.current_version,
+            post_review=False, content_review=False)
+        score = ReviewerScore.objects.get(user=self.user)
+        assert score.score == amo.REVIEWED_SCORES[
+            amo.REVIEWED_DICT_FULL]
+        assert score.version == dictionary.current_version
 
     def test_award_moderation_points(self):
         ReviewerScore.award_moderation_points(self.user, self.addon, 1)
