@@ -10,7 +10,7 @@ from olympia.lib.settings_base import get_raven_release
 
 
 @pytest.mark.parametrize('key', (
-    'NETAPP_STORAGE', 'GUARDED_ADDONS_PATH', 'TMP_PATH', 'MEDIA_ROOT'))
+    'SHARED_STORAGE', 'GUARDED_ADDONS_PATH', 'TMP_PATH', 'MEDIA_ROOT'))
 def test_base_paths_bytestring(key):
     """Make sure all relevant base paths are bytestrings.
 

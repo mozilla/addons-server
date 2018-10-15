@@ -336,7 +336,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
             u'iamstring', u'iamnutherstring', u'laststring!']
 
     def test_current_file_path(self):
-        public_fp = '/media/addons/3615/delicious_bookmarks-2.1.072-fx.xpi'
+        public_fp = '/storage/files/3615/delicious_bookmarks-2.1.072-fx.xpi'
         guarded_fp = '/guarded-addons/3615/delicious_bookmarks-2.1.072-fx.xpi'
 
         # Add-on enabled, file approved
