@@ -1,5 +1,4 @@
 import logging
-import os
 
 from olympia.lib.settings_base import *  # noqa
 
@@ -33,17 +32,6 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 # Domain emails should be sent to.
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
                            default='addons.mozilla.org')
-
-NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
-NETAPP_STORAGE = os.path.join(NETAPP_STORAGE_ROOT, 'shared_storage')
-GUARDED_ADDONS_PATH = os.path.join(NETAPP_STORAGE_ROOT, 'guarded-addons')
-MEDIA_ROOT = os.path.join(NETAPP_STORAGE, 'uploads')
-TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
-PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
-
-ADDONS_PATH = os.path.join(NETAPP_STORAGE_ROOT, 'files')
-
-REVIEWER_ATTACHMENTS_PATH = os.path.join(MEDIA_ROOT, 'reviewer_attachment')
 
 DATABASES = {
     'default': get_db_config('DATABASES_DEFAULT_URL'),
