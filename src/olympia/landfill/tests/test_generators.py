@@ -83,6 +83,8 @@ class CreateGeneratorTests(TestCase):
         assert Addon.objects.last().name == addon.name
         assert amo.STATUS_PUBLIC == addon.status
         assert Version.objects.last() == addon._current_version
+        assert addon.guid
+        assert addon.slug
 
     def test_create_theme(self):
         theme = create_theme('bar')

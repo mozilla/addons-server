@@ -284,3 +284,4 @@ v4 API changelog
 * 2018-10-04: added ``exclude_ratings`` parameter to ratings API. This change was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/9424
 * 2018-10-11: removed ``locale_disambiguation`` from the Language Tools API.
 * 2018-10-11: added ``created`` to the addons API.
+* 2018-10-18: added ``_score`` to the addons search API.

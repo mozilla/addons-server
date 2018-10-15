@@ -1,3 +1,4 @@
+from collections import defaultdict
 from datetime import datetime
 
 from elasticsearch_dsl.response.hit import Hit
@@ -38,13 +39,17 @@ class BaseESSerializer(ModelSerializer):
         return fields
 
     def to_representation(self, data):
+        es_meta = defaultdict(lambda: None)
         # Support `Hit` instances to allow passing in ElasticSearch
         # results directly into the serializer.
         if isinstance(data, Hit):
+            es_meta = data.meta
             data = data.to_dict()
 
         obj = self.fake_object(data)
-        return super(BaseESSerializer, self).to_representation(obj)
+        obj._es_meta = es_meta
+        result = super(BaseESSerializer, self).to_representation(obj)
+        return result
 
     def fake_object(self, data):
         """

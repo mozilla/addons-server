@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-08 05:07+0000\n"
-"PO-Revision-Date: 2018-10-10 22:58+0000\n"
+"PO-Revision-Date: 2018-10-14 16:50+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -4991,107 +4991,107 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tawetamaj pa ruwi' ri kik'ayij ajk'amaya'l ruxaq {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "Tak'ulu' cholan etamab'äl chi rij ri kisamaj chuqa' kik'ayij xab'achike ajk'amaya'l ruxaq."
 
 #. editorial content for the discovery pane.
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'awutzilaj Rub'anikil ri Wikipedia {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh and modern appearance to Wikipedia."
-msgstr ""
+msgstr "Taya' ch'u'ül chuqa' k'ak'a' ruwa ri Wikipedia."
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Anin kasamäj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
-msgstr ""
+msgstr "Ke'awokisaj ri taq ruwa ch'oy richin nab'än ronojel—aninäq."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Taya' ruk'oj ri ruxaq {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Tewüx taq ruperaj ajk'amaya'l ruxaq natz'ët."
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'aqasaj taq wachib'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
-msgstr ""
+msgstr "Ke'ayaka' taq ruwachib'al xab'achike ajk'amaya'l ruxaq chuqa' ke'aqasaj."
 
 #. editorial content for the discovery pane.
 msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tawewaj ri ak'ojlib'al {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr ""
+msgstr "Taya' ruk'oj ri ak'ojlib'al richin ye'aq'öl ri ojqanela' chuqa' nachajij ri awichinanem."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Taq'ata' awokem pa jujun taq rupam {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Taq'ata' okem pan itzel o man ruk'amon ta rupam rik'in jun chayub'äl."
 
 #. editorial content for the discovery pane.
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'awutzilaj ri k'ak'a' taq ruwi' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "Tajaqa' jun k'ak'a' ruwi' pa rajkiq'a' ri ruwi' k'o wakami, man pa ruk'isib'äl taq chi re ri cholaj."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tach'aka' ri seq'tzijol {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Ke'awokisaj kochochib'al jumej na'owinäq taq taqoya'l richin man yatkitz'ët ta chuqa' richin yeq'at ri seq'tzijol."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tajala' runuk'ulem awichinanem {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily customize the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Anin Tawichinaj runuk'ulem richinanem Firefox ri kan k'o wi."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tawutzilaj ri awetamab'al pa VK {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
-msgstr ""
+msgstr "Ke'ayuju' taq eltzijol chuqa' taqasaj taq k'oxom pa VK."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Anin ke'ak'ulu' taq tzalq'omanïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Tak'ulu' jun anin tzalq'omanïk rik'in toq nacha' jun tz'ib'anïk chuqa' napïtz' pa ri pitz'b'äl niwachin pe."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'awichinaj ri k'ak'a' taq ruwi' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
-msgstr ""
+msgstr "Katok na'onel chuqa' tawichinaj ri ruxaq ri k'ak'a' ruwi' akuchi' nak'üt ri ajowanel ruxaq chuqa' akuchi' nacha' jun retal wachinel."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5691,7 +5691,7 @@ msgid "Access your data on the following websites:"
 msgstr ""
 
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Katok pa ri taq atzij pa ronojel ri taq ruxaq k'amaya'l"
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
@@ -5756,7 +5756,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Man yatikïr ta natäq jun Juch'un Ruk'amal Mozilla"
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "Man oyob'en ta re sachoj."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
@@ -5766,7 +5766,7 @@ msgid "Back to review"
 msgstr ""
 
 msgid "Back to add-on"
-msgstr ""
+msgstr "Titzolin pa Tz'aqat"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
@@ -5795,10 +5795,10 @@ msgid "Fetching validation results..."
 msgstr ""
 
 msgid "Files:"
-msgstr ""
+msgstr "Taq yakb'äl:"
 
 msgid "Deleted files:"
-msgstr ""
+msgstr "Keyuj taq yakb'äl:"
 
 msgid "Hide known files"
 msgstr ""
@@ -5933,10 +5933,10 @@ msgid "Take better screenshots, improve your online video experience, finally le
 msgstr ""
 
 msgid "Discover Add-ons"
-msgstr ""
+msgstr "Ke'ilitäj taq Tz'aqat"
 
 msgid "What are Add-ons?"
-msgstr ""
+msgstr "¿Atux ri taq tz'aqat?"
 
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
@@ -5981,7 +5981,7 @@ msgid "Active Users"
 msgstr ""
 
 msgid "Last Updated"
-msgstr ""
+msgstr "Ruk'isib'äl K'exoj"
 
 msgid "Cancel Installation"
 msgstr ""
@@ -6136,7 +6136,7 @@ msgid ""
 msgstr ""
 
 msgid "Do:"
-msgstr ""
+msgstr "Tib'an:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr ""
