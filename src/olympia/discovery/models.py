@@ -1,4 +1,5 @@
 from django.db import models
+from django.http import QueryDict
 from django.utils.html import conditional_escape, format_html
 from django.utils.translation import ugettext
 
@@ -44,6 +45,16 @@ class DiscoveryItem(ModelBase):
     def __unicode__(self):
         return unicode(self.addon)
 
+    def build_querystring(self):
+        qs = QueryDict(mutable=True)
+        qs.update({
+            'utm_source': 'discovery.addons.mozilla.org',
+            'utm_medium': 'firefox-browser',
+            'utm_content': 'discopane-entry-link',
+            'src': 'api',
+        })
+        return qs.urlencode()
+
     @property
     def heading(self):
         """
@@ -61,7 +72,10 @@ class DiscoveryItem(ModelBase):
         # handled by translators, since they are just HTML and parameters.
         if self.custom_heading:
             addon_link = format_html(
-                u'<a href="{0}">{1} {2} {3}</a>',
+                # The query string should not be encoded twice, so we add it to
+                # the template first, via '%'.
+                u'<a href="{0}?%(query)s">{1} {2} {3}</a>' % {
+                    'query': self.build_querystring()},
                 url, addon_name, ugettext(u'by'), authors)
 
             value = conditional_escape(ugettext(self.custom_heading)).replace(
@@ -70,7 +84,10 @@ class DiscoveryItem(ModelBase):
                 u'{addon_name}', addon_link)
         else:
             value = format_html(
-                u'{0} <span>{1} <a href="{2}">{3}</a></span>',
+                # The query string should not be encoded twice, so we add it to
+                # the template first, via '%'.
+                u'{0} <span>{1} <a href="{2}?%(query)s">{3}</a></span>' % {
+                    'query': self.build_querystring()},
                 addon_name, ugettext(u'by'), url, authors)
         return value
 
