@@ -43,7 +43,8 @@ from olympia.devhub.forms import AgreementForm, SourceForm
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
     add_dynamic_theme_tag, fetch_existing_translations_from_addon,
-    get_addon_akismet_reports)
+    get_addon_akismet_reports, wizard_unsupported_properties,
+    extract_theme_properties)
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon
 from olympia.lib.crypto.packaged import sign_file
@@ -1239,6 +1240,41 @@ def submit_version_distribution(request, addon_id, addon):
     return _submit_distribution(request, addon, 'devhub.submit.version.upload')
 
 
+WIZARD_COLOR_FIELDS = [
+    ('accentcolor',
+     _(u'Header area background'),
+     _(u'The color of the header area background, displayed in the part of '
+       u'the header not covered or visible through the header image. Manifest '
+       u'field:  accentcolor.'),
+     'rgba(229,230,232,1)'),
+    ('textcolor',
+     _(u'Header area text and icons'),
+     _(u'The color of the text and icons in the header area, except the '
+       u'active tab. Manifest field:  textcolor.'),
+     'rgba(0,0,0,1'),
+    ('toolbar',
+     _(u'Toolbar area background'),
+     _(u'The background color for the navigation bar, the bookmarks bar, and '
+       u'the selected tab.  Manifest field:  toolbar.'),
+     False),
+    ('toolbar_text',
+     _(u'Toolbar area text and icons'),
+     _(u'The color of the text and icons in the toolbar and the active tab. '
+       u'Manifest field:  toolbar_text.'),
+     False),
+    ('toolbar_field',
+     _(u'Toolbar field area background'),
+     _(u'The background color for fields in the toolbar, such as the URL bar. '
+       u'Manifest field:  toolbar_field.'),
+     False),
+    ('toolbar_field_text',
+     _(u'Toolbar field area text'),
+     _(u'The color of text in fields in the toolbar, such as the URL bar. '
+       u'Manifest field:  toolbar_field_text.'),
+     False)
+]
+
+
 @transaction.atomic
 def _submit_upload(request, addon, channel, next_view, wizard=False):
     """ If this is a new addon upload `addon` will be None.
@@ -1293,6 +1329,14 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
     submit_page = 'version' if addon else 'addon'
     template = ('devhub/addons/submit/upload.html' if not wizard else
                 'devhub/addons/submit/wizard.html')
+    existing_properties = (
+        extract_theme_properties(addon, channel)
+        if wizard and addon else {})
+    unsupported_properties = (
+        wizard_unsupported_properties(
+            existing_properties,
+            [field for field, _, _, _ in WIZARD_COLOR_FIELDS])
+        if existing_properties else [])
     return render(request, template,
                   {'new_addon_form': form,
                    'is_admin': is_admin,
@@ -1302,6 +1346,9 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
                    'submit_page': submit_page,
                    'channel': channel,
                    'channel_choice_text': channel_choice_text,
+                   'existing_properties': existing_properties,
+                   'colors': WIZARD_COLOR_FIELDS,
+                   'unsupported_properties': unsupported_properties,
                    'version_number':
                        get_next_version_number(addon) if wizard else None})
 

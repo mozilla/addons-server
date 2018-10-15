@@ -11,15 +11,17 @@ from six import text_type
 
 import olympia.core.logger
 
-from olympia import amo
+from olympia import amo, core
 from olympia.addons.models import Addon
+from olympia.amo.templatetags.jinja_helpers import user_media_url
 from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload
-from olympia.files.utils import parse_addon
+from olympia.files.utils import parse_addon, parse_xpi
 from olympia.lib.akismet.models import AkismetReport
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
 from olympia.versions.compare import version_int
+from olympia.versions.utils import process_color_value
 
 from . import tasks
 
@@ -357,3 +359,45 @@ def get_addon_akismet_reports(user, user_agent, referrer, upload=None,
                 referrer=referrer)
             reports.append((prop, report))
     return reports
+
+
+def extract_theme_properties(addon, channel):
+    version = addon.find_latest_version(channel)
+    if not version or not version.all_files:
+        return {}
+    try:
+        parsed_data = parse_xpi(
+            version.all_files[0].file_path, addon=addon, user=core.get_user())
+    except ValidationError:
+        # If we can't parse the existing manifest safely return.
+        return {}
+    theme_props = parsed_data.get('theme', {})
+    # pre-process colors to convert chrome style colors and strip spaces
+    theme_props['colors'] = dict(
+        process_color_value(prop, color)
+        for prop, color in theme_props.get('colors', {}).items())
+    # replace headerURL with path to existing background
+    if 'images' in theme_props:
+        if 'theme_frame' in theme_props['images']:
+            header_url = theme_props['images'].pop('theme_frame')
+        if 'headerURL' in theme_props['images']:
+            header_url = theme_props['images'].pop('headerURL')
+        if header_url:
+            theme_props['images']['headerURL'] = '/'.join((
+                user_media_url('addons'), text_type(addon.id),
+                text_type(version.id), header_url))
+    return theme_props
+
+
+def wizard_unsupported_properties(data, wizard_fields):
+    # collect any 'theme' level unsupported properties
+    unsupported = [
+        key for key in data.keys() if key not in ['colors', 'images']]
+    # and any unsupported 'colors' properties
+    unsupported += [
+        key for key in data.get('colors', {}) if key not in wizard_fields]
+    # and finally any 'images' properties (wizard only supports the background)
+    unsupported += [
+        key for key in data.get('images', {}) if key != 'headerURL']
+
+    return unsupported

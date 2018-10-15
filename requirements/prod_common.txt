@@ -210,10 +210,10 @@ feedparser==5.2.1 \
 funcsigs==1.0.2 \
     --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \
     --hash=sha256:a7bb0f2cf3a3fd1ab2732cb49eba4252c2af4240442415b4abce3b87022a8f50
-# html5lib is required by bleach, rdflib
-# see setup.py of bleach for supported and required versions
-html5lib==0.9999999 \
-    --hash=sha256:2612a191a8d5842bfa057e41ba50bbb9dcb722419d2408c78cff4758d0754868 # pyup: <=0.9999999
+# html5lib is required by rdflib
+html5lib==1.0.1 \
+    --hash=sha256:20b159aa3badc9d5ee8f5c647e5efd02ed2a66ab8d354930bd9ff139fc1dc0a3 \
+    --hash=sha256:66cb0dcfdbbc4f9c3ba1a63fdb511ffdbd4f513b2b6d81b80cd26ce6b3fb3736
 # isodate is required by rdflib
 isodate==0.6.0 \
     --hash=sha256:aa4d33c06640f5352aca96e4b81afd8ab3b47337cc12089822d6f322ac772c81 \
