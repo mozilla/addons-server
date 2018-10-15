@@ -2969,10 +2969,7 @@ class TestReview(ReviewBase):
         v = self.addon.versions.all()[0]
 
         ApplicationsVersions.objects.create(
-            version=v, application=amo.THUNDERBIRD.id, min=av, max=av)
-
-        ApplicationsVersions.objects.create(
-            version=v, application=amo.SEAMONKEY.id, min=av, max=av)
+            version=v, application=amo.ANDROID.id, min=av, max=av)
 
         assert self.addon.versions.count() == 1
         url = reverse('reviewers.review', args=[self.addon.slug])
@@ -2981,9 +2978,8 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         icons = doc('.listing-body .app-icon')
-        assert icons.eq(0).attr('title') == "Firefox"
-        assert icons.eq(1).attr('title') == "SeaMonkey"
-        assert icons.eq(2).attr('title') == "Thunderbird"
+        assert icons.eq(0).attr('title') == 'Firefox for Android'
+        assert icons.eq(1).attr('title') == 'Firefox'
 
     def test_item_history_weight(self):
         """ Make sure the weight is shown on the review page"""

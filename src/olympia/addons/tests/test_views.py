@@ -103,23 +103,12 @@ class TestHomepage(TestCase):
         assert response.status_code == 200
         assert response.content
 
-    def test_thunderbird(self):
-        """Thunderbird homepage should have the Thunderbird title."""
-        r = self.client.get('/en-US/thunderbird/')
-        doc = pq(r.content)
-        assert 'Add-ons for Thunderbird' == doc('title').text()
-
     def test_welcome_msg(self):
         r = self.client.get('/en-US/firefox/')
         welcome = pq(r.content)('#site-welcome').remove('a.close')
         assert welcome.text() == (
             'Welcome to Firefox Add-ons.\nChoose from thousands of extra '
             'features and styles to make Firefox your own.')
-        r = self.client.get('/en-US/thunderbird/')
-        welcome = pq(r.content)('#site-welcome').remove('a.close')
-        assert welcome.text() == (
-            'Welcome to Thunderbird Add-ons.\nAdd extra features and styles '
-            'to make Thunderbird your own.')
 
     def test_try_new_frontend_banner_presence(self):
         self.url = '/en-US/firefox/'
@@ -440,20 +429,6 @@ class TestDetailPage(TestCase):
 
         assert doc('#more-about').length == 0
         assert doc('.article.userinput').length == 0
-
-    def test_type_redirect(self):
-        """
-        If current add-on's type is unsupported by app, redirect to an
-        app that supports it.
-        """
-        # Thunderbird can't do search engines
-        prefixer = amo.urlresolvers.get_url_prefix()
-        prefixer.app = amo.THUNDERBIRD.short
-        response = self.client.get(reverse('addons.detail', args=['a4594']),
-                                   follow=False)
-        assert response.status_code == 301
-        assert response['Location'].find(amo.THUNDERBIRD.short) == -1
-        assert (response['Location'].find(amo.FIREFOX.short) >= 0)
 
     def test_compatible_app_redirect(self):
         """
@@ -2644,9 +2619,9 @@ class TestAddonSearchView(ESTestCase):
             slug='my-addon', name=u'My Addôn', weekly_downloads=33,
             version_kw={'min_app_version': '42.0',
                         'max_app_version': '*'})
-        tb_addon = addon_factory(
-            slug='my-tb-addon', name=u'My TBV Addøn', weekly_downloads=22,
-            version_kw={'application': amo.THUNDERBIRD.id,
+        an_addon = addon_factory(
+            slug='my-tb-addon', name=u'My ANd Addøn', weekly_downloads=22,
+            version_kw={'application': amo.ANDROID.id,
                         'min_app_version': '42.0',
                         'max_app_version': '*'})
         both_addon = addon_factory(
@@ -2654,13 +2629,13 @@ class TestAddonSearchView(ESTestCase):
             version_kw={'min_app_version': '43.0',
                         'max_app_version': '*'})
         # both_addon was created with firefox compatibility, manually add
-        # thunderbird, making it compatible with both.
+        # android, making it compatible with both.
         ApplicationsVersions.objects.create(
-            application=amo.THUNDERBIRD.id, version=both_addon.current_version,
+            application=amo.ANDROID.id, version=both_addon.current_version,
             min=AppVersion.objects.create(
-                application=amo.THUNDERBIRD.id, version='43.0'),
+                application=amo.ANDROID.id, version='43.0'),
             max=AppVersion.objects.get(
-                application=amo.THUNDERBIRD.id, version='*'))
+                application=amo.ANDROID.id, version='*'))
         # Because the manually created ApplicationsVersions was created after
         # the initial save, we need to reindex and not just refresh.
         self.reindex(Addon)
@@ -2671,10 +2646,10 @@ class TestAddonSearchView(ESTestCase):
         assert data['results'][0]['id'] == addon.pk
         assert data['results'][1]['id'] == both_addon.pk
 
-        data = self.perform_search(self.url, {'app': 'thunderbird'})
+        data = self.perform_search(self.url, {'app': 'android'})
         assert data['count'] == 2
         assert len(data['results']) == 2
-        assert data['results'][0]['id'] == tb_addon.pk
+        assert data['results'][0]['id'] == an_addon.pk
         assert data['results'][1]['id'] == both_addon.pk
 
     def test_filter_by_appversion(self):
@@ -2682,9 +2657,9 @@ class TestAddonSearchView(ESTestCase):
             slug='my-addon', name=u'My Addôn', weekly_downloads=33,
             version_kw={'min_app_version': '42.0',
                         'max_app_version': '*'})
-        tb_addon = addon_factory(
-            slug='my-tb-addon', name=u'My TBV Addøn', weekly_downloads=22,
-            version_kw={'application': amo.THUNDERBIRD.id,
+        an_addon = addon_factory(
+            slug='my-tb-addon', name=u'My ANd Addøn', weekly_downloads=22,
+            version_kw={'application': amo.ANDROID.id,
                         'min_app_version': '42.0',
                         'max_app_version': '*'})
         both_addon = addon_factory(
@@ -2692,13 +2667,13 @@ class TestAddonSearchView(ESTestCase):
             version_kw={'min_app_version': '43.0',
                         'max_app_version': '*'})
         # both_addon was created with firefox compatibility, manually add
-        # thunderbird, making it compatible with both.
+        # android, making it compatible with both.
         ApplicationsVersions.objects.create(
-            application=amo.THUNDERBIRD.id, version=both_addon.current_version,
+            application=amo.ANDROID.id, version=both_addon.current_version,
             min=AppVersion.objects.create(
-                application=amo.THUNDERBIRD.id, version='43.0'),
+                application=amo.ANDROID.id, version='43.0'),
             max=AppVersion.objects.get(
-                application=amo.THUNDERBIRD.id, version='*'))
+                application=amo.ANDROID.id, version='*'))
         # Because the manually created ApplicationsVersions was created after
         # the initial save, we need to reindex and not just refresh.
         self.reindex(Addon)
@@ -2710,11 +2685,11 @@ class TestAddonSearchView(ESTestCase):
         assert data['results'][0]['id'] == addon.pk
         assert data['results'][1]['id'] == both_addon.pk
 
-        data = self.perform_search(self.url, {'app': 'thunderbird',
+        data = self.perform_search(self.url, {'app': 'android',
                                               'appversion': '43.0.1'})
         assert data['count'] == 2
         assert len(data['results']) == 2
-        assert data['results'][0]['id'] == tb_addon.pk
+        assert data['results'][0]['id'] == an_addon.pk
         assert data['results'][1]['id'] == both_addon.pk
 
         data = self.perform_search(self.url, {'app': 'firefox',
@@ -2723,11 +2698,11 @@ class TestAddonSearchView(ESTestCase):
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
 
-        data = self.perform_search(self.url, {'app': 'thunderbird',
+        data = self.perform_search(self.url, {'app': 'android',
                                               'appversion': '42.0.1'})
         assert data['count'] == 1
         assert len(data['results']) == 1
-        assert data['results'][0]['id'] == tb_addon.pk
+        assert data['results'][0]['id'] == an_addon.pk
 
     def test_filter_by_category(self):
         static_category = (
@@ -3375,7 +3350,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(response.content)
 
-        assert len(data) == 113
+        assert len(data) == 81
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -3400,7 +3375,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(response.content)
 
-        assert len(data) == 113
+        assert len(data) == 81
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -3460,11 +3435,7 @@ class TestLanguageToolsView(TestCase):
             version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
 
         # These add-ons below should be ignored: they are either not public or
-        # of the wrong type, not supporting the app we care about, or their
-        # target locale is empty.
-        addon_factory(
-            type=amo.ADDON_LPAPP, target_locale='de',
-            version_kw={'application': amo.THUNDERBIRD.id})
+        # of the wrong type, or their target locale is empty.
         addon_factory(
             type=amo.ADDON_DICT, target_locale='fr',
             version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
@@ -3618,13 +3589,6 @@ class TestLanguageToolsView(TestCase):
             type=amo.ADDON_LPAPP, target_locale='it',
             file_kw={'strict_compatibility': True},
             version_kw={'min_app_version': '59.0', 'max_app_version': '59.*'})
-        addon_factory(
-            name='Thunderbird Polish Language Pack',
-            type=amo.ADDON_LPAPP, target_locale='pl',
-            file_kw={'strict_compatibility': True},
-            version_kw={
-                'application': amo.THUNDERBIRD.id,
-                'min_app_version': '58.0', 'max_app_version': '58.*'})
         # Even add a pack with a compatible version... not public. And another
         # one with a compatible version... not listed.
         incompatible_pack2 = addon_factory(
@@ -3686,9 +3650,6 @@ class TestLanguageToolsView(TestCase):
         addon_factory(
             type=amo.ADDON_DICT, target_locale='fr')
         addon_factory(type=amo.ADDON_LPAPP, target_locale='es')
-        addon_factory(
-            type=amo.ADDON_LPAPP, target_locale='de',
-            version_kw={'application': amo.THUNDERBIRD.id})
 
         with self.assertNumQueries(2):
             response = self.client.get(
@@ -3706,12 +3667,12 @@ class TestLanguageToolsView(TestCase):
         with self.assertNumQueries(2):
             assert (
                 self.client.get(
-                    self.url, {'app': 'thunderbird', 'lang': 'fr'}).content !=
+                    self.url, {'app': 'android', 'lang': 'fr'}).content !=
                 response.content
             )
         # Same again, should be cached; no queries.
         with self.assertNumQueries(0):
-            self.client.get(self.url, {'app': 'thunderbird', 'lang': 'fr'})
+            self.client.get(self.url, {'app': 'android', 'lang': 'fr'})
         # Change the lang, we should get queries again.
         with self.assertNumQueries(2):
             self.client.get(self.url, {'app': 'firefox', 'lang': 'de'})

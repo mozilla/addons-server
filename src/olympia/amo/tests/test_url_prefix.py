@@ -103,9 +103,6 @@ class MiddlewareTest(BaseTestCase):
         response = self.process('/en-US')
         assert response['Vary'] == 'User-Agent'
 
-        response = self.process('/en-US/thunderbird')
-        assert 'Vary' not in response
-
     def test_no_redirect_with_script(self):
         response = self.process('/services', SCRIPT_NAME='/oremj')
         assert response is None
@@ -116,9 +113,6 @@ class MiddlewareTest(BaseTestCase):
             assert response['Location'] == expected
 
         check('/en-US/', '/en-US/firefox/', 'Firefox')
-
-        # SeaMonkey gets priority because it has both strings in its UA...
-        check('/en-US/', '/en-US/seamonkey/', 'Firefox SeaMonkey')
 
         # Android can found by its user agent.
         check('/en-US/', '/en-US/android/', 'Fennec/12.0.1')
@@ -194,11 +188,11 @@ class TestPrefixer(BaseTestCase):
         assert prefixer.fix('/admin/') == '/en-US/admin/'
 
         prefixer.locale = 'de'
-        prefixer.app = 'thunderbird'
+        prefixer.app = 'android'
 
-        assert prefixer.fix('/') == '/de/thunderbird/'
-        assert prefixer.fix('/foo') == '/de/thunderbird/foo'
-        assert prefixer.fix('/foo/') == '/de/thunderbird/foo/'
+        assert prefixer.fix('/') == '/de/android/'
+        assert prefixer.fix('/foo') == '/de/android/foo'
+        assert prefixer.fix('/foo/') == '/de/android/foo/'
         assert prefixer.fix('/admin') == '/de/admin'
         assert prefixer.fix('/admin/') == '/de/admin/'
 
@@ -245,8 +239,8 @@ class TestPrefixerActivate(TestCase):
         assert urlresolvers.reverse('home') == '/en-US/firefox/'
 
     def test_activate_app_locale(self):
-        with self.activate(locale='de', app='thunderbird'):
-            assert urlresolvers.reverse('home') == '/de/thunderbird/'
+        with self.activate(locale='de', app='android'):
+            assert urlresolvers.reverse('home') == '/de/android/'
         assert urlresolvers.reverse('home') == '/en-US/firefox/'
 
 

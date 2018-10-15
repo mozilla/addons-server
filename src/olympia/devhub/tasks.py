@@ -141,7 +141,7 @@ def create_version_for_upload(addon, upload, channel):
         # loudly in sentry.
         parsed_data = parse_addon(upload, addon, user=upload.user)
         version = Version.from_upload(
-            upload, addon, [x[0] for x in amo.APPS_FIREFOXES_ONLY_CHOICES],
+            upload, addon, [x[0] for x in amo.APPS_CHOICES],
             channel,
             parsed_data=parsed_data)
         # The add-on's status will be STATUS_NULL when its first version is
@@ -382,8 +382,7 @@ def annotate_legacy_addon_restrictions(results, is_new_upload):
         max_target_firefox_version < 99000000000000)
 
     # Thunderbird/Seamonkey only add-ons are moving to addons.thunderbird.net.
-    if (is_targeting_thunderbird_or_seamonkey_only and
-            waffle.switch_is_active('disallow-thunderbird-and-seamonkey')):
+    if (is_targeting_thunderbird_or_seamonkey_only):
         msg = ugettext(
             u'Add-ons for Thunderbird and SeaMonkey are now listed and '
             u'maintained on addons.thunderbird.net. You can use the same '
