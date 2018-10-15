@@ -7,7 +7,7 @@ from pages.desktop.base import Base
 class Detail(Base):
 
     _root_locator = (By.CLASS_NAME, 'Addon-extension')
-    _addon_name_locator = (By.CLASS_NAME, 'Addontitle')
+    _addon_name_locator = (By.CLASS_NAME, 'AddonTitle')
     _install_button_locator = (By.CLASS_NAME, 'AMInstallButton-button')
 
     def wait_for_page_to_load(self):
