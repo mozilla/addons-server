@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2695,8 +2695,8 @@ msgstr "ʇuǝɯdoʅǝʌǝᗡ uoısuǝʇxƎ"
 msgid "Lightweight Themes"
 msgstr "sǝɯǝɥ⊥ ʇɥƃıǝʍʇɥƃı⅂"
 
-msgid "Add-on Policies"
-msgstr "sǝıɔıʅoԀ uo-pp∀"
+msgid "Developer Policies"
+msgstr "sǝıɔıʅoԀ ɹǝdoʅǝʌǝᗡ"
 
 msgid "Add-on Validator"
 msgstr "ɹoʇɐpıʅɐɅ uo-pp∀"
@@ -3827,9 +3827,6 @@ msgstr "s∩ ʇɔɐʇuoↃ"
 
 msgid "Support"
 msgstr "ʇɹoddnS"
-
-msgid "Policies"
-msgstr "sǝıɔıʅoԀ"
 
 msgid "Report Bug"
 msgstr "ƃnԐ ʇɹodǝᴚ"
@@ -7451,8 +7448,9 @@ msgstr ".%s :snʇɐʇs sɐɥ ʇɐɥʇ uoppɐ uɐ oʇ suoısɹǝʌ ppɐ ʇouuɐɔ
 msgid "Version does not match the manifest file."
 msgstr ".ǝʅıɟ ʇsǝɟıuɐɯ ǝɥʇ ɥɔʇɐɯ ʇou sǝop uoısɹǝɅ"
 
-msgid "Version already exists."
-msgstr ".sʇsıxǝ ʎpɐǝɹʅɐ uoısɹǝɅ"
+#, python-format
+msgid "Version already exists. Latest version is: %s."
+msgstr ".%s :sı uoısɹǝʌ ʇsǝʇɐ⅂ .sʇsıxǝ ʎpɐǝɹʅɐ uoısɹǝɅ"
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "ᗡI∩⅁ ǝɥʇ ʇıɯo oʇ pǝʍoʅʅɐ ǝɹɐ suoısuǝʇxƎqǝＭ ʎʅuO"

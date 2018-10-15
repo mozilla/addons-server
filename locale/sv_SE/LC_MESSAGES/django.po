@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-09-25 15:41+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -2701,8 +2701,9 @@ msgstr "Utökningsutveckling"
 msgid "Lightweight Themes"
 msgstr "Lätta teman"
 
-msgid "Add-on Policies"
-msgstr "Riktlinjer för tillägg"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Utvecklarnyheter"
 
 msgid "Add-on Validator"
 msgstr "Tilläggsvalidator"
@@ -3879,9 +3880,6 @@ msgstr "Kontakta oss"
 
 msgid "Support"
 msgstr "Hjälp"
-
-msgid "Policies"
-msgstr "Policyer"
 
 msgid "Report Bug"
 msgstr "Rapportera en bugg"
@@ -7517,7 +7515,8 @@ msgstr "Du kan inte lägga till versioner till ett tillägg som har status: %s."
 msgid "Version does not match the manifest file."
 msgstr "Version matchar inte manifest-fil."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Versionen finns redan."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

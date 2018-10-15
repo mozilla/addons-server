@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-08-21 11:20+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2776,8 +2776,9 @@ msgstr "Utvidelsesutvikling"
 msgid "Lightweight Themes"
 msgstr "Lettvektstemaer"
 
-msgid "Add-on Policies"
-msgstr ""
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Utviklerkommentarer"
 
 msgid "Add-on Validator"
 msgstr ""
@@ -3923,10 +3924,6 @@ msgstr "Kontakt oss"
 
 msgid "Support"
 msgstr "Støtte"
-
-#, fuzzy
-msgid "Policies"
-msgstr "Gjennomgang er forespurt"
 
 #, fuzzy
 msgid "Report Bug"
@@ -7598,7 +7595,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"

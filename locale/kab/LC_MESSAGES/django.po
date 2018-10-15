@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-08-20 17:22+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2701,8 +2701,9 @@ msgstr "Taneflit n isiɣzaf"
 msgid "Lightweight Themes"
 msgstr "Isental fessusen"
 
-msgid "Add-on Policies"
-msgstr "Tisertiyin n uzegrir"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Isallen n uneflay"
 
 msgid "Add-on Validator"
 msgstr "Asentam n izegrar"
@@ -3837,9 +3838,6 @@ msgstr "Nermes-aγ-d"
 
 msgid "Support"
 msgstr "Tallalt"
-
-msgid "Policies"
-msgstr "Tisertiyin"
 
 msgid "Report Bug"
 msgstr "Azen-d abug"
@@ -7612,7 +7610,8 @@ msgstr "Ur temirzḍ ar ad ternuḍ ileqman i uzegrir yelllan deg addad: %s."
 msgid "Version does not match the manifest file."
 msgstr "Lqem ur imenṭaḍ ara akked ufaylu n umeskan."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Lqem yella yakan."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

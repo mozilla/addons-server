@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-06-20 17:05+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -2810,8 +2810,9 @@ msgstr ""
 msgid "Lightweight Themes"
 msgstr ""
 
-msgid "Add-on Policies"
-msgstr "Permisos dels complements"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Comentaris del desenvolupador"
 
 msgid "Add-on Validator"
 msgstr "Validador de complements"
@@ -3989,10 +3990,6 @@ msgstr "Contactes"
 
 msgid "Support"
 msgstr "Ajuda"
-
-#, fuzzy
-msgid "Policies"
-msgstr "Permisos dels complements"
 
 #, fuzzy
 msgid "Report Bug"
@@ -7729,7 +7726,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"

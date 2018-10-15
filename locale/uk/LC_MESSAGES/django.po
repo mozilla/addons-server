@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-10-04 05:48+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
@@ -2731,8 +2731,9 @@ msgstr "Розробка розширення"
 msgid "Lightweight Themes"
 msgstr "Легкі теми"
 
-msgid "Add-on Policies"
-msgstr "Правила додатків"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Новини розробників"
 
 msgid "Add-on Validator"
 msgstr "Валідатор додатків"
@@ -3890,9 +3891,6 @@ msgstr "Зв'язатися з нами"
 
 msgid "Support"
 msgstr "Підтримка"
-
-msgid "Policies"
-msgstr "Политіки"
 
 msgid "Report Bug"
 msgstr "Повідомити про помилку"
@@ -7534,7 +7532,8 @@ msgstr "Ви не можете додавати версії для додатк
 msgid "Version does not match the manifest file."
 msgstr "Версія не відповідає файлу маніфесту."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Версія вже існує."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

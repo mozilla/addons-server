@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-09-25 15:01+0000\n"
 "Last-Translator: nuttapong2539 <nuttapong2539@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -2720,8 +2720,9 @@ msgstr "การพัฒนาส่วนขยาย"
 msgid "Lightweight Themes"
 msgstr ""
 
-msgid "Add-on Policies"
-msgstr "นโยบายส่วนเสริม"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "การตอบกลับของนักพัฒนา"
 
 msgid "Add-on Validator"
 msgstr ""
@@ -3854,9 +3855,6 @@ msgstr "ติดต่อเรา"
 
 msgid "Support"
 msgstr "การสนับสนุน"
-
-msgid "Policies"
-msgstr "นโยบาย"
 
 msgid "Report Bug"
 msgstr "รายงานข้อบกพร่อง"
@@ -7497,7 +7495,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "มีรุ่นอยู่แล้ว"
 
 msgid "Only WebExtensions are allowed to omit the GUID"

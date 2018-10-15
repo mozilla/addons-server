@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-09-25 08:28+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -2718,8 +2718,9 @@ msgstr "Kiegészítőfejlesztés"
 msgid "Lightweight Themes"
 msgstr "Könnyű témák"
 
-msgid "Add-on Policies"
-msgstr "Kiegészítő-irányelvek"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Fejlesztői hírek"
 
 msgid "Add-on Validator"
 msgstr "Kiegészítő-ellenőrző"
@@ -3867,9 +3868,6 @@ msgstr "Kapcsolat"
 
 msgid "Support"
 msgstr "Támogatás"
-
-msgid "Policies"
-msgstr "Irányelvek"
 
 msgid "Report Bug"
 msgstr "Hibabejelentés"
@@ -7519,7 +7517,8 @@ msgstr "Nem adhat hozzá verziókat olyan kiegészítőkhöz, melyek állapota: 
 msgid "Version does not match the manifest file."
 msgstr "A verzió nem egyezik meg a jegyzékfájllal."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "A verzió már létezik."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

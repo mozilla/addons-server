@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2017-03-21 23:23+0000\n"
 "Last-Translator: Ramin.Najarbashi <Ramin.Najarbashi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2781,8 +2781,9 @@ msgstr ""
 msgid "Lightweight Themes"
 msgstr ""
 
-msgid "Add-on Policies"
-msgstr ""
+#, fuzzy
+msgid "Developer Policies"
+msgstr "انجمن‌های توسعه دهنده"
 
 msgid "Add-on Validator"
 msgstr ""
@@ -3925,10 +3926,6 @@ msgstr "تماس‌ها"
 
 msgid "Support"
 msgstr "پشتیبانی"
-
-#, fuzzy
-msgid "Policies"
-msgstr "بررسی"
 
 #, fuzzy
 msgid "Report Bug"
@@ -7629,7 +7626,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"

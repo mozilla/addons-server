@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-10-03 07:00+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -2701,8 +2701,9 @@ msgstr "Pengembangan Ekstensi"
 msgid "Lightweight Themes"
 msgstr "Tema Ringan"
 
-msgid "Add-on Policies"
-msgstr "Правила додатків"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Berita Pengembang"
 
 msgid "Add-on Validator"
 msgstr "Validator Pengaya"
@@ -3872,9 +3873,6 @@ msgstr "Hubungi Kami"
 
 msgid "Support"
 msgstr "Dukungan"
-
-msgid "Policies"
-msgstr "Kebijakan"
 
 msgid "Report Bug"
 msgstr "Laporkan Bug"
@@ -7516,7 +7514,8 @@ msgstr "Anda tidak dapat menambahkan versi pada pengaya yang berstatus: %s ."
 msgid "Version does not match the manifest file."
 msgstr "Versi ini tidak cocok dengan berkas manifest."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Versi yang sudah ada."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

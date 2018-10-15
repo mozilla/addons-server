@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2671,8 +2671,9 @@ msgstr ""
 msgid "Lightweight Themes"
 msgstr ""
 
-msgid "Add-on Policies"
-msgstr ""
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Алатки за веб и развивачи"
 
 msgid "Add-on Validator"
 msgstr ""
@@ -3774,9 +3775,6 @@ msgid "Contact Us"
 msgstr "Контакти"
 
 msgid "Support"
-msgstr ""
-
-msgid "Policies"
 msgstr ""
 
 msgid "Report Bug"
@@ -7376,7 +7374,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"
