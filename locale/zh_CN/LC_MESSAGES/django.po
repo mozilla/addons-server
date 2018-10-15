@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-15 11:10+0000\n"
+"PO-Revision-Date: 2018-10-15 14:38+0000\n"
 "Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -7330,9 +7330,9 @@ msgstr "您不能添加新版本，该附加组件处于状态：%s。"
 msgid "Version does not match the manifest file."
 msgstr "版本与清单文件不匹配。"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr "版本已经存在。"
+msgstr "版本已存在，最新版本为：%s。"
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "仅 WebExtension 允许省略 GUID"
