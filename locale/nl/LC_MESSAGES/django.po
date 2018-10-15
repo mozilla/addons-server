@@ -7519,7 +7519,7 @@ msgstr "Versie komt niet overeen met het manifest-bestand."
 
 #, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr "Versie bestaat al. De laatste versie is: %s."
+msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Alleen WebExtensions mogen de GUID weglaten"
