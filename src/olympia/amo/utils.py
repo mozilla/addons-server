@@ -44,7 +44,7 @@ import basket
 from babel import Locale
 from django_statsd.clients import statsd
 from easy_thumbnails import processors
-from html5lib.serializer.htmlserializer import HTMLSerializer
+from html5lib.serializer import HTMLSerializer
 from PIL import Image
 from rest_framework.utils.encoders import JSONEncoder
 from validator import unicodehelper
@@ -537,7 +537,7 @@ def clean_nl(string):
     # Serialize the parsed tree back to html.
     walker = html5lib.treewalkers.getTreeWalker('etree')
     stream = walker(parse)
-    serializer = HTMLSerializer(quote_attr_values=True,
+    serializer = HTMLSerializer(quote_attr_values='always',
                                 omit_optional_tags=False)
     return serializer.render(stream)
 
