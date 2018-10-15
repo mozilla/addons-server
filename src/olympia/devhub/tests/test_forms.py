@@ -25,7 +25,7 @@ from olympia.files.models import FileUpload
 from olympia.reviewers.models import RereviewQueueTheme
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
-from olympia.versions.models import ApplicationsVersions, License
+from olympia.versions.models import License
 
 
 class TestNewUploadForm(TestCase):
@@ -252,13 +252,13 @@ class TestCompatForm(TestCase):
         assert list(form.fields['min'].choices) == expected_min_choices
         assert list(form.fields['max'].choices) == expected_max_choices
 
-        expected_tb_choices = [(u'', u'---------')] + list(
-            AppVersion.objects.filter(application=amo.THUNDERBIRD.id)
+        expected_an_choices = [(u'', u'---------')] + list(
+            AppVersion.objects.filter(application=amo.ANDROID.id)
             .values_list('pk', 'version').order_by('version_int'))
         form = formset.forms[1]
-        assert form.app == amo.THUNDERBIRD
-        assert list(form.fields['min'].choices) == expected_tb_choices
-        assert list(form.fields['max'].choices) == expected_tb_choices
+        assert form.app == amo.ANDROID
+        assert list(form.fields['min'].choices) == expected_an_choices
+        assert list(form.fields['max'].choices) == expected_an_choices
 
     def test_form_choices_mozilla_signed_legacy(self):
         version = Addon.objects.get(id=3615).current_version

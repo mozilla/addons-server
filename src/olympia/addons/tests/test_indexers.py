@@ -464,18 +464,6 @@ class TestAddonIndexer(TestCase):
                 'min': 4000000200100,
                 'min_human': '4.0',
             },
-            amo.THUNDERBIRD.id: {
-                'max': 9999000000200100,
-                'max_human': '9999',
-                'min': 5000000200100,
-                'min_human': '5.0',
-            },
-            amo.SEAMONKEY.id: {
-                'max': 9999000000200100,
-                'max_human': '9999',
-                'min': 2010000200100,
-                'min_human': '2.1',
-            },
         }
         self.addon = addon_factory(persona_id=0, type=amo.ADDON_PERSONA)
         extracted = self._extract()

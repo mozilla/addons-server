@@ -403,10 +403,10 @@ class TestCompatibilityReportCron(
         self.generate_reports(addon=addon, good=1, bad=1, app=amo.FIREFOX,
                               app_version=self.app_version)
 
-        # Now change compatibility to support Thunderbird instead of Firefox,
+        # Now change compatibility to support Android instead of Firefox,
         # but make sure AppSupport stays in the previous state.
         ApplicationsVersions.objects.filter(
-            application=amo.FIREFOX.id).update(application=amo.THUNDERBIRD.id)
+            application=amo.FIREFOX.id).update(application=amo.ANDROID.id)
         assert AppSupport.objects.filter(
             addon=addon, app=amo.FIREFOX.id).exists()
 

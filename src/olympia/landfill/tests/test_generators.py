@@ -54,20 +54,8 @@ class FirefoxAddonGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
     type = ADDON_EXTENSION
 
 
-class ThunderbirdAddonGeneratorTests(_BaseAddonGeneratorMixin,
-                                     TestCase):
-    app = APPS['thunderbird']
-    type = ADDON_EXTENSION
-
-
 class AndroidAddonGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
     app = APPS['android']
-    type = ADDON_EXTENSION
-
-
-class SeamonkeyAddonGeneratorTests(_BaseAddonGeneratorMixin,
-                                   TestCase):
-    app = APPS['seamonkey']
     type = ADDON_EXTENSION
 
 

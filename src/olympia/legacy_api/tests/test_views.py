@@ -467,7 +467,7 @@ class APITest(TestCase):
             locale='ja', application=amo.FIREFOX.id, collection=c.collection)
         for lang, app, result in [('ja', 'firefox', 1),
                                   ('en-US', 'firefox', 0),
-                                  ('ja', 'seamonkey', 0)]:
+                                  ('ja', 'android', 0)]:
             self.assertContains(make_call('addon/5299', version=1.5,
                                           lang=lang, app=app),
                                 '<featured>%s</featured>' % result)
@@ -724,18 +724,6 @@ class AddonFilterTest(TestCase):
         addons = addon_filter(**self._defaults(addons=addons))
         assert addons == [addon3] + self.addons
         translation.deactivate()
-
-
-class SeamonkeyFeaturedTest(TestCase):
-    fixtures = ['base/seamonkey']
-
-    def test_seamonkey_wankery(self):
-        """
-        An add-on used to support seamonkey, but not in its current_version.
-        This was making our filters crash.
-        """
-        response = make_call('/list/featured/all/10/all/1', app='seamonkey')
-        assert response.context['addons'] == []
 
 
 class TestGuidSearch(TestCase):
@@ -1216,7 +1204,7 @@ class LanguagePacksTest(UploadTest):
     def setUp(self):
         super(LanguagePacksTest, self).setUp()
         self.url = reverse('legacy_api.language', args=['1.5'])
-        self.tb_url = self.url.replace('firefox', 'thunderbird')
+        self.tb_url = self.url.replace('firefox', 'android')
         self.addon = Addon.objects.get(pk=3723)
 
     def test_search_language_pack(self):
@@ -1230,7 +1218,7 @@ class LanguagePacksTest(UploadTest):
 
     def test_search_app(self):
         self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
-        AppSupport.objects.create(addon=self.addon, app=amo.THUNDERBIRD.id)
+        AppSupport.objects.create(addon=self.addon, app=amo.ANDROID.id)
         res = self.client.get(self.tb_url)
         self.assertContains(res, "<guid>{835A3F80-DF39")
 

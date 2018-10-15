@@ -392,17 +392,6 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
         # Should not be included:
         addon_factory(file_kw={'is_webextension': True})
         addon_factory(version_kw={'max_app_version': '56.*'})
-        addon_factory(version_kw={'application': amo.THUNDERBIRD.id})
-        # Also should not be included, this super weird add-on targets both
-        # Firefox and Thunderbird - with a low version for Thunderbird, but a
-        # high enough (56.*) for Firefox to be ignored by the task.
-        weird_addon = addon_factory(
-            version_kw={'application': amo.THUNDERBIRD.id})
-        av_min, _ = AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='48.*')
-        ApplicationsVersions.objects.get_or_create(
-            application=amo.FIREFOX.id, version=weird_addon.current_version,
-            min=av_min, max=self.firefox_56_star)
 
         with count_subtask_calls(pa.bump_appver_for_legacy_addons) as calls:
             call_command(

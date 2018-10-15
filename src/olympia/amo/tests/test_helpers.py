@@ -62,10 +62,10 @@ def test_slugify_spaces():
 
 def test_page_title():
     request = Mock()
-    request.APP = amo.THUNDERBIRD
+    request.APP = amo.ANDROID
     title = 'Oh hai!'
     s = render('{{ page_title("%s") }}' % title, {'request': request})
-    assert s == '%s :: Add-ons for Thunderbird' % title
+    assert s == '%s :: Add-ons for Firefox for Android' % title
 
     # pages without app should show a default
     request.APP = None

@@ -7,7 +7,7 @@ from olympia.versions.models import Version
 
 
 class TestVersion(TestCase):
-    fixtures = ['base/users', 'base/addon_3615', 'base/thunderbird']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         super(TestVersion, self).setUp()

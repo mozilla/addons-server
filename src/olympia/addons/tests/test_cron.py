@@ -19,8 +19,7 @@ from olympia.versions.models import Version
 
 
 class TestLastUpdated(TestCase):
-    fixtures = ['base/addon_3615', 'addons/listed',
-                'addons/persona', 'base/seamonkey', 'base/thunderbird']
+    fixtures = ['base/addon_3615', 'addons/listed', 'addons/persona']
 
     def test_personas(self):
         Addon.objects.update(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC)
@@ -55,11 +54,11 @@ class TestLastUpdated(TestCase):
     def test_appsupport(self):
         ids = Addon.objects.values_list('id', flat=True)
         cron._update_appsupport(ids)
-        assert AppSupport.objects.filter(app=amo.FIREFOX.id).count() == 4
+        assert AppSupport.objects.filter(app=amo.FIREFOX.id).count() == 3  # ??
 
         # Run it again to test deletes.
         cron._update_appsupport(ids)
-        assert AppSupport.objects.filter(app=amo.FIREFOX.id).count() == 4
+        assert AppSupport.objects.filter(app=amo.FIREFOX.id).count() == 3  # ??
 
     def test_appsupport_listed(self):
         AppSupport.objects.all().delete()
@@ -67,14 +66,6 @@ class TestLastUpdated(TestCase):
         cron.update_addon_appsupport()
         assert AppSupport.objects.filter(
             addon=3723, app=amo.FIREFOX.id).count() == 0
-
-    def test_appsupport_seamonkey(self):
-        addon = Addon.objects.get(pk=15663)
-        addon.update(status=amo.STATUS_PUBLIC)
-        AppSupport.objects.all().delete()
-        cron.update_addon_appsupport()
-        assert AppSupport.objects.filter(
-            addon=15663, app=amo.SEAMONKEY.id).count() == 1
 
 
 class TestHideDisabledFiles(TestCase):

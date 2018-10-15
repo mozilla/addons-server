@@ -100,9 +100,9 @@ class SearchBase(ESTestCaseWithAddons):
         permutations = [
             {},
             {'appver': amo.FIREFOX.id},
-            {'appver': amo.THUNDERBIRD.id},
+            {'appver': amo.ANDROID.id},
             {'platform': amo.PLATFORM_MAC.id},
-            {'appver': amo.SEAMONKEY.id, 'platform': amo.PLATFORM_WIN.id},
+            {'appver': amo.ANDROID.id, 'platform': amo.PLATFORM_WIN.id},
         ]
         for p in permutations:
             self.check_name_results(p, expected)
@@ -199,7 +199,7 @@ class TestESSearch(SearchBase):
 
     def test_legacy_redirects_to_non_ascii(self):
         # see http://sentry.dmz.phx1.mozilla.com/addons/group/2186/
-        url = '/ga-IE/seamonkey/tag/%E5%95%86%E5%93%81%E6%90%9C%E7%B4%A2'
+        url = '/ga-IE/firefox/tag/%E5%95%86%E5%93%81%E6%90%9C%E7%B4%A2'
         from_ = ('?sort=updated&lver=1.0&advancedsearch=1'
                  '&tag=dearbhair&cat=4%2C84')
         to = ('?sort=updated&advancedsearch=1&appver=1.0'
@@ -427,7 +427,7 @@ class TestESSearch(SearchBase):
         self.check_cat_filters({'cat': 999})
 
     def test_defaults_atype_foreign_cat(self):
-        cat = Category.objects.create(application=amo.THUNDERBIRD.id,
+        cat = Category.objects.create(application=amo.ANDROID.id,
                                       type=amo.ADDON_EXTENSION)
         self.check_cat_filters({'atype': amo.ADDON_EXTENSION, 'cat': cat.id})
 
@@ -1047,5 +1047,5 @@ class TestSearchSuggestions(TestAjaxSearch):
         self.search_applications('', [])
         self.search_applications('q=FIREFOX', [amo.FIREFOX, amo.ANDROID])
         self.search_applications('q=firefox', [amo.FIREFOX, amo.ANDROID])
-        self.search_applications('q=bird', [amo.THUNDERBIRD])
+        self.search_applications('q=droid', [amo.ANDROID])
         self.search_applications('q=mozilla', [])

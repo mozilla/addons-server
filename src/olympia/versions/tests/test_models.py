@@ -94,13 +94,6 @@ class TestVersionManager(TestCase):
             type=amo.ADDON_LPAPP, target_locale='it',
             file_kw={'strict_compatibility': True},
             version_kw={'min_app_version': '59.0', 'max_app_version': '59.*'})
-        addon_factory(
-            name='Thunderbird Polish Language Pack',
-            type=amo.ADDON_LPAPP, target_locale='pl',
-            file_kw={'strict_compatibility': True},
-            version_kw={
-                'application': amo.THUNDERBIRD.id,
-                'min_app_version': '58.0', 'max_app_version': '58.*'})
         # Even add a pack with a compatible version... not public. And another
         # one with a compatible version... not listed.
         incompatible_pack2 = addon_factory(
@@ -420,7 +413,7 @@ class TestVersion(TestCase):
         version = version_factory(addon=addon, max_app_version='3.5')
         assert not version.is_compatible_app(amo.FIREFOX)
         # An app that isn't supported should also be False.
-        assert not version.is_compatible_app(amo.THUNDERBIRD)
+        assert not version.is_compatible_app(amo.ANDROID)
         # An app that can't do d2c should also be False.
         assert not version.is_compatible_app(amo.UNKNOWN_APP)
 
@@ -680,13 +673,13 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # Add an extra ApplicationsVersions. It should *not* appear in
         # version.compatible_apps, because that's a cached_property.
         new_app_vr_min = AppVersion.objects.create(
-            application=amo.THUNDERBIRD.id, version='1.0')
+            application=amo.ANDROID.id, version='1.0')
         new_app_vr_max = AppVersion.objects.create(
-            application=amo.THUNDERBIRD.id, version='2.0')
+            application=amo.ANDROID.id, version='2.0')
         ApplicationsVersions.objects.create(
-            version=version, application=amo.THUNDERBIRD.id,
+            version=version, application=amo.ANDROID.id,
             min=new_app_vr_min, max=new_app_vr_max)
-        assert amo.THUNDERBIRD not in version.compatible_apps
+        assert amo.ANDROID not in version.compatible_apps
         assert amo.FIREFOX in version.compatible_apps
         app = version.compatible_apps[amo.FIREFOX]
         assert app.min.version == '3.0'

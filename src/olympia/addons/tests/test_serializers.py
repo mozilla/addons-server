@@ -168,11 +168,11 @@ class AddonSerializerOutputTestMixin(object):
         first_preview = Preview.objects.create(addon=self.addon, position=1)
 
         av_min = AppVersion.objects.get_or_create(
-            application=amo.THUNDERBIRD.id, version='2.0.99')[0]
+            application=amo.ANDROID.id, version='2.0.99')[0]
         av_max = AppVersion.objects.get_or_create(
-            application=amo.THUNDERBIRD.id, version='3.0.99')[0]
+            application=amo.ANDROID.id, version='3.0.99')[0]
         ApplicationsVersions.objects.get_or_create(
-            application=amo.THUNDERBIRD.id, version=self.addon.current_version,
+            application=amo.ANDROID.id, version=self.addon.current_version,
             min=av_min, max=av_max)
         # Reset current_version.compatible_apps now that we've added an app.
         del self.addon.current_version._compatible_apps
@@ -182,7 +182,7 @@ class AddonSerializerOutputTestMixin(object):
         cat2.save()
         AddonCategory.objects.create(addon=self.addon, category=cat2)
         cat3 = Category.from_static_category(
-            CATEGORIES[amo.THUNDERBIRD.id][amo.ADDON_EXTENSION]['calendar'])
+            CATEGORIES[amo.ANDROID.id][amo.ADDON_EXTENSION]['sports-games'])
         cat3.save()
         AddonCategory.objects.create(addon=self.addon, category=cat3)
 
@@ -193,7 +193,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result['average_daily_users'] == self.addon.average_daily_users
         assert result['categories'] == {
             'firefox': ['alerts-updates', 'bookmarks'],
-            'thunderbird': ['calendar']}
+            'android': ['sports-games']}
 
         # In this serializer latest_unlisted_version is omitted.
         assert 'latest_unlisted_version' not in result
@@ -593,7 +593,6 @@ class AddonSerializerOutputTestMixin(object):
         assert result_version['compatibility'] == {
             'android': {'max': '9999', 'min': '11.0'},
             'firefox': {'max': '9999', 'min': '4.0'},
-            'seamonkey': {'max': '9999', 'min': '2.1'},
         }
         assert result_version['is_strict_compatibility_enabled'] is False
 
@@ -1494,7 +1493,7 @@ class TestCompatOverrideSerializer(TestCase):
             compat=override, app=amo.FIREFOX.id, min_version='23.4',
             max_version='56.7.*')
         CompatOverrideRange.objects.create(
-            compat=override, app=amo.THUNDERBIRD.id, min_app_version='1.35',
+            compat=override, app=amo.ANDROID.id, min_app_version='1.35',
             max_app_version='90.*')
         result = self.serialize(override)
 
@@ -1516,18 +1515,18 @@ class TestCompatOverrideSerializer(TestCase):
             }]
         }
         assert version_range_firefox in result['version_ranges']
-        version_range_thunderbird = {
+        version_range_android = {
             'addon_min_version': '0',
             'addon_max_version': '*',
             'applications': [{
-                'name': amo.THUNDERBIRD.pretty,
-                'id': amo.THUNDERBIRD.id,
+                'name': amo.ANDROID.pretty,
+                'id': amo.ANDROID.id,
                 'min_version': '1.35',
                 'max_version': '90.*',
-                'guid': amo.THUNDERBIRD.guid
+                'guid': amo.ANDROID.guid
             }]
         }
-        assert version_range_thunderbird in result['version_ranges']
+        assert version_range_android in result['version_ranges']
 
     def test_collapsed_ranges(self):
         """Collapsed ranges are where there is a single version range of
@@ -1538,7 +1537,7 @@ class TestCompatOverrideSerializer(TestCase):
             compat=override, app=amo.FIREFOX.id,
             min_version='23.4', max_version='56.7.*')
         CompatOverrideRange.objects.create(
-            compat=override, app=amo.THUNDERBIRD.id,
+            compat=override, app=amo.ANDROID.id,
             min_version='23.4', max_version='56.7.*',
             min_app_version='1.35', max_app_version='90.*')
         result = self.serialize(override)
@@ -1561,11 +1560,11 @@ class TestCompatOverrideSerializer(TestCase):
             'guid': amo.FIREFOX.guid
         }
         assert application_firefox in applications
-        application_thunderbird = {
-            'name': amo.THUNDERBIRD.pretty,
-            'id': amo.THUNDERBIRD.id,
+        application_android = {
+            'name': amo.ANDROID.pretty,
+            'id': amo.ANDROID.id,
             'min_version': '1.35',
             'max_version': '90.*',
-            'guid': amo.THUNDERBIRD.guid
+            'guid': amo.ANDROID.guid
         }
-        assert application_thunderbird in applications
+        assert application_android in applications

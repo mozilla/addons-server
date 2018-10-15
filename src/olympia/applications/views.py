@@ -1,8 +1,6 @@
 from django.db.transaction import non_atomic_requests
 from django.utils.translation import ugettext
 
-import waffle
-
 from olympia import amo
 from olympia.amo.feeds import BaseFeed
 from olympia.amo.templatetags.jinja_helpers import absolutify, url
@@ -14,10 +12,7 @@ from .models import AppVersion
 
 def get_versions(order=('application', 'version_int')):
     def fetch_versions():
-        if waffle.switch_is_active('disallow-thunderbird-and-seamonkey'):
-            apps = amo.APP_USAGE_FIREFOXES_ONLY
-        else:
-            apps = amo.APP_USAGE
+        apps = amo.APP_USAGE
         versions = {app.id: [] for app in apps}
         qs = list(AppVersion.objects.order_by(*order)
                   .filter(application__in=versions)

@@ -1,8 +1,7 @@
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
-from olympia.constants.applications import (
-    ANDROID, FIREFOX, SEAMONKEY, THUNDERBIRD)
+from olympia.constants.applications import ANDROID, FIREFOX
 from olympia.constants.base import (
     ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_PERSONA, ADDON_SEARCH,
     ADDON_SLUGS, ADDON_STATICTHEME, ADDON_THEME)

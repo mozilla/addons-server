@@ -43,7 +43,7 @@ from olympia.reviewers.models import RereviewQueueTheme
 from olympia.stats.utils import migrate_theme_update_count
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
-from olympia.versions.models import ApplicationsVersions, License, Version
+from olympia.versions.models import License, Version
 
 
 log = olympia.core.logger.getLogger('z.task')

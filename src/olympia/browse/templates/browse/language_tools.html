@@ -5,13 +5,8 @@
 {% block title %}{{ page_title(title) }}{% endblock %}
 {% block bodyclass %}dictionaries{% endblock %}
 
-{% if request.APP.browser %}
-  {% set install_dict = _('Install Dictionary') %}
-  {% set install_pack = _('Install Language Pack') %}
-{% else %}
-  {% set install_dict = _('Download Dictionary') %}
-  {% set install_pack = _('Download Language Pack') %}
-{% endif %}
+{% set install_dict = _('Install Dictionary') %}
+{% set install_pack = _('Install Language Pack') %}
 
 {% macro langtool(addons, text) %}
   {% for addon in addons %}

@@ -347,10 +347,6 @@ class TestDownloads(TestDownloadsBase):
         url = reverse('downloads.file', args=[self.file.id, 'attachment'])
         self.assert_served_locally(self.client.get(url), attachment=True)
 
-    def test_nonbrowser_app(self):
-        url = self.file_url.replace('firefox', 'thunderbird')
-        self.assert_served_locally(self.client.get(url), attachment=True)
-
     def test_trailing_filename(self):
         url = self.file_url + self.file.filename
         self.assert_served_by_cdn(self.client.get(url))

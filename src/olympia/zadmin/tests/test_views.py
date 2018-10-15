@@ -304,7 +304,7 @@ class TestFeatures(TestCase):
 
     def test_bad_collection_for_app(self):
         data = initial(self.f)
-        data['application'] = amo.THUNDERBIRD.id
+        data['application'] = amo.ANDROID.id
         response = self.client.post(self.url, formset(data, initial_count=1))
         assert response.context['form'].errors[0]['collection'] == (
             ['Invalid collection for this application.'])

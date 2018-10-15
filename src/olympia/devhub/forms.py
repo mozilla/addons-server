@@ -10,7 +10,6 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import jinja2
-import waffle
 
 from olympia import amo
 from olympia.access import acl
@@ -414,8 +413,6 @@ class BaseCompatFormSet(BaseModelFormSet):
         static_theme = version and version.addon.type == amo.ADDON_STATICTHEME
         if static_theme:
             available_apps = amo.APP_USAGE_STATICTHEME
-        elif waffle.switch_is_active('disallow-thunderbird-and-seamonkey'):
-            available_apps = amo.APP_USAGE_FIREFOXES_ONLY
         else:
             available_apps = amo.APP_USAGE
         self.can_delete = not static_theme  # No tinkering with apps please.
@@ -493,7 +490,7 @@ class NewUploadForm(forms.Form):
     admin_override_validation = forms.BooleanField(
         required=False, label=_(u'Override failed validation'))
     compatible_apps = forms.TypedMultipleChoiceField(
-        choices=amo.APPS_FIREFOXES_ONLY_CHOICES,
+        choices=amo.APPS_CHOICES,
         # Pre-select only Desktop Firefox, most of the times developers
         # don't develop their WebExtensions for Android.
         # See this GitHub comment: https://bit.ly/2QaMicU
