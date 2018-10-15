@@ -586,6 +586,23 @@ class TestReviewerScore(TestCase):
             amo.REVIEWED_EXTENSION_MEDIUM_RISK]
         assert score.version == self.addon.current_version
 
+    def test_award_points_disabled_auto_approval(self):
+        self.version = version_factory(
+            addon=self.addon, version='1.1', file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True})
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.NOT_AUTO_APPROVED,
+            weight=101)
+        ReviewerScore.award_points(
+            self.user, self.addon, self.addon.status,
+            version=self.addon.current_version,
+            post_review=False, content_review=False)
+        score = ReviewerScore.objects.get(user=self.user)
+        assert score.score == amo.REVIEWED_SCORES[
+            amo.REVIEWED_EXTENSION_MEDIUM_RISK]
+        assert score.version == self.addon.current_version
+
     def test_award_moderation_points(self):
         ReviewerScore.award_moderation_points(self.user, self.addon, 1)
         score = ReviewerScore.objects.all()[0]
