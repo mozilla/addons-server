@@ -44,7 +44,7 @@ import basket
 from babel import Locale
 from django_statsd.clients import statsd
 from easy_thumbnails import processors
-from html5lib.serializer.htmlserializer import HTMLSerializer
+from html5lib.serializer import HTMLSerializer
 from PIL import Image
 from rest_framework.utils.encoders import JSONEncoder
 from validator import unicodehelper
