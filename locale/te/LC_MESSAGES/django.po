@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-09-03 16:07+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -2670,8 +2670,9 @@ msgstr "పొడగింతల డెవలప్‌మెంట్"
 msgid "Lightweight Themes"
 msgstr "తేలికపాటి అలంకారాలు"
 
-msgid "Add-on Policies"
-msgstr "పొడిగింత విధానాలు"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "డెవలపర్ వార్తలు"
 
 msgid "Add-on Validator"
 msgstr "పొడిగింత స్థిరీకరించిన"
@@ -3772,9 +3773,6 @@ msgstr "మమ్ముల్ని సంప్రదించండి"
 
 msgid "Support"
 msgstr "మద్దతు"
-
-msgid "Policies"
-msgstr "విధానాలు"
 
 msgid "Report Bug"
 msgstr "బగ్ ఫిర్యాదు"
@@ -7366,7 +7364,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "వెర్షన్ ఇప్పటికే ఉంది."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

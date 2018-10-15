@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-08-24 17:09+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -2694,8 +2694,9 @@ msgstr "拡張機能開発"
 msgid "Lightweight Themes"
 msgstr "軽量テーマ"
 
-msgid "Add-on Policies"
-msgstr "アドオンのポリシー"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "開発者向けニュース"
 
 msgid "Add-on Validator"
 msgstr "アドオンバリデーター"
@@ -3825,9 +3826,6 @@ msgstr "問い合わせ"
 
 msgid "Support"
 msgstr "サポート"
-
-msgid "Policies"
-msgstr "ポリシー"
 
 msgid "Report Bug"
 msgstr "バグを報告"
@@ -7457,7 +7455,8 @@ msgstr "次のステータスのアドオンにバージョンを追加するこ
 msgid "Version does not match the manifest file."
 msgstr "バージョンがマニフェストファイルと一致しません。"
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "バージョンが既に存在します。"
 
 msgid "Only WebExtensions are allowed to omit the GUID"

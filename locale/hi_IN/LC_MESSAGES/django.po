@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-09-16 09:39+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2685,8 +2685,9 @@ msgstr ""
 msgid "Lightweight Themes"
 msgstr ""
 
-msgid "Add-on Policies"
-msgstr "ऐड-ऑन नीतियाँ"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "डेवलेपर समाचार"
 
 msgid "Add-on Validator"
 msgstr "ऐड-ऑन प्रमाणनकर्ता"
@@ -3786,9 +3787,6 @@ msgstr "हमसे संपर्क करें"
 
 msgid "Support"
 msgstr "समर्थन"
-
-msgid "Policies"
-msgstr "नीतियाँ"
 
 msgid "Report Bug"
 msgstr ""
@@ -7380,7 +7378,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"

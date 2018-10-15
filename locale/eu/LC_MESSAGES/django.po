@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -2776,8 +2776,9 @@ msgstr ""
 msgid "Lightweight Themes"
 msgstr ""
 
-msgid "Add-on Policies"
-msgstr "Gehigarriaren politikak"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Garatzailearen iruzkinak"
 
 msgid "Add-on Validator"
 msgstr ""
@@ -3949,10 +3950,6 @@ msgstr "Kontaktuak"
 
 msgid "Support"
 msgstr "Laguntza"
-
-#, fuzzy
-msgid "Policies"
-msgstr "Gehigarriaren politikak"
 
 msgid "Report Bug"
 msgstr ""
@@ -7681,7 +7678,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-10-06 21:01+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -2774,8 +2774,9 @@ msgstr "Vývoj doplnkov"
 msgid "Lightweight Themes"
 msgstr "Ľahké témy vzhľadu"
 
-msgid "Add-on Policies"
-msgstr "Zásady tvorby a správy doplnkov"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Novinky od vývojárov"
 
 msgid "Add-on Validator"
 msgstr "Overenie doplnku"
@@ -3948,9 +3949,6 @@ msgstr "Kontaktujte nás"
 
 msgid "Support"
 msgstr "Podpora"
-
-msgid "Policies"
-msgstr "Zásady"
 
 msgid "Report Bug"
 msgstr "Nahlásiť chybu"
@@ -7862,7 +7860,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Táto verzia už existuje."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

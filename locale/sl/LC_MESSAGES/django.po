@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-09-25 16:56+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -2758,8 +2758,9 @@ msgstr "Razvoj dodatkov"
 msgid "Lightweight Themes"
 msgstr "Lahke teme"
 
-msgid "Add-on Policies"
-msgstr "Politika za dodatke"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Novice za razvijalce"
 
 msgid "Add-on Validator"
 msgstr "Preverjanje veljavnosti dodatka"
@@ -3923,9 +3924,6 @@ msgstr "Pišite nam"
 
 msgid "Support"
 msgstr "Podpora"
-
-msgid "Policies"
-msgstr "Pravilniki"
 
 msgid "Report Bug"
 msgstr "Prijavi hrošča"
@@ -7615,7 +7613,8 @@ msgstr "Ne morete dodajati različic dodatku, katerega stanje je: %s."
 msgid "Version does not match the manifest file."
 msgstr "Različica se ne ujema z datoteko manifesta."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Različica že obstaja."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

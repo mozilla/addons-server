@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-09-26 13:01+0000\n"
 "Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
@@ -2738,8 +2738,9 @@ msgstr "Développement d’extension"
 msgid "Lightweight Themes"
 msgstr "Thèmes légers"
 
-msgid "Add-on Policies"
-msgstr "Politiques des modules"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Nouvelles développeur"
 
 msgid "Add-on Validator"
 msgstr "Validateur de modules"
@@ -3895,9 +3896,6 @@ msgstr "Nous contacter"
 
 msgid "Support"
 msgstr "Assistance"
-
-msgid "Policies"
-msgstr "Politiques"
 
 msgid "Report Bug"
 msgstr "Signaler un problème"
@@ -7554,7 +7552,8 @@ msgstr "Vous ne pouvez pas ajouter de version à un module dont l’état est :
 msgid "Version does not match the manifest file."
 msgstr "La version ne correspond pas au fichier manifeste."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "La version existe déjà."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

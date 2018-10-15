@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -2752,8 +2752,9 @@ msgstr "Tworzenie rozszerzeń"
 msgid "Lightweight Themes"
 msgstr "Lekkie motywy"
 
-msgid "Add-on Policies"
-msgstr "Zasady dodatków"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Aktualności"
 
 msgid "Add-on Validator"
 msgstr "Weryfikator dodatków"
@@ -3894,9 +3895,6 @@ msgstr "Kontakt z nami"
 
 msgid "Support"
 msgstr "Pomoc"
-
-msgid "Policies"
-msgstr "Zasady"
 
 msgid "Report Bug"
 msgstr "Zgłoś błąd"
@@ -7563,7 +7561,8 @@ msgstr "Nie można dodać wersji do dodatku, który ma status: %s."
 msgid "Version does not match the manifest file."
 msgstr "Wersja nie pasuje do pliku manifestu."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Wersja już istnieje."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

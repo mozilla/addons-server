@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-08-27 14:15+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2698,8 +2698,9 @@ msgstr "Utvidingsutvikling"
 msgid "Lightweight Themes"
 msgstr "Lette tema"
 
-msgid "Add-on Policies"
-msgstr "Retningslinjer for utvidingar"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Utviklarnytt"
 
 msgid "Add-on Validator"
 msgstr "Utvidingsvalidator"
@@ -3818,9 +3819,6 @@ msgstr "Kontakt oss"
 
 msgid "Support"
 msgstr "Hjelp"
-
-msgid "Policies"
-msgstr "Retningslinjer"
 
 msgid "Report Bug"
 msgstr "Rapporter feil"
@@ -7596,7 +7594,8 @@ msgstr "Du kan ikkje legge til versjonar til ei utviding som har statusen: %s."
 msgid "Version does not match the manifest file."
 msgstr "Versjonen passar ikkje med manifest-fila."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Versjonen finst allereie."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

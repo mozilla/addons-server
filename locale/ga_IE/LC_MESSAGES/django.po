@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -2842,8 +2842,9 @@ msgstr "Forbairt Eisínteachtaí"
 msgid "Lightweight Themes"
 msgstr "Téamaí Éadroma"
 
-msgid "Add-on Policies"
-msgstr "Polasaithe Breiseán"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Nuacht Forbartha"
 
 msgid "Add-on Validator"
 msgstr "Bailíochtóir Breiseán"
@@ -3998,10 +3999,6 @@ msgstr "Dul i dteagmháil linn"
 
 msgid "Support"
 msgstr "Tacaíocht"
-
-#, fuzzy
-msgid "Policies"
-msgstr "Polasaithe Breiseán"
 
 #, fuzzy
 msgid "Report Bug"
@@ -7756,7 +7753,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"

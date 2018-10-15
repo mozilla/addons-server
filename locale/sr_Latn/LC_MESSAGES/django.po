@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -3045,8 +3045,9 @@ msgstr "Razvoj ekstenzija"
 msgid "Lightweight Themes"
 msgstr ""
 
-msgid "Add-on Policies"
-msgstr "Polise dodataka"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Programerske vesti"
 
 msgid "Add-on Validator"
 msgstr "Provera validnosti dodatka"
@@ -4426,10 +4427,6 @@ msgstr "Kontaktirajte nas"
 
 msgid "Support"
 msgstr "Podrška"
-
-#, fuzzy
-msgid "Policies"
-msgstr "Polise dodataka"
 
 #, fuzzy
 msgid "Report Bug"
@@ -8763,7 +8760,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"

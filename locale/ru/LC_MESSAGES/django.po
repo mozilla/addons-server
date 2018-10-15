@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-10-03 05:24+0000\n"
 "Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -2742,8 +2742,9 @@ msgstr "Разработка расширения"
 msgid "Lightweight Themes"
 msgstr "Лёгкие темы"
 
-msgid "Add-on Policies"
-msgstr "Политики дополнения"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Новости разработчиков"
 
 msgid "Add-on Validator"
 msgstr "Валидатор дополнений"
@@ -3911,9 +3912,6 @@ msgstr "Связаться с нами"
 
 msgid "Support"
 msgstr "Поддержка"
-
-msgid "Policies"
-msgstr "Политики"
 
 msgid "Report Bug"
 msgstr "Сообщить об ошибке"
@@ -7582,7 +7580,8 @@ msgstr "Вы не можете добавить к этому дополнени
 msgid "Version does not match the manifest file."
 msgstr "Версия не соответствует манифесту."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Версия уже существует."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

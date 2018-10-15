@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2798,8 +2798,9 @@ msgstr "ਐਕਸਟੇਸ਼ਨ ਵਿਕਾਸ"
 msgid "Lightweight Themes"
 msgstr "ਲਾਈਟਵੇਟ ਥੀਮ"
 
-msgid "Add-on Policies"
-msgstr "ਐਡ-ਆਨ ਨੀਤੀਆਂ"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
 
 msgid "Add-on Validator"
 msgstr "ਐਡ-ਆਨ ਪ੍ਰਮਾਣਕਰਤਾ"
@@ -3987,10 +3988,6 @@ msgstr "ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰ ਰਿਹਾਂ"
 
 msgid "Support"
 msgstr "ਸਹਿਯੋਗ"
-
-#, fuzzy
-msgid "Policies"
-msgstr "ਐਡ-ਆਨ ਨੀਤੀਆਂ"
 
 #, fuzzy
 msgid "Report Bug"
@@ -7725,7 +7722,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"

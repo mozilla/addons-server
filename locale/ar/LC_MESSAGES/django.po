@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-09-05 22:32+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -2861,8 +2861,9 @@ msgstr ""
 msgid "Lightweight Themes"
 msgstr ""
 
-msgid "Add-on Policies"
-msgstr ""
+#, fuzzy
+msgid "Developer Policies"
+msgstr "أخبار المطور"
 
 msgid "Add-on Validator"
 msgstr ""
@@ -4041,10 +4042,6 @@ msgstr "المتواصلون"
 
 msgid "Support"
 msgstr "الدعم"
-
-#, fuzzy
-msgid "Policies"
-msgstr "التعليق"
 
 #, fuzzy
 msgid "Report Bug"
@@ -7835,7 +7832,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"
