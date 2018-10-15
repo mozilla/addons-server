@@ -36,9 +36,9 @@ pytest-xdist==1.23.2 \
     --hash=sha256:1ef0d05c905cfa0c5442c90e9e350e65c6ada120e33a00a066ca51c89f5f869a
 pytest-forked==0.2 \
     --hash=sha256:f275cb48a73fc61a6710726348e1da6d68a978f0ec0c54ece5a5fae5977e5a08
-freezegun==0.3.10 \
-    --hash=sha256:94c59d69bb99c9ec3ca5a3adb41930d3ea09d2a9756c23a02d89fa75646e78dd \
-    --hash=sha256:703caac155dcaad61f78de4cb0666dca778d854dfb90b3699930adee0559a622
+freezegun==0.3.11 \
+    --hash=sha256:6cb82b276f83f2acce67f121dc2656f4df26c71e32238334eb071170b892a278 \
+    --hash=sha256:e839b43bfbe8158b4d62bb97e6313d39f3586daf48e1314fb1083d2ef17700da
 cookies==2.2.1 \
     --hash=sha256:15bee753002dff684987b8df8c235288eb8d45f8191ae056254812dfd42c81d3
 responses==0.9.0 \
