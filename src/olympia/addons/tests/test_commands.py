@@ -209,6 +209,24 @@ def test_process_addons_invalid_task():
         call_command('process_addons', task='foo')
 
 
+@pytest.mark.django_db
+def test_process_addons_limit_addons(monkeypatch):
+    def sign_all_addons_mock(ids):
+        assert ids == addon_ids
+
+    def sign_some_addons_mock(ids):
+        assert ids == addon_ids[:2]
+
+    addon_ids = [addon_factory().id for _ in range(5)]
+    assert Addon.objects.count() == 5
+
+    monkeypatch.setattr(SIGN_ADDONS, sign_all_addons_mock)
+    call_command('process_addons', task='sign_addons')
+
+    monkeypatch.setattr(SIGN_ADDONS, sign_some_addons_mock)
+    call_command('process_addons', task='sign_addons', limit=2)
+
+
 @contextmanager
 def count_subtask_calls(original_function):
     """Mock a celery tasks subtask method and record it's calls.

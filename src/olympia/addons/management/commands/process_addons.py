@@ -138,6 +138,12 @@ class Command(BaseCommand):
             dest='ids',
             help='Only apply task to specific addon ids (comma-separated).')
 
+        parser.add_argument(
+            '--limit',
+            action='store',
+            dest='limit',
+            help='Only apply task to the first X addon ids.')
+
     def handle(self, *args, **options):
         task = tasks.get(options.get('task'))
         if not task:
@@ -153,6 +159,8 @@ class Command(BaseCommand):
         pks = (addon_manager.filter(*task['qs'])
                             .values_list('pk', flat=True)
                             .order_by('id'))
+        if options.get('limit'):
+            pks = pks[:options.get('limit')]
         if 'pre' in task:
             # This is run in process to ensure its run before the tasks.
             pks = task['pre'](pks)
