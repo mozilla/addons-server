@@ -322,12 +322,11 @@ class TestAddonManager(TestCase):
             before + 1)
 
     def test_new_featured(self):
-        f = Addon.objects.featured(amo.FIREFOX)
-        assert f.count() == 3
-        assert sorted(x.id for x in f) == (
+        addons = Addon.objects.featured(amo.FIREFOX)
+        assert addons.count() == 3
+        assert sorted(x.id for x in addons) == (
             [2464, 7661, 15679])
-        f = Addon.objects.featured(amo.ANDROID)
-        assert not f.exists()
+        assert not Addon.objects.featured(amo.ANDROID).exists()
 
     def test_filter_for_many_to_many(self):
         # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
@@ -1819,14 +1818,14 @@ class TestUpdateStatus(TestCase):
     def test_no_valid_file_ends_with_NULL(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         version = Version.objects.create(addon=addon)
-        f = File.objects.create(status=amo.STATUS_AWAITING_REVIEW,
-                                version=version)
+        file_ = File.objects.create(
+            status=amo.STATUS_AWAITING_REVIEW, version=version)
         addon.status = amo.STATUS_NOMINATED
         addon.save()
         assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NOMINATED)
-        f.status = amo.STATUS_DISABLED
-        f.save()
+        file_.status = amo.STATUS_DISABLED
+        file_.save()
         assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NULL)
 
@@ -1905,12 +1904,12 @@ class TestAddonModelsFeatured(TestCase):
             del Addon._featured
 
     def _test_featured_random(self):
-        f = Addon.featured_random(amo.FIREFOX, 'en-US')
-        assert sorted(f) == [1001, 1003, 2464, 3481, 7661, 15679]
-        f = Addon.featured_random(amo.FIREFOX, 'fr')
-        assert sorted(f) == [1001, 1003, 2464, 7661, 15679]
-        f = Addon.featured_random(amo.ANDROID, 'en-US')
-        assert f == []
+        featured = Addon.featured_random(amo.FIREFOX, 'en-US')
+        assert sorted(featured) == [1001, 1003, 2464, 3481, 7661, 15679]
+        featured = Addon.featured_random(amo.FIREFOX, 'fr')
+        assert sorted(featured) == [1001, 1003, 2464, 7661, 15679]
+        featured = Addon.featured_random(amo.ANDROID, 'en-US')
+        assert featured == []
 
     def test_featured_random(self):
         self._test_featured_random()
