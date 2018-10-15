@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-09-25 14:43+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -2715,8 +2715,9 @@ msgstr "Desenvolvimento de extensões"
 msgid "Lightweight Themes"
 msgstr "Temas leves"
 
-msgid "Add-on Policies"
-msgstr "Políticas de extras"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Notícias do programador"
 
 msgid "Add-on Validator"
 msgstr "Validar extra"
@@ -3865,9 +3866,6 @@ msgstr "Contactar-nos"
 
 msgid "Support"
 msgstr "Suporte"
-
-msgid "Policies"
-msgstr "Políticas"
 
 msgid "Report Bug"
 msgstr "Reportar um bug"
@@ -7527,7 +7525,8 @@ msgstr "Não pode adicionar versões a um extra que possui o estado: %s."
 msgid "Version does not match the manifest file."
 msgstr "A versão não corresponde ao ficheiro manifest."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "A versão já existe."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

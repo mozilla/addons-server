@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-10-04 13:27+0000\n"
 "Last-Translator: Francesco Lodolo <francesco.lodolo@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -2740,8 +2740,9 @@ msgstr "Sviluppo estensioni"
 msgid "Lightweight Themes"
 msgstr "Temi leggeri"
 
-msgid "Add-on Policies"
-msgstr "Norme comp. aggiuntivi"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Notizie per sviluppatori"
 
 msgid "Add-on Validator"
 msgstr "Strumento di verifica componenti aggiuntivi"
@@ -3913,9 +3914,6 @@ msgstr "Contattaci"
 
 msgid "Support"
 msgstr "Supporto"
-
-msgid "Policies"
-msgstr "Linee guida"
 
 msgid "Report Bug"
 msgstr "Segnala problemi"
@@ -7584,7 +7582,8 @@ msgstr "Non è possibile aggiungere nuove versioni di un componente aggiuntivo i
 msgid "Version does not match the manifest file."
 msgstr "Il numero di versione non corrisponde a quello indicato nel file manifesto."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Questa versione esiste già."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

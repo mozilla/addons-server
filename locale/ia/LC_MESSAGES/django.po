@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-09-27 06:45+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2706,8 +2706,9 @@ msgstr "Disveloppamento de extensiones"
 msgid "Lightweight Themes"
 msgstr "Themas legier"
 
-msgid "Add-on Policies"
-msgstr "Politicas de additivos"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Novas de disveloppator"
 
 msgid "Add-on Validator"
 msgstr "Utensile de validation de additivos"
@@ -3850,9 +3851,6 @@ msgstr "Contacta nos"
 
 msgid "Support"
 msgstr "Supporto"
-
-msgid "Policies"
-msgstr "Politicas"
 
 msgid "Report Bug"
 msgstr "Reportar un defecto"
@@ -7488,7 +7486,8 @@ msgstr "Tu non pote adder versiones a un additivo in stato: %s."
 msgid "Version does not match the manifest file."
 msgstr "Le version non concorda con le file manifesto."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Le version existe jam."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

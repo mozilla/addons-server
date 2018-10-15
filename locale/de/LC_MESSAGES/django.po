@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-09-25 18:13+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2730,8 +2730,9 @@ msgstr "Erweiterungsentwicklung"
 msgid "Lightweight Themes"
 msgstr "Leichtgewichtige Themes"
 
-msgid "Add-on Policies"
-msgstr "Add-on-Regeln"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Entwicklernachrichten"
 
 msgid "Add-on Validator"
 msgstr "Add-on-Überprüfung"
@@ -3878,9 +3879,6 @@ msgstr "Kontakt"
 
 msgid "Support"
 msgstr "Hilfe"
-
-msgid "Policies"
-msgstr "Richtlinien"
 
 msgid "Report Bug"
 msgstr "Fehler melden"
@@ -7531,7 +7529,8 @@ msgstr "Zu einem Add-on im Status %s können keine neuen Versionen hinzugefügt 
 msgid "Version does not match the manifest file."
 msgstr "Version passt nicht zur Manifest-Datei."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Version existiert bereits."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

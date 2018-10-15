@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-09-26 01:22+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2701,8 +2701,9 @@ msgstr "გაფართოების შემუშავება"
 msgid "Lightweight Themes"
 msgstr "მსუბუქი თემები"
 
-msgid "Add-on Policies"
-msgstr "დამატების დებულებები"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "დეველოპერის სიახლეები"
 
 msgid "Add-on Validator"
 msgstr "დამატების შემმოწმებელი"
@@ -3837,9 +3838,6 @@ msgstr "დაგვიკავშირდით"
 
 msgid "Support"
 msgstr "მხარდაჭერა"
-
-msgid "Policies"
-msgstr "დებულებები"
 
 msgid "Report Bug"
 msgstr "მოხსენება ხარვეზის შესახებ"
@@ -7477,7 +7475,8 @@ msgstr "დამატებაზე, რომლის მდგომარ
 msgid "Version does not match the manifest file."
 msgstr "ვერსია არ ემთხვევა მანიფესტის ფაილით განსაზღვრულს."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "ვერსია უკვე არსებობს."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

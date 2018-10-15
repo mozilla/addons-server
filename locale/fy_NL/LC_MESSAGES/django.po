@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-09-03 12:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2721,8 +2721,9 @@ msgstr "Utwreidingsûntwikling"
 msgid "Lightweight Themes"
 msgstr "Ljochtgewicht-tema’s"
 
-msgid "Add-on Policies"
-msgstr "Add-onbelied"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Untwikkelersnijs"
 
 msgid "Add-on Validator"
 msgstr "Add-on-falidator"
@@ -3859,9 +3860,6 @@ msgstr "Kontakt opnimme"
 
 msgid "Support"
 msgstr "Stipe"
-
-msgid "Policies"
-msgstr "Beliedsrigels"
 
 msgid "Report Bug"
 msgstr "Bug melde"
@@ -7509,7 +7507,8 @@ msgstr "Jo kinne gjin ferzjes oan in add-on mei de steat %s tafoegje."
 msgid "Version does not match the manifest file."
 msgstr "Ferzje komt net oerien mei it manifest-bestân."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Ferzje bestiet al."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

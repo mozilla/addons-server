@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -134,7 +134,7 @@ msgstr ""
 #: src/olympia/amo/templates/amo/site_nav.html:53
 #: src/olympia/browse/templates/browse/impala/category_landing.html:21
 #: src/olympia/browse/views.py:55 src/olympia/browse/views.py:69
-#: src/olympia/browse/views.py:194
+#: src/olympia/browse/views.py:195
 msgid "Featured"
 msgstr ""
 
@@ -243,11 +243,11 @@ msgstr ""
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: src/olympia/addons/models.py:1798 src/olympia/constants/base.py:84
+#: src/olympia/addons/models.py:1792 src/olympia/constants/base.py:84
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2207
+#: src/olympia/addons/models.py:2201
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
 
@@ -341,8 +341,8 @@ msgstr ""
 #: src/olympia/amo/templates/amo/side_nav.html:3
 #: src/olympia/amo/templates/amo/side_nav.html:11
 #: src/olympia/amo/templates/amo/site_nav.html:3
-#: src/olympia/amo/templates/amo/site_nav.html:25 src/olympia/browse/views.py:195
-#: src/olympia/browse/views.py:240 src/olympia/browse/views.py:437
+#: src/olympia/amo/templates/amo/site_nav.html:25 src/olympia/browse/views.py:196
+#: src/olympia/browse/views.py:241 src/olympia/browse/views.py:438
 msgid "Most Popular"
 msgstr ""
 
@@ -485,7 +485,7 @@ msgid "Categories"
 msgstr ""
 
 #: src/olympia/addons/templates/addons/persona_detail_table.html:3
-#: src/olympia/browse/views.py:415 src/olympia/devhub/views.py:83
+#: src/olympia/browse/views.py:416 src/olympia/devhub/views.py:83
 #: src/olympia/reviewers/templates/reviewers/addon_details_box.html:41
 msgid "Updated"
 msgstr ""
@@ -497,7 +497,7 @@ msgid "Artist"
 msgstr ""
 
 #: src/olympia/addons/templates/addons/persona_detail_table.html:15
-#: src/olympia/browse/views.py:418 src/olympia/devhub/views.py:87
+#: src/olympia/browse/views.py:419 src/olympia/devhub/views.py:87
 #: src/olympia/devhub/views.py:94
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html:51
 #: src/olympia/ratings/forms.py:43
@@ -1169,7 +1169,7 @@ msgstr ""
 msgid "This must be a valid hex color code, such as #000000."
 msgstr ""
 
-#: src/olympia/amo/middleware.py:224 src/olympia/templates/base.html:66
+#: src/olympia/amo/middleware.py:226 src/olympia/templates/base.html:66
 #: src/olympia/templates/impala/base.html:98
 msgid ""
 "Some features are temporarily disabled while we perform website maintenance. "
@@ -1363,8 +1363,8 @@ msgstr ""
 #: src/olympia/amo/templates/amo/side_nav.html:12
 #: src/olympia/amo/templates/amo/site_nav.html:4
 #: src/olympia/amo/templates/amo/site_nav.html:26 src/olympia/browse/views.py:57
-#: src/olympia/browse/views.py:67 src/olympia/browse/views.py:196
-#: src/olympia/browse/views.py:241 src/olympia/search/forms.py:36
+#: src/olympia/browse/views.py:67 src/olympia/browse/views.py:197
+#: src/olympia/browse/views.py:242 src/olympia/search/forms.py:36
 msgid "Top Rated"
 msgstr ""
 
@@ -1676,7 +1676,7 @@ msgid "Popularity"
 msgstr ""
 
 #: src/olympia/bandwagon/views.py:160 src/olympia/browse/views.py:59
-#: src/olympia/browse/views.py:70 src/olympia/browse/views.py:414
+#: src/olympia/browse/views.py:70 src/olympia/browse/views.py:415
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:21
 #: src/olympia/devhub/views.py:84 src/olympia/devhub/views.py:92
 #: src/olympia/reviewers/templates/reviewers/leaderboard.html:20
@@ -2101,24 +2101,24 @@ msgid "Recently Updated"
 msgstr ""
 
 #: src/olympia/browse/views.py:62 src/olympia/browse/views.py:73
-#: src/olympia/browse/views.py:238
+#: src/olympia/browse/views.py:239
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:67
 #: src/olympia/search/forms.py:42
 msgid "Up & Coming"
 msgstr ""
 
-#: src/olympia/browse/views.py:197 src/olympia/browse/views.py:239
-#: src/olympia/browse/views.py:438
+#: src/olympia/browse/views.py:198 src/olympia/browse/views.py:240
+#: src/olympia/browse/views.py:439
 msgid "Recently Added"
 msgstr ""
 
-#: src/olympia/browse/views.py:416 src/olympia/devhub/views.py:85
+#: src/olympia/browse/views.py:417 src/olympia/devhub/views.py:85
 #: src/olympia/devhub/views.py:91
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html:60
 msgid "Created"
 msgstr ""
 
-#: src/olympia/browse/views.py:417 src/olympia/devhub/views.py:86
+#: src/olympia/browse/views.py:418 src/olympia/devhub/views.py:86
 #: src/olympia/devhub/views.py:93
 #: src/olympia/reviewers/templates/reviewers/addon_details_box.html:96
 #: src/olympia/stats/templates/stats/addon_report_menu.html:8
@@ -2171,7 +2171,7 @@ msgstr ""
 msgid "Download Language Pack"
 msgstr ""
 
-#: src/olympia/browse/templates/browse/language_tools.html:31
+#: src/olympia/browse/templates/browse/language_tools.html:28
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your "
@@ -2179,35 +2179,35 @@ msgid ""
 "forms. Language pack add-ons change the language of the entire application."
 msgstr ""
 
-#: src/olympia/browse/templates/browse/language_tools.html:39
+#: src/olympia/browse/templates/browse/language_tools.html:36
 msgid "Available in your locale"
 msgstr ""
 
-#: src/olympia/browse/templates/browse/language_tools.html:41
+#: src/olympia/browse/templates/browse/language_tools.html:38
 msgid "List of language packs and dictionaries available in your locale."
 msgstr ""
 
-#: src/olympia/browse/templates/browse/language_tools.html:44
-#: src/olympia/browse/templates/browse/language_tools.html:66
+#: src/olympia/browse/templates/browse/language_tools.html:41
+#: src/olympia/browse/templates/browse/language_tools.html:63
 msgid "Language"
 msgstr ""
 
-#: src/olympia/browse/templates/browse/language_tools.html:45
-#: src/olympia/browse/templates/browse/language_tools.html:67
+#: src/olympia/browse/templates/browse/language_tools.html:42
+#: src/olympia/browse/templates/browse/language_tools.html:64
 #: src/olympia/constants/base.py:128
 msgid "Dictionary"
 msgstr ""
 
-#: src/olympia/browse/templates/browse/language_tools.html:46
-#: src/olympia/browse/templates/browse/language_tools.html:68
+#: src/olympia/browse/templates/browse/language_tools.html:43
+#: src/olympia/browse/templates/browse/language_tools.html:65
 msgid "Language Pack"
 msgstr ""
 
-#: src/olympia/browse/templates/browse/language_tools.html:61
+#: src/olympia/browse/templates/browse/language_tools.html:58
 msgid "All locales"
 msgstr ""
 
-#: src/olympia/browse/templates/browse/language_tools.html:63
+#: src/olympia/browse/templates/browse/language_tools.html:60
 msgid "List of language packs and dictionaries."
 msgstr ""
 
@@ -4077,7 +4077,8 @@ msgid "Lightweight Themes"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/nav.html:39
-msgid "Add-on Policies"
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:29
+msgid "Developer Policies"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/nav.html:46
@@ -5816,10 +5817,6 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:27
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:24
 msgid "Support"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:29
-msgid "Policies"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:30
@@ -8438,100 +8435,100 @@ msgstr ""
 msgid "Access your data for all websites"
 msgstr ""
 
-#: src/olympia/files/utils.py:450
+#: src/olympia/files/utils.py:452
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
-#: src/olympia/files/utils.py:461
+#: src/olympia/files/utils.py:463
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
-#: src/olympia/files/utils.py:498
+#: src/olympia/files/utils.py:500
 msgid ""
 "Cannot find min/max version. Maybe \"strict_min_version\" or "
 "\"strict_max_version\" contains an unsupported version?"
 msgstr ""
 
-#: src/olympia/files/utils.py:582
+#: src/olympia/files/utils.py:584
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
-#: src/olympia/files/utils.py:598
+#: src/olympia/files/utils.py:600
 msgid "Could not parse uploaded file."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:686
+#: src/olympia/files/utils.py:688
 msgid ""
 "Invalid file name in archive. Please make sure all filenames are utf-8 or "
 "latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:695
+#: src/olympia/files/utils.py:697
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:703
+#: src/olympia/files/utils.py:705
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:751
+#: src/olympia/files/utils.py:753
 msgid "Invalid archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:881 src/olympia/files/utils.py:885
+#: src/olympia/files/utils.py:883 src/olympia/files/utils.py:887
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#: src/olympia/files/utils.py:906
+#: src/olympia/files/utils.py:908
 msgid "Could not find an add-on ID."
 msgstr ""
 
-#: src/olympia/files/utils.py:917
+#: src/olympia/files/utils.py:919
 #, python-format
 msgid ""
 "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID"
 " of your add-on on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/utils.py:928
+#: src/olympia/files/utils.py:930
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:931
+#: src/olympia/files/utils.py:933
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:934
+#: src/olympia/files/utils.py:936
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
 
-#: src/olympia/files/utils.py:941
+#: src/olympia/files/utils.py:943
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
-#: src/olympia/files/utils.py:954
+#: src/olympia/files/utils.py:956
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#: src/olympia/files/utils.py:961
+#: src/olympia/files/utils.py:963
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
-#: src/olympia/files/utils.py:966
+#: src/olympia/files/utils.py:968
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-#: src/olympia/files/utils.py:1000
+#: src/olympia/files/utils.py:1002
 msgid "Unexpected error."
 msgstr ""
 
-#: src/olympia/files/utils.py:1005
+#: src/olympia/files/utils.py:1007
 #, python-format
 msgid ""
 "<em:type> in your install.rdf (%s) does not match the type of your add-on on "
@@ -10929,30 +10926,31 @@ msgid "Version does not match the manifest file."
 msgstr ""
 
 #: src/olympia/signing/views.py:134
-msgid "Version already exists."
+#, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
-#: src/olympia/signing/views.py:145
+#: src/olympia/signing/views.py:146
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr ""
 
-#: src/olympia/signing/views.py:153
+#: src/olympia/signing/views.py:154
 msgid ""
 "Please specify your Add-on GUID in the manifest if it's longer than 64 "
 "characters."
 msgstr ""
 
-#: src/olympia/signing/views.py:160
+#: src/olympia/signing/views.py:161
 msgid "Invalid GUID in URL"
 msgstr ""
 
-#: src/olympia/signing/views.py:187
+#: src/olympia/signing/views.py:188
 msgid ""
 "You cannot add a listed version to this addon via the API due to missing "
 "metadata. Please submit via the website"
 msgstr ""
 
-#: src/olympia/signing/views.py:217
+#: src/olympia/signing/views.py:218
 msgid "No uploaded file for that addon and version."
 msgstr ""
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-07-21 17:44+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -2803,10 +2803,9 @@ msgstr ""
 msgid "Lightweight Themes"
 msgstr ""
 
-# 80%
-# 100%
-msgid "Add-on Policies"
-msgstr "Lisäosakäytännöt"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Kehitysuutiset"
 
 msgid "Add-on Validator"
 msgstr "Lisäosan kelpuutus"
@@ -3966,12 +3965,6 @@ msgstr "Ota yhteyttä"
 
 msgid "Support"
 msgstr "Tuki"
-
-# 80%
-# 100%
-#, fuzzy
-msgid "Policies"
-msgstr "Lisäosakäytännöt"
 
 msgid "Report Bug"
 msgstr "Ilmoita virhe"
@@ -7700,7 +7693,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Versio on jo olemassa."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

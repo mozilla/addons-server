@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-09-24 01:47+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2664,8 +2664,9 @@ msgstr ""
 msgid "Lightweight Themes"
 msgstr "Temes llixeros"
 
-msgid "Add-on Policies"
-msgstr ""
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Developer Hub"
 
 msgid "Add-on Validator"
 msgstr ""
@@ -3765,9 +3766,6 @@ msgstr "Contauta con nós"
 
 msgid "Support"
 msgstr ""
-
-msgid "Policies"
-msgstr "Polítiques"
 
 msgid "Report Bug"
 msgstr ""
@@ -7353,7 +7351,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "La versión yá esiste."
 
 msgid "Only WebExtensions are allowed to omit the GUID"

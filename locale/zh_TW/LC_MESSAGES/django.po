@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-09-25 14:38+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -2676,8 +2676,9 @@ msgstr "擴充套件開發"
 msgid "Lightweight Themes"
 msgstr "個性面板"
 
-msgid "Add-on Policies"
-msgstr "附加元件政策"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "開發者新聞"
 
 msgid "Add-on Validator"
 msgstr "附加元件驗證器"
@@ -3789,9 +3790,6 @@ msgstr "聯絡我們"
 
 msgid "Support"
 msgstr "支援"
-
-msgid "Policies"
-msgstr "政策"
 
 msgid "Report Bug"
 msgstr "回報 Bug"
@@ -7447,7 +7445,8 @@ msgstr "您無法新增版本到狀態為 %s 的附加元件。"
 msgid "Version does not match the manifest file."
 msgstr "版本號碼與安裝資訊檔不符。"
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "版本已存在。"
 
 msgid "Only WebExtensions are allowed to omit the GUID"

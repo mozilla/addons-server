@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-09-13 01:48+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -2679,8 +2679,9 @@ msgstr "확장 기능 개발"
 msgid "Lightweight Themes"
 msgstr "가벼운 테마"
 
-msgid "Add-on Policies"
-msgstr "부가 기능 정책"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "개발자 뉴스"
 
 msgid "Add-on Validator"
 msgstr "부가 기능 검사기"
@@ -3813,9 +3814,6 @@ msgstr "연락처"
 
 msgid "Support"
 msgstr "도움말"
-
-msgid "Policies"
-msgstr "정책"
 
 msgid "Report Bug"
 msgstr "오류 보고"
@@ -7503,7 +7501,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"

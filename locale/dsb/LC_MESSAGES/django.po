@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"POT-Creation-Date: 2018-10-15 09:44+0000\n"
 "PO-Revision-Date: 2018-09-26 19:43+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2746,8 +2746,9 @@ msgstr "Wuwijanje rozšyrjenjow"
 msgid "Lightweight Themes"
 msgstr "Lažke drastwy"
 
-msgid "Add-on Policies"
-msgstr "Pšawidła dodankow"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Nowosći wuwijarjow"
 
 msgid "Add-on Validator"
 msgstr "Pśeglědowański program za dodanki"
@@ -3896,9 +3897,6 @@ msgstr "Stajśo se z nami do zwiska"
 
 msgid "Support"
 msgstr "Pomoc"
-
-msgid "Policies"
-msgstr "Zasady"
 
 msgid "Report Bug"
 msgstr "Programowu zmólku k wěsći daś"
@@ -7560,7 +7558,8 @@ msgstr "Njamóžośo dodankoju wersije pśidaś, kótary ma status: %s."
 msgid "Version does not match the manifest file."
 msgstr "Wersija njewótpowědujo manifestowej dataji."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Wersija južo eksistěrujo."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
