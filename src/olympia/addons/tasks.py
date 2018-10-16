@@ -12,7 +12,7 @@ from django.utils import translation
 from elasticsearch_dsl import Search
 from PIL import Image
 
-import olympia.core.logger
+import olympia.core
 from olympia import amo, activity
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
@@ -542,6 +542,7 @@ def _get_lwt_default_author():
 @transaction.atomic
 def add_static_theme_from_lwt(lwt):
     from olympia.activity.models import AddonLog
+    olympia.core.set_user(UserProfile.objects.get(pk=settings.TASK_USER_ID))
     # Try to handle LWT with no authors
     author = (lwt.listed_authors or [_get_lwt_default_author()])[0]
     # Wrap zip in FileUpload for Addon/Version from_upload to consume.
