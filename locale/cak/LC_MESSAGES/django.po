@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-16 22:22+0000\n"
+"PO-Revision-Date: 2018-10-16 22:50+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5189,23 +5189,23 @@ msgstr "Ke'ak'ama' taq ximonel {start_sub_heading}rik'in {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr ""
+msgstr "Anin ke'ak'utu' ronojel ri taq ruximonel ajk'amaya'l ruxaq pa k'ak'a' taq ruwi'."
 
 #. editorial content for the discovery pane.
 msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'atz'eta' taq wuj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
-msgstr ""
+msgstr "Katok pa PDFs rik'in ri PDF chokoy nawajo'."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Karopin pa kiwi' ri jech'un taq okem & ri ojqanela' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
-msgstr ""
+msgstr "Ke'ayuju' ri jech'un taq okem pa taq ruxaq chuqa' ri URL etab'äl taq ojqanem."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
