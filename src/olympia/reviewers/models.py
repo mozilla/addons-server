@@ -430,7 +430,14 @@ class ReviewerScore(ModelBase):
                     'No such version/auto approval summary when determining '
                     'event type to award points: %r', exception)
                 weight = 0
-            if weight > amo.POST_REVIEW_WEIGHT_HIGHEST_RISK:
+
+            if addon.type == amo.ADDON_DICT:
+                reviewed_score_name = 'REVIEWED_DICT_FULL'
+            elif addon.type in [amo.ADDON_LPAPP, amo.ADDON_LPADDON]:
+                reviewed_score_name = 'REVIEWED_LP_FULL'
+            elif addon.type == amo.ADDON_SEARCH:
+                reviewed_score_name = 'REVIEWED_SEARCH_FULL'
+            elif weight > amo.POST_REVIEW_WEIGHT_HIGHEST_RISK:
                 reviewed_score_name = 'REVIEWED_EXTENSION_HIGHEST_RISK'
             elif weight > amo.POST_REVIEW_WEIGHT_HIGH_RISK:
                 reviewed_score_name = 'REVIEWED_EXTENSION_HIGH_RISK'
@@ -490,7 +497,7 @@ class ReviewerScore(ModelBase):
         # As a hack, we set 'post_review' to True.
         if (version and
                 version.is_webextension and
-                addon.type == amo.ADDON_EXTENSION):
+                addon.type in amo.GROUP_TYPE_ADDON):
             post_review = True
 
         user_log.info(
