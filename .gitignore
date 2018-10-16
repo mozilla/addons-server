@@ -30,8 +30,9 @@ static/js/node_lib/*
 *.po~
 *.mo
 site-static/*
-user-media/*
-guarded-addons/*
+storage/shared_storage/*
+storage/guarded-addons/*
+storage/files/*
 .tox/
 MANIFEST
 docker/artifacts/*
