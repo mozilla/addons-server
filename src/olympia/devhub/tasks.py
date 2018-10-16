@@ -614,8 +614,7 @@ def run_validator(path, listed=True):
         Path to addon / extension file to validate.
 
     *listed=True*
-        If the addon is unlisted, treat it as if it was a self hosted one
-        (don't fail on the presence of an updateURL).
+        Validate the XPI as listed or unlisted.
     """
     apps = dump_apps.Command.get_json_path()
 
