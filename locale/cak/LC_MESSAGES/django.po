@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-16 20:48+0000\n"
+"PO-Revision-Date: 2018-10-16 21:10+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5113,23 +5113,23 @@ msgstr "Titzalq'omïx pe/from pa Aleman {start_sub_heading}rik'in {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "Tak'ulu' jeb'ël taq tzalq'ominïk richin Aleman rik'in Ingles, Frances, Español chuqa' ch'aqa' chik ch'ab'äl."
 
 #. editorial content for the discovery pane.
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tak'uku' jun kicholb'al q'aton ajk'amaya'l taq ruxaq {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
-msgstr ""
+msgstr "Taq'ata' ri Firefox richin noka pa ajk'amaya'l ruxaq ri e'acha'on rat."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Kana'o toq yasamäj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "Tasamajij ri ruk'iyirisaxik asamaj rik'in taq ramaj najikib'a'."
 
 #. editorial content for the discovery pane.
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
