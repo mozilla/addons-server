@@ -487,7 +487,7 @@ class ReviewerScore(ModelBase):
         # the file as a legacy file which is not what we want. The file is
         # still a webextension and should treated as such, regardless of
         # auto-approval being disabled or not.
-        # As a hack, we set post_review to True.)
+        # As a hack, we set 'post_review' to True.
         if (version and
                 version.is_webextension and
                 addon.type == amo.ADDON_EXTENSION):
