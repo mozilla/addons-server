@@ -338,37 +338,10 @@ function initValidator($doc) {
     };
 
     CompatMsgVisitor.prototype.message = function(msg) {
-        if (msg.for_appversions) {
-            var guid = this.findMatchingApp(msg.for_appversions)
-            if (guid) {
-                var app = {guid: guid, version: this.majorTargetVer[guid]};
-                // This is basically just black magic to create a separate
-                // "tier" in the output for each app/version we have
-                // compatibility messages for. As far as I can tell, the actual
-                // contents of the ID are pretty arbitrary, and the
-                // sluggification regexp isn't really necessary.
-                app.id = (app.guid + '-' + app.version).replace(/[^a-z0-9_-]+/gi, '');
-
-                msg.tier = app.id;  // change the tier to match app/version
-                MsgVisitor.prototype.message.apply(this, [msg, {app: app}]);
-            }
-        } else if (this.getMsgType(msg) === 'error') {
+        if (this.getMsgType(msg) === 'error') {
             // For non-appversion messages, only show errors
             MsgVisitor.prototype.message.apply(this, arguments);
         }
-    };
-
-    CompatMsgVisitor.prototype.findMatchingApp = function(appVersions) {
-        // Returns true if any of the given app version ranges match the
-        // versions we're checking.
-        //
-        // {'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': ['4.0b1']}
-        return _.find(_.keys(appVersions), function(guid) {
-            var targetMajorVersion = this.majorTargetVer[guid];
-            return _.some(appVersions[guid], function(version) {
-                return version.split('.')[0] == targetMajorVersion;
-            });
-        }, this);
     };
 
     CompatMsgVisitor.prototype.tierOptions = function(options) {

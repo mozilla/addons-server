@@ -25,10 +25,8 @@ from django.template import loader
 from django.utils.translation import ugettext
 
 import celery
-import validator
 import waffle
 
-from celery.exceptions import SoftTimeLimitExceeded
 from celery.result import AsyncResult
 from django_statsd.clients import statsd
 
@@ -44,7 +42,6 @@ from olympia.amo.utils import (
     utc_millesecs_from_epoch)
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.management.commands import dump_apps
-from olympia.applications.models import AppVersion
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon, SafeZip
 from olympia.lib.akismet.models import AkismetReport
@@ -152,11 +149,6 @@ def create_version_for_upload(addon, upload, channel):
             addon.update(status=amo.STATUS_NOMINATED)
         auto_sign_version(version)
         add_dynamic_theme_tag(version)
-
-
-# Override the validator's stock timeout exception so that it can
-# detect and report celery timeouts.
-validator.ValidationTimeout = SoftTimeLimitExceeded
 
 
 def validation_task(fn):
@@ -614,72 +606,15 @@ def revoke_api_key(key_id):
         pass
 
 
-@task(soft_time_limit=settings.VALIDATOR_TIMEOUT)
-@use_primary_db
-def compatibility_check(upload_pk, app_guid, appversion_str, **kw):
-    log.info('COMPAT CHECK for upload %s / app %s version %s'
-             % (upload_pk, app_guid, appversion_str))
-    upload = FileUpload.objects.get(pk=upload_pk)
-    app = amo.APP_GUIDS.get(app_guid)
-    appver = AppVersion.objects.get(application=app.id, version=appversion_str)
-
-    result = run_validator(
-        upload.path,
-        for_appversions={app_guid: [appversion_str]},
-        test_all_tiers=True,
-        # Ensure we only check compatibility against this one specific
-        # version:
-        overrides={'targetapp_minVersion': {app_guid: appversion_str},
-                   'targetapp_maxVersion': {app_guid: appversion_str}},
-        compat=True)
-
-    upload.validation = result
-    upload.compat_with_app = app.id
-    upload.compat_with_appver = appver
-    upload.save()  # We want to hit the custom save().
-
-
-def run_validator(path, for_appversions=None, test_all_tiers=False,
-                  overrides=None, compat=False, listed=True):
+def run_validator(path, listed=True):
     """A pre-configured wrapper around the addon validator.
 
-    *file_path*
+    *path*
         Path to addon / extension file to validate.
 
-    *for_appversions=None*
-        An optional dict of application versions to validate this addon
-        for. The key is an application GUID and its value is a list of
-        versions.
-
-    *test_all_tiers=False*
-        When False (default) the validator will not continue if it
-        encounters fatal errors.  When True, all tests in all tiers are run.
-        See bug 615426 for discussion on this default.
-
-    *overrides=None*
-        Normally the validator gets info from the manifest but there are a
-        few things we need to override. See validator for supported overrides.
-        Example: {'targetapp_maxVersion': {'<app guid>': '<version>'}}
-
-    *compat=False*
-        Set this to `True` when performing a bulk validation. This allows the
-        validator to ignore certain tests that should not be run during bulk
-        validation (see bug 735841).
-
     *listed=True*
-        If the addon is unlisted, treat it as if it was a self hosted one
-        (don't fail on the presence of an updateURL).
-
-    To validate the addon for compatibility with Firefox 5 and 6,
-    you'd pass in::
-
-        for_appversions={amo.FIREFOX.guid: ['5.0.*', '6.0.*']}
-
-    Not all application versions will have a set of registered
-    compatibility tests.
+        Validate the XPI as listed or unlisted.
     """
-    from validator.validate import validate as validator_validate
-
     apps = dump_apps.Command.get_json_path()
 
     if not os.path.exists(apps):
@@ -694,23 +629,59 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
             shutil.copyfileobj(storage.open(path), temp.file)
             path = temp.name
 
+        cmd = [
+            settings.ADDONS_VALIDATOR_BIN,
+            '--boring',
+            '--output=json',
+            '--approved_applications=' + apps,
+            '--timeout=' + str(settings.VALIDATOR_TIMEOUT),
+        ]
+
+        if not listed:
+            cmd.append('--selfhosted')
+
+        cmd.append(path)
+
+        stdout, stderr = (
+            tempfile.TemporaryFile(),
+            tempfile.TemporaryFile())
+
         with statsd.timer('devhub.validator'):
-            json_result = validator_validate(
-                path,
-                for_appversions=for_appversions,
-                format='json',
-                # When False, this flag says to stop testing after one
-                # tier fails.
-                determined=test_all_tiers,
-                approved_applications=apps,
-                overrides=overrides,
-                compat_test=compat,
-                listed=listed
+            process = subprocess.Popen(
+                # Have to use a string instead of a list because of how
+                # `shell=True` resolves paths and working dirs
+                ' '.join(cmd),
+                stdout=stdout,
+                stderr=stderr,
+                # We're explicitly using a shell here because amo-validator
+                # uses subprocess itself to shell out calls to spidermonkey
+                # and it somehow needs to be called with shell=True to make
+                # all that work properly. Not too much investigation went into
+                # the "why" but since `shell=True` isn't much of a security
+                # concern here given that all legacy add-ons we're validating
+                # are uploaded / developed by Mozilla employees at this point
+                # we're kinda safe-ish...
+                shell=True
             )
 
-        track_validation_stats(json_result)
+            process.wait()
 
-        return json_result
+            stdout.seek(0)
+            stderr.seek(0)
+
+            output, error = stdout.read(), stderr.read()
+
+            # Make sure we close all descriptors, otherwise they'll hang around
+            # and could cause a nasty exception.
+            stdout.close()
+            stderr.close()
+
+    if error:
+        raise ValueError(error)
+
+    track_validation_stats(output)
+
+    return output
 
 
 def run_addons_linter(path, listed=True):
