@@ -142,10 +142,12 @@ class TestAddStaticThemeFromLwt(TestCase):
             application=amo.FIREFOX.id, version='53.0')
         AppVersion.objects.get_or_create(
             application=amo.FIREFOX.id, version='*')
+        user_factory(id=settings.TASK_USER_ID, email='taskuser@mozilla.com')
 
     def _mock_xpi_side_effect(self, lwt, upload_path):
         xpi_path = os.path.join(
-            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+            settings.ROOT,
+            'src/olympia/devhub/tests/addons/mozilla_static_theme.zip')
         copy_stored_file(xpi_path, upload_path)
         assert not os.path.isdir(upload_path)
         return mock.DEFAULT
@@ -184,7 +186,8 @@ class TestAddStaticThemeFromLwt(TestCase):
 
     def test_add_static_theme_from_lwt(self):
         author = user_factory()
-        persona = addon_factory(type=amo.ADDON_PERSONA, users=[author])
+        persona = addon_factory(
+            type=amo.ADDON_PERSONA, users=[author], name='Firefox Theme')
         persona.update(
             created=self.create_date, modified=self.modify_date,
             last_updated=self.update_date)
