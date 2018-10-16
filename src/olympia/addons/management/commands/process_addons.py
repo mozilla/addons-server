@@ -142,6 +142,7 @@ class Command(BaseCommand):
             '--limit',
             action='store',
             dest='limit',
+            type=int,
             help='Only apply task to the first X addon ids.')
 
     def handle(self, *args, **options):
