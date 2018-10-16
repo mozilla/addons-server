@@ -24,7 +24,7 @@ from olympia.files.utils import (
 
 task_log = olympia.core.logger.getLogger('z.task')
 
-# Detect blacklisted files based on their extension.
+# Detect denied files based on their extension.
 denied_extensions = (
     'dll', 'exe', 'dylib', 'so', 'class', 'swf')
 
