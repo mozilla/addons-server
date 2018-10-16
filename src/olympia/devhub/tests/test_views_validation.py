@@ -14,14 +14,11 @@ from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import TestCase
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
-from olympia.applications.models import AppVersion
-from olympia.devhub.tasks import compatibility_check
 from olympia.devhub.tests.test_tasks import ValidatorTestCase
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
 from olympia.files.utils import check_xpi_info, parse_addon
 from olympia.users.models import UserProfile
-from olympia.zadmin.models import ValidationResult
 
 
 class TestUploadValidation(ValidatorTestCase, BaseUploadTest):
@@ -246,7 +243,7 @@ class TestValidateAddon(TestCase):
         assert doc('#upload-addon').attr('data-upload-url-unlisted') == (
             reverse('devhub.standalone_upload_unlisted'))
 
-    @mock.patch('validator.validate.validate')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_filename_not_uuidfied(self, validate_mock):
         validate_mock.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
         url = reverse('devhub.upload')
@@ -257,7 +254,7 @@ class TestValidateAddon(TestCase):
             reverse('devhub.upload_detail', args=(upload.uuid.hex,)))
         assert 'Validation Results for animated.png' in response.content
 
-    @mock.patch('validator.validate.validate')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_upload_listed_addon(self, validate_mock):
         """Listed addons are not validated as "self-hosted" addons."""
         validate_mock.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
@@ -269,7 +266,7 @@ class TestValidateAddon(TestCase):
         # No automated signing for listed add-ons.
         assert FileUpload.objects.get().automated_signing is False
 
-    @mock.patch('validator.validate.validate')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_upload_unlisted_addon(self, validate_mock):
         """Unlisted addons are validated as "self-hosted" addons."""
         validate_mock.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
@@ -549,275 +546,3 @@ class TestValidateFile(BaseUploadTest):
         data = json.loads(res.content)
         # Again, make sure we don't see a dupe UUID error:
         assert data['validation']['messages'] == []
-
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def test_compatibility_check(self, run_validator):
-        run_validator.return_value = json.dumps({
-            'errors': 0,
-            'success': True,
-            'warnings': 0,
-            'notices': 0,
-            'message_tree': {},
-            'messages': [],
-            'metadata': {}
-        })
-        upload = self.get_upload('extension.xpi')
-        AppVersion.objects.create(
-            application=amo.FIREFOX.id,
-            version='10.0.*')
-
-        compatibility_check(upload.pk, amo.FIREFOX.guid, '10.0.*')
-
-        assert run_validator.call_args[1]['compat']
-
-
-class TestCompatibilityResults(TestCase):
-    fixtures = ['base/users', 'devhub/addon-compat-results']
-
-    def setUp(self):
-        super(TestCompatibilityResults, self).setUp()
-        assert self.client.login(email='reviewer@mozilla.com')
-        self.addon = Addon.objects.get(slug='addon-compat-results')
-        self.result = ValidationResult.objects.get(
-            file__version__addon=self.addon)
-        self.job = self.result.validation_job
-
-    def validate(self, expected_status=200):
-        response = self.client.post(
-            reverse('devhub.json_bulk_compat_result',
-                    args=[self.addon.slug, self.result.id]), follow=True)
-        assert response.status_code == expected_status
-        return json.loads(response.content)
-
-    def test_login_protected(self):
-        self.client.logout()
-        response = self.client.get(
-            reverse('devhub.bulk_compat_result',
-                    args=[self.addon.slug, self.result.id]))
-        assert response.status_code == 302
-        response = self.client.post(
-            reverse('devhub.json_bulk_compat_result',
-                    args=[self.addon.slug, self.result.id]))
-        assert response.status_code == 302
-
-    def test_target_version(self):
-        response = self.client.get(
-            reverse('devhub.bulk_compat_result',
-                    args=[self.addon.slug, self.result.id]))
-        assert response.status_code == 200
-        doc = pq(response.content)
-        ver = json.loads(doc('.results').attr('data-target-version'))
-        assert amo.FIREFOX.guid in ver, ('Unexpected: %s' % ver)
-        assert ver[amo.FIREFOX.guid] == self.job.target_version.version
-
-    def test_app_trans(self):
-        response = self.client.get(
-            reverse('devhub.bulk_compat_result',
-                    args=[self.addon.slug, self.result.id]))
-        assert response.status_code == 200
-        doc = pq(response.content)
-        trans = json.loads(doc('.results').attr('data-app-trans'))
-        for app in amo.APPS.values():
-            assert trans[app.guid] == app.pretty
-
-    def test_app_version_change_links(self):
-        response = self.client.get(
-            reverse('devhub.bulk_compat_result',
-                    args=[self.addon.slug, self.result.id]))
-        assert response.status_code == 200
-        doc = pq(response.content)
-        trans = json.loads(doc('.results').attr('data-version-change-links'))
-        assert trans['%s 4.0.*' % amo.FIREFOX.guid] == (
-            'https://developer.mozilla.org/en/Firefox_4_for_developers')
-
-    def test_validation_success(self):
-        data = self.validate()
-        assert data['validation']['messages'][3]['for_appversions'] == (
-            {'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': ['4.0b3']})
-
-    def test_time(self):
-        response = self.client.post(
-            reverse('devhub.bulk_compat_result',
-                    args=[self.addon.slug, self.result.id]), follow=True)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('time').text()
-        assert doc('table tr td').eq(1).text() == 'Firefox 4.0.*'
-
-
-class TestUploadCompatCheck(BaseUploadTest):
-    fixtures = ['base/appversion', 'base/addon_3615']
-    compatibility_result = json.dumps({
-        "errors": 0,
-        "success": True,
-        "warnings": 0,
-        "notices": 0,
-        "compatibility_summary": {"notices": 0,
-                                  "errors": 0,
-                                  "warnings": 1},
-        "message_tree": {},
-        "messages": [],
-        "metadata": {}
-    })
-
-    def setUp(self):
-        super(TestUploadCompatCheck, self).setUp()
-        assert self.client.login(email='del@icio.us')
-        self.app = amo.FIREFOX
-        self.appver = AppVersion.objects.get(application=self.app.id,
-                                             version='3.7a1pre')
-        self.upload_url = reverse('devhub.standalone_upload')
-
-    def poll_upload_status_url(self, upload_uuid):
-        return reverse('devhub.standalone_upload_detail', args=[upload_uuid])
-
-    def fake_xpi(self, filename=None):
-        """Any useless file that has a name property (for Django)."""
-        if not filename:
-            return open(get_image_path('non-animated.gif'), 'rb')
-        return storage.open(filename, 'rb')
-
-    def upload(self, filename=None):
-        with self.fake_xpi(filename=filename) as f:
-            # Simulate how JS posts data w/ app/version from the form.
-            res = self.client.post(self.upload_url,
-                                   {'upload': f,
-                                    'app_id': self.app.id,
-                                    'version_id': self.appver.pk},
-                                   follow=True)
-        return json.loads(res.content)
-
-    def test_compat_form(self):
-        res = self.client.get(reverse('devhub.check_addon_compatibility'))
-        assert res.status_code == 200
-        doc = pq(res.content)
-
-        assert 'this tool only works with legacy add-ons' in res.content
-
-        options = doc('#id_application option')
-        expected = [(str(a.id), unicode(a.pretty)) for a in amo.APP_USAGE]
-        for idx, element in enumerate(options):
-            e = pq(element)
-            val, text = expected[idx]
-            assert e.val() == val
-            assert e.text() == text
-
-        assert doc('#upload-addon').attr('data-upload-url') == self.upload_url
-
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def test_js_upload_validates_compatibility(self, run_validator):
-        run_validator.return_value = ''  # Empty to simulate unfinished task.
-        data = self.upload()
-        kw = run_validator.call_args[1]
-        assert kw['for_appversions'] == {self.app.guid: [self.appver.version]}
-        assert kw['overrides'] == (
-            {'targetapp_minVersion': {self.app.guid: self.appver.version},
-             'targetapp_maxVersion': {self.app.guid: self.appver.version}})
-        assert data['url'] == self.poll_upload_status_url(data['upload'])
-
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def test_js_poll_upload_status(self, run_validator):
-        run_validator.return_value = self.compatibility_result
-        data = self.upload()
-        url = self.poll_upload_status_url(data['upload'])
-        res = self.client.get(url)
-        data = json.loads(res.content)
-        if data['validation'] and data['validation']['messages']:
-            raise AssertionError('Unexpected validation errors: %s'
-                                 % data['validation']['messages'])
-
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def test_compat_result_report(self, run_validator):
-        run_validator.return_value = self.compatibility_result
-        data = self.upload()
-        poll_url = self.poll_upload_status_url(data['upload'])
-        res = self.client.get(poll_url)
-        data = json.loads(res.content)
-        res = self.client.get(data['full_report_url'])
-        assert res.status_code == 200
-        assert res.context['result_type'] == 'compat'
-        doc = pq(res.content)
-        # Shows app/version on the results page.
-        assert doc('table tr td:eq(0)').text() == 'Firefox 3.7a1pre'
-        assert res.context['validate_url'] == poll_url
-
-    def test_compat_application_versions(self):
-        res = self.client.get(reverse('devhub.check_addon_compatibility'))
-        assert res.status_code == 200
-        doc = pq(res.content)
-        data = {'application': amo.FIREFOX.id,
-                'csrfmiddlewaretoken':
-                    doc('input[name=csrfmiddlewaretoken]').val()}
-        response = self.client.post(
-            doc('#id_application').attr('data-url'), data)
-        assert response.status_code == 200
-        data = json.loads(response.content)
-        empty = True
-        for id, ver in data['choices']:
-            empty = False
-            assert AppVersion.objects.get(pk=id).version == ver
-        assert not empty, "Unexpected: %r" % data
-
-    @mock.patch.object(waffle, 'flag_is_active')
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def test_rdf_parse_errors_are_ignored(self, run_validator,
-                                          flag_is_active):
-        run_validator.return_value = self.compatibility_result
-        flag_is_active.return_value = True
-        addon = Addon.objects.get(pk=3615)
-        dupe_xpi = self.get_upload('extension.xpi')
-        data = parse_addon(dupe_xpi, user=mock.Mock())
-        # Set up a duplicate upload:
-        addon.update(guid=data['guid'])
-        data = self.upload(filename=dupe_xpi.path)
-        # Make sure we don't see a dupe UUID error:
-        assert data['validation']['messages'] == []
-
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def test_compat_summary_overrides(self, run_validator):
-        run_validator.return_value = json.dumps({
-            "success": True,
-            "errors": 0,
-            "warnings": 0,
-            "notices": 0,
-            "compatibility_summary": {"notices": 1,
-                                      "errors": 2,
-                                      "warnings": 3},
-            "message_tree": {},
-            "messages": [],
-            "metadata": {}
-        })
-        data = self.upload()
-        assert data['validation']['notices'] == 1
-        assert data['validation']['errors'] == 2
-        assert data['validation']['warnings'] == 3
-        res = self.client.get(self.poll_upload_status_url(data['upload']))
-        data = json.loads(res.content)
-        assert data['validation']['notices'] == 1
-        assert data['validation']['errors'] == 2
-        assert data['validation']['warnings'] == 3
-
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def test_compat_error_type_override(self, run_validator):
-        run_validator.return_value = json.dumps({
-            "success": True,
-            "errors": 0,
-            "warnings": 0,
-            "notices": 0,
-            "compatibility_summary": {"notices": 0,
-                                      "errors": 1,
-                                      "warnings": 0},
-            "message_tree": {},
-            "messages": [{"type": "warning",
-                          "compatibility_type": "error",
-                          "message": "", "description": "",
-                          "tier": 1},
-                         {"type": "warning",
-                          "compatibility_type": None,
-                          "message": "", "description": "",
-                          "tier": 1}],
-            "metadata": {}
-        })
-        data = self.upload()
-        assert data['validation']['messages'][0]['type'] == 'error'
-        assert data['validation']['messages'][1]['type'] == 'warning'

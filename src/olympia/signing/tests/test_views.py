@@ -530,11 +530,6 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         AppVersion.objects.get_or_create(application=amo.THUNDERBIRD.id, version='60.0')
         AppVersion.objects.get_or_create(application=amo.THUNDERBIRD.id, version='60.*')
 
-        validate_patcher = mock.patch('validator.validate.validate')
-        run_validator = validate_patcher.start()
-        run_validator.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
-        self.addCleanup(validate_patcher.stop)
-
     @pytest.mark.xfail(reason="ATN requires extensions to include a GUID, making this test incompatible.")
     def test_addon_does_not_exist_webextension(self):
         response = self.request(

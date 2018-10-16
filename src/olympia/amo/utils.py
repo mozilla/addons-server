@@ -47,7 +47,6 @@ from easy_thumbnails import processors
 from html5lib.serializer import HTMLSerializer
 from PIL import Image
 from rest_framework.utils.encoders import JSONEncoder
-from validator import unicodehelper
 
 from olympia.amo import ADDON_ICON_SIZES, search
 from olympia.amo.pagination import ESPaginator
@@ -55,6 +54,7 @@ from olympia.amo.urlresolvers import linkify_with_outgoing, reverse
 from olympia.translations.models import Translation
 from olympia.users.models import UserNotification
 from olympia.users.utils import UnsubscribeCode
+from olympia.lib import unicodehelper
 
 from . import logger_log as log
 

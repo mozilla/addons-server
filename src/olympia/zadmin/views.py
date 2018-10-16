@@ -23,7 +23,6 @@ from olympia.amo.decorators import (
 from olympia.amo.mail import DevEmailBackend
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, chunked, render
-from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.compat import FIREFOX_COMPAT
 from olympia.compat.models import AppCompat, CompatTotals
@@ -73,16 +72,6 @@ def fix_disabled_file(request):
             return redirect('zadmin.fix-disabled')
     return render(request, 'zadmin/fix-disabled.html',
                   {'file': file_, 'file_id': request.POST.get('file', '')})
-
-
-@login_required
-@post_required
-@json_view
-def application_versions_json(request):
-    app_id = request.POST['application']
-
-    versions = AppVersion.objects.filter(application=app_id)
-    return {'choices': [(v.id, v.version) for v in versions]}
 
 
 @permission_required(amo.permissions.REVIEWS_ADMIN)
