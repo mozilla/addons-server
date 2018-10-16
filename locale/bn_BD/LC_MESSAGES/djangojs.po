@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-06-28 15:50+0000\n"
+"PO-Revision-Date: 2018-10-16 20:20+0000\n"
 "Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -21,7 +21,7 @@ msgstr[0] "{0} তারকা"
 msgstr[1] "{0} তারকা"
 
 msgid "There was a problem contacting the server."
-msgstr "12345"
+msgstr "সার্ভারের সঙ্গে যোগাযোগ করতে সমস্যা হচ্ছে।"
 
 msgid "Select a file..."
 msgstr "ফাইলটি নির্বাচন করুন..."
@@ -444,7 +444,7 @@ msgid "Fennec"
 msgstr "ফেনেক"
 
 msgid "Android"
-msgstr "অ্যানড্রয়িড"
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
