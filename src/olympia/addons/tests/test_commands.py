@@ -234,6 +234,27 @@ def count_subtask_calls(original_function):
     original_function.subtask = original_function_subtask
 
 
+@pytest.mark.django_db
+def test_process_addons_limit_addons():
+    addon_ids = [addon_factory().id for _ in range(5)]
+    assert Addon.objects.count() == 5
+
+    with count_subtask_calls(pa.sign_addons) as calls:
+        call_command('process_addons', task='sign_addons')
+        assert len(calls) == 1
+        assert calls[0]['kwargs']['args'] == [addon_ids]
+
+    with count_subtask_calls(pa.sign_addons) as calls:
+        call_command('process_addons', task='sign_addons', limit=2)
+        assert len(calls) == 1
+        assert calls[0]['kwargs']['args'] == [addon_ids[:2]]
+
+    with count_subtask_calls(pa.sign_addons) as calls:
+        call_command('process_addons', task='sign_addons', limit='2')
+        assert len(calls) == 1
+        assert calls[0]['kwargs']['args'] == [addon_ids[:2]]
+
+
 class AddFirefox57TagTestCase(TestCase):
     def test_affects_only_public_webextensions(self):
         addon_factory()
