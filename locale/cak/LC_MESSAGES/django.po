@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-16 22:50+0000\n"
+"PO-Revision-Date: 2018-10-16 22:56+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5209,11 +5209,11 @@ msgstr "Ke'ayuju' ri jech'un taq okem pa taq ruxaq chuqa' ri URL etab'äl taq oj
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'aq'ata' ri ojqanela' pa taq kanob'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "Tachajij chi ri taq kanob'äl tiketamaj achike taq kanoxïk napïtz' pa kiwi'."
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
