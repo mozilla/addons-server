@@ -1,0 +1,140 @@
+import uuid
+import requests
+
+from django.conf import settings
+from django.core.management.base import BaseCommand, CommandError
+from django.db.transaction import atomic
+
+from olympia import amo
+from olympia.amo.tests import addon_factory, user_factory
+from olympia.constants.categories import CATEGORIES
+from olympia.addons.models import Addon, Category
+from olympia.users.models import UserProfile
+
+
+class KeyboardInterruptError(Exception):
+    pass
+
+
+class Command(BaseCommand):
+    """Download and save all AMO add-ons public data."""
+    SEARCH_API_URL = 'https://addons.mozilla.org/api/v4/addons/search/'
+
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '--max', metavar='MAX', type=int,
+            help='max amount of pages to fetch.'
+        )
+
+    def handle(self, *args, **options):
+        if not settings.DEBUG:
+            raise CommandError(
+                'As a safety precaution this command only works if DEBUG=True.'
+            )
+        self.fetch_addon_data(options)
+
+    def get_max_pages(self, options):
+        response = requests.get(self.SEARCH_API_URL)
+        return response.json()['page_count']
+
+    def _get_addons_from_page(self, page):
+        data = []
+        print('fetching %s' % page)
+        response = requests.get(self.SEARCH_API_URL, params={'page': page})
+        print('fetched %s' % page)
+
+        for addon in response.json()['results']:
+            self._handle_addon(addon)
+
+        return data
+
+    def _handle_addon(self, addon_data):
+        version = addon_data['current_version']
+        files = version['files'] or []
+
+        file_kw = {}
+
+        try:
+            file_kw = {
+                'hash': files[0]['hash'],
+                'status': amo.STATUS_CHOICES_API_LOOKUP[files[0]['status']],
+                'platform': amo.PLATFORM_DICT[files[0]['platform']].id,
+                'size': files[0]['size'],
+                'is_webextension': files[0]['is_webextension'],
+            }
+        except (KeyError, IndexError):
+            file_kw = {}
+
+        # TODO:
+        # * license
+        # * ratings
+        # * previews
+        # * android compat & category data
+
+        if Addon.objects.filter(slug=addon_data['slug']).exists():
+            print('Skipping %s (slug already exists)' % addon_data['slug'])
+            return
+
+        users = []
+
+        for user in addon_data['authors']:
+            try:
+                users.append(UserProfile.objects.get(username=user['name']))
+            except UserProfile.DoesNotExist:
+                email = 'fake-prod-data-%s@mozilla.com' % str(uuid.uuid4().hex)
+                users.append(user_factory(username=user['name'], email=email))
+
+        addon_type = amo.ADDON_SEARCH_SLUGS[addon_data['type']]
+
+        if 'firefox' in addon_data['categories']:
+            category = addon_data['categories']['firefox'][0]
+        else:
+            category = None
+
+        if category not in CATEGORIES[amo.FIREFOX.id][addon_type]:
+            category = None
+            print('Category %s' % category, 'not found')
+        else:
+            category = Category.from_static_category(
+                CATEGORIES[amo.FIREFOX.id][addon_type][category],
+                True)
+
+        print('Creating add-on %s' % addon_data['slug'])
+
+        compatibility = version['compatibility']
+
+        if compatibility and 'firefox' in compatibility:
+            version_kw = {
+                'min_app_version': version['compatibility']['firefox']['min'],
+                'max_app_version': version['compatibility']['firefox']['max'],
+            }
+        else:
+            version_kw = {}
+
+        with atomic():
+            addon_factory(
+                users=users,
+                average_daily_users=addon_data['average_daily_users'],
+                category=category,
+                type=addon_type,
+                guid=addon_data['guid'],
+                slug=addon_data['slug'],
+                name=addon_data['name'],
+                summary=addon_data['summary'],
+                description=addon_data['description'],
+                file_kw=file_kw,
+                version_kw=version_kw,
+                weekly_downloads=addon_data.get('weekly_downloads', 0),
+                default_locale=addon_data['default_locale'],
+                tags=addon_data['tags'],
+            )
+
+    def fetch_addon_data(self, options):
+        pages = range(1, self.get_max_pages(options))
+
+        if options.get('max'):
+            pages = pages[:options.get('max')]
+
+        print('Fetching pages from 1 to %s' % max(pages))
+        for page in pages:
+            self._get_addons_from_page(page)
