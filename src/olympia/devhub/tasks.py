@@ -680,13 +680,9 @@ def run_validator(path, listed=True):
     if error:
         raise ValueError(error)
 
-    parsed_data = json.loads(output)
+    track_validation_stats(output)
 
-    result = json.dumps(parsed_data)
-
-    track_validation_stats(result)
-
-    return result
+    return output
 
 
 def run_addons_linter(path, listed=True):
