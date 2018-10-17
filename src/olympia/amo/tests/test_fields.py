@@ -1,6 +1,6 @@
-from django.conf import settings
 from django.core import exceptions
 from django.db import connection, DataError
+from django.test.utils import override_settings
 
 from olympia.access.models import Group
 from olympia.amo.fields import HttpHttpsOnlyURLField
@@ -9,9 +9,13 @@ from olympia.amo.tests import TestCase
 
 class HttpHttpsOnlyURLFieldTestCase(TestCase):
 
+    domain = 'example.com'
+
     def setUp(self):
         super(HttpHttpsOnlyURLFieldTestCase, self).setUp()
-        self.field = HttpHttpsOnlyURLField()
+
+        with override_settings(DOMAIN=self.domain):
+            self.field = HttpHttpsOnlyURLField()
 
     def test_invalid_scheme_validation_error(self):
         with self.assertRaises(exceptions.ValidationError):
@@ -39,13 +43,20 @@ class HttpHttpsOnlyURLFieldTestCase(TestCase):
         with self.assertRaises(exceptions.ValidationError):
             assert self.field.clean(u'https://test.[com')
 
-    def test_with_site_url(self):
+    def test_with_domain_and_no_scheme(self):
         with self.assertRaises(exceptions.ValidationError):
-            self.field.clean(u'%s' % settings.SITE_URL)
+            self.field.clean(u'%s' % self.domain)
 
-    def test_with_services_domain(self):
+    def test_with_domain_and_http(self):
         with self.assertRaises(exceptions.ValidationError):
-            self.field.clean(u'%s' % settings.SERVICES_DOMAIN)
+            self.field.clean(u'http://%s' % self.domain)
+
+    def test_with_domain_and_https(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.field.clean(u'https://%s' % self.domain)
+
+    def test_domain_is_escaped_in_regex_validator(self):
+        assert self.field.clean(u'example-com.fr') == u'http://example-com.fr'
 
 
 class TestPositiveAutoField(TestCase):

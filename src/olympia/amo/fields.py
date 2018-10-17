@@ -39,17 +39,21 @@ class URLValidatorBackport(URLValidator):
 
 
 class HttpHttpsOnlyURLField(fields.URLField):
-    default_validators = [
-        URLValidatorBackport(schemes=('http', 'https')),
-        # Reject AMO URLs, see:
-        # https://github.com/mozilla/addons-server/issues/9012
-        RegexValidator(
-            regex=r'%s' % settings.SERVICES_DOMAIN,
-            message=_('Linking to AMO is forbidden.'),
-            code='no_amo_url',
-            inverse_match=True
-        )
-    ]
+
+    def __init__(self, *args, **kwargs):
+        super(HttpHttpsOnlyURLField, self).__init__(*args, **kwargs)
+
+        self.validators = [
+            URLValidatorBackport(schemes=('http', 'https')),
+            # Reject AMO URLs, see:
+            # https://github.com/mozilla/addons-server/issues/9012
+            RegexValidator(
+                regex=r'%s' % re.escape(settings.DOMAIN),
+                message=_('Linking to AMO is forbidden.'),
+                code='no_amo_url',
+                inverse_match=True
+            )
+        ]
 
 
 class ReCaptchaField(HumanCaptchaField):
