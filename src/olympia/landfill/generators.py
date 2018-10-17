@@ -47,7 +47,6 @@ def create_addon(name, icon_type, application, **extra_kwargs):
         'status': STATUS_PUBLIC,
         'name': name,
         'slug': slugify(name),
-        'guid': '@%s' % slugify(name),
         'bayesian_rating': random.uniform(1, 5),
         'average_daily_users': random.randint(200, 2000),
         'weekly_downloads': random.randint(200, 2000),
@@ -62,6 +61,7 @@ def create_addon(name, icon_type, application, **extra_kwargs):
     generate_version(addon=addon, app=application)
     addon.update_version()
     addon.status = STATUS_PUBLIC
+    addon.guid = '@%s' % addon.slug
     addon.save()
     return addon
 
