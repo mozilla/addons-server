@@ -19,6 +19,7 @@ ENV = env('ENV')
 API_THROTTLING = True
 
 CDN_HOST = 'https://addons.cdn.mozilla.net'
+CSP_CONNECT_SRC += (CDN_HOST,)
 DOMAIN = env('DOMAIN', default='addons.mozilla.org')
 SERVER_EMAIL = 'zprod@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
