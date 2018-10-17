@@ -554,7 +554,6 @@ INSTALLED_APPS = (
     'olympia.applications',
     'olympia.bandwagon',
     'olympia.browse',
-    'olympia.compat',
     'olympia.devhub',
     'olympia.discovery',
     'olympia.files',
@@ -1314,9 +1313,6 @@ CELERY_TASK_ROUTES = {
     # Zadmin
     'olympia.zadmin.tasks.admin_email': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
-    'olympia.zadmin.tasks.notify_compatibility': {'queue': 'zadmin'},
-    'olympia.zadmin.tasks.notify_compatibility_chunk': {'queue': 'zadmin'},
-    'olympia.zadmin.tasks.update_maxversions': {'queue': 'zadmin'},
 
     # Github API
     'olympia.github.tasks.process_results': {'queue': 'devhub'},
@@ -1912,8 +1908,6 @@ CRON_JOBS = {
     'gc': 'olympia.amo.cron',
     'category_totals': 'olympia.amo.cron',
     'weekly_downloads': 'olympia.amo.cron',
-
-    'compatibility_report': 'olympia.compat.cron',
 
     'update_blog_posts': 'olympia.devhub.cron',
 

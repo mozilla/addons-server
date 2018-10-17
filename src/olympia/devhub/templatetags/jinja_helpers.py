@@ -15,7 +15,6 @@ from olympia.activity.models import ActivityLog
 from olympia.activity.utils import filter_queryset_to_pending_replies
 from olympia.addons.templatetags.jinja_helpers import new_context
 from olympia.amo.templatetags.jinja_helpers import format_date, page_title
-from olympia.compat.models import CompatReport
 from olympia.files.models import File
 
 
@@ -121,12 +120,6 @@ def display_url(url):
     """
     url = force_bytes(url, errors='replace')
     return urllib.unquote(url).decode('utf-8', errors='replace')
-
-
-@library.global_function
-def get_compat_counts(addon):
-    """Get counts for add-on compatibility reports."""
-    return CompatReport.get_counts(addon.guid)
 
 
 @library.global_function
