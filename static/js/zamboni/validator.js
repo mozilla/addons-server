@@ -309,46 +309,6 @@ function initValidator($doc) {
         return options;
     };
 
-    var CompatMsgVisitor = inherit(MsgVisitor, function(suite, data) {
-        var self = this;
-        this.appTrans = JSON.parse(this.$results.attr('data-app-trans'));
-        this.versionChangeLinks = JSON.parse(this.$results.attr('data-version-change-links'));
-        this.majorTargetVer = JSON.parse(this.$results.attr('data-target-version'));
-        $.each(this.majorTargetVer, function(guid, version) {
-            // 4.0b3 -> 4
-            self.majorTargetVer[guid] = version.split('.')[0];
-        });
-    });
-
-    CompatMsgVisitor.prototype.finish = function(msg) {
-        MsgVisitor.prototype.finish.apply(this, arguments);
-        // Since results are more dynamic on the compatibility page,
-        // hide tiers without messages.
-        $('.result', this.$suite).each(function() {
-            $(this).toggle($('.msg', this).length > 0);
-        });
-        if (this.allCounts.error == 0 && this.allCounts.warning == 0) {
-            $('#suite-results-tier-1').show();
-            $('#suite-results-tier-1 h4').text(gettext('Compatibility Tests'));
-        }
-    };
-
-    CompatMsgVisitor.prototype.getMsgType = function(msg) {
-        return msg.compatibility_type ? msg.compatibility_type: msg['type'];
-    };
-
-    CompatMsgVisitor.prototype.message = function(msg) {
-        if (this.getMsgType(msg) === 'error') {
-            // For non-appversion messages, only show errors
-            MsgVisitor.prototype.message.apply(this, arguments);
-        }
-    };
-
-    CompatMsgVisitor.prototype.tierOptions = function(options) {
-        options = MsgVisitor.prototype.tierOptions.apply(this, arguments);
-        return options;
-    };
-
     function buildResults(suite, data) {
         var vis,
             validation = data.validation,
@@ -363,11 +323,7 @@ function initValidator($doc) {
         }
 
         function rebuildResults() {
-            if ($('.results', suite).hasClass('compatibility-results')) {
-                vis = new CompatMsgVisitor(suite, data);
-            } else {
-                vis = new MsgVisitor(suite, data);
-            }
+            vis = new MsgVisitor(suite, data);
             $.each(sortByType(validation.messages), function(i, msg) {
                 vis.message(msg);
             });

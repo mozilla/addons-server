@@ -20,12 +20,6 @@
         <td><time datetime="{{ timestamp|isotime}}">{{ timestamp|date}}</time></td>
     </tr>
     {% endif %}
-    {% if result_type == 'compat' %}
-    <tr>
-        <th>{{ _('Tested for compatibility against:') }}</th>
-        <td>{{ amo.APP_IDS[target_app].pretty }} {{ target_version }}</td>
-    </tr>
-    {% endif %}
 </table>
 
 <div class="addon-validator-suite"
@@ -38,14 +32,6 @@
         data-validation="{{ validation_data|json }}"
      {% endif %}
      data-validateurl="{{ validate_url }}">
-  {% if result_type == 'compat' %}
-    {% with app_trans=app_trans,
-            version_change_links=version_change_links,
-            target_version={amo.APP_IDS[target_app].guid: target_version.version} %}
-      {% include "devhub/addons/includes/validation_compat_test_results.html" %}
-    {% endwith %}
-  {% else %}
-    {% include "devhub/addons/includes/validation_test_results.html" %}
-  {% endif %}
+  {% include "devhub/addons/includes/validation_test_results.html" %}
 </div>
 {% endblock %}
