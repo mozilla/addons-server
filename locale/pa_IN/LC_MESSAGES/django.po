@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-17 19:00+0000\n"
+"PO-Revision-Date: 2018-08-29 15:30+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -4667,7 +4667,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
-msgstr ""
+msgstr "10 ਮਿਲੀਅਨ ਰਿਸਰਚ ਪੇਪਰਾਂ ਤਕ ਮੁਫ਼ਤ ਪਹੁੰਚ ਦਾ ਅਨੰਦ ਮਾਣੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4712,7 +4712,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
-msgstr ""
+msgstr "ਬਸ ਇਸ ਨੂੰ ਵਧਾਉਣ ਲਈ ਇੱਕ ਚਿੱਤਰ ਉੱਤੇ ਜਾਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4892,7 +4892,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "ਇਹ ਪਤਾ ਲਗਾਓ ਕਿ ਤੁਹਾਨੂੰ ਕੌਣ ਟਰੈਕ ਕਰ ਰਿਹਾ ਹੈ ਅਤੇ ਉਹ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕਿੱਥੇ ਸਾਂਝਾ ਕਰ ਰਹੇ ਹਨ।"
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4936,7 +4936,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "ਇੰਟਰਨੈੱਟ ਤੋਂ ਜਾਣਕਾਰੀ OneNote ਤੇ ਸੁਰੱਖਿਅਤ ਕਰੋ ਤਾਂ ਜੋ ਤੁਸੀਂ ਸੰਪਾਦਨ, ਐਨੋਟੇਟ ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ ਕਰ ਸਕੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4976,7 +4976,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "ਡਿਫੌਲਟ ਤੌਰ ਤੇ ਸਾਰੇ ਪੌਪ-ਅਪਸ ਨੂੰ ਬਲੌਕ ਕਰੋ, ਫਿਰ ਇਹ ਨਿਸ਼ਚਤ ਕਰੋ ਕਿ ਤੁਸੀਂ ਕਿਨ੍ਹਾਂ ਨੂੰ ਖੋਲ੍ਹਣਾ ਚਾਹੁੰਦੇ ਹੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
