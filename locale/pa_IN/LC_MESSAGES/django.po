@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2017-02-20 17:44+0000\n"
-"Last-Translator: inderdeepbajwa <inderdeepbajwa@live.com>\n"
+"PO-Revision-Date: 2018-10-17 17:19+0000\n"
+"Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -195,11 +195,9 @@ msgstr "ਪਰਦਾ ਨੀਤੀ ਵੇਖੋ"
 msgid "View End-User License Agreement"
 msgstr "ਅੰਤ ਉਪਭੋਗੀ ਲਾਈਸੈਂਸ ਇਕਰਾਰਨਾਮਾ(EULA) ਵੇਖੋ"
 
-#, fuzzy
 msgid "This add-on has not been reviewed by Mozilla."
 msgstr "ਇਸ ਐਡ-ਆਨ ਦੀ ਅਜੇ ਸਮੀਖਿਆ ਨਹੀਂ ਹੋਈ।"
 
-#, fuzzy
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "ਇਹ ਐਡ-ਆਨ ਇਸ ਦੇ ਲੇਖਕ ਵੱਲੋਂ ਹਟਾਇਆ ਜਾ ਚੁੱਕਿਆ ਹੈ।"
 
@@ -743,7 +741,6 @@ msgstr ""
 msgid "Suggested Pages"
 msgstr "ਸੁਝਾਏ ਗਏ ਸਫ਼ੇ"
 
-#, fuzzy
 msgid "Browse all extensions"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
 
@@ -2350,9 +2347,8 @@ msgstr "ਠੀਕ-ਠਾਕ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
 msgid "Add-on Review Moderation Reverted"
 msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਸੰਜਮ ਵਾਪਸ ਲਿਆ"
 
-#, fuzzy
 msgid "Add-on Content Review"
-msgstr "ਸਮੀਖਿਆ ਕਬੂਲੋ"
+msgstr "ਐਡ-ਆਨ ਸਮੱਗਰੀ ਸਮੀਖਿਆ"
 
 #, fuzzy
 msgid "Add-on Review (Highest Risk)"
@@ -2516,9 +2512,8 @@ msgstr "ਵੰਨਗੀ {version} ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਮੌਜ�
 msgid "Continue with existing upload instead?"
 msgstr ""
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "ਅੱਪਲੋਡ ਫ਼ਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਦਾ।"
+msgstr "ਤੁਸੀਂ ਇੱਕ ਸਰੋਤ ਫਾਈਲ ਅਪਲੋਡ ਨਹੀਂ ਕੀਤੀ ਹੈ।"
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
