@@ -84,6 +84,7 @@ def email_preview_csv(request, topic):
         writer.writerow([r.encode('utf8') for r in row])
     return resp
 
+
 @login_required
 @json_view
 def es_collections_json(request):
