@@ -55,16 +55,17 @@ class TransMulti(forms.widgets.MultiWidget):
         # We do need self.widgets to be non-empty in order for is_hidden to
         # work, so we create a dummy one. It will also serve as fallback when
         # there is no value set already.
-        super(TransMulti, self).__init__(widgets=[self.widget()], attrs=attrs)
+        super(TransMulti, self).__init__(
+            widgets=[self.widget(attrs=attrs)], attrs=attrs)
 
     def render(self, name, value, attrs=None):
         self.name = name
         value = self.decompress(value)
         if value:
-            self.widgets = [self.widget() for _ in value]
+            self.widgets = [self.widget(attrs=self.attrs) for _ in value]
         else:
-            default_locale = getattr(self, 'default_locale',
-                                     translation.get_language())
+            default_locale = getattr(
+                self, 'default_locale', translation.get_language())
             value = [Translation(locale=default_locale)]
 
         if self.is_localized:

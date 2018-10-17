@@ -11,12 +11,13 @@ import mock
 import pytest
 
 from PIL import Image
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.forms import EditThemeForm, EditThemeOwnerForm, ThemeForm
 from olympia.addons.models import Addon, Category, Persona
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, req_factory_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
@@ -761,3 +762,161 @@ class TestDistributionChoiceForm(TestCase):
             expected = 'Auf dieser Website.'
             label = unicode(label)
             assert label.startswith(expected)
+
+
+class TestDescribeForm(TestCase):
+    fixtures = ('base/addon_3615', 'base/addon_3615_categories',
+                'addons/denied')
+
+    def setUp(self):
+        super(TestDescribeForm, self).setUp()
+        self.existing_name = 'Delicious Bookmarks'
+        self.non_existing_name = 'Does Not Exist'
+        self.error_msg = 'This name is already in use. Please choose another.'
+        self.request = req_factory_factory('/')
+
+    def test_slug_deny(self):
+        delicious = Addon.objects.get()
+        form = forms.DescribeForm(
+            {'slug': 'submit'}, request=self.request, instance=delicious)
+        assert not form.is_valid()
+        assert form.errors['slug'] == (
+            [u'The slug cannot be "submit". Please choose another.'])
+
+    def test_name_trademark_mozilla(self):
+        delicious = Addon.objects.get()
+        form = forms.DescribeForm(
+            {'name': 'Delicious Mozilla', 'summary': 'foo', 'slug': 'bar'},
+            request=self.request,
+            instance=delicious)
+
+        assert not form.is_valid()
+        assert form.errors['name'].data[0].message.startswith(
+            u'Add-on names cannot contain the Mozilla or Firefox trademarks.')
+
+    def test_name_trademark_firefox(self):
+        delicious = Addon.objects.get()
+        form = forms.DescribeForm(
+            {'name': 'Delicious Firefox', 'summary': 'foo', 'slug': 'bar'},
+            request=self.request,
+            instance=delicious)
+        assert not form.is_valid()
+        assert form.errors['name'].data[0].message.startswith(
+            u'Add-on names cannot contain the Mozilla or Firefox trademarks.')
+
+    def test_name_trademark_allowed_for_prefix(self):
+        delicious = Addon.objects.get()
+        form = forms.DescribeForm(
+            {'name': 'Delicious for Mozilla', 'summary': 'foo', 'slug': 'bar'},
+            request=self.request,
+            instance=delicious)
+
+        assert form.is_valid()
+
+    def test_name_no_trademark(self):
+        delicious = Addon.objects.get()
+        form = forms.DescribeForm(
+            {'name': 'Delicious Dumdidum', 'summary': 'foo', 'slug': 'bar'},
+            request=self.request,
+            instance=delicious)
+
+        assert form.is_valid()
+
+    def test_slug_isdigit(self):
+        delicious = Addon.objects.get()
+        form = forms.DescribeForm(
+            {'slug': '123'}, request=self.request, instance=delicious)
+        assert not form.is_valid()
+        assert form.errors['slug'] == (
+            [u'The slug cannot be "123". Please choose another.'])
+
+    def test_bogus_support_url(self):
+        form = forms.DescribeForm(
+            {'support_url': 'javascript://something.com'},
+            request=self.request, instance=Addon.objects.get())
+        assert not form.is_valid()
+        assert form.errors['support_url'] == [u'Enter a valid URL.']
+
+    def test_ftp_support_url(self):
+        form = forms.DescribeForm(
+            {'support_url': 'ftp://foo.com'}, request=self.request,
+            instance=Addon.objects.get())
+        assert not form.is_valid()
+        assert form.errors['support_url'] == [u'Enter a valid URL.']
+
+    def test_http_support_url(self):
+        form = forms.DescribeForm(
+            {'name': 'Delicious Dumdidum', 'summary': 'foo', 'slug': 'bar',
+             'support_url': 'http://foo.com'},
+            request=self.request, instance=Addon.objects.get())
+        assert form.is_valid(), form.errors
+
+    def test_summary_optional(self):
+        delicious = Addon.objects.get()
+        assert delicious.type == amo.ADDON_EXTENSION
+
+        with override_switch('content-optimization', active=False):
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar'},
+                request=self.request, instance=delicious)
+            assert form.is_valid(), form.errors
+
+        with override_switch('content-optimization', active=True):
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar'},
+                request=self.request, instance=delicious)
+            assert not form.is_valid()
+
+            # But only extensions are required to have a description
+            delicious.update(type=amo.ADDON_STATICTHEME)
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar'},
+                request=self.request, instance=delicious)
+            assert form.is_valid(), form.errors
+
+            #  Do it again, but this time with a description
+            delicious.update(type=amo.ADDON_EXTENSION)
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar', 'description': 'its a description'},
+                request=self.request,
+                instance=delicious)
+            assert form.is_valid(), form.errors
+
+    def test_summary_min_length(self):
+        delicious = Addon.objects.get()
+        assert delicious.type == amo.ADDON_EXTENSION
+
+        with override_switch('content-optimization', active=False):
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar', 'description': '123456789'},
+                request=self.request, instance=delicious)
+            assert form.is_valid(), form.errors
+
+        with override_switch('content-optimization', active=True):
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar', 'description': '123456789'},
+                request=self.request, instance=delicious)
+            assert not form.is_valid()
+
+            # But only extensions have a minimum length
+            delicious.update(type=amo.ADDON_STATICTHEME)
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar', 'description': '123456789'},
+                request=self.request, instance=delicious)
+            assert form.is_valid()
+
+            #  Do it again, but this time with a description
+            delicious.update(type=amo.ADDON_EXTENSION)
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar', 'description': '1234567890'},
+                request=self.request,
+                instance=delicious)
+            assert form.is_valid(), form.errors

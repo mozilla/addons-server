@@ -764,17 +764,16 @@ def addons_section(request, addon_id, addon, section, editable=False):
     models = {}
     if show_listed:
         models.update({
-            'basic': addon_forms.AddonFormBasic,
-            'details': addon_forms.AddonFormDetails,
-            'support': addon_forms.AddonFormSupport,
+            'describe': forms.DescribeForm,
+            'additional_details': addon_forms.AdditionalDetailsForm,
             'technical': addon_forms.AddonFormTechnical
         })
         if not static_theme:
             models.update({'media': addon_forms.AddonFormMedia})
     else:
         models.update({
-            'basic': addon_forms.AddonFormBasicUnlisted,
-            'details': addon_forms.AddonFormDetailsUnlisted,
+            'describe': forms.DescribeFormUnlisted,
+            'additional_details': addon_forms.AdditionalDetailsFormUnlisted,
             'technical': addon_forms.AddonFormTechnicalUnlisted
         })
 
@@ -785,12 +784,14 @@ def addons_section(request, addon_id, addon, section, editable=False):
     cat_form = dependency_form = whiteboard_form = None
     whiteboard = None
 
-    if section == 'basic' and show_listed:
-        tags = addon.tags.not_denied().values_list('tag_text', flat=True)
+    if section == 'describe' and show_listed:
         category_form_class = (forms.SingleCategoryForm if static_theme else
                                addon_forms.CategoryFormSet)
         cat_form = category_form_class(
             request.POST or None, addon=addon, request=request)
+
+    elif section == 'additional_details' and show_listed:
+        tags = addon.tags.not_denied().values_list('tag_text', flat=True)
         restricted_tags = addon.tags.filter(restricted=True)
 
     elif section == 'media':

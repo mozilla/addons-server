@@ -1,12 +1,12 @@
-{% from "devhub/includes/macros.html" import tip, empty_unless, select_cats, trans_readonly, flags %}
+{% from "devhub/includes/macros.html" import tip, empty_unless, flags, select_cats, some_html_tip, trans_readonly %}
 
-<form method="post" action="{{ url('devhub.addons.section', valid_slug, 'basic', 'edit') }}"
-      id="addon-edit-basic"
+<form method="post" action="{{ url('devhub.addons.section', valid_slug, 'describe', 'edit') }}"
+      id="addon-edit-describe"
       data-baseurl="{{ url('devhub.addons.edit', valid_slug) }}">
   <h3>
-    {{ _('Basic Information') }}
+    {{ _('Describe Add-on') }}
     {% if not editable %}
-      <a href="#" data-editurl="{{ url('devhub.addons.section', valid_slug, 'basic', 'edit') }}" class="button">
+      <a href="#" data-editurl="{{ url('devhub.addons.section', valid_slug, 'describe', 'edit') }}" class="button">
         {{ _('Edit') }}</a>
     {% endif %}
   </h3>
@@ -15,7 +15,7 @@
       {% if editable %}{{ form.non_field_errors() }}{% endif %}
       <table>
         {# L10n: {0} is the addon name #}
-        <caption>{{ _('Basic Information for {0}')|format_html(addon.name) }}</caption>
+        <caption>{{ _('Describe {0}')|format_html(addon.name) }}</caption>
         <tbody>
           <tr>
             <th><label data-for="name">{{ _("Name") }}</label></th>
@@ -64,6 +64,35 @@
                      data-maxlength="{{ form.summary.field.max_length }}"></div>
               {% else %}
                 {{ addon|all_locales('summary') }}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label data-for="description">
+                {{ _("Description") }}
+                {{ tip(None,
+                       _("A longer explanation of features, functionality, and other relevant information. "
+                         "This field is only displayed on the add-on's listing. " +
+                         ('Minimum length: 10 characters; ' if editable and form.description.field.min_length else '') +
+                         "Recommended length: 250 characters. "
+                         "If you need a longer description, make sure the first 250 characters contain the most important description points.")) }}
+              </label>
+            </th>
+            <td>
+              {% if editable %}
+                {{ form.description }}
+                {{ form.description.errors }}
+                <div class="char-count"
+                     data-for-startswith="{{ form.description.auto_id }}_"
+                     data-minlength="{{ form.description.field.min_length }}"></div>
+                {{ some_html_tip() }}
+              {% else %}
+                {% call empty_unless(addon.description) %}
+                  <div id="addon-description" class="prose">
+                    {{ addon|all_locales('description', nl2br=True) }}
+                  </div>
+                {% endcall %}
               {% endif %}
             </td>
           </tr>
@@ -159,47 +188,46 @@
           </tr>
           <tr>
             <th>
-              {{ tip(_("Tags"),
-                     _("Tags help users find your add-on and should be short "
-                       "descriptors such as tabs, toolbar, or twitter. You "
-                       "may have a maximum of {0} tags.").format(amo.MAX_TAGS)) }}
+              <label data-for="support_email">
+                {{ _("Email") }}
+                {{ tip(None,
+                       _("If you wish to display an e-mail address for support "
+                         "inquiries, enter it here. If you have different "
+                         "addresses for each language multiple translations of "
+                         "this field can be added. It is only relevant for "
+                         "listed add-ons.")) }}
+              </label>
             </th>
-            <td id="addon_tags_edit">
+            <td>
               {% if editable %}
-                {{ form.tags }}
-                {{ form.tags.errors }}
-                <div class="edit-addon-details">
-                  {{ ngettext('Comma-separated, minimum of {0} character.',
-                              'Comma-separated, minimum of {0} characters.',
-                              amo.MIN_TAG_LENGTH)|format_html(amo.MIN_TAG_LENGTH) }}
-                  {{ _('Example: dark, cinema, noir. Limit 20.') }}
-                </div>
-                {% if restricted_tags %}
-                <div class="edit-addon-details">
-                    {{ ngettext('Reserved tag:', 'Reserved tags:', restricted_tags|length) }}
-                    {{ restricted_tags|join(', ') }}
-                </div>
-                {% endif %}
+                {{ form.support_email }}
+                {{ form.support_email.errors }}
               {% else %}
-                {% call empty_unless(tags) %}
-                  {{ tags|join(', ') }}
+                {% call empty_unless(addon.support_email) %}
+                  {{ addon|all_locales('support_email') }}
                 {% endcall %}
               {% endif %}
             </td>
           </tr>
           <tr>
             <th>
-              {{ tip(_("Contributions URL"),
-                     _("If you would like to request monetary contributions "
-                       "from your users, set this to a page where they can do so.")) }}
+              <label data-for="support_url">
+                {{ _("Website") }}
+                {{ tip(None,
+                       _("If your add-on has a support website or forum, enter "
+                         "its address here. If your website is localized into "
+                         "other languages, multiple translations of this field can "
+                         "be added. It is only relevant for listed add-ons.")) }}
+              </label>
             </th>
             <td>
               {% if editable %}
-                <p>{{ _('Supported domains: %s'|format(', '.join(amo.VALID_CONTRIBUTION_DOMAINS))) }}</p>
-                <p>{{ form.contributions }}</p>
-                {{ form.contributions.errors }}
+                {{ form.support_url }}
+                {{ form.support_url.errors }}
               {% else %}
-                <a href="{{ addon.contributions }}" target="_blank" rel="noopener noreferrer">{{ addon.contributions }}</a>
+                {% call empty_unless(addon.support_url) %}
+                  {{ addon|all_locales('support_url') }}
+                {% endcall %}
               {% endif %}
             </td>
           </tr>
@@ -211,7 +239,7 @@
     {{ form.non_field_errors() }}
     <div class="listing-footer">
       <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
-      <a href="{{ url('devhub.addons.section', addon.slug, 'basic') }}"
+      <a href="{{ url('devhub.addons.section', addon.slug, 'describe') }}"
         class="addon-edit-cancel">
         {{ _('Cancel') }}</a>
     </div>

@@ -464,13 +464,24 @@ function initCharCount() {
         var $el = $(el),
             val = $el.val(),
             max = parseInt(cc.attr('data-maxlength'), 10),
+            min = parseInt(cc.attr('data-minlength'), 10) || 0,
             // Count \r\n as one character, not two.
             lineBreaks = val.split('\n').length - 1,
-            left = max - val.length - lineBreaks;
-        // L10n: {0} is the number of characters left.
-        cc.html(format(ngettext('<b>{0}</b> character left.',
-                                '<b>{0}</b> characters left.', left), [left]))
-          .toggleClass('error', left < 0);
+            left = max - val.length - lineBreaks,
+            count = val.length - lineBreaks,
+            output = [];
+        if (min || !max) {
+            // L10n: {0} is the number of characters entered.
+            output.push(format(ngettext('<b>{0}</b> character',
+                                        '<b>{0}</b> characters', count), [count]));
+        }
+        if (max) {
+            // L10n: {0} is the number of characters left.
+            output.push(format(ngettext('<b>{0}</b> character left',
+                                        '<b>{0}</b> characters left', left), [left]));
+        }
+        cc.html(output.join('; ') + '.')
+          .toggleClass('error', left < 0 || count < min);
     };
     $('.char-count').each(function() {
         var $cc = $(this),
