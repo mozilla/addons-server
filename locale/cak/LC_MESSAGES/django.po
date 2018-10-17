@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-17 20:30+0000\n"
+"PO-Revision-Date: 2018-10-17 20:49+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5253,19 +5253,19 @@ msgstr "Tiyuj tzij {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Tajosq'ij ru kache' awokik'amaya'l rik'in jun pitz'oj o napïtz' pa ruwi' jun pitz'b'äl."
 
 #. editorial content for the discovery pane.
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Majun chik tamestaj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
-msgstr ""
+msgstr "Tatz'uku' chuqa' tanuk'samajij jun rucholb'al samaj pan awokik'amaya'l."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tiya' retal ruch'akulal jun tz'ib'anïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
