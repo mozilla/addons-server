@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-17 20:49+0000\n"
+"PO-Revision-Date: 2018-10-17 21:55+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5269,7 +5269,7 @@ msgstr "Tiya' retal ruch'akulal jun tz'ib'anïk {start_sub_heading}rik'in {addon
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
-msgstr ""
+msgstr "Ütz tawokisaj jun retab'al tz'ib'anïk ri nuk'ül rik'in jalajöj b'onil chuqa' kicha'oj yakb'äl."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
