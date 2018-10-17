@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.http import QueryDict
+from django.test.utils import override_settings
 
 from olympia import amo
 from olympia.amo.tests import addon_factory, TestCase, user_factory
@@ -184,6 +185,7 @@ class TestDiscoveryItem(TestCase):
             type=amo.ADDON_DICT))
         assert item.description == u''
 
+    @override_settings(DOMAIN='addons.mozilla.org')
     def test_build_querystring(self):
         item = DiscoveryItem.objects.create(addon=addon_factory(
             type=amo.ADDON_DICT))
