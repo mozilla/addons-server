@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-08-25 19:34+0000\n"
+"PO-Revision-Date: 2018-10-17 19:00+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -691,13 +691,13 @@ msgid "Admin Tools"
 msgstr "ਐਡਮਿਨ ਸੰਦ"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "ਸਕਾਰਾਤਮਕ ਪੂਰਨ ਅੰਕ"
 
 msgid "Incorrect, please try again."
 msgstr "ਗਲਤ, ਕਿਰਪਾ ਕਰ ਕੇ ਮੁੜ ਤੋਂ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "ਇੰਪੁੱਟ ਦੀ ਪੁਸ਼ਟੀ ਕਰਨ ਵਿੱਚ ਗਲਤੀ ਹੋਏ, ਤੇ ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "ਇਹ ਇੱਕ ਜਾਇਜ ਹੈਕਸ ਕਲਰ ਕੋਡ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ, ਜਿਵੇਂ ਕਿ #000000।"
@@ -2516,7 +2516,7 @@ msgid "You have not uploaded a source file."
 msgstr "ਤੁਸੀਂ ਇੱਕ ਸਰੋਤ ਫਾਈਲ ਅਪਲੋਡ ਨਹੀਂ ਕੀਤੀ ਹੈ।"
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
+msgstr "ਸਰੋਤ ਫਾਇਲ ਅਪਲੋਡ ਕੀਤੀ ਗਈ ਹੈ ਪਰ ਤੁਸੀਂ ਸੰਕੇਤ ਦਿੱਤਾ ਹੈ ਕਿ ਕੋਈ ਸਰੋਤ ਦੀ ਲੋੜ ਨਹੀਂ ਸੀ।"
 
 msgid "Application"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ"
@@ -2919,7 +2919,7 @@ msgid "Experimental?"
 msgstr "ਪ੍ਰਯੋਗਾਤਮਕ?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "ਜੇ ਤੁਹਾਡੀ ਐਡ-ਔਨ ਆਨ ਪ੍ਰਯੋਗਾਤਮਕ ਹੈ ਜਾਂ ਆਮ ਵਰਤੋਂ ਲਈ ਤਿਆਰ ਨਹੀਂ ਹੈ।   ਐਡ-ਓਨ ਨੂੰ ਸੂਚੀਬੱਧ ਕੀਤਾ ਜਾਵੇਗਾ ਪਰੰਤੂ ਦ੍ਰਿਸ਼ਟੀ ਘਟਾਈ ਹੋਵੇਗੀ। "
 
 #, fuzzy
 msgid "This add-on is experimental."
@@ -3184,6 +3184,8 @@ msgid ""
 "PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
 "page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
+"PNG ਅਤੇ JPG ਸਮਰਥਿਤ। ਸਕ੍ਰੀਨਸ਼ੌਟਸ ਲਈ ਅਧਿਕਤਮ ਅਤੇ ਸਿਫਾਰਸ਼ ਕੀਤੀ ਅਕਾਰ 1280x800 ਪਿਕਸਲ ਹੈ। 640x400 ਪਿਕਸਲ ਇਕ ਵਧੀਆ ਬਦਲ ਹੈ ਜੇਕਰ ਤੁਹਾਡੇ ਕੋਲ ਛੋਟੇ ਚਿੱਤਰ ਹਨ ਤੁਹਾਡੀ ਸੂਚੀ ਪੰਨੇ ਵਿੱਚ ਸਕ੍ਰੀਨਸ਼ੌਟਸ ਹੋਣ ਨਾਲ। ਇਸਦੇ ਸਥਾਪਿਤ "
+"ਹੋਣ ਦੀ ਸੰਭਾਵਨਾ ਵੱਧ ਜਾਂਦੀ ਹੈ ਅਤੇ ਹੋਮਪੇਜ ਵਿੱਚ ਫੀਚਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
 
 msgid "Continue"
 msgstr "ਜਾਰੀ"
@@ -3236,7 +3238,7 @@ msgid "Compatibility Tests"
 msgstr "ਅਨੁਕੂਲਤਾ ਪਰਖਾਂ"
 
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "ਆਟੋਮੈਟਿਕ ਦਸਤਖਤ ਲਈ ਲੋੜੀਂਦੇ ਸੰਦੇਸ਼ਾਂ ਨੂੰ ਲੁਕਾਓ"
 
 msgid "Hide messages present in previous version and ignored"
 msgstr ""
@@ -3435,7 +3437,6 @@ msgstr "ਸਮੀਖਿਆ ਬੇਨਤੀ ਰੱਦ ਕਰੋ"
 msgid "Submit Version"
 msgstr "ਇੱਕ ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
 
-#, fuzzy
 msgid "Describe Version"
 msgstr "ਵਰਜਨ ਅਯੋਗ ਕਰੋ"
 
@@ -3557,7 +3558,7 @@ msgid "A build script that executes all necessary technical steps."
 msgstr ""
 
 msgid "Operating system and build environment requirements."
-msgstr ""
+msgstr "ਓਪਰੇਟਿੰਗ ਸਿਸਟਮ ਅਤੇ ਵਾਤਾਵਰਨ ਜ਼ਰੂਰਤਾਂ ਦਾ ਨਿਰਮਾਣ।"
 
 msgid ""
 "Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
@@ -3658,7 +3659,7 @@ msgid "The color of the header area background, displayed in the part of the hea
 msgstr ""
 
 msgid "Header area text and icons"
-msgstr ""
+msgstr "ਸਿਰਲੇਖ ਖੇਤਰ ਦੇ ਪਾਠ ਅਤੇ ਆਈਕਾਨ"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
 msgstr ""
@@ -3720,7 +3721,7 @@ msgid "JWT issuer"
 msgstr "JWT ਜਾਰੀ ਕਰਤਾ"
 
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT ਗੁਪਤ"
 
 #, python-format
 msgid ""
@@ -4618,7 +4619,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "ਆਪਣੇ ਰਸਾਲੇ ਲਈ ਖ਼ਬਰਾਂ, ਕਹਾਣੀਆਂ, ਬਲਾੱਗ ਪੋਸਟਾਂ ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ ਭੇਜੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4682,7 +4683,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "ਫੋਕਸਡ ਦੇਖਣ ਦੇ ਅਨੁਭਵ ਲਈ ਵੀਡੀਓ ਖਿਡਾਰੀਆਂ ਦੇ ਦੁਆਲੇ ਪੰਨੇ ਨੂੰ ਗੂੜ੍ਹਾ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6942,7 +6943,7 @@ msgid "User Ratings Moderation"
 msgstr "ਯੂਜ਼ਰ ਰੇਟਿੰਗਸ ਸੰਚਾਲਨ"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "ਰੇਟਿੰਗਸ ਸੰਚਾਲਨ ਦੀ ਉਡੀਕ ਕਰ ਰਿਹਾ ਹੈ ({0})"
 
 msgid "Moderated Review Log"
 msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ਚਿੱਠਾ"
@@ -7057,7 +7058,7 @@ msgid "Image Gallery"
 msgstr "ਤਸਵੀਰ ਗੈਲਰੀ"
 
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "ਇੱਥੇ ਵੇਖਣ ਲਈ ਕੁੱਝ ਨਹੀਂ!  ਡਿਵੈਲਪਰ ਨੇ ਕੋਈ ਵੇਰਵੇ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤੇ।"
 
 #, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
@@ -7639,10 +7640,10 @@ msgstr ""
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "ਤੁਸੀਂ ਕਿਸੇ ਐਡਆਨ ਦੇ ਵਰਜਨ ਨੂੰ ਜੋੜ ਨਹੀਂ ਸਕਦੇ ਹੋ ਜਿਸ ਦੀ ਸਥਿਤੀ ਹੈ: %s।"
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "ਵਰਜਨ ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ।"
 
 #, fuzzy, python-format
 msgid "Version already exists. Latest version is: %s."
@@ -7661,7 +7662,7 @@ msgid "You cannot add a listed version to this addon via the API due to missing 
 msgstr ""
 
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "ਉਸ ਐਪੀਅਨ ਅਤੇ ਵਰਜ਼ਨ ਲਈ ਕੋਈ ਅਪਲੋਡ ਕੀਤੀ ਫਾਈਲ ਨਹੀਂ।"
 
 msgid "Overview"
 msgstr "ਸੰਖੇਪ ਜਾਣਕਾਰੀ"
