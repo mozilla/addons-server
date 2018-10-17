@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-17 23:24+0000\n"
+"PO-Revision-Date: 2018-10-17 23:35+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5309,7 +5309,7 @@ msgstr "Tayuju' ri runatab'al awokem pa k'amaya'l {start_sub_heading}rik'in {add
 
 #. editorial content for the discovery pane.
 msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Tajikib'a' jarupe' q'ij nawajo' chi niyake' ri runatab'al awokem pa k'amaya'l chuwäch pa ruyonil xtiyuj el."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
