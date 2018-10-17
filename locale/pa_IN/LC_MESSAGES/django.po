@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-17 17:19+0000\n"
+"PO-Revision-Date: 2018-10-17 17:42+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -2564,7 +2564,7 @@ msgid "Your developer API key was found in the submitted file. To protect your a
 msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
+msgstr "ਕੋਆਪਟਰ ਦੀ ਡਿਵੈਲਪਰ API ਕੁੰਜੀ ਜਮ੍ਹਾ ਹੋਈ ਫਾਈਲ ਵਿੱਚ ਲੱਭੀ ਗਈ ਸੀ। ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਸੁਰੱਖਿਆ ਲਈ, ਕੁੰਜੀ ਨੂੰ ਰੱਦ ਕੀਤਾ ਜਾਵੇਗਾ।"
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -2730,7 +2730,6 @@ msgstr "ਐਕਸਟੇਸ਼ਨ ਵਿਕਾਸ"
 msgid "Lightweight Themes"
 msgstr "ਲਾਈਟਵੇਟ ਥੀਮ"
 
-#, fuzzy
 msgid "Developer Policies"
 msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
 
@@ -2978,9 +2977,8 @@ msgid_plural "Reserved tags:"
 msgstr[0] "ਰਾਖਵਾਂ ਟੈਗ:"
 msgstr[1] "ਰਾਖਵੇਂ ਟੈਗ:"
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "ਯੋਗਦਾਨ"
+msgstr "ਯੋਗਦਾਨ URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
@@ -3613,11 +3611,9 @@ msgstr "ਪ੍ਰਬੰਧਕੀ ਓਵਰਰਾਈਡ"
 msgid "Create a Theme Version"
 msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਰਚੋ"
 
-#, fuzzy
 msgid "Create a Theme"
 msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਰਚੋ"
 
-#, fuzzy
 msgid "Sign Add-on"
 msgstr "ਐਡ-ਆਨ ਦਾਖਲ ਕਰੋ"
 
@@ -3629,7 +3625,6 @@ msgstr "ਥੀਮ ਹਟਾਇਆ।"
 msgid "Theme generator"
 msgstr "ਥੀਮ ਲਾਇਸੰਸ"
 
-#, fuzzy
 msgid "Theme name"
 msgstr "ਥੀਮ ਨਾਂ"
 
@@ -3693,9 +3688,8 @@ msgstr "ਸੰਦ-ਪੱਟੀ ਇਲਾਕਾ ਖੇਤਰ ਲਿਖਤ"
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
-#, fuzzy
 msgid "optional"
-msgstr "(ਵਿਕਲਪਿਕ)"
+msgstr "ਵਿਕਲਪਿਕ"
 
 #, fuzzy
 msgid "Browser preview"
@@ -3713,7 +3707,7 @@ msgid "Finish Theme"
 msgstr "%s ਥੀਮ"
 
 msgid "API Credentials"
-msgstr ""
+msgstr "API ਸਰਟੀਫਿਕੇਟਸ"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
@@ -3779,7 +3773,6 @@ msgstr ""
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
 
-#, fuzzy
 msgid "Listed Version:"
 msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
 
@@ -3943,7 +3936,7 @@ msgid "Compatibility Checker"
 msgstr "ਐਡ-ਆਨ ਅਨੁਕੂਲਤਾ ਚੈਕਰ"
 
 msgid "Promote"
-msgstr ""
+msgstr "ਉਤਸ਼ਾਹਿਤ"
 
 #, fuzzy
 msgid "Get Your Add-on Featured"
@@ -4520,7 +4513,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "ਕਿਸੇ ਵੀ ਵੈਬ ਪੰਨੇ ਤੇ ਸ਼ਬਦ ਨੂੰ ਹਾਈਲਾਈਟ ਕਰੋ ਤਾਂ ਕਿ ਇਹ ਇੰਜਣਾਂ ਦੀ ਲੜੀ ਤੋਂ ਸ਼ਬਦ ਲੱਭ ਸਕੇ।"
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4734,7 +4727,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "ਕਿਸੇ ਸਫੇ ਦੇ ਪਾਠ ਦੇ ਅਕਾਰ ਨੂੰ ਵਿਵਸਥਿਤ ਕਰਨ ਦਾ ਇੱਕ ਸੌਖਾ ਤਰੀਕਾ- ਜਾਂ ਪੰਨਾ ਨੂੰ ਖੁਦ ਵੀ ਵੱਡਾ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4742,7 +4735,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "ਉਹਨਾਂ ਦੇ ਟਰੈਕਾਂ ਵਿੱਚ ਟਰੈਕਰਾਂ ਨੂੰ ਰੋਕੋ ਅਤੇ ਉਨ੍ਹਾਂ ਬਾਰੇ ਹੋਰ ਜਾਣੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4798,7 +4791,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr ""
+msgstr "ਆਪਣੇ ਵੱਖ-ਵੱਖ ਆਨਲਾਇਨ ਪਹਿਚਾਣਾਂ ਨੂੰ ਨਿੱਜੀ ਤੌਰ ਤੇ ਵੱਖਰਾ ਕਰੋ - ਕੰਮ, ਨਿੱਜੀ, ਆਦਿ - ਰੰਗ-ਕੋਡਬੱਧ ਟੈਬਸ ਰਾਹੀਂ, ਜੋ ਤੁਹਾਡੇ ਡਿਜ਼ੀਟਲ ਕੂਕੀ ਟ੍ਰਾਇਲ ਨੂੰ ਵੰਡਦੇ ਹਨ।"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4814,7 +4807,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "ਫਾਇਰਫਾਕਸ ਵਿਚ ਈਪੱਬ ਫਾਈਲਾਂ ਦਾ ਅਨੰਦ ਮਾਣੋ ਫੌਂਟ ਸਾਈਜ਼ ਵਧਾਓ, ਪੇਜ ਮਾਪ, ਅਤੇ ਹੋਰ।"
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4822,7 +4815,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "ਸਭ ਤੋਂ ਉੱਚੇ ਕੁਆਲਿਟੀ ਵਿੱਚ ਵੀਡੀਓ ਚਲਾਓ, ਐਨੋਟੇਸ਼ਨ ਬੰਦ ਕਰੋ, ਅਤੇ ਹੋਰ।"
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4830,7 +4823,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "ਕੇਵਲ ਇੱਕ ਕਲਿਕ ਨਾਲ ਤੁਹਾਨੂੰ ਕਿਸ ਦੀ ਟਰੈਕ ਕਰਨਾ ਹੈ ਬਾਰੇ ਇੱਕ ਝਾਤ ਪਾਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4878,7 +4871,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "ਟੈਗਾਂ ਅਤੇ ਹੋਰ ਤਰੀਕਿਆਂ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਤੁਸੀਂ Reddit ਤੇ ਸਰਫਰ ਕਰਨ ਦੇ ਤਰੀਕੇ ਨੂੰ ਬਦਲੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4886,11 +4879,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "ਸਕ੍ਰੀਨਸ਼ੌਟ ਵੈਬ ਪੇਜਿਜ਼, ਸੰਪਾਦਨ ਕਰੋ ਅਤੇ ਸਾਂਝੇ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "ਇੱਕ ਬਿਹਤਰ ਵਿੰਡੋਜ਼ ਲਈ ਸਿਰਫ ਡਾਊਨਲੋਡਰ ਸੰਦ।"
 
 #. editorial content for the discovery pane.
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4906,7 +4899,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "ਭੇਤ ਭਰੀ ਪਛਾਣ ਵਾਲਾ ਵੈਬ ਬ੍ਰਾਉਜ਼ ਕਰੋ - ਜਿਵੇਂ ਕਿ ਤੁਸੀਂ ਦੂਜੇ ਦੇਸ਼ ਤੋਂ ਬ੍ਰਾਊਜ਼ ਕਰ ਰਹੇ ਹੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
@@ -5014,7 +5007,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "ਪਾਸਵਰਡ ਨੂੰ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਸਟੋਰ ਕਰੋ ਅਤੇ ਇਹਨਾਂ ਨੂੰ ਕਈ ਉਪਕਰਣਾਂ ਵਿੱਚ ਐਕਸੈਸ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5062,7 +5055,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr ""
+msgstr "Google ਚਿੱਤਰ ਤੇ ਖੋਜ ਕਰਦੇ ਹੋਏ \"ਚਿੱਤਰ ਵੇਖੋ\" ਬਟਨ ਨੂੰ ਵਾਪਸ ਲਿਆਉਂਦਾ ਹੈ।"
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5110,7 +5103,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "ਪੌਪ-ਆਊਟ ਵਿਡਿਓ ਵਿੱਚ ਵਿਡੀਓਜ਼ ਚਲਾਉ, ਸਿਰਫ ਮੈਂਬਰ ਚੈਨਲਾਂ ਵਿੱਚ ਵਿਗਿਆਪਨ ਦੇਖੋ, ਵੀਡੀਓ ਸਕ੍ਰੀਨਸ਼ੌਟਸ ਲਓ, ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ।"
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5126,7 +5119,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh and modern appearance to Wikipedia."
-msgstr ""
+msgstr "ਇੱਕ ਤਾਜ਼ਾ ਅਤੇ ਆਧੁਨਿਕ ਦਿੱਖ Wikipedia ਨੂੰ ਲਾਗੂ ਕਰਦਾ ਹੈ।"
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5158,7 +5151,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr ""
+msgstr "ਟਰੈਕਰਾਂ ਨੂੰ ਬੰਦ ਕਰਨ ਅਤੇ ਤੁਹਾਡੀ ਗੋਪਨੀਯਤਾ ਦੀ ਰੱਖਿਆ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਸਥਾਨ ਨੂੰ ਵੇਚ ਦਿਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5174,7 +5167,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "ਆਪਣੇ ਮੌਜੂਦਾ ਟੈਬ ਦੇ ਸੱਜੇ ਪਾਸੇ ਇੱਕ ਨਵੀਂ ਟੈਬ ਖੋਲ੍ਹੋ, ਨਾ ਕਿ ਅੰਤ ਵਿੱਚ।"
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5182,7 +5175,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "ਅਗਿਆਤ ਰਹਿਣ ਅਤੇ ਸਪੈਮ ਤੋਂ ਬਚਣ ਲਈ ਚੁਸਤੀ ਆਰਜ਼ੀ ਈਮੇਲ ਪਤਿਆਂ ਦੀ ਵਰਤੋਂ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5230,7 +5223,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "ਨਾ-ਪੜਿਆ ਥ੍ਰੈਡਸ ਦੀ ਬੈਜ ਨੋਟੀਫਿਕੇਸ਼ਨ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ Firefox's ਦੇ ਟੂਲਬਾਰ ਪੈਨਲ ਦੇ ਅੰਦਰੋਂ WhatsApp ਵਰਤੋਂ।"
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
