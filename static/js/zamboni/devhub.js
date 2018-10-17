@@ -269,7 +269,7 @@ function addonFormSubmit() {
     (function(parent_div){
         // If the baseurl changes (the slug changed) we need to go to the new url.
         var baseurl = function(){
-            return parent_div.find('#addon-edit-basic').attr('data-baseurl');
+            return parent_div.find('#addon-edit-describe').attr('data-baseurl');
         };
         $('.edit-media-button button').prop('disabled', false);
         $('form', parent_div).submit(function(e){

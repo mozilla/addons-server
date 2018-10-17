@@ -3,6 +3,7 @@ import os
 
 from django import forms
 from django.conf import settings
+from django.core.validators import MinLengthValidator
 from django.db.models import Q
 from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.forms.widgets import RadioSelect
@@ -10,6 +11,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import jinja2
+import waffle
 
 from olympia import amo
 from olympia.access import acl
@@ -579,6 +581,8 @@ class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
     slug = forms.CharField(max_length=30)
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
                          max_length=250)
+    description = TransField(widget=TransTextarea(attrs={'rows': 6}),
+                             min_length=10)
     is_experimental = forms.BooleanField(required=False)
     requires_payment = forms.BooleanField(required=False)
     support_url = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
@@ -590,17 +594,26 @@ class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
         widget=TransTextarea(), required=False,
         label=_(u'Please specify your add-on\'s Privacy Policy:'))
 
-    fields_to_akismet_comment_check = ['name', 'summary']
+    fields_to_akismet_comment_check = ['name', 'summary', 'description']
 
     class Meta:
         model = Addon
-        fields = ('name', 'slug', 'summary', 'is_experimental', 'support_url',
-                  'support_email', 'privacy_policy', 'requires_payment')
+        fields = ('name', 'slug', 'summary', 'description', 'is_experimental',
+                  'support_url', 'support_email', 'privacy_policy',
+                  'requires_payment')
 
     def __init__(self, *args, **kw):
         kw['initial'] = {
             'has_priv': self._has_field('privacy_policy', kw['instance'])}
         super(DescribeForm, self).__init__(*args, **kw)
+        content_waffle = waffle.switch_is_active('content-optimization')
+        if not content_waffle or self.instance.type != amo.ADDON_EXTENSION:
+            description = self.fields['description']
+            description.min_length = None
+            description.validators = [
+                validator for validator in description.validators
+                if not isinstance(validator, MinLengthValidator)]
+            description.required = False
 
     def _has_field(self, name, instance=None):
         # If there's a policy in any language, this addon has a policy.
@@ -613,6 +626,21 @@ class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
             delete_translation(self.instance, 'privacy_policy')
 
         return obj
+
+
+class DescribeFormUnlisted(AkismetSpamCheckFormMixin, AddonFormBase):
+    name = TransField(max_length=50)
+    slug = forms.CharField(max_length=30)
+    summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
+                         max_length=250)
+    description = TransField(widget=TransTextarea(attrs={'rows': 4}),
+                             required=False)
+
+    fields_to_akismet_comment_check = ['name', 'summary', 'description']
+
+    class Meta:
+        model = Addon
+        fields = ('name', 'slug', 'summary', 'description')
 
 
 class PreviewForm(forms.ModelForm):

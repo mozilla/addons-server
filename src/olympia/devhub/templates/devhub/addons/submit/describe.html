@@ -40,6 +40,27 @@
              data-maxlength="{{ form.summary.field.max_length }}"></div>
       </div>
     </div>
+    {% if addon.type == amo.ADDON_EXTENSION %}
+    <div class="addon-submission-field">
+      <label>{{ _('Description:') }}
+      {% if form.description.field.min_length %}
+        <span class="req" title="{{ _('required') }}">*</span>
+      {% endif %}</label>
+      {{ form.description }}
+      {{ form.description.errors }}
+      <div class="edit-addon-details">
+        {{ _("A longer explanation of features, functionality, and other relevant information. "
+             "This field is only displayed on the add-on's listing. " +
+             ('Minimum length: 10 characters; ' if form.description.field.min_length else '') +
+             "Recommended length: 250 characters. "
+             "If you need a longer description, make sure the first 250 characters contain the most important description points.") }}
+        <div class="char-count"
+             data-for-startswith="{{ form.description.auto_id }}_"
+             data-minlength="{{ form.description.field.min_length }}"></div>
+      </div>
+      {{ some_html_tip() }}
+    </div>
+    {% endif %}
     {% if addon.type != amo.ADDON_STATICTHEME %}
     <div class="addon-submission-field">
       <label for="{{ form.is_experimental.auto_id }}">

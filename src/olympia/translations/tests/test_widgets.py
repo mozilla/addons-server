@@ -82,3 +82,21 @@ class TestWidget(TestCase):
         actual = widgets.TransInput().value_from_datadict(data, [], 'f')
         expected = {'en-US': 'woo', 'de': 'herr', 'fr': None}
         assert actual == expected
+
+    def test_transtextarea_renders_attrs(self):
+        models.Translation.objects.create(
+            id=666, locale='en-us', localized_string='test value en')
+        widget = widgets.TransTextarea(attrs={'rows': 5, 'cols': 20})
+
+        doc = pq(widget.render('foo', 666))
+        assert doc('textarea')[0].get('rows') == '5'
+        assert doc('textarea')[0].get('cols') == '20'
+
+    def test_transinput_renders_attrs(self):
+        models.Translation.objects.create(
+            id=666, locale='en-us', localized_string='test value en')
+        widget = widgets.TransInput(attrs={'rows': 5, 'cols': 20})
+
+        doc = pq(widget.render('foo', 666))
+        assert doc('input')[0].get('rows') == '5'
+        assert doc('input')[0].get('cols') == '20'
