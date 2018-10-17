@@ -11,6 +11,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import jinja2
+import waffle
 
 from olympia import amo
 from olympia.access import acl
