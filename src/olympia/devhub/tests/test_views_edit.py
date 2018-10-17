@@ -229,7 +229,7 @@ class BaseTestEditDescribe(BaseTestEdit):
                              'Ensure this value has at most 250 '
                              'characters (it has 251).')
 
-    def test_nav_links(self, show_compat_reporter=True):
+    def test_nav_links(self):
         if self.listed:
             links = [
                 self.addon.get_dev_url('edit'),  # Edit Information
@@ -247,11 +247,6 @@ class BaseTestEditDescribe(BaseTestEdit):
                 reverse('devhub.feed', args=[self.addon.slug]),  # View Recent
             ]
 
-        if show_compat_reporter:
-            # Compatibility Reporter. Only shown for legacy extensions.
-            links.append(
-                reverse('compat.reporter_detail', args=[self.addon.guid]))
-
         response = self.client.get(self.url)
         doc_links = [
             unicode(a.attrib['href'])
@@ -260,7 +255,7 @@ class BaseTestEditDescribe(BaseTestEdit):
 
     def test_nav_links_webextensions(self):
         self.addon.find_latest_version(None).files.update(is_webextension=True)
-        self.test_nav_links(show_compat_reporter=False)
+        self.test_nav_links()
 
     def _feature_addon(self, addon_id=3615):
         c_addon = CollectionAddon.objects.create(

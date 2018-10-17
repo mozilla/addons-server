@@ -2,8 +2,7 @@ from django import forms
 from django.conf import settings
 from django.forms import ModelForm
 from django.forms.models import BaseModelFormSet, modelformset_factory
-from django.forms.widgets import RadioSelect
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import ugettext
 
 from product_details import product_details
 
@@ -13,7 +12,6 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.bandwagon.models import (
     Collection, FeaturedCollection, MonthlyPick)
-from olympia.compat.forms import APPVER_CHOICES
 from olympia.files.models import File
 from olympia.zadmin.models import SiteEvent
 
@@ -138,17 +136,3 @@ class SiteEventForm(ModelForm):
 
 class YesImSure(forms.Form):
     yes = forms.BooleanField(required=True, label="Yes, I'm sure")
-
-
-class CompatForm(forms.Form):
-    appver = forms.ChoiceField(choices=APPVER_CHOICES, required=False)
-    type = forms.ChoiceField(choices=(('all', _('All Add-ons')),
-                                      ('binary', _('Binary')),
-                                      ('non-binary', _('Non-binary'))),
-                             widget=RadioSelect, required=False)
-    _minimum_choices = [(x, x) for x in xrange(100, -10, -10)]
-    minimum = forms.TypedChoiceField(choices=_minimum_choices, coerce=int,
-                                     required=False)
-    _ratio_choices = [('%.1f' % (x / 10.0), '%.0f%%' % (x * 10))
-                      for x in xrange(9, -1, -1)]
-    ratio = forms.ChoiceField(choices=_ratio_choices, required=False)

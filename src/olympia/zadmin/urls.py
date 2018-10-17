@@ -37,7 +37,6 @@ urlpatterns = [
     url('^fix-disabled', views.fix_disabled_file, name='zadmin.fix-disabled'),
     url(r'^email_preview/(?P<topic>.*)\.csv$',
         views.email_preview_csv, name='zadmin.email_preview_csv'),
-    url(r'^compat$', views.compat, name='zadmin.compat'),
 
     url(r'^file-upload/(?P<uuid>[0-9a-f]{32})/download$',
         views.download_file_upload, name='zadmin.download_file_upload'),
