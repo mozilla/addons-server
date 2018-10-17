@@ -5,11 +5,12 @@ from itertools import izip_longest
 from django.template import loader
 
 from olympia import amo
+from olympia.addons.tasks import index_addons
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import pngcrush_image
 from olympia.devhub.tasks import resize_image
-from olympia.versions.models import VersionPreview
+from olympia.versions.models import Version, VersionPreview
 
 from .utils import (
     AdditionalBackground, process_color_value,
@@ -71,6 +72,9 @@ def generate_static_theme_preview(theme_manifest, header_root, version_pk):
             preview_sizes['image'] = size['full']
             preview_sizes['thumbnail'] = size['thumbnail']
             preview.update(sizes=preview_sizes)
+    addon_id = Version.objects.values_list(
+        'addon_id', flat=True).get(id=version_pk)
+    index_addons.delay([addon_id])
 
 
 @task
