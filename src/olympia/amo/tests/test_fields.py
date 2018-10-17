@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core import exceptions
 from django.db import connection, DataError
 
@@ -37,6 +38,14 @@ class HttpHttpsOnlyURLFieldTestCase(TestCase):
         # https://github.com/mozilla/addons-server/issues/1452
         with self.assertRaises(exceptions.ValidationError):
             assert self.field.clean(u'https://test.[com')
+
+    def test_with_site_url(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.field.clean(u'%s' % settings.SITE_URL)
+
+    def test_with_services_domain(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.field.clean(u'%s' % settings.SERVICES_DOMAIN)
 
 
 class TestPositiveAutoField(TestCase):
