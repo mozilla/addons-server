@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.http import QueryDict
 from django.utils.html import conditional_escape, format_html
@@ -48,7 +49,7 @@ class DiscoveryItem(ModelBase):
     def build_querystring(self):
         qs = QueryDict(mutable=True)
         qs.update({
-            'utm_source': 'discovery.addons.mozilla.org',
+            'utm_source': 'discovery.%s' % settings.DOMAIN,
             'utm_medium': 'firefox-browser',
             'utm_content': 'discopane-entry-link',
             'src': 'api',
