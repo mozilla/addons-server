@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-17 18:28+0000\n"
+"PO-Revision-Date: 2018-08-25 19:34+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -6506,9 +6506,8 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "ਤੁਸੀਂ ਇਸ ਵਰਜਨ ਲਈ ਹੋਰ ਜਿਆਦਾ ਫ਼ਾਈਲਾਂ ਅੱਪਲੋਡ ਨਹੀਂ ਕਰ ਸਕਦੇ।"
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "ਇਸ ਰੇਟਿੰਗ ਨੂੰ ਫਲੈਗ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ ਕਿਉਂਕਿ ਇਸਦਾ ਕੋਈ ਸਮੀਖਿਆ ਪਾਠ ਨਹੀਂ ਹੈ।"
 
-#, fuzzy
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "ਧੰਨਵਾਦ; ਇਸ ਸਮੀਖਿਆ ਉੱਤੇ ਸੰਪਾਦਕ ਪ੍ਰਵਾਨਗੀ ਲਈ ਝੰਡਾ ਲਗਾਇਆ ਗਿਆ।"
 
@@ -6570,7 +6569,7 @@ msgid "Reply to review"
 msgstr "ਸਮੀਖਿਆ ਦਾ ਜਵਾਬ ਦਿਓ"
 
 msgid "Edit reply"
-msgstr ""
+msgstr "ਜਵਾਬ ਸੰਪਾਦਿਤ ਕਰੋ"
 
 msgid "Edit review"
 msgstr "ਸਮੀਖਿਆ ਸੋਧ"
@@ -6675,7 +6674,7 @@ msgid "Add-on Types"
 msgstr "ਐਡ-ਆਨ ਕਿਸਮਾਂ"
 
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "ਐਡ-ਆਨ ਨਾਮ / ਲੇਖਕ ਈਮੇਲ / ਗਾਈਡ ਦੁਆਰਾ ਖੋਜ ਕਰੋ"
 
 msgid "Max. Version"
 msgstr "ਮੈਕਸ. ਵਰਜਨ"
@@ -6860,7 +6859,7 @@ msgid "Approve Content"
 msgstr "ਮਨਜ਼ੂਰ / ਨਾ ਮਨਜ਼ੂਰ"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
+msgstr "ਇਹ ਡਿਵੈਲਪਰ ਨੂੰ ਸੂਚਿਤ ਕੀਤੇ ਬਗੈਰ, ਨਵੀਨਤਮ ਜਨਤਕ ਸੰਸਕਰਣ ਦੀ ਸਮਗਰੀ ਦੀ ਤੁਹਾਡੀ ਅਨੁਮਤੀ ਨੂੰ ਰਿਕਾਰਡ ਕਰਦਾ ਹੈ।"
 
 #, fuzzy
 msgid "Static Themes and Legacy Add-ons"
@@ -6940,7 +6939,7 @@ msgid "Deleted Themes Log"
 msgstr "ਥੀਮ ਹਟਾਓ"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "ਯੂਜ਼ਰ ਰੇਟਿੰਗਸ ਸੰਚਾਲਨ"
 
 msgid "Ratings Awaiting Moderation ({0})"
 msgstr ""
