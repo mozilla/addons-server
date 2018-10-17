@@ -134,7 +134,7 @@ class AddonIndexer(BaseSearchIndexer):
                     'listed_authors': {
                         'type': 'object',
                         'properties': {
-                            'id': {'type': 'long', 'index': False},
+                            'id': {'type': 'long'},
                             'name': {'type': 'text'},
                             'username': {'type': 'keyword'},
                             'is_public': {'type': 'boolean', 'index': False},

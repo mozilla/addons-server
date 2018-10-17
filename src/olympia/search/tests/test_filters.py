@@ -479,11 +479,31 @@ class TestSearchParameterFilter(FilterTestsBase):
     def test_search_by_author(self):
         qs = self._filter(data={'author': 'fooBar'})
         must = qs['query']['bool']['must']
-        assert {'terms': {'listed_authors.username': ['fooBar']}} in must
+        assert len(must) == 1
+        should = must[0]['bool']['should']
+        assert {'terms': {'listed_authors.id': []}} in should
+        assert {'terms': {'listed_authors.username': ['fooBar']}} in should
 
         qs = self._filter(data={'author': 'foo,bar'})
         must = qs['query']['bool']['must']
-        assert {'terms': {'listed_authors.username': ['foo', 'bar']}} in must
+        assert len(must) == 1
+        should = must[0]['bool']['should']
+        assert {'terms': {'listed_authors.id': []}} in should
+        assert {'terms': {'listed_authors.username': ['foo', 'bar']}} in should
+
+        qs = self._filter(data={'author': '123,456'})
+        must = qs['query']['bool']['must']
+        assert len(must) == 1
+        should = must[0]['bool']['should']
+        assert {'terms': {'listed_authors.id': ['123', '456']}} in should
+        assert {'terms': {'listed_authors.username': []}} in should
+
+        qs = self._filter(data={'author': '123,bar'})
+        must = qs['query']['bool']['must']
+        assert len(must) == 1
+        should = must[0]['bool']['should']
+        assert {'terms': {'listed_authors.id': ['123']}} in should
+        assert {'terms': {'listed_authors.username': ['bar']}} in should
 
     def test_exclude_addons(self):
         qs = self._filter(data={'exclude_addons': 'fooBar'})

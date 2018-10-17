@@ -110,12 +110,22 @@ class AddonAuthorQueryParam(AddonQueryParam):
     # when several are provided (separated by a comma).
     # It works differently from the tag filter below that needs all tags
     # provided to match.
-    operator = 'terms'
     query_param = 'author'
-    es_field = 'listed_authors.username'
+    es_field_prefix = 'listed_authors.'
 
     def get_value(self):
         return self.request.GET.get(self.query_param, '').split(',')
+
+    def get_es_query(self):
+        filters = []
+        values = self.get_value()
+        ids = [value for value in values if value.isdigit()]
+        usernames = [value for value in values if not value.isdigit()]
+        if ids or usernames:
+            filters.append(
+                Q('terms', **{self.es_field_prefix + 'id': ids}) |
+                Q('terms', **{self.es_field_prefix + 'username': usernames}))
+        return filters
 
 
 class AddonGuidQueryParam(AddonQueryParam):

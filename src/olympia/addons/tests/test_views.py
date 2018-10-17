@@ -2885,6 +2885,32 @@ class TestAddonSearchView(ESTestCase):
         assert result['id'] == addon2.pk
         assert result['slug'] == addon2.slug
 
+        # repeat with author ids
+        data = self.perform_search(
+            self.url, {'author': u'%s,%s' % (author.pk, author2.pk)})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
+        result = data['results'][1]
+        assert result['id'] == addon2.pk
+        assert result['slug'] == addon2.slug
+
+        # and mixed username and ids
+        data = self.perform_search(
+            self.url, {'author': u'%s,%s' % (author.pk, author2.username)})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
+        result = data['results'][1]
+        assert result['id'] == addon2.pk
+        assert result['slug'] == addon2.slug
+
     def test_filter_by_guid(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
                               guid='random@guid', weekly_downloads=999)
