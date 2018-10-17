@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-09-03 08:32+0000\n"
+"PO-Revision-Date: 2018-10-17 18:28+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -6113,11 +6113,9 @@ msgstr ""
 msgid "Unlock early access to experimental browser features."
 msgstr ""
 
-#, fuzzy
 msgid "Get Started"
 msgstr "ਸ਼ੁਰੂ ਕਰ ਰਿਹਾ"
 
-#, fuzzy
 msgid "Reported Status"
 msgstr "ਉਪਭੋਗੀ ਦੀ ਸੂਚਨਾ ਦਿਓ"
 
@@ -6388,38 +6386,37 @@ msgid "Continue using Firefox as you normally would. Depending on how you use th
 msgstr ""
 
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "ਕੁਝ ਹਫ਼ਤਿਆਂ ਦੇ ਬਾਅਦ, ਇਹ ਅਧਿਐਨ ਆਪਣੇ ਆਪ ਹੀ ਖਤਮ ਹੋ ਜਾਵੇਗਾ। ਤੁਹਾਡਾ ਫਾਇਰਫਾਕਸ ਵਾਪਸ ਸਧਾਰਣ ਹੋ ਜਾਵੇਗਾ।"
 
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
 msgstr ""
 
 msgid "Leaving the study"
-msgstr ""
+msgstr "ਅਧਿਐਨ ਛੱਡਣਾ"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
 msgstr ""
 
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "ਟਾਈਪ ਕਰੋ:ਟਿਕਾਣਾ ਪੱਟੀ ਵਿੱਚ ਐਡਆਨਸ, ਅਤੇ ਐਂਟਰ ਦਬਾਓ।"
 
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "ਐਡਉਨਸ ਸੂਚੀ ਵਿੱਚ ਪਲੱਗਇਨ ਸੇਫਟੀ ਲੱਭੋ।"
 
 msgid "Click the remove button."
-msgstr ""
+msgstr "ਹਟਾਉਣ ਬਟਨ ਨੂੰ ਦਬਾਓ।"
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
+msgstr "ਜੇ ਤੁਸੀਂ ਅਧਿਐਨ ਤੋਂ ਬਾਹਰ ਨਿਕਲਣਾ ਸ਼ੁਰੂ ਕਰਦੇ ਹੋ ਤਾਂ ਅਸੀਂ ਤੁਹਾਨੂੰ ਇੱਕ ਸਰਵੇਖਣ ਭਰਨ ਲਈ ਕਹਾਂਗੇ। ਅਸੀਂ ਤੁਹਾਡੇ ਅਨੁਭਵ ਬਾਰੇ ਸੁਣਨ ਵਿੱਚ ਦਿਲਚਸਪੀ ਰੱਖਦੇ ਹਾਂ, ਭਾਵੇਂ ਤੁਸੀਂ ਪੂਰੇ ਅਧਿਅਨ ਵਿੱਚ ਹਿੱਸਾ ਨਾ ਲਿਆ ਹੋਵੇ।"
 
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "ਅਧਿਐਨ ਦੀ ਚੋਣ ਕਰਨ ਨਾਲ ਤੁਹਾਨੂੰ ਭਵਿੱਖ ਦੇ ਅਧਿਐਨ ਵਿਚ ਹਿੱਸਾ ਲੈਣ ਤੋਂ ਨਹੀਂ ਰੋਕਦੀ।"
 
-#, fuzzy
 msgid "Your privacy"
-msgstr "ਪਰਦਾ ਨੀਤੀ:"
+msgstr "ਪਰਦਾ ਨੀਤੀ"
 
 msgid "All Shield Studies"
-msgstr ""
+msgstr "ਸਾਰੇ ਢਾਲ ਅਧਿਐਨ"
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
 msgstr ""
@@ -6429,13 +6426,13 @@ msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collec
 msgstr ""
 
 msgid "This particular Study"
-msgstr ""
+msgstr "ਇਹ ਖਾਸ ਅਧਿਐਨ"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
 msgstr ""
 
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
+msgstr "ਵੈਬਸਾਈਟਾਂ ਜਿਹੜੀਆਂ ਤੁਸੀਂ ਵਿਜ਼ਿਟ ਕਰਦੇ ਹੋ ਜੋ ਪਲਗਇੰਸ ਦੀ ਵਰਤੋਂ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਹਨ, ਅਤੇ ਸਾਈਟ ਤੇ ਕਿਹੜਾ ਸਮਗਰੀ ਪਲਗਇਨ ਦੀ ਲੋੜ ਹੈ;"
 
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
 msgstr ""
@@ -6471,7 +6468,7 @@ msgid "Rated %d out of 5 stars"
 msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚ %d ਮਿਲੇ"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "ਇੱਕ ਫਲੈਗ ਕਾਰਨ ਦੇ ਤੌਰ ਤੇ \"ਹੋਰ\" ਦੀ ਚੋਣ ਕਰਨ ਸਮੇਂ ਇੱਕ ਛੋਟੀ ਵਿਆਖਿਆ ਪ੍ਰਦਾਨ ਕੀਤੀ ਜਾਣੀ ਚਾਹੀਦੀ ਹੈ।"
 
 msgid "Spam or otherwise non-review content"
 msgstr "ਸਪੈਮ ਜਾਂ ਹੋਰ ਬਿਨਾਂ-ਸਮੀਖਿਆ ਵਾਲੀ ਸਮੱਗਰੀ"
@@ -6485,22 +6482,20 @@ msgstr "ਗੁਆਚੀ ਬਗ ਰਿਪੋਰਟ ਜਾਂ ਸਹਿਯੋਗ �
 msgid "Other (please specify)"
 msgstr "ਹੋਰ ( ਕਿਰਪਾ ਕਰਕੇ ਦੱਸੋ)"
 
-#, fuzzy
 msgid "This field is required."
-msgstr "ਲੋੜੀਂਂਦਾ ਖੇਤਰ"
+msgstr "ਲੋੜੀਂਂਦਾ ਖੇਤਰ।"
 
-#, fuzzy
 msgid "You can't change the add-on of a review once it has been created."
 msgstr "ਹੋ ਸਕਦਾ ਤੁਸੀਂ ਇੱਥੇ ਆਪਣੇ ਥੀਮ ਦਾ ਡਿਜਾਇਨ ਅੱਪਡੇਟ ਕਰੋ ਜਦੋਂ ਇਹ ਇੱਕ ਵਾਰ ਪ੍ਰਵਾਨਿਤ ਹੋ ਜਾਵੇ।"
 
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "ਤੁਸੀਂ ਕਿਸੇ ਸਮੀਖਿਆ ਦਾ ਜਵਾਬ ਨਹੀਂ ਦੇ ਸਕਦੇ ਜੋ ਪਹਿਲਾਂ ਹੀ ਇੱਕ ਜਵਾਬ ਹੈ।"
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "ਇਕ ਵਾਰ ਸਮੀਖਿਆ ਬਣਾਈ ਗਈ ਹੈ ਤਾਂ ਤੁਸੀਂ ਐਡ-ਆਨ ਦਾ ਸੰਸਕਰਣ ਦੀ ਸਮੀਖਿਆ ਨਹੀਂ ਕਰ ਸਕਦੇ।"
 
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "ਐਡ-ਓਨ ਦਾ ਇਹ ਸੰਸਕਰਣ ਮੌਜੂਦ ਨਹੀਂ ਹੈ ਜਾਂ ਜਨਤਾ ਨਹੀਂ ਹੈ।"
 
 #, fuzzy
 msgid "You can't leave a review on your own add-on."
@@ -6695,11 +6690,10 @@ msgid "Applications:"
 msgstr "ਐਪਲੀਕੇਸ਼ਨਾਂ:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "ਡਿਵੈਲਪਰ ਨੂੰ ਇਸ ਤੋਂ ਘੱਟ ਵਿਚ ਜਵਾਬ ਦੇਣ ਲਈ ਲੋੜੀਂਦਾ ਹੈ…"
 
-#, fuzzy
 msgid "days"
-msgstr "7 ਦਿਨਾਂ"
+msgstr "ਦਿਨਾਂ"
 
 msgid "Choose a canned response..."
 msgstr "ਇੱਕ ਡਿੱਬਾਬੰਦ ਜਵਾਬ ਚੁਣੋ..."
@@ -6712,11 +6706,9 @@ msgid "Someone else is reviewing this theme."
 msgstr "ਇਸ ਥੀਮ ਦੀ ਸਮੀਖਿਆ ਕੋਈ ਹੋਰ ਕਰ ਰਿਹਾ ਹੈ।"
 
 #. L10n: Description of what can be searched for.
-#, fuzzy
 msgid "theme, reviewer, or comment"
 msgstr "ਐਪ, ਸਮੀਖਿਅਕ, ਜਾਂ ਟਿੱਪਣੀ"
 
-#, fuzzy
 msgid "Private Whiteboard"
 msgstr "ਵਾਇਟਬੋਰਡ"
 
@@ -6726,11 +6718,9 @@ msgstr "ਸਮੀਖਿਆ ਰੱਖੋ; ਝੰਡੇ ਹਟਾਓ"
 msgid "Skip for now"
 msgstr "ਹੁਣ ਲਈ ਛੱਡੋ"
 
-#, fuzzy
 msgid "Needs Admin Content Review"
 msgstr "ਸਮੀਖਿਆ ਕਬੂਲੋ"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
 msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ"
 
@@ -6823,7 +6813,7 @@ msgid "Last Content Review"
 msgstr "ਸਮੀਖਿਆ ਕਬੂਲੋ"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "ਇਹ ਇਸ ਸੰਸਕਰਣ ਦੀ ਮਨਜ਼ੂਰੀ, ਹਸਤਾਖਰ ਅਤੇ ਪ੍ਰਕਾਸ਼ਿਤ ਕਰੇਗਾ। ਟਿੱਪਣੀ ਵਿਕਾਸਕਾਰ ਨੂੰ ਭੇਜੀ ਜਾਵੇਗੀ।"
 
 #, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
@@ -6834,7 +6824,7 @@ msgid "Confirm Approval"
 msgstr "ਮਨਜ਼ੂਰੀ ਬਕਾਇਆ"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr ""
+msgstr "ਇਸ ਐਡ-ਓਨ ਦਾ ਨਵੀਨਤਮ ਜਨਤਕ ਸੰਸਕਰਣ ਆਪਣੇ ਆਪ ਮਨਜ਼ੂਰ ਹੋ ਗਿਆ ਸੀ। ਇਹ ਡਿਵੈਲਪਰ ਨੂੰ ਸੂਚਿਤ ਕੀਤੇ ਬਗੈਰ, ਉਸ ਵਰਜਨ ਦੀ ਮਨਜ਼ੂਰੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰਦਾ ਹੈ।"
 
 #, fuzzy
 msgid "Reject Multiple Versions"
