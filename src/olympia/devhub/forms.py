@@ -580,7 +580,7 @@ class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
     slug = forms.CharField(max_length=30)
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
                          max_length=250)
-    description = TransField(widget=TransTextarea(attrs={'rows': 4}),
+    description = TransField(widget=TransTextarea(attrs={'rows': 6}),
                              min_length=10)
     is_experimental = forms.BooleanField(required=False)
     requires_payment = forms.BooleanField(required=False)
