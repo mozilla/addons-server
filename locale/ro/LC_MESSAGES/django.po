@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-16 21:51+0000\n"
+"PO-Revision-Date: 2018-10-17 16:50+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -4396,7 +4396,7 @@ msgstr "Descarcă videoclipuri {start_sub_heading}cu {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Funcționează cu YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope și sute de alte site-uri video."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5645,13 +5645,12 @@ msgid "Automatically delete browser history for websites you select."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Descarcă videoclipuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Protejează marcajele {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Protejează cu parolă marcajele tale personale."
 
 #. editorial content for the discovery pane.
 #, fuzzy
