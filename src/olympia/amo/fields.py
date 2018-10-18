@@ -49,7 +49,10 @@ class HttpHttpsOnlyURLField(fields.URLField):
             # https://github.com/mozilla/addons-server/issues/9012
             RegexValidator(
                 regex=r'%s' % re.escape(settings.DOMAIN),
-                message=_('Linking to AMO is forbidden.'),
+                message=_(
+                    'This field can only be used to link to external websites. '
+                    'URLs on %(domain)s are not allowed.',
+                ) % { 'domain': settings.DOMAIN },
                 code='no_amo_url',
                 inverse_match=True
             )
