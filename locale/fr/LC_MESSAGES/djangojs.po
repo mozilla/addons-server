@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-18 12:34+0000\n"
 "PO-Revision-Date: 2018-09-18 13:00+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -769,9 +769,17 @@ msgstr "Aucun résultat trouvé."
 msgid "Loading..."
 msgstr "Chargement…"
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "<b>{0}</b> caractère restant."
+msgstr[1] "<b>{0}</b> caractères restants."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> caractère restant."
 msgstr[1] "<b>{0}</b> caractères restants."
 
@@ -867,9 +875,6 @@ msgstr "{0} ligne {1} colonne {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} ligne {1}"
-
-msgid "Compatibility Tests"
-msgstr "Tests de compatibilité"
 
 msgid "Add-on failed validation."
 msgstr "Validation du module en échec."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-18 12:34+0000\n"
 "PO-Revision-Date: 2018-03-04 16:16+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -136,10 +136,6 @@ msgstr[1] "সকল ট্যাগ কমপক্ষে {0} অক্ষর�
 msgid "The text entered has been flagged as spam."
 msgstr ""
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
-
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "যেহেতু আপনার অ্যাড-অন এই অ্যাপলিকেশনের জন্য নির্বাচিত হয়েছে তাই বিষয়শ্রেণী পরিবর্তন করা যাবে না।"
 
@@ -151,6 +147,10 @@ msgstr[1] "আপনার কেবলমাত্র {0} টি বিষয়�
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "বিবিধ বিষয়শ্রেণী বাড়তি বিষয়শ্রেণীর সাথে মেশানো যাবে না।"
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr ""
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -204,7 +204,6 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr "এই অ্যাড-অনটি ডেভেলপারদের দ্বারা পরীক্ষামূলক হিসাবে চিহ্নিত হয়েছে।"
 
 #. {0} is the name of the add-on.
-#. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
 msgstr "{0} এর এন্ড ইউজার লাইসেন্স এগ্রিমেন্ট"
 
@@ -694,6 +693,10 @@ msgid "Admin Tools"
 msgstr "অ্যাডমিন টুলস"
 
 msgid "Positive integer"
+msgstr ""
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
 msgstr ""
 
 msgid "Incorrect, please try again."
@@ -1308,12 +1311,6 @@ msgstr "ডিকশনারি ইন্সটল করুন"
 msgid "Install Language Pack"
 msgstr "ভাষা প্যাক ইন্সটল"
 
-msgid "Download Dictionary"
-msgstr "ডিকশনারি ডাউনলোড করুন"
-
-msgid "Download Language Pack"
-msgstr "ভাষা প্যাক ডাউনলোড করুন"
-
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
@@ -1479,76 +1476,6 @@ msgstr "আপকামিং সবকিছু দেখুন"
 
 msgid "No themes found"
 msgstr "কোন থিমস পাওয়া যায়নি"
-
-msgid "All"
-msgstr "সকল"
-
-msgid "Add-on Compatibility Reports"
-msgstr ""
-
-#, python-format
-msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
-msgstr ""
-
-msgid "Reports for your Add-ons"
-msgstr "আপনার অ্যাড-অনের রিপোর্ট"
-
-msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr ""
-
-msgid "{addon} Compatibility Reports"
-msgstr ""
-
-msgid "{0} success report"
-msgid_plural "{0} success reports"
-msgstr[0] "{0} খোঁজার রিপোর্ট"
-msgstr[1] ""
-
-msgid "{0} problem report"
-msgid_plural "{0} problem reports"
-msgstr[0] "{0} সমস্যা বিষয়ক প্রতিবেদন"
-msgstr[1] "{0} সমস্যা বিষয়ক প্রতিবেদন"
-
-msgid "View all"
-msgstr "সব দেখুন"
-
-msgid "Filter by Application"
-msgstr "অ্যাপ্লিকেশন অনুযায়ী বাছুন "
-
-msgid "Report Type"
-msgstr "রিপোর্টের ধরন"
-
-msgid "Version"
-msgstr "সংস্করণ"
-
-msgid "Application Version"
-msgstr "অ্যাপ্লিকেশনের সংস্করণ"
-
-msgid "Application Build"
-msgstr "অ্যাপ্লিকেশন তৈরি"
-
-msgid "Platform"
-msgstr "প্ল্যাটফর্ম"
-
-msgid "e10s Enabled"
-msgstr "e10s সষ্ক্রিয়"
-
-msgid "e10s Compatible"
-msgstr "e10s উপযুক্ত"
-
-msgid "Submitted"
-msgstr "জমা হয়েছে"
-
-msgid "Success"
-msgstr "সফল হয়েছে"
-
-msgid "Problem"
-msgstr "সমস্যা"
-
-msgid "No reports found."
-msgstr "কোন ফলাফল পাওয়া যায়নি।"
 
 msgid "{addon} was created."
 msgstr "{addon} তৈরি করা হয়েছিল।"
@@ -2164,54 +2091,6 @@ msgstr "স্পোর্টস ও গেম"
 msgid "User Interface"
 msgstr "ইউজার ইন্টারফেস"
 
-msgid "Appearance and Customization"
-msgstr "এপারয়েন্স এবং কাস্টমাইজেশন"
-
-msgid "Calendar and Date/Time"
-msgstr "কেলেন্ডার এবং তারিখ/Time"
-
-msgid "Chat and IM"
-msgstr "চ্যাট এবং আইএম"
-
-msgid "Message Composition"
-msgstr "বার্তার অপশনগুলি"
-
-msgid "Contacts"
-msgstr "ফোনবুক"
-
-msgid "Folders and Filters"
-msgstr "ফোল্ডার এবং ফিল্টার"
-
-msgid "Import/Export"
-msgstr "এক্সপোর্ট/Export"
-
-msgid "Message and News Reading"
-msgstr "মেসেজ এবং নিউজ পড়া"
-
-msgid "Privacy and Security"
-msgstr "ব্যক্তিস্বত্ত্ব ও নিরাপত্তা"
-
-msgid "Downloading and File Management"
-msgstr "ডাউনলোডিং এবং ফাইল ম্যানেজমেন্ট"
-
-msgid "Interface Customizations"
-msgstr "ইন্টারফেস কাস্টমাইজেশন"
-
-msgid "Language Support and Translation"
-msgstr "ভাষার সাপোর্ট এবং অনুবাদ"
-
-msgid "Photos and Media"
-msgstr "ছবিগুলো এবং মিডিয়া"
-
-msgid "RSS, News and Blogging"
-msgstr "RSS, সংবাদ এবং ব্লগিং"
-
-msgid "Site-specific"
-msgstr "সাইট-নির্দিষ্ট"
-
-msgid "Web and Developer Tools"
-msgstr "ওয়েব এবং ডেভেলোপার টুলস"
-
 msgid "All Rights Reserved"
 msgstr "সর্বস্বত্ব সংরক্ষিত"
 
@@ -2515,12 +2394,6 @@ msgstr "আপনি এই সংস্করণের জন্য আর ক�
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
-msgid "Application"
-msgstr "অ্যাপ্লিকেশন"
-
-msgid "Select an application first"
-msgstr ""
-
 msgid "There cannot be more than 3 required add-ons."
 msgstr ""
 
@@ -2634,9 +2507,6 @@ msgstr ""
 msgid "Validate Add-on"
 msgstr "বৈধ এড-অন"
 
-msgid "Check Add-on Compatibility"
-msgstr ""
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr ""
@@ -2661,6 +2531,43 @@ msgid "Version %s re-enabled."
 msgstr ""
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
+msgstr ""
+
+msgid "Header area background"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr ""
+
+msgid "Header area text and icons"
+msgstr ""
+
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr ""
+
+msgid "Toolbar area background"
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr ""
+
+msgid "Toolbar area text and icons"
+msgstr ""
+
+#, fuzzy
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "টুলবারের টেক্সটের রং।"
+
+msgid "Toolbar field area background"
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr ""
+
+msgid "Toolbar field area text"
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 msgid "Review requested."
@@ -2734,9 +2641,6 @@ msgstr "ডেভেলপারদের খবর"
 msgid "Add-on Validator"
 msgstr ""
 
-msgid "Add-on Compatibility Checker"
-msgstr ""
-
 msgid "Development Add-ons"
 msgstr ""
 
@@ -2761,13 +2665,6 @@ msgstr "খোঁজা"
 msgid "Use the field below to upload your add-on package."
 msgstr ""
 
-#, python-format
-msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
-
-msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
-
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
@@ -2782,9 +2679,6 @@ msgid "Validation Results"
 msgstr ""
 
 msgid "Validated at:"
-msgstr ""
-
-msgid "Tested for compatibility against:"
 msgstr ""
 
 msgid "Recent Activity for My Add-ons"
@@ -2833,6 +2727,9 @@ msgstr ""
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
+
+msgid "Application"
+msgstr "অ্যাপ্লিকেশন"
 
 msgid "Supported Versions"
 msgstr ""
@@ -2889,12 +2786,57 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
-msgid "Basic Information"
-msgstr "প্রাথমিক তথ্য"
+#, fuzzy
+msgid "Additional Details"
+msgstr "অতিরিক্ত সামগ্রী"
+
+#, fuzzy
+msgid "Additional Details for {0}"
+msgstr "{0} জন্য অ্যাড-অন"
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr ""
+
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Example: dark, cinema, noir. Limit 20."
+msgstr ""
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Contributions URL"
+msgstr "অবদানকরীদের URL"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
+
+msgid "Default Locale"
+msgstr ""
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr ""
+
+msgid "Homepage"
+msgstr "হোমপেজ"
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr ""
+
+msgid "Describe Add-on"
+msgstr "অ্যাড-অন ব্যাথ্যা করুন"
 
 #. {0} is the addon name
-msgid "Basic Information for {0}"
-msgstr ""
+#, fuzzy
+msgid "Describe {0}"
+msgstr "অ্যাড-অন ব্যাথ্যা করুন"
 
 msgid "Add-on URL"
 msgstr "অ্যাড-অন URL"
@@ -2947,61 +2889,6 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
-
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Contributions URL"
-msgstr "অবদানকরীদের URL"
-
-msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
-
-msgid "Add-on Details"
-msgstr ""
-
-msgid "Add-on Details for {0}"
-msgstr ""
-
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Default Locale"
-msgstr ""
-
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Homepage"
-msgstr "হোমপেজ"
-
-msgid ""
-"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
-"ons."
-msgstr ""
-
-msgid "Images"
-msgstr "ছবিগুলো"
-
-msgid "Support Information"
-msgstr "সহায়তা তথ্য"
-
-#. {0} is an addon name
-msgid "Support Information for {0}"
-msgstr ""
-
 msgid "Email"
 msgstr "ইমেইল"
 
@@ -3017,6 +2904,9 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+
+msgid "Images"
+msgstr "ছবিগুলো"
 
 msgid "Technical Details"
 msgstr ""
@@ -3186,9 +3076,6 @@ msgstr ""
 msgid "More information on Creative Commons licenses"
 msgstr "আরও তথ্য জানতে চাওয়া হয়েছে"
 
-msgid "Tests"
-msgstr "পরীক্ষাসমূহ"
-
 msgid "General Tests"
 msgstr "সাধারণ পরীক্ষাসমূহ"
 
@@ -3322,9 +3209,6 @@ msgstr[1] ""
 msgid "Submit a New Version"
 msgstr "নতুন সংস্করণ জমা দিন"
 
-msgid "Describe Add-on"
-msgstr "অ্যাড-অন ব্যাথ্যা করুন"
-
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
 
@@ -3339,6 +3223,10 @@ msgstr "সারমর্ম:"
 
 msgid "required"
 msgstr "প্রয়োজনীয়"
+
+#, fuzzy
+msgid "Description:"
+msgstr "বর্ণনা"
 
 msgid "This add-on is experimental"
 msgstr "অ্যাড-অনটি পরীক্ষামূলক"
@@ -3566,6 +3454,9 @@ msgstr "থিম জেনারেট"
 msgid "Theme generator"
 msgstr "থিম জেনারেটর"
 
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr ""
+
 #, fuzzy
 msgid "Theme name"
 msgstr "থিমের নাম"
@@ -3592,43 +3483,6 @@ msgstr ""
 #, fuzzy
 msgid "Select colors for your theme"
 msgstr "আপনার থিমের জন্য রঙ নির্বাচন করুন।"
-
-msgid "Header area background"
-msgstr ""
-
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr ""
-
-msgid "Header area text and icons"
-msgstr ""
-
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
-
-msgid "Toolbar area background"
-msgstr ""
-
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
-
-msgid "Toolbar area text and icons"
-msgstr ""
-
-#, fuzzy
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "টুলবারের টেক্সটের রং।"
-
-msgid "Toolbar field area background"
-msgstr ""
-
-msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
-
-msgid "Toolbar field area text"
-msgstr ""
-
-msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
 
 msgid "optional"
 msgstr "ঐচ্ছিক"
@@ -3765,15 +3619,6 @@ msgstr "ব্যবহারকারীর পর্যালোচনা"
 msgid "View Statistics Dashboard"
 msgstr ""
 
-msgid "Compatibility Reports"
-msgstr ""
-
-msgid "{0} failure reports"
-msgstr ""
-
-msgid "{0} success reports"
-msgstr ""
-
 msgid "Developer News"
 msgstr "ডেভেলপারদের খবর"
 
@@ -3866,10 +3711,6 @@ msgstr "সাইট এর অবস্থা"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
-
-#, fuzzy
-msgid "Compatibility Checker"
-msgstr "উপযুক্ত"
 
 msgid "Promote"
 msgstr ""
@@ -4314,6 +4155,9 @@ msgstr "সকল সংস্করণগুলো দেখুন"
 
 msgid "Upload a New Version"
 msgstr "নতুন সংস্করণ আপলোড করুন"
+
+msgid "Version"
+msgstr "সংস্করণ"
 
 msgid "Delete Version {version}"
 msgstr ""
@@ -5966,60 +5810,6 @@ msgstr ""
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
 
-msgid "Discover Add-ons"
-msgstr ""
-
-msgid "What are Add-ons?"
-msgstr "অ্যাড-অন কী?"
-
-#, python-format
-msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
-
-msgid "Learn More About Add-ons"
-msgstr ""
-
-msgid "See all"
-msgstr "সবগুলো দেখুন"
-
-msgid "More ways to customize"
-msgstr ""
-
-msgid "Browse all add-ons"
-msgstr ""
-
-msgid "See all complete themes"
-msgstr ""
-
-msgid "Close Video"
-msgstr "ভিডিও বন্ধ করুন"
-
-msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
-
-#. {0} is the user's login name.
-msgid "Hi, {0}"
-msgstr "হাই, {0}"
-
-#, python-format
-msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr ""
-
-msgid "Add-ons downloaded:"
-msgstr ""
-
-msgid "View Privacy Policy"
-msgstr "গোপনীয়তার নীতি দেখুন"
-
-msgid "Active Users"
-msgstr ""
-
-msgid "Last Updated"
-msgstr "সর্বশেষ হালনাগাদকৃত"
-
-msgid "Cancel Installation"
-msgstr "ইনস্টল বাতিল"
-
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr ""
 
@@ -6579,6 +6369,9 @@ msgstr ""
 msgid "Max. Version"
 msgstr ""
 
+msgid "Select an application first"
+msgstr ""
+
 msgid "Comments:"
 msgstr "মন্তব্যগুলো:"
 
@@ -6911,6 +6704,9 @@ msgstr "প্রতিদিন গড় ব্যবহারকারী"
 
 msgid "Abuse Reports"
 msgstr "অপব্যবহারের রিপোর্ট"
+
+msgid "View Privacy Policy"
+msgstr "গোপনীয়তার নীতি দেখুন"
 
 #, fuzzy
 msgid "Requires Payment"
@@ -7362,6 +7158,9 @@ msgstr ""
 
 msgid "(Probable Duplicate Submission)"
 msgstr ""
+
+msgid "Submitted"
+msgstr "জমা হয়েছে"
 
 msgid "Past Review Notes"
 msgstr ""
@@ -7875,12 +7674,6 @@ msgstr "{0} অ্যাড-অনের হোম পেজে ফিরে য
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> অ্যাড-অন"
 
-msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> অ্যাড-অন"
-
-msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> অ্যাড-অন"
-
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> অ্যাড-অন"
 
@@ -8222,6 +8015,9 @@ msgstr ""
 msgid "Add-ons I've created"
 msgstr ""
 
+msgid "View all"
+msgstr "সব দেখুন"
+
 msgid "My Most Popular Themes"
 msgstr ""
 
@@ -8349,9 +8145,3 @@ msgstr ""
 
 msgid "Deleted versions can`t be changed."
 msgstr ""
-
-msgid "Binary"
-msgstr "বাইনারি"
-
-msgid "Non-binary"
-msgstr "নন-বাইনারি"

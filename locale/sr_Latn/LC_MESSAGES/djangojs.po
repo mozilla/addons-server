@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-18 12:34+0000\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -771,9 +771,17 @@ msgstr "Nema rezultata."
 msgid "Loading..."
 msgstr "Učitavanje..."
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "<b>{0}</b> karakter preostao."
+msgstr[1] "<b>{0}</b> karaktera preostala."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> karakter preostao."
 msgstr[1] "<b>{0}</b> karaktera preostala."
 
@@ -870,9 +878,6 @@ msgstr ""
 #, fuzzy
 msgid "{0} line {1}"
 msgstr "{0} od {1}"
-
-msgid "Compatibility Tests"
-msgstr "Testovi kompatibilnosti"
 
 msgid "Add-on failed validation."
 msgstr "Dodatak nije prošao proveru."

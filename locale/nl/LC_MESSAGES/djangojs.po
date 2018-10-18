@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-18 12:34+0000\n"
 "PO-Revision-Date: 2018-09-17 11:00+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -767,9 +767,17 @@ msgstr "Geen resultaten."
 msgid "Loading..."
 msgstr "Laden…"
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "<b>{0}</b> teken resterend."
+msgstr[1] "<b>{0}</b> tekens resterend."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> teken resterend."
 msgstr[1] "<b>{0}</b> tekens resterend."
 
@@ -865,9 +873,6 @@ msgstr "{0} regel {1} kolom {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} regel {1}"
-
-msgid "Compatibility Tests"
-msgstr "Compatibiliteitstests"
 
 msgid "Add-on failed validation."
 msgstr "Add-on heeft validatie niet doorstaan."

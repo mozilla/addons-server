@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-18 12:34+0000\n"
 "PO-Revision-Date: 2018-10-03 05:24+0000\n"
 "Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -145,10 +145,6 @@ msgstr[2] "Длина любой метки должна быть не мене�
 msgid "The text entered has been flagged as spam."
 msgstr "Введённый текст был отмечен как спам."
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "Домен в URL должен быть одним из [%s], или поддоменом."
-
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Категории не могут быть изменены, пока ваше дополнение избрано для этого приложения."
 
@@ -161,6 +157,10 @@ msgstr[2] "У вас может быть только {0} категорий."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Категория Разное не может быть скомбинирована с дополнительными категориями."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "Домен в URL должен быть одним из [%s], или поддоменом."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -214,7 +214,6 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr "Это дополнение было отмечено разработчиками как экспериментальное."
 
 #. {0} is the name of the add-on.
-#. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
 msgstr "Лицензионное соглашение с конечным пользователем для {0}"
 
@@ -724,6 +723,10 @@ msgstr "Инструменты админа"
 
 msgid "Positive integer"
 msgstr "Положительное целое число"
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Некорректно, пожалуйста, попробуйте снова."
@@ -1357,12 +1360,6 @@ msgstr "Установить словарь"
 msgid "Install Language Pack"
 msgstr "Установить локализацию"
 
-msgid "Download Dictionary"
-msgstr "Загрузить словарь"
-
-msgid "Download Language Pack"
-msgstr "Загрузить локализацию"
-
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
@@ -1533,80 +1530,6 @@ msgstr "Просмотреть все набирающие популярнос�
 
 msgid "No themes found"
 msgstr "Темы не найдены."
-
-msgid "All"
-msgstr "Все"
-
-msgid "Add-on Compatibility Reports"
-msgstr "Отчёты совместимости дополнения"
-
-#, python-format
-msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
-msgstr ""
-"<p> Отчёты, отправляемые нам через <a href=\"%(url_)s\">Add-on Compatibility Reporter</a>, собираются здесь для просмотра их разработчиками. Эти отчёты помогают нам определить, каким дополнениям "
-"потребуется помощь в поддержке будущей версии Firefox. </p>"
-
-msgid "Reports for your Add-ons"
-msgstr "Отчёты для ваших дополнений"
-
-msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr "Введите ниже GUID дополнения, чтобы просмотреть все отчёты, которые мы получили."
-
-msgid "{addon} Compatibility Reports"
-msgstr "Отчёты совместимости для {addon}"
-
-msgid "{0} success report"
-msgid_plural "{0} success reports"
-msgstr[0] "{0} сообщение о успехе"
-msgstr[1] "{0} сообщения о успехе"
-msgstr[2] "{0} сообщений о успехе"
-
-msgid "{0} problem report"
-msgid_plural "{0} problem reports"
-msgstr[0] "{0} сообщение о проблеме"
-msgstr[1] "{0} сообщения о проблеме"
-msgstr[2] "{0} сообщений о проблеме"
-
-msgid "View all"
-msgstr "Просмотреть все"
-
-msgid "Filter by Application"
-msgstr "Фильтр по приложению"
-
-msgid "Report Type"
-msgstr "Тип отчёта"
-
-msgid "Version"
-msgstr "Версия"
-
-msgid "Application Version"
-msgstr "Версия приложения"
-
-msgid "Application Build"
-msgstr "Сборка приложения"
-
-msgid "Platform"
-msgstr "Платформа"
-
-msgid "e10s Enabled"
-msgstr "e10s Включено"
-
-msgid "e10s Compatible"
-msgstr "e10s Совместимо"
-
-msgid "Submitted"
-msgstr "Отправлено"
-
-msgid "Success"
-msgstr "Успех"
-
-msgid "Problem"
-msgstr "Проблема"
-
-msgid "No reports found."
-msgstr "Отчёты не найдены."
 
 msgid "{addon} was created."
 msgstr "Был создан {addon}."
@@ -2187,54 +2110,6 @@ msgstr "Спорт и игры"
 msgid "User Interface"
 msgstr "Интерфейс пользователя"
 
-msgid "Appearance and Customization"
-msgstr "Внешний вид и настройка"
-
-msgid "Calendar and Date/Time"
-msgstr "Календари и дата/Время"
-
-msgid "Chat and IM"
-msgstr "Чаты и IM"
-
-msgid "Message Composition"
-msgstr "Составление сообщений"
-
-msgid "Contacts"
-msgstr "Контакты"
-
-msgid "Folders and Filters"
-msgstr "Папки и фильтры"
-
-msgid "Import/Export"
-msgstr "Импорт/Экспорт"
-
-msgid "Message and News Reading"
-msgstr "Чтение почты и новостей"
-
-msgid "Privacy and Security"
-msgstr "Приватность и Защита"
-
-msgid "Downloading and File Management"
-msgstr "Загрузка и управление файлами"
-
-msgid "Interface Customizations"
-msgstr "Настройка интерфейса"
-
-msgid "Language Support and Translation"
-msgstr "Языковая поддержка и перевод"
-
-msgid "Photos and Media"
-msgstr "Фотографии и мультимедиа"
-
-msgid "RSS, News and Blogging"
-msgstr "RSS, новости и блоги"
-
-msgid "Site-specific"
-msgstr "Для определённых сайтов"
-
-msgid "Web and Developer Tools"
-msgstr "Инструменты разработчика"
-
 msgid "All Rights Reserved"
 msgstr "Все права защищены"
 
@@ -2524,12 +2399,6 @@ msgstr "Вы не выгрузили файл с исходным кодом."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Загружен файл с исходным кодом, но вы сообщили, что этого не требуется."
 
-msgid "Application"
-msgstr "Приложение"
-
-msgid "Select an application first"
-msgstr "Сначала выберите приложение"
-
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Число требуемых дополнений не может превышать 3-х."
 
@@ -2647,9 +2516,6 @@ msgstr "Из вашего дополнения был удалён автор"
 msgid "Validate Add-on"
 msgstr "Валидировать дополнение"
 
-msgid "Check Add-on Compatibility"
-msgstr "Проверка совместимости дополнений"
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Изображения не могут быть больше %dKB."
@@ -2675,6 +2541,42 @@ msgstr "Версия %s включена снова."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Это загрузка не прошла валидацию и в ней могут отсутствовать результаты полной валидации. Пожалуйста, будьте внимательны при его проверке."
+
+msgid "Header area background"
+msgstr "Фон области заголовка"
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "Цвет фона зоны заголовка, отображаемый в тех областях заголовка, где отсутствует фоновое изображение. Поле манифеста:  accentcolor."
+
+msgid "Header area text and icons"
+msgstr "Текст и значки в зоне заголовка"
+
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "Цвет текста и значков в зоне заголовка, кроме активной вкладки. Поле манифеста:  textcolor."
+
+msgid "Toolbar area background"
+msgstr "Фон панели инструментов"
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "Цвет фона для панели навигации, панели закладок и выделенной вкладки.  Поле манифеста:  toolbar."
+
+msgid "Toolbar area text and icons"
+msgstr "Текст и значки в зоне панели инструментов"
+
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Цвет текста и значков в зоне панели инструментов и активной вкладки. Поле манифеста:  toolbar_text."
+
+msgid "Toolbar field area background"
+msgstr "Фон зоны поля панели инструментов"
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "Цвет фона полей в панели инструментов, таких как адресная строка. Поле манифеста:  toolbar_field."
+
+msgid "Toolbar field area text"
+msgstr "Текст зоны поля панели инструментов"
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "Цвет текста в полях в панели инструментов, таких как адресная строка. Поле манифеста:  toolbar_field_text."
 
 msgid "Review requested."
 msgstr "Запрошена проверка."
@@ -2749,9 +2651,6 @@ msgstr "Новости разработчиков"
 msgid "Add-on Validator"
 msgstr "Валидатор дополнений"
 
-msgid "Add-on Compatibility Checker"
-msgstr "Центр совместимости дополнений"
-
 msgid "Development Add-ons"
 msgstr "Разработка дополнений"
 
@@ -2776,13 +2675,6 @@ msgstr "Поиск"
 msgid "Use the field below to upload your add-on package."
 msgstr "Используйте расположенное ниже поле, чтобы загрузить свой пакет дополнения."
 
-#, python-format
-msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr "Обратите внимание, что этот инструмент работает только с устаревшими дополнениями. API-интерфейсы WebExtension хорошо <a href=\"%(webext_doc_url)s\">описаны здесь</a>."
-
-msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr "После загрузки будет запущена серия автоматических валидирующих тестов, которые проверят совместимость со следующей версией приложения:"
-
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "После загрузки над вашим файлом будет проведена серия автоматических валидирующих тестов."
 
@@ -2798,9 +2690,6 @@ msgstr "Результаты валидации"
 
 msgid "Validated at:"
 msgstr "Валидировано в:"
-
-msgid "Tested for compatibility against:"
-msgstr "Протестировано на совместимость на:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Последние действия для моих дополнений"
@@ -2852,6 +2741,9 @@ msgstr "Обновить совместимость"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr "Настройка здесь информации о приложении позволит пользователям установить ваше дополнение, даже если манифест установки в пакете указывает, что дополнение несовместимо."
+
+msgid "Application"
+msgstr "Приложение"
 
 msgid "Supported Versions"
 msgstr "Поддерживаемые версии"
@@ -2910,12 +2802,66 @@ msgstr ""
 "<p>Дополнения могут иметь любое количество авторов с 2 возможными ролями:</p> <ul> <li><b>Владелец:</b> Может управлять всеми аспектами размещения дополнения, включая добавление и удаление других "
 "авторов</li> <li><b>Разработчик:</b> Может управлять всеми аспектами размещения дополнения, кроме добавления и удаления других авторов</li> </ul>"
 
-msgid "Basic Information"
-msgstr "Основная информация"
+#, fuzzy
+msgid "Additional Details"
+msgstr "Информация о дополнении"
+
+#, fuzzy
+msgid "Additional Details for {0}"
+msgstr "Информация о дополнении для {0}"
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr "Метки помогают пользователям найти ваше дополнение и должны быть кратким описанием, таким как, например, вкладки, панели или твиттер. Вы можете добавить до {0} меток."
+
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] "Разделённые запятыми, не менее {0} символа."
+msgstr[1] "Разделённые запятыми, не менее {0} символов."
+msgstr[2] "Разделённые запятыми, не менее {0} символов."
+
+msgid "Example: dark, cinema, noir. Limit 20."
+msgstr "Пример: темное, кино, нуар. Предел 20."
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] "Зарезервированная метка:"
+msgstr[1] "Зарезервированные метки:"
+msgstr[2] "Зарезервированные метки:"
+
+msgid "Contributions URL"
+msgstr "URL для взносов"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr "Если вы хотите попросить ваших пользователей помочь вам деньгами, укажите здесь страницу, где они могут это сделать."
+
+msgid "Default Locale"
+msgstr "Локаль по умолчанию"
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr ""
+"Информация о вашем дополнении, отображаемая в этой локали,\n"
+"                        хотя вы можете переопределять её переводом на другой язык.\n"
+"                        Это относится только к опубликованным дополнениям."
+
+msgid "Homepage"
+msgstr "Домашняя страница"
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr ""
+"Если у вашего дополнения другая домашняя страница, введите её\n"
+"                          адрес здесь. Если ваш сайт переведён на другие\n"
+"                          языки, можно добавить переводы в это поле.\n"
+"                          Это относится только к опубликованным дополнениям."
+
+msgid "Describe Add-on"
+msgstr "Опишите дополнение"
 
 #. {0} is the addon name
-msgid "Basic Information for {0}"
-msgstr "Основная информация для {0}"
+#, fuzzy
+msgid "Describe {0}"
+msgstr "Опишите дополнение"
 
 msgid "Add-on URL"
 msgstr "URL дополнения"
@@ -2972,71 +2918,6 @@ msgstr ""
 "Пока ваше дополнение является Избранным, его категории не могут быть изменены. Если у вас есть причина, по которой вам нужно изменить ваши категории, пожалуйста, напишите по адресу <a href=\"mailto:"
 "%(email)s\">%(email)s</a>."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Метки помогают пользователям найти ваше дополнение и должны быть кратким описанием, таким как, например, вкладки, панели или твиттер. Вы можете добавить до {0} меток."
-
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Разделённые запятыми, не менее {0} символа."
-msgstr[1] "Разделённые запятыми, не менее {0} символов."
-msgstr[2] "Разделённые запятыми, не менее {0} символов."
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Пример: темное, кино, нуар. Предел 20."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "Зарезервированная метка:"
-msgstr[1] "Зарезервированные метки:"
-msgstr[2] "Зарезервированные метки:"
-
-msgid "Contributions URL"
-msgstr "URL для взносов"
-
-msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr "Если вы хотите попросить ваших пользователей помочь вам деньгами, укажите здесь страницу, где они могут это сделать."
-
-msgid "Add-on Details"
-msgstr "Информация о дополнении"
-
-msgid "Add-on Details for {0}"
-msgstr "Информация о дополнении для {0}"
-
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-"Длинное описание возможностей, функциональности, и другой релевантной информации. Это поле отображается только на странице деталей дополнения. Это относится только к опубликованным дополнениям."
-
-msgid "Default Locale"
-msgstr "Локаль по умолчанию"
-
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
-"Информация о вашем дополнении, отображаемая в этой локали,\n"
-"                        хотя вы можете переопределять её переводом на другой язык.\n"
-"                        Это относится только к опубликованным дополнениям."
-
-msgid "Homepage"
-msgstr "Домашняя страница"
-
-msgid ""
-"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
-"ons."
-msgstr ""
-"Если у вашего дополнения другая домашняя страница, введите её\n"
-"                          адрес здесь. Если ваш сайт переведён на другие\n"
-"                          языки, можно добавить переводы в это поле.\n"
-"                          Это относится только к опубликованным дополнениям."
-
-msgid "Images"
-msgstr "Изображения"
-
-msgid "Support Information"
-msgstr "Информация о поддержке"
-
-#. {0} is an addon name
-msgid "Support Information for {0}"
-msgstr "Информация о поддержке для {0}"
-
 msgid "Email"
 msgstr "Адрес эл. почты"
 
@@ -3061,6 +2942,9 @@ msgstr ""
 "                          его адрес здесь. Если ваш сайт переведён на\n"
 "                          другие языки, для этого поля можно добавить несколько локализаций.\n"
 "                          Это относится только к опубликованным дополнениям."
+
+msgid "Images"
+msgstr "Изображения"
 
 msgid "Technical Details"
 msgstr "Технические детали"
@@ -3241,9 +3125,6 @@ msgstr "Выберите другую лицензию."
 msgid "More information on Creative Commons licenses"
 msgstr "Больше информации о лицензиях Creative Commons"
 
-msgid "Tests"
-msgstr "Тесты"
-
 msgid "General Tests"
 msgstr "Общие тесты"
 
@@ -3379,9 +3260,6 @@ msgstr[2] "<strong>{0}</strong> активных пользователей"
 msgid "Submit a New Version"
 msgstr "Отправить новую версию"
 
-msgid "Describe Add-on"
-msgstr "Опишите дополнение"
-
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr "Имя на странице на этом сайте. Может отличаться от имени внутри дополнения, которое отображается внутри Firefox"
 
@@ -3396,6 +3274,10 @@ msgstr "Сводка:"
 
 msgid "required"
 msgstr "требуется"
+
+#, fuzzy
+msgid "Description:"
+msgstr "Описание"
 
 msgid "This add-on is experimental"
 msgstr "Это дополнение экспериментальное"
@@ -3622,6 +3504,9 @@ msgstr "Сгенерировать тему"
 msgid "Theme generator"
 msgstr "Генератор темы"
 
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr ""
+
 msgid "Theme name"
 msgstr "Имя темы"
 
@@ -3645,42 +3530,6 @@ msgstr "Выберите другое верхнее изображение."
 
 msgid "Select colors for your theme"
 msgstr "Выберите цвета для вашей темы"
-
-msgid "Header area background"
-msgstr "Фон области заголовка"
-
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr "Цвет фона зоны заголовка, отображаемый в тех областях заголовка, где отсутствует фоновое изображение. Поле манифеста:  accentcolor."
-
-msgid "Header area text and icons"
-msgstr "Текст и значки в зоне заголовка"
-
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr "Цвет текста и значков в зоне заголовка, кроме активной вкладки. Поле манифеста:  textcolor."
-
-msgid "Toolbar area background"
-msgstr "Фон панели инструментов"
-
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "Цвет фона для панели навигации, панели закладок и выделенной вкладки.  Поле манифеста:  toolbar."
-
-msgid "Toolbar area text and icons"
-msgstr "Текст и значки в зоне панели инструментов"
-
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "Цвет текста и значков в зоне панели инструментов и активной вкладки. Поле манифеста:  toolbar_text."
-
-msgid "Toolbar field area background"
-msgstr "Фон зоны поля панели инструментов"
-
-msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "Цвет фона полей в панели инструментов, таких как адресная строка. Поле манифеста:  toolbar_field."
-
-msgid "Toolbar field area text"
-msgstr "Текст зоны поля панели инструментов"
-
-msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "Цвет текста в полях в панели инструментов, таких как адресная строка. Поле манифеста:  toolbar_field_text."
 
 msgid "optional"
 msgstr "необязательно"
@@ -3818,15 +3667,6 @@ msgstr "Страница проверки скрытых"
 msgid "View Statistics Dashboard"
 msgstr "Просмотреть панель статистики"
 
-msgid "Compatibility Reports"
-msgstr "Отчёты о совместимости"
-
-msgid "{0} failure reports"
-msgstr "{0} отчётов о неудаче"
-
-msgid "{0} success reports"
-msgstr "{0} отчётов о успехе"
-
 msgid "Developer News"
 msgstr "Новости разработчиков"
 
@@ -3921,9 +3761,6 @@ msgstr "Статус сайта "
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: создавайте и тестируйте расширения"
-
-msgid "Compatibility Checker"
-msgstr "Проверка совместимости"
 
 msgid "Promote"
 msgstr "Продвинуть"
@@ -4366,6 +4203,9 @@ msgstr "Все версии"
 
 msgid "Upload a New Version"
 msgstr "Загрузить новую версию"
+
+msgid "Version"
+msgstr "Версия"
 
 msgid "Delete Version {version}"
 msgstr "Удалить версию {version}"
@@ -6024,62 +5864,6 @@ msgstr "Мультимедиа"
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr "Делайте хорошие скриншоты, улучшите свою работу с видео в сети, наконец, узнайте, как создать GIF, и о других классных медиа инструментах."
 
-msgid "Discover Add-ons"
-msgstr "Откройте дополнения"
-
-msgid "What are Add-ons?"
-msgstr "Что такое дополнения?"
-
-#, python-format
-msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
-"Дополнения — это приложения, которые позволяют вам настроить %(app)s по своему вкусу, добавив в него дополнительные функции или придав ему свой стиль. Попробуйте использовать экономящую время "
-"боковую панель, настройте уведомление о прогнозе погоды или измените его внешний вид, чтобы сделать %(app)s именно таким, каким вы желаете."
-
-msgid "Learn More About Add-ons"
-msgstr "Подробнее о дополнениях"
-
-msgid "See all"
-msgstr "Показать всё"
-
-msgid "More ways to customize"
-msgstr "Другие способы настройки"
-
-msgid "Browse all add-ons"
-msgstr "Обзор всех дополнений"
-
-msgid "See all complete themes"
-msgstr "Показать все полные темы"
-
-msgid "Close Video"
-msgstr "Закрыть видео"
-
-msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr "Во время показа видео, упоминающиеся дополнения появятся здесь."
-
-#. {0} is the user's login name.
-msgid "Hi, {0}"
-msgstr "Привет, {0}"
-
-#, python-format
-msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr "Спасибо за использование %(app)s и поддержку <a href=\"%(url)s\">миссии Mozilla</a>!"
-
-msgid "Add-ons downloaded:"
-msgstr "Загруженные дополнения:"
-
-msgid "View Privacy Policy"
-msgstr "Просмотреть политику приватности"
-
-msgid "Active Users"
-msgstr "Активные пользователи"
-
-msgid "Last Updated"
-msgstr "Последнее обновление"
-
-msgid "Cancel Installation"
-msgstr "Отменить установку"
-
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Mozilla — Дополнение месяца!"
 
@@ -6664,6 +6448,9 @@ msgstr "Поиск по имени дополнения / адресу авто�
 msgid "Max. Version"
 msgstr "Макс. версия"
 
+msgid "Select an application first"
+msgstr "Сначала выберите приложение"
+
 msgid "Comments:"
 msgstr "Комментарии:"
 
@@ -6969,6 +6756,9 @@ msgstr "Среднее число активных ежедневных поль
 
 msgid "Abuse Reports"
 msgstr "Отчёты о нарушениях"
+
+msgid "View Privacy Policy"
+msgstr "Просмотреть политику приватности"
 
 msgid "Requires Payment"
 msgstr "Требуется оплата"
@@ -7400,6 +7190,9 @@ msgstr "Проверка темы для {0}"
 
 msgid "(Probable Duplicate Submission)"
 msgstr "(Вероятно дублирующее представление)"
+
+msgid "Submitted"
+msgstr "Отправлено"
 
 msgid "Past Review Notes"
 msgstr "Предыдущие примечания к выпуску"
@@ -7934,12 +7727,6 @@ msgstr "Вернуться на домашнюю страницу дополне
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "Дополнения для <img alt=\"Firefox\" src=\"{0}\">"
 
-msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "Дополнения для <img alt=\"Thunderbird\" src=\"{0}\">"
-
-msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "Дополнения для <img alt=\"SeaMonkey\" src=\"{0}\">"
-
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "Дополнения для <img alt=\"\" src=\"{0}\">"
 
@@ -8280,6 +8067,9 @@ msgstr "Чуть более подробно…"
 msgid "Add-ons I've created"
 msgstr "Созданные мной дополнения"
 
+msgid "View all"
+msgstr "Просмотреть все"
+
 msgid "My Most Popular Themes"
 msgstr "Мои самые популярные темы"
 
@@ -8413,9 +8203,3 @@ msgstr "Эти версии отображаются только для све�
 
 msgid "Deleted versions can`t be changed."
 msgstr "Удалённые версии изменять нельзя."
-
-msgid "Binary"
-msgstr "Бинарные"
-
-msgid "Non-binary"
-msgstr "Не бинарные"
