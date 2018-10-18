@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 16:46+0000\n"
+"PO-Revision-Date: 2018-10-18 17:10+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -90,7 +90,7 @@ msgstr "ਪੇਸ਼ ਕੀਤਾ"
 
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr ""
+msgstr "ਸਮੀਖਿਆ ਨਹੀਂ ਹੋਈ"
 
 msgctxt "install_button"
 msgid "Experimental"
@@ -102,9 +102,9 @@ msgstr "{0} ਨੂੰ ਸ਼ਾਮਲ ਕਰੋ"
 msgid "This slug is already in use. Please choose another."
 msgstr "ਇਹ ਸਲੱਗ ਪਹਿਲਾਂ ਹੀ ਵਰਤਿਆ ਗਿਆ ਹੈ। ਕ੍ਰਿਪਾ ਕਰਕੇ ਹੋਰ ਚੁਣੋ।"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "\"%s\" ਸਲੱਗ ਨਹੀਂ ਕਰ ਸਕਦਾ| ਕ੍ਰਿਪਾ ਕਰਕੇ ਹੋਰ ਚੁਣੋ।"
+msgstr "ਸਲਗ \"%(slug)s\"ਨਹੀਂ ਹੋ ਸਕਦਾ। ਕਿਰਪਾ ਕਰਕੇ ਕੋਈ ਹੋਰ ਚੁਣੋ।"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -408,9 +408,8 @@ msgstr "ਰੇਟਿੰਗ:"
 msgid "Submit review"
 msgstr "ਸਮੀਖਿਆ ਦਿਓ"
 
-#, fuzzy
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਸਮੀਖਿਆਵਾਂ ਵਿੱਚ ਬੱਗ ਰਿਪੋਰਟਾਂ ਪੋਸਟ ਨਾ ਕਰੋ। ਅਸੀਂ ਤੁਹਾਡਾ ਈਮੇਲ ਪਤਾ ਐਡ-ਆਨ ਡਿਵੈਲਪਰਾਂ ਨੂੰ ਨਹੀਂ ਦਿੰਦੇ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਤੁਹਾਡਾ ਮੁੱਦਾ ਹਲ ਕਰਨ ਲਈ ਤੁਹਾਨੂੰ ਸੰਪਰਕ ਕਰਨ ਦੀ ਲੋੜ ਪੈ ਸਕਦੀ ਹੈ।"
+msgstr "ਕਿਰਪਾ ਕਰਕੇ ਸਮੀਖਿਆਵਾਂ ਵਿੱਚ ਬੱਗ ਰਿਪੋਰਟਾਂ ਪੋਸਟ ਨਾ ਕਰੋ। ਅਸੀਂ ਤੁਹਾਡਾ ਈਮੇਲ ਪਤਾ ਐਡਆਨ ਡਿਵੈਲਪਰਾਂ ਨੂੰ ਨਹੀਂ ਦਿੰਦੇ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਤੁਹਾਡਾ ਮੁੱਦਾ ਹਲ ਕਰਨ ਲਈ ਤੁਹਾਨੂੰ ਸੰਪਰਕ ਕਰਨ ਦੀ ਲੋੜ ਪੈ ਸਕਦੀ ਹੈ।"
 
 #, python-format
 msgid ""
@@ -435,7 +434,7 @@ msgstr "ਇਸ ਸਮੀਖਿਆ ਲਈ ਡਿਵੈਲਪਰ ਦਾ ਜਵਾ�
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "ਇਸ ਐਡ-ਆਨ ਦੀਆਂ ਸਾਰੀਆਂ ਸਮੀਖਿਆ ਵੇਖੋ"
-msgstr[1] ""
+msgstr[1] "ਇਸ ਐਡਆਨ ਦੀਆਂ ਸਾਰੀਆਂ %(cnt)s ਰਿਵਿਊ ਦੇਖੋ"
 
 msgid "Tags"
 msgstr "ਨਿਸ਼ਾਨਬੱਧ"
@@ -1002,9 +1001,8 @@ msgstr "ਆਈਕਾਨ ਐਨੀਮੇਟ ਨਹੀਂ ਹੋ ਸਕਦਾ।"
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "ਇਹ url ਪਹਿਲਾਂ ਹੀ ਕਿਸੇ ਹੋਰ ਸੰਗ੍ਰਹਿ ਵੱਲੋਂ ਵਰਤੀ ਜਾ ਰਹੀ ਹੈ"
 
-#, fuzzy
 msgid "Name cannot be empty."
-msgstr "ਇਹ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
+msgstr "ਨਾਮ ਖਾਲੀ ਨਹੀਂ ਹੋ ਸਕਦਾ।"
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -1194,9 +1192,9 @@ msgstr "ਕੋਈ ਸੰਗ੍ਰਹਿ ਨਹੀਂ ਮਿਲਿਆ।"
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "ਸੰਗ੍ਰਹਿ ਸਬੰਧਤ ਐਡ-ਆਨ ਦੇ ਗਰੁੱਪ ਹਨ ਜਿਹਨਾਂ ਨੂੰ ਹਰ ਕੋਈ ਬਣਾ ਅਤੇ ਸਾਂਝਾ ਕਰ ਸਕਦਾ ਹੈ। ਹੋਰਾਂ ਦੇ ਬਣਾਏ ਸੰਗ੍ਰਹਿਾਂ ਦੀ ਪੜਚੋਲ ਕਰੋ ਜਾਂ <a href=\"%(url)s\">ਆਪਣੇ ਆਪ ਬਣਾਓ</a>।"
 
-#, fuzzy, python-format
+#, python-format
 msgid "by %(author_link)s"
-msgstr "%(users)s ਵੱਲੋਂ"
+msgstr "%(author_link)s ਵੱਲੋਂ"
 
 msgid "Create a Collection"
 msgstr "ਇੱਕ ਸੰਗ੍ਰਹਿ ਬਣਾਓ"
@@ -3471,13 +3469,11 @@ msgstr "ਸੂਚੀ ਵੇਖੋ"
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "ਬੀਟਾ ਵਰਜਨ {0}"
+msgstr "ਸੰਪਾਦਨ ਵਰਜਨ{0}"
 
-#, fuzzy
 msgid "Version Signed"
-msgstr "ਵਰਜਨ ਨੋਟ"
+msgstr "ਵਰਜਨ ਉੱਤੇ ਹਸਤਾਖਰ ਕੀਤੇ"
 
 #, fuzzy
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
@@ -3592,20 +3588,17 @@ msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਰਚੋ"
 msgid "Sign Add-on"
 msgstr "ਐਡ-ਆਨ ਦਾਖਲ ਕਰੋ"
 
-#, fuzzy
 msgid "Theme generate"
-msgstr "ਥੀਮ ਹਟਾਇਆ।"
+msgstr "ਥੀਮ ਤਿਆਰ"
 
-#, fuzzy
 msgid "Theme generator"
-msgstr "ਥੀਮ ਲਾਇਸੰਸ"
+msgstr "ਥੀਮ ਜਰਨੇਟਰ"
 
 msgid "Theme name"
 msgstr "ਥੀਮ ਨਾਂ"
 
-#, fuzzy
 msgid "Select a header image for your theme"
-msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਇੱਕ ਸਿਰਲੇਖ ਤਸਵੀਰ ਚੁਣੋ।"
+msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਇੱਕ ਸਿਰਲੇਖ ਤਸਵੀਰ ਚੁਣੋ"
 
 msgid "Recommended height: 200 pixels"
 msgstr "ਦਸੀ ਗਈ ਉਚਾਈ: 200 ਪਿਕਸਲ"
@@ -3622,9 +3615,8 @@ msgstr "ਉੱਪਰੀ-ਸੱਜੇ ਪਾਸੇ ਇਕਸਾਰ"
 msgid "Select a different header image"
 msgstr "ਇੱਕ ਵੱਖ ਹੈਡਰ ਤਸਵੀਰ ਚੁਣੋ"
 
-#, fuzzy
 msgid "Select colors for your theme"
-msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ।"
+msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ"
 
 msgid "Header area background"
 msgstr "ਸਿਰਲੇਖ ਇਲਾਕੇ ਦੇ ਪਿਛਲਾ ਪਰਦਾ"
@@ -3868,9 +3860,8 @@ msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
 msgid "Read more in our Blog"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਲੋੜ"
 
-#, fuzzy
 msgid "Resources"
-msgstr "ਹੋਰ ਵਸੀਲੇ"
+msgstr "ਸਰੋਤ"
 
 #, fuzzy
 msgid "Porting"
