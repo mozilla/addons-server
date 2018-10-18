@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 17:32+0000\n"
+"PO-Revision-Date: 2018-10-18 17:48+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -6842,9 +6842,8 @@ msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਗਾਈਡ"
 msgid "Theme Review Guide"
 msgstr "ਥੀਮ ਸਮੀਖਿਆ ਗਾਈਡ"
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
-msgstr "ਐਨਡਰੋਇਡ ਐਡ-ਆਨ"
+msgstr "ਆਟੋ-ਮਨਜ਼ੂਰ ਐਡਆਨ"
 
 #, fuzzy
 msgid "Auto Approved Add-ons ({0})"
@@ -6853,39 +6852,31 @@ msgstr "ਇਕਸਟੈਨਸ਼ਨ ਪੇਸਕਸ਼"
 msgid "Add-on Review Log"
 msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਚਿੱਠਾ"
 
-#, fuzzy
 msgid "Review Guide"
 msgstr "ਸਮੀਖਿਅਕ ਗਾਈਡ"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "ਸਮੀਖਿਆ ਕਬੂਲੋ"
+msgstr "ਸਮੱਗਰੀ ਸਮੀਖਿਆ"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
-msgstr[1] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ ({0})"
+msgstr[0] "ਸਮੱਗਰੀ ਸਮੀਖਿਆ({0})"
+msgstr[1] "ਸਮੱਗਰੀ ਸਮੀਖਿਆ ({0})"
 
-#, fuzzy
 msgid "New Themes ({0})"
-msgstr "ਇਕਸਟੈਨਸ਼ਨ ਪੇਸਕਸ਼"
+msgstr "ਨਵੇਂ ਥੀਮ ({0})"
 
-#, fuzzy
 msgid "Themes Updates ({0})"
-msgstr "ਅੱਪਡੇਟ ਹੋਇਆ {0}"
+msgstr "ਥੀਮ ਅੱਪਡੇਟ ({0})"
 
-#, fuzzy
 msgid "Flagged Themes ({0})"
-msgstr "ਫ਼ਲੈਗ ਕੀਤੇ ਥੀਮ"
+msgstr "ਫ਼ਲੈਗ ਕੀਤੇ ਥੀਮ({0})"
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "ਲਾਈਟਵੇਟ ਥੀਮ"
+msgstr "ਲਾਈਟਵੇਟ ਥੀਮਜ਼ ਸਮੀਖਿਆ ਲਾਗ"
 
-#, fuzzy
 msgid "Deleted Themes Log"
-msgstr "ਥੀਮ ਹਟਾਓ"
+msgstr "ਹਟਾਇਆ ਗਿਆ ਥੀਮ ਲਾਗ"
 
 msgid "User Ratings Moderation"
 msgstr "ਯੂਜ਼ਰ ਰੇਟਿੰਗਸ ਸੰਚਾਲਨ"
@@ -7303,9 +7294,8 @@ msgstr "ਸਮੱਗਰੀ"
 msgid "Compare"
 msgstr "ਤੁਲਨਾ"
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "ਵਰਜਨ"
+msgstr "ਇਜਾਜ਼ਤਾਂ:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -7455,27 +7445,24 @@ msgstr "ਫ਼ਲੈਗ ਕਰਨ ਲਈ ਆਪਣੇ ਕਾਰਨ ਦਾ ਵਰਣ
 msgid "Rejected or Unreviewed"
 msgstr "ਰੱਦ ਹੋਇਆ ਜਾਂ ਬਿਨਾਂ-ਸਮੀਖਿਆ"
 
-#, fuzzy, python-format
+#, python-format
 msgid "[status:%s]"
-msgstr "ਦਰਜਾ:"
+msgstr "[ਸਥਿਤੀ:%s]"
 
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "ਅੱਪਡੇਟ ਹੋਇਆ {0}"
-msgstr[1] "ਅੱਪਡੇਟ ਹੋਇਆ {0}"
+msgstr[0] "ਅੱਪਡੇਟ ({0})"
+msgstr[1] "ਅੱਪਡੇਟ ({0})"
 
-#, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
-msgstr[1] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ ({0})"
+msgstr[0] "ਰੇਟਿੰਗ ਸਮੀਖਿਆ ({0})"
+msgstr[1] "ਰੇਟਿੰਗ ਸਮੀਖਿਆ ({0})"
 
-#, fuzzy
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
-msgstr[0] "ਇਕਸਟੈਨਸ਼ਨ ਪੇਸਕਸ਼"
-msgstr[1] "ਇਕਸਟੈਨਸ਼ਨ ਪੇਸਕਸ਼"
+msgstr[0] "ਆਟੋ ਮਨਜ਼ੂਰ ({0})"
+msgstr[1] "ਆਟੋ ਮਨਜ਼ੂਰ ({0})"
 
 #, fuzzy
 msgid "Expired Info Request ({0})"
