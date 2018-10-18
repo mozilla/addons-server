@@ -303,8 +303,41 @@ class BaseTestEditDescribe(BaseTestEdit):
         assert unicode(addon.description) == data['description']
 
     @override_switch('akismet-spam-check', active=True)
+    @override_switch('akismet-addon-action', active=False)
     @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_akismet_edit_is_spam(self, comment_check_mock):
+    def test_akismet_edit_is_spam_logging_only(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
+        data = self.get_dict()
+
+        response = self.client.post(self.describe_edit_url, data)
+        assert response.status_code == 200
+
+        # Akismet check is there
+        assert AkismetReport.objects.count() == 3
+        name_report = AkismetReport.objects.first()
+        assert name_report.comment_type == 'product-name'
+        assert name_report.comment == data['name']
+        summary_report = AkismetReport.objects.all()[1]
+        assert summary_report.comment_type == 'product-summary'
+        assert summary_report.comment == data['summary']
+        description_report = AkismetReport.objects.all()[2]
+        assert description_report.comment_type == 'product-description'
+        assert description_report.comment == data['description']
+
+        assert comment_check_mock.call_count == 3
+        # But because we're not taking any action from the spam, don't report.
+        assert 'spam' not in response.content
+
+        # And metadata was updated
+        addon = self.get_addon()
+        assert unicode(addon.name) == data['name']
+        assert unicode(addon.summary) == data['summary']
+        assert unicode(addon.description) == data['description']
+
+    @override_switch('akismet-spam-check', active=True)
+    @override_switch('akismet-addon-action', active=True)
+    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
+    def test_akismet_edit_is_spam_action_taken(self, comment_check_mock):
         comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
         old_name = self.addon.name
         old_summary = self.addon.summary

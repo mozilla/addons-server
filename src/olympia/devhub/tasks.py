@@ -525,8 +525,9 @@ def annotate_webext_incompatibilities(results, file_, addon, version_string,
 
 def annotate_akismet_spam_check(results, akismet_results):
     msg = ugettext('The text entered has been flagged as spam.')
+    error_if_spam = waffle.switch_is_active('akismet-addon-action')
     for report_result in akismet_results:
-        if report_result in (
+        if error_if_spam and report_result in (
                 AkismetReport.MAYBE_SPAM, AkismetReport.DEFINITE_SPAM):
             insert_validation_message(
                 results, message=msg, msg_id='akismet_is_spam')

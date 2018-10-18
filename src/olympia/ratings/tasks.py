@@ -1,6 +1,8 @@
 from django.db.models import Avg, Count, F
 from django.conf import settings
 
+import waffle
+
 import olympia.core.logger
 
 from olympia.addons.models import Addon
@@ -121,13 +123,18 @@ def addon_grouped_rating(*addons, **kw):
 
 
 @task
-def check_with_akismet(rating_id, user_agent, referrer):
-    from olympia.ratings.models import Rating, RatingFlag  # circular import
+def check_akismet_reports(report_ids):
+    from olympia.ratings.models import RatingFlag  # circular import
 
-    rating = Rating.objects.get(id=rating_id)
-    akismet = AkismetReport.create_for_rating(rating, user_agent, referrer)
-    outcome = akismet.comment_check()
-    if outcome in (AkismetReport.DEFINITE_SPAM, AkismetReport.MAYBE_SPAM):
-        RatingFlag.objects.get_or_create(
-            rating=rating, user_id=settings.TASK_USER_ID, flag=RatingFlag.SPAM)
-        rating.update(editorreview=True)
+    flag_rating_if_spam = waffle.switch_is_active('akismet-rating-action')
+    reports = AkismetReport.objects.filter(id__in=report_ids)
+    for report in reports:
+        outcome = report.comment_check()
+        is_spammy = outcome in (
+            AkismetReport.DEFINITE_SPAM, AkismetReport.MAYBE_SPAM)
+        if is_spammy and flag_rating_if_spam:
+            rating = report.rating_instance
+            RatingFlag.objects.get_or_create(
+                rating=rating, user_id=settings.TASK_USER_ID,
+                flag=RatingFlag.SPAM)
+            rating.update(editorreview=True)

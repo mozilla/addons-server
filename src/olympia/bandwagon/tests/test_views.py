@@ -1370,8 +1370,23 @@ class CollectionViewSetDataMixin(object):
         assert comment_check_mock.call_count == 4
 
     @override_switch('akismet-spam-check', active=True)
+    @override_switch('akismet-collection-action', active=False)
     @patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_akismet_is_spam(self, comment_check_mock):
+    def test_akismet_is_spam_logging_only(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
+        self.client.login_api(self.user)
+        response = self.send(data=self.data)
+        assert response.status_code in [200, 201]
+
+        # AkismetReports are there
+        assert AkismetReport.objects.count() == 4
+        # After the first comment_check was spam, additional ones are skipped.
+        assert comment_check_mock.call_count == 1
+
+    @override_switch('akismet-spam-check', active=True)
+    @override_switch('akismet-collection-action', active=True)
+    @patch('olympia.lib.akismet.models.AkismetReport.comment_check')
+    def test_akismet_is_spam_take_action(self, comment_check_mock):
         comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
         self.client.login_api(self.user)
         response = self.send(data=self.data)

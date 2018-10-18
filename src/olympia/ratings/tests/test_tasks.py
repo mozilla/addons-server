@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 import mock
 import pytest
+from waffle.testutils import override_switch
 
 from django.conf import settings
 
 from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.lib.akismet.models import AkismetReport
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.ratings.tasks import (
-    addon_rating_aggregates, check_with_akismet)
+    addon_rating_aggregates, check_akismet_reports)
 
 
 class TestAddonRatingAggregates(TestCase):
@@ -95,24 +97,29 @@ class TestAddonRatingAggregates(TestCase):
 
 @pytest.mark.django_db
 @pytest.mark.parametrize(
-    'return_value,headers,flag_count',
+    'return_value,headers,waffle_on,flag_count',
     [
-        (True, {}, 1),
-        (True, {'X-akismet-pro-tip': 'discard'}, 1),
-        (False, {}, 0),
+        (True, {}, True, 1),
+        (True, {'X-akismet-pro-tip': 'discard'}, True, 1),
+        (False, {}, True, 0),
+        # when the akismet-rating-action is off there shouldn't be any flagging
+        (True, {}, False, 0),
+        (True, {'X-akismet-pro-tip': 'discard'}, False, 0),
     ])
-def test_check_with_akismet(return_value, headers, flag_count):
+def test_check_akismet_reports(return_value, headers, waffle_on, flag_count):
     task_user = user_factory(id=settings.TASK_USER_ID)
     assert RatingFlag.objects.count() == 0
     rating = Rating.objects.create(
         addon=addon_factory(), user=user_factory(), rating=4, body=u'spám?',
         ip_address='1.2.3.4')
+    akismet_report = AkismetReport.create_for_rating(rating, 'foo/baa', '')
 
     with mock.patch('olympia.lib.akismet.models.requests.post') as post_mock:
         # Mock a definitely spam response - same outcome
         post_mock.return_value.json.return_value = return_value
         post_mock.return_value.headers = headers
-        check_with_akismet(rating.id, 'foo/baa', '')
+        with override_switch('akismet-rating-action', active=waffle_on):
+            check_akismet_reports([akismet_report.id])
 
     RatingFlag.objects.count() == flag_count
     rating = rating.reload()
