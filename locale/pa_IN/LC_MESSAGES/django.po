@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 15:00+0000\n"
+"PO-Revision-Date: 2018-10-18 15:29+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -434,7 +434,7 @@ msgstr "ਇਸ ਸਮੀਖਿਆ ਲਈ ਡਿਵੈਲਪਰ ਦਾ ਜਵਾ�
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "ਇਸ ਐਡ-ਆਨ ਦੀਆਂ ਸਾਰੀਆਂ ਸਮੀਖਿਆਵਾਂ ਵੇਖੋ"
+msgstr[0] "ਇਸ ਐਡ-ਆਨ ਦੀਆਂ ਸਾਰੀਆਂ ਸਮੀਖਿਆ ਵੇਖੋ"
 msgstr[1] ""
 
 msgid "Tags"
@@ -1553,9 +1553,8 @@ msgstr "ਮੰਚ"
 msgid "e10s Enabled"
 msgstr "e10s ਜਗਾਏ ਗਏ"
 
-#, fuzzy
 msgid "e10s Compatible"
-msgstr "ਅਧੂਰਾ"
+msgstr "e10s ਅਨੁਕੂਲ"
 
 msgid "Submitted"
 msgstr "ਦਾਖਲ ਕੀਤੇ"
@@ -1598,9 +1597,8 @@ msgid "{addon} enabled."
 msgstr "{addon} ਯੋਗ ਹੋਇਆ।"
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "{addon} ਦਰਜਾ {0} ਵਿੱਚ ਬਦਲਿਆ।"
+msgstr "{addon}ਹਾਲਤ ਨੂੰ {status} ਵਿੱਚ ਤਬਦੀਲ ਕੀਤਾ ਗਿਆ।"
 
 msgid "{version} added to {addon}."
 msgstr "{version} {addon}ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਇਆ।"
@@ -1659,6 +1657,8 @@ msgstr "{addon} {version} ਸੁਪਰ ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹ�
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"ਐਡ-ਆਨ ਨੂੰ ਐਡਮਿਨ ਰਿਵਿਊ ਲਈ ਫਲੈਗ ਕੀਤਾ ਗਿਆ ਹੈ।  ਇਹ ਹਾਲੇ ਵੀ ਸਾਡੀ ਸਮੀਖਿਆ ਕਤਾਰ ਵਿੱਚ ਹੈ, ਲੇਕਿਨ ਇਸਦੇ ਲਈ ਸਾਡੇ ਇੱਕ ਐਡਮਿਨਿਸਟ੍ਰੇਟਰ ਸਮੀਖਿਅਕ ਦੁਆਰਾ ਜਾਂਚ ਕੀਤੇ ਜਾਣ ਦੀ ਲੋੜ ਹੋਵੇਗੀ। ਸਮੀਖਿਆ ਨੂੰ ਆਮ ਤੋਂ ਵੱਧ ਸਮਾਂ ਲੱਗ ਸਕਦਾ "
+"ਹੈ।"
 
 msgid "Comment on {addon} {version}."
 msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
@@ -1678,9 +1678,8 @@ msgstr "{addon} {collection}ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਇਆ।"
 msgid "{addon} removed from {collection}."
 msgstr "{addon} ਤੋਂ{collection}ਹਟਾਇਆ।"
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "{addon} ਲਈ {review} ਲਿਖਿਆ।"
+msgstr ""
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -3457,9 +3456,8 @@ msgstr "ਵਰਜਨ ਨੋਟ"
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "ਤੁਸੀਂ ਪੂਰਾ ਕਰ ਲਿਆ! ਸਮੀਖਿਆ ਵਿੱਚ ਸਫਲ ਹੋਣ ਤੋਂ ਬਾਅਦ ਇਹ ਵੰਨਗੀ ਉਪਲੱਬਧ ਹੋ ਜਾਵੇਗੀ। ਜਦੋਂ ਇਸ ਦੀ ਸਮੀਖਿਆ ਕੀਤੀ ਗਈ ਤਾਂ ਤੁਹਾਨੂੰ ਸੂਚਿਤ ਕੀਤਾ ਜਾਵੇਗਾ।"
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "ਵਰਜਨ ਨੋਟ"
+msgstr "ਸੰਸਕਰਣ ਪੇਸ਼ ਕੀਤਾ"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr "ਤੁਸੀਂ ਪੂਰਾ ਕਰ ਲਿਆ! ਇਹ ਵੰਨਗੀ ਛੇਤੀ ਹੀ ਸਾਡੀ ਸਾਈਟ ਤੇ ਉਪਲੱਬਧ ਹੋਵੇਗੀ।"
@@ -3495,11 +3493,9 @@ msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਹਸਤਾਖਰਿਤ ਹੋ ਚੁ�
 msgid "Download {0}"
 msgstr "ਡਾਊਨਲੋਡ {0}"
 
-#, fuzzy
 msgid "Go to My Submissions"
-msgstr "ਮੇਰੀਆਂ ਬੇਨਤੀਆਂ"
+msgstr "ਮੇਰੇ ਪ੍ਰਸਤਾਵਾਂ ਤੇ ਜਾਓ"
 
-#, fuzzy
 msgid "Source Code Upload"
 msgstr "ਸਰੋਤ ਕੋਡ ਲੱਦਿਆ ਗਿਆ"
 
@@ -3555,9 +3551,8 @@ msgstr ""
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
 
-#, fuzzy
 msgid "How to Submit:"
-msgstr "ਭੇਜੋ"
+msgstr "ਕਿਵੇਂ ਪੇਸ਼ ਕਰਨਾ ਹੈ:"
 
 msgid "Include instructions in a README file in the source code,"
 msgstr ""
@@ -3565,9 +3560,8 @@ msgstr ""
 msgid "or in reviewer notes on the next page (if applicable)."
 msgstr ""
 
-#, fuzzy
 msgid "Upload source code:"
-msgstr "ਸੋਰਸ ਕੋਡ"
+msgstr "ਸਰੋਤ ਕੋਡ ਅਪਲੋਡ ਕਰੋ:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "ਐਡ-ਔਨ ਵੰਡ ਸਮਝੌਤਾ"
