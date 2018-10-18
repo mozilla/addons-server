@@ -437,18 +437,15 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_tab_center_redux(self):
         self._check_scenario('tab center redux', (
-            ['Tab Center Redux', 5.3620667],
-            ['Tab Mix Plus', 0.024201531],
-            ['Redux DevTools', 0.01785672],
+            ['Tab Center Redux', 42.221684],
+            ['Tab Mix Plus', 0.028214136],
+            ['Redux DevTools', 0.020817358],
         ))
 
     def test_scenario_open_image_new_tab(self):
-        # TODO, should not put the "a new tab" thing first :-/
-        # But maybe the "in a" is part of a stop-word that make exact
-        # matches harder?
         self._check_scenario('Open Image in New Tab', (
-            ['Open image in a new tab', 2.2382503],
-            ['Open Image in New Tab', 2.1788282],
+            ['Open Image in New Tab', 13.606365],
+            ['Open image in a new tab', 2.6027737],
         ))
 
     def test_scenario_coinhive(self):
@@ -497,7 +494,7 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_frame_demolition(self):
         self._check_scenario('Frame Demolition', (
-            ['Frame Demolition', 1.4953605],
+            ['Frame Demolition', 13.404683],
         ))
 
     def test_scenario_demolition(self):
@@ -508,14 +505,14 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_restyle(self):
         self._check_scenario('reStyle', (
-            ['reStyle', 0.9692547],
+            ['reStyle', 17.824808],
         ))
 
     def test_scenario_megaupload_downloadhelper(self):
         # Doesn't find "RapidShare DownloadHelper" anymore
         # since we now query by "MegaUpload AND DownloadHelper"
         self._check_scenario('MegaUpload DownloadHelper', (
-            ['MegaUpload DownloadHelper', 6.7575665],
+            ['MegaUpload DownloadHelper', 22.838007],
         ))
 
     def test_scenario_downloadhelper(self):
@@ -535,18 +532,24 @@ class TestRankingScenarios(ESTestCase):
         ))
 
     def test_scenario_no_flash(self):
-        # TODO: Doesn't put "No Flash" on first line, "No" is probably
-        # a stop-word that makes an exact match hard.
         self._check_scenario('No Flash', (
-            ['Download Flash and Video', 3.4948778],
-            ['No Flash', 2.9848375],
-            ['YouTube Flash Player', 2.8327463],
-            ['YouTube Flash Video Player', 2.462174],
+            ['No Flash', 42.063526],
+            ['Download Flash and Video', 4.081107],
+            ['YouTube Flash Player', 3.30791],
+            ['YouTube Flash Video Player', 2.875178],
+        ))
+
+        # Case should not matter.
+        self._check_scenario('no flash', (
+            ['No Flash', 42.063526],
+            ['Download Flash and Video', 4.081107],
+            ['YouTube Flash Player', 3.30791],
+            ['YouTube Flash Video Player', 2.875178],
         ))
 
     def test_scenario_disable_hello_pocket_reader_plus(self):
         self._check_scenario('Disable Hello, Pocket & Reader+', (
-            ['Disable Hello, Pocket & Reader+', 4.996057],  # yeay!
+            ['Disable Hello, Pocket & Reader+', 28.746347],  # yeay!
         ))
 
     def test_scenario_grapple(self):
@@ -571,16 +574,16 @@ class TestRankingScenarios(ESTestCase):
         # Tests that we match directly "Merge Windows" and also find
         # "Merge All Windows" because of slop=1
         self._check_scenario('merge windows', (
-            ['Merge Windows', 1.484323],
-            ['Merge All Windows', 0.5912579],
+            ['Merge Windows', 9.161506],
+            ['Merge All Windows', 0.6894618],
         ), no_match=(
             'All Downloader Professional',
         ))
 
         self._check_scenario('merge all windows', (
-            ['Merge All Windows', 1.9595947],
-            ['Merge Windows', 0.01752811],
-            ['All Downloader Professional', 0.0063415496],
+            ['Merge All Windows', 9.34597],
+            ['Merge Windows', 0.020408927],
+            ['All Downloader Professional', 0.0073838094],
         ))
 
     def test_score_boost_exact_match(self):
@@ -592,6 +595,6 @@ class TestRankingScenarios(ESTestCase):
     def test_score_boost_exact_match_description_hijack(self):
         """Test that we rank exact matches at the top."""
         self._check_scenario('Amazon 1-Click Lock', (
-            ['Amazon 1-Click Lock', 7.216213],
-            ['1-Click YouTube Video Download', 0.10945792],
+            ['Amazon 1-Click Lock', 24.268158],
+            ['1-Click YouTube Video Download', 0.12715381],
         ))
