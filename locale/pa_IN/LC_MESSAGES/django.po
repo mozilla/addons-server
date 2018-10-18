@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-08-26 18:01+0000\n"
+"PO-Revision-Date: 2018-08-25 16:48+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -4678,7 +4678,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "50+ ਮਦਦਗਾਰ ਮਾਊਸ ਸੰਕੇਤਾਂ ਦੇ ਨਾਲ ਨੈਵੀਗੇਟ ਕਰਨ ਦਾ ਇੱਕ ਨਵਾਂ ਤਰੀਕਾ ਲੱਭੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4835,7 +4835,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "ਸਵੈ-ਪ੍ਰਭਾਸ਼ਿਤ ਪ੍ਰੌਕਸੀ ਸੈਟਿੰਗਾਂ ਰਾਹੀਂ ਵੈਬ ਨੂੰ ਸਰਫਿੰਗ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4859,7 +4859,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "ਚੈੱਕਆਉਟ ਤੇ ਆਪਣੇ ਸ਼ਾਪਿੰਗ ਕਾਰਟ ਤੇ ਆਪਣੇ ਆਪ ਹੀ ਲਾਗੂ ਕੀਤੇ ਗਏ ਵਧੀਆ ਕੂਪਨ ਪ੍ਰਾਪਤ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4867,7 +4867,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "ਹਾਈਲਾਈਟ ਕੀਤੇ ਟੈਕਸਟ ਜਾਂ ਸਮੁੱਚੇ ਵੈਬਪੰਨੇ ਦਾ ਅਨੁਵਾਦ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
