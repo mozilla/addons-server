@@ -34,6 +34,12 @@ INDEX_SETTINGS = {
                 ]
             }
         },
+        'normalizer': {
+            'lowercase_keyword_normalizer': {
+                'type': 'custom',
+                'filter': ['lowercase'],
+            },
+        },
         'filter': {
             'wordDelim': {
                 'type': 'word_delimiter',
