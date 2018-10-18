@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 15:29+0000\n"
+"PO-Revision-Date: 2018-10-18 15:56+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -914,7 +914,7 @@ msgid "Error decoding signature."
 msgstr "ਗਲਤੀ ਡੀਕੋਡਿੰਗ ਦਸਤਖਤ।"
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "ਗ਼ਲਤ ਕਿਸਮ ਲਈ ਪੇਇਲੋਡ ਵਿਚ ਇਕ ਜਾਂ ਵਧੇਰੇ ਕੁੰਜੀਆਂ"
 
 msgid "Invalid JWT Token."
 msgstr "ਗੈਰ-ਪ੍ਰਮਾਣਿਤ JWT ਟੋਕਨ।"
@@ -1833,9 +1833,8 @@ msgstr "ਸਰੋਤ ਕੋਡ ਲੱਦਿਆ ਗਿਆ"
 msgid "Auto-Approval confirmed for {addon} {version}."
 msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
 
-#, fuzzy
 msgid "Auto-Approval confirmed"
-msgstr "ਮਨਜ਼ੂਰੀ ਦਰਜਾ"
+msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਦੀ ਪੁਸ਼ਟੀ ਕੀਤੀ"
 
 #, fuzzy
 msgid "{addon} {version} re-enabled."
@@ -1852,20 +1851,17 @@ msgstr "{addon} {version} ਮਨਜ਼ੂਰ ਹੋਇਆ।"
 msgid "Content approved"
 msgstr "ਸਮੱਗਰੀ ਪਰਵਾਨ ਹੋਈ"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} ਠੁਕਰਾਇਆ।"
+msgstr "{addon} {version} ਸਮੱਗਰੀ ਰੱਦ ਕੀਤੀ।"
 
 msgid "Content rejected"
 msgstr "ਸਮੱਗਰੀ ਰੱਦ ਹੋਈ"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
+msgstr "{addon} ਜਾਣਕਾਰੀ ਬੇਨਤੀ ਨੂੰ ਪ੍ਰਸ਼ਾਸਕ ਦੁਆਰਾ ਬਦਲਿਆ ਜਾਂ ਹਟਾਇਆ ਗਿਆ।"
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
+msgstr "ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਬਦਲ ਦਿੱਤੀ ਗਈ"
 
 #, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
@@ -1971,9 +1967,8 @@ msgstr "ਪਲੱਗਇਨ"
 msgid "Theme"
 msgstr "ਥੀਮ"
 
-#, fuzzy
 msgid "Theme (Static)"
-msgstr "ਥੀਮ ਵੇਰਵਾ"
+msgstr "ਥੀਮ (ਸਥਿਰ)"
 
 msgid "Complete Themes"
 msgstr "ਮੁਕਮੰਲ ਥੀਮ"
@@ -2009,9 +2004,8 @@ msgstr "ਬਦਲੋ"
 msgid "Compatible"
 msgstr "ਮੇਚ ਦੇ"
 
-#, fuzzy
 msgid "Incompatible"
-msgstr "ਅਧੂਰਾ"
+msgstr "ਅਨੁਰੂਪ"
 
 msgid "Alerts & Updates"
 msgstr "ਚੇਤਾਵਨੀਆਂ ਅਤੇ ਨਵਿਆਈਆਂ"
@@ -2169,9 +2163,8 @@ msgstr "ਸਮਾਜਕ ਮੇਲ ਮਿਲਾਪ"
 msgid "Sports & Games"
 msgstr "ਖੇਡਾਂ"
 
-#, fuzzy
 msgid "User Interface"
-msgstr "ਤੋਂ ਉਪਭੋਗੀ "
+msgstr "ਯੂਜ਼ਰ ਇੰਟਰਫੇਸ"
 
 msgid "Appearance and Customization"
 msgstr "ਦਿੱਖ ਅਤੇ ਚੁਣਿੰਦਾਕਰਣ"
@@ -2215,9 +2208,8 @@ msgstr "ਤਸਵੀਰਾਂ ਅਤੇ ਮੀਡੀਆ"
 msgid "RSS, News and Blogging"
 msgstr "RSS, ਖ਼ਬਰਾਂ ਅਤੇ ਬਲੌਗ ਲਿਖਣਾ"
 
-#, fuzzy
 msgid "Site-specific"
-msgstr "ਸਾਈਟ ਖਾਸ਼"
+msgstr "ਸਾਈਟ-ਵਿਸ਼ੇਸ਼"
 
 msgid "Web and Developer Tools"
 msgstr "ਵੈੱਬ ਅਤੇ ਵਿਕਾਸਕਾਰ ਸੰਦ"
@@ -2273,9 +2265,8 @@ msgstr "ਸਥਾਈ ਥੀਮ"
 msgid "Persona"
 msgstr "ਪਰਸੋਨਾ"
 
-#, fuzzy
 msgid "No Reputation"
-msgstr "ਰਸੂਖ"
+msgstr "ਕੋਈ ਵੱਕਾਰ ਨਹੀਂ"
 
 msgid "Good (1)"
 msgstr "ਚੰਗਾ (1)"
@@ -2560,7 +2551,7 @@ msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users
 msgstr "ਤੁਸੀਂ ਪੁਰਾਣੇ ਐਡ-ਆਨ ਨਾਲ WebExtensions ਐਡ-ਓਨ ਨੂੰ ਅਪਡੇਟ ਨਹੀਂ ਕਰ ਸਕਦੇ। ਤੁਹਾਡੇ ਯੂਜ਼ਰ ਤੁਹਾਡੇ ਨਵੇਂ ਵਰਜਨ ਨੂੰ ਵਰਤਣ ਦੇ ਯੋਗ ਨਹੀਂ ਹੋਣਗੇ ਕਿਉਂਕਿ ਫਾਇਰਫਾਕਸ ਇਸ ਕਿਸਮ ਦੇ ਅਪਡੇਟ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ।"
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr ""
+msgstr "ਤੁਹਾਡੀ ਡਿਵੈਲਪਰ API ਕੁੰਜੀ ਦਰਜ ਕੀਤੀ ਗਈ ਫਾਇਲ ਵਿੱਚ ਮਿਲੀ ਸੀ। ਆਪਣੇ ਖਾਤੇ ਦੀ ਰੱਖਿਆ ਕਰਨ ਲਈ, ਕੁੰਜੀ ਨੂੰ ਰੱਦ ਕੀਤਾ ਜਾਵੇਗਾ।"
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "ਕੋਆਪਟਰ ਦੀ ਡਿਵੈਲਪਰ API ਕੁੰਜੀ ਜਮ੍ਹਾ ਹੋਈ ਫਾਈਲ ਵਿੱਚ ਲੱਭੀ ਗਈ ਸੀ। ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਸੁਰੱਖਿਆ ਲਈ, ਕੁੰਜੀ ਨੂੰ ਰੱਦ ਕੀਤਾ ਜਾਵੇਗਾ।"
@@ -2621,7 +2612,7 @@ msgid "URL name was incorrect. Theme was not deleted."
 msgstr "URL ਨਾਮ ਗਲਤ ਸੀ। ਥੀਮ ਮਿਟਾਇਆ ਨਹੀਂ ਗਿਆ ਸੀ।"
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "URL ਨਾਮ ਗਲਤ ਸੀ। ਐਡ-ਆਨ ਨਹੀਂਂ ਹਟਾਇਆ ਗਿਆ।"
 
 msgid "An author has been added to your add-on"
 msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਵਿੱਚ ਇੱਕ ਲੇਖਕ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ"
@@ -2671,10 +2662,10 @@ msgid "You must provide further details to proceed."
 msgstr "ਅੱਗੇ ਵਧਣ ਲਈ ਤੁਹਾਨੂੰ ਹੋਰ ਵੇਰਵੇ ਦੇਣੇ ਜਰੂਰੀ ਹਨ।"
 
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਪੁਰਾਣੇ ਸਰਟੀਫਿਕੇਟਸ ਰੱਦ ਕੀਤੇ ਗਏ ਸਨ ਅਤੇ ਹੁਣ ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ ਹਨ। ਨਵੇਂ APIs ਦੇ ਨਾਲ ਸਾਰੇ API ਕਲਾਇਟਾਂ ਨੂੰ ਅਪਡੇਟ ਕਰਨਾ ਯਕੀਨੀ ਬਣਾਓ।"
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਪੁਰਾਣੇ ਸਰਟੀਫਿਕੇਟਸ ਰੱਦ ਕੀਤੇ ਗਏ ਸਨ ਅਤੇ ਹੁਣ ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ ਹਨ।"
 
 msgid "New API key created"
 msgstr "ਨਵੀਂ API ਕੁੰਜੀ ਬਣਾਈ ਗਈ"
@@ -2689,7 +2680,7 @@ msgid ""
 msgstr "ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡਾ ਫਾਇਰਫਾਕਸ ਐਡ-ਆਨ ਵੰਡ ਸਮਝੌਤਾ ਪੜ੍ਹੋ ਅਤੇ ਮਨਜ਼ੂਰ ਕਰੋ। ਇਹ ਸਾਡੇ ਪਰਦੇਦਾਰੀ ਨੋਟਿਸ ਨਾਲ ਵੀ ਸਬੰਧ ਰੱਖਦਾ ਜੋ ਦੱਸਦਾ ਹੈ ਕੀ ਕਿਵੇਂ ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਵਰਤਦੇ ਹਾਂ।"
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "ਫਾਇਰਫਾਕਸ ਐਡ-ਆਨ ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਐਗਰੀਮੈਂਟ"
 
 msgid "Review Policies and Rules"
 msgstr "ਨੀਤੀਆਂ ਅਤੇ ਨਿਯਮਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ"
@@ -3528,14 +3519,14 @@ msgid "You do not need to submit Source Code, and you’re ready for the next st
 msgstr ""
 
 msgid "Your Submission Requires Source Code."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਅਧੀਨ ਕਰਨ ਲਈ ਸੋਰਸ ਕੋਡ ਦੀ ਜ਼ਰੂਰਤ ਹੈ।"
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr ""
+msgstr "ਸਰੋਤ ਕੋਡ ਨੂੰ <a %(a_attrs)s>ਨੀਤੀ ਦੀਆਂ ਸ਼ਰਤਾਂ </a>ਨੂੰ ਪੂਰਾ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ, ਜਿਸ ਵਿੱਚ ਸ਼ਾਮਲ ਹਨ:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
-msgstr ""
+msgstr "ਐਡ-ਆਨ ਕੋਡ ਦੀ ਸਹੀ ਨਕਲ ਬਣਾਉਣ ਲਈ ਕਦਮ-ਦਰ-ਕਦਮ ਦੀ ਹਦਾਇਤਾਂ।"
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "ਇੱਕ ਬਿਲਡ ਸਕ੍ਰਿਪਟ ਜੋ ਸਾਰੇ ਜ਼ਰੂਰੀ ਤਕਨੀਕੀ ਕਦਮ ਚੁੱਕਦੀ ਹੈ।"
@@ -3555,10 +3546,10 @@ msgid "How to Submit:"
 msgstr "ਕਿਵੇਂ ਪੇਸ਼ ਕਰਨਾ ਹੈ:"
 
 msgid "Include instructions in a README file in the source code,"
-msgstr ""
+msgstr "ਸੋਰਸ ਕੋਡ ਵਿੱਚ README ਫਾਈਲ ਵਿੱਚ ਨਿਰਦੇਸ਼ ਸ਼ਾਮਲ ਕਰੋ,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr ""
+msgstr "ਜਾਂ ਅਗਲੇ ਪੰਨੇ ਤੇ ਸਮੀਖਿਅਕ ਨੋਟਾਂ ਵਿੱਚ (ਜੇ ਲਾਗੂ ਹੋਵੇ)।"
 
 msgid "Upload source code:"
 msgstr "ਸਰੋਤ ਕੋਡ ਅਪਲੋਡ ਕਰੋ:"
@@ -3615,10 +3606,10 @@ msgid "Select a header image for your theme"
 msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਇੱਕ ਸਿਰਲੇਖ ਤਸਵੀਰ ਚੁਣੋ।"
 
 msgid "Recommended height: 200 pixels"
-msgstr ""
+msgstr "ਦਸੀ ਗਈ ਉਚਾਈ: 200 ਪਿਕਸਲ"
 
 msgid "6.9MB max"
-msgstr ""
+msgstr "6.9 ਐਮ ਬੀ ਅਧਿਕਤਮ"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG ਜਾਂ GIF (ਐਨੀਮੇਟਡ ਨਹੀਂ)"
@@ -3982,6 +3973,8 @@ msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
+"ਤੁਸੀਂ ਆਪਣਾ ਐਕਸਟੈਂਸ਼ਨ ਬਣਾਇਆ ਹੈ ਅਤੇ ਇਸਨੂੰ ਪ੍ਰਕਾਸ਼ਿਤ ਕਰਨ ਲਈ ਤਿਆਰ ਹੋ। ਅਗਲਾ ਕੀ ਹੋਵੇਗਾ? ਅਪੀਲਦਾਰ ਸੂਚੀ ਬਣਾਉਣ ਵਾਲੇ ਪੰਨੇ ਨੂੰ ਬਣਾਉਣ ਲਈ ਸਾਡੇ ਸੁਝਾਵਾਂ ਨੂੰ ਵੇਖੋ, ਆਪਣੀ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)sਤੇ, ਵਿਕਾਸ ਦੇ ਸਵਾਲਾਂ ਦੇ ਜਵਾਬ ਲੱਭਣ ਅਤੇ ਖ਼ਬਰਾਂ ਅਤੇ ਸੰਬੰਧਿਤ ਸਮਾਗਮਾਂ ਦੇ ਨਾਲ ਅਪ-ਟੂ-ਡੇਟ ਰਹਿਣ ਤੇ ਦੇਖੋ ਐਕਸਟੈਂਸ਼ਨ ਵਿਸਤਾਰ।"
 
 #, fuzzy
 msgid "View Resources for Publishers"
@@ -3992,7 +3985,7 @@ msgid "Welcome Back"
 msgstr "ਜੀ ਆਇਆ ਨੂੰ, {0}"
 
 msgid "Help users discover your extension by creating an appealing listing."
-msgstr ""
+msgstr "ਇੱਕ ਅਪੀਲ ਕਰਨ ਵਾਲੀ ਸੂਚੀ ਬਣਾ ਕੇ ਉਪਭੋਗਤਾਵਾਂ ਨੂੰ ਤੁਹਾਡੀ ਐਕਸਟੈਨਸ਼ਨ ਨੂੰ ਲੱਭਣ ਵਿੱਚ ਸਹਾਇਤਾ ਕਰੋ।"
 
 #, fuzzy
 msgid "Learn How"
