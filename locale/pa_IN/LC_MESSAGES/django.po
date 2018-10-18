@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 12:08+0000\n"
+"PO-Revision-Date: 2018-10-18 12:46+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -946,7 +946,7 @@ msgstr ""
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
+msgstr "ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਰੱਖੋ ਕਿ ਵੈੱਬ ਐਕਸਟੈਂਸ਼ਨ %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s ਵਿੱਚ \"*\" ਸਵੀਕਾਰ ਨਹੀਂ ਕਰੇਗਾ।"
 
 msgid "GUID"
 msgstr "GUID"
@@ -2918,7 +2918,7 @@ msgid "Summary"
 msgstr "ਸਾਰ"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "ਇਹ ਸੰਖੇਪ ਸਪੱਸ਼ਟ ਤੌਰ ਤੇ ਇਹ ਸਪੱਸ਼ਟ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ। ਤੁਹਾਡੇ ਐਡ-ਔਨ ਕੀ ਕਰਦਾ ਹੈ ਇਹ ਸੂਚੀ ਅਤੇ ਖੋਜਾਂ ਵਿੱਚ ਦਿਖਾਇਆ ਜਾਵੇਗਾ, ਅਤੇ ਇਹ ਐਡੀਟਰਾਂ ਦੁਆਰਾ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਜਾਂਚ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾਏਗਾ।"
 
 msgid "Experimental?"
 msgstr "ਪ੍ਰਯੋਗਾਤਮਕ?"
@@ -2985,7 +2985,7 @@ msgid "Contributions URL"
 msgstr "ਯੋਗਦਾਨ URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "ਜੇ ਤੁਸੀਂ ਆਪਣੇ ਉਪਯੋਗਕਰਤਾਵਾਂ ਦੁਆਰਾ ਮੌਨੀਕ ਯੋਗਦਾਨ ਲਈ ਬੇਨਤੀ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ, ਤਾਂ ਇਸਨੂੰ ਇਸ ਪੇਜ ਤੇ ਸੈਟ ਕਰੋ ਜਿੱਥੇ ਉਹ ਅਜਿਹਾ ਕਰ ਸਕਦੇ ਹਨ।"
 
 msgid "Add-on Details"
 msgstr "ਐਡ-ਆਨ ਵੇਰਵਾ"
@@ -3263,6 +3263,8 @@ msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
+"ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਮਿਟਾਉਣ ਨਾਲ ਤੁਸੀਂ ਇਸ ਐਡ-ਆਨ ਲਈ ਸੂਚੀਬੱਧ ਸਾਰੇ ਸੰਸਕਰਣ ਅਤੇ ਫਾਈਲਾਂ ਨੂੰ ਪੱਕੇ ਤੌਰ ਤੇ ਮਿਟਾ ਦੇਗੇ। ਐਡ-ਆਨ ਆਈਡੀ ਤੁਹਾਡੇ ਖਾਤੇ ਨਾਲ ਜੋੜਿਆ ਜਾਣਾ ਜਾਰੀ ਰੱਖੇਗਾ, ਤਾਂ ਕਿ ਹੋਰ ਉਹੀ ਆਈਡੀ ਦੀ ਵਰਤੋਂ ਨਾਲ ਵਰਜਨ ਨੂੰ "
+"ਜਮ੍ਹਾਂ ਨਾ ਕਰ ਸਕਣ।"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "ਆਪਣੇ ਫੈਸਲੇ ਦੀ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਹੇਠਲਾ ਪਾਠ ਦਰਜ ਕਰੋ: {slug}"
@@ -3448,7 +3450,7 @@ msgid "Release Notes:"
 msgstr "ਰਿਲੀਜ਼"
 
 msgid "Let your users know what's new and what's changed in this version."
-msgstr ""
+msgstr "ਆਪਣੇ ਉਪਭੋਗਤਾਵਾਂ ਨੂੰ ਇਹ ਜਾਣੋ ਕਿ ਇਸ ਨਵੇਂ ਵਰਜਨ ਵਿੱਚ ਕੀ ਨਵਾਂ ਹੈ ਅਤੇ ਕੀ ਬਦਲਿਆ ਹੈ।"
 
 msgid "These notes will appear on the detail page."
 msgstr "ਇਹ ਨੋਟ ਵਿਸਥਾਰ ਪੰਨਾ ਤੇ ਪ੍ਰਗਟ ਹੋਣਗੇ।"
@@ -3484,7 +3486,7 @@ msgid "You’re done! This version has been submitted for review. You will be no
 msgstr "ਤੁਸੀਂ ਪੂਰਾ ਕਰ ਲਿਆ! ਇਹ ਵੰਨਗੀ ਸਮੀਖਿਆ ਲਈ ਜਮ੍ਹਾਂ ਕਰਾਈ ਗਈ ਹੈ। ਸਮੀਖਿਆ ਮੁਕੰਮਲ ਹੋ ਜਾਣ ਤੇ, ਜਾਂ ਤੁਹਾਡੇ ਜਮ੍ਹਾਂ ਕੀਤੇ ਹੋਏ ਤੇ ਸਾਡੇ ਸਮੀਖਿਆਕਾਰਾਂ ਦਾ ਕੋਈ ਸਵਾਲ ਹੋਣ ਤੇ ਤੁਹਾਨੂੰ ਸੂਚਿਤ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ।"
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr ""
+msgstr "ਇੱਕ ਵਿਸਤ੍ਰਿਤ ਵਰਣਨ ਜੋੜ ਕੇ ਤੁਹਾਡੀ ਸੂਚੀ ਹੋਰ ਸਫਲ ਹੋਵੇਗੀ। ਪ੍ਰਕਾਸ਼ਨ ਲਈ ਆਪਣੀ ਸੂਚੀ ਤਿਆਰ ਕਰੋ:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr ""
@@ -3973,7 +3975,7 @@ msgid "Write Some Code"
 msgstr "ਕੁੱਝ ਕੋਡ ਲਿਖੋ"
 
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "ਆਪਣੇ ਕੋਡਿੰਗ ਹੁਨਰ ਦਾ ਯੋਗਦਾਨ ਕਰਕੇ ਐਡ-ਆਨ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰੋ।"
 
 #, fuzzy
 msgid "Get started"
@@ -3994,7 +3996,7 @@ msgid "Manage Your Add-on"
 msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਸਾਂਭ-ਸੰਭਾਲ੍ਹ ਕਰ ਰਿਹਾ"
 
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਸੋਧਣ ਅਤੇ ਅਪਡੇਟ ਕਰਨ ਲਈ ਸਾਈਨ ਇਨ ਕਰੋ"
 
 msgid "Resources for a successful launch"
 msgstr "ਇੱਕ ਸਫਲ ਲਾਂਚ ਲਈ ਸਰੋਤ"
