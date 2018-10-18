@@ -1,7 +1,8 @@
 import re
 
+from django.conf import settings
 from django.core import exceptions
-from django.core.validators import URLValidator
+from django.core.validators import RegexValidator, URLValidator
 from django.db import models
 from django.forms import fields
 from django.utils.translation import ugettext, ugettext_lazy as _
@@ -38,7 +39,24 @@ class URLValidatorBackport(URLValidator):
 
 
 class HttpHttpsOnlyURLField(fields.URLField):
-    default_validators = [URLValidatorBackport(schemes=('http', 'https'))]
+
+    def __init__(self, *args, **kwargs):
+        super(HttpHttpsOnlyURLField, self).__init__(*args, **kwargs)
+
+        self.validators = [
+            URLValidatorBackport(schemes=('http', 'https')),
+            # Reject AMO URLs, see:
+            # https://github.com/mozilla/addons-server/issues/9012
+            RegexValidator(
+                regex=r'%s' % re.escape(settings.DOMAIN),
+                message=_(
+                    'This field can only be used to link to external websites.'
+                    ' URLs on %(domain)s are not allowed.',
+                ) % {'domain': settings.DOMAIN},
+                code='no_amo_url',
+                inverse_match=True
+            )
+        ]
 
 
 class ReCaptchaField(HumanCaptchaField):
