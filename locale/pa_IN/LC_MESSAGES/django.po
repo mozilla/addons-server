@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 18:54+0000\n"
+"PO-Revision-Date: 2018-10-18 18:58+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -3359,9 +3359,8 @@ msgstr "ਇਹ ਐਡ-ਆਨ ਪ੍ਰਯੋਗਾਤਮਕ ਹੈ"
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 
-#, fuzzy
 msgid "Select a category for this add-on:"
-msgstr "ਇਸ ਐਡ-ਆਨ ਲਈ <b>{0} ਤੱਕ</b> {1} ਸੰਗ੍ਰਹਿ ਚੁਣੋ:"
+msgstr "ਇਸ ਐਡ-ਆਨ ਲਈ ਸ਼੍ਰੇਣੀ ਚੁਣੋ:"
 
 msgid "Support email:"
 msgstr "ਸਹਿਯੋਗ ਈ-ਮੇਲ:"
@@ -3656,13 +3655,11 @@ msgstr "ਝਲਕ ਵੇਖਣ ਲਈ ਘੁਮਾਓ"
 msgid "Back"
 msgstr "ਪਿੱਛੇ ਜਾਉ"
 
-#, fuzzy
 msgid "Uploading Theme"
-msgstr "ਉੱਤੇ ਅਤੇ ਆ ਰਹੇ ਥੀਮ"
+msgstr "ਅੱਪਲੋਡ ਥੀਮ"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "%s ਥੀਮ"
+msgstr "ਮੁਕੰਮਲ ਥੀਮ"
 
 msgid "API Credentials"
 msgstr "API ਸਰਟੀਫਿਕੇਟਸ"
