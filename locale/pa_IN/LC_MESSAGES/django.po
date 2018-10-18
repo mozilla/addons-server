@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-08-14 10:31+0000\n"
+"PO-Revision-Date: 2018-10-18 09:19+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -2937,12 +2937,11 @@ msgid "Check this box if this add-on's core features require some form of paymen
 msgstr ""
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "ਇਸ ਐਡ-ਓਨ ਲਈ ਭੁਗਤਾਨ, ਗੈਰ-ਮੁਫ਼ਤ ਸੇਵਾਵਾਂ ਜਾਂ ਸੌਫਟਵੇਅਰ ਜਾਂ ਵਾਧੂ ਹਾਰਡਵੇਅਰ ਦੀ ਲੋੜ ਹੈ।"
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "ਇਸ ਐਡ-ਓਨ ਲਈ ਕਿਸੇ ਵਾਧੂ ਭੁਗਤਾਨ, ਅਦਾਇਗੀ ਸੇਵਾਵਾਂ ਜਾਂ ਸੌਫਟਵੇਅਰ ਜਾਂ ਵਾਧੂ ਹਾਰਡਵੇਅਰ ਦੀ ਲੋੜ ਨਹੀਂ ਹੁੰਦੀ।"
 
-#, fuzzy
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr "ਵਰਤੋਂਕਾਰਾਂ ਲਈ ਐਡ-ਆਨ ਵੇਖਣ ਦਾ ਮੁੱਖ ਢੰਗ ਸੰਗ੍ਰਹਿ ਹਨ। ਕਿਸੇ ਨੂੰ ਵੀ ਚੁਣੋ ਜੋ ਜਿਆਦਾ ਪ੍ਰਭਾਵ ਪਾਉਣ ਲਈ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਲਈ ਠੀਕ ਹੋਵੇ।"
 
@@ -3241,7 +3240,7 @@ msgid "Hide messages not required for automated signing"
 msgstr "ਆਟੋਮੈਟਿਕ ਦਸਤਖਤ ਲਈ ਲੋੜੀਂਦੇ ਸੰਦੇਸ਼ਾਂ ਨੂੰ ਲੁਕਾਓ"
 
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "ਪਿਛਲੇ ਵਰਜਨ ਵਿੱਚ ਮੌਜੂਦ ਸੰਦੇਸ਼ਾਂ ਨੂੰ ਓਹਲੇ ਕਰੋ ਅਤੇ ਅਣਡਿੱਠੇ ਕਰੋ"
 
 msgid "Top"
 msgstr "  ਚੋਟੀ ਦੇ"
@@ -3261,7 +3260,7 @@ msgid ""
 msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "ਆਪਣੇ ਫੈਸਲੇ ਦੀ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਹੇਠਲਾ ਪਾਠ ਦਰਜ ਕਰੋ: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਸਾਨੂੰ ਦੱਸੋ ਤੁਸੀਂ ਆਪਣੇ ਥੀਮ ਨੂੰ ਕਿਉਂ ਹਟਾ ਰਹੇ ਹੋ:"
@@ -3331,7 +3330,7 @@ msgid "Delete this theme."
 msgstr "ਇਸ ਥੀਮ ਨੂੰ ਹਟਾਓ।"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "ਇਹ ਐਡ-ਓਨ ਪਬਲੀਕੇਸ਼ਨ ਲਈ ਜਮ੍ਹਾਂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਕੁਝ ਜਰੂਰੀ ਜਾਣਕਾਰੀ ਗੁਆਚ ਰਿਹਾ ਹੈ।"
 
 #, fuzzy
 msgid "This add-on doesn't have any versions."
@@ -3362,7 +3361,7 @@ msgid "Describe Add-on"
 msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਵਰਣਨ ਕਰੋ"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "ਇਸ ਸਾਈਟ ਤੇ ਸੂਚੀਕਰਨ ਦਾ ਨਾਮ। ਐਡ-ਓਨ ਦੇ ਅੰਦਰ ਨਾਮ ਤੋਂ ਵੱਖਰੀ ਹੋ ਸਕਦੀ ਹੈ, ਜੋ ਕਿ Firefox ਦੇ ਅੰਦਰ ਹੈ"
 
 #, fuzzy
 msgid "Add-on URL:"
@@ -3454,7 +3453,7 @@ msgid "How to Distribute this Version"
 msgstr "ਇਸ ਵੰਨਗੀ ਨੂੰ ਕਿਵੇਂ ਵੰਡਣਾ ਹੈ"
 
 msgid "More information on Add-on Distribution and Signing"
-msgstr ""
+msgstr "ਐਡ-ਆਨ ਵੰਡ ਅਤੇ ਦਸਤਖਤ ਬਾਰੇ ਵਧੇਰੇ ਜਾਣਕਾਰੀ"
 
 msgid "Submission Complete"
 msgstr "ਦਾਖਲ ਕਰਨਾ ਮੁੰਕਮਲ"
@@ -3530,16 +3529,16 @@ msgid "Do you use any of the following?"
 msgstr ""
 
 msgid "Code minifiers or obfuscators"
-msgstr ""
+msgstr "ਕੋਡ ਮਾਈਨੀਫਾਇਰ ਜਾਂ ਓਫਿਫਸਕਟਰ"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr ""
 
 msgid "Web template engines, both for HTML and CSS"
-msgstr ""
+msgstr "ਵੈੱਬ ਟੈਪਲੇਟ ਇੰਜਣ, ਦੋਨਾਂ ਲਈ HTML ਅਤੇ CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr ""
+msgstr "ਕੋਈ ਵੀ ਹੋਰ ਸੰਦ ਜੋ ਕੋਡ ਜਾਂ ਫਾਈਲਾਂ ਲੈਂਦਾ ਹੈ, ਪ੍ਰੋਸੈਸਿੰਗ ਲਾਗੂ ਕਰਦਾ ਹੈ ਅਤੇ ਐਡ-ਔਨ ਵਿਚ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਕੋਡ ਜਾਂ ਫਾਈਲ (s) ਤਿਆਰ ਕਰਦਾ ਹੈ"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr ""
@@ -3668,17 +3667,17 @@ msgid "Toolbar area background"
 msgstr ""
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
+msgstr "ਨੇਵੀਗੇਸ਼ਨ ਪੱਟੀ ਲਈ ਬੈਕਗਰਾਊਂਡ ਰੰਗ, ਬੁੱਕਮਾਰਕਸ ਬਾਰ ਅਤੇ ਚੁਣੇ ਟੈਬ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ: ਟੂਲਬਾਰ।  "
 
 msgid "Toolbar area text and icons"
-msgstr ""
+msgstr "ਟੂਲਬਾਰ ਦੇ ਖੇਤਰ ਦੇ ਪਾਠ ਅਤੇ ਆਈਕਾਨ"
 
 #, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "ਇਹ ਟੈਬ ਟੈਕਸਟ ਦਾ ਰੰਗ ਹੈ।"
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "ਟੂਲਬਾਰ ਖੇਤਰ ਦੀ ਬੈਕਗ੍ਰਾਉਂਡ"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
@@ -3736,10 +3735,10 @@ msgid "Revoke"
 msgstr "ਰੱਦ ਕਰੋ"
 
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਰੱਦ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਬਣਾਉ"
 
 msgid "Generate new credentials"
-msgstr ""
+msgstr "ਨਵੇਂ ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਬਣਾਉਣ ਲਈ"
 
 msgid "Invisible"
 msgstr "ਅਦਿੱਖ"
