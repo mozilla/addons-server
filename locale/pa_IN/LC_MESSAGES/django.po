@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 18:03+0000\n"
+"PO-Revision-Date: 2018-10-18 18:33+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -7033,9 +7033,8 @@ msgstr "ਇਸ ਮਿਆਦ ਦੌਰਾਨ ਕੋਈ ਸਮਾਗਮ ਨਹੀ�
 msgid "Log details"
 msgstr "ਚਿੱਠੇ ਦਾ ਵੇਰਵਾ"
 
-#, fuzzy
 msgid "Review Author"
-msgstr "ਸਮੀਖਿਆ ਇਤਿਹਾਸ"
+msgstr ""
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -7207,13 +7206,11 @@ msgstr "ਵਾਇਟਬੋਰਡ ਡਿਵੈਲਪਰ ਅਤੇ ਸੰਪਾਦ
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr "ਪ੍ਰਾਈਵੇਟ ਵ੍ਹਾਈਟ ਬੋਰਡ ਦਾ ਵਰਨਨ ਤੋਂ ਸੁਤੰਤਰ ਸਮੀਖਿਅਕਾਂ ਵਿਚਕਾਰ ਜਾਣਕਾਰੀ ਦਾ ਆਦਾਨ-ਪ੍ਰਦਾਨ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਭਾਸ਼ਾ ਦੇ ਉਦੇਸ਼ ਨੂੰ ਜਾਰੀ ਰੱਖੋ। ਇਹ ਸਿਰਫ ਸਮੀਖਿਅਕਾਂ ਲਈ ਦ੍ਰਿਸ਼ਟੀਗਤ ਹੁੰਦਾ ਹੈ।"
 
-#, fuzzy
 msgid "Update whiteboards"
 msgstr "ਵਾਇਟਬੋਰਡ ਅੱਪਡੇਟ ਕਰੋ"
 
-#, fuzzy
 msgid "More Actions"
-msgstr "ਹੋਰ ਕਾਰਵਾਈਆਂ:"
+msgstr "ਹੋਰ ਕਾਰਵਾਈਆਂ"
 
 msgid "Notify me about new listed versions"
 msgstr "ਨਵੀਆਂ ਸੂਚੀਬੱਧ ਵੰਨਗੀਆਂ ਬਾਰੇ ਮੈਨੂੰ ਸੂਚਿਤ ਕਰੋ"
@@ -7221,16 +7218,14 @@ msgstr "ਨਵੀਆਂ ਸੂਚੀਬੱਧ ਵੰਨਗੀਆਂ ਬਾਰੇ
 msgid "Force-disable add-on"
 msgstr "ਫੋਰਸ ਅਯੋਗ ਐਡ-ਔਨ"
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "ਮੋਬਾਈਲ ਐਡ-ਆਨ"
+msgstr "ਫੋਰਸ-ਯੋਗ ਐਡਆਨ"
 
 msgid "Disable Auto-Approval"
 msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਓ"
 
-#, fuzzy
 msgid "Enable Auto-Approval"
-msgstr "ਮਨਜ਼ੂਰੀ ਦਰਜਾ"
+msgstr "ਆਟੋ-ਪ੍ਰਵਾਨਗੀ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ"
 
 msgid "Clear information request"
 msgstr "ਸਪਸ਼ਟ ਜਾਣਕਾਰੀ ਬੇਨਤੀ"
@@ -7886,9 +7881,8 @@ msgstr ""
 msgid "View the new site"
 msgstr "ਮੋਬਾਈਲ ਸਾਈਟ ਵੇਖੋ"
 
-#, fuzzy
 msgid "Report a bug"
-msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾ"
+msgstr "ਬੱਗ ਦੀ ਰਿਪੋਰਟ ਕਰੋ"
 
 #, fuzzy
 msgid ""
