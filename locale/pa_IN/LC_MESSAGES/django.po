@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 09:43+0000\n"
+"PO-Revision-Date: 2018-10-18 10:07+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -1384,7 +1384,7 @@ msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-
 msgstr "{0} ਵਿੱਚ </a> ਪੱਟੀ"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "<a href=\"http://mycroftproject.com/\">mycroftproject.com</a> ਤੇ ਹੋਰ ਵੀ ਖੋਜ ਪ੍ਰਦਾਤਿਆਂ ਦੀ ਝਲਕ ਵੇਖੋ"
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
@@ -2934,7 +2934,7 @@ msgid "Requires Payment?"
 msgstr "ਲੁੜੀਂਦੀਆਂ ਥਾਵਾਂ"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "ਇਸ ਬਕਸੇ ਨੂੰ ਚੈਕ ਕਰੋ ਜੇਕਰ ਇਸ ਐਡ-ਓਨ ਦੀਆਂ ਮੁੱਖ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਲਈ ਕੰਮ ਕਰਨ ਲਈ ਇੱਕ ਅਦਾਇਗੀ ਦੀ ਮਿਆਦ ਦੇ ਅਗਾਊਂ ਜਾਂ ਭੁਗਤਾਨ ਕਰਨ ਦੇ ਸਮੇਂ ਦੀ ਲੋੜ ਹੈ।"
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "ਇਸ ਐਡ-ਓਨ ਲਈ ਭੁਗਤਾਨ, ਗੈਰ-ਮੁਫ਼ਤ ਸੇਵਾਵਾਂ ਜਾਂ ਸੌਫਟਵੇਅਰ ਜਾਂ ਵਾਧੂ ਹਾਰਡਵੇਅਰ ਦੀ ਲੋੜ ਹੈ।"
@@ -3396,9 +3396,8 @@ msgstr "ਸਹਿਯੋਗ ਈ-ਮੇਲ"
 msgid "Support website:"
 msgstr "ਸਹਿਯੋਗ ਸਾਈਟ"
 
-#, fuzzy
 msgid "License:"
-msgstr "ਲਾਇਸੰਸ"
+msgstr "ਲਾਇਸੰਸ:"
 
 #, fuzzy
 msgid "Please choose a license appropriate for the rights you grant."
@@ -3554,7 +3553,7 @@ msgid "Step-by-step build instructions to create an exact copy of the add-on cod
 msgstr ""
 
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "ਇੱਕ ਬਿਲਡ ਸਕ੍ਰਿਪਟ ਜੋ ਸਾਰੇ ਜ਼ਰੂਰੀ ਤਕਨੀਕੀ ਕਦਮ ਚੁੱਕਦੀ ਹੈ।"
 
 msgid "Operating system and build environment requirements."
 msgstr "ਓਪਰੇਟਿੰਗ ਸਿਸਟਮ ਅਤੇ ਵਾਤਾਵਰਨ ਜ਼ਰੂਰਤਾਂ ਦਾ ਨਿਰਮਾਣ।"
@@ -3729,7 +3728,7 @@ msgid ""
 msgstr ""
 
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ API ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਨਹੀਂ ਹਨ।"
 
 msgid "Revoke"
 msgstr "ਰੱਦ ਕਰੋ"
@@ -3926,7 +3925,7 @@ msgid "Report Bug"
 msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾ"
 
 msgid "Site Status"
-msgstr ""
+msgstr "ਸਾਈਟ ਦੀ ਸਥਿਤੀ"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
@@ -3980,7 +3979,7 @@ msgid "More Ways to Participate"
 msgstr "ਸੋਧ ਕਰਨ ਦੇ ਹੋਰ ਢੰਗ"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "ਫਾਇਰਫਾਕਸ ਨੂੰ ਸਭ ਤੋਂ ਵੱਧ ਅਨੁਕੂਲ ਹੋਣ ਯੋਗ ਬਰਾਊਜ਼ਰ ਉਪਲੱਬਧ ਰੱਖਣ ਲਈ ਤੁਹਾਨੂੰ ਕੋਡਿੰਗ ਦੇ ਹੁਨਰ ਦੀ ਜ਼ਰੂਰਤ ਨਹੀਂ ਹੈ!"
 
 msgid "See how"
 msgstr "ਵੇਖੋ ਕਿਵੇਂ"
@@ -4044,7 +4043,7 @@ msgid "Add-on Developer Hub"
 msgstr "ਐਡ-ਆਨ ਡਿਵੈਲਪਰ"
 
 msgid "Docs"
-msgstr ""
+msgstr "ਦਸਤਾਵੇਜ਼"
 
 #, fuzzy
 msgid "Sign Out"
@@ -4457,7 +4456,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "ਬਲਾਕ ਅਵਿਵਹਾਰਕ ਟ੍ਰੈਕਕਰਸ ਅਤੇ ਜਾਸੂਸੀ ਦੀ ਵੈੱਬਸਾਈਟ ਜੋ ਕਿ ਤੁਹਾਨੂੰ ਵੈਬ ਦੇ ਦੁਆਲੇ ਪਾਲਣਾ ਕਰਦੇ ਹਨ।"
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4509,7 +4508,7 @@ msgstr "ਆਪਣੀ Facebook ਪਛਾਣ ਨੂੰ ਅਲੱਗ “container�
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਸਰਲ ਸਰਚ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading} ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
@@ -4585,7 +4584,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "ਕੋਈ ਵੀ ਪਾਠ ਨੂੰ ਹਾਈਲਾਈਟ ਕਰੋ ਅਤੇ ਇੱਕ ਚਿੱਤਰ ਖੋਜ ਤੇਜ਼ੀ ਨਾਲ ਕਰਨ ਲਈ ਸੱਜੇ-ਕਲਿਕ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4751,7 +4750,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
-msgstr ""
+msgstr "ਇੱਕ ਹੀ ਚੀਜ ਨੂੰ ਦੁਹਰਾਓਨ ਤੋਂ ਰੋਕੋ! ਜੇ ਤੁਸੀਂ ਅਕਸਰ ਆਪਣੇ ਕੰਮ ਜਾਂ ਦੂਜੇ ਸੰਚਾਰ ਵਿਚ ਉਹੀ ਸ਼ਬਦ ਵਰਤਦੇ ਹੋ, ਤਾਂ ਉਹਨਾਂ ਨੂੰ ਕਲਿੱਪਿੰਗ ਵਿਚ ਸੰਭਾਲੋ ਅਤੇ ਲੋੜ ਪੈਣ ਤੇ ਉਹਨਾਂ ਨੂੰ ਆਸਾਨੀ ਨਾਲ ਪੇਪ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4759,7 +4758,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "ਆਪਣੇ ਵੈਬ-ਅਧਾਰਿਤ ਇਨਬਾਕਸ ਤੋਂ ਵਿਗਿਆਪਨ ਹਟਾ ਕੇ ਜ਼ਿਆਦਾ ਸਕ੍ਰੀਨ ਸਪੇਸ ਪ੍ਰਾਪਤ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4911,7 +4910,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "ਆਪਣੀਆਂ ਨਵੀਆਂ ਟੈਬਾਂ ਲਈ ਇੱਕ ਕਸਟਮ ਹੋਮਪੇਜ ਡਿਜ਼ਾਈਨ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5079,7 +5078,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "ਟੁਕੜੇ ਬੁੱਕਮਾਰਕ, ਡੁਪਲੀਕੇਟਸ, ਅਤੇ ਹੋਰ ਲੱਭੋ ਅਤੇ ਹੱਲ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5087,7 +5086,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "ਸਾਰੇ ਸਹਾਇਕ ਉਪਕਰਨਾਂ ਨਾਲ ਕੀਤੀਆਂ ਚੀਜ਼ਾਂ ਨੂੰ ਪ੍ਰਾਪਤ ਕਰੋ ਜੋ ਸਾਰੀਆਂ ਡਿਵਾਈਸਾਂ ਵਿੱਚ ਸਿੰਕ ਹੁੰਦੀਆਂ ਹਨ।"
 
 #. editorial content for the discovery pane.
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5888,11 +5887,9 @@ msgstr "ਐਡਆਨ ਤੇ ਵਾਪਸ"
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
 msgstr "ਵਰਜਨ: %(version)s &bull; ਅਕਾਰ: %(size)s &bull; MD5 ਹੈਸ਼: %(md5)s &bull; ਮਾਈਮ ਕਿਸਮ: %(mimetype)s"
 
-#, fuzzy
 msgid "File Compare :: Reviewer tools"
 msgstr "ਫ਼ਾਈਲ ਤੁਲਨਾ :: ਸੰਪਾਦਕ ਟੂਲ"
 
-#, fuzzy
 msgid "File Viewer :: Reviewer tools"
 msgstr "ਫ਼ਾਈਲ ਦਰਸ਼ਕ :: ਸੰਪਾਦਕ ਟੂਲ"
 
@@ -5900,7 +5897,7 @@ msgid "Validation failed:"
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ:"
 
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "ਫਾਈਲ ਸਮੱਗਰੀ ਸਿੰਟੈਕਸ ਹਾਈਲਾਇਟਿੰਗ ਲਈ ਸਮਰਥਿਤ ਨਹੀਂ ਹੈ"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
@@ -6045,7 +6042,7 @@ msgid "Add more fun to your Firefox. Play dozens of games right from your browse
 msgstr ""
 
 msgid "Must-Have Media"
-msgstr ""
+msgstr "ਮੀਡੀਆ ਜ਼ਰੂਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
@@ -6367,7 +6364,7 @@ msgstr ""
 "ਦੀ ਨਵੀਂ ਰੀਲੀਜ਼ ਕਾਰਨ ਉਚਿਤ ਨਾ ਹੋਵੇ, ਅਸੀਂ ਸਮੀਖਿਆ ਨੂੰ ਹਟਾਉਣ ਬਾਰੇ ਸੋਚ ਸਕਦੇ ਹਾਂ। ਆਪਣੀ ਬੇਨਤੀ ਵੇਰਵੇ ਨਾਲ amo-editors@mozilla.org ਤੇ ਦਾਖਲ ਕਰੋ।"
 
 msgid "Start Now"
-msgstr ""
+msgstr "ਹੁਣ ਸ਼ੁਰੂ ਕਰੋ"
 
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
@@ -6445,7 +6442,7 @@ msgid "You can learn more about the data collection for this study <a href=\"%(u
 msgstr ""
 
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "ਤੁਸੀਂ ਫਾਇਰਫਾਕਸ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਹੋ"
 
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
@@ -7010,7 +7007,6 @@ msgstr "ਨਾਲ ਕੰਮ ਕਰਦਾ"
 msgid "Visibility"
 msgstr "ਪ੍ਰਤੱਖਤਾ"
 
-#, fuzzy
 msgid "Visible"
 msgstr "ਪ੍ਰਤੱਖਤਾ"
 
@@ -7632,10 +7628,10 @@ msgid "Could not find add-on with id \"{}\"."
 msgstr ""
 
 msgid "You do not own this addon."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਐਡ-ਆਨ ਦਾ ਮਾਲਕ ਨਹੀਂ ਹੈ।"
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "ਮਲਟੀਪਾਰਟ ਫਾਈਲ ਡਾਟਾ ਵਿੱਚ \"ਅਪਲੋਡ\" ਕੁੰਜੀ ਨਹੀਂ ਲੱਗੀ।"
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
@@ -7990,7 +7986,7 @@ msgid "Desktop Browser"
 msgstr "ਡੈਸਕਟਾਪ ਬਰਾਊਜ਼ਰ"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "ਬੀਟਾ, ਨਾਈਟਲੀ, ਡਿਵੈਲਪਰ ਐਡੀਸ਼ਨ"
 
 msgid "Other languages"
 msgstr "ਹੋਰ ਭਾਸ਼ਾਵਾਂ"
@@ -8078,7 +8074,7 @@ msgstr "ਲੋਕੇਲ ਹਟਾਓ"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "ਯੂਜ਼ਰ \"%(user)s\" ਤੇ ਪਾਬੰਦੀ ਲਗਾ ਦਿੱਤੀ ਗਈ ਹੈ।"
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
