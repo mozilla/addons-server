@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 09:19+0000\n"
+"PO-Revision-Date: 2018-10-18 09:43+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -4497,7 +4497,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "ਕੀ ਤੁਹਾਡੇ ਕੋਲ ਖੁਲ੍ਹੀਆਂ ਟੈਬਾਂ ਹਨ? ਇਕ ਸਾਫ਼ ਸਪਰਸ਼ ਵਿਚ ਉਨ੍ਹਾਂ ਨੂੰ ਸੰਗਠਿਤ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4505,7 +4505,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "ਆਪਣੀ Facebook ਪਛਾਣ ਨੂੰ ਅਲੱਗ “container” ਵਿੱਚ ਅਲੱਗ ਕਰੋ ਜੋ ਕਿ ਫੇਸਬੁੱਕ ਨੂੰ ਵੈਬ ਦੇ ਆਲੇ ਦੁਆਲੇ ਤੁਹਾਡੀਆਂ ਅੰਦੋਲਨਾਂ ਨੂੰ ਟਰੈਕ ਕਰਨਾ ਔਖਾ ਬਣਾਉਂਦੀ ਹੈ।"
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
