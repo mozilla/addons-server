@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 14:07+0000\n"
+"PO-Revision-Date: 2018-10-18 14:30+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -2359,13 +2359,11 @@ msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ(ਵੱਧ ਜੋਖਮ)"
 msgid "Add-on Review (High Risk)"
 msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ(ਉੱਚ ਜੋਖਮ)"
 
-#, fuzzy
 msgid "Add-on Review (Medium Risk)"
-msgstr "ਪੂਰੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
+msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ(ਮੱਧਮ ਜੋਖਮ)"
 
-#, fuzzy
 msgid "Add-on Review (Low Risk)"
-msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਚਿੱਠਾ"
+msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ(ਘੱਟ ਜੋਖਮ)"
 
 msgid "Level 1"
 msgstr "ਪੱਧਰ ੧"
@@ -2500,9 +2498,8 @@ msgstr "ਤੁਹਾਡੇ ਅੱਪਲੋਡ ਵਿੱਚ ਇੱਕ ਖਾਮ�
 msgid "Override failed validation"
 msgstr "ਓਵਰਰਾਈਡ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ"
 
-#, fuzzy
 msgid "Need to select at least one application."
-msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਅਨੁਕੂਲ ਐਪਲੀਕੇਸ਼ਨ ਦੀ ਲੋੜ।"
+msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਚੁਣਨ ਦੀ ਲੋੜ ਹੈ।"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "ਵੰਨਗੀ {version} ਪਹਿਲਾਂ ਲੱਦੀ ਅਤੇ ਮਿਟਾਈ ਗਈ।"
@@ -3217,9 +3214,8 @@ msgstr "ਤੁਹਾਡਾ ਥੀਮ ਅੱਗੇ ਦਿੱਤੇ ਲਾਇਸ�
 msgid "Select a different license."
 msgstr "ਇੱਕ ਵੱਖ ਲਾਇਸੰਸ ਚੁਣੋ।"
 
-#, fuzzy
 msgid "More information on Creative Commons licenses"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
+msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਲਾਇਸੈਂਸ ਤੇ ਹੋਰ ਜਾਣਕਾਰੀ"
 
 msgid "Tests"
 msgstr "ਪਰਖ"
@@ -3288,9 +3284,8 @@ msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਹਟਾਓ।"
 msgid "Delete"
 msgstr "ਹਟਾਓ"
 
-#, fuzzy
 msgid "Edit information about this add-on."
-msgstr "ਇਸ ਐਡ-ਆਨ ਬਾਰੇ ਹੋਰ"
+msgstr "ਇਸ ਐਡ-ਆਨ ਬਾਰੇ ਜਾਣਕਾਰੀ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰੋ।"
 
 msgid "Upload a new version of this add-on."
 msgstr "ਇਸ ਐਡ-ਆਨ ਦਾ ਇੱਕ ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ।"
@@ -3337,9 +3332,8 @@ msgstr "ਇਸ ਥੀਮ ਨੂੰ ਹਟਾਓ।"
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "ਇਹ ਐਡ-ਓਨ ਪਬਲੀਕੇਸ਼ਨ ਲਈ ਜਮ੍ਹਾਂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਕੁਝ ਜਰੂਰੀ ਜਾਣਕਾਰੀ ਗੁਆਚ ਰਿਹਾ ਹੈ।"
 
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "ਇਹ ਐਡ-ਆਨ ਤੁਹਾਡੇ %(app)s ਦੇ ਵਰਜਨ ਦੇ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ।"
+msgstr "ਇਸ ਐਡ-ਆਨ ਵਿੱਚ ਕੋਈ ਵੀ ਵਰਜਨ ਨਹੀਂ ਹਨ।"
 
 msgid "Status:"
 msgstr "ਦਰਜਾ:"
@@ -3357,34 +3351,29 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> ਸਰਗਰਮ ਉਪਭੋਗੀ"
 msgstr[1] "<strong>{0}</strong> ਸਰਗਰਮ ਉਪਭੋਗੀ"
 
-#, fuzzy
 msgid "Submit a New Version"
-msgstr "ਇੱਕ ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
+msgstr "ਇੱਕ ਨਵਾਂ ਸੰਸਕਰਣ ਦਰਜ ਕਰੋ"
 
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਵਰਣਨ ਕਰੋ"
+msgstr "ਐਡ-ਆਨ ਦਾ ਵਰਣਨ ਕਰੋ"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr "ਇਸ ਸਾਈਟ ਤੇ ਸੂਚੀਕਰਨ ਦਾ ਨਾਮ। ਐਡ-ਓਨ ਦੇ ਅੰਦਰ ਨਾਮ ਤੋਂ ਵੱਖਰੀ ਹੋ ਸਕਦੀ ਹੈ, ਜੋ ਕਿ Firefox ਦੇ ਅੰਦਰ ਹੈ"
 
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "ਐਡ-ਆਨ URL"
+msgstr "ਐਡ-ਆਨ URL:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ URL ਵਿੱਚ ਕੇਵਲ ਅੱਖਰਾਂ, ਅੰਕਾਂ, ਅੰਡਰਸਕੋਰਾਂ, ਅਤੇ ਡੈਸਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ।"
 
-#, fuzzy
 msgid "Summary:"
-msgstr "ਸੰਖੇਪ"
+msgstr "ਸੰਖੇਪ:"
 
 msgid "required"
 msgstr "ਜ਼ਰੂਰਤ"
 
-#, fuzzy
 msgid "This add-on is experimental"
-msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਬਾਹਰੀ ਸਾਫ਼ਟਵੇਅਰ ਦੀ ਲੋੜ ਹੈ।"
+msgstr "ਇਹ ਐਡ-ਆਨ ਪ੍ਰਯੋਗਾਤਮਕ ਹੈ"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
