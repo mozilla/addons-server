@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-18 13:45+0000\n"
 "PO-Revision-Date: 2018-08-15 18:03+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -140,10 +140,6 @@ msgstr[1] "Tüm etiketler en az {0} karakter olmalıdır."
 msgid "The text entered has been flagged as spam."
 msgstr ""
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "URL alan adı [%s] seçeneklerinden birisi veya alt alan adı olmalıdır."
-
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Eklentiniz bu uygulama için öne çıkanlardayken kategoriler değiştirilemez."
 
@@ -155,6 +151,10 @@ msgstr[1] "Yalnızca {0} kategoriniz olabilir."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Diğer kategorisi ekstra kategorilerle birlikte kullanılamaz."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "URL alan adı [%s] seçeneklerinden birisi veya alt alan adı olmalıdır."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -210,7 +210,6 @@ msgstr "Bu eklenti, geliştiricisi tarafından deneysel olarak işaretlenmiştir
 # 76%
 # 100%
 #. {0} is the name of the add-on.
-#. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
 msgstr "{0} Son Kullanıcı Lisans Anlaşması"
 
@@ -714,6 +713,10 @@ msgid "Admin Tools"
 msgstr "Yönetici Araçları"
 
 msgid "Positive integer"
+msgstr ""
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
 msgstr ""
 
 msgid "Incorrect, please try again."
@@ -1376,12 +1379,6 @@ msgstr "Sözlüğü Yükle"
 msgid "Install Language Pack"
 msgstr "Dil Paketini Yükle"
 
-msgid "Download Dictionary"
-msgstr "Sözlüğü İndir"
-
-msgid "Download Language Pack"
-msgstr "Dil Paketini İndir"
-
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
@@ -1550,80 +1547,6 @@ msgstr "Tüm Yükselişte Olanları Göster"
 
 msgid "No themes found"
 msgstr "Tema bulunamadı"
-
-msgid "All"
-msgstr "Tümü"
-
-msgid "Add-on Compatibility Reports"
-msgstr "Eklenti Uyumluluk Raporları"
-
-#, python-format
-msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
-msgstr ""
-"<p> <a href=\"%(url_)s\">Eklenti Uyumluluk Bildirici</a> aracılığıyla bize gönderilen raporlar geliştiricilerin değerlendirmesi için toplanır. Bu raporlar bize hangi eklentilerin gelecek Firefox "
-"sürümünü destekleyeceğine karar vermemize yardımcı olur. </p>"
-
-msgid "Reports for your Add-ons"
-msgstr "Eklentilerinize Ait Raporlar"
-
-msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr "Aşağıya bir eklentinin GUID'sini girerek aldığımız raporları görün."
-
-msgid "{addon} Compatibility Reports"
-msgstr "{addon} Uyumluluk Raporları"
-
-msgid "{0} success report"
-msgid_plural "{0} success reports"
-msgstr[0] "{0} başarı raporu"
-msgstr[1] "{0} başarı raporu"
-
-msgid "{0} problem report"
-msgid_plural "{0} problem reports"
-msgstr[0] "{0} sorun raporu"
-msgstr[1] "{0} sorun raporu"
-
-msgid "View all"
-msgstr "Tümünü göster"
-
-msgid "Filter by Application"
-msgstr "Uygulamaya göre süz"
-
-msgid "Report Type"
-msgstr "Rapor Türü"
-
-msgid "Version"
-msgstr "Sürüm"
-
-msgid "Application Version"
-msgstr "Uygulama sürümü"
-
-msgid "Application Build"
-msgstr "Uygulama Yapısı"
-
-# 88%
-# 100%
-msgid "Platform"
-msgstr "Platform"
-
-msgid "e10s Enabled"
-msgstr "e10s etkin"
-
-msgid "e10s Compatible"
-msgstr "e10s uyumlu"
-
-msgid "Submitted"
-msgstr "Gönderildi"
-
-msgid "Success"
-msgstr "Başarılı"
-
-msgid "Problem"
-msgstr "Sorun"
-
-msgid "No reports found."
-msgstr "Rapor bulunamadı."
 
 msgid "{addon} was created."
 msgstr "{addon} oluşturuldu."
@@ -2228,54 +2151,6 @@ msgstr "Spor ve Maçlar"
 msgid "User Interface"
 msgstr "Kullanıcı Arayüzü"
 
-msgid "Appearance and Customization"
-msgstr "Görünüm ve Özelleştirme"
-
-msgid "Calendar and Date/Time"
-msgstr "Takvim ve Tarih/Saat"
-
-msgid "Chat and IM"
-msgstr "Sohbet ve anlık ileti"
-
-msgid "Message Composition"
-msgstr "İleti Yazımı"
-
-msgid "Contacts"
-msgstr "Kişiler"
-
-msgid "Folders and Filters"
-msgstr "Klasör ve Filtreler"
-
-msgid "Import/Export"
-msgstr "İçeri/Dışarı Aktar"
-
-msgid "Message and News Reading"
-msgstr "Mesaj ve Haber Okuma"
-
-msgid "Privacy and Security"
-msgstr "Gizlilik ve Güvenlik"
-
-msgid "Downloading and File Management"
-msgstr "İndirme ve Dosya Yönetimi"
-
-msgid "Interface Customizations"
-msgstr "Arayüz Özelleştirmeleri"
-
-msgid "Language Support and Translation"
-msgstr "Dil Desteği ve Çeviri"
-
-msgid "Photos and Media"
-msgstr "Fotoğraflar ve Medya"
-
-msgid "RSS, News and Blogging"
-msgstr "RSS, Haberler ve Bloglar"
-
-msgid "Site-specific"
-msgstr "Siteye Özel"
-
-msgid "Web and Developer Tools"
-msgstr "Web ve Geliştirici Araçları"
-
 msgid "All Rights Reserved"
 msgstr "Tüm hakları saklıdır"
 
@@ -2581,12 +2456,6 @@ msgstr "Yüklenen dosya çözümlenemedi."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
-msgid "Application"
-msgstr "Uygulama"
-
-msgid "Select an application first"
-msgstr "Önce bir uygulama seçin"
-
 msgid "There cannot be more than 3 required add-ons."
 msgstr "3'ten fazla gerekli eklenti olamaz."
 
@@ -2699,9 +2568,6 @@ msgstr "Eklentinizdeki bir yazar silindi"
 msgid "Validate Add-on"
 msgstr "Eklentiyi doğrula"
 
-msgid "Check Add-on Compatibility"
-msgstr "Eklenti uyumluluğunu denetle"
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Resimler %d KB'den büyük olamaz."
@@ -2726,6 +2592,43 @@ msgid "Version %s re-enabled."
 msgstr "Sürüm %s yeniden etkinleştirildi."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
+msgstr ""
+
+msgid "Header area background"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr ""
+
+msgid "Header area text and icons"
+msgstr ""
+
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr ""
+
+msgid "Toolbar area background"
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr ""
+
+msgid "Toolbar area text and icons"
+msgstr ""
+
+#, fuzzy
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Bu renk, sekme metninin rengidir."
+
+msgid "Toolbar field area background"
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr ""
+
+msgid "Toolbar field area text"
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 msgid "Review requested."
@@ -2802,9 +2705,6 @@ msgstr "Geliştirici Haberleri"
 msgid "Add-on Validator"
 msgstr "Eklenti Doğrulayıcı"
 
-msgid "Add-on Compatibility Checker"
-msgstr "Eklenti Uyumluluğu Denetçisi"
-
 msgid "Development Add-ons"
 msgstr "Geliştirme eklentileri"
 
@@ -2833,13 +2733,6 @@ msgstr "Arama"
 msgid "Use the field below to upload your add-on package."
 msgstr "Eklenti paketinizi yüklemek için aşağıdaki alanı kullanın."
 
-#, python-format
-msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
-
-msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr "Yükleme sonrasında, aşağıdaki uygulama sürümü ile uyumluluğu kontrol etmek için bir dizi otomatik doğrulama testi çalıştırılacaktır:"
-
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "Yüklemeden sonra dosyanız üzerinde bir dizi otomatik doğrulama testi çalışacak."
 
@@ -2855,9 +2748,6 @@ msgstr "Doğrulama Sonuçları"
 
 msgid "Validated at:"
 msgstr "Doğrulanma:"
-
-msgid "Tested for compatibility against:"
-msgstr "Aşağıdakilerle uyumluluğu test edildi:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Eklentilerinize ait son etkinlikler"
@@ -2907,6 +2797,9 @@ msgstr "Uyumluluğu Güncelle"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
+
+msgid "Application"
+msgstr "Uygulama"
 
 msgid "Supported Versions"
 msgstr "Desteklenen sürümler"
@@ -2965,12 +2858,67 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
-msgid "Basic Information"
-msgstr "Temel Bilgi"
+#, fuzzy
+msgid "Additional Details"
+msgstr "Eklenti Ayrıntıları"
 
+# {0} is the application the user is browsing.  Examples:  Thunderbird,
+# Firefox,
+# Sunbird
+#, fuzzy
+msgid "Additional Details for {0}"
+msgstr "{0} Eklenti Ayrıntıları"
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr "Etiketler kullanıcıların eklentinizi bulmalarına yardımcı olur ve sekmeler, araç çubuğu veya twitter gibi kısa açıklamalar olmalıdır. En fazla {0} etiketiniz olabilir."
+
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] "Virgülle ayrılmış, en az {0} karakter."
+msgstr[1] "Virgülle ayrılmış, en az {0} karakter."
+
+msgid "Example: dark, cinema, noir. Limit 20."
+msgstr "Örnek: karanlık, sinema, siyah. Sınır 20."
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] "Ayrılmış etiket:"
+msgstr[1] "Ayrılmış etiketler:"
+
+# 81%
+# 100%
+#, fuzzy
+msgid "Contributions URL"
+msgstr "Katkıda Bulunan"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
+
+msgid "Default Locale"
+msgstr "Varsayılan dil"
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr ""
+
+msgid "Homepage"
+msgstr "Ana Sayfa"
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr ""
+
+# 75%
+# 100%
+msgid "Describe Add-on"
+msgstr "Eklentinizi tanımlayın"
+
+# 75%
+# 100%
 #. {0} is the addon name
-msgid "Basic Information for {0}"
-msgstr "{0} Temel Bilgileri"
+#, fuzzy
+msgid "Describe {0}"
+msgstr "Eklentinizi tanımlayın"
 
 msgid "Add-on URL"
 msgstr "Eklenti URL'si"
@@ -3026,67 +2974,6 @@ msgid "Categories cannot be changed while your add-on is featured. Please email 
 msgstr ""
 "Eklentiniz öne çıkarılmışken kategoriler değiştirilemez. Kategorilerinizi değiştirmenizi gerektiren bir sebep varsa lütfen <a href=\"mailto:%(email)s\">%(email)s</a> adresine e-posta gönderin."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Etiketler kullanıcıların eklentinizi bulmalarına yardımcı olur ve sekmeler, araç çubuğu veya twitter gibi kısa açıklamalar olmalıdır. En fazla {0} etiketiniz olabilir."
-
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Virgülle ayrılmış, en az {0} karakter."
-msgstr[1] "Virgülle ayrılmış, en az {0} karakter."
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Örnek: karanlık, sinema, siyah. Sınır 20."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "Ayrılmış etiket:"
-msgstr[1] "Ayrılmış etiketler:"
-
-# 81%
-# 100%
-#, fuzzy
-msgid "Contributions URL"
-msgstr "Katkıda Bulunan"
-
-msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
-
-msgid "Add-on Details"
-msgstr "Eklenti Ayrıntıları"
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-msgid "Add-on Details for {0}"
-msgstr "{0} Eklenti Ayrıntıları"
-
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr "Özellikler, işlevler ve diğer ilgili bilgiler için daha uzun bir açıklama. Bu alan yalnızca eklentinin ayrıntılar sayfasında görüntülenir. Yalnızca listelenen eklentiler için geçerlidir."
-
-msgid "Default Locale"
-msgstr "Varsayılan dil"
-
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Homepage"
-msgstr "Ana Sayfa"
-
-msgid ""
-"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
-"ons."
-msgstr ""
-
-msgid "Images"
-msgstr "Resimler"
-
-msgid "Support Information"
-msgstr "Destek Bilgisi"
-
-#. {0} is an addon name
-msgid "Support Information for {0}"
-msgstr "{0} Destek Bilgileri"
-
 msgid "Email"
 msgstr "E-posta"
 
@@ -3104,6 +2991,9 @@ msgid ""
 msgstr ""
 "Eklentiniz bir destek web sitesi veya foruma sahipse, adresini buraya girin. Web siteniz başka dillere çevirilmişse, bu alanın birden çok çevirisi eklenebilir. Yalnızca listelenen eklentiler için "
 "geçerlidir."
+
+msgid "Images"
+msgstr "Resimler"
 
 msgid "Technical Details"
 msgstr "Teknik Ayrıntılar"
@@ -3276,9 +3166,6 @@ msgstr "Farklı bir lisans seçin."
 msgid "More information on Creative Commons licenses"
 msgstr "Creative Commons lisansları hakkında daha fazla bilgi"
 
-msgid "Tests"
-msgstr "Testler"
-
 msgid "General Tests"
 msgstr "Genel testler"
 
@@ -3416,11 +3303,6 @@ msgstr[1] "<strong>{0}</strong> etkin kullanıcı"
 msgid "Submit a New Version"
 msgstr "Yeni sürüm gönder"
 
-# 75%
-# 100%
-msgid "Describe Add-on"
-msgstr "Eklentinizi tanımlayın"
-
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
 
@@ -3435,6 +3317,10 @@ msgstr "Özet:"
 
 msgid "required"
 msgstr "gerekli"
+
+#, fuzzy
+msgid "Description:"
+msgstr "Açıklama"
 
 msgid "This add-on is experimental"
 msgstr "Bu eklenti deneyseldir"
@@ -3659,6 +3545,9 @@ msgstr "Tema oluştur"
 msgid "Theme generator"
 msgstr "Tema oluşturucu"
 
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr ""
+
 msgid "Theme name"
 msgstr "Tema adı"
 
@@ -3684,43 +3573,6 @@ msgstr "Farklı bir üst kısım resmi seçin"
 
 msgid "Select colors for your theme"
 msgstr "Temanızın renklerini seçin"
-
-msgid "Header area background"
-msgstr ""
-
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr ""
-
-msgid "Header area text and icons"
-msgstr ""
-
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
-
-msgid "Toolbar area background"
-msgstr ""
-
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
-
-msgid "Toolbar area text and icons"
-msgstr ""
-
-#, fuzzy
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "Bu renk, sekme metninin rengidir."
-
-msgid "Toolbar field area background"
-msgstr ""
-
-msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
-
-msgid "Toolbar field area text"
-msgstr ""
-
-msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
 
 msgid "optional"
 msgstr "tercihe bağlı"
@@ -3851,15 +3703,6 @@ msgstr "Listelenmemiş"
 msgid "View Statistics Dashboard"
 msgstr "İstatistik panosunu göster"
 
-msgid "Compatibility Reports"
-msgstr "Uyumluluk raporları"
-
-msgid "{0} failure reports"
-msgstr "{0} hata raporu"
-
-msgid "{0} success reports"
-msgstr "{0} başarı raporu"
-
 msgid "Developer News"
 msgstr "Geliştirici Haberleri"
 
@@ -3953,9 +3796,6 @@ msgstr "Site durumu"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
-
-msgid "Compatibility Checker"
-msgstr "Uyumluluk Denetçisi"
 
 msgid "Promote"
 msgstr ""
@@ -4393,6 +4233,9 @@ msgstr "Tüm sürümler"
 
 msgid "Upload a New Version"
 msgstr "Yeni bir sürüm yükleyin"
+
+msgid "Version"
+msgstr "Sürüm"
 
 msgid "Delete Version {version}"
 msgstr "{version} sürümünü sil"
@@ -6051,70 +5894,6 @@ msgstr ""
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
 
-# 75%
-# 100%
-msgid "Discover Add-ons"
-msgstr "Eklentileri keşfedin"
-
-msgid "What are Add-ons?"
-msgstr "Eklenti nedir?"
-
-#, python-format
-msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
-"Eklentiler, %(app)s uygulamasını ek işlevler ve görünümlerle kişiselleştirmenizi sağlayan uygulamalardır. Size zaman kazandıracak bir kenar çubuğu, hava durumu habercisi veya %(app)s uygulamasının "
-"görünümünü değiştiren bir tema olabilir."
-
-# 75%
-# 100%
-msgid "Learn More About Add-ons"
-msgstr "Eklentiler hakkında daha fazla bilgi alın"
-
-msgid "See all"
-msgstr "Tümünü gör"
-
-msgid "More ways to customize"
-msgstr "Kişiselleştirmenin diğer yolları"
-
-# 95%
-# 100%
-msgid "Browse all add-ons"
-msgstr "Tüm eklentilere göz atın"
-
-msgid "See all complete themes"
-msgstr "Tüm tam temalara göz atın"
-
-msgid "Close Video"
-msgstr "Videoyu kapat"
-
-msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr "Video oynarken ilgili eklentiler burada görünecektir."
-
-#. {0} is the user's login name.
-msgid "Hi, {0}"
-msgstr "Merhaba {0}"
-
-#, python-format
-msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr "%(app)s kullanarak <a href=\"%(url)s\">Mozilla'nın misyonunu</a> desteklediğiniz için teşekkürler!"
-
-msgid "Add-ons downloaded:"
-msgstr "İndirilen toplam eklenti:"
-
-# 89%
-# 100%
-msgid "View Privacy Policy"
-msgstr "Gizlilik Politikasını İncele"
-
-msgid "Active Users"
-msgstr "Aktif kullanıcılar"
-
-msgid "Last Updated"
-msgstr "Son güncelleme"
-
-msgid "Cancel Installation"
-msgstr "Kurulumdan vazgeç"
-
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Mozilla&rsquo;dan Ayın Seçimi!"
 
@@ -6690,6 +6469,9 @@ msgstr ""
 msgid "Max. Version"
 msgstr "En yüksek sürüm"
 
+msgid "Select an application first"
+msgstr "Önce bir uygulama seçin"
+
 # 87%
 # 100%
 msgid "Comments:"
@@ -7028,6 +6810,11 @@ msgstr "Ortalama Günlük Kullanıcı"
 
 msgid "Abuse Reports"
 msgstr "Suistimal Raporları"
+
+# 89%
+# 100%
+msgid "View Privacy Policy"
+msgstr "Gizlilik Politikasını İncele"
 
 #, fuzzy
 msgid "Requires Payment"
@@ -7495,6 +7282,9 @@ msgstr "Tema İnceleme"
 
 msgid "(Probable Duplicate Submission)"
 msgstr "(Olası Mükerrer Gönderim)"
+
+msgid "Submitted"
+msgstr "Gönderildi"
 
 msgid "Past Review Notes"
 msgstr "Eski İnceleme Notları"
@@ -8040,12 +7830,6 @@ msgstr "{0} Eklentileri ana sayfasına dön"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Eklentiler"
 
-msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> Eklentiler"
-
-msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Eklentiler"
-
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> Eklentiler"
 
@@ -8398,6 +8182,9 @@ msgstr "Biraz daha ayrıntı..."
 msgid "Add-ons I've created"
 msgstr "Geliştirdiğim eklentiler"
 
+msgid "View all"
+msgstr "Tümünü göster"
+
 msgid "My Most Popular Themes"
 msgstr "En Popüler Temalarım"
 
@@ -8527,12 +8314,3 @@ msgstr ""
 
 msgid "Deleted versions can`t be changed."
 msgstr "Silinmiş sürümler değiştirilemez."
-
-# Plural in this context means many of the add-on type
-# 75%
-# 100%
-msgid "Binary"
-msgstr "İkili"
-
-msgid "Non-binary"
-msgstr "İkili olmayan"

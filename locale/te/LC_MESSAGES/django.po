@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-18 13:45+0000\n"
 "PO-Revision-Date: 2018-09-03 16:07+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -135,10 +135,6 @@ msgstr[1] "అన్ని ట్యాగ్లు కనీసం {0} అక�
 msgid "The text entered has been flagged as spam."
 msgstr ""
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "URL డొమెయిను [%s]కి సంబంధించినది గీనీ, లేదా ఉపడొమెయిను గానీ అయి ఉండాలి."
-
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr ""
 
@@ -150,6 +146,10 @@ msgstr[1] "{0} వర్గాలు మాత్రమే ఉండాలి."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "ఇతర వర్గాలు అదనపు వర్గాలతో కలిపి ఉండరాదు."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "URL డొమెయిను [%s]కి సంబంధించినది గీనీ, లేదా ఉపడొమెయిను గానీ అయి ఉండాలి."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -202,7 +202,6 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr "ఈ పొడిగింతను దాని డెవలపర్లు ప్రయోగాత్మకంగా గుర్తించారు."
 
 #. {0} is the name of the add-on.
-#. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
 msgstr "{0} కోసం అంతిమ-వాడుకరి లైసెన్సు ఒప్పందపత్రం"
 
@@ -688,6 +687,10 @@ msgid "Admin Tools"
 msgstr "అడ్మిన్ ఉపకరణాలు"
 
 msgid "Positive integer"
+msgstr ""
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
 msgstr ""
 
 msgid "Incorrect, please try again."
@@ -1297,12 +1300,6 @@ msgstr "నిఘంటువును స్థాపించు"
 msgid "Install Language Pack"
 msgstr "భాష ప్యాక్ను స్థాపించండి"
 
-msgid "Download Dictionary"
-msgstr "నిఘంటువు దింపుకొను"
-
-msgid "Download Language Pack"
-msgstr "బాషా ప్యక్ ను దింపుకోళ్ళు చేయి"
-
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
@@ -1468,76 +1465,6 @@ msgstr ""
 
 msgid "No themes found"
 msgstr "ఏ అలంకారాలు కనుగొనబడలేదు"
-
-msgid "All"
-msgstr "అన్నీ"
-
-msgid "Add-on Compatibility Reports"
-msgstr "పొడిగింతల యొక్క సమకులత నివేదిక"
-
-#, python-format
-msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
-msgstr ""
-
-msgid "Reports for your Add-ons"
-msgstr "మీ పొడిగింతల యొక్క నివేదికలు"
-
-msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr ""
-
-msgid "{addon} Compatibility Reports"
-msgstr "{addon} అనుగుణ్యతా నివేదికలు"
-
-msgid "{0} success report"
-msgid_plural "{0} success reports"
-msgstr[0] "{0} నివేదిక విజయవంతమేంది"
-msgstr[1] "{0} విజయవంతమైన నివేదికలు"
-
-msgid "{0} problem report"
-msgid_plural "{0} problem reports"
-msgstr[0] "{0} సమస్య నివేదిక"
-msgstr[1] "{0} సమస్య నివేదికలు"
-
-msgid "View all"
-msgstr "అన్నిటినీ వీక్షించు"
-
-msgid "Filter by Application"
-msgstr "అనువర్తనం ద్వారా వడపోత"
-
-msgid "Report Type"
-msgstr "నివేదిక రకం"
-
-msgid "Version"
-msgstr "వెర్షను"
-
-msgid "Application Version"
-msgstr "అనువర్తన వెర్షన్"
-
-msgid "Application Build"
-msgstr "అనువర్తనం నిర్మించు"
-
-msgid "Platform"
-msgstr "వేదిక"
-
-msgid "e10s Enabled"
-msgstr "e10s చెతనించబడింది"
-
-msgid "e10s Compatible"
-msgstr "e10s అనుకూలంగా"
-
-msgid "Submitted"
-msgstr "సమర్పించిన"
-
-msgid "Success"
-msgstr "సఫలంమైంది"
-
-msgid "Problem"
-msgstr "సమస్య"
-
-msgid "No reports found."
-msgstr "ఫలితాలు కనుగొనబడలేదు."
 
 msgid "{addon} was created."
 msgstr "{addon} సృష్టించబడింది."
@@ -2115,54 +2042,6 @@ msgstr "క్రీడలు మరియు ఆటలు"
 msgid "User Interface"
 msgstr "వాడుకరి అంతరవర్తి"
 
-msgid "Appearance and Customization"
-msgstr "రూపురేఖలు, అభిమతీకరణ"
-
-msgid "Calendar and Date/Time"
-msgstr "క్యాలెండర్ మరియు తేదీ/Time"
-
-msgid "Chat and IM"
-msgstr "సంభాషణ మరియు IM"
-
-msgid "Message Composition"
-msgstr "సందేశ కూర్పు"
-
-msgid "Contacts"
-msgstr "పరిచయాలు"
-
-msgid "Folders and Filters"
-msgstr "సంచయాలు, వడపోతలు"
-
-msgid "Import/Export"
-msgstr "దిగుమతి/Export"
-
-msgid "Message and News Reading"
-msgstr "సందేశాలు, వార్తా వీక్షణం"
-
-msgid "Privacy and Security"
-msgstr "అంతరంగికత, భద్రత"
-
-msgid "Downloading and File Management"
-msgstr "దింపుకోళ్ళు అవుతున్నది మరియు ఫైల్ నిర్వహణ"
-
-msgid "Interface Customizations"
-msgstr ""
-
-msgid "Language Support and Translation"
-msgstr "భాషా మద్దతు మరియు అనువాదం"
-
-msgid "Photos and Media"
-msgstr "ఫోటోలు మరియు మీడియా"
-
-msgid "RSS, News and Blogging"
-msgstr "RSS, వార్తలు, బ్లాగులు"
-
-msgid "Site-specific"
-msgstr "సైటు-ప్రత్యేకం"
-
-msgid "Web and Developer Tools"
-msgstr "జాల, డెవలపర్ పనిముట్లు"
-
 msgid "All Rights Reserved"
 msgstr "అన్ని హక్కులు ప్రత్యేకించబడ్డాయి"
 
@@ -2459,12 +2338,6 @@ msgstr "మీరు మూల ఫైలును ఎక్కించలేద
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
-msgid "Application"
-msgstr "అనువర్తనము"
-
-msgid "Select an application first"
-msgstr "మొదట అనువర్తనాన్ని ఎంచుకోండి"
-
 msgid "There cannot be more than 3 required add-ons."
 msgstr "3 కంటే ఎక్కువ పొడగింతలు అవసరం ఉండవు."
 
@@ -2577,9 +2450,6 @@ msgstr "మీ పొడిగింత నుండి ఒక రచయిత �
 msgid "Validate Add-on"
 msgstr "పొడిగింతను ధృవీకరించండి"
 
-msgid "Check Add-on Compatibility"
-msgstr "పొడిగింత అనుకూలత తనిఖీ"
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "బొమ్మలు %dKB కంటే పెద్దగా ఉండకూడదు."
@@ -2604,6 +2474,42 @@ msgid "Version %s re-enabled."
 msgstr "వెర్షను %s పునఃచేతనమయ్యింది."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
+msgstr ""
+
+msgid "Header area background"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr ""
+
+msgid "Header area text and icons"
+msgstr ""
+
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr ""
+
+msgid "Toolbar area background"
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr ""
+
+msgid "Toolbar area text and icons"
+msgstr ""
+
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr ""
+
+msgid "Toolbar field area background"
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr ""
+
+msgid "Toolbar field area text"
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 msgid "Review requested."
@@ -2677,9 +2583,6 @@ msgstr "డెవలపర్ వార్తలు"
 msgid "Add-on Validator"
 msgstr "పొడిగింత స్థిరీకరించిన"
 
-msgid "Add-on Compatibility Checker"
-msgstr "పొడిగింతల అనుకూలత తనిఖీ"
-
 msgid "Development Add-ons"
 msgstr ""
 
@@ -2704,13 +2607,6 @@ msgstr "వెతుకు"
 msgid "Use the field below to upload your add-on package."
 msgstr ""
 
-#, python-format
-msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
-
-msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
-
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
@@ -2726,9 +2622,6 @@ msgstr "ధ్రువీకరణ ఫలితాలు"
 
 msgid "Validated at:"
 msgstr "ధృవీకరించబడింది:"
-
-msgid "Tested for compatibility against:"
-msgstr "దీనికి వ్యతిరేకంగా అనుకూలత కోసం పరీక్షించబడింది:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "నా యాడ్-ఆన్ల ఇటీవలి కార్యకలాపం"
@@ -2776,6 +2669,9 @@ msgstr "అనుకూలత నవీకరణ"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
+
+msgid "Application"
+msgstr "అనువర్తనము"
 
 msgid "Supported Versions"
 msgstr "తోడ్పాటున్న వెర్షనులు"
@@ -2831,12 +2727,57 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
-msgid "Basic Information"
-msgstr "ప్రాథమిక సమాచారం"
+#, fuzzy
+msgid "Additional Details"
+msgstr "పొడిగింత వివరాలు"
+
+#, fuzzy
+msgid "Additional Details for {0}"
+msgstr "పొడిగింత వివరాల కోసం {0}"
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr ""
+
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] "కామాతో వేరు చేయబడి, కనీసం {0} అక్షరం."
+msgstr[1] "కామాతో వేరు చేయబడి, కనీసం {0} అక్షరాలు."
+
+msgid "Example: dark, cinema, noir. Limit 20."
+msgstr "ఉదాహరణ: చీకటి, సినిమా, నోయిర్. పరిమితి 20."
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] "ప్రత్యేకిత ట్యాగు:"
+msgstr[1] "ప్రత్యేకిత ట్యాగులు:"
+
+msgid "Contributions URL"
+msgstr "సహాయకులు URL"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
+
+msgid "Default Locale"
+msgstr "అప్రమేయ భాష"
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr ""
+
+msgid "Homepage"
+msgstr "ముంగిలిపేజీ"
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr ""
+
+msgid "Describe Add-on"
+msgstr "పొడగింతను వివరించండి"
 
 #. {0} is the addon name
-msgid "Basic Information for {0}"
-msgstr "{0} యొక్క ప్రాథమిక సమాచారం"
+#, fuzzy
+msgid "Describe {0}"
+msgstr "పొడగింతను వివరించండి"
 
 msgid "Add-on URL"
 msgstr "పొడిగింత URL"
@@ -2889,61 +2830,6 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
-
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "కామాతో వేరు చేయబడి, కనీసం {0} అక్షరం."
-msgstr[1] "కామాతో వేరు చేయబడి, కనీసం {0} అక్షరాలు."
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "ఉదాహరణ: చీకటి, సినిమా, నోయిర్. పరిమితి 20."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "ప్రత్యేకిత ట్యాగు:"
-msgstr[1] "ప్రత్యేకిత ట్యాగులు:"
-
-msgid "Contributions URL"
-msgstr "సహాయకులు URL"
-
-msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
-
-msgid "Add-on Details"
-msgstr "పొడిగింత వివరాలు"
-
-msgid "Add-on Details for {0}"
-msgstr "పొడిగింత వివరాల కోసం {0}"
-
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Default Locale"
-msgstr "అప్రమేయ భాష"
-
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Homepage"
-msgstr "ముంగిలిపేజీ"
-
-msgid ""
-"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
-"ons."
-msgstr ""
-
-msgid "Images"
-msgstr "చిత్రాలు"
-
-msgid "Support Information"
-msgstr "మద్దతు సమాచారం"
-
-#. {0} is an addon name
-msgid "Support Information for {0}"
-msgstr "{0} కోసం మద్దతు సమాచారం"
-
 msgid "Email"
 msgstr "ఇమెయిల్"
 
@@ -2959,6 +2845,9 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+
+msgid "Images"
+msgstr "చిత్రాలు"
 
 msgid "Technical Details"
 msgstr "సాంకేతిక వివరాలు"
@@ -3127,9 +3016,6 @@ msgstr "వేరే లైసెన్స్ని ఎంచుకోండ�
 msgid "More information on Creative Commons licenses"
 msgstr "క్రియేటివ్ కామన్స్ లైసెన్సుల గురించి మరింత సమాచారం"
 
-msgid "Tests"
-msgstr "పరీక్షలు"
-
 msgid "General Tests"
 msgstr "సాధారణ పరీక్షలు"
 
@@ -3262,9 +3148,6 @@ msgstr[1] "<strong>{0}</strong> క్రియాశీల వాడుకర�
 msgid "Submit a New Version"
 msgstr "కొత్త వెర్షనును సమర్పించండి"
 
-msgid "Describe Add-on"
-msgstr "పొడగింతను వివరించండి"
-
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
 
@@ -3279,6 +3162,10 @@ msgstr "సారాంశం:"
 
 msgid "required"
 msgstr "కావలసినవి"
+
+#, fuzzy
+msgid "Description:"
+msgstr "వివరణ"
 
 msgid "This add-on is experimental"
 msgstr "ఈ పొడగింత ప్రయోగాత్మకం"
@@ -3498,6 +3385,9 @@ msgstr ""
 msgid "Theme generator"
 msgstr "అలంకార జనకం"
 
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr ""
+
 msgid "Theme name"
 msgstr "అలంకారం పేరు"
 
@@ -3521,42 +3411,6 @@ msgstr "వేరొక హెడర్ చిత్రాన్ని ఎంచ
 
 msgid "Select colors for your theme"
 msgstr "మీ అలంకారానికి రంగులు ఎంచుకోండి"
-
-msgid "Header area background"
-msgstr ""
-
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr ""
-
-msgid "Header area text and icons"
-msgstr ""
-
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
-
-msgid "Toolbar area background"
-msgstr ""
-
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
-
-msgid "Toolbar area text and icons"
-msgstr ""
-
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr ""
-
-msgid "Toolbar field area background"
-msgstr ""
-
-msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
-
-msgid "Toolbar field area text"
-msgstr ""
-
-msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
 
 msgid "optional"
 msgstr "ఐచ్ఛికం"
@@ -3685,15 +3539,6 @@ msgstr ""
 msgid "View Statistics Dashboard"
 msgstr "గణాంకాల డాష్‌బోర్డు చూడండి"
 
-msgid "Compatibility Reports"
-msgstr "అనుగుణ్యతా నివేదికలు"
-
-msgid "{0} failure reports"
-msgstr "{0} వైఫల్య నివేదికలు"
-
-msgid "{0} success reports"
-msgstr "{0} విజయ నివేదికలు"
-
 msgid "Developer News"
 msgstr "డెవలపర్ వార్తలు"
 
@@ -3782,9 +3627,6 @@ msgstr "సైటు స్థితి"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
-
-msgid "Compatibility Checker"
-msgstr "అనుకూలత తనిఖీ వ్యవస్థ"
 
 msgid "Promote"
 msgstr "దోహదం చేయు"
@@ -4208,6 +4050,9 @@ msgstr "అన్ని వెర్షనులు"
 
 msgid "Upload a New Version"
 msgstr ""
+
+msgid "Version"
+msgstr "వెర్షను"
 
 msgid "Delete Version {version}"
 msgstr ""
@@ -5860,60 +5705,6 @@ msgstr "తప్పకుండా ఉండాల్సిన మాధ్య�
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
 
-msgid "Discover Add-ons"
-msgstr "పొడిగింతలను కనుగొనండి"
-
-msgid "What are Add-ons?"
-msgstr "యాడ్-ఆన్లు అంటే ఏమిటి?"
-
-#, python-format
-msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
-
-msgid "Learn More About Add-ons"
-msgstr "యాడ్-ఆన్ల గురించి మరింత తెలుసుకోండి"
-
-msgid "See all"
-msgstr "అన్నింటినీ చూడండి"
-
-msgid "More ways to customize"
-msgstr "తీర్చిదిద్దుకోడానికి మరిన్ని మార్గాలు"
-
-msgid "Browse all add-ons"
-msgstr ""
-
-msgid "See all complete themes"
-msgstr ""
-
-msgid "Close Video"
-msgstr "వీడియో మూసివేయి"
-
-msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
-
-#. {0} is the user's login name.
-msgid "Hi, {0}"
-msgstr "హాయ్, {0}"
-
-#, python-format
-msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr ""
-
-msgid "Add-ons downloaded:"
-msgstr ""
-
-msgid "View Privacy Policy"
-msgstr "గోప్యతా విధానాన్ని వీక్షించండి"
-
-msgid "Active Users"
-msgstr "చురుకైన వాడుకరులు"
-
-msgid "Last Updated"
-msgstr "చివరిగా నవీకరించింది"
-
-msgid "Cancel Installation"
-msgstr "స్థాపనను రద్దుచేయి"
-
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr ""
 
@@ -6465,6 +6256,9 @@ msgstr ""
 msgid "Max. Version"
 msgstr "గరిష్ఠ వెర్షన్"
 
+msgid "Select an application first"
+msgstr "మొదట అనువర్తనాన్ని ఎంచుకోండి"
+
 msgid "Comments:"
 msgstr "వ్యాఖ్యలు:"
 
@@ -6765,6 +6559,9 @@ msgstr "సగటు రోజువారీ వాడుకరులు"
 
 msgid "Abuse Reports"
 msgstr "దుర్వినియోగ నివేదికలు"
+
+msgid "View Privacy Policy"
+msgstr "గోప్యతా విధానాన్ని వీక్షించండి"
 
 msgid "Requires Payment"
 msgstr "చెల్లింపు అవసరం"
@@ -7196,6 +6993,9 @@ msgstr ""
 
 msgid "(Probable Duplicate Submission)"
 msgstr ""
+
+msgid "Submitted"
+msgstr "సమర్పించిన"
 
 msgid "Past Review Notes"
 msgstr ""
@@ -7703,12 +7503,6 @@ msgstr "తిరిగి {0} పొడగింతల ముంగిలి �
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> పొడిగింతలు"
 
-msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> పొడిగింతలు"
-
-msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> పొడిగింతలు"
-
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> పొడిగింతలు"
 
@@ -8046,6 +7840,9 @@ msgstr "మరికొన్ని వివరాలు..."
 msgid "Add-ons I've created"
 msgstr "నేను సృష్టించిన పొడిగింతలు"
 
+msgid "View all"
+msgstr "అన్నిటినీ వీక్షించు"
+
 msgid "My Most Popular Themes"
 msgstr "అత్యంత ప్రాచుర్యమైన నా అలంకారాలు"
 
@@ -8173,9 +7970,3 @@ msgstr ""
 
 msgid "Deleted versions can`t be changed."
 msgstr ""
-
-msgid "Binary"
-msgstr "బైనరీ"
-
-msgid "Non-binary"
-msgstr "నాన్-బైనరీ"

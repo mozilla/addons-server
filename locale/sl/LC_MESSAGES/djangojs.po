@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-18 13:45+0000\n"
 "PO-Revision-Date: 2018-09-17 13:20+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -795,9 +795,19 @@ msgstr "Ni najdenih rezultatov."
 msgid "Loading..."
 msgstr "Nalaganje..."
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "<b>{0}</b> znak preostane."
+msgstr[1] "<b>{0}</b> znaka preostaneta."
+msgstr[2] "<b>{0}</b> znaki preostanejo."
+msgstr[3] "<b>{0}</b> znakov preostane."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> znak preostane."
 msgstr[1] "<b>{0}</b> znaka preostaneta."
 msgstr[2] "<b>{0}</b> znaki preostanejo."
@@ -895,9 +905,6 @@ msgstr "{0} vrstica {1} stolpec {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} vrstica {1}"
-
-msgid "Compatibility Tests"
-msgstr "Preskusi združljivosti"
 
 msgid "Add-on failed validation."
 msgstr "Preverjanje veljavnosti dodatka je spodletelo."

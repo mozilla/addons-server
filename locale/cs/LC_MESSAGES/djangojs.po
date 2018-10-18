@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-18 13:45+0000\n"
 "PO-Revision-Date: 2018-04-28 12:30+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -788,9 +788,18 @@ msgstr "Nebyly nalezeny žádné výsledky."
 msgid "Loading..."
 msgstr "Probíhá načítání..."
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "Zbývá <b>{0}</b> znak."
+msgstr[1] "Zbývají <b>{0}</b> znaky."
+msgstr[2] "Zbývá <b>{0}</b> znaků."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "Zbývá <b>{0}</b> znak."
 msgstr[1] "Zbývají <b>{0}</b> znaky."
 msgstr[2] "Zbývá <b>{0}</b> znaků."
@@ -887,9 +896,6 @@ msgstr "{0} řádek {1} sloupec {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} řádek {1}"
-
-msgid "Compatibility Tests"
-msgstr "Testy kompatibility"
 
 msgid "Add-on failed validation."
 msgstr "Doplněk prošel kontrolou s chybami."

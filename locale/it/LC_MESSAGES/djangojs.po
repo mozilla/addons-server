@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-18 13:45+0000\n"
 "PO-Revision-Date: 2018-09-24 07:55+0000\n"
 "Last-Translator: Francesco Lodolo <francesco.lodolo@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -769,9 +769,17 @@ msgstr "Nessun risultato trovato."
 msgid "Loading..."
 msgstr "Caricamento…"
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "<b>{0}</b> carattere disponibile."
+msgstr[1] "<b>{0}</b> caratteri disponibili."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> carattere disponibile."
 msgstr[1] "<b>{0}</b> caratteri disponibili."
 
@@ -867,9 +875,6 @@ msgstr "{0} riga {1} colonna {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} riga {1}"
-
-msgid "Compatibility Tests"
-msgstr "Test di compatibilità"
 
 msgid "Add-on failed validation."
 msgstr "Il componente aggiuntivo non ha superato i controlli."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-18 13:45+0000\n"
 "PO-Revision-Date: 2018-08-10 17:55+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -788,9 +788,18 @@ msgstr "Nic nie znaleziono."
 msgid "Loading..."
 msgstr "Wczytywanie…"
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "Pozostał <b>{0}</b> znak."
+msgstr[1] "Pozostały <b>{0}</b> znaki."
+msgstr[2] "Pozostały <b>{0}</b> znaków."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "Pozostał <b>{0}</b> znak."
 msgstr[1] "Pozostały <b>{0}</b> znaki."
 msgstr[2] "Pozostały <b>{0}</b> znaków."
@@ -887,9 +896,6 @@ msgstr "Wiersz: {0}, kolumna: {1} {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} wiersz {1}"
-
-msgid "Compatibility Tests"
-msgstr "Testy kompatybilności"
 
 msgid "Add-on failed validation."
 msgstr "Dodatek nie przeszedł weryfikacji."

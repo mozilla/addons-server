@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-18 13:45+0000\n"
 "PO-Revision-Date: 2018-09-17 15:41+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -796,9 +796,19 @@ msgstr "Žedne wusědki namakane."
 msgid "Loading..."
 msgstr "Zacitujo se..."
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "<b>{0}</b> znamuško wušej."
+msgstr[1] "<b>{0}</b> znamušce wušej."
+msgstr[2] "<b>{0}</b> znamuška wušej."
+msgstr[3] "<b>{0}</b> znamuškow wušej."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> znamuško wušej."
 msgstr[1] "<b>{0}</b> znamušce wušej."
 msgstr[2] "<b>{0}</b> znamuška wušej."
@@ -896,9 +906,6 @@ msgstr "{0} smužka {1} słup {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} smužka {1}"
-
-msgid "Compatibility Tests"
-msgstr "Testy kompatibelnosći"
 
 msgid "Add-on failed validation."
 msgstr "Dodank jo pśi pśeglědowanju pśepadnuł."

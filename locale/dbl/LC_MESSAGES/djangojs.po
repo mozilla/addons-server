@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-18 13:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -760,11 +760,17 @@ msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ."
 msgid "Loading..."
 msgstr "Ŀǿȧḓīƞɠ..."
 
+#. L10n: {0} is the number of characters entered.
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "<b>{0}</b> ƈħȧřȧƈŧḗř"
+msgstr[1] "<b>{0}</b> ƈħȧřȧƈŧḗřş"
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> ƈħȧřȧƈŧḗř ŀḗƒŧ."
-msgstr[1] "<b>{0}</b> ƈħȧřȧƈŧḗřş ŀḗƒŧ."
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
+msgstr[0] "<b>{0}</b> ƈħȧřȧƈŧḗř ŀḗƒŧ"
+msgstr[1] "<b>{0}</b> ƈħȧřȧƈŧḗřş ŀḗƒŧ"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Ŧħīş ƒḗȧŧŭřḗ īş ŧḗḿƥǿřȧřīŀẏ ḓīşȧƀŀḗḓ ẇħīŀḗ ẇḗ ƥḗřƒǿřḿ ẇḗƀşīŧḗ ḿȧīƞŧḗƞȧƞƈḗ. Ƥŀḗȧşḗ ƈħḗƈķ ƀȧƈķ ȧ ŀīŧŧŀḗ ŀȧŧḗř."
@@ -858,9 +864,6 @@ msgstr "{0} ŀīƞḗ {1} ƈǿŀŭḿƞ {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} ŀīƞḗ {1}"
-
-msgid "Compatibility Tests"
-msgstr "Ƈǿḿƥȧŧīƀīŀīŧẏ Ŧḗşŧş"
 
 msgid "Add-on failed validation."
 msgstr "Aḓḓ-ǿƞ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ."

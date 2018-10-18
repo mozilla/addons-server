@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-18 13:45+0000\n"
 "PO-Revision-Date: 2017-09-29 15:46+0000\n"
 "Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
 "Language-Team: Croatian\n"
@@ -148,10 +148,6 @@ msgstr[2] ""
 msgid "The text entered has been flagged as spam."
 msgstr ""
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
-
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr ""
 
@@ -163,6 +159,10 @@ msgstr[1] ""
 msgstr[2] ""
 
 msgid "The miscellaneous category cannot be combined with additional categories."
+msgstr ""
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
 msgstr ""
 
 #, python-format
@@ -216,7 +216,6 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr ""
 
 #. {0} is the name of the add-on.
-#. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
 msgstr "End_User Ugovor o licenci za {0}"
 
@@ -724,6 +723,10 @@ msgid "Admin Tools"
 msgstr "Administratorski alati"
 
 msgid "Positive integer"
+msgstr ""
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
 msgstr ""
 
 msgid "Incorrect, please try again."
@@ -1360,12 +1363,6 @@ msgstr "Instalacija rječnika"
 msgid "Install Language Pack"
 msgstr ""
 
-msgid "Download Dictionary"
-msgstr ""
-
-msgid "Download Language Pack"
-msgstr "Preuzimanje jezičnog paketa"
-
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
@@ -1533,80 +1530,6 @@ msgstr "Vidi sve aktualno & dolazeće"
 
 msgid "No themes found"
 msgstr "Nema pronađenih tema"
-
-msgid "All"
-msgstr "Svi"
-
-msgid "Add-on Compatibility Reports"
-msgstr "Izvješće o kompatibilnosti dodatka"
-
-#, python-format
-msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
-msgstr ""
-
-msgid "Reports for your Add-ons"
-msgstr "Izvješća za Vaše dodatke"
-
-msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr ""
-
-# 86%
-msgid "{addon} Compatibility Reports"
-msgstr "{addon} Izvješća o kompatibilnosti"
-
-msgid "{0} success report"
-msgid_plural "{0} success reports"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-msgid "{0} problem report"
-msgid_plural "{0} problem reports"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-msgid "View all"
-msgstr "Prikaži sve"
-
-msgid "Filter by Application"
-msgstr "Filtriraj po aplikaciji"
-
-msgid "Report Type"
-msgstr "Vrsta izvještaja"
-
-msgid "Version"
-msgstr "Inačica"
-
-# 84%
-msgid "Application Version"
-msgstr "Verzija aplikacije"
-
-msgid "Application Build"
-msgstr ""
-
-msgid "Platform"
-msgstr "Platforma"
-
-msgid "e10s Enabled"
-msgstr "e10s omogućeno"
-
-msgid "e10s Compatible"
-msgstr "e10s kompatibilno"
-
-msgid "Submitted"
-msgstr "Poslano"
-
-msgid "Success"
-msgstr "Uspjeh"
-
-msgid "Problem"
-msgstr "Problem"
-
-msgid "No reports found."
-msgstr "Nema pronađenih izvještaja."
 
 msgid "{addon} was created."
 msgstr "{addon} je stvoren."
@@ -2221,54 +2144,6 @@ msgstr "Sport i igre"
 msgid "User Interface"
 msgstr "Korisničko sučelje"
 
-msgid "Appearance and Customization"
-msgstr "Izgled i prilagodbe"
-
-msgid "Calendar and Date/Time"
-msgstr "Kalendar i vrijeme/datum"
-
-msgid "Chat and IM"
-msgstr "Chat i IM"
-
-msgid "Message Composition"
-msgstr "Sastavljanje poruka"
-
-msgid "Contacts"
-msgstr "Kontakti"
-
-msgid "Folders and Filters"
-msgstr "Mape i filteri"
-
-msgid "Import/Export"
-msgstr "Uvoz/izvoz"
-
-msgid "Message and News Reading"
-msgstr "Čitanje poruka i novosti"
-
-msgid "Privacy and Security"
-msgstr "Privatnost i sigurnost"
-
-msgid "Downloading and File Management"
-msgstr "Upravljanje preuzimanjima i datotekama"
-
-msgid "Interface Customizations"
-msgstr "Prilagodbe sučelja"
-
-msgid "Language Support and Translation"
-msgstr "Podrška za jezike i prijevod"
-
-msgid "Photos and Media"
-msgstr "Slike i multimedija"
-
-msgid "RSS, News and Blogging"
-msgstr "RSS, vijesti i blogovi"
-
-msgid "Site-specific"
-msgstr "Specifično za we"
-
-msgid "Web and Developer Tools"
-msgstr "Alati za razvoj weba"
-
 msgid "All Rights Reserved"
 msgstr ""
 
@@ -2576,12 +2451,6 @@ msgstr "Nema datoteka u učitanoj datoteci."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
-msgid "Application"
-msgstr "Aplikacija"
-
-msgid "Select an application first"
-msgstr ""
-
 msgid "There cannot be more than 3 required add-ons."
 msgstr ""
 
@@ -2694,9 +2563,6 @@ msgstr ""
 msgid "Validate Add-on"
 msgstr ""
 
-msgid "Check Add-on Compatibility"
-msgstr ""
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr ""
@@ -2721,6 +2587,42 @@ msgid "Version %s re-enabled."
 msgstr ""
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
+msgstr ""
+
+msgid "Header area background"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr ""
+
+msgid "Header area text and icons"
+msgstr ""
+
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr ""
+
+msgid "Toolbar area background"
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr ""
+
+msgid "Toolbar area text and icons"
+msgstr ""
+
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr ""
+
+msgid "Toolbar field area background"
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr ""
+
+msgid "Toolbar field area text"
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 #, fuzzy
@@ -2798,9 +2700,6 @@ msgstr "Komentari programera"
 msgid "Add-on Validator"
 msgstr "Add-on Validator"
 
-msgid "Add-on Compatibility Checker"
-msgstr ""
-
 msgid "Development Add-ons"
 msgstr ""
 
@@ -2825,13 +2724,6 @@ msgstr "Traži"
 msgid "Use the field below to upload your add-on package."
 msgstr ""
 
-#, python-format
-msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
-
-msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
-
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
@@ -2846,9 +2738,6 @@ msgid "Validation Results"
 msgstr ""
 
 msgid "Validated at:"
-msgstr ""
-
-msgid "Tested for compatibility against:"
 msgstr ""
 
 msgid "Recent Activity for My Add-ons"
@@ -2899,6 +2788,9 @@ msgstr ""
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
+
+msgid "Application"
+msgstr "Aplikacija"
 
 msgid "Supported Versions"
 msgstr "Podržane inačice"
@@ -2957,12 +2849,61 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
-msgid "Basic Information"
-msgstr "Osnovne informacije"
+#, fuzzy
+msgid "Additional Details"
+msgstr "Tehnički detalji"
+
+#, fuzzy
+msgid "Additional Details for {0}"
+msgstr "Tehnički detalji za {0}"
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr ""
+
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "Example: dark, cinema, noir. Limit 20."
+msgstr ""
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] "Rezervirana oznaka:"
+msgstr[1] "Rezervirane oznake:"
+msgstr[2] "Rezervirano oznaka:"
+
+#, fuzzy
+msgid "Contributions URL"
+msgstr "Donacije"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
+
+msgid "Default Locale"
+msgstr ""
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr ""
+
+msgid "Homepage"
+msgstr ""
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr ""
+
+#, fuzzy
+msgid "Describe Add-on"
+msgstr "Istaknuti dodaci"
 
 #. {0} is the addon name
-msgid "Basic Information for {0}"
-msgstr ""
+#, fuzzy
+msgid "Describe {0}"
+msgstr "Istaknuti dodaci"
 
 msgid "Add-on URL"
 msgstr ""
@@ -3015,64 +2956,6 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
-
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "Rezervirana oznaka:"
-msgstr[1] "Rezervirane oznake:"
-msgstr[2] "Rezervirano oznaka:"
-
-#, fuzzy
-msgid "Contributions URL"
-msgstr "Donacije"
-
-msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
-
-msgid "Add-on Details"
-msgstr ""
-
-msgid "Add-on Details for {0}"
-msgstr ""
-
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Default Locale"
-msgstr ""
-
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Homepage"
-msgstr ""
-
-msgid ""
-"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
-"ons."
-msgstr ""
-
-msgid "Images"
-msgstr "Slike"
-
-msgid "Support Information"
-msgstr "Informacije podrške"
-
-#. {0} is an addon name
-msgid "Support Information for {0}"
-msgstr "Informacije podrške za {0}"
-
 msgid "Email"
 msgstr "E-pošta"
 
@@ -3088,6 +2971,9 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+
+msgid "Images"
+msgstr "Slike"
 
 msgid "Technical Details"
 msgstr "Tehnički detalji"
@@ -3259,9 +3145,6 @@ msgstr ""
 msgid "More information on Creative Commons licenses"
 msgstr "Traženo više informacija"
 
-msgid "Tests"
-msgstr "Testovi"
-
 msgid "General Tests"
 msgstr ""
 
@@ -3397,10 +3280,6 @@ msgstr[2] "<strong>{0}</strong> aktivnih korisnika"
 msgid "Submit a New Version"
 msgstr "Dodaj novu inačicu"
 
-#, fuzzy
-msgid "Describe Add-on"
-msgstr "Istaknuti dodaci"
-
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
 
@@ -3416,6 +3295,10 @@ msgstr "Sažetak:"
 
 msgid "required"
 msgstr "potreban"
+
+#, fuzzy
+msgid "Description:"
+msgstr "Opis"
 
 msgid "This add-on is experimental"
 msgstr ""
@@ -3655,6 +3538,9 @@ msgstr ""
 msgid "Theme generator"
 msgstr ""
 
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr ""
+
 #, fuzzy
 msgid "Theme name"
 msgstr "Tema"
@@ -3680,42 +3566,6 @@ msgstr ""
 #, fuzzy
 msgid "Select colors for your theme"
 msgstr "Odaberite ikonu za Vaš dodatak:"
-
-msgid "Header area background"
-msgstr ""
-
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr ""
-
-msgid "Header area text and icons"
-msgstr ""
-
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
-
-msgid "Toolbar area background"
-msgstr ""
-
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
-
-msgid "Toolbar area text and icons"
-msgstr ""
-
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr ""
-
-msgid "Toolbar field area background"
-msgstr ""
-
-msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
-
-msgid "Toolbar field area text"
-msgstr ""
-
-msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
 
 #, fuzzy
 msgid "optional"
@@ -3853,15 +3703,6 @@ msgstr "Moderirani revizijski zapis"
 msgid "View Statistics Dashboard"
 msgstr "Pregled Nadzorne ploče statistike"
 
-msgid "Compatibility Reports"
-msgstr ""
-
-msgid "{0} failure reports"
-msgstr ""
-
-msgid "{0} success reports"
-msgstr ""
-
 msgid "Developer News"
 msgstr ""
 
@@ -3956,10 +3797,6 @@ msgstr ""
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
-
-#, fuzzy
-msgid "Compatibility Checker"
-msgstr "Kompatibilnost"
 
 msgid "Promote"
 msgstr ""
@@ -4401,6 +4238,9 @@ msgstr "Dodaj inačicu"
 
 msgid "Upload a New Version"
 msgstr "Dodaj novu inačicu"
+
+msgid "Version"
+msgstr "Inačica"
 
 msgid "Delete Version {version}"
 msgstr ""
@@ -6057,60 +5897,6 @@ msgstr ""
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
 
-msgid "Discover Add-ons"
-msgstr ""
-
-msgid "What are Add-ons?"
-msgstr "Što su dodaci?"
-
-#, python-format
-msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
-
-msgid "Learn More About Add-ons"
-msgstr ""
-
-msgid "See all"
-msgstr "Vidi sve"
-
-msgid "More ways to customize"
-msgstr "Više načina za prilagodbu"
-
-msgid "Browse all add-ons"
-msgstr "Pretraži sve dodatke"
-
-msgid "See all complete themes"
-msgstr ""
-
-msgid "Close Video"
-msgstr ""
-
-msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
-
-#. {0} is the user's login name.
-msgid "Hi, {0}"
-msgstr ""
-
-#, python-format
-msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr "Hvala što koristite %(app)s i podržavate <a href=\"%(url)s\">misiju Mozille</a>!"
-
-msgid "Add-ons downloaded:"
-msgstr ""
-
-msgid "View Privacy Policy"
-msgstr "Pogledajte Zaštitu Privatnosti"
-
-msgid "Active Users"
-msgstr ""
-
-msgid "Last Updated"
-msgstr ""
-
-msgid "Cancel Installation"
-msgstr "Odustani od instaliranja"
-
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Mozilla&rsquo;s Odabir mjeseca!"
 
@@ -6672,6 +6458,9 @@ msgstr ""
 msgid "Max. Version"
 msgstr "Maks. inačica"
 
+msgid "Select an application first"
+msgstr ""
+
 # 77%
 msgid "Comments:"
 msgstr "Komentari:"
@@ -7014,6 +6803,9 @@ msgstr "Prosječan broj dnevnih korisnika"
 
 msgid "Abuse Reports"
 msgstr ""
+
+msgid "View Privacy Policy"
+msgstr "Pogledajte Zaštitu Privatnosti"
 
 msgid "Requires Payment"
 msgstr ""
@@ -7463,6 +7255,9 @@ msgstr ""
 
 msgid "(Probable Duplicate Submission)"
 msgstr ""
+
+msgid "Submitted"
+msgstr "Poslano"
 
 msgid "Past Review Notes"
 msgstr ""
@@ -7984,12 +7779,6 @@ msgstr "Natrag na {0} početnu stranicu dodataka"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> dodaci"
 
-msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> dodaci"
-
-msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> dodaci"
-
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> Dodaci"
 
@@ -8332,6 +8121,9 @@ msgstr ""
 msgid "Add-ons I've created"
 msgstr "Dodaci koje sam ja kreirao"
 
+msgid "View all"
+msgstr "Prikaži sve"
+
 msgid "My Most Popular Themes"
 msgstr ""
 
@@ -8461,10 +8253,4 @@ msgid "These versions are displayed for reference and testing purposes. You shou
 msgstr ""
 
 msgid "Deleted versions can`t be changed."
-msgstr ""
-
-msgid "Binary"
-msgstr ""
-
-msgid "Non-binary"
 msgstr ""
