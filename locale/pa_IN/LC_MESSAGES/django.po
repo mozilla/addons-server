@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 16:30+0000\n"
+"PO-Revision-Date: 2018-10-18 16:46+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -571,7 +571,7 @@ msgid "Some add-ons ask for permission to perform certain functions. Since you�
 msgstr "ਕੁਝ ਐਡ-ਆਨ ਕੁਝ ਫੰਕਸ਼ਨ ਕਰਨ ਲਈ ਇਜਾਜਤ ਮੰਗਦੇ ਹਨ। ਕਿਉਂਕਿ ਤੁਸੀਂ ਆਪਣੇ Firefox ਦੇ ਕੰਟਰੋਲ ਵਿਚ ਹੋ, ਇਹਨਾਂ ਬੇਨਤੀਆਂ ਨੂੰ ਮਨਜ਼ੂਰ ਜਾਂ ਰੱਦ ਕਰਨ ਦਾ ਵਿਕਲਪ ਤੁਹਾਡਾ ਹੈ।"
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "ਕਿਰਪਾ ਕਰਕੇ ਨੋਟ ਕਰੋ ਕਿ ਇਹ ਐਡਆਨ ਪੁਰਾਣੀ ਟੈਕਨੋਲੋਜੀ ਵਰਤਦਾ ਹੈ, ਜੋ ਇਹ ਤੁਹਾਡੀ ਆਗਿਆ ਦੀ ਬੇਨਤੀ ਕੀਤੇ ਬਗੈਰ ਸਾਰੇ ਬ੍ਰਾਉਜ਼ਰ ਫੰਕਸ਼ਨਸ ਅਤੇ ਡਾਟਾ ਤੱਕ ਪਹੁੰਚ ਦਿੰਦਾ ਹੈ।"
 
 msgid "This add-on has been removed by its author."
 msgstr "ਇਹ ਐਡ-ਆਨ ਇਸ ਦੇ ਲੇਖਕ ਵੱਲੋਂ ਹਟਾਇਆ ਜਾ ਚੁੱਕਿਆ ਹੈ।"
@@ -959,6 +959,8 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
+"ਜੇ ਤੁਹਾਡੀ ਸਹਾਇਕ ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਦੀ ਲੋੜ ਨਹੀਂ ਹੈ, ਤਾਂ ਤੁਹਾਨੂੰ ਅਜੇ ਵੀ ਲੋੜੀਂਦੀ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਨਾਲ ਇੱਕ ਨੂੰ ਸ਼ਾਮਿਲ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ ਜਿਵੇਂ ਕਿ ਖਾਸ "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s ਹੈ।"
 
 msgid "Only I can view this collection."
 msgstr "ਸਿਰਫ ਮੈਂ ਹੀ ਇਹ ਸੰਗ੍ਰਹਿ ਵੇਖ ਸਕਦਾ ਹਾਂ।"
@@ -4513,7 +4515,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "ਵੈਬ ਤੇ ਇਕ ਦਿਲਚਸਪ ਤਸਵੀਰ ਦੇਖੋ ਅਤੇ ਇਸ ਬਾਰੇ ਹੋਰ ਜਾਣਨਾ ਚਾਹੁੰਦੇ ਹੋ? ਇਸ ਚਿੱਤਰ ਖੋਜ ਲਈ ਸੰਦ ਨੂੰ ਅਜ਼ਮਾਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4999,11 +5001,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "ਉਸਦੇ ਆਲੇ-ਦੁਆਲੇ ਕਲਿਟਰ ਨੂੰ ਹਟਾ ਕੇ ਤੁਸੀਂ ਜੋ ਟੈਕਸਟ ਨੂੰ ਜ਼ਿਆਦਾ ਦਿਲ ਖਿੱਚ ਰਹੇ ਹੋ ਉਸ ਨੂੰ ਟੈਕਸਟ ਬਣਾਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਮਲਟੀਪਲ ਲਿੰਕਸ ਖੋਲ੍ਹੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
@@ -5023,7 +5025,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "ਇੱਕ ਸੁੰਦਰ ਪਿਛੋਕੜ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਆਪਣਾ ਨਵਾਂ ਟੈਬ ਸਫ਼ਾ ਸੰਸ਼ੋਧਿਤ ਕਰੋ, ਆਪਣਾ ਰੋਜ਼ਾਨਾ ਫੋਕਸ ਸੈਟ ਕਰੋ, ਅਤੇ ਹੋਰ।"
 
 #. editorial content for the discovery pane.
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5039,7 +5041,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "ਸਮਾਂ-ਬਰਬਾਦ ਹੋਣ ਵਾਲੀਆਂ ਸਾਈਟਾਂ ਨੂੰ ਬਲਾਕ ਕਰੋ ਤਾਂ ਕਿ ਤੁਸੀਂ ਆਪਣੇ ਹੱਥ ਵਿਚ ਕੰਮ ਤੇ ਧਿਆਨ ਲਗਾ ਸਕੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6372,10 +6374,10 @@ msgid "The study will expire on its own in a few weeks. You may leave the study 
 msgstr "ਕੁਝ ਹਫਤਿਆਂ ਵਿਚ ਇਹ ਅਧਿਐਨ ਆਪਣੇ ਆਪ ਖ਼ਤਮ ਹੋ ਜਾਵੇਗਾ। ਤੁਸੀਂ ਸ਼ੁਰੂ ਤੋਂ ਹੀ ਅਧਿਐਨ ਛੱਡ ਸਕਦੇ ਹੋ। ਅਜਿਹਾ ਕਰਨ ਲਈ, ਇਹਨਾਂ ਕਦਮਾਂ ਦੀ ਪਾਲਣਾ ਕਰੋ:"
 
 msgid "Type about:addons into the location bar, and press enter."
-msgstr "ਟਾਈਪ ਕਰੋ:ਟਿਕਾਣਾ ਪੱਟੀ ਵਿੱਚ ਐਡਆਨਸ, ਅਤੇ ਐਂਟਰ ਦਬਾਓ।"
+msgstr "ਟਾਈਪ ਕਰੋ:ਟਿਕਾਣਾ ਪੱਟੀ ਵਿੱਚ ਐਡਆਨ, ਅਤੇ ਐਂਟਰ ਦਬਾਓ।"
 
 msgid "Find Plugin Safety in the addons list."
-msgstr "ਐਡਉਨਸ ਸੂਚੀ ਵਿੱਚ ਪਲੱਗਇਨ ਸੇਫਟੀ ਲੱਭੋ।"
+msgstr "ਐਡਆਨ ਸੂਚੀ ਵਿੱਚ ਪਲੱਗਇਨ ਸੇਫਟੀ ਲੱਭੋ।"
 
 msgid "Click the remove button."
 msgstr "ਹਟਾਉਣ ਬਟਨ ਨੂੰ ਦਬਾਓ।"
@@ -7854,11 +7856,6 @@ msgid ""
 "blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
 "\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>ਬਾਹਰੀ ਸੋਰਸਾਂ ਦੀ ਨਿਗਰਾਨੀ</h2> <p> ਜੇਕਰ ਤੁਸੀਂ ਆਪਣੇ ਐਡ-ਆਨ ਦੇ ਵੇਰਵੇ ਸਫ਼ੇ ਨੂੰ ਜਾਂ ਇਸ ਦੀ ਫ਼ਾਈਲ ਨੂੰ ਸਿੱਧੇ ਤੌਰ ਤੇ ਬਾਹਰੀ ਵੈੱਬਸਾਈਟ ਤੋਂ ਲਿੰਕ ਕਰਦੇ ਹੋ, ਜਿਵੇਂ ਕੀ ਤੁਹਾਡਾ ਬਲੌਗ ਜਾਂ ਵੈੱਬਸਾਈਟ। ਤੁਸੀਂ ਇਸ ਸਫ਼ੇ ਤੇ ਇੱਕ "
-"ਵਾਧੂ ਡਾਊਨਲੋਡ ਸੋਰਸ ਦੇ ਤੌਰ ਤੇ  ਇਸ ਪੈਰਾਮੀਟਰ ਦੀ ਨਿਗਰਾਨੀ ਵਧਾ ਸਕਦੇ ਹੋ। ਮਿਸਾਲ ਲਈ, ਅੱਗੇ ਦਿੱਤੇ ਲਿੰਕ ਤੁਹਾਡੇ ਬਲੌਗ ਵਿੱਚ ਸੋਰਸ ਦੇ ਤੌਰ ਤੇ ਵਿਖਾਏ ਜਾਣਗੇ: <dl> <dt>ਐਡ-ਆਨ ਵੇਰਵਾ ਸਫ਼ਾ</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>ਬਾਹਰੀ ਬਲੌਗ</b></dd> <dt>ਸਿੱਧਾ ਫ਼ਾਈਲ ਲਿੰਕ</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>ਬਾਹਰੀ "
-"ਬਲੌਗ</b></dd> </dl> <p> ਕੇਵਲ src ਪੈਰਾਮੀਟਰ ਜੋ \"external-\" ਨਾਲ ਸ਼ੁਰੂ ਹੋਵੇ ਦੀ ਨਿਗਰਾਨੀ ਹੋਵੇਗੀ, 61 ਵਾਧੂ ਅੱਖਰਾਂ ਤੱਕ। \"external-\" ਤੋਂ ਬਾਅਦ ਕੋਈ ਵੀ ਟੈਕਸਟ ਸੋਰਸ ਦੇ ਵੇਰਵੇ ਲਈ ਵਰਤਿਆ ਜਾ ਸਕਦਾ, ਜਿਵੇਂ ਕਿ "
-"\"ਬਾਹਰੀ-ਬਲੌਗ\", \"ਬਾਹਰੀ-ਸਾਈਡਬਾਰ\", \"ਬਾਹਰੀ-ਮੁਹਿੰਮ225\", ਆਦਿ। ਅੱਗੇ ਦਿੱਤੇ URL-ਸੁਰੱਖਿਅਤ ਅੱਖਰ ਪ੍ਰਵਾਨ ਹਨ: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "ਐਡ-ਆਨ ਦਰਜਾ ਮਿਤੀ ਅਨੁਸਾਰ"
