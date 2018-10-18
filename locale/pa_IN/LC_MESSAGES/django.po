@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 12:46+0000\n"
+"PO-Revision-Date: 2018-10-18 14:07+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -2353,13 +2353,11 @@ msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਸੰਜਮ ਵਾਪਸ ਲਿਆ"
 msgid "Add-on Content Review"
 msgstr "ਐਡ-ਆਨ ਸਮੱਗਰੀ ਸਮੀਖਿਆ"
 
-#, fuzzy
 msgid "Add-on Review (Highest Risk)"
-msgstr "ਪੂਰੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
+msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ(ਵੱਧ ਜੋਖਮ)"
 
-#, fuzzy
 msgid "Add-on Review (High Risk)"
-msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਚਿੱਠਾ"
+msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ(ਉੱਚ ਜੋਖਮ)"
 
 #, fuzzy
 msgid "Add-on Review (Medium Risk)"
