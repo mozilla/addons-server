@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 18:33+0000\n"
+"PO-Revision-Date: 2018-10-18 18:54+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -1836,13 +1836,11 @@ msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
 msgid "Auto-Approval confirmed"
 msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਦੀ ਪੁਸ਼ਟੀ ਕੀਤੀ"
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} ਠੁਕਰਾਇਆ।"
+msgstr "{addon} {version} ਦੁਬਾਰਾ-ਸਮਰਥਿਤ।"
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} ਵਧਾਇਆ।"
+msgstr "{addon} {version} ਅਯੋਗ।"
 
 #, fuzzy
 msgid "{addon} {version} content approved."
@@ -1874,17 +1872,14 @@ msgstr "ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹਟਾਈ ਗਈ"
 msgid "{addon} {version} admin add-on-review requested."
 msgstr "{addon} {version} ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "ਸੁਪਰ ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
+msgstr "ਐਡਮਿਨ ਐਡ-ਆਨ-ਰਿਵਿਊ ਦੀ ਬੇਨਤੀ ਕੀਤੀ ਗਈ"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
+msgstr "{addon} {version} ਐਡਮਿਨ ਦੀ ਸਮੱਗਰੀ-ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕੀਤੀ ਗਈ।"
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "ਸੁਪਰ ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
+msgstr "ਐਡਮਿਨ ਨੇ ਸਮੱਗਰੀ ਸਮੀਖਿਆ ਲਈ ਬੇਨਤੀ ਕੀਤੀ"
 
 #, fuzzy
 msgid "{addon} {version} admin theme-review requested."
@@ -2280,14 +2275,12 @@ msgstr "ਸ਼ਾਨਦਾਰ (3)"
 msgid "Manual Reviewer Points"
 msgstr "ਦਸਤੀ ਸਮੀਖਿਆ ਬਿੰਦੂ"
 
-#, fuzzy
 msgid "New Legacy Add-on Review"
-msgstr "ਨਵੇਂ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ"
+msgstr "ਨਵ ਵਿਰਾਸਤ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ"
 
 msgid "Preliminary Add-on Review"
 msgstr "ਐਡ-ਆਨ ਦੀ ਮੁੱਢਲੀ ਸਮੀਖਿਆ"
 
-#, fuzzy
 msgid "Updated Legacy Add-on Review"
 msgstr "ਐਡ-ਆਨ ਦੀ ਨਵਿਆਈ ਸਮੀਖਿਆ"
 
@@ -2336,7 +2329,6 @@ msgstr "ਮੁਕੰਮਲ ਥੀਮ ਦੀ ਨਵਿਆਈ ਸਮੀਖਿਆ"
 msgid "Moderated Add-on Review"
 msgstr "ਠੀਕ-ਠਾਕ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
 
-#, fuzzy
 msgid "Add-on Review Moderation Reverted"
 msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਸੰਜਮ ਵਾਪਸ ਲਿਆ"
 
@@ -2911,9 +2903,8 @@ msgstr "ਪ੍ਰਯੋਗਾਤਮਕ?"
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr "ਜੇ ਤੁਹਾਡੀ ਐਡ-ਔਨ ਆਨ ਪ੍ਰਯੋਗਾਤਮਕ ਹੈ ਜਾਂ ਆਮ ਵਰਤੋਂ ਲਈ ਤਿਆਰ ਨਹੀਂ ਹੈ।   ਐਡ-ਓਨ ਨੂੰ ਸੂਚੀਬੱਧ ਕੀਤਾ ਜਾਵੇਗਾ ਪਰੰਤੂ ਦ੍ਰਿਸ਼ਟੀ ਘਟਾਈ ਹੋਵੇਗੀ। "
 
-#, fuzzy
 msgid "This add-on is experimental."
-msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਬਾਹਰੀ ਸਾਫ਼ਟਵੇਅਰ ਦੀ ਲੋੜ ਹੈ।"
+msgstr "ਇਹ ਐਡ-ਆਨ ਪ੍ਰਯੋਗਾਤਮਕ ਹੈੈ।"
 
 #, fuzzy
 msgid "This add-on is ready for general use."
@@ -7034,7 +7025,7 @@ msgid "Log details"
 msgstr "ਚਿੱਠੇ ਦਾ ਵੇਰਵਾ"
 
 msgid "Review Author"
-msgstr ""
+msgstr "ਲੇਖਕ ਦੀ ਸਮੀਖਿਆ ਕਰੋ"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -7055,9 +7046,8 @@ msgstr "ਬਿਨਾਂ-ਹਟਾਏ"
 msgid "Save"
 msgstr "ਸੰਭਾਲ੍ਹੋ"
 
-#, fuzzy
 msgid "Add-on Reviewer Performance"
-msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਕਾਰਜ"
+msgstr "ਐਡਆਨ ਸਮੀਖਿਆ ਕਾਰਗੁਜ਼ਾਰੀ"
 
 msgid "View statistics for user"
 msgstr "ਉਪਭੋਗੀ ਦੇ ਅੰਕੜੇ ਵਿਖਾਓ"
@@ -7133,14 +7123,12 @@ msgstr "ਸਹਾਇਕ ਲਿੰਕ:"
 msgid "Add-on Policy"
 msgstr "ਐਡ-ਆਨ ਨੀਤੀ"
 
-#, fuzzy
 msgid "Reviewer's Guide"
 msgstr "ਸਮੀਖਿਅਕ ਗਾਈਡ"
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "ਸਮੀਖਿਆ {0}"
+msgstr "ਸਮੱਗਰੀ ਸਮੀਖਿਆ {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -8050,9 +8038,8 @@ msgstr "ਇਸ ਈਮੇਲ ਨਾਲ ਕੋਈ ਉਪਭੋਗੀ ਨਹੀਂ�
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-#, fuzzy
 msgid "Firefox user {id}"
-msgstr "ਐਂਡਰੌਇਡ ਲਈ ਫਾਇਰਫੌਕਸ"
+msgstr "ਫਾਇਰਫੌਕਸ ਯੂਜ਼ਰ {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "ਮੇਰੇ ਮੋਬਾਈਲ ਐਡ-ਆਨ"
@@ -8081,9 +8068,8 @@ msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਦੀ ਅਨੁਕੂਲਤਾ ਅੱਪਗ�
 msgid "my sdk-based add-on cannot be upgraded"
 msgstr "ਮੇਰਾ sdk-ਅਧਾਰਿਤ ਐਡ-ਆਨ ਅੱਪਗਰੇਡ ਨਹੀਂ ਹੋ ਸਕਦਾ"
 
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
-msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਦੀ ਸੰਪਾਦਕ ਵੱਲੋਂ ਸਮੀਖਿਆ ਹੋਈ"
+msgstr "ਮੇਰੇ ਐਡਆਨ ਦੀ ਸਮੀਖਿਅਕ ਵੱਲੋਂ ਸਮੀਖਿਆ ਹੋਈ"
 
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr "ਮੌਜੀਲਾ ਨੂੰ ਮੇਰੇ ਵਿਅਕਤੀਗਤ ਐਡ-ਆਨ ਬਾਰੇ ਮੈਨੂੰ ਸੰਪਰਕ ਕਰਨ ਦੀ ਲੋੜ"
