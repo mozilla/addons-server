@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 15:56+0000\n"
+"PO-Revision-Date: 2018-10-18 16:30+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -1143,7 +1143,7 @@ msgstr "ਮੇਰੇ ਪਸੰਦੀਦਾ ਐਡ-ਆਨ"
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] "<span>%(addons)s</span> ਐਡ-ਆਨ"
+msgstr[0] "<span>%(addons)s</span> ਐਡਆਨ"
 msgstr[1] "<span>%(addons)s</span> ਐਡ-ਆਨ"
 
 msgid "by {0}"
@@ -1798,7 +1798,7 @@ msgstr "{file} ਸਾਇਨ ਹੋਈ ਸੀ।"
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "GUID {1} ਨਾਲ Addon id {0} ਮਿਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ"
 
 #, fuzzy
 msgid "{addon} migrated from preliminary."
@@ -3993,7 +3993,7 @@ msgstr "ਹੋਰ ਜਾਣੋ"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "%(amo_link_open)saddons.mozilla.org%(amo_link_close)sਤੇ ਤੁਹਾਡੇ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ? ਸਾਡੀ ਫੀਚਰਡ ਐਕਸਟੈਂਸ਼ਨ ਨੀਤੀ ਤੁਹਾਨੂੰ ਦੱਸੇਗੀ ਕਿ ਤੁਹਾਨੂੰ ਕੀ ਜਾਣਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ।"
 
 msgid "Learn More"
 msgstr "ਹੋਰ ਜਾਣੋ"
@@ -4088,7 +4088,7 @@ msgid "Compatibility Test"
 msgstr "ਅਨੁਕੂਲਤਾ ਪਰਖਾਂ"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "ਇਹ ਵੇਖਣ ਲਈ ਜਾਂਚ ਕਰੋ ਕਿ ਕੀ ਤੁਹਾਡਾ ਐਕਸਟੈਂਸ਼ਨ ਫਾਇਰਫਾਕਸ ਦੇ ਅਨੁਕੂਲ ਹੈ।"
 
 #, fuzzy
 msgid "Live Testing"
@@ -4186,7 +4186,7 @@ msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾ ਨਾਂ"
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "ਦੁਆਰਾ <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
 msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਰਚੋ"
@@ -4537,7 +4537,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "ਸਾਰੇ ਸਾਧਨਾਂ ਤੇ ਰਾਜ ਕਰਨ ਲਈ ਇੱਕ ਪਾਸਵਰਡ ਵਾਲੇ ਸਾਰੇ ਡਿਵਾਈਸਿਸ ਵਿੱਚ ਆਪਣੀਆਂ ਸਾਰੇ ਵੱਖ-ਵੱਖ ਵੈਬਸਾਈਟ ਲੌਗਿਨਸ ਨੂੰ ਸੌਖਾ ਅਤੇ ਸਿੰਕ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4545,7 +4545,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "ਇੱਕ ਹਲਕਾ ਅਤੇ ਪ੍ਰਭਾਵਸ਼ਾਲੀ ਵਿਗਿਆਪਨ ਬਲੌਕਰ। uBlock ਮੂਲ ਹਜ਼ਾਰਾਂ ਸਮੱਗਰੀ ਫਿਲਟਰਾਂ ਨੂੰ ਮੈਮੋਰੀ ਦੇ ਇੱਕ ਸਮੂਹ ਨੂੰ ਚਚਣ ਤੋਂ ਬਿਨਾਂ ਲਾਗੂ ਕਰਦੀ ਹੈ।"
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4553,7 +4553,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "ਨਵੀਆਂ YouTube ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ, ਜਿਵੇਂ ਕਿ ਸਿਨੇਮਾ ਮੋਡ, ਵਿਗਿਆਪਨ ਨੂੰ ਰੋਕਣਾ, ਆਟੋ-ਪਲੇ ਨਿਯੰਤਰਣ, ਅਤੇ ਹੋਰ ਬਹੁਤਿਆਂ ਦਾ ਇੱਕ ਅਨੰਦ ਮਾਣੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4586,7 +4586,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "YouTube ਤੇ ਨਜ਼ਰ ਆਉਣ ਤੋਂ ਤੰਗ ਕਰਨ ਵਾਲੇ ਵਿਗਿਆਪਨ ਅਤੇ ਐਨੋਟੇਸ਼ਨ ਨੂੰ ਬਲੌਕ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4667,7 +4667,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "ਦੁਨੀਆ ਭਰ ਵਿੱਚ ਰੁੱਖ ਲਗਾਉਣ ਵਾਲੇ ਪ੍ਰੋਗਰਾਮਾਂ ਲਈ ਈਕੋਸੀਆ ਇਸਦੇ ਖੋਜ ਲਾਭ ਦੇ 80% ਦੀ ਵਰਤੋਂ ਕਰਦਾ ਹੈ। ਫਾਇਰਫਾਕਸ ਖੋਜ ਵਿਚ ਈਕੋਸਿਆ ਦਾ ਸਹੀ ਪਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4975,7 +4975,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
+msgstr "ਕਿਸੇ ਵੀ ਵੈਬਸਾਈਟ ਤੇ ਪਾਠ ਨੂੰ ਹਾਈਲਾਈਟ ਕਰੋ, ਸੱਜਾ ਕਲਿਕ ਕਰੋ ਅਤੇ ਤੁਰੰਤ ਅਨੁਵਾਦ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5255,7 +5255,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Store web pages to access across devices."
-msgstr ""
+msgstr "ਡਿਵਾਈਸਾਂ ਵਿੱਚ ਐਕਸੈਸ ਕਰਨ ਲਈ ਵੈਬ ਪੇਜ਼ ਨੂੰ ਸਟੋਰ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5263,7 +5263,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "ਜੇਕਰ ਤੁਸੀਂ ਬੁੱਕਮਾਰਕ ਫੋਲਡਰ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹੋ ਤਾਂ ਬੁਕਮਾਰਕਸ ਨੂੰ ਸੁਰੱਖਿਅਤ ਕਰਨ ਦਾ ਵਧੀਆ ਤਰੀਕਾ।"
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5283,7 +5283,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr ""
+msgstr "ਤੁਰੰਤ ਨਵੇਂ ਟੈਬਾਂ ਵਿਚ ਕਿਸੇ ਵੈਬਪੇਜ ਤੋਂ ਸਾਰੇ ਲਿੰਕ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5299,7 +5299,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
-msgstr ""
+msgstr "ਪੇਜਾਂ ਅਤੇ URL ਟਰੈਕਿੰਗ ਮਾਪਦੰਡਾਂ ਨੂੰ ਦੂਰ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5347,7 +5347,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "ਇੱਕ ਕਲਿਕ ਜਾਂ ਕੀਸਟਰੋਕ ਨਾਲ ਆਪਣੇ ਬ੍ਰਾਉਜ਼ਰ ਕੈਚ ਨੂੰ ਸਾਫ਼ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5435,7 +5435,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
-msgstr ""
+msgstr "ਇਕ ਵਾਰ ਦਾਖਲ ਕੀਤੇ ਡਾਟਾ ਨੂੰ ਸੁਰੱਖਿਅਤ ਕਰੋ ਅਤੇ ਇਹ ਅਗਲੀ ਵਾਰ ਆਟੋਫਿਲ ਕਰੇਗਾ।"
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5539,7 +5539,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "ਆਪਣੇ ਖੁੱਲ੍ਹੇ ਟੈਬਸ, ਬੁਕਮਾਰਕਸ ਅਤੇ ਇਤਿਹਾਸ ਨੂੰ ਆਸਾਨੀ ਨਾਲ ਐਕਸੈਸ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -6369,7 +6369,7 @@ msgid "Leaving the study"
 msgstr "ਅਧਿਐਨ ਛੱਡਣਾ"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "ਕੁਝ ਹਫਤਿਆਂ ਵਿਚ ਇਹ ਅਧਿਐਨ ਆਪਣੇ ਆਪ ਖ਼ਤਮ ਹੋ ਜਾਵੇਗਾ। ਤੁਸੀਂ ਸ਼ੁਰੂ ਤੋਂ ਹੀ ਅਧਿਐਨ ਛੱਡ ਸਕਦੇ ਹੋ। ਅਜਿਹਾ ਕਰਨ ਲਈ, ਇਹਨਾਂ ਕਦਮਾਂ ਦੀ ਪਾਲਣਾ ਕਰੋ:"
 
 msgid "Type about:addons into the location bar, and press enter."
 msgstr "ਟਾਈਪ ਕਰੋ:ਟਿਕਾਣਾ ਪੱਟੀ ਵਿੱਚ ਐਡਆਨਸ, ਅਤੇ ਐਂਟਰ ਦਬਾਓ।"
@@ -6718,7 +6718,7 @@ msgid "Is locked by a reviewer."
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਦੀ ਸੰਪਾਦਕ ਵੱਲੋਂ ਸਮੀਖਿਆ ਹੋਈ"
 
 msgid "Has auto-approval disabled flag set."
-msgstr ""
+msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਅਸਮਰਥਿਤ ਝੰਡੇ ਸੈਟ ਹੈ।"
 
 msgid "Duplicate Submission"
 msgstr "ਨਕਲ ਦਾਖਲ ਕੀਤੀ"
@@ -7239,7 +7239,7 @@ msgid "The whiteboard is the place to exchange information relevant to this addo
 msgstr "ਵਾਇਟਬੋਰਡ ਡਿਵੈਲਪਰ ਅਤੇ ਸੰਪਾਦਕ ਵਿਚਾਲੇ, ਇਸ ਐਡ-ਆਨ ਨਾਲ ਸੰਬੰਧਤ ਜਾਣਕਾਰੀ ਵਟਾਉਣ ਦੀ ਥਾਂ ਹੈ (ਜੋ ਵੀ ਵਰਜਨ ਹੋਵੇ)। ਇਹ ਦੋਨਾਂ ਵੱਲੋਂ ਵਿਖਾਈ ਦੇਣ ਅਤੇ ਸੋਧ ਕਰਨਯੋਗ ਹੈ।"
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "ਪ੍ਰਾਈਵੇਟ ਵ੍ਹਾਈਟ ਬੋਰਡ ਦਾ ਵਰਨਨ ਤੋਂ ਸੁਤੰਤਰ ਸਮੀਖਿਅਕਾਂ ਵਿਚਕਾਰ ਜਾਣਕਾਰੀ ਦਾ ਆਦਾਨ-ਪ੍ਰਦਾਨ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਭਾਸ਼ਾ ਦੇ ਉਦੇਸ਼ ਨੂੰ ਜਾਰੀ ਰੱਖੋ। ਇਹ ਸਿਰਫ ਸਮੀਖਿਅਕਾਂ ਲਈ ਦ੍ਰਿਸ਼ਟੀਗਤ ਹੁੰਦਾ ਹੈ।"
 
 #, fuzzy
 msgid "Update whiteboards"
@@ -7605,7 +7605,7 @@ msgid "Could not find add-on with id \"{}\"."
 msgstr ""
 
 msgid "You do not own this addon."
-msgstr "ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਐਡ-ਆਨ ਦਾ ਮਾਲਕ ਨਹੀਂ ਹੈ।"
+msgstr "ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਐਡਆਨ ਦਾ ਮਾਲਕ ਨਹੀਂ ਹੈ।"
 
 msgid "Missing \"upload\" key in multipart file data."
 msgstr "ਮਲਟੀਪਾਰਟ ਫਾਈਲ ਡਾਟਾ ਵਿੱਚ \"ਅਪਲੋਡ\" ਕੁੰਜੀ ਨਹੀਂ ਲੱਗੀ।"
@@ -7634,7 +7634,7 @@ msgid "You cannot add a listed version to this addon via the API due to missing 
 msgstr ""
 
 msgid "No uploaded file for that addon and version."
-msgstr "ਉਸ ਐਪੀਅਨ ਅਤੇ ਵਰਜ਼ਨ ਲਈ ਕੋਈ ਅਪਲੋਡ ਕੀਤੀ ਫਾਈਲ ਨਹੀਂ।"
+msgstr ""
 
 msgid "Overview"
 msgstr "ਸੰਖੇਪ ਜਾਣਕਾਰੀ"
