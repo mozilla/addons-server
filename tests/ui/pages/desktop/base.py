@@ -53,7 +53,7 @@ class Header(Region):
     _more_dropdown_locator = (
         By.CSS_SELECTOR,
         '.Header-SectionLinks .SectionLinks-dropdown')
-    _more_dropdown_link_locator = (By.CLASS_NAME, 'SectionLinks-dropdownlink')
+    _more_dropdown_link_locator = (By.CSS_SELECTOR, '.DropdownMenuItem a')
     _themes_locator = (By.CSS_SELECTOR, '.SectionLinks > li:nth-child(3) > \
                        a:nth-child(1)')
     _user_locator = (By.CSS_SELECTOR,

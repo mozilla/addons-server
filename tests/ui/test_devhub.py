@@ -42,7 +42,7 @@ def test_devhub_addon_upload(base_url, selenium, devhub_upload):
 @pytest.mark.nondestructive
 @pytest.mark.withoutresponses
 def test_devhub_logout(base_url, selenium, devhub_login):
-    """Test uploading an addon via devhub."""
+    """Logging out from devhub."""
     assert devhub_login.logged_in
     devhub = devhub_login.header.click_sign_out()
     assert not devhub.logged_in
@@ -52,7 +52,7 @@ def test_devhub_logout(base_url, selenium, devhub_login):
 @pytest.mark.nondestructive
 @pytest.mark.withoutresponses
 def test_devhub_register(base_url, selenium):
-    """Test uploading an addon via devhub."""
+    """Test register link loads register page."""
     selenium.get('http://olympia.test/en-US/developers/')
     devhub = DevHub(selenium, base_url)
     assert not devhub.logged_in

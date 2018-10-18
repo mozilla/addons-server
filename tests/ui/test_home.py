@@ -82,7 +82,7 @@ def test_title_routes_to_home(base_url, selenium):
 
 
 @pytest.mark.parametrize('i, page_url',
-    enumerate(['language-tools', 'search-tools']))
+    enumerate(['language-tools', 'search-tools', 'android']))
 @pytest.mark.nondestructive
 def test_more_dropdown_navigates_correctly(base_url, selenium, i, page_url):
     page = Home(selenium, base_url).open()
