@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-08-25 16:48+0000\n"
+"PO-Revision-Date: 2018-10-18 12:08+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -474,11 +474,11 @@ msgstr "ਸੰਬੰਧਤ ਵਰਗ"
 msgid "Part of these Collections"
 msgstr "ਇਹਨਾਂ ਸੰਗ੍ਰਹਿ ਦਾ ਹਿੱਸਾ"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] "%(author)s ਵੱਲੋਂ ਹੋਰ ਐਡ-ਆਨ"
-msgstr[1] "ਇਹਨਾਂ ਲੇਖਕਾਂ ਵੱਲੋਂ ਹੋਰ ਐਡ-ਆਨ"
+msgstr[0] "%(author)s ਦੁਆਰਾ ਹੋਰ ਐਡ-ਆਨ"
+msgstr[1] "ਇਹਨਾਂ ਲੇਖਕਾਂ ਦੁਆਰਾ ਹੋਰ ਐਡ-ਆਨ"
 
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
@@ -560,6 +560,8 @@ msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"ਕਿਉਂਕਿ ਤੁਸੀਂ ਆਪਣੇ ਫਾਇਰਫਾਕਸ ਦੇ ਕੰਟਰੋਲ ਵਿਚ ਹੋ, ਇਹਨਾਂ ਬੇਨਤੀਆਂ ਨੂੰ ਮਨਜ਼ੂਰ ਜਾਂ ਰੱਦ ਕਰਨ ਦਾ ਵਿਕਲਪ ਤੁਹਾਡਾ ਹੈ। ਮਨਜ਼ੂਰੀਆਂ ਸਵੀਕਾਰ ਕਰਨਾ ਤੁਹਾਡੇ ਬ੍ਰਾਉਜ਼ਰ ਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਜਾਂ ਸੁਰੱਖਿਆ ਨਾਲ ਸਹਿਜੇ ਹੀ ਸਮਝੌਤਾ ਨਹੀਂ ਕਰਦਾ, "
+"ਪਰ ਕੁਝ ਦੁਰਲੱਭ ਮਾਮਲਿਆਂ ਵਿਚ ਖਤਰਾ ਹੋ ਸਕਦਾ ਹੈ।"
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
@@ -1128,13 +1130,12 @@ msgstr ""
 "ਐਡ-ਆਨ ਜਿਹਨਾਂ ਤੇ ਤੁਸੀਂ ਪਸੰਦ ਦੇ ਨਿਸ਼ਾਨ ਲਗਾਏ ਹੇਠ ਵਿਖਾਈ<b>ਪਸੰਦੀਦਾ ਵਿੱਚ ਜੋੜੋ</b> ਵਿਸ਼ੇਸਤਾ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹੋਏ। ਇਹ ਸੰਗ੍ਰਹਿ ਮੌਜੂਦਾ ਤੌਰ ਤੇ<b>ਜਨਤਕ</b> ਹੈ, ਜਿਸਦਾ ਮਤਲਬ ਹਰ ਕੋਈ ਇਸ ਨੂੰ ਵੇਖ ਸਕਦਾ ਹੈ। ਜੇਕਰ ਤੁਸੀਂ ਇਸ "
 "ਨੂੰ ਜਨਤਕ ਝਲਕ ਤੋਂ ਲੁਕਾਉਣਾ ਪਸੰਦ ਹੋਵੇ, ਇਸ ਨੂੰ ਨਿੱਜੀ ਬਣਾਉਣ ਲਈ ਹੇਠ ਦਿੱਤੇ ਬਟਨ ਤੇ ਕਲਿੱਕ ਕਰੋ।"
 
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
-"ਐਡ-ਆਨ ਜਿਹਨਾਂ ਤੇ ਤੁਸੀਂ ਪਸੰਦ ਦੇ ਨਿਸ਼ਾਨ ਲਗਾਏ ਹੇਠ ਵਿਖਾਈ<b>ਪਸੰਦੀਦਾ ਵਿੱਚ ਜੋੜੋ</b> ਵਿਸ਼ੇਸਤਾ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹੋਏ। ਇਹ ਸੰਗ੍ਰਹਿ ਮੌਜੂਦਾ ਤੌਰ ਤੇ<b>ਜਨਤਕ</b> ਹੈ, ਜਿਸਦਾ ਮਤਲਬ ਹਰ ਕੋਈ ਇਸ ਨੂੰ ਵੇਖ ਸਕਦਾ ਹੈ। ਜੇਕਰ ਤੁਸੀਂ ਇਸ "
-"ਨੂੰ ਜਨਤਕ ਝਲਕ ਤੋਂ ਲੁਕਾਉਣਾ ਪਸੰਦ ਹੋਵੇ, ਇਸ ਨੂੰ ਨਿੱਜੀ ਬਣਾਉਣ ਲਈ ਹੇਠ ਦਿੱਤੇ ਬਟਨ ਤੇ ਕਲਿੱਕ ਕਰੋ।"
+"ਐਡ-ਆਨ ਜਿਹਨਾਂ ਤੇ ਤੁਸੀਂ ਪਸੰਦ ਦੇ ਨਿਸ਼ਾਨ ਲਗਾਏ ਹੇਠ ਵਿਖਾਈ<b>ਪਸੰਦੀਦਾ ਵਿੱਚ ਜੋੜੋ</b> ਵਿਸ਼ੇਸਤਾ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹੋਏ। ਇਹ ਸੰਗ੍ਰਹਿ ਮੌਜੂਦਾ ਤੌਰ ਤੇ<b>ਜਨਤਕ</b>ਹੈ, ਜਿਸਦਾ ਮਤਲਬ ਹਰ ਕੋਈ ਇਸ ਨੂੰ ਵੇਖ ਸਕਦਾ ਹੈ। ਜੇਕਰ ਤੁਸੀਂ ਇਸ ਨੂੰ"
+" ਜਨਤਕ ਝਲਕ ਤੋਂ ਲੁਕਾਉਣਾ ਪਸੰਦ ਹੋਵੇ, ਇਸ ਨੂੰ ਨਿੱਜੀ ਬਣਾਉਣ ਲਈ ਹੇਠ ਦਿੱਤੇ ਬਟਨ ਤੇ ਕਲਿੱਕ ਕਰੋ।"
 
 msgid "My favorite add-ons"
 msgstr "ਮੇਰੇ ਪਸੰਦੀਦਾ ਐਡ-ਆਨ"
