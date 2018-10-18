@@ -135,8 +135,10 @@ class AddonGitRepository(object):
             Switched to a new branch 'listed'
 
             # We don't technically do a full cherry-pick but it's close enough
-            # and does almost what we do. We are technically only forcing
-            # the branches HEAD to be the commit we committed in the worktree
+            # and does almost what we do. We are technically commiting
+            # directly on top of the branch as if we checked out the branch
+            # in the worktree (via -b) but pygit doesn't properly support that
+            # so we "simply" set the parents correctly.
             $ git cherry-pick c4285f8
             [listed a4d0f63] Creating new version…
 
@@ -148,8 +150,13 @@ class AddonGitRepository(object):
 
         .. _`git worktree`: https://git-scm.com/docs/git-worktree
         """
+        # Make sure we're always using the en-US locale by default
+        translation.activate('en-US')
+
         addon = file_obj.version.addon
         repo = cls(addon.id)
+
+        branch = repo.find_or_create_branch(BRANCHES[channel])
 
         # Create a temporary worktree that we can use to unpack the zip
         # without disturbing the current git workdir since it creates a new
@@ -162,14 +169,15 @@ class AddonGitRepository(object):
             # Stage changes, `TemporaryWorktree` always cleans the whole
             # directory so we can simply add all changes and have the correct
             # state.
+
+            # Add all changes to the index (git add ...)
             worktree.repo.index.add_all()
             worktree.repo.index.write()
+
             tree = worktree.repo.index.write_tree()
 
-            # Create an orphaned commit, we're going to set that commit
-            # as HEAD of the relevant branch. Make sure we're always
-            # using the en-US locale by default
-            translation.activate('en-US')
+            # Now create an commit directly on top of the respective branch
+
             message = (
                 'Create new version {version} ({version_id}) for '
                 '{addon} from {file_obj}'.format(
@@ -183,15 +191,18 @@ class AddonGitRepository(object):
                 repo.get_author(), repo.get_author(),
                 message,
                 tree,
-                []
+                # Set the current branch HEAD as the parent of this commit
+                # so that it'll go straight into the branches commit log
+                [branch.target]
             )
 
-            commit = repo.git_repository.get(oid)
+            # Fetch the commit object
+            commit = worktree.repo.get(oid)
 
-        # Set the commit we just created as HEAD of the relevant branch,
-        # and updates the reflog. This does not do any merges
-        branch = repo.find_or_create_branch(BRANCHES[channel])
-        branch.set_target(commit.hex)
+            # And set the commit we just created as HEAD of the relevant
+            # branch, and updates the reflog. This does not require any
+            # merges.
+            branch.set_target(commit.hex)
 
         # Set the latest git hash on the related version.
         file_obj.version.update(git_hash=commit.hex)
