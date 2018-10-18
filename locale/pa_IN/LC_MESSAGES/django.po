@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 14:30+0000\n"
+"PO-Revision-Date: 2018-10-18 14:46+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -3382,13 +3382,11 @@ msgstr ""
 msgid "Select a category for this add-on:"
 msgstr "ਇਸ ਐਡ-ਆਨ ਲਈ <b>{0} ਤੱਕ</b> {1} ਸੰਗ੍ਰਹਿ ਚੁਣੋ:"
 
-#, fuzzy
 msgid "Support email:"
-msgstr "ਸਹਿਯੋਗ ਈ-ਮੇਲ"
+msgstr "ਸਹਿਯੋਗ ਈ-ਮੇਲ:"
 
-#, fuzzy
 msgid "Support website:"
-msgstr "ਸਹਿਯੋਗ ਸਾਈਟ"
+msgstr "ਸਹਿਯੋਗ ਵੈਬਸਾਈਟ:"
 
 msgid "License:"
 msgstr "ਲਾਇਸੰਸ:"
@@ -3401,9 +3399,8 @@ msgstr "ਤੁਹਾਡੇ ਵੱਲੋਂ ਆਪਣੇ ਸੋਰਸ ਕੋਡ �
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "ਜੇਕਰ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਵਰਤੋਂਕਾਰ ਦੇ ਕੰਪਿਊਟਰ ਤੋਂ ਕੋਈ ਡਾਟਾ ਭੇਜਦਾ, ਇੱਕ ਪਰਦੇਦਾਰੀ ਨੀਤੀ ਦੀ ਲੋੜ ਹੈ ਜੋ ਦੱਸੇ ਕਿ ਕਿਹੜਾ ਡਾਟਾ ਭੇਜਿਆ ਅਤੇ ਇਹ ਕਿਵੇਂ ਵਰਤਿਆ ਜਾਏਗਾ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "ਸਮੀਖਿਅਕਾਂ ਲਈ ਨੋਟ"
+msgstr "ਸਮੀਖਿਅਕ ਲਈ ਨੋਟ:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
@@ -3425,9 +3422,8 @@ msgstr "ਇਹ URL ਕੇਵਲ ਤਾਂ ਹੀ ਦਿੱਸੇਗੀ ਜੇਕ
 msgid "Cancel and Disable Version"
 msgstr "ਸਮੀਖਿਆ ਬੇਨਤੀ ਰੱਦ ਕਰੋ"
 
-#, fuzzy
 msgid "Submit Version"
-msgstr "ਇੱਕ ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
+msgstr "ਵਰਜਨ ਦਾਖਲ ਕਰੋ"
 
 msgid "Describe Version"
 msgstr "ਵਰਜਨ ਅਯੋਗ ਕਰੋ"
