@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 17:48+0000\n"
+"PO-Revision-Date: 2018-10-18 18:03+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -7232,9 +7232,8 @@ msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਨੂੰ ਅਸਮਰੱਥ ਬਣ�
 msgid "Enable Auto-Approval"
 msgstr "ਮਨਜ਼ੂਰੀ ਦਰਜਾ"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
+msgstr "ਸਪਸ਼ਟ ਜਾਣਕਾਰੀ ਬੇਨਤੀ"
 
 #, fuzzy
 msgid "Clear Admin Code Review Flag"
@@ -7902,13 +7901,11 @@ msgstr ""
 msgid "get to know <b>add-ons</b>"
 msgstr "<b>ਐਡ-ਆਨਾਂ</b>ਬਾਰੇ ਜਾਨਣ ਲਈ"
 
-#, fuzzy
 msgid "Download Firefox"
-msgstr "ਫ਼ਾਈਲਾਂ ਡਾਊਨਲੋਡ ਕਰੋ"
+msgstr "ਫਾਇਰਫਾਕਸ ਡਾਊਨਲੋਡ ਕਰੋ"
 
-#, fuzzy
 msgid "Android Browser"
-msgstr "ਐਨਡਰੋਇਡ ਐਡ-ਆਨ"
+msgstr "ਐਂਡਰਾਈਡ ਬਰਾਊਜ਼ਰ"
 
 msgid "iOS Browser"
 msgstr "iOS ਬਰਾਊਜ਼ਰ"
@@ -8030,9 +8027,8 @@ msgstr "ਐਡਆਨ"
 msgid "Ratings"
 msgstr "ਰੇਟਿੰਗਾਂ"
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "ਸਰਗਰਮੀ"
+msgstr "ਸਰਗਰਮੀ ਲਾਗ"
 
 msgid "Email must be {email}."
 msgstr "ਈ-ਚਿੱਠੀ ਲਾਜ਼ਮੀ {email} ਹੋਵੇ।"
@@ -8128,13 +8124,11 @@ msgstr "ਉਪਭੋਗੀ ਦੀ ਰਿਪੋਰਟ ਮਿਲੀ।"
 msgid "new"
 msgstr "ਨਵਾਂ"
 
-#, fuzzy
 msgid "Ban"
-msgstr "ਅਤੇ"
+msgstr "ਪਾਬੰਦੀ"
 
-#, fuzzy
 msgid "Delete picture"
-msgstr "ਮੇਰੀ ਉਪਭੋਗੀ ਤਸਵੀਰ ਹੁਣੇ ਹਟਾਓ"
+msgstr "ਤਸਵੀਰ ਮਿਟਾਓ"
 
 msgid "Delete User Account"
 msgstr "ਉਪਭੋਗੀ ਖਾਤਾ ਹਟਾਓ"
