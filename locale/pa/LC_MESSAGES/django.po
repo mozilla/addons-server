@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-18 12:34+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -134,10 +134,6 @@ msgstr[1] "ਸਾਰੇ ਟੈਗ ਘੱਟੋ-ਘੱਟ {0} ਅੱਖਰਾਂ 
 msgid "The text entered has been flagged as spam."
 msgstr ""
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
-
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "ਵਰਗ ਬਦਲੇ ਨਹੀਂਂ ਜਾ ਸਕਦੇ ਜਦ ਕਿ ਤੁਹਾਡਾ ਐਡਓਨ ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਲਈ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਹੈ।"
 
@@ -149,6 +145,10 @@ msgstr[1] "ਤੁਹਾਡੇ ਕੋਲ ਕੇਵਲ {0} ਵਰਗ ਹੋ ਸਕ
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "ਫ਼ੁਟਕਲ ਵਰਗ ਹੋਰ ਵਰਗਾਂ ਨਾਲ ਜੋੜਿਆ ਨਹੀਂਂ ਜਾ ਸਕਦਾ।"
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr ""
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -203,7 +203,6 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr "ਇਹ ਐਡ-ਆਨ ਇਸ ਦੇ ਲੇਖਕ ਵੱਲੋਂ ਹਟਾਇਆ ਜਾ ਚੁੱਕਿਆ ਹੈ।"
 
 #. {0} is the name of the add-on.
-#. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
 msgstr "ਲਈ ਅੰਤ-ਉਪਭੋਗੀ ਲਾਇਸੰਸ ਸਮਝੌਤਾ {0}"
 
@@ -703,6 +702,10 @@ msgid "Admin Tools"
 msgstr "ਐਡਮਿਨ ਟੂਲ"
 
 msgid "Positive integer"
+msgstr ""
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
 msgstr ""
 
 msgid "Incorrect, please try again."
@@ -1338,12 +1341,6 @@ msgstr "ਸ਼ਬਦਕੋਸ ਇੰਸਟਾਲ ਕਰੋ"
 msgid "Install Language Pack"
 msgstr "ਭਾਸ਼ਾ ਪੈਕ ਇੰਸਟਾਲ ਕਰੋ"
 
-msgid "Download Dictionary"
-msgstr "ਸ਼ਬਦਕੋਸ ਡਾਊਨਲੋਡ ਕਰੋ"
-
-msgid "Download Language Pack"
-msgstr "ਭਾਸ਼ਾ ਪੈਕ ਡਾਊਨਲੋਡ ਕਰੋ"
-
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
@@ -1510,81 +1507,6 @@ msgstr "ਉੱਤੇ ਅਤੇ ਆ ਰਹੇ ਸਾਰੇ ਵੇਖੋ"
 
 msgid "No themes found"
 msgstr "ਕੋਈ ਥੀਮ ਨਹੀਂ ਮਿਲਿਆ"
-
-msgid "All"
-msgstr "ਸਾਰੇ"
-
-msgid "Add-on Compatibility Reports"
-msgstr "ਐਡ-ਆਨ ਅਨੁਕੂਲਤਾ ਸੂਚਨਾਵਾਂ"
-
-#, python-format
-msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
-msgstr ""
-"<p> <a href=\"%(url_)s\">ਐਡ-ਆਨ ਅਨੁਕੂਲਤਾ ਰਿਪੋਰਟਰ</a> ਦੁਆਰਾ ਸਾਨੂੰ ਭੇਜੀਆਂ ਗਈਆਂ ਰਿਪੋਰਟਾਂ ਡਿਵੈਲਪਰਾਂ ਦੇ ਵੇਖਣ ਲਈ ਇੱਥੇ ਇੱੱਕਠੀਆਂ ਹੁੰਦੀਆਂ ਹਨ। ਇਹ ਰਿਪੋਰਟਾਂ ਸਾਨੂੰ ਇਹ ਪਤਾ ਕਰਨ ਵਿੱਚ ਸਹਾਇਕ ਹੁੰਦੀਆਂ ਹਨ ਕਿ ਆਉਣ ਵਾਲੇ ਫ਼ਾਇਰਫ਼ਾਕਸ ਵਰਜਨ ਦਾ ਸਹਿਯੋਗ ਕਰਨ ਲਈ ਕਿਸ "
-"ਐਡ-ਆਨ ਨੂੰ ਮਦਦ ਦੀ ਲੋੜ ਹੈ।</p>"
-
-msgid "Reports for your Add-ons"
-msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਲਈ ਸੂਚਨਾਵਾਂ"
-
-msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr "ਸਾਨੂੰ ਪ੍ਰਾਪਤ ਕੋਈ ਵੀ ਰਿਪੋਰਟ ਵੇਖਣ ਲਈ ਇੱਕ ਐਡ-ਆਨ ਦੀ GUID ਹੇਠ ਦਰਜ ਕਰੋ।"
-
-msgid "{addon} Compatibility Reports"
-msgstr "{addon} ਅਨੁਕੂਲਤਾ ਰਿਪੋਰਟਾਂ"
-
-msgid "{0} success report"
-msgid_plural "{0} success reports"
-msgstr[0] "{0} ਸਫ਼ਲਤਾ ਰਿਪੋਰਟ"
-msgstr[1] "{0} ਸਫ਼ਲਤਾ ਰਿਪੋਰਟਾਂ"
-
-msgid "{0} problem report"
-msgid_plural "{0} problem reports"
-msgstr[0] "{0} ਸਮੱਸਿਆ ਰਿਪੋਰਟ"
-msgstr[1] "{0} ਸਮੱਸਿਆ ਰਿਪੋਰਟਾਂ"
-
-msgid "View all"
-msgstr "ਸਾਰੇ ਵੇਖੋ"
-
-msgid "Filter by Application"
-msgstr "ਐਪਲੀਕੇਸ਼ਨ ਦੁਆਰਾ ਫ਼ਿਲਟਰ"
-
-msgid "Report Type"
-msgstr "ਰਿਪਰੋਟ ਟਾਈਪ"
-
-msgid "Version"
-msgstr "ਵਰਜਨ"
-
-#, fuzzy
-msgid "Application Version"
-msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵਰਜਨ"
-
-msgid "Application Build"
-msgstr "ਐਪਲੀਕੇਸ਼ਨ ਬਿਲਡ"
-
-msgid "Platform"
-msgstr "ਪਲੇਟਫ਼ਾਰਮ"
-
-#, fuzzy
-msgid "e10s Enabled"
-msgstr "ਅਯੋਗ ਹੋਇਆ"
-
-#, fuzzy
-msgid "e10s Compatible"
-msgstr "ਅਧੂਰਾ"
-
-msgid "Submitted"
-msgstr "ਭੇਜਿਆ"
-
-msgid "Success"
-msgstr "ਸਫ਼ਲਤਾ"
-
-msgid "Problem"
-msgstr "ਪਰੇਸ਼ਾਨੀ"
-
-msgid "No reports found."
-msgstr "ਕੋਈ ਰਿਪੋਰਟ ਨਹੀਂ ਮਿਲੀ।"
 
 msgid "{addon} was created."
 msgstr "{addon} ਰਚਿਆ ਗਿਆ।"
@@ -2221,60 +2143,6 @@ msgstr ""
 msgid "User Interface"
 msgstr "ਤੋਂ ਉਪਭੋਗੀ "
 
-msgid "Appearance and Customization"
-msgstr ""
-
-msgid "Calendar and Date/Time"
-msgstr ""
-
-msgid "Chat and IM"
-msgstr ""
-
-#, fuzzy
-msgid "Message Composition"
-msgstr "ਯੋਗਦਾਨ ਪਾਓ"
-
-#, fuzzy
-msgid "Contacts"
-msgstr "ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰ ਰਿਹਾਂ"
-
-#, fuzzy
-msgid "Folders and Filters"
-msgstr "ਸੰਗ੍ਰਹਿ ਅਤੇ ਪਸੰਦੀਦਾ"
-
-#, fuzzy
-msgid "Import/Export"
-msgstr "ਬਰਾਮਦ"
-
-msgid "Message and News Reading"
-msgstr ""
-
-msgid "Privacy and Security"
-msgstr ""
-
-msgid "Downloading and File Management"
-msgstr ""
-
-msgid "Interface Customizations"
-msgstr ""
-
-msgid "Language Support and Translation"
-msgstr ""
-
-msgid "Photos and Media"
-msgstr ""
-
-msgid "RSS, News and Blogging"
-msgstr ""
-
-#, fuzzy
-msgid "Site-specific"
-msgstr "ਸਾਈਟ ਖਾਸ਼"
-
-#, fuzzy
-msgid "Web and Developer Tools"
-msgstr "ਡਿਵੈਲਪਰ ਦਸਤਾਵੇਜ਼ ਖੋਜੋ"
-
 msgid "All Rights Reserved"
 msgstr "ਸਾਰੇ ਹੱਕ ਰਾਖਵੇਂ ਹਨ"
 
@@ -2583,12 +2451,6 @@ msgstr "ਅੱਪਲੋਡ ਫ਼ਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕ�
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
-msgid "Application"
-msgstr "ਐਪਲੀਕੇਸ਼ਨ"
-
-msgid "Select an application first"
-msgstr "ਪਹਿਲਾਂ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਚੁਣੋ"
-
 msgid "There cannot be more than 3 required add-ons."
 msgstr "ਇੱਥੇ 3 ਤੋਂ ਜਿਆਦਾ ਲੋੜੀਂਦੇ ਐਡ-ਆਨ ਨਹੀਂ ਹੋ ਸਕਦੇ।"
 
@@ -2702,9 +2564,6 @@ msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੋਂ ਇੱਕ ਲੇਖਕ ਨੂ
 msgid "Validate Add-on"
 msgstr "ਐਡ-ਆਨ ਦੀ ਪੜਤਾਲ"
 
-msgid "Check Add-on Compatibility"
-msgstr "ਐਡ-ਆਨ ਅਨੁਕੂਲਤਾ ਦੀ ਪੜਤਾਲ ਕਰੋ"
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "ਤਸਵੀਰ %dKB ਤੋਂ ਵੱਡੀ ਨਹੀਂ ਹੋ ਸਕਦੀ।"
@@ -2730,6 +2589,43 @@ msgstr "ਵਰਜਨ %s ਅਯੋਗ ਹੋਇਆ।"
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "ਇਸ ਅੱਪਲੋਡ ਦੀ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ ਅਤੇ ਹੋ ਸਕਦਾ ਮੁਕੰਮਲ ਪ੍ਰਮਾਣਿਕਤਾ ਨਤੀਜਿਆਂ ਦੀ ਘਾਟ ਹੋਵੇ। ਕਿਰਪਾ ਕਰਕੇ ਪੂਰਾ ਧਿਆਨ ਦੇਵੋ ਜਦੋਂ ਇਸ ਦੀ ਸਮੀਖਿਆ ਕਰ ਰਹੇ ਹੋਵੋ।"
+
+msgid "Header area background"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr ""
+
+msgid "Header area text and icons"
+msgstr ""
+
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr ""
+
+msgid "Toolbar area background"
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr ""
+
+msgid "Toolbar area text and icons"
+msgstr ""
+
+#, fuzzy
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "ਇਹ ਟੈਬ ਟੈਕਸਟ ਦਾ ਰੰਗ ਹੈ।"
+
+msgid "Toolbar field area background"
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr ""
+
+msgid "Toolbar field area text"
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr ""
 
 #, fuzzy
 msgid "Review requested."
@@ -2805,9 +2701,6 @@ msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
 msgid "Add-on Validator"
 msgstr "ਐਡ-ਆਨ ਪ੍ਰਮਾਣਕਰਤਾ"
 
-msgid "Add-on Compatibility Checker"
-msgstr "ਐਡ-ਆਨ ਅਨੁਕੂਲਤਾ ਚੈਕਰ"
-
 msgid "Development Add-ons"
 msgstr "ਵਿਕਾਸ ਐਡ-ਆਨ"
 
@@ -2832,13 +2725,6 @@ msgstr "ਖੋਜ"
 msgid "Use the field below to upload your add-on package."
 msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਪੈਕੇਜ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਹੇਠ ਦਿੱਤੇ ਖੇਤਰ ਦੀ ਵਰਤੋਂ ਕਰੋ।"
 
-#, python-format
-msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
-
-msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr "ਅੱਪਲੋਡ ਤੋਂ ਬਾਅਦ, ਹੇਠ ਦਿੱਤੇ ਐਪਲੀਕੇਸ਼ਨ ਵਰਜਨ ਨਾਲ ਅਨੁਕੂਲਤਾ ਦੀ ਪੜਤਾਲ ਲਈ ਸਵੈਚਾਲਿਤ ਪ੍ਰਮਾਣਿਕਤਾ ਟੈਸਟਾਂ ਦੀ ਇੱਕ ਲੜੀ ਚਲਾਈ ਜਾਵੇਗੀ:"
-
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "ਅੱਪਲੋਡ ਤੋਂ ਬਾਅਦ, ਤੁਹਾਡੀ ਫ਼ਾਈਲ ਤੇ ਸਵੈਚਾਲਿਤ ਪ੍ਰਮਾਣਿਕਤਾ ਟੈਸਟਾਂ ਦੀ ਇੱਕ ਲੜੀ ਚਲਾਈ ਜਾਵੇਗੀ।"
 
@@ -2854,9 +2740,6 @@ msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਨਤੀਜੇ"
 
 msgid "Validated at:"
 msgstr "ਤੇ ਪ੍ਰਮਾਣਿਤ ਹੋਇਆ:"
-
-msgid "Tested for compatibility against:"
-msgstr "ਦੇ ਨਾਲ ਅਨੁਕੂਲਤਾ ਲਈ ਜਾਂਚਿਆਂ ਗਿਆ:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨਾਂ ਲਈ ਤਾਜ਼ਾ ਸਰਗਰਮੀ"
@@ -2906,6 +2789,9 @@ msgstr "ਅਨੁਕੂਲਤਾ ਅੱਪਡੇਟ ਕਰੋ"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr "ਇੱਥੇ ਐਪਲੀਕੇਸ਼ਨ ਦੀ ਜਾਣਕਾਰੀ ਵਿੱਚ ਕੀਤਾ ਫ਼ੇਰਬਦਲ ਉਪਭੋਗੀਆਂ ਨੂੰ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਇੰਸਟਾਲ ਕਰਨ ਦੇਵੇਗਾ ਭਲੇ ਹੀ ਪੈਕੇਜ ਵਿੱਚ ਦਿੱਤਾ ਇੰਸਟਾਲ ਮੈਨਫ਼ੇਸ਼ਟ ਇਹ ਦੱਸੇ ਕਿ ਐਡ-ਆਨ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ।"
+
+msgid "Application"
+msgstr "ਐਪਲੀਕੇਸ਼ਨ"
 
 msgid "Supported Versions"
 msgstr "ਸਹਿਯੋਗੀ ਵਰਜਨ"
@@ -2966,12 +2852,60 @@ msgstr ""
 "<p>ਐਡ-ਆਨਾਂ ਦੇ ਤਿੰਨ ਸੰਭਵ ਭੂਮਿਕਾਵਾਂ ਦੇ ਨਾਲ ਬਹੁਤ ਸਾਰੇ ਲੇਖਕ ਹੋ ਸਕਦੇ ਹਨ:</p> <ul> <li><b>ਮਾਲਕ:</b>ਐਡ-ਆਨ ਸੂਚੀ ਦੇ ਸਾਰੇ ਪੱਖਾਂ ਦਾ ਪ੍ਰਬੰਧ ਕਰ ਸਕਦਾ ਹੈ, ਜਿਸ ਵਿੱਚ ਦੂਜੇ ਲੇਖਕਾਂ ਨੂੰ ਜੋੜਣਾ ਅਤੇ ਹਟਾਉਣਾ ਵੀ ਸ਼ਾਮਲ ਹੈ</li> <li><b>ਡਿਵੈਲਪਰ:</b>ਐਡ-ਆਨ ਸੂਚੀ ਦੇ "
 "ਸਾਰੇ ਪੱਖਾਂ ਦਾ ਪ੍ਰਬੰਧ ਕਰ ਸਕਦਾ ਹੈ, ਦੂਜੇ ਲੇਖਕਾਂ ਨੂੰ ਜੋੜਣਾ ਅਤੇ ਹਟਾਉਣ ਅਤੇ ਭੁਗਤਾਨਾਂ ਦੈ ਪ੍ਰਬੰਧ ਨੂੰ ਛੱਡ ਕੇ</li><b>ਦਰਸ਼ਕ:</b> ਐਡ-ਆਨਾਂ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਅਤੇ ਅੰਕੜੇ ਵੇਖ ਸਕਦਾ, ਪਰ ਕੋਈ ਬਦਲਾਵ ਨਹੀਂ ਕਰ ਸਕਦਾ ਹੈ</li> </ul>"
 
-msgid "Basic Information"
-msgstr "ਮੁੱਢਲੀ ਜਾਣਕਾਰੀ"
+#, fuzzy
+msgid "Additional Details"
+msgstr "ਐਡ-ਆਨ ਵੇਰਵਾ"
+
+#, fuzzy
+msgid "Additional Details for {0}"
+msgstr "{0} ਲਈ ਐਡ-ਆਨ ਵੇਰਵਾ"
+
+#, fuzzy
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr "ਟੈਗ ਵਰਤੋਂਕਾਰਾਂ ਦੀ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਲੱਭਣ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਅਤੇ ਛੋਟੇ ਵਰਣਨ ਵਾਲੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ ਜਿਵੇਂ ਕਿ ਟੈਬਾਂ, ਟੂਲਬਾਰ, ਜਾਂ ਟਵਿੱਟਰ। ਤੁਹਾਡੇ ਕੋਲ ਵੱਧ ਤੋਂ ਵੱਧ {0} ਟੈਗ ਹੋ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵੇਂ ਹਨ।"
+
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] "ਕੋਮਾ-ਵੱਖ, {0} ਅੱਖਰ ਦਾ ਘੱਟੋ-ਘੱਟ"
+msgstr[1] "ਕੋਮਾ-ਵੱਖ, {0} ਅੱਖਰਾਂ ਦਾ ਘੱਟੋ-ਘੱਟ"
+
+msgid "Example: dark, cinema, noir. Limit 20."
+msgstr "ਉਦਾਹਰਨ: ਹਨੇਰਾ, ਸਿਨੇਮਾ, ਨੋਇਰ। ਹੱਦ 20।"
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] "ਰਾਖਵਾਂ ਟੈਗ:"
+msgstr[1] "ਰਾਖਵੇਂ ਟੈਗ:"
+
+#, fuzzy
+msgid "Contributions URL"
+msgstr "ਯੋਗਦਾਨ"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
+
+msgid "Default Locale"
+msgstr "ਮੂਲ ਲੋਕੇਲ"
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਬਾਰੇ ਜਾਣਕਾਰੀ ਇਸ ਲੋਕੇਲ ਵਿੱਚ ਵਿਖਾਈ ਜਾਂਦੀ ਹੈ ਜਦ ਤੱਕ ਤੁਸੀਂ ਇਸ ਨੂੰ ਇੱਕ ਖ਼ਾਸ-ਲੋਕੇਲ ਤਰਜਮੇ ਨਾਲ ਮੁੜ ਨਹੀਂ ਲਿੱਖਦੇ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
+
+msgid "Homepage"
+msgstr "ਮੁੱਖ ਸਫ਼ਾ"
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦਾ ਕੋਈ ਹੋਰ ਵੀ ਮੁੱਖ-ਸਫ਼ਾ ਹੈ, ਉਸ ਦਾ ਪਤਾ ਇੱਥੇ ਦਰਜ ਕਰੋ। ਜੇਕਰ ਤੁਹਾਡੀ ਵੈੱਬਸਾਈਟ ਦਾ ਤਰਜਮਾ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਹੋਇਆ ਇਸ ਖੇਤਰ ਦੇ ਬਹੁਤ ਸਾਰੇ ਅਨੁਵਾਦ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
+
+#, fuzzy
+msgid "Describe Add-on"
+msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਵਰਣਨ ਕਰੋ"
 
 #. {0} is the addon name
-msgid "Basic Information for {0}"
-msgstr "{0} ਲਈ ਮੁੱਢਲੀ ਜਾਣਕਾਰੀ"
+#, fuzzy
+msgid "Describe {0}"
+msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਵਰਣਨ ਕਰੋ"
 
 msgid "Add-on URL"
 msgstr "ਐਡ-ਆਨ URL"
@@ -3028,63 +2962,6 @@ msgstr "ਸੰਗ੍ਰਹਿ ਬਦਲੇ ਨਹੀਂ ਜਾ ਸਕਣਗੇ �
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr "ਸੰਗ੍ਰਹਿ ਬਦਲੇ ਨਹੀਂ ਜਾ ਸਕਣਗੇ ਜਦ ਤੱਕ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਲਈ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਈਮੇਲ ਕਰੋ <a href=\"mailto:%(email)s\">%(email)s</a> ਜੇਕਰ ਕਿਸੇ ਕਾਰਨ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ ਸੰਗ੍ਰਹਿਾਂ ਵਿੱਚ ਤਬਦੀਲੀ ਕਰਨ ਦੀ ਲੋੜ ਹੈ।"
 
-#, fuzzy
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "ਟੈਗ ਵਰਤੋਂਕਾਰਾਂ ਦੀ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਲੱਭਣ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਅਤੇ ਛੋਟੇ ਵਰਣਨ ਵਾਲੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ ਜਿਵੇਂ ਕਿ ਟੈਬਾਂ, ਟੂਲਬਾਰ, ਜਾਂ ਟਵਿੱਟਰ। ਤੁਹਾਡੇ ਕੋਲ ਵੱਧ ਤੋਂ ਵੱਧ {0} ਟੈਗ ਹੋ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵੇਂ ਹਨ।"
-
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "ਕੋਮਾ-ਵੱਖ, {0} ਅੱਖਰ ਦਾ ਘੱਟੋ-ਘੱਟ"
-msgstr[1] "ਕੋਮਾ-ਵੱਖ, {0} ਅੱਖਰਾਂ ਦਾ ਘੱਟੋ-ਘੱਟ"
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "ਉਦਾਹਰਨ: ਹਨੇਰਾ, ਸਿਨੇਮਾ, ਨੋਇਰ। ਹੱਦ 20।"
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "ਰਾਖਵਾਂ ਟੈਗ:"
-msgstr[1] "ਰਾਖਵੇਂ ਟੈਗ:"
-
-#, fuzzy
-msgid "Contributions URL"
-msgstr "ਯੋਗਦਾਨ"
-
-msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
-
-msgid "Add-on Details"
-msgstr "ਐਡ-ਆਨ ਵੇਰਵਾ"
-
-msgid "Add-on Details for {0}"
-msgstr "{0} ਲਈ ਐਡ-ਆਨ ਵੇਰਵਾ"
-
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr "ਗੁਣਾਂ, ਕਾਰਗੁਜ਼ਾਰੀ, ਅਤੇ ਹੋਰ ਸੰਬੰਧਤ ਜਾਣਕਾਰੀ ਦੀ ਇੱਕ ਲੰਬੀ ਵਿਆਖਿਆ। ਇਹ ਖੇਤਰ ਕੇਵਲ ਐਡ-ਆਨ ਦੇ ਮੁੱਖ ਸਫ਼ੇ ਤੇ ਵਿਆਖਿਆ ਜਾਂਦਾ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵੀਂ ਹੈ।"
-
-msgid "Default Locale"
-msgstr "ਮੂਲ ਲੋਕੇਲ"
-
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਬਾਰੇ ਜਾਣਕਾਰੀ ਇਸ ਲੋਕੇਲ ਵਿੱਚ ਵਿਖਾਈ ਜਾਂਦੀ ਹੈ ਜਦ ਤੱਕ ਤੁਸੀਂ ਇਸ ਨੂੰ ਇੱਕ ਖ਼ਾਸ-ਲੋਕੇਲ ਤਰਜਮੇ ਨਾਲ ਮੁੜ ਨਹੀਂ ਲਿੱਖਦੇ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
-
-msgid "Homepage"
-msgstr "ਮੁੱਖ ਸਫ਼ਾ"
-
-msgid ""
-"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
-"ons."
-msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦਾ ਕੋਈ ਹੋਰ ਵੀ ਮੁੱਖ-ਸਫ਼ਾ ਹੈ, ਉਸ ਦਾ ਪਤਾ ਇੱਥੇ ਦਰਜ ਕਰੋ। ਜੇਕਰ ਤੁਹਾਡੀ ਵੈੱਬਸਾਈਟ ਦਾ ਤਰਜਮਾ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਹੋਇਆ ਇਸ ਖੇਤਰ ਦੇ ਬਹੁਤ ਸਾਰੇ ਅਨੁਵਾਦ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
-
-msgid "Images"
-msgstr "ਤਸਵੀਰਾਂ"
-
-msgid "Support Information"
-msgstr "ਸਹਿਯੋਗ ਜਾਣਕਾਰੀ"
-
-#. {0} is an addon name
-msgid "Support Information for {0}"
-msgstr "{0} ਲਈ ਸਹਿਯੋਗ ਜਾਣਕਾਰੀ"
-
 msgid "Email"
 msgstr "ਈਮੇਲ"
 
@@ -3100,6 +2977,9 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਇੱਕ ਸਹਿਯੋਗ ਵੈੱਬਸਾਈਟ ਜਾਂ ਫੋਰਮ ਹੈ, ਉਸ ਦਾ ਪਤਾ ਇੱਥੇ ਦਰਜ ਕਰੋ। ਜੇਕਰ ਤੁਹਾਡੀ ਵੈੱਬਸਾਈਟ ਦਾ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਤਰਜਮਾ ਹੋਇਆ, ਇਸ ਖੇਤਰ ਦੇ ਬਹੁਤ ਸਾਰੇ ਅਨੁਵਾਦ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
+
+msgid "Images"
+msgstr "ਤਸਵੀਰਾਂ"
 
 msgid "Technical Details"
 msgstr "ਤਕਨੀਕੀ ਜਾਣਕਾਰੀ"
@@ -3278,9 +3158,6 @@ msgstr "ਇੱਕ ਵੱਖ ਲਾਇਸੰਸ ਚੁਣੋ।"
 msgid "More information on Creative Commons licenses"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
 
-msgid "Tests"
-msgstr "ਪਰਖ"
-
 msgid "General Tests"
 msgstr "ਆਮ ਪਰਖ"
 
@@ -3416,10 +3293,6 @@ msgstr[1] "<strong>{0}</strong> ਸਰਗਰਮ ਉਪਭੋਗੀ"
 msgid "Submit a New Version"
 msgstr "ਇੱਕ ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
 
-#, fuzzy
-msgid "Describe Add-on"
-msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਵਰਣਨ ਕਰੋ"
-
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
 
@@ -3436,6 +3309,10 @@ msgstr "ਸੰਖੇਪ"
 
 msgid "required"
 msgstr "ਜ਼ਰੂਰਤ"
+
+#, fuzzy
+msgid "Description:"
+msgstr "ਵੇਰਵਾ"
 
 #, fuzzy
 msgid "This add-on is experimental"
@@ -3688,6 +3565,9 @@ msgstr "ਥੀਮ ਹਟਾਇਆ।"
 msgid "Theme generator"
 msgstr "ਥੀਮ ਲਾਇਸੰਸ"
 
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr ""
+
 #, fuzzy
 msgid "Theme name"
 msgstr "ਥੀਮ ਨਾਂ"
@@ -3714,43 +3594,6 @@ msgstr "ਇੱਕ ਵੱਖ ਹੈਡਰ ਤਸਵੀਰ ਚੁਣੋ"
 #, fuzzy
 msgid "Select colors for your theme"
 msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ।"
-
-msgid "Header area background"
-msgstr ""
-
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr ""
-
-msgid "Header area text and icons"
-msgstr ""
-
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
-
-msgid "Toolbar area background"
-msgstr ""
-
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
-
-msgid "Toolbar area text and icons"
-msgstr ""
-
-#, fuzzy
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "ਇਹ ਟੈਬ ਟੈਕਸਟ ਦਾ ਰੰਗ ਹੈ।"
-
-msgid "Toolbar field area background"
-msgstr ""
-
-msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
-
-msgid "Toolbar field area text"
-msgstr ""
-
-msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
 
 #, fuzzy
 msgid "optional"
@@ -3892,15 +3735,6 @@ msgstr "ਗੈਰਸੂਚੀਬੱਧ ਕਤਾਰਾਂ"
 msgid "View Statistics Dashboard"
 msgstr "ਅੰਕੜੇ ਵਾਲਾ ਡੈਸ਼ਬੋਰਡ ਵੇਖੋ"
 
-msgid "Compatibility Reports"
-msgstr "ਅਨੁਕੂਲਤਾ ਰਿਪੋਰਟਾਂ"
-
-msgid "{0} failure reports"
-msgstr "{0} ਅਸਫ਼ਲਤਾ ਰਿਪੋਰਟਾਂ"
-
-msgid "{0} success reports"
-msgstr "{0} ਸਫ਼ਲਤਾ ਰਿਪੋਰਟਾਂ"
-
 msgid "Developer News"
 msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
 
@@ -3998,10 +3832,6 @@ msgstr ""
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
-
-#, fuzzy
-msgid "Compatibility Checker"
-msgstr "ਐਡ-ਆਨ ਅਨੁਕੂਲਤਾ ਚੈਕਰ"
 
 msgid "Promote"
 msgstr ""
@@ -4463,6 +4293,9 @@ msgstr "ਪੁਰਾਣੇ ਵਰਜਨ"
 
 msgid "Upload a New Version"
 msgstr "ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ"
+
+msgid "Version"
+msgstr "ਵਰਜਨ"
 
 msgid "Delete Version {version}"
 msgstr "ਵਰਜਨ ਹਟਾਓ {version}"
@@ -6120,60 +5953,6 @@ msgstr ""
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
 
-msgid "Discover Add-ons"
-msgstr "ਐਡ-ਆਨ ਖੋਜੋ"
-
-msgid "What are Add-ons?"
-msgstr "ਐਡ-ਆਨ ਕੀ ਹਨ?"
-
-#, python-format
-msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr "ਐਡ-ਆਨ ਐਪਲੀਕੇਸ਼ਨਾਂ ਹਨ ਜੋ ਤੁਹਾਨੂੰ ਵਾਧੂ ਕਾਰਜਕੁਸ਼ਲਤਾ ਜਾਂ ਸ਼ੈਲੀ ਨਾਲ %(app)s ਨਿਜੀ ਬਣਾਉਣ ਦਿੰਦਾ। ਇੱਕ ਸਮਾਂ-ਬਚਾਉ ਪੱਟੀ, ਮੌਸੂਮ ਸੂਚਕ, ਜਾਂ %(app)s ਨੂੰ ਆਪਣਾ ਬਣਾਉਣ ਲਈ ਥੀਮ ਦਿੱਖ ਨੂੰ ਪਰਖੋ।"
-
-msgid "Learn More About Add-ons"
-msgstr "ਐਡ-ਆਨਾਂ ਬਾਰੇ ਹੋਰ ਜਾਣੋ"
-
-msgid "See all"
-msgstr "ਸਾਰੇ ਵੇਖੋ"
-
-msgid "More ways to customize"
-msgstr "ਸੋਧ ਕਰਨ ਦੇ ਹੋਰ ਢੰਗ"
-
-msgid "Browse all add-ons"
-msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
-
-msgid "See all complete themes"
-msgstr "ਸਾਰੇ ਮੁਕੰਮਲ ਥੀਮ ਵੇਖੋ"
-
-msgid "Close Video"
-msgstr "ਵੀਡੀਓ ਬੰਦ ਕਰੋ"
-
-msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr "ਜਦੋਂ ਵੀਡੀਓ ਚੱਲੇਗੀ, ਜ਼ਿਕਰਯੋਗ ਐਡ-ਆਨ ਇੱਥੇ ਵਿਖਾਈ ਦੇਣਗੇ।"
-
-#. {0} is the user's login name.
-msgid "Hi, {0}"
-msgstr "Hi, {0}"
-
-#, python-format
-msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr "%(app)s ਦੀ ਵਰਤੋਂ ਅਤੇ <a href=\"%(url)s\">ਮੌਜੀਲਾ ਦੇ ਮਿਸ਼ਨ</a>ਨੂੰ ਸਹਿਯੋਗ ਕਰਨ ਲਈ ਧੰਨਵਾਦ!"
-
-msgid "Add-ons downloaded:"
-msgstr "ਐਡ-ਆਨ ਡਾਊਨਲੋਡ ਹੋਇਆ:"
-
-msgid "View Privacy Policy"
-msgstr "ਵੇਖੋ ਪਰਦਾ ਨੀਤੀ"
-
-msgid "Active Users"
-msgstr "ਸਰਗਰਮ ਉਪਭੋਗੀ"
-
-msgid "Last Updated"
-msgstr "ਆਖਰੀ ਅੱਪਡੇਟ ਹੋਇਆ"
-
-msgid "Cancel Installation"
-msgstr "ਇੰਸਟਾਲੇਸ਼ਨ ਰੱਦ"
-
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "ਮੌਜੀਲਾ&rsquo;s ਮਹੀਨੇ ਦੀ ਖਾਸ਼ ਚੋਣ!"
 
@@ -6752,6 +6531,9 @@ msgstr ""
 msgid "Max. Version"
 msgstr "ਮੈਕਸ. ਵਰਜਨ"
 
+msgid "Select an application first"
+msgstr "ਪਹਿਲਾਂ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਚੁਣੋ"
+
 msgid "Comments:"
 msgstr "ਟਿੱਪਣੀਆਂ:"
 
@@ -7096,6 +6878,9 @@ msgstr "ਔਸਤ ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ"
 
 msgid "Abuse Reports"
 msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾਵਾਂ"
+
+msgid "View Privacy Policy"
+msgstr "ਵੇਖੋ ਪਰਦਾ ਨੀਤੀ"
 
 #, fuzzy
 msgid "Requires Payment"
@@ -7550,6 +7335,9 @@ msgstr "{0} ਲਈ ਥੀਮ ਸਮੀਖਿਆ"
 
 msgid "(Probable Duplicate Submission)"
 msgstr "(ਨਕਲ ਦਾਖਲ ਹੋਣ ਦੀ ਸੰਭਾਵਨਾ)"
+
+msgid "Submitted"
+msgstr "ਭੇਜਿਆ"
 
 msgid "Past Review Notes"
 msgstr "ਪਿਛਲੇ ਸਮੀਖਿਆ ਨੋਟ"
@@ -8076,12 +7864,6 @@ msgstr "{0} ਐਡ-ਆਨ ਮੁੱਖ ਸਫ਼ੇ ਤੇ ਵਾਪਸ ਜਾਓ"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> ਐਡ-ਆਨ"
 
-msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"ਥੰਡਰਬਰਡ\"src=\"{0}\">ਐਡਓਨ"
-
-msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> ਐਡ-ਆਨ"
-
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> ਐਡ-ਆਨ"
 
@@ -8427,6 +8209,9 @@ msgstr "ਥੋੜੇ ਜਿਆਦਾ ਵੇਰਵੇ ਵਿੱਚ..."
 msgid "Add-ons I've created"
 msgstr "ਮੇਰੇ ਰਚੇ ਹੋਏ ਐਡ-ਆਨ"
 
+msgid "View all"
+msgstr "ਸਾਰੇ ਵੇਖੋ"
+
 msgid "My Most Popular Themes"
 msgstr "ਮੇਰੇ ਸੱਭ ਤੋ ਜਿਆਦਾ ਮਸ਼ਹੂਰ ਥੀਮ"
 
@@ -8554,9 +8339,3 @@ msgstr "ਇਹ ਵਰਜਨ ਹਵਾਲੇ ਅਤੇ ਟੈਸਟਿੰਗ ਦ�
 
 msgid "Deleted versions can`t be changed."
 msgstr ""
-
-msgid "Binary"
-msgstr "ਬਾਈਨਰੀ"
-
-msgid "Non-binary"
-msgstr "ਨਾਨ-ਬਾਈਨਰੀ"
