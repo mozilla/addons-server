@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 17:10+0000\n"
+"PO-Revision-Date: 2018-10-18 17:32+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -3852,24 +3852,20 @@ msgstr ""
 msgid "Read more about the source code review policy."
 msgstr "ਸੋਰਸ ਕੋਡ ਸਮੀਖਿਆ ਨੀਤੀ ਬਾਰੇ ਹੋਰ ਪੜ੍ਹੋ।"
 
-#, fuzzy
 msgid "Latest News"
-msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
+msgstr "ਤਾਜ਼ਾ ਖ਼ਬਰਾਂ"
 
-#, fuzzy
 msgid "Read more in our Blog"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਲੋੜ"
+msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ ਬਲੌਗ ਪੜ੍ਹੋ"
 
 msgid "Resources"
 msgstr "ਸਰੋਤ"
 
-#, fuzzy
 msgid "Porting"
-msgstr "ਰੇਟਿੰਗ"
+msgstr "ਪੋਰਟਿੰਗ"
 
-#, fuzzy
 msgid "Community"
-msgstr "ਟਿੱਪਣੀ"
+msgstr "ਭਾਈਚਾਰਾ"
 
 msgid "About"
 msgstr "ਬਾਰੇ"
@@ -3880,9 +3876,8 @@ msgstr "ਫ਼ੋਰਮ"
 msgid "Blog"
 msgstr "ਬਲੌਗ"
 
-#, fuzzy
 msgid "Contact Us"
-msgstr "ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰ ਰਿਹਾਂ"
+msgstr "ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ"
 
 msgid "Support"
 msgstr "ਸਹਿਯੋਗ"
@@ -3937,13 +3932,11 @@ msgstr "ਕੁੱਝ ਕੋਡ ਲਿਖੋ"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "ਆਪਣੇ ਕੋਡਿੰਗ ਹੁਨਰ ਦਾ ਯੋਗਦਾਨ ਕਰਕੇ ਐਡ-ਆਨ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰੋ।"
 
-#, fuzzy
 msgid "Get started"
-msgstr "ਸ਼ੁਰੂ ਕਰ ਰਿਹਾ"
+msgstr "ਸ਼ੁਰੂ ਕਰੋ"
 
-#, fuzzy
 msgid "More Ways to Participate"
-msgstr "ਸੋਧ ਕਰਨ ਦੇ ਹੋਰ ਢੰਗ"
+msgstr "ਹਿੱਸਾ ਲੈਣ ਦੇ ਹੋਰ ਤਰੀਕੇ"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
 msgstr "ਫਾਇਰਫਾਕਸ ਨੂੰ ਸਭ ਤੋਂ ਵੱਧ ਅਨੁਕੂਲ ਹੋਣ ਯੋਗ ਬਰਾਊਜ਼ਰ ਉਪਲੱਬਧ ਰੱਖਣ ਲਈ ਤੁਹਾਨੂੰ ਕੋਡਿੰਗ ਦੇ ਹੁਨਰ ਦੀ ਜ਼ਰੂਰਤ ਨਹੀਂ ਹੈ!"
@@ -3973,16 +3966,14 @@ msgstr ""
 msgid "View Resources for Publishers"
 msgstr "ਉਪਭੋਗੀ ਦੇ ਅੰਕੜੇ ਵਿਖਾਓ"
 
-#, fuzzy
 msgid "Welcome Back"
-msgstr "ਜੀ ਆਇਆ ਨੂੰ, {0}"
+msgstr "ਜੀ ਆਇਆ ਨੂੰ"
 
 msgid "Help users discover your extension by creating an appealing listing."
 msgstr "ਇੱਕ ਅਪੀਲ ਕਰਨ ਵਾਲੀ ਸੂਚੀ ਬਣਾ ਕੇ ਉਪਭੋਗਤਾਵਾਂ ਨੂੰ ਤੁਹਾਡੀ ਐਕਸਟੈਨਸ਼ਨ ਨੂੰ ਲੱਭਣ ਵਿੱਚ ਸਹਾਇਤਾ ਕਰੋ।"
 
-#, fuzzy
 msgid "Learn How"
-msgstr "ਹੋਰ ਜਾਣੋ"
+msgstr "ਸਿੱਖੋ ਕਿ ਕਿਵੇਂ"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -3992,9 +3983,8 @@ msgid "Learn More"
 msgstr "ਹੋਰ ਜਾਣੋ"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
 msgid "View All Submissions"
-msgstr "ਸਾਰੇ ਵਰਜਨ ਵੇਖੋ"
+msgstr "ਸਾਰੇ ਸਬਮਿਸ਼ਨ ਵੇਖੋ"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr ""
@@ -4290,9 +4280,8 @@ msgstr "0 ਫ਼ਾਈਲਾਂ"
 msgid "Re-enable Version"
 msgstr "ਵੰਨਗੀ ਨੂੰ ਮੁੜ ਸਮਰੱਥ ਕਰੋ"
 
-#, fuzzy
 msgid "Close Review History"
-msgstr "ਸਮੀਖਿਆ ਇਤਿਹਾਸ"
+msgstr "ਰਿਵਿਊ ਇਤਿਹਾਸ ਬੰਦ ਕਰੋ"
 
 msgid "Not validated."
 msgstr "ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ।"
@@ -4318,16 +4307,14 @@ msgstr "ਸਮੀਖਿਆ ਨੋਟਸ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ �
 msgid "Load older..."
 msgstr "ਲੋਡ ਕਰ ਰਿਹਾ..."
 
-#, fuzzy
 msgid "Leave a reply"
-msgstr "ਇੱਕ ਜਵਾਬ ਲਿਖੋ"
+msgstr "ਜਵਾਬ ਛੱਡਣਾ"
 
 msgid "Reply"
 msgstr "ਜਵਾਬ"
 
-#, fuzzy
 msgid "Listing visibility"
-msgstr "ਐਡ-ਆਨ ਪ੍ਰਤੱਖਤਾ"
+msgstr "ਸੂਚੀ ਦ੍ਰਿਸ਼ਟੀ"
 
 #, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
@@ -6696,9 +6683,8 @@ msgstr "ਜੈੱਟਪੈਕ ਐਡ-ਆਨ"
 msgid "More Information Requested"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
+msgstr "ਮਿਆਦ ਪੁੱਗੇ ਜਾਣਕਾਰੀ ਬੇਨਤੀ"
 
 msgid "Sources provided"
 msgstr "ਸੋਰਸ ਮੁਹੱਇਆ ਕਰਵਾਏ"
@@ -6785,16 +6771,14 @@ msgstr "ਇਹ ਇਸ ਸੰਸਕਰਣ ਦੀ ਮਨਜ਼ੂਰੀ, ਹਸਤ
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "ਉਹ ਐਡ-ਆਨ ਨੂੰ ਰੱਦ ਅਤੇ ਇਸ ਨੂੰ ਸਮੀਖਿਆ ਕਤਾਰ ਵਿੱਚ ਹਟਾ ਦੇਣਗੇ।"
 
-#, fuzzy
 msgid "Confirm Approval"
-msgstr "ਮਨਜ਼ੂਰੀ ਬਕਾਇਆ"
+msgstr "ਮਨਜ਼ੂਰੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "ਇਸ ਐਡ-ਓਨ ਦਾ ਨਵੀਨਤਮ ਜਨਤਕ ਸੰਸਕਰਣ ਆਪਣੇ ਆਪ ਮਨਜ਼ੂਰ ਹੋ ਗਿਆ ਸੀ। ਇਹ ਡਿਵੈਲਪਰ ਨੂੰ ਸੂਚਿਤ ਕੀਤੇ ਬਗੈਰ, ਉਸ ਵਰਜਨ ਦੀ ਮਨਜ਼ੂਰੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰਦਾ ਹੈ।"
 
-#, fuzzy
 msgid "Reject Multiple Versions"
-msgstr "ਵਰਜਨ ਹਟਾਓ"
+msgstr "ਬਹੁ ਵਰਜਨ ਨੂੰ ਰੱਦ ਕਰੋ"
 
 #, fuzzy
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
@@ -6852,13 +6836,11 @@ msgstr "ਅੱਪਡੇਟ ਹੋਇਆ {0}"
 msgid "Review Log"
 msgstr "ਸਮੀਖਿਆ ਮਿਤੀ"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "ਪੂਰੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
+msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਗਾਈਡ"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "ਥੀਮ ਸਮੀਖਿਆ ਕਤਾਰ"
+msgstr "ਥੀਮ ਸਮੀਖਿਆ ਗਾਈਡ"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
