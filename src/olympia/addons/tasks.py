@@ -601,11 +601,13 @@ def add_static_theme_from_lwt(lwt):
     [alog.transfer(addon) for alog in addonlog_qs.iterator()]
 
     # Copy the ADU statistics - the raw(ish) daily UpdateCounts for stats
-    # dashboard and future update counts, and copy the summary numbers for now.
+    # dashboard and future update counts, and copy the average_daily_users.
+    # hotness will be recalculated by the deliver_hotness() cron in a more
+    # reliable way that we could do, so skip it entirely.
     migrate_theme_update_count(lwt, addon)
     addon_updates.update(
         average_daily_users=lwt.persona.popularity or 0,
-        hotness=lwt.persona.movers or 0)
+        hotness=0)
 
     # Logging
     activity.log_create(
