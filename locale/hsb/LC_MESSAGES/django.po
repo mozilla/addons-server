@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-19 17:30+0000\n"
+"PO-Revision-Date: 2018-10-19 17:33+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2798,13 +2798,11 @@ msgstr ""
 "<p>Přidatki móža kelkožkuli awtorow z 2 móžnymaj rólpmaj měć:</p> <ul> <li><b>Wobsedźer:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, inkluziwnje přidawanje a wotstronjenje druhich "
 "awtorow</li> <li><b>Wuwiwar:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, nimo přidawanja a wotstronjenja druhich awtorow</li> </ul>"
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Podrobnosće přidatka"
+msgstr "Dalše podrobnosće"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "Podrobnosće přidatka za {0}"
+msgstr "Dalše podrobnosće za {0}"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "Znački wužiwarjam pomhaja, waš přidatk namakać a měli krótke pomjenjowanja kaž „rajtarki“, „symbolowa lajsta“ abo „Twitter“ być. Móžeće maksimalnje {0} značkow měć."
@@ -2852,9 +2850,8 @@ msgid "Describe Add-on"
 msgstr "Přidatk wopisać"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Přidatk wopisać"
+msgstr "Wopisajće {0}"
 
 msgid "Add-on URL"
 msgstr "URL přidatka"
@@ -3259,9 +3256,8 @@ msgstr "Zjeće:"
 msgid "required"
 msgstr "trěbny"
 
-#, fuzzy
 msgid "Description:"
-msgstr "Wopisanje"
+msgstr "Wopisanje:"
 
 msgid "This add-on is experimental"
 msgstr "Tutón přidatk je eksperimentelny"
