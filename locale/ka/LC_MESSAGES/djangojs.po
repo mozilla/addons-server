@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: 2018-09-17 10:57+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -764,9 +764,17 @@ msgstr "შედეგები ვერ მოიძებნა."
 msgid "Loading..."
 msgstr "იტვირთება...."
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "დარჩენილია <b>{0}</b> სიმბოლო."
+msgstr[1] "დარჩენილია <b>{0}</b> სიმბოლო."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "დარჩენილია <b>{0}</b> სიმბოლო."
 msgstr[1] "დარჩენილია <b>{0}</b> სიმბოლო."
 
@@ -862,9 +870,6 @@ msgstr "{0} სტრიქონი {1} სვეტი {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} სტრიქონი {1}"
-
-msgid "Compatibility Tests"
-msgstr "თავსებადობის შემოწმება"
 
 msgid "Add-on failed validation."
 msgstr "დამატებამ შემოწმება ვერ გაიარა."

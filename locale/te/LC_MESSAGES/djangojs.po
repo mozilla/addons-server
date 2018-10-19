@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: 2018-09-17 16:00+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -762,9 +762,17 @@ msgstr "ఎటువంటి ఫలితాలు లభించలేదు.
 msgid "Loading..."
 msgstr "లోడవుతున్నది..."
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "<b>{0}</b> అక్షరం మిగిలి ఉంది."
+msgstr[1] "<b>{0}</b> అక్షరాలు మిగిలి ఉన్నాయి."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> అక్షరం మిగిలి ఉంది."
 msgstr[1] "<b>{0}</b> అక్షరాలు మిగిలి ఉన్నాయి."
 
@@ -860,9 +868,6 @@ msgstr "{0} వరుస {1} నిలువు వరుస {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} వరుస {1}"
-
-msgid "Compatibility Tests"
-msgstr "అనుకూలత పరీక్షలు"
 
 msgid "Add-on failed validation."
 msgstr "పొడిగింత ధ్రువీకరణ విఫలమైంది."
