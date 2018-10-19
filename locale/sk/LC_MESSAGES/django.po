@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: 2018-10-06 21:01+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -141,10 +141,6 @@ msgstr[2] "Každá značka musí mať aspoň {0} znakov."
 msgid "The text entered has been flagged as spam."
 msgstr ""
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "Doména v URL adrese musí byť jedna z týchto [%s], alebo ich subdoména."
-
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Pokiaľ je doplnok v zozname odporúčaných, nie je možné zmeniť jeho kategórie."
 
@@ -157,6 +153,10 @@ msgstr[2] "Môžete mať len {0} kategórií."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Kategória Rôzne nemôže byť kombinovaná s inými kategóriami."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "Doména v URL adrese musí byť jedna z týchto [%s], alebo ich subdoména."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -210,7 +210,6 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr "Tento doplnok bol jeho vývojármi označený ako experimentálny."
 
 #. {0} is the name of the add-on.
-#. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
 msgstr "Licenčná zmluva s koncovým používateľom pre {0}"
 
@@ -721,6 +720,10 @@ msgid "Admin Tools"
 msgstr "Nástroje správcu"
 
 msgid "Positive integer"
+msgstr ""
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
 msgstr ""
 
 msgid "Incorrect, please try again."
@@ -1351,12 +1354,6 @@ msgstr "Nainštalovať slovník"
 msgid "Install Language Pack"
 msgstr "Nainštalovať jazykový balík"
 
-msgid "Download Dictionary"
-msgstr "Prevziať slovník"
-
-msgid "Download Language Pack"
-msgstr "Prevziať jazykový balík"
-
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
@@ -1526,80 +1523,6 @@ msgstr "Zobraziť všetky zaujímavé doplnky"
 
 msgid "No themes found"
 msgstr "Neboli nájdené žiadne témy"
-
-msgid "All"
-msgstr "Všetko"
-
-msgid "Add-on Compatibility Reports"
-msgstr "Správy o kompatibilite doplnku"
-
-#, python-format
-msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
-msgstr ""
-"<p> Hlásenia, ktoré nám boli odoslané cez doplnok <a href=\"%(url_)s\">Add-on Compatibility Reporter</a>, sú tu dostupné pre vývojárov. Tieto hlásenia nám pomôžu rozpoznať, ktoré doplnky potrebujú "
-"pomoc s podporou pre nadchádzajúcu verziu Firefoxu. </p>"
-
-msgid "Reports for your Add-ons"
-msgstr "Správy pre vaše doplnky"
-
-msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr "Zadaním identifikátora GUID zobrazíte správy, ktoré sme k danému doplnku obdržali."
-
-msgid "{addon} Compatibility Reports"
-msgstr "Správy o kompatibilite doplnku {addon}"
-
-msgid "{0} success report"
-msgid_plural "{0} success reports"
-msgstr[0] "{0} správa o bezproblémovom chode"
-msgstr[1] "{0} správy o bezproblémovom chode"
-msgstr[2] "{0} správ o bezproblémovom chode"
-
-msgid "{0} problem report"
-msgid_plural "{0} problem reports"
-msgstr[0] "{0} správa o problémoch"
-msgstr[1] "{0} správy o problémoch"
-msgstr[2] "{0} správ o problémoch"
-
-msgid "View all"
-msgstr "Zobraziť všetko"
-
-msgid "Filter by Application"
-msgstr "Filter podľa aplikácie"
-
-msgid "Report Type"
-msgstr "Typ správy"
-
-msgid "Version"
-msgstr "Verzia"
-
-msgid "Application Version"
-msgstr "Verzia aplikácie"
-
-msgid "Application Build"
-msgstr "Zostavenie aplikácie"
-
-msgid "Platform"
-msgstr "Platforma"
-
-msgid "e10s Enabled"
-msgstr "e10s povolené"
-
-msgid "e10s Compatible"
-msgstr "Kompatibilita s e10s"
-
-msgid "Submitted"
-msgstr "Odoslané"
-
-msgid "Success"
-msgstr "Úspech"
-
-msgid "Problem"
-msgstr "Problém"
-
-msgid "No reports found."
-msgstr "Neboli nájdené žiadne správy."
 
 msgid "{addon} was created."
 msgstr "Doplnok {addon} bol vytvorený."
@@ -2209,54 +2132,6 @@ msgstr "Šport a hry"
 msgid "User Interface"
 msgstr "Používateľské rozhranie"
 
-msgid "Appearance and Customization"
-msgstr "Vzhľad a prispôsobenie"
-
-msgid "Calendar and Date/Time"
-msgstr "Kalendár a dátum/čas"
-
-msgid "Chat and IM"
-msgstr "Konverzácie a IM"
-
-msgid "Message Composition"
-msgstr "Písanie správ"
-
-msgid "Contacts"
-msgstr "Kontakty"
-
-msgid "Folders and Filters"
-msgstr "Priečinky a filtre"
-
-msgid "Import/Export"
-msgstr "Import/Export"
-
-msgid "Message and News Reading"
-msgstr "Čítanie správ"
-
-msgid "Privacy and Security"
-msgstr "Súkromie a bezpečnosť"
-
-msgid "Downloading and File Management"
-msgstr "Preberanie a správa súborov"
-
-msgid "Interface Customizations"
-msgstr "Prispôsobenie vzhľadu"
-
-msgid "Language Support and Translation"
-msgstr "Jazyková podpora a preklady"
-
-msgid "Photos and Media"
-msgstr "Fotografie a médiá"
-
-msgid "RSS, News and Blogging"
-msgstr "Kanály RSS, novinky a blogovanie"
-
-msgid "Site-specific"
-msgstr "Pre špecifickú stránku"
-
-msgid "Web and Developer Tools"
-msgstr "Webové a vývojárske nástroje"
-
 msgid "All Rights Reserved"
 msgstr "Všetky práva vyhradené"
 
@@ -2559,12 +2434,6 @@ msgstr "Odoslaný súbor nebolo možné spracovať."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
-msgid "Application"
-msgstr "Aplikácia"
-
-msgid "Select an application first"
-msgstr "Najskôr zvoľte aplikáciu"
-
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Nemôžete mať viac ako 3 vyžadované doplnky."
 
@@ -2678,9 +2547,6 @@ msgstr "Autor bol pri vašom doplnku odobraný"
 msgid "Validate Add-on"
 msgstr "Overiť doplnok"
 
-msgid "Check Add-on Compatibility"
-msgstr "Kontrola kompatibility doplnku"
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Obrázky nemôžu byť väčšie ako %d kb."
@@ -2706,6 +2572,43 @@ msgstr "Verzia %s bola opätovne povolená."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Pri nahrávaní kontrola zlyhala a preto jej výsledky nemusia byť kompletné. Venujte tomu preto pri kontrole zvláštnu pozornosť."
+
+msgid "Header area background"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr ""
+
+msgid "Header area text and icons"
+msgstr ""
+
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr ""
+
+msgid "Toolbar area background"
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr ""
+
+msgid "Toolbar area text and icons"
+msgstr ""
+
+#, fuzzy
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Jedná sa o farbu textov na kartách."
+
+msgid "Toolbar field area background"
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr ""
+
+msgid "Toolbar field area text"
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr ""
 
 #, fuzzy
 msgid "Review requested."
@@ -2781,10 +2684,6 @@ msgstr "Novinky od vývojárov"
 msgid "Add-on Validator"
 msgstr "Overenie doplnku"
 
-# 89%
-msgid "Add-on Compatibility Checker"
-msgstr "Kontrola kompatibility doplnku"
-
 msgid "Development Add-ons"
 msgstr "Nástroje pre vývojárov"
 
@@ -2809,13 +2708,6 @@ msgstr "Hľadať"
 msgid "Use the field below to upload your add-on package."
 msgstr "Pre načítanie vášho doplnku použite pole nižšie."
 
-#, python-format
-msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr "Vezmite na vedomie, že tento nástroj funguje len so zastaranými doplnkami. API WebExtension sú detailne <a href=\"%(webext_doc_url)s\">zdokumentované tu</a>."
-
-msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr "Po načítaní bude spustená sada automatizovaných testov, ktoré skontrolujú kompatibilitu s nasledujúcou verziou aplikácie:"
-
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "Po načítaní bude na vašom súbore spustená sada automatizovaných testov."
 
@@ -2831,9 +2723,6 @@ msgstr "Výsledky overenia"
 
 msgid "Validated at:"
 msgstr "Overené dňa:"
-
-msgid "Tested for compatibility against:"
-msgstr "Kompatibilita otestovaná proti:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Posledná aktivita pre moje doplnky"
@@ -2884,6 +2773,9 @@ msgstr "Aktualizovať kompatibilitu"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr "Tu zadané informácie o aplikácií umožňujú používateľom nainštalovať doplnok aj vtedy, keď inštalačný manifest v balíku uvádza, že doplnok nie je kompatibilný."
+
+msgid "Application"
+msgstr "Aplikácia"
 
 msgid "Supported Versions"
 msgstr "Podporované verzie"
@@ -2945,12 +2837,60 @@ msgstr ""
 "<li><b>Vývojár</b> Môže spravovať všetko, čo sa týka stránky doplnku, s výnimkou pridávania/odoberania autorov a správy platieb.</li> <li><b>Pozorovateľ:</b> Môže zobraziť nastavenia doplnku a jeho "
 "štatistiky, ale nesmie robiť žiadne zmeny.</li> </ul>"
 
-msgid "Basic Information"
-msgstr "Základné informácie"
+#, fuzzy
+msgid "Additional Details"
+msgstr "Podrobnosti o doplnku"
+
+#, fuzzy
+msgid "Additional Details for {0}"
+msgstr "Podrobnosti o doplnku {0}"
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr ""
+
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] "Oddelené čiarkou, minimálne {0} znak."
+msgstr[1] "Oddelené čiarkou, minimálne {0} znaky."
+msgstr[2] "Oddelené čiarkou, minimálne {0} znakov."
+
+msgid "Example: dark, cinema, noir. Limit 20."
+msgstr "Príklad: dark, cinema, noir. Maximálne 20."
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] "Rezervovaná značka:"
+msgstr[1] "Rezervované značky:"
+msgstr[2] "Rezervované značky:"
+
+#, fuzzy
+msgid "Contributions URL"
+msgstr "Príspevky"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
+
+msgid "Default Locale"
+msgstr "Predvolený jazyk"
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr ""
+
+msgid "Homepage"
+msgstr "Domovská stránka"
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr ""
+
+msgid "Describe Add-on"
+msgstr "Popíšte doplnok"
 
 #. {0} is the addon name
-msgid "Basic Information for {0}"
-msgstr "Základné informácie pre {0}"
+#, fuzzy
+msgid "Describe {0}"
+msgstr "Popíšte doplnok"
 
 msgid "Add-on URL"
 msgstr "URL adresa doplnku"
@@ -3007,64 +2947,6 @@ msgstr ""
 "Ak je doplnok pre túto aplikáciu vedený ako odporúčaný, nemôžete meniť jeho umiestnenie v kategóriách. Ak máte dôvod, prečo chcete kategórie upraviť, napíšte nám na e-mail <a href=\"mailto:%(email)s"
 "\">%(email)s</a>."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
-
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Oddelené čiarkou, minimálne {0} znak."
-msgstr[1] "Oddelené čiarkou, minimálne {0} znaky."
-msgstr[2] "Oddelené čiarkou, minimálne {0} znakov."
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Príklad: dark, cinema, noir. Maximálne 20."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "Rezervovaná značka:"
-msgstr[1] "Rezervované značky:"
-msgstr[2] "Rezervované značky:"
-
-#, fuzzy
-msgid "Contributions URL"
-msgstr "Príspevky"
-
-msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
-
-msgid "Add-on Details"
-msgstr "Podrobnosti o doplnku"
-
-msgid "Add-on Details for {0}"
-msgstr "Podrobnosti o doplnku {0}"
-
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Default Locale"
-msgstr "Predvolený jazyk"
-
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Homepage"
-msgstr "Domovská stránka"
-
-msgid ""
-"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
-"ons."
-msgstr ""
-
-msgid "Images"
-msgstr "Obrázky"
-
-msgid "Support Information"
-msgstr "Informácie o podpore"
-
-#. {0} is an addon name
-msgid "Support Information for {0}"
-msgstr "Informácie o podpore pre doplnok {0}"
-
 msgid "Email"
 msgstr "E-mailová adresa"
 
@@ -3082,6 +2964,9 @@ msgid ""
 msgstr ""
 "Ak má váš doplnok stránku podpory alebo fórum, uveďte ich adresu tu. Ak je vaša webová stránka preložená do viacerých jazykov, môžete pridať viacero prekladov tohto poľa. Toto pole je relevantne "
 "len pre uverejnené doplnky."
+
+msgid "Images"
+msgstr "Obrázky"
 
 msgid "Technical Details"
 msgstr "Technické podrobnosti"
@@ -3261,9 +3146,6 @@ msgstr "Zvoľte inú licenciu."
 msgid "More information on Creative Commons licenses"
 msgstr "Požadované dodatočné informácie"
 
-msgid "Tests"
-msgstr "Testy"
-
 msgid "General Tests"
 msgstr "Všeobecné testy"
 
@@ -3397,9 +3279,6 @@ msgstr[2] "<strong>{0}</strong> aktívnych používateľov"
 msgid "Submit a New Version"
 msgstr "Odoslať novú verziu"
 
-msgid "Describe Add-on"
-msgstr "Popíšte doplnok"
-
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
 
@@ -3414,6 +3293,10 @@ msgstr "Súhrn:"
 
 msgid "required"
 msgstr "vyžadované"
+
+#, fuzzy
+msgid "Description:"
+msgstr "Popis"
 
 msgid "This add-on is experimental"
 msgstr "Tento doplnok je experimentálny"
@@ -3653,6 +3536,9 @@ msgstr "Téma odstránená."
 msgid "Theme generator"
 msgstr "Licencia témy"
 
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr ""
+
 #, fuzzy
 msgid "Theme name"
 msgstr "názov témy"
@@ -3680,43 +3566,6 @@ msgstr "Zvoľte iný obrázok hlavičky"
 #, fuzzy
 msgid "Select colors for your theme"
 msgstr "Zvoľte farby vašej témy."
-
-msgid "Header area background"
-msgstr ""
-
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr ""
-
-msgid "Header area text and icons"
-msgstr ""
-
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
-
-msgid "Toolbar area background"
-msgstr ""
-
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
-
-msgid "Toolbar area text and icons"
-msgstr ""
-
-#, fuzzy
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "Jedná sa o farbu textov na kartách."
-
-msgid "Toolbar field area background"
-msgstr ""
-
-msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
-
-msgid "Toolbar field area text"
-msgstr ""
-
-msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
 
 #, fuzzy
 msgid "optional"
@@ -3856,16 +3705,6 @@ msgstr "Recenzie používateľa"
 msgid "View Statistics Dashboard"
 msgstr "Zobraziť štatistiku"
 
-msgid "Compatibility Reports"
-msgstr "Hlásenia o kompatibilite"
-
-msgid "{0} failure reports"
-msgstr "{0} chybových hlásení"
-
-# 94%
-msgid "{0} success reports"
-msgstr "{0} úspešných hlásení"
-
 msgid "Developer News"
 msgstr "Novinky od vývojárov"
 
@@ -3958,10 +3797,6 @@ msgstr "Stav stránky"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
-
-# 89%
-msgid "Compatibility Checker"
-msgstr "Kontrola kompatibility doplnku"
 
 msgid "Promote"
 msgstr "Propagácia"
@@ -4414,6 +4249,9 @@ msgstr "Všetky verzie"
 
 msgid "Upload a New Version"
 msgstr "Odoslať novú verziu"
+
+msgid "Version"
+msgstr "Verzia"
 
 msgid "Delete Version {version}"
 msgstr "Odstránenie verzie {version}"
@@ -6239,62 +6077,6 @@ msgstr ""
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
 
-msgid "Discover Add-ons"
-msgstr "Objavte doplnky"
-
-msgid "What are Add-ons?"
-msgstr "Čo sú to doplnky?"
-
-#, python-format
-msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
-"Doplnky sú aplikácie, ktoré umožňujú prispôsobiť si %(app)s pridaním nových funkcií alebo zmenou vzhľadu. Vyskúšajte čas šetriaci bočný panel, upozorňovanie na predpoveď počasia alebo nový "
-"tematický vzhľad a pretvorte si %(app)s podľa seba."
-
-msgid "Learn More About Add-ons"
-msgstr "Ďalšie informácie o doplnkoch"
-
-msgid "See all"
-msgstr "Zobraziť všetky"
-
-msgid "More ways to customize"
-msgstr "Množstvo spôsobov prispôsobenia"
-
-msgid "Browse all add-ons"
-msgstr "Prehľadávať všetky doplnky"
-
-msgid "See all complete themes"
-msgstr "Zobraziť všetky plné témy"
-
-msgid "Close Video"
-msgstr "Zavrieť video"
-
-msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr "Počas prehrávania videa sa tu zobrazia všetky spomenuté doplnky."
-
-#. {0} is the user's login name.
-msgid "Hi, {0}"
-msgstr "Vitajte, {0}"
-
-#, python-format
-msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr "Ďakujeme, že používate %(app)s a podporujete <a href=\"%(url)s\">misiu Mozilly</a>!"
-
-msgid "Add-ons downloaded:"
-msgstr "Prevzaté doplnky:"
-
-msgid "View Privacy Policy"
-msgstr "Zobraziť zásady ochrany súkromia"
-
-msgid "Active Users"
-msgstr "Aktívnych používateľov"
-
-msgid "Last Updated"
-msgstr "Aktualizované"
-
-msgid "Cancel Installation"
-msgstr "Zrušiť inštaláciu"
-
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Výber mesiaca od Mozilly"
 
@@ -6868,6 +6650,9 @@ msgstr "Hľadať podľa názvu doplnku/e-mailu autora/guid"
 msgid "Max. Version"
 msgstr "Max. verzia"
 
+msgid "Select an application first"
+msgstr "Najskôr zvoľte aplikáciu"
+
 msgid "Comments:"
 msgstr "Komentáre:"
 
@@ -7220,6 +7005,9 @@ msgstr "Priemerný počet denných používateľov"
 
 msgid "Abuse Reports"
 msgstr "Hlásené zneužitia"
+
+msgid "View Privacy Policy"
+msgstr "Zobraziť zásady ochrany súkromia"
 
 msgid "Requires Payment"
 msgstr "Vyžaduje platbu"
@@ -7674,6 +7462,9 @@ msgstr ""
 
 msgid "(Probable Duplicate Submission)"
 msgstr ""
+
+msgid "Submitted"
+msgstr "Odoslané"
 
 msgid "Past Review Notes"
 msgstr ""
@@ -8209,12 +8000,6 @@ msgstr "Návrat na úvodnú stránku {0} Add-ons"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Doplnky"
 
-msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> Doplnky"
-
-msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Doplnky"
-
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> Doplnky"
 
@@ -8561,6 +8346,9 @@ msgstr "Trošku podrobnejšie..."
 msgid "Add-ons I've created"
 msgstr "Doplnky, ktoré som vytvoril"
 
+msgid "View all"
+msgstr "Zobraziť všetko"
+
 msgid "My Most Popular Themes"
 msgstr "Moje najviac populárne témy"
 
@@ -8695,9 +8483,3 @@ msgstr "Tieto verzie sú zobrazené na ukážku a testovacie účely. Vždy by s
 
 msgid "Deleted versions can`t be changed."
 msgstr "Odstránené verzie nemožno meniť."
-
-msgid "Binary"
-msgstr "Binárny"
-
-msgid "Non-binary"
-msgstr "Nebinárny"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: 2018-08-21 11:20+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,10 +137,6 @@ msgstr[1] "Alle tagger må være minst {0} tegn."
 msgid "The text entered has been flagged as spam."
 msgstr ""
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
-
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Kategorier kan ikke endres mens utvidelsen er fremhevet for denne applikasjonen."
 
@@ -152,6 +148,10 @@ msgstr[1] "Du kan bare ha {0} kategorier."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Diverse-kategorien kan ikke kombineres med andre kategorier."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr ""
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -206,7 +206,6 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr "Denne utvidelsen er fjernet av forfatteren."
 
 #. {0} is the name of the add-on.
-#. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
 msgstr "Sluttbrukerlisens for {0}"
 
@@ -705,6 +704,10 @@ msgid "Admin Tools"
 msgstr "Adminverktøy"
 
 msgid "Positive integer"
+msgstr ""
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
 msgstr ""
 
 msgid "Incorrect, please try again."
@@ -1334,12 +1337,6 @@ msgstr "Installer ordbok"
 msgid "Install Language Pack"
 msgstr "Installer språkpakke"
 
-msgid "Download Dictionary"
-msgstr "Last ned ordbok"
-
-msgid "Download Language Pack"
-msgstr "Last ned språkpakke"
-
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
@@ -1506,80 +1503,6 @@ msgstr "Vis alle fremgangsrike"
 
 msgid "No themes found"
 msgstr "Ingen temaer funnet"
-
-msgid "All"
-msgstr "Alle"
-
-msgid "Add-on Compatibility Reports"
-msgstr "Utvidelseskompatibilitetsrapporter"
-
-#, python-format
-msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
-msgstr ""
-"<p> Rapporter sendt til oss gjennom <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> samles her slik at utviklere kan se de. Disse rapportene hjelper oss å avgjøre hvilke utvidelser som "
-"trenger hjelp for å støtte en kommende Firefox-versjon. </p>"
-
-msgid "Reports for your Add-ons"
-msgstr "Rapporter for din utvidelse"
-
-msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr "Skriv inn GUID for en utvidelse nedenfor for å vise rapporter som er mottatt."
-
-msgid "{addon} Compatibility Reports"
-msgstr "{addon} kompatibilitetsrapporter"
-
-msgid "{0} success report"
-msgid_plural "{0} success reports"
-msgstr[0] "{0} suksessrapport"
-msgstr[1] "{0} suksessrapporter"
-
-msgid "{0} problem report"
-msgid_plural "{0} problem reports"
-msgstr[0] "{0} problemrapport"
-msgstr[1] "{0} problemrapporter"
-
-msgid "View all"
-msgstr "Vis alle"
-
-msgid "Filter by Application"
-msgstr "Filtrer etter program"
-
-msgid "Report Type"
-msgstr "Rapporttype"
-
-msgid "Version"
-msgstr "Versjon"
-
-#, fuzzy
-msgid "Application Version"
-msgstr "Programversjoner"
-
-msgid "Application Build"
-msgstr "Programbygg"
-
-msgid "Platform"
-msgstr "Plattform"
-
-msgid "e10s Enabled"
-msgstr ""
-
-#, fuzzy
-msgid "e10s Compatible"
-msgstr "Uferdig"
-
-msgid "Submitted"
-msgstr "Sendt"
-
-msgid "Success"
-msgstr "Vellykket"
-
-msgid "Problem"
-msgstr "Problem"
-
-msgid "No reports found."
-msgstr "Ingen rapporter funnet."
 
 msgid "{addon} was created."
 msgstr "{addon} ble opprettet."
@@ -2205,55 +2128,6 @@ msgstr "Sport og spill"
 msgid "User Interface"
 msgstr "Brukergrensesnitt"
 
-msgid "Appearance and Customization"
-msgstr "Utseende og tilpasninger"
-
-msgid "Calendar and Date/Time"
-msgstr "Kalender og dato/tid"
-
-msgid "Chat and IM"
-msgstr ""
-
-#, fuzzy
-msgid "Message Composition"
-msgstr "Gi bidrag"
-
-msgid "Contacts"
-msgstr "Kontakter"
-
-msgid "Folders and Filters"
-msgstr "Mapper og filtre"
-
-msgid "Import/Export"
-msgstr ""
-
-msgid "Message and News Reading"
-msgstr ""
-
-msgid "Privacy and Security"
-msgstr ""
-
-msgid "Downloading and File Management"
-msgstr ""
-
-msgid "Interface Customizations"
-msgstr "Grensesnitttilpasninger"
-
-msgid "Language Support and Translation"
-msgstr "Språkstøtte og oversetning"
-
-msgid "Photos and Media"
-msgstr "Foto og media"
-
-msgid "RSS, News and Blogging"
-msgstr "RSS, nyheter og blogger"
-
-msgid "Site-specific"
-msgstr ""
-
-msgid "Web and Developer Tools"
-msgstr "Web og utviklerverktøy"
-
 msgid "All Rights Reserved"
 msgstr "Med enerett"
 
@@ -2562,12 +2436,6 @@ msgstr "Du kan ikke laste opp flere filer for denne versjonen."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
-msgid "Application"
-msgstr "Program"
-
-msgid "Select an application first"
-msgstr ""
-
 msgid "There cannot be more than 3 required add-ons."
 msgstr ""
 
@@ -2681,9 +2549,6 @@ msgstr ""
 msgid "Validate Add-on"
 msgstr "Valider utvidelsen"
 
-msgid "Check Add-on Compatibility"
-msgstr ""
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr ""
@@ -2708,6 +2573,42 @@ msgid "Version %s re-enabled."
 msgstr ""
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
+msgstr ""
+
+msgid "Header area background"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr ""
+
+msgid "Header area text and icons"
+msgstr ""
+
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr ""
+
+msgid "Toolbar area background"
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr ""
+
+msgid "Toolbar area text and icons"
+msgstr ""
+
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr ""
+
+msgid "Toolbar field area background"
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr ""
+
+msgid "Toolbar field area text"
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 #, fuzzy
@@ -2783,9 +2684,6 @@ msgstr "Utviklerkommentarer"
 msgid "Add-on Validator"
 msgstr ""
 
-msgid "Add-on Compatibility Checker"
-msgstr "Kompatiblitetskontroll for utvidelser"
-
 msgid "Development Add-ons"
 msgstr "Utviklingsutvidelser"
 
@@ -2810,13 +2708,6 @@ msgstr "Søk"
 msgid "Use the field below to upload your add-on package."
 msgstr ""
 
-#, python-format
-msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
-
-msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
-
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
@@ -2832,9 +2723,6 @@ msgstr "Valideringsresultat"
 
 msgid "Validated at:"
 msgstr "Validert den:"
-
-msgid "Tested for compatibility against:"
-msgstr ""
 
 msgid "Recent Activity for My Add-ons"
 msgstr ""
@@ -2882,6 +2770,9 @@ msgstr "Oppdater kompatibilitet"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
+
+msgid "Application"
+msgstr "Program"
 
 msgid "Supported Versions"
 msgstr "Støttede versjoner"
@@ -2939,12 +2830,59 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
-msgid "Basic Information"
+#, fuzzy
+msgid "Additional Details"
+msgstr "Utvidelsesdetaljer"
+
+#, fuzzy
+msgid "Additional Details for {0}"
+msgstr "Tekniske detaljer for {0}"
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
 
-#. {0} is the addon name
-msgid "Basic Information for {0}"
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Example: dark, cinema, noir. Limit 20."
 msgstr ""
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] ""
+msgstr[1] ""
+
+#, fuzzy
+msgid "Contributions URL"
+msgstr "Bidragsyter"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
+
+msgid "Default Locale"
+msgstr ""
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr ""
+
+msgid "Homepage"
+msgstr "Hjemmeside"
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr ""
+
+#, fuzzy
+msgid "Describe Add-on"
+msgstr "Flere utvidelser"
+
+#. {0} is the addon name
+#, fuzzy
+msgid "Describe {0}"
+msgstr "Flere utvidelser"
 
 msgid "Add-on URL"
 msgstr "URL for utvidelser"
@@ -2999,62 +2937,6 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
-
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] ""
-msgstr[1] ""
-
-#, fuzzy
-msgid "Contributions URL"
-msgstr "Bidragsyter"
-
-msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
-
-msgid "Add-on Details"
-msgstr "Utvidelsesdetaljer"
-
-msgid "Add-on Details for {0}"
-msgstr ""
-
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Default Locale"
-msgstr ""
-
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Homepage"
-msgstr "Hjemmeside"
-
-msgid ""
-"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
-"ons."
-msgstr ""
-
-msgid "Images"
-msgstr "Bilder"
-
-msgid "Support Information"
-msgstr ""
-
-#. {0} is an addon name
-msgid "Support Information for {0}"
-msgstr ""
-
 msgid "Email"
 msgstr "E-post"
 
@@ -3070,6 +2952,9 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+
+msgid "Images"
+msgstr "Bilder"
 
 msgid "Technical Details"
 msgstr "Tekniske detaljer"
@@ -3239,9 +3124,6 @@ msgstr "Velg en annen lisens."
 msgid "More information on Creative Commons licenses"
 msgstr "Mer informasjon er forespurt"
 
-msgid "Tests"
-msgstr "Tester"
-
 msgid "General Tests"
 msgstr "Generelle tester"
 
@@ -3377,10 +3259,6 @@ msgstr[1] "<strong>{0}</strong> aktive brukere"
 msgid "Submit a New Version"
 msgstr "Send inn ny utvidelse"
 
-#, fuzzy
-msgid "Describe Add-on"
-msgstr "Flere utvidelser"
-
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
 
@@ -3396,6 +3274,10 @@ msgstr "Oppsummering:"
 
 msgid "required"
 msgstr "påkrevd"
+
+#, fuzzy
+msgid "Description:"
+msgstr "Beskrivelse"
 
 #, fuzzy
 msgid "This add-on is experimental"
@@ -3637,6 +3519,9 @@ msgstr "Gjennomgang av tema"
 msgid "Theme generator"
 msgstr ""
 
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr ""
+
 #, fuzzy
 msgid "Theme name"
 msgstr "Gjennomgang av tema"
@@ -3660,42 +3545,6 @@ msgid "Select a different header image"
 msgstr ""
 
 msgid "Select colors for your theme"
-msgstr ""
-
-msgid "Header area background"
-msgstr ""
-
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr ""
-
-msgid "Header area text and icons"
-msgstr ""
-
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
-
-msgid "Toolbar area background"
-msgstr ""
-
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
-
-msgid "Toolbar area text and icons"
-msgstr ""
-
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr ""
-
-msgid "Toolbar field area background"
-msgstr ""
-
-msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
-
-msgid "Toolbar field area text"
-msgstr ""
-
-msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 #, fuzzy
@@ -3832,15 +3681,6 @@ msgstr ""
 msgid "View Statistics Dashboard"
 msgstr ""
 
-msgid "Compatibility Reports"
-msgstr ""
-
-msgid "{0} failure reports"
-msgstr ""
-
-msgid "{0} success reports"
-msgstr ""
-
 msgid "Developer News"
 msgstr ""
 
@@ -3934,10 +3774,6 @@ msgstr ""
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
-
-#, fuzzy
-msgid "Compatibility Checker"
-msgstr "Kompatibilitetssenter for utvidelser"
 
 msgid "Promote"
 msgstr ""
@@ -4384,6 +4220,9 @@ msgstr "Vis alle versjoner"
 
 msgid "Upload a New Version"
 msgstr ""
+
+msgid "Version"
+msgstr "Versjon"
 
 msgid "Delete Version {version}"
 msgstr ""
@@ -6037,60 +5876,6 @@ msgstr ""
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
 
-msgid "Discover Add-ons"
-msgstr ""
-
-msgid "What are Add-ons?"
-msgstr "Hva er utvidelser?"
-
-#, python-format
-msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
-
-msgid "Learn More About Add-ons"
-msgstr ""
-
-msgid "See all"
-msgstr ""
-
-msgid "More ways to customize"
-msgstr ""
-
-msgid "Browse all add-ons"
-msgstr ""
-
-msgid "See all complete themes"
-msgstr ""
-
-msgid "Close Video"
-msgstr ""
-
-msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
-
-#. {0} is the user's login name.
-msgid "Hi, {0}"
-msgstr ""
-
-#, python-format
-msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr ""
-
-msgid "Add-ons downloaded:"
-msgstr ""
-
-msgid "View Privacy Policy"
-msgstr "Vis personvernbestemmelser"
-
-msgid "Active Users"
-msgstr ""
-
-msgid "Last Updated"
-msgstr ""
-
-msgid "Cancel Installation"
-msgstr ""
-
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr ""
 
@@ -6647,6 +6432,9 @@ msgstr ""
 msgid "Max. Version"
 msgstr ""
 
+msgid "Select an application first"
+msgstr ""
+
 msgid "Comments:"
 msgstr ""
 
@@ -6977,6 +6765,9 @@ msgstr "Gjennomsnittelig daglige brukere"
 
 msgid "Abuse Reports"
 msgstr "Misbruksrapporter"
+
+msgid "View Privacy Policy"
+msgstr "Vis personvernbestemmelser"
 
 #, fuzzy
 msgid "Requires Payment"
@@ -7423,6 +7214,9 @@ msgstr ""
 
 msgid "(Probable Duplicate Submission)"
 msgstr ""
+
+msgid "Submitted"
+msgstr "Sendt"
 
 msgid "Past Review Notes"
 msgstr ""
@@ -7937,12 +7731,6 @@ msgstr "Gå tilbake til hjemmesiden til {0}-utvidelser"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr ""
 
-msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr ""
-
-msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr ""
-
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr ""
 
@@ -8282,6 +8070,9 @@ msgstr ""
 msgid "Add-ons I've created"
 msgstr ""
 
+msgid "View all"
+msgstr "Vis alle"
+
 msgid "My Most Popular Themes"
 msgstr ""
 
@@ -8409,9 +8200,3 @@ msgstr ""
 
 msgid "Deleted versions can`t be changed."
 msgstr ""
-
-msgid "Binary"
-msgstr "Binær"
-
-msgid "Non-binary"
-msgstr "Ikke-binær"

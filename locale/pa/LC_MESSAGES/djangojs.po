@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: 2015-06-29 22:55+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -770,9 +770,17 @@ msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ।"
 msgid "Loading..."
 msgstr "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ..."
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
+msgstr[1] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
 msgstr[1] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
 
@@ -869,9 +877,6 @@ msgstr ""
 #, fuzzy
 msgid "{0} line {1}"
 msgstr "{1} ਵਿੱਚੋਂ {0}"
-
-msgid "Compatibility Tests"
-msgstr "ਅਨਕੂਲਤਾ ਟੈਸਟ"
 
 msgid "Add-on failed validation."
 msgstr "ਐਡ-ਆਨ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ।"
