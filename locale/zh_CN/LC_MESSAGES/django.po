@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-19 17:10+0000\n"
+"PO-Revision-Date: 2018-10-19 17:11+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -682,7 +682,7 @@ msgstr "正整数"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "此字段只能用于链接到外部网站。不允许为 %(domain)s 上的 URL。"
 
 msgid "Incorrect, please try again."
 msgstr "不正确，请重试。"
@@ -2709,10 +2709,10 @@ msgid ""
 msgstr "<p>附加组件可以有任意位作者，每位作者的身份有两种可选：</p> <ul> <li><b>所有者：</b>可以全面的管理附加组件的各项信息，包括添加和移除其他作者</li> <li><b>开发者：</b>可以全面的管理附加组件的各项信息，但不能添加和移除其他作者</li></ul>"
 
 msgid "Additional Details"
-msgstr ""
+msgstr "附加信息"
 
 msgid "Additional Details for {0}"
-msgstr ""
+msgstr "{0} 的附加信息"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "标签可以帮助用户找到您的附加组件，它应该是简短的描述词，例如：tabs、toolbar、twitter 等。您最多可以使用 {0} 个标签。"
@@ -3138,7 +3138,7 @@ msgid "required"
 msgstr "必需"
 
 msgid "Description:"
-msgstr ""
+msgstr "描述："
 
 msgid "This add-on is experimental"
 msgstr "这个附加组件为实验性"
@@ -3358,7 +3358,7 @@ msgid "Theme generator"
 msgstr "主题生成器"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr ""
+msgstr "警告：此向导不支持您最后所上传版本中清单文件使用的下列属性，它将忽略这些属性："
 
 msgid "Theme name"
 msgstr "主题名称"
