@@ -58,9 +58,7 @@ class DevHub(Base):
 
     @property
     def logged_in(self):
-        if self.is_element_displayed(*self.header._sign_in_locator):
-            return False
-        return True
+        return not self.is_element_displayed(*self.header._sign_in_locator)
 
     @property
     def addons_list(self):
