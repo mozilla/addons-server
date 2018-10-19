@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-19 10:10+0000\n"
+"PO-Revision-Date: 2018-10-19 10:21+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -4178,6 +4178,8 @@ msgid ""
 "I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
 " and Cookies Privacy Notice%(link_close)s."
 msgstr ""
+"ਮੈਂ %(agreement_link_open)sFirefox ਐਡ-ਆਨ ਡਿਸਟ੍ਰੀਬਿਊਸ਼ਨ ਐਗਰੀਮੈਂਟ %(link_close)s ਨਾਲ ਸਹਿਮਤ ਹਾਂ ਅਤੇ ਮੇਰੀ ਜਾਣਕਾਰੀ ਨੂੰ %(privacy_notice_link_open)sWebsites, ਸੰਚਾਰ ਅਤੇ ਕੁਕੀਜ਼ ਪਰਾਈਵੇਸੀ ਨੋਟਿਸ %(link_close)s"
+" ਵਿੱਚ ਦਰਸਾਏ ਅਨੁਸਾਰ ਵਿਹਾਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
 
 msgid "Submit Theme"
 msgstr "ਥੀਮ ਦਾਖਲ ਕਰੋ"
@@ -4594,7 +4596,7 @@ msgstr "ਕਿਤੇ ਵੀ ਤੁਸੀਂ ਵੈਬ-ਸੋਸ਼ਲ ਮੀਡ�
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਗਲੋਬਲ ਵਾਰ ਦੀ ਜਾਂਚ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
@@ -5223,7 +5225,7 @@ msgstr "ਮਲਟੀਪਲ ਖੋਜ ਪ੍ਰਦਾਤਾਵਾਂ ਦੀ ਸ�
 
 #. editorial content for the discovery pane.
 msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਇਸ ਨੂੰ ਬਾਅਦ ਵਿਚ ਸੰਭਾਲੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store web pages to access across devices."
