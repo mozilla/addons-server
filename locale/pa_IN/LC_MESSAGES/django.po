@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-19 13:26+0000\n"
+"PO-Revision-Date: 2018-10-19 17:05+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -4432,7 +4432,7 @@ msgstr "ਕ੍ਰਿਪਟੁਕੁਰੰਜਾਈ ਲਈ ਖਰਾਬ ਕੰਪ
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਆਟੋਮੈਟਿਕ ਵਿਆਕਰਣ ਚੈੱਕ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
@@ -4448,7 +4448,7 @@ msgstr "ਫਾਇਰਫਾਕਸ ਦੇ ਹਾਲਤ ਪੱਟੀ ਵਿੱਚ �
 
 #. editorial content for the discovery pane.
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਆਸਾਨ ਅਨੁਵਾਦ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
@@ -4480,7 +4480,7 @@ msgstr "ਫੋਕਸਡ ਦੇਖਣ ਦੇ ਅਨੁਭਵ ਲਈ ਵੀਡੀ�
 
 #. editorial content for the discovery pane.
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਚੰਗੀ ਜ਼ਮੀਰ ਵਿੱਚ {start_sub_heading}ਨਾਲ ਖੋਜ ਕਰੋ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, python-format
@@ -4541,7 +4541,7 @@ msgstr "ਫਾਇਰਫਾਕਸ ਨੂੰ ਵੈਬਸਾਈਟ ਨੂੰ ਕ�
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਬਾਅਦ ਵਿੱਚ ਪਾਠ ਸੰਭਾਲੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
@@ -4557,7 +4557,7 @@ msgstr "ਆਪਣੇ ਵੈਬ-ਅਧਾਰਿਤ ਇਨਬਾਕਸ ਤੋਂ �
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਆਪਣੀਆਂ ਟੈਬਸ ਖੋਜੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
@@ -7428,7 +7428,7 @@ msgid "User Signups"
 msgstr "ਉਪਭੋਗੀ ਸਾਇਨ-ਅਪ"
 
 msgid "Archived Data"
-msgstr ""
+msgstr "ਆਰਕਾਈਵਡ ਡੇਟਾ"
 
 msgid "Custom Date Range"
 msgstr "ਪਸੰਦੀਦਾ ਮਿਤੀ ਸੀਮਾ"
