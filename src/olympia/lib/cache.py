@@ -61,7 +61,6 @@ def memoize_key(prefix, *args, **kwargs):
     """
     key = hashlib.md5()
     for arg in itertools.chain(args, sorted(kwargs.items())):
-        print('UPDATE KEY', str(arg))
         key.update(str(arg))
     return 'memoize:{prefix}:{key}'.format(prefix=prefix, key=key.hexdigest())
 
@@ -83,7 +82,6 @@ def memoize(prefix, timeout=60):
             def wrapped_func():
                 return func(*args, **kwargs)
             key = memoize_key(prefix, *args, **kwargs)
-            print('XXXXXXXXXX', prefix, args, kwargs)
             return cache_get_or_set(key, wrapped_func, timeout=timeout)
         return wrapper
     return decorator
