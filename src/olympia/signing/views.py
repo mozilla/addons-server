@@ -44,7 +44,7 @@ def with_addon(allow_missing=False):
                     addon = None
                 else:
                     msg = ugettext(
-                        'Could not find add-on with id "{}".').format(guid)
+                        'Could not find add-on with guid "{}".').format(guid)
                     return Response(
                         {'error': msg},
                         status=status.HTTP_404_NOT_FOUND)
