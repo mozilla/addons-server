@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-09-17 11:00+0000\n"
+"PO-Revision-Date: 2018-10-19 21:53+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -748,16 +748,14 @@ msgid "Loading..."
 msgstr "Memuatkan..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<b>{0}</b> aksara lagi."
+msgstr[0] "<b>{0}</b> aksara"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "<b>{0}</b> aksara lagi."
+msgstr[0] "<b>{0}</b> aksara lagi"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Ciri ini dinyahdayakan buat sementara waktu sementara kami melakukan penyelenggaraan laman web. Sila cuba semula sebentar lagi."

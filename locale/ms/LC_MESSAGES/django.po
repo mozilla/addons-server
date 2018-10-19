@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-19 15:29+0000\n"
+"PO-Revision-Date: 2018-10-19 21:54+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2733,13 +2733,11 @@ msgstr ""
 "<p>Add-ons boleh diuruskan oleh beberapa pengarang dengan 2 pilihan peranan:</p> <ul> <li><b>Pemilik:</b> Boleh menguruskan semua aspek penyenaraian add-on, termasuk memasukkan atau menyingkirkan "
 "pengarang lain</li> <li><b>Pembangun:</b> Boleh menguruskan semua aspek penyenaraian add-on, kecuali memasukkan atau menyingkirkan pengarang lain</li> </ul>"
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Butiran Add-on"
+msgstr "Butiran Tambahan"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "Butiran Add-on untuk {0}"
+msgstr "Butiran Tambahan untuk {0}"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "Tag membantu pengguna mencari add-on anda, dan keterangannya perlu ringkas seperti tab, bar alatan, atau twitter. Anda boleh ada {0} tag maksimum."
@@ -2780,9 +2778,8 @@ msgid "Describe Add-on"
 msgstr "Huraikan Add-on"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Huraikan Add-on"
+msgstr "Huraikan {0}"
 
 msgid "Add-on URL"
 msgstr "URL Add-on"
@@ -3180,9 +3177,8 @@ msgstr "Ringkasan:"
 msgid "required"
 msgstr "diperlukan"
 
-#, fuzzy
 msgid "Description:"
-msgstr "Keterangan"
+msgstr "Keterangan:"
 
 msgid "This add-on is experimental"
 msgstr "Add-on ini masih eksperimen"
@@ -3407,7 +3403,7 @@ msgid "Theme generator"
 msgstr "Penjana tema"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr ""
+msgstr "Amaran: sifat manifes dalam versi terbaru yang anda muat naik berikut tidak disokong oleh bestari ini dan akan diabaikan:"
 
 msgid "Theme name"
 msgstr "Nama tema"
