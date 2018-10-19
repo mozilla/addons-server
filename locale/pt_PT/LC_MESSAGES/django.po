@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-19 14:07+0000\n"
+"PO-Revision-Date: 2018-10-19 14:11+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -704,7 +704,7 @@ msgstr "Inteiro positivo"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Este campo apenas pode ser utilizado para ligações para sites externos. URLs em %(domain)s não são permitidos."
 
 msgid "Incorrect, please try again."
 msgstr "Incorreto, por favor, tente novamente."
@@ -3457,7 +3457,7 @@ msgid "Theme generator"
 msgstr "Gerador de temas"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr ""
+msgstr "Aviso: as seguintes propriedades de manifesto que a sua versão mais recente carregada utilizou no seu manifesto não são suportadas neste assistente e serão ignoradas:"
 
 msgid "Theme name"
 msgstr "Nome do tema"
