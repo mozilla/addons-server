@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-19 08:31+0000\n"
+"PO-Revision-Date: 2018-10-19 09:37+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -1681,7 +1681,7 @@ msgid "{addon} removed from {collection}."
 msgstr "{addon} ਤੋਂ{collection}ਹਟਾਇਆ।"
 
 msgid "{rating} for {addon} written."
-msgstr ""
+msgstr "{rating} ਲਈ {addon} ਲਿਖਿਆ।"
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -3979,7 +3979,7 @@ msgid "View All Submissions"
 msgstr "ਸਾਰੇ ਸਬਮਿਸ਼ਨ ਵੇਖੋ"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
+msgstr "ਇਹ ਉਹ ਥਾਂ ਹੈ ਜਿੱਥੇ ਤੁਸੀਂ ਆਪਣੇ ਐਡਆਨ ਅਤੇ ਥੀਮ ਵੇਖੋ ਅਤੇ ਪ੍ਰਬੰਧਿਤ ਕਰਦੇ ਹੋ। ਆਪਣਾ ਪਹਿਲਾ ਐਡਆਨ ਪਬਲਿਸ਼ ਕਰਨ ਲਈ,\"ਆਪਣੀ ਪਹਿਲੀ ਐਡਆਨ ਜਮ੍ਹਾਂ ਕਰੋ\" ਜਾਂ \"ਆਪਣੀ ਪਹਿਲੀ ਥੀਮ ਭੇਜੋ\" ਤੇ ਕਲਿੱਕ ਕਰੋ।"
 
 #, fuzzy
 msgid "Submit Your First Add-on"
