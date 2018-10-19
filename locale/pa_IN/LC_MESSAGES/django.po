@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-19 09:37+0000\n"
+"PO-Revision-Date: 2018-10-19 10:10+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -2525,7 +2525,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "ਥੰਡਰਬਰਡ ਅਤੇ ਸੀਮੌਂਕੀ ਲਈ ਐਡਆਨ ਹੁਣ addons.thunderbird.net ਤੇ ਸੂਚੀਬੱਧ ਅਤੇ ਰੱਖੇ ਜਾ ਰਹੇ ਹਨ। ਤੁਸੀਂ ਨਵੀਂ ਸਾਈਟ ਤੇ ਆਪਣੇ ਐਡਆਨ ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਲਈ ਉਸੇ ਖਾਤੇ ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ।"
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "ਫਾਇਰਫਾਕਸ ਵਿਚ ਪੁਰਾਣੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਹੁਣ ਸਮਰਥਿਤ ਨਹੀਂ ਹਨ।"
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "ਫਾਇਰਫਾਕਸ 53 ਨਾਲ ਸ਼ੁਰੂ ਹੋ ਰਿਹਾ ਹੈ, ਇਸ ਸਾਈਟ ਤੇ ਨਵੇਂ ਐਡਆਨ ਸਿਰਫ਼ WebExtensions ਹੋ ਸਕਦੇ ਹਨ।"
@@ -4070,7 +4070,7 @@ msgid "Live Testing"
 msgstr "ਸੂਚੀ ਵੇਖੋ"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "ਲਾਈਵ ਟੈਸਟਿੰਗ ਅਤੇ ਡੀਬਗਿੰਗ ਲਈ ਅਸਥਾਈ ਰੂਪ ਵਿੱਚ ਫਾਇਰਫਾਕਸ ਵਿੱਚ ਆਪਣਾ ਐਕਸਟੈਂਸ਼ਨ ਇੰਸਟਾਲ ਕਰੋ।"
 
 msgid "Transfer ownership"
 msgstr "ਮਾਲਕੀ ਦੀ ਤਬਾਦਲਾ"
@@ -4521,7 +4521,7 @@ msgstr "ਇੱਕ ਹਲਕਾ ਅਤੇ ਪ੍ਰਭਾਵਸ਼ਾਲੀ ਵ�
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਵੀਡੀਓਜ਼ ਸੁਧਾਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
@@ -4529,7 +4529,7 @@ msgstr "ਨਵੀਆਂ YouTube ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ, ਜਿਵ�
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਆਸਾਨੀ ਨਾਲ ਚਿੱਤਰ ਲੱਭੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
@@ -4546,7 +4546,7 @@ msgstr "ਆਪਣੇ ਬਰਾਊਜ਼ਰ ਦੇ ਸਹੂਲਤ ਨਾਲ ਆ�
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਪਹੁੰਚ ਗਿਆਨ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
@@ -4554,7 +4554,7 @@ msgstr "ਆਟੋਮੈਟਿਕ ਆਪਣੇ ਖੋਜ ਨਤੀਜਿਆਂ �
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "YouTube ਵਿਗਿਆਪਨ ਹਟਾਓ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
@@ -4562,7 +4562,7 @@ msgstr "YouTube ਤੇ ਨਜ਼ਰ ਆਉਣ ਤੋਂ ਤੰਗ ਕਰਨ ਵ�
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਕਿਤੇ ਵੀ ਪੜ੍ਹੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
@@ -4570,7 +4570,7 @@ msgstr "ਆਪਣੇ ਰਸਾਲੇ ਲਈ ਖ਼ਬਰਾਂ, ਕਹਾਣੀ�
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਆਪਣੀ ਟੈਬਜ਼ ਨੂੰ ਸ਼ੁਰੂ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
@@ -4703,7 +4703,7 @@ msgstr "ਇੱਕ ਹੀ ਚੀਜ ਨੂੰ ਦੁਹਰਾਓਨ ਤੋਂ ਰ
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਈਮੇਲ ਵਿਗਿਆਪਨ ਬਲਾਕ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
@@ -5215,7 +5215,7 @@ msgstr "ਬਿਹਤਰ ਦੇਖੇ ਗਏ ਅਨੁਭਵ ਲਈ ਰਾਤ ਦ
 
 #. editorial content for the discovery pane.
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਚਿੱਤਰ ਖੋਜੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
