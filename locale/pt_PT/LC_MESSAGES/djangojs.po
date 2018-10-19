@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-09-17 14:20+0000\n"
-"Last-Translator: Fabio M Caldas <fabiomcaldas@gmail.com>\n"
+"PO-Revision-Date: 2018-10-19 14:07+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -764,18 +764,16 @@ msgid "Loading..."
 msgstr "A carregar..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "Falta <b>{0}</b> caractere."
-msgstr[1] "Faltam <b>{0}</b> caracteres."
+msgstr[0] "<b>{0}</b> caractere"
+msgstr[1] "<b>{0}</b> caracteres"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "Falta <b>{0}</b> caractere."
-msgstr[1] "Faltam <b>{0}</b> caracteres."
+msgstr[0] "Falta <b>{0}</b> caractere"
+msgstr[1] "Faltam <b>{0}</b> caracteres"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Esta funcionalidade está temporariamente desativada enquanto realizamos a manutenção do website. Por favor, verifique de novo mais tarde."
