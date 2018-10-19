@@ -8,6 +8,7 @@ import pygit2
 
 from django.conf import settings
 from django.utils import translation
+from django.utils.functional import cached_property
 
 import olympia.core.logger
 
@@ -69,17 +70,19 @@ class AddonGitRepository(object):
             str(addon_id),
             package_type)
 
+    @cached_property
+    def git_repository(self):
         if not os.path.exists(self.git_repository_path):
             os.makedirs(self.git_repository_path)
-            self.git_repository = pygit2.init_repository(
+            git_repository = pygit2.init_repository(
                 path=self.git_repository_path,
                 bare=False)
             # Write first commit to 'master' to act as HEAD
             tree = self.git_repository.TreeBuilder().write()
-            self.git_repository.create_commit(
+            git_repository.create_commit(
                 'HEAD',  # ref
-                self.get_author(),  # author
-                self.get_author(),  # commitor
+                self.get_author(),  # author, using addons-robot
+                self.get_author(),  # commiter, using addons-robot
                 'Initializing repository',  # message
                 tree,  # tree
                 [])  # parents
@@ -87,10 +90,12 @@ class AddonGitRepository(object):
             log.debug('Initialized git repository {path}'.format(
                 path=self.git_repository_path))
         else:
-            self.git_repository = pygit2.Repository(self.git_repository_path)
+            git_repository = pygit2.Repository(self.git_repository_path)
+
+        return git_repository
 
     @classmethod
-    def extract_and_commit_from_file_obj(cls, file_obj, channel):
+    def extract_and_commit_from_file_obj(cls, file_obj, channel, author=None):
         """Extract all files from `file_obj` and comit them.
 
         This is doing the following:
@@ -188,7 +193,11 @@ class AddonGitRepository(object):
 
             oid = worktree.repo.create_commit(
                 None,
-                repo.get_author(), repo.get_author(),
+                # author, using the actual uploading user
+                repo.get_author(author),
+                # committer, using addons-robot because that's the user
+                # actually doing the commit.
+                repo.get_author(),  # commiter, using addons-robot
                 message,
                 tree,
                 # Set the current branch HEAD as the parent of this commit
@@ -208,10 +217,14 @@ class AddonGitRepository(object):
         file_obj.version.update(git_hash=commit.hex)
         return repo
 
-    def get_author(self):
-        return pygit2.Signature(
-            name='Mozilla Add-ons Robot',
-            email='addons-dev-automation+github@mozilla.com')
+    def get_author(self, user=None):
+        if user is not None:
+            author_name = user.name
+            author_email = user.email
+        else:
+            author_name = 'Mozilla Add-ons Robot'
+            author_email = 'addons-dev-automation+github@mozilla.com'
+        return pygit2.Signature(name=author_name, email=author_email)
 
     def find_or_create_branch(self, name):
         """Lookup or create the branch named `name`"""

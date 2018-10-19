@@ -11,6 +11,7 @@ from django.utils.functional import cached_property
 from django.utils.translation import ugettext
 
 import jinja2
+import waffle
 
 from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
@@ -33,6 +34,7 @@ from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
+from olympia.lib.git import AddonGitRepository
 
 from .compare import version_dict, version_int
 
@@ -246,6 +248,13 @@ class Version(OnChangeMixin, ModelBase):
         # After the upload has been copied to all platforms, remove the upload.
         storage.delete(upload.path)
         version_uploaded.send(sender=version)
+
+        if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
+            # Extract into git repository
+            AddonGitRepository.extract_and_commit_from_file_obj(
+                file_obj=version.all_files[0],
+                channel=channel,
+                author=upload.user)
 
         # Generate a preview and icon for listed static themes
         if (addon.type == amo.ADDON_STATICTHEME and
