@@ -15,6 +15,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
     clean_nl, has_links, ImageCheck, slug_validator,
     subscribe_newsletter, unsubscribe_newsletter, urlparams)
+from olympia.api.utils import is_gate_active
 from olympia.users.models import DeniedName, UserProfile
 from olympia.users.tasks import resize_photo
 from olympia.users import notifications
@@ -163,6 +164,15 @@ class UserProfileSerializer(PublicUserProfileSerializer):
                 tmp_destination, instance.picture_path,
                 set_modified_on=instance.serializable_reference())
         return instance
+
+    def to_representation(self, obj):
+        data = super(UserProfileSerializer, self).to_representation(obj)
+        request = self.context.get('request', None)
+
+        if request and is_gate_active(request,
+                                      'del-accounts-fxa-edit-email-url'):
+            data.pop('fxa_edit_email_url', None)
+        return data
 
 
 group_rules = {

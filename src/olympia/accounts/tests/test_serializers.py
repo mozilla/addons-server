@@ -208,6 +208,12 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer,
             data = super(TestUserProfileSerializer, self).test_basic()
             assert data['fxa_edit_email_url'] == expected_url
 
+        # And to make sure it's not present in v3
+        gates = {None: ('del-accounts-fxa-edit-email-url',)}
+        with override_settings(DRF_API_GATES=gates):
+            data = super(TestUserProfileSerializer, self).test_basic()
+            assert 'fxa_edit_email_url' not in data
+
 
 class TestUserNotificationSerializer(TestCase):
 
