@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-19 08:11+0000\n"
+"PO-Revision-Date: 2018-10-19 08:31+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -3499,7 +3499,7 @@ msgid "Code minifiers or obfuscators"
 msgstr "ਕੋਡ ਮਾਈਨੀਫਾਇਰ ਜਾਂ ਓਫਿਫਸਕਟਰ"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
-msgstr ""
+msgstr "ਟੂਲ ਜੋ ਬਹੁਤੀਆਂ ਫਾਈਲਾਂ ਨੂੰ ਇੱਕ ਫਾਈਲ ਵਿੱਚ ਜੋੜਦੇ ਹਨ, ਜਿਵੇਂ ਕਿ <span class=\"tech-emphasis\">webpack</span>"
 
 msgid "Web template engines, both for HTML and CSS"
 msgstr "ਵੈੱਬ ਟੈਪਲੇਟ ਇੰਜਣ, ਦੋਨਾਂ ਲਈ HTML ਅਤੇ CSS"
@@ -3913,7 +3913,7 @@ msgid "Review Add-ons"
 msgstr "ਇਸ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ ਕਰੋ"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "ਸਵੈਸੇਵੀ ਸਮੀਖਿਅਕਾਂ ਨੂੰ ਵਰਤਣ ਲਈ ਐਡਆਨ ਸੁਰੱਖਿਅਤ ਅਤੇ ਭਰੋਸੇਯੋਗ ਰੱਖਣ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਹਨ। ਉਨ੍ਹਾਂ ਨੂੰ ਬਹੁਤ ਵਧੀਆ ਸਹੂਲਤਾਂ ਵੀ ਮਿਲਦੀਆਂ ਹਨ!"
 
 msgid "Join us!"
 msgstr "ਸਾਡੇ ਨਾਲ ਰਲੋ!"
@@ -4372,7 +4372,7 @@ msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery
 msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਲੁਕਾਉਣਾ ਇਸ ਨੂੰ ਗੈਲਰੀ ਵਿੱਚ ਵਿਖਾਈ ਦੇਣ ਤੋਂ ਰੋਕੇਗਾ ਅਤੇ ਵਰਤੋਂਕਾਰਾਂ ਨੂੰ ਆਪਣੇ ਆਪ ਅੱਪਡੇਟਾਂ ਦੇਣਾ ਬੰਦ ਕਰ ਦੇਵੇਗਾ।"
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "ਸਮੀਖਿਆ ਦੀ ਉਡੀਕ ਵਾਲੀਆਂ ਫਾਈਲਾਂ ਨੂੰ ਅਸਮਰਥਿਤ ਕੀਤਾ ਜਾਵੇਗਾ ਅਤੇ ਤੁਹਾਨੂੰ ਨਵੇਂ ਵਰਜਨ ਨੂੰ ਅਪਲੋਡ ਕਰਨ ਦੀ ਲੋੜ ਹੋਵੇਗੀ।"
 
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "ਪੁਸ਼ਟੀ ਕਰੋ ਕੀ ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਲੁਕਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
@@ -4401,7 +4401,7 @@ msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
 
 #. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਸਨੀਕੀ ਟ੍ਰੈਕਕਰਸ ਨੂੰ ਰੋਕੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
@@ -4409,7 +4409,7 @@ msgstr "ਬਲਾਕ ਅਵਿਵਹਾਰਕ ਟ੍ਰੈਕਕਰਸ ਅਤੇ
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਨਵੇਂ ਟੈਬ ਪੰਨਿਆਂ ਨੂੰ ਸੋਧੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
@@ -4417,15 +4417,15 @@ msgstr "ਅਨੁਕੂਲ ਬੈਕਗਰਾਊਂਡ, ਸਥਾਨਕ ਮੌ�
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਆਸਾਨੀ ਨਾਲ ਅਨੁਵਾਦ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "ਕੋਈ ਵੀ ਪਾਠ ਨੂੰ ਹਾਈਲਾਈਟ ਕਰੋ, ਸੱਜਾ ਕਲਿਕ ਕਰੋ ਅਤੇ ਤੁਰੰਤ ਅਨੁਵਾਦ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਚਿੱਤਰ ਖੋਜੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
@@ -4433,15 +4433,15 @@ msgstr "ਇੰਜਣਾਂ ਦੀ ਇੱਕ ਲੜੀ ਤੋਂ ਉਲਟ ਚਿ
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਵਿਗਿਆਪਨ ਨੂੰ ਰੋਕਣਾ ਅਤੇ ਗੋਪਨੀਯਤਾ ਸੁਰੱਖਿਆ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "ਇੱਕ ਸਧਾਰਨ ਸੈੱਟ-ਅੱਪ ਤੁਹਾਨੂੰ ਤੁਹਾਡੇ ਦੁਆਰਾ ਦੇਖੀਆਂ ਗਈਆਂ ਵਿਗਿਆਪਨਾਂ ਤੇ ਨਿਯੰਤਰਣ ਅਤੇ ਤੁਹਾਨੂੰ ਇੰਟਰਨੈੱਟ ਤੇ ਕਿਵੇਂ ਟ੍ਰੈਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਟੈਬਾਂ ਨੂੰ ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
@@ -4449,7 +4449,7 @@ msgstr "ਕੀ ਤੁਹਾਡੇ ਕੋਲ ਖੁਲ੍ਹੀਆਂ ਟੈਬ�
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਫੇਸਬੁੱਕ ਟਰੈਕਿੰਗ ਬੰਦ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
@@ -4465,7 +4465,7 @@ msgstr "ਕਿਸੇ ਵੀ ਵੈਬ ਪੰਨੇ ਤੇ ਸ਼ਬਦ ਨੂੰ
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਤੁਰੰਤ ਮੌਸਮ ਅਪਡੇਟ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
@@ -4497,7 +4497,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਆਪਣੀ ਇਮੋਜੀ ਗੇਮ ਨੂੰ ਵਧਾਓ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
@@ -4751,7 +4751,7 @@ msgstr "ਜਦੋਂ ਤੁਸੀਂ ਵੈਬ ਬ੍ਰਾਊਜ਼ ਕਰਦ�
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਈਪਬ ਫਾਈਲਾਂ ਪੜ੍ਹੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
