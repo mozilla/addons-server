@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-09-17 11:03+0000\n"
+"PO-Revision-Date: 2018-10-19 15:41+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -762,18 +762,16 @@ msgid "Loading..."
 msgstr "Laddar..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<b>{0}</b> tecken kvar."
-msgstr[1] "<b>{0}</b> tecken kvar."
+msgstr[0] "<b>{0}</b> tecken"
+msgstr[1] "<b>{0}</b> tecken"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "<b>{0}</b> tecken kvar."
-msgstr[1] "<b>{0}</b> tecken kvar."
+msgstr[0] "<b>{0}</b> tecken kvar"
+msgstr[1] "<b>{0}</b> tecken kvar"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Den här funktionen är tillfälligt inaktiverad under tiden vi utför underhåll på webbplatsen. Vänligen kom tillbaka lite senare."
