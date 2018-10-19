@@ -5,7 +5,6 @@ from urlparse import urlparse
 
 from django.conf import settings
 from django.core import mail
-from django.core.cache import cache
 from django.forms.models import model_to_dict
 from django.utils.encoding import force_text
 

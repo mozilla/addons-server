@@ -66,12 +66,6 @@ class TestViews(TestCase):
         self.assert3xx(
             response, self.url_list + '?page=3#version-%s' % version)
 
-    # We are overriding this here for now till
-    # https://github.com/mozilla/addons-server/issues/8602 is fixed.
-    @override_settings(CACHES={'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211')
-    }})
     def test_version_detail_cache_key_normalized(self):
         """Test regression with memcached cache-key.
 

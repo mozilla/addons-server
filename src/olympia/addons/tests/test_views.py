@@ -2,11 +2,9 @@
 import json
 import random
 import re
-import os
 
 from django.conf import settings
 from django.core import mail
-from django.core.cache import cache
 from django.test.utils import override_settings
 from django.test.client import Client
 from django.utils.http import urlunquote
@@ -1024,17 +1022,6 @@ class TestPersonas(object):
         return AddonUser.objects.create(addon=addon, user_id=999)
 
 
-# Overwrite the caches setting to a MemcachedCache backend to test a
-# regression that caused cache-keys to be longer than 250 characters
-# https://github.com/mozilla/addons-server/issues/8598
-cache_settings = settings.CACHES.copy()
-cache_settings['default'] = {
-    'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-    'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),
-}
-
-
-@override_settings(CACHES=cache_settings)
 class TestPersonaDetailPage(TestPersonas, TestCase):
 
     def setUp(self):
