@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-19 07:30+0000\n"
+"PO-Revision-Date: 2018-10-19 07:48+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -838,7 +838,7 @@ msgid "Themes"
 msgstr "ਥੀਮ"
 
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "ਹੋਰ ਸੋਧਣਾ ਚਾਹੁੰਦੇ ਹੋ? <b> ਪੂਰੀ ਥੀਮਸ</b>ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ"
 
 msgid "Collections"
 msgstr "ਸੰਗ੍ਰਹਿ "
@@ -904,7 +904,7 @@ msgid "Invalid Authorization header. No credentials provided."
 msgstr "ਅਯੋਗ ਅਧਿਕਾਰਤ ਸਿਰਲੇਖ। ਕੋਈ ਪ੍ਰਮਾਣ-ਪੱਤਰ ਮੁਹੱਈਆ ਨਹੀਂ ਕੀਤੇ ਗਏ।"
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "ਅਵੈਧ ਅਧਿਕਾਰ ਸਿਰਲੇਖ। ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਸਤਰ ਵਿੱਚ ਸਪੇਸ ਨਹੀਂ ਹੋਣੀ ਚਾਹੀਦੀ।"
 
 msgid "Signature has expired."
 msgstr "ਦਸਤਖਤ ਦੀ ਮਿਆਦ ਪੁੱਗ ਗਈ ਹੈ।"
@@ -942,6 +942,8 @@ msgstr "ਸਹੀ ਐਪਲੀਕੇਸ਼ਨ ਵੰਨਗੀ"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
+"ਮੋਜ਼ੀਲਾ ਐਡਆਨ ਕੋਲ ਐਡਆਨ ਪੇਸ਼ ਕੀਤੇ ਜਾਣ ਵਾਲੇ ਕੋਲ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਹੇਠਲੇ ਐਪਲੀਕੇਸ਼ਨਾਂ ਦਾ ਸਮਰਥਨ ਕਰਨ ਵਾਲੀ ਇੱਕ ਮੈਨੀਫੈਸਟ ਫਾਇਲ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ। ਇਹਨਾਂ ਐਪਲੀਕੇਸ਼ਨਾਂ ਲਈ ਕੇਵਲ ਹੇਠਾਂ ਦਿੱਤੇ ਗਏ ਵਰਜਨ ਹੀ ਅਨੁਮਤੀ ਦਿੱਤੀ ਜਾਂਦੀ "
+"ਹੈ।"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
@@ -2520,16 +2522,16 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr "ਵਰਗ ਬਦਲੇ ਨਹੀਂਂ ਜਾ ਸਕਦੇ ਜਦ ਕਿ ਤੁਹਾਡਾ ਐਡਓਨ ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਲਈ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਹੈ।"
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr ""
+msgstr "ਥੰਡਰਬਰਡ ਅਤੇ ਸੀਮੌਂਕੀ ਲਈ ਐਡਆਨ ਹੁਣ addons.thunderbird.net ਤੇ ਸੂਚੀਬੱਧ ਅਤੇ ਰੱਖੇ ਜਾ ਰਹੇ ਹਨ। ਤੁਸੀਂ ਨਵੀਂ ਸਾਈਟ ਤੇ ਆਪਣੇ ਐਡਆਨ ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਲਈ ਉਸੇ ਖਾਤੇ ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ।"
 
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr ""
+msgstr "ਫਾਇਰਫਾਕਸ 53 ਨਾਲ ਸ਼ੁਰੂ ਹੋ ਰਿਹਾ ਹੈ, ਇਸ ਸਾਈਟ ਤੇ ਨਵੇਂ ਐਡਆਨ ਸਿਰਫ਼ WebExtensions ਹੋ ਸਕਦੇ ਹਨ।"
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
+msgstr "ਪੁਰਾਤਨ ਐਡ-ਆਨ Firefox57 ਜਾਂ ਇਸ ਤੋਂ ਵੱਧ ਦੇ ਅਨੁਕੂਲ ਨਹੀਂ ਹਨ। 56 ਜਾਂ ਹੇਠਲੇ ਦੀ ਸਭ ਤੋਂ ਵੱਧ ਵਰਤੋਂ ਕਰੋ।"
 
 msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
 msgstr "Firefox ਲਈ ਪੁਰਾਣਾ ਭਾਸ਼ਾ ਪੈਕ ਹੁਣ ਸਮਰਥਿਤ ਨਹੀਂ ਹਨ। ਇੱਕ ਵੈਬ ਐਕਸਟੈਂਸ਼ਨ ਮਾਹਰ ਦੀ ਸਥਾਪਨਾ ਲਈ ਜ਼ਰੂਰੀ ਹੈ। ਵਧੇਰੇ ਵੇਰਵਿਆਂ ਲਈ {mdn_link} ਦੇਖੋ।"
@@ -3357,7 +3359,7 @@ msgid "This add-on is experimental"
 msgstr "ਇਹ ਐਡ-ਆਨ ਪ੍ਰਯੋਗਾਤਮਕ ਹੈ"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
-msgstr ""
+msgstr "ਇਸ ਚੋਣ ਨੂੰ ਚੁਣੋ ਜੇ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਪ੍ਰਯੋਗਾਤਮਕ ਹੈ ਜਾਂ ਆਮ ਵਰਤੋਂ ਲਈ ਤਿਆਰ ਨਹੀਂ ਹੈ।  ਐਡ-ਆਨ ਨੂੰ ਸੂਚੀਬੱਧ ਕੀਤਾ ਜਾਵੇਗਾ ਪਰੰਤੂ ਦ੍ਰਿਸ਼ਟੀ ਘਟਾਈ ਹੋਵੇਗੀ।  ਤੁਸੀਂ ਬਾਅਦ ਵਿੱਚ ਇਸ ਸੈਟਿੰਗ ਨੂੰ ਬਦਲ ਸਕਦੇ ਹੋ।"
 
 msgid "Select a category for this add-on:"
 msgstr "ਇਸ ਐਡ-ਆਨ ਲਈ ਸ਼੍ਰੇਣੀ ਚੁਣੋ:"
@@ -3383,7 +3385,7 @@ msgid "Notes to Reviewer:"
 msgstr "ਸਮੀਖਿਅਕ ਲਈ ਨੋਟ:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "ਕੀ ਕੁਝ ਵੀ ਹੈ ਜੋ ਸਾਡੇ ਸਮੀਖਿਅਕ ਨੂੰ ਇਸ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ ਕਰਨ ਸਮੇਂ ਧਿਆਨ ਰੱਖਣਾ ਚਾਹੀਦਾ ਹੈ?"
 
 msgid "Remember"
 msgstr "ਯਾਦ ਰੱਖੋ"
@@ -3637,7 +3639,7 @@ msgid "Toolbar field area background"
 msgstr "ਟੂਲਬਾਰ ਖੇਤਰ ਦੀ ਬੈਕਗ੍ਰਾਉਂਡ"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
+msgstr "ਸੰਦ ਪੱਟੀ ਵਿੱਚ ਖੇਤਰਾਂ ਲਈ ਬੈਕਗਰਾਊਂਡ ਰੰਗ, ਜਿਵੇਂ ਕਿ URL ਪੱਟੀ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ:  ਟੂਲਬਾਰ_ਫੀਲਡ।"
 
 msgid "Toolbar field area text"
 msgstr "ਸੰਦ-ਪੱਟੀ ਇਲਾਕਾ ਖੇਤਰ ਲਿਖਤ"
@@ -3753,7 +3755,7 @@ msgid "%(position)s of %(total)s"
 msgstr "%(total)s ਦੀ %(position)s"
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "ਸਵੈ-ਵੰਡ ਲਈ ਹਸਤਾਖਰ ਕੀਤੇ ਗਏ। ਅਪਡੇਟਸ ਤੁਹਾਡੇ ਦੁਆਰਾ ਹੈਂਡਲ ਕੀਤੇ ਜਾਂਦੇ ਹਨ।"
 
 msgid "Latest Version:"
 msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
@@ -3808,7 +3810,7 @@ msgstr "ਤੁਹਾਡੇ ਵੱਲੋਂ ਆਪਣੇ ਸੋਰਸ ਕੋਡ �
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "ਇਜਾਜ਼ਤ HTML : %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr "ਕੁੱਝ HTML ਨੂੰ ਸਹਿਯੋਗ ਕਰਦਾ।"
@@ -3835,7 +3837,7 @@ msgid "If your add-on contains binary or obfuscated code other than known librar
 msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਵਿੱਚ ਜਾਣੂ ਲਾਇਬਰ੍ਰੇਰੀਆਂ ਤੋਂ ਇਲਾਵਾ ਬਾਇਨਰੀ ਜਾਂ ਬੇਕਾਰ ਕੋਡ ਸ਼ਾਮਲ ਹਨ, ਸਮੀਖਿਆ ਲਈ ਉਸ ਦੇ ਸੋਰਸ ਅੱਪਲੋਡ ਕਰੋ।"
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr ""
+msgstr "ਕਿਰਪਾ ਕਰਕੇ ਇਸ ਐਡੀਸ਼ਨ ਲਈ ਆਖਰੀ ਐਡ-ਆਨ ਫਾਇਲ ਨੂੰ ਮੁੜ ਤਿਆਰ ਕਰਨ ਬਾਰੇ ਹਦਾਇਤਾਂ ਸ਼ਾਮਲ ਕਰੋ, ਜਾਂ ਤਾਂ ਇੱਕ README ਫਾਈਲ ਵਿੱਚ ਜਾਂ ਨੋਟਸ ਆੱਫ ਰਿਵਿਊਰ ਵਿੱਚ।"
 
 msgid "Read more about the source code review policy."
 msgstr "ਸੋਰਸ ਕੋਡ ਸਮੀਖਿਆ ਨੀਤੀ ਬਾਰੇ ਹੋਰ ਪੜ੍ਹੋ।"
@@ -4465,15 +4467,15 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
-msgstr ""
+msgstr "ਫਾਇਰਫਾਕਸ ਵਿੱਚ ਤੁਰੰਤ ਵਿਸ਼ਵ ਮੌਸਮ ਦੀ ਜਾਣਕਾਰੀ ਪ੍ਰਾਪਤ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਟੈਬ ਐਡਜਸਟੇਸ਼ਨ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
-msgstr ""
+msgstr "ਜਦੋਂ ਤੁਸੀਂ ਕੋਈ ਨਵੀਂ ਟੈਬ ਖੋਲ੍ਹਦੇ ਹੋ ਤਾਂ ਹਰ ਵਾਰ ਤੁਸੀਂ ਦੇਖਦੇ ਹੋ ਸਫ਼ੇ ਨੂੰ ਚੁਣੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4497,7 +4499,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
-msgstr ""
+msgstr "ਹਰ ਮੌਕੇ ਲਈ ਅਦਭੁਤ ਇਮੋਜਸ ਦੇ ਦਰਜੇ-ਹਮੇਸ਼ਾ ਇੱਕ ਕਲਿਕ ਦੂਰ।"
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4887,7 +4889,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "ਜਦੋਂ ਤੁਸੀਂ Google ਅਤੇ ਯਵਾਂਡੈਕਸ ਖੋਜ ਰਿਟਰਨ ਨੂੰ ਕਲਿੱਕ ਕਰਦੇ ਹੋ ਤਾਂ ਟਰੈਕਰਾਂ ਨੂੰ ਰੋਕੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4939,7 +4941,7 @@ msgstr "ਆਪਣੀਆਂ ਪਸੰਦੀਦਾ ਟਾਇਲਾਂ, ਪਿਛ�
 
 #. editorial content for the discovery pane.
 msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਤੇਜ਼ ਅਨੁਵਾਦ ਪ੍ਰਾਪਤ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
@@ -4947,7 +4949,7 @@ msgstr "ਕਿਸੇ ਵੀ ਵੈਬਸਾਈਟ ਤੇ ਪਾਠ ਨੂੰ ਹ
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਆਪਣੇ ਪਾਸਵਰਡ ਵਿਵਸਥਿਤ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
@@ -4955,7 +4957,7 @@ msgstr "ਪਾਸਵਰਡ ਨੂੰ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾ�
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਜਾਣੋ ਕਿ ਤੁਸੀਂ ਵੈਬ ਤੇ ਕਿੱਥੇ ਜਾਂਦੇ ਹੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
@@ -6325,7 +6327,7 @@ msgid "We may add security and plugin control features to Firefox to help with o
 msgstr ""
 
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
+msgstr "ਫਾਇਰਫਾਕਸ ਦੀ ਵਰਤੋਂ ਜਾਰੀ ਰੱਖੋ। ਜਿਵੇਂ ਕਿ ਤੁਸੀਂ ਆਮ ਤੌਰ ਤੇ ਤੁਸੀਂ ਵੈਬ ਦੀ ਵਰਤੋਂ ਕਿਵੇਂ ਕਰਦੇ ਹੋ ਉਸਦੇ ਆਧਾਰ ਤੇ, ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕੋਈ ਵੀ ਤਬਦੀਲੀ ਨਾ ਦੇਖ ਸਕੋ।"
 
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
 msgstr "ਕੁਝ ਹਫ਼ਤਿਆਂ ਦੇ ਬਾਅਦ, ਇਹ ਅਧਿਐਨ ਆਪਣੇ ਆਪ ਹੀ ਖਤਮ ਹੋ ਜਾਵੇਗਾ। ਤੁਹਾਡਾ ਫਾਇਰਫਾਕਸ ਵਾਪਸ ਸਧਾਰਣ ਹੋ ਜਾਵੇਗਾ।"
