@@ -60,6 +60,7 @@ If you have `Users:Edit` permission you will see these extra fields for all user
     :>json boolean deleted: Is the account deleted.
     :>json string|null display_name: The name chosen by the user.
     :>json string email: Email address used by the user to login and create this account.
+    :>json string fxa_edit_email_url: The configured URL for editing the user's email on FxA.
     :>json string last_login: The date of the last successful log in to the website.
     :>json string last_login_ip: The IP address of the last successfull log in to the website.
     :>json boolean is_verified: The user has been verified via FirefoxAccounts.

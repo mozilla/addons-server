@@ -14,7 +14,7 @@ from olympia.access.models import Group
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
     clean_nl, has_links, ImageCheck, slug_validator,
-    subscribe_newsletter, unsubscribe_newsletter)
+    subscribe_newsletter, unsubscribe_newsletter, urlparams)
 from olympia.users.models import DeniedName, UserProfile
 from olympia.users.tasks import resize_photo
 from olympia.users import notifications
@@ -71,17 +71,26 @@ class PublicUserProfileSerializer(BaseUserSerializer):
 class UserProfileSerializer(PublicUserProfileSerializer):
     picture_upload = serializers.ImageField(use_url=True, write_only=True)
     permissions = serializers.SerializerMethodField()
+    fxa_edit_email_url = serializers.SerializerMethodField()
 
     class Meta(PublicUserProfileSerializer.Meta):
         fields = PublicUserProfileSerializer.Meta.fields + (
             'display_name', 'email', 'deleted', 'last_login', 'picture_upload',
             'last_login_ip', 'read_dev_agreement', 'permissions',
+            'fxa_edit_email_url',
         )
         writeable_fields = (
             'biography', 'display_name', 'homepage', 'location', 'occupation',
             'picture_upload', 'username',
         )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
+
+    def get_fxa_edit_email_url(self, user):
+        base_url = '{}/settings'.format(
+            settings.FXA_CONFIG['default']['content_host']
+        )
+        return urlparams(base_url, uid=user.fxa_id, email=user.email,
+                         entrypoint='addons')
 
     def validate_biography(self, value):
         if has_links(clean_nl(unicode(value))):
