@@ -60,6 +60,7 @@ def check_preview(preview_instance, theme_size_constant, write_svg_mock_args,
 
 
 @pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.index_addons.delay')
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
@@ -75,6 +76,7 @@ def check_preview(preview_instance, theme_size_constant, write_svg_mock_args,
 )
 def test_generate_static_theme_preview(
         write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock,
+        index_addons_mock,
         header_url, header_height, preserve_aspect_ratio, mimetype, valid_img):
     write_svg_to_png_mock.return_value = True
     theme_manifest = {
@@ -145,13 +147,17 @@ def test_generate_static_theme_preview(
                  preserve_aspect_ratio, mimetype, valid_img, colors,
                  720, 92, 720)
 
+    index_addons_mock.assert_called_with([addon.id])
+
 
 @pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.index_addons.delay')
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
 def test_generate_static_theme_preview_with_chrome_properties(
-        write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock):
+        write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock,
+        index_addons_mock):
     write_svg_to_png_mock.return_value = True
     theme_manifest = {
         "images": {
@@ -250,11 +256,13 @@ def check_render_additional(svg_content, inner_svg_width):
 
 
 @pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.index_addons.delay')
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
 def test_generate_preview_with_additional_backgrounds(
-        write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock):
+        write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock,
+        index_addons_mock):
     write_svg_to_png_mock.return_value = True
 
     theme_manifest = {
@@ -315,3 +323,5 @@ def test_generate_preview_with_additional_backgrounds(
     check_render_additional(header_svg, 680)
     check_render_additional(list_svg, 760)
     check_render_additional(single_svg, 720)
+
+    index_addons_mock.assert_called_with([addon.id])
