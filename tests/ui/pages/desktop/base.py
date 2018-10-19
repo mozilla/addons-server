@@ -50,6 +50,10 @@ class Header(Region):
                            > li:nth-child(2) > a:nth-child(1)')
     _login_locator = (By.CLASS_NAME, 'Header-authenticate-button')
     _logout_locator = (By.CSS_SELECTOR, '.DropdownMenu-items .Header-logout-button')
+    _more_dropdown_locator = (
+        By.CSS_SELECTOR,
+        '.Header-SectionLinks .SectionLinks-dropdown')
+    _more_dropdown_link_locator = (By.CSS_SELECTOR, '.DropdownMenuItem a')
     _themes_locator = (By.CSS_SELECTOR, '.SectionLinks > li:nth-child(3) > \
                        a:nth-child(1)')
     _user_locator = (By.CSS_SELECTOR,
@@ -71,6 +75,12 @@ class Header(Region):
         return Themes(
             self.selenium, self.page.base_url).wait_for_page_to_load()
 
+    def click_title(self):
+        self.find_element(*self._header_title_locator).click()
+
+        from pages.desktop.home import Home
+        return Home(self.selenium, self.page.base_url).wait_for_page_to_load()
+
     def click_login(self):
         self.find_element(*self._login_locator).click()
         from pages.desktop.login import Login
@@ -89,6 +99,22 @@ class Header(Region):
         action.perform()
         self.wait.until(lambda s: self.is_element_displayed(
             *self._login_locator))
+
+    def more_menu(self, item=None):
+        menu = self.find_element(*self._more_dropdown_locator)
+        links = menu.find_elements(*self._more_dropdown_link_locator)
+        # Create an action chain clicking on the elements of the dropdown more
+        # menu. It pauses between each action to account for lag.
+        action = ActionChains(self.selenium)
+        action.move_to_element(menu)
+        action.pause(2)
+        action.click()
+        action.pause(2)
+        action.move_to_element(links[item])
+        action.pause(2)
+        action.click()
+        action.pause(2)
+        action.perform()
 
     def search_for(self, term):
         textbox = self.find_element(*self._search_textbox_locator)
