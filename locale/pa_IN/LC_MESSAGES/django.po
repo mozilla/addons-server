@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-19 07:48+0000\n"
+"PO-Revision-Date: 2018-10-19 08:11+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -723,7 +723,7 @@ msgid ""
 msgstr ""
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr ""
+msgstr "ਜੇ ਤੁਸੀਂ 'ਸੁਧਾਰਕ' ਸਿਰਲੇਖ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਉਣ ਲਈ ਆਪਣੇ ਬ੍ਰਾਉਜ਼ਰ ਦੀ ਸੰਰਚਨਾ ਕੀਤੀ ਹੈ, ਤਾਂ ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ ਘੱਟ ਇਸ ਸਾਈਟ ਲਈ, ਜਾਂ HTTPS ਕਨੈਕਸ਼ਨ ਲਈ, ਜਾਂ 'ਉਸੇ ਮੂਲ' ਬੇਨਤੀਆਂ ਲਈ ਮੁੜ-ਸਮਰੱਥ ਕਰੋ।"
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
@@ -3395,6 +3395,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
+"ਜੇ ਤੁਸੀਂ ਸਰੋਤ ਕੋਡ ਜਮ੍ਹਾਂ ਕਰ ਦਿੱਤਾ ਹੈ, ਪਰ ਨਿਰਦੇਸ਼ਾਂ ਨੂੰ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਹੈ, ਤਾਂ ਤੁਹਾਨੂੰ ਉਨ੍ਹਾਂ ਨੂੰ ਇੱਥੇ ਮੁਹੱਈਆ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ। ਐਡਆਨ ਕੋਡ ਦੀ ਪ੍ਰਤੀਲਿਪੀ, ਪ੍ਰਤੀ %(policy_requirements_open)sਸਪੋਰਿਸ਼ੀ "
+"ਜ਼ਰੂਰਤਾਂ %(policy_requirements_close)sਬਣਾਉਣ ਲਈ ਕਦਮ-ਦਰ-ਕਦਮ ਬਿਲਡ ਹਦਾਇਤਾਂ ਦਾਖਲ ਕਰੋ।"
 
 #, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
@@ -3452,7 +3454,7 @@ msgid "Your listing will be more successful by adding a detailed description. Ge
 msgstr "ਇੱਕ ਵਿਸਤ੍ਰਿਤ ਵਰਣਨ ਜੋੜ ਕੇ ਤੁਹਾਡੀ ਸੂਚੀ ਹੋਰ ਸਫਲ ਹੋਵੇਗੀ। ਪ੍ਰਕਾਸ਼ਨ ਲਈ ਆਪਣੀ ਸੂਚੀ ਤਿਆਰ ਕਰੋ:"
 
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "ਇੱਕ ਵਿਸਤ੍ਰਿਤ ਵੇਰਵਾ ਅਤੇ ਸਕ੍ਰੀਨਸ਼ਾਟ ਜੋੜ ਕੇ ਤੁਹਾਡੀ ਸੂਚੀ ਹੋਰ ਸਫਲ ਹੋਵੇਗੀ। ਪ੍ਰਕਾਸ਼ਨ ਲਈ ਆਪਣੀ ਸੂਚੀ ਤਿਆਰ ਕਰੋ:"
 
 #, fuzzy
 msgid "Manage Listing"
@@ -3506,7 +3508,7 @@ msgid "Any other tool that takes code or files, applies processing, and generate
 msgstr "ਕੋਈ ਵੀ ਹੋਰ ਸੰਦ ਜੋ ਕੋਡ ਜਾਂ ਫਾਈਲਾਂ ਲੈਂਦਾ ਹੈ, ਪ੍ਰੋਸੈਸਿੰਗ ਲਾਗੂ ਕਰਦਾ ਹੈ ਅਤੇ ਐਡ-ਔਨ ਵਿਚ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਕੋਡ ਜਾਂ ਫਾਈਲ (s) ਤਿਆਰ ਕਰਦਾ ਹੈ"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "ਤੁਹਾਨੂੰ ਸੋਰਸ ਕੋਡ ਨੂੰ ਦਰਜ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਨਹੀਂ ਹੈ, ਅਤੇ ਤੁਸੀਂ ਅਗਲੇ ਪੜਾਅ ਲਈ ਤਿਆਰ ਹੋ।"
 
 msgid "Your Submission Requires Source Code."
 msgstr "ਤੁਹਾਡੇ ਅਧੀਨ ਕਰਨ ਲਈ ਸੋਰਸ ਕੋਡ ਦੀ ਜ਼ਰੂਰਤ ਹੈ।"
@@ -3614,7 +3616,7 @@ msgid "Header area background"
 msgstr "ਸਿਰਲੇਖ ਇਲਾਕੇ ਦੇ ਪਿਛਲਾ ਪਰਦਾ"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr ""
+msgstr "ਸਿਰਲੇਖ ਖੇਤਰ ਦੀ ਬੈਕਗ੍ਰਾਊਂਡ ਦਾ ਰੰਗ, ਸਿਰਲੇਖ ਦੇ ਭਾਗ ਵਿੱਚ ਪ੍ਰਦਰਸ਼ਿਤ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ ਜੋ ਸਿਰਲੇਖ ਚਿੱਤਰ ਦੁਆਰਾ ਕਵਰ ਕੀਤਾ ਜਾਂ ਵਿਖਾਈ ਦੇ ਰਿਹਾ ਹੈ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ:  accentcolor।"
 
 msgid "Header area text and icons"
 msgstr "ਸਿਰਲੇਖ ਖੇਤਰ ਦੇ ਪਾਠ ਅਤੇ ਆਈਕਾਨ"
@@ -3645,7 +3647,7 @@ msgid "Toolbar field area text"
 msgstr "ਸੰਦ-ਪੱਟੀ ਇਲਾਕਾ ਖੇਤਰ ਲਿਖਤ"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
+msgstr "ਟੂਲਬਾਰ ਦੇ ਖੇਤਰਾਂ ਵਿੱਚ ਟੈਕਸਟ ਦਾ ਰੰਗ, ਜਿਵੇਂ ਕਿ URL ਬਾਰ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ:  toolbar_field_text।"
 
 msgid "optional"
 msgstr "ਵਿਕਲਪਿਕ"
@@ -3713,7 +3715,7 @@ msgid "Your add-on was disabled by a site administrator and is no longer shown i
 msgstr ""
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਐਡਆਨ ਨੂੰ ਖੋਜ ਪਰਿਣਾਮਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾਵੇਗਾ, ਅਤੇ ਇਸ ਦੀ ਸੂਚੀ ਪੰਨੇ ਇਹ ਸੰਕੇਤ ਦੇਵੇਗੀ ਕਿ ਤੁਸੀਂ ਇਸ ਨੂੰ ਅਸਮਰੱਥ ਕੀਤਾ ਹੈ। ਸੂਚੀ ਲਈ ਨਵੀਂ ਵਰਜਨ ਲਈ ਸਬਮਿਸ਼ਨ ਇਸ ਰਾਜ ਵਿੱਚ ਸਵੀਕਾਰ ਨਹੀਂ ਕੀਤੇ ਜਾਣਗੇ।"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
@@ -3728,7 +3730,7 @@ msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr "ਬਹੁਤੀਆਂ ਪਰੋਸੈੱਸ ਫਾਇਰਫਾਕਸ(ਈ10ਐਸ)ਨਾਲ ਤੁਹਾਡੀ ਐਡ-ਆਨ ਅਨੁਕੂਲਤਾ।"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "ਕੋਡ ਰਿਵਿਊ ਪਾਸ ਕਰਨ ਤੋਂ ਬਾਅਦ ਇਸ ਸਾਈਟ ਤੇ ਸੂਚੀਬੱਧ। ਇਸ ਸਾਈਟ ਦੁਆਰਾ ਆਟੋਮੈਟਿਕ ਅਪਡੇਟਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕੀਤਾ ਜਾਂਦਾ ਹੈ।"
 
 msgid "Listed Version:"
 msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
@@ -4040,7 +4042,7 @@ msgid "Publish Your Add-on"
 msgstr "ਆਪਣਾ ਐਡ-ਆਨ ਪੇਸ਼ ਕਰੋ!"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
+msgstr "ਕੀ ਐਡਆਨ ਤਿਆਰ ਹੈ? addons.mozilla.org ਤੇ ਸੂਚੀਬੱਧ ਹੋਣ ਲਈ ਆਪਣੀ ਐਕਸਟੈਂਸ਼ਨ ਜਾਂ ਥੀਮ ਦਰਜ਼ ਕਰੋ ਜਾਂ ਆਪਣੇ ਐਕਸਟੈਨਸ਼ਨ ਤੇ ਦਸਤਖਤ ਕਰੋ ਅਤੇ ਵੰਡੋ।"
 
 #, fuzzy
 msgid "Sign In"
@@ -4050,7 +4052,7 @@ msgid "Web-Ext"
 msgstr "ਵੈਬ-ਐਕਸਟੈਂਸ਼ਨ"
 
 msgid "A command line tool to build, run, and test extensions."
-msgstr ""
+msgstr "ਐਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਬਣਾਉਣ, ਰਨ ਅਤੇ ਟੈਸਟ ਕਰਨ ਲਈ ਇੱਕ ਕਮਾਂਡ ਲਾਈਨ ਟੂਲ।"
 
 #, fuzzy
 msgid "Automated code tests for your add-on."
@@ -4411,7 +4413,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "ਅਨੁਕੂਲ ਬੈਕਗਰਾਊਂਡ, ਸਥਾਨਕ ਮੌਸਮ ਜਾਣਕਾਰੀ, ਅਤੇ ਹੋਰ ਦੇ ਨਾਲ ਇੱਕ ਸੁੰਦਰ ਨਵੇਂ ਪੰਨੇ ਦਾ ਆਨੰਦ ਮਾਣੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4427,7 +4429,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "ਇੰਜਣਾਂ ਦੀ ਇੱਕ ਲੜੀ ਤੋਂ ਉਲਟ ਚਿੱਤਰ ਖੋਜ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4487,7 +4489,7 @@ msgstr "ਵੈਬ ਤੇ ਇਕ ਦਿਲਚਸਪ ਤਸਵੀਰ ਦੇਖੋ 
 
 #. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਵੀਡਿਓ ਡਾਊਨਲੋਡ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
@@ -4503,7 +4505,7 @@ msgstr "ਹਰ ਮੌਕੇ ਲਈ ਅਦਭੁਤ ਇਮੋਜਸ ਦੇ ਦਰ
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਪਾਸਵਰਡ ਪ੍ਰਬੰਧਨ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
@@ -4669,7 +4671,7 @@ msgstr "ਇੱਕ ਟੈਬ ਬੰਦ ਕਰਨ ਤੋਂ ਬਾਅਦ ਕੁਕ
 
 #. editorial content for the discovery pane.
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਸਫ਼ਾ ਆਕਾਰ ਦ੍ਰਿਸ਼ ਅਡਜੱਸਟ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
@@ -4725,7 +4727,7 @@ msgstr "ਆਪਣੇ ਬਰਾਊਜ਼ਰ ਅਤੇ ਓਪਰੇਟਿੰਗ �
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਟੈਬਸ ਤਾਜ਼ਾ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
@@ -4757,7 +4759,7 @@ msgstr "ਫਾਇਰਫਾਕਸ ਵਿਚ ਈਪੱਬ ਫਾਈਲਾਂ ਦ�
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਆਪਣੇ YouTube ਅਨੁਭਵ ਨੂੰ ਵਧਾਓ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
@@ -4765,7 +4767,7 @@ msgstr "ਸਭ ਤੋਂ ਉੱਚੇ ਕੁਆਲਿਟੀ ਵਿੱਚ ਵੀ�
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਟਰੈਕਰ ਟ੍ਰੈਕ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
@@ -4793,7 +4795,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
-msgstr ""
+msgstr "HTTPS ਲਈ ਸਹਾਇਕ ਹੈ, ਜੋ ਕਿ ਕਿਸੇ ਵੀ ਸਾਈਟ ਨੂੰ ਇੰਕ੍ਰਿਪਟਡ ਸੁਰੱਖਿਆ ਨੂੰ ਸ਼ਾਮਿਲ।"
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5759,7 +5761,7 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "ਸਭ ਤੋਂ ਘੱਟ ਸਮਰਥਿਤ \"ਸਖਤ_ਮੰਨ_ਵਰਜਨ\" 42.0 ਹੈ।"
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr ""
