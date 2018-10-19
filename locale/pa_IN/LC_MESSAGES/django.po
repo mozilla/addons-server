@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-15 09:44+0000\n"
-"PO-Revision-Date: 2018-10-18 18:58+0000\n"
+"PO-Revision-Date: 2018-10-19 07:30+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -2747,7 +2747,7 @@ msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਪੈਕੇਜ ਨੂੰ ਅੱਪਲੋਡ 
 
 #, python-format
 msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
+msgstr "ਯਾਦ ਰੱਖੋ ਕਿ ਇਹ ਸੰਦ ਸਿਰਫ ਪੁਰਾਣੇ ਐਡ-ਆਨ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ। WebExtension API ਬਿਲਕੁਲ <a href=\"%(webext_doc_url)s\">ਦਰਜ ਕੀਤੇ ਗਏ ਹਨ</a>।"
 
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
 msgstr "ਅੱਪਲੋਡ ਤੋਂ ਬਾਅਦ, ਹੇਠ ਦਿੱਤੇ ਐਪਲੀਕੇਸ਼ਨ ਵਰਜਨ ਨਾਲ ਅਨੁਕੂਲਤਾ ਦੀ ਪੜਤਾਲ ਲਈ ਸਵੈਚਾਲਿਤ ਪ੍ਰਮਾਣਿਕਤਾ ਟੈਸਟਾਂ ਦੀ ਇੱਕ ਲੜੀ ਚਲਾਈ ਜਾਵੇਗੀ:"
@@ -4509,7 +4509,7 @@ msgstr "ਸਾਰੇ ਸਾਧਨਾਂ ਤੇ ਰਾਜ ਕਰਨ ਲਈ ਇੱ
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਵਿਗਿਆਪਨ ਬਲਾਕ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
@@ -4533,7 +4533,7 @@ msgstr "ਕੋਈ ਵੀ ਪਾਠ ਨੂੰ ਹਾਈਲਾਈਟ ਕਰੋ ਅ
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਵਿਜ਼ੂਅਲ ਬੁੱਕਮਾਰਕਸ ਦਾ ਆਨੰਦ {start_sub_heading}ਦੇ ਨਾਲ ਮਾਣੋ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4546,7 +4546,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "ਆਟੋਮੈਟਿਕ ਆਪਣੇ ਖੋਜ ਨਤੀਜਿਆਂ ਨੂੰ ਬ੍ਰਿਟੈਨਿਕਾ ਦੀਆਂ ਤੱਥਾਂ ਨੂੰ ਜੋੜ ਦਿਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4727,7 +4727,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "ਆਪਣੇ ਦੁਆਰਾ ਸੈਟ ਕੀਤੇ ਗਏ ਸਮਾਂ ਅੰਤਰਾਲਾਂ ਦੇ ਅਧਾਰ ਤੇ ਟੈਬਾਂ ਨੂੰ ਸਵੈਚਲ ਰੂਪ ਤੋਂ ਮੁੜ ਲੋਡ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4779,11 +4779,11 @@ msgstr "ਸਵੈ-ਪ੍ਰਭਾਸ਼ਿਤ ਪ੍ਰੌਕਸੀ ਸੈਟਿ
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਵਿਡੀਓ ਪਲੇਬੈਕ ਤੇ ਨਿਯੰਤ੍ਰਣ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "ਵਿਡੀਓ ਦੀ ਗਤੀ ਅਤੇ ਹੋਰ ਵਿਵਸਥਿਤ ਕਰਕੇ ਆਪਣੇ ਦੇਖਣ ਦੇ ਤਜਰਬੇ ਨੂੰ ਵਧਾਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4847,7 +4847,7 @@ msgstr "ਭੇਤ ਭਰੀ ਪਛਾਣ ਵਾਲਾ ਵੈਬ ਬ੍ਰਾਉ�
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "ਆਪਣੀਆਂ ਮਨਪਸੰਦ ਸਾਈਟਾਂ, ਹਾਲ ਹੀ ਵਿੱਚ ਬੰਦ ਕੀਤੀਆਂ ਟੈਬਸ ਅਤੇ ਹੋਰ ਬਹੁਤ ਸਾਰੀਆਂ ਚੀਜ਼ਾਂ ਨੂੰ ਇੱਕ ਸ਼ਾਨਦਾਰ ਟਾਇਲ ਲੇਆਉਟ ਤੋਂ ਐਕਸੈਸ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4871,7 +4871,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "ਸਥਿਤੀ ਬਾਰ ਦੁਆਰਾ, ਡਾਉਨਲੋਡ ਇਤਿਹਾਸ ਪੰਨੇ ਅਤੇ ਹੋਰ ਦੇ ਜ਼ਰੀਏ ਤੁਹਾਡੇ ਡਾਉਨਲੋਡਸ ਦੀ ਸਥਿਤੀ ਵੇਖੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4895,7 +4895,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr ""
+msgstr "ਟੈਬਸ ਬੰਦ ਕਰਨ ਲਈ, ਮਾਉਸ ਸੰਕੇਤ ਦੀ ਵਰਤੋਂ ਕਰੋ, ਇਕ ਪੰਨੇ ਤੇ ਵਾਪਸ ਜਾਓ, ਦੁਬਾਰਾ ਲੋਡ ਕਰੋ, ਅਤੇ ਹੋਰ।"
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4935,7 +4935,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "ਆਪਣੀਆਂ ਪਸੰਦੀਦਾ ਟਾਇਲਾਂ, ਪਿਛੋਕੜ ਚਿੱਤਰ, ਅਤੇ ਹੋਰ ਚੀਜ਼ਾਂ ਨੂੰ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਨਵੀਂ ਟੈਬ ਸਫ਼ਾ ਸੰਪਾਦਿਤ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4959,11 +4959,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "ਉਹਨਾਂ ਵੈਬਸਾਈਟਾਂ ਲਈ ਦੇਸ਼ ਦਾ ਸਥਾਨ ਪ੍ਰਾਪਤ ਕਰੋ ਜੋ ਤੁਸੀਂ ਵਿਜ਼ਿਟ ਕਰਦੇ ਹੋ। ਇੱਕ ਸੂਚਿਤ ਇੰਟਰਨੈਟ ਯਾਤਰਾ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਆਪਣੇ ਪੜ੍ਹਨ ਦੇ ਅਨੁਭਵ ਨੂੰ ਵਧਾਓ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
@@ -5015,7 +5015,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "ਸਮੇਂ ਅੰਤਰਾਲ ਤੇ ਆਟੋਮੈਟਿਕਲੀ ਟੈਬਸ ਮੁੜ ਲੋਡ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5055,7 +5055,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "ਕਿਸੇ ਵੀ ਵੈਬਸਾਈਟ ਲਈ ਡੂੰਘਾਈ ਨਾਲ ਕੁੜਮਾਈ ਅਤੇ ਆਵਾਜਾਈ ਦੀ ਜਾਣਕਾਰੀ ਪ੍ਰਾਪਤ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5071,7 +5071,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
-msgstr ""
+msgstr "ਚੀਜ਼ਾਂ ਨੂੰ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਮਾਊਂਸ ਸੰਕੇਤਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ—ਜਲਦੀ।"
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5183,7 +5183,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
-msgstr ""
+msgstr "ਫਾਇਰਫਾਕਸ ਨੂੰ ਤੁਹਾਡੇ ਦੁਆਰਾ ਪ੍ਰਭਾਸ਼ਿਤ ਕੀਤੀਆਂ ਗਈਆਂ ਵੈਬਸਾਈਟਾਂ ਤੱਕ ਪਹੁੰਚ ਕਰਨ ਤੇ ਪਾਬੰਦੀ ਲਾਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5745,7 +5745,7 @@ msgid "Cannot diff a version against itself"
 msgstr "ਵਰਜਨ ਦਾ ਖੁਦ ਤੋਂ ਫ਼ਰਕ ਨਹੀਂ ਕਰ ਸਕਦਾ"
 
 msgid "Access your data for {name}"
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਡਾਟਾ ਵਾਸਤੇ ਪਹੁੰਚ ਲਈ {name}"
 
 msgid "Access your data on the following websites:"
 msgstr "ਹੇਠ ਲਿਖੀਆਂ ਵੈੱਬਸਾਈਟਾਂ ਤੇ ਆਪਣਾ ਡੇਟਾ ਐਕਸੈਸ ਕਰੋ:"
@@ -6371,7 +6371,7 @@ msgid "This particular Study"
 msgstr "ਇਹ ਖਾਸ ਅਧਿਐਨ"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "ਸਾਰੇ ਸ਼ੀਲਡ ਸਟੱਡੀਜ਼ ਦੁਆਰਾ ਇਕੱਤਰ ਕੀਤੇ ਡੈਟਾ ਤੋਂ ਇਲਾਵਾ, ਮੋਜ਼ੀਲਾ ਇਹਨਾਂ ਬਾਰੇ ਜਾਣਕਾਰੀ ਇਕੱਠੀ ਕਰੇਗੀ:"
 
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
 msgstr "ਵੈਬਸਾਈਟਾਂ ਜਿਹੜੀਆਂ ਤੁਸੀਂ ਵਿਜ਼ਿਟ ਕਰਦੇ ਹੋ ਜੋ ਪਲਗਇੰਸ ਦੀ ਵਰਤੋਂ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਹਨ, ਅਤੇ ਸਾਈਟ ਤੇ ਕਿਹੜਾ ਸਮਗਰੀ ਪਲਗਇਨ ਦੀ ਲੋੜ ਹੈ;"
@@ -7170,7 +7170,7 @@ msgid "This version has not been reviewed."
 msgstr "ਇਸ ਵਰਜਨ ਦੀ ਸਮੀਖਿਆ ਨਹੀਂ ਕੀਤੀ ਗਈ।"
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "ਕਿਰਪਾ ਕਰਕੇ ਉਪਰੋਕਤ ਸੂਚੀ ਵਿੱਚ ਇੱਕ ਜਾਂ ਵੱਧ ਵਰਜਨ ਚੁਣੋ।"
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "ਹਾਲੇ ਵੀ ਤੁਸੀਂ ਫ਼ਾਰਮ ਨੂੰ ਦਾਖਲ ਕਰ ਸਕਦੇ ਹੋ, ਪਰ ਕੇਵਲ ਇਹ ਤਾਂ ਕਰੋ ਜੇਕਰ ਤੁਸੀਂ ਜਾਣਦੇ ਹੋ ਇਹ ਅਪਵਾਦ ਨਹੀਂ ਕਰੇਗਾ।"
