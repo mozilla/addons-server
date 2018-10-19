@@ -10,10 +10,21 @@ class Home(Base):
     _extensions_category_locator = (By.CLASS_NAME, 'Home-CuratedCollections')
     _featured_extensions_locator = (By.CLASS_NAME, 'Home-FeaturedExtensions')
     _featured_themes_locator = (By.CLASS_NAME, 'Home-FeaturedThemes')
+    _hero_locator = (By.CLASS_NAME, 'HomeHeroBanner')
     _popular_extensions_locator = (By.CLASS_NAME, 'Home-PopularExtensions')
     _popular_themes_locator = (By.CLASS_NAME, 'Home-PopularThemes')
     _themes_category_locator = (By.CLASS_NAME, 'Home-CuratedThemes')
     _toprated_themes_locator = (By.CLASS_NAME, 'Home-TopRatedThemes')
+
+    def wait_for_page_to_load(self):
+        self.wait.until(
+            lambda _: self.is_element_displayed(*self._hero_locator)
+        )
+        return self
+
+    @property
+    def hero_banner(self):
+        return self.find_element(*self._hero_locator)
 
     @property
     def popular_extensions(self):
