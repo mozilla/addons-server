@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: 2018-09-28 11:08+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -766,9 +766,17 @@ msgstr "Nuk u gjetën përfundime."
 msgid "Loading..."
 msgstr "Po ngarkohet…"
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "Edhe <b>{0}</b> shenjë."
+msgstr[1] "Edhe <b>{0}</b> shenja."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "Edhe <b>{0}</b> shenjë."
 msgstr[1] "Edhe <b>{0}</b> shenja."
 
@@ -864,9 +872,6 @@ msgstr "{0} rreshti {1} shtylla {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} rresht {1}"
-
-msgid "Compatibility Tests"
-msgstr "Prova Përputhshmërie"
 
 msgid "Add-on failed validation."
 msgstr "Shtesa nuk e kaloi provën e vleftësimit."

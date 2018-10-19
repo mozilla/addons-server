@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: 2018-10-04 03:51+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -742,9 +742,16 @@ msgstr "找不到結果。"
 msgid "Loading..."
 msgstr "載入中..."
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "還剩下 <b>{0}</b> 個字元可以輸入。"
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "還剩下 <b>{0}</b> 個字元可以輸入。"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -839,9 +846,6 @@ msgstr "{0} 行 {1} 欄 {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} 行 {1}"
-
-msgid "Compatibility Tests"
-msgstr "相容性測試"
 
 msgid "Add-on failed validation."
 msgstr "附加元件無法通過驗證。"

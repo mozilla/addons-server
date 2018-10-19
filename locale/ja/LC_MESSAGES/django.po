@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: 2018-08-24 17:09+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -135,10 +135,6 @@ msgstr[0] "すべてのタグは {0}文字以上でなければなりません�
 msgid "The text entered has been flagged as spam."
 msgstr ""
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "URL ドメインは [%s] のいずれか、もしくはサブドメインでなければなりません。"
-
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "アドオンがこのアプリケーションのおすすめに設定されている間はカテゴリーを変更できません。"
 
@@ -149,6 +145,10 @@ msgstr[0] "カテゴリーは {0}個までしか設定できません。"
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "「その他」カテゴリーを他のカテゴリーと組み合わせることはできません。"
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "URL ドメインは [%s] のいずれか、もしくはサブドメインでなければなりません。"
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -203,7 +203,6 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr "このアドオンは作者によって実験的とされています。"
 
 #. {0} is the name of the add-on.
-#. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
 msgstr "{0}のエンドユーザー使用許諾契約書"
 
@@ -690,6 +689,10 @@ msgid "Admin Tools"
 msgstr "管理者用ツール"
 
 msgid "Positive integer"
+msgstr ""
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
 msgstr ""
 
 msgid "Incorrect, please try again."
@@ -1318,12 +1321,6 @@ msgstr "辞書をインストール"
 msgid "Install Language Pack"
 msgstr "言語パックをインストール"
 
-msgid "Download Dictionary"
-msgstr "辞書をダウンロード"
-
-msgid "Download Language Pack"
-msgstr "言語パックをダウンロード"
-
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
@@ -1491,76 +1488,6 @@ msgstr "注目のテーマをすべて見る"
 
 msgid "No themes found"
 msgstr "テーマが見つかりませんでした"
-
-msgid "All"
-msgstr "すべて"
-
-msgid "Add-on Compatibility Reports"
-msgstr "アドオンの互換性レポート"
-
-#, python-format
-msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
-msgstr ""
-"<p> <a href=\"%(url_)s\">アドオン互換性レポーター</a> を通じて Mozilla へ送信されたレポートは、ここで収集され、開発者が参照します。これらのレポートは、どのアドオンが Firefox 次期バージョン対応のため"
-"にサポートを必要としているか Mozilla が判断するのに役立ちます。</p>"
-
-msgid "Reports for your Add-ons"
-msgstr "このアドオンに関するレポート"
-
-msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr "Mozilla が受け取っているレポートを見るには、アドオンの GUID を下に入力してください。"
-
-msgid "{addon} Compatibility Reports"
-msgstr "{addon} の互換性レポート"
-
-msgid "{0} success report"
-msgid_plural "{0} success reports"
-msgstr[0] "{0}件の成功報告"
-
-msgid "{0} problem report"
-msgid_plural "{0} problem reports"
-msgstr[0] "{0}件の問題報告"
-
-msgid "View all"
-msgstr "すべて見る"
-
-msgid "Filter by Application"
-msgstr "アプリケーションで絞り込み"
-
-msgid "Report Type"
-msgstr "レポートの種類"
-
-msgid "Version"
-msgstr "バージョン"
-
-msgid "Application Version"
-msgstr "アプリケーションのバージョン"
-
-msgid "Application Build"
-msgstr "アプリケーションのビルド"
-
-msgid "Platform"
-msgstr "OS"
-
-msgid "e10s Enabled"
-msgstr "e10s 有効"
-
-msgid "e10s Compatible"
-msgstr "e10s 互換"
-
-msgid "Submitted"
-msgstr "送信完了"
-
-msgid "Success"
-msgstr "成功"
-
-msgid "Problem"
-msgstr "問題あり"
-
-msgid "No reports found."
-msgstr "レポートがありません。"
 
 msgid "{addon} was created."
 msgstr "{addon} が作成されました。"
@@ -2141,54 +2068,6 @@ msgstr "スポーツ／ゲーム"
 msgid "User Interface"
 msgstr "ユーザーインタフェース"
 
-msgid "Appearance and Customization"
-msgstr "インタフェースのカスタマイズ"
-
-msgid "Calendar and Date/Time"
-msgstr "カレンダーの追加機能"
-
-msgid "Chat and IM"
-msgstr "チャット／インスタントメッセージ"
-
-msgid "Message Composition"
-msgstr "メール作成／編集"
-
-msgid "Contacts"
-msgstr "コンタクト"
-
-msgid "Folders and Filters"
-msgstr "フォルダー／フィルター"
-
-msgid "Import/Export"
-msgstr "インポート／エクスポート"
-
-msgid "Message and News Reading"
-msgstr "メッセージの購読"
-
-msgid "Privacy and Security"
-msgstr "プライバシー／セキュリティ"
-
-msgid "Downloading and File Management"
-msgstr "ダウンロード／ファイル管理"
-
-msgid "Interface Customizations"
-msgstr "インタフェースのカスタマイズ"
-
-msgid "Language Support and Translation"
-msgstr "言語サポート／翻訳"
-
-msgid "Photos and Media"
-msgstr "写真／メディア"
-
-msgid "RSS, News and Blogging"
-msgstr "フィード／ニュース／ブログ"
-
-msgid "Site-specific"
-msgstr "サイト連携"
-
-msgid "Web and Developer Tools"
-msgstr "ウェブ開発者向けツール"
-
 msgid "All Rights Reserved"
 msgstr "All Rights Reserved"
 
@@ -2479,12 +2358,6 @@ msgstr "ソースファイルをアップロードしていません。"
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "ソースファイルがアップロードされましたが、あなたはソースが必要ないと示しています。"
 
-msgid "Application"
-msgstr "アプリケーション"
-
-msgid "Select an application first"
-msgstr "まずアプリケーションを選択してください"
-
 msgid "There cannot be more than 3 required add-ons."
 msgstr "依存アドオンを 3 つ以上指定することはできません。"
 
@@ -2600,9 +2473,6 @@ msgstr "このアドオンの作者が削除されました"
 msgid "Validate Add-on"
 msgstr "アドオンの検証"
 
-msgid "Check Add-on Compatibility"
-msgstr "アドオンの互換性を確認"
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "画像は %dKB 未満でなければなりません。"
@@ -2628,6 +2498,42 @@ msgstr "バージョン %sを再び有効にしました。"
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "今回のアップロードは検証に失敗したため、完全な検証結果を表示できない可能性があります。審査の際はその点に注意してください。"
+
+msgid "Header area background"
+msgstr "ヘッダー領域の背景"
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "ヘッダーに覆われていない部分やヘッダー画像の透過部分に表示されるヘッダー領域の背景色。マニフェストの該当項目は accentcolor です。"
+
+msgid "Header area text and icons"
+msgstr "ヘッダー領域の文字とアイコン"
+
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "アクティブなタブを除く、ヘッダー領域内に表示される文字とアイコンの色。マニフェストの該当項目は textcolor です。"
+
+msgid "Toolbar area background"
+msgstr "ツールバー領域の背景"
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "ナビゲーションバー、ブックマークバー、選択されたタブの背景色。マニフェストの該当項目は toolbar です。"
+
+msgid "Toolbar area text and icons"
+msgstr "ツールバー領域の文字とアイコン"
+
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "ツールバーとアクティブなタブ上の文字とアイコンの色。マニフェストの該当項目は toolbar_text です。"
+
+msgid "Toolbar field area background"
+msgstr "ツールバー入力領域の背景"
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "アドレスバーなどツールバー上の入力欄の背景色。マニフェストの該当項目は toolbar_field です。"
+
+msgid "Toolbar field area text"
+msgstr "ツールバー入力領域の文字"
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "アドレスバーなどツールバー上の入力欄の文字色。マニフェストの該当項目は toolbar_field_text です。"
 
 msgid "Review requested."
 msgstr "審査が申請されました。"
@@ -2701,9 +2607,6 @@ msgstr "開発者向けニュース"
 msgid "Add-on Validator"
 msgstr "アドオンバリデーター"
 
-msgid "Add-on Compatibility Checker"
-msgstr "アドオン互換性チェッカー"
-
 msgid "Development Add-ons"
 msgstr "開発者用アドオン"
 
@@ -2728,13 +2631,6 @@ msgstr "検索"
 msgid "Use the field below to upload your add-on package."
 msgstr "下のフォームからアドオンのパッケージをアップロードしてください。"
 
-#, python-format
-msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr "このツールは旧式アドオンにのみ対応しています。WebExtension API は <a href=\"%(webext_doc_url)s\">こちらで詳しく説明</a> されています。"
-
-msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr "アップロード完了後、以下のアプリケーションのバージョンと互換性があるかを調べる一連の自動検証テストが実施されます:"
-
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "アップロード完了後、アドオンに含まれるファイルに対して自動検証テストが実施されます。"
 
@@ -2750,9 +2646,6 @@ msgstr "検証結果"
 
 msgid "Validated at:"
 msgstr "検証対象:"
-
-msgid "Tested for compatibility against:"
-msgstr "互換性テスト対象:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "自分のアドオンの最近のアクティビティ"
@@ -2802,6 +2695,9 @@ msgstr "互換性を更新"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr "ここでアプリケーション情報を編集すると、パッケージ内のインストールマニフェストでアドオンの互換性がなくても、ユーザーがこのアドオンをインストールできるようになります。"
+
+msgid "Application"
+msgstr "アプリケーション"
 
 msgid "Supported Versions"
 msgstr "対応バージョン"
@@ -2858,12 +2754,56 @@ msgstr ""
 "<p>アドオンの作者は何名でも追加でき、次のいずれかの役割を持たせられます:</p> <ul> <li><b>オーナー:</b> 他の作者の追加と削除を含め、アドオンのあらゆる情報を管理できます</li> <li><b>開発者:</b> 他の作"
 "者の追加と削除を除く、アドオンのあらゆる情報を管理できます</li> </ul>"
 
-msgid "Basic Information"
-msgstr "基本情報"
+#, fuzzy
+msgid "Additional Details"
+msgstr "アドオンの詳細"
+
+#, fuzzy
+msgid "Additional Details for {0}"
+msgstr "アドオン「{0}」の詳細"
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr "タグはユーザーがアドオンを探すのに役立つ、タブ、ツールバー、Twitter といった短いキーワードです。最大で {0}個のタグを指定できます。"
+
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] "カンマ区切りで最低 {0}文字。"
+
+msgid "Example: dark, cinema, noir. Limit 20."
+msgstr "例、ダーク、映画、黒。最大 20 個。"
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] "予約済みのタグ:"
+
+msgid "Contributions URL"
+msgstr "寄付 URL"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr "ユーザーから金銭的な寄付を求めたい場合は、これをページに設定することで、彼らが寄付を行えるようになります。"
+
+msgid "Default Locale"
+msgstr "既定のロケール"
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr "このアドオンに関する情報は、ロケール固有の翻訳で上書きしない限り、このロケールで表示されます。当該アドオンにのみ関係します。"
+
+msgid "Homepage"
+msgstr "ホームページ"
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr ""
+"このアドオンに別のホームページがある場合は、そのアドレスを入力してください。そのサイトが他の言語に翻訳されている場合は、この項目の翻訳を複数追加することもできます。当該アドオンにのみ関係します。"
+
+msgid "Describe Add-on"
+msgstr "アドオンの説明"
 
 #. {0} is the addon name
-msgid "Basic Information for {0}"
-msgstr "{0}の基本情報"
+#, fuzzy
+msgid "Describe {0}"
+msgstr "アドオンの説明"
 
 msgid "Add-on URL"
 msgstr "アドオンの URL"
@@ -2918,60 +2858,6 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr "カテゴリーはおすすめアドオンに設定されている間は変更できません。カテゴリーを変更する必要がある場合は、その理由を <a href=\"mailto:%(email)s\">%(email)s</a> 宛にメールでお知らせください。"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "タグはユーザーがアドオンを探すのに役立つ、タブ、ツールバー、Twitter といった短いキーワードです。最大で {0}個のタグを指定できます。"
-
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "カンマ区切りで最低 {0}文字。"
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "例、ダーク、映画、黒。最大 20 個。"
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "予約済みのタグ:"
-
-msgid "Contributions URL"
-msgstr "寄付 URL"
-
-msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr "ユーザーから金銭的な寄付を求めたい場合は、これをページに設定することで、彼らが寄付を行えるようになります。"
-
-msgid "Add-on Details"
-msgstr "アドオンの詳細"
-
-msgid "Add-on Details for {0}"
-msgstr "アドオン「{0}」の詳細"
-
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr "機能、特徴、その他関連情報などの長い説明文。この項目はアドオンの詳細ページにのみ表示されます。当該アドオンにのみ関係します。"
-
-msgid "Default Locale"
-msgstr "既定のロケール"
-
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr "このアドオンに関する情報は、ロケール固有の翻訳で上書きしない限り、このロケールで表示されます。当該アドオンにのみ関係します。"
-
-msgid "Homepage"
-msgstr "ホームページ"
-
-msgid ""
-"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
-"ons."
-msgstr ""
-"このアドオンに別のホームページがある場合は、そのアドレスを入力してください。そのサイトが他の言語に翻訳されている場合は、この項目の翻訳を複数追加することもできます。当該アドオンにのみ関係します。"
-
-msgid "Images"
-msgstr "画像"
-
-msgid "Support Information"
-msgstr "サポート情報"
-
-#. {0} is an addon name
-msgid "Support Information for {0}"
-msgstr "{0}のサポート情報"
-
 msgid "Email"
 msgstr "メールアドレス"
 
@@ -2991,6 +2877,9 @@ msgid ""
 msgstr ""
 "このアドオンのサポートに関するサイトやフォーラムがある場合は、そのアドレスを入力してください。サイトが他の言語でも提供されている場合は、この項目の翻訳を複数追加することもできます。当該アドオンにのみ"
 "関係します。"
+
+msgid "Images"
+msgstr "画像"
 
 msgid "Technical Details"
 msgstr "技術的な詳細"
@@ -3167,9 +3056,6 @@ msgstr "別のライセンスを選択してください。"
 msgid "More information on Creative Commons licenses"
 msgstr "Creative Commons ライセンスに関する詳しい情報"
 
-msgid "Tests"
-msgstr "テスト"
-
 msgid "General Tests"
 msgstr "一般的なテスト"
 
@@ -3303,9 +3189,6 @@ msgstr[0] "アクティブユーザー <strong>{0}</strong> 名"
 msgid "Submit a New Version"
 msgstr "新しいバージョンを登録"
 
-msgid "Describe Add-on"
-msgstr "アドオンの説明"
-
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr "このサイトの詳細ページに表示される名前。Firefox 内で表示される、アドオン内の名称と異なる場合があります。"
 
@@ -3320,6 +3203,10 @@ msgstr "概要:"
 
 msgid "required"
 msgstr "必須"
+
+#, fuzzy
+msgid "Description:"
+msgstr "説明"
 
 msgid "This add-on is experimental"
 msgstr "このアドオンは実験的です"
@@ -3544,6 +3431,9 @@ msgstr "テーマ作成ツール"
 msgid "Theme generator"
 msgstr "テーマ作成ツール"
 
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr ""
+
 msgid "Theme name"
 msgstr "テーマの名前"
 
@@ -3568,42 +3458,6 @@ msgstr "別のヘッダー画像を選択"
 
 msgid "Select colors for your theme"
 msgstr "テーマの配色を選択"
-
-msgid "Header area background"
-msgstr "ヘッダー領域の背景"
-
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr "ヘッダーに覆われていない部分やヘッダー画像の透過部分に表示されるヘッダー領域の背景色。マニフェストの該当項目は accentcolor です。"
-
-msgid "Header area text and icons"
-msgstr "ヘッダー領域の文字とアイコン"
-
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr "アクティブなタブを除く、ヘッダー領域内に表示される文字とアイコンの色。マニフェストの該当項目は textcolor です。"
-
-msgid "Toolbar area background"
-msgstr "ツールバー領域の背景"
-
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "ナビゲーションバー、ブックマークバー、選択されたタブの背景色。マニフェストの該当項目は toolbar です。"
-
-msgid "Toolbar area text and icons"
-msgstr "ツールバー領域の文字とアイコン"
-
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "ツールバーとアクティブなタブ上の文字とアイコンの色。マニフェストの該当項目は toolbar_text です。"
-
-msgid "Toolbar field area background"
-msgstr "ツールバー入力領域の背景"
-
-msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "アドレスバーなどツールバー上の入力欄の背景色。マニフェストの該当項目は toolbar_field です。"
-
-msgid "Toolbar field area text"
-msgstr "ツールバー入力領域の文字"
-
-msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "アドレスバーなどツールバー上の入力欄の文字色。マニフェストの該当項目は toolbar_field_text です。"
 
 msgid "optional"
 msgstr "任意"
@@ -3734,15 +3588,6 @@ msgstr "非掲載アドオンの審査ページ"
 msgid "View Statistics Dashboard"
 msgstr "統計ダッシュボードを表示"
 
-msgid "Compatibility Reports"
-msgstr "互換性レポート"
-
-msgid "{0} failure reports"
-msgstr "{0}個の失敗レポート"
-
-msgid "{0} success reports"
-msgstr "{0}個の成功レポート"
-
 msgid "Developer News"
 msgstr "開発者向けニュース"
 
@@ -3835,9 +3680,6 @@ msgstr "サイトステータス"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: 拡張機能を開発、テスト"
-
-msgid "Compatibility Checker"
-msgstr "互換性チェッカー"
 
 msgid "Promote"
 msgstr "宣伝"
@@ -4272,6 +4114,9 @@ msgstr "すべてのバージョン"
 
 msgid "Upload a New Version"
 msgstr "新バージョンをアップロード"
+
+msgid "Version"
+msgstr "バージョン"
 
 msgid "Delete Version {version}"
 msgstr "バージョン {version} を削除"
@@ -5927,62 +5772,6 @@ msgstr "必須メディア"
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr "便利にスクリーンショットを撮ったり、オンライン動画体験を改善したり、GIF やその他の素晴らしいメディアツールを作成する方法を学んだりできます。"
 
-msgid "Discover Add-ons"
-msgstr "アドオンを見つける"
-
-msgid "What are Add-ons?"
-msgstr "アドオンとは？"
-
-#, python-format
-msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
-"アドオンは、%(app)s を特別な機能やスタイルでパーソナライズできるアプリケーションです。時間を節約できるサイドバー、天気予報通知、テーマ別の外観などで、%(app)s を自分オリジナルのスタイルに変身させてみ"
-"ましょう。"
-
-msgid "Learn More About Add-ons"
-msgstr "アドオンについて詳しく学ぶ"
-
-msgid "See all"
-msgstr "すべて見る"
-
-msgid "More ways to customize"
-msgstr "その他のカスタマイズ方法"
-
-msgid "Browse all add-ons"
-msgstr "すべてのアドオンを見る"
-
-msgid "See all complete themes"
-msgstr "すべての完全テーマを見る"
-
-msgid "Close Video"
-msgstr "動画を閉じる"
-
-msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr "動画が再生されている間、アドオンがここに表示されます。"
-
-#. {0} is the user's login name.
-msgid "Hi, {0}"
-msgstr "{0}さん、こんにちは"
-
-#, python-format
-msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr "%(app)s を使用して<a href=\"%(url)s\">Mozilla の使命</a>をサポートしていただき、ありがとうございます！"
-
-msgid "Add-ons downloaded:"
-msgstr "アドオンのダウンロード数:"
-
-msgid "View Privacy Policy"
-msgstr "プライバシーポリシーを表示"
-
-msgid "Active Users"
-msgstr "利用者数"
-
-msgid "Last Updated"
-msgstr "最終更新日"
-
-msgid "Cancel Installation"
-msgstr "インストールを中止"
-
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Mozilla が選ぶ今月のアドオン"
 
@@ -6559,6 +6348,9 @@ msgstr "アドオンの名前 / 作者のメールアドレス / GUID で検索"
 msgid "Max. Version"
 msgstr "最大対応バージョン"
 
+msgid "Select an application first"
+msgstr "まずアプリケーションを選択してください"
+
 msgid "Comments:"
 msgstr "コメント:"
 
@@ -6854,6 +6646,9 @@ msgstr "平均日別ユーザー数"
 
 msgid "Abuse Reports"
 msgstr "不正報告"
+
+msgid "View Privacy Policy"
+msgstr "プライバシーポリシーを表示"
 
 msgid "Requires Payment"
 msgstr "課金あり"
@@ -7285,6 +7080,9 @@ msgstr "{0}のテーマ審査"
 
 msgid "(Probable Duplicate Submission)"
 msgstr "(重複登録の可能性)"
+
+msgid "Submitted"
+msgstr "送信完了"
 
 msgid "Past Review Notes"
 msgstr "過去の審査メモ"
@@ -7808,12 +7606,6 @@ msgstr "{0}アドオンのホームページへ戻る"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\">アドオン"
 
-msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\">アドオン"
-
-msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\">アドオン"
-
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\">アドオン"
 
@@ -8155,6 +7947,9 @@ msgstr "もう少し詳しく..."
 msgid "Add-ons I've created"
 msgstr "作成したアドオン"
 
+msgid "View all"
+msgstr "すべて見る"
+
 msgid "My Most Popular Themes"
 msgstr "自分のお気に入りのテーマ"
 
@@ -8283,9 +8078,3 @@ msgstr "これらは、参考またはテストのために表示されている
 
 msgid "Deleted versions can`t be changed."
 msgstr "削除したバージョンは変更できません。"
-
-msgid "Binary"
-msgstr "バイナリ"
-
-msgid "Non-binary"
-msgstr "非バイナリ"

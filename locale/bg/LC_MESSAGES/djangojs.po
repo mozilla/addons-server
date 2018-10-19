@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-15 09:44+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: 2018-07-12 10:19+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -770,9 +770,17 @@ msgstr "Няма резултати."
 msgid "Loading..."
 msgstr "Зареждане..."
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "остава <b>{0}</b> знак."
+msgstr[1] "остават <b>{0}</b> знака."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "остава <b>{0}</b> знак."
 msgstr[1] "остават <b>{0}</b> знака."
 
@@ -868,9 +876,6 @@ msgstr "{0} ред {1} колона {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} ред {1}"
-
-msgid "Compatibility Tests"
-msgstr "Проверка за съвместимост"
 
 msgid "Add-on failed validation."
 msgstr "Добавката не премина валидацията."
