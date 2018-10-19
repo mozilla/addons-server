@@ -50,7 +50,6 @@ def test_devhub_logout(base_url, selenium, devhub_login):
 
 @pytest.mark.desktop_only
 @pytest.mark.nondestructive
-@pytest.mark.withoutresponses
 def test_devhub_register(base_url, selenium):
     """Test register link loads register page."""
     selenium.get('http://olympia.test/en-US/developers/')

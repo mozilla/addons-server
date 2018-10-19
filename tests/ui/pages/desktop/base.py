@@ -103,6 +103,8 @@ class Header(Region):
     def more_menu(self, item=None):
         menu = self.find_element(*self._more_dropdown_locator)
         links = menu.find_elements(*self._more_dropdown_link_locator)
+        # Create an action chain clicking on the elements of the dropdown more
+        # menu. It pauses between each action to account for lag.
         action = ActionChains(self.selenium)
         action.move_to_element(menu)
         action.pause(2)
