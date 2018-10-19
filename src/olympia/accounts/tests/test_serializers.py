@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.test.utils import override_settings
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
@@ -8,6 +9,7 @@ from olympia.accounts.serializers import (
     UserNotificationSerializer, UserProfileSerializer)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, days_ago, user_factory
+from olympia.amo.utils import urlparams
 from olympia.users.models import UserNotification, UserProfile
 from olympia.users.notifications import NOTIFICATIONS_BY_SHORT
 
@@ -172,8 +174,9 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer,
 
     def setUp(self):
         self.now = days_ago(0)
+        self.user_email = u'a@m.o'
         self.user_kwargs.update({
-            'email': u'a@m.o',
+            'email': self.user_email,
             'display_name': u'This is my náme',
             'last_login_ip': '123.45.67.89',
         })
@@ -186,6 +189,30 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer,
         assert data['last_login'] == (
             self.now.replace(microsecond=0).isoformat() + 'Z')
         assert data['read_dev_agreement'] == data['last_login']
+
+    def test_expose_fxa_edit_email_url(self):
+        fxa_host = 'http://example.com'
+        fxa_config = {
+            'default': {
+                'content_host': fxa_host,
+            },
+        }
+        user_fxa_id = 'ufxa-id-123'
+        self.user.update(fxa_id=user_fxa_id)
+
+        with override_settings(FXA_CONFIG=fxa_config):
+            expected_url = urlparams('{}/settings'.format(fxa_host),
+                                     uid=user_fxa_id, email=self.user_email,
+                                     entrypoint='addons')
+
+            data = super(TestUserProfileSerializer, self).test_basic()
+            assert data['fxa_edit_email_url'] == expected_url
+
+        # And to make sure it's not present in v3
+        gates = {None: ('del-accounts-fxa-edit-email-url',)}
+        with override_settings(DRF_API_GATES=gates):
+            data = super(TestUserProfileSerializer, self).test_basic()
+            assert 'fxa_edit_email_url' not in data
 
 
 class TestUserNotificationSerializer(TestCase):

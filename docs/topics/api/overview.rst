@@ -284,3 +284,4 @@ v4 API changelog
 * 2018-10-11: added ``created`` to the addons API.
 * 2018-10-18: added ``_score`` to the addons search API.
 * 2018-10-25: changed ``author`` parameter on addons search API to accept user ids as well as usernames. This change was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/8901
+* 2018-10-25: added ``fxa_edit_email_url`` parameter on accounts API to return the full URL for editing the user's email on FxA. https://github.com/mozilla/addons-server/issues/8674
