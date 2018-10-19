@@ -62,6 +62,10 @@ class Search(Page):
 
             def link(self):
                 self.find_element(*self._search_item_name_locator).click()
+                from pages.desktop.details import Detail
+
+                detail_page = Detail(self.selenium, self.page.base_url)
+                return detail_page.wait_for_page_to_load()
 
             @property
             def users(self):
