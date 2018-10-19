@@ -391,7 +391,8 @@ class CollectionAddon(ModelBase):
             # present in the collection at the time, we also need to make sure
             # to invalidate add-ons that have been removed.
             Collection.update_featured_status(
-                sender, instance.collection, addons=[instance.addon], **kwargs)
+                sender, instance.collection,
+                addons=[instance.addon.pk], **kwargs)
 
 
 models.signals.pre_save.connect(save_signal, sender=CollectionAddon,
