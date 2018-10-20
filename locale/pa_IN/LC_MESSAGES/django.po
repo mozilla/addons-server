@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-19 17:05+0000\n"
+"PO-Revision-Date: 2018-10-20 04:33+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -4472,7 +4472,7 @@ msgstr "50+ ਮਦਦਗਾਰ ਮਾਊਸ ਸੰਕੇਤਾਂ ਦੇ ਨਾ�
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਵਿਡੀਓਜ਼ ਅਨੁਕੂਲ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
@@ -4645,7 +4645,7 @@ msgstr "HTTPS ਲਈ ਸਹਾਇਕ ਹੈ, ਜੋ ਕਿ ਕਿਸੇ ਵੀ �
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਦੁਕਾਨ ਅਤੇ ਸੁਰੱਖਿਅਤ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
@@ -4681,7 +4681,7 @@ msgstr "ਇੱਕ ਬਿਹਤਰ ਵਿੰਡੋਜ਼ ਲਈ ਸਿਰਫ ਡ�
 
 #. editorial content for the discovery pane.
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਆਪਣੇ ਟਰੈਕਰਜ ਨੂੰ {start_sub_heading}ਨੂੰ {addon_name}ਨਾਲ ਜਾਣੋ {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
@@ -4957,7 +4957,7 @@ msgstr "ਫਿਲਟਰ ਨਾਲ ਅਣਉਚਿਤ ਜਾਂ ਅਣਜਾਣ�
 
 #. editorial content for the discovery pane.
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਨਵੀਆਂ ਟੈਬਸ ਵਿੱਚ ਸੁਧਾਰ ਕਰੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
@@ -5189,11 +5189,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Access 30,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "ਦੁਨੀਆ ਭਰ ਤੋਂ 30,000+ ਰੇਡੀਓ ਸਟੇਸ਼ਨਾਂ ਤੱਕ ਪਹੁੰਚ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਵੀਡੀਓ ਸੁਣੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
@@ -5289,7 +5289,7 @@ msgstr "ਇੱਕ ਖਾਸ ਡੋਮੇਨ ਦੇ ਅੰਦਰ ਜੋ ਤੁਸ
 
 #. editorial content for the discovery pane.
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ਵੀਡੀਓ ਖੋਜੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
@@ -5473,7 +5473,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "ਪਾਸਵਰਡ-ਆਪਣੇ ਨਿੱਜੀ ਬੁਕਮਾਰਕ ਦੀ ਰੱਖਿਆ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
