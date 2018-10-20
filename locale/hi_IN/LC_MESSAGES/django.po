@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-18 06:55+0000\n"
-"Last-Translator: Mohit Bansal <philomath@disroot.org>\n"
+"PO-Revision-Date: 2018-10-20 14:49+0000\n"
+"Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -921,7 +921,7 @@ msgid "Error decoding signature."
 msgstr "हस्ताक्षर डीकोड करने में त्रुटि।"
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "पेलोड में एक या अधिक कुंजी के लिए गलत प्रकार"
 
 msgid "Invalid JWT Token."
 msgstr "अमान्य JWT टोकन।"
@@ -1006,19 +1006,19 @@ msgid "Icons cannot be animated."
 msgstr "प्रतीकों को एनिमेट नहीं किया जा सकता."
 
 msgid "This custom URL is already in use by another one of your collections."
-msgstr ""
+msgstr "यह कस्टम URL पहले से ही आपके संग्रह में से किसी एक द्वारा उपयोग में है।"
 
 msgid "Name cannot be empty."
-msgstr ""
+msgstr "नाम रिक्त नहीं हो सकता।"
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "कस्टम URL में अक्षर, संख्याँ, अंडरस्कोर या हायफ़न शामिल होने चाहिए।"
 
 msgid "This custom URL cannot be used."
-msgstr ""
+msgstr "इस कस्टम URL का उपयोग नहीं किया जा सकता।"
 
 msgid "This add-on already belongs to the collection"
-msgstr ""
+msgstr "यह ऐड-ऑन पहले ही संग्रह मे मौजूद है"
 
 msgid "Added"
 msgstr "जोड़ा गया"
@@ -1034,30 +1034,30 @@ msgstr "संग्रह बनाया गया!"
 
 #, python-format
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
+msgstr "आपका नया संग्रह नीचे दिखाया गया है। यदि आप चाहें तो आप <a href=\"%(url)s\">अतिरिक्त सेटिंग संपादित</a> कर सकते हैं।"
 
 msgid "Collection updated!"
 msgstr ""
 
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr ""
+msgstr "परिवर्तनो को देखने के लिए <a href=\"%(url)s\">अपना संग्रह देखें</a>।"
 
 msgid "Icon Deleted"
-msgstr ""
+msgstr "आइकॉन मिटा दिया गया"
 
 msgid "Create a New Collection"
-msgstr ""
+msgstr "एक नया संग्रह बनाएं"
 
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr ""
+msgstr "जैसा कि हमारी <a href=\"%(legal)s\">कानूनी नोटिस</a> में उल्लेख किया गया है, व्यक्तिगत संग्रह व्यवस्था Creative Commons Attribution Share-Alike License द्वारा शासित होती है"
 
 msgid "Create Collection"
 msgstr "संग्रह बनाएँ"
 
 msgid "View this collection"
-msgstr ""
+msgstr "यह संग्रह देखें"
 
 msgid "Start a new collection..."
 msgstr ""
