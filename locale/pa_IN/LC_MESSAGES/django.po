@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-20 04:33+0000\n"
+"PO-Revision-Date: 2018-10-20 04:38+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -4877,7 +4877,7 @@ msgstr "ਟੁਕੜੇ ਬੁੱਕਮਾਰਕ, ਡੁਪਲੀਕੇਟਸ, �
 
 #. editorial content for the discovery pane.
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{addon_name}{end_sub_heading} ਦੇ ਨਾਲ ਘੱਟ{start_sub_heading}ਤੇ ਤਣਾਅ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
