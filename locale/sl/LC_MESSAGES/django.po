@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-20 12:27+0000\n"
-"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
+"PO-Revision-Date: 2018-10-20 13:08+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -5326,7 +5326,7 @@ msgstr "Zagotovite si ugodnosti na Amazonu {start_sub_heading}z {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "Pri brskanju po drugih spletnih trgovinah z enim klikom preverite, po kakšni ceni je isti izdelek na voljo na Amazonu."
 
 #. editorial content for the discovery pane.
 msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5466,7 +5466,7 @@ msgstr "Merite čas, ki ga preživite za računalnikom oziroma na določenih str
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Zbirajte spletno vsebino, kot so članki, videoposnetki in slike, in jih shranite za uporabo v posameznih projektih ali za ekipno delo v realnem času."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
