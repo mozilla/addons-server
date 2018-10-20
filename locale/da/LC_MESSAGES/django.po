@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-08 20:59+0000\n"
-"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
+"PO-Revision-Date: 2018-10-20 13:41+0000\n"
+"Last-Translator: Kim Ludvigsen <kim@kimsside.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -2824,7 +2824,7 @@ msgstr "Beskriv tilføjelse"
 
 #. {0} is the addon name
 msgid "Describe {0}"
-msgstr ""
+msgstr "Beskriv {0}"
 
 msgid "Add-on URL"
 msgstr "Tilføjelsens URL"
@@ -3192,7 +3192,7 @@ msgstr[0] "<strong>{0}</strong> aktiv bruger"
 msgstr[1] "<strong>{0}</strong> aktive brugere"
 
 msgid "Submit a New Version"
-msgstr ""
+msgstr "Indsend en ny version"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
@@ -3210,7 +3210,7 @@ msgid "required"
 msgstr "påkrævet"
 
 msgid "Description:"
-msgstr ""
+msgstr "Beskrivelse:"
 
 msgid "This add-on is experimental"
 msgstr "Denne tilføjelse er eksperimentel"
@@ -3243,7 +3243,7 @@ msgid "Is there anything our reviewers should bear in mind when reviewing this a
 msgstr ""
 
 msgid "Remember"
-msgstr ""
+msgstr "Husk"
 
 #, python-format
 msgid ""
@@ -3265,7 +3265,7 @@ msgid "Describe Version"
 msgstr "Beskriv version"
 
 msgid "Release Notes:"
-msgstr ""
+msgstr "Udgivelsesnoter:"
 
 msgid "Let your users know what's new and what's changed in this version."
 msgstr "Fortæl dine brugere hvad der er nyt og hvilke ændringer der er i denne version."
@@ -4196,7 +4196,7 @@ msgstr "Oversæt nemt {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Markér noget tekst, højreklik og oversæt øjeblikkeligt."
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4225,7 +4225,7 @@ msgstr "Har du tonsvis af åbne faneblade? Sortér dem i et sidepanel."
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Stop Facebook-sporing {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
@@ -4334,7 +4334,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Fjern YouTube-reklamer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
@@ -4418,7 +4418,7 @@ msgstr "Optimér videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "Gør siden rundt om videoafspilleren mørkere, så du bedre kan koncentrere dig om videoen."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4456,7 +4456,7 @@ msgstr "Få cookies til at forsvinde {start_sub_heading}med {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "Slet automatisk cookies, når du lukker et faneblad."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4610,7 +4610,7 @@ msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "Oversæt markeret tekst eller hele websiden"
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4704,7 +4704,7 @@ msgstr "Dynamisk navigation {start_sub_heading}med {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr ""
+msgstr "Brug musebevægelser til at lukke faneblade, gå én side tilbage, genindlæse sider mm."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4894,7 +4894,7 @@ msgstr "Arbejd hurtigere {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
-msgstr ""
+msgstr "Brug musebevægelser til at få ting gjort — hurtigere."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5258,7 +5258,7 @@ msgstr "Surf privat {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
-msgstr ""
+msgstr "Skift til privat browsing-tilstand med ét klik."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5362,7 +5362,7 @@ msgstr "Firefox-søgning {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Få nem adgang til dine åbne faneblade, bogmærker og historik."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -5482,11 +5482,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Beskyt bogmærker {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Beskyt dine personlige bogmærker med adgangskode."
 
 #. editorial content for the discovery pane.
 #, fuzzy
