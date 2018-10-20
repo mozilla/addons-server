@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-20 14:13+0000\n"
-"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
+"PO-Revision-Date: 2018-10-20 15:30+0000\n"
+"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -958,7 +958,7 @@ msgid "Error decoding signature."
 msgstr "Napaka pri dekodiranju podpisa."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Napačen tip enega ali več ključev koristne vsebine"
 
 msgid "Invalid JWT Token."
 msgstr "Neveljaven žeton JWT."
@@ -3418,7 +3418,7 @@ msgid "Tools that combine multiple files into a single file, such as <span class
 msgstr "Orodja, ki združijo več datotek v eno, kot je <span class=\"tech-emphasis\">webpack</span>"
 
 msgid "Web template engines, both for HTML and CSS"
-msgstr ""
+msgstr "Pogoni spletnih predlog, tako za HTML kot CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
 msgstr "Katerokoli drugo orodje, ki vzame kodo ali datoteke, jih obdela ter ustvari kodo ali datoteko(e) za vključitev v dodatek"
@@ -5042,7 +5042,7 @@ msgstr "WhatsApp na spletu {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "Uporabljajte WhatsApp neposredno iz orodne vrstice Firefoxa, ki vam prikazuje obvestila o neprebranih sporočilih."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
