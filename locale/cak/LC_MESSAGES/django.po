@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-20 21:38+0000\n"
+"PO-Revision-Date: 2018-10-20 22:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5244,15 +5244,15 @@ msgstr "Anin takomonij ajk'amaya'l na'oj kik'in ri ye'ojqan awichin pa Twitter."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Jeb'ël rusamajixik ruwi' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "E k'o k'ïy cha'oj richin yenuk'samajïx taq ruwi'—kitz'apixik kamulun taq ruwi', kitunik taq ruwi', kiwachib'exik kib'i' taq ruwi' chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tak'ulu' relik etamab'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Load a random Wikipedia article each time you open a new tab."
