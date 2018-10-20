@@ -230,11 +230,10 @@ msgid_plural "{0} add-ons"
 msgstr[0] "{0} ऐड-ऑन"
 msgstr[1] "{0} ऐड-ऑन"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} संग्रहित"
-msgstr[1] "{0} संग्रहित"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "{0} review"
 msgid_plural "{0} reviews"
@@ -246,17 +245,15 @@ msgid_plural "{0} sales"
 msgstr[0] "{0} बिक्री"
 msgstr[1] "{0} बिक्री"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} धनवापसी"
-msgstr[1] "{0} धनवापसी"
+msgstr[0] ""
+msgstr[1] ""
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} इंस्टॉल किये गए"
-msgstr[1] "{0} इंस्टॉल किये गए"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Downloads"
 msgstr "डाउनलोड"
@@ -776,11 +773,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "अंतिम {1} दिनों में <b>{0}</b> औसत"
-msgstr[1] "अंतिम {1} दिनों में <b>{0}</b> औसत"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "यह सुविधा अस्थायी रुप से अक्षम है जब तक की हम वेबसाइट रखरखाव कर रहे हैं। कृपया कुछ देर बाद पुनः जाँचे करें।"
