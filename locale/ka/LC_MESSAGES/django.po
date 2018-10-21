@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-21 05:10+0000\n"
+"PO-Revision-Date: 2018-10-21 05:25+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2826,7 +2826,7 @@ msgid "Experimental?"
 msgstr "საცდელია?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr "თუ თქვენი დამატება საცდელია, ან არაა მზად საბოლოო მოხმარებისთვის.  დამატება გამოქვეყნდება, მაგრამ იქნება ნაკლებად შესამჩნევი. "
+msgstr "თუ თქვენი დამატება საცდელია ან არაა მზად საბოლოო მოხმარებისთვის.  დამატება გამოქვეყნდება, მაგრამ იქნება ნაკლებად შესამჩნევი. "
 
 msgid "This add-on is experimental."
 msgstr "ეს დამატება საცდელია"
@@ -6329,7 +6329,7 @@ msgstr "დასრულება"
 
 #. L10n: Description of what can be searched for
 msgid "add-on, reviewer or comment"
-msgstr "დამატება, მიმომხილველი, ან გამოხმაურება"
+msgstr "დამატება, მიმომხილველი ან გამოხმაურება"
 
 msgid "Search by add-on name / author email"
 msgstr "დამატების ძიება სახელით / ავტორის ელფოსტით"
@@ -6874,7 +6874,7 @@ msgid "This version has not been reviewed."
 msgstr "ეს ვერსია, ჯერ არ განხილულა."
 
 msgid "Please select one or more versions in the list above."
-msgstr "გთხოვთ მიუთითოთ ერთი, ან მეტი ვერსია, ზემოთ მოცემული ჩამონათვალიდან."
+msgstr "გთხოვთ მიუთითოთ ერთი ან მეტი ვერსია, ზემოთ მოცემული ჩამონათვალიდან."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "ამ შევსებული ველების წარდგენა კიდევ შეგიძლიათ, მხოლოდ იმ შემთხვევაში, თუ იცით რომ არ იქნება წინააღმდეგობრივი."
