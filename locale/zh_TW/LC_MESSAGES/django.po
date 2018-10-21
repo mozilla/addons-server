@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-21 03:12+0000\n"
+"PO-Revision-Date: 2018-10-21 03:16+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4336,7 +4336,7 @@ msgstr "{addon_name} {start_sub_heading}拍攝畫面擷圖{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
-msgstr ""
+msgstr "免費取用超過 1000 萬篇研究論文。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4345,7 +4345,7 @@ msgstr "{addon_name} {start_sub_heading}客製化分頁內容{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "嘗試使用超過 50 種好用的滑鼠手勢來瀏覽頁面。"
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4372,7 +4372,7 @@ msgstr "{addon_name} {start_sub_heading}下載影片{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "您在尋找的頁面無法使用嗎？尋找封存或快取版本。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4425,7 +4425,7 @@ msgstr "{addon_name} {start_sub_heading}儲存文字，稍後再讀{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
-msgstr ""
+msgstr "不要再重複寫同樣的東西了！如果您會在工作或其他通訊上頻繁使用那些字詞，把它們存在 Clippings 裡，等需要用到時再輕鬆地貼上。"
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4473,7 +4473,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖追蹤器{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "透過追蹤保護功能，為您上網額外增加一層防護。"
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4532,7 +4532,7 @@ msgstr "{addon_name} {start_sub_heading}購物時更省錢{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "在你結帳時自動套用購物車裡最值的優惠券。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4549,7 +4549,7 @@ msgstr "{addon_name} {start_sub_heading}加強 Reddit 功能{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "使用標籤等方式來改變您使用 Reddit 的方式。"
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4557,7 +4557,7 @@ msgstr "{addon_name} {start_sub_heading}捕捉網頁內容{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "拍攝網頁擷圖、編輯等功能。"
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
@@ -5072,7 +5072,7 @@ msgstr "{addon_name} {start_sub_heading}刪除資料{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "按一下即可清除網頁快取。"
 
 #. editorial content for the discovery pane.
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
