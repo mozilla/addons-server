@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-19 16:03+0000\n"
+"PO-Revision-Date: 2018-10-21 03:12+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4489,7 +4489,7 @@ msgstr "{addon_name} {start_sub_heading}加強 YouTube 使用體驗{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "預設以高畫質播放，關閉註解等等。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4498,7 +4498,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "只要點一下就可以知道誰在追蹤你。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4597,7 +4597,7 @@ msgstr "{addon_name} {start_sub_heading}列出分頁清單{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "把所有已開啟的分頁變成一個清單，輕鬆管理並加快 Firefox 速度。"
 
 #. editorial content for the discovery pane.
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4851,7 +4851,7 @@ msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "使用過濾器來限制存取不適當或不想要的內容。"
 
 #. editorial content for the discovery pane.
 #, fuzzy
