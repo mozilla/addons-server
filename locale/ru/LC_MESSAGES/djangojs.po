@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-09-28 14:49+0000\n"
+"PO-Revision-Date: 2018-10-19 17:38+0000\n"
 "Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -128,8 +128,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Исходные коды скомпилированных бинарников, а также минифицированных или обфусцированных скриптов (за исключением известных библиотек) необходимо представлять для проверки отдельно. Убедитесь, что "
-"вы используете поле загрузки исходного кода, чтобы избежать отклонения вашей заявки."
+"Исходные коды скомпилированных бинарников, а также минифицированных или обфусцированных скриптов (за исключением известных библиотек) необходимо представлять для проверки отдельно. Убедитесь, что вы"
+" используете поле загрузки исходного кода, чтобы избежать отклонения вашей заявки."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Процесс валидации нашёл следующие проблемы, которые могут привести к отклонению:"
@@ -780,20 +780,18 @@ msgid "Loading..."
 msgstr "Загрузка..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "остался <b>{0}</b> символ."
-msgstr[1] "осталось <b>{0}</b> символа."
-msgstr[2] "осталось <b>{0}</b> символов."
+msgstr[0] "<b>{0}</b> символ"
+msgstr[1] "<b>{0}</b> символа"
+msgstr[2] "<b>{0}</b> символов"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "остался <b>{0}</b> символ."
-msgstr[1] "осталось <b>{0}</b> символа."
-msgstr[2] "осталось <b>{0}</b> символов."
+msgstr[0] "остался <b>{0}</b> символ"
+msgstr[1] "осталось <b>{0}</b> символа"
+msgstr[2] "осталось <b>{0}</b> символов"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Пока мы производим техническое обслуживание веб-сайта, эта возможность временно отключена. Пожалуйста, зайдите попозже."
