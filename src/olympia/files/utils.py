@@ -15,6 +15,7 @@ import scandir
 
 from cStringIO import StringIO as cStringIO
 from datetime import datetime, timedelta
+from six import text_type
 from xml.dom import minidom
 from zipfile import ZipFile
 
@@ -1253,6 +1254,10 @@ def extract_header_img(file_obj, theme_data, dest_path):
     try:
         with zipfile.ZipFile(xpi, 'r') as source:
             for url in image_urls:
+                _, file_ext = os.path.splitext(text_type(url).lower())
+                if file_ext not in amo.THEME_BACKGROUND_EXTS:
+                    # wrong exts get served with wrong mimetype by the CDN.
+                    continue
                 try:
                     source.extract(url, dest_path)
                 except KeyError:

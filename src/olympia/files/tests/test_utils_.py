@@ -960,52 +960,63 @@ class TestXMLVulnerabilities(TestCase):
         lxml.etree.XMLParser(resolve_entities=False)
 
 
-def test_extract_header_img():
+class TestExtractHeaderImg(TestCase):
     file_obj = os.path.join(
         settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
-    data = {'images': {'headerURL': 'weta.png'}}
-    dest_path = tempfile.mkdtemp()
-    header_file = dest_path + '/weta.png'
-    assert not default_storage.exists(header_file)
 
-    utils.extract_header_img(file_obj, data, dest_path)
-    assert default_storage.exists(header_file)
-    assert default_storage.size(header_file) == 126447
+    def test_extract_header_img(self):
+        data = {'images': {'headerURL': 'weta.png'}}
+        dest_path = tempfile.mkdtemp()
+        header_file = dest_path + '/weta.png'
+        assert not default_storage.exists(header_file)
 
+        utils.extract_header_img(self.file_obj, data, dest_path)
+        assert default_storage.exists(header_file)
+        assert default_storage.size(header_file) == 126447
 
-def test_extract_header_img_missing():
-    file_obj = os.path.join(
-        settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
-    data = {'images': {'headerURL': 'missing_file.png'}}
-    dest_path = tempfile.mkdtemp()
-    header_file = dest_path + '/missing_file.png'
-    assert not default_storage.exists(header_file)
+    def test_extract_header_img_missing(self):
+        data = {'images': {'headerURL': 'missing_file.png'}}
+        dest_path = tempfile.mkdtemp()
+        header_file = dest_path + '/missing_file.png'
+        assert not default_storage.exists(header_file)
 
-    utils.extract_header_img(file_obj, data, dest_path)
-    assert not default_storage.exists(header_file)
+        utils.extract_header_img(self.file_obj, data, dest_path)
+        assert not default_storage.exists(header_file)
 
+    def test_extract_header_img_not_image(self):
+        self.file_obj = os.path.join(
+            settings.ROOT,
+            'src/olympia/devhub/tests/addons/static_theme_non_image.zip')
+        data = {'images': {'headerURL': 'not_an_image.js'}}
+        dest_path = tempfile.mkdtemp()
+        header_file = dest_path + '/not_an_image.js'
+        assert not default_storage.exists(header_file)
 
-def test_extract_header_with_additional_imgs():
-    file_obj = os.path.join(
-        settings.ROOT,
-        'src/olympia/devhub/tests/addons/static_theme_tiled.zip')
-    data = {'images': {
-        'headerURL': 'empty.png',
-        'additional_backgrounds': [
-            'transparent.gif', 'missing_&_ignored.png', 'weta_for_tiling.png']
-    }}
-    dest_path = tempfile.mkdtemp()
-    header_file = dest_path + '/empty.png'
-    additional_file_1 = dest_path + '/transparent.gif'
-    additional_file_2 = dest_path + '/weta_for_tiling.png'
-    assert not default_storage.exists(header_file)
-    assert not default_storage.exists(additional_file_1)
-    assert not default_storage.exists(additional_file_2)
+        utils.extract_header_img(self.file_obj, data, dest_path)
+        assert not default_storage.exists(header_file)
 
-    utils.extract_header_img(file_obj, data, dest_path)
-    assert default_storage.exists(header_file)
-    assert default_storage.size(header_file) == 332
-    assert default_storage.exists(additional_file_1)
-    assert default_storage.size(additional_file_1) == 42
-    assert default_storage.exists(additional_file_2)
-    assert default_storage.size(additional_file_2) == 93371
+    def test_extract_header_with_additional_imgs(self):
+        self.file_obj = os.path.join(
+            settings.ROOT,
+            'src/olympia/devhub/tests/addons/static_theme_tiled.zip')
+        data = {'images': {
+            'headerURL': 'empty.png',
+            'additional_backgrounds': [
+                'transparent.gif', 'missing_&_ignored.png',
+                'weta_for_tiling.png']
+        }}
+        dest_path = tempfile.mkdtemp()
+        header_file = dest_path + '/empty.png'
+        additional_file_1 = dest_path + '/transparent.gif'
+        additional_file_2 = dest_path + '/weta_for_tiling.png'
+        assert not default_storage.exists(header_file)
+        assert not default_storage.exists(additional_file_1)
+        assert not default_storage.exists(additional_file_2)
+
+        utils.extract_header_img(self.file_obj, data, dest_path)
+        assert default_storage.exists(header_file)
+        assert default_storage.size(header_file) == 332
+        assert default_storage.exists(additional_file_1)
+        assert default_storage.size(additional_file_1) == 42
+        assert default_storage.exists(additional_file_2)
+        assert default_storage.size(additional_file_2) == 93371

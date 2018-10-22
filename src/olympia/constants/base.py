@@ -263,7 +263,8 @@ PERSONA_IMAGE_SIZES = {
     'icon': [None, (32, 32)],
 }
 
-# Accepted image MIME-types
+# Accepted image extensions and MIME-types
+THEME_BACKGROUND_EXTS = ('.jpg', '.jpeg', '.png', '.apng', '.svg', '.gif')
 IMG_TYPES = ('image/png', 'image/jpeg')
 VIDEO_TYPES = ('video/webm',)
 
