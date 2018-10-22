@@ -661,7 +661,7 @@ def migrate_lwts_to_static_themes(ids, **kw):
             static_theme=static)
         # Steal the lwt's slug after it's deleted.
         slug = lwt.slug
-        lwt.delete()
+        lwt.delete(send_delete_email=False)
         static.update(slug=slug)
     resume_all_tasks()
 
