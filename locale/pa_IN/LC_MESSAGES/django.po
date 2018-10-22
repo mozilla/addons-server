@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-22 20:07+0000\n"
+"PO-Revision-Date: 2018-10-22 20:32+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -4765,7 +4765,7 @@ msgstr "ਇਸਦੇ ਡਿਸਪਲੇ ਨੂੰ ਗੂੜਾਪਨ ਕਰਕ�
 
 #. editorial content for the discovery pane.
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਪੌਪ-ਅਪਸ ਰੋਕੋ"
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
@@ -5045,7 +5045,7 @@ msgstr "ਨਿਰਧਾਰਤ ਸਮਾਂ ਅੰਤਰਾਲਾਂ ਵਿੱਚ
 
 #. editorial content for the discovery pane.
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਆਸਾਨ ਪੜ੍ਹਨ"
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
@@ -5053,7 +5053,7 @@ msgstr "ਆਪਣੇ ਪਸੰਦੀਦਾ RSS ਦੇ ਫੀਡਸ ਨੂੰ ਇ
 
 #. editorial content for the discovery pane.
 msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਅੱਖ ਦਾ ਦਬਾਅ ਘਟਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
@@ -5281,7 +5281,7 @@ msgstr "ਕਿਸੇ ਵੈਬਪੇਜ ਤੋਂ ਟੈਕਸਟ ਨੂੰ ਹ�
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਸਾਈਟ-ਵਿਸ਼ੇਸ਼ ਸਮਗਰੀ ਖੋਜੋ"
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
@@ -5345,7 +5345,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਉਤਪਾਦਕਤਾ ਘਟਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
@@ -5397,7 +5397,7 @@ msgstr "ਜੋ ਕੁਝ ਤੁਸੀਂ ਦੇਖ ਰਹੇ ਹੋ ਉਸ ਤ�
 
 #. editorial content for the discovery pane.
 msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਬੁੱਕਮਾਰਕਸ ਪ੍ਰਬੰਧਿਤ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
@@ -5425,11 +5425,11 @@ msgstr "Amazon ਉੱਤੇ ਸੂਚੀਬੱਧ ਕੀਤੇ ਉਤਪਾਦ�
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਭਰੋਸੇ ਨਾਲ ਖਰੀਦੋ"
 
 #. editorial content for the discovery pane.
 msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "ਇਹ ਯਕੀਨੀ ਬਣਾਉਣ ਲਈ ਇੱਕ ਅਤਿਰਿਕਤ ਚੈੱਕ, ਕਿ ਤੁਸੀਂ ਅਜਿਹੀ ਸਾਈਟ ਤੇ ਖਰੀਦਦਾਰੀ ਕਰ ਰਹੇ ਹੋ ਜੋ ਭਰੋਸੇਯੋਗਤਾ ਲਈ ਪੜਤਾਲ ਕੀਤੀ ਗਈ ਹੈ।"
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5840,7 +5840,7 @@ msgid "Must-Have Media"
 msgstr "ਮੀਡੀਆ ਜ਼ਰੂਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr ""
+msgstr "ਬਿਹਤਰ ਸਕ੍ਰੀਨਸ਼ੌਟਸ ਲਓ, ਆਪਣੇ ਔਨਲਾਈਨ ਵੀਡੀਓ ਅਨੁਭਵ ਨੂੰ ਬਿਹਤਰ ਬਣਾਓ, ਅਖੀਰ ਵਿੱਚ ਇੱਕ GIF ਅਤੇ ਹੋਰ ਵਧੀਆ ਮੀਡੀਆ ਸਾਧਨ ਕਿਵੇਂ ਬਣਾਉਣਾ ਸਿੱਖੋ।"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "ਮੌਜੀਲਾ&rsquo;s ਮਹੀਨੇ ਦੀ ਖਾਸ਼ ਚੋਣ!"
