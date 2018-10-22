@@ -333,19 +333,19 @@ class SearchQueryFilter(BaseFilterBackend):
             # Scoring, `boost` alone doesn't necessarily put it first.
             query.Term(**{
                 'name.raw': {
-                    'value': search_query, 'boost': 100
+                    'value': search_query, 'boost': 100.0
                 }
             })
         ]
 
         rules = [
             (query.MatchPhrase, {
-                'query': search_query, 'boost': 4, 'slop': 1}),
+                'query': search_query, 'boost': 8.0, 'slop': 1}),
             (query.Match, {
-                'query': search_query, 'boost': 3,
+                'query': search_query, 'boost': 6.0,
                 'analyzer': 'standard', 'operator': 'and'}),
             (query.Prefix, {
-                'value': search_query, 'boost': 1.5}),
+                'value': search_query, 'boost': 3.0}),
         ]
 
         # Add a rule for fuzzy matches ("fire bug" => firebug) (boost=2) for
@@ -353,7 +353,7 @@ class SearchQueryFilter(BaseFilterBackend):
         # they contain and how many words are present, can be too costly).
         if len(search_query) < self.MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH:
             rules.append((query.Match, {
-                'query': search_query, 'boost': 2,
+                'query': search_query, 'boost': 4.0,
                 'prefix_length': 4, 'fuzziness': 'AUTO'}))
 
         # Apply rules to search on few base fields. Some might not be present
@@ -369,7 +369,7 @@ class SearchQueryFilter(BaseFilterBackend):
                 query.Match(**{
                     'name_l10n_%s' % analyzer: {
                         'query': search_query,
-                        'boost': 2.5,
+                        'boost': 5.0,
                         'analyzer': analyzer,
                         'operator': 'and'
                     }
@@ -382,37 +382,32 @@ class SearchQueryFilter(BaseFilterBackend):
         """Return "secondary" should rules for the query.
 
         These are the ones using the weakest boosts, they are applied to fields
-        containing more text like description, summary and tags.
+        containing more text like description & summary.
 
         Applied rules:
 
-        * Look for phrase matches inside the summary (boost=0.8)
+        * Look for phrase matches inside the summary (boost=2.0)
         * Look for phrase matches inside the summary using language specific
-          analyzer (boost=0.6)
-        * Look for phrase matches inside the description (boost=0.3).
+          analyzer (boost=3.0)
+        * Look for phrase matches inside the description (boost=2.0).
         * Look for phrase matches inside the description using language
-          specific analyzer (boost=0.1).
-        * Look for matches inside tags (boost=0.1).
+          specific analyzer (boost=3.0).
         """
         should = [
-            query.MatchPhrase(summary={'query': search_query, 'boost': 0.8}),
+            query.MatchPhrase(summary={'query': search_query, 'boost': 2.0}),
             query.MatchPhrase(description={
-                'query': search_query, 'boost': 0.3}),
+                'query': search_query, 'boost': 2.0}),
         ]
-
-        # Append a separate 'match' query for every word to boost tag matches
-        for tag in search_query.split():
-            should.append(query.Match(tags={'query': tag, 'boost': 0.1}))
 
         # For description and summary, also search in translated field with the
         # right language and analyzer.
         if analyzer:
             should.extend([
                 query.MatchPhrase(**{'summary_l10n_%s' % analyzer: {
-                    'query': search_query, 'boost': 0.6,
+                    'query': search_query, 'boost': 3.0,
                     'analyzer': analyzer}}),
                 query.MatchPhrase(**{'description_l10n_%s' % analyzer: {
-                    'query': search_query, 'boost': 0.6,
+                    'query': search_query, 'boost': 3.0,
                     'analyzer': analyzer}})
             ])
 
