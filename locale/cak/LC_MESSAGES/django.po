@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-22 22:27+0000\n"
+"PO-Revision-Date: 2018-10-22 22:41+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5340,23 +5340,23 @@ msgstr "Tab'ana' jikïl chi ke ri ewan taq atzij {start_sub_heading}rik'in {addo
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Ütz ke'ayaka' ewan taq atzij chuqa' ruyon tutikirisaj molojri'ïl pa ajk'amaya'l taq ruxaq awetaman kiwäch."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Jun relik q'atonel eltzijol wachib'en richin nik'ut pe xa xe ri rupam nawajo'."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tawojqaj Runatab'al ajil pan Amazon {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make informed decisions by tracking the price of a product listed on Amazon."
-msgstr ""
+msgstr "Tacha' etaman taq na'ojib'al rik'in nawojqaj kajil tikojil yesuj pa Amazon."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Kaloq'on pa jikïl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
