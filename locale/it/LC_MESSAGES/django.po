@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-04 13:27+0000\n"
-"Last-Translator: Francesco Lodolo <francesco.lodolo@mozillaitalia.org>\n"
+"PO-Revision-Date: 2018-10-21 19:58+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -713,7 +713,7 @@ msgstr "Numero intero positivo"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Usare questo campo esclusivamente per i link a siti web esterni. Gli URL di %(domain)s non sono consentiti."
 
 msgid "Incorrect, please try again."
 msgstr "Errore, riprova."
@@ -2644,7 +2644,7 @@ msgid "Lightweight Themes"
 msgstr "Temi leggeri"
 
 msgid "Developer Policies"
-msgstr ""
+msgstr "Norme per sviluppatori"
 
 msgid "Add-on Validator"
 msgstr "Strumento di verifica componenti aggiuntivi"
@@ -2801,10 +2801,10 @@ msgstr ""
 " di altri autori</li></ul>"
 
 msgid "Additional Details"
-msgstr ""
+msgstr "Dettagli aggiuntivi"
 
 msgid "Additional Details for {0}"
-msgstr ""
+msgstr "Dettagli aggiuntivi per {0}"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
@@ -2853,7 +2853,7 @@ msgstr "Descrizione del componente aggiuntivo"
 
 #. {0} is the addon name
 msgid "Describe {0}"
-msgstr ""
+msgstr "Descrizione {0}"
 
 msgid "Add-on URL"
 msgstr "URL del componente aggiuntivo"
@@ -3264,7 +3264,7 @@ msgid "required"
 msgstr "obbligatorio"
 
 msgid "Description:"
-msgstr ""
+msgstr "Descrizione:"
 
 msgid "This add-on is experimental"
 msgstr "Questo componente aggiuntivo è sperimentale"
@@ -3498,7 +3498,7 @@ msgid "Theme generator"
 msgstr "Strumento generazione temi"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr ""
+msgstr "Avviso: le seguenti proprietà del manifesto contenute nell’ultima versione caricata del componente aggiuntivo non sono supportate dalla procedura guidata, pertanto verranno ignorate:"
 
 msgid "Theme name"
 msgstr "Nome del tema"
@@ -7365,7 +7365,7 @@ msgstr "Il numero di versione non corrisponde a quello indicato nel file manifes
 
 #, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr ""
+msgstr "Questa versione esiste già. Versione più recente: %s."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Solo ai componenti aggiuntivi che utilizzano WebExtensions è consentito omettere il GUID"
