@@ -734,7 +734,8 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
     def test_addon_does_not_exist(self):
         response = self.get(self.url('foo', '12.5'))
         assert response.status_code == 404
-        assert response.data['error'] == 'Could not find add-on with id "foo".'
+        assert response.data['error'] == (
+            'Could not find add-on with guid "foo".')
 
     def test_user_does_not_own_addon(self):
         self.create_version('3.0')

@@ -44,7 +44,7 @@ validation or review fails.
 If the upload succeeded then it will be submitted for
 validation and you will be able to check its status.
 
-.. http:put:: /api/v4/addons/[string:addon-id]/versions/[string:version]/
+.. http:put:: /api/v4/addons/(string:guid)/versions/(string:version)/
 
     **Request:**
 
@@ -54,7 +54,7 @@ validation and you will be able to check its status.
             -g -XPUT --form "upload=@build/my-addon.xpi"
             -H "Authorization: JWT <jwt-token>"
 
-    :param addon-id: The id for the add-on.
+    :param guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
     :param version: The version of the add-on.
     :form upload: The add-on file being uploaded.
     :form channel: (optional) The channel this version should be uploaded to,
@@ -147,7 +147,7 @@ automatically or after a manual review. Once review is complete then the
 ``reviewed`` property will be set and you can check the results with the
 ``passed_review`` property.
 
-.. http:get:: /api/v4/addons/[string:addon-id]/versions/[string:version]/(uploads/[string:upload-pk]/)
+.. http:get:: /api/v4/addons/(string:guid)/versions/(string:version)/[uploads/(string:upload-pk)/]
 
     **Request:**
 
@@ -156,7 +156,7 @@ automatically or after a manual review. Once review is complete then the
         curl "https://addons.mozilla.org/api/v4/addons/@my-addon/versions/1.0/"
             -g -H "Authorization: JWT <jwt-token>"
 
-    :param addon-id: the id for the add-on.
+    :param guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
     :param version: the version of the add-on.
     :param upload-pk: (optional) the pk for a specific upload.
 
