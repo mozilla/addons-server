@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-22 06:11+0000\n"
+"PO-Revision-Date: 2018-10-22 06:14+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -2787,13 +2787,11 @@ msgstr ""
 "<p>Add-ons kunnen meerdere schrijvers hebben met twee mogelijke rollen:</p> <ul> <li><b>Eigenaar:</b> Kan alle aspecten van de lijstweergave van de add-on beheren, inclusief toevoegen en verwijderen"
 " van andere schrijvers</li> <li><b>Ontwikkelaar:</b> Kan alle aspecten van de lijstweergave van de add-on beheren, behalve toevoegen en verwijderen van andere schrijvers</li> </ul>"
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Add-ondetails"
+msgstr "Aanvullende details"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "Add-ondetails voor {0}"
+msgstr "Aanvullende details voor {0}"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "Labels helpen gebruikers om uw add-on te vinden en dienen korte beschrijvingen te zijn, zoals tabbladen, werkbalk of twitter. U kunt maximaal {0} labels gebruiken."
@@ -2837,9 +2835,8 @@ msgid "Describe Add-on"
 msgstr "Beschrijf uw add-on"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Beschrijf uw add-on"
+msgstr "Beschrijf {0}"
 
 msgid "Add-on URL"
 msgstr "Add-on-URL"
@@ -3242,9 +3239,8 @@ msgstr "Samenvatting:"
 msgid "required"
 msgstr "vereist"
 
-#, fuzzy
 msgid "Description:"
-msgstr "Beschrijving"
+msgstr "Beschrijving:"
 
 msgid "This add-on is experimental"
 msgstr "Deze add-on is experimenteel"
@@ -3472,7 +3468,7 @@ msgid "Theme generator"
 msgstr "Thema-generator"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr ""
+msgstr "Waarschuwing: de volgende manifest-eigenschappen die zijn gebruikt in het manifest van uw meest recente versie worden niet ondersteund in deze wizard en worden genegeerd:"
 
 msgid "Theme name"
 msgstr "Themanaam"
