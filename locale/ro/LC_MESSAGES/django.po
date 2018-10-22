@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-22 13:36+0000\n"
+"PO-Revision-Date: 2018-10-22 14:13+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -552,7 +552,7 @@ msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Lansat sub <a href=\"%(url)s\">%(name)s</a>"
 
 msgid "Custom License"
-msgstr "Licenţă personalizată"
+msgstr "Licență personalizată"
 
 msgid "About this Add-on"
 msgstr "Despre acest supliment"
@@ -601,7 +601,7 @@ msgid "Source Code License"
 msgstr ""
 
 msgid "support section"
-msgstr "secţiunea de suport"
+msgstr "secțiune de suport"
 
 msgid "support email"
 msgstr "e-mail de suport"
@@ -1193,7 +1193,7 @@ msgid "Collections by {0}"
 msgstr ""
 
 msgid "No collections found."
-msgstr "Nici o colecţie găsită."
+msgstr "Nicio colecție găsită."
 
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
@@ -1764,7 +1764,7 @@ msgid "{addon} {version} content approved."
 msgstr ""
 
 msgid "Content approved"
-msgstr "Conţinut aprobat"
+msgstr "Conținut aprobat"
 
 msgid "{addon} {version} content rejected."
 msgstr ""
@@ -2023,7 +2023,7 @@ msgid "Business"
 msgstr "Afaceri"
 
 msgid "Dictionaries & Encyclopedias"
-msgstr "Dicţionare și enciclopedii"
+msgstr "Dicționare și enciclopedii"
 
 msgid "Kids"
 msgstr "Copii"
@@ -2038,7 +2038,7 @@ msgid "Photos & Images"
 msgstr "Fotografii și imagini"
 
 msgid "Shopping & E-Commerce"
-msgstr "Cumpărături și comerţ electronic"
+msgstr "Cumpărături și comerț electronic"
 
 msgid "Social & People"
 msgstr "Social și uman"
@@ -2725,7 +2725,7 @@ msgstr[1] "<b>{0}</b> teme"
 msgstr[2] "<b>{0}</b> de teme"
 
 msgid "Edit Information"
-msgstr "Editează informaţille"
+msgstr "Editează informațille"
 
 msgid "None"
 msgstr ""
@@ -7598,7 +7598,7 @@ msgid "<b>{0}</b> Average Daily Users"
 msgstr "<b>{0}</b> utilizatori zilnici în medie"
 
 msgid "Top Applications"
-msgstr "Aplicaţii de top"
+msgstr "Aplicații de top"
 
 msgid "See more applications&hellip;"
 msgstr "Vezi mai multe aplicații&hellip;"
