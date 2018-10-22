@@ -1483,6 +1483,7 @@ CSP_BASE_URI = (
 CSP_CONNECT_SRC = (
     "'self'",
     'https://sentry.prod.mozaws.net',
+    PROD_CDN_HOST,
 )
 CSP_FORM_ACTION = (
     "'self'",
