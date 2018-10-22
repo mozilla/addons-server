@@ -111,10 +111,7 @@ def verify_mozilla_trademark(name, user, form=None):
         name = normalize_string(name, strip_puncutation=True).lower()
 
         for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
-            violates_trademark = (
-                name.count(symbol) > 1 or (
-                    name.count(symbol) >= 1 and not
-                    name.endswith(' for {}'.format(symbol))))
+            violates_trademark = symbol in name
 
             if violates_trademark:
                 raise forms.ValidationError(ugettext(

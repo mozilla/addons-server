@@ -30,10 +30,10 @@ from olympia.constants.categories import CATEGORIES_BY_ID
 @pytest.mark.parametrize('name, allowed, email', (
     # Regular name, obviously always allowed
     ('Fancy new Add-on', True, 'foo@bar.com'),
-    # We allow the 'for ...' postfix to be used
-    ('Fancy new Add-on for Firefox', True, 'foo@bar.com'),
-    ('Fancy new Add-on for Mozilla', True, 'foo@bar.com'),
-    # But only the postfix
+    # We don't allow the 'for ...' postfix to be used anymore
+    ('Fancy new Add-on for Firefox', False, 'foo@bar.com'),
+    ('Fancy new Add-on for Mozilla', False, 'foo@bar.com'),
+    # Or the postfix
     ('Fancy new Add-on for Firefox Browser', False, 'foo@bar.com'),
     ('For Firefox fancy new add-on', False, 'foo@bar.com'),
     # But users with @mozilla.com or @mozilla.org email addresses
@@ -43,11 +43,13 @@ from olympia.constants.categories import CATEGORIES_BY_ID
     ('Firefox makes everything better', True, 'foo@mozilla.org'),
     ('Mozilla makes everything better', True, 'foo@mozilla.com'),
     ('Mozilla makes everything better', True, 'foo@mozilla.org'),
+    ('Fancy new Add-on for Firefox', True, 'foo@mozilla.org'),
+    ('Fancy new Add-on for Mozilla', True, 'foo@mozilla.org'),
     # A few more test-cases...
     ('Firefox add-on for Firefox', False, 'foo@bar.com'),
     ('Firefox add-on for Firefox', True, 'foo@mozilla.com'),
     ('Foobarfor Firefox', False, 'foo@bar.com'),
-    ('Better Privacy for Firefox!', True, 'foo@bar.com'),
+    ('Better Privacy for Firefox!', False, 'foo@bar.com'),
     ('Firefox awesome for Mozilla', False, 'foo@bar.com'),
     ('Firefox awesome for Mozilla', True, 'foo@mozilla.org'),
 ))
