@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-22 13:36+0000\n"
+"PO-Revision-Date: 2018-10-22 17:28+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -4949,7 +4949,7 @@ msgstr "ਟਰੈਕਰਾਂ ਨੂੰ ਬੰਦ ਕਰਨ ਅਤੇ ਤੁਹ�
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਸਵੈ-ਸੈਂਸਰ"
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
@@ -5037,7 +5037,7 @@ msgstr "ਫਾਇਰਫਾਕਸ ਨੂੰ ਤੁਹਾਡੇ ਦੁਆਰਾ �
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਚੁਸਤ ਕੰਮ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
@@ -5105,7 +5105,7 @@ msgstr "ਤੁਰੰਤ ਨਵੇਂ ਟੈਬਾਂ ਵਿਚ ਕਿਸੇ ਵ�
 
 #. editorial content for the discovery pane.
 msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਦਸਤਾਵੇਜ਼ ਵੇਖੋ"
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
@@ -5233,7 +5233,7 @@ msgstr "ਆਪਣੇ ਖੋਜ ਨਤੀਜਿਆਂ ਦੇ ਅੰਦਰ ਵਿ�
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਪਾਸਵਰਡ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਵਿਵਸਥਿਤ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
