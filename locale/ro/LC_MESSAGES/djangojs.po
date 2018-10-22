@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-09 13:16+0000\n"
-"Last-Translator: siparon <siparon@gmail.com>\n"
+"PO-Revision-Date: 2018-10-22 13:33+0000\n"
+"Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -661,9 +661,9 @@ msgstr "Selectează o aplicație mai întâi"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Setează {0} supliment la o versiune maximă de {1} şi trimite e-mail autorului."
-msgstr[1] "Setează {0} suplimente la o versiune maximă de {1} şi trimite e-mail autorului."
-msgstr[2] "Setează {0} de suplimente la o versiune maximă de {1} şi trimite e-mail autorului."
+msgstr[0] "Setează {0} supliment la o versiune maximă de {1} și trimite e-mail autorului."
+msgstr[1] "Setează {0} suplimente la o versiune maximă de {1} și trimite e-mail autorului."
+msgstr[2] "Setează {0} de suplimente la o versiune maximă de {1} și trimite e-mail autorului."
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
@@ -738,7 +738,7 @@ msgid "Add to favorites"
 msgstr "Adaugă la favorite"
 
 msgid "Remove from favorites"
-msgstr "Şterge din favorite"
+msgstr "Șterge din favorite"
 
 msgid "Stop following"
 msgstr ""
