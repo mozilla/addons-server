@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-22 17:28+0000\n"
+"PO-Revision-Date: 2018-10-22 19:39+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -4653,7 +4653,7 @@ msgstr "ਚੈੱਕਆਉਟ ਤੇ ਆਪਣੇ ਸ਼ਾਪਿੰਗ ਕਾ�
 
 #. editorial content for the discovery pane.
 msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਸਵਿਫਟ ਅਨੁਵਾਦ"
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
@@ -4669,7 +4669,7 @@ msgstr "ਟੈਗਾਂ ਅਤੇ ਹੋਰ ਤਰੀਕਿਆਂ ਦੀ ਵਰ�
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੈਬ ਕੈਪਚਰ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
@@ -4917,7 +4917,7 @@ msgstr "ਇੱਕ ਤਾਜ਼ਾ ਅਤੇ ਆਧੁਨਿਕ ਦਿੱਖ Wiki
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਤੇਜ਼ ਕੰਮ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
@@ -5097,7 +5097,7 @@ msgstr "ਇੱਕ ਪੂਰੇ ਵੈਬਪੇਜ ਨੂੰ ਆਪਣੀ ਪਸ�
 
 #. editorial content for the discovery pane.
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਐਕਸਟਰੈਕਟ ਲਿੰਕਸ"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
@@ -5145,7 +5145,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਨੂੰ ਹੇਠਾਂ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
@@ -5169,7 +5169,7 @@ msgstr "ਇੱਕ ਕਲਿਕ ਜਾਂ ਕੀਸਟਰੋਕ ਨਾਲ ਆਪ�
 
 #. editorial content for the discovery pane.
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਦੁਬਾਰਾ ਕਦੇ ਨਾ ਭੁੱਲੋ"
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
@@ -5225,7 +5225,7 @@ msgstr "ਬ੍ਰਾਉਜ਼ਰ ਅਤੀਤ ਨੂੰ ਆਪਣੇ-ਆਪ ਸ�
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਖੋਜ ਵਿਗਿਆਪਨਾਂ ਨੂੰ ਹਟਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
@@ -5257,7 +5257,7 @@ msgstr "ਇਕ ਵਾਰ ਦਾਖਲ ਕੀਤੇ ਡਾਟਾ ਨੂੰ ਸੁ
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਪ੍ਰਾਈਵੇਟ ਤੌਰ ਤੇ ਬੁੱਕ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
@@ -5297,7 +5297,7 @@ msgstr "ਕਿਸੇ ਵੀ ਵੈਬਸਾਈਟ ਤੋਂ ਪਾਠ ਨੂੰ 
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਐਮਾਜ਼ਾਨ ਦੇ ਕਿਨਾਰੇ ਨੂੰ ਪ੍ਰਾਪਤ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
@@ -5305,7 +5305,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਇਸਨੂੰ ਟਵਿੱਟਰ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Easily broadcast web content to your Twitter following."
@@ -5329,7 +5329,7 @@ msgstr "ਹਰ ਵਾਰ ਜਦੋਂ ਤੁਸੀਂ ਕੋਈ ਨਵੀਂ ਟ
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਆਪਣੀ ਨਵੀਂ ਟੈਬ ਨੂੰ ਬਦਲੋ"
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
@@ -5353,7 +5353,7 @@ msgstr "ਉਨ੍ਹਾਂ ਪਲਾਂ ਲਈ ਜਦੋਂ ਤੁਹਾਨੂ�
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਫਾਇਰਫਾਕਸ ਦੀ ਖੋਜ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
@@ -5389,7 +5389,7 @@ msgstr "ਸਾਰੇ ਪਾਸਵਰਡ ਖੇਤਰਾਂ ਨੂੰ ਦਿਖ�
 
 #. editorial content for the discovery pane.
 msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵਿਵਹਾਰ ਨੂੰ ਘਟਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
@@ -5405,7 +5405,7 @@ msgstr "ਆਸਾਨੀ ਨਾਲ ਪਹੁੰਚਯੋਗ ਪੈਨਲ ਰਾ�
 
 #. editorial content for the discovery pane.
 msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਪਾਸਵਰਡ ਸੁਰੱਖਿਅਤ ਰੱਖੋ"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
@@ -5445,7 +5445,7 @@ msgstr "ਵਿਅਕਤੀਗਤ ਪ੍ਰਾਜੈਕਟਾਂ ਜਾਂ ਰੀ
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਸੁਰੱਖਿਅਤ ਰੂਪ ਵਿੱਚ ਸਰਫ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
@@ -5453,7 +5453,7 @@ msgstr "ਸਿਰਫ਼ ਉਹਨਾਂ ਵੈਬ ਸਮੱਗਰੀ ਨੂੰ �
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਕੂਕੀਜ਼ ਪ੍ਰਬੰਧਿਤ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
@@ -5461,7 +5461,7 @@ msgstr "ਬ੍ਰਾਉਜ਼ਿੰਗ ਕਰਦੇ ਸਮੇਂ ਤੁਹਾਡ
 
 #. editorial content for the discovery pane.
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਇਤਿਹਾਸ ਨੂੰ ਭੁੱਲ ਜਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
@@ -5493,7 +5493,7 @@ msgstr "ਔਖਾ ਪੌਪ-ਅਪ ਓਵਰਲੇਅ ਨੂੰ ਬੰਦ ਕਰ
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਕਿਸੇ ਵੀ ਚਿੱਤਰ ਦੀ ਜਾਂਚ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
@@ -5521,7 +5521,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਤੰਗ ਕਰਨ ਵਾਲੀ ਔਡੀਓ ਫਿਕਸ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
@@ -5529,7 +5529,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਪ੍ਰਿੰਟ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸੰਪਾਦਨ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
@@ -5537,7 +5537,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਐਮਾਜ਼ਾਨ ਕੀਮਤੀ ਇਤਿਹਾਸ ਟ੍ਰੈਕ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
@@ -5545,7 +5545,7 @@ msgstr "Amazon ਤੇ ਸੂਚੀਬੱਧ ਕੀਤੇ ਉਤਪਾਦਾਂ �
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਮਾਸਟਰ ਆਡੀਓ"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
@@ -5561,7 +5561,7 @@ msgstr "ਆਪਣੇ ਆਪ ਨੂੰ sneakiest ਟਰੈਕਰਜ ਦੇ ਵਿ
 
 #. editorial content for the discovery pane.
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਆਪਣੇ ਟਰੈਕਾਂ ਨੂੰ ਕਵਰ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
@@ -5890,12 +5890,12 @@ msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਭੇਜੋ"
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s ਹੈਮ ਸਪੈਮ ਦੇ ਤੌਰ ਤੇ ਰਿਪੋਰਟ ਪੇਸ਼ ਕਰਦਾ ਹੈ"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s ਸਪੈਮ ਦੀ ਰਿਪੋਰਟ ਹਾਮ ਵਜੋਂ ਪੇਸ਼ ਕੀਤੀ ਗਈ"
 
 msgid "About Mozilla Add-ons"
 msgstr "ਮੌਜੀਲਾ ਐਡ-ਆਨਾਂ ਬਾਰੇ"
@@ -7374,7 +7374,7 @@ msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 ch
 msgstr ""
 
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "URL ਵਿੱਚ ਅਪ੍ਰਮਾਣਿਕ ​​GUID"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr ""
