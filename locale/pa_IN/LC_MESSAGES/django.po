@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-22 19:50+0000\n"
+"PO-Revision-Date: 2018-10-22 20:07+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -4701,7 +4701,7 @@ msgstr "ਆਪਣੀਆਂ ਮਨਪਸੰਦ ਸਾਈਟਾਂ, ਹਾਲ ਹ�
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਆਪਣਾ ਹੋਮਪੇਜ਼ ਸੈਟ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
@@ -4709,7 +4709,7 @@ msgstr "ਆਪਣੀਆਂ ਨਵੀਆਂ ਟੈਬਾਂ ਲਈ ਇੱਕ ਕ�
 
 #. editorial content for the discovery pane.
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਆਪਣੀਆਂ ਟੈਬਸ ਦੀ ਸੂਚੀਬੱਧ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
@@ -5161,7 +5161,7 @@ msgstr "ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ \"ਡੈਸਕ-ਨੋ-ਡਰੈਗ\
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਡਾਟਾ ਮਿਟਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
@@ -5177,7 +5177,7 @@ msgstr "ਆਪਣੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਇੱਕ ਕੰਮ �
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਟੈਕਸਟ ਹਾਈਲਾਈਟ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
@@ -5201,7 +5201,7 @@ msgstr "ਸਿਰਫ YouTube ਕਲਿੱਪਾਂ ਤੋਂ ਆਡੀਓ ਸਟ
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਚਿੱਤਰਾਂ ਵਿੱਚ ਟੈਕਸਟ ਬਦਲੋ"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
@@ -5209,7 +5209,7 @@ msgstr "ਸੁੰਦਰ ਸਿਰਲੇਖਾਂ ਅਤੇ ਚਿੱਤਰ ਓ�
 
 #. editorial content for the discovery pane.
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਸੁਰੱਖਿਅਤ ਰੂਪ ਵਿੱਚ ਸਰਚ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
@@ -5217,7 +5217,7 @@ msgstr "ਕਿਸੇ ਵੈਬਸਾਈਟ ਦੇ ਸੁਰੱਖਿਅਤ ਸ�
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਆਪਣਾ ਨੈਵੀਗੇਸ਼ਨ ਇਤਿਹਾਸ ਮਿਟਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
@@ -5249,7 +5249,7 @@ msgstr "ਵਿਗਿਆਪਨ ਅਤੇ ਟ੍ਰੈਕਕਰਸ ਨੂੰ ਰ�
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਫਾਰਮ ਨੂੰ ਆਟੋਮੈਟਿਕ ਹੀ ਭਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
