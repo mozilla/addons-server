@@ -18,6 +18,7 @@ import mock
 import pytest
 
 from defusedxml.common import EntitiesForbidden, NotSupportedError
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import TestCase
@@ -381,6 +382,19 @@ class TestManifestJSONExtractor(TestCase):
                 assert dict(exc.value.messages)['en-us'].startswith(
                     u'Add-on names cannot contain the Mozilla or'
                 )
+
+    @mock.patch('olympia.addons.models.resolve_i18n_message')
+    @override_switch('content-optimization', active=False)
+    def test_mozilla_trademark_for_prefix_allowed(self, resolve_message):
+        resolve_message.return_value = 'Notify for Mozilla'
+
+        addon = amo.tests.addon_factory()
+        file_obj = addon.current_version.all_files[0]
+        fixture = (
+            'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi')
+
+        with amo.tests.copy_file(fixture, file_obj.file_path):
+            utils.parse_xpi(file_obj.file_path)
 
     def test_apps_use_default_versions_if_applications_is_omitted(self):
         """

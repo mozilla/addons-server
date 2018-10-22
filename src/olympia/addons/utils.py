@@ -11,6 +11,8 @@ from django.db.models import Q
 from django.forms import ValidationError
 from django.utils.translation import ugettext
 
+import waffle
+
 from olympia import amo
 from olympia.lib.cache import memoize, memoize_key
 from olympia.amo.utils import normalize_string, to_language
@@ -111,7 +113,14 @@ def verify_mozilla_trademark(name, user, form=None):
         name = normalize_string(name, strip_puncutation=True).lower()
 
         for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
-            violates_trademark = symbol in name
+            if waffle.switch_is_active('content-optimization'):
+                violates_trademark = symbol in name
+
+            else:
+                violates_trademark = (
+                    name.count(symbol) > 1 or (
+                        name.count(symbol) >= 1 and not
+                        name.endswith(' for {}'.format(symbol))))
 
             if violates_trademark:
                 raise forms.ValidationError(ugettext(
