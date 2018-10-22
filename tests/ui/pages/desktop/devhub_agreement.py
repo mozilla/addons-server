@@ -10,7 +10,6 @@ class DevHubAgreement(Base):
     _distribution_agreement_locator = (By.ID, 'id_distribution_agreement')
     _review_policy_locator = (By.ID, 'id_review_policy')
 
-
     def wait_for_page_to_load(self):
         self.wait.until(
             lambda _: self.is_element_displayed(

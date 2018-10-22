@@ -14,7 +14,7 @@ class DevHubSource(Base):
     def wait_for_page_to_load(self):
         self.wait.until(
             lambda _: self.is_element_displayed(
-                    *self._submit_source_locator
+                *self._submit_source_locator
             )
         )
         return self
