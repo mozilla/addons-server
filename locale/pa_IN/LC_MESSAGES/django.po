@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-22 13:31+0000\n"
+"PO-Revision-Date: 2018-10-22 13:36+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -4255,7 +4255,7 @@ msgstr "ਬਲਾਕ ਅਵਿਵਹਾਰਕ ਟ੍ਰੈਕਕਰਸ ਅਤੇ
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ਨਵੇਂ ਟੈਬ ਪੰਨਿਆਂ ਨੂੰ ਸੋਧੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਨਵੇਂ ਟੈਬ ਪੰਨਿਆਂ ਨੂੰ ਸੋਧੋ"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
@@ -4327,7 +4327,7 @@ msgstr "ਜਦੋਂ ਤੁਸੀਂ ਕੋਈ ਨਵੀਂ ਟੈਬ ਖੋਲ�
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਚਿੱਤਰ ਖੋਜ ਉਲਟਾ ਕਰੋ "
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
@@ -4489,7 +4489,7 @@ msgstr "ਦੁਨੀਆ ਭਰ ਵਿੱਚ ਰੁੱਖ ਲਗਾਉਣ ਵਾ�
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਲੁਕੀ ਹੋਈ ਵੈਬ ਸਮਗਰੀ"
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
@@ -4589,7 +4589,7 @@ msgstr "ਆਪਣੇ ਵੱਖ-ਵੱਖ ਆਨਲਾਇਨ ਪਹਿਚਾਣ�
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਟਰੈਕਰਾਂ ਨੂੰ ਬੰਦ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
@@ -4933,7 +4933,7 @@ msgstr "ਤੁਹਾਡੇ ਦੁਆਰਾ ਦੇਖੀ ਜਾ ਰਹੀ ਵੈ�
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਤਸਵੀਰਾਂ ਡਾਊਨਲੋਡ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
@@ -5061,7 +5061,7 @@ msgstr "ਬਿਹਤਰ ਦੇਖੇ ਗਏ ਅਨੁਭਵ ਲਈ ਰਾਤ ਦ
 
 #. editorial content for the discovery pane.
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ਚਿੱਤਰ ਖੋਜੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਚਿੱਤਰ ਖੋਜੋ"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
@@ -5069,7 +5069,7 @@ msgstr "ਮਲਟੀਪਲ ਖੋਜ ਪ੍ਰਦਾਤਾਵਾਂ ਦੀ ਸ�
 
 #. editorial content for the discovery pane.
 msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ਇਸ ਨੂੰ ਬਾਅਦ ਵਿਚ ਸੰਭਾਲੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਇਸ ਨੂੰ ਬਾਅਦ ਵਿਚ ਸੰਭਾਲੋ"
 
 #. editorial content for the discovery pane.
 msgid "Store web pages to access across devices."
@@ -5193,7 +5193,7 @@ msgstr "ਦੁਨੀਆ ਭਰ ਤੋਂ 30,000+ ਰੇਡੀਓ ਸਟੇਸ਼
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ਵੀਡੀਓ ਸੁਣੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੀਡੀਓ ਸੁਣੋ"
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
@@ -5289,7 +5289,7 @@ msgstr "ਇੱਕ ਖਾਸ ਡੋਮੇਨ ਦੇ ਅੰਦਰ ਜੋ ਤੁਸ
 
 #. editorial content for the discovery pane.
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "ਵੀਡੀਓ ਖੋਜੋ {start_sub_heading}ਦੇ ਨਾਲ {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੀਡੀਓ ਖੋਜੋ"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
