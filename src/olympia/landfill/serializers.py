@@ -235,8 +235,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             addon = Addon.objects.get(guid='@webextension-guid')
         except Addon.DoesNotExist:
             addon = addon_factory(
-                status=STATUS_PUBLIC,
-                type=ADDON_EXTENSION,
                 file_kw=False,
                 average_daily_users=5000,
                 users=[self.user],
