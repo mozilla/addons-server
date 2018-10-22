@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-20 15:50+0000\n"
+"PO-Revision-Date: 2018-10-19 14:03+0000\n"
 "Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -2795,11 +2795,9 @@ msgstr ""
 "<p>Les modules peuvent avoir autant d’auteurs que souhaité avec deux rôles possibles :</p> <ul> <li><b>Propriétaire :</b> peut gérer tous les aspects du module, dont l’ajout et le retrait "
 "d’auteurs</li> <li><b>Développeur :</b> peut gérer tous les aspects du module, sauf l’ajout et le retrait d’auteurs ainsi que la gestion des paiements</li> </ul>"
 
-#, fuzzy
 msgid "Additional Details"
 msgstr "Détails du module"
 
-#, fuzzy
 msgid "Additional Details for {0}"
 msgstr "Détails du module {0}"
 
