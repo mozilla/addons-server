@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-22 21:02+0000\n"
+"PO-Revision-Date: 2018-10-22 21:31+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5284,35 +5284,35 @@ msgstr "Toq nawajo' nak'äq ruch'ab'ik laser rik'in jun sya'n. "
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tikanöx pa Firefox {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Anin katok pa ejaqon taq ruwi', taq yaketal chuqa' natab'äl."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "¿La k'ïy taq ruwi' e'ajaqon? Tameja' ri q'axanïk chuqa' kakanon rik'in aninäq taq pitz'b'äl."
 
 #. editorial content for the discovery pane.
 msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'atz'eta' ri na'ob'äl k'o chi kij ri ajk'amaya'l ruxaq {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Uncover the software that supports whatever website you're visiting."
-msgstr ""
+msgstr "Ke'awila' ri taq cholkema' e'okisan pa ri ajk'amaya'l taq ruxaq ye'atz'ët."
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tachajij awi' chi kiwäch ri jech'un taq okem chuqa' ri ojqanïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Ke'aq'ata' ri jech'un taq okem richin yatok pa ri taq ruxaq nawajo' rik'in rub'anikil—aninäq."
 
 #. editorial content for the discovery pane.
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'aq'alajisaj ri ewan taq tzij xe'atz'ib'aj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
