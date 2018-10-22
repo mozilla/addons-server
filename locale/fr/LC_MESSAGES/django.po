@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-19 14:03+0000\n"
-"Last-Translator: YD <ygda+fx@free.fr>\n"
+"PO-Revision-Date: 2018-10-22 19:49+0000\n"
+"Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -2844,9 +2844,8 @@ msgid "Describe Add-on"
 msgstr "Décrivez votre module :"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Décrivez votre module :"
+msgstr "Décrivez {0}"
 
 msgid "Add-on URL"
 msgstr "Adresse URL du module"
