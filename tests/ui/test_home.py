@@ -81,7 +81,8 @@ def test_title_routes_to_home(base_url, selenium):
     assert home.hero_banner.is_displayed()
 
 
-@pytest.mark.parametrize('i, page_url',
+@pytest.mark.parametrize(
+    'i, page_url',
     enumerate(['language-tools', 'search-tools', 'android']))
 @pytest.mark.nondestructive
 def test_more_dropdown_navigates_correctly(base_url, selenium, i, page_url):
