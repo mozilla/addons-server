@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-23 13:53+0000\n"
+"PO-Revision-Date: 2018-10-23 14:08+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -4533,7 +4533,7 @@ msgstr "ਉਹਨਾਂ ਦੇ ਟਰੈਕਾਂ ਵਿੱਚ ਟਰੈਕਰ�
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਇਕ ਸਾਫ਼ ਡਿਜੀਟਲ ਟ੍ਰਾਇਲ ਨੂੰ ਛੱਡੋ"
 
 #. editorial content for the discovery pane.
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
@@ -4893,7 +4893,7 @@ msgstr "ਇਤਿਹਾਸਕ ਕੀਮਤਾਂ ਤੇ ਟ੍ਰੈਕ ਕਰ�
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} YouTube ਦੇ ਨਾਲ ਬਣਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
@@ -5077,7 +5077,7 @@ msgstr "ਡਿਵਾਈਸਾਂ ਵਿੱਚ ਐਕਸੈਸ ਕਰਨ ਲਈ �
 
 #. editorial content for the discovery pane.
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਆਸਾਨੀ ਨਾਲ ਬੁੱਕਮਾਰਕ ਨਿਰਧਾਰਿਤ ਸਥਾਨ ਚੁਣੋ"
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
@@ -5085,7 +5085,7 @@ msgstr "ਜੇਕਰ ਤੁਸੀਂ ਬੁੱਕਮਾਰਕ ਫੋਲਡਰ �
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਜ਼ੀਰੋ ਫਾਰਮੇਟਿੰਗ"
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
@@ -5113,7 +5113,7 @@ msgstr "ਆਪਣੀ ਪਸੰਦੀਦਾ PDF ਐਪਲੀਕੇਸ਼ਨ ਦ�
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਰੀਡਾਇਰੈਕਟਸ ਅਤੇ ਟਰੈਕਕਰਤਿਆਂ ਨੂੰ ਛੱਡੋ"
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
@@ -5121,7 +5121,7 @@ msgstr "ਪੇਜਾਂ ਅਤੇ URL ਟਰੈਕਿੰਗ ਮਾਪਦੰਡ�
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਖੋਜ ਟ੍ਰੈਕਰਾਂ ਨੂੰ ਬੰਦ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
@@ -5337,7 +5337,7 @@ msgstr "ਕਸਟਮ ਬੈਕਗਰਾਊਂਡ ਰੰਗ ਅਤੇ ਚਿੱ�
 
 #. editorial content for the discovery pane.
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਬਿੱਲੀ ਦੇ ਪ੍ਰੇਮੀ ਨਾਲ ਖੁਸ਼ ਹਨ"
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
@@ -5365,7 +5365,7 @@ msgstr "ਬਹੁਤ ਖੁੱਲ੍ਹੇ ਟੈਬਸ? ਸਕਰੋਲਿੰ�
 
 #. editorial content for the discovery pane.
 msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਦੇ ਹੇਠ ਕੀ ਹੈ ਦੀ ਪੜਚੋਲ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Uncover the software that supports whatever website you're visiting."
@@ -5373,7 +5373,7 @@ msgstr "ਜੋ ਵੀ ਵੈਬਸਾਈਟ ਤੁਸੀਂ ਵਿਜਿਟ ਕ�
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਨਾਲ ਰੀਡਾਇਰੈਕਟਸ ਅਤੇ ਟਰੈਕਿੰਗ ਨੂੰ ਰੋਕ ਦਿਓ"
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
